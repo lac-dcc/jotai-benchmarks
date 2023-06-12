@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -93,12 +96,6 @@ __attribute__((used)) static int spi_check_buswidth_req(struct spi_mem *mem, u8 
 	return -ENOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -115,16 +112,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int buswidth = 100;
+        
           int tx = 100;
+        
           int _len_mem0 = 1;
           struct spi_mem * mem = (struct spi_mem *) malloc(_len_mem0*sizeof(struct spi_mem));
           for(int _i0 = 0; _i0 < _len_mem0; _i0++) {
               int _len_mem__i0__spi0 = 1;
           mem[_i0].spi = (struct TYPE_2__ *) malloc(_len_mem__i0__spi0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_mem__i0__spi0; _j0++) {
-            mem[_i0].spi->mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              mem[_i0].spi->mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = spi_check_buswidth_req(mem,buswidth,tx);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_mem0; _aux++) {
@@ -134,7 +136,90 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int buswidth = 255;
+        
+          int tx = 255;
+        
+          int _len_mem0 = 65025;
+          struct spi_mem * mem = (struct spi_mem *) malloc(_len_mem0*sizeof(struct spi_mem));
+          for(int _i0 = 0; _i0 < _len_mem0; _i0++) {
+              int _len_mem__i0__spi0 = 1;
+          mem[_i0].spi = (struct TYPE_2__ *) malloc(_len_mem__i0__spi0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_mem__i0__spi0; _j0++) {
+              mem[_i0].spi->mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = spi_check_buswidth_req(mem,buswidth,tx);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mem0; _aux++) {
+          free(mem[_aux].spi);
+          }
+          free(mem);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int buswidth = 10;
+        
+          int tx = 10;
+        
+          int _len_mem0 = 100;
+          struct spi_mem * mem = (struct spi_mem *) malloc(_len_mem0*sizeof(struct spi_mem));
+          for(int _i0 = 0; _i0 < _len_mem0; _i0++) {
+              int _len_mem__i0__spi0 = 1;
+          mem[_i0].spi = (struct TYPE_2__ *) malloc(_len_mem__i0__spi0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_mem__i0__spi0; _j0++) {
+              mem[_i0].spi->mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = spi_check_buswidth_req(mem,buswidth,tx);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mem0; _aux++) {
+          free(mem[_aux].spi);
+          }
+          free(mem);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int buswidth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int tx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_mem0 = 1;
+          struct spi_mem * mem = (struct spi_mem *) malloc(_len_mem0*sizeof(struct spi_mem));
+          for(int _i0 = 0; _i0 < _len_mem0; _i0++) {
+              int _len_mem__i0__spi0 = 1;
+          mem[_i0].spi = (struct TYPE_2__ *) malloc(_len_mem__i0__spi0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_mem__i0__spi0; _j0++) {
+              mem[_i0].spi->mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = spi_check_buswidth_req(mem,buswidth,tx);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mem0; _aux++) {
+          free(mem[_aux].spi);
+          }
+          free(mem);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static bool nau8824_is_jack_inserted(struct nau8824 *nau88
 	return insert;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,19 +83,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_nau88240 = 1;
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_nau88240 = 65025;
           struct nau8824 * nau8824 = (struct nau8824 *) malloc(_len_nau88240*sizeof(struct nau8824));
           for(int _i0 = 0; _i0 < _len_nau88240; _i0++) {
-            nau8824[_i0].irq = ((-2 * (next_i()%2)) + 1) * next_i();
+              nau8824[_i0].irq = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_nau8824__i0__jack0 = 1;
           nau8824[_i0].jack = (struct snd_soc_jack *) malloc(_len_nau8824__i0__jack0*sizeof(struct snd_soc_jack));
           for(int _j0 = 0; _j0 < _len_nau8824__i0__jack0; _j0++) {
-            nau8824[_i0].jack->status = ((-2 * (next_i()%2)) + 1) * next_i();
+              nau8824[_i0].jack->status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = nau8824_is_jack_inserted(nau8824);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_nau88240; _aux++) {
+          free(nau8824[_aux].jack);
+          }
+          free(nau8824);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_nau88240 = 100;
+          struct nau8824 * nau8824 = (struct nau8824 *) malloc(_len_nau88240*sizeof(struct nau8824));
+          for(int _i0 = 0; _i0 < _len_nau88240; _i0++) {
+              nau8824[_i0].irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_nau8824__i0__jack0 = 1;
+          nau8824[_i0].jack = (struct snd_soc_jack *) malloc(_len_nau8824__i0__jack0*sizeof(struct snd_soc_jack));
+          for(int _j0 = 0; _j0 < _len_nau8824__i0__jack0; _j0++) {
+              nau8824[_i0].jack->status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = nau8824_is_jack_inserted(nau8824);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_nau88240; _aux++) {
+          free(nau8824[_aux].jack);
+          }
+          free(nau8824);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_nau88240 = 1;
+          struct nau8824 * nau8824 = (struct nau8824 *) malloc(_len_nau88240*sizeof(struct nau8824));
+          for(int _i0 = 0; _i0 < _len_nau88240; _i0++) {
+              nau8824[_i0].irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_nau8824__i0__jack0 = 1;
+          nau8824[_i0].jack = (struct snd_soc_jack *) malloc(_len_nau8824__i0__jack0*sizeof(struct snd_soc_jack));
+          for(int _j0 = 0; _j0 < _len_nau8824__i0__jack0; _j0++) {
+              nau8824[_i0].jack->status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = nau8824_is_jack_inserted(nau8824);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_nau88240; _aux++) {

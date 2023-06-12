@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -63,12 +63,6 @@ __attribute__((used)) static int hwmon_attr_base(enum hwmon_sensor_types type)
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,16 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum hwmon_sensor_types type = 0;
+        
           int benchRet = hwmon_attr_base(type);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

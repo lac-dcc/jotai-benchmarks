@@ -31,7 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -76,12 +77,6 @@ __attribute__((used)) static int wilc_wlan_cfg_set_byte(u8 *frame, u32 offset, u
 	return 5;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,34 +89,134 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int offset = 100;
+        
           int id = 100;
+        
           int val8 = 100;
+        
           int _len_frame0 = 1;
           int * frame = (int *) malloc(_len_frame0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_frame0; _i0++) {
             frame[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = wilc_wlan_cfg_set_byte(frame,offset,id,val8);
           printf("%d\n", benchRet); 
           free(frame);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int offset = 255;
+        
+          int id = 255;
+        
+          int val8 = 255;
+        
+          int _len_frame0 = 65025;
+          int * frame = (int *) malloc(_len_frame0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_frame0; _i0++) {
+            frame[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = wilc_wlan_cfg_set_byte(frame,offset,id,val8);
+          printf("%d\n", benchRet); 
+          free(frame);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int offset = 10;
+        
           int id = 10;
+        
           int val8 = 10;
+        
           int _len_frame0 = 100;
           int * frame = (int *) malloc(_len_frame0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_frame0; _i0++) {
             frame[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = wilc_wlan_cfg_set_byte(frame,offset,id,val8);
           printf("%d\n", benchRet); 
           free(frame);

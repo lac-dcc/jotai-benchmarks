@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -94,12 +95,6 @@ uv_dirent_type_t uv__fs_get_dirent_type(uv__dirent_t* dent) {
   return type;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -112,14 +107,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dent0 = 1;
+          int _len_dent0 = 65025;
           int * dent = (int *) malloc(_len_dent0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_dent0; _i0++) {
             dent[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = uv__fs_get_dirent_type(dent);
           printf("%d\n", benchRet); 
           free(dent);
@@ -134,13 +130,28 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_dent0; _i0++) {
             dent[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = uv__fs_get_dirent_type(dent);
           printf("%d\n", benchRet); 
           free(dent);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_dent0 = 1;
+          int * dent = (int *) malloc(_len_dent0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dent0; _i0++) {
+            dent[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = uv__fs_get_dirent_type(dent);
+          printf("%d\n", benchRet); 
+          free(dent);
+        
+        break;
+    }
     default:
         usage();
         break;

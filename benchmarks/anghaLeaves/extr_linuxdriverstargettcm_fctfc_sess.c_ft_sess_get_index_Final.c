@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ u32 ft_sess_get_index(struct se_session *se_sess)
 	return sess->port_id;	/* XXX TBD probably not what is needed */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,18 +78,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_se_sess0 = 65025;
+          struct se_session * se_sess = (struct se_session *) malloc(_len_se_sess0*sizeof(struct se_session));
+          for(int _i0 = 0; _i0 < _len_se_sess0; _i0++) {
+              int _len_se_sess__i0__fabric_sess_ptr0 = 1;
+          se_sess[_i0].fabric_sess_ptr = (struct ft_sess *) malloc(_len_se_sess__i0__fabric_sess_ptr0*sizeof(struct ft_sess));
+          for(int _j0 = 0; _j0 < _len_se_sess__i0__fabric_sess_ptr0; _j0++) {
+              se_sess[_i0].fabric_sess_ptr->port_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ft_sess_get_index(se_sess);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_se_sess0; _aux++) {
+          free(se_sess[_aux].fabric_sess_ptr);
+          }
+          free(se_sess);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_se_sess0 = 100;
+          struct se_session * se_sess = (struct se_session *) malloc(_len_se_sess0*sizeof(struct se_session));
+          for(int _i0 = 0; _i0 < _len_se_sess0; _i0++) {
+              int _len_se_sess__i0__fabric_sess_ptr0 = 1;
+          se_sess[_i0].fabric_sess_ptr = (struct ft_sess *) malloc(_len_se_sess__i0__fabric_sess_ptr0*sizeof(struct ft_sess));
+          for(int _j0 = 0; _j0 < _len_se_sess__i0__fabric_sess_ptr0; _j0++) {
+              se_sess[_i0].fabric_sess_ptr->port_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ft_sess_get_index(se_sess);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_se_sess0; _aux++) {
+          free(se_sess[_aux].fabric_sess_ptr);
+          }
+          free(se_sess);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_se_sess0 = 1;
           struct se_session * se_sess = (struct se_session *) malloc(_len_se_sess0*sizeof(struct se_session));
           for(int _i0 = 0; _i0 < _len_se_sess0; _i0++) {
               int _len_se_sess__i0__fabric_sess_ptr0 = 1;
           se_sess[_i0].fabric_sess_ptr = (struct ft_sess *) malloc(_len_se_sess__i0__fabric_sess_ptr0*sizeof(struct ft_sess));
           for(int _j0 = 0; _j0 < _len_se_sess__i0__fabric_sess_ptr0; _j0++) {
-            se_sess[_i0].fabric_sess_ptr->port_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              se_sess[_i0].fabric_sess_ptr->port_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = ft_sess_get_index(se_sess);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_se_sess0; _aux++) {

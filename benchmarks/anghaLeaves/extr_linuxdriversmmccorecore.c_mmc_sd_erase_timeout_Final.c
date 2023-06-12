@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -82,12 +85,6 @@ __attribute__((used)) static unsigned int mmc_sd_erase_timeout(struct mmc_card *
 	return erase_timeout;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,20 +101,90 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int arg = 100;
+        
           unsigned int qty = 100;
+        
           int _len_card0 = 1;
           struct mmc_card * card = (struct mmc_card *) malloc(_len_card0*sizeof(struct mmc_card));
           for(int _i0 = 0; _i0 < _len_card0; _i0++) {
-            card[_i0].ssr.erase_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
-        card[_i0].ssr.erase_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              card[_i0].ssr.erase_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          card[_i0].ssr.erase_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           unsigned int benchRet = mmc_sd_erase_timeout(card,arg,qty);
           printf("%u\n", benchRet); 
           free(card);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int arg = 255;
+        
+          unsigned int qty = 255;
+        
+          int _len_card0 = 65025;
+          struct mmc_card * card = (struct mmc_card *) malloc(_len_card0*sizeof(struct mmc_card));
+          for(int _i0 = 0; _i0 < _len_card0; _i0++) {
+              card[_i0].ssr.erase_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          card[_i0].ssr.erase_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          unsigned int benchRet = mmc_sd_erase_timeout(card,arg,qty);
+          printf("%u\n", benchRet); 
+          free(card);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int arg = 10;
+        
+          unsigned int qty = 10;
+        
+          int _len_card0 = 100;
+          struct mmc_card * card = (struct mmc_card *) malloc(_len_card0*sizeof(struct mmc_card));
+          for(int _i0 = 0; _i0 < _len_card0; _i0++) {
+              card[_i0].ssr.erase_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          card[_i0].ssr.erase_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          unsigned int benchRet = mmc_sd_erase_timeout(card,arg,qty);
+          printf("%u\n", benchRet); 
+          free(card);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int arg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int qty = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_card0 = 1;
+          struct mmc_card * card = (struct mmc_card *) malloc(_len_card0*sizeof(struct mmc_card));
+          for(int _i0 = 0; _i0 < _len_card0; _i0++) {
+              card[_i0].ssr.erase_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          card[_i0].ssr.erase_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          unsigned int benchRet = mmc_sd_erase_timeout(card,arg,qty);
+          printf("%u\n", benchRet); 
+          free(card);
+        
+        break;
+    }
     default:
         usage();
         break;

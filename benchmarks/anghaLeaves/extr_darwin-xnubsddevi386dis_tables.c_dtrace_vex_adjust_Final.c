@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ dtrace_vex_adjust(uint_t vex_byte1, uint_t mode, uint_t *reg, uint_t *r_m)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,24 +91,102 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int vex_byte1 = 100;
+        
           int mode = 100;
+        
           int _len_reg0 = 1;
           int * reg = (int *) malloc(_len_reg0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_reg0; _i0++) {
             reg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_r_m0 = 1;
           int * r_m = (int *) malloc(_len_r_m0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_r_m0; _i0++) {
             r_m[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           dtrace_vex_adjust(vex_byte1,mode,reg,r_m);
           free(reg);
           free(r_m);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int vex_byte1 = 255;
+        
+          int mode = 255;
+        
+          int _len_reg0 = 65025;
+          int * reg = (int *) malloc(_len_reg0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_reg0; _i0++) {
+            reg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_r_m0 = 65025;
+          int * r_m = (int *) malloc(_len_r_m0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_r_m0; _i0++) {
+            r_m[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          dtrace_vex_adjust(vex_byte1,mode,reg,r_m);
+          free(reg);
+          free(r_m);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int vex_byte1 = 10;
+        
+          int mode = 10;
+        
+          int _len_reg0 = 100;
+          int * reg = (int *) malloc(_len_reg0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_reg0; _i0++) {
+            reg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_r_m0 = 100;
+          int * r_m = (int *) malloc(_len_r_m0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_r_m0; _i0++) {
+            r_m[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          dtrace_vex_adjust(vex_byte1,mode,reg,r_m);
+          free(reg);
+          free(r_m);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int vex_byte1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_reg0 = 1;
+          int * reg = (int *) malloc(_len_reg0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_reg0; _i0++) {
+            reg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_r_m0 = 1;
+          int * r_m = (int *) malloc(_len_r_m0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_r_m0; _i0++) {
+            r_m[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          dtrace_vex_adjust(vex_byte1,mode,reg,r_m);
+          free(reg);
+          free(r_m);
+        
+        break;
+    }
     default:
         usage();
         break;

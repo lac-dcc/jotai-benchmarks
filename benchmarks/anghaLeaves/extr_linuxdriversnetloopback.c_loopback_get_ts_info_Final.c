@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static int loopback_get_ts_info(struct net_device *netdev,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,20 +85,145 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_netdev0 = 65025;
+          struct net_device * netdev = (struct net_device *) malloc(_len_netdev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_netdev0; _i0++) {
+              netdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ts_info0 = 65025;
+          struct ethtool_ts_info * ts_info = (struct ethtool_ts_info *) malloc(_len_ts_info0*sizeof(struct ethtool_ts_info));
+          for(int _i0 = 0; _i0 < _len_ts_info0; _i0++) {
+              ts_info[_i0].so_timestamping = ((-2 * (next_i()%2)) + 1) * next_i();
+          ts_info[_i0].phc_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = loopback_get_ts_info(netdev,ts_info);
+          printf("%d\n", benchRet); 
+          free(netdev);
+          free(ts_info);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_netdev0 = 100;
+          struct net_device * netdev = (struct net_device *) malloc(_len_netdev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_netdev0; _i0++) {
+              netdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ts_info0 = 100;
+          struct ethtool_ts_info * ts_info = (struct ethtool_ts_info *) malloc(_len_ts_info0*sizeof(struct ethtool_ts_info));
+          for(int _i0 = 0; _i0 < _len_ts_info0; _i0++) {
+              ts_info[_i0].so_timestamping = ((-2 * (next_i()%2)) + 1) * next_i();
+          ts_info[_i0].phc_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = loopback_get_ts_info(netdev,ts_info);
+          printf("%d\n", benchRet); 
+          free(netdev);
+          free(ts_info);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_netdev0 = 1;
           struct net_device * netdev = (struct net_device *) malloc(_len_netdev0*sizeof(struct net_device));
           for(int _i0 = 0; _i0 < _len_netdev0; _i0++) {
-            netdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              netdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_ts_info0 = 1;
           struct ethtool_ts_info * ts_info = (struct ethtool_ts_info *) malloc(_len_ts_info0*sizeof(struct ethtool_ts_info));
           for(int _i0 = 0; _i0 < _len_ts_info0; _i0++) {
-            ts_info[_i0].so_timestamping = ((-2 * (next_i()%2)) + 1) * next_i();
-        ts_info[_i0].phc_index = ((-2 * (next_i()%2)) + 1) * next_i();
+              ts_info[_i0].so_timestamping = ((-2 * (next_i()%2)) + 1) * next_i();
+          ts_info[_i0].phc_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = loopback_get_ts_info(netdev,ts_info);
           printf("%d\n", benchRet); 
           free(netdev);

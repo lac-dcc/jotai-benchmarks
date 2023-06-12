@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static void he_stat__add_stat(struct he_stat *dest, struct
 	dest->weight		+= src->weight;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,38 +80,111 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dest0 = 1;
+          int _len_dest0 = 65025;
           struct he_stat * dest = (struct he_stat *) malloc(_len_dest0*sizeof(struct he_stat));
           for(int _i0 = 0; _i0 < _len_dest0; _i0++) {
-            dest[_i0].weight = ((-2 * (next_i()%2)) + 1) * next_i();
-        dest[_i0].nr_events = ((-2 * (next_i()%2)) + 1) * next_i();
-        dest[_i0].period_guest_us = ((-2 * (next_i()%2)) + 1) * next_i();
-        dest[_i0].period_guest_sys = ((-2 * (next_i()%2)) + 1) * next_i();
-        dest[_i0].period_us = ((-2 * (next_i()%2)) + 1) * next_i();
-        dest[_i0].period_sys = ((-2 * (next_i()%2)) + 1) * next_i();
-        dest[_i0].period = ((-2 * (next_i()%2)) + 1) * next_i();
+              dest[_i0].weight = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].nr_events = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].period_guest_us = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].period_guest_sys = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].period_us = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].period_sys = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_src0 = 1;
+        
+          int _len_src0 = 65025;
           struct he_stat * src = (struct he_stat *) malloc(_len_src0*sizeof(struct he_stat));
           for(int _i0 = 0; _i0 < _len_src0; _i0++) {
-            src[_i0].weight = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].nr_events = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].period_guest_us = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].period_guest_sys = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].period_us = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].period_sys = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].period = ((-2 * (next_i()%2)) + 1) * next_i();
+              src[_i0].weight = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].nr_events = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].period_guest_us = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].period_guest_sys = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].period_us = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].period_sys = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           he_stat__add_stat(dest,src);
           free(dest);
           free(src);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dest0 = 100;
+          struct he_stat * dest = (struct he_stat *) malloc(_len_dest0*sizeof(struct he_stat));
+          for(int _i0 = 0; _i0 < _len_dest0; _i0++) {
+              dest[_i0].weight = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].nr_events = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].period_guest_us = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].period_guest_sys = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].period_us = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].period_sys = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_src0 = 100;
+          struct he_stat * src = (struct he_stat *) malloc(_len_src0*sizeof(struct he_stat));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+              src[_i0].weight = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].nr_events = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].period_guest_us = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].period_guest_sys = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].period_us = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].period_sys = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          he_stat__add_stat(dest,src);
+          free(dest);
+          free(src);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dest0 = 1;
+          struct he_stat * dest = (struct he_stat *) malloc(_len_dest0*sizeof(struct he_stat));
+          for(int _i0 = 0; _i0 < _len_dest0; _i0++) {
+              dest[_i0].weight = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].nr_events = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].period_guest_us = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].period_guest_sys = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].period_us = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].period_sys = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_src0 = 1;
+          struct he_stat * src = (struct he_stat *) malloc(_len_src0*sizeof(struct he_stat));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+              src[_i0].weight = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].nr_events = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].period_guest_us = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].period_guest_sys = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].period_us = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].period_sys = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          he_stat__add_stat(dest,src);
+          free(dest);
+          free(src);
+        
+        break;
+    }
     default:
         usage();
         break;

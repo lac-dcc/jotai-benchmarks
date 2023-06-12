@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ __attribute__((used)) static void update_xdomain(struct tb_xdomain *xd, u64 rout
 	xd->is_unplugged = false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,20 +83,86 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int route = 100;
+        
           int link = 100;
+        
           int _len_xd0 = 1;
           struct tb_xdomain * xd = (struct tb_xdomain *) malloc(_len_xd0*sizeof(struct tb_xdomain));
           for(int _i0 = 0; _i0 < _len_xd0; _i0++) {
-            xd[_i0].is_unplugged = ((-2 * (next_i()%2)) + 1) * next_i();
-        xd[_i0].route = ((-2 * (next_i()%2)) + 1) * next_i();
-        xd[_i0].link = ((-2 * (next_i()%2)) + 1) * next_i();
+              xd[_i0].is_unplugged = ((-2 * (next_i()%2)) + 1) * next_i();
+          xd[_i0].route = ((-2 * (next_i()%2)) + 1) * next_i();
+          xd[_i0].link = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           update_xdomain(xd,route,link);
           free(xd);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int route = 255;
+        
+          int link = 255;
+        
+          int _len_xd0 = 65025;
+          struct tb_xdomain * xd = (struct tb_xdomain *) malloc(_len_xd0*sizeof(struct tb_xdomain));
+          for(int _i0 = 0; _i0 < _len_xd0; _i0++) {
+              xd[_i0].is_unplugged = ((-2 * (next_i()%2)) + 1) * next_i();
+          xd[_i0].route = ((-2 * (next_i()%2)) + 1) * next_i();
+          xd[_i0].link = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          update_xdomain(xd,route,link);
+          free(xd);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int route = 10;
+        
+          int link = 10;
+        
+          int _len_xd0 = 100;
+          struct tb_xdomain * xd = (struct tb_xdomain *) malloc(_len_xd0*sizeof(struct tb_xdomain));
+          for(int _i0 = 0; _i0 < _len_xd0; _i0++) {
+              xd[_i0].is_unplugged = ((-2 * (next_i()%2)) + 1) * next_i();
+          xd[_i0].route = ((-2 * (next_i()%2)) + 1) * next_i();
+          xd[_i0].link = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          update_xdomain(xd,route,link);
+          free(xd);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int route = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int link = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_xd0 = 1;
+          struct tb_xdomain * xd = (struct tb_xdomain *) malloc(_len_xd0*sizeof(struct tb_xdomain));
+          for(int _i0 = 0; _i0 < _len_xd0; _i0++) {
+              xd[_i0].is_unplugged = ((-2 * (next_i()%2)) + 1) * next_i();
+          xd[_i0].route = ((-2 * (next_i()%2)) + 1) * next_i();
+          xd[_i0].link = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          update_xdomain(xd,route,link);
+          free(xd);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -81,12 +84,6 @@ __attribute__((used)) static int perf_top__key_mapped(struct perf_top *top, int 
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,19 +96,196 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 38
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int c = 100;
+        
           int _len_top0 = 1;
           struct perf_top * top = (struct perf_top *) malloc(_len_top0*sizeof(struct perf_top));
           for(int _i0 = 0; _i0 < _len_top0; _i0++) {
               int _len_top__i0__evlist0 = 1;
           top[_i0].evlist = (struct TYPE_2__ *) malloc(_len_top__i0__evlist0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_top__i0__evlist0; _j0++) {
-            top[_i0].evlist->nr_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+              top[_i0].evlist->nr_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = perf_top__key_mapped(top,c);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_top0; _aux++) {
+          free(top[_aux].evlist);
+          }
+          free(top);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 50
+          // dynamic_instructions_O0 : 50
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int c = 255;
+        
+          int _len_top0 = 65025;
+          struct perf_top * top = (struct perf_top *) malloc(_len_top0*sizeof(struct perf_top));
+          for(int _i0 = 0; _i0 < _len_top0; _i0++) {
+              int _len_top__i0__evlist0 = 1;
+          top[_i0].evlist = (struct TYPE_2__ *) malloc(_len_top__i0__evlist0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_top__i0__evlist0; _j0++) {
+              top[_i0].evlist->nr_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = perf_top__key_mapped(top,c);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_top0; _aux++) {
+          free(top[_aux].evlist);
+          }
+          free(top);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 50
+          // dynamic_instructions_O0 : 50
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int c = 10;
+        
+          int _len_top0 = 100;
+          struct perf_top * top = (struct perf_top *) malloc(_len_top0*sizeof(struct perf_top));
+          for(int _i0 = 0; _i0 < _len_top0; _i0++) {
+              int _len_top__i0__evlist0 = 1;
+          top[_i0].evlist = (struct TYPE_2__ *) malloc(_len_top__i0__evlist0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_top__i0__evlist0; _j0++) {
+              top[_i0].evlist->nr_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = perf_top__key_mapped(top,c);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_top0; _aux++) {
+          free(top[_aux].evlist);
+          }
+          free(top);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 50
+          // dynamic_instructions_O0 : 50
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int c = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_top0 = 1;
+          struct perf_top * top = (struct perf_top *) malloc(_len_top0*sizeof(struct perf_top));
+          for(int _i0 = 0; _i0 < _len_top0; _i0++) {
+              int _len_top__i0__evlist0 = 1;
+          top[_i0].evlist = (struct TYPE_2__ *) malloc(_len_top__i0__evlist0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_top__i0__evlist0; _j0++) {
+              top[_i0].evlist->nr_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = perf_top__key_mapped(top,c);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_top0; _aux++) {

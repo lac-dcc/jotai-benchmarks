@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +77,6 @@ __attribute__((used)) static int verify_policy_dir(u8 dir)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,6 +93,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int dir = 100;
+        
           int benchRet = verify_policy_dir(dir);
           printf("%d\n", benchRet); 
         
@@ -107,6 +103,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int dir = 255;
+        
           int benchRet = verify_policy_dir(dir);
           printf("%d\n", benchRet); 
         
@@ -116,12 +113,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int dir = 10;
+        
           int benchRet = verify_policy_dir(dir);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int dir = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = verify_policy_dir(dir);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

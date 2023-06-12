@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            dlinked\n\
+       1            bintree\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,8 +64,136 @@ __attribute__((used)) static void list_insert (tftp_connection_t *u, tftp_connec
   v->prev = V; V->next = v;
 }
 
-
 // ------------------------------------------------------------------------- //
+
+struct TYPE_5__ *_allocate_Dlinked_u(int length, struct TYPE_5__ *aux_dlinked_u[] ) {
+  struct TYPE_5__ *walker = (struct TYPE_5__ *)malloc(sizeof(struct TYPE_5__));
+
+  aux_dlinked_u[0] = walker;
+  walker->next = NULL;
+  walker->prev = NULL;
+
+  struct TYPE_5__ *head = walker;
+  for(int i = 1; i < length; i++) {
+    walker->prev = (struct TYPE_5__ *)malloc(sizeof(struct TYPE_5__));
+    walker->prev->next = walker;
+    walker = walker->prev;
+    aux_dlinked_u[i] = walker;
+    if (i == (length - 1)) 
+      walker->prev = NULL;  }
+
+  return head;
+}
+
+void _delete_Dlinked_u(struct TYPE_5__ *aux_dlinked_u[], int aux_dlinked_u_size) {
+  for(int i = 0; i < aux_dlinked_u_size; i++) 
+    if(aux_dlinked_u[i])
+      free(aux_dlinked_u[i]);
+}
+
+struct TYPE_5__ *_allocate_Dlinked_V(int length, struct TYPE_5__ *aux_dlinked_V[] ) {
+  struct TYPE_5__ *walker = (struct TYPE_5__ *)malloc(sizeof(struct TYPE_5__));
+
+  aux_dlinked_V[0] = walker;
+  walker->next = NULL;
+  walker->prev = NULL;
+
+  struct TYPE_5__ *head = walker;
+  for(int i = 1; i < length; i++) {
+    walker->prev = (struct TYPE_5__ *)malloc(sizeof(struct TYPE_5__));
+    walker->prev->next = walker;
+    walker = walker->prev;
+    aux_dlinked_V[i] = walker;
+    if (i == (length - 1)) 
+      walker->prev = NULL;  }
+
+  return head;
+}
+
+void _delete_Dlinked_V(struct TYPE_5__ *aux_dlinked_V[], int aux_dlinked_V_size) {
+  for(int i = 0; i < aux_dlinked_V_size; i++) 
+    if(aux_dlinked_V[i])
+      free(aux_dlinked_V[i]);
+}
+
+struct TYPE_5__ *_allocate_Dlinked_v(int length, struct TYPE_5__ *aux_dlinked_v[] ) {
+  struct TYPE_5__ *walker = (struct TYPE_5__ *)malloc(sizeof(struct TYPE_5__));
+
+  aux_dlinked_v[0] = walker;
+  walker->next = NULL;
+  walker->prev = NULL;
+
+  struct TYPE_5__ *head = walker;
+  for(int i = 1; i < length; i++) {
+    walker->prev = (struct TYPE_5__ *)malloc(sizeof(struct TYPE_5__));
+    walker->prev->next = walker;
+    walker = walker->prev;
+    aux_dlinked_v[i] = walker;
+    if (i == (length - 1)) 
+      walker->prev = NULL;  }
+
+  return head;
+}
+
+void _delete_Dlinked_v(struct TYPE_5__ *aux_dlinked_v[], int aux_dlinked_v_size) {
+  for(int i = 0; i < aux_dlinked_v_size; i++) 
+    if(aux_dlinked_v[i])
+      free(aux_dlinked_v[i]);
+}
+
+struct TYPE_5__ *_allocateBinTree_u(int length, struct TYPE_5__ *aux_tree_u[], int *counter_u) {
+  if(length == 0)
+    return NULL;
+  struct TYPE_5__ *walker = (struct TYPE_5__ *)malloc(sizeof(struct TYPE_5__));
+
+  aux_tree_u[*counter_u] = walker;
+  (*counter_u)++;
+  walker->next = _allocateBinTree_u(length - 1, aux_tree_u, counter_u);
+  walker->prev = _allocateBinTree_u(length - 1, aux_tree_u, counter_u);
+  return walker;
+}
+
+void _deleteBinTree_u(struct TYPE_5__ *aux_tree_u[]) {
+  for(int i = 0; i < 1023; i++) 
+    if(aux_tree_u[i])
+      free(aux_tree_u[i]);
+}
+
+struct TYPE_5__ *_allocateBinTree_V(int length, struct TYPE_5__ *aux_tree_V[], int *counter_V) {
+  if(length == 0)
+    return NULL;
+  struct TYPE_5__ *walker = (struct TYPE_5__ *)malloc(sizeof(struct TYPE_5__));
+
+  aux_tree_V[*counter_V] = walker;
+  (*counter_V)++;
+  walker->next = _allocateBinTree_V(length - 1, aux_tree_V, counter_V);
+  walker->prev = _allocateBinTree_V(length - 1, aux_tree_V, counter_V);
+  return walker;
+}
+
+void _deleteBinTree_V(struct TYPE_5__ *aux_tree_V[]) {
+  for(int i = 0; i < 1023; i++) 
+    if(aux_tree_V[i])
+      free(aux_tree_V[i]);
+}
+
+struct TYPE_5__ *_allocateBinTree_v(int length, struct TYPE_5__ *aux_tree_v[], int *counter_v) {
+  if(length == 0)
+    return NULL;
+  struct TYPE_5__ *walker = (struct TYPE_5__ *)malloc(sizeof(struct TYPE_5__));
+
+  aux_tree_v[*counter_v] = walker;
+  (*counter_v)++;
+  walker->next = _allocateBinTree_v(length - 1, aux_tree_v, counter_v);
+  walker->prev = _allocateBinTree_v(length - 1, aux_tree_v, counter_v);
+  return walker;
+}
+
+void _deleteBinTree_v(struct TYPE_5__ *aux_tree_v[]) {
+  for(int i = 0; i < 1023; i++) 
+    if(aux_tree_v[i])
+      free(aux_tree_v[i]);
+}
 
 struct TYPE_5__ *_allocate_u(int length, struct TYPE_5__ *aux_u[]) {
   struct TYPE_5__ *walker = (struct TYPE_5__ *)malloc(sizeof(struct TYPE_5__));
@@ -151,7 +281,6 @@ void _delete_v(struct TYPE_5__ *aux_v[], int aux_v_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -164,15 +293,59 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // dlinked
     case 0:
+    {
+          struct TYPE_5__ * aux_dlinked_u[10000];
+          struct TYPE_5__ * u = _allocate_Dlinked_u(10000, aux_dlinked_u);
+        
+          struct TYPE_5__ * aux_dlinked_V[10000];
+          struct TYPE_5__ * V = _allocate_Dlinked_V(10000, aux_dlinked_V);
+        
+          struct TYPE_5__ * aux_dlinked_v[10000];
+          struct TYPE_5__ * v = _allocate_Dlinked_v(10000, aux_dlinked_v);
+        
+          list_insert(u,V,v);
+          _delete_Dlinked_u(aux_dlinked_u, 10000);
+          _delete_Dlinked_V(aux_dlinked_V, 10000);
+          _delete_Dlinked_v(aux_dlinked_v, 10000);
+        
+        break;
+    }
+    // bintree
+    case 1:
+    {
+          int counter_u= 0;
+          struct TYPE_5__ *  aux_tree_u[1023];
+          struct TYPE_5__ * u = _allocateBinTree_u(10, aux_tree_u, &counter_u);
+        
+          int counter_V= 0;
+          struct TYPE_5__ *  aux_tree_V[1023];
+          struct TYPE_5__ * V = _allocateBinTree_V(10, aux_tree_V, &counter_V);
+        
+          int counter_v= 0;
+          struct TYPE_5__ *  aux_tree_v[1023];
+          struct TYPE_5__ * v = _allocateBinTree_v(10, aux_tree_v, &counter_v);
+        
+          list_insert(u,V,v);
+          _deleteBinTree_u(aux_tree_u);
+          _deleteBinTree_V(aux_tree_V);
+          _deleteBinTree_v(aux_tree_v);
+        
+        break;
+    }
+    // empty
+    case 2:
     {
           struct TYPE_5__ * aux_u[1];
           struct TYPE_5__ * u = _allocate_u(1, aux_u);
+        
           struct TYPE_5__ * aux_V[1];
           struct TYPE_5__ * V = _allocate_V(1, aux_V);
+        
           struct TYPE_5__ * aux_v[1];
           struct TYPE_5__ * v = _allocate_v(1, aux_v);
+        
           list_insert(u,V,v);
           _delete_u(aux_u, 1);
           _delete_V(aux_V, 1);
@@ -180,7 +353,6 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
     default:
         usage();
         break;

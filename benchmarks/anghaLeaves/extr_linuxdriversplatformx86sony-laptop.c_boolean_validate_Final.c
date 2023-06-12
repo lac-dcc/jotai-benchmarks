@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static int boolean_validate(const int direction, const int
 	return value;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,7 +84,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           const int direction = 100;
+        
           const int value = 100;
+        
           int benchRet = boolean_validate(direction,value);
           printf("%d\n", benchRet); 
         
@@ -99,7 +96,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           const int direction = 255;
+        
           const int value = 255;
+        
           int benchRet = boolean_validate(direction,value);
           printf("%d\n", benchRet); 
         
@@ -109,13 +108,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           const int direction = 10;
+        
           const int value = 10;
+        
           int benchRet = boolean_validate(direction,value);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          const int direction = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          const int value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = boolean_validate(direction,value);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -87,12 +88,6 @@ stb_uint stb_adler32(stb_uint adler32, stb_uchar *buffer, stb_uint buflen)
    return (s2 << 16) + s1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,16 +100,85 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 129
+          // dynamic_instructions_O0 : 2250
+          // ------------------------------- 
+          // static_instructions_O1 : 84
+          // dynamic_instructions_O1 : 774
+          // ------------------------------- 
+          // static_instructions_O2 : 119
+          // dynamic_instructions_O2 : 791
+          // ------------------------------- 
+          // static_instructions_O3 : 119
+          // dynamic_instructions_O3 : 791
+          // ------------------------------- 
+          // static_instructions_Ofast : 119
+          // dynamic_instructions_Ofast : 791
+          // ------------------------------- 
+          // static_instructions_Os : 80
+          // dynamic_instructions_Os : 770
+          // ------------------------------- 
+          // static_instructions_Oz : 59
+          // dynamic_instructions_Oz : 762
+          // ------------------------------- 
+
+          int adler32 = 255;
+        
+          int buflen = 255;
+        
+          int _len_buffer0 = 65025;
+          long * buffer = (long *) malloc(_len_buffer0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_buffer0; _i0++) {
+            buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = stb_adler32(adler32,buffer,buflen);
+          printf("%d\n", benchRet); 
+          free(buffer);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 129
+          // dynamic_instructions_O0 : 155
+          // ------------------------------- 
+          // static_instructions_O1 : 84
+          // dynamic_instructions_O1 : 89
+          // ------------------------------- 
+          // static_instructions_O2 : 102
+          // dynamic_instructions_O2 : 108
+          // ------------------------------- 
+          // static_instructions_O3 : 102
+          // dynamic_instructions_O3 : 108
+          // ------------------------------- 
+          // static_instructions_Ofast : 102
+          // dynamic_instructions_Ofast : 108
+          // ------------------------------- 
+          // static_instructions_Os : 80
+          // dynamic_instructions_Os : 85
+          // ------------------------------- 
+          // static_instructions_Oz : 59
+          // dynamic_instructions_Oz : 72
+          // ------------------------------- 
+
           int adler32 = 10;
+        
           int buflen = 10;
+        
           int _len_buffer0 = 100;
           long * buffer = (long *) malloc(_len_buffer0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_buffer0; _i0++) {
             buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = stb_adler32(adler32,buffer,buflen);
           printf("%d\n", benchRet); 
           free(buffer);

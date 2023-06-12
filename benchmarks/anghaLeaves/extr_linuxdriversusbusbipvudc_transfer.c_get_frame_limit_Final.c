@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -78,12 +78,6 @@ __attribute__((used)) static int get_frame_limit(enum usb_device_speed speed)
 
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,16 +90,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum usb_device_speed speed = 0;
+        
           int benchRet = get_frame_limit(speed);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -93,12 +95,6 @@ validate_device_path(efi_char16_t *var_name, int match, u8 *buffer,
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -111,21 +107,148 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 41
+          // ------------------------------- 
+          // static_instructions_O1 : 29
+          // dynamic_instructions_O1 : 29
+          // ------------------------------- 
+          // static_instructions_O2 : 29
+          // dynamic_instructions_O2 : 29
+          // ------------------------------- 
+          // static_instructions_O3 : 29
+          // dynamic_instructions_O3 : 29
+          // ------------------------------- 
+          // static_instructions_Ofast : 29
+          // dynamic_instructions_Ofast : 29
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 33
+          // dynamic_instructions_Oz : 33
+          // ------------------------------- 
+
           int match = 100;
+        
           unsigned long len = 100;
+        
           int _len_var_name0 = 1;
           int * var_name = (int *) malloc(_len_var_name0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_var_name0; _i0++) {
             var_name[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_buffer0 = 1;
           int * buffer = (int *) malloc(_len_buffer0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_buffer0; _i0++) {
             buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = validate_device_path(var_name,match,buffer,len);
+          printf("%d\n", benchRet); 
+          free(var_name);
+          free(buffer);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 41
+          // ------------------------------- 
+          // static_instructions_O1 : 29
+          // dynamic_instructions_O1 : 29
+          // ------------------------------- 
+          // static_instructions_O2 : 29
+          // dynamic_instructions_O2 : 29
+          // ------------------------------- 
+          // static_instructions_O3 : 29
+          // dynamic_instructions_O3 : 29
+          // ------------------------------- 
+          // static_instructions_Ofast : 29
+          // dynamic_instructions_Ofast : 29
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 33
+          // dynamic_instructions_Oz : 33
+          // ------------------------------- 
+
+          int match = 255;
+        
+          unsigned long len = 255;
+        
+          int _len_var_name0 = 65025;
+          int * var_name = (int *) malloc(_len_var_name0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_var_name0; _i0++) {
+            var_name[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_buffer0 = 65025;
+          int * buffer = (int *) malloc(_len_buffer0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_buffer0; _i0++) {
+            buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = validate_device_path(var_name,match,buffer,len);
+          printf("%d\n", benchRet); 
+          free(var_name);
+          free(buffer);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int match = 10;
+        
+          unsigned long len = 10;
+        
+          int _len_var_name0 = 100;
+          int * var_name = (int *) malloc(_len_var_name0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_var_name0; _i0++) {
+            var_name[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_buffer0 = 100;
+          int * buffer = (int *) malloc(_len_buffer0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_buffer0; _i0++) {
+            buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = validate_device_path(var_name,match,buffer,len);
           printf("%d\n", benchRet); 
           free(var_name);

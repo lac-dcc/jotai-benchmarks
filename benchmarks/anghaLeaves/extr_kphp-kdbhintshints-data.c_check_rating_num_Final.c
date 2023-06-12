@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ int check_rating_num (int num) {
   return (num >= 0 && num < rating_num);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,6 +78,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int num = 100;
+        
           int benchRet = check_rating_num(num);
           printf("%d\n", benchRet); 
         
@@ -92,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int num = 255;
+        
           int benchRet = check_rating_num(num);
           printf("%d\n", benchRet); 
         
@@ -101,12 +98,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int num = 10;
+        
           int benchRet = check_rating_num(num);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = check_rating_num(num);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

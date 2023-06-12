@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static bool __software_strobe_mode_inactive(struct v4l2_ct
 				V4L2_FLASH_STROBE_SOURCE_SOFTWARE)));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,22 +80,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_ctrls0 = 65025;
+          struct v4l2_ctrl ** ctrls = (struct v4l2_ctrl **) malloc(_len_ctrls0*sizeof(struct v4l2_ctrl *));
+          for(int _i0 = 0; _i0 < _len_ctrls0; _i0++) {
+            int _len_ctrls1 = 1;
+            ctrls[_i0] = (struct v4l2_ctrl *) malloc(_len_ctrls1*sizeof(struct v4l2_ctrl));
+            for(int _i1 = 0; _i1 < _len_ctrls1; _i1++) {
+                ctrls[_i0][_i1].val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int benchRet = __software_strobe_mode_inactive(ctrls);
+          printf("%d\n", benchRet); 
+          for(int i1 = 0; i1 < _len_ctrls0; i1++) {
+              free(ctrls[i1]);
+          }
+          free(ctrls);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_ctrls0 = 100;
+          struct v4l2_ctrl ** ctrls = (struct v4l2_ctrl **) malloc(_len_ctrls0*sizeof(struct v4l2_ctrl *));
+          for(int _i0 = 0; _i0 < _len_ctrls0; _i0++) {
+            int _len_ctrls1 = 1;
+            ctrls[_i0] = (struct v4l2_ctrl *) malloc(_len_ctrls1*sizeof(struct v4l2_ctrl));
+            for(int _i1 = 0; _i1 < _len_ctrls1; _i1++) {
+                ctrls[_i0][_i1].val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int benchRet = __software_strobe_mode_inactive(ctrls);
+          printf("%d\n", benchRet); 
+          for(int i1 = 0; i1 < _len_ctrls0; i1++) {
+              free(ctrls[i1]);
+          }
+          free(ctrls);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_ctrls0 = 1;
           struct v4l2_ctrl ** ctrls = (struct v4l2_ctrl **) malloc(_len_ctrls0*sizeof(struct v4l2_ctrl *));
           for(int _i0 = 0; _i0 < _len_ctrls0; _i0++) {
             int _len_ctrls1 = 1;
             ctrls[_i0] = (struct v4l2_ctrl *) malloc(_len_ctrls1*sizeof(struct v4l2_ctrl));
             for(int _i1 = 0; _i1 < _len_ctrls1; _i1++) {
-              ctrls[_i0][_i1].val = ((-2 * (next_i()%2)) + 1) * next_i();
+                ctrls[_i0][_i1].val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           int benchRet = __software_strobe_mode_inactive(ctrls);
           printf("%d\n", benchRet); 
           for(int i1 = 0; i1 < _len_ctrls0; i1++) {
-            int _len_ctrls1 = 1;
               free(ctrls[i1]);
           }
           free(ctrls);

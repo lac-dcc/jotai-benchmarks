@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static inline int ena_com_sq_empty_space(struct ena_com_io
 	return io_sq->q_depth - 1 - cnt;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,16 +81,125 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_io_sq0 = 65025;
+          struct ena_com_io_sq * io_sq = (struct ena_com_io_sq *) malloc(_len_io_sq0*sizeof(struct ena_com_io_sq));
+          for(int _i0 = 0; _i0 < _len_io_sq0; _i0++) {
+              io_sq[_i0].next_to_comp = ((-2 * (next_i()%2)) + 1) * next_i();
+          io_sq[_i0].tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          io_sq[_i0].q_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ena_com_sq_empty_space(io_sq);
+          printf("%d\n", benchRet); 
+          free(io_sq);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_io_sq0 = 100;
+          struct ena_com_io_sq * io_sq = (struct ena_com_io_sq *) malloc(_len_io_sq0*sizeof(struct ena_com_io_sq));
+          for(int _i0 = 0; _i0 < _len_io_sq0; _i0++) {
+              io_sq[_i0].next_to_comp = ((-2 * (next_i()%2)) + 1) * next_i();
+          io_sq[_i0].tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          io_sq[_i0].q_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ena_com_sq_empty_space(io_sq);
+          printf("%d\n", benchRet); 
+          free(io_sq);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_io_sq0 = 1;
           struct ena_com_io_sq * io_sq = (struct ena_com_io_sq *) malloc(_len_io_sq0*sizeof(struct ena_com_io_sq));
           for(int _i0 = 0; _i0 < _len_io_sq0; _i0++) {
-            io_sq[_i0].next_to_comp = ((-2 * (next_i()%2)) + 1) * next_i();
-        io_sq[_i0].tail = ((-2 * (next_i()%2)) + 1) * next_i();
-        io_sq[_i0].q_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+              io_sq[_i0].next_to_comp = ((-2 * (next_i()%2)) + 1) * next_i();
+          io_sq[_i0].tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          io_sq[_i0].q_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ena_com_sq_empty_space(io_sq);
           printf("%d\n", benchRet); 
           free(io_sq);

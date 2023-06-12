@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static void m2c(uiDrawMatrix *m, cairo_matrix_t *c)
 	c->y0 = m->M32;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,36 +84,105 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_m0 = 1;
+          int _len_m0 = 65025;
           struct TYPE_5__ * m = (struct TYPE_5__ *) malloc(_len_m0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_m0; _i0++) {
-            m[_i0].M32 = ((-2 * (next_i()%2)) + 1) * next_i();
-        m[_i0].M31 = ((-2 * (next_i()%2)) + 1) * next_i();
-        m[_i0].M22 = ((-2 * (next_i()%2)) + 1) * next_i();
-        m[_i0].M21 = ((-2 * (next_i()%2)) + 1) * next_i();
-        m[_i0].M12 = ((-2 * (next_i()%2)) + 1) * next_i();
-        m[_i0].M11 = ((-2 * (next_i()%2)) + 1) * next_i();
+              m[_i0].M32 = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].M31 = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].M22 = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].M21 = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].M12 = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].M11 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_c0 = 1;
+        
+          int _len_c0 = 65025;
           struct TYPE_6__ * c = (struct TYPE_6__ *) malloc(_len_c0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_c0; _i0++) {
-            c[_i0].y0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].x0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].yy = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].xy = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].yx = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].xx = ((-2 * (next_i()%2)) + 1) * next_i();
+              c[_i0].y0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].x0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].yy = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].xy = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].yx = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].xx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           m2c(m,c);
           free(m);
           free(c);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_m0 = 100;
+          struct TYPE_5__ * m = (struct TYPE_5__ *) malloc(_len_m0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].M32 = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].M31 = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].M22 = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].M21 = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].M12 = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].M11 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_c0 = 100;
+          struct TYPE_6__ * c = (struct TYPE_6__ *) malloc(_len_c0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].y0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].x0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].yy = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].xy = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].yx = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].xx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          m2c(m,c);
+          free(m);
+          free(c);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_m0 = 1;
+          struct TYPE_5__ * m = (struct TYPE_5__ *) malloc(_len_m0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].M32 = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].M31 = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].M22 = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].M21 = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].M12 = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].M11 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_c0 = 1;
+          struct TYPE_6__ * c = (struct TYPE_6__ *) malloc(_len_c0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].y0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].x0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].yy = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].xy = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].yx = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].xx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          m2c(m,c);
+          free(m);
+          free(c);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +74,6 @@ __attribute__((used)) static inline int lookup_binlog_binsearch (long long binlo
   return b;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,34 +86,152 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           long long binlog_time = 100;
+        
           int a = 100;
+        
           int b = 100;
+        
           int benchRet = lookup_binlog_binsearch(binlog_time,a,b);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           long long binlog_time = 255;
+        
           int a = 255;
+        
           int b = 255;
+        
           int benchRet = lookup_binlog_binsearch(binlog_time,a,b);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           long long binlog_time = 10;
+        
           int a = 10;
+        
           int b = 10;
+        
+          int benchRet = lookup_binlog_binsearch(binlog_time,a,b);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          long long binlog_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int a = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = lookup_binlog_binsearch(binlog_time,a,b);
           printf("%d\n", benchRet); 
         

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ __attribute__((used)) static void process_rssi(struct adapter *padapter, struct 
 	signal_stat->avg_val = signal_stat->total_val / signal_stat->total_num;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,22 +92,161 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 37
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_padapter0 = 65025;
+          struct adapter * padapter = (struct adapter *) malloc(_len_padapter0*sizeof(struct adapter));
+          for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
+              padapter[_i0].recvpriv.signal_strength_data.total_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          padapter[_i0].recvpriv.signal_strength_data.total_val = ((-2 * (next_i()%2)) + 1) * next_i();
+          padapter[_i0].recvpriv.signal_strength_data.avg_val = ((-2 * (next_i()%2)) + 1) * next_i();
+          padapter[_i0].recvpriv.signal_strength_data.update_req = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_prframe0 = 65025;
+          struct recv_frame * prframe = (struct recv_frame *) malloc(_len_prframe0*sizeof(struct recv_frame));
+          for(int _i0 = 0; _i0 < _len_prframe0; _i0++) {
+              prframe[_i0].attrib.phy_info.SignalStrength = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          process_rssi(padapter,prframe);
+          free(padapter);
+          free(prframe);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 37
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_padapter0 = 100;
+          struct adapter * padapter = (struct adapter *) malloc(_len_padapter0*sizeof(struct adapter));
+          for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
+              padapter[_i0].recvpriv.signal_strength_data.total_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          padapter[_i0].recvpriv.signal_strength_data.total_val = ((-2 * (next_i()%2)) + 1) * next_i();
+          padapter[_i0].recvpriv.signal_strength_data.avg_val = ((-2 * (next_i()%2)) + 1) * next_i();
+          padapter[_i0].recvpriv.signal_strength_data.update_req = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_prframe0 = 100;
+          struct recv_frame * prframe = (struct recv_frame *) malloc(_len_prframe0*sizeof(struct recv_frame));
+          for(int _i0 = 0; _i0 < _len_prframe0; _i0++) {
+              prframe[_i0].attrib.phy_info.SignalStrength = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          process_rssi(padapter,prframe);
+          free(padapter);
+          free(prframe);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 37
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int _len_padapter0 = 1;
           struct adapter * padapter = (struct adapter *) malloc(_len_padapter0*sizeof(struct adapter));
           for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
-            padapter[_i0].recvpriv.signal_strength_data.total_num = ((-2 * (next_i()%2)) + 1) * next_i();
-        padapter[_i0].recvpriv.signal_strength_data.total_val = ((-2 * (next_i()%2)) + 1) * next_i();
-        padapter[_i0].recvpriv.signal_strength_data.avg_val = ((-2 * (next_i()%2)) + 1) * next_i();
-        padapter[_i0].recvpriv.signal_strength_data.update_req = ((-2 * (next_i()%2)) + 1) * next_i();
+              padapter[_i0].recvpriv.signal_strength_data.total_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          padapter[_i0].recvpriv.signal_strength_data.total_val = ((-2 * (next_i()%2)) + 1) * next_i();
+          padapter[_i0].recvpriv.signal_strength_data.avg_val = ((-2 * (next_i()%2)) + 1) * next_i();
+          padapter[_i0].recvpriv.signal_strength_data.update_req = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int _len_prframe0 = 1;
           struct recv_frame * prframe = (struct recv_frame *) malloc(_len_prframe0*sizeof(struct recv_frame));
           for(int _i0 = 0; _i0 < _len_prframe0; _i0++) {
-            prframe[_i0].attrib.phy_info.SignalStrength = ((-2 * (next_i()%2)) + 1) * next_i();
+              prframe[_i0].attrib.phy_info.SignalStrength = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           process_rssi(padapter,prframe);
           free(padapter);
           free(prframe);

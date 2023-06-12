@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static u_long get_line_length(int xres_virtual, int bpp)
 	return (length);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,31 +80,144 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int xres_virtual = 100;
+        
           int bpp = 100;
+        
           int benchRet = get_line_length(xres_virtual,bpp);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int xres_virtual = 255;
+        
           int bpp = 255;
+        
           int benchRet = get_line_length(xres_virtual,bpp);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int xres_virtual = 10;
+        
           int bpp = 10;
+        
+          int benchRet = get_line_length(xres_virtual,bpp);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int xres_virtual = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int bpp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = get_line_length(xres_virtual,bpp);
           printf("%d\n", benchRet); 
         

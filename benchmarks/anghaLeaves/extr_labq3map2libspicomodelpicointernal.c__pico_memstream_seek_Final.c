@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -99,12 +102,6 @@ int _pico_memstream_seek( picoMemStream_t *s, long offset, int origin ){
 	return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -117,18 +114,183 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           long offset = 100;
+        
           int origin = 100;
+        
           int _len_s0 = 1;
           struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].curPos = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].buffer = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].bufSize = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].curPos = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].bufSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = _pico_memstream_seek(s,offset,origin);
+          printf("%d\n", benchRet); 
+          free(s);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          long offset = 255;
+        
+          int origin = 255;
+        
+          int _len_s0 = 65025;
+          struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].curPos = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].bufSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = _pico_memstream_seek(s,offset,origin);
+          printf("%d\n", benchRet); 
+          free(s);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          long offset = 10;
+        
+          int origin = 10;
+        
+          int _len_s0 = 100;
+          struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].curPos = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].bufSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = _pico_memstream_seek(s,offset,origin);
+          printf("%d\n", benchRet); 
+          free(s);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          long offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int origin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_s0 = 1;
+          struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].curPos = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].bufSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = _pico_memstream_seek(s,offset,origin);
           printf("%d\n", benchRet); 
           free(s);

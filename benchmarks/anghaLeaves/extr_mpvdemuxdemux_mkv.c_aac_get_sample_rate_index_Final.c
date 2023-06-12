@@ -69,12 +69,6 @@ __attribute__((used)) static int aac_get_sample_rate_index(uint32_t sample_rate)
     return i;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,28 +81,102 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 99
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 55
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 55
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 55
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 55
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 54
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 54
+          // ------------------------------- 
+
           const int sample_rate = 100;
+        
           int benchRet = aac_get_sample_rate_index(sample_rate);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 99
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 55
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 55
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 55
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 55
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 54
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 54
+          // ------------------------------- 
+
           const int sample_rate = 255;
+        
           int benchRet = aac_get_sample_rate_index(sample_rate);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 99
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 55
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 55
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 55
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 55
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 54
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 54
+          // ------------------------------- 
+
           const int sample_rate = 10;
+        
           int benchRet = aac_get_sample_rate_index(sample_rate);
           printf("%d\n", benchRet); 
         

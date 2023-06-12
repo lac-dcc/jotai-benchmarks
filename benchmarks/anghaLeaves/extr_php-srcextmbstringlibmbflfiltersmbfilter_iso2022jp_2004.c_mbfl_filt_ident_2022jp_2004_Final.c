@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -147,12 +150,6 @@ retry:
 	return c;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -169,19 +166,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int c = 100;
+        
           int _len_filter0 = 1;
           struct TYPE_3__ * filter = (struct TYPE_3__ *) malloc(_len_filter0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_filter0; _i0++) {
-            filter[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
-        filter[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+              filter[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+          filter[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mbfl_filt_ident_2022jp_2004(c,filter);
           printf("%d\n", benchRet); 
           free(filter);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int c = 255;
+        
+          int _len_filter0 = 65025;
+          struct TYPE_3__ * filter = (struct TYPE_3__ *) malloc(_len_filter0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_filter0; _i0++) {
+              filter[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+          filter[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mbfl_filt_ident_2022jp_2004(c,filter);
+          printf("%d\n", benchRet); 
+          free(filter);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int c = 10;
+        
+          int _len_filter0 = 100;
+          struct TYPE_3__ * filter = (struct TYPE_3__ *) malloc(_len_filter0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_filter0; _i0++) {
+              filter[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+          filter[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mbfl_filt_ident_2022jp_2004(c,filter);
+          printf("%d\n", benchRet); 
+          free(filter);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int c = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_filter0 = 1;
+          struct TYPE_3__ * filter = (struct TYPE_3__ *) malloc(_len_filter0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_filter0; _i0++) {
+              filter[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+          filter[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mbfl_filt_ident_2022jp_2004(c,filter);
+          printf("%d\n", benchRet); 
+          free(filter);
+        
+        break;
+    }
     default:
         usage();
         break;

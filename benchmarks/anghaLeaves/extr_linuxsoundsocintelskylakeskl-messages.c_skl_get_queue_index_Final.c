@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +76,6 @@ __attribute__((used)) static int skl_get_queue_index(struct skl_module_pin *mpin
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,19 +88,191 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int max = 100;
+        
           int _len_mpin0 = 1;
           struct skl_module_pin * mpin = (struct skl_module_pin *) malloc(_len_mpin0*sizeof(struct skl_module_pin));
           for(int _i0 = 0; _i0 < _len_mpin0; _i0++) {
-            mpin[_i0].id.module_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        mpin[_i0].id.instance_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              mpin[_i0].id.module_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          mpin[_i0].id.instance_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           struct skl_module_inst_id id;
-        id.module_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        id.instance_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          id.module_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          id.instance_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = skl_get_queue_index(mpin,id,max);
+          printf("%d\n", benchRet); 
+          free(mpin);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int max = 255;
+        
+          int _len_mpin0 = 65025;
+          struct skl_module_pin * mpin = (struct skl_module_pin *) malloc(_len_mpin0*sizeof(struct skl_module_pin));
+          for(int _i0 = 0; _i0 < _len_mpin0; _i0++) {
+              mpin[_i0].id.module_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          mpin[_i0].id.instance_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          struct skl_module_inst_id id;
+          id.module_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          id.instance_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = skl_get_queue_index(mpin,id,max);
+          printf("%d\n", benchRet); 
+          free(mpin);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int max = 10;
+        
+          int _len_mpin0 = 100;
+          struct skl_module_pin * mpin = (struct skl_module_pin *) malloc(_len_mpin0*sizeof(struct skl_module_pin));
+          for(int _i0 = 0; _i0 < _len_mpin0; _i0++) {
+              mpin[_i0].id.module_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          mpin[_i0].id.instance_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          struct skl_module_inst_id id;
+          id.module_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          id.instance_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = skl_get_queue_index(mpin,id,max);
+          printf("%d\n", benchRet); 
+          free(mpin);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_mpin0 = 1;
+          struct skl_module_pin * mpin = (struct skl_module_pin *) malloc(_len_mpin0*sizeof(struct skl_module_pin));
+          for(int _i0 = 0; _i0 < _len_mpin0; _i0++) {
+              mpin[_i0].id.module_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          mpin[_i0].id.instance_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          struct skl_module_inst_id id;
+          id.module_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          id.instance_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = skl_get_queue_index(mpin,id,max);
           printf("%d\n", benchRet); 
           free(mpin);

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -121,12 +123,6 @@ done:
 	return n;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -139,30 +135,163 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int rune = 100;
+        
           int _len_encoded0 = 1;
           char * encoded = (char *) malloc(_len_encoded0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_encoded0; _i0++) {
             encoded[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned long benchRet = uiprivUTF8EncodeRune(rune,encoded);
           printf("%lu\n", benchRet); 
           free(encoded);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 46
+          // dynamic_instructions_O0 : 46
+          // ------------------------------- 
+          // static_instructions_O1 : 34
+          // dynamic_instructions_O1 : 34
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 30
+          // dynamic_instructions_Oz : 30
+          // ------------------------------- 
+
+          int rune = 255;
+        
+          int _len_encoded0 = 65025;
+          char * encoded = (char *) malloc(_len_encoded0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_encoded0; _i0++) {
+            encoded[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned long benchRet = uiprivUTF8EncodeRune(rune,encoded);
+          printf("%lu\n", benchRet); 
+          free(encoded);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int rune = 10;
+        
           int _len_encoded0 = 100;
           char * encoded = (char *) malloc(_len_encoded0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_encoded0; _i0++) {
             encoded[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          unsigned long benchRet = uiprivUTF8EncodeRune(rune,encoded);
+          printf("%lu\n", benchRet); 
+          free(encoded);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int rune = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_encoded0 = 1;
+          char * encoded = (char *) malloc(_len_encoded0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_encoded0; _i0++) {
+            encoded[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           unsigned long benchRet = uiprivUTF8EncodeRune(rune,encoded);
           printf("%lu\n", benchRet); 
           free(encoded);

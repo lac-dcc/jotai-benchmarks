@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline u32 btrfs_file_extent_calc_inline_size(u32 d
 	return BTRFS_FILE_EXTENT_INLINE_DATA_START + datasize;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long datasize = 100;
+        
           long benchRet = btrfs_file_extent_calc_inline_size(datasize);
           printf("%ld\n", benchRet); 
         
@@ -94,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long datasize = 255;
+        
           long benchRet = btrfs_file_extent_calc_inline_size(datasize);
           printf("%ld\n", benchRet); 
         
@@ -103,12 +100,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long datasize = 10;
+        
           long benchRet = btrfs_file_extent_calc_inline_size(datasize);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long datasize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long benchRet = btrfs_file_extent_calc_inline_size(datasize);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -79,12 +81,6 @@ __attribute__((used)) static __u8 *sensor_hub_report_fixup(struct hid_device *hd
 	return rdesc;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,24 +93,28 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_hdev0 = 1;
+          int _len_hdev0 = 65025;
           struct hid_device * hdev = (struct hid_device *) malloc(_len_hdev0*sizeof(struct hid_device));
           for(int _i0 = 0; _i0 < _len_hdev0; _i0++) {
-            hdev[_i0].product = ((-2 * (next_i()%2)) + 1) * next_i();
+              hdev[_i0].product = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_rdesc0 = 1;
+        
+          int _len_rdesc0 = 65025;
           int * rdesc = (int *) malloc(_len_rdesc0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_rdesc0; _i0++) {
             rdesc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_rsize0 = 1;
+        
+          int _len_rsize0 = 65025;
           unsigned int * rsize = (unsigned int *) malloc(_len_rsize0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_rsize0; _i0++) {
             rsize[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int * benchRet = sensor_hub_report_fixup(hdev,rdesc,rsize);
           printf("%d\n", (*benchRet)); 
           free(hdev);
@@ -123,7 +123,66 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_hdev0 = 100;
+          struct hid_device * hdev = (struct hid_device *) malloc(_len_hdev0*sizeof(struct hid_device));
+          for(int _i0 = 0; _i0 < _len_hdev0; _i0++) {
+              hdev[_i0].product = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rdesc0 = 100;
+          int * rdesc = (int *) malloc(_len_rdesc0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_rdesc0; _i0++) {
+            rdesc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_rsize0 = 100;
+          unsigned int * rsize = (unsigned int *) malloc(_len_rsize0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_rsize0; _i0++) {
+            rsize[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int * benchRet = sensor_hub_report_fixup(hdev,rdesc,rsize);
+          printf("%d\n", (*benchRet)); 
+          free(hdev);
+          free(rdesc);
+          free(rsize);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_hdev0 = 1;
+          struct hid_device * hdev = (struct hid_device *) malloc(_len_hdev0*sizeof(struct hid_device));
+          for(int _i0 = 0; _i0 < _len_hdev0; _i0++) {
+              hdev[_i0].product = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rdesc0 = 1;
+          int * rdesc = (int *) malloc(_len_rdesc0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_rdesc0; _i0++) {
+            rdesc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_rsize0 = 1;
+          unsigned int * rsize = (unsigned int *) malloc(_len_rsize0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_rsize0; _i0++) {
+            rsize[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int * benchRet = sensor_hub_report_fixup(hdev,rdesc,rsize);
+          printf("%d\n", (*benchRet)); 
+          free(hdev);
+          free(rdesc);
+          free(rsize);
+        
+        break;
+    }
     default:
         usage();
         break;

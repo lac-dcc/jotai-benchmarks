@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -83,12 +84,6 @@ commpage_update_atm_diagnostic_config(uint32_t diagnostic_config)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,6 +100,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int diagnostic_config = 100;
+        
           commpage_update_atm_diagnostic_config(diagnostic_config);
         
         break;
@@ -113,6 +109,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int diagnostic_config = 255;
+        
           commpage_update_atm_diagnostic_config(diagnostic_config);
         
         break;
@@ -121,11 +118,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int diagnostic_config = 10;
+        
           commpage_update_atm_diagnostic_config(diagnostic_config);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int diagnostic_config = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          commpage_update_atm_diagnostic_config(diagnostic_config);
+        
+        break;
+    }
     default:
         usage();
         break;

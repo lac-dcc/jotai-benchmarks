@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static void brcms_c_tbtt(struct brcms_c_info *wlc)
 		wlc->qvalid |= MCMD_DIRFRMQVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,19 +83,141 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_wlc0 = 1;
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_wlc0 = 65025;
           struct brcms_c_info * wlc = (struct brcms_c_info *) malloc(_len_wlc0*sizeof(struct brcms_c_info));
           for(int _i0 = 0; _i0 < _len_wlc0; _i0++) {
-            wlc[_i0].qvalid = ((-2 * (next_i()%2)) + 1) * next_i();
+              wlc[_i0].qvalid = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_wlc__i0__bsscfg0 = 1;
           wlc[_i0].bsscfg = (struct TYPE_2__ *) malloc(_len_wlc__i0__bsscfg0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_wlc__i0__bsscfg0; _j0++) {
-            wlc[_i0].bsscfg->type = ((-2 * (next_i()%2)) + 1) * next_i();
+              wlc[_i0].bsscfg->type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          brcms_c_tbtt(wlc);
+          for(int _aux = 0; _aux < _len_wlc0; _aux++) {
+          free(wlc[_aux].bsscfg);
+          }
+          free(wlc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_wlc0 = 100;
+          struct brcms_c_info * wlc = (struct brcms_c_info *) malloc(_len_wlc0*sizeof(struct brcms_c_info));
+          for(int _i0 = 0; _i0 < _len_wlc0; _i0++) {
+              wlc[_i0].qvalid = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_wlc__i0__bsscfg0 = 1;
+          wlc[_i0].bsscfg = (struct TYPE_2__ *) malloc(_len_wlc__i0__bsscfg0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_wlc__i0__bsscfg0; _j0++) {
+              wlc[_i0].bsscfg->type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          brcms_c_tbtt(wlc);
+          for(int _aux = 0; _aux < _len_wlc0; _aux++) {
+          free(wlc[_aux].bsscfg);
+          }
+          free(wlc);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_wlc0 = 1;
+          struct brcms_c_info * wlc = (struct brcms_c_info *) malloc(_len_wlc0*sizeof(struct brcms_c_info));
+          for(int _i0 = 0; _i0 < _len_wlc0; _i0++) {
+              wlc[_i0].qvalid = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_wlc__i0__bsscfg0 = 1;
+          wlc[_i0].bsscfg = (struct TYPE_2__ *) malloc(_len_wlc__i0__bsscfg0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_wlc__i0__bsscfg0; _j0++) {
+              wlc[_i0].bsscfg->type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           brcms_c_tbtt(wlc);
           for(int _aux = 0; _aux < _len_wlc0; _aux++) {
           free(wlc[_aux].bsscfg);

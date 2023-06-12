@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -60,12 +60,6 @@ __attribute__((used)) static inline bool pblk_ppa_comp(struct ppa_addr lppa, str
 	return (lppa.ppa == rppa.ppa);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,19 +72,20 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           struct ppa_addr lppa;
-        lppa.ppa = ((-2 * (next_i()%2)) + 1) * next_i();
+          lppa.ppa = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           struct ppa_addr rppa;
-        rppa.ppa = ((-2 * (next_i()%2)) + 1) * next_i();
+          rppa.ppa = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = pblk_ppa_comp(lppa,rppa);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

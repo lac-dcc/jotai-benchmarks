@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ void kull_m_pn532_init(PKULL_M_PN532_COMM_CALLBACK communicator, LPVOID suppdata
 	comm->descr = descr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,19 +82,188 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int communicator = 100;
+        
           int suppdata = 100;
+        
           int descr = 100;
+        
           int _len_comm0 = 1;
           struct TYPE_3__ * comm = (struct TYPE_3__ *) malloc(_len_comm0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_comm0; _i0++) {
-            comm[_i0].descr = ((-2 * (next_i()%2)) + 1) * next_i();
-        comm[_i0].suppdata = ((-2 * (next_i()%2)) + 1) * next_i();
-        comm[_i0].communicator = ((-2 * (next_i()%2)) + 1) * next_i();
+              comm[_i0].descr = ((-2 * (next_i()%2)) + 1) * next_i();
+          comm[_i0].suppdata = ((-2 * (next_i()%2)) + 1) * next_i();
+          comm[_i0].communicator = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          kull_m_pn532_init(communicator,suppdata,descr,comm);
+          free(comm);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int communicator = 255;
+        
+          int suppdata = 255;
+        
+          int descr = 255;
+        
+          int _len_comm0 = 65025;
+          struct TYPE_3__ * comm = (struct TYPE_3__ *) malloc(_len_comm0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_comm0; _i0++) {
+              comm[_i0].descr = ((-2 * (next_i()%2)) + 1) * next_i();
+          comm[_i0].suppdata = ((-2 * (next_i()%2)) + 1) * next_i();
+          comm[_i0].communicator = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          kull_m_pn532_init(communicator,suppdata,descr,comm);
+          free(comm);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int communicator = 10;
+        
+          int suppdata = 10;
+        
+          int descr = 10;
+        
+          int _len_comm0 = 100;
+          struct TYPE_3__ * comm = (struct TYPE_3__ *) malloc(_len_comm0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_comm0; _i0++) {
+              comm[_i0].descr = ((-2 * (next_i()%2)) + 1) * next_i();
+          comm[_i0].suppdata = ((-2 * (next_i()%2)) + 1) * next_i();
+          comm[_i0].communicator = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          kull_m_pn532_init(communicator,suppdata,descr,comm);
+          free(comm);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int communicator = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int suppdata = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int descr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_comm0 = 1;
+          struct TYPE_3__ * comm = (struct TYPE_3__ *) malloc(_len_comm0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_comm0; _i0++) {
+              comm[_i0].descr = ((-2 * (next_i()%2)) + 1) * next_i();
+          comm[_i0].suppdata = ((-2 * (next_i()%2)) + 1) * next_i();
+          comm[_i0].communicator = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           kull_m_pn532_init(communicator,suppdata,descr,comm);
           free(comm);
         

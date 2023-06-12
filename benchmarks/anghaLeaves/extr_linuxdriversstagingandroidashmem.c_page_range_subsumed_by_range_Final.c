@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +64,6 @@ __attribute__((used)) static inline bool page_range_subsumed_by_range(struct ash
 	return (range->pgstart <= start) && (range->pgend >= end);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,20 +80,86 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long start = 100;
+        
           unsigned long end = 100;
+        
           int _len_range0 = 1;
           struct ashmem_range * range = (struct ashmem_range *) malloc(_len_range0*sizeof(struct ashmem_range));
           for(int _i0 = 0; _i0 < _len_range0; _i0++) {
-            range[_i0].pgstart = ((-2 * (next_i()%2)) + 1) * next_i();
-        range[_i0].pgend = ((-2 * (next_i()%2)) + 1) * next_i();
+              range[_i0].pgstart = ((-2 * (next_i()%2)) + 1) * next_i();
+          range[_i0].pgend = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = page_range_subsumed_by_range(range,start,end);
           printf("%d\n", benchRet); 
           free(range);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long start = 255;
+        
+          unsigned long end = 255;
+        
+          int _len_range0 = 65025;
+          struct ashmem_range * range = (struct ashmem_range *) malloc(_len_range0*sizeof(struct ashmem_range));
+          for(int _i0 = 0; _i0 < _len_range0; _i0++) {
+              range[_i0].pgstart = ((-2 * (next_i()%2)) + 1) * next_i();
+          range[_i0].pgend = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = page_range_subsumed_by_range(range,start,end);
+          printf("%d\n", benchRet); 
+          free(range);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long start = 10;
+        
+          unsigned long end = 10;
+        
+          int _len_range0 = 100;
+          struct ashmem_range * range = (struct ashmem_range *) malloc(_len_range0*sizeof(struct ashmem_range));
+          for(int _i0 = 0; _i0 < _len_range0; _i0++) {
+              range[_i0].pgstart = ((-2 * (next_i()%2)) + 1) * next_i();
+          range[_i0].pgend = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = page_range_subsumed_by_range(range,start,end);
+          printf("%d\n", benchRet); 
+          free(range);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_range0 = 1;
+          struct ashmem_range * range = (struct ashmem_range *) malloc(_len_range0*sizeof(struct ashmem_range));
+          for(int _i0 = 0; _i0 < _len_range0; _i0++) {
+              range[_i0].pgstart = ((-2 * (next_i()%2)) + 1) * next_i();
+          range[_i0].pgend = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = page_range_subsumed_by_range(range,start,end);
+          printf("%d\n", benchRet); 
+          free(range);
+        
+        break;
+    }
     default:
         usage();
         break;

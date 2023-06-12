@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -96,12 +99,6 @@ __attribute__((used)) static void ql_categorize_rx_err(struct ql_adapter *qdev, 
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -114,26 +111,223 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int rx_err = 100;
+        
           int _len_qdev0 = 1;
           struct ql_adapter * qdev = (struct ql_adapter *) malloc(_len_qdev0*sizeof(struct ql_adapter));
           for(int _i0 = 0; _i0 < _len_qdev0; _i0++) {
-            qdev[_i0].nic_stats.rx_crc_err = ((-2 * (next_i()%2)) + 1) * next_i();
-        qdev[_i0].nic_stats.rx_frame_len_err = ((-2 * (next_i()%2)) + 1) * next_i();
-        qdev[_i0].nic_stats.rx_preamble_err = ((-2 * (next_i()%2)) + 1) * next_i();
-        qdev[_i0].nic_stats.rx_undersize_err = ((-2 * (next_i()%2)) + 1) * next_i();
-        qdev[_i0].nic_stats.rx_oversize_err = ((-2 * (next_i()%2)) + 1) * next_i();
-        qdev[_i0].nic_stats.rx_code_err = ((-2 * (next_i()%2)) + 1) * next_i();
-        qdev[_i0].nic_stats.rx_err_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              qdev[_i0].nic_stats.rx_crc_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          qdev[_i0].nic_stats.rx_frame_len_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          qdev[_i0].nic_stats.rx_preamble_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          qdev[_i0].nic_stats.rx_undersize_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          qdev[_i0].nic_stats.rx_oversize_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          qdev[_i0].nic_stats.rx_code_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          qdev[_i0].nic_stats.rx_err_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_rx_ring0 = 1;
           struct rx_ring * rx_ring = (struct rx_ring *) malloc(_len_rx_ring0*sizeof(struct rx_ring));
           for(int _i0 = 0; _i0 < _len_rx_ring0; _i0++) {
-            rx_ring[_i0].rx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+              rx_ring[_i0].rx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          ql_categorize_rx_err(qdev,rx_err,rx_ring);
+          free(qdev);
+          free(rx_ring);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int rx_err = 255;
+        
+          int _len_qdev0 = 65025;
+          struct ql_adapter * qdev = (struct ql_adapter *) malloc(_len_qdev0*sizeof(struct ql_adapter));
+          for(int _i0 = 0; _i0 < _len_qdev0; _i0++) {
+              qdev[_i0].nic_stats.rx_crc_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          qdev[_i0].nic_stats.rx_frame_len_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          qdev[_i0].nic_stats.rx_preamble_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          qdev[_i0].nic_stats.rx_undersize_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          qdev[_i0].nic_stats.rx_oversize_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          qdev[_i0].nic_stats.rx_code_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          qdev[_i0].nic_stats.rx_err_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_rx_ring0 = 65025;
+          struct rx_ring * rx_ring = (struct rx_ring *) malloc(_len_rx_ring0*sizeof(struct rx_ring));
+          for(int _i0 = 0; _i0 < _len_rx_ring0; _i0++) {
+              rx_ring[_i0].rx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ql_categorize_rx_err(qdev,rx_err,rx_ring);
+          free(qdev);
+          free(rx_ring);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int rx_err = 10;
+        
+          int _len_qdev0 = 100;
+          struct ql_adapter * qdev = (struct ql_adapter *) malloc(_len_qdev0*sizeof(struct ql_adapter));
+          for(int _i0 = 0; _i0 < _len_qdev0; _i0++) {
+              qdev[_i0].nic_stats.rx_crc_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          qdev[_i0].nic_stats.rx_frame_len_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          qdev[_i0].nic_stats.rx_preamble_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          qdev[_i0].nic_stats.rx_undersize_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          qdev[_i0].nic_stats.rx_oversize_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          qdev[_i0].nic_stats.rx_code_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          qdev[_i0].nic_stats.rx_err_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_rx_ring0 = 100;
+          struct rx_ring * rx_ring = (struct rx_ring *) malloc(_len_rx_ring0*sizeof(struct rx_ring));
+          for(int _i0 = 0; _i0 < _len_rx_ring0; _i0++) {
+              rx_ring[_i0].rx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ql_categorize_rx_err(qdev,rx_err,rx_ring);
+          free(qdev);
+          free(rx_ring);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int rx_err = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_qdev0 = 1;
+          struct ql_adapter * qdev = (struct ql_adapter *) malloc(_len_qdev0*sizeof(struct ql_adapter));
+          for(int _i0 = 0; _i0 < _len_qdev0; _i0++) {
+              qdev[_i0].nic_stats.rx_crc_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          qdev[_i0].nic_stats.rx_frame_len_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          qdev[_i0].nic_stats.rx_preamble_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          qdev[_i0].nic_stats.rx_undersize_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          qdev[_i0].nic_stats.rx_oversize_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          qdev[_i0].nic_stats.rx_code_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          qdev[_i0].nic_stats.rx_err_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_rx_ring0 = 1;
+          struct rx_ring * rx_ring = (struct rx_ring *) malloc(_len_rx_ring0*sizeof(struct rx_ring));
+          for(int _i0 = 0; _i0 < _len_rx_ring0; _i0++) {
+              rx_ring[_i0].rx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           ql_categorize_rx_err(qdev,rx_err,rx_ring);
           free(qdev);
           free(rx_ring);

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static float32 float32_abs(struct roundingData *roundData,
 	return rFm & 0x7fffffff;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,11 +80,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int rFm = 100;
+        
           int _len_roundData0 = 1;
           struct roundingData * roundData = (struct roundingData *) malloc(_len_roundData0*sizeof(struct roundingData));
           for(int _i0 = 0; _i0 < _len_roundData0; _i0++) {
-            roundData[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              roundData[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = float32_abs(roundData,rFm);
+          printf("%d\n", benchRet); 
+          free(roundData);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int rFm = 255;
+        
+          int _len_roundData0 = 65025;
+          struct roundingData * roundData = (struct roundingData *) malloc(_len_roundData0*sizeof(struct roundingData));
+          for(int _i0 = 0; _i0 < _len_roundData0; _i0++) {
+              roundData[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = float32_abs(roundData,rFm);
           printf("%d\n", benchRet); 
           free(roundData);
@@ -96,21 +113,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int rFm = 10;
+        
           int _len_roundData0 = 100;
           struct roundingData * roundData = (struct roundingData *) malloc(_len_roundData0*sizeof(struct roundingData));
           for(int _i0 = 0; _i0 < _len_roundData0; _i0++) {
-            roundData[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              roundData[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = float32_abs(roundData,rFm);
           printf("%d\n", benchRet); 
           free(roundData);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int rFm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_roundData0 = 1;
+          struct roundingData * roundData = (struct roundingData *) malloc(_len_roundData0*sizeof(struct roundingData));
+          for(int _i0 = 0; _i0 < _len_roundData0; _i0++) {
+              roundData[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = float32_abs(roundData,rFm);
+          printf("%d\n", benchRet); 
+          free(roundData);
+        
+        break;
+    }
     default:
         usage();
         break;

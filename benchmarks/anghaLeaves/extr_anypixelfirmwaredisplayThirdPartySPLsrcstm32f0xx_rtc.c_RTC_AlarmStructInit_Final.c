@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ void RTC_AlarmStructInit(RTC_AlarmTypeDef* RTC_AlarmStruct)
   RTC_AlarmStruct->RTC_AlarmMask = RTC_AlarmMask_None;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,20 +92,138 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_RTC_AlarmStruct0 = 65025;
+          struct TYPE_5__ * RTC_AlarmStruct = (struct TYPE_5__ *) malloc(_len_RTC_AlarmStruct0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_RTC_AlarmStruct0; _i0++) {
+              RTC_AlarmStruct[_i0].RTC_AlarmDateWeekDay = ((-2 * (next_i()%2)) + 1) * next_i();
+          RTC_AlarmStruct[_i0].RTC_AlarmMask = ((-2 * (next_i()%2)) + 1) * next_i();
+          RTC_AlarmStruct[_i0].RTC_AlarmDateWeekDaySel = ((-2 * (next_i()%2)) + 1) * next_i();
+          RTC_AlarmStruct[_i0].RTC_AlarmTime.RTC_Seconds = ((-2 * (next_i()%2)) + 1) * next_i();
+          RTC_AlarmStruct[_i0].RTC_AlarmTime.RTC_Minutes = ((-2 * (next_i()%2)) + 1) * next_i();
+          RTC_AlarmStruct[_i0].RTC_AlarmTime.RTC_Hours = ((-2 * (next_i()%2)) + 1) * next_i();
+          RTC_AlarmStruct[_i0].RTC_AlarmTime.RTC_H12 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          RTC_AlarmStructInit(RTC_AlarmStruct);
+          free(RTC_AlarmStruct);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_RTC_AlarmStruct0 = 100;
+          struct TYPE_5__ * RTC_AlarmStruct = (struct TYPE_5__ *) malloc(_len_RTC_AlarmStruct0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_RTC_AlarmStruct0; _i0++) {
+              RTC_AlarmStruct[_i0].RTC_AlarmDateWeekDay = ((-2 * (next_i()%2)) + 1) * next_i();
+          RTC_AlarmStruct[_i0].RTC_AlarmMask = ((-2 * (next_i()%2)) + 1) * next_i();
+          RTC_AlarmStruct[_i0].RTC_AlarmDateWeekDaySel = ((-2 * (next_i()%2)) + 1) * next_i();
+          RTC_AlarmStruct[_i0].RTC_AlarmTime.RTC_Seconds = ((-2 * (next_i()%2)) + 1) * next_i();
+          RTC_AlarmStruct[_i0].RTC_AlarmTime.RTC_Minutes = ((-2 * (next_i()%2)) + 1) * next_i();
+          RTC_AlarmStruct[_i0].RTC_AlarmTime.RTC_Hours = ((-2 * (next_i()%2)) + 1) * next_i();
+          RTC_AlarmStruct[_i0].RTC_AlarmTime.RTC_H12 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          RTC_AlarmStructInit(RTC_AlarmStruct);
+          free(RTC_AlarmStruct);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int _len_RTC_AlarmStruct0 = 1;
           struct TYPE_5__ * RTC_AlarmStruct = (struct TYPE_5__ *) malloc(_len_RTC_AlarmStruct0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_RTC_AlarmStruct0; _i0++) {
-            RTC_AlarmStruct[_i0].RTC_AlarmDateWeekDay = ((-2 * (next_i()%2)) + 1) * next_i();
-        RTC_AlarmStruct[_i0].RTC_AlarmMask = ((-2 * (next_i()%2)) + 1) * next_i();
-        RTC_AlarmStruct[_i0].RTC_AlarmDateWeekDaySel = ((-2 * (next_i()%2)) + 1) * next_i();
-        RTC_AlarmStruct[_i0].RTC_AlarmTime.RTC_Seconds = ((-2 * (next_i()%2)) + 1) * next_i();
-        RTC_AlarmStruct[_i0].RTC_AlarmTime.RTC_Minutes = ((-2 * (next_i()%2)) + 1) * next_i();
-        RTC_AlarmStruct[_i0].RTC_AlarmTime.RTC_Hours = ((-2 * (next_i()%2)) + 1) * next_i();
-        RTC_AlarmStruct[_i0].RTC_AlarmTime.RTC_H12 = ((-2 * (next_i()%2)) + 1) * next_i();
+              RTC_AlarmStruct[_i0].RTC_AlarmDateWeekDay = ((-2 * (next_i()%2)) + 1) * next_i();
+          RTC_AlarmStruct[_i0].RTC_AlarmMask = ((-2 * (next_i()%2)) + 1) * next_i();
+          RTC_AlarmStruct[_i0].RTC_AlarmDateWeekDaySel = ((-2 * (next_i()%2)) + 1) * next_i();
+          RTC_AlarmStruct[_i0].RTC_AlarmTime.RTC_Seconds = ((-2 * (next_i()%2)) + 1) * next_i();
+          RTC_AlarmStruct[_i0].RTC_AlarmTime.RTC_Minutes = ((-2 * (next_i()%2)) + 1) * next_i();
+          RTC_AlarmStruct[_i0].RTC_AlarmTime.RTC_Hours = ((-2 * (next_i()%2)) + 1) * next_i();
+          RTC_AlarmStruct[_i0].RTC_AlarmTime.RTC_H12 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           RTC_AlarmStructInit(RTC_AlarmStruct);
           free(RTC_AlarmStruct);
         

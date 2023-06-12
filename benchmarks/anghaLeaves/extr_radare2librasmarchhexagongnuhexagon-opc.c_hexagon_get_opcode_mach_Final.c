@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -85,12 +86,6 @@ return HEXAGON_MACH_V5;
 #endif
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,7 +102,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int bfd_mach = 100;
+        
           int big_p = 100;
+        
           int benchRet = hexagon_get_opcode_mach(bfd_mach,big_p);
           printf("%d\n", benchRet); 
         
@@ -117,7 +114,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int bfd_mach = 255;
+        
           int big_p = 255;
+        
           int benchRet = hexagon_get_opcode_mach(bfd_mach,big_p);
           printf("%d\n", benchRet); 
         
@@ -127,13 +126,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int bfd_mach = 10;
+        
           int big_p = 10;
+        
           int benchRet = hexagon_get_opcode_mach(bfd_mach,big_p);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int bfd_mach = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int big_p = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = hexagon_get_opcode_mach(bfd_mach,big_p);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

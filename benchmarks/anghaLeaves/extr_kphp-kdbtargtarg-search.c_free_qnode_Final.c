@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -65,7 +66,6 @@ void free_qnode (query_t *Q) {
   Qfree = Q;
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct TYPE_4__ *_allocate_Q(int length, struct TYPE_4__ *aux_Q[]) {
@@ -95,7 +95,6 @@ void _delete_Q(struct TYPE_4__ *aux_Q[], int aux_Q_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -108,11 +107,70 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // linked
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          struct TYPE_4__ * aux_Q[10000];
+          struct TYPE_4__ * Q = _allocate_Q(10000, aux_Q);
+        
+          free_qnode(Q);
+          _delete_Q(aux_Q, 10000);
+        
+        break;
+    }
+
+
+    // empty
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           struct TYPE_4__ * aux_Q[1];
           struct TYPE_4__ * Q = _allocate_Q(1, aux_Q);
+        
           free_qnode(Q);
           _delete_Q(aux_Q, 1);
         

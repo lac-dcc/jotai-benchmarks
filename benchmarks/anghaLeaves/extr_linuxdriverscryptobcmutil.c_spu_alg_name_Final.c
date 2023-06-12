@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -121,12 +121,6 @@ char *spu_alg_name(enum spu_cipher_alg alg, enum spu_cipher_mode mode)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -139,11 +133,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // empty
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           enum spu_cipher_alg alg = 0;
+        
           enum spu_cipher_mode mode = 0;
+        
           char * benchRet = spu_alg_name(alg,mode);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         

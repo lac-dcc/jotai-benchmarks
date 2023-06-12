@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ unsigned int ieee80211_get_num_supported_channels(struct wiphy *wiphy)
 	return n_channels;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,10 +85,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_wiphy0 = 1;
+          int _len_wiphy0 = 65025;
           struct wiphy * wiphy = (struct wiphy *) malloc(_len_wiphy0*sizeof(struct wiphy));
           for(int _i0 = 0; _i0 < _len_wiphy0; _i0++) {
               int _len_wiphy__i0__bands0 = 1;
@@ -101,10 +97,13 @@ int main(int argc, char *argv[]) {
             int _len_wiphy__i0__bands1 = 1;
             wiphy[_i0].bands[_j0] = (struct TYPE_2__ *) malloc(_len_wiphy__i0__bands1*sizeof(struct TYPE_2__));
             for(int _j1 = 0; _j1 < _len_wiphy__i0__bands1; _j1++) {
-              wiphy[_i0].bands[_j0]->n_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+                wiphy[_i0].bands[_j0]->n_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           }
+        
           unsigned int benchRet = ieee80211_get_num_supported_channels(wiphy);
           printf("%u\n", benchRet); 
           for(int _aux = 0; _aux < _len_wiphy0; _aux++) {
@@ -115,7 +114,64 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_wiphy0 = 100;
+          struct wiphy * wiphy = (struct wiphy *) malloc(_len_wiphy0*sizeof(struct wiphy));
+          for(int _i0 = 0; _i0 < _len_wiphy0; _i0++) {
+              int _len_wiphy__i0__bands0 = 1;
+          wiphy[_i0].bands = (struct TYPE_2__ **) malloc(_len_wiphy__i0__bands0*sizeof(struct TYPE_2__ *));
+          for(int _j0 = 0; _j0 < _len_wiphy__i0__bands0; _j0++) {
+            int _len_wiphy__i0__bands1 = 1;
+            wiphy[_i0].bands[_j0] = (struct TYPE_2__ *) malloc(_len_wiphy__i0__bands1*sizeof(struct TYPE_2__));
+            for(int _j1 = 0; _j1 < _len_wiphy__i0__bands1; _j1++) {
+                wiphy[_i0].bands[_j0]->n_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          unsigned int benchRet = ieee80211_get_num_supported_channels(wiphy);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_wiphy0; _aux++) {
+          free(*(wiphy[_aux].bands));
+        free(wiphy[_aux].bands);
+          }
+          free(wiphy);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_wiphy0 = 1;
+          struct wiphy * wiphy = (struct wiphy *) malloc(_len_wiphy0*sizeof(struct wiphy));
+          for(int _i0 = 0; _i0 < _len_wiphy0; _i0++) {
+              int _len_wiphy__i0__bands0 = 1;
+          wiphy[_i0].bands = (struct TYPE_2__ **) malloc(_len_wiphy__i0__bands0*sizeof(struct TYPE_2__ *));
+          for(int _j0 = 0; _j0 < _len_wiphy__i0__bands0; _j0++) {
+            int _len_wiphy__i0__bands1 = 1;
+            wiphy[_i0].bands[_j0] = (struct TYPE_2__ *) malloc(_len_wiphy__i0__bands1*sizeof(struct TYPE_2__));
+            for(int _j1 = 0; _j1 < _len_wiphy__i0__bands1; _j1++) {
+                wiphy[_i0].bands[_j0]->n_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          unsigned int benchRet = ieee80211_get_num_supported_channels(wiphy);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_wiphy0; _aux++) {
+          free(*(wiphy[_aux].bands));
+        free(wiphy[_aux].bands);
+          }
+          free(wiphy);
+        
+        break;
+    }
     default:
         usage();
         break;

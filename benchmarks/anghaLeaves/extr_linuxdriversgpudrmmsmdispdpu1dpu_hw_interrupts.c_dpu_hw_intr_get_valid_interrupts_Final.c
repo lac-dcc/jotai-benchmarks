@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ __attribute__((used)) static int dpu_hw_intr_get_valid_interrupts(struct dpu_hw_
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,19 +88,139 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_intr0 = 65025;
+          struct dpu_hw_intr * intr = (struct dpu_hw_intr *) malloc(_len_intr0*sizeof(struct dpu_hw_intr));
+          for(int _i0 = 0; _i0 < _len_intr0; _i0++) {
+              intr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_mask0 = 65025;
+          int * mask = (int *) malloc(_len_mask0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mask0; _i0++) {
+            mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = dpu_hw_intr_get_valid_interrupts(intr,mask);
+          printf("%d\n", benchRet); 
+          free(intr);
+          free(mask);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_intr0 = 100;
+          struct dpu_hw_intr * intr = (struct dpu_hw_intr *) malloc(_len_intr0*sizeof(struct dpu_hw_intr));
+          for(int _i0 = 0; _i0 < _len_intr0; _i0++) {
+              intr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_mask0 = 100;
+          int * mask = (int *) malloc(_len_mask0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mask0; _i0++) {
+            mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = dpu_hw_intr_get_valid_interrupts(intr,mask);
+          printf("%d\n", benchRet); 
+          free(intr);
+          free(mask);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int _len_intr0 = 1;
           struct dpu_hw_intr * intr = (struct dpu_hw_intr *) malloc(_len_intr0*sizeof(struct dpu_hw_intr));
           for(int _i0 = 0; _i0 < _len_intr0; _i0++) {
-            intr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              intr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_mask0 = 1;
           int * mask = (int *) malloc(_len_mask0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_mask0; _i0++) {
             mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = dpu_hw_intr_get_valid_interrupts(intr,mask);
           printf("%d\n", benchRet); 
           free(intr);

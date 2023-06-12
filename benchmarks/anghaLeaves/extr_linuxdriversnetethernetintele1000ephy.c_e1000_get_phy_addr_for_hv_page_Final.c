@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ __attribute__((used)) static u32 e1000_get_phy_addr_for_hv_page(u32 page)
 	return phy_addr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,6 +85,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long page = 100;
+        
           long benchRet = e1000_get_phy_addr_for_hv_page(page);
           printf("%ld\n", benchRet); 
         
@@ -99,6 +95,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long page = 255;
+        
           long benchRet = e1000_get_phy_addr_for_hv_page(page);
           printf("%ld\n", benchRet); 
         
@@ -108,12 +105,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long page = 10;
+        
           long benchRet = e1000_get_phy_addr_for_hv_page(page);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long page = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long benchRet = e1000_get_phy_addr_for_hv_page(page);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

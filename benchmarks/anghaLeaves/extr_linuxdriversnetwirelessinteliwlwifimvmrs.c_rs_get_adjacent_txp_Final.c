@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ __attribute__((used)) static void rs_get_adjacent_txp(struct iwl_mvm *mvm, int i
 		*stronger = TPC_INVALID;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,21 +89,26 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int index = 100;
+        
           int _len_mvm0 = 1;
           struct iwl_mvm * mvm = (struct iwl_mvm *) malloc(_len_mvm0*sizeof(struct iwl_mvm));
           for(int _i0 = 0; _i0 < _len_mvm0; _i0++) {
-            mvm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              mvm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_weaker0 = 1;
           int * weaker = (int *) malloc(_len_weaker0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_weaker0; _i0++) {
             weaker[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_stronger0 = 1;
           int * stronger = (int *) malloc(_len_stronger0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_stronger0; _i0++) {
             stronger[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           rs_get_adjacent_txp(mvm,index,weaker,stronger);
           free(mvm);
           free(weaker);
@@ -114,7 +116,99 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int index = 255;
+        
+          int _len_mvm0 = 65025;
+          struct iwl_mvm * mvm = (struct iwl_mvm *) malloc(_len_mvm0*sizeof(struct iwl_mvm));
+          for(int _i0 = 0; _i0 < _len_mvm0; _i0++) {
+              mvm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_weaker0 = 65025;
+          int * weaker = (int *) malloc(_len_weaker0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_weaker0; _i0++) {
+            weaker[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_stronger0 = 65025;
+          int * stronger = (int *) malloc(_len_stronger0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_stronger0; _i0++) {
+            stronger[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          rs_get_adjacent_txp(mvm,index,weaker,stronger);
+          free(mvm);
+          free(weaker);
+          free(stronger);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int index = 10;
+        
+          int _len_mvm0 = 100;
+          struct iwl_mvm * mvm = (struct iwl_mvm *) malloc(_len_mvm0*sizeof(struct iwl_mvm));
+          for(int _i0 = 0; _i0 < _len_mvm0; _i0++) {
+              mvm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_weaker0 = 100;
+          int * weaker = (int *) malloc(_len_weaker0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_weaker0; _i0++) {
+            weaker[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_stronger0 = 100;
+          int * stronger = (int *) malloc(_len_stronger0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_stronger0; _i0++) {
+            stronger[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          rs_get_adjacent_txp(mvm,index,weaker,stronger);
+          free(mvm);
+          free(weaker);
+          free(stronger);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_mvm0 = 1;
+          struct iwl_mvm * mvm = (struct iwl_mvm *) malloc(_len_mvm0*sizeof(struct iwl_mvm));
+          for(int _i0 = 0; _i0 < _len_mvm0; _i0++) {
+              mvm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_weaker0 = 1;
+          int * weaker = (int *) malloc(_len_weaker0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_weaker0; _i0++) {
+            weaker[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_stronger0 = 1;
+          int * stronger = (int *) malloc(_len_stronger0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_stronger0; _i0++) {
+            stronger[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          rs_get_adjacent_txp(mvm,index,weaker,stronger);
+          free(mvm);
+          free(weaker);
+          free(stronger);
+        
+        break;
+    }
     default:
         usage();
         break;

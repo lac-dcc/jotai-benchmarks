@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static inline u8 i40e_nvmupd_get_module(u32 val)
 	return (u8)(val & I40E_NVM_MOD_PNT_MASK);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +81,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int val = 100;
+        
           int benchRet = i40e_nvmupd_get_module(val);
           printf("%d\n", benchRet); 
         
@@ -95,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int val = 255;
+        
           int benchRet = i40e_nvmupd_get_module(val);
           printf("%d\n", benchRet); 
         
@@ -104,12 +101,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int val = 10;
+        
           int benchRet = i40e_nvmupd_get_module(val);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = i40e_nvmupd_get_module(val);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

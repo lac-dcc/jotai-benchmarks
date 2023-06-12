@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ __attribute__((used)) static inline int solo_valid_pixfmt(u32 pixfmt, int dev_ty
 		|| pixfmt == V4L2_PIX_FMT_MJPEG ? 0 : -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,31 +83,144 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           long pixfmt = 100;
+        
           int dev_type = 100;
+        
           int benchRet = solo_valid_pixfmt(pixfmt,dev_type);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           long pixfmt = 255;
+        
           int dev_type = 255;
+        
           int benchRet = solo_valid_pixfmt(pixfmt,dev_type);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           long pixfmt = 10;
+        
           int dev_type = 10;
+        
+          int benchRet = solo_valid_pixfmt(pixfmt,dev_type);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          long pixfmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int dev_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = solo_valid_pixfmt(pixfmt,dev_type);
           printf("%d\n", benchRet); 
         

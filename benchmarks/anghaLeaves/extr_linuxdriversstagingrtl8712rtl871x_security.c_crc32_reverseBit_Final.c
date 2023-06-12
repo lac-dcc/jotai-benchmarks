@@ -65,12 +65,6 @@ __attribute__((used)) static u8 crc32_reverseBit(u8 data)
 		 0x01);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,28 +77,102 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
           int data = 100;
+        
           int benchRet = crc32_reverseBit(data);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
           int data = 255;
+        
           int benchRet = crc32_reverseBit(data);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
           int data = 10;
+        
           int benchRet = crc32_reverseBit(data);
           printf("%d\n", benchRet); 
         

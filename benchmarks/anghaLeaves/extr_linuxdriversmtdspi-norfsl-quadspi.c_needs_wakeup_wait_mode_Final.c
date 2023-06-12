@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline int needs_wakeup_wait_mode(struct fsl_qspi *
 	return q->devtype_data->driver_data & QUADSPI_QUIRK_TKT245618;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,18 +77,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_q0 = 65025;
+          struct fsl_qspi * q = (struct fsl_qspi *) malloc(_len_q0*sizeof(struct fsl_qspi));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              int _len_q__i0__devtype_data0 = 1;
+          q[_i0].devtype_data = (struct TYPE_2__ *) malloc(_len_q__i0__devtype_data0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_q__i0__devtype_data0; _j0++) {
+              q[_i0].devtype_data->driver_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = needs_wakeup_wait_mode(q);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_q0; _aux++) {
+          free(q[_aux].devtype_data);
+          }
+          free(q);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_q0 = 100;
+          struct fsl_qspi * q = (struct fsl_qspi *) malloc(_len_q0*sizeof(struct fsl_qspi));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              int _len_q__i0__devtype_data0 = 1;
+          q[_i0].devtype_data = (struct TYPE_2__ *) malloc(_len_q__i0__devtype_data0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_q__i0__devtype_data0; _j0++) {
+              q[_i0].devtype_data->driver_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = needs_wakeup_wait_mode(q);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_q0; _aux++) {
+          free(q[_aux].devtype_data);
+          }
+          free(q);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_q0 = 1;
           struct fsl_qspi * q = (struct fsl_qspi *) malloc(_len_q0*sizeof(struct fsl_qspi));
           for(int _i0 = 0; _i0 < _len_q0; _i0++) {
               int _len_q__i0__devtype_data0 = 1;
           q[_i0].devtype_data = (struct TYPE_2__ *) malloc(_len_q__i0__devtype_data0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_q__i0__devtype_data0; _j0++) {
-            q[_i0].devtype_data->driver_data = ((-2 * (next_i()%2)) + 1) * next_i();
+              q[_i0].devtype_data->driver_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = needs_wakeup_wait_mode(q);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_q0; _aux++) {

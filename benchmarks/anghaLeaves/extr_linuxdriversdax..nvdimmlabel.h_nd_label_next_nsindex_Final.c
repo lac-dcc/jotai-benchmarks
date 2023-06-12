@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static inline int nd_label_next_nsindex(int index)
 	return (index + 1) % 2;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,28 +77,136 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int index = 100;
+        
           int benchRet = nd_label_next_nsindex(index);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int index = 255;
+        
           int benchRet = nd_label_next_nsindex(index);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int index = 10;
+        
+          int benchRet = nd_label_next_nsindex(index);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = nd_label_next_nsindex(index);
           printf("%d\n", benchRet); 
         

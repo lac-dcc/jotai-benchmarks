@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -79,12 +80,6 @@ __attribute__((used)) static unsigned char status_mfc3_to_pc(unsigned char statu
 	return ret;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,28 +92,136 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 27
+          // dynamic_instructions_O1 : 27
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 27
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
           unsigned char status = 100;
+        
           unsigned char benchRet = status_mfc3_to_pc(status);
           printf("%c\n", (benchRet %26) + 'a'); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 50
+          // dynamic_instructions_O0 : 50
+          // ------------------------------- 
+          // static_instructions_O1 : 27
+          // dynamic_instructions_O1 : 27
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 27
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
           unsigned char status = 255;
+        
           unsigned char benchRet = status_mfc3_to_pc(status);
           printf("%c\n", (benchRet %26) + 'a'); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 37
+          // ------------------------------- 
+          // static_instructions_O1 : 27
+          // dynamic_instructions_O1 : 27
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 27
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
           unsigned char status = 10;
+        
+          unsigned char benchRet = status_mfc3_to_pc(status);
+          printf("%c\n", (benchRet %26) + 'a'); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 42
+          // ------------------------------- 
+          // static_instructions_O1 : 27
+          // dynamic_instructions_O1 : 27
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 27
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
+          unsigned char status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           unsigned char benchRet = status_mfc3_to_pc(status);
           printf("%c\n", (benchRet %26) + 'a'); 
         

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +79,6 @@ u32 sst_dsp_get_offset(struct sst_dsp *dsp, u32 offset,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,22 +95,98 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long offset = 100;
+        
           enum sst_mem_type type = 0;
+        
           int _len_dsp0 = 1;
           struct sst_dsp * dsp = (struct sst_dsp *) malloc(_len_dsp0*sizeof(struct sst_dsp));
           for(int _i0 = 0; _i0 < _len_dsp0; _i0++) {
-            dsp[_i0].addr.dsp_dram_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        dsp[_i0].addr.dram_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        dsp[_i0].addr.dsp_iram_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        dsp[_i0].addr.iram_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              dsp[_i0].addr.dsp_dram_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          dsp[_i0].addr.dram_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          dsp[_i0].addr.dsp_iram_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          dsp[_i0].addr.iram_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           long benchRet = sst_dsp_get_offset(dsp,offset,type);
           printf("%ld\n", benchRet); 
           free(dsp);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long offset = 255;
+        
+          enum sst_mem_type type = 0;
+        
+          int _len_dsp0 = 65025;
+          struct sst_dsp * dsp = (struct sst_dsp *) malloc(_len_dsp0*sizeof(struct sst_dsp));
+          for(int _i0 = 0; _i0 < _len_dsp0; _i0++) {
+              dsp[_i0].addr.dsp_dram_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          dsp[_i0].addr.dram_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          dsp[_i0].addr.dsp_iram_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          dsp[_i0].addr.iram_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          long benchRet = sst_dsp_get_offset(dsp,offset,type);
+          printf("%ld\n", benchRet); 
+          free(dsp);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long offset = 10;
+        
+          enum sst_mem_type type = 0;
+        
+          int _len_dsp0 = 100;
+          struct sst_dsp * dsp = (struct sst_dsp *) malloc(_len_dsp0*sizeof(struct sst_dsp));
+          for(int _i0 = 0; _i0 < _len_dsp0; _i0++) {
+              dsp[_i0].addr.dsp_dram_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          dsp[_i0].addr.dram_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          dsp[_i0].addr.dsp_iram_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          dsp[_i0].addr.iram_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          long benchRet = sst_dsp_get_offset(dsp,offset,type);
+          printf("%ld\n", benchRet); 
+          free(dsp);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          enum sst_mem_type type = 0;
+        
+          int _len_dsp0 = 1;
+          struct sst_dsp * dsp = (struct sst_dsp *) malloc(_len_dsp0*sizeof(struct sst_dsp));
+          for(int _i0 = 0; _i0 < _len_dsp0; _i0++) {
+              dsp[_i0].addr.dsp_dram_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          dsp[_i0].addr.dram_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          dsp[_i0].addr.dsp_iram_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          dsp[_i0].addr.iram_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          long benchRet = sst_dsp_get_offset(dsp,offset,type);
+          printf("%ld\n", benchRet); 
+          free(dsp);
+        
+        break;
+    }
     default:
         usage();
         break;

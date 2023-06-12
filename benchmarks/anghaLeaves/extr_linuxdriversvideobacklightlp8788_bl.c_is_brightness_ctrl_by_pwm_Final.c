@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -61,12 +61,6 @@ __attribute__((used)) static inline bool is_brightness_ctrl_by_pwm(enum lp8788_b
 	return mode == LP8788_BL_COMB_PWM_BASED;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,16 +73,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum lp8788_bl_ctrl_mode mode = 0;
+        
           int benchRet = is_brightness_ctrl_by_pwm(mode);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

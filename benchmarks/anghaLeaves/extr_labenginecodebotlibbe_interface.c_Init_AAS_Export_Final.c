@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -128,12 +130,6 @@ __attribute__((used)) static void Init_AAS_Export( aas_export_t *aas ) {
 	aas->AAS_PredictClientMovement = AAS_PredictClientMovement;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -146,35 +142,180 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 71
+          // dynamic_instructions_O0 : 71
+          // ------------------------------- 
+          // static_instructions_O1 : 48
+          // dynamic_instructions_O1 : 48
+          // ------------------------------- 
+          // static_instructions_O2 : 48
+          // dynamic_instructions_O2 : 48
+          // ------------------------------- 
+          // static_instructions_O3 : 48
+          // dynamic_instructions_O3 : 48
+          // ------------------------------- 
+          // static_instructions_Ofast : 48
+          // dynamic_instructions_Ofast : 48
+          // ------------------------------- 
+          // static_instructions_Os : 48
+          // dynamic_instructions_Os : 48
+          // ------------------------------- 
+          // static_instructions_Oz : 48
+          // dynamic_instructions_Oz : 48
+          // ------------------------------- 
+
+          int _len_aas0 = 65025;
+          struct TYPE_3__ * aas = (struct TYPE_3__ *) malloc(_len_aas0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_aas0; _i0++) {
+              aas[_i0].AAS_PredictClientMovement = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_Swimming = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_AlternativeRouteGoals = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_PredictRoute = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_EnableRoutingArea = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_AreaTravelTimeToGoalArea = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_AreaReachability = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_IntForBSPEpairKey = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_FloatForBSPEpairKey = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_VectorForBSPEpairKey = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_ValueForBSPEpairKey = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_NextBSPEntity = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_PointContents = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_AreaInfo = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_BBoxAreas = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_TraceAreas = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_PointReachabilityAreaIndex = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_PointAreaNum = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_Time = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_PresenceTypeBoundingBox = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_Initialized = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_EntityInfo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          Init_AAS_Export(aas);
+          free(aas);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 71
+          // dynamic_instructions_O0 : 71
+          // ------------------------------- 
+          // static_instructions_O1 : 48
+          // dynamic_instructions_O1 : 48
+          // ------------------------------- 
+          // static_instructions_O2 : 48
+          // dynamic_instructions_O2 : 48
+          // ------------------------------- 
+          // static_instructions_O3 : 48
+          // dynamic_instructions_O3 : 48
+          // ------------------------------- 
+          // static_instructions_Ofast : 48
+          // dynamic_instructions_Ofast : 48
+          // ------------------------------- 
+          // static_instructions_Os : 48
+          // dynamic_instructions_Os : 48
+          // ------------------------------- 
+          // static_instructions_Oz : 48
+          // dynamic_instructions_Oz : 48
+          // ------------------------------- 
+
+          int _len_aas0 = 100;
+          struct TYPE_3__ * aas = (struct TYPE_3__ *) malloc(_len_aas0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_aas0; _i0++) {
+              aas[_i0].AAS_PredictClientMovement = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_Swimming = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_AlternativeRouteGoals = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_PredictRoute = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_EnableRoutingArea = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_AreaTravelTimeToGoalArea = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_AreaReachability = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_IntForBSPEpairKey = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_FloatForBSPEpairKey = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_VectorForBSPEpairKey = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_ValueForBSPEpairKey = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_NextBSPEntity = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_PointContents = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_AreaInfo = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_BBoxAreas = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_TraceAreas = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_PointReachabilityAreaIndex = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_PointAreaNum = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_Time = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_PresenceTypeBoundingBox = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_Initialized = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_EntityInfo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          Init_AAS_Export(aas);
+          free(aas);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 71
+          // dynamic_instructions_O0 : 71
+          // ------------------------------- 
+          // static_instructions_O1 : 48
+          // dynamic_instructions_O1 : 48
+          // ------------------------------- 
+          // static_instructions_O2 : 48
+          // dynamic_instructions_O2 : 48
+          // ------------------------------- 
+          // static_instructions_O3 : 48
+          // dynamic_instructions_O3 : 48
+          // ------------------------------- 
+          // static_instructions_Ofast : 48
+          // dynamic_instructions_Ofast : 48
+          // ------------------------------- 
+          // static_instructions_Os : 48
+          // dynamic_instructions_Os : 48
+          // ------------------------------- 
+          // static_instructions_Oz : 48
+          // dynamic_instructions_Oz : 48
+          // ------------------------------- 
+
           int _len_aas0 = 1;
           struct TYPE_3__ * aas = (struct TYPE_3__ *) malloc(_len_aas0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_aas0; _i0++) {
-            aas[_i0].AAS_PredictClientMovement = ((-2 * (next_i()%2)) + 1) * next_i();
-        aas[_i0].AAS_Swimming = ((-2 * (next_i()%2)) + 1) * next_i();
-        aas[_i0].AAS_AlternativeRouteGoals = ((-2 * (next_i()%2)) + 1) * next_i();
-        aas[_i0].AAS_PredictRoute = ((-2 * (next_i()%2)) + 1) * next_i();
-        aas[_i0].AAS_EnableRoutingArea = ((-2 * (next_i()%2)) + 1) * next_i();
-        aas[_i0].AAS_AreaTravelTimeToGoalArea = ((-2 * (next_i()%2)) + 1) * next_i();
-        aas[_i0].AAS_AreaReachability = ((-2 * (next_i()%2)) + 1) * next_i();
-        aas[_i0].AAS_IntForBSPEpairKey = ((-2 * (next_i()%2)) + 1) * next_i();
-        aas[_i0].AAS_FloatForBSPEpairKey = ((-2 * (next_i()%2)) + 1) * next_i();
-        aas[_i0].AAS_VectorForBSPEpairKey = ((-2 * (next_i()%2)) + 1) * next_i();
-        aas[_i0].AAS_ValueForBSPEpairKey = ((-2 * (next_i()%2)) + 1) * next_i();
-        aas[_i0].AAS_NextBSPEntity = ((-2 * (next_i()%2)) + 1) * next_i();
-        aas[_i0].AAS_PointContents = ((-2 * (next_i()%2)) + 1) * next_i();
-        aas[_i0].AAS_AreaInfo = ((-2 * (next_i()%2)) + 1) * next_i();
-        aas[_i0].AAS_BBoxAreas = ((-2 * (next_i()%2)) + 1) * next_i();
-        aas[_i0].AAS_TraceAreas = ((-2 * (next_i()%2)) + 1) * next_i();
-        aas[_i0].AAS_PointReachabilityAreaIndex = ((-2 * (next_i()%2)) + 1) * next_i();
-        aas[_i0].AAS_PointAreaNum = ((-2 * (next_i()%2)) + 1) * next_i();
-        aas[_i0].AAS_Time = ((-2 * (next_i()%2)) + 1) * next_i();
-        aas[_i0].AAS_PresenceTypeBoundingBox = ((-2 * (next_i()%2)) + 1) * next_i();
-        aas[_i0].AAS_Initialized = ((-2 * (next_i()%2)) + 1) * next_i();
-        aas[_i0].AAS_EntityInfo = ((-2 * (next_i()%2)) + 1) * next_i();
+              aas[_i0].AAS_PredictClientMovement = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_Swimming = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_AlternativeRouteGoals = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_PredictRoute = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_EnableRoutingArea = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_AreaTravelTimeToGoalArea = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_AreaReachability = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_IntForBSPEpairKey = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_FloatForBSPEpairKey = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_VectorForBSPEpairKey = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_ValueForBSPEpairKey = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_NextBSPEntity = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_PointContents = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_AreaInfo = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_BBoxAreas = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_TraceAreas = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_PointReachabilityAreaIndex = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_PointAreaNum = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_Time = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_PresenceTypeBoundingBox = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_Initialized = ((-2 * (next_i()%2)) + 1) * next_i();
+          aas[_i0].AAS_EntityInfo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           Init_AAS_Export(aas);
           free(aas);
         

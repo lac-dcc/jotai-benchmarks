@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -101,12 +102,6 @@ TYPE_INFO XMLVMArray_getTypeInfo(JAVA_OBJECT type)
     return info;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -123,6 +118,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long type = 100;
+        
           struct TYPE_3__ benchRet = XMLVMArray_getTypeInfo(type);
           printf("%d\n", benchRet.useAtomicMalloc);
           printf("%d\n", benchRet.sizeOfBaseType);
@@ -133,6 +129,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long type = 255;
+        
           struct TYPE_3__ benchRet = XMLVMArray_getTypeInfo(type);
           printf("%d\n", benchRet.useAtomicMalloc);
           printf("%d\n", benchRet.sizeOfBaseType);
@@ -143,13 +140,24 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long type = 10;
+        
           struct TYPE_3__ benchRet = XMLVMArray_getTypeInfo(type);
           printf("%d\n", benchRet.useAtomicMalloc);
           printf("%d\n", benchRet.sizeOfBaseType);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          struct TYPE_3__ benchRet = XMLVMArray_getTypeInfo(type);
+          printf("%d\n", benchRet.useAtomicMalloc);
+          printf("%d\n", benchRet.sizeOfBaseType);
+        
+        break;
+    }
     default:
         usage();
         break;

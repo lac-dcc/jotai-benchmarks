@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -128,12 +130,6 @@ void vgic_v3_enable(struct kvm_vcpu *vcpu)
 		vgic_v3->vgic_hcr |= ICH_HCR_TC;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -146,24 +142,32 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_vcpu0 = 1;
+          int _len_vcpu0 = 65025;
           struct kvm_vcpu * vcpu = (struct kvm_vcpu *) malloc(_len_vcpu0*sizeof(struct kvm_vcpu));
           for(int _i0 = 0; _i0 < _len_vcpu0; _i0++) {
-            vcpu[_i0].arch.vgic_cpu.num_id_bits = ((-2 * (next_i()%2)) + 1) * next_i();
-        vcpu[_i0].arch.vgic_cpu.num_pri_bits = ((-2 * (next_i()%2)) + 1) * next_i();
-        vcpu[_i0].arch.vgic_cpu.pendbaser = ((-2 * (next_i()%2)) + 1) * next_i();
-        vcpu[_i0].arch.vgic_cpu.vgic_v3.vgic_sre = ((-2 * (next_i()%2)) + 1) * next_i();
-        vcpu[_i0].arch.vgic_cpu.vgic_v3.vgic_hcr = ((-2 * (next_i()%2)) + 1) * next_i();
-        vcpu[_i0].arch.vgic_cpu.vgic_v3.vgic_vmcr = ((-2 * (next_i()%2)) + 1) * next_i();
+              vcpu[_i0].arch.vgic_cpu.num_id_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+          vcpu[_i0].arch.vgic_cpu.num_pri_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+          vcpu[_i0].arch.vgic_cpu.pendbaser = ((-2 * (next_i()%2)) + 1) * next_i();
+          vcpu[_i0].arch.vgic_cpu.vgic_v3.vgic_sre = ((-2 * (next_i()%2)) + 1) * next_i();
+          vcpu[_i0].arch.vgic_cpu.vgic_v3.vgic_hcr = ((-2 * (next_i()%2)) + 1) * next_i();
+          vcpu[_i0].arch.vgic_cpu.vgic_v3.vgic_vmcr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           int _len_vcpu__i0__kvm0 = 1;
           vcpu[_i0].kvm = (struct TYPE_9__ *) malloc(_len_vcpu__i0__kvm0*sizeof(struct TYPE_9__));
           for(int _j0 = 0; _j0 < _len_vcpu__i0__kvm0; _j0++) {
-            vcpu[_i0].kvm->arch.vgic.vgic_model = ((-2 * (next_i()%2)) + 1) * next_i();
+              vcpu[_i0].kvm->arch.vgic.vgic_model = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           }
+        
           vgic_v3_enable(vcpu);
           for(int _aux = 0; _aux < _len_vcpu0; _aux++) {
           free(vcpu[_aux].kvm);
@@ -172,7 +176,74 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_vcpu0 = 100;
+          struct kvm_vcpu * vcpu = (struct kvm_vcpu *) malloc(_len_vcpu0*sizeof(struct kvm_vcpu));
+          for(int _i0 = 0; _i0 < _len_vcpu0; _i0++) {
+              vcpu[_i0].arch.vgic_cpu.num_id_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+          vcpu[_i0].arch.vgic_cpu.num_pri_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+          vcpu[_i0].arch.vgic_cpu.pendbaser = ((-2 * (next_i()%2)) + 1) * next_i();
+          vcpu[_i0].arch.vgic_cpu.vgic_v3.vgic_sre = ((-2 * (next_i()%2)) + 1) * next_i();
+          vcpu[_i0].arch.vgic_cpu.vgic_v3.vgic_hcr = ((-2 * (next_i()%2)) + 1) * next_i();
+          vcpu[_i0].arch.vgic_cpu.vgic_v3.vgic_vmcr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          int _len_vcpu__i0__kvm0 = 1;
+          vcpu[_i0].kvm = (struct TYPE_9__ *) malloc(_len_vcpu__i0__kvm0*sizeof(struct TYPE_9__));
+          for(int _j0 = 0; _j0 < _len_vcpu__i0__kvm0; _j0++) {
+              vcpu[_i0].kvm->arch.vgic.vgic_model = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          }
+        
+          vgic_v3_enable(vcpu);
+          for(int _aux = 0; _aux < _len_vcpu0; _aux++) {
+          free(vcpu[_aux].kvm);
+          }
+          free(vcpu);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_vcpu0 = 1;
+          struct kvm_vcpu * vcpu = (struct kvm_vcpu *) malloc(_len_vcpu0*sizeof(struct kvm_vcpu));
+          for(int _i0 = 0; _i0 < _len_vcpu0; _i0++) {
+              vcpu[_i0].arch.vgic_cpu.num_id_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+          vcpu[_i0].arch.vgic_cpu.num_pri_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+          vcpu[_i0].arch.vgic_cpu.pendbaser = ((-2 * (next_i()%2)) + 1) * next_i();
+          vcpu[_i0].arch.vgic_cpu.vgic_v3.vgic_sre = ((-2 * (next_i()%2)) + 1) * next_i();
+          vcpu[_i0].arch.vgic_cpu.vgic_v3.vgic_hcr = ((-2 * (next_i()%2)) + 1) * next_i();
+          vcpu[_i0].arch.vgic_cpu.vgic_v3.vgic_vmcr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          int _len_vcpu__i0__kvm0 = 1;
+          vcpu[_i0].kvm = (struct TYPE_9__ *) malloc(_len_vcpu__i0__kvm0*sizeof(struct TYPE_9__));
+          for(int _j0 = 0; _j0 < _len_vcpu__i0__kvm0; _j0++) {
+              vcpu[_i0].kvm->arch.vgic.vgic_model = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          }
+        
+          vgic_v3_enable(vcpu);
+          for(int _aux = 0; _aux < _len_vcpu0; _aux++) {
+          free(vcpu[_aux].kvm);
+          }
+          free(vcpu);
+        
+        break;
+    }
     default:
         usage();
         break;

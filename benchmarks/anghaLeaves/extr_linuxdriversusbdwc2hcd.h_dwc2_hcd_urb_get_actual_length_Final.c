@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline u32 dwc2_hcd_urb_get_actual_length(
 	return dwc2_urb->actual_length;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dwc2_urb0 = 1;
+          int _len_dwc2_urb0 = 65025;
           struct dwc2_hcd_urb * dwc2_urb = (struct dwc2_hcd_urb *) malloc(_len_dwc2_urb0*sizeof(struct dwc2_hcd_urb));
           for(int _i0 = 0; _i0 < _len_dwc2_urb0; _i0++) {
-            dwc2_urb[_i0].actual_length = ((-2 * (next_i()%2)) + 1) * next_i();
+              dwc2_urb[_i0].actual_length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dwc2_hcd_urb_get_actual_length(dwc2_urb);
           printf("%d\n", benchRet); 
           free(dwc2_urb);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_dwc2_urb0 = 100;
           struct dwc2_hcd_urb * dwc2_urb = (struct dwc2_hcd_urb *) malloc(_len_dwc2_urb0*sizeof(struct dwc2_hcd_urb));
           for(int _i0 = 0; _i0 < _len_dwc2_urb0; _i0++) {
-            dwc2_urb[_i0].actual_length = ((-2 * (next_i()%2)) + 1) * next_i();
+              dwc2_urb[_i0].actual_length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dwc2_hcd_urb_get_actual_length(dwc2_urb);
           printf("%d\n", benchRet); 
           free(dwc2_urb);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_dwc2_urb0 = 1;
+          struct dwc2_hcd_urb * dwc2_urb = (struct dwc2_hcd_urb *) malloc(_len_dwc2_urb0*sizeof(struct dwc2_hcd_urb));
+          for(int _i0 = 0; _i0 < _len_dwc2_urb0; _i0++) {
+              dwc2_urb[_i0].actual_length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dwc2_hcd_urb_get_actual_length(dwc2_urb);
+          printf("%d\n", benchRet); 
+          free(dwc2_urb);
+        
+        break;
+    }
     default:
         usage();
         break;

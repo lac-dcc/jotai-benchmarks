@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static void nvmet_init_cap(struct nvmet_ctrl *ctrl)
 	ctrl->cap |= NVMET_QUEUE_SIZE - 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,14 +80,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ctrl0 = 1;
+          int _len_ctrl0 = 65025;
           struct nvmet_ctrl * ctrl = (struct nvmet_ctrl *) malloc(_len_ctrl0*sizeof(struct nvmet_ctrl));
           for(int _i0 = 0; _i0 < _len_ctrl0; _i0++) {
-            ctrl[_i0].cap = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctrl[_i0].cap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           nvmet_init_cap(ctrl);
           free(ctrl);
         
@@ -104,14 +101,30 @@ int main(int argc, char *argv[]) {
           int _len_ctrl0 = 100;
           struct nvmet_ctrl * ctrl = (struct nvmet_ctrl *) malloc(_len_ctrl0*sizeof(struct nvmet_ctrl));
           for(int _i0 = 0; _i0 < _len_ctrl0; _i0++) {
-            ctrl[_i0].cap = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctrl[_i0].cap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           nvmet_init_cap(ctrl);
           free(ctrl);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ctrl0 = 1;
+          struct nvmet_ctrl * ctrl = (struct nvmet_ctrl *) malloc(_len_ctrl0*sizeof(struct nvmet_ctrl));
+          for(int _i0 = 0; _i0 < _len_ctrl0; _i0++) {
+              ctrl[_i0].cap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          nvmet_init_cap(ctrl);
+          free(ctrl);
+        
+        break;
+    }
     default:
         usage();
         break;

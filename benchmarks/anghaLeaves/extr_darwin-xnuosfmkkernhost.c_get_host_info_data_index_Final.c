@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -160,12 +163,6 @@ get_host_info_data_index(bool is_stat64, host_flavor_t flavor, mach_msg_type_num
 
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -182,17 +179,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int is_stat64 = 100;
+        
           int flavor = 100;
+        
           int _len_count0 = 1;
           int * count = (int *) malloc(_len_count0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_count0; _i0++) {
             count[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_ret0 = 1;
           int * ret = (int *) malloc(_len_ret0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_ret0; _i0++) {
             ret[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = get_host_info_data_index(is_stat64,flavor,count,ret);
           printf("%d\n", benchRet); 
           free(count);
@@ -200,7 +201,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int is_stat64 = 255;
+        
+          int flavor = 255;
+        
+          int _len_count0 = 65025;
+          int * count = (int *) malloc(_len_count0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_count0; _i0++) {
+            count[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ret0 = 65025;
+          int * ret = (int *) malloc(_len_ret0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ret0; _i0++) {
+            ret[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = get_host_info_data_index(is_stat64,flavor,count,ret);
+          printf("%d\n", benchRet); 
+          free(count);
+          free(ret);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int is_stat64 = 10;
+        
+          int flavor = 10;
+        
+          int _len_count0 = 100;
+          int * count = (int *) malloc(_len_count0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_count0; _i0++) {
+            count[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ret0 = 100;
+          int * ret = (int *) malloc(_len_ret0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ret0; _i0++) {
+            ret[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = get_host_info_data_index(is_stat64,flavor,count,ret);
+          printf("%d\n", benchRet); 
+          free(count);
+          free(ret);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int is_stat64 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int flavor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_count0 = 1;
+          int * count = (int *) malloc(_len_count0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_count0; _i0++) {
+            count[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ret0 = 1;
+          int * ret = (int *) malloc(_len_ret0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ret0; _i0++) {
+            ret[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = get_host_info_data_index(is_stat64,flavor,count,ret);
+          printf("%d\n", benchRet); 
+          free(count);
+          free(ret);
+        
+        break;
+    }
     default:
         usage();
         break;

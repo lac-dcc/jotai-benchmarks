@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static bool want_demangle(bool is_kernel_sym)
 	return is_kernel_sym ? symbol_conf.demangle_kernel : symbol_conf.demangle;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +81,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int is_kernel_sym = 100;
+        
           int benchRet = want_demangle(is_kernel_sym);
           printf("%d\n", benchRet); 
         
@@ -95,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int is_kernel_sym = 255;
+        
           int benchRet = want_demangle(is_kernel_sym);
           printf("%d\n", benchRet); 
         
@@ -104,12 +101,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int is_kernel_sym = 10;
+        
           int benchRet = want_demangle(is_kernel_sym);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int is_kernel_sym = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = want_demangle(is_kernel_sym);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

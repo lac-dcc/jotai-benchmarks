@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ swap_conditional(limb a[19], limb b[19], limb iswap) {
   }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,23 +87,94 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int iswap = 100;
+        
           int _len_a0 = 19;
           int * a = (int *) malloc(_len_a0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_a0; _i0++) {
             a[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_b0 = 19;
           int * b = (int *) malloc(_len_b0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_b0; _i0++) {
             b[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           swap_conditional(a,b,iswap);
           free(a);
           free(b);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int iswap = 255;
+        
+          int _len_a0 = 65025;
+          int * a = (int *) malloc(_len_a0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+            a[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_b0 = 65025;
+          int * b = (int *) malloc(_len_b0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+            b[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          swap_conditional(a,b,iswap);
+          free(a);
+          free(b);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int iswap = 10;
+        
+          int _len_a0 = 100;
+          int * a = (int *) malloc(_len_a0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+            a[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_b0 = 100;
+          int * b = (int *) malloc(_len_b0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+            b[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          swap_conditional(a,b,iswap);
+          free(a);
+          free(b);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int iswap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_a0 = 19;
+          int * a = (int *) malloc(_len_a0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+            a[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_b0 = 19;
+          int * b = (int *) malloc(_len_b0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+            b[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          swap_conditional(a,b,iswap);
+          free(a);
+          free(b);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ __attribute__((used)) static inline unsigned int modulo_min(unsigned int a, unsi
 	return result;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,34 +81,152 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           unsigned int a = 100;
+        
           unsigned int b = 100;
+        
           unsigned long modulus = 100;
+        
           unsigned int benchRet = modulo_min(a,b,modulus);
           printf("%u\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           unsigned int a = 255;
+        
           unsigned int b = 255;
+        
           unsigned long modulus = 255;
+        
           unsigned int benchRet = modulo_min(a,b,modulus);
           printf("%u\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           unsigned int a = 10;
+        
           unsigned int b = 10;
+        
           unsigned long modulus = 10;
+        
+          unsigned int benchRet = modulo_min(a,b,modulus);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          unsigned int a = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long modulus = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           unsigned int benchRet = modulo_min(a,b,modulus);
           printf("%u\n", benchRet); 
         

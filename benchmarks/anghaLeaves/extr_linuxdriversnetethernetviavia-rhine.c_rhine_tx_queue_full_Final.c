@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static inline bool rhine_tx_queue_full(struct rhine_privat
 	return (rp->cur_tx - rp->dirty_tx) >= TX_QUEUE_LEN;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,22 +75,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rp0 = 1;
+          int _len_rp0 = 65025;
           struct rhine_private * rp = (struct rhine_private *) malloc(_len_rp0*sizeof(struct rhine_private));
           for(int _i0 = 0; _i0 < _len_rp0; _i0++) {
-            rp[_i0].cur_tx = ((-2 * (next_i()%2)) + 1) * next_i();
-        rp[_i0].dirty_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+              rp[_i0].cur_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+          rp[_i0].dirty_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = rhine_tx_queue_full(rp);
           printf("%d\n", benchRet); 
           free(rp);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_rp0 = 100;
+          struct rhine_private * rp = (struct rhine_private *) malloc(_len_rp0*sizeof(struct rhine_private));
+          for(int _i0 = 0; _i0 < _len_rp0; _i0++) {
+              rp[_i0].cur_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+          rp[_i0].dirty_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rhine_tx_queue_full(rp);
+          printf("%d\n", benchRet); 
+          free(rp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_rp0 = 1;
+          struct rhine_private * rp = (struct rhine_private *) malloc(_len_rp0*sizeof(struct rhine_private));
+          for(int _i0 = 0; _i0 < _len_rp0; _i0++) {
+              rp[_i0].cur_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+          rp[_i0].dirty_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rhine_tx_queue_full(rp);
+          printf("%d\n", benchRet); 
+          free(rp);
+        
+        break;
+    }
     default:
         usage();
         break;

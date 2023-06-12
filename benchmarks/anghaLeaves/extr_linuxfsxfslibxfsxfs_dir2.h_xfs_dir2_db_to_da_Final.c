@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ xfs_dir2_db_to_da(struct xfs_da_geometry *geo, xfs_dir2_db_t db)
 	return (xfs_dablk_t)(db << (geo->blklog - geo->fsblog));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,19 +81,59 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int db = 100;
+        
           int _len_geo0 = 1;
           struct xfs_da_geometry * geo = (struct xfs_da_geometry *) malloc(_len_geo0*sizeof(struct xfs_da_geometry));
           for(int _i0 = 0; _i0 < _len_geo0; _i0++) {
-            geo[_i0].blklog = ((-2 * (next_i()%2)) + 1) * next_i();
-        geo[_i0].fsblog = ((-2 * (next_i()%2)) + 1) * next_i();
+              geo[_i0].blklog = ((-2 * (next_i()%2)) + 1) * next_i();
+          geo[_i0].fsblog = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = xfs_dir2_db_to_da(geo,db);
           printf("%d\n", benchRet); 
           free(geo);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int db = 255;
+        
+          int _len_geo0 = 65025;
+          struct xfs_da_geometry * geo = (struct xfs_da_geometry *) malloc(_len_geo0*sizeof(struct xfs_da_geometry));
+          for(int _i0 = 0; _i0 < _len_geo0; _i0++) {
+              geo[_i0].blklog = ((-2 * (next_i()%2)) + 1) * next_i();
+          geo[_i0].fsblog = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = xfs_dir2_db_to_da(geo,db);
+          printf("%d\n", benchRet); 
+          free(geo);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int db = 10;
+        
+          int _len_geo0 = 100;
+          struct xfs_da_geometry * geo = (struct xfs_da_geometry *) malloc(_len_geo0*sizeof(struct xfs_da_geometry));
+          for(int _i0 = 0; _i0 < _len_geo0; _i0++) {
+              geo[_i0].blklog = ((-2 * (next_i()%2)) + 1) * next_i();
+          geo[_i0].fsblog = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = xfs_dir2_db_to_da(geo,db);
+          printf("%d\n", benchRet); 
+          free(geo);
+        
+        break;
+    }
     default:
         usage();
         break;

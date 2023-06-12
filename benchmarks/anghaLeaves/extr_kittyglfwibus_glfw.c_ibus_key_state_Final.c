@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -85,12 +86,6 @@ ibus_key_state(unsigned int glfw_modifiers, int action) {
     return ans;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,31 +98,144 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 39
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 30
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 30
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 30
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 30
+          // dynamic_instructions_Oz : 30
+          // ------------------------------- 
+
           unsigned int glfw_modifiers = 100;
+        
           int action = 100;
+        
           int benchRet = ibus_key_state(glfw_modifiers,action);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 39
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 30
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 30
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 30
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 30
+          // dynamic_instructions_Oz : 30
+          // ------------------------------- 
+
           unsigned int glfw_modifiers = 255;
+        
           int action = 255;
+        
           int benchRet = ibus_key_state(glfw_modifiers,action);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 39
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 30
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 30
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 30
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 30
+          // dynamic_instructions_Oz : 30
+          // ------------------------------- 
+
           unsigned int glfw_modifiers = 10;
+        
           int action = 10;
+        
+          int benchRet = ibus_key_state(glfw_modifiers,action);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 39
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 30
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 30
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 30
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 30
+          // dynamic_instructions_Oz : 30
+          // ------------------------------- 
+
+          unsigned int glfw_modifiers = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int action = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = ibus_key_state(glfw_modifiers,action);
           printf("%d\n", benchRet); 
         

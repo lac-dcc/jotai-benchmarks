@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -96,12 +97,6 @@ u32 i2c_dw_scl_hcnt(u32 ic_clk, u32 tSYMBOL, u32 tf, int cond, int offset)
 			- 3 + offset;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -118,10 +113,15 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int ic_clk = 100;
+        
           int tSYMBOL = 100;
+        
           int tf = 100;
+        
           int cond = 100;
+        
           int offset = 100;
+        
           int benchRet = i2c_dw_scl_hcnt(ic_clk,tSYMBOL,tf,cond,offset);
           printf("%d\n", benchRet); 
         
@@ -131,10 +131,15 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int ic_clk = 255;
+        
           int tSYMBOL = 255;
+        
           int tf = 255;
+        
           int cond = 255;
+        
           int offset = 255;
+        
           int benchRet = i2c_dw_scl_hcnt(ic_clk,tSYMBOL,tf,cond,offset);
           printf("%d\n", benchRet); 
         
@@ -144,16 +149,38 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int ic_clk = 10;
+        
           int tSYMBOL = 10;
+        
           int tf = 10;
+        
           int cond = 10;
+        
           int offset = 10;
+        
           int benchRet = i2c_dw_scl_hcnt(ic_clk,tSYMBOL,tf,cond,offset);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int ic_clk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int tSYMBOL = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int tf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int cond = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = i2c_dw_scl_hcnt(ic_clk,tSYMBOL,tf,cond,offset);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

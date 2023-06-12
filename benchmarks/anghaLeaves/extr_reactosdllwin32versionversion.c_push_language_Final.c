@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline int push_language( WORD *list, int pos, WORD
     return pos;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,23 +76,44 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int pos = 10;
-          long lang = 10;
-          int _len_list0 = 100;
+          int pos = 255;
+        
+          long lang = 255;
+        
+          int _len_list0 = 65025;
           long * list = (long *) malloc(_len_list0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_list0; _i0++) {
             list[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = push_language(list,pos,lang);
           printf("%d\n", benchRet); 
           free(list);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int pos = 10;
+        
+          long lang = 10;
+        
+          int _len_list0 = 100;
+          long * list = (long *) malloc(_len_list0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_list0; _i0++) {
+            list[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = push_language(list,pos,lang);
+          printf("%d\n", benchRet); 
+          free(list);
+        
+        break;
+    }
     default:
         usage();
         break;

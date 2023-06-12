@@ -61,12 +61,6 @@ __attribute__((used)) static inline u8 extract_pstate(u64 pmsr_val, unsigned int
 	return ((pmsr_val >> shift) & 0xFF);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,11 +73,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // big-arr-10x
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           unsigned int pmsr_val = 10;
+        
           unsigned int shift = 10;
+        
           unsigned int benchRet = extract_pstate(pmsr_val,shift);
           printf("%u\n", benchRet); 
         

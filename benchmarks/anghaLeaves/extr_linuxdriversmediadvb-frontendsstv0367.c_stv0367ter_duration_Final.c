@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -79,12 +80,6 @@ __attribute__((used)) static int stv0367ter_duration(s32 mode, int tempo1, int t
 	return local_tempo;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,37 +92,160 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int mode = 100;
+        
           int tempo1 = 100;
+        
           int tempo2 = 100;
+        
           int tempo3 = 100;
+        
           int benchRet = stv0367ter_duration(mode,tempo1,tempo2,tempo3);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int mode = 255;
+        
           int tempo1 = 255;
+        
           int tempo2 = 255;
+        
           int tempo3 = 255;
+        
           int benchRet = stv0367ter_duration(mode,tempo1,tempo2,tempo3);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int mode = 10;
+        
           int tempo1 = 10;
+        
           int tempo2 = 10;
+        
           int tempo3 = 10;
+        
+          int benchRet = stv0367ter_duration(mode,tempo1,tempo2,tempo3);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int tempo1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int tempo2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int tempo3 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = stv0367ter_duration(mode,tempo1,tempo2,tempo3);
           printf("%d\n", benchRet); 
         

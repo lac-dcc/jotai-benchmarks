@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -83,12 +86,6 @@ __attribute__((used)) static int find_body_sid_by_absolute_offset(MXFContext *mx
     return mxf->partitions[a].body_sid;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,21 +98,204 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           long offset = 100;
+        
           int _len_mxf0 = 1;
           struct TYPE_5__ * mxf = (struct TYPE_5__ *) malloc(_len_mxf0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_mxf0; _i0++) {
-            mxf[_i0].partitions_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              mxf[_i0].partitions_count = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_mxf__i0__partitions0 = 1;
           mxf[_i0].partitions = (struct TYPE_4__ *) malloc(_len_mxf__i0__partitions0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_mxf__i0__partitions0; _j0++) {
-            mxf[_i0].partitions->pack_ofs = ((-2 * (next_i()%2)) + 1) * next_i();
-        mxf[_i0].partitions->body_sid = ((-2 * (next_i()%2)) + 1) * next_i();
+              mxf[_i0].partitions->pack_ofs = ((-2 * (next_i()%2)) + 1) * next_i();
+          mxf[_i0].partitions->body_sid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = find_body_sid_by_absolute_offset(mxf,offset);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mxf0; _aux++) {
+          free(mxf[_aux].partitions);
+          }
+          free(mxf);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          long offset = 255;
+        
+          int _len_mxf0 = 65025;
+          struct TYPE_5__ * mxf = (struct TYPE_5__ *) malloc(_len_mxf0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_mxf0; _i0++) {
+              mxf[_i0].partitions_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_mxf__i0__partitions0 = 1;
+          mxf[_i0].partitions = (struct TYPE_4__ *) malloc(_len_mxf__i0__partitions0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_mxf__i0__partitions0; _j0++) {
+              mxf[_i0].partitions->pack_ofs = ((-2 * (next_i()%2)) + 1) * next_i();
+          mxf[_i0].partitions->body_sid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = find_body_sid_by_absolute_offset(mxf,offset);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mxf0; _aux++) {
+          free(mxf[_aux].partitions);
+          }
+          free(mxf);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          long offset = 10;
+        
+          int _len_mxf0 = 100;
+          struct TYPE_5__ * mxf = (struct TYPE_5__ *) malloc(_len_mxf0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_mxf0; _i0++) {
+              mxf[_i0].partitions_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_mxf__i0__partitions0 = 1;
+          mxf[_i0].partitions = (struct TYPE_4__ *) malloc(_len_mxf__i0__partitions0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_mxf__i0__partitions0; _j0++) {
+              mxf[_i0].partitions->pack_ofs = ((-2 * (next_i()%2)) + 1) * next_i();
+          mxf[_i0].partitions->body_sid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = find_body_sid_by_absolute_offset(mxf,offset);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mxf0; _aux++) {
+          free(mxf[_aux].partitions);
+          }
+          free(mxf);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          long offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_mxf0 = 1;
+          struct TYPE_5__ * mxf = (struct TYPE_5__ *) malloc(_len_mxf0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_mxf0; _i0++) {
+              mxf[_i0].partitions_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_mxf__i0__partitions0 = 1;
+          mxf[_i0].partitions = (struct TYPE_4__ *) malloc(_len_mxf__i0__partitions0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_mxf__i0__partitions0; _j0++) {
+              mxf[_i0].partitions->pack_ofs = ((-2 * (next_i()%2)) + 1) * next_i();
+          mxf[_i0].partitions->body_sid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = find_body_sid_by_absolute_offset(mxf,offset);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_mxf0; _aux++) {

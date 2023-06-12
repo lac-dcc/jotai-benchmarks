@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static inline bool has_higher_opposing_ts(struct obs_outpu
 		return output->highest_video_ts > packet->dts_usec;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,21 +80,25 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_output0 = 1;
+          int _len_output0 = 65025;
           struct obs_output * output = (struct obs_output *) malloc(_len_output0*sizeof(struct obs_output));
           for(int _i0 = 0; _i0 < _len_output0; _i0++) {
-            output[_i0].highest_audio_ts = ((-2 * (next_i()%2)) + 1) * next_i();
-        output[_i0].highest_video_ts = ((-2 * (next_i()%2)) + 1) * next_i();
+              output[_i0].highest_audio_ts = ((-2 * (next_i()%2)) + 1) * next_i();
+          output[_i0].highest_video_ts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_packet0 = 1;
+        
+          int _len_packet0 = 65025;
           struct encoder_packet * packet = (struct encoder_packet *) malloc(_len_packet0*sizeof(struct encoder_packet));
           for(int _i0 = 0; _i0 < _len_packet0; _i0++) {
-            packet[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        packet[_i0].dts_usec = ((-2 * (next_i()%2)) + 1) * next_i();
+              packet[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          packet[_i0].dts_usec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = has_higher_opposing_ts(output,packet);
           printf("%d\n", benchRet); 
           free(output);
@@ -106,7 +106,58 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_output0 = 100;
+          struct obs_output * output = (struct obs_output *) malloc(_len_output0*sizeof(struct obs_output));
+          for(int _i0 = 0; _i0 < _len_output0; _i0++) {
+              output[_i0].highest_audio_ts = ((-2 * (next_i()%2)) + 1) * next_i();
+          output[_i0].highest_video_ts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_packet0 = 100;
+          struct encoder_packet * packet = (struct encoder_packet *) malloc(_len_packet0*sizeof(struct encoder_packet));
+          for(int _i0 = 0; _i0 < _len_packet0; _i0++) {
+              packet[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          packet[_i0].dts_usec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = has_higher_opposing_ts(output,packet);
+          printf("%d\n", benchRet); 
+          free(output);
+          free(packet);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_output0 = 1;
+          struct obs_output * output = (struct obs_output *) malloc(_len_output0*sizeof(struct obs_output));
+          for(int _i0 = 0; _i0 < _len_output0; _i0++) {
+              output[_i0].highest_audio_ts = ((-2 * (next_i()%2)) + 1) * next_i();
+          output[_i0].highest_video_ts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_packet0 = 1;
+          struct encoder_packet * packet = (struct encoder_packet *) malloc(_len_packet0*sizeof(struct encoder_packet));
+          for(int _i0 = 0; _i0 < _len_packet0; _i0++) {
+              packet[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          packet[_i0].dts_usec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = has_higher_opposing_ts(output,packet);
+          printf("%d\n", benchRet); 
+          free(output);
+          free(packet);
+        
+        break;
+    }
     default:
         usage();
         break;

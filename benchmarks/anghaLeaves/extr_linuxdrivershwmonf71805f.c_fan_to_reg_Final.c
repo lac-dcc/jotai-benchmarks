@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ __attribute__((used)) static inline u16 fan_to_reg(long rpm)
 	return 1500000 / rpm;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,28 +82,136 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           long rpm = 100;
+        
           int benchRet = fan_to_reg(rpm);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           long rpm = 255;
+        
           int benchRet = fan_to_reg(rpm);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           long rpm = 10;
+        
+          int benchRet = fan_to_reg(rpm);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          long rpm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = fan_to_reg(rpm);
           printf("%d\n", benchRet); 
         

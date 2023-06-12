@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static void mdacon_deinit(struct vc_data *c)
 		mda_display_fg = NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,14 +78,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_c0 = 1;
+          int _len_c0 = 65025;
           struct vc_data * c = (struct vc_data *) malloc(_len_c0*sizeof(struct vc_data));
           for(int _i0 = 0; _i0 < _len_c0; _i0++) {
-            c[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              c[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           mdacon_deinit(c);
           free(c);
         
@@ -102,14 +99,30 @@ int main(int argc, char *argv[]) {
           int _len_c0 = 100;
           struct vc_data * c = (struct vc_data *) malloc(_len_c0*sizeof(struct vc_data));
           for(int _i0 = 0; _i0 < _len_c0; _i0++) {
-            c[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              c[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           mdacon_deinit(c);
           free(c);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_c0 = 1;
+          struct vc_data * c = (struct vc_data *) malloc(_len_c0*sizeof(struct vc_data));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mdacon_deinit(c);
+          free(c);
+        
+        break;
+    }
     default:
         usage();
         break;

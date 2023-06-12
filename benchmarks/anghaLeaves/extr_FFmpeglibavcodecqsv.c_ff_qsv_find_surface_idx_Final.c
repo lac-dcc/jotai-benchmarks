@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -79,12 +81,6 @@ int ff_qsv_find_surface_idx(QSVFramesContext *ctx, QSVFrame *frame)
     return AVERROR_BUG;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,24 +93,31 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ctx0 = 1;
+          int _len_ctx0 = 65025;
           struct TYPE_11__ * ctx = (struct TYPE_11__ *) malloc(_len_ctx0*sizeof(struct TYPE_11__));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
-            ctx[_i0].nb_mids = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctx[_i0].nb_mids = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_ctx__i0__mids0 = 1;
           ctx[_i0].mids = (struct TYPE_10__ *) malloc(_len_ctx__i0__mids0*sizeof(struct TYPE_10__));
           for(int _j0 = 0; _j0 < _len_ctx__i0__mids0; _j0++) {
-            ctx[_i0].mids->handle = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctx[_i0].mids->handle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
-          int _len_frame0 = 1;
+        
+          int _len_frame0 = 65025;
           struct TYPE_12__ * frame = (struct TYPE_12__ *) malloc(_len_frame0*sizeof(struct TYPE_12__));
           for(int _i0 = 0; _i0 < _len_frame0; _i0++) {
-            frame[_i0].surface.Data.MemId = ((-2 * (next_i()%2)) + 1) * next_i();
+              frame[_i0].surface.Data.MemId = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int benchRet = ff_qsv_find_surface_idx(ctx,frame);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_ctx0; _aux++) {
@@ -125,7 +128,76 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ctx0 = 100;
+          struct TYPE_11__ * ctx = (struct TYPE_11__ *) malloc(_len_ctx0*sizeof(struct TYPE_11__));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].nb_mids = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ctx__i0__mids0 = 1;
+          ctx[_i0].mids = (struct TYPE_10__ *) malloc(_len_ctx__i0__mids0*sizeof(struct TYPE_10__));
+          for(int _j0 = 0; _j0 < _len_ctx__i0__mids0; _j0++) {
+              ctx[_i0].mids->handle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_frame0 = 100;
+          struct TYPE_12__ * frame = (struct TYPE_12__ *) malloc(_len_frame0*sizeof(struct TYPE_12__));
+          for(int _i0 = 0; _i0 < _len_frame0; _i0++) {
+              frame[_i0].surface.Data.MemId = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = ff_qsv_find_surface_idx(ctx,frame);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ctx0; _aux++) {
+          free(ctx[_aux].mids);
+          }
+          free(ctx);
+          free(frame);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ctx0 = 1;
+          struct TYPE_11__ * ctx = (struct TYPE_11__ *) malloc(_len_ctx0*sizeof(struct TYPE_11__));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].nb_mids = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ctx__i0__mids0 = 1;
+          ctx[_i0].mids = (struct TYPE_10__ *) malloc(_len_ctx__i0__mids0*sizeof(struct TYPE_10__));
+          for(int _j0 = 0; _j0 < _len_ctx__i0__mids0; _j0++) {
+              ctx[_i0].mids->handle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_frame0 = 1;
+          struct TYPE_12__ * frame = (struct TYPE_12__ *) malloc(_len_frame0*sizeof(struct TYPE_12__));
+          for(int _i0 = 0; _i0 < _len_frame0; _i0++) {
+              frame[_i0].surface.Data.MemId = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = ff_qsv_find_surface_idx(ctx,frame);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ctx0; _aux++) {
+          free(ctx[_aux].mids);
+          }
+          free(ctx);
+          free(frame);
+        
+        break;
+    }
     default:
         usage();
         break;

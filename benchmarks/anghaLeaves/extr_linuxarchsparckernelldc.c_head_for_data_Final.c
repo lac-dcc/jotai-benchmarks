@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static unsigned long head_for_data(struct ldc_channel *lp)
 	return lp->tx_head;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,23 +79,63 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_lp0 = 1;
+          int _len_lp0 = 65025;
           struct ldc_channel * lp = (struct ldc_channel *) malloc(_len_lp0*sizeof(struct ldc_channel));
           for(int _i0 = 0; _i0 < _len_lp0; _i0++) {
-            lp[_i0].tx_acked = ((-2 * (next_i()%2)) + 1) * next_i();
-        lp[_i0].tx_head = ((-2 * (next_i()%2)) + 1) * next_i();
-        lp[_i0].cfg.mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              lp[_i0].tx_acked = ((-2 * (next_i()%2)) + 1) * next_i();
+          lp[_i0].tx_head = ((-2 * (next_i()%2)) + 1) * next_i();
+          lp[_i0].cfg.mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           unsigned long benchRet = head_for_data(lp);
           printf("%lu\n", benchRet); 
           free(lp);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_lp0 = 100;
+          struct ldc_channel * lp = (struct ldc_channel *) malloc(_len_lp0*sizeof(struct ldc_channel));
+          for(int _i0 = 0; _i0 < _len_lp0; _i0++) {
+              lp[_i0].tx_acked = ((-2 * (next_i()%2)) + 1) * next_i();
+          lp[_i0].tx_head = ((-2 * (next_i()%2)) + 1) * next_i();
+          lp[_i0].cfg.mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          unsigned long benchRet = head_for_data(lp);
+          printf("%lu\n", benchRet); 
+          free(lp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_lp0 = 1;
+          struct ldc_channel * lp = (struct ldc_channel *) malloc(_len_lp0*sizeof(struct ldc_channel));
+          for(int _i0 = 0; _i0 < _len_lp0; _i0++) {
+              lp[_i0].tx_acked = ((-2 * (next_i()%2)) + 1) * next_i();
+          lp[_i0].tx_head = ((-2 * (next_i()%2)) + 1) * next_i();
+          lp[_i0].cfg.mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          unsigned long benchRet = head_for_data(lp);
+          printf("%lu\n", benchRet); 
+          free(lp);
+        
+        break;
+    }
     default:
         usage();
         break;

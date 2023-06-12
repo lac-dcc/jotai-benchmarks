@@ -101,12 +101,6 @@ __attribute__((used)) static unsigned long long ocfs2_max_file_offset(unsigned i
 	return (((unsigned long long)bytes) << bitshift) - trim;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -123,13 +117,14 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int bbits = 10;
+        
           unsigned int cbits = 10;
+        
           unsigned long long benchRet = ocfs2_max_file_offset(bbits,cbits);
           printf("%llu\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

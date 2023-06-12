@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static bool ab8500_charger_check_continue_stepping(struct 
 		return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,30 +82,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int reg = 100;
+        
           int _len_di0 = 1;
           struct ab8500_charger * di = (struct ab8500_charger *) malloc(_len_di0*sizeof(struct ab8500_charger));
           for(int _i0 = 0; _i0 < _len_di0; _i0++) {
-            di[_i0].flags.vbus_drop_end = ((-2 * (next_i()%2)) + 1) * next_i();
+              di[_i0].flags.vbus_drop_end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = ab8500_charger_check_continue_stepping(di,reg);
           printf("%d\n", benchRet); 
           free(di);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int reg = 255;
+        
+          int _len_di0 = 65025;
+          struct ab8500_charger * di = (struct ab8500_charger *) malloc(_len_di0*sizeof(struct ab8500_charger));
+          for(int _i0 = 0; _i0 < _len_di0; _i0++) {
+              di[_i0].flags.vbus_drop_end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = ab8500_charger_check_continue_stepping(di,reg);
+          printf("%d\n", benchRet); 
+          free(di);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int reg = 10;
+        
           int _len_di0 = 100;
           struct ab8500_charger * di = (struct ab8500_charger *) malloc(_len_di0*sizeof(struct ab8500_charger));
           for(int _i0 = 0; _i0 < _len_di0; _i0++) {
-            di[_i0].flags.vbus_drop_end = ((-2 * (next_i()%2)) + 1) * next_i();
+              di[_i0].flags.vbus_drop_end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = ab8500_charger_check_continue_stepping(di,reg);
+          printf("%d\n", benchRet); 
+          free(di);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_di0 = 1;
+          struct ab8500_charger * di = (struct ab8500_charger *) malloc(_len_di0*sizeof(struct ab8500_charger));
+          for(int _i0 = 0; _i0 < _len_di0; _i0++) {
+              di[_i0].flags.vbus_drop_end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = ab8500_charger_check_continue_stepping(di,reg);
           printf("%d\n", benchRet); 
           free(di);

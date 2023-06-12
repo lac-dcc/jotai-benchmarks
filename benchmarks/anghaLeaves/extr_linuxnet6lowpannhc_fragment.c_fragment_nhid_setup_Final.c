@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static void fragment_nhid_setup(struct lowpan_nhc *nhc)
 	nhc->idmask[0] = LOWPAN_NHC_FRAGMENT_MASK_0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,9 +77,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_nhc0 = 65025;
+          struct lowpan_nhc * nhc = (struct lowpan_nhc *) malloc(_len_nhc0*sizeof(struct lowpan_nhc));
+          for(int _i0 = 0; _i0 < _len_nhc0; _i0++) {
+              int _len_nhc__i0__idmask0 = 1;
+          nhc[_i0].idmask = (int *) malloc(_len_nhc__i0__idmask0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_nhc__i0__idmask0; _j0++) {
+            nhc[_i0].idmask[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_nhc__i0__id0 = 1;
+          nhc[_i0].id = (int *) malloc(_len_nhc__i0__id0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_nhc__i0__id0; _j0++) {
+            nhc[_i0].id[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          fragment_nhid_setup(nhc);
+          for(int _aux = 0; _aux < _len_nhc0; _aux++) {
+          free(nhc[_aux].idmask);
+          }
+          for(int _aux = 0; _aux < _len_nhc0; _aux++) {
+          free(nhc[_aux].id);
+          }
+          free(nhc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_nhc0 = 100;
+          struct lowpan_nhc * nhc = (struct lowpan_nhc *) malloc(_len_nhc0*sizeof(struct lowpan_nhc));
+          for(int _i0 = 0; _i0 < _len_nhc0; _i0++) {
+              int _len_nhc__i0__idmask0 = 1;
+          nhc[_i0].idmask = (int *) malloc(_len_nhc__i0__idmask0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_nhc__i0__idmask0; _j0++) {
+            nhc[_i0].idmask[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_nhc__i0__id0 = 1;
+          nhc[_i0].id = (int *) malloc(_len_nhc__i0__id0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_nhc__i0__id0; _j0++) {
+            nhc[_i0].id[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          fragment_nhid_setup(nhc);
+          for(int _aux = 0; _aux < _len_nhc0; _aux++) {
+          free(nhc[_aux].idmask);
+          }
+          for(int _aux = 0; _aux < _len_nhc0; _aux++) {
+          free(nhc[_aux].id);
+          }
+          free(nhc);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_nhc0 = 1;
           struct lowpan_nhc * nhc = (struct lowpan_nhc *) malloc(_len_nhc0*sizeof(struct lowpan_nhc));
           for(int _i0 = 0; _i0 < _len_nhc0; _i0++) {
@@ -97,7 +224,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_nhc__i0__id0; _j0++) {
             nhc[_i0].id[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           fragment_nhid_setup(nhc);
           for(int _aux = 0; _aux < _len_nhc0; _aux++) {
           free(nhc[_aux].idmask);

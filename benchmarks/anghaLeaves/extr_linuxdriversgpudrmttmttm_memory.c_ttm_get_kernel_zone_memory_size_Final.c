@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ uint64_t ttm_get_kernel_zone_memory_size(struct ttm_mem_global *glob)
 	return glob->zone_kernel->max_mem;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,18 +77,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_glob0 = 65025;
+          struct ttm_mem_global * glob = (struct ttm_mem_global *) malloc(_len_glob0*sizeof(struct ttm_mem_global));
+          for(int _i0 = 0; _i0 < _len_glob0; _i0++) {
+              int _len_glob__i0__zone_kernel0 = 1;
+          glob[_i0].zone_kernel = (struct TYPE_2__ *) malloc(_len_glob__i0__zone_kernel0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_glob__i0__zone_kernel0; _j0++) {
+              glob[_i0].zone_kernel->max_mem = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ttm_get_kernel_zone_memory_size(glob);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_glob0; _aux++) {
+          free(glob[_aux].zone_kernel);
+          }
+          free(glob);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_glob0 = 100;
+          struct ttm_mem_global * glob = (struct ttm_mem_global *) malloc(_len_glob0*sizeof(struct ttm_mem_global));
+          for(int _i0 = 0; _i0 < _len_glob0; _i0++) {
+              int _len_glob__i0__zone_kernel0 = 1;
+          glob[_i0].zone_kernel = (struct TYPE_2__ *) malloc(_len_glob__i0__zone_kernel0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_glob__i0__zone_kernel0; _j0++) {
+              glob[_i0].zone_kernel->max_mem = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ttm_get_kernel_zone_memory_size(glob);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_glob0; _aux++) {
+          free(glob[_aux].zone_kernel);
+          }
+          free(glob);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_glob0 = 1;
           struct ttm_mem_global * glob = (struct ttm_mem_global *) malloc(_len_glob0*sizeof(struct ttm_mem_global));
           for(int _i0 = 0; _i0 < _len_glob0; _i0++) {
               int _len_glob__i0__zone_kernel0 = 1;
           glob[_i0].zone_kernel = (struct TYPE_2__ *) malloc(_len_glob__i0__zone_kernel0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_glob__i0__zone_kernel0; _j0++) {
-            glob[_i0].zone_kernel->max_mem = ((-2 * (next_i()%2)) + 1) * next_i();
+              glob[_i0].zone_kernel->max_mem = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = ttm_get_kernel_zone_memory_size(glob);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_glob0; _aux++) {

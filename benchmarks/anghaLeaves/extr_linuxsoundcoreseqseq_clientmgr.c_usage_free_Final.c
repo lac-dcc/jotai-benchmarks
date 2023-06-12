@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static void usage_free(struct snd_seq_usage *res, int num)
 	res->cur -= num;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,31 +79,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int num = 100;
+        
           int _len_res0 = 1;
           struct snd_seq_usage * res = (struct snd_seq_usage *) malloc(_len_res0*sizeof(struct snd_seq_usage));
           for(int _i0 = 0; _i0 < _len_res0; _i0++) {
-            res[_i0].cur = ((-2 * (next_i()%2)) + 1) * next_i();
+              res[_i0].cur = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          usage_free(res,num);
+          free(res);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int num = 255;
+        
+          int _len_res0 = 65025;
+          struct snd_seq_usage * res = (struct snd_seq_usage *) malloc(_len_res0*sizeof(struct snd_seq_usage));
+          for(int _i0 = 0; _i0 < _len_res0; _i0++) {
+              res[_i0].cur = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           usage_free(res,num);
           free(res);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int num = 10;
+        
           int _len_res0 = 100;
           struct snd_seq_usage * res = (struct snd_seq_usage *) malloc(_len_res0*sizeof(struct snd_seq_usage));
           for(int _i0 = 0; _i0 < _len_res0; _i0++) {
-            res[_i0].cur = ((-2 * (next_i()%2)) + 1) * next_i();
+              res[_i0].cur = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           usage_free(res,num);
           free(res);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_res0 = 1;
+          struct snd_seq_usage * res = (struct snd_seq_usage *) malloc(_len_res0*sizeof(struct snd_seq_usage));
+          for(int _i0 = 0; _i0 < _len_res0; _i0++) {
+              res[_i0].cur = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          usage_free(res,num);
+          free(res);
+        
+        break;
+    }
     default:
         usage();
         break;

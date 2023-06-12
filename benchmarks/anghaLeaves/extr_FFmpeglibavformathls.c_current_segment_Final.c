@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static struct segment *current_segment(struct playlist *pl
     return pls->segments[pls->cur_seq_no - pls->start_seq_no];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,24 +75,27 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pls0 = 1;
+          int _len_pls0 = 65025;
           struct playlist * pls = (struct playlist *) malloc(_len_pls0*sizeof(struct playlist));
           for(int _i0 = 0; _i0 < _len_pls0; _i0++) {
-            pls[_i0].cur_seq_no = ((-2 * (next_i()%2)) + 1) * next_i();
-        pls[_i0].start_seq_no = ((-2 * (next_i()%2)) + 1) * next_i();
+              pls[_i0].cur_seq_no = ((-2 * (next_i()%2)) + 1) * next_i();
+          pls[_i0].start_seq_no = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_pls__i0__segments0 = 1;
           pls[_i0].segments = (struct segment **) malloc(_len_pls__i0__segments0*sizeof(struct segment *));
           for(int _j0 = 0; _j0 < _len_pls__i0__segments0; _j0++) {
             int _len_pls__i0__segments1 = 1;
             pls[_i0].segments[_j0] = (struct segment *) malloc(_len_pls__i0__segments1*sizeof(struct segment));
             for(int _j1 = 0; _j1 < _len_pls__i0__segments1; _j1++) {
-              pls[_i0].segments[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+                pls[_i0].segments[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           }
+        
           struct segment * benchRet = current_segment(pls);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_pls0; _aux++) {
@@ -107,7 +106,68 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_pls0 = 100;
+          struct playlist * pls = (struct playlist *) malloc(_len_pls0*sizeof(struct playlist));
+          for(int _i0 = 0; _i0 < _len_pls0; _i0++) {
+              pls[_i0].cur_seq_no = ((-2 * (next_i()%2)) + 1) * next_i();
+          pls[_i0].start_seq_no = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pls__i0__segments0 = 1;
+          pls[_i0].segments = (struct segment **) malloc(_len_pls__i0__segments0*sizeof(struct segment *));
+          for(int _j0 = 0; _j0 < _len_pls__i0__segments0; _j0++) {
+            int _len_pls__i0__segments1 = 1;
+            pls[_i0].segments[_j0] = (struct segment *) malloc(_len_pls__i0__segments1*sizeof(struct segment));
+            for(int _j1 = 0; _j1 < _len_pls__i0__segments1; _j1++) {
+                pls[_i0].segments[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          struct segment * benchRet = current_segment(pls);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_pls0; _aux++) {
+          free(*(pls[_aux].segments));
+        free(pls[_aux].segments);
+          }
+          free(pls);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_pls0 = 1;
+          struct playlist * pls = (struct playlist *) malloc(_len_pls0*sizeof(struct playlist));
+          for(int _i0 = 0; _i0 < _len_pls0; _i0++) {
+              pls[_i0].cur_seq_no = ((-2 * (next_i()%2)) + 1) * next_i();
+          pls[_i0].start_seq_no = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pls__i0__segments0 = 1;
+          pls[_i0].segments = (struct segment **) malloc(_len_pls__i0__segments0*sizeof(struct segment *));
+          for(int _j0 = 0; _j0 < _len_pls__i0__segments0; _j0++) {
+            int _len_pls__i0__segments1 = 1;
+            pls[_i0].segments[_j0] = (struct segment *) malloc(_len_pls__i0__segments1*sizeof(struct segment));
+            for(int _j1 = 0; _j1 < _len_pls__i0__segments1; _j1++) {
+                pls[_i0].segments[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          struct segment * benchRet = current_segment(pls);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_pls0; _aux++) {
+          free(*(pls[_aux].segments));
+        free(pls[_aux].segments);
+          }
+          free(pls);
+        
+        break;
+    }
     default:
         usage();
         break;

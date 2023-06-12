@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ __attribute__((used)) static void ci_leaf_init(struct cacheinfo *this_leaf,
 	this_leaf->type = type;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,17 +78,176 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           enum cache_type type = 0;
+        
           unsigned int level = 100;
+        
           int _len_this_leaf0 = 1;
           struct cacheinfo * this_leaf = (struct cacheinfo *) malloc(_len_this_leaf0*sizeof(struct cacheinfo));
           for(int _i0 = 0; _i0 < _len_this_leaf0; _i0++) {
-            this_leaf[_i0].level = ((-2 * (next_i()%2)) + 1) * next_i();
-        this_leaf[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+              this_leaf[_i0].level = ((-2 * (next_i()%2)) + 1) * next_i();
+          this_leaf[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          ci_leaf_init(this_leaf,type,level);
+          free(this_leaf);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          enum cache_type type = 0;
+        
+          unsigned int level = 255;
+        
+          int _len_this_leaf0 = 65025;
+          struct cacheinfo * this_leaf = (struct cacheinfo *) malloc(_len_this_leaf0*sizeof(struct cacheinfo));
+          for(int _i0 = 0; _i0 < _len_this_leaf0; _i0++) {
+              this_leaf[_i0].level = ((-2 * (next_i()%2)) + 1) * next_i();
+          this_leaf[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ci_leaf_init(this_leaf,type,level);
+          free(this_leaf);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          enum cache_type type = 0;
+        
+          unsigned int level = 10;
+        
+          int _len_this_leaf0 = 100;
+          struct cacheinfo * this_leaf = (struct cacheinfo *) malloc(_len_this_leaf0*sizeof(struct cacheinfo));
+          for(int _i0 = 0; _i0 < _len_this_leaf0; _i0++) {
+              this_leaf[_i0].level = ((-2 * (next_i()%2)) + 1) * next_i();
+          this_leaf[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ci_leaf_init(this_leaf,type,level);
+          free(this_leaf);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          enum cache_type type = 0;
+        
+          unsigned int level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_this_leaf0 = 1;
+          struct cacheinfo * this_leaf = (struct cacheinfo *) malloc(_len_this_leaf0*sizeof(struct cacheinfo));
+          for(int _i0 = 0; _i0 < _len_this_leaf0; _i0++) {
+              this_leaf[_i0].level = ((-2 * (next_i()%2)) + 1) * next_i();
+          this_leaf[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           ci_leaf_init(this_leaf,type,level);
           free(this_leaf);
         

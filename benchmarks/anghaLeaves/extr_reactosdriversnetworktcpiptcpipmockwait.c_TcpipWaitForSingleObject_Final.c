@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +72,6 @@ NTSTATUS TcpipWaitForSingleObject( PVOID Object,
     return STATUS_SUCCESS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,40 +84,168 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int Object = 100;
+        
           int Reason = 100;
+        
           int WaitMode = 100;
+        
           int Alertable = 100;
+        
           int Timeout = 100;
+        
           int benchRet = TcpipWaitForSingleObject(Object,Reason,WaitMode,Alertable,Timeout);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int Object = 255;
+        
           int Reason = 255;
+        
           int WaitMode = 255;
+        
           int Alertable = 255;
+        
           int Timeout = 255;
+        
           int benchRet = TcpipWaitForSingleObject(Object,Reason,WaitMode,Alertable,Timeout);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int Object = 10;
+        
           int Reason = 10;
+        
           int WaitMode = 10;
+        
           int Alertable = 10;
+        
           int Timeout = 10;
+        
+          int benchRet = TcpipWaitForSingleObject(Object,Reason,WaitMode,Alertable,Timeout);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int Object = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int Reason = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int WaitMode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int Alertable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int Timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = TcpipWaitForSingleObject(Object,Reason,WaitMode,Alertable,Timeout);
           printf("%d\n", benchRet); 
         

@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -71,12 +71,6 @@ kcdata_iter_type(kcdata_iter_t iter)
 		return iter.item->type;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,15 +83,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // empty
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           struct TYPE_5__ iter;
           int _len_iter_item0 = 1;
           iter.item = (struct TYPE_4__ *) malloc(_len_iter_item0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_iter_item0; _j0++) {
-            iter.item->type = ((-2 * (next_i()%2)) + 1) * next_i();
+              iter.item->type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = kcdata_iter_type(iter);
           printf("%d\n", benchRet); 
           free(iter.item);

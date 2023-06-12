@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ char *Key_GetBinding( int keynum ) {
 	return keys[ keynum ].binding;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,6 +85,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int keynum = 100;
+        
           char * benchRet = Key_GetBinding(keynum);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
@@ -99,6 +95,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int keynum = 255;
+        
           char * benchRet = Key_GetBinding(keynum);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
@@ -108,12 +105,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int keynum = 10;
+        
           char * benchRet = Key_GetBinding(keynum);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int keynum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          char * benchRet = Key_GetBinding(keynum);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+        
+        break;
+    }
     default:
         usage();
         break;

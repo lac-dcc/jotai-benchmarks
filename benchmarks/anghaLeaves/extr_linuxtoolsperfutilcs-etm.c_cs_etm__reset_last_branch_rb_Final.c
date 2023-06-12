@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline void cs_etm__reset_last_branch_rb(struct cs_
 	etmq->last_branch_rb->nr = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,19 +77,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_etmq0 = 1;
+          int _len_etmq0 = 65025;
           struct cs_etm_queue * etmq = (struct cs_etm_queue *) malloc(_len_etmq0*sizeof(struct cs_etm_queue));
           for(int _i0 = 0; _i0 < _len_etmq0; _i0++) {
               int _len_etmq__i0__last_branch_rb0 = 1;
           etmq[_i0].last_branch_rb = (struct TYPE_2__ *) malloc(_len_etmq__i0__last_branch_rb0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_etmq__i0__last_branch_rb0; _j0++) {
-            etmq[_i0].last_branch_rb->nr = ((-2 * (next_i()%2)) + 1) * next_i();
+              etmq[_i0].last_branch_rb->nr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        etmq[_i0].last_branch_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          etmq[_i0].last_branch_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           cs_etm__reset_last_branch_rb(etmq);
           for(int _aux = 0; _aux < _len_etmq0; _aux++) {
           free(etmq[_aux].last_branch_rb);
@@ -102,7 +101,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_etmq0 = 100;
+          struct cs_etm_queue * etmq = (struct cs_etm_queue *) malloc(_len_etmq0*sizeof(struct cs_etm_queue));
+          for(int _i0 = 0; _i0 < _len_etmq0; _i0++) {
+              int _len_etmq__i0__last_branch_rb0 = 1;
+          etmq[_i0].last_branch_rb = (struct TYPE_2__ *) malloc(_len_etmq__i0__last_branch_rb0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_etmq__i0__last_branch_rb0; _j0++) {
+              etmq[_i0].last_branch_rb->nr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          etmq[_i0].last_branch_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cs_etm__reset_last_branch_rb(etmq);
+          for(int _aux = 0; _aux < _len_etmq0; _aux++) {
+          free(etmq[_aux].last_branch_rb);
+          }
+          free(etmq);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_etmq0 = 1;
+          struct cs_etm_queue * etmq = (struct cs_etm_queue *) malloc(_len_etmq0*sizeof(struct cs_etm_queue));
+          for(int _i0 = 0; _i0 < _len_etmq0; _i0++) {
+              int _len_etmq__i0__last_branch_rb0 = 1;
+          etmq[_i0].last_branch_rb = (struct TYPE_2__ *) malloc(_len_etmq__i0__last_branch_rb0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_etmq__i0__last_branch_rb0; _j0++) {
+              etmq[_i0].last_branch_rb->nr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          etmq[_i0].last_branch_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cs_etm__reset_last_branch_rb(etmq);
+          for(int _aux = 0; _aux < _len_etmq0; _aux++) {
+          free(etmq[_aux].last_branch_rb);
+          }
+          free(etmq);
+        
+        break;
+    }
     default:
         usage();
         break;

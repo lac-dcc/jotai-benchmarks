@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static inline int incpos(struct cdb_make *c, ut32 len) {
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,11 +84,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long len = 100;
+        
           int _len_c0 = 1;
           struct cdb_make * c = (struct cdb_make *) malloc(_len_c0*sizeof(struct cdb_make));
           for(int _i0 = 0; _i0 < _len_c0; _i0++) {
-            c[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+              c[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = incpos(c,len);
+          printf("%d\n", benchRet); 
+          free(c);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long len = 255;
+        
+          int _len_c0 = 65025;
+          struct cdb_make * c = (struct cdb_make *) malloc(_len_c0*sizeof(struct cdb_make));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = incpos(c,len);
           printf("%d\n", benchRet); 
           free(c);
@@ -100,21 +117,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long len = 10;
+        
           int _len_c0 = 100;
           struct cdb_make * c = (struct cdb_make *) malloc(_len_c0*sizeof(struct cdb_make));
           for(int _i0 = 0; _i0 < _len_c0; _i0++) {
-            c[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+              c[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = incpos(c,len);
           printf("%d\n", benchRet); 
           free(c);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_c0 = 1;
+          struct cdb_make * c = (struct cdb_make *) malloc(_len_c0*sizeof(struct cdb_make));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = incpos(c,len);
+          printf("%d\n", benchRet); 
+          free(c);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static bool gasket_is_pte_range_free(struct gasket_page_ta
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,30 +85,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int num_entries = 100;
+        
           int _len_ptes0 = 1;
           struct gasket_page_table_entry * ptes = (struct gasket_page_table_entry *) malloc(_len_ptes0*sizeof(struct gasket_page_table_entry));
           for(int _i0 = 0; _i0 < _len_ptes0; _i0++) {
-            ptes[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+              ptes[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = gasket_is_pte_range_free(ptes,num_entries);
           printf("%d\n", benchRet); 
           free(ptes);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int num_entries = 255;
+        
+          int _len_ptes0 = 65025;
+          struct gasket_page_table_entry * ptes = (struct gasket_page_table_entry *) malloc(_len_ptes0*sizeof(struct gasket_page_table_entry));
+          for(int _i0 = 0; _i0 < _len_ptes0; _i0++) {
+              ptes[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = gasket_is_pte_range_free(ptes,num_entries);
+          printf("%d\n", benchRet); 
+          free(ptes);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int num_entries = 10;
+        
           int _len_ptes0 = 100;
           struct gasket_page_table_entry * ptes = (struct gasket_page_table_entry *) malloc(_len_ptes0*sizeof(struct gasket_page_table_entry));
           for(int _i0 = 0; _i0 < _len_ptes0; _i0++) {
-            ptes[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+              ptes[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = gasket_is_pte_range_free(ptes,num_entries);
+          printf("%d\n", benchRet); 
+          free(ptes);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int num_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ptes0 = 1;
+          struct gasket_page_table_entry * ptes = (struct gasket_page_table_entry *) malloc(_len_ptes0*sizeof(struct gasket_page_table_entry));
+          for(int _i0 = 0; _i0 < _len_ptes0; _i0++) {
+              ptes[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = gasket_is_pte_range_free(ptes,num_entries);
           printf("%d\n", benchRet); 
           free(ptes);

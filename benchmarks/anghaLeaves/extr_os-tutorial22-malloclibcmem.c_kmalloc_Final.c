@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ u32 kmalloc(u32 size, int align, u32 *phys_addr) {
     return ret;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,32 +85,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int size = 100;
+        
           int align = 100;
+        
           int _len_phys_addr0 = 1;
           int * phys_addr = (int *) malloc(_len_phys_addr0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_phys_addr0; _i0++) {
             phys_addr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = kmalloc(size,align,phys_addr);
           printf("%d\n", benchRet); 
           free(phys_addr);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int size = 255;
+        
+          int align = 255;
+        
+          int _len_phys_addr0 = 65025;
+          int * phys_addr = (int *) malloc(_len_phys_addr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_phys_addr0; _i0++) {
+            phys_addr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = kmalloc(size,align,phys_addr);
+          printf("%d\n", benchRet); 
+          free(phys_addr);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int size = 10;
+        
           int align = 10;
+        
           int _len_phys_addr0 = 100;
           int * phys_addr = (int *) malloc(_len_phys_addr0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_phys_addr0; _i0++) {
             phys_addr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = kmalloc(size,align,phys_addr);
+          printf("%d\n", benchRet); 
+          free(phys_addr);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int align = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_phys_addr0 = 1;
+          int * phys_addr = (int *) malloc(_len_phys_addr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_phys_addr0; _i0++) {
+            phys_addr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = kmalloc(size,align,phys_addr);
           printf("%d\n", benchRet); 
           free(phys_addr);

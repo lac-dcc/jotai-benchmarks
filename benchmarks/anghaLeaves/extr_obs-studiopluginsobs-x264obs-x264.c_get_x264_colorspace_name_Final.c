@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -70,12 +70,6 @@ __attribute__((used)) static inline const char *get_x264_colorspace_name(enum vi
 	return "bt709";
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,10 +82,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // empty
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           enum video_colorspace cs = 0;
+        
           const char * benchRet = get_x264_colorspace_name(cs);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         

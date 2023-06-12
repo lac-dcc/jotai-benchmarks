@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ __attribute__((used)) static bool snd_soc_dai_stream_valid(struct snd_soc_dai *d
 	return codec_stream->rates;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,16 +91,22 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int stream = 100;
+        
           int _len_dai0 = 1;
           struct snd_soc_dai * dai = (struct snd_soc_dai *) malloc(_len_dai0*sizeof(struct snd_soc_dai));
           for(int _i0 = 0; _i0 < _len_dai0; _i0++) {
               int _len_dai__i0__driver0 = 1;
           dai[_i0].driver = (struct TYPE_2__ *) malloc(_len_dai__i0__driver0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_dai__i0__driver0; _j0++) {
-            dai[_i0].driver->capture.rates = ((-2 * (next_i()%2)) + 1) * next_i();
-        dai[_i0].driver->playback.rates = ((-2 * (next_i()%2)) + 1) * next_i();
+              dai[_i0].driver->capture.rates = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          dai[_i0].driver->playback.rates = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           int benchRet = snd_soc_dai_stream_valid(dai,stream);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_dai0; _aux++) {
@@ -113,7 +116,93 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int stream = 255;
+        
+          int _len_dai0 = 65025;
+          struct snd_soc_dai * dai = (struct snd_soc_dai *) malloc(_len_dai0*sizeof(struct snd_soc_dai));
+          for(int _i0 = 0; _i0 < _len_dai0; _i0++) {
+              int _len_dai__i0__driver0 = 1;
+          dai[_i0].driver = (struct TYPE_2__ *) malloc(_len_dai__i0__driver0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_dai__i0__driver0; _j0++) {
+              dai[_i0].driver->capture.rates = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          dai[_i0].driver->playback.rates = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = snd_soc_dai_stream_valid(dai,stream);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dai0; _aux++) {
+          free(dai[_aux].driver);
+          }
+          free(dai);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int stream = 10;
+        
+          int _len_dai0 = 100;
+          struct snd_soc_dai * dai = (struct snd_soc_dai *) malloc(_len_dai0*sizeof(struct snd_soc_dai));
+          for(int _i0 = 0; _i0 < _len_dai0; _i0++) {
+              int _len_dai__i0__driver0 = 1;
+          dai[_i0].driver = (struct TYPE_2__ *) malloc(_len_dai__i0__driver0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_dai__i0__driver0; _j0++) {
+              dai[_i0].driver->capture.rates = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          dai[_i0].driver->playback.rates = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = snd_soc_dai_stream_valid(dai,stream);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dai0; _aux++) {
+          free(dai[_aux].driver);
+          }
+          free(dai);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int stream = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dai0 = 1;
+          struct snd_soc_dai * dai = (struct snd_soc_dai *) malloc(_len_dai0*sizeof(struct snd_soc_dai));
+          for(int _i0 = 0; _i0 < _len_dai0; _i0++) {
+              int _len_dai__i0__driver0 = 1;
+          dai[_i0].driver = (struct TYPE_2__ *) malloc(_len_dai__i0__driver0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_dai__i0__driver0; _j0++) {
+              dai[_i0].driver->capture.rates = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          dai[_i0].driver->playback.rates = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = snd_soc_dai_stream_valid(dai,stream);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dai0; _aux++) {
+          free(dai[_aux].driver);
+          }
+          free(dai);
+        
+        break;
+    }
     default:
         usage();
         break;

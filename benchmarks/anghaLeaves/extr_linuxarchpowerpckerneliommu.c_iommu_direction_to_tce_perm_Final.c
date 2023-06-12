@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -74,12 +74,6 @@ unsigned long iommu_direction_to_tce_perm(enum dma_data_direction dir)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,16 +86,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum dma_data_direction dir = 0;
+        
           unsigned long benchRet = iommu_direction_to_tce_perm(dir);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

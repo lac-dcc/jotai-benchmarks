@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +79,6 @@ __attribute__((used)) static int binop(struct st *st, int op, unsigned long left
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,32 +91,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int op = 100;
+        
           unsigned long left = 100;
+        
           int _len_st0 = 1;
           struct st * st = (struct st *) malloc(_len_st0*sizeof(struct st));
           for(int _i0 = 0; _i0 < _len_st0; _i0++) {
-            st[_i0].r = ((-2 * (next_i()%2)) + 1) * next_i();
+              st[_i0].r = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = binop(st,op,left);
           printf("%d\n", benchRet); 
           free(st);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int op = 255;
+        
+          unsigned long left = 255;
+        
+          int _len_st0 = 65025;
+          struct st * st = (struct st *) malloc(_len_st0*sizeof(struct st));
+          for(int _i0 = 0; _i0 < _len_st0; _i0++) {
+              st[_i0].r = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = binop(st,op,left);
+          printf("%d\n", benchRet); 
+          free(st);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int op = 10;
+        
           unsigned long left = 10;
+        
           int _len_st0 = 100;
           struct st * st = (struct st *) malloc(_len_st0*sizeof(struct st));
           for(int _i0 = 0; _i0 < _len_st0; _i0++) {
-            st[_i0].r = ((-2 * (next_i()%2)) + 1) * next_i();
+              st[_i0].r = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = binop(st,op,left);
+          printf("%d\n", benchRet); 
+          free(st);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int op = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long left = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_st0 = 1;
+          struct st * st = (struct st *) malloc(_len_st0*sizeof(struct st));
+          for(int _i0 = 0; _i0 < _len_st0; _i0++) {
+              st[_i0].r = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = binop(st,op,left);
           printf("%d\n", benchRet); 
           free(st);

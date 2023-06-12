@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +77,6 @@ lzma_lzma_lclppb_decode(lzma_options_lzma *options, uint8_t byte)
 	return options->lc + options->lp > LZMA_LCLP_MAX;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,20 +93,82 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int byte = 100;
+        
           int _len_options0 = 1;
           struct TYPE_3__ * options = (struct TYPE_3__ *) malloc(_len_options0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_options0; _i0++) {
-            options[_i0].pb = ((-2 * (next_i()%2)) + 1) * next_i();
-        options[_i0].lp = ((-2 * (next_i()%2)) + 1) * next_i();
-        options[_i0].lc = ((-2 * (next_i()%2)) + 1) * next_i();
+              options[_i0].pb = ((-2 * (next_i()%2)) + 1) * next_i();
+          options[_i0].lp = ((-2 * (next_i()%2)) + 1) * next_i();
+          options[_i0].lc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = lzma_lzma_lclppb_decode(options,byte);
           printf("%d\n", benchRet); 
           free(options);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int byte = 255;
+        
+          int _len_options0 = 65025;
+          struct TYPE_3__ * options = (struct TYPE_3__ *) malloc(_len_options0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_options0; _i0++) {
+              options[_i0].pb = ((-2 * (next_i()%2)) + 1) * next_i();
+          options[_i0].lp = ((-2 * (next_i()%2)) + 1) * next_i();
+          options[_i0].lc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = lzma_lzma_lclppb_decode(options,byte);
+          printf("%d\n", benchRet); 
+          free(options);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int byte = 10;
+        
+          int _len_options0 = 100;
+          struct TYPE_3__ * options = (struct TYPE_3__ *) malloc(_len_options0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_options0; _i0++) {
+              options[_i0].pb = ((-2 * (next_i()%2)) + 1) * next_i();
+          options[_i0].lp = ((-2 * (next_i()%2)) + 1) * next_i();
+          options[_i0].lc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = lzma_lzma_lclppb_decode(options,byte);
+          printf("%d\n", benchRet); 
+          free(options);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int byte = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_options0 = 1;
+          struct TYPE_3__ * options = (struct TYPE_3__ *) malloc(_len_options0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_options0; _i0++) {
+              options[_i0].pb = ((-2 * (next_i()%2)) + 1) * next_i();
+          options[_i0].lp = ((-2 * (next_i()%2)) + 1) * next_i();
+          options[_i0].lc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = lzma_lzma_lclppb_decode(options,byte);
+          printf("%d\n", benchRet); 
+          free(options);
+        
+        break;
+    }
     default:
         usage();
         break;

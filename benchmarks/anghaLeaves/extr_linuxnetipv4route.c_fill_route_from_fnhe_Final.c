@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ __attribute__((used)) static void fill_route_from_fnhe(struct rtable *rt, struct
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,34 +86,102 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rt0 = 1;
+          int _len_rt0 = 65025;
           struct rtable * rt = (struct rtable *) malloc(_len_rt0*sizeof(struct rtable));
           for(int _i0 = 0; _i0 < _len_rt0; _i0++) {
-            rt[_i0].rt_uses_gateway = ((-2 * (next_i()%2)) + 1) * next_i();
-        rt[_i0].rt_gateway = ((-2 * (next_i()%2)) + 1) * next_i();
-        rt[_i0].rt_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        rt[_i0].dst.expires = ((-2 * (next_i()%2)) + 1) * next_i();
-        rt[_i0].rt_mtu_locked = ((-2 * (next_i()%2)) + 1) * next_i();
-        rt[_i0].rt_pmtu = ((-2 * (next_i()%2)) + 1) * next_i();
+              rt[_i0].rt_uses_gateway = ((-2 * (next_i()%2)) + 1) * next_i();
+          rt[_i0].rt_gateway = ((-2 * (next_i()%2)) + 1) * next_i();
+          rt[_i0].rt_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          rt[_i0].dst.expires = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          rt[_i0].rt_mtu_locked = ((-2 * (next_i()%2)) + 1) * next_i();
+          rt[_i0].rt_pmtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_fnhe0 = 1;
+        
+          int _len_fnhe0 = 65025;
           struct fib_nh_exception * fnhe = (struct fib_nh_exception *) malloc(_len_fnhe0*sizeof(struct fib_nh_exception));
           for(int _i0 = 0; _i0 < _len_fnhe0; _i0++) {
-            fnhe[_i0].fnhe_gw = ((-2 * (next_i()%2)) + 1) * next_i();
-        fnhe[_i0].fnhe_expires = ((-2 * (next_i()%2)) + 1) * next_i();
-        fnhe[_i0].fnhe_mtu_locked = ((-2 * (next_i()%2)) + 1) * next_i();
-        fnhe[_i0].fnhe_pmtu = ((-2 * (next_i()%2)) + 1) * next_i();
+              fnhe[_i0].fnhe_gw = ((-2 * (next_i()%2)) + 1) * next_i();
+          fnhe[_i0].fnhe_expires = ((-2 * (next_i()%2)) + 1) * next_i();
+          fnhe[_i0].fnhe_mtu_locked = ((-2 * (next_i()%2)) + 1) * next_i();
+          fnhe[_i0].fnhe_pmtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           fill_route_from_fnhe(rt,fnhe);
           free(rt);
           free(fnhe);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_rt0 = 100;
+          struct rtable * rt = (struct rtable *) malloc(_len_rt0*sizeof(struct rtable));
+          for(int _i0 = 0; _i0 < _len_rt0; _i0++) {
+              rt[_i0].rt_uses_gateway = ((-2 * (next_i()%2)) + 1) * next_i();
+          rt[_i0].rt_gateway = ((-2 * (next_i()%2)) + 1) * next_i();
+          rt[_i0].rt_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          rt[_i0].dst.expires = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          rt[_i0].rt_mtu_locked = ((-2 * (next_i()%2)) + 1) * next_i();
+          rt[_i0].rt_pmtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fnhe0 = 100;
+          struct fib_nh_exception * fnhe = (struct fib_nh_exception *) malloc(_len_fnhe0*sizeof(struct fib_nh_exception));
+          for(int _i0 = 0; _i0 < _len_fnhe0; _i0++) {
+              fnhe[_i0].fnhe_gw = ((-2 * (next_i()%2)) + 1) * next_i();
+          fnhe[_i0].fnhe_expires = ((-2 * (next_i()%2)) + 1) * next_i();
+          fnhe[_i0].fnhe_mtu_locked = ((-2 * (next_i()%2)) + 1) * next_i();
+          fnhe[_i0].fnhe_pmtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          fill_route_from_fnhe(rt,fnhe);
+          free(rt);
+          free(fnhe);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_rt0 = 1;
+          struct rtable * rt = (struct rtable *) malloc(_len_rt0*sizeof(struct rtable));
+          for(int _i0 = 0; _i0 < _len_rt0; _i0++) {
+              rt[_i0].rt_uses_gateway = ((-2 * (next_i()%2)) + 1) * next_i();
+          rt[_i0].rt_gateway = ((-2 * (next_i()%2)) + 1) * next_i();
+          rt[_i0].rt_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          rt[_i0].dst.expires = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          rt[_i0].rt_mtu_locked = ((-2 * (next_i()%2)) + 1) * next_i();
+          rt[_i0].rt_pmtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fnhe0 = 1;
+          struct fib_nh_exception * fnhe = (struct fib_nh_exception *) malloc(_len_fnhe0*sizeof(struct fib_nh_exception));
+          for(int _i0 = 0; _i0 < _len_fnhe0; _i0++) {
+              fnhe[_i0].fnhe_gw = ((-2 * (next_i()%2)) + 1) * next_i();
+          fnhe[_i0].fnhe_expires = ((-2 * (next_i()%2)) + 1) * next_i();
+          fnhe[_i0].fnhe_mtu_locked = ((-2 * (next_i()%2)) + 1) * next_i();
+          fnhe[_i0].fnhe_pmtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          fill_route_from_fnhe(rt,fnhe);
+          free(rt);
+          free(fnhe);
+        
+        break;
+    }
     default:
         usage();
         break;

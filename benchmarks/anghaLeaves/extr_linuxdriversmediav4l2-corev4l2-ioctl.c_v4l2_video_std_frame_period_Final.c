@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ void v4l2_video_std_frame_period(int id, struct v4l2_fract *frameperiod)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,16 +82,168 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int id = 100;
+        
           int _len_frameperiod0 = 1;
           struct v4l2_fract * frameperiod = (struct v4l2_fract *) malloc(_len_frameperiod0*sizeof(struct v4l2_fract));
           for(int _i0 = 0; _i0 < _len_frameperiod0; _i0++) {
-            frameperiod[_i0].numerator = ((-2 * (next_i()%2)) + 1) * next_i();
-        frameperiod[_i0].denominator = ((-2 * (next_i()%2)) + 1) * next_i();
+              frameperiod[_i0].numerator = ((-2 * (next_i()%2)) + 1) * next_i();
+          frameperiod[_i0].denominator = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          v4l2_video_std_frame_period(id,frameperiod);
+          free(frameperiod);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int id = 255;
+        
+          int _len_frameperiod0 = 65025;
+          struct v4l2_fract * frameperiod = (struct v4l2_fract *) malloc(_len_frameperiod0*sizeof(struct v4l2_fract));
+          for(int _i0 = 0; _i0 < _len_frameperiod0; _i0++) {
+              frameperiod[_i0].numerator = ((-2 * (next_i()%2)) + 1) * next_i();
+          frameperiod[_i0].denominator = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          v4l2_video_std_frame_period(id,frameperiod);
+          free(frameperiod);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int id = 10;
+        
+          int _len_frameperiod0 = 100;
+          struct v4l2_fract * frameperiod = (struct v4l2_fract *) malloc(_len_frameperiod0*sizeof(struct v4l2_fract));
+          for(int _i0 = 0; _i0 < _len_frameperiod0; _i0++) {
+              frameperiod[_i0].numerator = ((-2 * (next_i()%2)) + 1) * next_i();
+          frameperiod[_i0].denominator = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          v4l2_video_std_frame_period(id,frameperiod);
+          free(frameperiod);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_frameperiod0 = 1;
+          struct v4l2_fract * frameperiod = (struct v4l2_fract *) malloc(_len_frameperiod0*sizeof(struct v4l2_fract));
+          for(int _i0 = 0; _i0 < _len_frameperiod0; _i0++) {
+              frameperiod[_i0].numerator = ((-2 * (next_i()%2)) + 1) * next_i();
+          frameperiod[_i0].denominator = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           v4l2_video_std_frame_period(id,frameperiod);
           free(frameperiod);
         

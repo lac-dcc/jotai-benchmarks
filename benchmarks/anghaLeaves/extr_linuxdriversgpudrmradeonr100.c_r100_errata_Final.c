@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ __attribute__((used)) static void r100_errata(struct radeon_device *rdev)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,21 +90,54 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rdev0 = 1;
+          int _len_rdev0 = 65025;
           struct radeon_device * rdev = (struct radeon_device *) malloc(_len_rdev0*sizeof(struct radeon_device));
           for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
-            rdev[_i0].family = ((-2 * (next_i()%2)) + 1) * next_i();
-        rdev[_i0].pll_errata = ((-2 * (next_i()%2)) + 1) * next_i();
+              rdev[_i0].family = ((-2 * (next_i()%2)) + 1) * next_i();
+          rdev[_i0].pll_errata = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           r100_errata(rdev);
           free(rdev);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_rdev0 = 100;
+          struct radeon_device * rdev = (struct radeon_device *) malloc(_len_rdev0*sizeof(struct radeon_device));
+          for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
+              rdev[_i0].family = ((-2 * (next_i()%2)) + 1) * next_i();
+          rdev[_i0].pll_errata = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          r100_errata(rdev);
+          free(rdev);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_rdev0 = 1;
+          struct radeon_device * rdev = (struct radeon_device *) malloc(_len_rdev0*sizeof(struct radeon_device));
+          for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
+              rdev[_i0].family = ((-2 * (next_i()%2)) + 1) * next_i();
+          rdev[_i0].pll_errata = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          r100_errata(rdev);
+          free(rdev);
+        
+        break;
+    }
     default:
         usage();
         break;

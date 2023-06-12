@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ mptfc_set_rport_loss_tmo(struct fc_rport *rport, uint32_t timeout)
 		rport->dev_loss_tmo = mptfc_dev_loss_tmo;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,31 +85,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long timeout = 100;
+        
           int _len_rport0 = 1;
           struct fc_rport * rport = (struct fc_rport *) malloc(_len_rport0*sizeof(struct fc_rport));
           for(int _i0 = 0; _i0 < _len_rport0; _i0++) {
-            rport[_i0].dev_loss_tmo = ((-2 * (next_i()%2)) + 1) * next_i();
+              rport[_i0].dev_loss_tmo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          mptfc_set_rport_loss_tmo(rport,timeout);
+          free(rport);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long timeout = 255;
+        
+          int _len_rport0 = 65025;
+          struct fc_rport * rport = (struct fc_rport *) malloc(_len_rport0*sizeof(struct fc_rport));
+          for(int _i0 = 0; _i0 < _len_rport0; _i0++) {
+              rport[_i0].dev_loss_tmo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           mptfc_set_rport_loss_tmo(rport,timeout);
           free(rport);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long timeout = 10;
+        
           int _len_rport0 = 100;
           struct fc_rport * rport = (struct fc_rport *) malloc(_len_rport0*sizeof(struct fc_rport));
           for(int _i0 = 0; _i0 < _len_rport0; _i0++) {
-            rport[_i0].dev_loss_tmo = ((-2 * (next_i()%2)) + 1) * next_i();
+              rport[_i0].dev_loss_tmo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           mptfc_set_rport_loss_tmo(rport,timeout);
           free(rport);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rport0 = 1;
+          struct fc_rport * rport = (struct fc_rport *) malloc(_len_rport0*sizeof(struct fc_rport));
+          for(int _i0 = 0; _i0 < _len_rport0; _i0++) {
+              rport[_i0].dev_loss_tmo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mptfc_set_rport_loss_tmo(rport,timeout);
+          free(rport);
+        
+        break;
+    }
     default:
         usage();
         break;

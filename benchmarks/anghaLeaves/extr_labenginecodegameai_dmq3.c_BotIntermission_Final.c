@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ qboolean BotIntermission(bot_state_t *bs) {
 	return (bs->cur_ps.pm_type == PM_FREEZE || bs->cur_ps.pm_type == PM_INTERMISSION);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,21 +86,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_bs0 = 1;
+          int _len_bs0 = 65025;
           struct TYPE_6__ * bs = (struct TYPE_6__ *) malloc(_len_bs0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_bs0; _i0++) {
-            bs[_i0].cur_ps.pm_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              bs[_i0].cur_ps.pm_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = BotIntermission(bs);
           printf("%d\n", benchRet); 
           free(bs);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_bs0 = 100;
+          struct TYPE_6__ * bs = (struct TYPE_6__ *) malloc(_len_bs0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_bs0; _i0++) {
+              bs[_i0].cur_ps.pm_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = BotIntermission(bs);
+          printf("%d\n", benchRet); 
+          free(bs);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_bs0 = 1;
+          struct TYPE_6__ * bs = (struct TYPE_6__ *) malloc(_len_bs0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_bs0; _i0++) {
+              bs[_i0].cur_ps.pm_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = BotIntermission(bs);
+          printf("%d\n", benchRet); 
+          free(bs);
+        
+        break;
+    }
     default:
         usage();
         break;

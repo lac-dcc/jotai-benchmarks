@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static int pidff_needs_set_constant(struct ff_effect *effe
 	return effect->u.constant.level != old->u.constant.level;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,19 +79,27 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_effect0 = 1;
+          int _len_effect0 = 65025;
           struct ff_effect * effect = (struct ff_effect *) malloc(_len_effect0*sizeof(struct ff_effect));
           for(int _i0 = 0; _i0 < _len_effect0; _i0++) {
-            effect[_i0].u.constant.level = ((-2 * (next_i()%2)) + 1) * next_i();
+              effect[_i0].u.constant.level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
-          int _len_old0 = 1;
+        
+          int _len_old0 = 65025;
           struct ff_effect * old = (struct ff_effect *) malloc(_len_old0*sizeof(struct ff_effect));
           for(int _i0 = 0; _i0 < _len_old0; _i0++) {
-            old[_i0].u.constant.level = ((-2 * (next_i()%2)) + 1) * next_i();
+              old[_i0].u.constant.level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int benchRet = pidff_needs_set_constant(effect,old);
           printf("%d\n", benchRet); 
           free(effect);
@@ -103,7 +107,62 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_effect0 = 100;
+          struct ff_effect * effect = (struct ff_effect *) malloc(_len_effect0*sizeof(struct ff_effect));
+          for(int _i0 = 0; _i0 < _len_effect0; _i0++) {
+              effect[_i0].u.constant.level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_old0 = 100;
+          struct ff_effect * old = (struct ff_effect *) malloc(_len_old0*sizeof(struct ff_effect));
+          for(int _i0 = 0; _i0 < _len_old0; _i0++) {
+              old[_i0].u.constant.level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = pidff_needs_set_constant(effect,old);
+          printf("%d\n", benchRet); 
+          free(effect);
+          free(old);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_effect0 = 1;
+          struct ff_effect * effect = (struct ff_effect *) malloc(_len_effect0*sizeof(struct ff_effect));
+          for(int _i0 = 0; _i0 < _len_effect0; _i0++) {
+              effect[_i0].u.constant.level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_old0 = 1;
+          struct ff_effect * old = (struct ff_effect *) malloc(_len_old0*sizeof(struct ff_effect));
+          for(int _i0 = 0; _i0 < _len_old0; _i0++) {
+              old[_i0].u.constant.level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = pidff_needs_set_constant(effect,old);
+          printf("%d\n", benchRet); 
+          free(effect);
+          free(old);
+        
+        break;
+    }
     default:
         usage();
         break;

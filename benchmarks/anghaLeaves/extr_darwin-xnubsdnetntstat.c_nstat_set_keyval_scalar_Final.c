@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ nstat_set_keyval_scalar(nstat_sysinfo_keyval *kv, int key, u_int32_t val)
 	kv->nstat_sysinfo_valsize = sizeof(kv->u.nstat_sysinfo_scalar);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,21 +89,94 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int key = 100;
+        
           int val = 100;
+        
           int _len_kv0 = 1;
           struct TYPE_5__ * kv = (struct TYPE_5__ *) malloc(_len_kv0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_kv0; _i0++) {
-            kv[_i0].nstat_sysinfo_key = ((-2 * (next_i()%2)) + 1) * next_i();
-        kv[_i0].nstat_sysinfo_valsize = ((-2 * (next_i()%2)) + 1) * next_i();
-        kv[_i0].u.nstat_sysinfo_scalar = ((-2 * (next_i()%2)) + 1) * next_i();
-        kv[_i0].nstat_sysinfo_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              kv[_i0].nstat_sysinfo_key = ((-2 * (next_i()%2)) + 1) * next_i();
+          kv[_i0].nstat_sysinfo_valsize = ((-2 * (next_i()%2)) + 1) * next_i();
+          kv[_i0].u.nstat_sysinfo_scalar = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          kv[_i0].nstat_sysinfo_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           nstat_set_keyval_scalar(kv,key,val);
           free(kv);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int key = 255;
+        
+          int val = 255;
+        
+          int _len_kv0 = 65025;
+          struct TYPE_5__ * kv = (struct TYPE_5__ *) malloc(_len_kv0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_kv0; _i0++) {
+              kv[_i0].nstat_sysinfo_key = ((-2 * (next_i()%2)) + 1) * next_i();
+          kv[_i0].nstat_sysinfo_valsize = ((-2 * (next_i()%2)) + 1) * next_i();
+          kv[_i0].u.nstat_sysinfo_scalar = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          kv[_i0].nstat_sysinfo_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          nstat_set_keyval_scalar(kv,key,val);
+          free(kv);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int key = 10;
+        
+          int val = 10;
+        
+          int _len_kv0 = 100;
+          struct TYPE_5__ * kv = (struct TYPE_5__ *) malloc(_len_kv0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_kv0; _i0++) {
+              kv[_i0].nstat_sysinfo_key = ((-2 * (next_i()%2)) + 1) * next_i();
+          kv[_i0].nstat_sysinfo_valsize = ((-2 * (next_i()%2)) + 1) * next_i();
+          kv[_i0].u.nstat_sysinfo_scalar = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          kv[_i0].nstat_sysinfo_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          nstat_set_keyval_scalar(kv,key,val);
+          free(kv);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int key = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_kv0 = 1;
+          struct TYPE_5__ * kv = (struct TYPE_5__ *) malloc(_len_kv0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_kv0; _i0++) {
+              kv[_i0].nstat_sysinfo_key = ((-2 * (next_i()%2)) + 1) * next_i();
+          kv[_i0].nstat_sysinfo_valsize = ((-2 * (next_i()%2)) + 1) * next_i();
+          kv[_i0].u.nstat_sysinfo_scalar = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          kv[_i0].nstat_sysinfo_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          nstat_set_keyval_scalar(kv,key,val);
+          free(kv);
+        
+        break;
+    }
     default:
         usage();
         break;

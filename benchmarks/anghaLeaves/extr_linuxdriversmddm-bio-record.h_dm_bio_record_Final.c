@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static inline void dm_bio_record(struct dm_bio_details *bd
 	bd->bi_iter = bio->bi_iter;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,25 +78,158 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_bd0 = 65025;
+          struct dm_bio_details * bd = (struct dm_bio_details *) malloc(_len_bd0*sizeof(struct dm_bio_details));
+          for(int _i0 = 0; _i0 < _len_bd0; _i0++) {
+              bd[_i0].bi_iter = ((-2 * (next_i()%2)) + 1) * next_i();
+          bd[_i0].bi_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          bd[_i0].bi_partno = ((-2 * (next_i()%2)) + 1) * next_i();
+          bd[_i0].bi_disk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_bio0 = 65025;
+          struct bio * bio = (struct bio *) malloc(_len_bio0*sizeof(struct bio));
+          for(int _i0 = 0; _i0 < _len_bio0; _i0++) {
+              bio[_i0].bi_iter = ((-2 * (next_i()%2)) + 1) * next_i();
+          bio[_i0].bi_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          bio[_i0].bi_partno = ((-2 * (next_i()%2)) + 1) * next_i();
+          bio[_i0].bi_disk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          dm_bio_record(bd,bio);
+          free(bd);
+          free(bio);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_bd0 = 100;
+          struct dm_bio_details * bd = (struct dm_bio_details *) malloc(_len_bd0*sizeof(struct dm_bio_details));
+          for(int _i0 = 0; _i0 < _len_bd0; _i0++) {
+              bd[_i0].bi_iter = ((-2 * (next_i()%2)) + 1) * next_i();
+          bd[_i0].bi_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          bd[_i0].bi_partno = ((-2 * (next_i()%2)) + 1) * next_i();
+          bd[_i0].bi_disk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_bio0 = 100;
+          struct bio * bio = (struct bio *) malloc(_len_bio0*sizeof(struct bio));
+          for(int _i0 = 0; _i0 < _len_bio0; _i0++) {
+              bio[_i0].bi_iter = ((-2 * (next_i()%2)) + 1) * next_i();
+          bio[_i0].bi_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          bio[_i0].bi_partno = ((-2 * (next_i()%2)) + 1) * next_i();
+          bio[_i0].bi_disk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          dm_bio_record(bd,bio);
+          free(bd);
+          free(bio);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_bd0 = 1;
           struct dm_bio_details * bd = (struct dm_bio_details *) malloc(_len_bd0*sizeof(struct dm_bio_details));
           for(int _i0 = 0; _i0 < _len_bd0; _i0++) {
-            bd[_i0].bi_iter = ((-2 * (next_i()%2)) + 1) * next_i();
-        bd[_i0].bi_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        bd[_i0].bi_partno = ((-2 * (next_i()%2)) + 1) * next_i();
-        bd[_i0].bi_disk = ((-2 * (next_i()%2)) + 1) * next_i();
+              bd[_i0].bi_iter = ((-2 * (next_i()%2)) + 1) * next_i();
+          bd[_i0].bi_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          bd[_i0].bi_partno = ((-2 * (next_i()%2)) + 1) * next_i();
+          bd[_i0].bi_disk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_bio0 = 1;
           struct bio * bio = (struct bio *) malloc(_len_bio0*sizeof(struct bio));
           for(int _i0 = 0; _i0 < _len_bio0; _i0++) {
-            bio[_i0].bi_iter = ((-2 * (next_i()%2)) + 1) * next_i();
-        bio[_i0].bi_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        bio[_i0].bi_partno = ((-2 * (next_i()%2)) + 1) * next_i();
-        bio[_i0].bi_disk = ((-2 * (next_i()%2)) + 1) * next_i();
+              bio[_i0].bi_iter = ((-2 * (next_i()%2)) + 1) * next_i();
+          bio[_i0].bi_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          bio[_i0].bi_partno = ((-2 * (next_i()%2)) + 1) * next_i();
+          bio[_i0].bi_disk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           dm_bio_record(bd,bio);
           free(bd);
           free(bio);

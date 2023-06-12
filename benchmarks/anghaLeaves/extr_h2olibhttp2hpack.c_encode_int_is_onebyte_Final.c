@@ -60,12 +60,6 @@ __attribute__((used)) static inline int encode_int_is_onebyte(int64_t value, uns
     return value < (1 << prefix_bits) - 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,11 +72,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // big-arr-10x
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int value = 10;
+        
           unsigned int prefix_bits = 10;
+        
           int benchRet = encode_int_is_onebyte(value,prefix_bits);
           printf("%d\n", benchRet); 
         

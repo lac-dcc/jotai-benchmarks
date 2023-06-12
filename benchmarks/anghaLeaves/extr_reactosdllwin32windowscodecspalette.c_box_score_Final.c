@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static inline unsigned int box_score(struct box *b)
     return sum;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,19 +84,134 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 43
+          // dynamic_instructions_O0 : 43
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
+          int _len_b0 = 65025;
+          struct box * b = (struct box *) malloc(_len_b0*sizeof(struct box));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].r_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].r_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].g_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].g_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].b_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].b_min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = box_score(b);
+          printf("%u\n", benchRet); 
+          free(b);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 43
+          // dynamic_instructions_O0 : 43
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
+          int _len_b0 = 100;
+          struct box * b = (struct box *) malloc(_len_b0*sizeof(struct box));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].r_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].r_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].g_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].g_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].b_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].b_min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = box_score(b);
+          printf("%u\n", benchRet); 
+          free(b);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 43
+          // dynamic_instructions_O0 : 43
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
           int _len_b0 = 1;
           struct box * b = (struct box *) malloc(_len_b0*sizeof(struct box));
           for(int _i0 = 0; _i0 < _len_b0; _i0++) {
-            b[_i0].r_max = ((-2 * (next_i()%2)) + 1) * next_i();
-        b[_i0].r_min = ((-2 * (next_i()%2)) + 1) * next_i();
-        b[_i0].g_max = ((-2 * (next_i()%2)) + 1) * next_i();
-        b[_i0].g_min = ((-2 * (next_i()%2)) + 1) * next_i();
-        b[_i0].b_max = ((-2 * (next_i()%2)) + 1) * next_i();
-        b[_i0].b_min = ((-2 * (next_i()%2)) + 1) * next_i();
+              b[_i0].r_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].r_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].g_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].g_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].b_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].b_min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = box_score(b);
           printf("%u\n", benchRet); 
           free(b);

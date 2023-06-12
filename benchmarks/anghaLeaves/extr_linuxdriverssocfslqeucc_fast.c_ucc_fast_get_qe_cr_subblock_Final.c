@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -81,12 +82,6 @@ u32 ucc_fast_get_qe_cr_subblock(int uccf_num)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,6 +98,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int uccf_num = 100;
+        
           int benchRet = ucc_fast_get_qe_cr_subblock(uccf_num);
           printf("%d\n", benchRet); 
         
@@ -112,6 +108,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int uccf_num = 255;
+        
           int benchRet = ucc_fast_get_qe_cr_subblock(uccf_num);
           printf("%d\n", benchRet); 
         
@@ -121,12 +118,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int uccf_num = 10;
+        
           int benchRet = ucc_fast_get_qe_cr_subblock(uccf_num);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int uccf_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = ucc_fast_get_qe_cr_subblock(uccf_num);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ void ff_h264_chroma_dc_dequant_idct_8_mmi(int16_t *block, int qmul)
     block[48]= ((d-b)*qmul) >> 7;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,21 +82,38 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int qmul = 10;
-          int _len_block0 = 100;
+          int qmul = 255;
+        
+          int _len_block0 = 65025;
           int * block = (int *) malloc(_len_block0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_block0; _i0++) {
             block[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           ff_h264_chroma_dc_dequant_idct_8_mmi(block,qmul);
           free(block);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int qmul = 10;
+        
+          int _len_block0 = 100;
+          int * block = (int *) malloc(_len_block0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_block0; _i0++) {
+            block[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          ff_h264_chroma_dc_dequant_idct_8_mmi(block,qmul);
+          free(block);
+        
+        break;
+    }
     default:
         usage();
         break;

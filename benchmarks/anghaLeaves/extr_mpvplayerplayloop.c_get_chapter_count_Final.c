@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ int get_chapter_count(struct MPContext *mpctx)
     return mpctx->num_chapters;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_mpctx0 = 1;
+          int _len_mpctx0 = 65025;
           struct MPContext * mpctx = (struct MPContext *) malloc(_len_mpctx0*sizeof(struct MPContext));
           for(int _i0 = 0; _i0 < _len_mpctx0; _i0++) {
-            mpctx[_i0].num_chapters = ((-2 * (next_i()%2)) + 1) * next_i();
+              mpctx[_i0].num_chapters = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = get_chapter_count(mpctx);
           printf("%d\n", benchRet); 
           free(mpctx);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_mpctx0 = 100;
           struct MPContext * mpctx = (struct MPContext *) malloc(_len_mpctx0*sizeof(struct MPContext));
           for(int _i0 = 0; _i0 < _len_mpctx0; _i0++) {
-            mpctx[_i0].num_chapters = ((-2 * (next_i()%2)) + 1) * next_i();
+              mpctx[_i0].num_chapters = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = get_chapter_count(mpctx);
           printf("%d\n", benchRet); 
           free(mpctx);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_mpctx0 = 1;
+          struct MPContext * mpctx = (struct MPContext *) malloc(_len_mpctx0*sizeof(struct MPContext));
+          for(int _i0 = 0; _i0 < _len_mpctx0; _i0++) {
+              mpctx[_i0].num_chapters = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = get_chapter_count(mpctx);
+          printf("%d\n", benchRet); 
+          free(mpctx);
+        
+        break;
+    }
     default:
         usage();
         break;

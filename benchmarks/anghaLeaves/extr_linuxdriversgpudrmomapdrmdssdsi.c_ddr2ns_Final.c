@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static inline unsigned int ddr2ns(struct dsi_data *dsi, un
 	return ddr * 1000 * 1000 / (ddr_clk / 1000);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,30 +81,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           unsigned int ddr = 100;
+        
           int _len_dsi0 = 1;
           struct dsi_data * dsi = (struct dsi_data *) malloc(_len_dsi0*sizeof(struct dsi_data));
           for(int _i0 = 0; _i0 < _len_dsi0; _i0++) {
-            dsi[_i0].pll.cinfo.clkdco = ((-2 * (next_i()%2)) + 1) * next_i();
+              dsi[_i0].pll.cinfo.clkdco = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           unsigned int benchRet = ddr2ns(dsi,ddr);
           printf("%u\n", benchRet); 
           free(dsi);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          unsigned int ddr = 255;
+        
+          int _len_dsi0 = 65025;
+          struct dsi_data * dsi = (struct dsi_data *) malloc(_len_dsi0*sizeof(struct dsi_data));
+          for(int _i0 = 0; _i0 < _len_dsi0; _i0++) {
+              dsi[_i0].pll.cinfo.clkdco = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          unsigned int benchRet = ddr2ns(dsi,ddr);
+          printf("%u\n", benchRet); 
+          free(dsi);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           unsigned int ddr = 10;
+        
           int _len_dsi0 = 100;
           struct dsi_data * dsi = (struct dsi_data *) malloc(_len_dsi0*sizeof(struct dsi_data));
           for(int _i0 = 0; _i0 < _len_dsi0; _i0++) {
-            dsi[_i0].pll.cinfo.clkdco = ((-2 * (next_i()%2)) + 1) * next_i();
+              dsi[_i0].pll.cinfo.clkdco = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
+          unsigned int benchRet = ddr2ns(dsi,ddr);
+          printf("%u\n", benchRet); 
+          free(dsi);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          unsigned int ddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dsi0 = 1;
+          struct dsi_data * dsi = (struct dsi_data *) malloc(_len_dsi0*sizeof(struct dsi_data));
+          for(int _i0 = 0; _i0 < _len_dsi0; _i0++) {
+              dsi[_i0].pll.cinfo.clkdco = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
           unsigned int benchRet = ddr2ns(dsi,ddr);
           printf("%u\n", benchRet); 
           free(dsi);

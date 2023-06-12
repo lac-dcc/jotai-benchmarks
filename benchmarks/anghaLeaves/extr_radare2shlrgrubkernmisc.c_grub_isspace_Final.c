@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ grub_isspace (int c)
   return (c == '\n' || c == '\r' || c == ' ' || c == '\t');
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int c = 100;
+        
           int benchRet = grub_isspace(c);
           printf("%d\n", benchRet); 
         
@@ -93,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int c = 255;
+        
           int benchRet = grub_isspace(c);
           printf("%d\n", benchRet); 
         
@@ -102,12 +99,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int c = 10;
+        
           int benchRet = grub_isspace(c);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int c = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = grub_isspace(c);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

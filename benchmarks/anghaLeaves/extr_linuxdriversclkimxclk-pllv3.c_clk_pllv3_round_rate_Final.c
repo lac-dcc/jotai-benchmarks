@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ __attribute__((used)) static long clk_pllv3_round_rate(struct clk_hw *hw, unsign
 					    parent_rate * 20;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,20 +79,194 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           unsigned long rate = 100;
+        
           int _len_hw0 = 1;
           struct clk_hw * hw = (struct clk_hw *) malloc(_len_hw0*sizeof(struct clk_hw));
           for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
-            hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_prate0 = 1;
           unsigned long * prate = (unsigned long *) malloc(_len_prate0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_prate0; _i0++) {
             prate[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          long benchRet = clk_pllv3_round_rate(hw,rate,prate);
+          printf("%ld\n", benchRet); 
+          free(hw);
+          free(prate);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          unsigned long rate = 255;
+        
+          int _len_hw0 = 65025;
+          struct clk_hw * hw = (struct clk_hw *) malloc(_len_hw0*sizeof(struct clk_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_prate0 = 65025;
+          unsigned long * prate = (unsigned long *) malloc(_len_prate0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_prate0; _i0++) {
+            prate[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          long benchRet = clk_pllv3_round_rate(hw,rate,prate);
+          printf("%ld\n", benchRet); 
+          free(hw);
+          free(prate);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          unsigned long rate = 10;
+        
+          int _len_hw0 = 100;
+          struct clk_hw * hw = (struct clk_hw *) malloc(_len_hw0*sizeof(struct clk_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_prate0 = 100;
+          unsigned long * prate = (unsigned long *) malloc(_len_prate0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_prate0; _i0++) {
+            prate[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          long benchRet = clk_pllv3_round_rate(hw,rate,prate);
+          printf("%ld\n", benchRet); 
+          free(hw);
+          free(prate);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          unsigned long rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hw0 = 1;
+          struct clk_hw * hw = (struct clk_hw *) malloc(_len_hw0*sizeof(struct clk_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_prate0 = 1;
+          unsigned long * prate = (unsigned long *) malloc(_len_prate0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_prate0; _i0++) {
+            prate[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           long benchRet = clk_pllv3_round_rate(hw,rate,prate);
           printf("%ld\n", benchRet); 
           free(hw);

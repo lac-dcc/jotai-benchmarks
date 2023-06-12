@@ -31,7 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ ahd_build_mode_state(struct ahd_softc *ahd, ahd_mode src, ahd_mode dst)
 	return ((src << SRC_MODE_SHIFT) | (dst << DST_MODE_SHIFT));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,12 +83,36 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int src = 100;
+        
           int dst = 100;
+        
           int _len_ahd0 = 1;
           struct ahd_softc * ahd = (struct ahd_softc *) malloc(_len_ahd0*sizeof(struct ahd_softc));
           for(int _i0 = 0; _i0 < _len_ahd0; _i0++) {
-            ahd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ahd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = ahd_build_mode_state(ahd,src,dst);
+          printf("%d\n", benchRet); 
+          free(ahd);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int src = 255;
+        
+          int dst = 255;
+        
+          int _len_ahd0 = 65025;
+          struct ahd_softc * ahd = (struct ahd_softc *) malloc(_len_ahd0*sizeof(struct ahd_softc));
+          for(int _i0 = 0; _i0 < _len_ahd0; _i0++) {
+              ahd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = ahd_build_mode_state(ahd,src,dst);
           printf("%d\n", benchRet); 
           free(ahd);
@@ -101,22 +120,25 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int src = 10;
+        
           int dst = 10;
+        
           int _len_ahd0 = 100;
           struct ahd_softc * ahd = (struct ahd_softc *) malloc(_len_ahd0*sizeof(struct ahd_softc));
           for(int _i0 = 0; _i0 < _len_ahd0; _i0++) {
-            ahd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ahd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ahd_build_mode_state(ahd,src,dst);
           printf("%d\n", benchRet); 
           free(ahd);
         
         break;
     }
-
     default:
         usage();
         break;

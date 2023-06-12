@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ int zmalloc_get_allocator_info(size_t *allocated,
     return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,24 +75,156 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_allocated0 = 65025;
+          unsigned long * allocated = (unsigned long *) malloc(_len_allocated0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_allocated0; _i0++) {
+            allocated[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_active0 = 65025;
+          unsigned long * active = (unsigned long *) malloc(_len_active0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_active0; _i0++) {
+            active[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_resident0 = 65025;
+          unsigned long * resident = (unsigned long *) malloc(_len_resident0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_resident0; _i0++) {
+            resident[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = zmalloc_get_allocator_info(allocated,active,resident);
+          printf("%d\n", benchRet); 
+          free(allocated);
+          free(active);
+          free(resident);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_allocated0 = 100;
+          unsigned long * allocated = (unsigned long *) malloc(_len_allocated0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_allocated0; _i0++) {
+            allocated[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_active0 = 100;
+          unsigned long * active = (unsigned long *) malloc(_len_active0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_active0; _i0++) {
+            active[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_resident0 = 100;
+          unsigned long * resident = (unsigned long *) malloc(_len_resident0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_resident0; _i0++) {
+            resident[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = zmalloc_get_allocator_info(allocated,active,resident);
+          printf("%d\n", benchRet); 
+          free(allocated);
+          free(active);
+          free(resident);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_allocated0 = 1;
           unsigned long * allocated = (unsigned long *) malloc(_len_allocated0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_allocated0; _i0++) {
             allocated[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_active0 = 1;
           unsigned long * active = (unsigned long *) malloc(_len_active0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_active0; _i0++) {
             active[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_resident0 = 1;
           unsigned long * resident = (unsigned long *) malloc(_len_resident0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_resident0; _i0++) {
             resident[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = zmalloc_get_allocator_info(allocated,active,resident);
           printf("%d\n", benchRet); 
           free(allocated);

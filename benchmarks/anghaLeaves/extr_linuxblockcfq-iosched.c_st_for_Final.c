@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ __attribute__((used)) static struct cfq_rb_root *st_for(struct cfq_group *cfqg,
 	return &cfqg->service_trees[class][type];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,11 +86,154 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           enum wl_class_t class = 0;
+        
           enum wl_type_t type = 0;
+        
+          int _len_cfqg0 = 65025;
+          struct cfq_group * cfqg = (struct cfq_group *) malloc(_len_cfqg0*sizeof(struct cfq_group));
+          for(int _i0 = 0; _i0 < _len_cfqg0; _i0++) {
+              int _len_cfqg__i0__service_trees0 = 1;
+          cfqg[_i0].service_trees = (struct cfq_rb_root **) malloc(_len_cfqg__i0__service_trees0*sizeof(struct cfq_rb_root *));
+          for(int _j0 = 0; _j0 < _len_cfqg__i0__service_trees0; _j0++) {
+            int _len_cfqg__i0__service_trees1 = 1;
+            cfqg[_i0].service_trees[_j0] = (struct cfq_rb_root *) malloc(_len_cfqg__i0__service_trees1*sizeof(struct cfq_rb_root));
+            for(int _j1 = 0; _j1 < _len_cfqg__i0__service_trees1; _j1++) {
+                cfqg[_i0].service_trees[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+          cfqg[_i0].service_tree_idle.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          struct cfq_rb_root * benchRet = st_for(cfqg,class,type);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_cfqg0; _aux++) {
+          free(*(cfqg[_aux].service_trees));
+        free(cfqg[_aux].service_trees);
+          }
+          free(cfqg);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          enum wl_class_t class = 0;
+        
+          enum wl_type_t type = 0;
+        
+          int _len_cfqg0 = 100;
+          struct cfq_group * cfqg = (struct cfq_group *) malloc(_len_cfqg0*sizeof(struct cfq_group));
+          for(int _i0 = 0; _i0 < _len_cfqg0; _i0++) {
+              int _len_cfqg__i0__service_trees0 = 1;
+          cfqg[_i0].service_trees = (struct cfq_rb_root **) malloc(_len_cfqg__i0__service_trees0*sizeof(struct cfq_rb_root *));
+          for(int _j0 = 0; _j0 < _len_cfqg__i0__service_trees0; _j0++) {
+            int _len_cfqg__i0__service_trees1 = 1;
+            cfqg[_i0].service_trees[_j0] = (struct cfq_rb_root *) malloc(_len_cfqg__i0__service_trees1*sizeof(struct cfq_rb_root));
+            for(int _j1 = 0; _j1 < _len_cfqg__i0__service_trees1; _j1++) {
+                cfqg[_i0].service_trees[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+          cfqg[_i0].service_tree_idle.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          struct cfq_rb_root * benchRet = st_for(cfqg,class,type);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_cfqg0; _aux++) {
+          free(*(cfqg[_aux].service_trees));
+        free(cfqg[_aux].service_trees);
+          }
+          free(cfqg);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          enum wl_class_t class = 0;
+        
+          enum wl_type_t type = 0;
+        
           int _len_cfqg0 = 1;
           struct cfq_group * cfqg = (struct cfq_group *) malloc(_len_cfqg0*sizeof(struct cfq_group));
           for(int _i0 = 0; _i0 < _len_cfqg0; _i0++) {
@@ -104,11 +243,15 @@ int main(int argc, char *argv[]) {
             int _len_cfqg__i0__service_trees1 = 1;
             cfqg[_i0].service_trees[_j0] = (struct cfq_rb_root *) malloc(_len_cfqg__i0__service_trees1*sizeof(struct cfq_rb_root));
             for(int _j1 = 0; _j1 < _len_cfqg__i0__service_trees1; _j1++) {
-              cfqg[_i0].service_trees[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+                cfqg[_i0].service_trees[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
-        cfqg[_i0].service_tree_idle.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfqg[_i0].service_tree_idle.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           struct cfq_rb_root * benchRet = st_for(cfqg,class,type);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_cfqg0; _aux++) {

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static void img_ir_timing_defaults(struct img_ir_timing_ra
 		range->max = defaults->max;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,28 +78,81 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_range0 = 1;
+          int _len_range0 = 65025;
           struct img_ir_timing_range * range = (struct img_ir_timing_range *) malloc(_len_range0*sizeof(struct img_ir_timing_range));
           for(int _i0 = 0; _i0 < _len_range0; _i0++) {
-            range[_i0].max = ((-2 * (next_i()%2)) + 1) * next_i();
-        range[_i0].min = ((-2 * (next_i()%2)) + 1) * next_i();
+              range[_i0].max = ((-2 * (next_i()%2)) + 1) * next_i();
+          range[_i0].min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_defaults0 = 1;
+        
+          int _len_defaults0 = 65025;
           struct img_ir_timing_range * defaults = (struct img_ir_timing_range *) malloc(_len_defaults0*sizeof(struct img_ir_timing_range));
           for(int _i0 = 0; _i0 < _len_defaults0; _i0++) {
-            defaults[_i0].max = ((-2 * (next_i()%2)) + 1) * next_i();
-        defaults[_i0].min = ((-2 * (next_i()%2)) + 1) * next_i();
+              defaults[_i0].max = ((-2 * (next_i()%2)) + 1) * next_i();
+          defaults[_i0].min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           img_ir_timing_defaults(range,defaults);
           free(range);
           free(defaults);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_range0 = 100;
+          struct img_ir_timing_range * range = (struct img_ir_timing_range *) malloc(_len_range0*sizeof(struct img_ir_timing_range));
+          for(int _i0 = 0; _i0 < _len_range0; _i0++) {
+              range[_i0].max = ((-2 * (next_i()%2)) + 1) * next_i();
+          range[_i0].min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_defaults0 = 100;
+          struct img_ir_timing_range * defaults = (struct img_ir_timing_range *) malloc(_len_defaults0*sizeof(struct img_ir_timing_range));
+          for(int _i0 = 0; _i0 < _len_defaults0; _i0++) {
+              defaults[_i0].max = ((-2 * (next_i()%2)) + 1) * next_i();
+          defaults[_i0].min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          img_ir_timing_defaults(range,defaults);
+          free(range);
+          free(defaults);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_range0 = 1;
+          struct img_ir_timing_range * range = (struct img_ir_timing_range *) malloc(_len_range0*sizeof(struct img_ir_timing_range));
+          for(int _i0 = 0; _i0 < _len_range0; _i0++) {
+              range[_i0].max = ((-2 * (next_i()%2)) + 1) * next_i();
+          range[_i0].min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_defaults0 = 1;
+          struct img_ir_timing_range * defaults = (struct img_ir_timing_range *) malloc(_len_defaults0*sizeof(struct img_ir_timing_range));
+          for(int _i0 = 0; _i0 < _len_defaults0; _i0++) {
+              defaults[_i0].max = ((-2 * (next_i()%2)) + 1) * next_i();
+          defaults[_i0].min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          img_ir_timing_defaults(range,defaults);
+          free(range);
+          free(defaults);
+        
+        break;
+    }
     default:
         usage();
         break;

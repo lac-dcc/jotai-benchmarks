@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +76,6 @@ void ccw_device_clear_options(struct ccw_device *cdev, unsigned long flags)
 	cdev->private->options.mpath &= (flags & CCWDEV_DO_MULTIPATH) == 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,23 +88,213 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 56
+          // dynamic_instructions_O0 : 56
+          // ------------------------------- 
+          // static_instructions_O1 : 29
+          // dynamic_instructions_O1 : 29
+          // ------------------------------- 
+          // static_instructions_O2 : 29
+          // dynamic_instructions_O2 : 29
+          // ------------------------------- 
+          // static_instructions_O3 : 29
+          // dynamic_instructions_O3 : 29
+          // ------------------------------- 
+          // static_instructions_Ofast : 29
+          // dynamic_instructions_Ofast : 29
+          // ------------------------------- 
+          // static_instructions_Os : 29
+          // dynamic_instructions_Os : 29
+          // ------------------------------- 
+          // static_instructions_Oz : 29
+          // dynamic_instructions_Oz : 29
+          // ------------------------------- 
+
           unsigned long flags = 100;
+        
           int _len_cdev0 = 1;
           struct ccw_device * cdev = (struct ccw_device *) malloc(_len_cdev0*sizeof(struct ccw_device));
           for(int _i0 = 0; _i0 < _len_cdev0; _i0++) {
               int _len_cdev__i0__private0 = 1;
           cdev[_i0].private = (struct TYPE_4__ *) malloc(_len_cdev__i0__private0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_cdev__i0__private0; _j0++) {
-            cdev[_i0].private->options.fast = ((-2 * (next_i()%2)) + 1) * next_i();
-        cdev[_i0].private->options.repall = ((-2 * (next_i()%2)) + 1) * next_i();
-        cdev[_i0].private->options.pgroup = ((-2 * (next_i()%2)) + 1) * next_i();
-        cdev[_i0].private->options.force = ((-2 * (next_i()%2)) + 1) * next_i();
-        cdev[_i0].private->options.mpath = ((-2 * (next_i()%2)) + 1) * next_i();
+              cdev[_i0].private->options.fast = ((-2 * (next_i()%2)) + 1) * next_i();
+          cdev[_i0].private->options.repall = ((-2 * (next_i()%2)) + 1) * next_i();
+          cdev[_i0].private->options.pgroup = ((-2 * (next_i()%2)) + 1) * next_i();
+          cdev[_i0].private->options.force = ((-2 * (next_i()%2)) + 1) * next_i();
+          cdev[_i0].private->options.mpath = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
+          ccw_device_clear_options(cdev,flags);
+          for(int _aux = 0; _aux < _len_cdev0; _aux++) {
+          free(cdev[_aux].private);
+          }
+          free(cdev);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 56
+          // dynamic_instructions_O0 : 56
+          // ------------------------------- 
+          // static_instructions_O1 : 29
+          // dynamic_instructions_O1 : 29
+          // ------------------------------- 
+          // static_instructions_O2 : 29
+          // dynamic_instructions_O2 : 29
+          // ------------------------------- 
+          // static_instructions_O3 : 29
+          // dynamic_instructions_O3 : 29
+          // ------------------------------- 
+          // static_instructions_Ofast : 29
+          // dynamic_instructions_Ofast : 29
+          // ------------------------------- 
+          // static_instructions_Os : 29
+          // dynamic_instructions_Os : 29
+          // ------------------------------- 
+          // static_instructions_Oz : 29
+          // dynamic_instructions_Oz : 29
+          // ------------------------------- 
+
+          unsigned long flags = 255;
+        
+          int _len_cdev0 = 65025;
+          struct ccw_device * cdev = (struct ccw_device *) malloc(_len_cdev0*sizeof(struct ccw_device));
+          for(int _i0 = 0; _i0 < _len_cdev0; _i0++) {
+              int _len_cdev__i0__private0 = 1;
+          cdev[_i0].private = (struct TYPE_4__ *) malloc(_len_cdev__i0__private0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_cdev__i0__private0; _j0++) {
+              cdev[_i0].private->options.fast = ((-2 * (next_i()%2)) + 1) * next_i();
+          cdev[_i0].private->options.repall = ((-2 * (next_i()%2)) + 1) * next_i();
+          cdev[_i0].private->options.pgroup = ((-2 * (next_i()%2)) + 1) * next_i();
+          cdev[_i0].private->options.force = ((-2 * (next_i()%2)) + 1) * next_i();
+          cdev[_i0].private->options.mpath = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          ccw_device_clear_options(cdev,flags);
+          for(int _aux = 0; _aux < _len_cdev0; _aux++) {
+          free(cdev[_aux].private);
+          }
+          free(cdev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 56
+          // dynamic_instructions_O0 : 56
+          // ------------------------------- 
+          // static_instructions_O1 : 29
+          // dynamic_instructions_O1 : 29
+          // ------------------------------- 
+          // static_instructions_O2 : 29
+          // dynamic_instructions_O2 : 29
+          // ------------------------------- 
+          // static_instructions_O3 : 29
+          // dynamic_instructions_O3 : 29
+          // ------------------------------- 
+          // static_instructions_Ofast : 29
+          // dynamic_instructions_Ofast : 29
+          // ------------------------------- 
+          // static_instructions_Os : 29
+          // dynamic_instructions_Os : 29
+          // ------------------------------- 
+          // static_instructions_Oz : 29
+          // dynamic_instructions_Oz : 29
+          // ------------------------------- 
+
+          unsigned long flags = 10;
+        
+          int _len_cdev0 = 100;
+          struct ccw_device * cdev = (struct ccw_device *) malloc(_len_cdev0*sizeof(struct ccw_device));
+          for(int _i0 = 0; _i0 < _len_cdev0; _i0++) {
+              int _len_cdev__i0__private0 = 1;
+          cdev[_i0].private = (struct TYPE_4__ *) malloc(_len_cdev__i0__private0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_cdev__i0__private0; _j0++) {
+              cdev[_i0].private->options.fast = ((-2 * (next_i()%2)) + 1) * next_i();
+          cdev[_i0].private->options.repall = ((-2 * (next_i()%2)) + 1) * next_i();
+          cdev[_i0].private->options.pgroup = ((-2 * (next_i()%2)) + 1) * next_i();
+          cdev[_i0].private->options.force = ((-2 * (next_i()%2)) + 1) * next_i();
+          cdev[_i0].private->options.mpath = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          ccw_device_clear_options(cdev,flags);
+          for(int _aux = 0; _aux < _len_cdev0; _aux++) {
+          free(cdev[_aux].private);
+          }
+          free(cdev);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 56
+          // dynamic_instructions_O0 : 56
+          // ------------------------------- 
+          // static_instructions_O1 : 29
+          // dynamic_instructions_O1 : 29
+          // ------------------------------- 
+          // static_instructions_O2 : 29
+          // dynamic_instructions_O2 : 29
+          // ------------------------------- 
+          // static_instructions_O3 : 29
+          // dynamic_instructions_O3 : 29
+          // ------------------------------- 
+          // static_instructions_Ofast : 29
+          // dynamic_instructions_Ofast : 29
+          // ------------------------------- 
+          // static_instructions_Os : 29
+          // dynamic_instructions_Os : 29
+          // ------------------------------- 
+          // static_instructions_Oz : 29
+          // dynamic_instructions_Oz : 29
+          // ------------------------------- 
+
+          unsigned long flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cdev0 = 1;
+          struct ccw_device * cdev = (struct ccw_device *) malloc(_len_cdev0*sizeof(struct ccw_device));
+          for(int _i0 = 0; _i0 < _len_cdev0; _i0++) {
+              int _len_cdev__i0__private0 = 1;
+          cdev[_i0].private = (struct TYPE_4__ *) malloc(_len_cdev__i0__private0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_cdev__i0__private0; _j0++) {
+              cdev[_i0].private->options.fast = ((-2 * (next_i()%2)) + 1) * next_i();
+          cdev[_i0].private->options.repall = ((-2 * (next_i()%2)) + 1) * next_i();
+          cdev[_i0].private->options.pgroup = ((-2 * (next_i()%2)) + 1) * next_i();
+          cdev[_i0].private->options.force = ((-2 * (next_i()%2)) + 1) * next_i();
+          cdev[_i0].private->options.mpath = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
           ccw_device_clear_options(cdev,flags);
           for(int _aux = 0; _aux < _len_cdev0; _aux++) {
           free(cdev[_aux].private);

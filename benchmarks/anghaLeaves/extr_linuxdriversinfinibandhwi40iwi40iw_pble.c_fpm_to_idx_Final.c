@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline u32 fpm_to_idx(struct i40iw_hmc_pble_rsrc *p
 	return (addr - (pble_rsrc->fpm_base_addr)) >> 3;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,30 +77,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int addr = 100;
+        
           int _len_pble_rsrc0 = 1;
           struct i40iw_hmc_pble_rsrc * pble_rsrc = (struct i40iw_hmc_pble_rsrc *) malloc(_len_pble_rsrc0*sizeof(struct i40iw_hmc_pble_rsrc));
           for(int _i0 = 0; _i0 < _len_pble_rsrc0; _i0++) {
-            pble_rsrc[_i0].fpm_base_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+              pble_rsrc[_i0].fpm_base_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = fpm_to_idx(pble_rsrc,addr);
           printf("%d\n", benchRet); 
           free(pble_rsrc);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int addr = 255;
+        
+          int _len_pble_rsrc0 = 65025;
+          struct i40iw_hmc_pble_rsrc * pble_rsrc = (struct i40iw_hmc_pble_rsrc *) malloc(_len_pble_rsrc0*sizeof(struct i40iw_hmc_pble_rsrc));
+          for(int _i0 = 0; _i0 < _len_pble_rsrc0; _i0++) {
+              pble_rsrc[_i0].fpm_base_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fpm_to_idx(pble_rsrc,addr);
+          printf("%d\n", benchRet); 
+          free(pble_rsrc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int addr = 10;
+        
           int _len_pble_rsrc0 = 100;
           struct i40iw_hmc_pble_rsrc * pble_rsrc = (struct i40iw_hmc_pble_rsrc *) malloc(_len_pble_rsrc0*sizeof(struct i40iw_hmc_pble_rsrc));
           for(int _i0 = 0; _i0 < _len_pble_rsrc0; _i0++) {
-            pble_rsrc[_i0].fpm_base_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+              pble_rsrc[_i0].fpm_base_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = fpm_to_idx(pble_rsrc,addr);
+          printf("%d\n", benchRet); 
+          free(pble_rsrc);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pble_rsrc0 = 1;
+          struct i40iw_hmc_pble_rsrc * pble_rsrc = (struct i40iw_hmc_pble_rsrc *) malloc(_len_pble_rsrc0*sizeof(struct i40iw_hmc_pble_rsrc));
+          for(int _i0 = 0; _i0 < _len_pble_rsrc0; _i0++) {
+              pble_rsrc[_i0].fpm_base_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = fpm_to_idx(pble_rsrc,addr);
           printf("%d\n", benchRet); 
           free(pble_rsrc);

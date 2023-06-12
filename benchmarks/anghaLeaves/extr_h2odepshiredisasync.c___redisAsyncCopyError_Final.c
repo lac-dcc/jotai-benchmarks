@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static void __redisAsyncCopyError(redisAsyncContext *ac) {
     ac->errstr = c->errstr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,23 +83,63 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ac0 = 1;
+          int _len_ac0 = 65025;
           struct TYPE_5__ * ac = (struct TYPE_5__ *) malloc(_len_ac0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_ac0; _i0++) {
-            ac[_i0].errstr = ((-2 * (next_i()%2)) + 1) * next_i();
-        ac[_i0].err = ((-2 * (next_i()%2)) + 1) * next_i();
-        ac[_i0].c.errstr = ((-2 * (next_i()%2)) + 1) * next_i();
-        ac[_i0].c.err = ((-2 * (next_i()%2)) + 1) * next_i();
+              ac[_i0].errstr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ac[_i0].err = ((-2 * (next_i()%2)) + 1) * next_i();
+          ac[_i0].c.errstr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ac[_i0].c.err = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           __redisAsyncCopyError(ac);
           free(ac);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ac0 = 100;
+          struct TYPE_5__ * ac = (struct TYPE_5__ *) malloc(_len_ac0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_ac0; _i0++) {
+              ac[_i0].errstr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ac[_i0].err = ((-2 * (next_i()%2)) + 1) * next_i();
+          ac[_i0].c.errstr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ac[_i0].c.err = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          __redisAsyncCopyError(ac);
+          free(ac);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ac0 = 1;
+          struct TYPE_5__ * ac = (struct TYPE_5__ *) malloc(_len_ac0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_ac0; _i0++) {
+              ac[_i0].errstr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ac[_i0].err = ((-2 * (next_i()%2)) + 1) * next_i();
+          ac[_i0].c.errstr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ac[_i0].c.err = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          __redisAsyncCopyError(ac);
+          free(ac);
+        
+        break;
+    }
     default:
         usage();
         break;

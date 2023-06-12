@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static unsigned usb_stream_next_packet_size(struct usb_str
 	return (sk->out_phase_peeked >> 16) * s->cfg.frame_size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,21 +79,25 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_sk0 = 1;
+          int _len_sk0 = 65025;
           struct usb_stream_kernel * sk = (struct usb_stream_kernel *) malloc(_len_sk0*sizeof(struct usb_stream_kernel));
           for(int _i0 = 0; _i0 < _len_sk0; _i0++) {
-            sk[_i0].out_phase_peeked = ((-2 * (next_i()%2)) + 1) * next_i();
-        sk[_i0].out_phase = ((-2 * (next_i()%2)) + 1) * next_i();
-        sk[_i0].freqn = ((-2 * (next_i()%2)) + 1) * next_i();
+              sk[_i0].out_phase_peeked = ((-2 * (next_i()%2)) + 1) * next_i();
+          sk[_i0].out_phase = ((-2 * (next_i()%2)) + 1) * next_i();
+          sk[_i0].freqn = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_sk__i0__s0 = 1;
           sk[_i0].s = (struct usb_stream *) malloc(_len_sk__i0__s0*sizeof(struct usb_stream));
           for(int _j0 = 0; _j0 < _len_sk__i0__s0; _j0++) {
-            sk[_i0].s->cfg.frame_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              sk[_i0].s->cfg.frame_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           unsigned int benchRet = usb_stream_next_packet_size(sk);
           printf("%u\n", benchRet); 
           for(int _aux = 0; _aux < _len_sk0; _aux++) {
@@ -107,7 +107,62 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_sk0 = 100;
+          struct usb_stream_kernel * sk = (struct usb_stream_kernel *) malloc(_len_sk0*sizeof(struct usb_stream_kernel));
+          for(int _i0 = 0; _i0 < _len_sk0; _i0++) {
+              sk[_i0].out_phase_peeked = ((-2 * (next_i()%2)) + 1) * next_i();
+          sk[_i0].out_phase = ((-2 * (next_i()%2)) + 1) * next_i();
+          sk[_i0].freqn = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_sk__i0__s0 = 1;
+          sk[_i0].s = (struct usb_stream *) malloc(_len_sk__i0__s0*sizeof(struct usb_stream));
+          for(int _j0 = 0; _j0 < _len_sk__i0__s0; _j0++) {
+              sk[_i0].s->cfg.frame_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = usb_stream_next_packet_size(sk);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_sk0; _aux++) {
+          free(sk[_aux].s);
+          }
+          free(sk);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_sk0 = 1;
+          struct usb_stream_kernel * sk = (struct usb_stream_kernel *) malloc(_len_sk0*sizeof(struct usb_stream_kernel));
+          for(int _i0 = 0; _i0 < _len_sk0; _i0++) {
+              sk[_i0].out_phase_peeked = ((-2 * (next_i()%2)) + 1) * next_i();
+          sk[_i0].out_phase = ((-2 * (next_i()%2)) + 1) * next_i();
+          sk[_i0].freqn = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_sk__i0__s0 = 1;
+          sk[_i0].s = (struct usb_stream *) malloc(_len_sk__i0__s0*sizeof(struct usb_stream));
+          for(int _j0 = 0; _j0 < _len_sk__i0__s0; _j0++) {
+              sk[_i0].s->cfg.frame_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = usb_stream_next_packet_size(sk);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_sk0; _aux++) {
+          free(sk[_aux].s);
+          }
+          free(sk);
+        
+        break;
+    }
     default:
         usage();
         break;

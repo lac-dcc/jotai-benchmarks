@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static void fill_pin_params(struct skl_audio_data_format *
 	pin_fmt->interleaving = format->interleaving_style;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,40 +83,117 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pin_fmt0 = 1;
+          int _len_pin_fmt0 = 65025;
           struct skl_audio_data_format * pin_fmt = (struct skl_audio_data_format *) malloc(_len_pin_fmt0*sizeof(struct skl_audio_data_format));
           for(int _i0 = 0; _i0 < _len_pin_fmt0; _i0++) {
-            pin_fmt[_i0].interleaving = ((-2 * (next_i()%2)) + 1) * next_i();
-        pin_fmt[_i0].channel_map = ((-2 * (next_i()%2)) + 1) * next_i();
-        pin_fmt[_i0].sample_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        pin_fmt[_i0].ch_cfg = ((-2 * (next_i()%2)) + 1) * next_i();
-        pin_fmt[_i0].valid_bit_depth = ((-2 * (next_i()%2)) + 1) * next_i();
-        pin_fmt[_i0].bit_depth = ((-2 * (next_i()%2)) + 1) * next_i();
-        pin_fmt[_i0].s_freq = ((-2 * (next_i()%2)) + 1) * next_i();
-        pin_fmt[_i0].number_of_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+              pin_fmt[_i0].interleaving = ((-2 * (next_i()%2)) + 1) * next_i();
+          pin_fmt[_i0].channel_map = ((-2 * (next_i()%2)) + 1) * next_i();
+          pin_fmt[_i0].sample_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          pin_fmt[_i0].ch_cfg = ((-2 * (next_i()%2)) + 1) * next_i();
+          pin_fmt[_i0].valid_bit_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+          pin_fmt[_i0].bit_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+          pin_fmt[_i0].s_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+          pin_fmt[_i0].number_of_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_format0 = 1;
+        
+          int _len_format0 = 65025;
           struct skl_module_fmt * format = (struct skl_module_fmt *) malloc(_len_format0*sizeof(struct skl_module_fmt));
           for(int _i0 = 0; _i0 < _len_format0; _i0++) {
-            format[_i0].interleaving_style = ((-2 * (next_i()%2)) + 1) * next_i();
-        format[_i0].ch_map = ((-2 * (next_i()%2)) + 1) * next_i();
-        format[_i0].sample_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        format[_i0].ch_cfg = ((-2 * (next_i()%2)) + 1) * next_i();
-        format[_i0].valid_bit_depth = ((-2 * (next_i()%2)) + 1) * next_i();
-        format[_i0].bit_depth = ((-2 * (next_i()%2)) + 1) * next_i();
-        format[_i0].s_freq = ((-2 * (next_i()%2)) + 1) * next_i();
-        format[_i0].channels = ((-2 * (next_i()%2)) + 1) * next_i();
+              format[_i0].interleaving_style = ((-2 * (next_i()%2)) + 1) * next_i();
+          format[_i0].ch_map = ((-2 * (next_i()%2)) + 1) * next_i();
+          format[_i0].sample_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          format[_i0].ch_cfg = ((-2 * (next_i()%2)) + 1) * next_i();
+          format[_i0].valid_bit_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+          format[_i0].bit_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+          format[_i0].s_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+          format[_i0].channels = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           fill_pin_params(pin_fmt,format);
           free(pin_fmt);
           free(format);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_pin_fmt0 = 100;
+          struct skl_audio_data_format * pin_fmt = (struct skl_audio_data_format *) malloc(_len_pin_fmt0*sizeof(struct skl_audio_data_format));
+          for(int _i0 = 0; _i0 < _len_pin_fmt0; _i0++) {
+              pin_fmt[_i0].interleaving = ((-2 * (next_i()%2)) + 1) * next_i();
+          pin_fmt[_i0].channel_map = ((-2 * (next_i()%2)) + 1) * next_i();
+          pin_fmt[_i0].sample_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          pin_fmt[_i0].ch_cfg = ((-2 * (next_i()%2)) + 1) * next_i();
+          pin_fmt[_i0].valid_bit_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+          pin_fmt[_i0].bit_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+          pin_fmt[_i0].s_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+          pin_fmt[_i0].number_of_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_format0 = 100;
+          struct skl_module_fmt * format = (struct skl_module_fmt *) malloc(_len_format0*sizeof(struct skl_module_fmt));
+          for(int _i0 = 0; _i0 < _len_format0; _i0++) {
+              format[_i0].interleaving_style = ((-2 * (next_i()%2)) + 1) * next_i();
+          format[_i0].ch_map = ((-2 * (next_i()%2)) + 1) * next_i();
+          format[_i0].sample_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          format[_i0].ch_cfg = ((-2 * (next_i()%2)) + 1) * next_i();
+          format[_i0].valid_bit_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+          format[_i0].bit_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+          format[_i0].s_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+          format[_i0].channels = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          fill_pin_params(pin_fmt,format);
+          free(pin_fmt);
+          free(format);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_pin_fmt0 = 1;
+          struct skl_audio_data_format * pin_fmt = (struct skl_audio_data_format *) malloc(_len_pin_fmt0*sizeof(struct skl_audio_data_format));
+          for(int _i0 = 0; _i0 < _len_pin_fmt0; _i0++) {
+              pin_fmt[_i0].interleaving = ((-2 * (next_i()%2)) + 1) * next_i();
+          pin_fmt[_i0].channel_map = ((-2 * (next_i()%2)) + 1) * next_i();
+          pin_fmt[_i0].sample_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          pin_fmt[_i0].ch_cfg = ((-2 * (next_i()%2)) + 1) * next_i();
+          pin_fmt[_i0].valid_bit_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+          pin_fmt[_i0].bit_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+          pin_fmt[_i0].s_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+          pin_fmt[_i0].number_of_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_format0 = 1;
+          struct skl_module_fmt * format = (struct skl_module_fmt *) malloc(_len_format0*sizeof(struct skl_module_fmt));
+          for(int _i0 = 0; _i0 < _len_format0; _i0++) {
+              format[_i0].interleaving_style = ((-2 * (next_i()%2)) + 1) * next_i();
+          format[_i0].ch_map = ((-2 * (next_i()%2)) + 1) * next_i();
+          format[_i0].sample_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          format[_i0].ch_cfg = ((-2 * (next_i()%2)) + 1) * next_i();
+          format[_i0].valid_bit_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+          format[_i0].bit_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+          format[_i0].s_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+          format[_i0].channels = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          fill_pin_params(pin_fmt,format);
+          free(pin_fmt);
+          free(format);
+        
+        break;
+    }
     default:
         usage();
         break;

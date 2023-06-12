@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ coalition_is_terminated(coalition_t coal)
 	return coal->terminated;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,14 +78,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_coal0 = 1;
+          int _len_coal0 = 65025;
           struct TYPE_3__ * coal = (struct TYPE_3__ *) malloc(_len_coal0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_coal0; _i0++) {
-            coal[_i0].terminated = ((-2 * (next_i()%2)) + 1) * next_i();
+              coal[_i0].terminated = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = coalition_is_terminated(coal);
           printf("%d\n", benchRet); 
           free(coal);
@@ -103,15 +100,32 @@ int main(int argc, char *argv[]) {
           int _len_coal0 = 100;
           struct TYPE_3__ * coal = (struct TYPE_3__ *) malloc(_len_coal0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_coal0; _i0++) {
-            coal[_i0].terminated = ((-2 * (next_i()%2)) + 1) * next_i();
+              coal[_i0].terminated = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = coalition_is_terminated(coal);
           printf("%d\n", benchRet); 
           free(coal);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_coal0 = 1;
+          struct TYPE_3__ * coal = (struct TYPE_3__ *) malloc(_len_coal0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_coal0; _i0++) {
+              coal[_i0].terminated = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = coalition_is_terminated(coal);
+          printf("%d\n", benchRet); 
+          free(coal);
+        
+        break;
+    }
     default:
         usage();
         break;

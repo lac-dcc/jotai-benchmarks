@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +73,6 @@ int  supcon_lenui(unsigned int p)
   return 10;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,28 +85,136 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           unsigned int p = 100;
+        
           int benchRet = supcon_lenui(p);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           unsigned int p = 255;
+        
           int benchRet = supcon_lenui(p);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           unsigned int p = 10;
+        
+          int benchRet = supcon_lenui(p);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 31
+          // dynamic_instructions_O1 : 31
+          // ------------------------------- 
+          // static_instructions_O2 : 31
+          // dynamic_instructions_O2 : 31
+          // ------------------------------- 
+          // static_instructions_O3 : 31
+          // dynamic_instructions_O3 : 31
+          // ------------------------------- 
+          // static_instructions_Ofast : 31
+          // dynamic_instructions_Ofast : 31
+          // ------------------------------- 
+          // static_instructions_Os : 31
+          // dynamic_instructions_Os : 31
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          unsigned int p = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = supcon_lenui(p);
           printf("%d\n", benchRet); 
         

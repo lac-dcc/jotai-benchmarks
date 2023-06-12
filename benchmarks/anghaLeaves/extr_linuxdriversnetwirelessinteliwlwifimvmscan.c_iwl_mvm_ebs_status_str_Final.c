@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -73,12 +73,6 @@ __attribute__((used)) static const char *iwl_mvm_ebs_status_str(enum iwl_scan_eb
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,10 +85,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // empty
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           enum iwl_scan_ebs_status status = 0;
+        
           const char * benchRet = iwl_mvm_ebs_status_str(status);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         

@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static inline void fcpio_color_enc(struct fcpio_fw_req *fw
 		*c &= ~0x80;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,21 +79,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int color = 10;
-          int _len_fw_req0 = 100;
+          int color = 255;
+        
+          int _len_fw_req0 = 65025;
           struct fcpio_fw_req * fw_req = (struct fcpio_fw_req *) malloc(_len_fw_req0*sizeof(struct fcpio_fw_req));
           for(int _i0 = 0; _i0 < _len_fw_req0; _i0++) {
-            fw_req[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              fw_req[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           fcpio_color_enc(fw_req,color);
           free(fw_req);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int color = 10;
+        
+          int _len_fw_req0 = 100;
+          struct fcpio_fw_req * fw_req = (struct fcpio_fw_req *) malloc(_len_fw_req0*sizeof(struct fcpio_fw_req));
+          for(int _i0 = 0; _i0 < _len_fw_req0; _i0++) {
+              fw_req[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          fcpio_color_enc(fw_req,color);
+          free(fw_req);
+        
+        break;
+    }
     default:
         usage();
         break;

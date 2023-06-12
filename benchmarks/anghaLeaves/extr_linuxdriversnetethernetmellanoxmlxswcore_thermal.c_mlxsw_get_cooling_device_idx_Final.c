@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static int mlxsw_get_cooling_device_idx(struct mlxsw_therm
 	return -ENODEV;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,10 +84,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_thermal0 = 1;
+          int _len_thermal0 = 65025;
           struct mlxsw_thermal * thermal = (struct mlxsw_thermal *) malloc(_len_thermal0*sizeof(struct mlxsw_thermal));
           for(int _i0 = 0; _i0 < _len_thermal0; _i0++) {
               int _len_thermal__i0__cdevs0 = 1;
@@ -100,15 +96,20 @@ int main(int argc, char *argv[]) {
             int _len_thermal__i0__cdevs1 = 1;
             thermal[_i0].cdevs[_j0] = (struct thermal_cooling_device *) malloc(_len_thermal__i0__cdevs1*sizeof(struct thermal_cooling_device));
             for(int _j1 = 0; _j1 < _len_thermal__i0__cdevs1; _j1++) {
-              thermal[_i0].cdevs[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+                thermal[_i0].cdevs[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           }
-          int _len_cdev0 = 1;
+        
+          int _len_cdev0 = 65025;
           struct thermal_cooling_device * cdev = (struct thermal_cooling_device *) malloc(_len_cdev0*sizeof(struct thermal_cooling_device));
           for(int _i0 = 0; _i0 < _len_cdev0; _i0++) {
-            cdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              cdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mlxsw_get_cooling_device_idx(thermal,cdev);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_thermal0; _aux++) {
@@ -120,7 +121,80 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_thermal0 = 100;
+          struct mlxsw_thermal * thermal = (struct mlxsw_thermal *) malloc(_len_thermal0*sizeof(struct mlxsw_thermal));
+          for(int _i0 = 0; _i0 < _len_thermal0; _i0++) {
+              int _len_thermal__i0__cdevs0 = 1;
+          thermal[_i0].cdevs = (struct thermal_cooling_device **) malloc(_len_thermal__i0__cdevs0*sizeof(struct thermal_cooling_device *));
+          for(int _j0 = 0; _j0 < _len_thermal__i0__cdevs0; _j0++) {
+            int _len_thermal__i0__cdevs1 = 1;
+            thermal[_i0].cdevs[_j0] = (struct thermal_cooling_device *) malloc(_len_thermal__i0__cdevs1*sizeof(struct thermal_cooling_device));
+            for(int _j1 = 0; _j1 < _len_thermal__i0__cdevs1; _j1++) {
+                thermal[_i0].cdevs[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int _len_cdev0 = 100;
+          struct thermal_cooling_device * cdev = (struct thermal_cooling_device *) malloc(_len_cdev0*sizeof(struct thermal_cooling_device));
+          for(int _i0 = 0; _i0 < _len_cdev0; _i0++) {
+              cdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mlxsw_get_cooling_device_idx(thermal,cdev);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_thermal0; _aux++) {
+          free(*(thermal[_aux].cdevs));
+        free(thermal[_aux].cdevs);
+          }
+          free(thermal);
+          free(cdev);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_thermal0 = 1;
+          struct mlxsw_thermal * thermal = (struct mlxsw_thermal *) malloc(_len_thermal0*sizeof(struct mlxsw_thermal));
+          for(int _i0 = 0; _i0 < _len_thermal0; _i0++) {
+              int _len_thermal__i0__cdevs0 = 1;
+          thermal[_i0].cdevs = (struct thermal_cooling_device **) malloc(_len_thermal__i0__cdevs0*sizeof(struct thermal_cooling_device *));
+          for(int _j0 = 0; _j0 < _len_thermal__i0__cdevs0; _j0++) {
+            int _len_thermal__i0__cdevs1 = 1;
+            thermal[_i0].cdevs[_j0] = (struct thermal_cooling_device *) malloc(_len_thermal__i0__cdevs1*sizeof(struct thermal_cooling_device));
+            for(int _j1 = 0; _j1 < _len_thermal__i0__cdevs1; _j1++) {
+                thermal[_i0].cdevs[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int _len_cdev0 = 1;
+          struct thermal_cooling_device * cdev = (struct thermal_cooling_device *) malloc(_len_cdev0*sizeof(struct thermal_cooling_device));
+          for(int _i0 = 0; _i0 < _len_cdev0; _i0++) {
+              cdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mlxsw_get_cooling_device_idx(thermal,cdev);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_thermal0; _aux++) {
+          free(*(thermal[_aux].cdevs));
+        free(thermal[_aux].cdevs);
+          }
+          free(thermal);
+          free(cdev);
+        
+        break;
+    }
     default:
         usage();
         break;

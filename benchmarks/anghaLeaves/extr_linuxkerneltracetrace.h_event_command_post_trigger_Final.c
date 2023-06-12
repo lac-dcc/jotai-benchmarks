@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline bool event_command_post_trigger(struct event
 	return cmd_ops->flags & EVENT_CMD_FL_POST_TRIGGER;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cmd_ops0 = 1;
+          int _len_cmd_ops0 = 65025;
           struct event_command * cmd_ops = (struct event_command *) malloc(_len_cmd_ops0*sizeof(struct event_command));
           for(int _i0 = 0; _i0 < _len_cmd_ops0; _i0++) {
-            cmd_ops[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmd_ops[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = event_command_post_trigger(cmd_ops);
           printf("%d\n", benchRet); 
           free(cmd_ops);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_cmd_ops0 = 100;
           struct event_command * cmd_ops = (struct event_command *) malloc(_len_cmd_ops0*sizeof(struct event_command));
           for(int _i0 = 0; _i0 < _len_cmd_ops0; _i0++) {
-            cmd_ops[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmd_ops[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = event_command_post_trigger(cmd_ops);
           printf("%d\n", benchRet); 
           free(cmd_ops);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_cmd_ops0 = 1;
+          struct event_command * cmd_ops = (struct event_command *) malloc(_len_cmd_ops0*sizeof(struct event_command));
+          for(int _i0 = 0; _i0 < _len_cmd_ops0; _i0++) {
+              cmd_ops[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = event_command_post_trigger(cmd_ops);
+          printf("%d\n", benchRet); 
+          free(cmd_ops);
+        
+        break;
+    }
     default:
         usage();
         break;

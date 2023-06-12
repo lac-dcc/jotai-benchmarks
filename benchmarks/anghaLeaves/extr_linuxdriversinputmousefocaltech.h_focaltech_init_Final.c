@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline int focaltech_init(struct psmouse *psmouse)
 	return -ENOSYS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_psmouse0 = 1;
+          int _len_psmouse0 = 65025;
           struct psmouse * psmouse = (struct psmouse *) malloc(_len_psmouse0*sizeof(struct psmouse));
           for(int _i0 = 0; _i0 < _len_psmouse0; _i0++) {
-            psmouse[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              psmouse[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = focaltech_init(psmouse);
           printf("%d\n", benchRet); 
           free(psmouse);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_psmouse0 = 100;
           struct psmouse * psmouse = (struct psmouse *) malloc(_len_psmouse0*sizeof(struct psmouse));
           for(int _i0 = 0; _i0 < _len_psmouse0; _i0++) {
-            psmouse[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              psmouse[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = focaltech_init(psmouse);
           printf("%d\n", benchRet); 
           free(psmouse);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_psmouse0 = 1;
+          struct psmouse * psmouse = (struct psmouse *) malloc(_len_psmouse0*sizeof(struct psmouse));
+          for(int _i0 = 0; _i0 < _len_psmouse0; _i0++) {
+              psmouse[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = focaltech_init(psmouse);
+          printf("%d\n", benchRet); 
+          free(psmouse);
+        
+        break;
+    }
     default:
         usage();
         break;

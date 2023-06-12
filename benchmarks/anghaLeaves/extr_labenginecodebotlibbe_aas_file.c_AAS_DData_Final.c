@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ void AAS_DData(unsigned char *data, int size)
 	} //end for
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,15 +78,120 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 3835
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 1284
+          // ------------------------------- 
+          // static_instructions_O2 : 95
+          // dynamic_instructions_O2 : 257
+          // ------------------------------- 
+          // static_instructions_O3 : 95
+          // dynamic_instructions_O3 : 257
+          // ------------------------------- 
+          // static_instructions_Ofast : 95
+          // dynamic_instructions_Ofast : 257
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 1284
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 1540
+          // ------------------------------- 
+
+          int size = 255;
+        
+          int _len_data0 = 65025;
+          unsigned char * data = (unsigned char *) malloc(_len_data0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+            data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          AAS_DData(data,size);
+          free(data);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 160
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 59
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 63
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 63
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 63
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 59
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 70
+          // ------------------------------- 
+
           int size = 10;
+        
           int _len_data0 = 100;
           unsigned char * data = (unsigned char *) malloc(_len_data0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
             data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          AAS_DData(data,size);
+          free(data);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_data0 = 1;
+          unsigned char * data = (unsigned char *) malloc(_len_data0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+            data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           AAS_DData(data,size);
           free(data);
         

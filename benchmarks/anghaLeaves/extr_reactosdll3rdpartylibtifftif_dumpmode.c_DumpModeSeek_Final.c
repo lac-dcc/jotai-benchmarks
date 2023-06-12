@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ DumpModeSeek(TIFF* tif, uint32 nrows)
 	return (1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,20 +85,82 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int nrows = 100;
+        
           int _len_tif0 = 1;
           struct TYPE_3__ * tif = (struct TYPE_3__ *) malloc(_len_tif0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_tif0; _i0++) {
-            tif[_i0].tif_rawcp = ((-2 * (next_i()%2)) + 1) * next_i();
-        tif[_i0].tif_scanlinesize = ((-2 * (next_i()%2)) + 1) * next_i();
-        tif[_i0].tif_rawcc = ((-2 * (next_i()%2)) + 1) * next_i();
+              tif[_i0].tif_rawcp = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_scanlinesize = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_rawcc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = DumpModeSeek(tif,nrows);
           printf("%d\n", benchRet); 
           free(tif);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int nrows = 255;
+        
+          int _len_tif0 = 65025;
+          struct TYPE_3__ * tif = (struct TYPE_3__ *) malloc(_len_tif0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_tif0; _i0++) {
+              tif[_i0].tif_rawcp = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_scanlinesize = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_rawcc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = DumpModeSeek(tif,nrows);
+          printf("%d\n", benchRet); 
+          free(tif);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int nrows = 10;
+        
+          int _len_tif0 = 100;
+          struct TYPE_3__ * tif = (struct TYPE_3__ *) malloc(_len_tif0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_tif0; _i0++) {
+              tif[_i0].tif_rawcp = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_scanlinesize = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_rawcc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = DumpModeSeek(tif,nrows);
+          printf("%d\n", benchRet); 
+          free(tif);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int nrows = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_tif0 = 1;
+          struct TYPE_3__ * tif = (struct TYPE_3__ *) malloc(_len_tif0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_tif0; _i0++) {
+              tif[_i0].tif_rawcp = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_scanlinesize = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_rawcc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = DumpModeSeek(tif,nrows);
+          printf("%d\n", benchRet); 
+          free(tif);
+        
+        break;
+    }
     default:
         usage();
         break;

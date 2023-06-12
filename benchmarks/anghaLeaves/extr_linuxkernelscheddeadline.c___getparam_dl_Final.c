@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ void __getparam_dl(struct task_struct *p, struct sched_attr *attr)
 	attr->sched_flags = dl_se->flags;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,34 +82,102 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_p0 = 1;
+          int _len_p0 = 65025;
           struct task_struct * p = (struct task_struct *) malloc(_len_p0*sizeof(struct task_struct));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].rt_priority = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].dl.flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].dl.dl_period = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].dl.dl_deadline = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].dl.dl_runtime = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].rt_priority = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].dl.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].dl.dl_period = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].dl.dl_deadline = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].dl.dl_runtime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-          int _len_attr0 = 1;
+        
+          int _len_attr0 = 65025;
           struct sched_attr * attr = (struct sched_attr *) malloc(_len_attr0*sizeof(struct sched_attr));
           for(int _i0 = 0; _i0 < _len_attr0; _i0++) {
-            attr[_i0].sched_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        attr[_i0].sched_period = ((-2 * (next_i()%2)) + 1) * next_i();
-        attr[_i0].sched_deadline = ((-2 * (next_i()%2)) + 1) * next_i();
-        attr[_i0].sched_runtime = ((-2 * (next_i()%2)) + 1) * next_i();
-        attr[_i0].sched_priority = ((-2 * (next_i()%2)) + 1) * next_i();
+              attr[_i0].sched_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          attr[_i0].sched_period = ((-2 * (next_i()%2)) + 1) * next_i();
+          attr[_i0].sched_deadline = ((-2 * (next_i()%2)) + 1) * next_i();
+          attr[_i0].sched_runtime = ((-2 * (next_i()%2)) + 1) * next_i();
+          attr[_i0].sched_priority = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           __getparam_dl(p,attr);
           free(p);
           free(attr);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_p0 = 100;
+          struct task_struct * p = (struct task_struct *) malloc(_len_p0*sizeof(struct task_struct));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].rt_priority = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].dl.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].dl.dl_period = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].dl.dl_deadline = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].dl.dl_runtime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_attr0 = 100;
+          struct sched_attr * attr = (struct sched_attr *) malloc(_len_attr0*sizeof(struct sched_attr));
+          for(int _i0 = 0; _i0 < _len_attr0; _i0++) {
+              attr[_i0].sched_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          attr[_i0].sched_period = ((-2 * (next_i()%2)) + 1) * next_i();
+          attr[_i0].sched_deadline = ((-2 * (next_i()%2)) + 1) * next_i();
+          attr[_i0].sched_runtime = ((-2 * (next_i()%2)) + 1) * next_i();
+          attr[_i0].sched_priority = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          __getparam_dl(p,attr);
+          free(p);
+          free(attr);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_p0 = 1;
+          struct task_struct * p = (struct task_struct *) malloc(_len_p0*sizeof(struct task_struct));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].rt_priority = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].dl.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].dl.dl_period = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].dl.dl_deadline = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].dl.dl_runtime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_attr0 = 1;
+          struct sched_attr * attr = (struct sched_attr *) malloc(_len_attr0*sizeof(struct sched_attr));
+          for(int _i0 = 0; _i0 < _len_attr0; _i0++) {
+              attr[_i0].sched_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          attr[_i0].sched_period = ((-2 * (next_i()%2)) + 1) * next_i();
+          attr[_i0].sched_deadline = ((-2 * (next_i()%2)) + 1) * next_i();
+          attr[_i0].sched_runtime = ((-2 * (next_i()%2)) + 1) * next_i();
+          attr[_i0].sched_priority = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          __getparam_dl(p,attr);
+          free(p);
+          free(attr);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ __attribute__((used)) static void set_crtc(struct drm_plane_state *plane_state,
 	plane_state->crtc_h = crtc_h;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,21 +80,200 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int crtc_x = 100;
+        
           int crtc_y = 100;
+        
           unsigned int crtc_w = 100;
+        
           unsigned int crtc_h = 100;
+        
           int _len_plane_state0 = 1;
           struct drm_plane_state * plane_state = (struct drm_plane_state *) malloc(_len_plane_state0*sizeof(struct drm_plane_state));
           for(int _i0 = 0; _i0 < _len_plane_state0; _i0++) {
-            plane_state[_i0].crtc_x = ((-2 * (next_i()%2)) + 1) * next_i();
-        plane_state[_i0].crtc_y = ((-2 * (next_i()%2)) + 1) * next_i();
-        plane_state[_i0].crtc_w = ((-2 * (next_i()%2)) + 1) * next_i();
-        plane_state[_i0].crtc_h = ((-2 * (next_i()%2)) + 1) * next_i();
+              plane_state[_i0].crtc_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          plane_state[_i0].crtc_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          plane_state[_i0].crtc_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          plane_state[_i0].crtc_h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          set_crtc(plane_state,crtc_x,crtc_y,crtc_w,crtc_h);
+          free(plane_state);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int crtc_x = 255;
+        
+          int crtc_y = 255;
+        
+          unsigned int crtc_w = 255;
+        
+          unsigned int crtc_h = 255;
+        
+          int _len_plane_state0 = 65025;
+          struct drm_plane_state * plane_state = (struct drm_plane_state *) malloc(_len_plane_state0*sizeof(struct drm_plane_state));
+          for(int _i0 = 0; _i0 < _len_plane_state0; _i0++) {
+              plane_state[_i0].crtc_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          plane_state[_i0].crtc_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          plane_state[_i0].crtc_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          plane_state[_i0].crtc_h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_crtc(plane_state,crtc_x,crtc_y,crtc_w,crtc_h);
+          free(plane_state);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int crtc_x = 10;
+        
+          int crtc_y = 10;
+        
+          unsigned int crtc_w = 10;
+        
+          unsigned int crtc_h = 10;
+        
+          int _len_plane_state0 = 100;
+          struct drm_plane_state * plane_state = (struct drm_plane_state *) malloc(_len_plane_state0*sizeof(struct drm_plane_state));
+          for(int _i0 = 0; _i0 < _len_plane_state0; _i0++) {
+              plane_state[_i0].crtc_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          plane_state[_i0].crtc_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          plane_state[_i0].crtc_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          plane_state[_i0].crtc_h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_crtc(plane_state,crtc_x,crtc_y,crtc_w,crtc_h);
+          free(plane_state);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int crtc_x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int crtc_y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int crtc_w = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int crtc_h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_plane_state0 = 1;
+          struct drm_plane_state * plane_state = (struct drm_plane_state *) malloc(_len_plane_state0*sizeof(struct drm_plane_state));
+          for(int _i0 = 0; _i0 < _len_plane_state0; _i0++) {
+              plane_state[_i0].crtc_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          plane_state[_i0].crtc_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          plane_state[_i0].crtc_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          plane_state[_i0].crtc_h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           set_crtc(plane_state,crtc_x,crtc_y,crtc_w,crtc_h);
           free(plane_state);
         

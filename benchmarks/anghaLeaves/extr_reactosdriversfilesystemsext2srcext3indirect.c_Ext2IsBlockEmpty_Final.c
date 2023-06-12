@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ Ext2IsBlockEmpty(PULONG BlockArray, ULONG SizeArray)
     return (i == SizeArray);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,30 +84,163 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           unsigned long SizeArray = 100;
+        
           int _len_BlockArray0 = 1;
           long * BlockArray = (long *) malloc(_len_BlockArray0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_BlockArray0; _i0++) {
             BlockArray[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = Ext2IsBlockEmpty(BlockArray,SizeArray);
           printf("%d\n", benchRet); 
           free(BlockArray);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          unsigned long SizeArray = 255;
+        
+          int _len_BlockArray0 = 65025;
+          long * BlockArray = (long *) malloc(_len_BlockArray0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_BlockArray0; _i0++) {
+            BlockArray[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = Ext2IsBlockEmpty(BlockArray,SizeArray);
+          printf("%d\n", benchRet); 
+          free(BlockArray);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           unsigned long SizeArray = 10;
+        
           int _len_BlockArray0 = 100;
           long * BlockArray = (long *) malloc(_len_BlockArray0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_BlockArray0; _i0++) {
             BlockArray[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = Ext2IsBlockEmpty(BlockArray,SizeArray);
+          printf("%d\n", benchRet); 
+          free(BlockArray);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          unsigned long SizeArray = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_BlockArray0 = 1;
+          long * BlockArray = (long *) malloc(_len_BlockArray0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_BlockArray0; _i0++) {
+            BlockArray[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = Ext2IsBlockEmpty(BlockArray,SizeArray);
           printf("%d\n", benchRet); 
           free(BlockArray);

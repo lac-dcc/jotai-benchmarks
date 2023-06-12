@@ -63,12 +63,6 @@ __attribute__((used)) static int maya_pb_route_shift(int idx)
 	return shift[idx % 10];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,28 +75,102 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int idx = 100;
+        
           int benchRet = maya_pb_route_shift(idx);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int idx = 255;
+        
           int benchRet = maya_pb_route_shift(idx);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int idx = 10;
+        
           int benchRet = maya_pb_route_shift(idx);
           printf("%d\n", benchRet); 
         

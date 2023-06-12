@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ __attribute__((used)) static int map_absent_read(struct mtd_info *mtd, loff_t fr
 	return -ENODEV;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,26 +78,229 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int from = 100;
+        
           unsigned long len = 100;
+        
           int _len_mtd0 = 1;
           struct mtd_info * mtd = (struct mtd_info *) malloc(_len_mtd0*sizeof(struct mtd_info));
           for(int _i0 = 0; _i0 < _len_mtd0; _i0++) {
-            mtd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              mtd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_retlen0 = 1;
           unsigned long * retlen = (unsigned long *) malloc(_len_retlen0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_retlen0; _i0++) {
             retlen[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_buf0 = 1;
           int * buf = (int *) malloc(_len_buf0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
             buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = map_absent_read(mtd,from,len,retlen,buf);
+          printf("%d\n", benchRet); 
+          free(mtd);
+          free(retlen);
+          free(buf);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int from = 255;
+        
+          unsigned long len = 255;
+        
+          int _len_mtd0 = 65025;
+          struct mtd_info * mtd = (struct mtd_info *) malloc(_len_mtd0*sizeof(struct mtd_info));
+          for(int _i0 = 0; _i0 < _len_mtd0; _i0++) {
+              mtd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_retlen0 = 65025;
+          unsigned long * retlen = (unsigned long *) malloc(_len_retlen0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_retlen0; _i0++) {
+            retlen[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_buf0 = 65025;
+          int * buf = (int *) malloc(_len_buf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = map_absent_read(mtd,from,len,retlen,buf);
+          printf("%d\n", benchRet); 
+          free(mtd);
+          free(retlen);
+          free(buf);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int from = 10;
+        
+          unsigned long len = 10;
+        
+          int _len_mtd0 = 100;
+          struct mtd_info * mtd = (struct mtd_info *) malloc(_len_mtd0*sizeof(struct mtd_info));
+          for(int _i0 = 0; _i0 < _len_mtd0; _i0++) {
+              mtd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_retlen0 = 100;
+          unsigned long * retlen = (unsigned long *) malloc(_len_retlen0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_retlen0; _i0++) {
+            retlen[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_buf0 = 100;
+          int * buf = (int *) malloc(_len_buf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = map_absent_read(mtd,from,len,retlen,buf);
+          printf("%d\n", benchRet); 
+          free(mtd);
+          free(retlen);
+          free(buf);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int from = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_mtd0 = 1;
+          struct mtd_info * mtd = (struct mtd_info *) malloc(_len_mtd0*sizeof(struct mtd_info));
+          for(int _i0 = 0; _i0 < _len_mtd0; _i0++) {
+              mtd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_retlen0 = 1;
+          unsigned long * retlen = (unsigned long *) malloc(_len_retlen0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_retlen0; _i0++) {
+            retlen[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_buf0 = 1;
+          int * buf = (int *) malloc(_len_buf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = map_absent_read(mtd,from,len,retlen,buf);
           printf("%d\n", benchRet); 
           free(mtd);

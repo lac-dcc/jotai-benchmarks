@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -88,12 +89,6 @@ commpage_set_spin_count(
 
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -110,6 +105,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int count = 100;
+        
           commpage_set_spin_count(count);
         
         break;
@@ -118,6 +114,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int count = 255;
+        
           commpage_set_spin_count(count);
         
         break;
@@ -126,11 +123,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int count = 10;
+        
           commpage_set_spin_count(count);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          commpage_set_spin_count(count);
+        
+        break;
+    }
     default:
         usage();
         break;

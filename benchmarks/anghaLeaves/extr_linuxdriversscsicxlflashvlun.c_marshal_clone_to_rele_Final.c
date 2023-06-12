@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static void marshal_clone_to_rele(struct dk_cxlflash_clone
 	release->context_id = clone->context_id_dst;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,28 +77,81 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_clone0 = 1;
+          int _len_clone0 = 65025;
           struct dk_cxlflash_clone * clone = (struct dk_cxlflash_clone *) malloc(_len_clone0*sizeof(struct dk_cxlflash_clone));
           for(int _i0 = 0; _i0 < _len_clone0; _i0++) {
-            clone[_i0].context_id_dst = ((-2 * (next_i()%2)) + 1) * next_i();
-        clone[_i0].hdr = ((-2 * (next_i()%2)) + 1) * next_i();
+              clone[_i0].context_id_dst = ((-2 * (next_i()%2)) + 1) * next_i();
+          clone[_i0].hdr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_release0 = 1;
+        
+          int _len_release0 = 65025;
           struct dk_cxlflash_release * release = (struct dk_cxlflash_release *) malloc(_len_release0*sizeof(struct dk_cxlflash_release));
           for(int _i0 = 0; _i0 < _len_release0; _i0++) {
-            release[_i0].context_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        release[_i0].hdr = ((-2 * (next_i()%2)) + 1) * next_i();
+              release[_i0].context_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          release[_i0].hdr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           marshal_clone_to_rele(clone,release);
           free(clone);
           free(release);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_clone0 = 100;
+          struct dk_cxlflash_clone * clone = (struct dk_cxlflash_clone *) malloc(_len_clone0*sizeof(struct dk_cxlflash_clone));
+          for(int _i0 = 0; _i0 < _len_clone0; _i0++) {
+              clone[_i0].context_id_dst = ((-2 * (next_i()%2)) + 1) * next_i();
+          clone[_i0].hdr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_release0 = 100;
+          struct dk_cxlflash_release * release = (struct dk_cxlflash_release *) malloc(_len_release0*sizeof(struct dk_cxlflash_release));
+          for(int _i0 = 0; _i0 < _len_release0; _i0++) {
+              release[_i0].context_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          release[_i0].hdr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          marshal_clone_to_rele(clone,release);
+          free(clone);
+          free(release);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_clone0 = 1;
+          struct dk_cxlflash_clone * clone = (struct dk_cxlflash_clone *) malloc(_len_clone0*sizeof(struct dk_cxlflash_clone));
+          for(int _i0 = 0; _i0 < _len_clone0; _i0++) {
+              clone[_i0].context_id_dst = ((-2 * (next_i()%2)) + 1) * next_i();
+          clone[_i0].hdr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_release0 = 1;
+          struct dk_cxlflash_release * release = (struct dk_cxlflash_release *) malloc(_len_release0*sizeof(struct dk_cxlflash_release));
+          for(int _i0 = 0; _i0 < _len_release0; _i0++) {
+              release[_i0].context_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          release[_i0].hdr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          marshal_clone_to_rele(clone,release);
+          free(clone);
+          free(release);
+        
+        break;
+    }
     default:
         usage();
         break;

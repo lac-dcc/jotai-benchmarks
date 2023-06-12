@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ kexec_init(char *kernel_path, char *initrd_path, char *cmdline) {
 	config.cmdline = cmdline;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,24 +78,154 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_kernel_path0 = 65025;
+          char * kernel_path = (char *) malloc(_len_kernel_path0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_kernel_path0; _i0++) {
+            kernel_path[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_initrd_path0 = 65025;
+          char * initrd_path = (char *) malloc(_len_initrd_path0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_initrd_path0; _i0++) {
+            initrd_path[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_cmdline0 = 65025;
+          char * cmdline = (char *) malloc(_len_cmdline0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_cmdline0; _i0++) {
+            cmdline[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          kexec_init(kernel_path,initrd_path,cmdline);
+          free(kernel_path);
+          free(initrd_path);
+          free(cmdline);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_kernel_path0 = 100;
+          char * kernel_path = (char *) malloc(_len_kernel_path0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_kernel_path0; _i0++) {
+            kernel_path[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_initrd_path0 = 100;
+          char * initrd_path = (char *) malloc(_len_initrd_path0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_initrd_path0; _i0++) {
+            initrd_path[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_cmdline0 = 100;
+          char * cmdline = (char *) malloc(_len_cmdline0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_cmdline0; _i0++) {
+            cmdline[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          kexec_init(kernel_path,initrd_path,cmdline);
+          free(kernel_path);
+          free(initrd_path);
+          free(cmdline);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_kernel_path0 = 1;
           char * kernel_path = (char *) malloc(_len_kernel_path0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_kernel_path0; _i0++) {
             kernel_path[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_initrd_path0 = 1;
           char * initrd_path = (char *) malloc(_len_initrd_path0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_initrd_path0; _i0++) {
             initrd_path[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_cmdline0 = 1;
           char * cmdline = (char *) malloc(_len_cmdline0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_cmdline0; _i0++) {
             cmdline[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           kexec_init(kernel_path,initrd_path,cmdline);
           free(kernel_path);
           free(initrd_path);

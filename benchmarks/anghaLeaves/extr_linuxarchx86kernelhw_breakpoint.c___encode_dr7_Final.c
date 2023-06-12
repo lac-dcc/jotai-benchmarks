@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +73,6 @@ __encode_dr7(int drnum, unsigned int len, unsigned int type)
 	return bp_info;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,34 +85,152 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int drnum = 100;
+        
           unsigned int len = 100;
+        
           unsigned int type = 100;
+        
           unsigned long benchRet = __encode_dr7(drnum,len,type);
           printf("%lu\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int drnum = 255;
+        
           unsigned int len = 255;
+        
           unsigned int type = 255;
+        
           unsigned long benchRet = __encode_dr7(drnum,len,type);
           printf("%lu\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int drnum = 10;
+        
           unsigned int len = 10;
+        
           unsigned int type = 10;
+        
+          unsigned long benchRet = __encode_dr7(drnum,len,type);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int drnum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           unsigned long benchRet = __encode_dr7(drnum,len,type);
           printf("%lu\n", benchRet); 
         

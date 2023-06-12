@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static void esp_log_fill_regs(struct esp *esp,
 	p->event = esp->event;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,29 +81,170 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_esp0 = 65025;
+          struct esp * esp = (struct esp *) malloc(_len_esp0*sizeof(struct esp));
+          for(int _i0 = 0; _i0 < _len_esp0; _i0++) {
+              esp[_i0].event = ((-2 * (next_i()%2)) + 1) * next_i();
+          esp[_i0].select_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          esp[_i0].ireg = ((-2 * (next_i()%2)) + 1) * next_i();
+          esp[_i0].sreg2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          esp[_i0].seqreg = ((-2 * (next_i()%2)) + 1) * next_i();
+          esp[_i0].sreg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_p0 = 65025;
+          struct esp_event_ent * p = (struct esp_event_ent *) malloc(_len_p0*sizeof(struct esp_event_ent));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].event = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].select_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].ireg = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].sreg2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].seqreg = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].sreg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          esp_log_fill_regs(esp,p);
+          free(esp);
+          free(p);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_esp0 = 100;
+          struct esp * esp = (struct esp *) malloc(_len_esp0*sizeof(struct esp));
+          for(int _i0 = 0; _i0 < _len_esp0; _i0++) {
+              esp[_i0].event = ((-2 * (next_i()%2)) + 1) * next_i();
+          esp[_i0].select_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          esp[_i0].ireg = ((-2 * (next_i()%2)) + 1) * next_i();
+          esp[_i0].sreg2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          esp[_i0].seqreg = ((-2 * (next_i()%2)) + 1) * next_i();
+          esp[_i0].sreg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_p0 = 100;
+          struct esp_event_ent * p = (struct esp_event_ent *) malloc(_len_p0*sizeof(struct esp_event_ent));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].event = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].select_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].ireg = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].sreg2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].seqreg = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].sreg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          esp_log_fill_regs(esp,p);
+          free(esp);
+          free(p);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_esp0 = 1;
           struct esp * esp = (struct esp *) malloc(_len_esp0*sizeof(struct esp));
           for(int _i0 = 0; _i0 < _len_esp0; _i0++) {
-            esp[_i0].event = ((-2 * (next_i()%2)) + 1) * next_i();
-        esp[_i0].select_state = ((-2 * (next_i()%2)) + 1) * next_i();
-        esp[_i0].ireg = ((-2 * (next_i()%2)) + 1) * next_i();
-        esp[_i0].sreg2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        esp[_i0].seqreg = ((-2 * (next_i()%2)) + 1) * next_i();
-        esp[_i0].sreg = ((-2 * (next_i()%2)) + 1) * next_i();
+              esp[_i0].event = ((-2 * (next_i()%2)) + 1) * next_i();
+          esp[_i0].select_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          esp[_i0].ireg = ((-2 * (next_i()%2)) + 1) * next_i();
+          esp[_i0].sreg2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          esp[_i0].seqreg = ((-2 * (next_i()%2)) + 1) * next_i();
+          esp[_i0].sreg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_p0 = 1;
           struct esp_event_ent * p = (struct esp_event_ent *) malloc(_len_p0*sizeof(struct esp_event_ent));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].event = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].select_state = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].ireg = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].sreg2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].seqreg = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].sreg = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].event = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].select_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].ireg = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].sreg2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].seqreg = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].sreg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           esp_log_fill_regs(esp,p);
           free(esp);
           free(p);

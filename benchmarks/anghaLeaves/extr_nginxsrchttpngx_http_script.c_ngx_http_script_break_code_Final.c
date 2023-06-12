@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ ngx_http_script_break_code(ngx_http_script_engine_t *e)
     e->ip = ngx_http_script_exit;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,19 +82,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_e0 = 1;
+          int _len_e0 = 65025;
           struct TYPE_5__ * e = (struct TYPE_5__ *) malloc(_len_e0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_e0; _i0++) {
-            e[_i0].ip = ((-2 * (next_i()%2)) + 1) * next_i();
+              e[_i0].ip = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_e__i0__request0 = 1;
           e[_i0].request = (struct TYPE_4__ *) malloc(_len_e__i0__request0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_e__i0__request0; _j0++) {
-            e[_i0].request->uri_changed = ((-2 * (next_i()%2)) + 1) * next_i();
+              e[_i0].request->uri_changed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           ngx_http_script_break_code(e);
           for(int _aux = 0; _aux < _len_e0; _aux++) {
           free(e[_aux].request);
@@ -107,7 +106,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_e0 = 100;
+          struct TYPE_5__ * e = (struct TYPE_5__ *) malloc(_len_e0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_e0; _i0++) {
+              e[_i0].ip = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_e__i0__request0 = 1;
+          e[_i0].request = (struct TYPE_4__ *) malloc(_len_e__i0__request0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_e__i0__request0; _j0++) {
+              e[_i0].request->uri_changed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          ngx_http_script_break_code(e);
+          for(int _aux = 0; _aux < _len_e0; _aux++) {
+          free(e[_aux].request);
+          }
+          free(e);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_e0 = 1;
+          struct TYPE_5__ * e = (struct TYPE_5__ *) malloc(_len_e0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_e0; _i0++) {
+              e[_i0].ip = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_e__i0__request0 = 1;
+          e[_i0].request = (struct TYPE_4__ *) malloc(_len_e__i0__request0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_e__i0__request0; _j0++) {
+              e[_i0].request->uri_changed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          ngx_http_script_break_code(e);
+          for(int _aux = 0; _aux < _len_e0; _aux++) {
+          free(e[_aux].request);
+          }
+          free(e);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static int phys_suspended(struct sas_ha_struct *ha)
 	return rc;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,23 +84,157 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_ha0 = 1;
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_ha0 = 65025;
           struct sas_ha_struct * ha = (struct sas_ha_struct *) malloc(_len_ha0*sizeof(struct sas_ha_struct));
           for(int _i0 = 0; _i0 < _len_ha0; _i0++) {
-            ha[_i0].num_phys = ((-2 * (next_i()%2)) + 1) * next_i();
+              ha[_i0].num_phys = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_ha__i0__sas_phy0 = 1;
           ha[_i0].sas_phy = (struct asd_sas_phy **) malloc(_len_ha__i0__sas_phy0*sizeof(struct asd_sas_phy *));
           for(int _j0 = 0; _j0 < _len_ha__i0__sas_phy0; _j0++) {
             int _len_ha__i0__sas_phy1 = 1;
             ha[_i0].sas_phy[_j0] = (struct asd_sas_phy *) malloc(_len_ha__i0__sas_phy1*sizeof(struct asd_sas_phy));
             for(int _j1 = 0; _j1 < _len_ha__i0__sas_phy1; _j1++) {
-              ha[_i0].sas_phy[_j0]->suspended = ((-2 * (next_i()%2)) + 1) * next_i();
+                ha[_i0].sas_phy[_j0]->suspended = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           }
+        
+          int benchRet = phys_suspended(ha);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ha0; _aux++) {
+          free(*(ha[_aux].sas_phy));
+        free(ha[_aux].sas_phy);
+          }
+          free(ha);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_ha0 = 100;
+          struct sas_ha_struct * ha = (struct sas_ha_struct *) malloc(_len_ha0*sizeof(struct sas_ha_struct));
+          for(int _i0 = 0; _i0 < _len_ha0; _i0++) {
+              ha[_i0].num_phys = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ha__i0__sas_phy0 = 1;
+          ha[_i0].sas_phy = (struct asd_sas_phy **) malloc(_len_ha__i0__sas_phy0*sizeof(struct asd_sas_phy *));
+          for(int _j0 = 0; _j0 < _len_ha__i0__sas_phy0; _j0++) {
+            int _len_ha__i0__sas_phy1 = 1;
+            ha[_i0].sas_phy[_j0] = (struct asd_sas_phy *) malloc(_len_ha__i0__sas_phy1*sizeof(struct asd_sas_phy));
+            for(int _j1 = 0; _j1 < _len_ha__i0__sas_phy1; _j1++) {
+                ha[_i0].sas_phy[_j0]->suspended = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int benchRet = phys_suspended(ha);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ha0; _aux++) {
+          free(*(ha[_aux].sas_phy));
+        free(ha[_aux].sas_phy);
+          }
+          free(ha);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_ha0 = 1;
+          struct sas_ha_struct * ha = (struct sas_ha_struct *) malloc(_len_ha0*sizeof(struct sas_ha_struct));
+          for(int _i0 = 0; _i0 < _len_ha0; _i0++) {
+              ha[_i0].num_phys = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ha__i0__sas_phy0 = 1;
+          ha[_i0].sas_phy = (struct asd_sas_phy **) malloc(_len_ha__i0__sas_phy0*sizeof(struct asd_sas_phy *));
+          for(int _j0 = 0; _j0 < _len_ha__i0__sas_phy0; _j0++) {
+            int _len_ha__i0__sas_phy1 = 1;
+            ha[_i0].sas_phy[_j0] = (struct asd_sas_phy *) malloc(_len_ha__i0__sas_phy1*sizeof(struct asd_sas_phy));
+            for(int _j1 = 0; _j1 < _len_ha__i0__sas_phy1; _j1++) {
+                ha[_i0].sas_phy[_j0]->suspended = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
           int benchRet = phys_suspended(ha);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_ha0; _aux++) {

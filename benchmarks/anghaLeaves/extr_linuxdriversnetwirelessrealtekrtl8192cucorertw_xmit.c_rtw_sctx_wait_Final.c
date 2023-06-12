@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -83,12 +84,6 @@ int rtw_sctx_wait(struct submit_ctx *sctx)
 	return ret;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,28 +96,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_sctx0 = 1;
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_sctx0 = 65025;
           struct submit_ctx * sctx = (struct submit_ctx *) malloc(_len_sctx0*sizeof(struct submit_ctx));
           for(int _i0 = 0; _i0 < _len_sctx0; _i0++) {
-            sctx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              sctx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = rtw_sctx_wait(sctx);
           printf("%d\n", benchRet); 
           free(sctx);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_sctx0 = 100;
           struct submit_ctx * sctx = (struct submit_ctx *) malloc(_len_sctx0*sizeof(struct submit_ctx));
           for(int _i0 = 0; _i0 < _len_sctx0; _i0++) {
-            sctx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              sctx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = rtw_sctx_wait(sctx);
+          printf("%d\n", benchRet); 
+          free(sctx);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_sctx0 = 1;
+          struct submit_ctx * sctx = (struct submit_ctx *) malloc(_len_sctx0*sizeof(struct submit_ctx));
+          for(int _i0 = 0; _i0 < _len_sctx0; _i0++) {
+              sctx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = rtw_sctx_wait(sctx);
           printf("%d\n", benchRet); 
           free(sctx);

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static int qib_7322_tempsense_rd(struct qib_devdata *dd, i
 	return -ENXIO;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,11 +80,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int regnum = 100;
+        
           int _len_dd0 = 1;
           struct qib_devdata * dd = (struct qib_devdata *) malloc(_len_dd0*sizeof(struct qib_devdata));
           for(int _i0 = 0; _i0 < _len_dd0; _i0++) {
-            dd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = qib_7322_tempsense_rd(dd,regnum);
+          printf("%d\n", benchRet); 
+          free(dd);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int regnum = 255;
+        
+          int _len_dd0 = 65025;
+          struct qib_devdata * dd = (struct qib_devdata *) malloc(_len_dd0*sizeof(struct qib_devdata));
+          for(int _i0 = 0; _i0 < _len_dd0; _i0++) {
+              dd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = qib_7322_tempsense_rd(dd,regnum);
           printf("%d\n", benchRet); 
           free(dd);
@@ -96,21 +113,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int regnum = 10;
+        
           int _len_dd0 = 100;
           struct qib_devdata * dd = (struct qib_devdata *) malloc(_len_dd0*sizeof(struct qib_devdata));
           for(int _i0 = 0; _i0 < _len_dd0; _i0++) {
-            dd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = qib_7322_tempsense_rd(dd,regnum);
           printf("%d\n", benchRet); 
           free(dd);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int regnum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dd0 = 1;
+          struct qib_devdata * dd = (struct qib_devdata *) malloc(_len_dd0*sizeof(struct qib_devdata));
+          for(int _i0 = 0; _i0 < _len_dd0; _i0++) {
+              dd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = qib_7322_tempsense_rd(dd,regnum);
+          printf("%d\n", benchRet); 
+          free(dd);
+        
+        break;
+    }
     default:
         usage();
         break;

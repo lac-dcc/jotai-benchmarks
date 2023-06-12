@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static bool match_index(struct hid_usage *usage,
 	return cur_idx == idx;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,12 +80,36 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int cur_idx = 100;
+        
           unsigned int idx = 100;
+        
           int _len_usage0 = 1;
           struct hid_usage * usage = (struct hid_usage *) malloc(_len_usage0*sizeof(struct hid_usage));
           for(int _i0 = 0; _i0 < _len_usage0; _i0++) {
-            usage[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              usage[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = match_index(usage,cur_idx,idx);
+          printf("%d\n", benchRet); 
+          free(usage);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned int cur_idx = 255;
+        
+          unsigned int idx = 255;
+        
+          int _len_usage0 = 65025;
+          struct hid_usage * usage = (struct hid_usage *) malloc(_len_usage0*sizeof(struct hid_usage));
+          for(int _i0 = 0; _i0 < _len_usage0; _i0++) {
+              usage[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = match_index(usage,cur_idx,idx);
           printf("%d\n", benchRet); 
           free(usage);
@@ -97,22 +117,45 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned int cur_idx = 10;
+        
           unsigned int idx = 10;
+        
           int _len_usage0 = 100;
           struct hid_usage * usage = (struct hid_usage *) malloc(_len_usage0*sizeof(struct hid_usage));
           for(int _i0 = 0; _i0 < _len_usage0; _i0++) {
-            usage[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              usage[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = match_index(usage,cur_idx,idx);
           printf("%d\n", benchRet); 
           free(usage);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int cur_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_usage0 = 1;
+          struct hid_usage * usage = (struct hid_usage *) malloc(_len_usage0*sizeof(struct hid_usage));
+          for(int _i0 = 0; _i0 < _len_usage0; _i0++) {
+              usage[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = match_index(usage,cur_idx,idx);
+          printf("%d\n", benchRet); 
+          free(usage);
+        
+        break;
+    }
     default:
         usage();
         break;

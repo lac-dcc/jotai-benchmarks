@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ __attribute__((used)) static inline void wdec14(uint16_t l, uint16_t h, uint16_t
     *b = bs;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,21 +84,195 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int l = 100;
+        
           int h = 100;
+        
           int _len_a0 = 1;
           int * a = (int *) malloc(_len_a0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_a0; _i0++) {
             a[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_b0 = 1;
           int * b = (int *) malloc(_len_b0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_b0; _i0++) {
             b[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          wdec14(l,h,a,b);
+          free(a);
+          free(b);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int l = 255;
+        
+          int h = 255;
+        
+          int _len_a0 = 65025;
+          int * a = (int *) malloc(_len_a0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+            a[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_b0 = 65025;
+          int * b = (int *) malloc(_len_b0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+            b[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          wdec14(l,h,a,b);
+          free(a);
+          free(b);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int l = 10;
+        
+          int h = 10;
+        
+          int _len_a0 = 100;
+          int * a = (int *) malloc(_len_a0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+            a[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_b0 = 100;
+          int * b = (int *) malloc(_len_b0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+            b[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          wdec14(l,h,a,b);
+          free(a);
+          free(b);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int l = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_a0 = 1;
+          int * a = (int *) malloc(_len_a0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+            a[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_b0 = 1;
+          int * b = (int *) malloc(_len_b0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+            b[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           wdec14(l,h,a,b);
           free(a);
           free(b);

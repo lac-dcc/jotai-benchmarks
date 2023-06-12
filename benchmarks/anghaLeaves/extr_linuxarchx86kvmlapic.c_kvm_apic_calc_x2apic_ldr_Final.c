@@ -62,12 +62,6 @@ __attribute__((used)) static inline u32 kvm_apic_calc_x2apic_ldr(u32 id)
 	return ((id >> 4) << 16) | (1 << (id & 0xf));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +78,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int id = 100;
+        
           int benchRet = kvm_apic_calc_x2apic_ldr(id);
           printf("%d\n", benchRet); 
         
@@ -93,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int id = 255;
+        
           int benchRet = kvm_apic_calc_x2apic_ldr(id);
           printf("%d\n", benchRet); 
         
@@ -102,12 +98,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int id = 10;
+        
           int benchRet = kvm_apic_calc_x2apic_ldr(id);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ void CopyPingResultsToReport(_PingReportResponse_t *pResults,SlPingReport_t *pRe
     pReport->TestTime        = pResults->testTime;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,36 +84,105 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pResults0 = 1;
+          int _len_pResults0 = 65025;
           struct TYPE_5__ * pResults = (struct TYPE_5__ *) malloc(_len_pResults0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_pResults0; _i0++) {
-            pResults[_i0].testTime = ((-2 * (next_i()%2)) + 1) * next_i();
-        pResults[_i0].rttAvg = ((-2 * (next_i()%2)) + 1) * next_i();
-        pResults[_i0].rttMax = ((-2 * (next_i()%2)) + 1) * next_i();
-        pResults[_i0].rttMin = ((-2 * (next_i()%2)) + 1) * next_i();
-        pResults[_i0].numSuccsessPings = ((-2 * (next_i()%2)) + 1) * next_i();
-        pResults[_i0].numSendsPings = ((-2 * (next_i()%2)) + 1) * next_i();
+              pResults[_i0].testTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          pResults[_i0].rttAvg = ((-2 * (next_i()%2)) + 1) * next_i();
+          pResults[_i0].rttMax = ((-2 * (next_i()%2)) + 1) * next_i();
+          pResults[_i0].rttMin = ((-2 * (next_i()%2)) + 1) * next_i();
+          pResults[_i0].numSuccsessPings = ((-2 * (next_i()%2)) + 1) * next_i();
+          pResults[_i0].numSendsPings = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_pReport0 = 1;
+        
+          int _len_pReport0 = 65025;
           struct TYPE_6__ * pReport = (struct TYPE_6__ *) malloc(_len_pReport0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_pReport0; _i0++) {
-            pReport[_i0].TestTime = ((-2 * (next_i()%2)) + 1) * next_i();
-        pReport[_i0].AvgRoundTime = ((-2 * (next_i()%2)) + 1) * next_i();
-        pReport[_i0].MaxRoundTime = ((-2 * (next_i()%2)) + 1) * next_i();
-        pReport[_i0].MinRoundTime = ((-2 * (next_i()%2)) + 1) * next_i();
-        pReport[_i0].PacketsReceived = ((-2 * (next_i()%2)) + 1) * next_i();
-        pReport[_i0].PacketsSent = ((-2 * (next_i()%2)) + 1) * next_i();
+              pReport[_i0].TestTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          pReport[_i0].AvgRoundTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          pReport[_i0].MaxRoundTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          pReport[_i0].MinRoundTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          pReport[_i0].PacketsReceived = ((-2 * (next_i()%2)) + 1) * next_i();
+          pReport[_i0].PacketsSent = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           CopyPingResultsToReport(pResults,pReport);
           free(pResults);
           free(pReport);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_pResults0 = 100;
+          struct TYPE_5__ * pResults = (struct TYPE_5__ *) malloc(_len_pResults0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_pResults0; _i0++) {
+              pResults[_i0].testTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          pResults[_i0].rttAvg = ((-2 * (next_i()%2)) + 1) * next_i();
+          pResults[_i0].rttMax = ((-2 * (next_i()%2)) + 1) * next_i();
+          pResults[_i0].rttMin = ((-2 * (next_i()%2)) + 1) * next_i();
+          pResults[_i0].numSuccsessPings = ((-2 * (next_i()%2)) + 1) * next_i();
+          pResults[_i0].numSendsPings = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pReport0 = 100;
+          struct TYPE_6__ * pReport = (struct TYPE_6__ *) malloc(_len_pReport0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_pReport0; _i0++) {
+              pReport[_i0].TestTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          pReport[_i0].AvgRoundTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          pReport[_i0].MaxRoundTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          pReport[_i0].MinRoundTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          pReport[_i0].PacketsReceived = ((-2 * (next_i()%2)) + 1) * next_i();
+          pReport[_i0].PacketsSent = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          CopyPingResultsToReport(pResults,pReport);
+          free(pResults);
+          free(pReport);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_pResults0 = 1;
+          struct TYPE_5__ * pResults = (struct TYPE_5__ *) malloc(_len_pResults0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_pResults0; _i0++) {
+              pResults[_i0].testTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          pResults[_i0].rttAvg = ((-2 * (next_i()%2)) + 1) * next_i();
+          pResults[_i0].rttMax = ((-2 * (next_i()%2)) + 1) * next_i();
+          pResults[_i0].rttMin = ((-2 * (next_i()%2)) + 1) * next_i();
+          pResults[_i0].numSuccsessPings = ((-2 * (next_i()%2)) + 1) * next_i();
+          pResults[_i0].numSendsPings = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pReport0 = 1;
+          struct TYPE_6__ * pReport = (struct TYPE_6__ *) malloc(_len_pReport0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_pReport0; _i0++) {
+              pReport[_i0].TestTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          pReport[_i0].AvgRoundTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          pReport[_i0].MaxRoundTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          pReport[_i0].MinRoundTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          pReport[_i0].PacketsReceived = ((-2 * (next_i()%2)) + 1) * next_i();
+          pReport[_i0].PacketsSent = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          CopyPingResultsToReport(pResults,pReport);
+          free(pResults);
+          free(pReport);
+        
+        break;
+    }
     default:
         usage();
         break;

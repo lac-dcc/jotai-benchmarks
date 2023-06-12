@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -74,12 +75,6 @@ __attribute__((used)) static struct qmi_elem_info *skip_to_next_elem(struct qmi_
 	return temp_ei;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,22 +87,42 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int level = 10;
-          int _len_ei_array0 = 100;
+          int level = 255;
+        
+          int _len_ei_array0 = 65025;
           struct qmi_elem_info * ei_array = (struct qmi_elem_info *) malloc(_len_ei_array0*sizeof(struct qmi_elem_info));
           for(int _i0 = 0; _i0 < _len_ei_array0; _i0++) {
-            ei_array[_i0].tlv_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              ei_array[_i0].tlv_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           struct qmi_elem_info * benchRet = skip_to_next_elem(ei_array,level);
           printf("%ld\n", (*benchRet).tlv_type);
           free(ei_array);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int level = 10;
+        
+          int _len_ei_array0 = 100;
+          struct qmi_elem_info * ei_array = (struct qmi_elem_info *) malloc(_len_ei_array0*sizeof(struct qmi_elem_info));
+          for(int _i0 = 0; _i0 < _len_ei_array0; _i0++) {
+              ei_array[_i0].tlv_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct qmi_elem_info * benchRet = skip_to_next_elem(ei_array,level);
+          printf("%ld\n", (*benchRet).tlv_type);
+          free(ei_array);
+        
+        break;
+    }
     default:
         usage();
         break;

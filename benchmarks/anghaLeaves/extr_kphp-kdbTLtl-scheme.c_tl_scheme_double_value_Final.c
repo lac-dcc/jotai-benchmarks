@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -77,12 +79,6 @@ int tl_scheme_double_value (struct tl_scheme_object *O, double *value) {
   return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,22 +91,151 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_O0 = 65025;
+          struct tl_scheme_object * O = (struct tl_scheme_object *) malloc(_len_O0*sizeof(struct tl_scheme_object));
+          for(int _i0 = 0; _i0 < _len_O0; _i0++) {
+              O[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          O[_i0].u.i = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          O[_i0].u.l = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          O[_i0].u.d = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+        
+          }
+        
+          int _len_value0 = 65025;
+          double * value = (double *) malloc(_len_value0*sizeof(double));
+          for(int _i0 = 0; _i0 < _len_value0; _i0++) {
+            value[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          int benchRet = tl_scheme_double_value(O,value);
+          printf("%d\n", benchRet); 
+          free(O);
+          free(value);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_O0 = 100;
+          struct tl_scheme_object * O = (struct tl_scheme_object *) malloc(_len_O0*sizeof(struct tl_scheme_object));
+          for(int _i0 = 0; _i0 < _len_O0; _i0++) {
+              O[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          O[_i0].u.i = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          O[_i0].u.l = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          O[_i0].u.d = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+        
+          }
+        
+          int _len_value0 = 100;
+          double * value = (double *) malloc(_len_value0*sizeof(double));
+          for(int _i0 = 0; _i0 < _len_value0; _i0++) {
+            value[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          int benchRet = tl_scheme_double_value(O,value);
+          printf("%d\n", benchRet); 
+          free(O);
+          free(value);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_O0 = 1;
           struct tl_scheme_object * O = (struct tl_scheme_object *) malloc(_len_O0*sizeof(struct tl_scheme_object));
           for(int _i0 = 0; _i0 < _len_O0; _i0++) {
-            O[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        O[_i0].u.i = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        O[_i0].u.l = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        O[_i0].u.d = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+              O[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          O[_i0].u.i = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          O[_i0].u.l = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          O[_i0].u.d = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+        
           }
+        
           int _len_value0 = 1;
           double * value = (double *) malloc(_len_value0*sizeof(double));
           for(int _i0 = 0; _i0 < _len_value0; _i0++) {
             value[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
+        
           int benchRet = tl_scheme_double_value(O,value);
           printf("%d\n", benchRet); 
           free(O);

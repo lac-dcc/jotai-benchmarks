@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static bool is_ready_state(int status)
 	return state == STATUS_READY;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,28 +78,136 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int status = 100;
+        
           int benchRet = is_ready_state(status);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int status = 255;
+        
           int benchRet = is_ready_state(status);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int status = 10;
+        
+          int benchRet = is_ready_state(status);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = is_ready_state(status);
           printf("%d\n", benchRet); 
         

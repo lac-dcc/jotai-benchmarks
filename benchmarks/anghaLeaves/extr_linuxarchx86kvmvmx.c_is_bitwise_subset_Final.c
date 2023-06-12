@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static bool is_bitwise_subset(u64 superset, u64 subset, u6
 	return (superset | subset) == superset;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,8 +82,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int superset = 100;
+        
           int subset = 100;
+        
           int mask = 100;
+        
           int benchRet = is_bitwise_subset(superset,subset,mask);
           printf("%d\n", benchRet); 
         
@@ -98,8 +96,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int superset = 255;
+        
           int subset = 255;
+        
           int mask = 255;
+        
           int benchRet = is_bitwise_subset(superset,subset,mask);
           printf("%d\n", benchRet); 
         
@@ -109,14 +110,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int superset = 10;
+        
           int subset = 10;
+        
           int mask = 10;
+        
           int benchRet = is_bitwise_subset(superset,subset,mask);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int superset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int subset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = is_bitwise_subset(superset,subset,mask);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

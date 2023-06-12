@@ -64,12 +64,6 @@ __attribute__((used)) static size_t HashTableSize(size_t max_table_size, size_t 
   return htsize;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,7 +80,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long max_table_size = 100;
+        
           unsigned long input_size = 100;
+        
           unsigned long benchRet = HashTableSize(max_table_size,input_size);
           printf("%lu\n", benchRet); 
         
@@ -96,7 +92,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long max_table_size = 255;
+        
           unsigned long input_size = 255;
+        
           unsigned long benchRet = HashTableSize(max_table_size,input_size);
           printf("%lu\n", benchRet); 
         
@@ -106,13 +104,14 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long max_table_size = 10;
+        
           unsigned long input_size = 10;
+        
           unsigned long benchRet = HashTableSize(max_table_size,input_size);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

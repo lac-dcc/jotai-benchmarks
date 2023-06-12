@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +76,6 @@ int cvmx_helper_get_ipd_port(int interface, int port)
 	return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,7 +92,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int interface = 100;
+        
           int port = 100;
+        
           int benchRet = cvmx_helper_get_ipd_port(interface,port);
           printf("%d\n", benchRet); 
         
@@ -107,7 +104,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int interface = 255;
+        
           int port = 255;
+        
           int benchRet = cvmx_helper_get_ipd_port(interface,port);
           printf("%d\n", benchRet); 
         
@@ -117,13 +116,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int interface = 10;
+        
           int port = 10;
+        
           int benchRet = cvmx_helper_get_ipd_port(interface,port);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int interface = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int port = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = cvmx_helper_get_ipd_port(interface,port);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static inline u32 ath10k_ce_base_address(struct ath10k *ar
 	return CE0_BASE_ADDRESS + (CE1_BASE_ADDRESS - CE0_BASE_ADDRESS) * ce_id;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,11 +82,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int ce_id = 100;
+        
           int _len_ar0 = 1;
           struct ath10k * ar = (struct ath10k *) malloc(_len_ar0*sizeof(struct ath10k));
           for(int _i0 = 0; _i0 < _len_ar0; _i0++) {
-            ar[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ar[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          unsigned int benchRet = ath10k_ce_base_address(ar,ce_id);
+          printf("%u\n", benchRet); 
+          free(ar);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned int ce_id = 255;
+        
+          int _len_ar0 = 65025;
+          struct ath10k * ar = (struct ath10k *) malloc(_len_ar0*sizeof(struct ath10k));
+          for(int _i0 = 0; _i0 < _len_ar0; _i0++) {
+              ar[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           unsigned int benchRet = ath10k_ce_base_address(ar,ce_id);
           printf("%u\n", benchRet); 
           free(ar);
@@ -98,21 +115,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned int ce_id = 10;
+        
           int _len_ar0 = 100;
           struct ath10k * ar = (struct ath10k *) malloc(_len_ar0*sizeof(struct ath10k));
           for(int _i0 = 0; _i0 < _len_ar0; _i0++) {
-            ar[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ar[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = ath10k_ce_base_address(ar,ce_id);
           printf("%u\n", benchRet); 
           free(ar);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int ce_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ar0 = 1;
+          struct ath10k * ar = (struct ath10k *) malloc(_len_ar0*sizeof(struct ath10k));
+          for(int _i0 = 0; _i0 < _len_ar0; _i0++) {
+              ar[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = ath10k_ce_base_address(ar,ce_id);
+          printf("%u\n", benchRet); 
+          free(ar);
+        
+        break;
+    }
     default:
         usage();
         break;

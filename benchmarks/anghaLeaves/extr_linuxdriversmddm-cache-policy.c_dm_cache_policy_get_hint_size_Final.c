@@ -30,8 +30,10 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
-       1            linked\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            linked\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ size_t dm_cache_policy_get_hint_size(struct dm_cache_policy *p)
 	return t->hint_size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,18 +78,45 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_p0 = 1;
+          int _len_p0 = 65025;
           struct dm_cache_policy * p = (struct dm_cache_policy *) malloc(_len_p0*sizeof(struct dm_cache_policy));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
               int _len_p__i0__private0 = 1;
           p[_i0].private = (struct dm_cache_policy_type *) malloc(_len_p__i0__private0*sizeof(struct dm_cache_policy_type));
           for(int _j0 = 0; _j0 < _len_p__i0__private0; _j0++) {
-            p[_i0].private->hint_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].private->hint_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          unsigned long benchRet = dm_cache_policy_get_hint_size(p);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_p0; _aux++) {
+          free(p[_aux].private);
+          }
+          free(p);
+        
+        break;
+    }
+    // big-arr-10x
+    case 1:
+    {
+          int _len_p0 = 100;
+          struct dm_cache_policy * p = (struct dm_cache_policy *) malloc(_len_p0*sizeof(struct dm_cache_policy));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              int _len_p__i0__private0 = 1;
+          p[_i0].private = (struct dm_cache_policy_type *) malloc(_len_p__i0__private0*sizeof(struct dm_cache_policy_type));
+          for(int _j0 = 0; _j0 < _len_p__i0__private0; _j0++) {
+              p[_i0].private->hint_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           unsigned long benchRet = dm_cache_policy_get_hint_size(p);
           printf("%lu\n", benchRet); 
           for(int _aux = 0; _aux < _len_p0; _aux++) {
@@ -104,7 +127,7 @@ int main(int argc, char *argv[]) {
         break;
     }
     // linked
-    case 1:
+    case 2:
     {
           int _len_p0 = 1;
           struct dm_cache_policy * p = (struct dm_cache_policy *) malloc(_len_p0*sizeof(struct dm_cache_policy));
@@ -112,9 +135,12 @@ int main(int argc, char *argv[]) {
               int _len_p__i0__private0 = 1;
           p[_i0].private = (struct dm_cache_policy_type *) malloc(_len_p__i0__private0*sizeof(struct dm_cache_policy_type));
           for(int _j0 = 0; _j0 < _len_p__i0__private0; _j0++) {
-            p[_i0].private->hint_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].private->hint_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           unsigned long benchRet = dm_cache_policy_get_hint_size(p);
           printf("%lu\n", benchRet); 
           for(int _aux = 0; _aux < _len_p0; _aux++) {
@@ -124,7 +150,30 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int _len_p0 = 1;
+          struct dm_cache_policy * p = (struct dm_cache_policy *) malloc(_len_p0*sizeof(struct dm_cache_policy));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              int _len_p__i0__private0 = 1;
+          p[_i0].private = (struct dm_cache_policy_type *) malloc(_len_p__i0__private0*sizeof(struct dm_cache_policy_type));
+          for(int _j0 = 0; _j0 < _len_p__i0__private0; _j0++) {
+              p[_i0].private->hint_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned long benchRet = dm_cache_policy_get_hint_size(p);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_p0; _aux++) {
+          free(p[_aux].private);
+          }
+          free(p);
+        
+        break;
+    }
     default:
         usage();
         break;

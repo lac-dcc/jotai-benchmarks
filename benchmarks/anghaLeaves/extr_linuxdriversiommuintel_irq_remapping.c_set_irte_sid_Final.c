@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ __attribute__((used)) static void set_irte_sid(struct irte *irte, unsigned int s
 	irte->sid = sid;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,19 +82,188 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           unsigned int svt = 100;
+        
           unsigned int sq = 100;
+        
           unsigned int sid = 100;
+        
           int _len_irte0 = 1;
           struct irte * irte = (struct irte *) malloc(_len_irte0*sizeof(struct irte));
           for(int _i0 = 0; _i0 < _len_irte0; _i0++) {
-            irte[_i0].svt = ((-2 * (next_i()%2)) + 1) * next_i();
-        irte[_i0].sq = ((-2 * (next_i()%2)) + 1) * next_i();
-        irte[_i0].sid = ((-2 * (next_i()%2)) + 1) * next_i();
+              irte[_i0].svt = ((-2 * (next_i()%2)) + 1) * next_i();
+          irte[_i0].sq = ((-2 * (next_i()%2)) + 1) * next_i();
+          irte[_i0].sid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          set_irte_sid(irte,svt,sq,sid);
+          free(irte);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          unsigned int svt = 255;
+        
+          unsigned int sq = 255;
+        
+          unsigned int sid = 255;
+        
+          int _len_irte0 = 65025;
+          struct irte * irte = (struct irte *) malloc(_len_irte0*sizeof(struct irte));
+          for(int _i0 = 0; _i0 < _len_irte0; _i0++) {
+              irte[_i0].svt = ((-2 * (next_i()%2)) + 1) * next_i();
+          irte[_i0].sq = ((-2 * (next_i()%2)) + 1) * next_i();
+          irte[_i0].sid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_irte_sid(irte,svt,sq,sid);
+          free(irte);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          unsigned int svt = 10;
+        
+          unsigned int sq = 10;
+        
+          unsigned int sid = 10;
+        
+          int _len_irte0 = 100;
+          struct irte * irte = (struct irte *) malloc(_len_irte0*sizeof(struct irte));
+          for(int _i0 = 0; _i0 < _len_irte0; _i0++) {
+              irte[_i0].svt = ((-2 * (next_i()%2)) + 1) * next_i();
+          irte[_i0].sq = ((-2 * (next_i()%2)) + 1) * next_i();
+          irte[_i0].sid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_irte_sid(irte,svt,sq,sid);
+          free(irte);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          unsigned int svt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int sq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int sid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_irte0 = 1;
+          struct irte * irte = (struct irte *) malloc(_len_irte0*sizeof(struct irte));
+          for(int _i0 = 0; _i0 < _len_irte0; _i0++) {
+              irte[_i0].svt = ((-2 * (next_i()%2)) + 1) * next_i();
+          irte[_i0].sq = ((-2 * (next_i()%2)) + 1) * next_i();
+          irte[_i0].sid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           set_irte_sid(irte,svt,sq,sid);
           free(irte);
         

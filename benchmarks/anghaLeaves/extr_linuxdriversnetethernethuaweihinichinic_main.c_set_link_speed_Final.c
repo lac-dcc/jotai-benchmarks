@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -112,12 +113,6 @@ __attribute__((used)) static void set_link_speed(struct ethtool_link_ksettings *
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -130,29 +125,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           enum hinic_speed speed = 0;
-          int _len_link_ksettings0 = 1;
+        
+          int _len_link_ksettings0 = 65025;
           struct ethtool_link_ksettings * link_ksettings = (struct ethtool_link_ksettings *) malloc(_len_link_ksettings0*sizeof(struct ethtool_link_ksettings));
           for(int _i0 = 0; _i0 < _len_link_ksettings0; _i0++) {
-            link_ksettings[_i0].base.speed = ((-2 * (next_i()%2)) + 1) * next_i();
+              link_ksettings[_i0].base.speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           set_link_speed(link_ksettings,speed);
           free(link_ksettings);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           enum hinic_speed speed = 0;
+        
           int _len_link_ksettings0 = 100;
           struct ethtool_link_ksettings * link_ksettings = (struct ethtool_link_ksettings *) malloc(_len_link_ksettings0*sizeof(struct ethtool_link_ksettings));
           for(int _i0 = 0; _i0 < _len_link_ksettings0; _i0++) {
-            link_ksettings[_i0].base.speed = ((-2 * (next_i()%2)) + 1) * next_i();
+              link_ksettings[_i0].base.speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          set_link_speed(link_ksettings,speed);
+          free(link_ksettings);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          enum hinic_speed speed = 0;
+        
+          int _len_link_ksettings0 = 1;
+          struct ethtool_link_ksettings * link_ksettings = (struct ethtool_link_ksettings *) malloc(_len_link_ksettings0*sizeof(struct ethtool_link_ksettings));
+          for(int _i0 = 0; _i0 < _len_link_ksettings0; _i0++) {
+              link_ksettings[_i0].base.speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           set_link_speed(link_ksettings,speed);
           free(link_ksettings);
         

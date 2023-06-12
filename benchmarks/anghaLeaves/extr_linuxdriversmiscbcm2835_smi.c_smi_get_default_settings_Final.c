@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -82,12 +84,6 @@ __attribute__((used)) static void smi_get_default_settings(struct bcm2835_smi_in
 	settings->dma_panic_write_thresh = 0x20;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,29 +96,165 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 48
+          // dynamic_instructions_O0 : 48
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_inst0 = 65025;
+          struct bcm2835_smi_instance * inst = (struct bcm2835_smi_instance *) malloc(_len_inst0*sizeof(struct bcm2835_smi_instance));
+          for(int _i0 = 0; _i0 < _len_inst0; _i0++) {
+              inst[_i0].settings.pack_data = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.read_setup_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.read_hold_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.read_pace_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.read_strobe_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.write_setup_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.write_hold_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.write_pace_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.write_strobe_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.dma_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.dma_passthrough_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.dma_read_thresh = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.dma_write_thresh = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.dma_panic_read_thresh = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.dma_panic_write_thresh = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.data_width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          smi_get_default_settings(inst);
+          free(inst);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 48
+          // dynamic_instructions_O0 : 48
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_inst0 = 100;
+          struct bcm2835_smi_instance * inst = (struct bcm2835_smi_instance *) malloc(_len_inst0*sizeof(struct bcm2835_smi_instance));
+          for(int _i0 = 0; _i0 < _len_inst0; _i0++) {
+              inst[_i0].settings.pack_data = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.read_setup_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.read_hold_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.read_pace_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.read_strobe_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.write_setup_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.write_hold_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.write_pace_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.write_strobe_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.dma_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.dma_passthrough_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.dma_read_thresh = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.dma_write_thresh = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.dma_panic_read_thresh = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.dma_panic_write_thresh = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.data_width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          smi_get_default_settings(inst);
+          free(inst);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 48
+          // dynamic_instructions_O0 : 48
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int _len_inst0 = 1;
           struct bcm2835_smi_instance * inst = (struct bcm2835_smi_instance *) malloc(_len_inst0*sizeof(struct bcm2835_smi_instance));
           for(int _i0 = 0; _i0 < _len_inst0; _i0++) {
-            inst[_i0].settings.pack_data = ((-2 * (next_i()%2)) + 1) * next_i();
-        inst[_i0].settings.read_setup_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        inst[_i0].settings.read_hold_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        inst[_i0].settings.read_pace_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        inst[_i0].settings.read_strobe_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        inst[_i0].settings.write_setup_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        inst[_i0].settings.write_hold_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        inst[_i0].settings.write_pace_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        inst[_i0].settings.write_strobe_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        inst[_i0].settings.dma_enable = ((-2 * (next_i()%2)) + 1) * next_i();
-        inst[_i0].settings.dma_passthrough_enable = ((-2 * (next_i()%2)) + 1) * next_i();
-        inst[_i0].settings.dma_read_thresh = ((-2 * (next_i()%2)) + 1) * next_i();
-        inst[_i0].settings.dma_write_thresh = ((-2 * (next_i()%2)) + 1) * next_i();
-        inst[_i0].settings.dma_panic_read_thresh = ((-2 * (next_i()%2)) + 1) * next_i();
-        inst[_i0].settings.dma_panic_write_thresh = ((-2 * (next_i()%2)) + 1) * next_i();
-        inst[_i0].settings.data_width = ((-2 * (next_i()%2)) + 1) * next_i();
+              inst[_i0].settings.pack_data = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.read_setup_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.read_hold_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.read_pace_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.read_strobe_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.write_setup_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.write_hold_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.write_pace_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.write_strobe_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.dma_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.dma_passthrough_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.dma_read_thresh = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.dma_write_thresh = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.dma_panic_read_thresh = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.dma_panic_write_thresh = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].settings.data_width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           smi_get_default_settings(inst);
           free(inst);
         

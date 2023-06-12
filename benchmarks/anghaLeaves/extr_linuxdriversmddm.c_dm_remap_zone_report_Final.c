@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -139,12 +142,6 @@ void dm_remap_zone_report(struct dm_target *ti, struct bio *bio, sector_t start)
 #endif
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -161,23 +158,102 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int start = 100;
+        
           int _len_ti0 = 1;
           struct dm_target * ti = (struct dm_target *) malloc(_len_ti0*sizeof(struct dm_target));
           for(int _i0 = 0; _i0 < _len_ti0; _i0++) {
-            ti[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ti[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_bio0 = 1;
           struct bio * bio = (struct bio *) malloc(_len_bio0*sizeof(struct bio));
           for(int _i0 = 0; _i0 < _len_bio0; _i0++) {
-            bio[_i0].bi_status = ((-2 * (next_i()%2)) + 1) * next_i();
+              bio[_i0].bi_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           dm_remap_zone_report(ti,bio,start);
           free(ti);
           free(bio);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int start = 255;
+        
+          int _len_ti0 = 65025;
+          struct dm_target * ti = (struct dm_target *) malloc(_len_ti0*sizeof(struct dm_target));
+          for(int _i0 = 0; _i0 < _len_ti0; _i0++) {
+              ti[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_bio0 = 65025;
+          struct bio * bio = (struct bio *) malloc(_len_bio0*sizeof(struct bio));
+          for(int _i0 = 0; _i0 < _len_bio0; _i0++) {
+              bio[_i0].bi_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          dm_remap_zone_report(ti,bio,start);
+          free(ti);
+          free(bio);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int start = 10;
+        
+          int _len_ti0 = 100;
+          struct dm_target * ti = (struct dm_target *) malloc(_len_ti0*sizeof(struct dm_target));
+          for(int _i0 = 0; _i0 < _len_ti0; _i0++) {
+              ti[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_bio0 = 100;
+          struct bio * bio = (struct bio *) malloc(_len_bio0*sizeof(struct bio));
+          for(int _i0 = 0; _i0 < _len_bio0; _i0++) {
+              bio[_i0].bi_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          dm_remap_zone_report(ti,bio,start);
+          free(ti);
+          free(bio);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ti0 = 1;
+          struct dm_target * ti = (struct dm_target *) malloc(_len_ti0*sizeof(struct dm_target));
+          for(int _i0 = 0; _i0 < _len_ti0; _i0++) {
+              ti[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_bio0 = 1;
+          struct bio * bio = (struct bio *) malloc(_len_bio0*sizeof(struct bio));
+          for(int _i0 = 0; _i0 < _len_bio0; _i0++) {
+              bio[_i0].bi_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          dm_remap_zone_report(ti,bio,start);
+          free(ti);
+          free(bio);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +64,6 @@ __attribute__((used)) static inline void advance_hpp(struct perf_hpp *hpp, int i
 	hpp->size -= inc;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,16 +76,168 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int inc = 100;
+        
           int _len_hpp0 = 1;
           struct perf_hpp * hpp = (struct perf_hpp *) malloc(_len_hpp0*sizeof(struct perf_hpp));
           for(int _i0 = 0; _i0 < _len_hpp0; _i0++) {
-            hpp[_i0].buf = ((-2 * (next_i()%2)) + 1) * next_i();
-        hpp[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              hpp[_i0].buf = ((-2 * (next_i()%2)) + 1) * next_i();
+          hpp[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          advance_hpp(hpp,inc);
+          free(hpp);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int inc = 255;
+        
+          int _len_hpp0 = 65025;
+          struct perf_hpp * hpp = (struct perf_hpp *) malloc(_len_hpp0*sizeof(struct perf_hpp));
+          for(int _i0 = 0; _i0 < _len_hpp0; _i0++) {
+              hpp[_i0].buf = ((-2 * (next_i()%2)) + 1) * next_i();
+          hpp[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          advance_hpp(hpp,inc);
+          free(hpp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int inc = 10;
+        
+          int _len_hpp0 = 100;
+          struct perf_hpp * hpp = (struct perf_hpp *) malloc(_len_hpp0*sizeof(struct perf_hpp));
+          for(int _i0 = 0; _i0 < _len_hpp0; _i0++) {
+              hpp[_i0].buf = ((-2 * (next_i()%2)) + 1) * next_i();
+          hpp[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          advance_hpp(hpp,inc);
+          free(hpp);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int inc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hpp0 = 1;
+          struct perf_hpp * hpp = (struct perf_hpp *) malloc(_len_hpp0*sizeof(struct perf_hpp));
+          for(int _i0 = 0; _i0 < _len_hpp0; _i0++) {
+              hpp[_i0].buf = ((-2 * (next_i()%2)) + 1) * next_i();
+          hpp[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           advance_hpp(hpp,inc);
           free(hpp);
         

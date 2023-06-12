@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +76,6 @@ __attribute__((used)) static inline bool gart_iova_range_valid(struct gart_devic
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,20 +92,86 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long iova = 100;
+        
           unsigned long bytes = 100;
+        
           int _len_gart0 = 1;
           struct gart_device * gart = (struct gart_device *) malloc(_len_gart0*sizeof(struct gart_device));
           for(int _i0 = 0; _i0 < _len_gart0; _i0++) {
-            gart[_i0].iovmm_base = ((-2 * (next_i()%2)) + 1) * next_i();
-        gart[_i0].page_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              gart[_i0].iovmm_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          gart[_i0].page_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = gart_iova_range_valid(gart,iova,bytes);
           printf("%d\n", benchRet); 
           free(gart);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long iova = 255;
+        
+          unsigned long bytes = 255;
+        
+          int _len_gart0 = 65025;
+          struct gart_device * gart = (struct gart_device *) malloc(_len_gart0*sizeof(struct gart_device));
+          for(int _i0 = 0; _i0 < _len_gart0; _i0++) {
+              gart[_i0].iovmm_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          gart[_i0].page_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = gart_iova_range_valid(gart,iova,bytes);
+          printf("%d\n", benchRet); 
+          free(gart);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long iova = 10;
+        
+          unsigned long bytes = 10;
+        
+          int _len_gart0 = 100;
+          struct gart_device * gart = (struct gart_device *) malloc(_len_gart0*sizeof(struct gart_device));
+          for(int _i0 = 0; _i0 < _len_gart0; _i0++) {
+              gart[_i0].iovmm_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          gart[_i0].page_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = gart_iova_range_valid(gart,iova,bytes);
+          printf("%d\n", benchRet); 
+          free(gart);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long iova = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_gart0 = 1;
+          struct gart_device * gart = (struct gart_device *) malloc(_len_gart0*sizeof(struct gart_device));
+          for(int _i0 = 0; _i0 < _len_gart0; _i0++) {
+              gart[_i0].iovmm_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          gart[_i0].page_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = gart_iova_range_valid(gart,iova,bytes);
+          printf("%d\n", benchRet); 
+          free(gart);
+        
+        break;
+    }
     default:
         usage();
         break;

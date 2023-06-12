@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ SJIStoJIS (int *p1, int *p2)
   *p2 -= cellOffset;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,26 +81,69 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_p10 = 1;
+          int _len_p10 = 65025;
           int * p1 = (int *) malloc(_len_p10*sizeof(int));
           for(int _i0 = 0; _i0 < _len_p10; _i0++) {
             p1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_p20 = 1;
+        
+          int _len_p20 = 65025;
           int * p2 = (int *) malloc(_len_p20*sizeof(int));
           for(int _i0 = 0; _i0 < _len_p20; _i0++) {
             p2[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           SJIStoJIS(p1,p2);
           free(p1);
           free(p2);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_p10 = 100;
+          int * p1 = (int *) malloc(_len_p10*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p10; _i0++) {
+            p1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_p20 = 100;
+          int * p2 = (int *) malloc(_len_p20*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p20; _i0++) {
+            p2[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          SJIStoJIS(p1,p2);
+          free(p1);
+          free(p2);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_p10 = 1;
+          int * p1 = (int *) malloc(_len_p10*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p10; _i0++) {
+            p1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_p20 = 1;
+          int * p2 = (int *) malloc(_len_p20*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p20; _i0++) {
+            p2[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          SJIStoJIS(p1,p2);
+          free(p1);
+          free(p2);
+        
+        break;
+    }
     default:
         usage();
         break;

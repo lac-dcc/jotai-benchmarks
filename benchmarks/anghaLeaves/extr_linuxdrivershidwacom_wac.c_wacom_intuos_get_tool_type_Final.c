@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -149,12 +150,6 @@ __attribute__((used)) static int wacom_intuos_get_tool_type(int tool_id)
 	return tool_type;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -171,6 +166,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int tool_id = 100;
+        
           int benchRet = wacom_intuos_get_tool_type(tool_id);
           printf("%d\n", benchRet); 
         
@@ -180,6 +176,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int tool_id = 255;
+        
           int benchRet = wacom_intuos_get_tool_type(tool_id);
           printf("%d\n", benchRet); 
         
@@ -189,12 +186,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int tool_id = 10;
+        
           int benchRet = wacom_intuos_get_tool_type(tool_id);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int tool_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = wacom_intuos_get_tool_type(tool_id);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

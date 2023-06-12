@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ uint16_t SPI_GetTransmissionFIFOStatus(SPI_TypeDef* SPIx)
   return (uint16_t)((SPIx->SR & SPI_SR_FTLVL));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,28 +79,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_SPIx0 = 1;
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_SPIx0 = 65025;
           struct TYPE_3__ * SPIx = (struct TYPE_3__ *) malloc(_len_SPIx0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_SPIx0; _i0++) {
-            SPIx[_i0].SR = ((-2 * (next_i()%2)) + 1) * next_i();
+              SPIx[_i0].SR = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = SPI_GetTransmissionFIFOStatus(SPIx);
           printf("%d\n", benchRet); 
           free(SPIx);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_SPIx0 = 100;
           struct TYPE_3__ * SPIx = (struct TYPE_3__ *) malloc(_len_SPIx0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_SPIx0; _i0++) {
-            SPIx[_i0].SR = ((-2 * (next_i()%2)) + 1) * next_i();
+              SPIx[_i0].SR = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = SPI_GetTransmissionFIFOStatus(SPIx);
+          printf("%d\n", benchRet); 
+          free(SPIx);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_SPIx0 = 1;
+          struct TYPE_3__ * SPIx = (struct TYPE_3__ *) malloc(_len_SPIx0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_SPIx0; _i0++) {
+              SPIx[_i0].SR = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = SPI_GetTransmissionFIFOStatus(SPIx);
           printf("%d\n", benchRet); 
           free(SPIx);

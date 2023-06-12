@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static void set_media_not_present(struct scsi_disk *sdkp)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,21 +82,147 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_sdkp0 = 1;
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_sdkp0 = 65025;
           struct scsi_disk * sdkp = (struct scsi_disk *) malloc(_len_sdkp0*sizeof(struct scsi_disk));
           for(int _i0 = 0; _i0 < _len_sdkp0; _i0++) {
-            sdkp[_i0].capacity = ((-2 * (next_i()%2)) + 1) * next_i();
-        sdkp[_i0].media_present = ((-2 * (next_i()%2)) + 1) * next_i();
+              sdkp[_i0].capacity = ((-2 * (next_i()%2)) + 1) * next_i();
+          sdkp[_i0].media_present = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_sdkp__i0__device0 = 1;
           sdkp[_i0].device = (struct TYPE_2__ *) malloc(_len_sdkp__i0__device0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_sdkp__i0__device0; _j0++) {
-            sdkp[_i0].device->changed = ((-2 * (next_i()%2)) + 1) * next_i();
-        sdkp[_i0].device->removable = ((-2 * (next_i()%2)) + 1) * next_i();
+              sdkp[_i0].device->changed = ((-2 * (next_i()%2)) + 1) * next_i();
+          sdkp[_i0].device->removable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          set_media_not_present(sdkp);
+          for(int _aux = 0; _aux < _len_sdkp0; _aux++) {
+          free(sdkp[_aux].device);
+          }
+          free(sdkp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_sdkp0 = 100;
+          struct scsi_disk * sdkp = (struct scsi_disk *) malloc(_len_sdkp0*sizeof(struct scsi_disk));
+          for(int _i0 = 0; _i0 < _len_sdkp0; _i0++) {
+              sdkp[_i0].capacity = ((-2 * (next_i()%2)) + 1) * next_i();
+          sdkp[_i0].media_present = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_sdkp__i0__device0 = 1;
+          sdkp[_i0].device = (struct TYPE_2__ *) malloc(_len_sdkp__i0__device0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_sdkp__i0__device0; _j0++) {
+              sdkp[_i0].device->changed = ((-2 * (next_i()%2)) + 1) * next_i();
+          sdkp[_i0].device->removable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          set_media_not_present(sdkp);
+          for(int _aux = 0; _aux < _len_sdkp0; _aux++) {
+          free(sdkp[_aux].device);
+          }
+          free(sdkp);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_sdkp0 = 1;
+          struct scsi_disk * sdkp = (struct scsi_disk *) malloc(_len_sdkp0*sizeof(struct scsi_disk));
+          for(int _i0 = 0; _i0 < _len_sdkp0; _i0++) {
+              sdkp[_i0].capacity = ((-2 * (next_i()%2)) + 1) * next_i();
+          sdkp[_i0].media_present = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_sdkp__i0__device0 = 1;
+          sdkp[_i0].device = (struct TYPE_2__ *) malloc(_len_sdkp__i0__device0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_sdkp__i0__device0; _j0++) {
+              sdkp[_i0].device->changed = ((-2 * (next_i()%2)) + 1) * next_i();
+          sdkp[_i0].device->removable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           set_media_not_present(sdkp);
           for(int _aux = 0; _aux < _len_sdkp0; _aux++) {
           free(sdkp[_aux].device);

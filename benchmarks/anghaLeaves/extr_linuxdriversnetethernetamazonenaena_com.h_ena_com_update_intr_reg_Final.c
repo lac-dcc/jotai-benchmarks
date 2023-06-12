@@ -31,7 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -78,12 +79,6 @@ __attribute__((used)) static inline void ena_com_update_intr_reg(struct ena_eth_
 		intr_reg->intr_control |= ENA_ETH_IO_INTR_REG_INTR_UNMASK_MASK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,33 +91,135 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int rx_delay_interval = 100;
+        
           int tx_delay_interval = 100;
+        
           int unmask = 100;
+        
           int _len_intr_reg0 = 1;
           struct ena_eth_io_intr_reg * intr_reg = (struct ena_eth_io_intr_reg *) malloc(_len_intr_reg0*sizeof(struct ena_eth_io_intr_reg));
           for(int _i0 = 0; _i0 < _len_intr_reg0; _i0++) {
-            intr_reg[_i0].intr_control = ((-2 * (next_i()%2)) + 1) * next_i();
+              intr_reg[_i0].intr_control = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ena_com_update_intr_reg(intr_reg,rx_delay_interval,tx_delay_interval,unmask);
           free(intr_reg);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int rx_delay_interval = 255;
+        
+          int tx_delay_interval = 255;
+        
+          int unmask = 255;
+        
+          int _len_intr_reg0 = 65025;
+          struct ena_eth_io_intr_reg * intr_reg = (struct ena_eth_io_intr_reg *) malloc(_len_intr_reg0*sizeof(struct ena_eth_io_intr_reg));
+          for(int _i0 = 0; _i0 < _len_intr_reg0; _i0++) {
+              intr_reg[_i0].intr_control = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ena_com_update_intr_reg(intr_reg,rx_delay_interval,tx_delay_interval,unmask);
+          free(intr_reg);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int rx_delay_interval = 10;
+        
           int tx_delay_interval = 10;
+        
           int unmask = 10;
+        
           int _len_intr_reg0 = 100;
           struct ena_eth_io_intr_reg * intr_reg = (struct ena_eth_io_intr_reg *) malloc(_len_intr_reg0*sizeof(struct ena_eth_io_intr_reg));
           for(int _i0 = 0; _i0 < _len_intr_reg0; _i0++) {
-            intr_reg[_i0].intr_control = ((-2 * (next_i()%2)) + 1) * next_i();
+              intr_reg[_i0].intr_control = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ena_com_update_intr_reg(intr_reg,rx_delay_interval,tx_delay_interval,unmask);
           free(intr_reg);
         

@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -68,12 +68,6 @@ __attribute__((used)) static double butterworth_compute_bw_gain_db(double gain)
     return bw_gain;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,10 +80,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // empty
     case 0:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           double gain = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           double benchRet = butterworth_compute_bw_gain_db(gain);
           printf("%lf\n", benchRet); 
         

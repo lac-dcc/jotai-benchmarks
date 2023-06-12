@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ struct target_type *dm_table_get_immutable_target_type(struct dm_table *t)
 	return t->immutable_target_type;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,18 +75,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_t0 = 1;
+          int _len_t0 = 65025;
           struct dm_table * t = (struct dm_table *) malloc(_len_t0*sizeof(struct dm_table));
           for(int _i0 = 0; _i0 < _len_t0; _i0++) {
               int _len_t__i0__immutable_target_type0 = 1;
           t[_i0].immutable_target_type = (struct target_type *) malloc(_len_t__i0__immutable_target_type0*sizeof(struct target_type));
           for(int _j0 = 0; _j0 < _len_t__i0__immutable_target_type0; _j0++) {
-            t[_i0].immutable_target_type->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              t[_i0].immutable_target_type->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct target_type * benchRet = dm_table_get_immutable_target_type(t);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_t0; _aux++) {
@@ -100,7 +99,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_t0 = 100;
+          struct dm_table * t = (struct dm_table *) malloc(_len_t0*sizeof(struct dm_table));
+          for(int _i0 = 0; _i0 < _len_t0; _i0++) {
+              int _len_t__i0__immutable_target_type0 = 1;
+          t[_i0].immutable_target_type = (struct target_type *) malloc(_len_t__i0__immutable_target_type0*sizeof(struct target_type));
+          for(int _j0 = 0; _j0 < _len_t__i0__immutable_target_type0; _j0++) {
+              t[_i0].immutable_target_type->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct target_type * benchRet = dm_table_get_immutable_target_type(t);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_t0; _aux++) {
+          free(t[_aux].immutable_target_type);
+          }
+          free(t);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_t0 = 1;
+          struct dm_table * t = (struct dm_table *) malloc(_len_t0*sizeof(struct dm_table));
+          for(int _i0 = 0; _i0 < _len_t0; _i0++) {
+              int _len_t__i0__immutable_target_type0 = 1;
+          t[_i0].immutable_target_type = (struct target_type *) malloc(_len_t__i0__immutable_target_type0*sizeof(struct target_type));
+          for(int _j0 = 0; _j0 < _len_t__i0__immutable_target_type0; _j0++) {
+              t[_i0].immutable_target_type->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct target_type * benchRet = dm_table_get_immutable_target_type(t);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_t0; _aux++) {
+          free(t[_aux].immutable_target_type);
+          }
+          free(t);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static void halbtc_disable_low_power(struct btc_coexist *b
 	btcoexist->bt_info.bt_disable_low_pwr = low_pwr_disable;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,31 +83,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int low_pwr_disable = 100;
+        
           int _len_btcoexist0 = 1;
           struct btc_coexist * btcoexist = (struct btc_coexist *) malloc(_len_btcoexist0*sizeof(struct btc_coexist));
           for(int _i0 = 0; _i0 < _len_btcoexist0; _i0++) {
-            btcoexist[_i0].bt_info.bt_disable_low_pwr = ((-2 * (next_i()%2)) + 1) * next_i();
+              btcoexist[_i0].bt_info.bt_disable_low_pwr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          halbtc_disable_low_power(btcoexist,low_pwr_disable);
+          free(btcoexist);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int low_pwr_disable = 255;
+        
+          int _len_btcoexist0 = 65025;
+          struct btc_coexist * btcoexist = (struct btc_coexist *) malloc(_len_btcoexist0*sizeof(struct btc_coexist));
+          for(int _i0 = 0; _i0 < _len_btcoexist0; _i0++) {
+              btcoexist[_i0].bt_info.bt_disable_low_pwr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           halbtc_disable_low_power(btcoexist,low_pwr_disable);
           free(btcoexist);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int low_pwr_disable = 10;
+        
           int _len_btcoexist0 = 100;
           struct btc_coexist * btcoexist = (struct btc_coexist *) malloc(_len_btcoexist0*sizeof(struct btc_coexist));
           for(int _i0 = 0; _i0 < _len_btcoexist0; _i0++) {
-            btcoexist[_i0].bt_info.bt_disable_low_pwr = ((-2 * (next_i()%2)) + 1) * next_i();
+              btcoexist[_i0].bt_info.bt_disable_low_pwr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           halbtc_disable_low_power(btcoexist,low_pwr_disable);
           free(btcoexist);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int low_pwr_disable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_btcoexist0 = 1;
+          struct btc_coexist * btcoexist = (struct btc_coexist *) malloc(_len_btcoexist0*sizeof(struct btc_coexist));
+          for(int _i0 = 0; _i0 < _len_btcoexist0; _i0++) {
+              btcoexist[_i0].bt_info.bt_disable_low_pwr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          halbtc_disable_low_power(btcoexist,low_pwr_disable);
+          free(btcoexist);
+        
+        break;
+    }
     default:
         usage();
         break;

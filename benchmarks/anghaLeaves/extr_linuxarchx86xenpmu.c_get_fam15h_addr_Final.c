@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -88,12 +89,6 @@ __attribute__((used)) static inline uint32_t get_fam15h_addr(u32 addr)
 	return addr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -110,6 +105,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int addr = 100;
+        
           int benchRet = get_fam15h_addr(addr);
           printf("%d\n", benchRet); 
         
@@ -119,6 +115,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int addr = 255;
+        
           int benchRet = get_fam15h_addr(addr);
           printf("%d\n", benchRet); 
         
@@ -128,12 +125,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int addr = 10;
+        
           int benchRet = get_fam15h_addr(addr);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = get_fam15h_addr(addr);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

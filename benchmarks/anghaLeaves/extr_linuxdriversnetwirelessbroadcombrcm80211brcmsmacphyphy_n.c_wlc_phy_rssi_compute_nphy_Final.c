@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -99,12 +101,6 @@ wlc_phy_rssi_compute_nphy(struct brcms_phy *pi, struct d11rxhdr *rxh)
 	return rxpwr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -117,25 +113,30 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pi0 = 1;
+          int _len_pi0 = 65025;
           struct brcms_phy * pi = (struct brcms_phy *) malloc(_len_pi0*sizeof(struct brcms_phy));
           for(int _i0 = 0; _i0 < _len_pi0; _i0++) {
               int _len_pi__i0__sh0 = 1;
           pi[_i0].sh = (struct TYPE_2__ *) malloc(_len_pi__i0__sh0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_pi__i0__sh0; _j0++) {
-            pi[_i0].sh->rssi_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              pi[_i0].sh->rssi_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
-          int _len_rxh0 = 1;
+        
+          int _len_rxh0 = 65025;
           struct d11rxhdr * rxh = (struct d11rxhdr *) malloc(_len_rxh0*sizeof(struct d11rxhdr));
           for(int _i0 = 0; _i0 < _len_rxh0; _i0++) {
-            rxh[_i0].PhyRxStatus_1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxh[_i0].PhyRxStatus_0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxh[_i0].PhyRxStatus_2 = ((-2 * (next_i()%2)) + 1) * next_i();
+              rxh[_i0].PhyRxStatus_1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxh[_i0].PhyRxStatus_0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxh[_i0].PhyRxStatus_2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = wlc_phy_rssi_compute_nphy(pi,rxh);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_pi0; _aux++) {
@@ -146,7 +147,74 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_pi0 = 100;
+          struct brcms_phy * pi = (struct brcms_phy *) malloc(_len_pi0*sizeof(struct brcms_phy));
+          for(int _i0 = 0; _i0 < _len_pi0; _i0++) {
+              int _len_pi__i0__sh0 = 1;
+          pi[_i0].sh = (struct TYPE_2__ *) malloc(_len_pi__i0__sh0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_pi__i0__sh0; _j0++) {
+              pi[_i0].sh->rssi_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_rxh0 = 100;
+          struct d11rxhdr * rxh = (struct d11rxhdr *) malloc(_len_rxh0*sizeof(struct d11rxhdr));
+          for(int _i0 = 0; _i0 < _len_rxh0; _i0++) {
+              rxh[_i0].PhyRxStatus_1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxh[_i0].PhyRxStatus_0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxh[_i0].PhyRxStatus_2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = wlc_phy_rssi_compute_nphy(pi,rxh);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pi0; _aux++) {
+          free(pi[_aux].sh);
+          }
+          free(pi);
+          free(rxh);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_pi0 = 1;
+          struct brcms_phy * pi = (struct brcms_phy *) malloc(_len_pi0*sizeof(struct brcms_phy));
+          for(int _i0 = 0; _i0 < _len_pi0; _i0++) {
+              int _len_pi__i0__sh0 = 1;
+          pi[_i0].sh = (struct TYPE_2__ *) malloc(_len_pi__i0__sh0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_pi__i0__sh0; _j0++) {
+              pi[_i0].sh->rssi_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_rxh0 = 1;
+          struct d11rxhdr * rxh = (struct d11rxhdr *) malloc(_len_rxh0*sizeof(struct d11rxhdr));
+          for(int _i0 = 0; _i0 < _len_rxh0; _i0++) {
+              rxh[_i0].PhyRxStatus_1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxh[_i0].PhyRxStatus_0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxh[_i0].PhyRxStatus_2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = wlc_phy_rssi_compute_nphy(pi,rxh);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pi0; _aux++) {
+          free(pi[_aux].sh);
+          }
+          free(pi);
+          free(rxh);
+        
+        break;
+    }
     default:
         usage();
         break;

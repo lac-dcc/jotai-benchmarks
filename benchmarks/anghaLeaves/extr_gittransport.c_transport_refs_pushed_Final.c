@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -71,7 +72,6 @@ int transport_refs_pushed(struct ref *ref)
 	return 0;
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct ref *_allocate_ref(int length, struct ref *aux_ref[]) {
@@ -101,7 +101,6 @@ void _delete_ref(struct ref *aux_ref[], int aux_ref_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -114,11 +113,71 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // linked
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          struct ref * aux_ref[10000];
+          struct ref * ref = _allocate_ref(10000, aux_ref);
+        
+          int benchRet = transport_refs_pushed(ref);
+          printf("%d\n", benchRet); 
+          _delete_ref(aux_ref, 10000);
+        
+        break;
+    }
+
+
+    // empty
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           struct ref * aux_ref[1];
           struct ref * ref = _allocate_ref(1, aux_ref);
+        
           int benchRet = transport_refs_pushed(ref);
           printf("%d\n", benchRet); 
           _delete_ref(aux_ref, 1);

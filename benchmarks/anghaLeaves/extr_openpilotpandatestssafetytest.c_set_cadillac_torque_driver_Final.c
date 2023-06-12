@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ void set_cadillac_torque_driver(int min, int max){
   cadillac_torque_driver.max = max;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,7 +81,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int min = 100;
+        
           int max = 100;
+        
           set_cadillac_torque_driver(min,max);
         
         break;
@@ -95,7 +92,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int min = 255;
+        
           int max = 255;
+        
           set_cadillac_torque_driver(min,max);
         
         break;
@@ -104,12 +103,24 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int min = 10;
+        
           int max = 10;
+        
           set_cadillac_torque_driver(min,max);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          set_cadillac_torque_driver(min,max);
+        
+        break;
+    }
     default:
         usage();
         break;

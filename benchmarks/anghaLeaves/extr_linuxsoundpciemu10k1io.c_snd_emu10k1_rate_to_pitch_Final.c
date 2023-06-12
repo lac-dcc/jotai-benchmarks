@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -113,12 +114,6 @@ unsigned int snd_emu10k1_rate_to_pitch(unsigned int rate)
 	return 0;		/* Should never reach this point */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -131,28 +126,136 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 44
+          // dynamic_instructions_O0 : 180
+          // ------------------------------- 
+          // static_instructions_O1 : 27
+          // dynamic_instructions_O1 : 99
+          // ------------------------------- 
+          // static_instructions_O2 : 53
+          // dynamic_instructions_O2 : 53
+          // ------------------------------- 
+          // static_instructions_O3 : 53
+          // dynamic_instructions_O3 : 53
+          // ------------------------------- 
+          // static_instructions_Ofast : 53
+          // dynamic_instructions_Ofast : 53
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 98
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 99
+          // ------------------------------- 
+
           unsigned int rate = 100;
+        
           unsigned int benchRet = snd_emu10k1_rate_to_pitch(rate);
           printf("%u\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 44
+          // dynamic_instructions_O0 : 167
+          // ------------------------------- 
+          // static_instructions_O1 : 27
+          // dynamic_instructions_O1 : 92
+          // ------------------------------- 
+          // static_instructions_O2 : 50
+          // dynamic_instructions_O2 : 50
+          // ------------------------------- 
+          // static_instructions_O3 : 50
+          // dynamic_instructions_O3 : 50
+          // ------------------------------- 
+          // static_instructions_Ofast : 50
+          // dynamic_instructions_Ofast : 50
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 91
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 92
+          // ------------------------------- 
+
           unsigned int rate = 255;
+        
           unsigned int benchRet = snd_emu10k1_rate_to_pitch(rate);
           printf("%u\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 44
+          // dynamic_instructions_O0 : 232
+          // ------------------------------- 
+          // static_instructions_O1 : 27
+          // dynamic_instructions_O1 : 127
+          // ------------------------------- 
+          // static_instructions_O2 : 65
+          // dynamic_instructions_O2 : 65
+          // ------------------------------- 
+          // static_instructions_O3 : 65
+          // dynamic_instructions_O3 : 65
+          // ------------------------------- 
+          // static_instructions_Ofast : 65
+          // dynamic_instructions_Ofast : 65
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 126
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 127
+          // ------------------------------- 
+
           unsigned int rate = 10;
+        
+          unsigned int benchRet = snd_emu10k1_rate_to_pitch(rate);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 37
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          unsigned int rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           unsigned int benchRet = snd_emu10k1_rate_to_pitch(rate);
           printf("%u\n", benchRet); 
         

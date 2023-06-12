@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ __attribute__((used)) static inline void iowait_starve_find_max(struct iowait *w
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,25 +81,218 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int idx = 100;
+        
           int _len_w0 = 1;
           struct iowait * w = (struct iowait *) malloc(_len_w0*sizeof(struct iowait));
           for(int _i0 = 0; _i0 < _len_w0; _i0++) {
-            w[_i0].starved_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+              w[_i0].starved_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_max0 = 1;
           long * max = (long *) malloc(_len_max0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_max0; _i0++) {
             max[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_max_idx0 = 1;
           int * max_idx = (int *) malloc(_len_max_idx0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_max_idx0; _i0++) {
             max_idx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          iowait_starve_find_max(w,max,idx,max_idx);
+          free(w);
+          free(max);
+          free(max_idx);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int idx = 255;
+        
+          int _len_w0 = 65025;
+          struct iowait * w = (struct iowait *) malloc(_len_w0*sizeof(struct iowait));
+          for(int _i0 = 0; _i0 < _len_w0; _i0++) {
+              w[_i0].starved_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_max0 = 65025;
+          long * max = (long *) malloc(_len_max0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_max0; _i0++) {
+            max[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_max_idx0 = 65025;
+          int * max_idx = (int *) malloc(_len_max_idx0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_max_idx0; _i0++) {
+            max_idx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          iowait_starve_find_max(w,max,idx,max_idx);
+          free(w);
+          free(max);
+          free(max_idx);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int idx = 10;
+        
+          int _len_w0 = 100;
+          struct iowait * w = (struct iowait *) malloc(_len_w0*sizeof(struct iowait));
+          for(int _i0 = 0; _i0 < _len_w0; _i0++) {
+              w[_i0].starved_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_max0 = 100;
+          long * max = (long *) malloc(_len_max0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_max0; _i0++) {
+            max[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_max_idx0 = 100;
+          int * max_idx = (int *) malloc(_len_max_idx0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_max_idx0; _i0++) {
+            max_idx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          iowait_starve_find_max(w,max,idx,max_idx);
+          free(w);
+          free(max);
+          free(max_idx);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_w0 = 1;
+          struct iowait * w = (struct iowait *) malloc(_len_w0*sizeof(struct iowait));
+          for(int _i0 = 0; _i0 < _len_w0; _i0++) {
+              w[_i0].starved_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_max0 = 1;
+          long * max = (long *) malloc(_len_max0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_max0; _i0++) {
+            max[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_max_idx0 = 1;
+          int * max_idx = (int *) malloc(_len_max_idx0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_max_idx0; _i0++) {
+            max_idx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           iowait_starve_find_max(w,max,idx,max_idx);
           free(w);
           free(max);

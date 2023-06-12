@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ tmc_sg_table_buf_size(struct tmc_sg_table *sg_table)
 	return sg_table->data_pages.nr_pages << PAGE_SHIFT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,14 +78,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_sg_table0 = 1;
+          int _len_sg_table0 = 65025;
           struct tmc_sg_table * sg_table = (struct tmc_sg_table *) malloc(_len_sg_table0*sizeof(struct tmc_sg_table));
           for(int _i0 = 0; _i0 < _len_sg_table0; _i0++) {
-            sg_table[_i0].data_pages.nr_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+              sg_table[_i0].data_pages.nr_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           unsigned long benchRet = tmc_sg_table_buf_size(sg_table);
           printf("%lu\n", benchRet); 
           free(sg_table);
@@ -103,15 +101,34 @@ int main(int argc, char *argv[]) {
           int _len_sg_table0 = 100;
           struct tmc_sg_table * sg_table = (struct tmc_sg_table *) malloc(_len_sg_table0*sizeof(struct tmc_sg_table));
           for(int _i0 = 0; _i0 < _len_sg_table0; _i0++) {
-            sg_table[_i0].data_pages.nr_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+              sg_table[_i0].data_pages.nr_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           unsigned long benchRet = tmc_sg_table_buf_size(sg_table);
           printf("%lu\n", benchRet); 
           free(sg_table);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_sg_table0 = 1;
+          struct tmc_sg_table * sg_table = (struct tmc_sg_table *) malloc(_len_sg_table0*sizeof(struct tmc_sg_table));
+          for(int _i0 = 0; _i0 < _len_sg_table0; _i0++) {
+              sg_table[_i0].data_pages.nr_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          unsigned long benchRet = tmc_sg_table_buf_size(sg_table);
+          printf("%lu\n", benchRet); 
+          free(sg_table);
+        
+        break;
+    }
     default:
         usage();
         break;

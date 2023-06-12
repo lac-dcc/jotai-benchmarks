@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ ethport_can_be_up(struct bna_ethport *ethport)
 	return ready;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,19 +92,146 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_ethport0 = 1;
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_ethport0 = 65025;
           struct bna_ethport * ethport = (struct bna_ethport *) malloc(_len_ethport0*sizeof(struct bna_ethport));
           for(int _i0 = 0; _i0 < _len_ethport0; _i0++) {
-            ethport[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              ethport[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_ethport__i0__bna0 = 1;
           ethport[_i0].bna = (struct TYPE_4__ *) malloc(_len_ethport__i0__bna0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_ethport__i0__bna0; _j0++) {
-            ethport[_i0].bna->enet.type = ((-2 * (next_i()%2)) + 1) * next_i();
+              ethport[_i0].bna->enet.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
+          int benchRet = ethport_can_be_up(ethport);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ethport0; _aux++) {
+          free(ethport[_aux].bna);
+          }
+          free(ethport);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_ethport0 = 100;
+          struct bna_ethport * ethport = (struct bna_ethport *) malloc(_len_ethport0*sizeof(struct bna_ethport));
+          for(int _i0 = 0; _i0 < _len_ethport0; _i0++) {
+              ethport[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ethport__i0__bna0 = 1;
+          ethport[_i0].bna = (struct TYPE_4__ *) malloc(_len_ethport__i0__bna0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_ethport__i0__bna0; _j0++) {
+              ethport[_i0].bna->enet.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = ethport_can_be_up(ethport);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ethport0; _aux++) {
+          free(ethport[_aux].bna);
+          }
+          free(ethport);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_ethport0 = 1;
+          struct bna_ethport * ethport = (struct bna_ethport *) malloc(_len_ethport0*sizeof(struct bna_ethport));
+          for(int _i0 = 0; _i0 < _len_ethport0; _i0++) {
+              ethport[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ethport__i0__bna0 = 1;
+          ethport[_i0].bna = (struct TYPE_4__ *) malloc(_len_ethport__i0__bna0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_ethport__i0__bna0; _j0++) {
+              ethport[_i0].bna->enet.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
           int benchRet = ethport_can_be_up(ethport);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_ethport0; _aux++) {

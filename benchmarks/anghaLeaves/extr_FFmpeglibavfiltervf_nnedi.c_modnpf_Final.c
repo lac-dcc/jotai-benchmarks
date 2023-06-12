@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static int modnpf(const int m, const int n)
     return m + n - (m % n);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,31 +76,144 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           const int m = 100;
+        
           const int n = 100;
+        
           int benchRet = modnpf(m,n);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           const int m = 255;
+        
           const int n = 255;
+        
           int benchRet = modnpf(m,n);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           const int m = 10;
+        
           const int n = 10;
+        
+          int benchRet = modnpf(m,n);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          const int m = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          const int n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = modnpf(m,n);
           printf("%d\n", benchRet); 
         

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static inline void ext2fs_rb_set_color(struct rb_node *rb,
 	rb->rb_parent_color = (rb->rb_parent_color & ~1) | color;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,29 +75,164 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int color = 100;
+        
           int _len_rb0 = 1;
           struct rb_node * rb = (struct rb_node *) malloc(_len_rb0*sizeof(struct rb_node));
           for(int _i0 = 0; _i0 < _len_rb0; _i0++) {
-            rb[_i0].rb_parent_color = ((-2 * (next_i()%2)) + 1) * next_i();
+              rb[_i0].rb_parent_color = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ext2fs_rb_set_color(rb,color);
           free(rb);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int color = 255;
+        
+          int _len_rb0 = 65025;
+          struct rb_node * rb = (struct rb_node *) malloc(_len_rb0*sizeof(struct rb_node));
+          for(int _i0 = 0; _i0 < _len_rb0; _i0++) {
+              rb[_i0].rb_parent_color = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ext2fs_rb_set_color(rb,color);
+          free(rb);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int color = 10;
+        
           int _len_rb0 = 100;
           struct rb_node * rb = (struct rb_node *) malloc(_len_rb0*sizeof(struct rb_node));
           for(int _i0 = 0; _i0 < _len_rb0; _i0++) {
-            rb[_i0].rb_parent_color = ((-2 * (next_i()%2)) + 1) * next_i();
+              rb[_i0].rb_parent_color = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          ext2fs_rb_set_color(rb,color);
+          free(rb);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int color = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rb0 = 1;
+          struct rb_node * rb = (struct rb_node *) malloc(_len_rb0*sizeof(struct rb_node));
+          for(int _i0 = 0; _i0 < _len_rb0; _i0++) {
+              rb[_i0].rb_parent_color = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           ext2fs_rb_set_color(rb,color);
           free(rb);
         

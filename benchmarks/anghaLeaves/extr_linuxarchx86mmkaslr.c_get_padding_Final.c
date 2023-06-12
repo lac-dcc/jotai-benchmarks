@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline unsigned long get_padding(struct kaslr_memor
 	return (region->size_tb << TB_SHIFT);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_region0 = 1;
+          int _len_region0 = 65025;
           struct kaslr_memory_region * region = (struct kaslr_memory_region *) malloc(_len_region0*sizeof(struct kaslr_memory_region));
           for(int _i0 = 0; _i0 < _len_region0; _i0++) {
-            region[_i0].size_tb = ((-2 * (next_i()%2)) + 1) * next_i();
+              region[_i0].size_tb = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = get_padding(region);
           printf("%lu\n", benchRet); 
           free(region);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_region0 = 100;
           struct kaslr_memory_region * region = (struct kaslr_memory_region *) malloc(_len_region0*sizeof(struct kaslr_memory_region));
           for(int _i0 = 0; _i0 < _len_region0; _i0++) {
-            region[_i0].size_tb = ((-2 * (next_i()%2)) + 1) * next_i();
+              region[_i0].size_tb = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = get_padding(region);
           printf("%lu\n", benchRet); 
           free(region);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_region0 = 1;
+          struct kaslr_memory_region * region = (struct kaslr_memory_region *) malloc(_len_region0*sizeof(struct kaslr_memory_region));
+          for(int _i0 = 0; _i0 < _len_region0; _i0++) {
+              region[_i0].size_tb = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = get_padding(region);
+          printf("%lu\n", benchRet); 
+          free(region);
+        
+        break;
+    }
     default:
         usage();
         break;

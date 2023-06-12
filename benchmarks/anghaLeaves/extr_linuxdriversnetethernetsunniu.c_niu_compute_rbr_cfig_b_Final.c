@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -160,12 +162,6 @@ __attribute__((used)) static int niu_compute_rbr_cfig_b(struct rx_ring_info *rp,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -178,24 +174,160 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_rp0 = 1;
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_rp0 = 65025;
           struct rx_ring_info * rp = (struct rx_ring_info *) malloc(_len_rp0*sizeof(struct rx_ring_info));
           for(int _i0 = 0; _i0 < _len_rp0; _i0++) {
-            rp[_i0].rbr_block_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              rp[_i0].rbr_block_size = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_rp__i0__rbr_sizes0 = 1;
           rp[_i0].rbr_sizes = (int *) malloc(_len_rp__i0__rbr_sizes0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_rp__i0__rbr_sizes0; _j0++) {
             rp[_i0].rbr_sizes[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int _len_ret0 = 65025;
+          int * ret = (int *) malloc(_len_ret0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ret0; _i0++) {
+            ret[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = niu_compute_rbr_cfig_b(rp,ret);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_rp0; _aux++) {
+          free(rp[_aux].rbr_sizes);
+          }
+          free(rp);
+          free(ret);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_rp0 = 100;
+          struct rx_ring_info * rp = (struct rx_ring_info *) malloc(_len_rp0*sizeof(struct rx_ring_info));
+          for(int _i0 = 0; _i0 < _len_rp0; _i0++) {
+              rp[_i0].rbr_block_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_rp__i0__rbr_sizes0 = 1;
+          rp[_i0].rbr_sizes = (int *) malloc(_len_rp__i0__rbr_sizes0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_rp__i0__rbr_sizes0; _j0++) {
+            rp[_i0].rbr_sizes[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_ret0 = 100;
+          int * ret = (int *) malloc(_len_ret0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ret0; _i0++) {
+            ret[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = niu_compute_rbr_cfig_b(rp,ret);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_rp0; _aux++) {
+          free(rp[_aux].rbr_sizes);
+          }
+          free(rp);
+          free(ret);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_rp0 = 1;
+          struct rx_ring_info * rp = (struct rx_ring_info *) malloc(_len_rp0*sizeof(struct rx_ring_info));
+          for(int _i0 = 0; _i0 < _len_rp0; _i0++) {
+              rp[_i0].rbr_block_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_rp__i0__rbr_sizes0 = 1;
+          rp[_i0].rbr_sizes = (int *) malloc(_len_rp__i0__rbr_sizes0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_rp__i0__rbr_sizes0; _j0++) {
+            rp[_i0].rbr_sizes[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int _len_ret0 = 1;
           int * ret = (int *) malloc(_len_ret0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_ret0; _i0++) {
             ret[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = niu_compute_rbr_cfig_b(rp,ret);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_rp0; _aux++) {

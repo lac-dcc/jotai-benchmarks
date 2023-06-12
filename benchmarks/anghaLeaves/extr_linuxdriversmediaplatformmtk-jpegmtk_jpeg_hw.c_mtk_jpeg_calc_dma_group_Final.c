@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -88,12 +90,6 @@ __attribute__((used)) static void mtk_jpeg_calc_dma_group(struct mtk_jpeg_dec_pa
 		param->dma_last_mcu = param->dma_mcu;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,19 +102,132 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 59
+          // dynamic_instructions_O0 : 59
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 30
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 30
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 30
+          // ------------------------------- 
+          // static_instructions_Os : 31
+          // dynamic_instructions_Os : 31
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
+          int _len_param0 = 65025;
+          struct mtk_jpeg_dec_param * param = (struct mtk_jpeg_dec_param *) malloc(_len_param0*sizeof(struct mtk_jpeg_dec_param));
+          for(int _i0 = 0; _i0 < _len_param0; _i0++) {
+              param[_i0].src_color = ((-2 * (next_i()%2)) + 1) * next_i();
+          param[_i0].dst_fourcc = ((-2 * (next_i()%2)) + 1) * next_i();
+          param[_i0].dma_mcu = ((-2 * (next_i()%2)) + 1) * next_i();
+          param[_i0].dma_group = ((-2 * (next_i()%2)) + 1) * next_i();
+          param[_i0].mcu_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          param[_i0].dma_last_mcu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mtk_jpeg_calc_dma_group(param);
+          free(param);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 59
+          // dynamic_instructions_O0 : 59
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 30
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 30
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 30
+          // ------------------------------- 
+          // static_instructions_Os : 31
+          // dynamic_instructions_Os : 31
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
+          int _len_param0 = 100;
+          struct mtk_jpeg_dec_param * param = (struct mtk_jpeg_dec_param *) malloc(_len_param0*sizeof(struct mtk_jpeg_dec_param));
+          for(int _i0 = 0; _i0 < _len_param0; _i0++) {
+              param[_i0].src_color = ((-2 * (next_i()%2)) + 1) * next_i();
+          param[_i0].dst_fourcc = ((-2 * (next_i()%2)) + 1) * next_i();
+          param[_i0].dma_mcu = ((-2 * (next_i()%2)) + 1) * next_i();
+          param[_i0].dma_group = ((-2 * (next_i()%2)) + 1) * next_i();
+          param[_i0].mcu_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          param[_i0].dma_last_mcu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mtk_jpeg_calc_dma_group(param);
+          free(param);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 59
+          // dynamic_instructions_O0 : 59
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 30
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 30
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 30
+          // ------------------------------- 
+          // static_instructions_Os : 31
+          // dynamic_instructions_Os : 31
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
           int _len_param0 = 1;
           struct mtk_jpeg_dec_param * param = (struct mtk_jpeg_dec_param *) malloc(_len_param0*sizeof(struct mtk_jpeg_dec_param));
           for(int _i0 = 0; _i0 < _len_param0; _i0++) {
-            param[_i0].src_color = ((-2 * (next_i()%2)) + 1) * next_i();
-        param[_i0].dst_fourcc = ((-2 * (next_i()%2)) + 1) * next_i();
-        param[_i0].dma_mcu = ((-2 * (next_i()%2)) + 1) * next_i();
-        param[_i0].dma_group = ((-2 * (next_i()%2)) + 1) * next_i();
-        param[_i0].mcu_w = ((-2 * (next_i()%2)) + 1) * next_i();
-        param[_i0].dma_last_mcu = ((-2 * (next_i()%2)) + 1) * next_i();
+              param[_i0].src_color = ((-2 * (next_i()%2)) + 1) * next_i();
+          param[_i0].dst_fourcc = ((-2 * (next_i()%2)) + 1) * next_i();
+          param[_i0].dma_mcu = ((-2 * (next_i()%2)) + 1) * next_i();
+          param[_i0].dma_group = ((-2 * (next_i()%2)) + 1) * next_i();
+          param[_i0].mcu_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          param[_i0].dma_last_mcu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           mtk_jpeg_calc_dma_group(param);
           free(param);
         

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static void frag_set_pending_idx(skb_frag_t *frag, u16 pen
 	frag->page_offset = pending_idx;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,29 +78,164 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int pending_idx = 100;
+        
           int _len_frag0 = 1;
           struct TYPE_3__ * frag = (struct TYPE_3__ *) malloc(_len_frag0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_frag0; _i0++) {
-            frag[_i0].page_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              frag[_i0].page_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           frag_set_pending_idx(frag,pending_idx);
           free(frag);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int pending_idx = 255;
+        
+          int _len_frag0 = 65025;
+          struct TYPE_3__ * frag = (struct TYPE_3__ *) malloc(_len_frag0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_frag0; _i0++) {
+              frag[_i0].page_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          frag_set_pending_idx(frag,pending_idx);
+          free(frag);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int pending_idx = 10;
+        
           int _len_frag0 = 100;
           struct TYPE_3__ * frag = (struct TYPE_3__ *) malloc(_len_frag0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_frag0; _i0++) {
-            frag[_i0].page_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              frag[_i0].page_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          frag_set_pending_idx(frag,pending_idx);
+          free(frag);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int pending_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_frag0 = 1;
+          struct TYPE_3__ * frag = (struct TYPE_3__ *) malloc(_len_frag0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_frag0; _i0++) {
+              frag[_i0].page_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           frag_set_pending_idx(frag,pending_idx);
           free(frag);
         

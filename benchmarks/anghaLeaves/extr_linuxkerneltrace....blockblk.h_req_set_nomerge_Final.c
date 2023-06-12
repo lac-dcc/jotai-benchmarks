@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static inline void req_set_nomerge(struct request_queue *q
 		q->last_merge = NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,23 +78,161 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_q0 = 65025;
+          struct request_queue * q = (struct request_queue *) malloc(_len_q0*sizeof(struct request_queue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              int _len_q__i0__last_merge0 = 1;
+          q[_i0].last_merge = (struct request *) malloc(_len_q__i0__last_merge0*sizeof(struct request));
+          for(int _j0 = 0; _j0 < _len_q__i0__last_merge0; _j0++) {
+              q[_i0].last_merge->cmd_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_req0 = 65025;
+          struct request * req = (struct request *) malloc(_len_req0*sizeof(struct request));
+          for(int _i0 = 0; _i0 < _len_req0; _i0++) {
+              req[_i0].cmd_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          req_set_nomerge(q,req);
+          for(int _aux = 0; _aux < _len_q0; _aux++) {
+          free(q[_aux].last_merge);
+          }
+          free(q);
+          free(req);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_q0 = 100;
+          struct request_queue * q = (struct request_queue *) malloc(_len_q0*sizeof(struct request_queue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              int _len_q__i0__last_merge0 = 1;
+          q[_i0].last_merge = (struct request *) malloc(_len_q__i0__last_merge0*sizeof(struct request));
+          for(int _j0 = 0; _j0 < _len_q__i0__last_merge0; _j0++) {
+              q[_i0].last_merge->cmd_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_req0 = 100;
+          struct request * req = (struct request *) malloc(_len_req0*sizeof(struct request));
+          for(int _i0 = 0; _i0 < _len_req0; _i0++) {
+              req[_i0].cmd_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          req_set_nomerge(q,req);
+          for(int _aux = 0; _aux < _len_q0; _aux++) {
+          free(q[_aux].last_merge);
+          }
+          free(q);
+          free(req);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_q0 = 1;
           struct request_queue * q = (struct request_queue *) malloc(_len_q0*sizeof(struct request_queue));
           for(int _i0 = 0; _i0 < _len_q0; _i0++) {
               int _len_q__i0__last_merge0 = 1;
           q[_i0].last_merge = (struct request *) malloc(_len_q__i0__last_merge0*sizeof(struct request));
           for(int _j0 = 0; _j0 < _len_q__i0__last_merge0; _j0++) {
-            q[_i0].last_merge->cmd_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              q[_i0].last_merge->cmd_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_req0 = 1;
           struct request * req = (struct request *) malloc(_len_req0*sizeof(struct request));
           for(int _i0 = 0; _i0 < _len_req0; _i0++) {
-            req[_i0].cmd_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              req[_i0].cmd_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           req_set_nomerge(q,req);
           for(int _aux = 0; _aux < _len_q0; _aux++) {
           free(q[_aux].last_merge);

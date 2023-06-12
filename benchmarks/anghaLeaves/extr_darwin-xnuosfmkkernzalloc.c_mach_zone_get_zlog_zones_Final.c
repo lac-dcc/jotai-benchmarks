@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -114,12 +117,6 @@ mach_zone_get_zlog_zones(
 #endif /* DEBUG || DEVELOPMENT */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -136,16 +133,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int host = 100;
+        
           int _len_namesp0 = 1;
           int * namesp = (int *) malloc(_len_namesp0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_namesp0; _i0++) {
             namesp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_namesCntp0 = 1;
           int * namesCntp = (int *) malloc(_len_namesCntp0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_namesCntp0; _i0++) {
             namesCntp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = mach_zone_get_zlog_zones(host,namesp,namesCntp);
           printf("%d\n", benchRet); 
           free(namesp);
@@ -153,7 +153,78 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int host = 255;
+        
+          int _len_namesp0 = 65025;
+          int * namesp = (int *) malloc(_len_namesp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_namesp0; _i0++) {
+            namesp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_namesCntp0 = 65025;
+          int * namesCntp = (int *) malloc(_len_namesCntp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_namesCntp0; _i0++) {
+            namesCntp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = mach_zone_get_zlog_zones(host,namesp,namesCntp);
+          printf("%d\n", benchRet); 
+          free(namesp);
+          free(namesCntp);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int host = 10;
+        
+          int _len_namesp0 = 100;
+          int * namesp = (int *) malloc(_len_namesp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_namesp0; _i0++) {
+            namesp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_namesCntp0 = 100;
+          int * namesCntp = (int *) malloc(_len_namesCntp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_namesCntp0; _i0++) {
+            namesCntp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = mach_zone_get_zlog_zones(host,namesp,namesCntp);
+          printf("%d\n", benchRet); 
+          free(namesp);
+          free(namesCntp);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int host = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_namesp0 = 1;
+          int * namesp = (int *) malloc(_len_namesp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_namesp0; _i0++) {
+            namesp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_namesCntp0 = 1;
+          int * namesCntp = (int *) malloc(_len_namesCntp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_namesCntp0; _i0++) {
+            namesCntp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = mach_zone_get_zlog_zones(host,namesp,namesCntp);
+          printf("%d\n", benchRet); 
+          free(namesp);
+          free(namesCntp);
+        
+        break;
+    }
     default:
         usage();
         break;

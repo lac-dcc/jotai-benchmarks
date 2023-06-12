@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static void hclge_reset_partial_32bit_counter(struct hclge
 	stats->pkt_curr_buf_tc7_cnt = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,22 +82,141 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_stats0 = 65025;
+          struct hclge_32_bit_stats * stats = (struct hclge_32_bit_stats *) malloc(_len_stats0*sizeof(struct hclge_32_bit_stats));
+          for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
+              stats[_i0].pkt_curr_buf_tc7_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].pkt_curr_buf_tc6_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].pkt_curr_buf_tc5_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].pkt_curr_buf_tc4_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].pkt_curr_buf_tc3_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].pkt_curr_buf_tc2_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].pkt_curr_buf_tc1_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].pkt_curr_buf_tc0_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].pkt_curr_buf_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          hclge_reset_partial_32bit_counter(stats);
+          free(stats);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_stats0 = 100;
+          struct hclge_32_bit_stats * stats = (struct hclge_32_bit_stats *) malloc(_len_stats0*sizeof(struct hclge_32_bit_stats));
+          for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
+              stats[_i0].pkt_curr_buf_tc7_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].pkt_curr_buf_tc6_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].pkt_curr_buf_tc5_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].pkt_curr_buf_tc4_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].pkt_curr_buf_tc3_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].pkt_curr_buf_tc2_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].pkt_curr_buf_tc1_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].pkt_curr_buf_tc0_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].pkt_curr_buf_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          hclge_reset_partial_32bit_counter(stats);
+          free(stats);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_stats0 = 1;
           struct hclge_32_bit_stats * stats = (struct hclge_32_bit_stats *) malloc(_len_stats0*sizeof(struct hclge_32_bit_stats));
           for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
-            stats[_i0].pkt_curr_buf_tc7_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].pkt_curr_buf_tc6_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].pkt_curr_buf_tc5_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].pkt_curr_buf_tc4_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].pkt_curr_buf_tc3_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].pkt_curr_buf_tc2_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].pkt_curr_buf_tc1_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].pkt_curr_buf_tc0_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].pkt_curr_buf_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+              stats[_i0].pkt_curr_buf_tc7_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].pkt_curr_buf_tc6_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].pkt_curr_buf_tc5_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].pkt_curr_buf_tc4_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].pkt_curr_buf_tc3_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].pkt_curr_buf_tc2_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].pkt_curr_buf_tc1_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].pkt_curr_buf_tc0_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].pkt_curr_buf_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           hclge_reset_partial_32bit_counter(stats);
           free(stats);
         

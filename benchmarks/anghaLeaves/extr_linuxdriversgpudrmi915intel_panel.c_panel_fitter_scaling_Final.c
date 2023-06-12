@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ __attribute__((used)) static inline u32 panel_fitter_scaling(u32 source, u32 tar
 	return (FACTOR * ratio + FACTOR/2) / FACTOR;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,7 +87,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int source = 100;
+        
           int target = 100;
+        
           int benchRet = panel_fitter_scaling(source,target);
           printf("%d\n", benchRet); 
         
@@ -102,7 +99,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int source = 255;
+        
           int target = 255;
+        
           int benchRet = panel_fitter_scaling(source,target);
           printf("%d\n", benchRet); 
         
@@ -112,13 +111,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int source = 10;
+        
           int target = 10;
+        
           int benchRet = panel_fitter_scaling(source,target);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int source = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int target = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = panel_fitter_scaling(source,target);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

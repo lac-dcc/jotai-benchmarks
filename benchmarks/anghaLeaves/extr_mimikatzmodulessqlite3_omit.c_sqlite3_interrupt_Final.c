@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ void sqlite3_interrupt(sqlite3 *db){
   db->u1.isInterrupted = 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,14 +83,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_db0 = 1;
+          int _len_db0 = 65025;
           struct TYPE_5__ * db = (struct TYPE_5__ *) malloc(_len_db0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_db0; _i0++) {
-            db[_i0].u1.isInterrupted = ((-2 * (next_i()%2)) + 1) * next_i();
+              db[_i0].u1.isInterrupted = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           sqlite3_interrupt(db);
           free(db);
         
@@ -107,14 +105,32 @@ int main(int argc, char *argv[]) {
           int _len_db0 = 100;
           struct TYPE_5__ * db = (struct TYPE_5__ *) malloc(_len_db0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_db0; _i0++) {
-            db[_i0].u1.isInterrupted = ((-2 * (next_i()%2)) + 1) * next_i();
+              db[_i0].u1.isInterrupted = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           sqlite3_interrupt(db);
           free(db);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_db0 = 1;
+          struct TYPE_5__ * db = (struct TYPE_5__ *) malloc(_len_db0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_db0; _i0++) {
+              db[_i0].u1.isInterrupted = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          sqlite3_interrupt(db);
+          free(db);
+        
+        break;
+    }
     default:
         usage();
         break;

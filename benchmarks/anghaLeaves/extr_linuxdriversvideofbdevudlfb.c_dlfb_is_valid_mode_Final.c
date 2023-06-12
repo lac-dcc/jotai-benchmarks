@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static int dlfb_is_valid_mode(struct fb_videomode *mode, s
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,20 +78,24 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_mode0 = 1;
+          int _len_mode0 = 65025;
           struct fb_videomode * mode = (struct fb_videomode *) malloc(_len_mode0*sizeof(struct fb_videomode));
           for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
-            mode[_i0].xres = ((-2 * (next_i()%2)) + 1) * next_i();
-        mode[_i0].yres = ((-2 * (next_i()%2)) + 1) * next_i();
+              mode[_i0].xres = ((-2 * (next_i()%2)) + 1) * next_i();
+          mode[_i0].yres = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_dlfb0 = 1;
+        
+          int _len_dlfb0 = 65025;
           struct dlfb_data * dlfb = (struct dlfb_data *) malloc(_len_dlfb0*sizeof(struct dlfb_data));
           for(int _i0 = 0; _i0 < _len_dlfb0; _i0++) {
-            dlfb[_i0].sku_pixel_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+              dlfb[_i0].sku_pixel_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dlfb_is_valid_mode(mode,dlfb);
           printf("%d\n", benchRet); 
           free(mode);
@@ -103,7 +103,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_mode0 = 100;
+          struct fb_videomode * mode = (struct fb_videomode *) malloc(_len_mode0*sizeof(struct fb_videomode));
+          for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
+              mode[_i0].xres = ((-2 * (next_i()%2)) + 1) * next_i();
+          mode[_i0].yres = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dlfb0 = 100;
+          struct dlfb_data * dlfb = (struct dlfb_data *) malloc(_len_dlfb0*sizeof(struct dlfb_data));
+          for(int _i0 = 0; _i0 < _len_dlfb0; _i0++) {
+              dlfb[_i0].sku_pixel_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dlfb_is_valid_mode(mode,dlfb);
+          printf("%d\n", benchRet); 
+          free(mode);
+          free(dlfb);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_mode0 = 1;
+          struct fb_videomode * mode = (struct fb_videomode *) malloc(_len_mode0*sizeof(struct fb_videomode));
+          for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
+              mode[_i0].xres = ((-2 * (next_i()%2)) + 1) * next_i();
+          mode[_i0].yres = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dlfb0 = 1;
+          struct dlfb_data * dlfb = (struct dlfb_data *) malloc(_len_dlfb0*sizeof(struct dlfb_data));
+          for(int _i0 = 0; _i0 < _len_dlfb0; _i0++) {
+              dlfb[_i0].sku_pixel_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dlfb_is_valid_mode(mode,dlfb);
+          printf("%d\n", benchRet); 
+          free(mode);
+          free(dlfb);
+        
+        break;
+    }
     default:
         usage();
         break;

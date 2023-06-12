@@ -62,12 +62,6 @@ __attribute__((used)) static inline DWORD d3dx9_effect_version(DWORD major, DWOR
     return (0xfeff0000 | ((major) << 8) | (minor));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,7 +78,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int major = 100;
+        
           int minor = 100;
+        
           int benchRet = d3dx9_effect_version(major,minor);
           printf("%d\n", benchRet); 
         
@@ -94,7 +90,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int major = 255;
+        
           int minor = 255;
+        
           int benchRet = d3dx9_effect_version(major,minor);
           printf("%d\n", benchRet); 
         
@@ -104,13 +102,14 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int major = 10;
+        
           int minor = 10;
+        
           int benchRet = d3dx9_effect_version(major,minor);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

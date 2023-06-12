@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static inline u64 update_tsk_timer(unsigned long *tsk_vtim
 	return delta;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,11 +83,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long new = 100;
+        
           int _len_tsk_vtime0 = 1;
           unsigned long * tsk_vtime = (unsigned long *) malloc(_len_tsk_vtime0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_tsk_vtime0; _i0++) {
             tsk_vtime[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          unsigned long benchRet = update_tsk_timer(tsk_vtime,new);
+          printf("%lu\n", benchRet); 
+          free(tsk_vtime);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned long new = 255;
+        
+          int _len_tsk_vtime0 = 65025;
+          unsigned long * tsk_vtime = (unsigned long *) malloc(_len_tsk_vtime0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_tsk_vtime0; _i0++) {
+            tsk_vtime[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           unsigned long benchRet = update_tsk_timer(tsk_vtime,new);
           printf("%lu\n", benchRet); 
           free(tsk_vtime);
@@ -99,21 +114,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned long new = 10;
+        
           int _len_tsk_vtime0 = 100;
           unsigned long * tsk_vtime = (unsigned long *) malloc(_len_tsk_vtime0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_tsk_vtime0; _i0++) {
             tsk_vtime[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned long benchRet = update_tsk_timer(tsk_vtime,new);
           printf("%lu\n", benchRet); 
           free(tsk_vtime);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long new = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_tsk_vtime0 = 1;
+          unsigned long * tsk_vtime = (unsigned long *) malloc(_len_tsk_vtime0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_tsk_vtime0; _i0++) {
+            tsk_vtime[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned long benchRet = update_tsk_timer(tsk_vtime,new);
+          printf("%lu\n", benchRet); 
+          free(tsk_vtime);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline void json_decode_ascend(json_parse_t *json)
     json->current_depth--;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_json0 = 1;
+          int _len_json0 = 65025;
           struct TYPE_3__ * json = (struct TYPE_3__ *) malloc(_len_json0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_json0; _i0++) {
-            json[_i0].current_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+              json[_i0].current_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           json_decode_ascend(json);
           free(json);
         
@@ -100,14 +97,30 @@ int main(int argc, char *argv[]) {
           int _len_json0 = 100;
           struct TYPE_3__ * json = (struct TYPE_3__ *) malloc(_len_json0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_json0; _i0++) {
-            json[_i0].current_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+              json[_i0].current_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           json_decode_ascend(json);
           free(json);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_json0 = 1;
+          struct TYPE_3__ * json = (struct TYPE_3__ *) malloc(_len_json0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_json0; _i0++) {
+              json[_i0].current_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          json_decode_ascend(json);
+          free(json);
+        
+        break;
+    }
     default:
         usage();
         break;

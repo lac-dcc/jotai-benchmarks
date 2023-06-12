@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ void set_nospam(Friend_Requests *fr, uint32_t num)
     fr->nospam = num;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,31 +82,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int num = 100;
+        
           int _len_fr0 = 1;
           struct TYPE_3__ * fr = (struct TYPE_3__ *) malloc(_len_fr0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_fr0; _i0++) {
-            fr[_i0].nospam = ((-2 * (next_i()%2)) + 1) * next_i();
+              fr[_i0].nospam = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          set_nospam(fr,num);
+          free(fr);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int num = 255;
+        
+          int _len_fr0 = 65025;
+          struct TYPE_3__ * fr = (struct TYPE_3__ *) malloc(_len_fr0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_fr0; _i0++) {
+              fr[_i0].nospam = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           set_nospam(fr,num);
           free(fr);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int num = 10;
+        
           int _len_fr0 = 100;
           struct TYPE_3__ * fr = (struct TYPE_3__ *) malloc(_len_fr0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_fr0; _i0++) {
-            fr[_i0].nospam = ((-2 * (next_i()%2)) + 1) * next_i();
+              fr[_i0].nospam = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           set_nospam(fr,num);
           free(fr);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fr0 = 1;
+          struct TYPE_3__ * fr = (struct TYPE_3__ *) malloc(_len_fr0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_fr0; _i0++) {
+              fr[_i0].nospam = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_nospam(fr,num);
+          free(fr);
+        
+        break;
+    }
     default:
         usage();
         break;

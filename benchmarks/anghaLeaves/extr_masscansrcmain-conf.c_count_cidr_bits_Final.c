@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -72,12 +72,6 @@ count_cidr_bits(struct Range range)
     return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,12 +84,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // empty
     case 0:
     {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 842
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 621
+          // ------------------------------- 
+          // static_instructions_O2 : 34
+          // dynamic_instructions_O2 : 289
+          // ------------------------------- 
+          // static_instructions_O3 : 34
+          // dynamic_instructions_O3 : 289
+          // ------------------------------- 
+          // static_instructions_Ofast : 34
+          // dynamic_instructions_Ofast : 289
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 305
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 308
+          // ------------------------------- 
+
           struct Range range;
-        range.begin = ((-2 * (next_i()%2)) + 1) * next_i();
-        range.end = ((-2 * (next_i()%2)) + 1) * next_i();
+          range.begin = ((-2 * (next_i()%2)) + 1) * next_i();
+          range.end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           unsigned int benchRet = count_cidr_bits(range);
           printf("%u\n", benchRet); 
         

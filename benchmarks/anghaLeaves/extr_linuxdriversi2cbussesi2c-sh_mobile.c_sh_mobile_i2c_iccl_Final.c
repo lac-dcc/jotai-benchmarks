@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +73,6 @@ __attribute__((used)) static u32 sh_mobile_i2c_iccl(unsigned long count_khz, u32
 	return (((count_khz * (tLOW + tf)) + 5000) / 10000);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,34 +85,152 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           unsigned long count_khz = 100;
+        
           unsigned long tLOW = 100;
+        
           unsigned long tf = 100;
+        
           unsigned long benchRet = sh_mobile_i2c_iccl(count_khz,tLOW,tf);
           printf("%lu\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           unsigned long count_khz = 255;
+        
           unsigned long tLOW = 255;
+        
           unsigned long tf = 255;
+        
           unsigned long benchRet = sh_mobile_i2c_iccl(count_khz,tLOW,tf);
           printf("%lu\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           unsigned long count_khz = 10;
+        
           unsigned long tLOW = 10;
+        
           unsigned long tf = 10;
+        
+          unsigned long benchRet = sh_mobile_i2c_iccl(count_khz,tLOW,tf);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          unsigned long count_khz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long tLOW = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long tf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           unsigned long benchRet = sh_mobile_i2c_iccl(count_khz,tLOW,tf);
           printf("%lu\n", benchRet); 
         

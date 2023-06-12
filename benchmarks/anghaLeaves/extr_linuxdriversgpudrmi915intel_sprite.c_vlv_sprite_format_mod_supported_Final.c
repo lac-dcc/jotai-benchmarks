@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -103,12 +105,6 @@ __attribute__((used)) static bool vlv_sprite_format_mod_supported(struct drm_pla
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -121,32 +117,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int format = 100;
+        
           int modifier = 100;
+        
           int _len__plane0 = 1;
           struct drm_plane * _plane = (struct drm_plane *) malloc(_len__plane0*sizeof(struct drm_plane));
           for(int _i0 = 0; _i0 < _len__plane0; _i0++) {
-            _plane[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              _plane[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = vlv_sprite_format_mod_supported(_plane,format,modifier);
           printf("%d\n", benchRet); 
           free(_plane);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int format = 255;
+        
+          int modifier = 255;
+        
+          int _len__plane0 = 65025;
+          struct drm_plane * _plane = (struct drm_plane *) malloc(_len__plane0*sizeof(struct drm_plane));
+          for(int _i0 = 0; _i0 < _len__plane0; _i0++) {
+              _plane[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vlv_sprite_format_mod_supported(_plane,format,modifier);
+          printf("%d\n", benchRet); 
+          free(_plane);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int format = 10;
+        
           int modifier = 10;
+        
           int _len__plane0 = 100;
           struct drm_plane * _plane = (struct drm_plane *) malloc(_len__plane0*sizeof(struct drm_plane));
           for(int _i0 = 0; _i0 < _len__plane0; _i0++) {
-            _plane[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              _plane[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = vlv_sprite_format_mod_supported(_plane,format,modifier);
+          printf("%d\n", benchRet); 
+          free(_plane);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int modifier = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len__plane0 = 1;
+          struct drm_plane * _plane = (struct drm_plane *) malloc(_len__plane0*sizeof(struct drm_plane));
+          for(int _i0 = 0; _i0 < _len__plane0; _i0++) {
+              _plane[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = vlv_sprite_format_mod_supported(_plane,format,modifier);
           printf("%d\n", benchRet); 
           free(_plane);

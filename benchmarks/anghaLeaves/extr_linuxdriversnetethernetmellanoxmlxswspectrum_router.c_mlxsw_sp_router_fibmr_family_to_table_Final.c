@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ mlxsw_sp_router_fibmr_family_to_table(struct mlxsw_sp_vr *vr, int family)
 		return vr->mr_table[MLXSW_SP_L3_PROTO_IPV6];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,6 +87,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int family = 100;
+        
           int _len_vr0 = 1;
           struct mlxsw_sp_vr * vr = (struct mlxsw_sp_vr *) malloc(_len_vr0*sizeof(struct mlxsw_sp_vr));
           for(int _i0 = 0; _i0 < _len_vr0; _i0++) {
@@ -99,10 +97,13 @@ int main(int argc, char *argv[]) {
             int _len_vr__i0__mr_table1 = 1;
             vr[_i0].mr_table[_j0] = (struct mlxsw_sp_mr_table *) malloc(_len_vr__i0__mr_table1*sizeof(struct mlxsw_sp_mr_table));
             for(int _j1 = 0; _j1 < _len_vr__i0__mr_table1; _j1++) {
-              vr[_i0].mr_table[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+                vr[_i0].mr_table[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           }
+        
           struct mlxsw_sp_mr_table * benchRet = mlxsw_sp_router_fibmr_family_to_table(vr,family);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_vr0; _aux++) {
@@ -113,7 +114,99 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int family = 255;
+        
+          int _len_vr0 = 65025;
+          struct mlxsw_sp_vr * vr = (struct mlxsw_sp_vr *) malloc(_len_vr0*sizeof(struct mlxsw_sp_vr));
+          for(int _i0 = 0; _i0 < _len_vr0; _i0++) {
+              int _len_vr__i0__mr_table0 = 1;
+          vr[_i0].mr_table = (struct mlxsw_sp_mr_table **) malloc(_len_vr__i0__mr_table0*sizeof(struct mlxsw_sp_mr_table *));
+          for(int _j0 = 0; _j0 < _len_vr__i0__mr_table0; _j0++) {
+            int _len_vr__i0__mr_table1 = 1;
+            vr[_i0].mr_table[_j0] = (struct mlxsw_sp_mr_table *) malloc(_len_vr__i0__mr_table1*sizeof(struct mlxsw_sp_mr_table));
+            for(int _j1 = 0; _j1 < _len_vr__i0__mr_table1; _j1++) {
+                vr[_i0].mr_table[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          struct mlxsw_sp_mr_table * benchRet = mlxsw_sp_router_fibmr_family_to_table(vr,family);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_vr0; _aux++) {
+          free(*(vr[_aux].mr_table));
+        free(vr[_aux].mr_table);
+          }
+          free(vr);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int family = 10;
+        
+          int _len_vr0 = 100;
+          struct mlxsw_sp_vr * vr = (struct mlxsw_sp_vr *) malloc(_len_vr0*sizeof(struct mlxsw_sp_vr));
+          for(int _i0 = 0; _i0 < _len_vr0; _i0++) {
+              int _len_vr__i0__mr_table0 = 1;
+          vr[_i0].mr_table = (struct mlxsw_sp_mr_table **) malloc(_len_vr__i0__mr_table0*sizeof(struct mlxsw_sp_mr_table *));
+          for(int _j0 = 0; _j0 < _len_vr__i0__mr_table0; _j0++) {
+            int _len_vr__i0__mr_table1 = 1;
+            vr[_i0].mr_table[_j0] = (struct mlxsw_sp_mr_table *) malloc(_len_vr__i0__mr_table1*sizeof(struct mlxsw_sp_mr_table));
+            for(int _j1 = 0; _j1 < _len_vr__i0__mr_table1; _j1++) {
+                vr[_i0].mr_table[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          struct mlxsw_sp_mr_table * benchRet = mlxsw_sp_router_fibmr_family_to_table(vr,family);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_vr0; _aux++) {
+          free(*(vr[_aux].mr_table));
+        free(vr[_aux].mr_table);
+          }
+          free(vr);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int family = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_vr0 = 1;
+          struct mlxsw_sp_vr * vr = (struct mlxsw_sp_vr *) malloc(_len_vr0*sizeof(struct mlxsw_sp_vr));
+          for(int _i0 = 0; _i0 < _len_vr0; _i0++) {
+              int _len_vr__i0__mr_table0 = 1;
+          vr[_i0].mr_table = (struct mlxsw_sp_mr_table **) malloc(_len_vr__i0__mr_table0*sizeof(struct mlxsw_sp_mr_table *));
+          for(int _j0 = 0; _j0 < _len_vr__i0__mr_table0; _j0++) {
+            int _len_vr__i0__mr_table1 = 1;
+            vr[_i0].mr_table[_j0] = (struct mlxsw_sp_mr_table *) malloc(_len_vr__i0__mr_table1*sizeof(struct mlxsw_sp_mr_table));
+            for(int _j1 = 0; _j1 < _len_vr__i0__mr_table1; _j1++) {
+                vr[_i0].mr_table[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          struct mlxsw_sp_mr_table * benchRet = mlxsw_sp_router_fibmr_family_to_table(vr,family);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_vr0; _aux++) {
+          free(*(vr[_aux].mr_table));
+        free(vr[_aux].mr_table);
+          }
+          free(vr);
+        
+        break;
+    }
     default:
         usage();
         break;

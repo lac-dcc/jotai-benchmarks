@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -81,12 +83,6 @@ void uio_setrw( uio_t a_uio, int a_value )
 	return;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,29 +95,164 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int a_value = 100;
+        
           int _len_a_uio0 = 1;
           struct TYPE_3__ * a_uio = (struct TYPE_3__ *) malloc(_len_a_uio0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_a_uio0; _i0++) {
-            a_uio[_i0].uio_rw = ((-2 * (next_i()%2)) + 1) * next_i();
+              a_uio[_i0].uio_rw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           uio_setrw(a_uio,a_value);
           free(a_uio);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int a_value = 255;
+        
+          int _len_a_uio0 = 65025;
+          struct TYPE_3__ * a_uio = (struct TYPE_3__ *) malloc(_len_a_uio0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_a_uio0; _i0++) {
+              a_uio[_i0].uio_rw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          uio_setrw(a_uio,a_value);
+          free(a_uio);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int a_value = 10;
+        
           int _len_a_uio0 = 100;
           struct TYPE_3__ * a_uio = (struct TYPE_3__ *) malloc(_len_a_uio0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_a_uio0; _i0++) {
-            a_uio[_i0].uio_rw = ((-2 * (next_i()%2)) + 1) * next_i();
+              a_uio[_i0].uio_rw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          uio_setrw(a_uio,a_value);
+          free(a_uio);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int a_value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_a_uio0 = 1;
+          struct TYPE_3__ * a_uio = (struct TYPE_3__ *) malloc(_len_a_uio0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_a_uio0; _i0++) {
+              a_uio[_i0].uio_rw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           uio_setrw(a_uio,a_value);
           free(a_uio);
         

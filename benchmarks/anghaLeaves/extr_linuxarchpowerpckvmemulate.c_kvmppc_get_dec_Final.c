@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +74,6 @@ u32 kvmppc_get_dec(struct kvm_vcpu *vcpu, u64 tb)
 	return vcpu->arch.dec - jd;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,19 +90,82 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long tb = 100;
+        
           int _len_vcpu0 = 1;
           struct kvm_vcpu * vcpu = (struct kvm_vcpu *) malloc(_len_vcpu0*sizeof(struct kvm_vcpu));
           for(int _i0 = 0; _i0 < _len_vcpu0; _i0++) {
-            vcpu[_i0].arch.dec = ((-2 * (next_i()%2)) + 1) * next_i();
-        vcpu[_i0].arch.dec_jiffies = ((-2 * (next_i()%2)) + 1) * next_i();
+              vcpu[_i0].arch.dec = ((-2 * (next_i()%2)) + 1) * next_i();
+          vcpu[_i0].arch.dec_jiffies = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           long benchRet = kvmppc_get_dec(vcpu,tb);
           printf("%ld\n", benchRet); 
           free(vcpu);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long tb = 255;
+        
+          int _len_vcpu0 = 65025;
+          struct kvm_vcpu * vcpu = (struct kvm_vcpu *) malloc(_len_vcpu0*sizeof(struct kvm_vcpu));
+          for(int _i0 = 0; _i0 < _len_vcpu0; _i0++) {
+              vcpu[_i0].arch.dec = ((-2 * (next_i()%2)) + 1) * next_i();
+          vcpu[_i0].arch.dec_jiffies = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          long benchRet = kvmppc_get_dec(vcpu,tb);
+          printf("%ld\n", benchRet); 
+          free(vcpu);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long tb = 10;
+        
+          int _len_vcpu0 = 100;
+          struct kvm_vcpu * vcpu = (struct kvm_vcpu *) malloc(_len_vcpu0*sizeof(struct kvm_vcpu));
+          for(int _i0 = 0; _i0 < _len_vcpu0; _i0++) {
+              vcpu[_i0].arch.dec = ((-2 * (next_i()%2)) + 1) * next_i();
+          vcpu[_i0].arch.dec_jiffies = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          long benchRet = kvmppc_get_dec(vcpu,tb);
+          printf("%ld\n", benchRet); 
+          free(vcpu);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long tb = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_vcpu0 = 1;
+          struct kvm_vcpu * vcpu = (struct kvm_vcpu *) malloc(_len_vcpu0*sizeof(struct kvm_vcpu));
+          for(int _i0 = 0; _i0 < _len_vcpu0; _i0++) {
+              vcpu[_i0].arch.dec = ((-2 * (next_i()%2)) + 1) * next_i();
+          vcpu[_i0].arch.dec_jiffies = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          long benchRet = kvmppc_get_dec(vcpu,tb);
+          printf("%ld\n", benchRet); 
+          free(vcpu);
+        
+        break;
+    }
     default:
         usage();
         break;

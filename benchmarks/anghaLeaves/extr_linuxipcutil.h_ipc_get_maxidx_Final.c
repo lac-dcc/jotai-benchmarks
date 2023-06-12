@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static inline int ipc_get_maxidx(struct ipc_ids *ids)
 	return ids->max_idx;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,22 +81,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ids0 = 1;
+          int _len_ids0 = 65025;
           struct ipc_ids * ids = (struct ipc_ids *) malloc(_len_ids0*sizeof(struct ipc_ids));
           for(int _i0 = 0; _i0 < _len_ids0; _i0++) {
-            ids[_i0].in_use = ((-2 * (next_i()%2)) + 1) * next_i();
-        ids[_i0].max_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+              ids[_i0].in_use = ((-2 * (next_i()%2)) + 1) * next_i();
+          ids[_i0].max_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ipc_get_maxidx(ids);
           printf("%d\n", benchRet); 
           free(ids);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ids0 = 100;
+          struct ipc_ids * ids = (struct ipc_ids *) malloc(_len_ids0*sizeof(struct ipc_ids));
+          for(int _i0 = 0; _i0 < _len_ids0; _i0++) {
+              ids[_i0].in_use = ((-2 * (next_i()%2)) + 1) * next_i();
+          ids[_i0].max_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ipc_get_maxidx(ids);
+          printf("%d\n", benchRet); 
+          free(ids);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ids0 = 1;
+          struct ipc_ids * ids = (struct ipc_ids *) malloc(_len_ids0*sizeof(struct ipc_ids));
+          for(int _i0 = 0; _i0 < _len_ids0; _i0++) {
+              ids[_i0].in_use = ((-2 * (next_i()%2)) + 1) * next_i();
+          ids[_i0].max_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ipc_get_maxidx(ids);
+          printf("%d\n", benchRet); 
+          free(ids);
+        
+        break;
+    }
     default:
         usage();
         break;

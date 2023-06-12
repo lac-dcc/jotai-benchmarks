@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ inp_get_intcoproc_allowed(struct inpcb *inp)
 	return (inp->inp_flags2 & INP2_INTCOPROC_ALLOWED) ? TRUE : FALSE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,14 +79,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_inp0 = 1;
+          int _len_inp0 = 65025;
           struct inpcb * inp = (struct inpcb *) malloc(_len_inp0*sizeof(struct inpcb));
           for(int _i0 = 0; _i0 < _len_inp0; _i0++) {
-            inp[_i0].inp_flags2 = ((-2 * (next_i()%2)) + 1) * next_i();
+              inp[_i0].inp_flags2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = inp_get_intcoproc_allowed(inp);
           printf("%d\n", benchRet); 
           free(inp);
@@ -104,15 +101,32 @@ int main(int argc, char *argv[]) {
           int _len_inp0 = 100;
           struct inpcb * inp = (struct inpcb *) malloc(_len_inp0*sizeof(struct inpcb));
           for(int _i0 = 0; _i0 < _len_inp0; _i0++) {
-            inp[_i0].inp_flags2 = ((-2 * (next_i()%2)) + 1) * next_i();
+              inp[_i0].inp_flags2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = inp_get_intcoproc_allowed(inp);
           printf("%d\n", benchRet); 
           free(inp);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_inp0 = 1;
+          struct inpcb * inp = (struct inpcb *) malloc(_len_inp0*sizeof(struct inpcb));
+          for(int _i0 = 0; _i0 < _len_inp0; _i0++) {
+              inp[_i0].inp_flags2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = inp_get_intcoproc_allowed(inp);
+          printf("%d\n", benchRet); 
+          free(inp);
+        
+        break;
+    }
     default:
         usage();
         break;

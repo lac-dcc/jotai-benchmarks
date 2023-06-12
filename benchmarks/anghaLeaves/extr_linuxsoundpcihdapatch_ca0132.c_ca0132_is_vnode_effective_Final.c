@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -83,12 +86,6 @@ __attribute__((used)) static bool ca0132_is_vnode_effective(struct hda_codec *co
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,21 +102,26 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int vnid = 100;
+        
           int _len_codec0 = 1;
           struct hda_codec * codec = (struct hda_codec *) malloc(_len_codec0*sizeof(struct hda_codec));
           for(int _i0 = 0; _i0 < _len_codec0; _i0++) {
               int _len_codec__i0__spec0 = 1;
           codec[_i0].spec = (struct ca0132_spec *) malloc(_len_codec__i0__spec0*sizeof(struct ca0132_spec));
           for(int _j0 = 0; _j0 < _len_codec__i0__spec0; _j0++) {
-            codec[_i0].spec->shared_out_nid = ((-2 * (next_i()%2)) + 1) * next_i();
-        codec[_i0].spec->shared_mic_nid = ((-2 * (next_i()%2)) + 1) * next_i();
+              codec[_i0].spec->shared_out_nid = ((-2 * (next_i()%2)) + 1) * next_i();
+          codec[_i0].spec->shared_mic_nid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_shared_nid0 = 1;
           int * shared_nid = (int *) malloc(_len_shared_nid0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_shared_nid0; _i0++) {
             shared_nid[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = ca0132_is_vnode_effective(codec,vnid,shared_nid);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_codec0; _aux++) {
@@ -130,7 +132,108 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int vnid = 255;
+        
+          int _len_codec0 = 65025;
+          struct hda_codec * codec = (struct hda_codec *) malloc(_len_codec0*sizeof(struct hda_codec));
+          for(int _i0 = 0; _i0 < _len_codec0; _i0++) {
+              int _len_codec__i0__spec0 = 1;
+          codec[_i0].spec = (struct ca0132_spec *) malloc(_len_codec__i0__spec0*sizeof(struct ca0132_spec));
+          for(int _j0 = 0; _j0 < _len_codec__i0__spec0; _j0++) {
+              codec[_i0].spec->shared_out_nid = ((-2 * (next_i()%2)) + 1) * next_i();
+          codec[_i0].spec->shared_mic_nid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_shared_nid0 = 65025;
+          int * shared_nid = (int *) malloc(_len_shared_nid0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_shared_nid0; _i0++) {
+            shared_nid[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ca0132_is_vnode_effective(codec,vnid,shared_nid);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_codec0; _aux++) {
+          free(codec[_aux].spec);
+          }
+          free(codec);
+          free(shared_nid);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int vnid = 10;
+        
+          int _len_codec0 = 100;
+          struct hda_codec * codec = (struct hda_codec *) malloc(_len_codec0*sizeof(struct hda_codec));
+          for(int _i0 = 0; _i0 < _len_codec0; _i0++) {
+              int _len_codec__i0__spec0 = 1;
+          codec[_i0].spec = (struct ca0132_spec *) malloc(_len_codec__i0__spec0*sizeof(struct ca0132_spec));
+          for(int _j0 = 0; _j0 < _len_codec__i0__spec0; _j0++) {
+              codec[_i0].spec->shared_out_nid = ((-2 * (next_i()%2)) + 1) * next_i();
+          codec[_i0].spec->shared_mic_nid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_shared_nid0 = 100;
+          int * shared_nid = (int *) malloc(_len_shared_nid0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_shared_nid0; _i0++) {
+            shared_nid[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ca0132_is_vnode_effective(codec,vnid,shared_nid);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_codec0; _aux++) {
+          free(codec[_aux].spec);
+          }
+          free(codec);
+          free(shared_nid);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int vnid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_codec0 = 1;
+          struct hda_codec * codec = (struct hda_codec *) malloc(_len_codec0*sizeof(struct hda_codec));
+          for(int _i0 = 0; _i0 < _len_codec0; _i0++) {
+              int _len_codec__i0__spec0 = 1;
+          codec[_i0].spec = (struct ca0132_spec *) malloc(_len_codec__i0__spec0*sizeof(struct ca0132_spec));
+          for(int _j0 = 0; _j0 < _len_codec__i0__spec0; _j0++) {
+              codec[_i0].spec->shared_out_nid = ((-2 * (next_i()%2)) + 1) * next_i();
+          codec[_i0].spec->shared_mic_nid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_shared_nid0 = 1;
+          int * shared_nid = (int *) malloc(_len_shared_nid0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_shared_nid0; _i0++) {
+            shared_nid[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ca0132_is_vnode_effective(codec,vnid,shared_nid);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_codec0; _aux++) {
+          free(codec[_aux].spec);
+          }
+          free(codec);
+          free(shared_nid);
+        
+        break;
+    }
     default:
         usage();
         break;

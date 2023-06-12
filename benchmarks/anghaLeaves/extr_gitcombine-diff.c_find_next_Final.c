@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -78,12 +79,6 @@ __attribute__((used)) static unsigned long find_next(struct sline *sline,
 	return i;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,25 +91,54 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          unsigned long mark = 10;
-          unsigned long i = 10;
-          unsigned long cnt = 10;
-          int look_for_uninteresting = 10;
-          int _len_sline0 = 100;
+          unsigned long mark = 255;
+        
+          unsigned long i = 255;
+        
+          unsigned long cnt = 255;
+        
+          int look_for_uninteresting = 255;
+        
+          int _len_sline0 = 65025;
           struct sline * sline = (struct sline *) malloc(_len_sline0*sizeof(struct sline));
           for(int _i0 = 0; _i0 < _len_sline0; _i0++) {
-            sline[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+              sline[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = find_next(sline,mark,i,cnt,look_for_uninteresting);
           printf("%lu\n", benchRet); 
           free(sline);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          unsigned long mark = 10;
+        
+          unsigned long i = 10;
+        
+          unsigned long cnt = 10;
+        
+          int look_for_uninteresting = 10;
+        
+          int _len_sline0 = 100;
+          struct sline * sline = (struct sline *) malloc(_len_sline0*sizeof(struct sline));
+          for(int _i0 = 0; _i0 < _len_sline0; _i0++) {
+              sline[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = find_next(sline,mark,i,cnt,look_for_uninteresting);
+          printf("%lu\n", benchRet); 
+          free(sline);
+        
+        break;
+    }
     default:
         usage();
         break;

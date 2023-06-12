@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static bool trinity_uvd_clocks_zero(struct radeon_ps *rps)
 		return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,22 +77,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rps0 = 1;
+          int _len_rps0 = 65025;
           struct radeon_ps * rps = (struct radeon_ps *) malloc(_len_rps0*sizeof(struct radeon_ps));
           for(int _i0 = 0; _i0 < _len_rps0; _i0++) {
-            rps[_i0].vclk = ((-2 * (next_i()%2)) + 1) * next_i();
-        rps[_i0].dclk = ((-2 * (next_i()%2)) + 1) * next_i();
+              rps[_i0].vclk = ((-2 * (next_i()%2)) + 1) * next_i();
+          rps[_i0].dclk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = trinity_uvd_clocks_zero(rps);
           printf("%d\n", benchRet); 
           free(rps);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_rps0 = 100;
+          struct radeon_ps * rps = (struct radeon_ps *) malloc(_len_rps0*sizeof(struct radeon_ps));
+          for(int _i0 = 0; _i0 < _len_rps0; _i0++) {
+              rps[_i0].vclk = ((-2 * (next_i()%2)) + 1) * next_i();
+          rps[_i0].dclk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = trinity_uvd_clocks_zero(rps);
+          printf("%d\n", benchRet); 
+          free(rps);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_rps0 = 1;
+          struct radeon_ps * rps = (struct radeon_ps *) malloc(_len_rps0*sizeof(struct radeon_ps));
+          for(int _i0 = 0; _i0 < _len_rps0; _i0++) {
+              rps[_i0].vclk = ((-2 * (next_i()%2)) + 1) * next_i();
+          rps[_i0].dclk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = trinity_uvd_clocks_zero(rps);
+          printf("%d\n", benchRet); 
+          free(rps);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +76,6 @@ __attribute__((used)) static void setupbio(BIO **res, BIO *bio1, BIO *bio2, int 
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,6 +92,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int type = 100;
+        
           int _len_res0 = 1;
           int ** res = (int **) malloc(_len_res0*sizeof(int *));
           for(int _i0 = 0; _i0 < _len_res0; _i0++) {
@@ -104,19 +102,21 @@ int main(int argc, char *argv[]) {
               res[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           int _len_bio10 = 1;
           int * bio1 = (int *) malloc(_len_bio10*sizeof(int));
           for(int _i0 = 0; _i0 < _len_bio10; _i0++) {
             bio1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_bio20 = 1;
           int * bio2 = (int *) malloc(_len_bio20*sizeof(int));
           for(int _i0 = 0; _i0 < _len_bio20; _i0++) {
             bio2[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           setupbio(res,bio1,bio2,type);
           for(int i1 = 0; i1 < _len_res0; i1++) {
-            int _len_res1 = 1;
               free(res[i1]);
           }
           free(res);
@@ -125,7 +125,117 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int type = 255;
+        
+          int _len_res0 = 65025;
+          int ** res = (int **) malloc(_len_res0*sizeof(int *));
+          for(int _i0 = 0; _i0 < _len_res0; _i0++) {
+            int _len_res1 = 1;
+            res[_i0] = (int *) malloc(_len_res1*sizeof(int));
+            for(int _i1 = 0; _i1 < _len_res1; _i1++) {
+              res[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int _len_bio10 = 65025;
+          int * bio1 = (int *) malloc(_len_bio10*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_bio10; _i0++) {
+            bio1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_bio20 = 65025;
+          int * bio2 = (int *) malloc(_len_bio20*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_bio20; _i0++) {
+            bio2[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          setupbio(res,bio1,bio2,type);
+          for(int i1 = 0; i1 < _len_res0; i1++) {
+              free(res[i1]);
+          }
+          free(res);
+          free(bio1);
+          free(bio2);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int type = 10;
+        
+          int _len_res0 = 100;
+          int ** res = (int **) malloc(_len_res0*sizeof(int *));
+          for(int _i0 = 0; _i0 < _len_res0; _i0++) {
+            int _len_res1 = 1;
+            res[_i0] = (int *) malloc(_len_res1*sizeof(int));
+            for(int _i1 = 0; _i1 < _len_res1; _i1++) {
+              res[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int _len_bio10 = 100;
+          int * bio1 = (int *) malloc(_len_bio10*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_bio10; _i0++) {
+            bio1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_bio20 = 100;
+          int * bio2 = (int *) malloc(_len_bio20*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_bio20; _i0++) {
+            bio2[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          setupbio(res,bio1,bio2,type);
+          for(int i1 = 0; i1 < _len_res0; i1++) {
+              free(res[i1]);
+          }
+          free(res);
+          free(bio1);
+          free(bio2);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_res0 = 1;
+          int ** res = (int **) malloc(_len_res0*sizeof(int *));
+          for(int _i0 = 0; _i0 < _len_res0; _i0++) {
+            int _len_res1 = 1;
+            res[_i0] = (int *) malloc(_len_res1*sizeof(int));
+            for(int _i1 = 0; _i1 < _len_res1; _i1++) {
+              res[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int _len_bio10 = 1;
+          int * bio1 = (int *) malloc(_len_bio10*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_bio10; _i0++) {
+            bio1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_bio20 = 1;
+          int * bio2 = (int *) malloc(_len_bio20*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_bio20; _i0++) {
+            bio2[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          setupbio(res,bio1,bio2,type);
+          for(int i1 = 0; i1 < _len_res0; i1++) {
+              free(res[i1]);
+          }
+          free(res);
+          free(bio1);
+          free(bio2);
+        
+        break;
+    }
     default:
         usage();
         break;

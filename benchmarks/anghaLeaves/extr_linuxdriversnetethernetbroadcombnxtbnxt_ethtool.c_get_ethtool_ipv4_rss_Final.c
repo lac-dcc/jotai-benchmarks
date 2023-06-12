@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static u64 get_ethtool_ipv4_rss(struct bnxt *bp)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,28 +80,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_bp0 = 1;
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_bp0 = 65025;
           struct bnxt * bp = (struct bnxt *) malloc(_len_bp0*sizeof(struct bnxt));
           for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
-            bp[_i0].rss_hash_cfg = ((-2 * (next_i()%2)) + 1) * next_i();
+              bp[_i0].rss_hash_cfg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = get_ethtool_ipv4_rss(bp);
           printf("%d\n", benchRet); 
           free(bp);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_bp0 = 100;
           struct bnxt * bp = (struct bnxt *) malloc(_len_bp0*sizeof(struct bnxt));
           for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
-            bp[_i0].rss_hash_cfg = ((-2 * (next_i()%2)) + 1) * next_i();
+              bp[_i0].rss_hash_cfg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = get_ethtool_ipv4_rss(bp);
+          printf("%d\n", benchRet); 
+          free(bp);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_bp0 = 1;
+          struct bnxt * bp = (struct bnxt *) malloc(_len_bp0*sizeof(struct bnxt));
+          for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
+              bp[_i0].rss_hash_cfg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = get_ethtool_ipv4_rss(bp);
           printf("%d\n", benchRet); 
           free(bp);

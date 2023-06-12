@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline void dma_cookie_init(struct dma_chan *chan)
 	chan->completed_cookie = DMA_MIN_COOKIE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,13 +76,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_chan0 = 1;
+          int _len_chan0 = 65025;
           struct dma_chan * chan = (struct dma_chan *) malloc(_len_chan0*sizeof(struct dma_chan));
           for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
-              }
+            
+          }
+        
           dma_cookie_init(chan);
           free(chan);
         
@@ -99,13 +96,28 @@ int main(int argc, char *argv[]) {
           int _len_chan0 = 100;
           struct dma_chan * chan = (struct dma_chan *) malloc(_len_chan0*sizeof(struct dma_chan));
           for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
-              }
+            
+          }
+        
           dma_cookie_init(chan);
           free(chan);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_chan0 = 1;
+          struct dma_chan * chan = (struct dma_chan *) malloc(_len_chan0*sizeof(struct dma_chan));
+          for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
+            
+          }
+        
+          dma_cookie_init(chan);
+          free(chan);
+        
+        break;
+    }
     default:
         usage();
         break;

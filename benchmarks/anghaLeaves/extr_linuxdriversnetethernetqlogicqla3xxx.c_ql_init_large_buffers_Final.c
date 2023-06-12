@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ __attribute__((used)) static void ql_init_large_buffers(struct ql3_adapter *qdev
 	qdev->lrg_buf_skb_check = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,28 +87,32 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_qdev0 = 1;
+          int _len_qdev0 = 65025;
           struct ql3_adapter * qdev = (struct ql3_adapter *) malloc(_len_qdev0*sizeof(struct ql3_adapter));
           for(int _i0 = 0; _i0 < _len_qdev0; _i0++) {
-            qdev[_i0].num_large_buffers = ((-2 * (next_i()%2)) + 1) * next_i();
-        qdev[_i0].lrg_buf_skb_check = ((-2 * (next_i()%2)) + 1) * next_i();
-        qdev[_i0].lrg_buf_index = ((-2 * (next_i()%2)) + 1) * next_i();
+              qdev[_i0].num_large_buffers = ((-2 * (next_i()%2)) + 1) * next_i();
+          qdev[_i0].lrg_buf_skb_check = ((-2 * (next_i()%2)) + 1) * next_i();
+          qdev[_i0].lrg_buf_index = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_qdev__i0__lrg_buf0 = 1;
           qdev[_i0].lrg_buf = (struct ql_rcv_buf_cb *) malloc(_len_qdev__i0__lrg_buf0*sizeof(struct ql_rcv_buf_cb));
           for(int _j0 = 0; _j0 < _len_qdev__i0__lrg_buf0; _j0++) {
-            qdev[_i0].lrg_buf->buf_phy_addr_low = ((-2 * (next_i()%2)) + 1) * next_i();
-        qdev[_i0].lrg_buf->buf_phy_addr_high = ((-2 * (next_i()%2)) + 1) * next_i();
+              qdev[_i0].lrg_buf->buf_phy_addr_low = ((-2 * (next_i()%2)) + 1) * next_i();
+          qdev[_i0].lrg_buf->buf_phy_addr_high = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_qdev__i0__lrg_buf_q_virt_addr0 = 1;
           qdev[_i0].lrg_buf_q_virt_addr = (struct bufq_addr_element *) malloc(_len_qdev__i0__lrg_buf_q_virt_addr0*sizeof(struct bufq_addr_element));
           for(int _j0 = 0; _j0 < _len_qdev__i0__lrg_buf_q_virt_addr0; _j0++) {
-            qdev[_i0].lrg_buf_q_virt_addr->addr_low = ((-2 * (next_i()%2)) + 1) * next_i();
-        qdev[_i0].lrg_buf_q_virt_addr->addr_high = ((-2 * (next_i()%2)) + 1) * next_i();
+              qdev[_i0].lrg_buf_q_virt_addr->addr_low = ((-2 * (next_i()%2)) + 1) * next_i();
+          qdev[_i0].lrg_buf_q_virt_addr->addr_high = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           ql_init_large_buffers(qdev);
           for(int _aux = 0; _aux < _len_qdev0; _aux++) {
           free(qdev[_aux].lrg_buf);
@@ -124,7 +124,80 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_qdev0 = 100;
+          struct ql3_adapter * qdev = (struct ql3_adapter *) malloc(_len_qdev0*sizeof(struct ql3_adapter));
+          for(int _i0 = 0; _i0 < _len_qdev0; _i0++) {
+              qdev[_i0].num_large_buffers = ((-2 * (next_i()%2)) + 1) * next_i();
+          qdev[_i0].lrg_buf_skb_check = ((-2 * (next_i()%2)) + 1) * next_i();
+          qdev[_i0].lrg_buf_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_qdev__i0__lrg_buf0 = 1;
+          qdev[_i0].lrg_buf = (struct ql_rcv_buf_cb *) malloc(_len_qdev__i0__lrg_buf0*sizeof(struct ql_rcv_buf_cb));
+          for(int _j0 = 0; _j0 < _len_qdev__i0__lrg_buf0; _j0++) {
+              qdev[_i0].lrg_buf->buf_phy_addr_low = ((-2 * (next_i()%2)) + 1) * next_i();
+          qdev[_i0].lrg_buf->buf_phy_addr_high = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_qdev__i0__lrg_buf_q_virt_addr0 = 1;
+          qdev[_i0].lrg_buf_q_virt_addr = (struct bufq_addr_element *) malloc(_len_qdev__i0__lrg_buf_q_virt_addr0*sizeof(struct bufq_addr_element));
+          for(int _j0 = 0; _j0 < _len_qdev__i0__lrg_buf_q_virt_addr0; _j0++) {
+              qdev[_i0].lrg_buf_q_virt_addr->addr_low = ((-2 * (next_i()%2)) + 1) * next_i();
+          qdev[_i0].lrg_buf_q_virt_addr->addr_high = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          ql_init_large_buffers(qdev);
+          for(int _aux = 0; _aux < _len_qdev0; _aux++) {
+          free(qdev[_aux].lrg_buf);
+          }
+          for(int _aux = 0; _aux < _len_qdev0; _aux++) {
+          free(qdev[_aux].lrg_buf_q_virt_addr);
+          }
+          free(qdev);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_qdev0 = 1;
+          struct ql3_adapter * qdev = (struct ql3_adapter *) malloc(_len_qdev0*sizeof(struct ql3_adapter));
+          for(int _i0 = 0; _i0 < _len_qdev0; _i0++) {
+              qdev[_i0].num_large_buffers = ((-2 * (next_i()%2)) + 1) * next_i();
+          qdev[_i0].lrg_buf_skb_check = ((-2 * (next_i()%2)) + 1) * next_i();
+          qdev[_i0].lrg_buf_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_qdev__i0__lrg_buf0 = 1;
+          qdev[_i0].lrg_buf = (struct ql_rcv_buf_cb *) malloc(_len_qdev__i0__lrg_buf0*sizeof(struct ql_rcv_buf_cb));
+          for(int _j0 = 0; _j0 < _len_qdev__i0__lrg_buf0; _j0++) {
+              qdev[_i0].lrg_buf->buf_phy_addr_low = ((-2 * (next_i()%2)) + 1) * next_i();
+          qdev[_i0].lrg_buf->buf_phy_addr_high = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_qdev__i0__lrg_buf_q_virt_addr0 = 1;
+          qdev[_i0].lrg_buf_q_virt_addr = (struct bufq_addr_element *) malloc(_len_qdev__i0__lrg_buf_q_virt_addr0*sizeof(struct bufq_addr_element));
+          for(int _j0 = 0; _j0 < _len_qdev__i0__lrg_buf_q_virt_addr0; _j0++) {
+              qdev[_i0].lrg_buf_q_virt_addr->addr_low = ((-2 * (next_i()%2)) + 1) * next_i();
+          qdev[_i0].lrg_buf_q_virt_addr->addr_high = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          ql_init_large_buffers(qdev);
+          for(int _aux = 0; _aux < _len_qdev0; _aux++) {
+          free(qdev[_aux].lrg_buf);
+          }
+          for(int _aux = 0; _aux < _len_qdev0; _aux++) {
+          free(qdev[_aux].lrg_buf_q_virt_addr);
+          }
+          free(qdev);
+        
+        break;
+    }
     default:
         usage();
         break;

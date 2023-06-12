@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ void ttpci_budget_init_hooks(struct budget *budget)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,19 +82,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_budget0 = 1;
+          int _len_budget0 = 65025;
           struct budget * budget = (struct budget *) malloc(_len_budget0*sizeof(struct budget));
           for(int _i0 = 0; _i0 < _len_budget0; _i0++) {
               int _len_budget__i0__dvb_frontend0 = 1;
           budget[_i0].dvb_frontend = (struct TYPE_4__ *) malloc(_len_budget__i0__dvb_frontend0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_budget__i0__dvb_frontend0; _j0++) {
-            budget[_i0].dvb_frontend->ops.read_status = ((-2 * (next_i()%2)) + 1) * next_i();
+              budget[_i0].dvb_frontend->ops.read_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-        budget[_i0].read_fe_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          budget[_i0].read_fe_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ttpci_budget_init_hooks(budget);
           for(int _aux = 0; _aux < _len_budget0; _aux++) {
           free(budget[_aux].dvb_frontend);
@@ -107,7 +107,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_budget0 = 100;
+          struct budget * budget = (struct budget *) malloc(_len_budget0*sizeof(struct budget));
+          for(int _i0 = 0; _i0 < _len_budget0; _i0++) {
+              int _len_budget__i0__dvb_frontend0 = 1;
+          budget[_i0].dvb_frontend = (struct TYPE_4__ *) malloc(_len_budget__i0__dvb_frontend0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_budget__i0__dvb_frontend0; _j0++) {
+              budget[_i0].dvb_frontend->ops.read_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+          budget[_i0].read_fe_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ttpci_budget_init_hooks(budget);
+          for(int _aux = 0; _aux < _len_budget0; _aux++) {
+          free(budget[_aux].dvb_frontend);
+          }
+          free(budget);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_budget0 = 1;
+          struct budget * budget = (struct budget *) malloc(_len_budget0*sizeof(struct budget));
+          for(int _i0 = 0; _i0 < _len_budget0; _i0++) {
+              int _len_budget__i0__dvb_frontend0 = 1;
+          budget[_i0].dvb_frontend = (struct TYPE_4__ *) malloc(_len_budget__i0__dvb_frontend0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_budget__i0__dvb_frontend0; _j0++) {
+              budget[_i0].dvb_frontend->ops.read_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+          budget[_i0].read_fe_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ttpci_budget_init_hooks(budget);
+          for(int _aux = 0; _aux < _len_budget0; _aux++) {
+          free(budget[_aux].dvb_frontend);
+          }
+          free(budget);
+        
+        break;
+    }
     default:
         usage();
         break;

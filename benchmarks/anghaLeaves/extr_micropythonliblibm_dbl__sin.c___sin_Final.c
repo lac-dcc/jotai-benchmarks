@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +78,6 @@ double __sin(double x, double y, int iy)
 		return x - ((z*(0.5*y - v*r) - y) - v*S1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,34 +90,152 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 50
+          // dynamic_instructions_O0 : 50
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 34
+          // dynamic_instructions_O3 : 34
+          // ------------------------------- 
+          // static_instructions_Ofast : 29
+          // dynamic_instructions_Ofast : 29
+          // ------------------------------- 
+          // static_instructions_Os : 35
+          // dynamic_instructions_Os : 35
+          // ------------------------------- 
+          // static_instructions_Oz : 35
+          // dynamic_instructions_Oz : 35
+          // ------------------------------- 
+
           double x = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           double y = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           int iy = 100;
+        
           double benchRet = __sin(x,y,iy);
           printf("%lf\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 50
+          // dynamic_instructions_O0 : 50
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 34
+          // dynamic_instructions_O3 : 34
+          // ------------------------------- 
+          // static_instructions_Ofast : 29
+          // dynamic_instructions_Ofast : 29
+          // ------------------------------- 
+          // static_instructions_Os : 35
+          // dynamic_instructions_Os : 35
+          // ------------------------------- 
+          // static_instructions_Oz : 35
+          // dynamic_instructions_Oz : 35
+          // ------------------------------- 
+
           double x = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           double y = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           int iy = 255;
+        
           double benchRet = __sin(x,y,iy);
           printf("%lf\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 50
+          // dynamic_instructions_O0 : 50
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 34
+          // dynamic_instructions_O3 : 34
+          // ------------------------------- 
+          // static_instructions_Ofast : 29
+          // dynamic_instructions_Ofast : 29
+          // ------------------------------- 
+          // static_instructions_Os : 35
+          // dynamic_instructions_Os : 35
+          // ------------------------------- 
+          // static_instructions_Oz : 35
+          // dynamic_instructions_Oz : 35
+          // ------------------------------- 
+
           double x = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           double y = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           int iy = 10;
+        
+          double benchRet = __sin(x,y,iy);
+          printf("%lf\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 50
+          // dynamic_instructions_O0 : 50
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 34
+          // dynamic_instructions_O3 : 34
+          // ------------------------------- 
+          // static_instructions_Ofast : 29
+          // dynamic_instructions_Ofast : 29
+          // ------------------------------- 
+          // static_instructions_Os : 35
+          // dynamic_instructions_Os : 35
+          // ------------------------------- 
+          // static_instructions_Oz : 35
+          // dynamic_instructions_Oz : 35
+          // ------------------------------- 
+
+          double x = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          double y = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          int iy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           double benchRet = __sin(x,y,iy);
           printf("%lf\n", benchRet); 
         

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ const char *sti_mixer_to_str(struct sti_mixer *mixer)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,28 +83,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_mixer0 = 1;
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_mixer0 = 65025;
           struct sti_mixer * mixer = (struct sti_mixer *) malloc(_len_mixer0*sizeof(struct sti_mixer));
           for(int _i0 = 0; _i0 < _len_mixer0; _i0++) {
-            mixer[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+              mixer[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           const char * benchRet = sti_mixer_to_str(mixer);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(mixer);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_mixer0 = 100;
           struct sti_mixer * mixer = (struct sti_mixer *) malloc(_len_mixer0*sizeof(struct sti_mixer));
           for(int _i0 = 0; _i0 < _len_mixer0; _i0++) {
-            mixer[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+              mixer[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          const char * benchRet = sti_mixer_to_str(mixer);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          free(mixer);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_mixer0 = 1;
+          struct sti_mixer * mixer = (struct sti_mixer *) malloc(_len_mixer0*sizeof(struct sti_mixer));
+          for(int _i0 = 0; _i0 < _len_mixer0; _i0++) {
+              mixer[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           const char * benchRet = sti_mixer_to_str(mixer);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(mixer);

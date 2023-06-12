@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ s32 wlc_lcnphy_tssi2dbm(s32 tssi, s32 a1, s32 b0, s32 b1)
 	return p;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,37 +81,160 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int tssi = 100;
+        
           int a1 = 100;
+        
           int b0 = 100;
+        
           int b1 = 100;
+        
           int benchRet = wlc_lcnphy_tssi2dbm(tssi,a1,b0,b1);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int tssi = 255;
+        
           int a1 = 255;
+        
           int b0 = 255;
+        
           int b1 = 255;
+        
           int benchRet = wlc_lcnphy_tssi2dbm(tssi,a1,b0,b1);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int tssi = 10;
+        
           int a1 = 10;
+        
           int b0 = 10;
+        
           int b1 = 10;
+        
+          int benchRet = wlc_lcnphy_tssi2dbm(tssi,a1,b0,b1);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int tssi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int a1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int b0 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int b1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = wlc_lcnphy_tssi2dbm(tssi,a1,b0,b1);
           printf("%d\n", benchRet); 
         

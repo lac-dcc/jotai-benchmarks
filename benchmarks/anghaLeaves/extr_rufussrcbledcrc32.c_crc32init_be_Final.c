@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ __attribute__((used)) static void crc32init_be(uint32_t *crc32table_be)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,14 +83,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_crc32table_be0 = 1;
+          int _len_crc32table_be0 = 65025;
           int * crc32table_be = (int *) malloc(_len_crc32table_be0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_crc32table_be0; _i0++) {
             crc32table_be[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           crc32init_be(crc32table_be);
           free(crc32table_be);
         
@@ -109,12 +105,26 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_crc32table_be0; _i0++) {
             crc32table_be[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           crc32init_be(crc32table_be);
           free(crc32table_be);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_crc32table_be0 = 1;
+          int * crc32table_be = (int *) malloc(_len_crc32table_be0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_crc32table_be0; _i0++) {
+            crc32table_be[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          crc32init_be(crc32table_be);
+          free(crc32table_be);
+        
+        break;
+    }
     default:
         usage();
         break;

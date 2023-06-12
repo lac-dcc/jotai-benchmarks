@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ int bstrrchr(struct bstr str, int c)
     return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,13 +82,15 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int c = 100;
+        
           struct bstr str;
-        str.len = ((-2 * (next_i()%2)) + 1) * next_i();
+          str.len = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_str_start0 = 1;
           str.start = (int *) malloc(_len_str_start0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_str_start0; _j0++) {
             str.start[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = bstrrchr(str,c);
           printf("%d\n", benchRet); 
           free(str.start);
@@ -104,13 +101,15 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int c = 255;
+        
           struct bstr str;
-        str.len = ((-2 * (next_i()%2)) + 1) * next_i();
+          str.len = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_str_start0 = 1;
           str.start = (int *) malloc(_len_str_start0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_str_start0; _j0++) {
             str.start[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = bstrrchr(str,c);
           printf("%d\n", benchRet); 
           free(str.start);
@@ -121,20 +120,40 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int c = 10;
+        
           struct bstr str;
-        str.len = ((-2 * (next_i()%2)) + 1) * next_i();
+          str.len = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_str_start0 = 1;
           str.start = (int *) malloc(_len_str_start0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_str_start0; _j0++) {
             str.start[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = bstrrchr(str,c);
           printf("%d\n", benchRet); 
           free(str.start);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int c = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          struct bstr str;
+          str.len = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_str_start0 = 1;
+          str.start = (int *) malloc(_len_str_start0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_str_start0; _j0++) {
+            str.start[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = bstrrchr(str,c);
+          printf("%d\n", benchRet); 
+          free(str.start);
+        
+        break;
+    }
     default:
         usage();
         break;

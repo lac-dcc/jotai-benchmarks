@@ -69,12 +69,6 @@ __attribute__((used)) static int gf2k_get_bits(unsigned char *buf, int pos, int 
 	return data;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,17 +81,44 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // big-arr-10x
     case 0:
     {
+          // static_instructions_O0 : 63
+          // dynamic_instructions_O0 : 202
+          // ------------------------------- 
+          // static_instructions_O1 : 56
+          // dynamic_instructions_O1 : 88
+          // ------------------------------- 
+          // static_instructions_O2 : 61
+          // dynamic_instructions_O2 : 93
+          // ------------------------------- 
+          // static_instructions_O3 : 61
+          // dynamic_instructions_O3 : 93
+          // ------------------------------- 
+          // static_instructions_Ofast : 61
+          // dynamic_instructions_Ofast : 93
+          // ------------------------------- 
+          // static_instructions_Os : 56
+          // dynamic_instructions_Os : 88
+          // ------------------------------- 
+          // static_instructions_Oz : 45
+          // dynamic_instructions_Oz : 83
+          // ------------------------------- 
+
           int pos = 10;
+        
           int num = 10;
+        
           int shift = 10;
+        
           int _len_buf0 = 100;
           unsigned char * buf = (unsigned char *) malloc(_len_buf0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
             buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = gf2k_get_bits(buf,pos,num,shift);
           printf("%d\n", benchRet); 
           free(buf);

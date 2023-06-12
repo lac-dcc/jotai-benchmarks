@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static int mlx4_en_get_num_flows(struct mlx4_en_priv *priv
 
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,18 +84,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_priv0 = 1;
+          int _len_priv0 = 65025;
           struct mlx4_en_priv * priv = (struct mlx4_en_priv *) malloc(_len_priv0*sizeof(struct mlx4_en_priv));
           for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
               int _len_priv__i0__ethtool_rules0 = 1;
           priv[_i0].ethtool_rules = (struct TYPE_2__ *) malloc(_len_priv__i0__ethtool_rules0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_priv__i0__ethtool_rules0; _j0++) {
-            priv[_i0].ethtool_rules->id = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].ethtool_rules->id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = mlx4_en_get_num_flows(priv);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_priv0; _aux++) {
@@ -109,7 +108,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_priv0 = 100;
+          struct mlx4_en_priv * priv = (struct mlx4_en_priv *) malloc(_len_priv0*sizeof(struct mlx4_en_priv));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              int _len_priv__i0__ethtool_rules0 = 1;
+          priv[_i0].ethtool_rules = (struct TYPE_2__ *) malloc(_len_priv__i0__ethtool_rules0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_priv__i0__ethtool_rules0; _j0++) {
+              priv[_i0].ethtool_rules->id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = mlx4_en_get_num_flows(priv);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_priv0; _aux++) {
+          free(priv[_aux].ethtool_rules);
+          }
+          free(priv);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_priv0 = 1;
+          struct mlx4_en_priv * priv = (struct mlx4_en_priv *) malloc(_len_priv0*sizeof(struct mlx4_en_priv));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              int _len_priv__i0__ethtool_rules0 = 1;
+          priv[_i0].ethtool_rules = (struct TYPE_2__ *) malloc(_len_priv__i0__ethtool_rules0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_priv__i0__ethtool_rules0; _j0++) {
+              priv[_i0].ethtool_rules->id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = mlx4_en_get_num_flows(priv);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_priv0; _aux++) {
+          free(priv[_aux].ethtool_rules);
+          }
+          free(priv);
+        
+        break;
+    }
     default:
         usage();
         break;

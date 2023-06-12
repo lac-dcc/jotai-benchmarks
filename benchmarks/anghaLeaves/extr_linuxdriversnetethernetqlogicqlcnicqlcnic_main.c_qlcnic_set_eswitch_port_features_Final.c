@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ void qlcnic_set_eswitch_port_features(struct qlcnic_adapter *adapter,
 		adapter->flags |= QLCNIC_PROMISC_DISABLED;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,28 +89,81 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_adapter0 = 1;
+          int _len_adapter0 = 65025;
           struct qlcnic_adapter * adapter = (struct qlcnic_adapter *) malloc(_len_adapter0*sizeof(struct qlcnic_adapter));
           for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
-            adapter[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              adapter[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_esw_cfg0 = 1;
+        
+          int _len_esw_cfg0 = 65025;
           struct qlcnic_esw_func_cfg * esw_cfg = (struct qlcnic_esw_func_cfg *) malloc(_len_esw_cfg0*sizeof(struct qlcnic_esw_func_cfg));
           for(int _i0 = 0; _i0 < _len_esw_cfg0; _i0++) {
-            esw_cfg[_i0].promisc_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        esw_cfg[_i0].mac_override = ((-2 * (next_i()%2)) + 1) * next_i();
-        esw_cfg[_i0].mac_anti_spoof = ((-2 * (next_i()%2)) + 1) * next_i();
+              esw_cfg[_i0].promisc_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          esw_cfg[_i0].mac_override = ((-2 * (next_i()%2)) + 1) * next_i();
+          esw_cfg[_i0].mac_anti_spoof = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           qlcnic_set_eswitch_port_features(adapter,esw_cfg);
           free(adapter);
           free(esw_cfg);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_adapter0 = 100;
+          struct qlcnic_adapter * adapter = (struct qlcnic_adapter *) malloc(_len_adapter0*sizeof(struct qlcnic_adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_esw_cfg0 = 100;
+          struct qlcnic_esw_func_cfg * esw_cfg = (struct qlcnic_esw_func_cfg *) malloc(_len_esw_cfg0*sizeof(struct qlcnic_esw_func_cfg));
+          for(int _i0 = 0; _i0 < _len_esw_cfg0; _i0++) {
+              esw_cfg[_i0].promisc_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          esw_cfg[_i0].mac_override = ((-2 * (next_i()%2)) + 1) * next_i();
+          esw_cfg[_i0].mac_anti_spoof = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          qlcnic_set_eswitch_port_features(adapter,esw_cfg);
+          free(adapter);
+          free(esw_cfg);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_adapter0 = 1;
+          struct qlcnic_adapter * adapter = (struct qlcnic_adapter *) malloc(_len_adapter0*sizeof(struct qlcnic_adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_esw_cfg0 = 1;
+          struct qlcnic_esw_func_cfg * esw_cfg = (struct qlcnic_esw_func_cfg *) malloc(_len_esw_cfg0*sizeof(struct qlcnic_esw_func_cfg));
+          for(int _i0 = 0; _i0 < _len_esw_cfg0; _i0++) {
+              esw_cfg[_i0].promisc_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          esw_cfg[_i0].mac_override = ((-2 * (next_i()%2)) + 1) * next_i();
+          esw_cfg[_i0].mac_anti_spoof = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          qlcnic_set_eswitch_port_features(adapter,esw_cfg);
+          free(adapter);
+          free(esw_cfg);
+        
+        break;
+    }
     default:
         usage();
         break;

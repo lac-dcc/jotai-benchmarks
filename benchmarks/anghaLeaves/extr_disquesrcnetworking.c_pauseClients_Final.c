@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ void pauseClients(mstime_t end) {
     server.clients_paused = 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,6 +83,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long end = 100;
+        
           pauseClients(end);
         
         break;
@@ -96,6 +92,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long end = 255;
+        
           pauseClients(end);
         
         break;
@@ -104,11 +101,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long end = 10;
+        
           pauseClients(end);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          pauseClients(end);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +74,6 @@ font_group_is_unused(FontGroup *fg) {
     return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,14 +86,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_fg0 = 1;
+          int _len_fg0 = 65025;
           struct TYPE_6__ * fg = (struct TYPE_6__ *) malloc(_len_fg0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_fg0; _i0++) {
-            fg[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+              fg[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = font_group_is_unused(fg);
           printf("%d\n", benchRet); 
           free(fg);
@@ -111,15 +108,32 @@ int main(int argc, char *argv[]) {
           int _len_fg0 = 100;
           struct TYPE_6__ * fg = (struct TYPE_6__ *) malloc(_len_fg0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_fg0; _i0++) {
-            fg[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+              fg[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = font_group_is_unused(fg);
           printf("%d\n", benchRet); 
           free(fg);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_fg0 = 1;
+          struct TYPE_6__ * fg = (struct TYPE_6__ *) malloc(_len_fg0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_fg0; _i0++) {
+              fg[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = font_group_is_unused(fg);
+          printf("%d\n", benchRet); 
+          free(fg);
+        
+        break;
+    }
     default:
         usage();
         break;

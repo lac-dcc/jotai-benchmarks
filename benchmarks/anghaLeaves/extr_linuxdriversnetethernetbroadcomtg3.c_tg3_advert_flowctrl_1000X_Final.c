@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +79,6 @@ __attribute__((used)) static u16 tg3_advert_flowctrl_1000X(u8 flow_ctrl)
 	return miireg;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,6 +95,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int flow_ctrl = 100;
+        
           int benchRet = tg3_advert_flowctrl_1000X(flow_ctrl);
           printf("%d\n", benchRet); 
         
@@ -109,6 +105,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int flow_ctrl = 255;
+        
           int benchRet = tg3_advert_flowctrl_1000X(flow_ctrl);
           printf("%d\n", benchRet); 
         
@@ -118,12 +115,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int flow_ctrl = 10;
+        
           int benchRet = tg3_advert_flowctrl_1000X(flow_ctrl);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int flow_ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = tg3_advert_flowctrl_1000X(flow_ctrl);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

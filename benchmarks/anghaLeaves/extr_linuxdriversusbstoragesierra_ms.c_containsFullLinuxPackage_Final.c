@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static bool containsFullLinuxPackage(struct swoc_info *swo
 		return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,28 +78,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_swocInfo0 = 1;
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_swocInfo0 = 65025;
           struct swoc_info * swocInfo = (struct swoc_info *) malloc(_len_swocInfo0*sizeof(struct swoc_info));
           for(int _i0 = 0; _i0 < _len_swocInfo0; _i0++) {
-            swocInfo[_i0].LinuxSKU = ((-2 * (next_i()%2)) + 1) * next_i();
+              swocInfo[_i0].LinuxSKU = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = containsFullLinuxPackage(swocInfo);
           printf("%d\n", benchRet); 
           free(swocInfo);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_swocInfo0 = 100;
           struct swoc_info * swocInfo = (struct swoc_info *) malloc(_len_swocInfo0*sizeof(struct swoc_info));
           for(int _i0 = 0; _i0 < _len_swocInfo0; _i0++) {
-            swocInfo[_i0].LinuxSKU = ((-2 * (next_i()%2)) + 1) * next_i();
+              swocInfo[_i0].LinuxSKU = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = containsFullLinuxPackage(swocInfo);
+          printf("%d\n", benchRet); 
+          free(swocInfo);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_swocInfo0 = 1;
+          struct swoc_info * swocInfo = (struct swoc_info *) malloc(_len_swocInfo0*sizeof(struct swoc_info));
+          for(int _i0 = 0; _i0 < _len_swocInfo0; _i0++) {
+              swocInfo[_i0].LinuxSKU = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = containsFullLinuxPackage(swocInfo);
           printf("%d\n", benchRet); 
           free(swocInfo);

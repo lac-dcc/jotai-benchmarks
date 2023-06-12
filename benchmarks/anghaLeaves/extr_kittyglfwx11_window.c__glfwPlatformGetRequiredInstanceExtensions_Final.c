@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -80,12 +82,6 @@ void _glfwPlatformGetRequiredInstanceExtensions(char** extensions)
         extensions[1] = "VK_KHR_xlib_surface";
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,8 +94,50 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
+    {
+          int _len_extensions0 = 65025;
+          char ** extensions = (char **) malloc(_len_extensions0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_extensions0; _i0++) {
+            int _len_extensions1 = 1;
+            extensions[_i0] = (char *) malloc(_len_extensions1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_extensions1; _i1++) {
+              extensions[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          _glfwPlatformGetRequiredInstanceExtensions(extensions);
+          for(int i1 = 0; i1 < _len_extensions0; i1++) {
+              free(extensions[i1]);
+          }
+          free(extensions);
+        
+        break;
+    }
+    // big-arr-10x
+    case 1:
+    {
+          int _len_extensions0 = 100;
+          char ** extensions = (char **) malloc(_len_extensions0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_extensions0; _i0++) {
+            int _len_extensions1 = 1;
+            extensions[_i0] = (char *) malloc(_len_extensions1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_extensions1; _i1++) {
+              extensions[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          _glfwPlatformGetRequiredInstanceExtensions(extensions);
+          for(int i1 = 0; i1 < _len_extensions0; i1++) {
+              free(extensions[i1]);
+          }
+          free(extensions);
+        
+        break;
+    }
+    // empty
+    case 2:
     {
           int _len_extensions0 = 1;
           char ** extensions = (char **) malloc(_len_extensions0*sizeof(char *));
@@ -110,16 +148,15 @@ int main(int argc, char *argv[]) {
               extensions[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           _glfwPlatformGetRequiredInstanceExtensions(extensions);
           for(int i1 = 0; i1 < _len_extensions0; i1++) {
-            int _len_extensions1 = 1;
               free(extensions[i1]);
           }
           free(extensions);
         
         break;
     }
-
     default:
         usage();
         break;

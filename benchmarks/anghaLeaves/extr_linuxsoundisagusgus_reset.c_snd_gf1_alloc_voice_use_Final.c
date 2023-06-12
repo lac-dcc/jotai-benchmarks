@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -84,12 +87,6 @@ __attribute__((used)) static void snd_gf1_alloc_voice_use(struct snd_gus_card * 
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,30 +103,142 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int type = 100;
+        
           int client = 100;
+        
           int port = 100;
+        
           int _len_gus0 = 1;
           struct snd_gus_card * gus = (struct snd_gus_card *) malloc(_len_gus0*sizeof(struct snd_gus_card));
           for(int _i0 = 0; _i0 < _len_gus0; _i0++) {
-            gus[_i0].gf1.pcm_alloc_voices = ((-2 * (next_i()%2)) + 1) * next_i();
+              gus[_i0].gf1.pcm_alloc_voices = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_pvoice0 = 1;
           struct snd_gus_voice * pvoice = (struct snd_gus_voice *) malloc(_len_pvoice0*sizeof(struct snd_gus_voice));
           for(int _i0 = 0; _i0 < _len_pvoice0; _i0++) {
-            pvoice[_i0].use = ((-2 * (next_i()%2)) + 1) * next_i();
-        pvoice[_i0].pcm = ((-2 * (next_i()%2)) + 1) * next_i();
-        pvoice[_i0].synth = ((-2 * (next_i()%2)) + 1) * next_i();
-        pvoice[_i0].client = ((-2 * (next_i()%2)) + 1) * next_i();
-        pvoice[_i0].port = ((-2 * (next_i()%2)) + 1) * next_i();
-        pvoice[_i0].midi = ((-2 * (next_i()%2)) + 1) * next_i();
+              pvoice[_i0].use = ((-2 * (next_i()%2)) + 1) * next_i();
+          pvoice[_i0].pcm = ((-2 * (next_i()%2)) + 1) * next_i();
+          pvoice[_i0].synth = ((-2 * (next_i()%2)) + 1) * next_i();
+          pvoice[_i0].client = ((-2 * (next_i()%2)) + 1) * next_i();
+          pvoice[_i0].port = ((-2 * (next_i()%2)) + 1) * next_i();
+          pvoice[_i0].midi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           snd_gf1_alloc_voice_use(gus,pvoice,type,client,port);
           free(gus);
           free(pvoice);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int type = 255;
+        
+          int client = 255;
+        
+          int port = 255;
+        
+          int _len_gus0 = 65025;
+          struct snd_gus_card * gus = (struct snd_gus_card *) malloc(_len_gus0*sizeof(struct snd_gus_card));
+          for(int _i0 = 0; _i0 < _len_gus0; _i0++) {
+              gus[_i0].gf1.pcm_alloc_voices = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_pvoice0 = 65025;
+          struct snd_gus_voice * pvoice = (struct snd_gus_voice *) malloc(_len_pvoice0*sizeof(struct snd_gus_voice));
+          for(int _i0 = 0; _i0 < _len_pvoice0; _i0++) {
+              pvoice[_i0].use = ((-2 * (next_i()%2)) + 1) * next_i();
+          pvoice[_i0].pcm = ((-2 * (next_i()%2)) + 1) * next_i();
+          pvoice[_i0].synth = ((-2 * (next_i()%2)) + 1) * next_i();
+          pvoice[_i0].client = ((-2 * (next_i()%2)) + 1) * next_i();
+          pvoice[_i0].port = ((-2 * (next_i()%2)) + 1) * next_i();
+          pvoice[_i0].midi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          snd_gf1_alloc_voice_use(gus,pvoice,type,client,port);
+          free(gus);
+          free(pvoice);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int type = 10;
+        
+          int client = 10;
+        
+          int port = 10;
+        
+          int _len_gus0 = 100;
+          struct snd_gus_card * gus = (struct snd_gus_card *) malloc(_len_gus0*sizeof(struct snd_gus_card));
+          for(int _i0 = 0; _i0 < _len_gus0; _i0++) {
+              gus[_i0].gf1.pcm_alloc_voices = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_pvoice0 = 100;
+          struct snd_gus_voice * pvoice = (struct snd_gus_voice *) malloc(_len_pvoice0*sizeof(struct snd_gus_voice));
+          for(int _i0 = 0; _i0 < _len_pvoice0; _i0++) {
+              pvoice[_i0].use = ((-2 * (next_i()%2)) + 1) * next_i();
+          pvoice[_i0].pcm = ((-2 * (next_i()%2)) + 1) * next_i();
+          pvoice[_i0].synth = ((-2 * (next_i()%2)) + 1) * next_i();
+          pvoice[_i0].client = ((-2 * (next_i()%2)) + 1) * next_i();
+          pvoice[_i0].port = ((-2 * (next_i()%2)) + 1) * next_i();
+          pvoice[_i0].midi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          snd_gf1_alloc_voice_use(gus,pvoice,type,client,port);
+          free(gus);
+          free(pvoice);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int client = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int port = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_gus0 = 1;
+          struct snd_gus_card * gus = (struct snd_gus_card *) malloc(_len_gus0*sizeof(struct snd_gus_card));
+          for(int _i0 = 0; _i0 < _len_gus0; _i0++) {
+              gus[_i0].gf1.pcm_alloc_voices = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_pvoice0 = 1;
+          struct snd_gus_voice * pvoice = (struct snd_gus_voice *) malloc(_len_pvoice0*sizeof(struct snd_gus_voice));
+          for(int _i0 = 0; _i0 < _len_pvoice0; _i0++) {
+              pvoice[_i0].use = ((-2 * (next_i()%2)) + 1) * next_i();
+          pvoice[_i0].pcm = ((-2 * (next_i()%2)) + 1) * next_i();
+          pvoice[_i0].synth = ((-2 * (next_i()%2)) + 1) * next_i();
+          pvoice[_i0].client = ((-2 * (next_i()%2)) + 1) * next_i();
+          pvoice[_i0].port = ((-2 * (next_i()%2)) + 1) * next_i();
+          pvoice[_i0].midi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          snd_gf1_alloc_voice_use(gus,pvoice,type,client,port);
+          free(gus);
+          free(pvoice);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ _HandleAddPort(PLOCALMON_XCV pXcv, PBYTE pInputData, PDWORD pcbOutputNeeded)
     return ERROR_CALL_NOT_IMPLEMENTED;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,8 +84,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int pXcv = 100;
+        
           int pInputData = 100;
+        
           int pcbOutputNeeded = 100;
+        
           int benchRet = _HandleAddPort(pXcv,pInputData,pcbOutputNeeded);
           printf("%d\n", benchRet); 
         
@@ -100,8 +98,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int pXcv = 255;
+        
           int pInputData = 255;
+        
           int pcbOutputNeeded = 255;
+        
           int benchRet = _HandleAddPort(pXcv,pInputData,pcbOutputNeeded);
           printf("%d\n", benchRet); 
         
@@ -111,14 +112,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int pXcv = 10;
+        
           int pInputData = 10;
+        
           int pcbOutputNeeded = 10;
+        
           int benchRet = _HandleAddPort(pXcv,pInputData,pcbOutputNeeded);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int pXcv = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int pInputData = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int pcbOutputNeeded = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = _HandleAddPort(pXcv,pInputData,pcbOutputNeeded);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

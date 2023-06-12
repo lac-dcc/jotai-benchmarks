@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ int thermal_zone_get_slope(struct thermal_zone_device *tz)
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,18 +78,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_tz0 = 65025;
+          struct thermal_zone_device * tz = (struct thermal_zone_device *) malloc(_len_tz0*sizeof(struct thermal_zone_device));
+          for(int _i0 = 0; _i0 < _len_tz0; _i0++) {
+              int _len_tz__i0__tzp0 = 1;
+          tz[_i0].tzp = (struct TYPE_2__ *) malloc(_len_tz__i0__tzp0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_tz__i0__tzp0; _j0++) {
+              tz[_i0].tzp->slope = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = thermal_zone_get_slope(tz);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_tz0; _aux++) {
+          free(tz[_aux].tzp);
+          }
+          free(tz);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_tz0 = 100;
+          struct thermal_zone_device * tz = (struct thermal_zone_device *) malloc(_len_tz0*sizeof(struct thermal_zone_device));
+          for(int _i0 = 0; _i0 < _len_tz0; _i0++) {
+              int _len_tz__i0__tzp0 = 1;
+          tz[_i0].tzp = (struct TYPE_2__ *) malloc(_len_tz__i0__tzp0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_tz__i0__tzp0; _j0++) {
+              tz[_i0].tzp->slope = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = thermal_zone_get_slope(tz);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_tz0; _aux++) {
+          free(tz[_aux].tzp);
+          }
+          free(tz);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_tz0 = 1;
           struct thermal_zone_device * tz = (struct thermal_zone_device *) malloc(_len_tz0*sizeof(struct thermal_zone_device));
           for(int _i0 = 0; _i0 < _len_tz0; _i0++) {
               int _len_tz__i0__tzp0 = 1;
           tz[_i0].tzp = (struct TYPE_2__ *) malloc(_len_tz__i0__tzp0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_tz__i0__tzp0; _j0++) {
-            tz[_i0].tzp->slope = ((-2 * (next_i()%2)) + 1) * next_i();
+              tz[_i0].tzp->slope = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = thermal_zone_get_slope(tz);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_tz0; _aux++) {

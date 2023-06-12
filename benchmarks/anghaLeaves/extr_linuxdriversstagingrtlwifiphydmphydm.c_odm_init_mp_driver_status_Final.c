@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ void odm_init_mp_driver_status(struct phy_dm_struct *dm)
 	dm->mp_mode = false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dm0 = 1;
+          int _len_dm0 = 65025;
           struct phy_dm_struct * dm = (struct phy_dm_struct *) malloc(_len_dm0*sizeof(struct phy_dm_struct));
           for(int _i0 = 0; _i0 < _len_dm0; _i0++) {
-            dm[_i0].mp_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              dm[_i0].mp_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           odm_init_mp_driver_status(dm);
           free(dm);
         
@@ -98,14 +95,30 @@ int main(int argc, char *argv[]) {
           int _len_dm0 = 100;
           struct phy_dm_struct * dm = (struct phy_dm_struct *) malloc(_len_dm0*sizeof(struct phy_dm_struct));
           for(int _i0 = 0; _i0 < _len_dm0; _i0++) {
-            dm[_i0].mp_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              dm[_i0].mp_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           odm_init_mp_driver_status(dm);
           free(dm);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_dm0 = 1;
+          struct phy_dm_struct * dm = (struct phy_dm_struct *) malloc(_len_dm0*sizeof(struct phy_dm_struct));
+          for(int _i0 = 0; _i0 < _len_dm0; _i0++) {
+              dm[_i0].mp_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          odm_init_mp_driver_status(dm);
+          free(dm);
+        
+        break;
+    }
     default:
         usage();
         break;

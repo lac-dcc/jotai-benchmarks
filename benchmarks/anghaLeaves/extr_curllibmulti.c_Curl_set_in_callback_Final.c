@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ void Curl_set_in_callback(struct Curl_easy *data, bool value)
   }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,24 +85,226 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int value = 100;
+        
           int _len_data0 = 1;
           struct Curl_easy * data = (struct Curl_easy *) malloc(_len_data0*sizeof(struct Curl_easy));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
               int _len_data__i0__multi0 = 1;
           data[_i0].multi = (struct TYPE_4__ *) malloc(_len_data__i0__multi0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_data__i0__multi0; _j0++) {
-            data[_i0].multi->in_callback = ((-2 * (next_i()%2)) + 1) * next_i();
+              data[_i0].multi->in_callback = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_data__i0__multi_easy0 = 1;
           data[_i0].multi_easy = (struct TYPE_3__ *) malloc(_len_data__i0__multi_easy0*sizeof(struct TYPE_3__));
           for(int _j0 = 0; _j0 < _len_data__i0__multi_easy0; _j0++) {
-            data[_i0].multi_easy->in_callback = ((-2 * (next_i()%2)) + 1) * next_i();
+              data[_i0].multi_easy->in_callback = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          Curl_set_in_callback(data,value);
+          for(int _aux = 0; _aux < _len_data0; _aux++) {
+          free(data[_aux].multi);
+          }
+          for(int _aux = 0; _aux < _len_data0; _aux++) {
+          free(data[_aux].multi_easy);
+          }
+          free(data);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int value = 255;
+        
+          int _len_data0 = 65025;
+          struct Curl_easy * data = (struct Curl_easy *) malloc(_len_data0*sizeof(struct Curl_easy));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              int _len_data__i0__multi0 = 1;
+          data[_i0].multi = (struct TYPE_4__ *) malloc(_len_data__i0__multi0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_data__i0__multi0; _j0++) {
+              data[_i0].multi->in_callback = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_data__i0__multi_easy0 = 1;
+          data[_i0].multi_easy = (struct TYPE_3__ *) malloc(_len_data__i0__multi_easy0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_data__i0__multi_easy0; _j0++) {
+              data[_i0].multi_easy->in_callback = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          Curl_set_in_callback(data,value);
+          for(int _aux = 0; _aux < _len_data0; _aux++) {
+          free(data[_aux].multi);
+          }
+          for(int _aux = 0; _aux < _len_data0; _aux++) {
+          free(data[_aux].multi_easy);
+          }
+          free(data);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int value = 10;
+        
+          int _len_data0 = 100;
+          struct Curl_easy * data = (struct Curl_easy *) malloc(_len_data0*sizeof(struct Curl_easy));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              int _len_data__i0__multi0 = 1;
+          data[_i0].multi = (struct TYPE_4__ *) malloc(_len_data__i0__multi0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_data__i0__multi0; _j0++) {
+              data[_i0].multi->in_callback = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_data__i0__multi_easy0 = 1;
+          data[_i0].multi_easy = (struct TYPE_3__ *) malloc(_len_data__i0__multi_easy0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_data__i0__multi_easy0; _j0++) {
+              data[_i0].multi_easy->in_callback = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          Curl_set_in_callback(data,value);
+          for(int _aux = 0; _aux < _len_data0; _aux++) {
+          free(data[_aux].multi);
+          }
+          for(int _aux = 0; _aux < _len_data0; _aux++) {
+          free(data[_aux].multi_easy);
+          }
+          free(data);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_data0 = 1;
+          struct Curl_easy * data = (struct Curl_easy *) malloc(_len_data0*sizeof(struct Curl_easy));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              int _len_data__i0__multi0 = 1;
+          data[_i0].multi = (struct TYPE_4__ *) malloc(_len_data__i0__multi0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_data__i0__multi0; _j0++) {
+              data[_i0].multi->in_callback = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_data__i0__multi_easy0 = 1;
+          data[_i0].multi_easy = (struct TYPE_3__ *) malloc(_len_data__i0__multi_easy0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_data__i0__multi_easy0; _j0++) {
+              data[_i0].multi_easy->in_callback = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           Curl_set_in_callback(data,value);
           for(int _aux = 0; _aux < _len_data0; _aux++) {
           free(data[_aux].multi);

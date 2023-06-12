@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ __attribute__((used)) static void set_clock_at(Clock *c, double pts, int serial,
     c->serial = serial;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,22 +84,98 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           double pts = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           int serial = 100;
+        
           double time = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           int _len_c0 = 1;
           struct TYPE_3__ * c = (struct TYPE_3__ *) malloc(_len_c0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_c0; _i0++) {
-            c[_i0].pts = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        c[_i0].last_updated = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        c[_i0].pts_drift = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        c[_i0].serial = ((-2 * (next_i()%2)) + 1) * next_i();
+              c[_i0].pts = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          c[_i0].last_updated = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          c[_i0].pts_drift = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          c[_i0].serial = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           set_clock_at(c,pts,serial,time);
           free(c);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          double pts = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          int serial = 255;
+        
+          double time = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          int _len_c0 = 65025;
+          struct TYPE_3__ * c = (struct TYPE_3__ *) malloc(_len_c0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].pts = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          c[_i0].last_updated = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          c[_i0].pts_drift = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          c[_i0].serial = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_clock_at(c,pts,serial,time);
+          free(c);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          double pts = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          int serial = 10;
+        
+          double time = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          int _len_c0 = 100;
+          struct TYPE_3__ * c = (struct TYPE_3__ *) malloc(_len_c0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].pts = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          c[_i0].last_updated = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          c[_i0].pts_drift = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          c[_i0].serial = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_clock_at(c,pts,serial,time);
+          free(c);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          double pts = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          int serial = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          double time = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          int _len_c0 = 1;
+          struct TYPE_3__ * c = (struct TYPE_3__ *) malloc(_len_c0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].pts = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          c[_i0].last_updated = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          c[_i0].pts_drift = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          c[_i0].serial = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_clock_at(c,pts,serial,time);
+          free(c);
+        
+        break;
+    }
     default:
         usage();
         break;

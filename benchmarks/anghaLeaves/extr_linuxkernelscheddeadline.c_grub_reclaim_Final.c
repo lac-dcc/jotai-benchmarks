@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -84,12 +87,6 @@ __attribute__((used)) static u64 grub_reclaim(u64 delta, struct rq *rq, struct s
 	return (delta * u_act) >> BW_SHIFT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,23 +99,214 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           long delta = 100;
+        
           int _len_rq0 = 1;
           struct rq * rq = (struct rq *) malloc(_len_rq0*sizeof(struct rq));
           for(int _i0 = 0; _i0 < _len_rq0; _i0++) {
-            rq[_i0].dl.this_bw = ((-2 * (next_i()%2)) + 1) * next_i();
-        rq[_i0].dl.running_bw = ((-2 * (next_i()%2)) + 1) * next_i();
-        rq[_i0].dl.bw_ratio = ((-2 * (next_i()%2)) + 1) * next_i();
-        rq[_i0].dl.extra_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+              rq[_i0].dl.this_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+          rq[_i0].dl.running_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+          rq[_i0].dl.bw_ratio = ((-2 * (next_i()%2)) + 1) * next_i();
+          rq[_i0].dl.extra_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_dl_se0 = 1;
           struct sched_dl_entity * dl_se = (struct sched_dl_entity *) malloc(_len_dl_se0*sizeof(struct sched_dl_entity));
           for(int _i0 = 0; _i0 < _len_dl_se0; _i0++) {
-            dl_se[_i0].dl_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+              dl_se[_i0].dl_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          long benchRet = grub_reclaim(delta,rq,dl_se);
+          printf("%ld\n", benchRet); 
+          free(rq);
+          free(dl_se);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          long delta = 255;
+        
+          int _len_rq0 = 65025;
+          struct rq * rq = (struct rq *) malloc(_len_rq0*sizeof(struct rq));
+          for(int _i0 = 0; _i0 < _len_rq0; _i0++) {
+              rq[_i0].dl.this_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+          rq[_i0].dl.running_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+          rq[_i0].dl.bw_ratio = ((-2 * (next_i()%2)) + 1) * next_i();
+          rq[_i0].dl.extra_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_dl_se0 = 65025;
+          struct sched_dl_entity * dl_se = (struct sched_dl_entity *) malloc(_len_dl_se0*sizeof(struct sched_dl_entity));
+          for(int _i0 = 0; _i0 < _len_dl_se0; _i0++) {
+              dl_se[_i0].dl_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = grub_reclaim(delta,rq,dl_se);
+          printf("%ld\n", benchRet); 
+          free(rq);
+          free(dl_se);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          long delta = 10;
+        
+          int _len_rq0 = 100;
+          struct rq * rq = (struct rq *) malloc(_len_rq0*sizeof(struct rq));
+          for(int _i0 = 0; _i0 < _len_rq0; _i0++) {
+              rq[_i0].dl.this_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+          rq[_i0].dl.running_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+          rq[_i0].dl.bw_ratio = ((-2 * (next_i()%2)) + 1) * next_i();
+          rq[_i0].dl.extra_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_dl_se0 = 100;
+          struct sched_dl_entity * dl_se = (struct sched_dl_entity *) malloc(_len_dl_se0*sizeof(struct sched_dl_entity));
+          for(int _i0 = 0; _i0 < _len_dl_se0; _i0++) {
+              dl_se[_i0].dl_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = grub_reclaim(delta,rq,dl_se);
+          printf("%ld\n", benchRet); 
+          free(rq);
+          free(dl_se);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          long delta = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rq0 = 1;
+          struct rq * rq = (struct rq *) malloc(_len_rq0*sizeof(struct rq));
+          for(int _i0 = 0; _i0 < _len_rq0; _i0++) {
+              rq[_i0].dl.this_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+          rq[_i0].dl.running_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+          rq[_i0].dl.bw_ratio = ((-2 * (next_i()%2)) + 1) * next_i();
+          rq[_i0].dl.extra_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_dl_se0 = 1;
+          struct sched_dl_entity * dl_se = (struct sched_dl_entity *) malloc(_len_dl_se0*sizeof(struct sched_dl_entity));
+          for(int _i0 = 0; _i0 < _len_dl_se0; _i0++) {
+              dl_se[_i0].dl_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           long benchRet = grub_reclaim(delta,rq,dl_se);
           printf("%ld\n", benchRet); 
           free(rq);

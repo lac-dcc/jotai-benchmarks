@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ void ClearMatrixMessage(MATRIX_MESSAGE *msg)
 			msg->message[x][y] = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,14 +80,37 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_msg0 = 1;
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_msg0 = 65025;
           struct TYPE_3__ * msg = (struct TYPE_3__ *) malloc(_len_msg0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_msg0; _i0++) {
-            msg[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
-        msg[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+              msg[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_msg__i0__message0 = 1;
           msg[_i0].message = (long **) malloc(_len_msg__i0__message0*sizeof(long *));
           for(int _j0 = 0; _j0 < _len_msg__i0__message0; _j0++) {
@@ -101,7 +120,115 @@ int main(int argc, char *argv[]) {
               msg[_i0].message[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           }
+        
+          ClearMatrixMessage(msg);
+          for(int _aux = 0; _aux < _len_msg0; _aux++) {
+          free(*(msg[_aux].message));
+        free(msg[_aux].message);
+          }
+          free(msg);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_msg0 = 100;
+          struct TYPE_3__ * msg = (struct TYPE_3__ *) malloc(_len_msg0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_msg0; _i0++) {
+              msg[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_msg__i0__message0 = 1;
+          msg[_i0].message = (long **) malloc(_len_msg__i0__message0*sizeof(long *));
+          for(int _j0 = 0; _j0 < _len_msg__i0__message0; _j0++) {
+            int _len_msg__i0__message1 = 1;
+            msg[_i0].message[_j0] = (long *) malloc(_len_msg__i0__message1*sizeof(long));
+            for(int _j1 = 0; _j1 < _len_msg__i0__message1; _j1++) {
+              msg[_i0].message[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          }
+        
+          ClearMatrixMessage(msg);
+          for(int _aux = 0; _aux < _len_msg0; _aux++) {
+          free(*(msg[_aux].message));
+        free(msg[_aux].message);
+          }
+          free(msg);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_msg0 = 1;
+          struct TYPE_3__ * msg = (struct TYPE_3__ *) malloc(_len_msg0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_msg0; _i0++) {
+              msg[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_msg__i0__message0 = 1;
+          msg[_i0].message = (long **) malloc(_len_msg__i0__message0*sizeof(long *));
+          for(int _j0 = 0; _j0 < _len_msg__i0__message0; _j0++) {
+            int _len_msg__i0__message1 = 1;
+            msg[_i0].message[_j0] = (long *) malloc(_len_msg__i0__message1*sizeof(long));
+            for(int _j1 = 0; _j1 < _len_msg__i0__message1; _j1++) {
+              msg[_i0].message[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          }
+        
           ClearMatrixMessage(msg);
           for(int _aux = 0; _aux < _len_msg0; _aux++) {
           free(*(msg[_aux].message));

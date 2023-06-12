@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ __attribute__((used)) static void xhci_handle_cmd_enable_slot(struct xhci_hcd *x
 		command->slot_id = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,21 +82,203 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int slot_id = 100;
+        
           long cmd_comp_code = 100;
+        
           int _len_xhci0 = 1;
           struct xhci_hcd * xhci = (struct xhci_hcd *) malloc(_len_xhci0*sizeof(struct xhci_hcd));
           for(int _i0 = 0; _i0 < _len_xhci0; _i0++) {
-            xhci[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              xhci[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_command0 = 1;
           struct xhci_command * command = (struct xhci_command *) malloc(_len_command0*sizeof(struct xhci_command));
           for(int _i0 = 0; _i0 < _len_command0; _i0++) {
-            command[_i0].slot_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              command[_i0].slot_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          xhci_handle_cmd_enable_slot(xhci,slot_id,command,cmd_comp_code);
+          free(xhci);
+          free(command);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int slot_id = 255;
+        
+          long cmd_comp_code = 255;
+        
+          int _len_xhci0 = 65025;
+          struct xhci_hcd * xhci = (struct xhci_hcd *) malloc(_len_xhci0*sizeof(struct xhci_hcd));
+          for(int _i0 = 0; _i0 < _len_xhci0; _i0++) {
+              xhci[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_command0 = 65025;
+          struct xhci_command * command = (struct xhci_command *) malloc(_len_command0*sizeof(struct xhci_command));
+          for(int _i0 = 0; _i0 < _len_command0; _i0++) {
+              command[_i0].slot_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          xhci_handle_cmd_enable_slot(xhci,slot_id,command,cmd_comp_code);
+          free(xhci);
+          free(command);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int slot_id = 10;
+        
+          long cmd_comp_code = 10;
+        
+          int _len_xhci0 = 100;
+          struct xhci_hcd * xhci = (struct xhci_hcd *) malloc(_len_xhci0*sizeof(struct xhci_hcd));
+          for(int _i0 = 0; _i0 < _len_xhci0; _i0++) {
+              xhci[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_command0 = 100;
+          struct xhci_command * command = (struct xhci_command *) malloc(_len_command0*sizeof(struct xhci_command));
+          for(int _i0 = 0; _i0 < _len_command0; _i0++) {
+              command[_i0].slot_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          xhci_handle_cmd_enable_slot(xhci,slot_id,command,cmd_comp_code);
+          free(xhci);
+          free(command);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int slot_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long cmd_comp_code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_xhci0 = 1;
+          struct xhci_hcd * xhci = (struct xhci_hcd *) malloc(_len_xhci0*sizeof(struct xhci_hcd));
+          for(int _i0 = 0; _i0 < _len_xhci0; _i0++) {
+              xhci[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_command0 = 1;
+          struct xhci_command * command = (struct xhci_command *) malloc(_len_command0*sizeof(struct xhci_command));
+          for(int _i0 = 0; _i0 < _len_command0; _i0++) {
+              command[_i0].slot_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           xhci_handle_cmd_enable_slot(xhci,slot_id,command,cmd_comp_code);
           free(xhci);
           free(command);

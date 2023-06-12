@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ void mg_set_protocol_dns(struct mg_connection *nc) {
   nc->proto_handler = dns_handler;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,27 +74,117 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_nc0 = 1;
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_nc0 = 65025;
           struct mg_connection * nc = (struct mg_connection *) malloc(_len_nc0*sizeof(struct mg_connection));
           for(int _i0 = 0; _i0 < _len_nc0; _i0++) {
-            nc[_i0].proto_handler = ((-2 * (next_i()%2)) + 1) * next_i();
+              nc[_i0].proto_handler = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           mg_set_protocol_dns(nc);
           free(nc);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_nc0 = 100;
           struct mg_connection * nc = (struct mg_connection *) malloc(_len_nc0*sizeof(struct mg_connection));
           for(int _i0 = 0; _i0 < _len_nc0; _i0++) {
-            nc[_i0].proto_handler = ((-2 * (next_i()%2)) + 1) * next_i();
+              nc[_i0].proto_handler = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          mg_set_protocol_dns(nc);
+          free(nc);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_nc0 = 1;
+          struct mg_connection * nc = (struct mg_connection *) malloc(_len_nc0*sizeof(struct mg_connection));
+          for(int _i0 = 0; _i0 < _len_nc0; _i0++) {
+              nc[_i0].proto_handler = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           mg_set_protocol_dns(nc);
           free(nc);
         

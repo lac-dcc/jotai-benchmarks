@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ __attribute__((used)) static void blk_flush_restore_request(struct request *rq)
 	rq->end_io = rq->flush.saved_end_io;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,18 +86,132 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_rq0 = 65025;
+          struct request * rq = (struct request *) malloc(_len_rq0*sizeof(struct request));
+          for(int _i0 = 0; _i0 < _len_rq0; _i0++) {
+              rq[_i0].flush.saved_end_io = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          rq[_i0].end_io = ((-2 * (next_i()%2)) + 1) * next_i();
+          rq[_i0].rq_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          rq[_i0].biotail = ((-2 * (next_i()%2)) + 1) * next_i();
+          rq[_i0].bio = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          blk_flush_restore_request(rq);
+          free(rq);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_rq0 = 100;
+          struct request * rq = (struct request *) malloc(_len_rq0*sizeof(struct request));
+          for(int _i0 = 0; _i0 < _len_rq0; _i0++) {
+              rq[_i0].flush.saved_end_io = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          rq[_i0].end_io = ((-2 * (next_i()%2)) + 1) * next_i();
+          rq[_i0].rq_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          rq[_i0].biotail = ((-2 * (next_i()%2)) + 1) * next_i();
+          rq[_i0].bio = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          blk_flush_restore_request(rq);
+          free(rq);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_rq0 = 1;
           struct request * rq = (struct request *) malloc(_len_rq0*sizeof(struct request));
           for(int _i0 = 0; _i0 < _len_rq0; _i0++) {
-            rq[_i0].flush.saved_end_io = ((-2 * (next_i()%2)) + 1) * next_i();
-        rq[_i0].end_io = ((-2 * (next_i()%2)) + 1) * next_i();
-        rq[_i0].rq_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        rq[_i0].biotail = ((-2 * (next_i()%2)) + 1) * next_i();
-        rq[_i0].bio = ((-2 * (next_i()%2)) + 1) * next_i();
+              rq[_i0].flush.saved_end_io = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          rq[_i0].end_io = ((-2 * (next_i()%2)) + 1) * next_i();
+          rq[_i0].rq_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          rq[_i0].biotail = ((-2 * (next_i()%2)) + 1) * next_i();
+          rq[_i0].bio = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           blk_flush_restore_request(rq);
           free(rq);
         

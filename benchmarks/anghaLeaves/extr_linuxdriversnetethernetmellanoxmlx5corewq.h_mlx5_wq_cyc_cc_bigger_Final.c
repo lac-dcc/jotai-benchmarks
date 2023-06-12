@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static inline int mlx5_wq_cyc_cc_bigger(u16 cc1, u16 cc2)
 	return !equal && !smaller;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,7 +82,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long cc1 = 100;
+        
           long cc2 = 100;
+        
           int benchRet = mlx5_wq_cyc_cc_bigger(cc1,cc2);
           printf("%d\n", benchRet); 
         
@@ -97,7 +94,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long cc1 = 255;
+        
           long cc2 = 255;
+        
           int benchRet = mlx5_wq_cyc_cc_bigger(cc1,cc2);
           printf("%d\n", benchRet); 
         
@@ -107,13 +106,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long cc1 = 10;
+        
           long cc2 = 10;
+        
           int benchRet = mlx5_wq_cyc_cc_bigger(cc1,cc2);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long cc1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long cc2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = mlx5_wq_cyc_cc_bigger(cc1,cc2);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

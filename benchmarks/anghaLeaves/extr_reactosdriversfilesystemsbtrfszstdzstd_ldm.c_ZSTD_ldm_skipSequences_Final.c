@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -89,12 +92,6 @@ void ZSTD_ldm_skipSequences(rawSeqStore_t* rawSeqStore, size_t srcSize, U32 cons
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,23 +104,213 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           unsigned long srcSize = 100;
+        
           const unsigned long minMatch = 100;
+        
           int _len_rawSeqStore0 = 1;
           struct TYPE_4__ * rawSeqStore = (struct TYPE_4__ *) malloc(_len_rawSeqStore0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_rawSeqStore0; _i0++) {
-            rawSeqStore[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
-        rawSeqStore[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              rawSeqStore[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          rawSeqStore[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_rawSeqStore__i0__seq0 = 1;
           rawSeqStore[_i0].seq = (struct TYPE_5__ *) malloc(_len_rawSeqStore__i0__seq0*sizeof(struct TYPE_5__));
           for(int _j0 = 0; _j0 < _len_rawSeqStore__i0__seq0; _j0++) {
-            rawSeqStore[_i0].seq->litLength = ((-2 * (next_i()%2)) + 1) * next_i();
-        rawSeqStore[_i0].seq->matchLength = ((-2 * (next_i()%2)) + 1) * next_i();
+              rawSeqStore[_i0].seq->litLength = ((-2 * (next_i()%2)) + 1) * next_i();
+          rawSeqStore[_i0].seq->matchLength = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          ZSTD_ldm_skipSequences(rawSeqStore,srcSize,minMatch);
+          for(int _aux = 0; _aux < _len_rawSeqStore0; _aux++) {
+          free(rawSeqStore[_aux].seq);
+          }
+          free(rawSeqStore);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          unsigned long srcSize = 255;
+        
+          const unsigned long minMatch = 255;
+        
+          int _len_rawSeqStore0 = 65025;
+          struct TYPE_4__ * rawSeqStore = (struct TYPE_4__ *) malloc(_len_rawSeqStore0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_rawSeqStore0; _i0++) {
+              rawSeqStore[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          rawSeqStore[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_rawSeqStore__i0__seq0 = 1;
+          rawSeqStore[_i0].seq = (struct TYPE_5__ *) malloc(_len_rawSeqStore__i0__seq0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_rawSeqStore__i0__seq0; _j0++) {
+              rawSeqStore[_i0].seq->litLength = ((-2 * (next_i()%2)) + 1) * next_i();
+          rawSeqStore[_i0].seq->matchLength = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          ZSTD_ldm_skipSequences(rawSeqStore,srcSize,minMatch);
+          for(int _aux = 0; _aux < _len_rawSeqStore0; _aux++) {
+          free(rawSeqStore[_aux].seq);
+          }
+          free(rawSeqStore);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          unsigned long srcSize = 10;
+        
+          const unsigned long minMatch = 10;
+        
+          int _len_rawSeqStore0 = 100;
+          struct TYPE_4__ * rawSeqStore = (struct TYPE_4__ *) malloc(_len_rawSeqStore0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_rawSeqStore0; _i0++) {
+              rawSeqStore[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          rawSeqStore[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_rawSeqStore__i0__seq0 = 1;
+          rawSeqStore[_i0].seq = (struct TYPE_5__ *) malloc(_len_rawSeqStore__i0__seq0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_rawSeqStore__i0__seq0; _j0++) {
+              rawSeqStore[_i0].seq->litLength = ((-2 * (next_i()%2)) + 1) * next_i();
+          rawSeqStore[_i0].seq->matchLength = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          ZSTD_ldm_skipSequences(rawSeqStore,srcSize,minMatch);
+          for(int _aux = 0; _aux < _len_rawSeqStore0; _aux++) {
+          free(rawSeqStore[_aux].seq);
+          }
+          free(rawSeqStore);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          unsigned long srcSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          const unsigned long minMatch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rawSeqStore0 = 1;
+          struct TYPE_4__ * rawSeqStore = (struct TYPE_4__ *) malloc(_len_rawSeqStore0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_rawSeqStore0; _i0++) {
+              rawSeqStore[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          rawSeqStore[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_rawSeqStore__i0__seq0 = 1;
+          rawSeqStore[_i0].seq = (struct TYPE_5__ *) malloc(_len_rawSeqStore__i0__seq0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_rawSeqStore__i0__seq0; _j0++) {
+              rawSeqStore[_i0].seq->litLength = ((-2 * (next_i()%2)) + 1) * next_i();
+          rawSeqStore[_i0].seq->matchLength = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           ZSTD_ldm_skipSequences(rawSeqStore,srcSize,minMatch);
           for(int _aux = 0; _aux < _len_rawSeqStore0; _aux++) {
           free(rawSeqStore[_aux].seq);

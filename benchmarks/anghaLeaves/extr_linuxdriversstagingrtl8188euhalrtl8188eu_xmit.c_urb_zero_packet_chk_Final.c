@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ __attribute__((used)) static u8 urb_zero_packet_chk(struct adapter *adapt, int s
 	return !((sz + TXDESC_SIZE) % adapt->HalData->UsbBulkOutSize);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,15 +83,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int sz = 100;
+        
           int _len_adapt0 = 1;
           struct adapter * adapt = (struct adapter *) malloc(_len_adapt0*sizeof(struct adapter));
           for(int _i0 = 0; _i0 < _len_adapt0; _i0++) {
               int _len_adapt__i0__HalData0 = 1;
           adapt[_i0].HalData = (struct TYPE_2__ *) malloc(_len_adapt__i0__HalData0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_adapt__i0__HalData0; _j0++) {
-            adapt[_i0].HalData->UsbBulkOutSize = ((-2 * (next_i()%2)) + 1) * next_i();
+              adapt[_i0].HalData->UsbBulkOutSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = urb_zero_packet_chk(adapt,sz);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_adapt0; _aux++) {
@@ -104,7 +105,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int sz = 255;
+        
+          int _len_adapt0 = 65025;
+          struct adapter * adapt = (struct adapter *) malloc(_len_adapt0*sizeof(struct adapter));
+          for(int _i0 = 0; _i0 < _len_adapt0; _i0++) {
+              int _len_adapt__i0__HalData0 = 1;
+          adapt[_i0].HalData = (struct TYPE_2__ *) malloc(_len_adapt__i0__HalData0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_adapt__i0__HalData0; _j0++) {
+              adapt[_i0].HalData->UsbBulkOutSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = urb_zero_packet_chk(adapt,sz);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_adapt0; _aux++) {
+          free(adapt[_aux].HalData);
+          }
+          free(adapt);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int sz = 10;
+        
+          int _len_adapt0 = 100;
+          struct adapter * adapt = (struct adapter *) malloc(_len_adapt0*sizeof(struct adapter));
+          for(int _i0 = 0; _i0 < _len_adapt0; _i0++) {
+              int _len_adapt__i0__HalData0 = 1;
+          adapt[_i0].HalData = (struct TYPE_2__ *) malloc(_len_adapt__i0__HalData0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_adapt__i0__HalData0; _j0++) {
+              adapt[_i0].HalData->UsbBulkOutSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = urb_zero_packet_chk(adapt,sz);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_adapt0; _aux++) {
+          free(adapt[_aux].HalData);
+          }
+          free(adapt);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int sz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_adapt0 = 1;
+          struct adapter * adapt = (struct adapter *) malloc(_len_adapt0*sizeof(struct adapter));
+          for(int _i0 = 0; _i0 < _len_adapt0; _i0++) {
+              int _len_adapt__i0__HalData0 = 1;
+          adapt[_i0].HalData = (struct TYPE_2__ *) malloc(_len_adapt__i0__HalData0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_adapt__i0__HalData0; _j0++) {
+              adapt[_i0].HalData->UsbBulkOutSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = urb_zero_packet_chk(adapt,sz);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_adapt0; _aux++) {
+          free(adapt[_aux].HalData);
+          }
+          free(adapt);
+        
+        break;
+    }
     default:
         usage();
         break;

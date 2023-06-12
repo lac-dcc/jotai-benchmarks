@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ int ok_cp1251 (char *s, int n) {
   return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,15 +79,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 3314
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 1281
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 1281
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 1281
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 1281
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 1280
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 1279
+          // ------------------------------- 
+
+          int n = 255;
+        
+          int _len_s0 = 65025;
+          char * s = (char *) malloc(_len_s0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+            s[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ok_cp1251(s,n);
+          printf("%d\n", benchRet); 
+          free(s);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 129
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 56
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 56
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 56
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 56
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 55
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 54
+          // ------------------------------- 
+
           int n = 10;
+        
           int _len_s0 = 100;
           char * s = (char *) malloc(_len_s0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
             s[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = ok_cp1251(s,n);
+          printf("%d\n", benchRet); 
+          free(s);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_s0 = 1;
+          char * s = (char *) malloc(_len_s0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+            s[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = ok_cp1251(s,n);
           printf("%d\n", benchRet); 
           free(s);

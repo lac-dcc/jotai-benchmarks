@@ -88,12 +88,6 @@ __attribute__((used)) static inline u32 qbman_set_swp_cfg(u8 max_fill, u8 wn,	u8
 		ep << SWP_CFG_EP_SHIFT);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -110,17 +104,29 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int max_fill = 100;
+        
           int wn = 100;
+        
           int est = 100;
+        
           int rpm = 100;
+        
           int dcm = 100;
+        
           int epm = 100;
+        
           int sd = 100;
+        
           int sp = 100;
+        
           int se = 100;
+        
           int dp = 100;
+        
           int de = 100;
+        
           int ep = 100;
+        
           int benchRet = qbman_set_swp_cfg(max_fill,wn,est,rpm,dcm,epm,sd,sp,se,dp,de,ep);
           printf("%d\n", benchRet); 
         
@@ -130,17 +136,29 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int max_fill = 255;
+        
           int wn = 255;
+        
           int est = 255;
+        
           int rpm = 255;
+        
           int dcm = 255;
+        
           int epm = 255;
+        
           int sd = 255;
+        
           int sp = 255;
+        
           int se = 255;
+        
           int dp = 255;
+        
           int de = 255;
+        
           int ep = 255;
+        
           int benchRet = qbman_set_swp_cfg(max_fill,wn,est,rpm,dcm,epm,sd,sp,se,dp,de,ep);
           printf("%d\n", benchRet); 
         
@@ -150,23 +168,34 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int max_fill = 10;
+        
           int wn = 10;
+        
           int est = 10;
+        
           int rpm = 10;
+        
           int dcm = 10;
+        
           int epm = 10;
+        
           int sd = 10;
+        
           int sp = 10;
+        
           int se = 10;
+        
           int dp = 10;
+        
           int de = 10;
+        
           int ep = 10;
+        
           int benchRet = qbman_set_swp_cfg(max_fill,wn,est,rpm,dcm,epm,sd,sp,se,dp,de,ep);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

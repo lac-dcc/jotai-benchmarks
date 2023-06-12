@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +76,6 @@ __attribute__((used)) static __inline void wideRightShiftWithSticky(rep_t *hi, r
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,23 +92,94 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int count = 100;
+        
           int _len_hi0 = 1;
           unsigned int * hi = (unsigned int *) malloc(_len_hi0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_hi0; _i0++) {
             hi[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_lo0 = 1;
           unsigned int * lo = (unsigned int *) malloc(_len_lo0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_lo0; _i0++) {
             lo[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           wideRightShiftWithSticky(hi,lo,count);
           free(hi);
           free(lo);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int count = 255;
+        
+          int _len_hi0 = 65025;
+          unsigned int * hi = (unsigned int *) malloc(_len_hi0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_hi0; _i0++) {
+            hi[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_lo0 = 65025;
+          unsigned int * lo = (unsigned int *) malloc(_len_lo0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_lo0; _i0++) {
+            lo[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          wideRightShiftWithSticky(hi,lo,count);
+          free(hi);
+          free(lo);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int count = 10;
+        
+          int _len_hi0 = 100;
+          unsigned int * hi = (unsigned int *) malloc(_len_hi0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_hi0; _i0++) {
+            hi[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_lo0 = 100;
+          unsigned int * lo = (unsigned int *) malloc(_len_lo0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_lo0; _i0++) {
+            lo[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          wideRightShiftWithSticky(hi,lo,count);
+          free(hi);
+          free(lo);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hi0 = 1;
+          unsigned int * hi = (unsigned int *) malloc(_len_hi0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_hi0; _i0++) {
+            hi[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_lo0 = 1;
+          unsigned int * lo = (unsigned int *) malloc(_len_lo0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_lo0; _i0++) {
+            lo[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          wideRightShiftWithSticky(hi,lo,count);
+          free(hi);
+          free(lo);
+        
+        break;
+    }
     default:
         usage();
         break;

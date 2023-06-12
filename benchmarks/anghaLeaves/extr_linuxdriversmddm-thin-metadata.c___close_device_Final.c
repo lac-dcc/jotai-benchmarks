@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static void __close_device(struct dm_thin_device *td)
 	--td->open_count;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_td0 = 1;
+          int _len_td0 = 65025;
           struct dm_thin_device * td = (struct dm_thin_device *) malloc(_len_td0*sizeof(struct dm_thin_device));
           for(int _i0 = 0; _i0 < _len_td0; _i0++) {
-            td[_i0].open_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              td[_i0].open_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           __close_device(td);
           free(td);
         
@@ -98,14 +95,30 @@ int main(int argc, char *argv[]) {
           int _len_td0 = 100;
           struct dm_thin_device * td = (struct dm_thin_device *) malloc(_len_td0*sizeof(struct dm_thin_device));
           for(int _i0 = 0; _i0 < _len_td0; _i0++) {
-            td[_i0].open_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              td[_i0].open_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           __close_device(td);
           free(td);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_td0 = 1;
+          struct dm_thin_device * td = (struct dm_thin_device *) malloc(_len_td0*sizeof(struct dm_thin_device));
+          for(int _i0 = 0; _i0 < _len_td0; _i0++) {
+              td[_i0].open_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          __close_device(td);
+          free(td);
+        
+        break;
+    }
     default:
         usage();
         break;

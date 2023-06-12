@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ void lodepng_compress_settings_init(LodePNGCompressSettings* settings)
   settings->custom_context = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,28 +87,75 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_settings0 = 1;
+          int _len_settings0 = 65025;
           struct TYPE_3__ * settings = (struct TYPE_3__ *) malloc(_len_settings0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_settings0; _i0++) {
-            settings[_i0].btype = ((-2 * (next_i()%2)) + 1) * next_i();
-        settings[_i0].use_lz77 = ((-2 * (next_i()%2)) + 1) * next_i();
-        settings[_i0].minmatch = ((-2 * (next_i()%2)) + 1) * next_i();
-        settings[_i0].nicematch = ((-2 * (next_i()%2)) + 1) * next_i();
-        settings[_i0].lazymatching = ((-2 * (next_i()%2)) + 1) * next_i();
-        settings[_i0].custom_context = ((-2 * (next_i()%2)) + 1) * next_i();
-        settings[_i0].custom_deflate = ((-2 * (next_i()%2)) + 1) * next_i();
-        settings[_i0].custom_zlib = ((-2 * (next_i()%2)) + 1) * next_i();
-        settings[_i0].windowsize = ((-2 * (next_i()%2)) + 1) * next_i();
+              settings[_i0].btype = ((-2 * (next_i()%2)) + 1) * next_i();
+          settings[_i0].use_lz77 = ((-2 * (next_i()%2)) + 1) * next_i();
+          settings[_i0].minmatch = ((-2 * (next_i()%2)) + 1) * next_i();
+          settings[_i0].nicematch = ((-2 * (next_i()%2)) + 1) * next_i();
+          settings[_i0].lazymatching = ((-2 * (next_i()%2)) + 1) * next_i();
+          settings[_i0].custom_context = ((-2 * (next_i()%2)) + 1) * next_i();
+          settings[_i0].custom_deflate = ((-2 * (next_i()%2)) + 1) * next_i();
+          settings[_i0].custom_zlib = ((-2 * (next_i()%2)) + 1) * next_i();
+          settings[_i0].windowsize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           lodepng_compress_settings_init(settings);
           free(settings);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_settings0 = 100;
+          struct TYPE_3__ * settings = (struct TYPE_3__ *) malloc(_len_settings0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_settings0; _i0++) {
+              settings[_i0].btype = ((-2 * (next_i()%2)) + 1) * next_i();
+          settings[_i0].use_lz77 = ((-2 * (next_i()%2)) + 1) * next_i();
+          settings[_i0].minmatch = ((-2 * (next_i()%2)) + 1) * next_i();
+          settings[_i0].nicematch = ((-2 * (next_i()%2)) + 1) * next_i();
+          settings[_i0].lazymatching = ((-2 * (next_i()%2)) + 1) * next_i();
+          settings[_i0].custom_context = ((-2 * (next_i()%2)) + 1) * next_i();
+          settings[_i0].custom_deflate = ((-2 * (next_i()%2)) + 1) * next_i();
+          settings[_i0].custom_zlib = ((-2 * (next_i()%2)) + 1) * next_i();
+          settings[_i0].windowsize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          lodepng_compress_settings_init(settings);
+          free(settings);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_settings0 = 1;
+          struct TYPE_3__ * settings = (struct TYPE_3__ *) malloc(_len_settings0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_settings0; _i0++) {
+              settings[_i0].btype = ((-2 * (next_i()%2)) + 1) * next_i();
+          settings[_i0].use_lz77 = ((-2 * (next_i()%2)) + 1) * next_i();
+          settings[_i0].minmatch = ((-2 * (next_i()%2)) + 1) * next_i();
+          settings[_i0].nicematch = ((-2 * (next_i()%2)) + 1) * next_i();
+          settings[_i0].lazymatching = ((-2 * (next_i()%2)) + 1) * next_i();
+          settings[_i0].custom_context = ((-2 * (next_i()%2)) + 1) * next_i();
+          settings[_i0].custom_deflate = ((-2 * (next_i()%2)) + 1) * next_i();
+          settings[_i0].custom_zlib = ((-2 * (next_i()%2)) + 1) * next_i();
+          settings[_i0].windowsize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          lodepng_compress_settings_init(settings);
+          free(settings);
+        
+        break;
+    }
     default:
         usage();
         break;

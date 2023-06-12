@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ void ssp_save_state(struct ssp_state *ssp)
 	Ser4SSCR0 &= ~SSCR0_SSE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,21 +80,54 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ssp0 = 1;
+          int _len_ssp0 = 65025;
           struct ssp_state * ssp = (struct ssp_state *) malloc(_len_ssp0*sizeof(struct ssp_state));
           for(int _i0 = 0; _i0 < _len_ssp0; _i0++) {
-            ssp[_i0].cr1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        ssp[_i0].cr0 = ((-2 * (next_i()%2)) + 1) * next_i();
+              ssp[_i0].cr1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ssp[_i0].cr0 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ssp_save_state(ssp);
           free(ssp);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ssp0 = 100;
+          struct ssp_state * ssp = (struct ssp_state *) malloc(_len_ssp0*sizeof(struct ssp_state));
+          for(int _i0 = 0; _i0 < _len_ssp0; _i0++) {
+              ssp[_i0].cr1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ssp[_i0].cr0 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ssp_save_state(ssp);
+          free(ssp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ssp0 = 1;
+          struct ssp_state * ssp = (struct ssp_state *) malloc(_len_ssp0*sizeof(struct ssp_state));
+          for(int _i0 = 0; _i0 < _len_ssp0; _i0++) {
+              ssp[_i0].cr1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ssp[_i0].cr0 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ssp_save_state(ssp);
+          free(ssp);
+        
+        break;
+    }
     default:
         usage();
         break;

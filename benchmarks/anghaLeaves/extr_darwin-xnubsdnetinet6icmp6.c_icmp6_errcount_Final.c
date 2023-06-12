@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -126,12 +129,6 @@ icmp6_errcount(struct icmp6errstat *stat, int type, int code)
 	stat->icp6errs_unknown++;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -144,28 +141,220 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int type = 100;
+        
           int code = 100;
+        
           int _len_stat0 = 1;
           struct icmp6errstat * stat = (struct icmp6errstat *) malloc(_len_stat0*sizeof(struct icmp6errstat));
           for(int _i0 = 0; _i0 < _len_stat0; _i0++) {
-            stat[_i0].icp6errs_unknown = ((-2 * (next_i()%2)) + 1) * next_i();
-        stat[_i0].icp6errs_redirect = ((-2 * (next_i()%2)) + 1) * next_i();
-        stat[_i0].icp6errs_paramprob_option = ((-2 * (next_i()%2)) + 1) * next_i();
-        stat[_i0].icp6errs_paramprob_nextheader = ((-2 * (next_i()%2)) + 1) * next_i();
-        stat[_i0].icp6errs_paramprob_header = ((-2 * (next_i()%2)) + 1) * next_i();
-        stat[_i0].icp6errs_time_exceed_reassembly = ((-2 * (next_i()%2)) + 1) * next_i();
-        stat[_i0].icp6errs_time_exceed_transit = ((-2 * (next_i()%2)) + 1) * next_i();
-        stat[_i0].icp6errs_packet_too_big = ((-2 * (next_i()%2)) + 1) * next_i();
-        stat[_i0].icp6errs_dst_unreach_noport = ((-2 * (next_i()%2)) + 1) * next_i();
-        stat[_i0].icp6errs_dst_unreach_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        stat[_i0].icp6errs_dst_unreach_beyondscope = ((-2 * (next_i()%2)) + 1) * next_i();
-        stat[_i0].icp6errs_dst_unreach_admin = ((-2 * (next_i()%2)) + 1) * next_i();
-        stat[_i0].icp6errs_dst_unreach_noroute = ((-2 * (next_i()%2)) + 1) * next_i();
+              stat[_i0].icp6errs_unknown = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_redirect = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_paramprob_option = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_paramprob_nextheader = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_paramprob_header = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_time_exceed_reassembly = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_time_exceed_transit = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_packet_too_big = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_dst_unreach_noport = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_dst_unreach_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_dst_unreach_beyondscope = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_dst_unreach_admin = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_dst_unreach_noroute = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          icmp6_errcount(stat,type,code);
+          free(stat);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int type = 255;
+        
+          int code = 255;
+        
+          int _len_stat0 = 65025;
+          struct icmp6errstat * stat = (struct icmp6errstat *) malloc(_len_stat0*sizeof(struct icmp6errstat));
+          for(int _i0 = 0; _i0 < _len_stat0; _i0++) {
+              stat[_i0].icp6errs_unknown = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_redirect = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_paramprob_option = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_paramprob_nextheader = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_paramprob_header = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_time_exceed_reassembly = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_time_exceed_transit = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_packet_too_big = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_dst_unreach_noport = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_dst_unreach_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_dst_unreach_beyondscope = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_dst_unreach_admin = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_dst_unreach_noroute = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          icmp6_errcount(stat,type,code);
+          free(stat);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int type = 10;
+        
+          int code = 10;
+        
+          int _len_stat0 = 100;
+          struct icmp6errstat * stat = (struct icmp6errstat *) malloc(_len_stat0*sizeof(struct icmp6errstat));
+          for(int _i0 = 0; _i0 < _len_stat0; _i0++) {
+              stat[_i0].icp6errs_unknown = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_redirect = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_paramprob_option = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_paramprob_nextheader = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_paramprob_header = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_time_exceed_reassembly = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_time_exceed_transit = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_packet_too_big = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_dst_unreach_noport = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_dst_unreach_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_dst_unreach_beyondscope = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_dst_unreach_admin = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_dst_unreach_noroute = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          icmp6_errcount(stat,type,code);
+          free(stat);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_stat0 = 1;
+          struct icmp6errstat * stat = (struct icmp6errstat *) malloc(_len_stat0*sizeof(struct icmp6errstat));
+          for(int _i0 = 0; _i0 < _len_stat0; _i0++) {
+              stat[_i0].icp6errs_unknown = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_redirect = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_paramprob_option = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_paramprob_nextheader = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_paramprob_header = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_time_exceed_reassembly = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_time_exceed_transit = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_packet_too_big = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_dst_unreach_noport = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_dst_unreach_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_dst_unreach_beyondscope = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_dst_unreach_admin = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].icp6errs_dst_unreach_noroute = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           icmp6_errcount(stat,type,code);
           free(stat);
         

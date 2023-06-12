@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ int user_loaded (user *u) {
   return u != NULL && u->metafile_len >= 0 && u->aio == NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,19 +75,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_u0 = 1;
+          int _len_u0 = 65025;
           struct TYPE_3__ * u = (struct TYPE_3__ *) malloc(_len_u0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_u0; _i0++) {
-            u[_i0].metafile_len = ((-2 * (next_i()%2)) + 1) * next_i();
+              u[_i0].metafile_len = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_u__i0__aio0 = 1;
           u[_i0].aio = (int *) malloc(_len_u__i0__aio0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_u__i0__aio0; _j0++) {
             u[_i0].aio[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = user_loaded(u);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_u0; _aux++) {
@@ -101,7 +99,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_u0 = 100;
+          struct TYPE_3__ * u = (struct TYPE_3__ *) malloc(_len_u0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_u0; _i0++) {
+              u[_i0].metafile_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_u__i0__aio0 = 1;
+          u[_i0].aio = (int *) malloc(_len_u__i0__aio0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_u__i0__aio0; _j0++) {
+            u[_i0].aio[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = user_loaded(u);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_u0; _aux++) {
+          free(u[_aux].aio);
+          }
+          free(u);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_u0 = 1;
+          struct TYPE_3__ * u = (struct TYPE_3__ *) malloc(_len_u0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_u0; _i0++) {
+              u[_i0].metafile_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_u__i0__aio0 = 1;
+          u[_i0].aio = (int *) malloc(_len_u__i0__aio0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_u__i0__aio0; _j0++) {
+            u[_i0].aio[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = user_loaded(u);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_u0; _aux++) {
+          free(u[_aux].aio);
+          }
+          free(u);
+        
+        break;
+    }
     default:
         usage();
         break;

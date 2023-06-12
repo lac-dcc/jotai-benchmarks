@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ int genphy_read_mmd_unsupported(struct phy_device *phdev, int devad, u16 regnum)
 	return -EOPNOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,32 +77,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int devad = 100;
+        
           int regnum = 100;
+        
           int _len_phdev0 = 1;
           struct phy_device * phdev = (struct phy_device *) malloc(_len_phdev0*sizeof(struct phy_device));
           for(int _i0 = 0; _i0 < _len_phdev0; _i0++) {
-            phdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              phdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = genphy_read_mmd_unsupported(phdev,devad,regnum);
           printf("%d\n", benchRet); 
           free(phdev);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int devad = 255;
+        
+          int regnum = 255;
+        
+          int _len_phdev0 = 65025;
+          struct phy_device * phdev = (struct phy_device *) malloc(_len_phdev0*sizeof(struct phy_device));
+          for(int _i0 = 0; _i0 < _len_phdev0; _i0++) {
+              phdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = genphy_read_mmd_unsupported(phdev,devad,regnum);
+          printf("%d\n", benchRet); 
+          free(phdev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int devad = 10;
+        
           int regnum = 10;
+        
           int _len_phdev0 = 100;
           struct phy_device * phdev = (struct phy_device *) malloc(_len_phdev0*sizeof(struct phy_device));
           for(int _i0 = 0; _i0 < _len_phdev0; _i0++) {
-            phdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              phdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = genphy_read_mmd_unsupported(phdev,devad,regnum);
+          printf("%d\n", benchRet); 
+          free(phdev);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int devad = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int regnum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_phdev0 = 1;
+          struct phy_device * phdev = (struct phy_device *) malloc(_len_phdev0*sizeof(struct phy_device));
+          for(int _i0 = 0; _i0 < _len_phdev0; _i0++) {
+              phdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = genphy_read_mmd_unsupported(phdev,devad,regnum);
           printf("%d\n", benchRet); 
           free(phdev);

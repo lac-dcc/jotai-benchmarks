@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ __attribute__((used)) static void __reset_runtime_ptrs(struct snd_rawmidi_runtim
 	runtime->avail = is_input ? 0 : runtime->buffer_size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,19 +78,180 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int is_input = 100;
+        
           int _len_runtime0 = 1;
           struct snd_rawmidi_runtime * runtime = (struct snd_rawmidi_runtime *) malloc(_len_runtime0*sizeof(struct snd_rawmidi_runtime));
           for(int _i0 = 0; _i0 < _len_runtime0; _i0++) {
-            runtime[_i0].buffer_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        runtime[_i0].avail = ((-2 * (next_i()%2)) + 1) * next_i();
-        runtime[_i0].hw_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
-        runtime[_i0].appl_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
-        runtime[_i0].drain = ((-2 * (next_i()%2)) + 1) * next_i();
+              runtime[_i0].buffer_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          runtime[_i0].avail = ((-2 * (next_i()%2)) + 1) * next_i();
+          runtime[_i0].hw_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          runtime[_i0].appl_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          runtime[_i0].drain = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          __reset_runtime_ptrs(runtime,is_input);
+          free(runtime);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int is_input = 255;
+        
+          int _len_runtime0 = 65025;
+          struct snd_rawmidi_runtime * runtime = (struct snd_rawmidi_runtime *) malloc(_len_runtime0*sizeof(struct snd_rawmidi_runtime));
+          for(int _i0 = 0; _i0 < _len_runtime0; _i0++) {
+              runtime[_i0].buffer_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          runtime[_i0].avail = ((-2 * (next_i()%2)) + 1) * next_i();
+          runtime[_i0].hw_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          runtime[_i0].appl_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          runtime[_i0].drain = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          __reset_runtime_ptrs(runtime,is_input);
+          free(runtime);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int is_input = 10;
+        
+          int _len_runtime0 = 100;
+          struct snd_rawmidi_runtime * runtime = (struct snd_rawmidi_runtime *) malloc(_len_runtime0*sizeof(struct snd_rawmidi_runtime));
+          for(int _i0 = 0; _i0 < _len_runtime0; _i0++) {
+              runtime[_i0].buffer_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          runtime[_i0].avail = ((-2 * (next_i()%2)) + 1) * next_i();
+          runtime[_i0].hw_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          runtime[_i0].appl_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          runtime[_i0].drain = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          __reset_runtime_ptrs(runtime,is_input);
+          free(runtime);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int is_input = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_runtime0 = 1;
+          struct snd_rawmidi_runtime * runtime = (struct snd_rawmidi_runtime *) malloc(_len_runtime0*sizeof(struct snd_rawmidi_runtime));
+          for(int _i0 = 0; _i0 < _len_runtime0; _i0++) {
+              runtime[_i0].buffer_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          runtime[_i0].avail = ((-2 * (next_i()%2)) + 1) * next_i();
+          runtime[_i0].hw_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          runtime[_i0].appl_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          runtime[_i0].drain = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           __reset_runtime_ptrs(runtime,is_input);
           free(runtime);
         

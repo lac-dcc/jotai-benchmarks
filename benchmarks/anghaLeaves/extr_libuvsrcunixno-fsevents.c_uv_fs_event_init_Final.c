@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ int uv_fs_event_init(uv_loop_t* loop, uv_fs_event_t* handle) {
   return UV_ENOSYS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,19 +75,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_loop0 = 1;
+          int _len_loop0 = 65025;
           int * loop = (int *) malloc(_len_loop0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_loop0; _i0++) {
             loop[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_handle0 = 1;
+        
+          int _len_handle0 = 65025;
           int * handle = (int *) malloc(_len_handle0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_handle0; _i0++) {
             handle[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = uv_fs_event_init(loop,handle);
           printf("%d\n", benchRet); 
           free(loop);
@@ -99,7 +97,50 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_loop0 = 100;
+          int * loop = (int *) malloc(_len_loop0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_loop0; _i0++) {
+            loop[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_handle0 = 100;
+          int * handle = (int *) malloc(_len_handle0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_handle0; _i0++) {
+            handle[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = uv_fs_event_init(loop,handle);
+          printf("%d\n", benchRet); 
+          free(loop);
+          free(handle);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_loop0 = 1;
+          int * loop = (int *) malloc(_len_loop0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_loop0; _i0++) {
+            loop[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_handle0 = 1;
+          int * handle = (int *) malloc(_len_handle0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_handle0; _i0++) {
+            handle[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = uv_fs_event_init(loop,handle);
+          printf("%d\n", benchRet); 
+          free(loop);
+          free(handle);
+        
+        break;
+    }
     default:
         usage();
         break;

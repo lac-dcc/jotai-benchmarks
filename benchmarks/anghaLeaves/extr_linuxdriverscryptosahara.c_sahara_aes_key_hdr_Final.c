@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -86,12 +87,6 @@ __attribute__((used)) static u32 sahara_aes_key_hdr(struct sahara_dev *dev)
 	return hdr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,28 +99,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_dev0 = 1;
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int _len_dev0 = 65025;
           struct sahara_dev * dev = (struct sahara_dev *) malloc(_len_dev0*sizeof(struct sahara_dev));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = sahara_aes_key_hdr(dev);
           printf("%d\n", benchRet); 
           free(dev);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
           int _len_dev0 = 100;
           struct sahara_dev * dev = (struct sahara_dev *) malloc(_len_dev0*sizeof(struct sahara_dev));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = sahara_aes_key_hdr(dev);
+          printf("%d\n", benchRet); 
+          free(dev);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int _len_dev0 = 1;
+          struct sahara_dev * dev = (struct sahara_dev *) malloc(_len_dev0*sizeof(struct sahara_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = sahara_aes_key_hdr(dev);
           printf("%d\n", benchRet); 
           free(dev);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static bool ovl_force_readonly(struct ovl_fs *ofs)
 	return (!ofs->upper_mnt || !ofs->workdir);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,22 +74,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ofs0 = 1;
+          int _len_ofs0 = 65025;
           struct ovl_fs * ofs = (struct ovl_fs *) malloc(_len_ofs0*sizeof(struct ovl_fs));
           for(int _i0 = 0; _i0 < _len_ofs0; _i0++) {
-            ofs[_i0].workdir = ((-2 * (next_i()%2)) + 1) * next_i();
-        ofs[_i0].upper_mnt = ((-2 * (next_i()%2)) + 1) * next_i();
+              ofs[_i0].workdir = ((-2 * (next_i()%2)) + 1) * next_i();
+          ofs[_i0].upper_mnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ovl_force_readonly(ofs);
           printf("%d\n", benchRet); 
           free(ofs);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ofs0 = 100;
+          struct ovl_fs * ofs = (struct ovl_fs *) malloc(_len_ofs0*sizeof(struct ovl_fs));
+          for(int _i0 = 0; _i0 < _len_ofs0; _i0++) {
+              ofs[_i0].workdir = ((-2 * (next_i()%2)) + 1) * next_i();
+          ofs[_i0].upper_mnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ovl_force_readonly(ofs);
+          printf("%d\n", benchRet); 
+          free(ofs);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ofs0 = 1;
+          struct ovl_fs * ofs = (struct ovl_fs *) malloc(_len_ofs0*sizeof(struct ovl_fs));
+          for(int _i0 = 0; _i0 < _len_ofs0; _i0++) {
+              ofs[_i0].workdir = ((-2 * (next_i()%2)) + 1) * next_i();
+          ofs[_i0].upper_mnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ovl_force_readonly(ofs);
+          printf("%d\n", benchRet); 
+          free(ofs);
+        
+        break;
+    }
     default:
         usage();
         break;

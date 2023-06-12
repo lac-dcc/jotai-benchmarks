@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static int fdtv_ca_ready(struct firedtv_tuner_status *stat
 	       stat->ca_module_present_status	== 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,24 +77,63 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_stat0 = 1;
+          int _len_stat0 = 65025;
           struct firedtv_tuner_status * stat = (struct firedtv_tuner_status *) malloc(_len_stat0*sizeof(struct firedtv_tuner_status));
           for(int _i0 = 0; _i0 < _len_stat0; _i0++) {
-            stat[_i0].ca_initialization_status = ((-2 * (next_i()%2)) + 1) * next_i();
-        stat[_i0].ca_error_flag = ((-2 * (next_i()%2)) + 1) * next_i();
-        stat[_i0].ca_dvb_flag = ((-2 * (next_i()%2)) + 1) * next_i();
-        stat[_i0].ca_module_present_status = ((-2 * (next_i()%2)) + 1) * next_i();
+              stat[_i0].ca_initialization_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].ca_error_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].ca_dvb_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].ca_module_present_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = fdtv_ca_ready(stat);
           printf("%d\n", benchRet); 
           free(stat);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_stat0 = 100;
+          struct firedtv_tuner_status * stat = (struct firedtv_tuner_status *) malloc(_len_stat0*sizeof(struct firedtv_tuner_status));
+          for(int _i0 = 0; _i0 < _len_stat0; _i0++) {
+              stat[_i0].ca_initialization_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].ca_error_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].ca_dvb_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].ca_module_present_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fdtv_ca_ready(stat);
+          printf("%d\n", benchRet); 
+          free(stat);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_stat0 = 1;
+          struct firedtv_tuner_status * stat = (struct firedtv_tuner_status *) malloc(_len_stat0*sizeof(struct firedtv_tuner_status));
+          for(int _i0 = 0; _i0 < _len_stat0; _i0++) {
+              stat[_i0].ca_initialization_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].ca_error_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].ca_dvb_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].ca_module_present_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fdtv_ca_ready(stat);
+          printf("%d\n", benchRet); 
+          free(stat);
+        
+        break;
+    }
     default:
         usage();
         break;

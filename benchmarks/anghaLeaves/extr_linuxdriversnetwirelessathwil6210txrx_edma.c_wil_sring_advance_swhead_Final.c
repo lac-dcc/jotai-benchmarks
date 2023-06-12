@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static inline void wil_sring_advance_swhead(struct wil_sta
 		sring->desc_rdy_pol = 1 - sring->desc_rdy_pol;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,16 +76,123 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_sring0 = 65025;
+          struct wil_status_ring * sring = (struct wil_status_ring *) malloc(_len_sring0*sizeof(struct wil_status_ring));
+          for(int _i0 = 0; _i0 < _len_sring0; _i0++) {
+              sring[_i0].swhead = ((-2 * (next_i()%2)) + 1) * next_i();
+          sring[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          sring[_i0].desc_rdy_pol = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          wil_sring_advance_swhead(sring);
+          free(sring);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_sring0 = 100;
+          struct wil_status_ring * sring = (struct wil_status_ring *) malloc(_len_sring0*sizeof(struct wil_status_ring));
+          for(int _i0 = 0; _i0 < _len_sring0; _i0++) {
+              sring[_i0].swhead = ((-2 * (next_i()%2)) + 1) * next_i();
+          sring[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          sring[_i0].desc_rdy_pol = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          wil_sring_advance_swhead(sring);
+          free(sring);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_sring0 = 1;
           struct wil_status_ring * sring = (struct wil_status_ring *) malloc(_len_sring0*sizeof(struct wil_status_ring));
           for(int _i0 = 0; _i0 < _len_sring0; _i0++) {
-            sring[_i0].swhead = ((-2 * (next_i()%2)) + 1) * next_i();
-        sring[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
-        sring[_i0].desc_rdy_pol = ((-2 * (next_i()%2)) + 1) * next_i();
+              sring[_i0].swhead = ((-2 * (next_i()%2)) + 1) * next_i();
+          sring[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          sring[_i0].desc_rdy_pol = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           wil_sring_advance_swhead(sring);
           free(sring);
         

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ nvkm_i2c_bit_xfer(struct nvkm_i2c_bus *bus, struct i2c_msg *msgs, int num)
 	return -ENODEV;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,20 +78,198 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int num = 100;
+        
           int _len_bus0 = 1;
           struct nvkm_i2c_bus * bus = (struct nvkm_i2c_bus *) malloc(_len_bus0*sizeof(struct nvkm_i2c_bus));
           for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
-            bus[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              bus[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_msgs0 = 1;
           struct i2c_msg * msgs = (struct i2c_msg *) malloc(_len_msgs0*sizeof(struct i2c_msg));
           for(int _i0 = 0; _i0 < _len_msgs0; _i0++) {
-            msgs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              msgs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = nvkm_i2c_bit_xfer(bus,msgs,num);
+          printf("%d\n", benchRet); 
+          free(bus);
+          free(msgs);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int num = 255;
+        
+          int _len_bus0 = 65025;
+          struct nvkm_i2c_bus * bus = (struct nvkm_i2c_bus *) malloc(_len_bus0*sizeof(struct nvkm_i2c_bus));
+          for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
+              bus[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_msgs0 = 65025;
+          struct i2c_msg * msgs = (struct i2c_msg *) malloc(_len_msgs0*sizeof(struct i2c_msg));
+          for(int _i0 = 0; _i0 < _len_msgs0; _i0++) {
+              msgs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nvkm_i2c_bit_xfer(bus,msgs,num);
+          printf("%d\n", benchRet); 
+          free(bus);
+          free(msgs);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int num = 10;
+        
+          int _len_bus0 = 100;
+          struct nvkm_i2c_bus * bus = (struct nvkm_i2c_bus *) malloc(_len_bus0*sizeof(struct nvkm_i2c_bus));
+          for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
+              bus[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_msgs0 = 100;
+          struct i2c_msg * msgs = (struct i2c_msg *) malloc(_len_msgs0*sizeof(struct i2c_msg));
+          for(int _i0 = 0; _i0 < _len_msgs0; _i0++) {
+              msgs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nvkm_i2c_bit_xfer(bus,msgs,num);
+          printf("%d\n", benchRet); 
+          free(bus);
+          free(msgs);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_bus0 = 1;
+          struct nvkm_i2c_bus * bus = (struct nvkm_i2c_bus *) malloc(_len_bus0*sizeof(struct nvkm_i2c_bus));
+          for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
+              bus[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_msgs0 = 1;
+          struct i2c_msg * msgs = (struct i2c_msg *) malloc(_len_msgs0*sizeof(struct i2c_msg));
+          for(int _i0 = 0; _i0 < _len_msgs0; _i0++) {
+              msgs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = nvkm_i2c_bit_xfer(bus,msgs,num);
           printf("%d\n", benchRet); 
           free(bus);

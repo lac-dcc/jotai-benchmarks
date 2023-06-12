@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ screen_change_charset(Screen *self, uint32_t which) {
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,18 +87,176 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int which = 100;
+        
           int _len_self0 = 1;
           struct TYPE_3__ * self = (struct TYPE_3__ *) malloc(_len_self0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_self0; _i0++) {
-            self[_i0].current_charset = ((-2 * (next_i()%2)) + 1) * next_i();
-        self[_i0].g1_charset = ((-2 * (next_i()%2)) + 1) * next_i();
-        self[_i0].g_charset = ((-2 * (next_i()%2)) + 1) * next_i();
-        self[_i0].g0_charset = ((-2 * (next_i()%2)) + 1) * next_i();
+              self[_i0].current_charset = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].g1_charset = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].g_charset = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].g0_charset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          screen_change_charset(self,which);
+          free(self);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int which = 255;
+        
+          int _len_self0 = 65025;
+          struct TYPE_3__ * self = (struct TYPE_3__ *) malloc(_len_self0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_self0; _i0++) {
+              self[_i0].current_charset = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].g1_charset = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].g_charset = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].g0_charset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          screen_change_charset(self,which);
+          free(self);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int which = 10;
+        
+          int _len_self0 = 100;
+          struct TYPE_3__ * self = (struct TYPE_3__ *) malloc(_len_self0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_self0; _i0++) {
+              self[_i0].current_charset = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].g1_charset = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].g_charset = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].g0_charset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          screen_change_charset(self,which);
+          free(self);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int which = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_self0 = 1;
+          struct TYPE_3__ * self = (struct TYPE_3__ *) malloc(_len_self0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_self0; _i0++) {
+              self[_i0].current_charset = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].g1_charset = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].g_charset = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].g0_charset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           screen_change_charset(self,which);
           free(self);
         

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline bool areas_overlap(unsigned long src, unsign
 	return distance < len;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,8 +79,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long src = 100;
+        
           unsigned long dst = 100;
+        
           unsigned long len = 100;
+        
           int benchRet = areas_overlap(src,dst,len);
           printf("%d\n", benchRet); 
         
@@ -95,8 +93,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long src = 255;
+        
           unsigned long dst = 255;
+        
           unsigned long len = 255;
+        
           int benchRet = areas_overlap(src,dst,len);
           printf("%d\n", benchRet); 
         
@@ -106,14 +107,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long src = 10;
+        
           unsigned long dst = 10;
+        
           unsigned long len = 10;
+        
           int benchRet = areas_overlap(src,dst,len);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long src = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long dst = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = areas_overlap(src,dst,len);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

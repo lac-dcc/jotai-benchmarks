@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +76,6 @@ unsigned int instruction_size(unsigned int insn)
 	return 2;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,6 +92,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int insn = 100;
+        
           unsigned int benchRet = instruction_size(insn);
           printf("%u\n", benchRet); 
         
@@ -106,6 +102,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int insn = 255;
+        
           unsigned int benchRet = instruction_size(insn);
           printf("%u\n", benchRet); 
         
@@ -115,12 +112,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int insn = 10;
+        
           unsigned int benchRet = instruction_size(insn);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int insn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = instruction_size(insn);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

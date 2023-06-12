@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -81,12 +84,6 @@ __attribute__((used)) static Bool isSelectionEvent(Display* display, XEvent* eve
            event->type == SelectionClear;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,17 +100,22 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int pointer = 100;
+        
           int _len_display0 = 1;
           int * display = (int *) malloc(_len_display0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_display0; _i0++) {
             display[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_event0 = 1;
           struct TYPE_8__ * event = (struct TYPE_8__ *) malloc(_len_event0*sizeof(struct TYPE_8__));
           for(int _i0 = 0; _i0 < _len_event0; _i0++) {
-            event[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        event[_i0].xany.window = ((-2 * (next_i()%2)) + 1) * next_i();
+              event[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          event[_i0].xany.window = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = isSelectionEvent(display,event,pointer);
           printf("%d\n", benchRet); 
           free(display);
@@ -121,7 +123,87 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int pointer = 255;
+        
+          int _len_display0 = 65025;
+          int * display = (int *) malloc(_len_display0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_display0; _i0++) {
+            display[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_event0 = 65025;
+          struct TYPE_8__ * event = (struct TYPE_8__ *) malloc(_len_event0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_event0; _i0++) {
+              event[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          event[_i0].xany.window = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = isSelectionEvent(display,event,pointer);
+          printf("%d\n", benchRet); 
+          free(display);
+          free(event);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int pointer = 10;
+        
+          int _len_display0 = 100;
+          int * display = (int *) malloc(_len_display0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_display0; _i0++) {
+            display[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_event0 = 100;
+          struct TYPE_8__ * event = (struct TYPE_8__ *) malloc(_len_event0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_event0; _i0++) {
+              event[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          event[_i0].xany.window = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = isSelectionEvent(display,event,pointer);
+          printf("%d\n", benchRet); 
+          free(display);
+          free(event);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int pointer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_display0 = 1;
+          int * display = (int *) malloc(_len_display0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_display0; _i0++) {
+            display[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_event0 = 1;
+          struct TYPE_8__ * event = (struct TYPE_8__ *) malloc(_len_event0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_event0; _i0++) {
+              event[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          event[_i0].xany.window = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = isSelectionEvent(display,event,pointer);
+          printf("%d\n", benchRet); 
+          free(display);
+          free(event);
+        
+        break;
+    }
     default:
         usage();
         break;

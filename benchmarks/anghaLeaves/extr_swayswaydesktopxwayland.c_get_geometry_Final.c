@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static void get_geometry(struct sway_view *view, struct wl
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,27 +85,176 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_view0 = 65025;
+          struct sway_view * view = (struct sway_view *) malloc(_len_view0*sizeof(struct sway_view));
+          for(int _i0 = 0; _i0 < _len_view0; _i0++) {
+              int _len_view__i0__surface0 = 1;
+          view[_i0].surface = (struct TYPE_4__ *) malloc(_len_view__i0__surface0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_view__i0__surface0; _j0++) {
+              view[_i0].surface->current.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          view[_i0].surface->current.width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int _len_box0 = 65025;
+          struct wlr_box * box = (struct wlr_box *) malloc(_len_box0*sizeof(struct wlr_box));
+          for(int _i0 = 0; _i0 < _len_box0; _i0++) {
+              box[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          box[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          box[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+          box[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          get_geometry(view,box);
+          for(int _aux = 0; _aux < _len_view0; _aux++) {
+          free(view[_aux].surface);
+          }
+          free(view);
+          free(box);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_view0 = 100;
+          struct sway_view * view = (struct sway_view *) malloc(_len_view0*sizeof(struct sway_view));
+          for(int _i0 = 0; _i0 < _len_view0; _i0++) {
+              int _len_view__i0__surface0 = 1;
+          view[_i0].surface = (struct TYPE_4__ *) malloc(_len_view__i0__surface0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_view__i0__surface0; _j0++) {
+              view[_i0].surface->current.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          view[_i0].surface->current.width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int _len_box0 = 100;
+          struct wlr_box * box = (struct wlr_box *) malloc(_len_box0*sizeof(struct wlr_box));
+          for(int _i0 = 0; _i0 < _len_box0; _i0++) {
+              box[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          box[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          box[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+          box[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          get_geometry(view,box);
+          for(int _aux = 0; _aux < _len_view0; _aux++) {
+          free(view[_aux].surface);
+          }
+          free(view);
+          free(box);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_view0 = 1;
           struct sway_view * view = (struct sway_view *) malloc(_len_view0*sizeof(struct sway_view));
           for(int _i0 = 0; _i0 < _len_view0; _i0++) {
               int _len_view__i0__surface0 = 1;
           view[_i0].surface = (struct TYPE_4__ *) malloc(_len_view__i0__surface0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_view__i0__surface0; _j0++) {
-            view[_i0].surface->current.height = ((-2 * (next_i()%2)) + 1) * next_i();
-        view[_i0].surface->current.width = ((-2 * (next_i()%2)) + 1) * next_i();
+              view[_i0].surface->current.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          view[_i0].surface->current.width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           int _len_box0 = 1;
           struct wlr_box * box = (struct wlr_box *) malloc(_len_box0*sizeof(struct wlr_box));
           for(int _i0 = 0; _i0 < _len_box0; _i0++) {
-            box[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
-        box[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
-        box[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
-        box[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+              box[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          box[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          box[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+          box[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           get_geometry(view,box);
           for(int _aux = 0; _aux < _len_view0; _aux++) {
           free(view[_aux].surface);

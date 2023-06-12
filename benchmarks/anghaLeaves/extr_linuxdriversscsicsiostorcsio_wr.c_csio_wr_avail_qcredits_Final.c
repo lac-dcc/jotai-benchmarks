@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ csio_wr_avail_qcredits(struct csio_q *q)
 		return 0;	/* cidx == pidx, empty queue */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,16 +81,125 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_q0 = 65025;
+          struct csio_q * q = (struct csio_q *) malloc(_len_q0*sizeof(struct csio_q));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].pidx = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].cidx = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].credits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = csio_wr_avail_qcredits(q);
+          printf("%ld\n", benchRet); 
+          free(q);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_q0 = 100;
+          struct csio_q * q = (struct csio_q *) malloc(_len_q0*sizeof(struct csio_q));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].pidx = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].cidx = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].credits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = csio_wr_avail_qcredits(q);
+          printf("%ld\n", benchRet); 
+          free(q);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_q0 = 1;
           struct csio_q * q = (struct csio_q *) malloc(_len_q0*sizeof(struct csio_q));
           for(int _i0 = 0; _i0 < _len_q0; _i0++) {
-            q[_i0].pidx = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].cidx = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].credits = ((-2 * (next_i()%2)) + 1) * next_i();
+              q[_i0].pidx = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].cidx = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].credits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = csio_wr_avail_qcredits(q);
           printf("%ld\n", benchRet); 
           free(q);

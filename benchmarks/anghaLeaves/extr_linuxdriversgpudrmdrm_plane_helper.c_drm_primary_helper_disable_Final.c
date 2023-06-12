@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ int drm_primary_helper_disable(struct drm_plane *plane,
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,19 +77,142 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_plane0 = 65025;
+          struct drm_plane * plane = (struct drm_plane *) malloc(_len_plane0*sizeof(struct drm_plane));
+          for(int _i0 = 0; _i0 < _len_plane0; _i0++) {
+              plane[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ctx0 = 65025;
+          struct drm_modeset_acquire_ctx * ctx = (struct drm_modeset_acquire_ctx *) malloc(_len_ctx0*sizeof(struct drm_modeset_acquire_ctx));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = drm_primary_helper_disable(plane,ctx);
+          printf("%d\n", benchRet); 
+          free(plane);
+          free(ctx);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_plane0 = 100;
+          struct drm_plane * plane = (struct drm_plane *) malloc(_len_plane0*sizeof(struct drm_plane));
+          for(int _i0 = 0; _i0 < _len_plane0; _i0++) {
+              plane[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ctx0 = 100;
+          struct drm_modeset_acquire_ctx * ctx = (struct drm_modeset_acquire_ctx *) malloc(_len_ctx0*sizeof(struct drm_modeset_acquire_ctx));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = drm_primary_helper_disable(plane,ctx);
+          printf("%d\n", benchRet); 
+          free(plane);
+          free(ctx);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_plane0 = 1;
           struct drm_plane * plane = (struct drm_plane *) malloc(_len_plane0*sizeof(struct drm_plane));
           for(int _i0 = 0; _i0 < _len_plane0; _i0++) {
-            plane[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              plane[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_ctx0 = 1;
           struct drm_modeset_acquire_ctx * ctx = (struct drm_modeset_acquire_ctx *) malloc(_len_ctx0*sizeof(struct drm_modeset_acquire_ctx));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
-            ctx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = drm_primary_helper_disable(plane,ctx);
           printf("%d\n", benchRet); 
           free(plane);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ void SdbpInitTempStr(PSDB_TMP_STR String)
     String->Str.MaximumLength = sizeof(String->FixedBuffer);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,23 +80,63 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_String0 = 1;
+          int _len_String0 = 65025;
           struct TYPE_5__ * String = (struct TYPE_5__ *) malloc(_len_String0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_String0; _i0++) {
-            String[_i0].Str.MaximumLength = ((-2 * (next_i()%2)) + 1) * next_i();
-        String[_i0].Str.Length = ((-2 * (next_i()%2)) + 1) * next_i();
-        String[_i0].Str.Buffer = ((-2 * (next_i()%2)) + 1) * next_i();
-        String[_i0].FixedBuffer = ((-2 * (next_i()%2)) + 1) * next_i();
+              String[_i0].Str.MaximumLength = ((-2 * (next_i()%2)) + 1) * next_i();
+          String[_i0].Str.Length = ((-2 * (next_i()%2)) + 1) * next_i();
+          String[_i0].Str.Buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          String[_i0].FixedBuffer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           SdbpInitTempStr(String);
           free(String);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_String0 = 100;
+          struct TYPE_5__ * String = (struct TYPE_5__ *) malloc(_len_String0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_String0; _i0++) {
+              String[_i0].Str.MaximumLength = ((-2 * (next_i()%2)) + 1) * next_i();
+          String[_i0].Str.Length = ((-2 * (next_i()%2)) + 1) * next_i();
+          String[_i0].Str.Buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          String[_i0].FixedBuffer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          SdbpInitTempStr(String);
+          free(String);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_String0 = 1;
+          struct TYPE_5__ * String = (struct TYPE_5__ *) malloc(_len_String0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_String0; _i0++) {
+              String[_i0].Str.MaximumLength = ((-2 * (next_i()%2)) + 1) * next_i();
+          String[_i0].Str.Length = ((-2 * (next_i()%2)) + 1) * next_i();
+          String[_i0].Str.Buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          String[_i0].FixedBuffer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          SdbpInitTempStr(String);
+          free(String);
+        
+        break;
+    }
     default:
         usage();
         break;

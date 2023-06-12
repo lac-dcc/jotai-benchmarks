@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ __attribute__((used)) static	void	ADPCM_Reset(PACMDRVSTREAMINSTANCE adsi, AcmAdp
     aad->stepIndexL = aad->stepIndexR = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,18 +82,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int adsi = 100;
+        
           int _len_aad0 = 1;
           struct TYPE_3__ * aad = (struct TYPE_3__ *) malloc(_len_aad0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_aad0; _i0++) {
-            aad[_i0].stepIndexR = ((-2 * (next_i()%2)) + 1) * next_i();
-        aad[_i0].stepIndexL = ((-2 * (next_i()%2)) + 1) * next_i();
+              aad[_i0].stepIndexR = ((-2 * (next_i()%2)) + 1) * next_i();
+          aad[_i0].stepIndexL = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ADPCM_Reset(adsi,aad);
           free(aad);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int adsi = 255;
+        
+          int _len_aad0 = 65025;
+          struct TYPE_3__ * aad = (struct TYPE_3__ *) malloc(_len_aad0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_aad0; _i0++) {
+              aad[_i0].stepIndexR = ((-2 * (next_i()%2)) + 1) * next_i();
+          aad[_i0].stepIndexL = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ADPCM_Reset(adsi,aad);
+          free(aad);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int adsi = 10;
+        
+          int _len_aad0 = 100;
+          struct TYPE_3__ * aad = (struct TYPE_3__ *) malloc(_len_aad0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_aad0; _i0++) {
+              aad[_i0].stepIndexR = ((-2 * (next_i()%2)) + 1) * next_i();
+          aad[_i0].stepIndexL = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ADPCM_Reset(adsi,aad);
+          free(aad);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int adsi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_aad0 = 1;
+          struct TYPE_3__ * aad = (struct TYPE_3__ *) malloc(_len_aad0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_aad0; _i0++) {
+              aad[_i0].stepIndexR = ((-2 * (next_i()%2)) + 1) * next_i();
+          aad[_i0].stepIndexL = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ADPCM_Reset(adsi,aad);
+          free(aad);
+        
+        break;
+    }
     default:
         usage();
         break;

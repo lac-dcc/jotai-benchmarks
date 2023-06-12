@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ void set_pixel2(int x, int y, int pixel, uint8* data, int width, int bpp)
     ((uint16*)data)[y * width + x] = pixel;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,37 +79,192 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int x = 100;
+        
           int y = 100;
+        
           int pixel = 100;
+        
           int width = 100;
+        
           int bpp = 100;
+        
           int _len_data0 = 1;
           int * data = (int *) malloc(_len_data0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
             data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           set_pixel2(x,y,pixel,data,width,bpp);
           free(data);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int x = 255;
+        
+          int y = 255;
+        
+          int pixel = 255;
+        
+          int width = 255;
+        
+          int bpp = 255;
+        
+          int _len_data0 = 65025;
+          int * data = (int *) malloc(_len_data0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+            data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          set_pixel2(x,y,pixel,data,width,bpp);
+          free(data);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int x = 10;
+        
           int y = 10;
+        
           int pixel = 10;
+        
           int width = 10;
+        
           int bpp = 10;
+        
           int _len_data0 = 100;
           int * data = (int *) malloc(_len_data0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
             data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          set_pixel2(x,y,pixel,data,width,bpp);
+          free(data);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int bpp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_data0 = 1;
+          int * data = (int *) malloc(_len_data0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+            data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           set_pixel2(x,y,pixel,data,width,bpp);
           free(data);
         

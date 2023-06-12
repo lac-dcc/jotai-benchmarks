@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -101,12 +103,6 @@ __attribute__((used)) static void sxgbe_rx_ctxt_wbstatus(struct sxgbe_rx_ctxt_de
 		x->rx_ptp_resv_msg_type++;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -119,32 +115,179 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 72
+          // dynamic_instructions_O0 : 72
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
+          int _len_p0 = 65025;
+          struct sxgbe_rx_ctxt_desc * p = (struct sxgbe_rx_ctxt_desc *) malloc(_len_p0*sizeof(struct sxgbe_rx_ctxt_desc));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].ptp_msgtype = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].tstamp_dropped = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_x0 = 65025;
+          struct sxgbe_extra_stats * x = (struct sxgbe_extra_stats *) malloc(_len_x0*sizeof(struct sxgbe_extra_stats));
+          for(int _i0 = 0; _i0 < _len_x0; _i0++) {
+              x[_i0].rx_ptp_resv_msg_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].rx_ptp_signal = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].rx_ptp_mgmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].rx_ptp_announce = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].rx_ptp_type_pdelay_follow_up = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].rx_ptp_type_pdelay_resp = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].rx_ptp_type_pdelay_req = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].rx_ptp_type_delay_resp = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].rx_ptp_type_delay_req = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].rx_ptp_type_follow_up = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].rx_ptp_type_sync = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].rx_msg_type_no_ptp = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].timestamp_dropped = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          sxgbe_rx_ctxt_wbstatus(p,x);
+          free(p);
+          free(x);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 72
+          // dynamic_instructions_O0 : 72
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
+          int _len_p0 = 100;
+          struct sxgbe_rx_ctxt_desc * p = (struct sxgbe_rx_ctxt_desc *) malloc(_len_p0*sizeof(struct sxgbe_rx_ctxt_desc));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].ptp_msgtype = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].tstamp_dropped = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_x0 = 100;
+          struct sxgbe_extra_stats * x = (struct sxgbe_extra_stats *) malloc(_len_x0*sizeof(struct sxgbe_extra_stats));
+          for(int _i0 = 0; _i0 < _len_x0; _i0++) {
+              x[_i0].rx_ptp_resv_msg_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].rx_ptp_signal = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].rx_ptp_mgmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].rx_ptp_announce = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].rx_ptp_type_pdelay_follow_up = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].rx_ptp_type_pdelay_resp = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].rx_ptp_type_pdelay_req = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].rx_ptp_type_delay_resp = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].rx_ptp_type_delay_req = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].rx_ptp_type_follow_up = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].rx_ptp_type_sync = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].rx_msg_type_no_ptp = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].timestamp_dropped = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          sxgbe_rx_ctxt_wbstatus(p,x);
+          free(p);
+          free(x);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 72
+          // dynamic_instructions_O0 : 72
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
           int _len_p0 = 1;
           struct sxgbe_rx_ctxt_desc * p = (struct sxgbe_rx_ctxt_desc *) malloc(_len_p0*sizeof(struct sxgbe_rx_ctxt_desc));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].ptp_msgtype = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].tstamp_dropped = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].ptp_msgtype = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].tstamp_dropped = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_x0 = 1;
           struct sxgbe_extra_stats * x = (struct sxgbe_extra_stats *) malloc(_len_x0*sizeof(struct sxgbe_extra_stats));
           for(int _i0 = 0; _i0 < _len_x0; _i0++) {
-            x[_i0].rx_ptp_resv_msg_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        x[_i0].rx_ptp_signal = ((-2 * (next_i()%2)) + 1) * next_i();
-        x[_i0].rx_ptp_mgmt = ((-2 * (next_i()%2)) + 1) * next_i();
-        x[_i0].rx_ptp_announce = ((-2 * (next_i()%2)) + 1) * next_i();
-        x[_i0].rx_ptp_type_pdelay_follow_up = ((-2 * (next_i()%2)) + 1) * next_i();
-        x[_i0].rx_ptp_type_pdelay_resp = ((-2 * (next_i()%2)) + 1) * next_i();
-        x[_i0].rx_ptp_type_pdelay_req = ((-2 * (next_i()%2)) + 1) * next_i();
-        x[_i0].rx_ptp_type_delay_resp = ((-2 * (next_i()%2)) + 1) * next_i();
-        x[_i0].rx_ptp_type_delay_req = ((-2 * (next_i()%2)) + 1) * next_i();
-        x[_i0].rx_ptp_type_follow_up = ((-2 * (next_i()%2)) + 1) * next_i();
-        x[_i0].rx_ptp_type_sync = ((-2 * (next_i()%2)) + 1) * next_i();
-        x[_i0].rx_msg_type_no_ptp = ((-2 * (next_i()%2)) + 1) * next_i();
-        x[_i0].timestamp_dropped = ((-2 * (next_i()%2)) + 1) * next_i();
+              x[_i0].rx_ptp_resv_msg_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].rx_ptp_signal = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].rx_ptp_mgmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].rx_ptp_announce = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].rx_ptp_type_pdelay_follow_up = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].rx_ptp_type_pdelay_resp = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].rx_ptp_type_pdelay_req = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].rx_ptp_type_delay_resp = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].rx_ptp_type_delay_req = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].rx_ptp_type_follow_up = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].rx_ptp_type_sync = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].rx_msg_type_no_ptp = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].timestamp_dropped = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           sxgbe_rx_ctxt_wbstatus(p,x);
           free(p);
           free(x);

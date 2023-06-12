@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ __attribute__((used)) static void hp100_misc_interrupt(struct net_device *dev)
 	dev->stats.tx_errors++;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,21 +88,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dev0 = 1;
+          int _len_dev0 = 65025;
           struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].stats.tx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].stats.rx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].stats.tx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.rx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           hp100_misc_interrupt(dev);
           free(dev);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dev0 = 100;
+          struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].stats.tx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.rx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          hp100_misc_interrupt(dev);
+          free(dev);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dev0 = 1;
+          struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].stats.tx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.rx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          hp100_misc_interrupt(dev);
+          free(dev);
+        
+        break;
+    }
     default:
         usage();
         break;

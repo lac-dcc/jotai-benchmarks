@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -90,12 +93,6 @@ __attribute__((used)) static void graph_update_width(struct git_graph *graph,
 	graph->width = max_cols * 2;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -112,19 +109,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int is_commit_in_existing_columns = 100;
+        
           int _len_graph0 = 1;
           struct git_graph * graph = (struct git_graph *) malloc(_len_graph0*sizeof(struct git_graph));
           for(int _i0 = 0; _i0 < _len_graph0; _i0++) {
-            graph[_i0].num_columns = ((-2 * (next_i()%2)) + 1) * next_i();
-        graph[_i0].num_parents = ((-2 * (next_i()%2)) + 1) * next_i();
-        graph[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+              graph[_i0].num_columns = ((-2 * (next_i()%2)) + 1) * next_i();
+          graph[_i0].num_parents = ((-2 * (next_i()%2)) + 1) * next_i();
+          graph[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           graph_update_width(graph,is_commit_in_existing_columns);
           free(graph);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int is_commit_in_existing_columns = 255;
+        
+          int _len_graph0 = 65025;
+          struct git_graph * graph = (struct git_graph *) malloc(_len_graph0*sizeof(struct git_graph));
+          for(int _i0 = 0; _i0 < _len_graph0; _i0++) {
+              graph[_i0].num_columns = ((-2 * (next_i()%2)) + 1) * next_i();
+          graph[_i0].num_parents = ((-2 * (next_i()%2)) + 1) * next_i();
+          graph[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          graph_update_width(graph,is_commit_in_existing_columns);
+          free(graph);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int is_commit_in_existing_columns = 10;
+        
+          int _len_graph0 = 100;
+          struct git_graph * graph = (struct git_graph *) malloc(_len_graph0*sizeof(struct git_graph));
+          for(int _i0 = 0; _i0 < _len_graph0; _i0++) {
+              graph[_i0].num_columns = ((-2 * (next_i()%2)) + 1) * next_i();
+          graph[_i0].num_parents = ((-2 * (next_i()%2)) + 1) * next_i();
+          graph[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          graph_update_width(graph,is_commit_in_existing_columns);
+          free(graph);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int is_commit_in_existing_columns = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_graph0 = 1;
+          struct git_graph * graph = (struct git_graph *) malloc(_len_graph0*sizeof(struct git_graph));
+          for(int _i0 = 0; _i0 < _len_graph0; _i0++) {
+              graph[_i0].num_columns = ((-2 * (next_i()%2)) + 1) * next_i();
+          graph[_i0].num_parents = ((-2 * (next_i()%2)) + 1) * next_i();
+          graph[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          graph_update_width(graph,is_commit_in_existing_columns);
+          free(graph);
+        
+        break;
+    }
     default:
         usage();
         break;

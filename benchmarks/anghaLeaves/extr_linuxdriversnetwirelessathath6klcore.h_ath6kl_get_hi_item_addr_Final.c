@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ __attribute__((used)) static inline u32 ath6kl_get_hi_item_addr(struct ath6kl *a
 	return addr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,11 +92,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long item_offset = 100;
+        
           int _len_ar0 = 1;
           struct ath6kl * ar = (struct ath6kl *) malloc(_len_ar0*sizeof(struct ath6kl));
           for(int _i0 = 0; _i0 < _len_ar0; _i0++) {
-            ar[_i0].target_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              ar[_i0].target_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          long benchRet = ath6kl_get_hi_item_addr(ar,item_offset);
+          printf("%ld\n", benchRet); 
+          free(ar);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long item_offset = 255;
+        
+          int _len_ar0 = 65025;
+          struct ath6kl * ar = (struct ath6kl *) malloc(_len_ar0*sizeof(struct ath6kl));
+          for(int _i0 = 0; _i0 < _len_ar0; _i0++) {
+              ar[_i0].target_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           long benchRet = ath6kl_get_hi_item_addr(ar,item_offset);
           printf("%ld\n", benchRet); 
           free(ar);
@@ -108,21 +125,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long item_offset = 10;
+        
           int _len_ar0 = 100;
           struct ath6kl * ar = (struct ath6kl *) malloc(_len_ar0*sizeof(struct ath6kl));
           for(int _i0 = 0; _i0 < _len_ar0; _i0++) {
-            ar[_i0].target_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              ar[_i0].target_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = ath6kl_get_hi_item_addr(ar,item_offset);
           printf("%ld\n", benchRet); 
           free(ar);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long item_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ar0 = 1;
+          struct ath6kl * ar = (struct ath6kl *) malloc(_len_ar0*sizeof(struct ath6kl));
+          for(int _i0 = 0; _i0 < _len_ar0; _i0++) {
+              ar[_i0].target_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = ath6kl_get_hi_item_addr(ar,item_offset);
+          printf("%ld\n", benchRet); 
+          free(ar);
+        
+        break;
+    }
     default:
         usage();
         break;

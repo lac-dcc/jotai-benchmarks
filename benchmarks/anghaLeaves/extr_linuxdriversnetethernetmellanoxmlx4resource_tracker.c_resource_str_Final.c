@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -84,12 +84,6 @@ __attribute__((used)) static const char *resource_str(enum mlx4_resource rt)
 	};
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,16 +96,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum mlx4_resource rt = 0;
+        
           const char * benchRet = resource_str(rt);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
         break;
     }
-
     default:
         usage();
         break;

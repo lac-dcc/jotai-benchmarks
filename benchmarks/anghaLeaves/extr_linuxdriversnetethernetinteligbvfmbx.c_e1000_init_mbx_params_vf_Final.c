@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -100,12 +102,6 @@ s32 e1000_init_mbx_params_vf(struct e1000_hw *hw)
 	return E1000_SUCCESS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -118,35 +114,105 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_hw0 = 1;
+          int _len_hw0 = 65025;
           struct e1000_hw * hw = (struct e1000_hw *) malloc(_len_hw0*sizeof(struct e1000_hw));
           for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
-            hw[_i0].mbx.stats.rsts = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].mbx.stats.acks = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].mbx.stats.reqs = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].mbx.stats.msgs_rx = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].mbx.stats.msgs_tx = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].mbx.ops.check_for_rst = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].mbx.ops.check_for_ack = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].mbx.ops.check_for_msg = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].mbx.ops.write_posted = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].mbx.ops.read_posted = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].mbx.ops.write = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].mbx.ops.read = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].mbx.size = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].mbx.usec_delay = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].mbx.timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+              hw[_i0].mbx.stats.rsts = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.stats.acks = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.stats.reqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.stats.msgs_rx = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.stats.msgs_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hw[_i0].mbx.ops.check_for_rst = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.ops.check_for_ack = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.ops.check_for_msg = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.ops.write_posted = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.ops.read_posted = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.ops.write = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.ops.read = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hw[_i0].mbx.size = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.usec_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = e1000_init_mbx_params_vf(hw);
           printf("%d\n", benchRet); 
           free(hw);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_hw0 = 100;
+          struct e1000_hw * hw = (struct e1000_hw *) malloc(_len_hw0*sizeof(struct e1000_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].mbx.stats.rsts = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.stats.acks = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.stats.reqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.stats.msgs_rx = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.stats.msgs_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hw[_i0].mbx.ops.check_for_rst = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.ops.check_for_ack = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.ops.check_for_msg = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.ops.write_posted = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.ops.read_posted = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.ops.write = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.ops.read = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hw[_i0].mbx.size = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.usec_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = e1000_init_mbx_params_vf(hw);
+          printf("%d\n", benchRet); 
+          free(hw);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_hw0 = 1;
+          struct e1000_hw * hw = (struct e1000_hw *) malloc(_len_hw0*sizeof(struct e1000_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].mbx.stats.rsts = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.stats.acks = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.stats.reqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.stats.msgs_rx = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.stats.msgs_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hw[_i0].mbx.ops.check_for_rst = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.ops.check_for_ack = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.ops.check_for_msg = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.ops.write_posted = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.ops.read_posted = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.ops.write = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.ops.read = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hw[_i0].mbx.size = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.usec_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = e1000_init_mbx_params_vf(hw);
+          printf("%d\n", benchRet); 
+          free(hw);
+        
+        break;
+    }
     default:
         usage();
         break;

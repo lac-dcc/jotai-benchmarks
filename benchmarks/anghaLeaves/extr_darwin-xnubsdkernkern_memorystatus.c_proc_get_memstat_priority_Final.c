@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +74,6 @@ proc_get_memstat_priority(proc_t p, boolean_t effective_priority)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,19 +90,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long effective_priority = 100;
+        
           int _len_p0 = 1;
           struct TYPE_3__ * p = (struct TYPE_3__ *) malloc(_len_p0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].p_memstat_effectivepriority = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].p_memstat_requestedpriority = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].p_memstat_effectivepriority = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].p_memstat_requestedpriority = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = proc_get_memstat_priority(p,effective_priority);
           printf("%d\n", benchRet); 
           free(p);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long effective_priority = 255;
+        
+          int _len_p0 = 65025;
+          struct TYPE_3__ * p = (struct TYPE_3__ *) malloc(_len_p0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].p_memstat_effectivepriority = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].p_memstat_requestedpriority = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = proc_get_memstat_priority(p,effective_priority);
+          printf("%d\n", benchRet); 
+          free(p);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long effective_priority = 10;
+        
+          int _len_p0 = 100;
+          struct TYPE_3__ * p = (struct TYPE_3__ *) malloc(_len_p0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].p_memstat_effectivepriority = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].p_memstat_requestedpriority = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = proc_get_memstat_priority(p,effective_priority);
+          printf("%d\n", benchRet); 
+          free(p);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long effective_priority = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_p0 = 1;
+          struct TYPE_3__ * p = (struct TYPE_3__ *) malloc(_len_p0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].p_memstat_effectivepriority = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].p_memstat_requestedpriority = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = proc_get_memstat_priority(p,effective_priority);
+          printf("%d\n", benchRet); 
+          free(p);
+        
+        break;
+    }
     default:
         usage();
         break;

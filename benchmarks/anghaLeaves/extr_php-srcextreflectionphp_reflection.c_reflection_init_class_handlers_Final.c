@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static void reflection_init_class_handlers(zend_class_entr
 	ce->unserialize = zend_class_unserialize_deny;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,22 +80,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ce0 = 1;
+          int _len_ce0 = 65025;
           struct TYPE_3__ * ce = (struct TYPE_3__ *) malloc(_len_ce0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_ce0; _i0++) {
-            ce[_i0].unserialize = ((-2 * (next_i()%2)) + 1) * next_i();
-        ce[_i0].serialize = ((-2 * (next_i()%2)) + 1) * next_i();
-        ce[_i0].create_object = ((-2 * (next_i()%2)) + 1) * next_i();
+              ce[_i0].unserialize = ((-2 * (next_i()%2)) + 1) * next_i();
+          ce[_i0].serialize = ((-2 * (next_i()%2)) + 1) * next_i();
+          ce[_i0].create_object = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           reflection_init_class_handlers(ce);
           free(ce);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ce0 = 100;
+          struct TYPE_3__ * ce = (struct TYPE_3__ *) malloc(_len_ce0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ce0; _i0++) {
+              ce[_i0].unserialize = ((-2 * (next_i()%2)) + 1) * next_i();
+          ce[_i0].serialize = ((-2 * (next_i()%2)) + 1) * next_i();
+          ce[_i0].create_object = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          reflection_init_class_handlers(ce);
+          free(ce);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ce0 = 1;
+          struct TYPE_3__ * ce = (struct TYPE_3__ *) malloc(_len_ce0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ce0; _i0++) {
+              ce[_i0].unserialize = ((-2 * (next_i()%2)) + 1) * next_i();
+          ce[_i0].serialize = ((-2 * (next_i()%2)) + 1) * next_i();
+          ce[_i0].create_object = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          reflection_init_class_handlers(ce);
+          free(ce);
+        
+        break;
+    }
     default:
         usage();
         break;

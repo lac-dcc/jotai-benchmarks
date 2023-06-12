@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -87,12 +89,6 @@ __attribute__((used)) static void isci_user_parameters_get(struct sci_user_param
 	u->max_concurr_spinup = max_concurr_spinup;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,27 +101,165 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_u0 = 1;
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int _len_u0 = 65025;
           struct sci_user_parameters * u = (struct sci_user_parameters *) malloc(_len_u0*sizeof(struct sci_user_parameters));
           for(int _i0 = 0; _i0 < _len_u0; _i0++) {
-            u[_i0].max_concurr_spinup = ((-2 * (next_i()%2)) + 1) * next_i();
-        u[_i0].no_outbound_task_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
-        u[_i0].ssp_max_occupancy_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
-        u[_i0].stp_max_occupancy_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
-        u[_i0].ssp_inactivity_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
-        u[_i0].stp_inactivity_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+              u[_i0].max_concurr_spinup = ((-2 * (next_i()%2)) + 1) * next_i();
+          u[_i0].no_outbound_task_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          u[_i0].ssp_max_occupancy_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          u[_i0].stp_max_occupancy_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          u[_i0].ssp_inactivity_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          u[_i0].stp_inactivity_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_u__i0__phys0 = 1;
           u[_i0].phys = (struct sci_phy_user_params *) malloc(_len_u__i0__phys0*sizeof(struct sci_phy_user_params));
           for(int _j0 = 0; _j0 < _len_u__i0__phys0; _j0++) {
-            u[_i0].phys->align_insertion_frequency = ((-2 * (next_i()%2)) + 1) * next_i();
-        u[_i0].phys->in_connection_align_insertion_frequency = ((-2 * (next_i()%2)) + 1) * next_i();
-        u[_i0].phys->notify_enable_spin_up_insertion_frequency = ((-2 * (next_i()%2)) + 1) * next_i();
-        u[_i0].phys->max_speed_generation = ((-2 * (next_i()%2)) + 1) * next_i();
+              u[_i0].phys->align_insertion_frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+          u[_i0].phys->in_connection_align_insertion_frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+          u[_i0].phys->notify_enable_spin_up_insertion_frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+          u[_i0].phys->max_speed_generation = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          isci_user_parameters_get(u);
+          for(int _aux = 0; _aux < _len_u0; _aux++) {
+          free(u[_aux].phys);
+          }
+          free(u);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int _len_u0 = 100;
+          struct sci_user_parameters * u = (struct sci_user_parameters *) malloc(_len_u0*sizeof(struct sci_user_parameters));
+          for(int _i0 = 0; _i0 < _len_u0; _i0++) {
+              u[_i0].max_concurr_spinup = ((-2 * (next_i()%2)) + 1) * next_i();
+          u[_i0].no_outbound_task_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          u[_i0].ssp_max_occupancy_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          u[_i0].stp_max_occupancy_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          u[_i0].ssp_inactivity_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          u[_i0].stp_inactivity_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_u__i0__phys0 = 1;
+          u[_i0].phys = (struct sci_phy_user_params *) malloc(_len_u__i0__phys0*sizeof(struct sci_phy_user_params));
+          for(int _j0 = 0; _j0 < _len_u__i0__phys0; _j0++) {
+              u[_i0].phys->align_insertion_frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+          u[_i0].phys->in_connection_align_insertion_frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+          u[_i0].phys->notify_enable_spin_up_insertion_frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+          u[_i0].phys->max_speed_generation = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          isci_user_parameters_get(u);
+          for(int _aux = 0; _aux < _len_u0; _aux++) {
+          free(u[_aux].phys);
+          }
+          free(u);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int _len_u0 = 1;
+          struct sci_user_parameters * u = (struct sci_user_parameters *) malloc(_len_u0*sizeof(struct sci_user_parameters));
+          for(int _i0 = 0; _i0 < _len_u0; _i0++) {
+              u[_i0].max_concurr_spinup = ((-2 * (next_i()%2)) + 1) * next_i();
+          u[_i0].no_outbound_task_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          u[_i0].ssp_max_occupancy_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          u[_i0].stp_max_occupancy_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          u[_i0].ssp_inactivity_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          u[_i0].stp_inactivity_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_u__i0__phys0 = 1;
+          u[_i0].phys = (struct sci_phy_user_params *) malloc(_len_u__i0__phys0*sizeof(struct sci_phy_user_params));
+          for(int _j0 = 0; _j0 < _len_u__i0__phys0; _j0++) {
+              u[_i0].phys->align_insertion_frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+          u[_i0].phys->in_connection_align_insertion_frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+          u[_i0].phys->notify_enable_spin_up_insertion_frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+          u[_i0].phys->max_speed_generation = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           isci_user_parameters_get(u);
           for(int _aux = 0; _aux < _len_u0; _aux++) {
           free(u[_aux].phys);

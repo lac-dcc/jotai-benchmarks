@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ int relay_buf_full(struct rchan_buf *buf)
 	return (ready >= buf->chan->n_subbufs) ? 1 : 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,20 +77,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_buf0 = 1;
+          int _len_buf0 = 65025;
           struct rchan_buf * buf = (struct rchan_buf *) malloc(_len_buf0*sizeof(struct rchan_buf));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
-            buf[_i0].subbufs_produced = ((-2 * (next_i()%2)) + 1) * next_i();
-        buf[_i0].subbufs_consumed = ((-2 * (next_i()%2)) + 1) * next_i();
+              buf[_i0].subbufs_produced = ((-2 * (next_i()%2)) + 1) * next_i();
+          buf[_i0].subbufs_consumed = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_buf__i0__chan0 = 1;
           buf[_i0].chan = (struct TYPE_2__ *) malloc(_len_buf__i0__chan0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_buf__i0__chan0; _j0++) {
-            buf[_i0].chan->n_subbufs = ((-2 * (next_i()%2)) + 1) * next_i();
+              buf[_i0].chan->n_subbufs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = relay_buf_full(buf);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_buf0; _aux++) {
@@ -104,7 +103,58 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_buf0 = 100;
+          struct rchan_buf * buf = (struct rchan_buf *) malloc(_len_buf0*sizeof(struct rchan_buf));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+              buf[_i0].subbufs_produced = ((-2 * (next_i()%2)) + 1) * next_i();
+          buf[_i0].subbufs_consumed = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_buf__i0__chan0 = 1;
+          buf[_i0].chan = (struct TYPE_2__ *) malloc(_len_buf__i0__chan0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_buf__i0__chan0; _j0++) {
+              buf[_i0].chan->n_subbufs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = relay_buf_full(buf);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_buf0; _aux++) {
+          free(buf[_aux].chan);
+          }
+          free(buf);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_buf0 = 1;
+          struct rchan_buf * buf = (struct rchan_buf *) malloc(_len_buf0*sizeof(struct rchan_buf));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+              buf[_i0].subbufs_produced = ((-2 * (next_i()%2)) + 1) * next_i();
+          buf[_i0].subbufs_consumed = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_buf__i0__chan0 = 1;
+          buf[_i0].chan = (struct TYPE_2__ *) malloc(_len_buf__i0__chan0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_buf__i0__chan0; _j0++) {
+              buf[_i0].chan->n_subbufs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = relay_buf_full(buf);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_buf0; _aux++) {
+          free(buf[_aux].chan);
+          }
+          free(buf);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -71,12 +72,6 @@ __attribute__((used)) static void ui2a(unsigned int num, unsigned int base, int 
   *bf = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,17 +84,88 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 62
+          // dynamic_instructions_O0 : 107
+          // ------------------------------- 
+          // static_instructions_O1 : 55
+          // dynamic_instructions_O1 : 75
+          // ------------------------------- 
+          // static_instructions_O2 : 54
+          // dynamic_instructions_O2 : 74
+          // ------------------------------- 
+          // static_instructions_O3 : 54
+          // dynamic_instructions_O3 : 74
+          // ------------------------------- 
+          // static_instructions_Ofast : 54
+          // dynamic_instructions_Ofast : 74
+          // ------------------------------- 
+          // static_instructions_Os : 52
+          // dynamic_instructions_Os : 72
+          // ------------------------------- 
+          // static_instructions_Oz : 55
+          // dynamic_instructions_Oz : 86
+          // ------------------------------- 
+
+          unsigned int num = 255;
+        
+          unsigned int base = 255;
+        
+          int uc = 255;
+        
+          int _len_bf0 = 65025;
+          char * bf = (char *) malloc(_len_bf0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_bf0; _i0++) {
+            bf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          ui2a(num,base,uc,bf);
+          free(bf);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 62
+          // dynamic_instructions_O0 : 107
+          // ------------------------------- 
+          // static_instructions_O1 : 55
+          // dynamic_instructions_O1 : 75
+          // ------------------------------- 
+          // static_instructions_O2 : 54
+          // dynamic_instructions_O2 : 74
+          // ------------------------------- 
+          // static_instructions_O3 : 54
+          // dynamic_instructions_O3 : 74
+          // ------------------------------- 
+          // static_instructions_Ofast : 54
+          // dynamic_instructions_Ofast : 74
+          // ------------------------------- 
+          // static_instructions_Os : 52
+          // dynamic_instructions_Os : 72
+          // ------------------------------- 
+          // static_instructions_Oz : 55
+          // dynamic_instructions_Oz : 86
+          // ------------------------------- 
+
           unsigned int num = 10;
+        
           unsigned int base = 10;
+        
           int uc = 10;
+        
           int _len_bf0 = 100;
           char * bf = (char *) malloc(_len_bf0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_bf0; _i0++) {
             bf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           ui2a(num,base,uc,bf);
           free(bf);
         

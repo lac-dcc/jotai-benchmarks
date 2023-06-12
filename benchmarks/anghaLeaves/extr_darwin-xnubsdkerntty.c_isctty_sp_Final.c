@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ isctty_sp(proc_t p, struct tty  *tp, struct session *sessp)
 
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,28 +81,186 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_p0 = 65025;
+          struct TYPE_3__ * p = (struct TYPE_3__ *) malloc(_len_p0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].p_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_tp0 = 65025;
+          struct tty * tp = (struct tty *) malloc(_len_tp0*sizeof(struct tty));
+          for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
+              int _len_tp__i0__t_session0 = 1;
+          tp[_i0].t_session = (struct session *) malloc(_len_tp__i0__t_session0*sizeof(struct session));
+          for(int _j0 = 0; _j0 < _len_tp__i0__t_session0; _j0++) {
+              tp[_i0].t_session->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_sessp0 = 65025;
+          struct session * sessp = (struct session *) malloc(_len_sessp0*sizeof(struct session));
+          for(int _i0 = 0; _i0 < _len_sessp0; _i0++) {
+              sessp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = isctty_sp(p,tp,sessp);
+          printf("%d\n", benchRet); 
+          free(p);
+          for(int _aux = 0; _aux < _len_tp0; _aux++) {
+          free(tp[_aux].t_session);
+          }
+          free(tp);
+          free(sessp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_p0 = 100;
+          struct TYPE_3__ * p = (struct TYPE_3__ *) malloc(_len_p0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].p_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_tp0 = 100;
+          struct tty * tp = (struct tty *) malloc(_len_tp0*sizeof(struct tty));
+          for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
+              int _len_tp__i0__t_session0 = 1;
+          tp[_i0].t_session = (struct session *) malloc(_len_tp__i0__t_session0*sizeof(struct session));
+          for(int _j0 = 0; _j0 < _len_tp__i0__t_session0; _j0++) {
+              tp[_i0].t_session->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_sessp0 = 100;
+          struct session * sessp = (struct session *) malloc(_len_sessp0*sizeof(struct session));
+          for(int _i0 = 0; _i0 < _len_sessp0; _i0++) {
+              sessp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = isctty_sp(p,tp,sessp);
+          printf("%d\n", benchRet); 
+          free(p);
+          for(int _aux = 0; _aux < _len_tp0; _aux++) {
+          free(tp[_aux].t_session);
+          }
+          free(tp);
+          free(sessp);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_p0 = 1;
           struct TYPE_3__ * p = (struct TYPE_3__ *) malloc(_len_p0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].p_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].p_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_tp0 = 1;
           struct tty * tp = (struct tty *) malloc(_len_tp0*sizeof(struct tty));
           for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
               int _len_tp__i0__t_session0 = 1;
           tp[_i0].t_session = (struct session *) malloc(_len_tp__i0__t_session0*sizeof(struct session));
           for(int _j0 = 0; _j0 < _len_tp__i0__t_session0; _j0++) {
-            tp[_i0].t_session->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              tp[_i0].t_session->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_sessp0 = 1;
           struct session * sessp = (struct session *) malloc(_len_sessp0*sizeof(struct session));
           for(int _i0 = 0; _i0 < _len_sessp0; _i0++) {
-            sessp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              sessp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = isctty_sp(p,tp,sessp);
           printf("%d\n", benchRet); 
           free(p);

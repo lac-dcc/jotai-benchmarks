@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -86,12 +88,6 @@ __attribute__((used)) static int cw1200_get_hw_type(u32 config_reg_val, int *maj
 	return hw_type;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -108,11 +104,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int config_reg_val = 100;
+        
           int _len_major_revision0 = 1;
           int * major_revision = (int *) malloc(_len_major_revision0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_major_revision0; _i0++) {
             major_revision[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = cw1200_get_hw_type(config_reg_val,major_revision);
+          printf("%d\n", benchRet); 
+          free(major_revision);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int config_reg_val = 255;
+        
+          int _len_major_revision0 = 65025;
+          int * major_revision = (int *) malloc(_len_major_revision0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_major_revision0; _i0++) {
+            major_revision[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = cw1200_get_hw_type(config_reg_val,major_revision);
           printf("%d\n", benchRet); 
           free(major_revision);
@@ -120,21 +135,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int config_reg_val = 10;
+        
           int _len_major_revision0 = 100;
           int * major_revision = (int *) malloc(_len_major_revision0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_major_revision0; _i0++) {
             major_revision[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = cw1200_get_hw_type(config_reg_val,major_revision);
           printf("%d\n", benchRet); 
           free(major_revision);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int config_reg_val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_major_revision0 = 1;
+          int * major_revision = (int *) malloc(_len_major_revision0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_major_revision0; _i0++) {
+            major_revision[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = cw1200_get_hw_type(config_reg_val,major_revision);
+          printf("%d\n", benchRet); 
+          free(major_revision);
+        
+        break;
+    }
     default:
         usage();
         break;

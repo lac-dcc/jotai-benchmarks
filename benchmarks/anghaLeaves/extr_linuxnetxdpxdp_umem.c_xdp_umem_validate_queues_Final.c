@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ bool xdp_umem_validate_queues(struct xdp_umem *umem)
 	return umem->fq && umem->cq;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,22 +74,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_umem0 = 1;
+          int _len_umem0 = 65025;
           struct xdp_umem * umem = (struct xdp_umem *) malloc(_len_umem0*sizeof(struct xdp_umem));
           for(int _i0 = 0; _i0 < _len_umem0; _i0++) {
-            umem[_i0].cq = ((-2 * (next_i()%2)) + 1) * next_i();
-        umem[_i0].fq = ((-2 * (next_i()%2)) + 1) * next_i();
+              umem[_i0].cq = ((-2 * (next_i()%2)) + 1) * next_i();
+          umem[_i0].fq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = xdp_umem_validate_queues(umem);
           printf("%d\n", benchRet); 
           free(umem);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_umem0 = 100;
+          struct xdp_umem * umem = (struct xdp_umem *) malloc(_len_umem0*sizeof(struct xdp_umem));
+          for(int _i0 = 0; _i0 < _len_umem0; _i0++) {
+              umem[_i0].cq = ((-2 * (next_i()%2)) + 1) * next_i();
+          umem[_i0].fq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = xdp_umem_validate_queues(umem);
+          printf("%d\n", benchRet); 
+          free(umem);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_umem0 = 1;
+          struct xdp_umem * umem = (struct xdp_umem *) malloc(_len_umem0*sizeof(struct xdp_umem));
+          for(int _i0 = 0; _i0 < _len_umem0; _i0++) {
+              umem[_i0].cq = ((-2 * (next_i()%2)) + 1) * next_i();
+          umem[_i0].fq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = xdp_umem_validate_queues(umem);
+          printf("%d\n", benchRet); 
+          free(umem);
+        
+        break;
+    }
     default:
         usage();
         break;

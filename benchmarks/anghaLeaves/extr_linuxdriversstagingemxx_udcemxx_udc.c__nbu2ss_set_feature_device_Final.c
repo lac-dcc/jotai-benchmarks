@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -91,12 +93,6 @@ __attribute__((used)) static int _nbu2ss_set_feature_device(
 	return result;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -113,12 +109,36 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int selector = 100;
+        
           int wIndex = 100;
+        
           int _len_udc0 = 1;
           struct nbu2ss_udc * udc = (struct nbu2ss_udc *) malloc(_len_udc0*sizeof(struct nbu2ss_udc));
           for(int _i0 = 0; _i0 < _len_udc0; _i0++) {
-            udc[_i0].remote_wakeup = ((-2 * (next_i()%2)) + 1) * next_i();
+              udc[_i0].remote_wakeup = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = _nbu2ss_set_feature_device(udc,selector,wIndex);
+          printf("%d\n", benchRet); 
+          free(udc);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int selector = 255;
+        
+          int wIndex = 255;
+        
+          int _len_udc0 = 65025;
+          struct nbu2ss_udc * udc = (struct nbu2ss_udc *) malloc(_len_udc0*sizeof(struct nbu2ss_udc));
+          for(int _i0 = 0; _i0 < _len_udc0; _i0++) {
+              udc[_i0].remote_wakeup = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = _nbu2ss_set_feature_device(udc,selector,wIndex);
           printf("%d\n", benchRet); 
           free(udc);
@@ -126,22 +146,45 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int selector = 10;
+        
           int wIndex = 10;
+        
           int _len_udc0 = 100;
           struct nbu2ss_udc * udc = (struct nbu2ss_udc *) malloc(_len_udc0*sizeof(struct nbu2ss_udc));
           for(int _i0 = 0; _i0 < _len_udc0; _i0++) {
-            udc[_i0].remote_wakeup = ((-2 * (next_i()%2)) + 1) * next_i();
+              udc[_i0].remote_wakeup = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = _nbu2ss_set_feature_device(udc,selector,wIndex);
           printf("%d\n", benchRet); 
           free(udc);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int selector = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int wIndex = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_udc0 = 1;
+          struct nbu2ss_udc * udc = (struct nbu2ss_udc *) malloc(_len_udc0*sizeof(struct nbu2ss_udc));
+          for(int _i0 = 0; _i0 < _len_udc0; _i0++) {
+              udc[_i0].remote_wakeup = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = _nbu2ss_set_feature_device(udc,selector,wIndex);
+          printf("%d\n", benchRet); 
+          free(udc);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -84,12 +85,6 @@ void pcmcia_access_speed(int speed)
 	gayle.config = cfg_byte;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,26 +97,133 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           int speed = 100;
+        
           pcmcia_access_speed(speed);
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           int speed = 255;
+        
           pcmcia_access_speed(speed);
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           int speed = 10;
+        
+          pcmcia_access_speed(speed);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           pcmcia_access_speed(speed);
         
         break;

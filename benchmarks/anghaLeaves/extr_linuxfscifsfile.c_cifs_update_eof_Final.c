@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ cifs_update_eof(struct cifsInodeInfo *cifsi, loff_t offset,
 		cifsi->server_eof = end_of_write;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,33 +85,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long offset = 100;
+        
           unsigned int bytes_written = 100;
+        
           int _len_cifsi0 = 1;
           struct cifsInodeInfo * cifsi = (struct cifsInodeInfo *) malloc(_len_cifsi0*sizeof(struct cifsInodeInfo));
           for(int _i0 = 0; _i0 < _len_cifsi0; _i0++) {
-            cifsi[_i0].server_eof = ((-2 * (next_i()%2)) + 1) * next_i();
+              cifsi[_i0].server_eof = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          cifs_update_eof(cifsi,offset,bytes_written);
+          free(cifsi);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long offset = 255;
+        
+          unsigned int bytes_written = 255;
+        
+          int _len_cifsi0 = 65025;
+          struct cifsInodeInfo * cifsi = (struct cifsInodeInfo *) malloc(_len_cifsi0*sizeof(struct cifsInodeInfo));
+          for(int _i0 = 0; _i0 < _len_cifsi0; _i0++) {
+              cifsi[_i0].server_eof = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           cifs_update_eof(cifsi,offset,bytes_written);
           free(cifsi);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long offset = 10;
+        
           unsigned int bytes_written = 10;
+        
           int _len_cifsi0 = 100;
           struct cifsInodeInfo * cifsi = (struct cifsInodeInfo *) malloc(_len_cifsi0*sizeof(struct cifsInodeInfo));
           for(int _i0 = 0; _i0 < _len_cifsi0; _i0++) {
-            cifsi[_i0].server_eof = ((-2 * (next_i()%2)) + 1) * next_i();
+              cifsi[_i0].server_eof = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           cifs_update_eof(cifsi,offset,bytes_written);
           free(cifsi);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int bytes_written = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cifsi0 = 1;
+          struct cifsInodeInfo * cifsi = (struct cifsInodeInfo *) malloc(_len_cifsi0*sizeof(struct cifsInodeInfo));
+          for(int _i0 = 0; _i0 < _len_cifsi0; _i0++) {
+              cifsi[_i0].server_eof = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cifs_update_eof(cifsi,offset,bytes_written);
+          free(cifsi);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static void drm_dp_encode_sideband_reply(struct drm_dp_sid
 	raw->cur_len = idx;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,15 +82,152 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_rep0 = 65025;
+          struct drm_dp_sideband_msg_reply_body * rep = (struct drm_dp_sideband_msg_reply_body *) malloc(_len_rep0*sizeof(struct drm_dp_sideband_msg_reply_body));
+          for(int _i0 = 0; _i0 < _len_rep0; _i0++) {
+              rep[_i0].reply_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          rep[_i0].req_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_raw0 = 65025;
+          struct drm_dp_sideband_msg_tx * raw = (struct drm_dp_sideband_msg_tx *) malloc(_len_raw0*sizeof(struct drm_dp_sideband_msg_tx));
+          for(int _i0 = 0; _i0 < _len_raw0; _i0++) {
+              int _len_raw__i0__msg0 = 1;
+          raw[_i0].msg = (int *) malloc(_len_raw__i0__msg0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_raw__i0__msg0; _j0++) {
+            raw[_i0].msg[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          raw[_i0].cur_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          drm_dp_encode_sideband_reply(rep,raw);
+          free(rep);
+          for(int _aux = 0; _aux < _len_raw0; _aux++) {
+          free(raw[_aux].msg);
+          }
+          free(raw);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_rep0 = 100;
+          struct drm_dp_sideband_msg_reply_body * rep = (struct drm_dp_sideband_msg_reply_body *) malloc(_len_rep0*sizeof(struct drm_dp_sideband_msg_reply_body));
+          for(int _i0 = 0; _i0 < _len_rep0; _i0++) {
+              rep[_i0].reply_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          rep[_i0].req_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_raw0 = 100;
+          struct drm_dp_sideband_msg_tx * raw = (struct drm_dp_sideband_msg_tx *) malloc(_len_raw0*sizeof(struct drm_dp_sideband_msg_tx));
+          for(int _i0 = 0; _i0 < _len_raw0; _i0++) {
+              int _len_raw__i0__msg0 = 1;
+          raw[_i0].msg = (int *) malloc(_len_raw__i0__msg0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_raw__i0__msg0; _j0++) {
+            raw[_i0].msg[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          raw[_i0].cur_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          drm_dp_encode_sideband_reply(rep,raw);
+          free(rep);
+          for(int _aux = 0; _aux < _len_raw0; _aux++) {
+          free(raw[_aux].msg);
+          }
+          free(raw);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int _len_rep0 = 1;
           struct drm_dp_sideband_msg_reply_body * rep = (struct drm_dp_sideband_msg_reply_body *) malloc(_len_rep0*sizeof(struct drm_dp_sideband_msg_reply_body));
           for(int _i0 = 0; _i0 < _len_rep0; _i0++) {
-            rep[_i0].reply_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        rep[_i0].req_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              rep[_i0].reply_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          rep[_i0].req_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_raw0 = 1;
           struct drm_dp_sideband_msg_tx * raw = (struct drm_dp_sideband_msg_tx *) malloc(_len_raw0*sizeof(struct drm_dp_sideband_msg_tx));
           for(int _i0 = 0; _i0 < _len_raw0; _i0++) {
@@ -103,8 +236,10 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_raw__i0__msg0; _j0++) {
             raw[_i0].msg[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        raw[_i0].cur_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          raw[_i0].cur_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           drm_dp_encode_sideband_reply(rep,raw);
           free(rep);
           for(int _aux = 0; _aux < _len_raw0; _aux++) {

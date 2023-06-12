@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline bool whc_std_last(struct whc_std *std)
 	return std->ntds_remaining <= 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,28 +74,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_std0 = 1;
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_std0 = 65025;
           struct whc_std * std = (struct whc_std *) malloc(_len_std0*sizeof(struct whc_std));
           for(int _i0 = 0; _i0 < _len_std0; _i0++) {
-            std[_i0].ntds_remaining = ((-2 * (next_i()%2)) + 1) * next_i();
+              std[_i0].ntds_remaining = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = whc_std_last(std);
           printf("%d\n", benchRet); 
           free(std);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_std0 = 100;
           struct whc_std * std = (struct whc_std *) malloc(_len_std0*sizeof(struct whc_std));
           for(int _i0 = 0; _i0 < _len_std0; _i0++) {
-            std[_i0].ntds_remaining = ((-2 * (next_i()%2)) + 1) * next_i();
+              std[_i0].ntds_remaining = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = whc_std_last(std);
+          printf("%d\n", benchRet); 
+          free(std);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_std0 = 1;
+          struct whc_std * std = (struct whc_std *) malloc(_len_std0*sizeof(struct whc_std));
+          for(int _i0 = 0; _i0 < _len_std0; _i0++) {
+              std[_i0].ntds_remaining = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = whc_std_last(std);
           printf("%d\n", benchRet); 
           free(std);

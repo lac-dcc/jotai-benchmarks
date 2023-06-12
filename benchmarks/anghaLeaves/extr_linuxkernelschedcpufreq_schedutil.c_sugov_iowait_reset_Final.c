@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +76,6 @@ __attribute__((used)) static bool sugov_iowait_reset(struct sugov_cpu *sg_cpu, u
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,19 +88,187 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           long time = 100;
+        
           int set_iowait_boost = 100;
+        
           int _len_sg_cpu0 = 1;
           struct sugov_cpu * sg_cpu = (struct sugov_cpu *) malloc(_len_sg_cpu0*sizeof(struct sugov_cpu));
           for(int _i0 = 0; _i0 < _len_sg_cpu0; _i0++) {
-            sg_cpu[_i0].last_update = ((-2 * (next_i()%2)) + 1) * next_i();
-        sg_cpu[_i0].iowait_boost_pending = ((-2 * (next_i()%2)) + 1) * next_i();
-        sg_cpu[_i0].min = ((-2 * (next_i()%2)) + 1) * next_i();
-        sg_cpu[_i0].iowait_boost = ((-2 * (next_i()%2)) + 1) * next_i();
+              sg_cpu[_i0].last_update = ((-2 * (next_i()%2)) + 1) * next_i();
+          sg_cpu[_i0].iowait_boost_pending = ((-2 * (next_i()%2)) + 1) * next_i();
+          sg_cpu[_i0].min = ((-2 * (next_i()%2)) + 1) * next_i();
+          sg_cpu[_i0].iowait_boost = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = sugov_iowait_reset(sg_cpu,time,set_iowait_boost);
+          printf("%d\n", benchRet); 
+          free(sg_cpu);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          long time = 255;
+        
+          int set_iowait_boost = 255;
+        
+          int _len_sg_cpu0 = 65025;
+          struct sugov_cpu * sg_cpu = (struct sugov_cpu *) malloc(_len_sg_cpu0*sizeof(struct sugov_cpu));
+          for(int _i0 = 0; _i0 < _len_sg_cpu0; _i0++) {
+              sg_cpu[_i0].last_update = ((-2 * (next_i()%2)) + 1) * next_i();
+          sg_cpu[_i0].iowait_boost_pending = ((-2 * (next_i()%2)) + 1) * next_i();
+          sg_cpu[_i0].min = ((-2 * (next_i()%2)) + 1) * next_i();
+          sg_cpu[_i0].iowait_boost = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sugov_iowait_reset(sg_cpu,time,set_iowait_boost);
+          printf("%d\n", benchRet); 
+          free(sg_cpu);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          long time = 10;
+        
+          int set_iowait_boost = 10;
+        
+          int _len_sg_cpu0 = 100;
+          struct sugov_cpu * sg_cpu = (struct sugov_cpu *) malloc(_len_sg_cpu0*sizeof(struct sugov_cpu));
+          for(int _i0 = 0; _i0 < _len_sg_cpu0; _i0++) {
+              sg_cpu[_i0].last_update = ((-2 * (next_i()%2)) + 1) * next_i();
+          sg_cpu[_i0].iowait_boost_pending = ((-2 * (next_i()%2)) + 1) * next_i();
+          sg_cpu[_i0].min = ((-2 * (next_i()%2)) + 1) * next_i();
+          sg_cpu[_i0].iowait_boost = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sugov_iowait_reset(sg_cpu,time,set_iowait_boost);
+          printf("%d\n", benchRet); 
+          free(sg_cpu);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          long time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int set_iowait_boost = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sg_cpu0 = 1;
+          struct sugov_cpu * sg_cpu = (struct sugov_cpu *) malloc(_len_sg_cpu0*sizeof(struct sugov_cpu));
+          for(int _i0 = 0; _i0 < _len_sg_cpu0; _i0++) {
+              sg_cpu[_i0].last_update = ((-2 * (next_i()%2)) + 1) * next_i();
+          sg_cpu[_i0].iowait_boost_pending = ((-2 * (next_i()%2)) + 1) * next_i();
+          sg_cpu[_i0].min = ((-2 * (next_i()%2)) + 1) * next_i();
+          sg_cpu[_i0].iowait_boost = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = sugov_iowait_reset(sg_cpu,time,set_iowait_boost);
           printf("%d\n", benchRet); 
           free(sg_cpu);

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ int uv_tcp_simultaneous_accepts(uv_tcp_t* handle, int enable) {
   return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,11 +85,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int enable = 100;
+        
           int _len_handle0 = 1;
           struct TYPE_3__ * handle = (struct TYPE_3__ *) malloc(_len_handle0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_handle0; _i0++) {
-            handle[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              handle[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = uv_tcp_simultaneous_accepts(handle,enable);
+          printf("%d\n", benchRet); 
+          free(handle);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int enable = 255;
+        
+          int _len_handle0 = 65025;
+          struct TYPE_3__ * handle = (struct TYPE_3__ *) malloc(_len_handle0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_handle0; _i0++) {
+              handle[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = uv_tcp_simultaneous_accepts(handle,enable);
           printf("%d\n", benchRet); 
           free(handle);
@@ -101,21 +118,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int enable = 10;
+        
           int _len_handle0 = 100;
           struct TYPE_3__ * handle = (struct TYPE_3__ *) malloc(_len_handle0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_handle0; _i0++) {
-            handle[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              handle[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = uv_tcp_simultaneous_accepts(handle,enable);
           printf("%d\n", benchRet); 
           free(handle);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_handle0 = 1;
+          struct TYPE_3__ * handle = (struct TYPE_3__ *) malloc(_len_handle0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_handle0; _i0++) {
+              handle[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = uv_tcp_simultaneous_accepts(handle,enable);
+          printf("%d\n", benchRet); 
+          free(handle);
+        
+        break;
+    }
     default:
         usage();
         break;

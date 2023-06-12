@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static bool mxser_overlapping_vector(struct mxser_board *b
 		brd->vector < brd->ports[0].ioaddr + 8 * brd->info->nports;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,24 +81,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_brd0 = 1;
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_brd0 = 65025;
           struct mxser_board * brd = (struct mxser_board *) malloc(_len_brd0*sizeof(struct mxser_board));
           for(int _i0 = 0; _i0 < _len_brd0; _i0++) {
-            brd[_i0].vector = ((-2 * (next_i()%2)) + 1) * next_i();
+              brd[_i0].vector = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_brd__i0__info0 = 1;
           brd[_i0].info = (struct TYPE_4__ *) malloc(_len_brd__i0__info0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_brd__i0__info0; _j0++) {
-            brd[_i0].info->nports = ((-2 * (next_i()%2)) + 1) * next_i();
+              brd[_i0].info->nports = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_brd__i0__ports0 = 1;
           brd[_i0].ports = (struct TYPE_3__ *) malloc(_len_brd__i0__ports0*sizeof(struct TYPE_3__));
           for(int _j0 = 0; _j0 < _len_brd__i0__ports0; _j0++) {
-            brd[_i0].ports->ioaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+              brd[_i0].ports->ioaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = mxser_overlapping_vector(brd);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_brd0; _aux++) {
+          free(brd[_aux].info);
+          }
+          for(int _aux = 0; _aux < _len_brd0; _aux++) {
+          free(brd[_aux].ports);
+          }
+          free(brd);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_brd0 = 100;
+          struct mxser_board * brd = (struct mxser_board *) malloc(_len_brd0*sizeof(struct mxser_board));
+          for(int _i0 = 0; _i0 < _len_brd0; _i0++) {
+              brd[_i0].vector = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_brd__i0__info0 = 1;
+          brd[_i0].info = (struct TYPE_4__ *) malloc(_len_brd__i0__info0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_brd__i0__info0; _j0++) {
+              brd[_i0].info->nports = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_brd__i0__ports0 = 1;
+          brd[_i0].ports = (struct TYPE_3__ *) malloc(_len_brd__i0__ports0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_brd__i0__ports0; _j0++) {
+              brd[_i0].ports->ioaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = mxser_overlapping_vector(brd);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_brd0; _aux++) {
+          free(brd[_aux].info);
+          }
+          for(int _aux = 0; _aux < _len_brd0; _aux++) {
+          free(brd[_aux].ports);
+          }
+          free(brd);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_brd0 = 1;
+          struct mxser_board * brd = (struct mxser_board *) malloc(_len_brd0*sizeof(struct mxser_board));
+          for(int _i0 = 0; _i0 < _len_brd0; _i0++) {
+              brd[_i0].vector = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_brd__i0__info0 = 1;
+          brd[_i0].info = (struct TYPE_4__ *) malloc(_len_brd__i0__info0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_brd__i0__info0; _j0++) {
+              brd[_i0].info->nports = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_brd__i0__ports0 = 1;
+          brd[_i0].ports = (struct TYPE_3__ *) malloc(_len_brd__i0__ports0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_brd__i0__ports0; _j0++) {
+              brd[_i0].ports->ioaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = mxser_overlapping_vector(brd);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_brd0; _aux++) {

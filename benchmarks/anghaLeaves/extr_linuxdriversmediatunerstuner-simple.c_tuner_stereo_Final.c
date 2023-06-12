@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -81,12 +82,6 @@ __attribute__((used)) static inline int tuner_stereo(const int type, const int s
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,7 +98,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           const int type = 100;
+        
           const int status = 100;
+        
           int benchRet = tuner_stereo(type,status);
           printf("%d\n", benchRet); 
         
@@ -113,7 +110,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           const int type = 255;
+        
           const int status = 255;
+        
           int benchRet = tuner_stereo(type,status);
           printf("%d\n", benchRet); 
         
@@ -123,13 +122,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           const int type = 10;
+        
           const int status = 10;
+        
           int benchRet = tuner_stereo(type,status);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          const int type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          const int status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = tuner_stereo(type,status);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

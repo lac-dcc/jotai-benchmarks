@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +78,6 @@ __attribute__((used)) static void setup_aformat(SDL_AMediaFormat *aformat, jobje
     aformat->func_setBuffer = SDL_AMediaFormatJava_setBuffer;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,23 +90,209 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int android_media_format = 100;
+        
           int _len_aformat0 = 1;
           struct TYPE_5__ * aformat = (struct TYPE_5__ *) malloc(_len_aformat0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_aformat0; _i0++) {
-            aformat[_i0].func_setBuffer = ((-2 * (next_i()%2)) + 1) * next_i();
-        aformat[_i0].func_setInt32 = ((-2 * (next_i()%2)) + 1) * next_i();
-        aformat[_i0].func_getInt32 = ((-2 * (next_i()%2)) + 1) * next_i();
-        aformat[_i0].func_delete = ((-2 * (next_i()%2)) + 1) * next_i();
+              aformat[_i0].func_setBuffer = ((-2 * (next_i()%2)) + 1) * next_i();
+          aformat[_i0].func_setInt32 = ((-2 * (next_i()%2)) + 1) * next_i();
+          aformat[_i0].func_getInt32 = ((-2 * (next_i()%2)) + 1) * next_i();
+          aformat[_i0].func_delete = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_aformat__i0__opaque0 = 1;
           aformat[_i0].opaque = (struct TYPE_4__ *) malloc(_len_aformat__i0__opaque0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_aformat__i0__opaque0; _j0++) {
-            aformat[_i0].opaque->android_media_format = ((-2 * (next_i()%2)) + 1) * next_i();
+              aformat[_i0].opaque->android_media_format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          setup_aformat(aformat,android_media_format);
+          for(int _aux = 0; _aux < _len_aformat0; _aux++) {
+          free(aformat[_aux].opaque);
+          }
+          free(aformat);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int android_media_format = 255;
+        
+          int _len_aformat0 = 65025;
+          struct TYPE_5__ * aformat = (struct TYPE_5__ *) malloc(_len_aformat0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_aformat0; _i0++) {
+              aformat[_i0].func_setBuffer = ((-2 * (next_i()%2)) + 1) * next_i();
+          aformat[_i0].func_setInt32 = ((-2 * (next_i()%2)) + 1) * next_i();
+          aformat[_i0].func_getInt32 = ((-2 * (next_i()%2)) + 1) * next_i();
+          aformat[_i0].func_delete = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_aformat__i0__opaque0 = 1;
+          aformat[_i0].opaque = (struct TYPE_4__ *) malloc(_len_aformat__i0__opaque0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_aformat__i0__opaque0; _j0++) {
+              aformat[_i0].opaque->android_media_format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          setup_aformat(aformat,android_media_format);
+          for(int _aux = 0; _aux < _len_aformat0; _aux++) {
+          free(aformat[_aux].opaque);
+          }
+          free(aformat);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int android_media_format = 10;
+        
+          int _len_aformat0 = 100;
+          struct TYPE_5__ * aformat = (struct TYPE_5__ *) malloc(_len_aformat0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_aformat0; _i0++) {
+              aformat[_i0].func_setBuffer = ((-2 * (next_i()%2)) + 1) * next_i();
+          aformat[_i0].func_setInt32 = ((-2 * (next_i()%2)) + 1) * next_i();
+          aformat[_i0].func_getInt32 = ((-2 * (next_i()%2)) + 1) * next_i();
+          aformat[_i0].func_delete = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_aformat__i0__opaque0 = 1;
+          aformat[_i0].opaque = (struct TYPE_4__ *) malloc(_len_aformat__i0__opaque0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_aformat__i0__opaque0; _j0++) {
+              aformat[_i0].opaque->android_media_format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          setup_aformat(aformat,android_media_format);
+          for(int _aux = 0; _aux < _len_aformat0; _aux++) {
+          free(aformat[_aux].opaque);
+          }
+          free(aformat);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int android_media_format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_aformat0 = 1;
+          struct TYPE_5__ * aformat = (struct TYPE_5__ *) malloc(_len_aformat0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_aformat0; _i0++) {
+              aformat[_i0].func_setBuffer = ((-2 * (next_i()%2)) + 1) * next_i();
+          aformat[_i0].func_setInt32 = ((-2 * (next_i()%2)) + 1) * next_i();
+          aformat[_i0].func_getInt32 = ((-2 * (next_i()%2)) + 1) * next_i();
+          aformat[_i0].func_delete = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_aformat__i0__opaque0 = 1;
+          aformat[_i0].opaque = (struct TYPE_4__ *) malloc(_len_aformat__i0__opaque0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_aformat__i0__opaque0; _j0++) {
+              aformat[_i0].opaque->android_media_format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           setup_aformat(aformat,android_media_format);
           for(int _aux = 0; _aux < _len_aformat0; _aux++) {
           free(aformat[_aux].opaque);

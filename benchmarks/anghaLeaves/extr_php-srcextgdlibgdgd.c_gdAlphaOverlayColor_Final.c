@@ -77,12 +77,6 @@ __attribute__((used)) static int gdAlphaOverlayColor (int src, int dst, int max 
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,34 +89,114 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int src = 100;
+        
           int dst = 100;
+        
           int max = 100;
+        
           int benchRet = gdAlphaOverlayColor(src,dst,max);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int src = 255;
+        
           int dst = 255;
+        
           int max = 255;
+        
           int benchRet = gdAlphaOverlayColor(src,dst,max);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int src = 10;
+        
           int dst = 10;
+        
           int max = 10;
+        
           int benchRet = gdAlphaOverlayColor(src,dst,max);
           printf("%d\n", benchRet); 
         

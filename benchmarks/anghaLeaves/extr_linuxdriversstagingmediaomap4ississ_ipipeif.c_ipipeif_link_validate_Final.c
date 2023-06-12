@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ __attribute__((used)) static int ipipeif_link_validate(struct v4l2_subdev *sd,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,33 +90,43 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_sd0 = 1;
+          int _len_sd0 = 65025;
           struct v4l2_subdev * sd = (struct v4l2_subdev *) malloc(_len_sd0*sizeof(struct v4l2_subdev));
           for(int _i0 = 0; _i0 < _len_sd0; _i0++) {
-            sd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              sd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_link0 = 1;
+        
+          int _len_link0 = 65025;
           struct media_link * link = (struct media_link *) malloc(_len_link0*sizeof(struct media_link));
           for(int _i0 = 0; _i0 < _len_link0; _i0++) {
-            link[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              link[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_source_fmt0 = 1;
+        
+          int _len_source_fmt0 = 65025;
           struct v4l2_subdev_format * source_fmt = (struct v4l2_subdev_format *) malloc(_len_source_fmt0*sizeof(struct v4l2_subdev_format));
           for(int _i0 = 0; _i0 < _len_source_fmt0; _i0++) {
-            source_fmt[_i0].format.width = ((-2 * (next_i()%2)) + 1) * next_i();
-        source_fmt[_i0].format.height = ((-2 * (next_i()%2)) + 1) * next_i();
-        source_fmt[_i0].format.code = ((-2 * (next_i()%2)) + 1) * next_i();
+              source_fmt[_i0].format.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          source_fmt[_i0].format.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          source_fmt[_i0].format.code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-          int _len_sink_fmt0 = 1;
+        
+          int _len_sink_fmt0 = 65025;
           struct v4l2_subdev_format * sink_fmt = (struct v4l2_subdev_format *) malloc(_len_sink_fmt0*sizeof(struct v4l2_subdev_format));
           for(int _i0 = 0; _i0 < _len_sink_fmt0; _i0++) {
-            sink_fmt[_i0].format.width = ((-2 * (next_i()%2)) + 1) * next_i();
-        sink_fmt[_i0].format.height = ((-2 * (next_i()%2)) + 1) * next_i();
-        sink_fmt[_i0].format.code = ((-2 * (next_i()%2)) + 1) * next_i();
+              sink_fmt[_i0].format.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          sink_fmt[_i0].format.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          sink_fmt[_i0].format.code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = ipipeif_link_validate(sd,link,source_fmt,sink_fmt);
           printf("%d\n", benchRet); 
           free(sd);
@@ -130,7 +136,98 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_sd0 = 100;
+          struct v4l2_subdev * sd = (struct v4l2_subdev *) malloc(_len_sd0*sizeof(struct v4l2_subdev));
+          for(int _i0 = 0; _i0 < _len_sd0; _i0++) {
+              sd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_link0 = 100;
+          struct media_link * link = (struct media_link *) malloc(_len_link0*sizeof(struct media_link));
+          for(int _i0 = 0; _i0 < _len_link0; _i0++) {
+              link[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_source_fmt0 = 100;
+          struct v4l2_subdev_format * source_fmt = (struct v4l2_subdev_format *) malloc(_len_source_fmt0*sizeof(struct v4l2_subdev_format));
+          for(int _i0 = 0; _i0 < _len_source_fmt0; _i0++) {
+              source_fmt[_i0].format.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          source_fmt[_i0].format.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          source_fmt[_i0].format.code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_sink_fmt0 = 100;
+          struct v4l2_subdev_format * sink_fmt = (struct v4l2_subdev_format *) malloc(_len_sink_fmt0*sizeof(struct v4l2_subdev_format));
+          for(int _i0 = 0; _i0 < _len_sink_fmt0; _i0++) {
+              sink_fmt[_i0].format.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          sink_fmt[_i0].format.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          sink_fmt[_i0].format.code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = ipipeif_link_validate(sd,link,source_fmt,sink_fmt);
+          printf("%d\n", benchRet); 
+          free(sd);
+          free(link);
+          free(source_fmt);
+          free(sink_fmt);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_sd0 = 1;
+          struct v4l2_subdev * sd = (struct v4l2_subdev *) malloc(_len_sd0*sizeof(struct v4l2_subdev));
+          for(int _i0 = 0; _i0 < _len_sd0; _i0++) {
+              sd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_link0 = 1;
+          struct media_link * link = (struct media_link *) malloc(_len_link0*sizeof(struct media_link));
+          for(int _i0 = 0; _i0 < _len_link0; _i0++) {
+              link[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_source_fmt0 = 1;
+          struct v4l2_subdev_format * source_fmt = (struct v4l2_subdev_format *) malloc(_len_source_fmt0*sizeof(struct v4l2_subdev_format));
+          for(int _i0 = 0; _i0 < _len_source_fmt0; _i0++) {
+              source_fmt[_i0].format.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          source_fmt[_i0].format.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          source_fmt[_i0].format.code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_sink_fmt0 = 1;
+          struct v4l2_subdev_format * sink_fmt = (struct v4l2_subdev_format *) malloc(_len_sink_fmt0*sizeof(struct v4l2_subdev_format));
+          for(int _i0 = 0; _i0 < _len_sink_fmt0; _i0++) {
+              sink_fmt[_i0].format.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          sink_fmt[_i0].format.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          sink_fmt[_i0].format.code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = ipipeif_link_validate(sd,link,source_fmt,sink_fmt);
+          printf("%d\n", benchRet); 
+          free(sd);
+          free(link);
+          free(source_fmt);
+          free(sink_fmt);
+        
+        break;
+    }
     default:
         usage();
         break;

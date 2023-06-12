@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ NCR_700_get_depth(struct scsi_device *SDp)
 	return hostdata->depth;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,18 +79,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_SDp0 = 1;
+          int _len_SDp0 = 65025;
           struct scsi_device * SDp = (struct scsi_device *) malloc(_len_SDp0*sizeof(struct scsi_device));
           for(int _i0 = 0; _i0 < _len_SDp0; _i0++) {
               int _len_SDp__i0__hostdata0 = 1;
           SDp[_i0].hostdata = (struct NCR_700_Device_Parameters *) malloc(_len_SDp__i0__hostdata0*sizeof(struct NCR_700_Device_Parameters));
           for(int _j0 = 0; _j0 < _len_SDp__i0__hostdata0; _j0++) {
-            SDp[_i0].hostdata->depth = ((-2 * (next_i()%2)) + 1) * next_i();
+              SDp[_i0].hostdata->depth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = NCR_700_get_depth(SDp);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_SDp0; _aux++) {
@@ -104,7 +103,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_SDp0 = 100;
+          struct scsi_device * SDp = (struct scsi_device *) malloc(_len_SDp0*sizeof(struct scsi_device));
+          for(int _i0 = 0; _i0 < _len_SDp0; _i0++) {
+              int _len_SDp__i0__hostdata0 = 1;
+          SDp[_i0].hostdata = (struct NCR_700_Device_Parameters *) malloc(_len_SDp__i0__hostdata0*sizeof(struct NCR_700_Device_Parameters));
+          for(int _j0 = 0; _j0 < _len_SDp__i0__hostdata0; _j0++) {
+              SDp[_i0].hostdata->depth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = NCR_700_get_depth(SDp);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_SDp0; _aux++) {
+          free(SDp[_aux].hostdata);
+          }
+          free(SDp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_SDp0 = 1;
+          struct scsi_device * SDp = (struct scsi_device *) malloc(_len_SDp0*sizeof(struct scsi_device));
+          for(int _i0 = 0; _i0 < _len_SDp0; _i0++) {
+              int _len_SDp__i0__hostdata0 = 1;
+          SDp[_i0].hostdata = (struct NCR_700_Device_Parameters *) malloc(_len_SDp__i0__hostdata0*sizeof(struct NCR_700_Device_Parameters));
+          for(int _j0 = 0; _j0 < _len_SDp__i0__hostdata0; _j0++) {
+              SDp[_i0].hostdata->depth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = NCR_700_get_depth(SDp);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_SDp0; _aux++) {
+          free(SDp[_aux].hostdata);
+          }
+          free(SDp);
+        
+        break;
+    }
     default:
         usage();
         break;

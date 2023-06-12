@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ __attribute__((used)) static uint32_t smu8_dpm_get_mclk(struct pp_hwmgr *hwmgr, 
 	return data->sys_info.bootup_uma_clock;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,19 +81,200 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int low = 100;
+        
           int _len_hwmgr0 = 1;
           struct pp_hwmgr * hwmgr = (struct pp_hwmgr *) malloc(_len_hwmgr0*sizeof(struct pp_hwmgr));
           for(int _i0 = 0; _i0 < _len_hwmgr0; _i0++) {
               int _len_hwmgr__i0__backend0 = 1;
           hwmgr[_i0].backend = (struct smu8_hwmgr *) malloc(_len_hwmgr__i0__backend0*sizeof(struct smu8_hwmgr));
           for(int _j0 = 0; _j0 < _len_hwmgr__i0__backend0; _j0++) {
-            hwmgr[_i0].backend->sys_info.bootup_uma_clock = ((-2 * (next_i()%2)) + 1) * next_i();
+              hwmgr[_i0].backend->sys_info.bootup_uma_clock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
+          int benchRet = smu8_dpm_get_mclk(hwmgr,low);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hwmgr0; _aux++) {
+          free(hwmgr[_aux].backend);
+          }
+          free(hwmgr);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int low = 255;
+        
+          int _len_hwmgr0 = 65025;
+          struct pp_hwmgr * hwmgr = (struct pp_hwmgr *) malloc(_len_hwmgr0*sizeof(struct pp_hwmgr));
+          for(int _i0 = 0; _i0 < _len_hwmgr0; _i0++) {
+              int _len_hwmgr__i0__backend0 = 1;
+          hwmgr[_i0].backend = (struct smu8_hwmgr *) malloc(_len_hwmgr__i0__backend0*sizeof(struct smu8_hwmgr));
+          for(int _j0 = 0; _j0 < _len_hwmgr__i0__backend0; _j0++) {
+              hwmgr[_i0].backend->sys_info.bootup_uma_clock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = smu8_dpm_get_mclk(hwmgr,low);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hwmgr0; _aux++) {
+          free(hwmgr[_aux].backend);
+          }
+          free(hwmgr);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int low = 10;
+        
+          int _len_hwmgr0 = 100;
+          struct pp_hwmgr * hwmgr = (struct pp_hwmgr *) malloc(_len_hwmgr0*sizeof(struct pp_hwmgr));
+          for(int _i0 = 0; _i0 < _len_hwmgr0; _i0++) {
+              int _len_hwmgr__i0__backend0 = 1;
+          hwmgr[_i0].backend = (struct smu8_hwmgr *) malloc(_len_hwmgr__i0__backend0*sizeof(struct smu8_hwmgr));
+          for(int _j0 = 0; _j0 < _len_hwmgr__i0__backend0; _j0++) {
+              hwmgr[_i0].backend->sys_info.bootup_uma_clock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = smu8_dpm_get_mclk(hwmgr,low);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hwmgr0; _aux++) {
+          free(hwmgr[_aux].backend);
+          }
+          free(hwmgr);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int low = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hwmgr0 = 1;
+          struct pp_hwmgr * hwmgr = (struct pp_hwmgr *) malloc(_len_hwmgr0*sizeof(struct pp_hwmgr));
+          for(int _i0 = 0; _i0 < _len_hwmgr0; _i0++) {
+              int _len_hwmgr__i0__backend0 = 1;
+          hwmgr[_i0].backend = (struct smu8_hwmgr *) malloc(_len_hwmgr__i0__backend0*sizeof(struct smu8_hwmgr));
+          for(int _j0 = 0; _j0 < _len_hwmgr__i0__backend0; _j0++) {
+              hwmgr[_i0].backend->sys_info.bootup_uma_clock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
           int benchRet = smu8_dpm_get_mclk(hwmgr,low);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_hwmgr0; _aux++) {

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static inline int ep_cmp_ffd(struct epoll_filefd *p1,
 	        (p1->file < p2->file ? -1 : p1->fd - p2->fd));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,21 +76,148 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_p10 = 65025;
+          struct epoll_filefd * p1 = (struct epoll_filefd *) malloc(_len_p10*sizeof(struct epoll_filefd));
+          for(int _i0 = 0; _i0 < _len_p10; _i0++) {
+              p1[_i0].file = ((-2 * (next_i()%2)) + 1) * next_i();
+          p1[_i0].fd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_p20 = 65025;
+          struct epoll_filefd * p2 = (struct epoll_filefd *) malloc(_len_p20*sizeof(struct epoll_filefd));
+          for(int _i0 = 0; _i0 < _len_p20; _i0++) {
+              p2[_i0].file = ((-2 * (next_i()%2)) + 1) * next_i();
+          p2[_i0].fd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ep_cmp_ffd(p1,p2);
+          printf("%d\n", benchRet); 
+          free(p1);
+          free(p2);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_p10 = 100;
+          struct epoll_filefd * p1 = (struct epoll_filefd *) malloc(_len_p10*sizeof(struct epoll_filefd));
+          for(int _i0 = 0; _i0 < _len_p10; _i0++) {
+              p1[_i0].file = ((-2 * (next_i()%2)) + 1) * next_i();
+          p1[_i0].fd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_p20 = 100;
+          struct epoll_filefd * p2 = (struct epoll_filefd *) malloc(_len_p20*sizeof(struct epoll_filefd));
+          for(int _i0 = 0; _i0 < _len_p20; _i0++) {
+              p2[_i0].file = ((-2 * (next_i()%2)) + 1) * next_i();
+          p2[_i0].fd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ep_cmp_ffd(p1,p2);
+          printf("%d\n", benchRet); 
+          free(p1);
+          free(p2);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_p10 = 1;
           struct epoll_filefd * p1 = (struct epoll_filefd *) malloc(_len_p10*sizeof(struct epoll_filefd));
           for(int _i0 = 0; _i0 < _len_p10; _i0++) {
-            p1[_i0].file = ((-2 * (next_i()%2)) + 1) * next_i();
-        p1[_i0].fd = ((-2 * (next_i()%2)) + 1) * next_i();
+              p1[_i0].file = ((-2 * (next_i()%2)) + 1) * next_i();
+          p1[_i0].fd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_p20 = 1;
           struct epoll_filefd * p2 = (struct epoll_filefd *) malloc(_len_p20*sizeof(struct epoll_filefd));
           for(int _i0 = 0; _i0 < _len_p20; _i0++) {
-            p2[_i0].file = ((-2 * (next_i()%2)) + 1) * next_i();
-        p2[_i0].fd = ((-2 * (next_i()%2)) + 1) * next_i();
+              p2[_i0].file = ((-2 * (next_i()%2)) + 1) * next_i();
+          p2[_i0].fd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ep_cmp_ffd(p1,p2);
           printf("%d\n", benchRet); 
           free(p1);

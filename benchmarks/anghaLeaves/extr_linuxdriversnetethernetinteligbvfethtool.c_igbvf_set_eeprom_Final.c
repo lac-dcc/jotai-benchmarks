@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static int igbvf_set_eeprom(struct net_device *netdev,
 	return -EOPNOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,24 +78,162 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_netdev0 = 65025;
+          struct net_device * netdev = (struct net_device *) malloc(_len_netdev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_netdev0; _i0++) {
+              netdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_eeprom0 = 65025;
+          struct ethtool_eeprom * eeprom = (struct ethtool_eeprom *) malloc(_len_eeprom0*sizeof(struct ethtool_eeprom));
+          for(int _i0 = 0; _i0 < _len_eeprom0; _i0++) {
+              eeprom[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_bytes0 = 65025;
+          int * bytes = (int *) malloc(_len_bytes0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_bytes0; _i0++) {
+            bytes[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = igbvf_set_eeprom(netdev,eeprom,bytes);
+          printf("%d\n", benchRet); 
+          free(netdev);
+          free(eeprom);
+          free(bytes);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_netdev0 = 100;
+          struct net_device * netdev = (struct net_device *) malloc(_len_netdev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_netdev0; _i0++) {
+              netdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_eeprom0 = 100;
+          struct ethtool_eeprom * eeprom = (struct ethtool_eeprom *) malloc(_len_eeprom0*sizeof(struct ethtool_eeprom));
+          for(int _i0 = 0; _i0 < _len_eeprom0; _i0++) {
+              eeprom[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_bytes0 = 100;
+          int * bytes = (int *) malloc(_len_bytes0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_bytes0; _i0++) {
+            bytes[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = igbvf_set_eeprom(netdev,eeprom,bytes);
+          printf("%d\n", benchRet); 
+          free(netdev);
+          free(eeprom);
+          free(bytes);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_netdev0 = 1;
           struct net_device * netdev = (struct net_device *) malloc(_len_netdev0*sizeof(struct net_device));
           for(int _i0 = 0; _i0 < _len_netdev0; _i0++) {
-            netdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              netdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_eeprom0 = 1;
           struct ethtool_eeprom * eeprom = (struct ethtool_eeprom *) malloc(_len_eeprom0*sizeof(struct ethtool_eeprom));
           for(int _i0 = 0; _i0 < _len_eeprom0; _i0++) {
-            eeprom[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              eeprom[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_bytes0 = 1;
           int * bytes = (int *) malloc(_len_bytes0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_bytes0; _i0++) {
             bytes[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = igbvf_set_eeprom(netdev,eeprom,bytes);
           printf("%d\n", benchRet); 
           free(netdev);

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ void SlDeleteAll(SL_LIST *o)
 	o->num_item = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,14 +82,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_o0 = 1;
+          int _len_o0 = 65025;
           struct TYPE_3__ * o = (struct TYPE_3__ *) malloc(_len_o0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_o0; _i0++) {
-            o[_i0].num_item = ((-2 * (next_i()%2)) + 1) * next_i();
+              o[_i0].num_item = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           SlDeleteAll(o);
           free(o);
         
@@ -106,14 +103,30 @@ int main(int argc, char *argv[]) {
           int _len_o0 = 100;
           struct TYPE_3__ * o = (struct TYPE_3__ *) malloc(_len_o0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_o0; _i0++) {
-            o[_i0].num_item = ((-2 * (next_i()%2)) + 1) * next_i();
+              o[_i0].num_item = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           SlDeleteAll(o);
           free(o);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_o0 = 1;
+          struct TYPE_3__ * o = (struct TYPE_3__ *) malloc(_len_o0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_o0; _i0++) {
+              o[_i0].num_item = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          SlDeleteAll(o);
+          free(o);
+        
+        break;
+    }
     default:
         usage();
         break;

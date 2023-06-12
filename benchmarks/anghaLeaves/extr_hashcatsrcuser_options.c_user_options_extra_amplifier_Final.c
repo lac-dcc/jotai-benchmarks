@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -116,12 +118,6 @@ u64 user_options_extra_amplifier (hashcat_ctx_t *hashcat_ctx)
   return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -134,38 +130,236 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_hashcat_ctx0 = 65025;
+          struct TYPE_12__ * hashcat_ctx = (struct TYPE_12__ *) malloc(_len_hashcat_ctx0*sizeof(struct TYPE_12__));
+          for(int _i0 = 0; _i0 < _len_hashcat_ctx0; _i0++) {
+              int _len_hashcat_ctx__i0__user_options_extra0 = 1;
+          hashcat_ctx[_i0].user_options_extra = (struct TYPE_9__ *) malloc(_len_hashcat_ctx__i0__user_options_extra0*sizeof(struct TYPE_9__));
+          for(int _j0 = 0; _j0 < _len_hashcat_ctx__i0__user_options_extra0; _j0++) {
+              hashcat_ctx[_i0].user_options_extra->attack_kern = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_hashcat_ctx__i0__user_options0 = 1;
+          hashcat_ctx[_i0].user_options = (struct TYPE_8__ *) malloc(_len_hashcat_ctx__i0__user_options0*sizeof(struct TYPE_8__));
+          for(int _j0 = 0; _j0 < _len_hashcat_ctx__i0__user_options0; _j0++) {
+              hashcat_ctx[_i0].user_options->slow_candidates = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_hashcat_ctx__i0__straight_ctx0 = 1;
+          hashcat_ctx[_i0].straight_ctx = (struct TYPE_10__ *) malloc(_len_hashcat_ctx__i0__straight_ctx0*sizeof(struct TYPE_10__));
+          for(int _j0 = 0; _j0 < _len_hashcat_ctx__i0__straight_ctx0; _j0++) {
+              hashcat_ctx[_i0].straight_ctx->kernel_rules_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_hashcat_ctx__i0__mask_ctx0 = 1;
+          hashcat_ctx[_i0].mask_ctx = (struct TYPE_11__ *) malloc(_len_hashcat_ctx__i0__mask_ctx0*sizeof(struct TYPE_11__));
+          for(int _j0 = 0; _j0 < _len_hashcat_ctx__i0__mask_ctx0; _j0++) {
+              hashcat_ctx[_i0].mask_ctx->bfs_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_hashcat_ctx__i0__combinator_ctx0 = 1;
+          hashcat_ctx[_i0].combinator_ctx = (struct TYPE_13__ *) malloc(_len_hashcat_ctx__i0__combinator_ctx0*sizeof(struct TYPE_13__));
+          for(int _j0 = 0; _j0 < _len_hashcat_ctx__i0__combinator_ctx0; _j0++) {
+              hashcat_ctx[_i0].combinator_ctx->combs_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = user_options_extra_amplifier(hashcat_ctx);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hashcat_ctx0; _aux++) {
+          free(hashcat_ctx[_aux].user_options_extra);
+          }
+          for(int _aux = 0; _aux < _len_hashcat_ctx0; _aux++) {
+          free(hashcat_ctx[_aux].user_options);
+          }
+          for(int _aux = 0; _aux < _len_hashcat_ctx0; _aux++) {
+          free(hashcat_ctx[_aux].straight_ctx);
+          }
+          for(int _aux = 0; _aux < _len_hashcat_ctx0; _aux++) {
+          free(hashcat_ctx[_aux].mask_ctx);
+          }
+          for(int _aux = 0; _aux < _len_hashcat_ctx0; _aux++) {
+          free(hashcat_ctx[_aux].combinator_ctx);
+          }
+          free(hashcat_ctx);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_hashcat_ctx0 = 100;
+          struct TYPE_12__ * hashcat_ctx = (struct TYPE_12__ *) malloc(_len_hashcat_ctx0*sizeof(struct TYPE_12__));
+          for(int _i0 = 0; _i0 < _len_hashcat_ctx0; _i0++) {
+              int _len_hashcat_ctx__i0__user_options_extra0 = 1;
+          hashcat_ctx[_i0].user_options_extra = (struct TYPE_9__ *) malloc(_len_hashcat_ctx__i0__user_options_extra0*sizeof(struct TYPE_9__));
+          for(int _j0 = 0; _j0 < _len_hashcat_ctx__i0__user_options_extra0; _j0++) {
+              hashcat_ctx[_i0].user_options_extra->attack_kern = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_hashcat_ctx__i0__user_options0 = 1;
+          hashcat_ctx[_i0].user_options = (struct TYPE_8__ *) malloc(_len_hashcat_ctx__i0__user_options0*sizeof(struct TYPE_8__));
+          for(int _j0 = 0; _j0 < _len_hashcat_ctx__i0__user_options0; _j0++) {
+              hashcat_ctx[_i0].user_options->slow_candidates = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_hashcat_ctx__i0__straight_ctx0 = 1;
+          hashcat_ctx[_i0].straight_ctx = (struct TYPE_10__ *) malloc(_len_hashcat_ctx__i0__straight_ctx0*sizeof(struct TYPE_10__));
+          for(int _j0 = 0; _j0 < _len_hashcat_ctx__i0__straight_ctx0; _j0++) {
+              hashcat_ctx[_i0].straight_ctx->kernel_rules_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_hashcat_ctx__i0__mask_ctx0 = 1;
+          hashcat_ctx[_i0].mask_ctx = (struct TYPE_11__ *) malloc(_len_hashcat_ctx__i0__mask_ctx0*sizeof(struct TYPE_11__));
+          for(int _j0 = 0; _j0 < _len_hashcat_ctx__i0__mask_ctx0; _j0++) {
+              hashcat_ctx[_i0].mask_ctx->bfs_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_hashcat_ctx__i0__combinator_ctx0 = 1;
+          hashcat_ctx[_i0].combinator_ctx = (struct TYPE_13__ *) malloc(_len_hashcat_ctx__i0__combinator_ctx0*sizeof(struct TYPE_13__));
+          for(int _j0 = 0; _j0 < _len_hashcat_ctx__i0__combinator_ctx0; _j0++) {
+              hashcat_ctx[_i0].combinator_ctx->combs_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = user_options_extra_amplifier(hashcat_ctx);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hashcat_ctx0; _aux++) {
+          free(hashcat_ctx[_aux].user_options_extra);
+          }
+          for(int _aux = 0; _aux < _len_hashcat_ctx0; _aux++) {
+          free(hashcat_ctx[_aux].user_options);
+          }
+          for(int _aux = 0; _aux < _len_hashcat_ctx0; _aux++) {
+          free(hashcat_ctx[_aux].straight_ctx);
+          }
+          for(int _aux = 0; _aux < _len_hashcat_ctx0; _aux++) {
+          free(hashcat_ctx[_aux].mask_ctx);
+          }
+          for(int _aux = 0; _aux < _len_hashcat_ctx0; _aux++) {
+          free(hashcat_ctx[_aux].combinator_ctx);
+          }
+          free(hashcat_ctx);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int _len_hashcat_ctx0 = 1;
           struct TYPE_12__ * hashcat_ctx = (struct TYPE_12__ *) malloc(_len_hashcat_ctx0*sizeof(struct TYPE_12__));
           for(int _i0 = 0; _i0 < _len_hashcat_ctx0; _i0++) {
               int _len_hashcat_ctx__i0__user_options_extra0 = 1;
           hashcat_ctx[_i0].user_options_extra = (struct TYPE_9__ *) malloc(_len_hashcat_ctx__i0__user_options_extra0*sizeof(struct TYPE_9__));
           for(int _j0 = 0; _j0 < _len_hashcat_ctx__i0__user_options_extra0; _j0++) {
-            hashcat_ctx[_i0].user_options_extra->attack_kern = ((-2 * (next_i()%2)) + 1) * next_i();
+              hashcat_ctx[_i0].user_options_extra->attack_kern = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_hashcat_ctx__i0__user_options0 = 1;
           hashcat_ctx[_i0].user_options = (struct TYPE_8__ *) malloc(_len_hashcat_ctx__i0__user_options0*sizeof(struct TYPE_8__));
           for(int _j0 = 0; _j0 < _len_hashcat_ctx__i0__user_options0; _j0++) {
-            hashcat_ctx[_i0].user_options->slow_candidates = ((-2 * (next_i()%2)) + 1) * next_i();
+              hashcat_ctx[_i0].user_options->slow_candidates = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_hashcat_ctx__i0__straight_ctx0 = 1;
           hashcat_ctx[_i0].straight_ctx = (struct TYPE_10__ *) malloc(_len_hashcat_ctx__i0__straight_ctx0*sizeof(struct TYPE_10__));
           for(int _j0 = 0; _j0 < _len_hashcat_ctx__i0__straight_ctx0; _j0++) {
-            hashcat_ctx[_i0].straight_ctx->kernel_rules_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+              hashcat_ctx[_i0].straight_ctx->kernel_rules_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_hashcat_ctx__i0__mask_ctx0 = 1;
           hashcat_ctx[_i0].mask_ctx = (struct TYPE_11__ *) malloc(_len_hashcat_ctx__i0__mask_ctx0*sizeof(struct TYPE_11__));
           for(int _j0 = 0; _j0 < _len_hashcat_ctx__i0__mask_ctx0; _j0++) {
-            hashcat_ctx[_i0].mask_ctx->bfs_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+              hashcat_ctx[_i0].mask_ctx->bfs_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_hashcat_ctx__i0__combinator_ctx0 = 1;
           hashcat_ctx[_i0].combinator_ctx = (struct TYPE_13__ *) malloc(_len_hashcat_ctx__i0__combinator_ctx0*sizeof(struct TYPE_13__));
           for(int _j0 = 0; _j0 < _len_hashcat_ctx__i0__combinator_ctx0; _j0++) {
-            hashcat_ctx[_i0].combinator_ctx->combs_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+              hashcat_ctx[_i0].combinator_ctx->combs_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = user_options_extra_amplifier(hashcat_ctx);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_hashcat_ctx0; _aux++) {

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ bool rtw_mlme_band_check(struct adapter *adapter, const u32 ch)
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,11 +89,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           const int ch = 100;
+        
           int _len_adapter0 = 1;
           struct adapter * adapter = (struct adapter *) malloc(_len_adapter0*sizeof(struct adapter));
           for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
-            adapter[_i0].setband = ((-2 * (next_i()%2)) + 1) * next_i();
+              adapter[_i0].setband = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = rtw_mlme_band_check(adapter,ch);
+          printf("%d\n", benchRet); 
+          free(adapter);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          const int ch = 255;
+        
+          int _len_adapter0 = 65025;
+          struct adapter * adapter = (struct adapter *) malloc(_len_adapter0*sizeof(struct adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].setband = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = rtw_mlme_band_check(adapter,ch);
           printf("%d\n", benchRet); 
           free(adapter);
@@ -105,21 +122,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           const int ch = 10;
+        
           int _len_adapter0 = 100;
           struct adapter * adapter = (struct adapter *) malloc(_len_adapter0*sizeof(struct adapter));
           for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
-            adapter[_i0].setband = ((-2 * (next_i()%2)) + 1) * next_i();
+              adapter[_i0].setband = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = rtw_mlme_band_check(adapter,ch);
           printf("%d\n", benchRet); 
           free(adapter);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          const int ch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_adapter0 = 1;
+          struct adapter * adapter = (struct adapter *) malloc(_len_adapter0*sizeof(struct adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].setband = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rtw_mlme_band_check(adapter,ch);
+          printf("%d\n", benchRet); 
+          free(adapter);
+        
+        break;
+    }
     default:
         usage();
         break;

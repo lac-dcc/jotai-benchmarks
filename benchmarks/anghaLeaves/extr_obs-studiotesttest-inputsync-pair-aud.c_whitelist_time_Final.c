@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ __attribute__((used)) static inline bool whitelist_time(uint64_t ts, uint64_t in
 	return sec % 2 == 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,9 +86,13 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int ts = 100;
+        
           int interval = 100;
+        
           int fps_num = 100;
+        
           int fps_den = 100;
+        
           int benchRet = whitelist_time(ts,interval,fps_num,fps_den);
           printf("%d\n", benchRet); 
         
@@ -103,9 +102,13 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int ts = 255;
+        
           int interval = 255;
+        
           int fps_num = 255;
+        
           int fps_den = 255;
+        
           int benchRet = whitelist_time(ts,interval,fps_num,fps_den);
           printf("%d\n", benchRet); 
         
@@ -115,15 +118,34 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int ts = 10;
+        
           int interval = 10;
+        
           int fps_num = 10;
+        
           int fps_den = 10;
+        
           int benchRet = whitelist_time(ts,interval,fps_num,fps_den);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int ts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int interval = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int fps_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int fps_den = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = whitelist_time(ts,interval,fps_num,fps_den);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ void zlog_stream_set_wrapping(struct zlog_stream *stream, zlog_bool wrap) /* {{{
 	stream->wrap = wrap ? 1 : 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,31 +80,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long wrap = 100;
+        
           int _len_stream0 = 1;
           struct zlog_stream * stream = (struct zlog_stream *) malloc(_len_stream0*sizeof(struct zlog_stream));
           for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
-            stream[_i0].wrap = ((-2 * (next_i()%2)) + 1) * next_i();
+              stream[_i0].wrap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          zlog_stream_set_wrapping(stream,wrap);
+          free(stream);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long wrap = 255;
+        
+          int _len_stream0 = 65025;
+          struct zlog_stream * stream = (struct zlog_stream *) malloc(_len_stream0*sizeof(struct zlog_stream));
+          for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
+              stream[_i0].wrap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           zlog_stream_set_wrapping(stream,wrap);
           free(stream);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long wrap = 10;
+        
           int _len_stream0 = 100;
           struct zlog_stream * stream = (struct zlog_stream *) malloc(_len_stream0*sizeof(struct zlog_stream));
           for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
-            stream[_i0].wrap = ((-2 * (next_i()%2)) + 1) * next_i();
+              stream[_i0].wrap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           zlog_stream_set_wrapping(stream,wrap);
           free(stream);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long wrap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_stream0 = 1;
+          struct zlog_stream * stream = (struct zlog_stream *) malloc(_len_stream0*sizeof(struct zlog_stream));
+          for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
+              stream[_i0].wrap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          zlog_stream_set_wrapping(stream,wrap);
+          free(stream);
+        
+        break;
+    }
     default:
         usage();
         break;

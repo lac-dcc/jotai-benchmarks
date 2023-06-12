@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ int bit1cnt_long(u32 data)
 	return cnt;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,28 +82,136 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 435
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 199
+          // ------------------------------- 
+          // static_instructions_O2 : 128
+          // dynamic_instructions_O2 : 128
+          // ------------------------------- 
+          // static_instructions_O3 : 128
+          // dynamic_instructions_O3 : 128
+          // ------------------------------- 
+          // static_instructions_Ofast : 128
+          // dynamic_instructions_Ofast : 128
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 198
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 264
+          // ------------------------------- 
+
           int data = 100;
+        
           int benchRet = bit1cnt_long(data);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 450
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 199
+          // ------------------------------- 
+          // static_instructions_O2 : 128
+          // dynamic_instructions_O2 : 128
+          // ------------------------------- 
+          // static_instructions_O3 : 128
+          // dynamic_instructions_O3 : 128
+          // ------------------------------- 
+          // static_instructions_Ofast : 128
+          // dynamic_instructions_Ofast : 128
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 198
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 264
+          // ------------------------------- 
+
           int data = 255;
+        
           int benchRet = bit1cnt_long(data);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 432
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 199
+          // ------------------------------- 
+          // static_instructions_O2 : 128
+          // dynamic_instructions_O2 : 128
+          // ------------------------------- 
+          // static_instructions_O3 : 128
+          // dynamic_instructions_O3 : 128
+          // ------------------------------- 
+          // static_instructions_Ofast : 128
+          // dynamic_instructions_Ofast : 128
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 198
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 264
+          // ------------------------------- 
+
           int data = 10;
+        
+          int benchRet = bit1cnt_long(data);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 510
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 199
+          // ------------------------------- 
+          // static_instructions_O2 : 128
+          // dynamic_instructions_O2 : 128
+          // ------------------------------- 
+          // static_instructions_O3 : 128
+          // dynamic_instructions_O3 : 128
+          // ------------------------------- 
+          // static_instructions_Ofast : 128
+          // dynamic_instructions_Ofast : 128
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 198
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 264
+          // ------------------------------- 
+
+          int data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = bit1cnt_long(data);
           printf("%d\n", benchRet); 
         

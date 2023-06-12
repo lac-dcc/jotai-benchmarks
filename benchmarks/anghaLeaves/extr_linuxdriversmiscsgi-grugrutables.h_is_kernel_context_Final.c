@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline int is_kernel_context(struct gru_thread_stat
 	return !gts->ts_mm;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_gts0 = 1;
+          int _len_gts0 = 65025;
           struct gru_thread_state * gts = (struct gru_thread_state *) malloc(_len_gts0*sizeof(struct gru_thread_state));
           for(int _i0 = 0; _i0 < _len_gts0; _i0++) {
-            gts[_i0].ts_mm = ((-2 * (next_i()%2)) + 1) * next_i();
+              gts[_i0].ts_mm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_kernel_context(gts);
           printf("%d\n", benchRet); 
           free(gts);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_gts0 = 100;
           struct gru_thread_state * gts = (struct gru_thread_state *) malloc(_len_gts0*sizeof(struct gru_thread_state));
           for(int _i0 = 0; _i0 < _len_gts0; _i0++) {
-            gts[_i0].ts_mm = ((-2 * (next_i()%2)) + 1) * next_i();
+              gts[_i0].ts_mm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_kernel_context(gts);
           printf("%d\n", benchRet); 
           free(gts);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_gts0 = 1;
+          struct gru_thread_state * gts = (struct gru_thread_state *) malloc(_len_gts0*sizeof(struct gru_thread_state));
+          for(int _i0 = 0; _i0 < _len_gts0; _i0++) {
+              gts[_i0].ts_mm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_kernel_context(gts);
+          printf("%d\n", benchRet); 
+          free(gts);
+        
+        break;
+    }
     default:
         usage();
         break;

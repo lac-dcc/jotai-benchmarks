@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -106,12 +107,6 @@ bool mipi_dsi_packet_format_is_short(u8 type)
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -128,6 +123,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int type = 100;
+        
           int benchRet = mipi_dsi_packet_format_is_short(type);
           printf("%d\n", benchRet); 
         
@@ -137,6 +133,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int type = 255;
+        
           int benchRet = mipi_dsi_packet_format_is_short(type);
           printf("%d\n", benchRet); 
         
@@ -146,12 +143,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int type = 10;
+        
           int benchRet = mipi_dsi_packet_format_is_short(type);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = mipi_dsi_packet_format_is_short(type);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

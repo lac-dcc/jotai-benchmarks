@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -101,12 +104,6 @@ __attribute__((used)) static inline void do_kiss_params(struct baycom_state *bc,
 #undef PKP
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -123,27 +120,118 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long len = 100;
+        
           int _len_bc0 = 1;
           struct baycom_state * bc = (struct baycom_state *) malloc(_len_bc0*sizeof(struct baycom_state));
           for(int _i0 = 0; _i0 < _len_bc0; _i0++) {
-            bc[_i0].ch_params.tx_delay = ((-2 * (next_i()%2)) + 1) * next_i();
-        bc[_i0].ch_params.ppersist = ((-2 * (next_i()%2)) + 1) * next_i();
-        bc[_i0].ch_params.slottime = ((-2 * (next_i()%2)) + 1) * next_i();
-        bc[_i0].ch_params.tx_tail = ((-2 * (next_i()%2)) + 1) * next_i();
-        bc[_i0].ch_params.fulldup = ((-2 * (next_i()%2)) + 1) * next_i();
+              bc[_i0].ch_params.tx_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+          bc[_i0].ch_params.ppersist = ((-2 * (next_i()%2)) + 1) * next_i();
+          bc[_i0].ch_params.slottime = ((-2 * (next_i()%2)) + 1) * next_i();
+          bc[_i0].ch_params.tx_tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          bc[_i0].ch_params.fulldup = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_data0 = 1;
           unsigned char * data = (unsigned char *) malloc(_len_data0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
             data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           do_kiss_params(bc,data,len);
           free(bc);
           free(data);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long len = 255;
+        
+          int _len_bc0 = 65025;
+          struct baycom_state * bc = (struct baycom_state *) malloc(_len_bc0*sizeof(struct baycom_state));
+          for(int _i0 = 0; _i0 < _len_bc0; _i0++) {
+              bc[_i0].ch_params.tx_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+          bc[_i0].ch_params.ppersist = ((-2 * (next_i()%2)) + 1) * next_i();
+          bc[_i0].ch_params.slottime = ((-2 * (next_i()%2)) + 1) * next_i();
+          bc[_i0].ch_params.tx_tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          bc[_i0].ch_params.fulldup = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_data0 = 65025;
+          unsigned char * data = (unsigned char *) malloc(_len_data0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+            data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          do_kiss_params(bc,data,len);
+          free(bc);
+          free(data);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long len = 10;
+        
+          int _len_bc0 = 100;
+          struct baycom_state * bc = (struct baycom_state *) malloc(_len_bc0*sizeof(struct baycom_state));
+          for(int _i0 = 0; _i0 < _len_bc0; _i0++) {
+              bc[_i0].ch_params.tx_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+          bc[_i0].ch_params.ppersist = ((-2 * (next_i()%2)) + 1) * next_i();
+          bc[_i0].ch_params.slottime = ((-2 * (next_i()%2)) + 1) * next_i();
+          bc[_i0].ch_params.tx_tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          bc[_i0].ch_params.fulldup = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_data0 = 100;
+          unsigned char * data = (unsigned char *) malloc(_len_data0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+            data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          do_kiss_params(bc,data,len);
+          free(bc);
+          free(data);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_bc0 = 1;
+          struct baycom_state * bc = (struct baycom_state *) malloc(_len_bc0*sizeof(struct baycom_state));
+          for(int _i0 = 0; _i0 < _len_bc0; _i0++) {
+              bc[_i0].ch_params.tx_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+          bc[_i0].ch_params.ppersist = ((-2 * (next_i()%2)) + 1) * next_i();
+          bc[_i0].ch_params.slottime = ((-2 * (next_i()%2)) + 1) * next_i();
+          bc[_i0].ch_params.tx_tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          bc[_i0].ch_params.fulldup = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_data0 = 1;
+          unsigned char * data = (unsigned char *) malloc(_len_data0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+            data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          do_kiss_params(bc,data,len);
+          free(bc);
+          free(data);
+        
+        break;
+    }
     default:
         usage();
         break;

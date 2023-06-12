@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static u64 vnt_get_tsf(struct ieee80211_hw *hw, struct iee
 	return priv->current_tsf;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,23 +79,163 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_hw0 = 65025;
+          struct ieee80211_hw * hw = (struct ieee80211_hw *) malloc(_len_hw0*sizeof(struct ieee80211_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              int _len_hw__i0__priv0 = 1;
+          hw[_i0].priv = (struct vnt_private *) malloc(_len_hw__i0__priv0*sizeof(struct vnt_private));
+          for(int _j0 = 0; _j0 < _len_hw__i0__priv0; _j0++) {
+              hw[_i0].priv->current_tsf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_vif0 = 65025;
+          struct ieee80211_vif * vif = (struct ieee80211_vif *) malloc(_len_vif0*sizeof(struct ieee80211_vif));
+          for(int _i0 = 0; _i0 < _len_vif0; _i0++) {
+              vif[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vnt_get_tsf(hw,vif);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hw0; _aux++) {
+          free(hw[_aux].priv);
+          }
+          free(hw);
+          free(vif);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_hw0 = 100;
+          struct ieee80211_hw * hw = (struct ieee80211_hw *) malloc(_len_hw0*sizeof(struct ieee80211_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              int _len_hw__i0__priv0 = 1;
+          hw[_i0].priv = (struct vnt_private *) malloc(_len_hw__i0__priv0*sizeof(struct vnt_private));
+          for(int _j0 = 0; _j0 < _len_hw__i0__priv0; _j0++) {
+              hw[_i0].priv->current_tsf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_vif0 = 100;
+          struct ieee80211_vif * vif = (struct ieee80211_vif *) malloc(_len_vif0*sizeof(struct ieee80211_vif));
+          for(int _i0 = 0; _i0 < _len_vif0; _i0++) {
+              vif[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vnt_get_tsf(hw,vif);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hw0; _aux++) {
+          free(hw[_aux].priv);
+          }
+          free(hw);
+          free(vif);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_hw0 = 1;
           struct ieee80211_hw * hw = (struct ieee80211_hw *) malloc(_len_hw0*sizeof(struct ieee80211_hw));
           for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
               int _len_hw__i0__priv0 = 1;
           hw[_i0].priv = (struct vnt_private *) malloc(_len_hw__i0__priv0*sizeof(struct vnt_private));
           for(int _j0 = 0; _j0 < _len_hw__i0__priv0; _j0++) {
-            hw[_i0].priv->current_tsf = ((-2 * (next_i()%2)) + 1) * next_i();
+              hw[_i0].priv->current_tsf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_vif0 = 1;
           struct ieee80211_vif * vif = (struct ieee80211_vif *) malloc(_len_vif0*sizeof(struct ieee80211_vif));
           for(int _i0 = 0; _i0 < _len_vif0; _i0++) {
-            vif[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              vif[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = vnt_get_tsf(hw,vif);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_hw0; _aux++) {

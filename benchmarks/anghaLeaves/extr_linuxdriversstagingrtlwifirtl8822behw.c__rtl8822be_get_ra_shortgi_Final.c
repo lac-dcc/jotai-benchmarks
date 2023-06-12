@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -86,12 +89,6 @@ __attribute__((used)) static bool _rtl8822be_get_ra_shortgi(struct ieee80211_hw 
 	return b_short_gi;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -108,17 +105,24 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int mac_id = 100;
+        
           int _len_hw0 = 1;
           struct ieee80211_hw * hw = (struct ieee80211_hw *) malloc(_len_hw0*sizeof(struct ieee80211_hw));
           for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
-            hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_sta0 = 1;
           struct ieee80211_sta * sta = (struct ieee80211_sta *) malloc(_len_sta0*sizeof(struct ieee80211_sta));
           for(int _i0 = 0; _i0 < _len_sta0; _i0++) {
-            sta[_i0].vht_cap.cap = ((-2 * (next_i()%2)) + 1) * next_i();
-        sta[_i0].ht_cap.cap = ((-2 * (next_i()%2)) + 1) * next_i();
+              sta[_i0].vht_cap.cap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          sta[_i0].ht_cap.cap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = _rtl8822be_get_ra_shortgi(hw,sta,mac_id);
           printf("%d\n", benchRet); 
           free(hw);
@@ -126,7 +130,93 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int mac_id = 255;
+        
+          int _len_hw0 = 65025;
+          struct ieee80211_hw * hw = (struct ieee80211_hw *) malloc(_len_hw0*sizeof(struct ieee80211_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_sta0 = 65025;
+          struct ieee80211_sta * sta = (struct ieee80211_sta *) malloc(_len_sta0*sizeof(struct ieee80211_sta));
+          for(int _i0 = 0; _i0 < _len_sta0; _i0++) {
+              sta[_i0].vht_cap.cap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          sta[_i0].ht_cap.cap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = _rtl8822be_get_ra_shortgi(hw,sta,mac_id);
+          printf("%d\n", benchRet); 
+          free(hw);
+          free(sta);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int mac_id = 10;
+        
+          int _len_hw0 = 100;
+          struct ieee80211_hw * hw = (struct ieee80211_hw *) malloc(_len_hw0*sizeof(struct ieee80211_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_sta0 = 100;
+          struct ieee80211_sta * sta = (struct ieee80211_sta *) malloc(_len_sta0*sizeof(struct ieee80211_sta));
+          for(int _i0 = 0; _i0 < _len_sta0; _i0++) {
+              sta[_i0].vht_cap.cap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          sta[_i0].ht_cap.cap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = _rtl8822be_get_ra_shortgi(hw,sta,mac_id);
+          printf("%d\n", benchRet); 
+          free(hw);
+          free(sta);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int mac_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hw0 = 1;
+          struct ieee80211_hw * hw = (struct ieee80211_hw *) malloc(_len_hw0*sizeof(struct ieee80211_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_sta0 = 1;
+          struct ieee80211_sta * sta = (struct ieee80211_sta *) malloc(_len_sta0*sizeof(struct ieee80211_sta));
+          for(int _i0 = 0; _i0 < _len_sta0; _i0++) {
+              sta[_i0].vht_cap.cap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          sta[_i0].ht_cap.cap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = _rtl8822be_get_ra_shortgi(hw,sta,mac_id);
+          printf("%d\n", benchRet); 
+          free(hw);
+          free(sta);
+        
+        break;
+    }
     default:
         usage();
         break;

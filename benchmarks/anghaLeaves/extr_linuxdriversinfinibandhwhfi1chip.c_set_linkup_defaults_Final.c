@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static void set_linkup_defaults(struct hfi1_pportdata *ppd
 	ppd->sa_qp = 0x1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,15 +75,120 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_ppd0 = 65025;
+          struct hfi1_pportdata * ppd = (struct hfi1_pportdata *) malloc(_len_ppd0*sizeof(struct hfi1_pportdata));
+          for(int _i0 = 0; _i0 < _len_ppd0; _i0++) {
+              ppd[_i0].sm_trap_qp = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppd[_i0].sa_qp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_linkup_defaults(ppd);
+          free(ppd);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_ppd0 = 100;
+          struct hfi1_pportdata * ppd = (struct hfi1_pportdata *) malloc(_len_ppd0*sizeof(struct hfi1_pportdata));
+          for(int _i0 = 0; _i0 < _len_ppd0; _i0++) {
+              ppd[_i0].sm_trap_qp = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppd[_i0].sa_qp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_linkup_defaults(ppd);
+          free(ppd);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_ppd0 = 1;
           struct hfi1_pportdata * ppd = (struct hfi1_pportdata *) malloc(_len_ppd0*sizeof(struct hfi1_pportdata));
           for(int _i0 = 0; _i0 < _len_ppd0; _i0++) {
-            ppd[_i0].sm_trap_qp = ((-2 * (next_i()%2)) + 1) * next_i();
-        ppd[_i0].sa_qp = ((-2 * (next_i()%2)) + 1) * next_i();
+              ppd[_i0].sm_trap_qp = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppd[_i0].sa_qp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           set_linkup_defaults(ppd);
           free(ppd);
         

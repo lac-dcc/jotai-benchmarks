@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ __attribute__((used)) static u32 tegra_slink_get_packed_size(struct tegra_slink_
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,19 +92,142 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_tspi0 = 65025;
+          struct tegra_slink_data * tspi = (struct tegra_slink_data *) malloc(_len_tspi0*sizeof(struct tegra_slink_data));
+          for(int _i0 = 0; _i0 < _len_tspi0; _i0++) {
+              tspi[_i0].bytes_per_word = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_t0 = 65025;
+          struct spi_transfer * t = (struct spi_transfer *) malloc(_len_t0*sizeof(struct spi_transfer));
+          for(int _i0 = 0; _i0 < _len_t0; _i0++) {
+              t[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = tegra_slink_get_packed_size(tspi,t);
+          printf("%d\n", benchRet); 
+          free(tspi);
+          free(t);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_tspi0 = 100;
+          struct tegra_slink_data * tspi = (struct tegra_slink_data *) malloc(_len_tspi0*sizeof(struct tegra_slink_data));
+          for(int _i0 = 0; _i0 < _len_tspi0; _i0++) {
+              tspi[_i0].bytes_per_word = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_t0 = 100;
+          struct spi_transfer * t = (struct spi_transfer *) malloc(_len_t0*sizeof(struct spi_transfer));
+          for(int _i0 = 0; _i0 < _len_t0; _i0++) {
+              t[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = tegra_slink_get_packed_size(tspi,t);
+          printf("%d\n", benchRet); 
+          free(tspi);
+          free(t);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_tspi0 = 1;
           struct tegra_slink_data * tspi = (struct tegra_slink_data *) malloc(_len_tspi0*sizeof(struct tegra_slink_data));
           for(int _i0 = 0; _i0 < _len_tspi0; _i0++) {
-            tspi[_i0].bytes_per_word = ((-2 * (next_i()%2)) + 1) * next_i();
+              tspi[_i0].bytes_per_word = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_t0 = 1;
           struct spi_transfer * t = (struct spi_transfer *) malloc(_len_t0*sizeof(struct spi_transfer));
           for(int _i0 = 0; _i0 < _len_t0; _i0++) {
-            t[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              t[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = tegra_slink_get_packed_size(tspi,t);
           printf("%d\n", benchRet); 
           free(tspi);

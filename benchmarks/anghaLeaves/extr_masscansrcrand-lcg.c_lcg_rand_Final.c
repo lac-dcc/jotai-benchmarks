@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ lcg_rand(uint64_t index, uint64_t a, uint64_t c, uint64_t range)
     return (index * a + c) % range;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,9 +80,13 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int index = 100;
+        
           int a = 100;
+        
           int c = 100;
+        
           int range = 100;
+        
           int benchRet = lcg_rand(index,a,c,range);
           printf("%d\n", benchRet); 
         
@@ -97,9 +96,13 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int index = 255;
+        
           int a = 255;
+        
           int c = 255;
+        
           int range = 255;
+        
           int benchRet = lcg_rand(index,a,c,range);
           printf("%d\n", benchRet); 
         
@@ -109,15 +112,34 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int index = 10;
+        
           int a = 10;
+        
           int c = 10;
+        
           int range = 10;
+        
           int benchRet = lcg_rand(index,a,c,range);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int a = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int c = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int range = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = lcg_rand(index,a,c,range);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

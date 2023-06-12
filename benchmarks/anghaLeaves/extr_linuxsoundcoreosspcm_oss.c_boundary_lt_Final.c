@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +73,6 @@ __attribute__((used)) static int boundary_lt(unsigned int a, int adir,
 	return a < b || (a == b && adir < bdir);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,37 +85,160 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 39
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
           unsigned int a = 100;
+        
           int adir = 100;
+        
           unsigned int b = 100;
+        
           int bdir = 100;
+        
           int benchRet = boundary_lt(a,adir,b,bdir);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 39
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
           unsigned int a = 255;
+        
           int adir = 255;
+        
           unsigned int b = 255;
+        
           int bdir = 255;
+        
           int benchRet = boundary_lt(a,adir,b,bdir);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 39
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
           unsigned int a = 10;
+        
           int adir = 10;
+        
           unsigned int b = 10;
+        
           int bdir = 10;
+        
+          int benchRet = boundary_lt(a,adir,b,bdir);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 41
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          unsigned int a = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int adir = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int bdir = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = boundary_lt(a,adir,b,bdir);
           printf("%d\n", benchRet); 
         

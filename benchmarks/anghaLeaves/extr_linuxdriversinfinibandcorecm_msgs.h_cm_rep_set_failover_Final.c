@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline void cm_rep_set_failover(struct cm_rep_msg *
 				  ((failover & 0x3) << 1));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,31 +81,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int failover = 100;
+        
           int _len_rep_msg0 = 1;
           struct cm_rep_msg * rep_msg = (struct cm_rep_msg *) malloc(_len_rep_msg0*sizeof(struct cm_rep_msg));
           for(int _i0 = 0; _i0 < _len_rep_msg0; _i0++) {
-            rep_msg[_i0].offset26 = ((-2 * (next_i()%2)) + 1) * next_i();
+              rep_msg[_i0].offset26 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          cm_rep_set_failover(rep_msg,failover);
+          free(rep_msg);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int failover = 255;
+        
+          int _len_rep_msg0 = 65025;
+          struct cm_rep_msg * rep_msg = (struct cm_rep_msg *) malloc(_len_rep_msg0*sizeof(struct cm_rep_msg));
+          for(int _i0 = 0; _i0 < _len_rep_msg0; _i0++) {
+              rep_msg[_i0].offset26 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           cm_rep_set_failover(rep_msg,failover);
           free(rep_msg);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int failover = 10;
+        
           int _len_rep_msg0 = 100;
           struct cm_rep_msg * rep_msg = (struct cm_rep_msg *) malloc(_len_rep_msg0*sizeof(struct cm_rep_msg));
           for(int _i0 = 0; _i0 < _len_rep_msg0; _i0++) {
-            rep_msg[_i0].offset26 = ((-2 * (next_i()%2)) + 1) * next_i();
+              rep_msg[_i0].offset26 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           cm_rep_set_failover(rep_msg,failover);
           free(rep_msg);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int failover = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rep_msg0 = 1;
+          struct cm_rep_msg * rep_msg = (struct cm_rep_msg *) malloc(_len_rep_msg0*sizeof(struct cm_rep_msg));
+          for(int _i0 = 0; _i0 < _len_rep_msg0; _i0++) {
+              rep_msg[_i0].offset26 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cm_rep_set_failover(rep_msg,failover);
+          free(rep_msg);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,7 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            big-arr-10x\n\
+       1            empty\n\
 \n\
 ");
 
@@ -90,12 +91,6 @@ void BN_set_params(int mult, int high, int low, int mont)
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -108,13 +103,79 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // big-arr-10x
     case 0:
     {
+          // static_instructions_O0 : 48
+          // dynamic_instructions_O0 : 48
+          // ------------------------------- 
+          // static_instructions_O1 : 41
+          // dynamic_instructions_O1 : 41
+          // ------------------------------- 
+          // static_instructions_O2 : 41
+          // dynamic_instructions_O2 : 41
+          // ------------------------------- 
+          // static_instructions_O3 : 41
+          // dynamic_instructions_O3 : 41
+          // ------------------------------- 
+          // static_instructions_Ofast : 41
+          // dynamic_instructions_Ofast : 41
+          // ------------------------------- 
+          // static_instructions_Os : 41
+          // dynamic_instructions_Os : 41
+          // ------------------------------- 
+          // static_instructions_Oz : 42
+          // dynamic_instructions_Oz : 42
+          // ------------------------------- 
+
           int mult = 10;
+        
           int high = 10;
+        
           int low = 10;
+        
           int mont = 10;
+        
+          BN_set_params(mult,high,low,mont);
+        
+        break;
+    }
+
+
+    // empty
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int mult = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int high = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int low = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int mont = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           BN_set_params(mult,high,low,mont);
         
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline bool is_leap(unsigned int y)
 	return y % 4 == 0 && (y % 100 != 0 || y % 400 == 0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,6 +78,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int y = 100;
+        
           int benchRet = is_leap(y);
           printf("%d\n", benchRet); 
         
@@ -92,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int y = 255;
+        
           int benchRet = is_leap(y);
           printf("%d\n", benchRet); 
         
@@ -101,12 +98,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int y = 10;
+        
           int benchRet = is_leap(y);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = is_leap(y);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

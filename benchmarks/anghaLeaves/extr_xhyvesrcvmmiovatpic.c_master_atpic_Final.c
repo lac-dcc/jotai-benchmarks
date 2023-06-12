@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ master_atpic(struct vatpic *vatpic, struct atpic *atpic)
 		return (false);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,23 +80,28 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_vatpic0 = 1;
+          int _len_vatpic0 = 65025;
           struct vatpic * vatpic = (struct vatpic *) malloc(_len_vatpic0*sizeof(struct vatpic));
           for(int _i0 = 0; _i0 < _len_vatpic0; _i0++) {
               int _len_vatpic__i0__atpic0 = 1;
           vatpic[_i0].atpic = (struct atpic *) malloc(_len_vatpic__i0__atpic0*sizeof(struct atpic));
           for(int _j0 = 0; _j0 < _len_vatpic__i0__atpic0; _j0++) {
-            vatpic[_i0].atpic->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              vatpic[_i0].atpic->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
-          int _len_atpic0 = 1;
+        
+          int _len_atpic0 = 65025;
           struct atpic * atpic = (struct atpic *) malloc(_len_atpic0*sizeof(struct atpic));
           for(int _i0 = 0; _i0 < _len_atpic0; _i0++) {
-            atpic[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              atpic[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = master_atpic(vatpic,atpic);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_vatpic0; _aux++) {
@@ -111,7 +112,70 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_vatpic0 = 100;
+          struct vatpic * vatpic = (struct vatpic *) malloc(_len_vatpic0*sizeof(struct vatpic));
+          for(int _i0 = 0; _i0 < _len_vatpic0; _i0++) {
+              int _len_vatpic__i0__atpic0 = 1;
+          vatpic[_i0].atpic = (struct atpic *) malloc(_len_vatpic__i0__atpic0*sizeof(struct atpic));
+          for(int _j0 = 0; _j0 < _len_vatpic__i0__atpic0; _j0++) {
+              vatpic[_i0].atpic->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_atpic0 = 100;
+          struct atpic * atpic = (struct atpic *) malloc(_len_atpic0*sizeof(struct atpic));
+          for(int _i0 = 0; _i0 < _len_atpic0; _i0++) {
+              atpic[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = master_atpic(vatpic,atpic);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vatpic0; _aux++) {
+          free(vatpic[_aux].atpic);
+          }
+          free(vatpic);
+          free(atpic);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_vatpic0 = 1;
+          struct vatpic * vatpic = (struct vatpic *) malloc(_len_vatpic0*sizeof(struct vatpic));
+          for(int _i0 = 0; _i0 < _len_vatpic0; _i0++) {
+              int _len_vatpic__i0__atpic0 = 1;
+          vatpic[_i0].atpic = (struct atpic *) malloc(_len_vatpic__i0__atpic0*sizeof(struct atpic));
+          for(int _j0 = 0; _j0 < _len_vatpic__i0__atpic0; _j0++) {
+              vatpic[_i0].atpic->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_atpic0 = 1;
+          struct atpic * atpic = (struct atpic *) malloc(_len_atpic0*sizeof(struct atpic));
+          for(int _i0 = 0; _i0 < _len_atpic0; _i0++) {
+              atpic[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = master_atpic(vatpic,atpic);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vatpic0; _aux++) {
+          free(vatpic[_aux].atpic);
+          }
+          free(vatpic);
+          free(atpic);
+        
+        break;
+    }
     default:
         usage();
         break;

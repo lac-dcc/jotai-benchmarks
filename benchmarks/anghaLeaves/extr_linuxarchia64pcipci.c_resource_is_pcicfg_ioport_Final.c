@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static bool resource_is_pcicfg_ioport(struct resource *res
 		res->start == 0xCF8 && res->end == 0xCFF;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,16 +76,125 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_res0 = 65025;
+          struct resource * res = (struct resource *) malloc(_len_res0*sizeof(struct resource));
+          for(int _i0 = 0; _i0 < _len_res0; _i0++) {
+              res[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          res[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          res[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = resource_is_pcicfg_ioport(res);
+          printf("%d\n", benchRet); 
+          free(res);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_res0 = 100;
+          struct resource * res = (struct resource *) malloc(_len_res0*sizeof(struct resource));
+          for(int _i0 = 0; _i0 < _len_res0; _i0++) {
+              res[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          res[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          res[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = resource_is_pcicfg_ioport(res);
+          printf("%d\n", benchRet); 
+          free(res);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_res0 = 1;
           struct resource * res = (struct resource *) malloc(_len_res0*sizeof(struct resource));
           for(int _i0 = 0; _i0 < _len_res0; _i0++) {
-            res[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        res[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
-        res[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+              res[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          res[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          res[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = resource_is_pcicfg_ioport(res);
           printf("%d\n", benchRet); 
           free(res);

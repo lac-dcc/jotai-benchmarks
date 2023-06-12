@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -72,12 +72,6 @@ __attribute__((used)) static bool dev_type_flutter(enum sas_device_type new, enu
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,17 +84,18 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum sas_device_type new = 0;
+        
           enum sas_device_type old = 0;
+        
           int benchRet = dev_type_flutter(new,old);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

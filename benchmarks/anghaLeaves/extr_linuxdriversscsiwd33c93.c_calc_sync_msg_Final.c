@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ calc_sync_msg(unsigned int period, unsigned int offset, unsigned int fast,
 	msg[1] = offset;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,33 +85,176 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           unsigned int period = 100;
+        
           unsigned int offset = 100;
+        
           unsigned int fast = 100;
+        
           int _len_msg0 = 2;
           unsigned int * msg = (unsigned int *) malloc(_len_msg0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_msg0; _i0++) {
             msg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           calc_sync_msg(period,offset,fast,msg);
           free(msg);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          unsigned int period = 255;
+        
+          unsigned int offset = 255;
+        
+          unsigned int fast = 255;
+        
+          int _len_msg0 = 65025;
+          unsigned int * msg = (unsigned int *) malloc(_len_msg0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_msg0; _i0++) {
+            msg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          calc_sync_msg(period,offset,fast,msg);
+          free(msg);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           unsigned int period = 10;
+        
           unsigned int offset = 10;
+        
           unsigned int fast = 10;
+        
           int _len_msg0 = 100;
           unsigned int * msg = (unsigned int *) malloc(_len_msg0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_msg0; _i0++) {
             msg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          calc_sync_msg(period,offset,fast,msg);
+          free(msg);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          unsigned int period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int fast = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_msg0 = 2;
+          unsigned int * msg = (unsigned int *) malloc(_len_msg0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_msg0; _i0++) {
+            msg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           calc_sync_msg(period,offset,fast,msg);
           free(msg);
         

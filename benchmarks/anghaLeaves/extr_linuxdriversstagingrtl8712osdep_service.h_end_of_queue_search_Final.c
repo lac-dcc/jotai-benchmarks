@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static inline u32 end_of_queue_search(struct list_head *he
 	return (head == plist);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,19 +76,142 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_head0 = 65025;
+          struct list_head * head = (struct list_head *) malloc(_len_head0*sizeof(struct list_head));
+          for(int _i0 = 0; _i0 < _len_head0; _i0++) {
+              head[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_plist0 = 65025;
+          struct list_head * plist = (struct list_head *) malloc(_len_plist0*sizeof(struct list_head));
+          for(int _i0 = 0; _i0 < _len_plist0; _i0++) {
+              plist[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = end_of_queue_search(head,plist);
+          printf("%d\n", benchRet); 
+          free(head);
+          free(plist);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_head0 = 100;
+          struct list_head * head = (struct list_head *) malloc(_len_head0*sizeof(struct list_head));
+          for(int _i0 = 0; _i0 < _len_head0; _i0++) {
+              head[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_plist0 = 100;
+          struct list_head * plist = (struct list_head *) malloc(_len_plist0*sizeof(struct list_head));
+          for(int _i0 = 0; _i0 < _len_plist0; _i0++) {
+              plist[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = end_of_queue_search(head,plist);
+          printf("%d\n", benchRet); 
+          free(head);
+          free(plist);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_head0 = 1;
           struct list_head * head = (struct list_head *) malloc(_len_head0*sizeof(struct list_head));
           for(int _i0 = 0; _i0 < _len_head0; _i0++) {
-            head[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              head[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_plist0 = 1;
           struct list_head * plist = (struct list_head *) malloc(_len_plist0*sizeof(struct list_head));
           for(int _i0 = 0; _i0 < _len_plist0; _i0++) {
-            plist[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              plist[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = end_of_queue_search(head,plist);
           printf("%d\n", benchRet); 
           free(head);

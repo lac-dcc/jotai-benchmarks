@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ writer_fn(int *data, int isize)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,15 +78,120 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 2815
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 1029
+          // ------------------------------- 
+          // static_instructions_O2 : 83
+          // dynamic_instructions_O2 : 279
+          // ------------------------------- 
+          // static_instructions_O3 : 83
+          // dynamic_instructions_O3 : 279
+          // ------------------------------- 
+          // static_instructions_Ofast : 83
+          // dynamic_instructions_Ofast : 279
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 1028
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 1284
+          // ------------------------------- 
+
+          int isize = 255;
+        
+          int _len_data0 = 65025;
+          int * data = (int *) malloc(_len_data0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+            data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          writer_fn(data,isize);
+          free(data);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 120
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 49
+          // ------------------------------- 
+          // static_instructions_O2 : 47
+          // dynamic_instructions_O2 : 51
+          // ------------------------------- 
+          // static_instructions_O3 : 47
+          // dynamic_instructions_O3 : 51
+          // ------------------------------- 
+          // static_instructions_Ofast : 47
+          // dynamic_instructions_Ofast : 51
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 48
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 59
+          // ------------------------------- 
+
           int isize = 10;
+        
           int _len_data0 = 100;
           int * data = (int *) malloc(_len_data0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
             data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          writer_fn(data,isize);
+          free(data);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int isize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_data0 = 1;
+          int * data = (int *) malloc(_len_data0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+            data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           writer_fn(data,isize);
           free(data);
         

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -114,12 +115,6 @@ __attribute__((used)) static int r200_get_vtx_size_0(uint32_t vtx_fmt_0)
 	return vtx_size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -132,28 +127,136 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 92
+          // dynamic_instructions_O0 : 248
+          // ------------------------------- 
+          // static_instructions_O1 : 73
+          // dynamic_instructions_O1 : 157
+          // ------------------------------- 
+          // static_instructions_O2 : 131
+          // dynamic_instructions_O2 : 131
+          // ------------------------------- 
+          // static_instructions_O3 : 131
+          // dynamic_instructions_O3 : 131
+          // ------------------------------- 
+          // static_instructions_Ofast : 131
+          // dynamic_instructions_Ofast : 131
+          // ------------------------------- 
+          // static_instructions_Os : 72
+          // dynamic_instructions_Os : 156
+          // ------------------------------- 
+          // static_instructions_Oz : 73
+          // dynamic_instructions_Oz : 166
+          // ------------------------------- 
+
           int vtx_fmt_0 = 100;
+        
           int benchRet = r200_get_vtx_size_0(vtx_fmt_0);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 92
+          // dynamic_instructions_O0 : 248
+          // ------------------------------- 
+          // static_instructions_O1 : 73
+          // dynamic_instructions_O1 : 157
+          // ------------------------------- 
+          // static_instructions_O2 : 131
+          // dynamic_instructions_O2 : 131
+          // ------------------------------- 
+          // static_instructions_O3 : 131
+          // dynamic_instructions_O3 : 131
+          // ------------------------------- 
+          // static_instructions_Ofast : 131
+          // dynamic_instructions_Ofast : 131
+          // ------------------------------- 
+          // static_instructions_Os : 72
+          // dynamic_instructions_Os : 156
+          // ------------------------------- 
+          // static_instructions_Oz : 73
+          // dynamic_instructions_Oz : 166
+          // ------------------------------- 
+
           int vtx_fmt_0 = 255;
+        
           int benchRet = r200_get_vtx_size_0(vtx_fmt_0);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 92
+          // dynamic_instructions_O0 : 248
+          // ------------------------------- 
+          // static_instructions_O1 : 73
+          // dynamic_instructions_O1 : 157
+          // ------------------------------- 
+          // static_instructions_O2 : 131
+          // dynamic_instructions_O2 : 131
+          // ------------------------------- 
+          // static_instructions_O3 : 131
+          // dynamic_instructions_O3 : 131
+          // ------------------------------- 
+          // static_instructions_Ofast : 131
+          // dynamic_instructions_Ofast : 131
+          // ------------------------------- 
+          // static_instructions_Os : 72
+          // dynamic_instructions_Os : 156
+          // ------------------------------- 
+          // static_instructions_Oz : 73
+          // dynamic_instructions_Oz : 166
+          // ------------------------------- 
+
           int vtx_fmt_0 = 10;
+        
+          int benchRet = r200_get_vtx_size_0(vtx_fmt_0);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 94
+          // dynamic_instructions_O0 : 264
+          // ------------------------------- 
+          // static_instructions_O1 : 71
+          // dynamic_instructions_O1 : 141
+          // ------------------------------- 
+          // static_instructions_O2 : 122
+          // dynamic_instructions_O2 : 122
+          // ------------------------------- 
+          // static_instructions_O3 : 122
+          // dynamic_instructions_O3 : 122
+          // ------------------------------- 
+          // static_instructions_Ofast : 122
+          // dynamic_instructions_Ofast : 122
+          // ------------------------------- 
+          // static_instructions_Os : 69
+          // dynamic_instructions_Os : 132
+          // ------------------------------- 
+          // static_instructions_Oz : 70
+          // dynamic_instructions_Oz : 142
+          // ------------------------------- 
+
+          int vtx_fmt_0 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = r200_get_vtx_size_0(vtx_fmt_0);
           printf("%d\n", benchRet); 
         

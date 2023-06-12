@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +79,6 @@ __attribute__((used)) static int logbase2( int n )
    }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,6 +95,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int n = 100;
+        
           int benchRet = logbase2(n);
           printf("%d\n", benchRet); 
         
@@ -109,6 +105,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int n = 255;
+        
           int benchRet = logbase2(n);
           printf("%d\n", benchRet); 
         
@@ -118,12 +115,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int n = 10;
+        
           int benchRet = logbase2(n);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = logbase2(n);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

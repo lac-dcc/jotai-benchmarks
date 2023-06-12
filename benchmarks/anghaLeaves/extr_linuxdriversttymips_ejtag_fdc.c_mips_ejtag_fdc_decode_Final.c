@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -74,12 +75,6 @@ __attribute__((used)) static unsigned int mips_ejtag_fdc_decode(u32 word, char *
 	return 4;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,22 +87,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int word = 10;
-          int _len_buf0 = 100;
+          int word = 255;
+        
+          int _len_buf0 = 65025;
           char * buf = (char *) malloc(_len_buf0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
             buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned int benchRet = mips_ejtag_fdc_decode(word,buf);
           printf("%u\n", benchRet); 
           free(buf);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int word = 10;
+        
+          int _len_buf0 = 100;
+          char * buf = (char *) malloc(_len_buf0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned int benchRet = mips_ejtag_fdc_decode(word,buf);
+          printf("%u\n", benchRet); 
+          free(buf);
+        
+        break;
+    }
     default:
         usage();
         break;

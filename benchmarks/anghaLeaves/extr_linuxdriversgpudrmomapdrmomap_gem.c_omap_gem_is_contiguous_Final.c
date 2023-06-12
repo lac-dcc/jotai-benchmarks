@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static bool omap_gem_is_contiguous(struct omap_gem_object 
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,19 +84,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_omap_obj0 = 1;
+          int _len_omap_obj0 = 65025;
           struct omap_gem_object * omap_obj = (struct omap_gem_object *) malloc(_len_omap_obj0*sizeof(struct omap_gem_object));
           for(int _i0 = 0; _i0 < _len_omap_obj0; _i0++) {
-            omap_obj[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              omap_obj[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_omap_obj__i0__sgt0 = 1;
           omap_obj[_i0].sgt = (struct TYPE_2__ *) malloc(_len_omap_obj__i0__sgt0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_omap_obj__i0__sgt0; _j0++) {
-            omap_obj[_i0].sgt->nents = ((-2 * (next_i()%2)) + 1) * next_i();
+              omap_obj[_i0].sgt->nents = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = omap_gem_is_contiguous(omap_obj);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_omap_obj0; _aux++) {
@@ -110,7 +109,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_omap_obj0 = 100;
+          struct omap_gem_object * omap_obj = (struct omap_gem_object *) malloc(_len_omap_obj0*sizeof(struct omap_gem_object));
+          for(int _i0 = 0; _i0 < _len_omap_obj0; _i0++) {
+              omap_obj[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_omap_obj__i0__sgt0 = 1;
+          omap_obj[_i0].sgt = (struct TYPE_2__ *) malloc(_len_omap_obj__i0__sgt0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_omap_obj__i0__sgt0; _j0++) {
+              omap_obj[_i0].sgt->nents = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = omap_gem_is_contiguous(omap_obj);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_omap_obj0; _aux++) {
+          free(omap_obj[_aux].sgt);
+          }
+          free(omap_obj);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_omap_obj0 = 1;
+          struct omap_gem_object * omap_obj = (struct omap_gem_object *) malloc(_len_omap_obj0*sizeof(struct omap_gem_object));
+          for(int _i0 = 0; _i0 < _len_omap_obj0; _i0++) {
+              omap_obj[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_omap_obj__i0__sgt0 = 1;
+          omap_obj[_i0].sgt = (struct TYPE_2__ *) malloc(_len_omap_obj__i0__sgt0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_omap_obj__i0__sgt0; _j0++) {
+              omap_obj[_i0].sgt->nents = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = omap_gem_is_contiguous(omap_obj);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_omap_obj0; _aux++) {
+          free(omap_obj[_aux].sgt);
+          }
+          free(omap_obj);
+        
+        break;
+    }
     default:
         usage();
         break;

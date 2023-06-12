@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -97,12 +100,6 @@ __attribute__((used)) static void CalcVClock2Stage(int clockIn,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -115,30 +112,245 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 108
+          // ------------------------------- 
+          // static_instructions_O1 : 27
+          // dynamic_instructions_O1 : 75
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 75
+          // ------------------------------- 
+          // static_instructions_O3 : 41
+          // dynamic_instructions_O3 : 41
+          // ------------------------------- 
+          // static_instructions_Ofast : 41
+          // dynamic_instructions_Ofast : 41
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 74
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 83
+          // ------------------------------- 
+
           int clockIn = 100;
+        
           int _len_clockOut0 = 1;
           int * clockOut = (int *) malloc(_len_clockOut0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_clockOut0; _i0++) {
             clockOut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_pllOut0 = 1;
           int * pllOut = (int *) malloc(_len_pllOut0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pllOut0; _i0++) {
             pllOut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_pllBOut0 = 1;
           int * pllBOut = (int *) malloc(_len_pllBOut0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pllBOut0; _i0++) {
             pllBOut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_par0 = 1;
           struct nvidia_par * par = (struct nvidia_par *) malloc(_len_par0*sizeof(struct nvidia_par));
           for(int _i0 = 0; _i0 < _len_par0; _i0++) {
-            par[_i0].CrystalFreqKHz = ((-2 * (next_i()%2)) + 1) * next_i();
+              par[_i0].CrystalFreqKHz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          CalcVClock2Stage(clockIn,clockOut,pllOut,pllBOut,par);
+          free(clockOut);
+          free(pllOut);
+          free(pllBOut);
+          free(par);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 108
+          // ------------------------------- 
+          // static_instructions_O1 : 27
+          // dynamic_instructions_O1 : 75
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 75
+          // ------------------------------- 
+          // static_instructions_O3 : 41
+          // dynamic_instructions_O3 : 41
+          // ------------------------------- 
+          // static_instructions_Ofast : 41
+          // dynamic_instructions_Ofast : 41
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 74
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 83
+          // ------------------------------- 
+
+          int clockIn = 255;
+        
+          int _len_clockOut0 = 65025;
+          int * clockOut = (int *) malloc(_len_clockOut0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_clockOut0; _i0++) {
+            clockOut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pllOut0 = 65025;
+          int * pllOut = (int *) malloc(_len_pllOut0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pllOut0; _i0++) {
+            pllOut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pllBOut0 = 65025;
+          int * pllBOut = (int *) malloc(_len_pllBOut0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pllBOut0; _i0++) {
+            pllBOut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_par0 = 65025;
+          struct nvidia_par * par = (struct nvidia_par *) malloc(_len_par0*sizeof(struct nvidia_par));
+          for(int _i0 = 0; _i0 < _len_par0; _i0++) {
+              par[_i0].CrystalFreqKHz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          CalcVClock2Stage(clockIn,clockOut,pllOut,pllBOut,par);
+          free(clockOut);
+          free(pllOut);
+          free(pllBOut);
+          free(par);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 108
+          // ------------------------------- 
+          // static_instructions_O1 : 27
+          // dynamic_instructions_O1 : 75
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 75
+          // ------------------------------- 
+          // static_instructions_O3 : 41
+          // dynamic_instructions_O3 : 41
+          // ------------------------------- 
+          // static_instructions_Ofast : 41
+          // dynamic_instructions_Ofast : 41
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 74
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 83
+          // ------------------------------- 
+
+          int clockIn = 10;
+        
+          int _len_clockOut0 = 100;
+          int * clockOut = (int *) malloc(_len_clockOut0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_clockOut0; _i0++) {
+            clockOut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pllOut0 = 100;
+          int * pllOut = (int *) malloc(_len_pllOut0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pllOut0; _i0++) {
+            pllOut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pllBOut0 = 100;
+          int * pllBOut = (int *) malloc(_len_pllBOut0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pllBOut0; _i0++) {
+            pllBOut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_par0 = 100;
+          struct nvidia_par * par = (struct nvidia_par *) malloc(_len_par0*sizeof(struct nvidia_par));
+          for(int _i0 = 0; _i0 < _len_par0; _i0++) {
+              par[_i0].CrystalFreqKHz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          CalcVClock2Stage(clockIn,clockOut,pllOut,pllBOut,par);
+          free(clockOut);
+          free(pllOut);
+          free(pllBOut);
+          free(par);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 122
+          // ------------------------------- 
+          // static_instructions_O1 : 27
+          // dynamic_instructions_O1 : 75
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 75
+          // ------------------------------- 
+          // static_instructions_O3 : 41
+          // dynamic_instructions_O3 : 41
+          // ------------------------------- 
+          // static_instructions_Ofast : 41
+          // dynamic_instructions_Ofast : 41
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 74
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 83
+          // ------------------------------- 
+
+          int clockIn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_clockOut0 = 1;
+          int * clockOut = (int *) malloc(_len_clockOut0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_clockOut0; _i0++) {
+            clockOut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pllOut0 = 1;
+          int * pllOut = (int *) malloc(_len_pllOut0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pllOut0; _i0++) {
+            pllOut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pllBOut0 = 1;
+          int * pllBOut = (int *) malloc(_len_pllBOut0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pllBOut0; _i0++) {
+            pllBOut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_par0 = 1;
+          struct nvidia_par * par = (struct nvidia_par *) malloc(_len_par0*sizeof(struct nvidia_par));
+          for(int _i0 = 0; _i0 < _len_par0; _i0++) {
+              par[_i0].CrystalFreqKHz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           CalcVClock2Stage(clockIn,clockOut,pllOut,pllBOut,par);
           free(clockOut);
           free(pllOut);

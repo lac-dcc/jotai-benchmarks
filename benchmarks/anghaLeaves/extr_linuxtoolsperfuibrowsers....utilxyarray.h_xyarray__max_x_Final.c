@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline int xyarray__max_x(struct xyarray *xy)
 	return xy->max_x;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_xy0 = 1;
+          int _len_xy0 = 65025;
           struct xyarray * xy = (struct xyarray *) malloc(_len_xy0*sizeof(struct xyarray));
           for(int _i0 = 0; _i0 < _len_xy0; _i0++) {
-            xy[_i0].max_x = ((-2 * (next_i()%2)) + 1) * next_i();
+              xy[_i0].max_x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = xyarray__max_x(xy);
           printf("%d\n", benchRet); 
           free(xy);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_xy0 = 100;
           struct xyarray * xy = (struct xyarray *) malloc(_len_xy0*sizeof(struct xyarray));
           for(int _i0 = 0; _i0 < _len_xy0; _i0++) {
-            xy[_i0].max_x = ((-2 * (next_i()%2)) + 1) * next_i();
+              xy[_i0].max_x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = xyarray__max_x(xy);
           printf("%d\n", benchRet); 
           free(xy);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_xy0 = 1;
+          struct xyarray * xy = (struct xyarray *) malloc(_len_xy0*sizeof(struct xyarray));
+          for(int _i0 = 0; _i0 < _len_xy0; _i0++) {
+              xy[_i0].max_x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = xyarray__max_x(xy);
+          printf("%d\n", benchRet); 
+          free(xy);
+        
+        break;
+    }
     default:
         usage();
         break;

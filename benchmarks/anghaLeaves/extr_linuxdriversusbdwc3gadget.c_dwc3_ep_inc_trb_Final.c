@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static void dwc3_ep_inc_trb(u8 *index)
 		*index = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_index0 = 1;
+          int _len_index0 = 65025;
           int * index = (int *) malloc(_len_index0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_index0; _i0++) {
             index[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           dwc3_ep_inc_trb(index);
           free(index);
         
@@ -103,12 +99,26 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_index0; _i0++) {
             index[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           dwc3_ep_inc_trb(index);
           free(index);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_index0 = 1;
+          int * index = (int *) malloc(_len_index0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_index0; _i0++) {
+            index[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          dwc3_ep_inc_trb(index);
+          free(index);
+        
+        break;
+    }
     default:
         usage();
         break;

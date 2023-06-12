@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static bool cb710_is_transfer_size_supported(struct mmc_da
 	return !(data->blksz & 15 && (data->blocks != 1 || data->blksz != 8));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,15 +74,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_data0 = 65025;
+          struct mmc_data * data = (struct mmc_data *) malloc(_len_data0*sizeof(struct mmc_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].blksz = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].blocks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cb710_is_transfer_size_supported(data);
+          printf("%d\n", benchRet); 
+          free(data);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_data0 = 100;
+          struct mmc_data * data = (struct mmc_data *) malloc(_len_data0*sizeof(struct mmc_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].blksz = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].blocks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cb710_is_transfer_size_supported(data);
+          printf("%d\n", benchRet); 
+          free(data);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_data0 = 1;
           struct mmc_data * data = (struct mmc_data *) malloc(_len_data0*sizeof(struct mmc_data));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
-            data[_i0].blksz = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].blocks = ((-2 * (next_i()%2)) + 1) * next_i();
+              data[_i0].blksz = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].blocks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cb710_is_transfer_size_supported(data);
           printf("%d\n", benchRet); 
           free(data);

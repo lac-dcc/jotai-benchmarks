@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -77,12 +79,6 @@ __attribute__((used)) static void get_atom_data_table_revision(
 			(uint32_t) atom_data_tbl->content_revision & 0x3f;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,21 +91,146 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_atom_data_tbl0 = 65025;
+          struct atom_common_table_header * atom_data_tbl = (struct atom_common_table_header *) malloc(_len_atom_data_tbl0*sizeof(struct atom_common_table_header));
+          for(int _i0 = 0; _i0 < _len_atom_data_tbl0; _i0++) {
+              atom_data_tbl[_i0].content_revision = ((-2 * (next_i()%2)) + 1) * next_i();
+          atom_data_tbl[_i0].format_revision = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_tbl_revision0 = 65025;
+          struct atom_data_revision * tbl_revision = (struct atom_data_revision *) malloc(_len_tbl_revision0*sizeof(struct atom_data_revision));
+          for(int _i0 = 0; _i0 < _len_tbl_revision0; _i0++) {
+              tbl_revision[_i0].major = ((-2 * (next_i()%2)) + 1) * next_i();
+          tbl_revision[_i0].minor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          get_atom_data_table_revision(atom_data_tbl,tbl_revision);
+          free(atom_data_tbl);
+          free(tbl_revision);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_atom_data_tbl0 = 100;
+          struct atom_common_table_header * atom_data_tbl = (struct atom_common_table_header *) malloc(_len_atom_data_tbl0*sizeof(struct atom_common_table_header));
+          for(int _i0 = 0; _i0 < _len_atom_data_tbl0; _i0++) {
+              atom_data_tbl[_i0].content_revision = ((-2 * (next_i()%2)) + 1) * next_i();
+          atom_data_tbl[_i0].format_revision = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_tbl_revision0 = 100;
+          struct atom_data_revision * tbl_revision = (struct atom_data_revision *) malloc(_len_tbl_revision0*sizeof(struct atom_data_revision));
+          for(int _i0 = 0; _i0 < _len_tbl_revision0; _i0++) {
+              tbl_revision[_i0].major = ((-2 * (next_i()%2)) + 1) * next_i();
+          tbl_revision[_i0].minor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          get_atom_data_table_revision(atom_data_tbl,tbl_revision);
+          free(atom_data_tbl);
+          free(tbl_revision);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int _len_atom_data_tbl0 = 1;
           struct atom_common_table_header * atom_data_tbl = (struct atom_common_table_header *) malloc(_len_atom_data_tbl0*sizeof(struct atom_common_table_header));
           for(int _i0 = 0; _i0 < _len_atom_data_tbl0; _i0++) {
-            atom_data_tbl[_i0].content_revision = ((-2 * (next_i()%2)) + 1) * next_i();
-        atom_data_tbl[_i0].format_revision = ((-2 * (next_i()%2)) + 1) * next_i();
+              atom_data_tbl[_i0].content_revision = ((-2 * (next_i()%2)) + 1) * next_i();
+          atom_data_tbl[_i0].format_revision = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_tbl_revision0 = 1;
           struct atom_data_revision * tbl_revision = (struct atom_data_revision *) malloc(_len_tbl_revision0*sizeof(struct atom_data_revision));
           for(int _i0 = 0; _i0 < _len_tbl_revision0; _i0++) {
-            tbl_revision[_i0].major = ((-2 * (next_i()%2)) + 1) * next_i();
-        tbl_revision[_i0].minor = ((-2 * (next_i()%2)) + 1) * next_i();
+              tbl_revision[_i0].major = ((-2 * (next_i()%2)) + 1) * next_i();
+          tbl_revision[_i0].minor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           get_atom_data_table_revision(atom_data_tbl,tbl_revision);
           free(atom_data_tbl);
           free(tbl_revision);

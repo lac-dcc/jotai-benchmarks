@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -60,12 +61,6 @@ __attribute__((used)) static inline void twinvq_memset_float(float *buf, float v
         *buf++ = val;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,22 +73,42 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
           float val = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-          int size = 10;
-          int _len_buf0 = 100;
+        
+          int size = 255;
+        
+          int _len_buf0 = 65025;
           float * buf = (float *) malloc(_len_buf0*sizeof(float));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
             buf[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
+        
           twinvq_memset_float(buf,val,size);
           free(buf);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          float val = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          int size = 10;
+        
+          int _len_buf0 = 100;
+          float * buf = (float *) malloc(_len_buf0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            buf[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          twinvq_memset_float(buf,val,size);
+          free(buf);
+        
+        break;
+    }
     default:
         usage();
         break;

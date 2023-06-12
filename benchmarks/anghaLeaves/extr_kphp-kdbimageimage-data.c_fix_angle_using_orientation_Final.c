@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ __attribute__((used)) static void fix_angle_using_orientation (Image *image, int
   }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,19 +90,137 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_image0 = 65025;
+          struct TYPE_3__ * image = (struct TYPE_3__ *) malloc(_len_image0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_image0; _i0++) {
+              image[_i0].orientation = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_angle0 = 65025;
+          int * angle = (int *) malloc(_len_angle0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_angle0; _i0++) {
+            angle[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          fix_angle_using_orientation(image,angle);
+          free(image);
+          free(angle);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_image0 = 100;
+          struct TYPE_3__ * image = (struct TYPE_3__ *) malloc(_len_image0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_image0; _i0++) {
+              image[_i0].orientation = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_angle0 = 100;
+          int * angle = (int *) malloc(_len_angle0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_angle0; _i0++) {
+            angle[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          fix_angle_using_orientation(image,angle);
+          free(image);
+          free(angle);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_image0 = 1;
           struct TYPE_3__ * image = (struct TYPE_3__ *) malloc(_len_image0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_image0; _i0++) {
-            image[_i0].orientation = ((-2 * (next_i()%2)) + 1) * next_i();
+              image[_i0].orientation = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_angle0 = 1;
           int * angle = (int *) malloc(_len_angle0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_angle0; _i0++) {
             angle[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           fix_angle_using_orientation(image,angle);
           free(image);
           free(angle);

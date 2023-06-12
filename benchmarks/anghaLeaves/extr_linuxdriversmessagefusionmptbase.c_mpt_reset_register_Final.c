@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ mpt_reset_register(u8 cb_idx, MPT_RESETHANDLER reset_func)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,7 +87,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long cb_idx = 100;
+        
           int reset_func = 100;
+        
           int benchRet = mpt_reset_register(cb_idx,reset_func);
           printf("%d\n", benchRet); 
         
@@ -102,7 +99,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long cb_idx = 255;
+        
           int reset_func = 255;
+        
           int benchRet = mpt_reset_register(cb_idx,reset_func);
           printf("%d\n", benchRet); 
         
@@ -112,13 +111,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long cb_idx = 10;
+        
           int reset_func = 10;
+        
           int benchRet = mpt_reset_register(cb_idx,reset_func);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long cb_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int reset_func = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = mpt_reset_register(cb_idx,reset_func);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

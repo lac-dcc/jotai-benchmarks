@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ __attribute__((used)) static void clip_interval(int wmax, int *x, int *w, int *d
         *w = wmax - *x;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,25 +83,214 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
           int wmax = 100;
+        
           int _len_x0 = 1;
           int * x = (int *) malloc(_len_x0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_x0; _i0++) {
             x[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_w0 = 1;
           int * w = (int *) malloc(_len_w0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_w0; _i0++) {
             w[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_dx0 = 1;
           int * dx = (int *) malloc(_len_dx0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_dx0; _i0++) {
             dx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          clip_interval(wmax,x,w,dx);
+          free(x);
+          free(w);
+          free(dx);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          int wmax = 255;
+        
+          int _len_x0 = 65025;
+          int * x = (int *) malloc(_len_x0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_x0; _i0++) {
+            x[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_w0 = 65025;
+          int * w = (int *) malloc(_len_w0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_w0; _i0++) {
+            w[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_dx0 = 65025;
+          int * dx = (int *) malloc(_len_dx0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dx0; _i0++) {
+            dx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          clip_interval(wmax,x,w,dx);
+          free(x);
+          free(w);
+          free(dx);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          int wmax = 10;
+        
+          int _len_x0 = 100;
+          int * x = (int *) malloc(_len_x0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_x0; _i0++) {
+            x[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_w0 = 100;
+          int * w = (int *) malloc(_len_w0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_w0; _i0++) {
+            w[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_dx0 = 100;
+          int * dx = (int *) malloc(_len_dx0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dx0; _i0++) {
+            dx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          clip_interval(wmax,x,w,dx);
+          free(x);
+          free(w);
+          free(dx);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          int wmax = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_x0 = 1;
+          int * x = (int *) malloc(_len_x0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_x0; _i0++) {
+            x[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_w0 = 1;
+          int * w = (int *) malloc(_len_w0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_w0; _i0++) {
+            w[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_dx0 = 1;
+          int * dx = (int *) malloc(_len_dx0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dx0; _i0++) {
+            dx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           clip_interval(wmax,x,w,dx);
           free(x);
           free(w);

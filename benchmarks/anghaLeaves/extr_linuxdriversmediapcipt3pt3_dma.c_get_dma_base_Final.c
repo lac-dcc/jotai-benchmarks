@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static u32 get_dma_base(int idx)
 	return REG_DMA_BASE + 0x18 * i;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,6 +83,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int idx = 100;
+        
           long benchRet = get_dma_base(idx);
           printf("%ld\n", benchRet); 
         
@@ -97,6 +93,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int idx = 255;
+        
           long benchRet = get_dma_base(idx);
           printf("%ld\n", benchRet); 
         
@@ -106,12 +103,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int idx = 10;
+        
           long benchRet = get_dma_base(idx);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long benchRet = get_dma_base(idx);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

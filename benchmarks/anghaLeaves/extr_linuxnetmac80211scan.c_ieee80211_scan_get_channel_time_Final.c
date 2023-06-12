@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +74,6 @@ ieee80211_scan_get_channel_time(struct ieee80211_channel *chan)
 	return IEEE80211_PROBE_DELAY + IEEE80211_CHANNEL_TIME;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,14 +86,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_chan0 = 1;
+          int _len_chan0 = 65025;
           struct ieee80211_channel * chan = (struct ieee80211_channel *) malloc(_len_chan0*sizeof(struct ieee80211_channel));
           for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
-            chan[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              chan[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = ieee80211_scan_get_channel_time(chan);
           printf("%lu\n", benchRet); 
           free(chan);
@@ -111,15 +108,32 @@ int main(int argc, char *argv[]) {
           int _len_chan0 = 100;
           struct ieee80211_channel * chan = (struct ieee80211_channel *) malloc(_len_chan0*sizeof(struct ieee80211_channel));
           for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
-            chan[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              chan[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = ieee80211_scan_get_channel_time(chan);
           printf("%lu\n", benchRet); 
           free(chan);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_chan0 = 1;
+          struct ieee80211_channel * chan = (struct ieee80211_channel *) malloc(_len_chan0*sizeof(struct ieee80211_channel));
+          for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
+              chan[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = ieee80211_scan_get_channel_time(chan);
+          printf("%lu\n", benchRet); 
+          free(chan);
+        
+        break;
+    }
     default:
         usage();
         break;

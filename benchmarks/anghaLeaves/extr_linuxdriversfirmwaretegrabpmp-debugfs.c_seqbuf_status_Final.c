@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static size_t seqbuf_status(struct seqbuf *seqbuf)
 	return seqbuf->pos <= seqbuf->size ? 0 : -EOVERFLOW;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,15 +75,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_seqbuf0 = 65025;
+          struct seqbuf * seqbuf = (struct seqbuf *) malloc(_len_seqbuf0*sizeof(struct seqbuf));
+          for(int _i0 = 0; _i0 < _len_seqbuf0; _i0++) {
+              seqbuf[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          seqbuf[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = seqbuf_status(seqbuf);
+          printf("%lu\n", benchRet); 
+          free(seqbuf);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_seqbuf0 = 100;
+          struct seqbuf * seqbuf = (struct seqbuf *) malloc(_len_seqbuf0*sizeof(struct seqbuf));
+          for(int _i0 = 0; _i0 < _len_seqbuf0; _i0++) {
+              seqbuf[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          seqbuf[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = seqbuf_status(seqbuf);
+          printf("%lu\n", benchRet); 
+          free(seqbuf);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_seqbuf0 = 1;
           struct seqbuf * seqbuf = (struct seqbuf *) malloc(_len_seqbuf0*sizeof(struct seqbuf));
           for(int _i0 = 0; _i0 < _len_seqbuf0; _i0++) {
-            seqbuf[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
-        seqbuf[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              seqbuf[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          seqbuf[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = seqbuf_status(seqbuf);
           printf("%lu\n", benchRet); 
           free(seqbuf);

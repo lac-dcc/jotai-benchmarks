@@ -31,6 +31,7 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            big-arr\n\
+       1            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ int Curl_isgraph(int c)
   return (ascii[c] & (_N|_X|_U|_L|_P|_S));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,12 +86,22 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int c = 255;
+        
           int benchRet = Curl_isgraph(c);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 1:
+    {
+          int c = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = Curl_isgraph(c);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

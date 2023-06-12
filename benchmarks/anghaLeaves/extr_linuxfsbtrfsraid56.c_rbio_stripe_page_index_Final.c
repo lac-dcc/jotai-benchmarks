@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static int rbio_stripe_page_index(struct btrfs_raid_bio *r
 	return stripe * rbio->stripe_npages + index;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,32 +76,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int stripe = 100;
+        
           int index = 100;
+        
           int _len_rbio0 = 1;
           struct btrfs_raid_bio * rbio = (struct btrfs_raid_bio *) malloc(_len_rbio0*sizeof(struct btrfs_raid_bio));
           for(int _i0 = 0; _i0 < _len_rbio0; _i0++) {
-            rbio[_i0].stripe_npages = ((-2 * (next_i()%2)) + 1) * next_i();
+              rbio[_i0].stripe_npages = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = rbio_stripe_page_index(rbio,stripe,index);
           printf("%d\n", benchRet); 
           free(rbio);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int stripe = 255;
+        
+          int index = 255;
+        
+          int _len_rbio0 = 65025;
+          struct btrfs_raid_bio * rbio = (struct btrfs_raid_bio *) malloc(_len_rbio0*sizeof(struct btrfs_raid_bio));
+          for(int _i0 = 0; _i0 < _len_rbio0; _i0++) {
+              rbio[_i0].stripe_npages = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rbio_stripe_page_index(rbio,stripe,index);
+          printf("%d\n", benchRet); 
+          free(rbio);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int stripe = 10;
+        
           int index = 10;
+        
           int _len_rbio0 = 100;
           struct btrfs_raid_bio * rbio = (struct btrfs_raid_bio *) malloc(_len_rbio0*sizeof(struct btrfs_raid_bio));
           for(int _i0 = 0; _i0 < _len_rbio0; _i0++) {
-            rbio[_i0].stripe_npages = ((-2 * (next_i()%2)) + 1) * next_i();
+              rbio[_i0].stripe_npages = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = rbio_stripe_page_index(rbio,stripe,index);
+          printf("%d\n", benchRet); 
+          free(rbio);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int stripe = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rbio0 = 1;
+          struct btrfs_raid_bio * rbio = (struct btrfs_raid_bio *) malloc(_len_rbio0*sizeof(struct btrfs_raid_bio));
+          for(int _i0 = 0; _i0 < _len_rbio0; _i0++) {
+              rbio[_i0].stripe_npages = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = rbio_stripe_page_index(rbio,stripe,index);
           printf("%d\n", benchRet); 
           free(rbio);

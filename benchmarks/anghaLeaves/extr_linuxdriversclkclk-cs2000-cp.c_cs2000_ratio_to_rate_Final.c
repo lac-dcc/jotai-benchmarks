@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +74,6 @@ __attribute__((used)) static unsigned long cs2000_ratio_to_rate(u32 ratio, u32 r
 	return rate_out >> 20;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,7 +90,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int ratio = 100;
+        
           int rate_in = 100;
+        
           unsigned long benchRet = cs2000_ratio_to_rate(ratio,rate_in);
           printf("%lu\n", benchRet); 
         
@@ -105,7 +102,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int ratio = 255;
+        
           int rate_in = 255;
+        
           unsigned long benchRet = cs2000_ratio_to_rate(ratio,rate_in);
           printf("%lu\n", benchRet); 
         
@@ -115,13 +114,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int ratio = 10;
+        
           int rate_in = 10;
+        
           unsigned long benchRet = cs2000_ratio_to_rate(ratio,rate_in);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int ratio = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int rate_in = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = cs2000_ratio_to_rate(ratio,rate_in);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -123,12 +124,6 @@ __attribute__((used)) static int pixfmt2depth(int pixfmt)
     return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -145,6 +140,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int pixfmt = 100;
+        
           int benchRet = pixfmt2depth(pixfmt);
           printf("%d\n", benchRet); 
         
@@ -154,6 +150,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int pixfmt = 255;
+        
           int benchRet = pixfmt2depth(pixfmt);
           printf("%d\n", benchRet); 
         
@@ -163,12 +160,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int pixfmt = 10;
+        
           int benchRet = pixfmt2depth(pixfmt);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int pixfmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = pixfmt2depth(pixfmt);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

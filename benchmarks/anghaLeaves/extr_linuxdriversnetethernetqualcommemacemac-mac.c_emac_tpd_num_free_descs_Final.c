@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static unsigned int emac_tpd_num_free_descs(struct emac_tx
 		(tx_q->tpd.count + consume_idx - produce_idx - 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,16 +82,128 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_tx_q0 = 65025;
+          struct emac_tx_queue * tx_q = (struct emac_tx_queue *) malloc(_len_tx_q0*sizeof(struct emac_tx_queue));
+          for(int _i0 = 0; _i0 < _len_tx_q0; _i0++) {
+              tx_q[_i0].tpd.produce_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          tx_q[_i0].tpd.consume_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          tx_q[_i0].tpd.count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          unsigned int benchRet = emac_tpd_num_free_descs(tx_q);
+          printf("%u\n", benchRet); 
+          free(tx_q);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_tx_q0 = 100;
+          struct emac_tx_queue * tx_q = (struct emac_tx_queue *) malloc(_len_tx_q0*sizeof(struct emac_tx_queue));
+          for(int _i0 = 0; _i0 < _len_tx_q0; _i0++) {
+              tx_q[_i0].tpd.produce_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          tx_q[_i0].tpd.consume_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          tx_q[_i0].tpd.count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          unsigned int benchRet = emac_tpd_num_free_descs(tx_q);
+          printf("%u\n", benchRet); 
+          free(tx_q);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_tx_q0 = 1;
           struct emac_tx_queue * tx_q = (struct emac_tx_queue *) malloc(_len_tx_q0*sizeof(struct emac_tx_queue));
           for(int _i0 = 0; _i0 < _len_tx_q0; _i0++) {
-            tx_q[_i0].tpd.produce_idx = ((-2 * (next_i()%2)) + 1) * next_i();
-        tx_q[_i0].tpd.consume_idx = ((-2 * (next_i()%2)) + 1) * next_i();
-        tx_q[_i0].tpd.count = ((-2 * (next_i()%2)) + 1) * next_i();
+              tx_q[_i0].tpd.produce_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          tx_q[_i0].tpd.consume_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          tx_q[_i0].tpd.count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           unsigned int benchRet = emac_tpd_num_free_descs(tx_q);
           printf("%u\n", benchRet); 
           free(tx_q);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static inline bool mvebu_has_ioport(struct mvebu_pcie_port
 	return port->io_target != -1 && port->io_attr != -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,15 +74,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_port0 = 65025;
+          struct mvebu_pcie_port * port = (struct mvebu_pcie_port *) malloc(_len_port0*sizeof(struct mvebu_pcie_port));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              port[_i0].io_target = ((-2 * (next_i()%2)) + 1) * next_i();
+          port[_i0].io_attr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mvebu_has_ioport(port);
+          printf("%d\n", benchRet); 
+          free(port);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_port0 = 100;
+          struct mvebu_pcie_port * port = (struct mvebu_pcie_port *) malloc(_len_port0*sizeof(struct mvebu_pcie_port));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              port[_i0].io_target = ((-2 * (next_i()%2)) + 1) * next_i();
+          port[_i0].io_attr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mvebu_has_ioport(port);
+          printf("%d\n", benchRet); 
+          free(port);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_port0 = 1;
           struct mvebu_pcie_port * port = (struct mvebu_pcie_port *) malloc(_len_port0*sizeof(struct mvebu_pcie_port));
           for(int _i0 = 0; _i0 < _len_port0; _i0++) {
-            port[_i0].io_target = ((-2 * (next_i()%2)) + 1) * next_i();
-        port[_i0].io_attr = ((-2 * (next_i()%2)) + 1) * next_i();
+              port[_i0].io_target = ((-2 * (next_i()%2)) + 1) * next_i();
+          port[_i0].io_attr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mvebu_has_ioport(port);
           printf("%d\n", benchRet); 
           free(port);

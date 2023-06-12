@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -125,12 +128,6 @@ __attribute__((used)) static int vpbe_try_format(struct vpbe_display *disp_dev,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -143,31 +140,259 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 115
+          // dynamic_instructions_O0 : 115
+          // ------------------------------- 
+          // static_instructions_O1 : 76
+          // dynamic_instructions_O1 : 76
+          // ------------------------------- 
+          // static_instructions_O2 : 73
+          // dynamic_instructions_O2 : 73
+          // ------------------------------- 
+          // static_instructions_O3 : 73
+          // dynamic_instructions_O3 : 73
+          // ------------------------------- 
+          // static_instructions_Ofast : 73
+          // dynamic_instructions_Ofast : 73
+          // ------------------------------- 
+          // static_instructions_Os : 73
+          // dynamic_instructions_Os : 73
+          // ------------------------------- 
+          // static_instructions_Oz : 73
+          // dynamic_instructions_Oz : 73
+          // ------------------------------- 
+
           int check = 100;
+        
           int _len_disp_dev0 = 1;
           struct vpbe_display * disp_dev = (struct vpbe_display *) malloc(_len_disp_dev0*sizeof(struct vpbe_display));
           for(int _i0 = 0; _i0 < _len_disp_dev0; _i0++) {
               int _len_disp_dev__i0__vpbe_dev0 = 1;
           disp_dev[_i0].vpbe_dev = (struct vpbe_device *) malloc(_len_disp_dev__i0__vpbe_dev0*sizeof(struct vpbe_device));
           for(int _j0 = 0; _j0 < _len_disp_dev__i0__vpbe_dev0; _j0++) {
-            disp_dev[_i0].vpbe_dev->current_timings.xres = ((-2 * (next_i()%2)) + 1) * next_i();
-        disp_dev[_i0].vpbe_dev->current_timings.yres = ((-2 * (next_i()%2)) + 1) * next_i();
-        disp_dev[_i0].vpbe_dev->current_timings.interlaced = ((-2 * (next_i()%2)) + 1) * next_i();
+              disp_dev[_i0].vpbe_dev->current_timings.xres = ((-2 * (next_i()%2)) + 1) * next_i();
+          disp_dev[_i0].vpbe_dev->current_timings.yres = ((-2 * (next_i()%2)) + 1) * next_i();
+          disp_dev[_i0].vpbe_dev->current_timings.interlaced = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           int _len_pixfmt0 = 1;
           struct v4l2_pix_format * pixfmt = (struct v4l2_pix_format *) malloc(_len_pixfmt0*sizeof(struct v4l2_pix_format));
           for(int _i0 = 0; _i0 < _len_pixfmt0; _i0++) {
-            pixfmt[_i0].pixelformat = ((-2 * (next_i()%2)) + 1) * next_i();
-        pixfmt[_i0].field = ((-2 * (next_i()%2)) + 1) * next_i();
-        pixfmt[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
-        pixfmt[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
-        pixfmt[_i0].bytesperline = ((-2 * (next_i()%2)) + 1) * next_i();
-        pixfmt[_i0].sizeimage = ((-2 * (next_i()%2)) + 1) * next_i();
+              pixfmt[_i0].pixelformat = ((-2 * (next_i()%2)) + 1) * next_i();
+          pixfmt[_i0].field = ((-2 * (next_i()%2)) + 1) * next_i();
+          pixfmt[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          pixfmt[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          pixfmt[_i0].bytesperline = ((-2 * (next_i()%2)) + 1) * next_i();
+          pixfmt[_i0].sizeimage = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = vpbe_try_format(disp_dev,pixfmt,check);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_disp_dev0; _aux++) {
+          free(disp_dev[_aux].vpbe_dev);
+          }
+          free(disp_dev);
+          free(pixfmt);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 115
+          // dynamic_instructions_O0 : 115
+          // ------------------------------- 
+          // static_instructions_O1 : 76
+          // dynamic_instructions_O1 : 76
+          // ------------------------------- 
+          // static_instructions_O2 : 73
+          // dynamic_instructions_O2 : 73
+          // ------------------------------- 
+          // static_instructions_O3 : 73
+          // dynamic_instructions_O3 : 73
+          // ------------------------------- 
+          // static_instructions_Ofast : 73
+          // dynamic_instructions_Ofast : 73
+          // ------------------------------- 
+          // static_instructions_Os : 73
+          // dynamic_instructions_Os : 73
+          // ------------------------------- 
+          // static_instructions_Oz : 73
+          // dynamic_instructions_Oz : 73
+          // ------------------------------- 
+
+          int check = 255;
+        
+          int _len_disp_dev0 = 65025;
+          struct vpbe_display * disp_dev = (struct vpbe_display *) malloc(_len_disp_dev0*sizeof(struct vpbe_display));
+          for(int _i0 = 0; _i0 < _len_disp_dev0; _i0++) {
+              int _len_disp_dev__i0__vpbe_dev0 = 1;
+          disp_dev[_i0].vpbe_dev = (struct vpbe_device *) malloc(_len_disp_dev__i0__vpbe_dev0*sizeof(struct vpbe_device));
+          for(int _j0 = 0; _j0 < _len_disp_dev__i0__vpbe_dev0; _j0++) {
+              disp_dev[_i0].vpbe_dev->current_timings.xres = ((-2 * (next_i()%2)) + 1) * next_i();
+          disp_dev[_i0].vpbe_dev->current_timings.yres = ((-2 * (next_i()%2)) + 1) * next_i();
+          disp_dev[_i0].vpbe_dev->current_timings.interlaced = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int _len_pixfmt0 = 65025;
+          struct v4l2_pix_format * pixfmt = (struct v4l2_pix_format *) malloc(_len_pixfmt0*sizeof(struct v4l2_pix_format));
+          for(int _i0 = 0; _i0 < _len_pixfmt0; _i0++) {
+              pixfmt[_i0].pixelformat = ((-2 * (next_i()%2)) + 1) * next_i();
+          pixfmt[_i0].field = ((-2 * (next_i()%2)) + 1) * next_i();
+          pixfmt[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          pixfmt[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          pixfmt[_i0].bytesperline = ((-2 * (next_i()%2)) + 1) * next_i();
+          pixfmt[_i0].sizeimage = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vpbe_try_format(disp_dev,pixfmt,check);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_disp_dev0; _aux++) {
+          free(disp_dev[_aux].vpbe_dev);
+          }
+          free(disp_dev);
+          free(pixfmt);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 115
+          // dynamic_instructions_O0 : 115
+          // ------------------------------- 
+          // static_instructions_O1 : 76
+          // dynamic_instructions_O1 : 76
+          // ------------------------------- 
+          // static_instructions_O2 : 73
+          // dynamic_instructions_O2 : 73
+          // ------------------------------- 
+          // static_instructions_O3 : 73
+          // dynamic_instructions_O3 : 73
+          // ------------------------------- 
+          // static_instructions_Ofast : 73
+          // dynamic_instructions_Ofast : 73
+          // ------------------------------- 
+          // static_instructions_Os : 73
+          // dynamic_instructions_Os : 73
+          // ------------------------------- 
+          // static_instructions_Oz : 73
+          // dynamic_instructions_Oz : 73
+          // ------------------------------- 
+
+          int check = 10;
+        
+          int _len_disp_dev0 = 100;
+          struct vpbe_display * disp_dev = (struct vpbe_display *) malloc(_len_disp_dev0*sizeof(struct vpbe_display));
+          for(int _i0 = 0; _i0 < _len_disp_dev0; _i0++) {
+              int _len_disp_dev__i0__vpbe_dev0 = 1;
+          disp_dev[_i0].vpbe_dev = (struct vpbe_device *) malloc(_len_disp_dev__i0__vpbe_dev0*sizeof(struct vpbe_device));
+          for(int _j0 = 0; _j0 < _len_disp_dev__i0__vpbe_dev0; _j0++) {
+              disp_dev[_i0].vpbe_dev->current_timings.xres = ((-2 * (next_i()%2)) + 1) * next_i();
+          disp_dev[_i0].vpbe_dev->current_timings.yres = ((-2 * (next_i()%2)) + 1) * next_i();
+          disp_dev[_i0].vpbe_dev->current_timings.interlaced = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int _len_pixfmt0 = 100;
+          struct v4l2_pix_format * pixfmt = (struct v4l2_pix_format *) malloc(_len_pixfmt0*sizeof(struct v4l2_pix_format));
+          for(int _i0 = 0; _i0 < _len_pixfmt0; _i0++) {
+              pixfmt[_i0].pixelformat = ((-2 * (next_i()%2)) + 1) * next_i();
+          pixfmt[_i0].field = ((-2 * (next_i()%2)) + 1) * next_i();
+          pixfmt[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          pixfmt[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          pixfmt[_i0].bytesperline = ((-2 * (next_i()%2)) + 1) * next_i();
+          pixfmt[_i0].sizeimage = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vpbe_try_format(disp_dev,pixfmt,check);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_disp_dev0; _aux++) {
+          free(disp_dev[_aux].vpbe_dev);
+          }
+          free(disp_dev);
+          free(pixfmt);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 115
+          // dynamic_instructions_O0 : 115
+          // ------------------------------- 
+          // static_instructions_O1 : 76
+          // dynamic_instructions_O1 : 76
+          // ------------------------------- 
+          // static_instructions_O2 : 73
+          // dynamic_instructions_O2 : 73
+          // ------------------------------- 
+          // static_instructions_O3 : 73
+          // dynamic_instructions_O3 : 73
+          // ------------------------------- 
+          // static_instructions_Ofast : 73
+          // dynamic_instructions_Ofast : 73
+          // ------------------------------- 
+          // static_instructions_Os : 73
+          // dynamic_instructions_Os : 73
+          // ------------------------------- 
+          // static_instructions_Oz : 73
+          // dynamic_instructions_Oz : 73
+          // ------------------------------- 
+
+          int check = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_disp_dev0 = 1;
+          struct vpbe_display * disp_dev = (struct vpbe_display *) malloc(_len_disp_dev0*sizeof(struct vpbe_display));
+          for(int _i0 = 0; _i0 < _len_disp_dev0; _i0++) {
+              int _len_disp_dev__i0__vpbe_dev0 = 1;
+          disp_dev[_i0].vpbe_dev = (struct vpbe_device *) malloc(_len_disp_dev__i0__vpbe_dev0*sizeof(struct vpbe_device));
+          for(int _j0 = 0; _j0 < _len_disp_dev__i0__vpbe_dev0; _j0++) {
+              disp_dev[_i0].vpbe_dev->current_timings.xres = ((-2 * (next_i()%2)) + 1) * next_i();
+          disp_dev[_i0].vpbe_dev->current_timings.yres = ((-2 * (next_i()%2)) + 1) * next_i();
+          disp_dev[_i0].vpbe_dev->current_timings.interlaced = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int _len_pixfmt0 = 1;
+          struct v4l2_pix_format * pixfmt = (struct v4l2_pix_format *) malloc(_len_pixfmt0*sizeof(struct v4l2_pix_format));
+          for(int _i0 = 0; _i0 < _len_pixfmt0; _i0++) {
+              pixfmt[_i0].pixelformat = ((-2 * (next_i()%2)) + 1) * next_i();
+          pixfmt[_i0].field = ((-2 * (next_i()%2)) + 1) * next_i();
+          pixfmt[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          pixfmt[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          pixfmt[_i0].bytesperline = ((-2 * (next_i()%2)) + 1) * next_i();
+          pixfmt[_i0].sizeimage = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = vpbe_try_format(disp_dev,pixfmt,check);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_disp_dev0; _aux++) {

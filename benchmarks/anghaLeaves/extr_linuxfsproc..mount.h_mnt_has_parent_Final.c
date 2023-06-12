@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -60,7 +61,6 @@ __attribute__((used)) static inline int mnt_has_parent(struct mount *mnt)
 	return mnt != mnt->mnt_parent;
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct mount *_allocate_mnt(int length, struct mount *aux_mnt[]) {
@@ -88,7 +88,6 @@ void _delete_mnt(struct mount *aux_mnt[], int aux_mnt_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,18 +100,30 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // linked
     case 0:
+    {
+          struct mount * aux_mnt[10000];
+          struct mount * mnt = _allocate_mnt(10000, aux_mnt);
+        
+          int benchRet = mnt_has_parent(mnt);
+          printf("%d\n", benchRet); 
+          _delete_mnt(aux_mnt, 10000);
+        
+        break;
+    }
+    // empty
+    case 1:
     {
           struct mount * aux_mnt[1];
           struct mount * mnt = _allocate_mnt(1, aux_mnt);
+        
           int benchRet = mnt_has_parent(mnt);
           printf("%d\n", benchRet); 
           _delete_mnt(aux_mnt, 1);
         
         break;
     }
-
     default:
         usage();
         break;

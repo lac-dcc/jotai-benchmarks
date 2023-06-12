@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +74,6 @@ __attribute__((used)) static inline unsigned int get_sizeimage(int bpl, int widt
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,18 +86,187 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int bpl = 100;
+        
           int width = 100;
+        
           int height = 100;
+        
           int _len_fmt0 = 1;
           struct bcm2835_codec_fmt * fmt = (struct bcm2835_codec_fmt *) malloc(_len_fmt0*sizeof(struct bcm2835_codec_fmt));
           for(int _i0 = 0; _i0 < _len_fmt0; _i0++) {
-            fmt[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmt[_i0].size_multiplier_x2 = ((-2 * (next_i()%2)) + 1) * next_i();
+              fmt[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmt[_i0].size_multiplier_x2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          unsigned int benchRet = get_sizeimage(bpl,width,height,fmt);
+          printf("%u\n", benchRet); 
+          free(fmt);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int bpl = 255;
+        
+          int width = 255;
+        
+          int height = 255;
+        
+          int _len_fmt0 = 65025;
+          struct bcm2835_codec_fmt * fmt = (struct bcm2835_codec_fmt *) malloc(_len_fmt0*sizeof(struct bcm2835_codec_fmt));
+          for(int _i0 = 0; _i0 < _len_fmt0; _i0++) {
+              fmt[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmt[_i0].size_multiplier_x2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = get_sizeimage(bpl,width,height,fmt);
+          printf("%u\n", benchRet); 
+          free(fmt);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int bpl = 10;
+        
+          int width = 10;
+        
+          int height = 10;
+        
+          int _len_fmt0 = 100;
+          struct bcm2835_codec_fmt * fmt = (struct bcm2835_codec_fmt *) malloc(_len_fmt0*sizeof(struct bcm2835_codec_fmt));
+          for(int _i0 = 0; _i0 < _len_fmt0; _i0++) {
+              fmt[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmt[_i0].size_multiplier_x2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = get_sizeimage(bpl,width,height,fmt);
+          printf("%u\n", benchRet); 
+          free(fmt);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int bpl = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fmt0 = 1;
+          struct bcm2835_codec_fmt * fmt = (struct bcm2835_codec_fmt *) malloc(_len_fmt0*sizeof(struct bcm2835_codec_fmt));
+          for(int _i0 = 0; _i0 < _len_fmt0; _i0++) {
+              fmt[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmt[_i0].size_multiplier_x2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           unsigned int benchRet = get_sizeimage(bpl,width,height,fmt);
           printf("%u\n", benchRet); 
           free(fmt);

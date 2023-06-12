@@ -61,12 +61,6 @@ gen_mask (int width)
   return ((aarch64_insn) 1 << width) - 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,12 +77,12 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int width = 10;
+        
           int benchRet = gen_mask(width);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

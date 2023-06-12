@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ ptls_cipher_suite_t *ptls_get_cipher(ptls_t *tls)
     return tls->cipher_suite;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,10 +77,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_tls0 = 1;
+          int _len_tls0 = 65025;
           struct TYPE_3__ * tls = (struct TYPE_3__ *) malloc(_len_tls0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_tls0; _i0++) {
               int _len_tls__i0__cipher_suite0 = 1;
@@ -92,7 +88,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_tls__i0__cipher_suite0; _j0++) {
             tls[_i0].cipher_suite[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int * benchRet = ptls_get_cipher(tls);
           printf("%d\n", (*benchRet)); 
           for(int _aux = 0; _aux < _len_tls0; _aux++) {
@@ -102,7 +100,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_tls0 = 100;
+          struct TYPE_3__ * tls = (struct TYPE_3__ *) malloc(_len_tls0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_tls0; _i0++) {
+              int _len_tls__i0__cipher_suite0 = 1;
+          tls[_i0].cipher_suite = (int *) malloc(_len_tls__i0__cipher_suite0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_tls__i0__cipher_suite0; _j0++) {
+            tls[_i0].cipher_suite[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int * benchRet = ptls_get_cipher(tls);
+          printf("%d\n", (*benchRet)); 
+          for(int _aux = 0; _aux < _len_tls0; _aux++) {
+          free(tls[_aux].cipher_suite);
+          }
+          free(tls);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_tls0 = 1;
+          struct TYPE_3__ * tls = (struct TYPE_3__ *) malloc(_len_tls0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_tls0; _i0++) {
+              int _len_tls__i0__cipher_suite0 = 1;
+          tls[_i0].cipher_suite = (int *) malloc(_len_tls__i0__cipher_suite0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_tls__i0__cipher_suite0; _j0++) {
+            tls[_i0].cipher_suite[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int * benchRet = ptls_get_cipher(tls);
+          printf("%d\n", (*benchRet)); 
+          for(int _aux = 0; _aux < _len_tls0; _aux++) {
+          free(tls[_aux].cipher_suite);
+          }
+          free(tls);
+        
+        break;
+    }
     default:
         usage();
         break;

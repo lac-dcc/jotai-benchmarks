@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static inline unsigned long amdgpu_bo_size(struct amdgpu_b
 	return bo->tbo.num_pages << PAGE_SHIFT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_bo0 = 1;
+          int _len_bo0 = 65025;
           struct amdgpu_bo * bo = (struct amdgpu_bo *) malloc(_len_bo0*sizeof(struct amdgpu_bo));
           for(int _i0 = 0; _i0 < _len_bo0; _i0++) {
-            bo[_i0].tbo.num_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+              bo[_i0].tbo.num_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           unsigned long benchRet = amdgpu_bo_size(bo);
           printf("%lu\n", benchRet); 
           free(bo);
@@ -102,15 +100,34 @@ int main(int argc, char *argv[]) {
           int _len_bo0 = 100;
           struct amdgpu_bo * bo = (struct amdgpu_bo *) malloc(_len_bo0*sizeof(struct amdgpu_bo));
           for(int _i0 = 0; _i0 < _len_bo0; _i0++) {
-            bo[_i0].tbo.num_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+              bo[_i0].tbo.num_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           unsigned long benchRet = amdgpu_bo_size(bo);
           printf("%lu\n", benchRet); 
           free(bo);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_bo0 = 1;
+          struct amdgpu_bo * bo = (struct amdgpu_bo *) malloc(_len_bo0*sizeof(struct amdgpu_bo));
+          for(int _i0 = 0; _i0 < _len_bo0; _i0++) {
+              bo[_i0].tbo.num_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          unsigned long benchRet = amdgpu_bo_size(bo);
+          printf("%lu\n", benchRet); 
+          free(bo);
+        
+        break;
+    }
     default:
         usage();
         break;

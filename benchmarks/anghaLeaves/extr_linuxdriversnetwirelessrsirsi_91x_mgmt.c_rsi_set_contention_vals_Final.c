@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -77,12 +79,6 @@ __attribute__((used)) static void rsi_set_contention_vals(struct rsi_common *com
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,26 +91,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_common0 = 65025;
+          struct rsi_common * common = (struct rsi_common *) malloc(_len_common0*sizeof(struct rsi_common));
+          for(int _i0 = 0; _i0 < _len_common0; _i0++) {
+              int _len_common__i0__tx_qinfo0 = 1;
+          common[_i0].tx_qinfo = (struct TYPE_4__ *) malloc(_len_common__i0__tx_qinfo0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_common__i0__tx_qinfo0; _j0++) {
+              common[_i0].tx_qinfo->pkt_contended = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].tx_qinfo->wme_params = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].tx_qinfo->weight = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_common__i0__edca_params0 = 1;
+          common[_i0].edca_params = (struct TYPE_3__ *) malloc(_len_common__i0__edca_params0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_common__i0__edca_params0; _j0++) {
+              common[_i0].edca_params->cw_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].edca_params->aifs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          rsi_set_contention_vals(common);
+          for(int _aux = 0; _aux < _len_common0; _aux++) {
+          free(common[_aux].tx_qinfo);
+          }
+          for(int _aux = 0; _aux < _len_common0; _aux++) {
+          free(common[_aux].edca_params);
+          }
+          free(common);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_common0 = 100;
+          struct rsi_common * common = (struct rsi_common *) malloc(_len_common0*sizeof(struct rsi_common));
+          for(int _i0 = 0; _i0 < _len_common0; _i0++) {
+              int _len_common__i0__tx_qinfo0 = 1;
+          common[_i0].tx_qinfo = (struct TYPE_4__ *) malloc(_len_common__i0__tx_qinfo0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_common__i0__tx_qinfo0; _j0++) {
+              common[_i0].tx_qinfo->pkt_contended = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].tx_qinfo->wme_params = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].tx_qinfo->weight = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_common__i0__edca_params0 = 1;
+          common[_i0].edca_params = (struct TYPE_3__ *) malloc(_len_common__i0__edca_params0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_common__i0__edca_params0; _j0++) {
+              common[_i0].edca_params->cw_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].edca_params->aifs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          rsi_set_contention_vals(common);
+          for(int _aux = 0; _aux < _len_common0; _aux++) {
+          free(common[_aux].tx_qinfo);
+          }
+          for(int _aux = 0; _aux < _len_common0; _aux++) {
+          free(common[_aux].edca_params);
+          }
+          free(common);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_common0 = 1;
           struct rsi_common * common = (struct rsi_common *) malloc(_len_common0*sizeof(struct rsi_common));
           for(int _i0 = 0; _i0 < _len_common0; _i0++) {
               int _len_common__i0__tx_qinfo0 = 1;
           common[_i0].tx_qinfo = (struct TYPE_4__ *) malloc(_len_common__i0__tx_qinfo0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_common__i0__tx_qinfo0; _j0++) {
-            common[_i0].tx_qinfo->pkt_contended = ((-2 * (next_i()%2)) + 1) * next_i();
-        common[_i0].tx_qinfo->wme_params = ((-2 * (next_i()%2)) + 1) * next_i();
-        common[_i0].tx_qinfo->weight = ((-2 * (next_i()%2)) + 1) * next_i();
+              common[_i0].tx_qinfo->pkt_contended = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].tx_qinfo->wme_params = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].tx_qinfo->weight = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_common__i0__edca_params0 = 1;
           common[_i0].edca_params = (struct TYPE_3__ *) malloc(_len_common__i0__edca_params0*sizeof(struct TYPE_3__));
           for(int _j0 = 0; _j0 < _len_common__i0__edca_params0; _j0++) {
-            common[_i0].edca_params->cw_min = ((-2 * (next_i()%2)) + 1) * next_i();
-        common[_i0].edca_params->aifs = ((-2 * (next_i()%2)) + 1) * next_i();
+              common[_i0].edca_params->cw_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].edca_params->aifs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           rsi_set_contention_vals(common);
           for(int _aux = 0; _aux < _len_common0; _aux++) {
           free(common[_aux].tx_qinfo);

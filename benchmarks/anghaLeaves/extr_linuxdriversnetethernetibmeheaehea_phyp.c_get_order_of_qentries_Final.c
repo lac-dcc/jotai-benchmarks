@@ -66,12 +66,6 @@ __attribute__((used)) static inline u16 get_order_of_qentries(u16 queue_entries)
 	return ld - 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,6 +82,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int queue_entries = 100;
+        
           unsigned int benchRet = get_order_of_qentries(queue_entries);
           printf("%u\n", benchRet); 
         
@@ -97,6 +92,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int queue_entries = 255;
+        
           unsigned int benchRet = get_order_of_qentries(queue_entries);
           printf("%u\n", benchRet); 
         
@@ -106,12 +102,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int queue_entries = 10;
+        
           unsigned int benchRet = get_order_of_qentries(queue_entries);
           printf("%u\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

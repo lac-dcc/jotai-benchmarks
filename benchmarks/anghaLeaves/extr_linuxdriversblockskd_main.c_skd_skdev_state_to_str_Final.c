@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -115,12 +115,6 @@ const char *skd_skdev_state_to_str(enum skd_drvr_state state)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -133,16 +127,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum skd_drvr_state state = 0;
+        
           const char * benchRet = skd_skdev_state_to_str(state);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
         break;
     }
-
     default:
         usage();
         break;

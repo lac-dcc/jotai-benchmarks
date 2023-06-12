@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -148,12 +150,6 @@ __attribute__((used)) static void load_balance_args(btrfs_balance_opts* opts, BA
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -166,43 +162,212 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 61
+          // dynamic_instructions_O0 : 61
+          // ------------------------------- 
+          // static_instructions_O1 : 27
+          // dynamic_instructions_O1 : 27
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 27
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
+          int _len_opts0 = 65025;
+          struct TYPE_5__ * opts = (struct TYPE_5__ *) malloc(_len_opts0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_opts0; _i0++) {
+              opts[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          opts[_i0].convert = ((-2 * (next_i()%2)) + 1) * next_i();
+          opts[_i0].limit_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          opts[_i0].limit_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          opts[_i0].vrange_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          opts[_i0].vrange_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          opts[_i0].drange_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          opts[_i0].drange_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          opts[_i0].devid = ((-2 * (next_i()%2)) + 1) * next_i();
+          opts[_i0].profiles = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_args0 = 65025;
+          struct TYPE_6__ * args = (struct TYPE_6__ *) malloc(_len_args0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_args0; _i0++) {
+              args[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].convert = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].stripes_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].stripes_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].limit_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].limit_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].vrange_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].vrange_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].drange_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].drange_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].devid = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].usage_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].usage_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].usage = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].profiles = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          load_balance_args(opts,args);
+          free(opts);
+          free(args);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 61
+          // dynamic_instructions_O0 : 61
+          // ------------------------------- 
+          // static_instructions_O1 : 27
+          // dynamic_instructions_O1 : 27
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 27
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
+          int _len_opts0 = 100;
+          struct TYPE_5__ * opts = (struct TYPE_5__ *) malloc(_len_opts0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_opts0; _i0++) {
+              opts[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          opts[_i0].convert = ((-2 * (next_i()%2)) + 1) * next_i();
+          opts[_i0].limit_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          opts[_i0].limit_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          opts[_i0].vrange_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          opts[_i0].vrange_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          opts[_i0].drange_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          opts[_i0].drange_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          opts[_i0].devid = ((-2 * (next_i()%2)) + 1) * next_i();
+          opts[_i0].profiles = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_args0 = 100;
+          struct TYPE_6__ * args = (struct TYPE_6__ *) malloc(_len_args0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_args0; _i0++) {
+              args[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].convert = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].stripes_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].stripes_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].limit_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].limit_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].vrange_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].vrange_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].drange_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].drange_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].devid = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].usage_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].usage_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].usage = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].profiles = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          load_balance_args(opts,args);
+          free(opts);
+          free(args);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 61
+          // dynamic_instructions_O0 : 61
+          // ------------------------------- 
+          // static_instructions_O1 : 27
+          // dynamic_instructions_O1 : 27
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 27
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
           int _len_opts0 = 1;
           struct TYPE_5__ * opts = (struct TYPE_5__ *) malloc(_len_opts0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_opts0; _i0++) {
-            opts[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        opts[_i0].convert = ((-2 * (next_i()%2)) + 1) * next_i();
-        opts[_i0].limit_end = ((-2 * (next_i()%2)) + 1) * next_i();
-        opts[_i0].limit_start = ((-2 * (next_i()%2)) + 1) * next_i();
-        opts[_i0].vrange_end = ((-2 * (next_i()%2)) + 1) * next_i();
-        opts[_i0].vrange_start = ((-2 * (next_i()%2)) + 1) * next_i();
-        opts[_i0].drange_end = ((-2 * (next_i()%2)) + 1) * next_i();
-        opts[_i0].drange_start = ((-2 * (next_i()%2)) + 1) * next_i();
-        opts[_i0].devid = ((-2 * (next_i()%2)) + 1) * next_i();
-        opts[_i0].profiles = ((-2 * (next_i()%2)) + 1) * next_i();
+              opts[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          opts[_i0].convert = ((-2 * (next_i()%2)) + 1) * next_i();
+          opts[_i0].limit_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          opts[_i0].limit_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          opts[_i0].vrange_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          opts[_i0].vrange_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          opts[_i0].drange_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          opts[_i0].drange_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          opts[_i0].devid = ((-2 * (next_i()%2)) + 1) * next_i();
+          opts[_i0].profiles = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_args0 = 1;
           struct TYPE_6__ * args = (struct TYPE_6__ *) malloc(_len_args0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_args0; _i0++) {
-            args[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        args[_i0].convert = ((-2 * (next_i()%2)) + 1) * next_i();
-        args[_i0].stripes_end = ((-2 * (next_i()%2)) + 1) * next_i();
-        args[_i0].stripes_start = ((-2 * (next_i()%2)) + 1) * next_i();
-        args[_i0].limit_end = ((-2 * (next_i()%2)) + 1) * next_i();
-        args[_i0].limit_start = ((-2 * (next_i()%2)) + 1) * next_i();
-        args[_i0].limit = ((-2 * (next_i()%2)) + 1) * next_i();
-        args[_i0].vrange_end = ((-2 * (next_i()%2)) + 1) * next_i();
-        args[_i0].vrange_start = ((-2 * (next_i()%2)) + 1) * next_i();
-        args[_i0].drange_end = ((-2 * (next_i()%2)) + 1) * next_i();
-        args[_i0].drange_start = ((-2 * (next_i()%2)) + 1) * next_i();
-        args[_i0].devid = ((-2 * (next_i()%2)) + 1) * next_i();
-        args[_i0].usage_end = ((-2 * (next_i()%2)) + 1) * next_i();
-        args[_i0].usage_start = ((-2 * (next_i()%2)) + 1) * next_i();
-        args[_i0].usage = ((-2 * (next_i()%2)) + 1) * next_i();
-        args[_i0].profiles = ((-2 * (next_i()%2)) + 1) * next_i();
+              args[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].convert = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].stripes_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].stripes_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].limit_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].limit_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].vrange_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].vrange_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].drange_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].drange_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].devid = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].usage_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].usage_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].usage = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].profiles = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           load_balance_args(opts,args);
           free(opts);
           free(args);

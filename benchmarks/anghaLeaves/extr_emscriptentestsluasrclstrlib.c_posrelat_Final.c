@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static size_t posrelat (ptrdiff_t pos, size_t len) {
   else return len - ((size_t)-pos) + 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,7 +80,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long pos = 100;
+        
           unsigned long len = 100;
+        
           unsigned long benchRet = posrelat(pos,len);
           printf("%lu\n", benchRet); 
         
@@ -95,7 +92,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long pos = 255;
+        
           unsigned long len = 255;
+        
           unsigned long benchRet = posrelat(pos,len);
           printf("%lu\n", benchRet); 
         
@@ -105,13 +104,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long pos = 10;
+        
           unsigned long len = 10;
+        
           unsigned long benchRet = posrelat(pos,len);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = posrelat(pos,len);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

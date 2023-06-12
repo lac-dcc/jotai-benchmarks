@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static BOOL wined3d_cs_st_check_space(struct wined3d_cs *c
     return TRUE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,12 +82,36 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long size = 100;
+        
           enum wined3d_cs_queue_id queue_id = 0;
+        
           int _len_cs0 = 1;
           struct wined3d_cs * cs = (struct wined3d_cs *) malloc(_len_cs0*sizeof(struct wined3d_cs));
           for(int _i0 = 0; _i0 < _len_cs0; _i0++) {
-            cs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              cs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = wined3d_cs_st_check_space(cs,size,queue_id);
+          printf("%d\n", benchRet); 
+          free(cs);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned long size = 255;
+        
+          enum wined3d_cs_queue_id queue_id = 0;
+        
+          int _len_cs0 = 65025;
+          struct wined3d_cs * cs = (struct wined3d_cs *) malloc(_len_cs0*sizeof(struct wined3d_cs));
+          for(int _i0 = 0; _i0 < _len_cs0; _i0++) {
+              cs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = wined3d_cs_st_check_space(cs,size,queue_id);
           printf("%d\n", benchRet); 
           free(cs);
@@ -99,22 +119,45 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned long size = 10;
+        
           enum wined3d_cs_queue_id queue_id = 0;
+        
           int _len_cs0 = 100;
           struct wined3d_cs * cs = (struct wined3d_cs *) malloc(_len_cs0*sizeof(struct wined3d_cs));
           for(int _i0 = 0; _i0 < _len_cs0; _i0++) {
-            cs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              cs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = wined3d_cs_st_check_space(cs,size,queue_id);
           printf("%d\n", benchRet); 
           free(cs);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          enum wined3d_cs_queue_id queue_id = 0;
+        
+          int _len_cs0 = 1;
+          struct wined3d_cs * cs = (struct wined3d_cs *) malloc(_len_cs0*sizeof(struct wined3d_cs));
+          for(int _i0 = 0; _i0 < _len_cs0; _i0++) {
+              cs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = wined3d_cs_st_check_space(cs,size,queue_id);
+          printf("%d\n", benchRet); 
+          free(cs);
+        
+        break;
+    }
     default:
         usage();
         break;

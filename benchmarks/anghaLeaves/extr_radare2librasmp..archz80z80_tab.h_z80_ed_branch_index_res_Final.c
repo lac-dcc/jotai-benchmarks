@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -85,12 +86,6 @@ __attribute__((used)) static ut8 z80_ed_branch_index_res (ut8 hex) {
 	return 0x3b;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,28 +98,136 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 43
+          // dynamic_instructions_O0 : 43
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 35
+          // dynamic_instructions_O3 : 35
+          // ------------------------------- 
+          // static_instructions_Ofast : 35
+          // dynamic_instructions_Ofast : 35
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 36
+          // ------------------------------- 
+          // static_instructions_Oz : 35
+          // dynamic_instructions_Oz : 35
+          // ------------------------------- 
+
           int hex = 100;
+        
           int benchRet = z80_ed_branch_index_res(hex);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 64
+          // dynamic_instructions_O0 : 64
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 35
+          // dynamic_instructions_O3 : 35
+          // ------------------------------- 
+          // static_instructions_Ofast : 35
+          // dynamic_instructions_Ofast : 35
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 36
+          // ------------------------------- 
+          // static_instructions_Oz : 35
+          // dynamic_instructions_Oz : 35
+          // ------------------------------- 
+
           int hex = 255;
+        
           int benchRet = z80_ed_branch_index_res(hex);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 35
+          // dynamic_instructions_O3 : 35
+          // ------------------------------- 
+          // static_instructions_Ofast : 35
+          // dynamic_instructions_Ofast : 35
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 36
+          // ------------------------------- 
+          // static_instructions_Oz : 35
+          // dynamic_instructions_Oz : 35
+          // ------------------------------- 
+
           int hex = 10;
+        
+          int benchRet = z80_ed_branch_index_res(hex);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 35
+          // dynamic_instructions_O3 : 35
+          // ------------------------------- 
+          // static_instructions_Ofast : 35
+          // dynamic_instructions_Ofast : 35
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 36
+          // ------------------------------- 
+          // static_instructions_Oz : 35
+          // dynamic_instructions_Oz : 35
+          // ------------------------------- 
+
+          int hex = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = z80_ed_branch_index_res(hex);
           printf("%d\n", benchRet); 
         

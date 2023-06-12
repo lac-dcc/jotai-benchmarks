@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ __attribute__((used)) static struct enet_cb *bcmgenet_get_txcb(struct bcmgenet_p
 	return tx_cb_ptr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,26 +88,172 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_priv0 = 1;
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_priv0 = 65025;
           struct bcmgenet_priv * priv = (struct bcmgenet_priv *) malloc(_len_priv0*sizeof(struct bcmgenet_priv));
           for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
-            priv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_ring0 = 1;
+        
+          int _len_ring0 = 65025;
           struct bcmgenet_tx_ring * ring = (struct bcmgenet_tx_ring *) malloc(_len_ring0*sizeof(struct bcmgenet_tx_ring));
           for(int _i0 = 0; _i0 < _len_ring0; _i0++) {
-            ring[_i0].write_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
-        ring[_i0].cb_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
-        ring[_i0].end_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+              ring[_i0].write_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ring[_i0].cb_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ring[_i0].end_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_ring__i0__cbs0 = 1;
           ring[_i0].cbs = (struct enet_cb *) malloc(_len_ring__i0__cbs0*sizeof(struct enet_cb));
           for(int _j0 = 0; _j0 < _len_ring__i0__cbs0; _j0++) {
-            ring[_i0].cbs->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ring[_i0].cbs->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          struct enet_cb * benchRet = bcmgenet_get_txcb(priv,ring);
+          printf("%d\n", (*benchRet).dummy);
+          free(priv);
+          for(int _aux = 0; _aux < _len_ring0; _aux++) {
+          free(ring[_aux].cbs);
+          }
+          free(ring);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_priv0 = 100;
+          struct bcmgenet_priv * priv = (struct bcmgenet_priv *) malloc(_len_priv0*sizeof(struct bcmgenet_priv));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ring0 = 100;
+          struct bcmgenet_tx_ring * ring = (struct bcmgenet_tx_ring *) malloc(_len_ring0*sizeof(struct bcmgenet_tx_ring));
+          for(int _i0 = 0; _i0 < _len_ring0; _i0++) {
+              ring[_i0].write_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ring[_i0].cb_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ring[_i0].end_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ring__i0__cbs0 = 1;
+          ring[_i0].cbs = (struct enet_cb *) malloc(_len_ring__i0__cbs0*sizeof(struct enet_cb));
+          for(int _j0 = 0; _j0 < _len_ring__i0__cbs0; _j0++) {
+              ring[_i0].cbs->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct enet_cb * benchRet = bcmgenet_get_txcb(priv,ring);
+          printf("%d\n", (*benchRet).dummy);
+          free(priv);
+          for(int _aux = 0; _aux < _len_ring0; _aux++) {
+          free(ring[_aux].cbs);
+          }
+          free(ring);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_priv0 = 1;
+          struct bcmgenet_priv * priv = (struct bcmgenet_priv *) malloc(_len_priv0*sizeof(struct bcmgenet_priv));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ring0 = 1;
+          struct bcmgenet_tx_ring * ring = (struct bcmgenet_tx_ring *) malloc(_len_ring0*sizeof(struct bcmgenet_tx_ring));
+          for(int _i0 = 0; _i0 < _len_ring0; _i0++) {
+              ring[_i0].write_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ring[_i0].cb_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ring[_i0].end_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ring__i0__cbs0 = 1;
+          ring[_i0].cbs = (struct enet_cb *) malloc(_len_ring__i0__cbs0*sizeof(struct enet_cb));
+          for(int _j0 = 0; _j0 < _len_ring__i0__cbs0; _j0++) {
+              ring[_i0].cbs->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           struct enet_cb * benchRet = bcmgenet_get_txcb(priv,ring);
           printf("%d\n", (*benchRet).dummy);
           free(priv);

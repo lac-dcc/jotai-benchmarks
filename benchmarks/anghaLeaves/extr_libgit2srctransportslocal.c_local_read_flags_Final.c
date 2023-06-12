@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static int local_read_flags(git_transport *transport, int 
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,19 +81,136 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_transport0 = 65025;
+          int * transport = (int *) malloc(_len_transport0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_transport0; _i0++) {
+            transport[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_flags0 = 65025;
+          int * flags = (int *) malloc(_len_flags0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_flags0; _i0++) {
+            flags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = local_read_flags(transport,flags);
+          printf("%d\n", benchRet); 
+          free(transport);
+          free(flags);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_transport0 = 100;
+          int * transport = (int *) malloc(_len_transport0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_transport0; _i0++) {
+            transport[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_flags0 = 100;
+          int * flags = (int *) malloc(_len_flags0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_flags0; _i0++) {
+            flags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = local_read_flags(transport,flags);
+          printf("%d\n", benchRet); 
+          free(transport);
+          free(flags);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_transport0 = 1;
           int * transport = (int *) malloc(_len_transport0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_transport0; _i0++) {
             transport[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_flags0 = 1;
           int * flags = (int *) malloc(_len_flags0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_flags0; _i0++) {
             flags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = local_read_flags(transport,flags);
           printf("%d\n", benchRet); 
           free(transport);

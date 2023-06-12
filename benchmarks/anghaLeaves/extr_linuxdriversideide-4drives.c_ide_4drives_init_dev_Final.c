@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static void ide_4drives_init_dev(ide_drive_t *drive)
 		drive->select ^= 0x20;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,19 +79,141 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_drive0 = 1;
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_drive0 = 65025;
           struct TYPE_5__ * drive = (struct TYPE_5__ *) malloc(_len_drive0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_drive0; _i0++) {
-            drive[_i0].select = ((-2 * (next_i()%2)) + 1) * next_i();
+              drive[_i0].select = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_drive__i0__hwif0 = 1;
           drive[_i0].hwif = (struct TYPE_4__ *) malloc(_len_drive__i0__hwif0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_drive__i0__hwif0; _j0++) {
-            drive[_i0].hwif->channel = ((-2 * (next_i()%2)) + 1) * next_i();
+              drive[_i0].hwif->channel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          ide_4drives_init_dev(drive);
+          for(int _aux = 0; _aux < _len_drive0; _aux++) {
+          free(drive[_aux].hwif);
+          }
+          free(drive);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_drive0 = 100;
+          struct TYPE_5__ * drive = (struct TYPE_5__ *) malloc(_len_drive0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_drive0; _i0++) {
+              drive[_i0].select = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_drive__i0__hwif0 = 1;
+          drive[_i0].hwif = (struct TYPE_4__ *) malloc(_len_drive__i0__hwif0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_drive__i0__hwif0; _j0++) {
+              drive[_i0].hwif->channel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          ide_4drives_init_dev(drive);
+          for(int _aux = 0; _aux < _len_drive0; _aux++) {
+          free(drive[_aux].hwif);
+          }
+          free(drive);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_drive0 = 1;
+          struct TYPE_5__ * drive = (struct TYPE_5__ *) malloc(_len_drive0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_drive0; _i0++) {
+              drive[_i0].select = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_drive__i0__hwif0 = 1;
+          drive[_i0].hwif = (struct TYPE_4__ *) malloc(_len_drive__i0__hwif0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_drive__i0__hwif0; _j0++) {
+              drive[_i0].hwif->channel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           ide_4drives_init_dev(drive);
           for(int _aux = 0; _aux < _len_drive0; _aux++) {
           free(drive[_aux].hwif);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static bool validate_hotspot(struct intel_vgpu_cursor_plan
 		return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,17 +77,128 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_c0 = 65025;
+          struct intel_vgpu_cursor_plane_format * c = (struct intel_vgpu_cursor_plane_format *) malloc(_len_c0*sizeof(struct intel_vgpu_cursor_plane_format));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].x_hot = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].y_hot = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = validate_hotspot(c);
+          printf("%d\n", benchRet); 
+          free(c);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_c0 = 100;
+          struct intel_vgpu_cursor_plane_format * c = (struct intel_vgpu_cursor_plane_format *) malloc(_len_c0*sizeof(struct intel_vgpu_cursor_plane_format));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].x_hot = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].y_hot = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = validate_hotspot(c);
+          printf("%d\n", benchRet); 
+          free(c);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int _len_c0 = 1;
           struct intel_vgpu_cursor_plane_format * c = (struct intel_vgpu_cursor_plane_format *) malloc(_len_c0*sizeof(struct intel_vgpu_cursor_plane_format));
           for(int _i0 = 0; _i0 < _len_c0; _i0++) {
-            c[_i0].x_hot = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].y_hot = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+              c[_i0].x_hot = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].y_hot = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = validate_hotspot(c);
           printf("%d\n", benchRet); 
           free(c);

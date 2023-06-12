@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ __attribute__((used)) static inline void txq_advance(struct sge_txq *q, unsigned
 		q->pidx -= q->size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,19 +82,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int n = 100;
+        
           int _len_q0 = 1;
           struct sge_txq * q = (struct sge_txq *) malloc(_len_q0*sizeof(struct sge_txq));
           for(int _i0 = 0; _i0 < _len_q0; _i0++) {
-            q[_i0].in_use = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].pidx = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              q[_i0].in_use = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].pidx = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           txq_advance(q,n);
           free(q);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int n = 255;
+        
+          int _len_q0 = 65025;
+          struct sge_txq * q = (struct sge_txq *) malloc(_len_q0*sizeof(struct sge_txq));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].in_use = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].pidx = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          txq_advance(q,n);
+          free(q);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int n = 10;
+        
+          int _len_q0 = 100;
+          struct sge_txq * q = (struct sge_txq *) malloc(_len_q0*sizeof(struct sge_txq));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].in_use = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].pidx = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          txq_advance(q,n);
+          free(q);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_q0 = 1;
+          struct sge_txq * q = (struct sge_txq *) malloc(_len_q0*sizeof(struct sge_txq));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].in_use = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].pidx = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          txq_advance(q,n);
+          free(q);
+        
+        break;
+    }
     default:
         usage();
         break;

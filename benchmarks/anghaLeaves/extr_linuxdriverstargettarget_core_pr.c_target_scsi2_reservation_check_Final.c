@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -92,12 +94,6 @@ target_scsi2_reservation_check(struct se_cmd *cmd)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -110,9 +106,168 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int _len_cmd0 = 65025;
+          struct se_cmd * cmd = (struct se_cmd *) malloc(_len_cmd0*sizeof(struct se_cmd));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              int _len_cmd__i0__t_task_cdb0 = 1;
+          cmd[_i0].t_task_cdb = (int *) malloc(_len_cmd__i0__t_task_cdb0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_cmd__i0__t_task_cdb0; _j0++) {
+            cmd[_i0].t_task_cdb[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_cmd__i0__se_sess0 = 1;
+          cmd[_i0].se_sess = (struct se_session *) malloc(_len_cmd__i0__se_sess0*sizeof(struct se_session));
+          for(int _j0 = 0; _j0 < _len_cmd__i0__se_sess0; _j0++) {
+              cmd[_i0].se_sess->se_node_acl = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].se_sess->sess_bin_isid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_cmd__i0__se_dev0 = 1;
+          cmd[_i0].se_dev = (struct se_device *) malloc(_len_cmd__i0__se_dev0*sizeof(struct se_device));
+          for(int _j0 = 0; _j0 < _len_cmd__i0__se_dev0; _j0++) {
+              cmd[_i0].se_dev->dev_reserved_node_acl = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].se_dev->dev_reservation_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].se_dev->dev_res_bin_isid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = target_scsi2_reservation_check(cmd);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cmd0; _aux++) {
+          free(cmd[_aux].t_task_cdb);
+          }
+          for(int _aux = 0; _aux < _len_cmd0; _aux++) {
+          free(cmd[_aux].se_sess);
+          }
+          for(int _aux = 0; _aux < _len_cmd0; _aux++) {
+          free(cmd[_aux].se_dev);
+          }
+          free(cmd);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int _len_cmd0 = 100;
+          struct se_cmd * cmd = (struct se_cmd *) malloc(_len_cmd0*sizeof(struct se_cmd));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              int _len_cmd__i0__t_task_cdb0 = 1;
+          cmd[_i0].t_task_cdb = (int *) malloc(_len_cmd__i0__t_task_cdb0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_cmd__i0__t_task_cdb0; _j0++) {
+            cmd[_i0].t_task_cdb[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_cmd__i0__se_sess0 = 1;
+          cmd[_i0].se_sess = (struct se_session *) malloc(_len_cmd__i0__se_sess0*sizeof(struct se_session));
+          for(int _j0 = 0; _j0 < _len_cmd__i0__se_sess0; _j0++) {
+              cmd[_i0].se_sess->se_node_acl = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].se_sess->sess_bin_isid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_cmd__i0__se_dev0 = 1;
+          cmd[_i0].se_dev = (struct se_device *) malloc(_len_cmd__i0__se_dev0*sizeof(struct se_device));
+          for(int _j0 = 0; _j0 < _len_cmd__i0__se_dev0; _j0++) {
+              cmd[_i0].se_dev->dev_reserved_node_acl = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].se_dev->dev_reservation_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].se_dev->dev_res_bin_isid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = target_scsi2_reservation_check(cmd);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cmd0; _aux++) {
+          free(cmd[_aux].t_task_cdb);
+          }
+          for(int _aux = 0; _aux < _len_cmd0; _aux++) {
+          free(cmd[_aux].se_sess);
+          }
+          for(int _aux = 0; _aux < _len_cmd0; _aux++) {
+          free(cmd[_aux].se_dev);
+          }
+          free(cmd);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
           int _len_cmd0 = 1;
           struct se_cmd * cmd = (struct se_cmd *) malloc(_len_cmd0*sizeof(struct se_cmd));
           for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
@@ -124,17 +279,21 @@ int main(int argc, char *argv[]) {
           int _len_cmd__i0__se_sess0 = 1;
           cmd[_i0].se_sess = (struct se_session *) malloc(_len_cmd__i0__se_sess0*sizeof(struct se_session));
           for(int _j0 = 0; _j0 < _len_cmd__i0__se_sess0; _j0++) {
-            cmd[_i0].se_sess->se_node_acl = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd[_i0].se_sess->sess_bin_isid = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmd[_i0].se_sess->se_node_acl = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].se_sess->sess_bin_isid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_cmd__i0__se_dev0 = 1;
           cmd[_i0].se_dev = (struct se_device *) malloc(_len_cmd__i0__se_dev0*sizeof(struct se_device));
           for(int _j0 = 0; _j0 < _len_cmd__i0__se_dev0; _j0++) {
-            cmd[_i0].se_dev->dev_reserved_node_acl = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd[_i0].se_dev->dev_reservation_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd[_i0].se_dev->dev_res_bin_isid = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmd[_i0].se_dev->dev_reserved_node_acl = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].se_dev->dev_reservation_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].se_dev->dev_res_bin_isid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = target_scsi2_reservation_check(cmd);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_cmd0; _aux++) {

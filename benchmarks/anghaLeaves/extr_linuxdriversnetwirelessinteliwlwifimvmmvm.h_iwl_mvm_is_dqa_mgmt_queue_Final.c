@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static inline bool iwl_mvm_is_dqa_mgmt_queue(struct iwl_mv
 	       (queue <= IWL_MVM_DQA_MAX_MGMT_QUEUE);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,11 +83,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long queue = 100;
+        
           int _len_mvm0 = 1;
           struct iwl_mvm * mvm = (struct iwl_mvm *) malloc(_len_mvm0*sizeof(struct iwl_mvm));
           for(int _i0 = 0; _i0 < _len_mvm0; _i0++) {
-            mvm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              mvm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = iwl_mvm_is_dqa_mgmt_queue(mvm,queue);
+          printf("%d\n", benchRet); 
+          free(mvm);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long queue = 255;
+        
+          int _len_mvm0 = 65025;
+          struct iwl_mvm * mvm = (struct iwl_mvm *) malloc(_len_mvm0*sizeof(struct iwl_mvm));
+          for(int _i0 = 0; _i0 < _len_mvm0; _i0++) {
+              mvm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = iwl_mvm_is_dqa_mgmt_queue(mvm,queue);
           printf("%d\n", benchRet); 
           free(mvm);
@@ -99,21 +116,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long queue = 10;
+        
           int _len_mvm0 = 100;
           struct iwl_mvm * mvm = (struct iwl_mvm *) malloc(_len_mvm0*sizeof(struct iwl_mvm));
           for(int _i0 = 0; _i0 < _len_mvm0; _i0++) {
-            mvm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              mvm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = iwl_mvm_is_dqa_mgmt_queue(mvm,queue);
           printf("%d\n", benchRet); 
           free(mvm);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long queue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_mvm0 = 1;
+          struct iwl_mvm * mvm = (struct iwl_mvm *) malloc(_len_mvm0*sizeof(struct iwl_mvm));
+          for(int _i0 = 0; _i0 < _len_mvm0; _i0++) {
+              mvm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = iwl_mvm_is_dqa_mgmt_queue(mvm,queue);
+          printf("%d\n", benchRet); 
+          free(mvm);
+        
+        break;
+    }
     default:
         usage();
         break;

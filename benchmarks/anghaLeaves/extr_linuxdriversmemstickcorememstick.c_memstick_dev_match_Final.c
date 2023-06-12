@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ __attribute__((used)) static int memstick_dev_match(struct memstick_dev *card,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,24 +86,160 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_card0 = 65025;
+          struct memstick_dev * card = (struct memstick_dev *) malloc(_len_card0*sizeof(struct memstick_dev));
+          for(int _i0 = 0; _i0 < _len_card0; _i0++) {
+              card[_i0].id.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          card[_i0].id.category = ((-2 * (next_i()%2)) + 1) * next_i();
+          card[_i0].id.class = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_id0 = 65025;
+          struct memstick_device_id * id = (struct memstick_device_id *) malloc(_len_id0*sizeof(struct memstick_device_id));
+          for(int _i0 = 0; _i0 < _len_id0; _i0++) {
+              id[_i0].match_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          id[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          id[_i0].category = ((-2 * (next_i()%2)) + 1) * next_i();
+          id[_i0].class = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = memstick_dev_match(card,id);
+          printf("%d\n", benchRet); 
+          free(card);
+          free(id);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_card0 = 100;
+          struct memstick_dev * card = (struct memstick_dev *) malloc(_len_card0*sizeof(struct memstick_dev));
+          for(int _i0 = 0; _i0 < _len_card0; _i0++) {
+              card[_i0].id.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          card[_i0].id.category = ((-2 * (next_i()%2)) + 1) * next_i();
+          card[_i0].id.class = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_id0 = 100;
+          struct memstick_device_id * id = (struct memstick_device_id *) malloc(_len_id0*sizeof(struct memstick_device_id));
+          for(int _i0 = 0; _i0 < _len_id0; _i0++) {
+              id[_i0].match_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          id[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          id[_i0].category = ((-2 * (next_i()%2)) + 1) * next_i();
+          id[_i0].class = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = memstick_dev_match(card,id);
+          printf("%d\n", benchRet); 
+          free(card);
+          free(id);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_card0 = 1;
           struct memstick_dev * card = (struct memstick_dev *) malloc(_len_card0*sizeof(struct memstick_dev));
           for(int _i0 = 0; _i0 < _len_card0; _i0++) {
-            card[_i0].id.type = ((-2 * (next_i()%2)) + 1) * next_i();
-        card[_i0].id.category = ((-2 * (next_i()%2)) + 1) * next_i();
-        card[_i0].id.class = ((-2 * (next_i()%2)) + 1) * next_i();
+              card[_i0].id.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          card[_i0].id.category = ((-2 * (next_i()%2)) + 1) * next_i();
+          card[_i0].id.class = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_id0 = 1;
           struct memstick_device_id * id = (struct memstick_device_id *) malloc(_len_id0*sizeof(struct memstick_device_id));
           for(int _i0 = 0; _i0 < _len_id0; _i0++) {
-            id[_i0].match_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        id[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        id[_i0].category = ((-2 * (next_i()%2)) + 1) * next_i();
-        id[_i0].class = ((-2 * (next_i()%2)) + 1) * next_i();
+              id[_i0].match_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          id[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          id[_i0].category = ((-2 * (next_i()%2)) + 1) * next_i();
+          id[_i0].class = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = memstick_dev_match(card,id);
           printf("%d\n", benchRet); 
           free(card);

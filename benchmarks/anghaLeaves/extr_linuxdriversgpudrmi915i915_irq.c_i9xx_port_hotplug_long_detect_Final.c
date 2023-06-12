@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +79,6 @@ __attribute__((used)) static bool i9xx_port_hotplug_long_detect(enum hpd_pin pin
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,7 +95,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           enum hpd_pin pin = 0;
+        
           int val = 100;
+        
           int benchRet = i9xx_port_hotplug_long_detect(pin,val);
           printf("%d\n", benchRet); 
         
@@ -110,7 +107,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           enum hpd_pin pin = 0;
+        
           int val = 255;
+        
           int benchRet = i9xx_port_hotplug_long_detect(pin,val);
           printf("%d\n", benchRet); 
         
@@ -120,13 +119,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           enum hpd_pin pin = 0;
+        
           int val = 10;
+        
           int benchRet = i9xx_port_hotplug_long_detect(pin,val);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          enum hpd_pin pin = 0;
+        
+          int val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = i9xx_port_hotplug_long_detect(pin,val);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

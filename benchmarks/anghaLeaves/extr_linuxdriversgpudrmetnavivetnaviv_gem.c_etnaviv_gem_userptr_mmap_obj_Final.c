@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static int etnaviv_gem_userptr_mmap_obj(struct etnaviv_gem
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,19 +77,142 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_etnaviv_obj0 = 65025;
+          struct etnaviv_gem_object * etnaviv_obj = (struct etnaviv_gem_object *) malloc(_len_etnaviv_obj0*sizeof(struct etnaviv_gem_object));
+          for(int _i0 = 0; _i0 < _len_etnaviv_obj0; _i0++) {
+              etnaviv_obj[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_vma0 = 65025;
+          struct vm_area_struct * vma = (struct vm_area_struct *) malloc(_len_vma0*sizeof(struct vm_area_struct));
+          for(int _i0 = 0; _i0 < _len_vma0; _i0++) {
+              vma[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = etnaviv_gem_userptr_mmap_obj(etnaviv_obj,vma);
+          printf("%d\n", benchRet); 
+          free(etnaviv_obj);
+          free(vma);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_etnaviv_obj0 = 100;
+          struct etnaviv_gem_object * etnaviv_obj = (struct etnaviv_gem_object *) malloc(_len_etnaviv_obj0*sizeof(struct etnaviv_gem_object));
+          for(int _i0 = 0; _i0 < _len_etnaviv_obj0; _i0++) {
+              etnaviv_obj[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_vma0 = 100;
+          struct vm_area_struct * vma = (struct vm_area_struct *) malloc(_len_vma0*sizeof(struct vm_area_struct));
+          for(int _i0 = 0; _i0 < _len_vma0; _i0++) {
+              vma[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = etnaviv_gem_userptr_mmap_obj(etnaviv_obj,vma);
+          printf("%d\n", benchRet); 
+          free(etnaviv_obj);
+          free(vma);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_etnaviv_obj0 = 1;
           struct etnaviv_gem_object * etnaviv_obj = (struct etnaviv_gem_object *) malloc(_len_etnaviv_obj0*sizeof(struct etnaviv_gem_object));
           for(int _i0 = 0; _i0 < _len_etnaviv_obj0; _i0++) {
-            etnaviv_obj[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              etnaviv_obj[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_vma0 = 1;
           struct vm_area_struct * vma = (struct vm_area_struct *) malloc(_len_vma0*sizeof(struct vm_area_struct));
           for(int _i0 = 0; _i0 < _len_vma0; _i0++) {
-            vma[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              vma[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = etnaviv_gem_userptr_mmap_obj(etnaviv_obj,vma);
           printf("%d\n", benchRet); 
           free(etnaviv_obj);

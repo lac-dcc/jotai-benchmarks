@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static void user_randomize (unsigned seed) {
   rnd_seed_b = (seed / 100) % 1000;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,26 +78,133 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           unsigned int seed = 100;
+        
           user_randomize(seed);
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           unsigned int seed = 255;
+        
           user_randomize(seed);
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           unsigned int seed = 10;
+        
+          user_randomize(seed);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          unsigned int seed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           user_randomize(seed);
         
         break;

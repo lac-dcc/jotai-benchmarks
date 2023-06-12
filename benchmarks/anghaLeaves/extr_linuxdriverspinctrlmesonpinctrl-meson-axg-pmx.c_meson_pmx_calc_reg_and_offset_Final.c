@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ __attribute__((used)) static int meson_pmx_calc_reg_and_offset(struct meson_pmx_
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,27 +84,229 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           unsigned int pin = 100;
+        
           int _len_bank0 = 1;
           struct meson_pmx_bank * bank = (struct meson_pmx_bank *) malloc(_len_bank0*sizeof(struct meson_pmx_bank));
           for(int _i0 = 0; _i0 < _len_bank0; _i0++) {
-            bank[_i0].first = ((-2 * (next_i()%2)) + 1) * next_i();
-        bank[_i0].reg = ((-2 * (next_i()%2)) + 1) * next_i();
-        bank[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              bank[_i0].first = ((-2 * (next_i()%2)) + 1) * next_i();
+          bank[_i0].reg = ((-2 * (next_i()%2)) + 1) * next_i();
+          bank[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_reg0 = 1;
           unsigned int * reg = (unsigned int *) malloc(_len_reg0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_reg0; _i0++) {
             reg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_offset0 = 1;
           unsigned int * offset = (unsigned int *) malloc(_len_offset0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_offset0; _i0++) {
             offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = meson_pmx_calc_reg_and_offset(bank,pin,reg,offset);
+          printf("%d\n", benchRet); 
+          free(bank);
+          free(reg);
+          free(offset);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          unsigned int pin = 255;
+        
+          int _len_bank0 = 65025;
+          struct meson_pmx_bank * bank = (struct meson_pmx_bank *) malloc(_len_bank0*sizeof(struct meson_pmx_bank));
+          for(int _i0 = 0; _i0 < _len_bank0; _i0++) {
+              bank[_i0].first = ((-2 * (next_i()%2)) + 1) * next_i();
+          bank[_i0].reg = ((-2 * (next_i()%2)) + 1) * next_i();
+          bank[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_reg0 = 65025;
+          unsigned int * reg = (unsigned int *) malloc(_len_reg0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_reg0; _i0++) {
+            reg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_offset0 = 65025;
+          unsigned int * offset = (unsigned int *) malloc(_len_offset0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_offset0; _i0++) {
+            offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = meson_pmx_calc_reg_and_offset(bank,pin,reg,offset);
+          printf("%d\n", benchRet); 
+          free(bank);
+          free(reg);
+          free(offset);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          unsigned int pin = 10;
+        
+          int _len_bank0 = 100;
+          struct meson_pmx_bank * bank = (struct meson_pmx_bank *) malloc(_len_bank0*sizeof(struct meson_pmx_bank));
+          for(int _i0 = 0; _i0 < _len_bank0; _i0++) {
+              bank[_i0].first = ((-2 * (next_i()%2)) + 1) * next_i();
+          bank[_i0].reg = ((-2 * (next_i()%2)) + 1) * next_i();
+          bank[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_reg0 = 100;
+          unsigned int * reg = (unsigned int *) malloc(_len_reg0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_reg0; _i0++) {
+            reg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_offset0 = 100;
+          unsigned int * offset = (unsigned int *) malloc(_len_offset0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_offset0; _i0++) {
+            offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = meson_pmx_calc_reg_and_offset(bank,pin,reg,offset);
+          printf("%d\n", benchRet); 
+          free(bank);
+          free(reg);
+          free(offset);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          unsigned int pin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_bank0 = 1;
+          struct meson_pmx_bank * bank = (struct meson_pmx_bank *) malloc(_len_bank0*sizeof(struct meson_pmx_bank));
+          for(int _i0 = 0; _i0 < _len_bank0; _i0++) {
+              bank[_i0].first = ((-2 * (next_i()%2)) + 1) * next_i();
+          bank[_i0].reg = ((-2 * (next_i()%2)) + 1) * next_i();
+          bank[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_reg0 = 1;
+          unsigned int * reg = (unsigned int *) malloc(_len_reg0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_reg0; _i0++) {
+            reg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_offset0 = 1;
+          unsigned int * offset = (unsigned int *) malloc(_len_offset0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_offset0; _i0++) {
+            offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = meson_pmx_calc_reg_and_offset(bank,pin,reg,offset);
           printf("%d\n", benchRet); 
           free(bank);

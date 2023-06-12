@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ bnad_rxq_alloc_uninit(struct bnad *bnad, struct bna_rcb *rcb)
 	unmap_q->type = BNAD_RXBUF_NONE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,26 +83,31 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_bnad0 = 1;
+          int _len_bnad0 = 65025;
           struct bnad * bnad = (struct bnad *) malloc(_len_bnad0*sizeof(struct bnad));
           for(int _i0 = 0; _i0 < _len_bnad0; _i0++) {
-            bnad[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              bnad[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_rcb0 = 1;
+        
+          int _len_rcb0 = 65025;
           struct bna_rcb * rcb = (struct bna_rcb *) malloc(_len_rcb0*sizeof(struct bna_rcb));
           for(int _i0 = 0; _i0 < _len_rcb0; _i0++) {
               int _len_rcb__i0__unmap_q0 = 1;
           rcb[_i0].unmap_q = (struct bnad_rx_unmap_q *) malloc(_len_rcb__i0__unmap_q0*sizeof(struct bnad_rx_unmap_q));
           for(int _j0 = 0; _j0 < _len_rcb__i0__unmap_q0; _j0++) {
-            rcb[_i0].unmap_q->reuse_pi = ((-2 * (next_i()%2)) + 1) * next_i();
-        rcb[_i0].unmap_q->alloc_order = ((-2 * (next_i()%2)) + 1) * next_i();
-        rcb[_i0].unmap_q->type = ((-2 * (next_i()%2)) + 1) * next_i();
-        rcb[_i0].unmap_q->map_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              rcb[_i0].unmap_q->reuse_pi = ((-2 * (next_i()%2)) + 1) * next_i();
+          rcb[_i0].unmap_q->alloc_order = ((-2 * (next_i()%2)) + 1) * next_i();
+          rcb[_i0].unmap_q->type = ((-2 * (next_i()%2)) + 1) * next_i();
+          rcb[_i0].unmap_q->map_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           bnad_rxq_alloc_uninit(bnad,rcb);
           free(bnad);
           for(int _aux = 0; _aux < _len_rcb0; _aux++) {
@@ -116,7 +117,74 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_bnad0 = 100;
+          struct bnad * bnad = (struct bnad *) malloc(_len_bnad0*sizeof(struct bnad));
+          for(int _i0 = 0; _i0 < _len_bnad0; _i0++) {
+              bnad[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rcb0 = 100;
+          struct bna_rcb * rcb = (struct bna_rcb *) malloc(_len_rcb0*sizeof(struct bna_rcb));
+          for(int _i0 = 0; _i0 < _len_rcb0; _i0++) {
+              int _len_rcb__i0__unmap_q0 = 1;
+          rcb[_i0].unmap_q = (struct bnad_rx_unmap_q *) malloc(_len_rcb__i0__unmap_q0*sizeof(struct bnad_rx_unmap_q));
+          for(int _j0 = 0; _j0 < _len_rcb__i0__unmap_q0; _j0++) {
+              rcb[_i0].unmap_q->reuse_pi = ((-2 * (next_i()%2)) + 1) * next_i();
+          rcb[_i0].unmap_q->alloc_order = ((-2 * (next_i()%2)) + 1) * next_i();
+          rcb[_i0].unmap_q->type = ((-2 * (next_i()%2)) + 1) * next_i();
+          rcb[_i0].unmap_q->map_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          bnad_rxq_alloc_uninit(bnad,rcb);
+          free(bnad);
+          for(int _aux = 0; _aux < _len_rcb0; _aux++) {
+          free(rcb[_aux].unmap_q);
+          }
+          free(rcb);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_bnad0 = 1;
+          struct bnad * bnad = (struct bnad *) malloc(_len_bnad0*sizeof(struct bnad));
+          for(int _i0 = 0; _i0 < _len_bnad0; _i0++) {
+              bnad[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rcb0 = 1;
+          struct bna_rcb * rcb = (struct bna_rcb *) malloc(_len_rcb0*sizeof(struct bna_rcb));
+          for(int _i0 = 0; _i0 < _len_rcb0; _i0++) {
+              int _len_rcb__i0__unmap_q0 = 1;
+          rcb[_i0].unmap_q = (struct bnad_rx_unmap_q *) malloc(_len_rcb__i0__unmap_q0*sizeof(struct bnad_rx_unmap_q));
+          for(int _j0 = 0; _j0 < _len_rcb__i0__unmap_q0; _j0++) {
+              rcb[_i0].unmap_q->reuse_pi = ((-2 * (next_i()%2)) + 1) * next_i();
+          rcb[_i0].unmap_q->alloc_order = ((-2 * (next_i()%2)) + 1) * next_i();
+          rcb[_i0].unmap_q->type = ((-2 * (next_i()%2)) + 1) * next_i();
+          rcb[_i0].unmap_q->map_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          bnad_rxq_alloc_uninit(bnad,rcb);
+          free(bnad);
+          for(int _aux = 0; _aux < _len_rcb0; _aux++) {
+          free(rcb[_aux].unmap_q);
+          }
+          free(rcb);
+        
+        break;
+    }
     default:
         usage();
         break;

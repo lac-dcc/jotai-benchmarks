@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ int fjes_hw_epid_is_shared(struct fjes_device_shared_info *share,
 	return value;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,16 +85,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int dest_epid = 100;
+        
           int _len_share0 = 1;
           struct fjes_device_shared_info * share = (struct fjes_device_shared_info *) malloc(_len_share0*sizeof(struct fjes_device_shared_info));
           for(int _i0 = 0; _i0 < _len_share0; _i0++) {
-            share[_i0].epnum = ((-2 * (next_i()%2)) + 1) * next_i();
+              share[_i0].epnum = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_share__i0__ep_status0 = 1;
           share[_i0].ep_status = (int *) malloc(_len_share__i0__ep_status0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_share__i0__ep_status0; _j0++) {
             share[_i0].ep_status[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = fjes_hw_epid_is_shared(share,dest_epid);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_share0; _aux++) {
@@ -107,7 +107,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int dest_epid = 255;
+        
+          int _len_share0 = 65025;
+          struct fjes_device_shared_info * share = (struct fjes_device_shared_info *) malloc(_len_share0*sizeof(struct fjes_device_shared_info));
+          for(int _i0 = 0; _i0 < _len_share0; _i0++) {
+              share[_i0].epnum = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_share__i0__ep_status0 = 1;
+          share[_i0].ep_status = (int *) malloc(_len_share__i0__ep_status0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_share__i0__ep_status0; _j0++) {
+            share[_i0].ep_status[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = fjes_hw_epid_is_shared(share,dest_epid);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_share0; _aux++) {
+          free(share[_aux].ep_status);
+          }
+          free(share);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int dest_epid = 10;
+        
+          int _len_share0 = 100;
+          struct fjes_device_shared_info * share = (struct fjes_device_shared_info *) malloc(_len_share0*sizeof(struct fjes_device_shared_info));
+          for(int _i0 = 0; _i0 < _len_share0; _i0++) {
+              share[_i0].epnum = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_share__i0__ep_status0 = 1;
+          share[_i0].ep_status = (int *) malloc(_len_share__i0__ep_status0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_share__i0__ep_status0; _j0++) {
+            share[_i0].ep_status[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = fjes_hw_epid_is_shared(share,dest_epid);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_share0; _aux++) {
+          free(share[_aux].ep_status);
+          }
+          free(share);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int dest_epid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_share0 = 1;
+          struct fjes_device_shared_info * share = (struct fjes_device_shared_info *) malloc(_len_share0*sizeof(struct fjes_device_shared_info));
+          for(int _i0 = 0; _i0 < _len_share0; _i0++) {
+              share[_i0].epnum = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_share__i0__ep_status0 = 1;
+          share[_i0].ep_status = (int *) malloc(_len_share__i0__ep_status0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_share__i0__ep_status0; _j0++) {
+            share[_i0].ep_status[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = fjes_hw_epid_is_shared(share,dest_epid);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_share0; _aux++) {
+          free(share[_aux].ep_status);
+          }
+          free(share);
+        
+        break;
+    }
     default:
         usage();
         break;

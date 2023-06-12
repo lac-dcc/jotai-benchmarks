@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ __attribute__((used)) static inline float _ccv_icf_run_feature(ccv_icf_feature_t
 	return c;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,18 +83,45 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
           int cols = 100;
+        
           int ch = 100;
+        
           int x = 100;
+        
           int y = 100;
+        
           int _len_feature0 = 1;
           struct TYPE_5__ * feature = (struct TYPE_5__ *) malloc(_len_feature0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_feature0; _i0++) {
-            feature[_i0].beta = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        feature[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+              feature[_i0].beta = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          feature[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_feature__i0__channel0 = 1;
           feature[_i0].channel = (int *) malloc(_len_feature__i0__channel0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_feature__i0__channel0; _j0++) {
@@ -111,15 +135,265 @@ int main(int argc, char *argv[]) {
           int _len_feature__i0__sat0 = 1;
           feature[_i0].sat = (struct TYPE_4__ *) malloc(_len_feature__i0__sat0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_feature__i0__sat0; _j0++) {
-            feature[_i0].sat->x = ((-2 * (next_i()%2)) + 1) * next_i();
-        feature[_i0].sat->y = ((-2 * (next_i()%2)) + 1) * next_i();
+              feature[_i0].sat->x = ((-2 * (next_i()%2)) + 1) * next_i();
+          feature[_i0].sat->y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_ptr0 = 1;
           float * ptr = (float *) malloc(_len_ptr0*sizeof(float));
           for(int _i0 = 0; _i0 < _len_ptr0; _i0++) {
             ptr[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
+        
+          float benchRet = _ccv_icf_run_feature(feature,ptr,cols,ch,x,y);
+          printf("%f\n", benchRet); 
+          for(int _aux = 0; _aux < _len_feature0; _aux++) {
+          free(feature[_aux].channel);
+          }
+          for(int _aux = 0; _aux < _len_feature0; _aux++) {
+          free(feature[_aux].alpha);
+          }
+          for(int _aux = 0; _aux < _len_feature0; _aux++) {
+          free(feature[_aux].sat);
+          }
+          free(feature);
+          free(ptr);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
+          int cols = 255;
+        
+          int ch = 255;
+        
+          int x = 255;
+        
+          int y = 255;
+        
+          int _len_feature0 = 65025;
+          struct TYPE_5__ * feature = (struct TYPE_5__ *) malloc(_len_feature0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_feature0; _i0++) {
+              feature[_i0].beta = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          feature[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_feature__i0__channel0 = 1;
+          feature[_i0].channel = (int *) malloc(_len_feature__i0__channel0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_feature__i0__channel0; _j0++) {
+            feature[_i0].channel[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_feature__i0__alpha0 = 1;
+          feature[_i0].alpha = (float *) malloc(_len_feature__i0__alpha0*sizeof(float));
+          for(int _j0 = 0; _j0 < _len_feature__i0__alpha0; _j0++) {
+            feature[_i0].alpha[_j0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+          int _len_feature__i0__sat0 = 1;
+          feature[_i0].sat = (struct TYPE_4__ *) malloc(_len_feature__i0__sat0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_feature__i0__sat0; _j0++) {
+              feature[_i0].sat->x = ((-2 * (next_i()%2)) + 1) * next_i();
+          feature[_i0].sat->y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_ptr0 = 65025;
+          float * ptr = (float *) malloc(_len_ptr0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_ptr0; _i0++) {
+            ptr[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          float benchRet = _ccv_icf_run_feature(feature,ptr,cols,ch,x,y);
+          printf("%f\n", benchRet); 
+          for(int _aux = 0; _aux < _len_feature0; _aux++) {
+          free(feature[_aux].channel);
+          }
+          for(int _aux = 0; _aux < _len_feature0; _aux++) {
+          free(feature[_aux].alpha);
+          }
+          for(int _aux = 0; _aux < _len_feature0; _aux++) {
+          free(feature[_aux].sat);
+          }
+          free(feature);
+          free(ptr);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
+          int cols = 10;
+        
+          int ch = 10;
+        
+          int x = 10;
+        
+          int y = 10;
+        
+          int _len_feature0 = 100;
+          struct TYPE_5__ * feature = (struct TYPE_5__ *) malloc(_len_feature0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_feature0; _i0++) {
+              feature[_i0].beta = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          feature[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_feature__i0__channel0 = 1;
+          feature[_i0].channel = (int *) malloc(_len_feature__i0__channel0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_feature__i0__channel0; _j0++) {
+            feature[_i0].channel[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_feature__i0__alpha0 = 1;
+          feature[_i0].alpha = (float *) malloc(_len_feature__i0__alpha0*sizeof(float));
+          for(int _j0 = 0; _j0 < _len_feature__i0__alpha0; _j0++) {
+            feature[_i0].alpha[_j0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+          int _len_feature__i0__sat0 = 1;
+          feature[_i0].sat = (struct TYPE_4__ *) malloc(_len_feature__i0__sat0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_feature__i0__sat0; _j0++) {
+              feature[_i0].sat->x = ((-2 * (next_i()%2)) + 1) * next_i();
+          feature[_i0].sat->y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_ptr0 = 100;
+          float * ptr = (float *) malloc(_len_ptr0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_ptr0; _i0++) {
+            ptr[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          float benchRet = _ccv_icf_run_feature(feature,ptr,cols,ch,x,y);
+          printf("%f\n", benchRet); 
+          for(int _aux = 0; _aux < _len_feature0; _aux++) {
+          free(feature[_aux].channel);
+          }
+          for(int _aux = 0; _aux < _len_feature0; _aux++) {
+          free(feature[_aux].alpha);
+          }
+          for(int _aux = 0; _aux < _len_feature0; _aux++) {
+          free(feature[_aux].sat);
+          }
+          free(feature);
+          free(ptr);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
+          int cols = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int ch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_feature0 = 1;
+          struct TYPE_5__ * feature = (struct TYPE_5__ *) malloc(_len_feature0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_feature0; _i0++) {
+              feature[_i0].beta = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          feature[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_feature__i0__channel0 = 1;
+          feature[_i0].channel = (int *) malloc(_len_feature__i0__channel0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_feature__i0__channel0; _j0++) {
+            feature[_i0].channel[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_feature__i0__alpha0 = 1;
+          feature[_i0].alpha = (float *) malloc(_len_feature__i0__alpha0*sizeof(float));
+          for(int _j0 = 0; _j0 < _len_feature__i0__alpha0; _j0++) {
+            feature[_i0].alpha[_j0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+          int _len_feature__i0__sat0 = 1;
+          feature[_i0].sat = (struct TYPE_4__ *) malloc(_len_feature__i0__sat0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_feature__i0__sat0; _j0++) {
+              feature[_i0].sat->x = ((-2 * (next_i()%2)) + 1) * next_i();
+          feature[_i0].sat->y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_ptr0 = 1;
+          float * ptr = (float *) malloc(_len_ptr0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_ptr0; _i0++) {
+            ptr[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
           float benchRet = _ccv_icf_run_feature(feature,ptr,cols,ch,x,y);
           printf("%f\n", benchRet); 
           for(int _aux = 0; _aux < _len_feature0; _aux++) {

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -103,12 +106,6 @@ __attribute__((used)) static void skl_wrpll_get_multipliers(unsigned int p,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -121,25 +118,214 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 38
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
           unsigned int p = 100;
+        
           int _len_p00 = 1;
           unsigned int * p0 = (unsigned int *) malloc(_len_p00*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_p00; _i0++) {
             p0[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_p10 = 1;
           unsigned int * p1 = (unsigned int *) malloc(_len_p10*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_p10; _i0++) {
             p1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_p20 = 1;
           unsigned int * p2 = (unsigned int *) malloc(_len_p20*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_p20; _i0++) {
             p2[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          skl_wrpll_get_multipliers(p,p0,p1,p2);
+          free(p0);
+          free(p1);
+          free(p2);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          unsigned int p = 255;
+        
+          int _len_p00 = 65025;
+          unsigned int * p0 = (unsigned int *) malloc(_len_p00*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_p00; _i0++) {
+            p0[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_p10 = 65025;
+          unsigned int * p1 = (unsigned int *) malloc(_len_p10*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_p10; _i0++) {
+            p1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_p20 = 65025;
+          unsigned int * p2 = (unsigned int *) malloc(_len_p20*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_p20; _i0++) {
+            p2[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          skl_wrpll_get_multipliers(p,p0,p1,p2);
+          free(p0);
+          free(p1);
+          free(p2);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          unsigned int p = 10;
+        
+          int _len_p00 = 100;
+          unsigned int * p0 = (unsigned int *) malloc(_len_p00*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_p00; _i0++) {
+            p0[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_p10 = 100;
+          unsigned int * p1 = (unsigned int *) malloc(_len_p10*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_p10; _i0++) {
+            p1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_p20 = 100;
+          unsigned int * p2 = (unsigned int *) malloc(_len_p20*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_p20; _i0++) {
+            p2[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          skl_wrpll_get_multipliers(p,p0,p1,p2);
+          free(p0);
+          free(p1);
+          free(p2);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          unsigned int p = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_p00 = 1;
+          unsigned int * p0 = (unsigned int *) malloc(_len_p00*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_p00; _i0++) {
+            p0[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_p10 = 1;
+          unsigned int * p1 = (unsigned int *) malloc(_len_p10*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_p10; _i0++) {
+            p1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_p20 = 1;
+          unsigned int * p2 = (unsigned int *) malloc(_len_p20*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_p20; _i0++) {
+            p2[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           skl_wrpll_get_multipliers(p,p0,p1,p2);
           free(p0);
           free(p1);

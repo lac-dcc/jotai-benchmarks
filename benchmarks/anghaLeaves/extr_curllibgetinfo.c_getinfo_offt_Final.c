@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -136,12 +139,6 @@ __attribute__((used)) static CURLcode getinfo_offt(struct Curl_easy *data, CURLI
   return CURLE_OK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -154,34 +151,258 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int info = 100;
+        
           int _len_data0 = 1;
           struct Curl_easy * data = (struct Curl_easy *) malloc(_len_data0*sizeof(struct Curl_easy));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
-            data[_i0].progress.uploaded = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].progress.downloaded = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].progress.dlspeed = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].progress.ulspeed = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].progress.flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].progress.size_dl = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].progress.size_ul = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].progress.timespent = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].progress.t_nslookup = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].progress.t_connect = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].progress.t_appconnect = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].progress.t_pretransfer = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].progress.t_starttransfer = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].progress.t_redirect = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].info.filetime = ((-2 * (next_i()%2)) + 1) * next_i();
+              data[_i0].progress.uploaded = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.downloaded = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.dlspeed = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.ulspeed = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.size_dl = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.size_ul = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.timespent = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.t_nslookup = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.t_connect = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.t_appconnect = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.t_pretransfer = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.t_starttransfer = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.t_redirect = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          data[_i0].info.filetime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_param_offt0 = 1;
           int * param_offt = (int *) malloc(_len_param_offt0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_param_offt0; _i0++) {
             param_offt[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = getinfo_offt(data,info,param_offt);
+          printf("%d\n", benchRet); 
+          free(data);
+          free(param_offt);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int info = 255;
+        
+          int _len_data0 = 65025;
+          struct Curl_easy * data = (struct Curl_easy *) malloc(_len_data0*sizeof(struct Curl_easy));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].progress.uploaded = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.downloaded = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.dlspeed = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.ulspeed = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.size_dl = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.size_ul = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.timespent = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.t_nslookup = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.t_connect = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.t_appconnect = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.t_pretransfer = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.t_starttransfer = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.t_redirect = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          data[_i0].info.filetime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_param_offt0 = 65025;
+          int * param_offt = (int *) malloc(_len_param_offt0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_param_offt0; _i0++) {
+            param_offt[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = getinfo_offt(data,info,param_offt);
+          printf("%d\n", benchRet); 
+          free(data);
+          free(param_offt);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int info = 10;
+        
+          int _len_data0 = 100;
+          struct Curl_easy * data = (struct Curl_easy *) malloc(_len_data0*sizeof(struct Curl_easy));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].progress.uploaded = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.downloaded = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.dlspeed = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.ulspeed = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.size_dl = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.size_ul = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.timespent = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.t_nslookup = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.t_connect = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.t_appconnect = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.t_pretransfer = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.t_starttransfer = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.t_redirect = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          data[_i0].info.filetime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_param_offt0 = 100;
+          int * param_offt = (int *) malloc(_len_param_offt0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_param_offt0; _i0++) {
+            param_offt[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = getinfo_offt(data,info,param_offt);
+          printf("%d\n", benchRet); 
+          free(data);
+          free(param_offt);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int info = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_data0 = 1;
+          struct Curl_easy * data = (struct Curl_easy *) malloc(_len_data0*sizeof(struct Curl_easy));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].progress.uploaded = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.downloaded = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.dlspeed = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.ulspeed = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.size_dl = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.size_ul = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.timespent = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.t_nslookup = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.t_connect = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.t_appconnect = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.t_pretransfer = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.t_starttransfer = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].progress.t_redirect = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          data[_i0].info.filetime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_param_offt0 = 1;
+          int * param_offt = (int *) malloc(_len_param_offt0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_param_offt0; _i0++) {
+            param_offt[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = getinfo_offt(data,info,param_offt);
           printf("%d\n", benchRet); 
           free(data);

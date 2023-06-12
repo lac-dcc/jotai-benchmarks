@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ resource_size_t pcibios_io_space_offset(struct pci_controller *hose)
 	return (unsigned long) hose->io_base_virt - _IO_BASE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_hose0 = 1;
+          int _len_hose0 = 65025;
           struct pci_controller * hose = (struct pci_controller *) malloc(_len_hose0*sizeof(struct pci_controller));
           for(int _i0 = 0; _i0 < _len_hose0; _i0++) {
-            hose[_i0].io_base_virt = ((-2 * (next_i()%2)) + 1) * next_i();
+              hose[_i0].io_base_virt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = pcibios_io_space_offset(hose);
           printf("%ld\n", benchRet); 
           free(hose);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_hose0 = 100;
           struct pci_controller * hose = (struct pci_controller *) malloc(_len_hose0*sizeof(struct pci_controller));
           for(int _i0 = 0; _i0 < _len_hose0; _i0++) {
-            hose[_i0].io_base_virt = ((-2 * (next_i()%2)) + 1) * next_i();
+              hose[_i0].io_base_virt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = pcibios_io_space_offset(hose);
           printf("%ld\n", benchRet); 
           free(hose);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_hose0 = 1;
+          struct pci_controller * hose = (struct pci_controller *) malloc(_len_hose0*sizeof(struct pci_controller));
+          for(int _i0 = 0; _i0 < _len_hose0; _i0++) {
+              hose[_i0].io_base_virt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = pcibios_io_space_offset(hose);
+          printf("%ld\n", benchRet); 
+          free(hose);
+        
+        break;
+    }
     default:
         usage();
         break;

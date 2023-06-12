@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ void ext2fs_update_dynamic_rev(ext2_filsys fs)
 	/* other fields should be left alone */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,20 +90,144 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_fs0 = 65025;
+          struct TYPE_3__ * fs = (struct TYPE_3__ *) malloc(_len_fs0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
+              int _len_fs__i0__super0 = 1;
+          fs[_i0].super = (struct ext2_super_block *) malloc(_len_fs__i0__super0*sizeof(struct ext2_super_block));
+          for(int _j0 = 0; _j0 < _len_fs__i0__super0; _j0++) {
+              fs[_i0].super->s_rev_level = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs[_i0].super->s_inode_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs[_i0].super->s_first_ino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          ext2fs_update_dynamic_rev(fs);
+          for(int _aux = 0; _aux < _len_fs0; _aux++) {
+          free(fs[_aux].super);
+          }
+          free(fs);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_fs0 = 100;
+          struct TYPE_3__ * fs = (struct TYPE_3__ *) malloc(_len_fs0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
+              int _len_fs__i0__super0 = 1;
+          fs[_i0].super = (struct ext2_super_block *) malloc(_len_fs__i0__super0*sizeof(struct ext2_super_block));
+          for(int _j0 = 0; _j0 < _len_fs__i0__super0; _j0++) {
+              fs[_i0].super->s_rev_level = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs[_i0].super->s_inode_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs[_i0].super->s_first_ino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          ext2fs_update_dynamic_rev(fs);
+          for(int _aux = 0; _aux < _len_fs0; _aux++) {
+          free(fs[_aux].super);
+          }
+          free(fs);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int _len_fs0 = 1;
           struct TYPE_3__ * fs = (struct TYPE_3__ *) malloc(_len_fs0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
               int _len_fs__i0__super0 = 1;
           fs[_i0].super = (struct ext2_super_block *) malloc(_len_fs__i0__super0*sizeof(struct ext2_super_block));
           for(int _j0 = 0; _j0 < _len_fs__i0__super0; _j0++) {
-            fs[_i0].super->s_rev_level = ((-2 * (next_i()%2)) + 1) * next_i();
-        fs[_i0].super->s_inode_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        fs[_i0].super->s_first_ino = ((-2 * (next_i()%2)) + 1) * next_i();
+              fs[_i0].super->s_rev_level = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs[_i0].super->s_inode_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs[_i0].super->s_first_ino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           ext2fs_update_dynamic_rev(fs);
           for(int _aux = 0; _aux < _len_fs0; _aux++) {
           free(fs[_aux].super);

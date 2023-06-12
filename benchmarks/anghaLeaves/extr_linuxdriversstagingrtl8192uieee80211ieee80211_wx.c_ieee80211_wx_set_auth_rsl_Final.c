@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -131,12 +133,6 @@ int ieee80211_wx_set_auth(struct ieee80211_device *ieee,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -149,36 +145,206 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_ieee0 = 65025;
+          struct ieee80211_device * ieee = (struct ieee80211_device *) malloc(_len_ieee0*sizeof(struct ieee80211_device));
+          for(int _i0 = 0; _i0 < _len_ieee0; _i0++) {
+              ieee[_i0].tkip_countermeasures = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].drop_unencrypted = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].open_wep = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].auth_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].wpa_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].ieee802_1x = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].privacy_invoked = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_info0 = 65025;
+          struct iw_request_info * info = (struct iw_request_info *) malloc(_len_info0*sizeof(struct iw_request_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_data0 = 65025;
+          struct iw_param * data = (struct iw_param *) malloc(_len_data0*sizeof(struct iw_param));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_extra0 = 65025;
+          char * extra = (char *) malloc(_len_extra0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_extra0; _i0++) {
+            extra[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ieee80211_wx_set_auth(ieee,info,data,extra);
+          printf("%d\n", benchRet); 
+          free(ieee);
+          free(info);
+          free(data);
+          free(extra);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_ieee0 = 100;
+          struct ieee80211_device * ieee = (struct ieee80211_device *) malloc(_len_ieee0*sizeof(struct ieee80211_device));
+          for(int _i0 = 0; _i0 < _len_ieee0; _i0++) {
+              ieee[_i0].tkip_countermeasures = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].drop_unencrypted = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].open_wep = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].auth_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].wpa_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].ieee802_1x = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].privacy_invoked = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_info0 = 100;
+          struct iw_request_info * info = (struct iw_request_info *) malloc(_len_info0*sizeof(struct iw_request_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_data0 = 100;
+          struct iw_param * data = (struct iw_param *) malloc(_len_data0*sizeof(struct iw_param));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_extra0 = 100;
+          char * extra = (char *) malloc(_len_extra0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_extra0; _i0++) {
+            extra[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ieee80211_wx_set_auth(ieee,info,data,extra);
+          printf("%d\n", benchRet); 
+          free(ieee);
+          free(info);
+          free(data);
+          free(extra);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_ieee0 = 1;
           struct ieee80211_device * ieee = (struct ieee80211_device *) malloc(_len_ieee0*sizeof(struct ieee80211_device));
           for(int _i0 = 0; _i0 < _len_ieee0; _i0++) {
-            ieee[_i0].tkip_countermeasures = ((-2 * (next_i()%2)) + 1) * next_i();
-        ieee[_i0].drop_unencrypted = ((-2 * (next_i()%2)) + 1) * next_i();
-        ieee[_i0].open_wep = ((-2 * (next_i()%2)) + 1) * next_i();
-        ieee[_i0].auth_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        ieee[_i0].wpa_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        ieee[_i0].ieee802_1x = ((-2 * (next_i()%2)) + 1) * next_i();
-        ieee[_i0].privacy_invoked = ((-2 * (next_i()%2)) + 1) * next_i();
+              ieee[_i0].tkip_countermeasures = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].drop_unencrypted = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].open_wep = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].auth_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].wpa_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].ieee802_1x = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].privacy_invoked = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_info0 = 1;
           struct iw_request_info * info = (struct iw_request_info *) malloc(_len_info0*sizeof(struct iw_request_info));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_data0 = 1;
           struct iw_param * data = (struct iw_param *) malloc(_len_data0*sizeof(struct iw_param));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
-            data[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].value = ((-2 * (next_i()%2)) + 1) * next_i();
+              data[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_extra0 = 1;
           char * extra = (char *) malloc(_len_extra0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_extra0; _i0++) {
             extra[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = ieee80211_wx_set_auth(ieee,info,data,extra);
           printf("%d\n", benchRet); 
           free(ieee);

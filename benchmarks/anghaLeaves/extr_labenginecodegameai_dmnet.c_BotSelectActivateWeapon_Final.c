@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -112,12 +114,6 @@ int BotSelectActivateWeapon(bot_state_t *bs) {
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -130,9 +126,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 47
+          // dynamic_instructions_O0 : 47
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 30
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 30
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 30
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 30
+          // dynamic_instructions_Oz : 30
+          // ------------------------------- 
+
+          int _len_bs0 = 65025;
+          struct TYPE_3__ * bs = (struct TYPE_3__ *) malloc(_len_bs0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_bs0; _i0++) {
+              int _len_bs__i0__inventory0 = 1;
+          bs[_i0].inventory = (long *) malloc(_len_bs__i0__inventory0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_bs__i0__inventory0; _j0++) {
+            bs[_i0].inventory[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = BotSelectActivateWeapon(bs);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_bs0; _aux++) {
+          free(bs[_aux].inventory);
+          }
+          free(bs);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 47
+          // dynamic_instructions_O0 : 47
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 30
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 30
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 30
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 30
+          // dynamic_instructions_Oz : 30
+          // ------------------------------- 
+
+          int _len_bs0 = 100;
+          struct TYPE_3__ * bs = (struct TYPE_3__ *) malloc(_len_bs0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_bs0; _i0++) {
+              int _len_bs__i0__inventory0 = 1;
+          bs[_i0].inventory = (long *) malloc(_len_bs__i0__inventory0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_bs__i0__inventory0; _j0++) {
+            bs[_i0].inventory[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = BotSelectActivateWeapon(bs);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_bs0; _aux++) {
+          free(bs[_aux].inventory);
+          }
+          free(bs);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 47
+          // dynamic_instructions_O0 : 47
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 30
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 30
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 30
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 30
+          // dynamic_instructions_Oz : 30
+          // ------------------------------- 
+
           int _len_bs0 = 1;
           struct TYPE_3__ * bs = (struct TYPE_3__ *) malloc(_len_bs0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_bs0; _i0++) {
@@ -141,7 +254,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_bs__i0__inventory0; _j0++) {
             bs[_i0].inventory[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = BotSelectActivateWeapon(bs);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_bs0; _aux++) {

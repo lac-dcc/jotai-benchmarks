@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ cmd_find_copy_state(struct cmd_find_state *dst, struct cmd_find_state *src)
 	dst->wp = src->wp;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,27 +79,164 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_dst0 = 65025;
+          struct cmd_find_state * dst = (struct cmd_find_state *) malloc(_len_dst0*sizeof(struct cmd_find_state));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+              dst[_i0].wp = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].w = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].wl = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].s = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_src0 = 65025;
+          struct cmd_find_state * src = (struct cmd_find_state *) malloc(_len_src0*sizeof(struct cmd_find_state));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+              src[_i0].wp = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].w = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].wl = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].s = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cmd_find_copy_state(dst,src);
+          free(dst);
+          free(src);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_dst0 = 100;
+          struct cmd_find_state * dst = (struct cmd_find_state *) malloc(_len_dst0*sizeof(struct cmd_find_state));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+              dst[_i0].wp = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].w = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].wl = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].s = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_src0 = 100;
+          struct cmd_find_state * src = (struct cmd_find_state *) malloc(_len_src0*sizeof(struct cmd_find_state));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+              src[_i0].wp = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].w = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].wl = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].s = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cmd_find_copy_state(dst,src);
+          free(dst);
+          free(src);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_dst0 = 1;
           struct cmd_find_state * dst = (struct cmd_find_state *) malloc(_len_dst0*sizeof(struct cmd_find_state));
           for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
-            dst[_i0].wp = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].w = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].wl = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].s = ((-2 * (next_i()%2)) + 1) * next_i();
+              dst[_i0].wp = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].w = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].wl = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].s = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_src0 = 1;
           struct cmd_find_state * src = (struct cmd_find_state *) malloc(_len_src0*sizeof(struct cmd_find_state));
           for(int _i0 = 0; _i0 < _len_src0; _i0++) {
-            src[_i0].wp = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].w = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].wl = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].s = ((-2 * (next_i()%2)) + 1) * next_i();
+              src[_i0].wp = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].w = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].wl = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].s = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           cmd_find_copy_state(dst,src);
           free(dst);
           free(src);

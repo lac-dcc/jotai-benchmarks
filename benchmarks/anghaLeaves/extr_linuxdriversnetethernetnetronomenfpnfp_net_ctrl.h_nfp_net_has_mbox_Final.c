@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline bool nfp_net_has_mbox(struct nfp_net_tlv_cap
 	return caps->mbox_len >= NFP_NET_CFG_MBOX_SIMPLE_LEN;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_caps0 = 1;
+          int _len_caps0 = 65025;
           struct nfp_net_tlv_caps * caps = (struct nfp_net_tlv_caps *) malloc(_len_caps0*sizeof(struct nfp_net_tlv_caps));
           for(int _i0 = 0; _i0 < _len_caps0; _i0++) {
-            caps[_i0].mbox_len = ((-2 * (next_i()%2)) + 1) * next_i();
+              caps[_i0].mbox_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = nfp_net_has_mbox(caps);
           printf("%d\n", benchRet); 
           free(caps);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_caps0 = 100;
           struct nfp_net_tlv_caps * caps = (struct nfp_net_tlv_caps *) malloc(_len_caps0*sizeof(struct nfp_net_tlv_caps));
           for(int _i0 = 0; _i0 < _len_caps0; _i0++) {
-            caps[_i0].mbox_len = ((-2 * (next_i()%2)) + 1) * next_i();
+              caps[_i0].mbox_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = nfp_net_has_mbox(caps);
           printf("%d\n", benchRet); 
           free(caps);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_caps0 = 1;
+          struct nfp_net_tlv_caps * caps = (struct nfp_net_tlv_caps *) malloc(_len_caps0*sizeof(struct nfp_net_tlv_caps));
+          for(int _i0 = 0; _i0 < _len_caps0; _i0++) {
+              caps[_i0].mbox_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nfp_net_has_mbox(caps);
+          printf("%d\n", benchRet); 
+          free(caps);
+        
+        break;
+    }
     default:
         usage();
         break;

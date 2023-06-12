@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ list_lru_from_memcg_idx(struct list_lru_node *nlru, int idx)
 	return &nlru->lru;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,30 +77,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int idx = 100;
+        
           int _len_nlru0 = 1;
           struct list_lru_node * nlru = (struct list_lru_node *) malloc(_len_nlru0*sizeof(struct list_lru_node));
           for(int _i0 = 0; _i0 < _len_nlru0; _i0++) {
-            nlru[_i0].lru.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              nlru[_i0].lru.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           struct list_lru_one * benchRet = list_lru_from_memcg_idx(nlru,idx);
           printf("%d\n", (*benchRet).dummy);
           free(nlru);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int idx = 255;
+        
+          int _len_nlru0 = 65025;
+          struct list_lru_node * nlru = (struct list_lru_node *) malloc(_len_nlru0*sizeof(struct list_lru_node));
+          for(int _i0 = 0; _i0 < _len_nlru0; _i0++) {
+              nlru[_i0].lru.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          struct list_lru_one * benchRet = list_lru_from_memcg_idx(nlru,idx);
+          printf("%d\n", (*benchRet).dummy);
+          free(nlru);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int idx = 10;
+        
           int _len_nlru0 = 100;
           struct list_lru_node * nlru = (struct list_lru_node *) malloc(_len_nlru0*sizeof(struct list_lru_node));
           for(int _i0 = 0; _i0 < _len_nlru0; _i0++) {
-            nlru[_i0].lru.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              nlru[_i0].lru.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          struct list_lru_one * benchRet = list_lru_from_memcg_idx(nlru,idx);
+          printf("%d\n", (*benchRet).dummy);
+          free(nlru);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_nlru0 = 1;
+          struct list_lru_node * nlru = (struct list_lru_node *) malloc(_len_nlru0*sizeof(struct list_lru_node));
+          for(int _i0 = 0; _i0 < _len_nlru0; _i0++) {
+              nlru[_i0].lru.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           struct list_lru_one * benchRet = list_lru_from_memcg_idx(nlru,idx);
           printf("%d\n", (*benchRet).dummy);
           free(nlru);

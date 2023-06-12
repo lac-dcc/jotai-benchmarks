@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -146,12 +147,6 @@ char *get_opname_string(struct orangefs_kernel_op_s *new_op)
 	return "OP_UNKNOWN?";
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -164,28 +159,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_new_op0 = 1;
+          // static_instructions_O0 : 117
+          // dynamic_instructions_O0 : 117
+          // ------------------------------- 
+          // static_instructions_O1 : 63
+          // dynamic_instructions_O1 : 63
+          // ------------------------------- 
+          // static_instructions_O2 : 86
+          // dynamic_instructions_O2 : 86
+          // ------------------------------- 
+          // static_instructions_O3 : 86
+          // dynamic_instructions_O3 : 86
+          // ------------------------------- 
+          // static_instructions_Ofast : 86
+          // dynamic_instructions_Ofast : 86
+          // ------------------------------- 
+          // static_instructions_Os : 86
+          // dynamic_instructions_Os : 86
+          // ------------------------------- 
+          // static_instructions_Oz : 86
+          // dynamic_instructions_Oz : 86
+          // ------------------------------- 
+
+          int _len_new_op0 = 65025;
           struct orangefs_kernel_op_s * new_op = (struct orangefs_kernel_op_s *) malloc(_len_new_op0*sizeof(struct orangefs_kernel_op_s));
           for(int _i0 = 0; _i0 < _len_new_op0; _i0++) {
-            new_op[_i0].upcall.type = ((-2 * (next_i()%2)) + 1) * next_i();
+              new_op[_i0].upcall.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           char * benchRet = get_opname_string(new_op);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(new_op);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 117
+          // dynamic_instructions_O0 : 117
+          // ------------------------------- 
+          // static_instructions_O1 : 63
+          // dynamic_instructions_O1 : 63
+          // ------------------------------- 
+          // static_instructions_O2 : 86
+          // dynamic_instructions_O2 : 86
+          // ------------------------------- 
+          // static_instructions_O3 : 86
+          // dynamic_instructions_O3 : 86
+          // ------------------------------- 
+          // static_instructions_Ofast : 86
+          // dynamic_instructions_Ofast : 86
+          // ------------------------------- 
+          // static_instructions_Os : 86
+          // dynamic_instructions_Os : 86
+          // ------------------------------- 
+          // static_instructions_Oz : 86
+          // dynamic_instructions_Oz : 86
+          // ------------------------------- 
+
           int _len_new_op0 = 100;
           struct orangefs_kernel_op_s * new_op = (struct orangefs_kernel_op_s *) malloc(_len_new_op0*sizeof(struct orangefs_kernel_op_s));
           for(int _i0 = 0; _i0 < _len_new_op0; _i0++) {
-            new_op[_i0].upcall.type = ((-2 * (next_i()%2)) + 1) * next_i();
+              new_op[_i0].upcall.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          char * benchRet = get_opname_string(new_op);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          free(new_op);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 117
+          // dynamic_instructions_O0 : 117
+          // ------------------------------- 
+          // static_instructions_O1 : 63
+          // dynamic_instructions_O1 : 63
+          // ------------------------------- 
+          // static_instructions_O2 : 86
+          // dynamic_instructions_O2 : 86
+          // ------------------------------- 
+          // static_instructions_O3 : 86
+          // dynamic_instructions_O3 : 86
+          // ------------------------------- 
+          // static_instructions_Ofast : 86
+          // dynamic_instructions_Ofast : 86
+          // ------------------------------- 
+          // static_instructions_Os : 86
+          // dynamic_instructions_Os : 86
+          // ------------------------------- 
+          // static_instructions_Oz : 86
+          // dynamic_instructions_Oz : 86
+          // ------------------------------- 
+
+          int _len_new_op0 = 1;
+          struct orangefs_kernel_op_s * new_op = (struct orangefs_kernel_op_s *) malloc(_len_new_op0*sizeof(struct orangefs_kernel_op_s));
+          for(int _i0 = 0; _i0 < _len_new_op0; _i0++) {
+              new_op[_i0].upcall.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           char * benchRet = get_opname_string(new_op);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(new_op);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -81,12 +83,6 @@ __attribute__((used)) static int ucma_get_qp_type(struct rdma_ucm_create_id *cmd
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,20 +95,142 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_cmd0 = 65025;
+          struct rdma_ucm_create_id * cmd = (struct rdma_ucm_create_id *) malloc(_len_cmd0*sizeof(struct rdma_ucm_create_id));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].ps = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].qp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_qp_type0 = 65025;
+          enum ib_qp_type * qp_type = (enum ib_qp_type *) malloc(_len_qp_type0*sizeof(enum ib_qp_type));
+          for(int _i0 = 0; _i0 < _len_qp_type0; _i0++) {
+            qp_type[_i0] = 0;
+          }
+        
+          int benchRet = ucma_get_qp_type(cmd,qp_type);
+          printf("%d\n", benchRet); 
+          free(cmd);
+          free(qp_type);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_cmd0 = 100;
+          struct rdma_ucm_create_id * cmd = (struct rdma_ucm_create_id *) malloc(_len_cmd0*sizeof(struct rdma_ucm_create_id));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].ps = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].qp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_qp_type0 = 100;
+          enum ib_qp_type * qp_type = (enum ib_qp_type *) malloc(_len_qp_type0*sizeof(enum ib_qp_type));
+          for(int _i0 = 0; _i0 < _len_qp_type0; _i0++) {
+            qp_type[_i0] = 0;
+          }
+        
+          int benchRet = ucma_get_qp_type(cmd,qp_type);
+          printf("%d\n", benchRet); 
+          free(cmd);
+          free(qp_type);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_cmd0 = 1;
           struct rdma_ucm_create_id * cmd = (struct rdma_ucm_create_id *) malloc(_len_cmd0*sizeof(struct rdma_ucm_create_id));
           for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
-            cmd[_i0].ps = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd[_i0].qp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmd[_i0].ps = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].qp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_qp_type0 = 1;
           enum ib_qp_type * qp_type = (enum ib_qp_type *) malloc(_len_qp_type0*sizeof(enum ib_qp_type));
           for(int _i0 = 0; _i0 < _len_qp_type0; _i0++) {
             qp_type[_i0] = 0;
           }
+        
           int benchRet = ucma_get_qp_type(cmd,qp_type);
           printf("%d\n", benchRet); 
           free(cmd);

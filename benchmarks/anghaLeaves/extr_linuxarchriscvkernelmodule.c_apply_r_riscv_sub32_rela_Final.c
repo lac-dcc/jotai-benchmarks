@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ __attribute__((used)) static int apply_r_riscv_sub32_rela(struct module *me, u32
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,16 +83,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long v = 100;
+        
           int _len_me0 = 1;
           struct module * me = (struct module *) malloc(_len_me0*sizeof(struct module));
           for(int _i0 = 0; _i0 < _len_me0; _i0++) {
-            me[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              me[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_location0 = 1;
           long * location = (long *) malloc(_len_location0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_location0; _i0++) {
             location[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = apply_r_riscv_sub32_rela(me,location,v);
           printf("%d\n", benchRet); 
           free(me);
@@ -103,7 +104,81 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long v = 255;
+        
+          int _len_me0 = 65025;
+          struct module * me = (struct module *) malloc(_len_me0*sizeof(struct module));
+          for(int _i0 = 0; _i0 < _len_me0; _i0++) {
+              me[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_location0 = 65025;
+          long * location = (long *) malloc(_len_location0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_location0; _i0++) {
+            location[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = apply_r_riscv_sub32_rela(me,location,v);
+          printf("%d\n", benchRet); 
+          free(me);
+          free(location);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long v = 10;
+        
+          int _len_me0 = 100;
+          struct module * me = (struct module *) malloc(_len_me0*sizeof(struct module));
+          for(int _i0 = 0; _i0 < _len_me0; _i0++) {
+              me[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_location0 = 100;
+          long * location = (long *) malloc(_len_location0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_location0; _i0++) {
+            location[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = apply_r_riscv_sub32_rela(me,location,v);
+          printf("%d\n", benchRet); 
+          free(me);
+          free(location);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long v = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_me0 = 1;
+          struct module * me = (struct module *) malloc(_len_me0*sizeof(struct module));
+          for(int _i0 = 0; _i0 < _len_me0; _i0++) {
+              me[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_location0 = 1;
+          long * location = (long *) malloc(_len_location0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_location0; _i0++) {
+            location[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = apply_r_riscv_sub32_rela(me,location,v);
+          printf("%d\n", benchRet); 
+          free(me);
+          free(location);
+        
+        break;
+    }
     default:
         usage();
         break;

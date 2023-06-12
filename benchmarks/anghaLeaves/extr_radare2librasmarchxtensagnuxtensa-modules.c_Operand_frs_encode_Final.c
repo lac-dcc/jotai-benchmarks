@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ Operand_frs_encode (uint32 *valp)
   return error;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_valp0 = 1;
+          int _len_valp0 = 65025;
           int * valp = (int *) malloc(_len_valp0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_valp0; _i0++) {
             valp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = Operand_frs_encode(valp);
           printf("%d\n", benchRet); 
           free(valp);
@@ -104,13 +100,28 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_valp0; _i0++) {
             valp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = Operand_frs_encode(valp);
           printf("%d\n", benchRet); 
           free(valp);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_valp0 = 1;
+          int * valp = (int *) malloc(_len_valp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_valp0; _i0++) {
+            valp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = Operand_frs_encode(valp);
+          printf("%d\n", benchRet); 
+          free(valp);
+        
+        break;
+    }
     default:
         usage();
         break;

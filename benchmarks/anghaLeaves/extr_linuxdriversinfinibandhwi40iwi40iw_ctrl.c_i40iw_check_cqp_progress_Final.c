@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ void i40iw_check_cqp_progress(struct i40iw_cqp_timeout *cqp_timeout, struct i40i
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,15 +83,150 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_cqp_timeout0 = 65025;
+          struct i40iw_cqp_timeout * cqp_timeout = (struct i40iw_cqp_timeout *) malloc(_len_cqp_timeout0*sizeof(struct i40iw_cqp_timeout));
+          for(int _i0 = 0; _i0 < _len_cqp_timeout0; _i0++) {
+              cqp_timeout[_i0].compl_cqp_cmds = ((-2 * (next_i()%2)) + 1) * next_i();
+          cqp_timeout[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dev0 = 65025;
+          struct i40iw_sc_dev * dev = (struct i40iw_sc_dev *) malloc(_len_dev0*sizeof(struct i40iw_sc_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              int _len_dev__i0__cqp_cmd_stats0 = 1;
+          dev[_i0].cqp_cmd_stats = (long *) malloc(_len_dev__i0__cqp_cmd_stats0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_dev__i0__cqp_cmd_stats0; _j0++) {
+            dev[_i0].cqp_cmd_stats[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          i40iw_check_cqp_progress(cqp_timeout,dev);
+          free(cqp_timeout);
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(dev[_aux].cqp_cmd_stats);
+          }
+          free(dev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_cqp_timeout0 = 100;
+          struct i40iw_cqp_timeout * cqp_timeout = (struct i40iw_cqp_timeout *) malloc(_len_cqp_timeout0*sizeof(struct i40iw_cqp_timeout));
+          for(int _i0 = 0; _i0 < _len_cqp_timeout0; _i0++) {
+              cqp_timeout[_i0].compl_cqp_cmds = ((-2 * (next_i()%2)) + 1) * next_i();
+          cqp_timeout[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dev0 = 100;
+          struct i40iw_sc_dev * dev = (struct i40iw_sc_dev *) malloc(_len_dev0*sizeof(struct i40iw_sc_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              int _len_dev__i0__cqp_cmd_stats0 = 1;
+          dev[_i0].cqp_cmd_stats = (long *) malloc(_len_dev__i0__cqp_cmd_stats0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_dev__i0__cqp_cmd_stats0; _j0++) {
+            dev[_i0].cqp_cmd_stats[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          i40iw_check_cqp_progress(cqp_timeout,dev);
+          free(cqp_timeout);
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(dev[_aux].cqp_cmd_stats);
+          }
+          free(dev);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int _len_cqp_timeout0 = 1;
           struct i40iw_cqp_timeout * cqp_timeout = (struct i40iw_cqp_timeout *) malloc(_len_cqp_timeout0*sizeof(struct i40iw_cqp_timeout));
           for(int _i0 = 0; _i0 < _len_cqp_timeout0; _i0++) {
-            cqp_timeout[_i0].compl_cqp_cmds = ((-2 * (next_i()%2)) + 1) * next_i();
-        cqp_timeout[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+              cqp_timeout[_i0].compl_cqp_cmds = ((-2 * (next_i()%2)) + 1) * next_i();
+          cqp_timeout[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_dev0 = 1;
           struct i40iw_sc_dev * dev = (struct i40iw_sc_dev *) malloc(_len_dev0*sizeof(struct i40iw_sc_dev));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
@@ -104,7 +235,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_dev__i0__cqp_cmd_stats0; _j0++) {
             dev[_i0].cqp_cmd_stats[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           i40iw_check_cqp_progress(cqp_timeout,dev);
           free(cqp_timeout);
           for(int _aux = 0; _aux < _len_dev0; _aux++) {

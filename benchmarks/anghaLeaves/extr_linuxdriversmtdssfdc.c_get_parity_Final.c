@@ -31,6 +31,7 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            big-arr-10x\n\
+       1            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static int get_parity(int number, int size)
 	return parity;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,11 +80,72 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // big-arr-10x
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 162
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 89
+          // ------------------------------- 
+          // static_instructions_O2 : 49
+          // dynamic_instructions_O2 : 78
+          // ------------------------------- 
+          // static_instructions_O3 : 49
+          // dynamic_instructions_O3 : 78
+          // ------------------------------- 
+          // static_instructions_Ofast : 49
+          // dynamic_instructions_Ofast : 78
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 89
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 90
+          // ------------------------------- 
+
           int number = 10;
+        
           int size = 10;
+        
+          int benchRet = get_parity(number,size);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int number = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = get_parity(number,size);
           printf("%d\n", benchRet); 
         

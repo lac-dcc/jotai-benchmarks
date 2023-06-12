@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -79,12 +80,6 @@ __attribute__((used)) static bool wm5110_is_rev_b_adsp_memory(unsigned int reg)
 		return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,28 +92,136 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 39
+          // ------------------------------- 
+          // static_instructions_O1 : 64
+          // dynamic_instructions_O1 : 64
+          // ------------------------------- 
+          // static_instructions_O2 : 40
+          // dynamic_instructions_O2 : 40
+          // ------------------------------- 
+          // static_instructions_O3 : 40
+          // dynamic_instructions_O3 : 40
+          // ------------------------------- 
+          // static_instructions_Ofast : 40
+          // dynamic_instructions_Ofast : 40
+          // ------------------------------- 
+          // static_instructions_Os : 40
+          // dynamic_instructions_Os : 40
+          // ------------------------------- 
+          // static_instructions_Oz : 40
+          // dynamic_instructions_Oz : 40
+          // ------------------------------- 
+
           unsigned int reg = 100;
+        
           int benchRet = wm5110_is_rev_b_adsp_memory(reg);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 39
+          // ------------------------------- 
+          // static_instructions_O1 : 64
+          // dynamic_instructions_O1 : 64
+          // ------------------------------- 
+          // static_instructions_O2 : 40
+          // dynamic_instructions_O2 : 40
+          // ------------------------------- 
+          // static_instructions_O3 : 40
+          // dynamic_instructions_O3 : 40
+          // ------------------------------- 
+          // static_instructions_Ofast : 40
+          // dynamic_instructions_Ofast : 40
+          // ------------------------------- 
+          // static_instructions_Os : 40
+          // dynamic_instructions_Os : 40
+          // ------------------------------- 
+          // static_instructions_Oz : 40
+          // dynamic_instructions_Oz : 40
+          // ------------------------------- 
+
           unsigned int reg = 255;
+        
           int benchRet = wm5110_is_rev_b_adsp_memory(reg);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 39
+          // ------------------------------- 
+          // static_instructions_O1 : 64
+          // dynamic_instructions_O1 : 64
+          // ------------------------------- 
+          // static_instructions_O2 : 40
+          // dynamic_instructions_O2 : 40
+          // ------------------------------- 
+          // static_instructions_O3 : 40
+          // dynamic_instructions_O3 : 40
+          // ------------------------------- 
+          // static_instructions_Ofast : 40
+          // dynamic_instructions_Ofast : 40
+          // ------------------------------- 
+          // static_instructions_Os : 40
+          // dynamic_instructions_Os : 40
+          // ------------------------------- 
+          // static_instructions_Oz : 40
+          // dynamic_instructions_Oz : 40
+          // ------------------------------- 
+
           unsigned int reg = 10;
+        
+          int benchRet = wm5110_is_rev_b_adsp_memory(reg);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 71
+          // dynamic_instructions_O0 : 71
+          // ------------------------------- 
+          // static_instructions_O1 : 64
+          // dynamic_instructions_O1 : 64
+          // ------------------------------- 
+          // static_instructions_O2 : 40
+          // dynamic_instructions_O2 : 40
+          // ------------------------------- 
+          // static_instructions_O3 : 40
+          // dynamic_instructions_O3 : 40
+          // ------------------------------- 
+          // static_instructions_Ofast : 40
+          // dynamic_instructions_Ofast : 40
+          // ------------------------------- 
+          // static_instructions_Os : 40
+          // dynamic_instructions_Os : 40
+          // ------------------------------- 
+          // static_instructions_Oz : 40
+          // dynamic_instructions_Oz : 40
+          // ------------------------------- 
+
+          unsigned int reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = wm5110_is_rev_b_adsp_memory(reg);
           printf("%d\n", benchRet); 
         

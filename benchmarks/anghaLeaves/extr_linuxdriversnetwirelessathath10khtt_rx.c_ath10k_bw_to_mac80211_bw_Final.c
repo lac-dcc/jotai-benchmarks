@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -83,12 +84,6 @@ __attribute__((used)) static inline u8 ath10k_bw_to_mac80211_bw(u8 bw)
 	return ret;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,6 +100,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int bw = 100;
+        
           int benchRet = ath10k_bw_to_mac80211_bw(bw);
           printf("%d\n", benchRet); 
         
@@ -114,6 +110,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int bw = 255;
+        
           int benchRet = ath10k_bw_to_mac80211_bw(bw);
           printf("%d\n", benchRet); 
         
@@ -123,12 +120,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int bw = 10;
+        
           int benchRet = ath10k_bw_to_mac80211_bw(bw);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int bw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = ath10k_bw_to_mac80211_bw(bw);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

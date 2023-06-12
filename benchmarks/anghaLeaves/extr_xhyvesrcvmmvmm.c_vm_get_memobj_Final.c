@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -85,12 +88,6 @@ vm_get_memobj(struct vm *vm, uint64_t gpa, size_t len,
 	return (EINVAL);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,31 +100,61 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           long gpa = 100;
+        
           unsigned long len = 100;
+        
           int _len_vm0 = 1;
           struct vm * vm = (struct vm *) malloc(_len_vm0*sizeof(struct vm));
           for(int _i0 = 0; _i0 < _len_vm0; _i0++) {
-            vm[_i0].num_mem_segs = ((-2 * (next_i()%2)) + 1) * next_i();
+              vm[_i0].num_mem_segs = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_vm__i0__mem_segs0 = 1;
           vm[_i0].mem_segs = (struct TYPE_2__ *) malloc(_len_vm__i0__mem_segs0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_vm__i0__mem_segs0; _j0++) {
-            vm[_i0].mem_segs->gpa = ((-2 * (next_i()%2)) + 1) * next_i();
-        vm[_i0].mem_segs->len = ((-2 * (next_i()%2)) + 1) * next_i();
+              vm[_i0].mem_segs->gpa = ((-2 * (next_i()%2)) + 1) * next_i();
+          vm[_i0].mem_segs->len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_offset0 = 1;
           long * offset = (long *) malloc(_len_offset0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_offset0; _i0++) {
             offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_object0 = 1;
           void ** object = (void **) malloc(_len_object0*sizeof(void *));
           for(int _i0 = 0; _i0 < _len_object0; _i0++) {
           }
+        
           int benchRet = vm_get_memobj(vm,gpa,len,offset,object);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_vm0; _aux++) {
@@ -136,7 +163,213 @@ int main(int argc, char *argv[]) {
           free(vm);
           free(offset);
           for(int i1 = 0; i1 < _len_object0; i1++) {
-            int _len_object1 = 1;
+              }
+          free(object);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          long gpa = 255;
+        
+          unsigned long len = 255;
+        
+          int _len_vm0 = 65025;
+          struct vm * vm = (struct vm *) malloc(_len_vm0*sizeof(struct vm));
+          for(int _i0 = 0; _i0 < _len_vm0; _i0++) {
+              vm[_i0].num_mem_segs = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_vm__i0__mem_segs0 = 1;
+          vm[_i0].mem_segs = (struct TYPE_2__ *) malloc(_len_vm__i0__mem_segs0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_vm__i0__mem_segs0; _j0++) {
+              vm[_i0].mem_segs->gpa = ((-2 * (next_i()%2)) + 1) * next_i();
+          vm[_i0].mem_segs->len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_offset0 = 65025;
+          long * offset = (long *) malloc(_len_offset0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_offset0; _i0++) {
+            offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_object0 = 65025;
+          void ** object = (void **) malloc(_len_object0*sizeof(void *));
+          for(int _i0 = 0; _i0 < _len_object0; _i0++) {
+          }
+        
+          int benchRet = vm_get_memobj(vm,gpa,len,offset,object);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vm0; _aux++) {
+          free(vm[_aux].mem_segs);
+          }
+          free(vm);
+          free(offset);
+          for(int i1 = 0; i1 < _len_object0; i1++) {
+              }
+          free(object);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          long gpa = 10;
+        
+          unsigned long len = 10;
+        
+          int _len_vm0 = 100;
+          struct vm * vm = (struct vm *) malloc(_len_vm0*sizeof(struct vm));
+          for(int _i0 = 0; _i0 < _len_vm0; _i0++) {
+              vm[_i0].num_mem_segs = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_vm__i0__mem_segs0 = 1;
+          vm[_i0].mem_segs = (struct TYPE_2__ *) malloc(_len_vm__i0__mem_segs0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_vm__i0__mem_segs0; _j0++) {
+              vm[_i0].mem_segs->gpa = ((-2 * (next_i()%2)) + 1) * next_i();
+          vm[_i0].mem_segs->len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_offset0 = 100;
+          long * offset = (long *) malloc(_len_offset0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_offset0; _i0++) {
+            offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_object0 = 100;
+          void ** object = (void **) malloc(_len_object0*sizeof(void *));
+          for(int _i0 = 0; _i0 < _len_object0; _i0++) {
+          }
+        
+          int benchRet = vm_get_memobj(vm,gpa,len,offset,object);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vm0; _aux++) {
+          free(vm[_aux].mem_segs);
+          }
+          free(vm);
+          free(offset);
+          for(int i1 = 0; i1 < _len_object0; i1++) {
+              }
+          free(object);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          long gpa = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_vm0 = 1;
+          struct vm * vm = (struct vm *) malloc(_len_vm0*sizeof(struct vm));
+          for(int _i0 = 0; _i0 < _len_vm0; _i0++) {
+              vm[_i0].num_mem_segs = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_vm__i0__mem_segs0 = 1;
+          vm[_i0].mem_segs = (struct TYPE_2__ *) malloc(_len_vm__i0__mem_segs0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_vm__i0__mem_segs0; _j0++) {
+              vm[_i0].mem_segs->gpa = ((-2 * (next_i()%2)) + 1) * next_i();
+          vm[_i0].mem_segs->len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_offset0 = 1;
+          long * offset = (long *) malloc(_len_offset0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_offset0; _i0++) {
+            offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_object0 = 1;
+          void ** object = (void **) malloc(_len_object0*sizeof(void *));
+          for(int _i0 = 0; _i0 < _len_object0; _i0++) {
+          }
+        
+          int benchRet = vm_get_memobj(vm,gpa,len,offset,object);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vm0; _aux++) {
+          free(vm[_aux].mem_segs);
+          }
+          free(vm);
+          free(offset);
+          for(int i1 = 0; i1 < _len_object0; i1++) {
               }
           free(object);
         

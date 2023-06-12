@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ __attribute__((used)) static void ifilter_parameters_from_codecpar(InputFilter *
     ifilter->sample_aspect_ratio    = par->sample_aspect_ratio;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,31 +87,176 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_ifilter0 = 65025;
+          struct TYPE_5__ * ifilter = (struct TYPE_5__ *) malloc(_len_ifilter0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_ifilter0; _i0++) {
+              ifilter[_i0].sample_aspect_ratio = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifilter[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifilter[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifilter[_i0].channel_layout = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifilter[_i0].channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifilter[_i0].sample_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifilter[_i0].format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_par0 = 65025;
+          struct TYPE_6__ * par = (struct TYPE_6__ *) malloc(_len_par0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_par0; _i0++) {
+              par[_i0].sample_aspect_ratio = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].channel_layout = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].sample_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ifilter_parameters_from_codecpar(ifilter,par);
+          free(ifilter);
+          free(par);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_ifilter0 = 100;
+          struct TYPE_5__ * ifilter = (struct TYPE_5__ *) malloc(_len_ifilter0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_ifilter0; _i0++) {
+              ifilter[_i0].sample_aspect_ratio = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifilter[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifilter[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifilter[_i0].channel_layout = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifilter[_i0].channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifilter[_i0].sample_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifilter[_i0].format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_par0 = 100;
+          struct TYPE_6__ * par = (struct TYPE_6__ *) malloc(_len_par0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_par0; _i0++) {
+              par[_i0].sample_aspect_ratio = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].channel_layout = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].sample_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ifilter_parameters_from_codecpar(ifilter,par);
+          free(ifilter);
+          free(par);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_ifilter0 = 1;
           struct TYPE_5__ * ifilter = (struct TYPE_5__ *) malloc(_len_ifilter0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_ifilter0; _i0++) {
-            ifilter[_i0].sample_aspect_ratio = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifilter[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifilter[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifilter[_i0].channel_layout = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifilter[_i0].channels = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifilter[_i0].sample_rate = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifilter[_i0].format = ((-2 * (next_i()%2)) + 1) * next_i();
+              ifilter[_i0].sample_aspect_ratio = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifilter[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifilter[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifilter[_i0].channel_layout = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifilter[_i0].channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifilter[_i0].sample_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifilter[_i0].format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_par0 = 1;
           struct TYPE_6__ * par = (struct TYPE_6__ *) malloc(_len_par0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_par0; _i0++) {
-            par[_i0].sample_aspect_ratio = ((-2 * (next_i()%2)) + 1) * next_i();
-        par[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
-        par[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
-        par[_i0].channel_layout = ((-2 * (next_i()%2)) + 1) * next_i();
-        par[_i0].channels = ((-2 * (next_i()%2)) + 1) * next_i();
-        par[_i0].sample_rate = ((-2 * (next_i()%2)) + 1) * next_i();
-        par[_i0].format = ((-2 * (next_i()%2)) + 1) * next_i();
+              par[_i0].sample_aspect_ratio = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].channel_layout = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].sample_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ifilter_parameters_from_codecpar(ifilter,par);
           free(ifilter);
           free(par);

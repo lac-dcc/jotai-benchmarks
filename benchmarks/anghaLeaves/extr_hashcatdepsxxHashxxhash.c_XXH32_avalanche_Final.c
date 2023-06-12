@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ __attribute__((used)) static U32 XXH32_avalanche(U32 h32)
     return(h32);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,6 +86,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int h32 = 100;
+        
           int benchRet = XXH32_avalanche(h32);
           printf("%d\n", benchRet); 
         
@@ -100,6 +96,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int h32 = 255;
+        
           int benchRet = XXH32_avalanche(h32);
           printf("%d\n", benchRet); 
         
@@ -109,12 +106,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int h32 = 10;
+        
           int benchRet = XXH32_avalanche(h32);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int h32 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = XXH32_avalanche(h32);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

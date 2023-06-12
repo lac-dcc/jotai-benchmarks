@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +79,6 @@ htab_set_functions_ex (htab_t htab, htab_hash hash_f, htab_eq eq_f,
   htab->free_with_arg_f = free_f;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,27 +95,130 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int hash_f = 100;
+        
           int eq_f = 100;
+        
           int del_f = 100;
+        
           int alloc_arg = 100;
+        
           int alloc_f = 100;
+        
           int free_f = 100;
+        
           int _len_htab0 = 1;
           struct TYPE_3__ * htab = (struct TYPE_3__ *) malloc(_len_htab0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_htab0; _i0++) {
-            htab[_i0].free_with_arg_f = ((-2 * (next_i()%2)) + 1) * next_i();
-        htab[_i0].alloc_with_arg_f = ((-2 * (next_i()%2)) + 1) * next_i();
-        htab[_i0].alloc_arg = ((-2 * (next_i()%2)) + 1) * next_i();
-        htab[_i0].del_f = ((-2 * (next_i()%2)) + 1) * next_i();
-        htab[_i0].eq_f = ((-2 * (next_i()%2)) + 1) * next_i();
-        htab[_i0].hash_f = ((-2 * (next_i()%2)) + 1) * next_i();
+              htab[_i0].free_with_arg_f = ((-2 * (next_i()%2)) + 1) * next_i();
+          htab[_i0].alloc_with_arg_f = ((-2 * (next_i()%2)) + 1) * next_i();
+          htab[_i0].alloc_arg = ((-2 * (next_i()%2)) + 1) * next_i();
+          htab[_i0].del_f = ((-2 * (next_i()%2)) + 1) * next_i();
+          htab[_i0].eq_f = ((-2 * (next_i()%2)) + 1) * next_i();
+          htab[_i0].hash_f = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           htab_set_functions_ex(htab,hash_f,eq_f,del_f,alloc_arg,alloc_f,free_f);
           free(htab);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int hash_f = 255;
+        
+          int eq_f = 255;
+        
+          int del_f = 255;
+        
+          int alloc_arg = 255;
+        
+          int alloc_f = 255;
+        
+          int free_f = 255;
+        
+          int _len_htab0 = 65025;
+          struct TYPE_3__ * htab = (struct TYPE_3__ *) malloc(_len_htab0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_htab0; _i0++) {
+              htab[_i0].free_with_arg_f = ((-2 * (next_i()%2)) + 1) * next_i();
+          htab[_i0].alloc_with_arg_f = ((-2 * (next_i()%2)) + 1) * next_i();
+          htab[_i0].alloc_arg = ((-2 * (next_i()%2)) + 1) * next_i();
+          htab[_i0].del_f = ((-2 * (next_i()%2)) + 1) * next_i();
+          htab[_i0].eq_f = ((-2 * (next_i()%2)) + 1) * next_i();
+          htab[_i0].hash_f = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          htab_set_functions_ex(htab,hash_f,eq_f,del_f,alloc_arg,alloc_f,free_f);
+          free(htab);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int hash_f = 10;
+        
+          int eq_f = 10;
+        
+          int del_f = 10;
+        
+          int alloc_arg = 10;
+        
+          int alloc_f = 10;
+        
+          int free_f = 10;
+        
+          int _len_htab0 = 100;
+          struct TYPE_3__ * htab = (struct TYPE_3__ *) malloc(_len_htab0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_htab0; _i0++) {
+              htab[_i0].free_with_arg_f = ((-2 * (next_i()%2)) + 1) * next_i();
+          htab[_i0].alloc_with_arg_f = ((-2 * (next_i()%2)) + 1) * next_i();
+          htab[_i0].alloc_arg = ((-2 * (next_i()%2)) + 1) * next_i();
+          htab[_i0].del_f = ((-2 * (next_i()%2)) + 1) * next_i();
+          htab[_i0].eq_f = ((-2 * (next_i()%2)) + 1) * next_i();
+          htab[_i0].hash_f = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          htab_set_functions_ex(htab,hash_f,eq_f,del_f,alloc_arg,alloc_f,free_f);
+          free(htab);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int hash_f = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int eq_f = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int del_f = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int alloc_arg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int alloc_f = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int free_f = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_htab0 = 1;
+          struct TYPE_3__ * htab = (struct TYPE_3__ *) malloc(_len_htab0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_htab0; _i0++) {
+              htab[_i0].free_with_arg_f = ((-2 * (next_i()%2)) + 1) * next_i();
+          htab[_i0].alloc_with_arg_f = ((-2 * (next_i()%2)) + 1) * next_i();
+          htab[_i0].alloc_arg = ((-2 * (next_i()%2)) + 1) * next_i();
+          htab[_i0].del_f = ((-2 * (next_i()%2)) + 1) * next_i();
+          htab[_i0].eq_f = ((-2 * (next_i()%2)) + 1) * next_i();
+          htab[_i0].hash_f = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          htab_set_functions_ex(htab,hash_f,eq_f,del_f,alloc_arg,alloc_f,free_f);
+          free(htab);
+        
+        break;
+    }
     default:
         usage();
         break;

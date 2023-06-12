@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -91,12 +93,6 @@ __attribute__((used)) static void ScrollList_Init( menulist_s *l )
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -109,33 +105,93 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_l0 = 1;
+          int _len_l0 = 65025;
           struct TYPE_5__ * l = (struct TYPE_5__ *) malloc(_len_l0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_l0; _i0++) {
-            l[_i0].columns = ((-2 * (next_i()%2)) + 1) * next_i();
-        l[_i0].separation = ((-2 * (next_i()%2)) + 1) * next_i();
-        l[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
-        l[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
-        l[_i0].generic.left = ((-2 * (next_i()%2)) + 1) * next_i();
-        l[_i0].generic.x = ((-2 * (next_i()%2)) + 1) * next_i();
-        l[_i0].generic.right = ((-2 * (next_i()%2)) + 1) * next_i();
-        l[_i0].generic.flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        l[_i0].generic.y = ((-2 * (next_i()%2)) + 1) * next_i();
-        l[_i0].generic.bottom = ((-2 * (next_i()%2)) + 1) * next_i();
-        l[_i0].generic.top = ((-2 * (next_i()%2)) + 1) * next_i();
-        l[_i0].top = ((-2 * (next_i()%2)) + 1) * next_i();
-        l[_i0].curvalue = ((-2 * (next_i()%2)) + 1) * next_i();
-        l[_i0].oldvalue = ((-2 * (next_i()%2)) + 1) * next_i();
+              l[_i0].columns = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].separation = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].generic.left = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].generic.x = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].generic.right = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].generic.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].generic.y = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].generic.bottom = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].generic.top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          l[_i0].top = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].curvalue = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].oldvalue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ScrollList_Init(l);
           free(l);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_l0 = 100;
+          struct TYPE_5__ * l = (struct TYPE_5__ *) malloc(_len_l0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_l0; _i0++) {
+              l[_i0].columns = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].separation = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].generic.left = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].generic.x = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].generic.right = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].generic.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].generic.y = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].generic.bottom = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].generic.top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          l[_i0].top = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].curvalue = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].oldvalue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ScrollList_Init(l);
+          free(l);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_l0 = 1;
+          struct TYPE_5__ * l = (struct TYPE_5__ *) malloc(_len_l0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_l0; _i0++) {
+              l[_i0].columns = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].separation = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].generic.left = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].generic.x = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].generic.right = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].generic.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].generic.y = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].generic.bottom = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].generic.top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          l[_i0].top = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].curvalue = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].oldvalue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ScrollList_Init(l);
+          free(l);
+        
+        break;
+    }
     default:
         usage();
         break;

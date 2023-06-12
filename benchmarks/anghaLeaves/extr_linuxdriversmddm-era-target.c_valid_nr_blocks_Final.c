@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static bool valid_nr_blocks(dm_block_t n)
 	return n < (1ull << 31);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,6 +83,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long long n = 100;
+        
           int benchRet = valid_nr_blocks(n);
           printf("%d\n", benchRet); 
         
@@ -97,6 +93,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long long n = 255;
+        
           int benchRet = valid_nr_blocks(n);
           printf("%d\n", benchRet); 
         
@@ -106,12 +103,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long long n = 10;
+        
           int benchRet = valid_nr_blocks(n);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long long n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = valid_nr_blocks(n);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

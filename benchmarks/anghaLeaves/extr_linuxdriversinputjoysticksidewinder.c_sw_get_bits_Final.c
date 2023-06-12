@@ -73,12 +73,6 @@ __attribute__((used)) static __u64 sw_get_bits(unsigned char *buf, int pos, int 
 	return data;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,20 +89,23 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int pos = 10;
+        
           int num = 10;
+        
           char bits = 10;
+        
           int _len_buf0 = 100;
           unsigned char * buf = (unsigned char *) malloc(_len_buf0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
             buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = sw_get_bits(buf,pos,num,bits);
           printf("%d\n", benchRet); 
           free(buf);
         
         break;
     }
-
     default:
         usage();
         break;

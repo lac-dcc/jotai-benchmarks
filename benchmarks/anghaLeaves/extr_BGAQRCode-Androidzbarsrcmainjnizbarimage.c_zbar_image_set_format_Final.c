@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ void zbar_image_set_format (zbar_image_t *img,
     img->format = fmt;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,31 +82,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long fmt = 100;
+        
           int _len_img0 = 1;
           struct TYPE_3__ * img = (struct TYPE_3__ *) malloc(_len_img0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_img0; _i0++) {
-            img[_i0].format = ((-2 * (next_i()%2)) + 1) * next_i();
+              img[_i0].format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          zbar_image_set_format(img,fmt);
+          free(img);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned long fmt = 255;
+        
+          int _len_img0 = 65025;
+          struct TYPE_3__ * img = (struct TYPE_3__ *) malloc(_len_img0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_img0; _i0++) {
+              img[_i0].format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           zbar_image_set_format(img,fmt);
           free(img);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned long fmt = 10;
+        
           int _len_img0 = 100;
           struct TYPE_3__ * img = (struct TYPE_3__ *) malloc(_len_img0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_img0; _i0++) {
-            img[_i0].format = ((-2 * (next_i()%2)) + 1) * next_i();
+              img[_i0].format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           zbar_image_set_format(img,fmt);
           free(img);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_img0 = 1;
+          struct TYPE_3__ * img = (struct TYPE_3__ *) malloc(_len_img0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_img0; _i0++) {
+              img[_i0].format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          zbar_image_set_format(img,fmt);
+          free(img);
+        
+        break;
+    }
     default:
         usage();
         break;

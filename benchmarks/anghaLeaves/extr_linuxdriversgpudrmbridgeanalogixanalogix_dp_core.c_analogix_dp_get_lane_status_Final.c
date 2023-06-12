@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static unsigned char analogix_dp_get_lane_status(u8 link_s
 	return (link_value >> shift) & 0xf;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,15 +76,81 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int lane = 255;
+        
+          int _len_link_status0 = 65025;
+          int * link_status = (int *) malloc(_len_link_status0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_link_status0; _i0++) {
+            link_status[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned char benchRet = analogix_dp_get_lane_status(link_status,lane);
+          printf("%c\n", (benchRet %26) + 'a'); 
+          free(link_status);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int lane = 10;
+        
           int _len_link_status0 = 100;
           int * link_status = (int *) malloc(_len_link_status0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_link_status0; _i0++) {
             link_status[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned char benchRet = analogix_dp_get_lane_status(link_status,lane);
           printf("%c\n", (benchRet %26) + 'a'); 
           free(link_status);

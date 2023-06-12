@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +76,6 @@ __attribute__((used)) static inline BOOL is_hierarchical_scheme(URL_SCHEME type)
            type == URL_SCHEME_RES);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,6 +92,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long type = 100;
+        
           int benchRet = is_hierarchical_scheme(type);
           printf("%d\n", benchRet); 
         
@@ -106,6 +102,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long type = 255;
+        
           int benchRet = is_hierarchical_scheme(type);
           printf("%d\n", benchRet); 
         
@@ -115,12 +112,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long type = 10;
+        
           int benchRet = is_hierarchical_scheme(type);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = is_hierarchical_scheme(type);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

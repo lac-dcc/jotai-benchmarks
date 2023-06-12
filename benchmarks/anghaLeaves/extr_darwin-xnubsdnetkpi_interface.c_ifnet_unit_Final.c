@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ ifnet_unit(ifnet_t interface)
 	    (u_int32_t)interface->if_unit);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,14 +79,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_interface0 = 1;
+          int _len_interface0 = 65025;
           struct TYPE_3__ * interface = (struct TYPE_3__ *) malloc(_len_interface0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_interface0; _i0++) {
-            interface[_i0].if_unit = ((-2 * (next_i()%2)) + 1) * next_i();
+              interface[_i0].if_unit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ifnet_unit(interface);
           printf("%d\n", benchRet); 
           free(interface);
@@ -104,15 +101,32 @@ int main(int argc, char *argv[]) {
           int _len_interface0 = 100;
           struct TYPE_3__ * interface = (struct TYPE_3__ *) malloc(_len_interface0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_interface0; _i0++) {
-            interface[_i0].if_unit = ((-2 * (next_i()%2)) + 1) * next_i();
+              interface[_i0].if_unit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ifnet_unit(interface);
           printf("%d\n", benchRet); 
           free(interface);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_interface0 = 1;
+          struct TYPE_3__ * interface = (struct TYPE_3__ *) malloc(_len_interface0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_interface0; _i0++) {
+              interface[_i0].if_unit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ifnet_unit(interface);
+          printf("%d\n", benchRet); 
+          free(interface);
+        
+        break;
+    }
     default:
         usage();
         break;

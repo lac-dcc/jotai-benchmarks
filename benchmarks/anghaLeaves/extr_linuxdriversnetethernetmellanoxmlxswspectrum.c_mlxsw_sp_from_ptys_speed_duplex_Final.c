@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -88,12 +91,6 @@ out:
 	cmd->base.duplex = duplex;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -110,19 +107,86 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int carrier_ok = 100;
+        
           int ptys_eth_proto = 100;
+        
           int _len_cmd0 = 1;
           struct ethtool_link_ksettings * cmd = (struct ethtool_link_ksettings *) malloc(_len_cmd0*sizeof(struct ethtool_link_ksettings));
           for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
-            cmd[_i0].base.speed = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd[_i0].base.duplex = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmd[_i0].base.speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].base.duplex = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           mlxsw_sp_from_ptys_speed_duplex(carrier_ok,ptys_eth_proto,cmd);
           free(cmd);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int carrier_ok = 255;
+        
+          int ptys_eth_proto = 255;
+        
+          int _len_cmd0 = 65025;
+          struct ethtool_link_ksettings * cmd = (struct ethtool_link_ksettings *) malloc(_len_cmd0*sizeof(struct ethtool_link_ksettings));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].base.speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].base.duplex = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          mlxsw_sp_from_ptys_speed_duplex(carrier_ok,ptys_eth_proto,cmd);
+          free(cmd);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int carrier_ok = 10;
+        
+          int ptys_eth_proto = 10;
+        
+          int _len_cmd0 = 100;
+          struct ethtool_link_ksettings * cmd = (struct ethtool_link_ksettings *) malloc(_len_cmd0*sizeof(struct ethtool_link_ksettings));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].base.speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].base.duplex = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          mlxsw_sp_from_ptys_speed_duplex(carrier_ok,ptys_eth_proto,cmd);
+          free(cmd);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int carrier_ok = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int ptys_eth_proto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cmd0 = 1;
+          struct ethtool_link_ksettings * cmd = (struct ethtool_link_ksettings *) malloc(_len_cmd0*sizeof(struct ethtool_link_ksettings));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].base.speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].base.duplex = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          mlxsw_sp_from_ptys_speed_duplex(carrier_ok,ptys_eth_proto,cmd);
+          free(cmd);
+        
+        break;
+    }
     default:
         usage();
         break;

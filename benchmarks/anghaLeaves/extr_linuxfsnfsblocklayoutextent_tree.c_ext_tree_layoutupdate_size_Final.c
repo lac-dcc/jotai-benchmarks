@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static size_t ext_tree_layoutupdate_size(struct pnfs_block
 		return sizeof(__be32) + PNFS_BLOCK_EXTENT_SIZE * count;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,30 +81,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           unsigned long count = 100;
+        
           int _len_bl0 = 1;
           struct pnfs_block_layout * bl = (struct pnfs_block_layout *) malloc(_len_bl0*sizeof(struct pnfs_block_layout));
           for(int _i0 = 0; _i0 < _len_bl0; _i0++) {
-            bl[_i0].bl_scsi_layout = ((-2 * (next_i()%2)) + 1) * next_i();
+              bl[_i0].bl_scsi_layout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = ext_tree_layoutupdate_size(bl,count);
           printf("%lu\n", benchRet); 
           free(bl);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          unsigned long count = 255;
+        
+          int _len_bl0 = 65025;
+          struct pnfs_block_layout * bl = (struct pnfs_block_layout *) malloc(_len_bl0*sizeof(struct pnfs_block_layout));
+          for(int _i0 = 0; _i0 < _len_bl0; _i0++) {
+              bl[_i0].bl_scsi_layout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = ext_tree_layoutupdate_size(bl,count);
+          printf("%lu\n", benchRet); 
+          free(bl);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           unsigned long count = 10;
+        
           int _len_bl0 = 100;
           struct pnfs_block_layout * bl = (struct pnfs_block_layout *) malloc(_len_bl0*sizeof(struct pnfs_block_layout));
           for(int _i0 = 0; _i0 < _len_bl0; _i0++) {
-            bl[_i0].bl_scsi_layout = ((-2 * (next_i()%2)) + 1) * next_i();
+              bl[_i0].bl_scsi_layout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          unsigned long benchRet = ext_tree_layoutupdate_size(bl,count);
+          printf("%lu\n", benchRet); 
+          free(bl);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          unsigned long count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_bl0 = 1;
+          struct pnfs_block_layout * bl = (struct pnfs_block_layout *) malloc(_len_bl0*sizeof(struct pnfs_block_layout));
+          for(int _i0 = 0; _i0 < _len_bl0; _i0++) {
+              bl[_i0].bl_scsi_layout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           unsigned long benchRet = ext_tree_layoutupdate_size(bl,count);
           printf("%lu\n", benchRet); 
           free(bl);

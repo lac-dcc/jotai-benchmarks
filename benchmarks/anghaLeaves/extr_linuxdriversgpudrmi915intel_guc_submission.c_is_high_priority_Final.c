@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static inline bool is_high_priority(struct intel_guc_clien
 		client->priority == GUC_CLIENT_PRIORITY_HIGH);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_client0 = 1;
+          int _len_client0 = 65025;
           struct intel_guc_client * client = (struct intel_guc_client *) malloc(_len_client0*sizeof(struct intel_guc_client));
           for(int _i0 = 0; _i0 < _len_client0; _i0++) {
-            client[_i0].priority = ((-2 * (next_i()%2)) + 1) * next_i();
+              client[_i0].priority = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_high_priority(client);
           printf("%d\n", benchRet); 
           free(client);
@@ -102,15 +99,32 @@ int main(int argc, char *argv[]) {
           int _len_client0 = 100;
           struct intel_guc_client * client = (struct intel_guc_client *) malloc(_len_client0*sizeof(struct intel_guc_client));
           for(int _i0 = 0; _i0 < _len_client0; _i0++) {
-            client[_i0].priority = ((-2 * (next_i()%2)) + 1) * next_i();
+              client[_i0].priority = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_high_priority(client);
           printf("%d\n", benchRet); 
           free(client);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_client0 = 1;
+          struct intel_guc_client * client = (struct intel_guc_client *) malloc(_len_client0*sizeof(struct intel_guc_client));
+          for(int _i0 = 0; _i0 < _len_client0; _i0++) {
+              client[_i0].priority = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_high_priority(client);
+          printf("%d\n", benchRet); 
+          free(client);
+        
+        break;
+    }
     default:
         usage();
         break;

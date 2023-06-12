@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ s32 fm10k_msg_lport_state_vf(struct fm10k_hw *hw, u32 **results,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,14 +86,95 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
+    {
+          int _len_hw0 = 65025;
+          struct fm10k_hw * hw = (struct fm10k_hw *) malloc(_len_hw0*sizeof(struct fm10k_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].mac.dglort_map = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_results0 = 65025;
+          int ** results = (int **) malloc(_len_results0*sizeof(int *));
+          for(int _i0 = 0; _i0 < _len_results0; _i0++) {
+            int _len_results1 = 1;
+            results[_i0] = (int *) malloc(_len_results1*sizeof(int));
+            for(int _i1 = 0; _i1 < _len_results1; _i1++) {
+              results[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int _len_mbx0 = 65025;
+          struct fm10k_mbx_info * mbx = (struct fm10k_mbx_info *) malloc(_len_mbx0*sizeof(struct fm10k_mbx_info));
+          for(int _i0 = 0; _i0 < _len_mbx0; _i0++) {
+              mbx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fm10k_msg_lport_state_vf(hw,results,mbx);
+          printf("%d\n", benchRet); 
+          free(hw);
+          for(int i1 = 0; i1 < _len_results0; i1++) {
+              free(results[i1]);
+          }
+          free(results);
+          free(mbx);
+        
+        break;
+    }
+    // big-arr-10x
+    case 1:
+    {
+          int _len_hw0 = 100;
+          struct fm10k_hw * hw = (struct fm10k_hw *) malloc(_len_hw0*sizeof(struct fm10k_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].mac.dglort_map = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_results0 = 100;
+          int ** results = (int **) malloc(_len_results0*sizeof(int *));
+          for(int _i0 = 0; _i0 < _len_results0; _i0++) {
+            int _len_results1 = 1;
+            results[_i0] = (int *) malloc(_len_results1*sizeof(int));
+            for(int _i1 = 0; _i1 < _len_results1; _i1++) {
+              results[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int _len_mbx0 = 100;
+          struct fm10k_mbx_info * mbx = (struct fm10k_mbx_info *) malloc(_len_mbx0*sizeof(struct fm10k_mbx_info));
+          for(int _i0 = 0; _i0 < _len_mbx0; _i0++) {
+              mbx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fm10k_msg_lport_state_vf(hw,results,mbx);
+          printf("%d\n", benchRet); 
+          free(hw);
+          for(int i1 = 0; i1 < _len_results0; i1++) {
+              free(results[i1]);
+          }
+          free(results);
+          free(mbx);
+        
+        break;
+    }
+    // empty
+    case 2:
     {
           int _len_hw0 = 1;
           struct fm10k_hw * hw = (struct fm10k_hw *) malloc(_len_hw0*sizeof(struct fm10k_hw));
           for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
-            hw[_i0].mac.dglort_map = ((-2 * (next_i()%2)) + 1) * next_i();
+              hw[_i0].mac.dglort_map = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_results0 = 1;
           int ** results = (int **) malloc(_len_results0*sizeof(int *));
           for(int _i0 = 0; _i0 < _len_results0; _i0++) {
@@ -107,16 +184,18 @@ int main(int argc, char *argv[]) {
               results[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           int _len_mbx0 = 1;
           struct fm10k_mbx_info * mbx = (struct fm10k_mbx_info *) malloc(_len_mbx0*sizeof(struct fm10k_mbx_info));
           for(int _i0 = 0; _i0 < _len_mbx0; _i0++) {
-            mbx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              mbx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = fm10k_msg_lport_state_vf(hw,results,mbx);
           printf("%d\n", benchRet); 
           free(hw);
           for(int i1 = 0; i1 < _len_results0; i1++) {
-            int _len_results1 = 1;
               free(results[i1]);
           }
           free(results);
@@ -124,7 +203,6 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
     default:
         usage();
         break;

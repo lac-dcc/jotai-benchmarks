@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static inline unsigned int aq_ring_next_dx(struct aq_ring_
 	return (++dx >= self->size) ? 0U : dx;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,30 +76,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           unsigned int dx = 100;
+        
           int _len_self0 = 1;
           struct aq_ring_s * self = (struct aq_ring_s *) malloc(_len_self0*sizeof(struct aq_ring_s));
           for(int _i0 = 0; _i0 < _len_self0; _i0++) {
-            self[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              self[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = aq_ring_next_dx(self,dx);
           printf("%u\n", benchRet); 
           free(self);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          unsigned int dx = 255;
+        
+          int _len_self0 = 65025;
+          struct aq_ring_s * self = (struct aq_ring_s *) malloc(_len_self0*sizeof(struct aq_ring_s));
+          for(int _i0 = 0; _i0 < _len_self0; _i0++) {
+              self[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = aq_ring_next_dx(self,dx);
+          printf("%u\n", benchRet); 
+          free(self);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           unsigned int dx = 10;
+        
           int _len_self0 = 100;
           struct aq_ring_s * self = (struct aq_ring_s *) malloc(_len_self0*sizeof(struct aq_ring_s));
           for(int _i0 = 0; _i0 < _len_self0; _i0++) {
-            self[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              self[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          unsigned int benchRet = aq_ring_next_dx(self,dx);
+          printf("%u\n", benchRet); 
+          free(self);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          unsigned int dx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_self0 = 1;
+          struct aq_ring_s * self = (struct aq_ring_s *) malloc(_len_self0*sizeof(struct aq_ring_s));
+          for(int _i0 = 0; _i0 < _len_self0; _i0++) {
+              self[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           unsigned int benchRet = aq_ring_next_dx(self,dx);
           printf("%u\n", benchRet); 
           free(self);

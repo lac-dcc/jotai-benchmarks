@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -87,12 +89,6 @@ __attribute__((used)) static void init_blocks(FlashSV2Context * s, Block * block
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,26 +101,28 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_s0 = 1;
+          int _len_s0 = 65025;
           struct TYPE_5__ * s = (struct TYPE_5__ *) malloc(_len_s0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].cols = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].rows = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].block_width = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].image_width = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].block_height = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].image_height = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].cols = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].rows = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].block_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].image_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].block_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].image_height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_blocks0 = 1;
+        
+          int _len_blocks0 = 65025;
           struct TYPE_6__ * blocks = (struct TYPE_6__ *) malloc(_len_blocks0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_blocks0; _i0++) {
-            blocks[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
-        blocks[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
-        blocks[_i0].row = ((-2 * (next_i()%2)) + 1) * next_i();
-        blocks[_i0].col = ((-2 * (next_i()%2)) + 1) * next_i();
+              blocks[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          blocks[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          blocks[_i0].row = ((-2 * (next_i()%2)) + 1) * next_i();
+          blocks[_i0].col = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_blocks__i0__data0 = 1;
           blocks[_i0].data = (int *) malloc(_len_blocks__i0__data0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_blocks__i0__data0; _j0++) {
@@ -135,17 +133,21 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_blocks__i0__enc0; _j0++) {
             blocks[_i0].enc[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
-          int _len_encbuf0 = 1;
+        
+          int _len_encbuf0 = 65025;
           int * encbuf = (int *) malloc(_len_encbuf0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_encbuf0; _i0++) {
             encbuf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_databuf0 = 1;
+        
+          int _len_databuf0 = 65025;
           int * databuf = (int *) malloc(_len_databuf0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_databuf0; _i0++) {
             databuf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           init_blocks(s,blocks,encbuf,databuf);
           free(s);
           for(int _aux = 0; _aux < _len_blocks0; _aux++) {
@@ -160,7 +162,128 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_s0 = 100;
+          struct TYPE_5__ * s = (struct TYPE_5__ *) malloc(_len_s0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].cols = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].rows = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].block_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].image_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].block_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].image_height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_blocks0 = 100;
+          struct TYPE_6__ * blocks = (struct TYPE_6__ *) malloc(_len_blocks0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_blocks0; _i0++) {
+              blocks[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          blocks[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          blocks[_i0].row = ((-2 * (next_i()%2)) + 1) * next_i();
+          blocks[_i0].col = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_blocks__i0__data0 = 1;
+          blocks[_i0].data = (int *) malloc(_len_blocks__i0__data0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_blocks__i0__data0; _j0++) {
+            blocks[_i0].data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_blocks__i0__enc0 = 1;
+          blocks[_i0].enc = (int *) malloc(_len_blocks__i0__enc0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_blocks__i0__enc0; _j0++) {
+            blocks[_i0].enc[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_encbuf0 = 100;
+          int * encbuf = (int *) malloc(_len_encbuf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_encbuf0; _i0++) {
+            encbuf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_databuf0 = 100;
+          int * databuf = (int *) malloc(_len_databuf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_databuf0; _i0++) {
+            databuf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          init_blocks(s,blocks,encbuf,databuf);
+          free(s);
+          for(int _aux = 0; _aux < _len_blocks0; _aux++) {
+          free(blocks[_aux].data);
+          }
+          for(int _aux = 0; _aux < _len_blocks0; _aux++) {
+          free(blocks[_aux].enc);
+          }
+          free(blocks);
+          free(encbuf);
+          free(databuf);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_s0 = 1;
+          struct TYPE_5__ * s = (struct TYPE_5__ *) malloc(_len_s0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].cols = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].rows = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].block_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].image_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].block_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].image_height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_blocks0 = 1;
+          struct TYPE_6__ * blocks = (struct TYPE_6__ *) malloc(_len_blocks0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_blocks0; _i0++) {
+              blocks[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          blocks[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          blocks[_i0].row = ((-2 * (next_i()%2)) + 1) * next_i();
+          blocks[_i0].col = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_blocks__i0__data0 = 1;
+          blocks[_i0].data = (int *) malloc(_len_blocks__i0__data0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_blocks__i0__data0; _j0++) {
+            blocks[_i0].data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_blocks__i0__enc0 = 1;
+          blocks[_i0].enc = (int *) malloc(_len_blocks__i0__enc0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_blocks__i0__enc0; _j0++) {
+            blocks[_i0].enc[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_encbuf0 = 1;
+          int * encbuf = (int *) malloc(_len_encbuf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_encbuf0; _i0++) {
+            encbuf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_databuf0 = 1;
+          int * databuf = (int *) malloc(_len_databuf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_databuf0; _i0++) {
+            databuf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          init_blocks(s,blocks,encbuf,databuf);
+          free(s);
+          for(int _aux = 0; _aux < _len_blocks0; _aux++) {
+          free(blocks[_aux].data);
+          }
+          for(int _aux = 0; _aux < _len_blocks0; _aux++) {
+          free(blocks[_aux].enc);
+          }
+          free(blocks);
+          free(encbuf);
+          free(databuf);
+        
+        break;
+    }
     default:
         usage();
         break;

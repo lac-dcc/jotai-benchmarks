@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ void hlsl_set_lineno (int  line_number )
     hlsl_lineno = line_number;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int line_number = 100;
+        
           hlsl_set_lineno(line_number);
         
         break;
@@ -93,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int line_number = 255;
+        
           hlsl_set_lineno(line_number);
         
         break;
@@ -101,11 +98,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int line_number = 10;
+        
           hlsl_set_lineno(line_number);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int line_number = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hlsl_set_lineno(line_number);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ nop_offtoblk(struct vnop_offtoblk_args *ap)
 	return (0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,10 +77,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ap0 = 1;
+          int _len_ap0 = 65025;
           struct vnop_offtoblk_args * ap = (struct vnop_offtoblk_args *) malloc(_len_ap0*sizeof(struct vnop_offtoblk_args));
           for(int _i0 = 0; _i0 < _len_ap0; _i0++) {
               int _len_ap__i0__a_lblkno0 = 1;
@@ -92,7 +88,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_ap__i0__a_lblkno0; _j0++) {
             ap[_i0].a_lblkno[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = nop_offtoblk(ap);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_ap0; _aux++) {
@@ -102,7 +100,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ap0 = 100;
+          struct vnop_offtoblk_args * ap = (struct vnop_offtoblk_args *) malloc(_len_ap0*sizeof(struct vnop_offtoblk_args));
+          for(int _i0 = 0; _i0 < _len_ap0; _i0++) {
+              int _len_ap__i0__a_lblkno0 = 1;
+          ap[_i0].a_lblkno = (long *) malloc(_len_ap__i0__a_lblkno0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_ap__i0__a_lblkno0; _j0++) {
+            ap[_i0].a_lblkno[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = nop_offtoblk(ap);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ap0; _aux++) {
+          free(ap[_aux].a_lblkno);
+          }
+          free(ap);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ap0 = 1;
+          struct vnop_offtoblk_args * ap = (struct vnop_offtoblk_args *) malloc(_len_ap0*sizeof(struct vnop_offtoblk_args));
+          for(int _i0 = 0; _i0 < _len_ap0; _i0++) {
+              int _len_ap__i0__a_lblkno0 = 1;
+          ap[_i0].a_lblkno = (long *) malloc(_len_ap__i0__a_lblkno0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_ap__i0__a_lblkno0; _j0++) {
+            ap[_i0].a_lblkno[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = nop_offtoblk(ap);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ap0; _aux++) {
+          free(ap[_aux].a_lblkno);
+          }
+          free(ap);
+        
+        break;
+    }
     default:
         usage();
         break;

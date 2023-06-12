@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +64,6 @@ __attribute__((used)) static inline u32 sxgbe_tx_avail(struct sxgbe_tx_queue *qu
 	return queue->dirty_tx + tx_qsize - queue->cur_tx - 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,19 +80,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int tx_qsize = 100;
+        
           int _len_queue0 = 1;
           struct sxgbe_tx_queue * queue = (struct sxgbe_tx_queue *) malloc(_len_queue0*sizeof(struct sxgbe_tx_queue));
           for(int _i0 = 0; _i0 < _len_queue0; _i0++) {
-            queue[_i0].cur_tx = ((-2 * (next_i()%2)) + 1) * next_i();
-        queue[_i0].dirty_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+              queue[_i0].cur_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+          queue[_i0].dirty_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = sxgbe_tx_avail(queue,tx_qsize);
           printf("%ld\n", benchRet); 
           free(queue);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int tx_qsize = 255;
+        
+          int _len_queue0 = 65025;
+          struct sxgbe_tx_queue * queue = (struct sxgbe_tx_queue *) malloc(_len_queue0*sizeof(struct sxgbe_tx_queue));
+          for(int _i0 = 0; _i0 < _len_queue0; _i0++) {
+              queue[_i0].cur_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+          queue[_i0].dirty_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = sxgbe_tx_avail(queue,tx_qsize);
+          printf("%ld\n", benchRet); 
+          free(queue);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int tx_qsize = 10;
+        
+          int _len_queue0 = 100;
+          struct sxgbe_tx_queue * queue = (struct sxgbe_tx_queue *) malloc(_len_queue0*sizeof(struct sxgbe_tx_queue));
+          for(int _i0 = 0; _i0 < _len_queue0; _i0++) {
+              queue[_i0].cur_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+          queue[_i0].dirty_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = sxgbe_tx_avail(queue,tx_qsize);
+          printf("%ld\n", benchRet); 
+          free(queue);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int tx_qsize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_queue0 = 1;
+          struct sxgbe_tx_queue * queue = (struct sxgbe_tx_queue *) malloc(_len_queue0*sizeof(struct sxgbe_tx_queue));
+          for(int _i0 = 0; _i0 < _len_queue0; _i0++) {
+              queue[_i0].cur_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+          queue[_i0].dirty_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = sxgbe_tx_avail(queue,tx_qsize);
+          printf("%ld\n", benchRet); 
+          free(queue);
+        
+        break;
+    }
     default:
         usage();
         break;

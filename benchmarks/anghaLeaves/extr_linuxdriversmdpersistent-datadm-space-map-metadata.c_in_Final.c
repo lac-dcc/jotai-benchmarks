@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static void in(struct sm_metadata *smm)
 	smm->recursion_count++;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_smm0 = 1;
+          int _len_smm0 = 65025;
           struct sm_metadata * smm = (struct sm_metadata *) malloc(_len_smm0*sizeof(struct sm_metadata));
           for(int _i0 = 0; _i0 < _len_smm0; _i0++) {
-            smm[_i0].recursion_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              smm[_i0].recursion_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           in(smm);
           free(smm);
         
@@ -98,14 +95,30 @@ int main(int argc, char *argv[]) {
           int _len_smm0 = 100;
           struct sm_metadata * smm = (struct sm_metadata *) malloc(_len_smm0*sizeof(struct sm_metadata));
           for(int _i0 = 0; _i0 < _len_smm0; _i0++) {
-            smm[_i0].recursion_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              smm[_i0].recursion_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           in(smm);
           free(smm);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_smm0 = 1;
+          struct sm_metadata * smm = (struct sm_metadata *) malloc(_len_smm0*sizeof(struct sm_metadata));
+          for(int _i0 = 0; _i0 < _len_smm0; _i0++) {
+              smm[_i0].recursion_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          in(smm);
+          free(smm);
+        
+        break;
+    }
     default:
         usage();
         break;

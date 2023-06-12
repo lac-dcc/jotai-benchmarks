@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ u32 qed_cxt_get_srq_count(struct qed_hwfn *p_hwfn)
 	return p_mgr->srq_count;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,18 +78,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_p_hwfn0 = 65025;
+          struct qed_hwfn * p_hwfn = (struct qed_hwfn *) malloc(_len_p_hwfn0*sizeof(struct qed_hwfn));
+          for(int _i0 = 0; _i0 < _len_p_hwfn0; _i0++) {
+              int _len_p_hwfn__i0__p_cxt_mngr0 = 1;
+          p_hwfn[_i0].p_cxt_mngr = (struct qed_cxt_mngr *) malloc(_len_p_hwfn__i0__p_cxt_mngr0*sizeof(struct qed_cxt_mngr));
+          for(int _j0 = 0; _j0 < _len_p_hwfn__i0__p_cxt_mngr0; _j0++) {
+              p_hwfn[_i0].p_cxt_mngr->srq_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = qed_cxt_get_srq_count(p_hwfn);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_p_hwfn0; _aux++) {
+          free(p_hwfn[_aux].p_cxt_mngr);
+          }
+          free(p_hwfn);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_p_hwfn0 = 100;
+          struct qed_hwfn * p_hwfn = (struct qed_hwfn *) malloc(_len_p_hwfn0*sizeof(struct qed_hwfn));
+          for(int _i0 = 0; _i0 < _len_p_hwfn0; _i0++) {
+              int _len_p_hwfn__i0__p_cxt_mngr0 = 1;
+          p_hwfn[_i0].p_cxt_mngr = (struct qed_cxt_mngr *) malloc(_len_p_hwfn__i0__p_cxt_mngr0*sizeof(struct qed_cxt_mngr));
+          for(int _j0 = 0; _j0 < _len_p_hwfn__i0__p_cxt_mngr0; _j0++) {
+              p_hwfn[_i0].p_cxt_mngr->srq_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = qed_cxt_get_srq_count(p_hwfn);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_p_hwfn0; _aux++) {
+          free(p_hwfn[_aux].p_cxt_mngr);
+          }
+          free(p_hwfn);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_p_hwfn0 = 1;
           struct qed_hwfn * p_hwfn = (struct qed_hwfn *) malloc(_len_p_hwfn0*sizeof(struct qed_hwfn));
           for(int _i0 = 0; _i0 < _len_p_hwfn0; _i0++) {
               int _len_p_hwfn__i0__p_cxt_mngr0 = 1;
           p_hwfn[_i0].p_cxt_mngr = (struct qed_cxt_mngr *) malloc(_len_p_hwfn__i0__p_cxt_mngr0*sizeof(struct qed_cxt_mngr));
           for(int _j0 = 0; _j0 < _len_p_hwfn__i0__p_cxt_mngr0; _j0++) {
-            p_hwfn[_i0].p_cxt_mngr->srq_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              p_hwfn[_i0].p_cxt_mngr->srq_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = qed_cxt_get_srq_count(p_hwfn);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_p_hwfn0; _aux++) {

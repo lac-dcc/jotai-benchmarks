@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ int rmnet_vnd_dellink(u8 id, struct rmnet_port *port,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,11 +88,14 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long id = 100;
+        
           int _len_port0 = 1;
           struct rmnet_port * port = (struct rmnet_port *) malloc(_len_port0*sizeof(struct rmnet_port));
           for(int _i0 = 0; _i0 < _len_port0; _i0++) {
-            port[_i0].nr_rmnet_devs = ((-2 * (next_i()%2)) + 1) * next_i();
+              port[_i0].nr_rmnet_devs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_ep0 = 1;
           struct rmnet_endpoint * ep = (struct rmnet_endpoint *) malloc(_len_ep0*sizeof(struct rmnet_endpoint));
           for(int _i0 = 0; _i0 < _len_ep0; _i0++) {
@@ -105,7 +104,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_ep__i0__egress_dev0; _j0++) {
             ep[_i0].egress_dev[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = rmnet_vnd_dellink(id,port,ep);
           printf("%d\n", benchRet); 
           free(port);
@@ -116,7 +117,72 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long id = 255;
+        
+          int _len_port0 = 65025;
+          struct rmnet_port * port = (struct rmnet_port *) malloc(_len_port0*sizeof(struct rmnet_port));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              port[_i0].nr_rmnet_devs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ep0 = 65025;
+          struct rmnet_endpoint * ep = (struct rmnet_endpoint *) malloc(_len_ep0*sizeof(struct rmnet_endpoint));
+          for(int _i0 = 0; _i0 < _len_ep0; _i0++) {
+              int _len_ep__i0__egress_dev0 = 1;
+          ep[_i0].egress_dev = (int *) malloc(_len_ep__i0__egress_dev0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ep__i0__egress_dev0; _j0++) {
+            ep[_i0].egress_dev[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = rmnet_vnd_dellink(id,port,ep);
+          printf("%d\n", benchRet); 
+          free(port);
+          for(int _aux = 0; _aux < _len_ep0; _aux++) {
+          free(ep[_aux].egress_dev);
+          }
+          free(ep);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long id = 10;
+        
+          int _len_port0 = 100;
+          struct rmnet_port * port = (struct rmnet_port *) malloc(_len_port0*sizeof(struct rmnet_port));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              port[_i0].nr_rmnet_devs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ep0 = 100;
+          struct rmnet_endpoint * ep = (struct rmnet_endpoint *) malloc(_len_ep0*sizeof(struct rmnet_endpoint));
+          for(int _i0 = 0; _i0 < _len_ep0; _i0++) {
+              int _len_ep__i0__egress_dev0 = 1;
+          ep[_i0].egress_dev = (int *) malloc(_len_ep__i0__egress_dev0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ep__i0__egress_dev0; _j0++) {
+            ep[_i0].egress_dev[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = rmnet_vnd_dellink(id,port,ep);
+          printf("%d\n", benchRet); 
+          free(port);
+          for(int _aux = 0; _aux < _len_ep0; _aux++) {
+          free(ep[_aux].egress_dev);
+          }
+          free(ep);
+        
+        break;
+    }
     default:
         usage();
         break;

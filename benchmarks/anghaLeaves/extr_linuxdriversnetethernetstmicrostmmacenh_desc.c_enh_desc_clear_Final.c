@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static void enh_desc_clear(struct dma_desc *p)
 	p->des2 = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_p0 = 1;
+          int _len_p0 = 65025;
           struct dma_desc * p = (struct dma_desc *) malloc(_len_p0*sizeof(struct dma_desc));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].des2 = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].des2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           enh_desc_clear(p);
           free(p);
         
@@ -98,14 +95,30 @@ int main(int argc, char *argv[]) {
           int _len_p0 = 100;
           struct dma_desc * p = (struct dma_desc *) malloc(_len_p0*sizeof(struct dma_desc));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].des2 = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].des2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           enh_desc_clear(p);
           free(p);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_p0 = 1;
+          struct dma_desc * p = (struct dma_desc *) malloc(_len_p0*sizeof(struct dma_desc));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].des2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          enh_desc_clear(p);
+          free(p);
+        
+        break;
+    }
     default:
         usage();
         break;

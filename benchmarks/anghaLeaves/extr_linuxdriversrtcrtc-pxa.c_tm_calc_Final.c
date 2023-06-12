@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -79,12 +82,6 @@ __attribute__((used)) static void tm_calc(u32 rycr, u32 rdcr, struct rtc_time *t
 	tm->tm_sec = rdcr & RDxR_SEC_MASK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,24 +98,102 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int rycr = 100;
+        
           int rdcr = 100;
+        
           int _len_tm0 = 1;
           struct rtc_time * tm = (struct rtc_time *) malloc(_len_tm0*sizeof(struct rtc_time));
           for(int _i0 = 0; _i0 < _len_tm0; _i0++) {
-            tm[_i0].tm_year = ((-2 * (next_i()%2)) + 1) * next_i();
-        tm[_i0].tm_mon = ((-2 * (next_i()%2)) + 1) * next_i();
-        tm[_i0].tm_mday = ((-2 * (next_i()%2)) + 1) * next_i();
-        tm[_i0].tm_wday = ((-2 * (next_i()%2)) + 1) * next_i();
-        tm[_i0].tm_hour = ((-2 * (next_i()%2)) + 1) * next_i();
-        tm[_i0].tm_min = ((-2 * (next_i()%2)) + 1) * next_i();
-        tm[_i0].tm_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+              tm[_i0].tm_year = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_mon = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_mday = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_wday = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_hour = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           tm_calc(rycr,rdcr,tm);
           free(tm);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int rycr = 255;
+        
+          int rdcr = 255;
+        
+          int _len_tm0 = 65025;
+          struct rtc_time * tm = (struct rtc_time *) malloc(_len_tm0*sizeof(struct rtc_time));
+          for(int _i0 = 0; _i0 < _len_tm0; _i0++) {
+              tm[_i0].tm_year = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_mon = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_mday = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_wday = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_hour = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          tm_calc(rycr,rdcr,tm);
+          free(tm);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int rycr = 10;
+        
+          int rdcr = 10;
+        
+          int _len_tm0 = 100;
+          struct rtc_time * tm = (struct rtc_time *) malloc(_len_tm0*sizeof(struct rtc_time));
+          for(int _i0 = 0; _i0 < _len_tm0; _i0++) {
+              tm[_i0].tm_year = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_mon = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_mday = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_wday = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_hour = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          tm_calc(rycr,rdcr,tm);
+          free(tm);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int rycr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int rdcr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_tm0 = 1;
+          struct rtc_time * tm = (struct rtc_time *) malloc(_len_tm0*sizeof(struct rtc_time));
+          for(int _i0 = 0; _i0 < _len_tm0; _i0++) {
+              tm[_i0].tm_year = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_mon = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_mday = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_wday = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_hour = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          tm_calc(rycr,rdcr,tm);
+          free(tm);
+        
+        break;
+    }
     default:
         usage();
         break;

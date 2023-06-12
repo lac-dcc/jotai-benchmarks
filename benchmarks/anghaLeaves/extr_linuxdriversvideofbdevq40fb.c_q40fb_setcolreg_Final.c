@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            empty\n\
 \n\
 ");
 
@@ -80,12 +82,6 @@ __attribute__((used)) static int q40fb_setcolreg(unsigned regno, unsigned red, u
     return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,19 +94,149 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           unsigned int regno = 100;
+        
           unsigned int red = 100;
+        
           unsigned int green = 100;
+        
           unsigned int blue = 100;
+        
           unsigned int transp = 100;
+        
           int _len_info0 = 1;
           struct fb_info * info = (struct fb_info *) malloc(_len_info0*sizeof(struct fb_info));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].pseudo_palette = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].pseudo_palette = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = q40fb_setcolreg(regno,red,green,blue,transp,info);
+          printf("%d\n", benchRet); 
+          free(info);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int regno = 255;
+        
+          unsigned int red = 255;
+        
+          unsigned int green = 255;
+        
+          unsigned int blue = 255;
+        
+          unsigned int transp = 255;
+        
+          int _len_info0 = 65025;
+          struct fb_info * info = (struct fb_info *) malloc(_len_info0*sizeof(struct fb_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].pseudo_palette = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = q40fb_setcolreg(regno,red,green,blue,transp,info);
+          printf("%d\n", benchRet); 
+          free(info);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
+          unsigned int regno = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int red = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int green = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int blue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int transp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_info0 = 1;
+          struct fb_info * info = (struct fb_info *) malloc(_len_info0*sizeof(struct fb_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].pseudo_palette = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = q40fb_setcolreg(regno,red,green,blue,transp,info);
           printf("%d\n", benchRet); 
           free(info);

@@ -71,12 +71,6 @@ int int_log2(int arg)
     return l;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,6 +87,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int arg = 100;
+        
           int benchRet = int_log2(arg);
           printf("%d\n", benchRet); 
         
@@ -102,6 +97,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int arg = 255;
+        
           int benchRet = int_log2(arg);
           printf("%d\n", benchRet); 
         
@@ -111,12 +107,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int arg = 10;
+        
           int benchRet = int_log2(arg);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

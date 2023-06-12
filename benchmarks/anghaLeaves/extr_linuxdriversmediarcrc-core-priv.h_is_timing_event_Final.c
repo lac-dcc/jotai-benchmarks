@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -60,12 +60,6 @@ __attribute__((used)) static inline bool is_timing_event(struct ir_raw_event ev)
 	return !ev.carrier_report && !ev.reset;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,12 +72,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // empty
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           struct ir_raw_event ev;
-        ev.reset = ((-2 * (next_i()%2)) + 1) * next_i();
-        ev.carrier_report = ((-2 * (next_i()%2)) + 1) * next_i();
+          ev.reset = ((-2 * (next_i()%2)) + 1) * next_i();
+          ev.carrier_report = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = is_timing_event(ev);
           printf("%d\n", benchRet); 
         

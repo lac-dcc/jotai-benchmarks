@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -69,7 +70,6 @@ USHORT QueryDepthList(PSINGLE_LIST_ENTRY ListHead)
     return Depth;
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct TYPE_3__ *_allocate_ListHead(int length, struct TYPE_3__ *aux_ListHead[]) {
@@ -97,7 +97,6 @@ void _delete_ListHead(struct TYPE_3__ *aux_ListHead[], int aux_ListHead_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -110,18 +109,30 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // linked
     case 0:
+    {
+          struct TYPE_3__ * aux_ListHead[10000];
+          struct TYPE_3__ * ListHead = _allocate_ListHead(10000, aux_ListHead);
+        
+          long benchRet = QueryDepthList(ListHead);
+          printf("%ld\n", benchRet); 
+          _delete_ListHead(aux_ListHead, 10000);
+        
+        break;
+    }
+    // empty
+    case 1:
     {
           struct TYPE_3__ * aux_ListHead[1];
           struct TYPE_3__ * ListHead = _allocate_ListHead(1, aux_ListHead);
+        
           long benchRet = QueryDepthList(ListHead);
           printf("%ld\n", benchRet); 
           _delete_ListHead(aux_ListHead, 1);
         
         break;
     }
-
     default:
         usage();
         break;

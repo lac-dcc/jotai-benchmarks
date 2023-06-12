@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ super_90_allow_new_offset(struct md_rdev *rdev, unsigned long long new_offset)
 	return new_offset == 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,11 +81,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long long new_offset = 100;
+        
           int _len_rdev0 = 1;
           struct md_rdev * rdev = (struct md_rdev *) malloc(_len_rdev0*sizeof(struct md_rdev));
           for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
-            rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = super_90_allow_new_offset(rdev,new_offset);
+          printf("%d\n", benchRet); 
+          free(rdev);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned long long new_offset = 255;
+        
+          int _len_rdev0 = 65025;
+          struct md_rdev * rdev = (struct md_rdev *) malloc(_len_rdev0*sizeof(struct md_rdev));
+          for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
+              rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = super_90_allow_new_offset(rdev,new_offset);
           printf("%d\n", benchRet); 
           free(rdev);
@@ -97,21 +114,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned long long new_offset = 10;
+        
           int _len_rdev0 = 100;
           struct md_rdev * rdev = (struct md_rdev *) malloc(_len_rdev0*sizeof(struct md_rdev));
           for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
-            rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = super_90_allow_new_offset(rdev,new_offset);
           printf("%d\n", benchRet); 
           free(rdev);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long long new_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rdev0 = 1;
+          struct md_rdev * rdev = (struct md_rdev *) malloc(_len_rdev0*sizeof(struct md_rdev));
+          for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
+              rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = super_90_allow_new_offset(rdev,new_offset);
+          printf("%d\n", benchRet); 
+          free(rdev);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ struct MPContext *mp_client_api_get_core(struct mp_client_api *api)
     return api->mpctx;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,18 +75,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_api0 = 1;
+          int _len_api0 = 65025;
           struct mp_client_api * api = (struct mp_client_api *) malloc(_len_api0*sizeof(struct mp_client_api));
           for(int _i0 = 0; _i0 < _len_api0; _i0++) {
               int _len_api__i0__mpctx0 = 1;
           api[_i0].mpctx = (struct MPContext *) malloc(_len_api__i0__mpctx0*sizeof(struct MPContext));
           for(int _j0 = 0; _j0 < _len_api__i0__mpctx0; _j0++) {
-            api[_i0].mpctx->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              api[_i0].mpctx->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct MPContext * benchRet = mp_client_api_get_core(api);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_api0; _aux++) {
@@ -100,7 +99,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_api0 = 100;
+          struct mp_client_api * api = (struct mp_client_api *) malloc(_len_api0*sizeof(struct mp_client_api));
+          for(int _i0 = 0; _i0 < _len_api0; _i0++) {
+              int _len_api__i0__mpctx0 = 1;
+          api[_i0].mpctx = (struct MPContext *) malloc(_len_api__i0__mpctx0*sizeof(struct MPContext));
+          for(int _j0 = 0; _j0 < _len_api__i0__mpctx0; _j0++) {
+              api[_i0].mpctx->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct MPContext * benchRet = mp_client_api_get_core(api);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_api0; _aux++) {
+          free(api[_aux].mpctx);
+          }
+          free(api);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_api0 = 1;
+          struct mp_client_api * api = (struct mp_client_api *) malloc(_len_api0*sizeof(struct mp_client_api));
+          for(int _i0 = 0; _i0 < _len_api0; _i0++) {
+              int _len_api__i0__mpctx0 = 1;
+          api[_i0].mpctx = (struct MPContext *) malloc(_len_api__i0__mpctx0*sizeof(struct MPContext));
+          for(int _j0 = 0; _j0 < _len_api__i0__mpctx0; _j0++) {
+              api[_i0].mpctx->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct MPContext * benchRet = mp_client_api_get_core(api);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_api0; _aux++) {
+          free(api[_aux].mpctx);
+          }
+          free(api);
+        
+        break;
+    }
     default:
         usage();
         break;

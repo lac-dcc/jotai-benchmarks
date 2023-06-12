@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +77,6 @@ __attribute__((used)) static void get_blk256_size(
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,20 +89,187 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
           unsigned int bytes_per_element = 100;
+        
           int _len_blk256_width0 = 1;
           unsigned int * blk256_width = (unsigned int *) malloc(_len_blk256_width0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_blk256_width0; _i0++) {
             blk256_width[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_blk256_height0 = 1;
           unsigned int * blk256_height = (unsigned int *) malloc(_len_blk256_height0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_blk256_height0; _i0++) {
             blk256_height[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          get_blk256_size(blk256_width,blk256_height,bytes_per_element);
+          free(blk256_width);
+          free(blk256_height);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
+          unsigned int bytes_per_element = 255;
+        
+          int _len_blk256_width0 = 65025;
+          unsigned int * blk256_width = (unsigned int *) malloc(_len_blk256_width0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_blk256_width0; _i0++) {
+            blk256_width[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_blk256_height0 = 65025;
+          unsigned int * blk256_height = (unsigned int *) malloc(_len_blk256_height0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_blk256_height0; _i0++) {
+            blk256_height[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          get_blk256_size(blk256_width,blk256_height,bytes_per_element);
+          free(blk256_width);
+          free(blk256_height);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
+          unsigned int bytes_per_element = 10;
+        
+          int _len_blk256_width0 = 100;
+          unsigned int * blk256_width = (unsigned int *) malloc(_len_blk256_width0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_blk256_width0; _i0++) {
+            blk256_width[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_blk256_height0 = 100;
+          unsigned int * blk256_height = (unsigned int *) malloc(_len_blk256_height0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_blk256_height0; _i0++) {
+            blk256_height[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          get_blk256_size(blk256_width,blk256_height,bytes_per_element);
+          free(blk256_width);
+          free(blk256_height);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
+          unsigned int bytes_per_element = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_blk256_width0 = 1;
+          unsigned int * blk256_width = (unsigned int *) malloc(_len_blk256_width0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_blk256_width0; _i0++) {
+            blk256_width[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_blk256_height0 = 1;
+          unsigned int * blk256_height = (unsigned int *) malloc(_len_blk256_height0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_blk256_height0; _i0++) {
+            blk256_height[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           get_blk256_size(blk256_width,blk256_height,bytes_per_element);
           free(blk256_width);
           free(blk256_height);

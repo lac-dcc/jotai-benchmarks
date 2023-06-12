@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ int SDL_Android_AudioTrack_get_min_buffer_size(SDL_Android_AudioTrack* atrack)
     return atrack->min_buffer_size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_atrack0 = 1;
+          int _len_atrack0 = 65025;
           struct TYPE_3__ * atrack = (struct TYPE_3__ *) malloc(_len_atrack0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_atrack0; _i0++) {
-            atrack[_i0].min_buffer_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              atrack[_i0].min_buffer_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = SDL_Android_AudioTrack_get_min_buffer_size(atrack);
           printf("%d\n", benchRet); 
           free(atrack);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_atrack0 = 100;
           struct TYPE_3__ * atrack = (struct TYPE_3__ *) malloc(_len_atrack0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_atrack0; _i0++) {
-            atrack[_i0].min_buffer_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              atrack[_i0].min_buffer_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = SDL_Android_AudioTrack_get_min_buffer_size(atrack);
           printf("%d\n", benchRet); 
           free(atrack);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_atrack0 = 1;
+          struct TYPE_3__ * atrack = (struct TYPE_3__ *) malloc(_len_atrack0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_atrack0; _i0++) {
+              atrack[_i0].min_buffer_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = SDL_Android_AudioTrack_get_min_buffer_size(atrack);
+          printf("%d\n", benchRet); 
+          free(atrack);
+        
+        break;
+    }
     default:
         usage();
         break;

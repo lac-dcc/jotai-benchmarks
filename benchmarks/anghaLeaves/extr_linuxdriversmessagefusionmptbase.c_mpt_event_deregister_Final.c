@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ mpt_event_deregister(u8 cb_idx)
 	MptEvHandlers[cb_idx] = NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,6 +85,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long cb_idx = 100;
+        
           mpt_event_deregister(cb_idx);
         
         break;
@@ -98,6 +94,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long cb_idx = 255;
+        
           mpt_event_deregister(cb_idx);
         
         break;
@@ -106,11 +103,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long cb_idx = 10;
+        
           mpt_event_deregister(cb_idx);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long cb_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          mpt_event_deregister(cb_idx);
+        
+        break;
+    }
     default:
         usage();
         break;

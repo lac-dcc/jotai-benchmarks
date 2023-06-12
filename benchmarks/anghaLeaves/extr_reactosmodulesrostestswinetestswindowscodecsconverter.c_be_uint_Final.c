@@ -67,12 +67,6 @@ __attribute__((used)) static unsigned be_uint(unsigned val)
     return (u.c[0] << 24) | (u.c[1] << 16) | (u.c[2] << 8) | u.c[3];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,19 +79,68 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           unsigned int val = 100;
+        
           unsigned int benchRet = be_uint(val);
           printf("%u\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           unsigned int val = 10;
+        
           unsigned int benchRet = be_uint(val);
           printf("%u\n", benchRet); 
         

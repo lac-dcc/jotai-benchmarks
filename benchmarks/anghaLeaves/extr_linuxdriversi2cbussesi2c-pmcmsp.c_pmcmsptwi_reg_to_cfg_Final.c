@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ __attribute__((used)) static inline void pmcmsptwi_reg_to_cfg(u32 reg, struct pm
 	cfg->highspeed = reg & 0x1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,22 +85,90 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int reg = 100;
+        
           int _len_cfg0 = 1;
           struct pmcmsptwi_cfg * cfg = (struct pmcmsptwi_cfg *) malloc(_len_cfg0*sizeof(struct pmcmsptwi_cfg));
           for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
-            cfg[_i0].arbf = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].nak = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].add10 = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].mst_code = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].arb = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].highspeed = ((-2 * (next_i()%2)) + 1) * next_i();
+              cfg[_i0].arbf = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].nak = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].add10 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].mst_code = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].arb = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].highspeed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           pmcmsptwi_reg_to_cfg(reg,cfg);
           free(cfg);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int reg = 255;
+        
+          int _len_cfg0 = 65025;
+          struct pmcmsptwi_cfg * cfg = (struct pmcmsptwi_cfg *) malloc(_len_cfg0*sizeof(struct pmcmsptwi_cfg));
+          for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
+              cfg[_i0].arbf = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].nak = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].add10 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].mst_code = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].arb = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].highspeed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          pmcmsptwi_reg_to_cfg(reg,cfg);
+          free(cfg);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int reg = 10;
+        
+          int _len_cfg0 = 100;
+          struct pmcmsptwi_cfg * cfg = (struct pmcmsptwi_cfg *) malloc(_len_cfg0*sizeof(struct pmcmsptwi_cfg));
+          for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
+              cfg[_i0].arbf = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].nak = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].add10 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].mst_code = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].arb = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].highspeed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          pmcmsptwi_reg_to_cfg(reg,cfg);
+          free(cfg);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cfg0 = 1;
+          struct pmcmsptwi_cfg * cfg = (struct pmcmsptwi_cfg *) malloc(_len_cfg0*sizeof(struct pmcmsptwi_cfg));
+          for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
+              cfg[_i0].arbf = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].nak = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].add10 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].mst_code = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].arb = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].highspeed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          pmcmsptwi_reg_to_cfg(reg,cfg);
+          free(cfg);
+        
+        break;
+    }
     default:
         usage();
         break;

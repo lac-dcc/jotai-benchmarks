@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -124,12 +125,6 @@ __attribute__((used)) static u32 overlay_cmd_reg(struct put_image_params *params
 	return cmd;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -142,14 +137,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_params0 = 1;
+          int _len_params0 = 65025;
           struct put_image_params * params = (struct put_image_params *) malloc(_len_params0*sizeof(struct put_image_params));
           for(int _i0 = 0; _i0 < _len_params0; _i0++) {
-            params[_i0].format = ((-2 * (next_i()%2)) + 1) * next_i();
+              params[_i0].format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = overlay_cmd_reg(params);
           printf("%d\n", benchRet); 
           free(params);
@@ -162,15 +159,32 @@ int main(int argc, char *argv[]) {
           int _len_params0 = 100;
           struct put_image_params * params = (struct put_image_params *) malloc(_len_params0*sizeof(struct put_image_params));
           for(int _i0 = 0; _i0 < _len_params0; _i0++) {
-            params[_i0].format = ((-2 * (next_i()%2)) + 1) * next_i();
+              params[_i0].format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = overlay_cmd_reg(params);
           printf("%d\n", benchRet); 
           free(params);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_params0 = 1;
+          struct put_image_params * params = (struct put_image_params *) malloc(_len_params0*sizeof(struct put_image_params));
+          for(int _i0 = 0; _i0 < _len_params0; _i0++) {
+              params[_i0].format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = overlay_cmd_reg(params);
+          printf("%d\n", benchRet); 
+          free(params);
+        
+        break;
+    }
     default:
         usage();
         break;

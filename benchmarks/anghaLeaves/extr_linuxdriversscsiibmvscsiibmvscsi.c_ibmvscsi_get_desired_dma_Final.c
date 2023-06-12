@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +73,6 @@ __attribute__((used)) static unsigned long ibmvscsi_get_desired_dma(struct vio_d
 	return desired_io;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,14 +85,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_vdev0 = 1;
+          int _len_vdev0 = 65025;
           struct vio_dev * vdev = (struct vio_dev *) malloc(_len_vdev0*sizeof(struct vio_dev));
           for(int _i0 = 0; _i0 < _len_vdev0; _i0++) {
-            vdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              vdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = ibmvscsi_get_desired_dma(vdev);
           printf("%lu\n", benchRet); 
           free(vdev);
@@ -110,15 +107,32 @@ int main(int argc, char *argv[]) {
           int _len_vdev0 = 100;
           struct vio_dev * vdev = (struct vio_dev *) malloc(_len_vdev0*sizeof(struct vio_dev));
           for(int _i0 = 0; _i0 < _len_vdev0; _i0++) {
-            vdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              vdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = ibmvscsi_get_desired_dma(vdev);
           printf("%lu\n", benchRet); 
           free(vdev);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_vdev0 = 1;
+          struct vio_dev * vdev = (struct vio_dev *) malloc(_len_vdev0*sizeof(struct vio_dev));
+          for(int _i0 = 0; _i0 < _len_vdev0; _i0++) {
+              vdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = ibmvscsi_get_desired_dma(vdev);
+          printf("%lu\n", benchRet); 
+          free(vdev);
+        
+        break;
+    }
     default:
         usage();
         break;

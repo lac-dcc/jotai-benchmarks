@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +74,6 @@ __attribute__((used)) static void record_ird_ord(struct nes_cm_node *cm_node,
 	cm_node->ord_size = conn_ord;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,19 +90,82 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long conn_ird = 100;
+        
           long conn_ord = 100;
+        
           int _len_cm_node0 = 1;
           struct nes_cm_node * cm_node = (struct nes_cm_node *) malloc(_len_cm_node0*sizeof(struct nes_cm_node));
           for(int _i0 = 0; _i0 < _len_cm_node0; _i0++) {
-            cm_node[_i0].ord_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        cm_node[_i0].ird_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              cm_node[_i0].ord_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          cm_node[_i0].ird_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           record_ird_ord(cm_node,conn_ird,conn_ord);
           free(cm_node);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long conn_ird = 255;
+        
+          long conn_ord = 255;
+        
+          int _len_cm_node0 = 65025;
+          struct nes_cm_node * cm_node = (struct nes_cm_node *) malloc(_len_cm_node0*sizeof(struct nes_cm_node));
+          for(int _i0 = 0; _i0 < _len_cm_node0; _i0++) {
+              cm_node[_i0].ord_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          cm_node[_i0].ird_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          record_ird_ord(cm_node,conn_ird,conn_ord);
+          free(cm_node);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long conn_ird = 10;
+        
+          long conn_ord = 10;
+        
+          int _len_cm_node0 = 100;
+          struct nes_cm_node * cm_node = (struct nes_cm_node *) malloc(_len_cm_node0*sizeof(struct nes_cm_node));
+          for(int _i0 = 0; _i0 < _len_cm_node0; _i0++) {
+              cm_node[_i0].ord_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          cm_node[_i0].ird_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          record_ird_ord(cm_node,conn_ird,conn_ord);
+          free(cm_node);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long conn_ird = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long conn_ord = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cm_node0 = 1;
+          struct nes_cm_node * cm_node = (struct nes_cm_node *) malloc(_len_cm_node0*sizeof(struct nes_cm_node));
+          for(int _i0 = 0; _i0 < _len_cm_node0; _i0++) {
+              cm_node[_i0].ord_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          cm_node[_i0].ird_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          record_ird_ord(cm_node,conn_ird,conn_ord);
+          free(cm_node);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static inline bool is_hest_type_generic_v2(struct ghes *gh
 	return ghes->generic->header.type == ACPI_HEST_TYPE_GENERIC_ERROR_V2;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,18 +79,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ghes0 = 1;
+          int _len_ghes0 = 65025;
           struct ghes * ghes = (struct ghes *) malloc(_len_ghes0*sizeof(struct ghes));
           for(int _i0 = 0; _i0 < _len_ghes0; _i0++) {
               int _len_ghes__i0__generic0 = 1;
           ghes[_i0].generic = (struct TYPE_4__ *) malloc(_len_ghes__i0__generic0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_ghes__i0__generic0; _j0++) {
-            ghes[_i0].generic->header.type = ((-2 * (next_i()%2)) + 1) * next_i();
+              ghes[_i0].generic->header.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           int benchRet = is_hest_type_generic_v2(ghes);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_ghes0; _aux++) {
@@ -104,7 +104,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ghes0 = 100;
+          struct ghes * ghes = (struct ghes *) malloc(_len_ghes0*sizeof(struct ghes));
+          for(int _i0 = 0; _i0 < _len_ghes0; _i0++) {
+              int _len_ghes__i0__generic0 = 1;
+          ghes[_i0].generic = (struct TYPE_4__ *) malloc(_len_ghes__i0__generic0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_ghes__i0__generic0; _j0++) {
+              ghes[_i0].generic->header.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = is_hest_type_generic_v2(ghes);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ghes0; _aux++) {
+          free(ghes[_aux].generic);
+          }
+          free(ghes);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ghes0 = 1;
+          struct ghes * ghes = (struct ghes *) malloc(_len_ghes0*sizeof(struct ghes));
+          for(int _i0 = 0; _i0 < _len_ghes0; _i0++) {
+              int _len_ghes__i0__generic0 = 1;
+          ghes[_i0].generic = (struct TYPE_4__ *) malloc(_len_ghes__i0__generic0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_ghes__i0__generic0; _j0++) {
+              ghes[_i0].generic->header.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = is_hest_type_generic_v2(ghes);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ghes0; _aux++) {
+          free(ghes[_aux].generic);
+          }
+          free(ghes);
+        
+        break;
+    }
     default:
         usage();
         break;

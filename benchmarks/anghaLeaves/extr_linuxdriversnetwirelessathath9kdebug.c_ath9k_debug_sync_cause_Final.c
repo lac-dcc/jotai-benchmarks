@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -122,12 +125,6 @@ void ath9k_debug_sync_cause(struct ath_softc *sc, u32 sync_cause)
 		sc->debug.stats.istats.mac_sleep_access++;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -144,35 +141,154 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int sync_cause = 100;
+        
           int _len_sc0 = 1;
           struct ath_softc * sc = (struct ath_softc *) malloc(_len_sc0*sizeof(struct ath_softc));
           for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
-            sc[_i0].debug.stats.istats.mac_sleep_access = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.mac_asleep = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.mac_awake = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.pm_access = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.local_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.radm_cpl_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.radm_cpl_ecrc_err = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.radm_cpl_tlp_abort = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.radm_cpl_dllp_abort = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.radm_cpl_ep = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.trcv_fifo_perr = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.host1_perr = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.host1_fatal = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.pci_mode_conflict = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.apb_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.eeprom_illegal_access = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.sync_mac_irq = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.sync_rtc_irq = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].debug.stats.istats.sync_cause_all = ((-2 * (next_i()%2)) + 1) * next_i();
+              sc[_i0].debug.stats.istats.mac_sleep_access = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.mac_asleep = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.mac_awake = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.pm_access = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.local_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.radm_cpl_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.radm_cpl_ecrc_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.radm_cpl_tlp_abort = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.radm_cpl_dllp_abort = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.radm_cpl_ep = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.trcv_fifo_perr = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.host1_perr = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.host1_fatal = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.pci_mode_conflict = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.apb_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.eeprom_illegal_access = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.sync_mac_irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.sync_rtc_irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.sync_cause_all = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
           }
+        
           ath9k_debug_sync_cause(sc,sync_cause);
           free(sc);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int sync_cause = 255;
+        
+          int _len_sc0 = 65025;
+          struct ath_softc * sc = (struct ath_softc *) malloc(_len_sc0*sizeof(struct ath_softc));
+          for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
+              sc[_i0].debug.stats.istats.mac_sleep_access = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.mac_asleep = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.mac_awake = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.pm_access = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.local_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.radm_cpl_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.radm_cpl_ecrc_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.radm_cpl_tlp_abort = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.radm_cpl_dllp_abort = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.radm_cpl_ep = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.trcv_fifo_perr = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.host1_perr = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.host1_fatal = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.pci_mode_conflict = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.apb_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.eeprom_illegal_access = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.sync_mac_irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.sync_rtc_irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.sync_cause_all = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
+          }
+        
+          ath9k_debug_sync_cause(sc,sync_cause);
+          free(sc);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int sync_cause = 10;
+        
+          int _len_sc0 = 100;
+          struct ath_softc * sc = (struct ath_softc *) malloc(_len_sc0*sizeof(struct ath_softc));
+          for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
+              sc[_i0].debug.stats.istats.mac_sleep_access = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.mac_asleep = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.mac_awake = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.pm_access = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.local_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.radm_cpl_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.radm_cpl_ecrc_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.radm_cpl_tlp_abort = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.radm_cpl_dllp_abort = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.radm_cpl_ep = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.trcv_fifo_perr = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.host1_perr = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.host1_fatal = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.pci_mode_conflict = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.apb_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.eeprom_illegal_access = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.sync_mac_irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.sync_rtc_irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.sync_cause_all = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
+          }
+        
+          ath9k_debug_sync_cause(sc,sync_cause);
+          free(sc);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int sync_cause = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sc0 = 1;
+          struct ath_softc * sc = (struct ath_softc *) malloc(_len_sc0*sizeof(struct ath_softc));
+          for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
+              sc[_i0].debug.stats.istats.mac_sleep_access = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.mac_asleep = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.mac_awake = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.pm_access = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.local_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.radm_cpl_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.radm_cpl_ecrc_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.radm_cpl_tlp_abort = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.radm_cpl_dllp_abort = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.radm_cpl_ep = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.trcv_fifo_perr = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.host1_perr = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.host1_fatal = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.pci_mode_conflict = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.apb_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.eeprom_illegal_access = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.sync_mac_irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.sync_rtc_irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].debug.stats.istats.sync_cause_all = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
+          }
+        
+          ath9k_debug_sync_cause(sc,sync_cause);
+          free(sc);
+        
+        break;
+    }
     default:
         usage();
         break;

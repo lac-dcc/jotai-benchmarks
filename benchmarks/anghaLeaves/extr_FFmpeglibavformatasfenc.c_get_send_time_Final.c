@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +81,6 @@ __attribute__((used)) static int32_t get_send_time(ASFContext *asf, int64_t pres
     return send_time / 10000;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,27 +93,235 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           long pres_time = 100;
+        
           int _len_asf0 = 1;
           struct TYPE_5__ * asf = (struct TYPE_5__ *) malloc(_len_asf0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_asf0; _i0++) {
-            asf[_i0].next_start_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+              asf[_i0].next_start_sec = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_asf__i0__index_ptr0 = 1;
           asf[_i0].index_ptr = (struct TYPE_4__ *) malloc(_len_asf__i0__index_ptr0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_asf__i0__index_ptr0; _j0++) {
-            asf[_i0].index_ptr->send_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        asf[_i0].index_ptr->offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              asf[_i0].index_ptr->send_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          asf[_i0].index_ptr->offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        asf[_i0].data_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          asf[_i0].data_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_offset0 = 1;
           long * offset = (long *) malloc(_len_offset0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_offset0; _i0++) {
             offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = get_send_time(asf,pres_time,offset);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_asf0; _aux++) {
+          free(asf[_aux].index_ptr);
+          }
+          free(asf);
+          free(offset);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          long pres_time = 255;
+        
+          int _len_asf0 = 65025;
+          struct TYPE_5__ * asf = (struct TYPE_5__ *) malloc(_len_asf0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_asf0; _i0++) {
+              asf[_i0].next_start_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_asf__i0__index_ptr0 = 1;
+          asf[_i0].index_ptr = (struct TYPE_4__ *) malloc(_len_asf__i0__index_ptr0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_asf__i0__index_ptr0; _j0++) {
+              asf[_i0].index_ptr->send_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          asf[_i0].index_ptr->offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          asf[_i0].data_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_offset0 = 65025;
+          long * offset = (long *) malloc(_len_offset0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_offset0; _i0++) {
+            offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = get_send_time(asf,pres_time,offset);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_asf0; _aux++) {
+          free(asf[_aux].index_ptr);
+          }
+          free(asf);
+          free(offset);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          long pres_time = 10;
+        
+          int _len_asf0 = 100;
+          struct TYPE_5__ * asf = (struct TYPE_5__ *) malloc(_len_asf0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_asf0; _i0++) {
+              asf[_i0].next_start_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_asf__i0__index_ptr0 = 1;
+          asf[_i0].index_ptr = (struct TYPE_4__ *) malloc(_len_asf__i0__index_ptr0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_asf__i0__index_ptr0; _j0++) {
+              asf[_i0].index_ptr->send_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          asf[_i0].index_ptr->offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          asf[_i0].data_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_offset0 = 100;
+          long * offset = (long *) malloc(_len_offset0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_offset0; _i0++) {
+            offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = get_send_time(asf,pres_time,offset);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_asf0; _aux++) {
+          free(asf[_aux].index_ptr);
+          }
+          free(asf);
+          free(offset);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          long pres_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_asf0 = 1;
+          struct TYPE_5__ * asf = (struct TYPE_5__ *) malloc(_len_asf0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_asf0; _i0++) {
+              asf[_i0].next_start_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_asf__i0__index_ptr0 = 1;
+          asf[_i0].index_ptr = (struct TYPE_4__ *) malloc(_len_asf__i0__index_ptr0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_asf__i0__index_ptr0; _j0++) {
+              asf[_i0].index_ptr->send_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          asf[_i0].index_ptr->offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          asf[_i0].data_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_offset0 = 1;
+          long * offset = (long *) malloc(_len_offset0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_offset0; _i0++) {
+            offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = get_send_time(asf,pres_time,offset);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_asf0; _aux++) {

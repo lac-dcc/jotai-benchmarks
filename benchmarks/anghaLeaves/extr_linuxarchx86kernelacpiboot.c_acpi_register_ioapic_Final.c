@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -93,12 +94,6 @@ int acpi_register_ioapic(acpi_handle handle, u64 phys_addr, u32 gsi_base)
 	return ret;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -115,8 +110,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int handle = 100;
+        
           int phys_addr = 100;
+        
           int gsi_base = 100;
+        
           int benchRet = acpi_register_ioapic(handle,phys_addr,gsi_base);
           printf("%d\n", benchRet); 
         
@@ -126,8 +124,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int handle = 255;
+        
           int phys_addr = 255;
+        
           int gsi_base = 255;
+        
           int benchRet = acpi_register_ioapic(handle,phys_addr,gsi_base);
           printf("%d\n", benchRet); 
         
@@ -137,14 +138,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int handle = 10;
+        
           int phys_addr = 10;
+        
           int gsi_base = 10;
+        
           int benchRet = acpi_register_ioapic(handle,phys_addr,gsi_base);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int handle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int phys_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int gsi_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = acpi_register_ioapic(handle,phys_addr,gsi_base);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

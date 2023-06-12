@@ -73,12 +73,6 @@ __attribute__((used)) static uint16_t BrotliReverseBits(size_t num_bits, uint16_
   return (uint16_t)retval;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,31 +85,108 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 479
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 207
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 207
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 207
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 207
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 206
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 230
+          // ------------------------------- 
+
           unsigned long num_bits = 100;
+        
           int bits = 100;
+        
           int benchRet = BrotliReverseBits(num_bits,bits);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 1220
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 519
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 519
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 519
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 519
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 518
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 581
+          // ------------------------------- 
+
           unsigned long num_bits = 255;
+        
           int bits = 255;
+        
           int benchRet = BrotliReverseBits(num_bits,bits);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 61
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 31
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 31
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 31
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 31
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
           unsigned long num_bits = 10;
+        
           int bits = 10;
+        
           int benchRet = BrotliReverseBits(num_bits,bits);
           printf("%d\n", benchRet); 
         

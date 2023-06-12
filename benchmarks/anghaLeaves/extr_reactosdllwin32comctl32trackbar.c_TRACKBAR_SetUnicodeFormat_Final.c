@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ TRACKBAR_SetUnicodeFormat (TRACKBAR_INFO *infoPtr, BOOL fUnicode)
     return bTemp;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,11 +87,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int fUnicode = 100;
+        
           int _len_infoPtr0 = 1;
           struct TYPE_3__ * infoPtr = (struct TYPE_3__ *) malloc(_len_infoPtr0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_infoPtr0; _i0++) {
-            infoPtr[_i0].bUnicode = ((-2 * (next_i()%2)) + 1) * next_i();
+              infoPtr[_i0].bUnicode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = TRACKBAR_SetUnicodeFormat(infoPtr,fUnicode);
+          printf("%d\n", benchRet); 
+          free(infoPtr);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int fUnicode = 255;
+        
+          int _len_infoPtr0 = 65025;
+          struct TYPE_3__ * infoPtr = (struct TYPE_3__ *) malloc(_len_infoPtr0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_infoPtr0; _i0++) {
+              infoPtr[_i0].bUnicode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = TRACKBAR_SetUnicodeFormat(infoPtr,fUnicode);
           printf("%d\n", benchRet); 
           free(infoPtr);
@@ -103,21 +120,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int fUnicode = 10;
+        
           int _len_infoPtr0 = 100;
           struct TYPE_3__ * infoPtr = (struct TYPE_3__ *) malloc(_len_infoPtr0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_infoPtr0; _i0++) {
-            infoPtr[_i0].bUnicode = ((-2 * (next_i()%2)) + 1) * next_i();
+              infoPtr[_i0].bUnicode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = TRACKBAR_SetUnicodeFormat(infoPtr,fUnicode);
           printf("%d\n", benchRet); 
           free(infoPtr);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int fUnicode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_infoPtr0 = 1;
+          struct TYPE_3__ * infoPtr = (struct TYPE_3__ *) malloc(_len_infoPtr0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_infoPtr0; _i0++) {
+              infoPtr[_i0].bUnicode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = TRACKBAR_SetUnicodeFormat(infoPtr,fUnicode);
+          printf("%d\n", benchRet); 
+          free(infoPtr);
+        
+        break;
+    }
     default:
         usage();
         break;

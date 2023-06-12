@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static int cpufreq_get_cur_state(struct thermal_cooling_de
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,23 +80,27 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cdev0 = 1;
+          int _len_cdev0 = 65025;
           struct thermal_cooling_device * cdev = (struct thermal_cooling_device *) malloc(_len_cdev0*sizeof(struct thermal_cooling_device));
           for(int _i0 = 0; _i0 < _len_cdev0; _i0++) {
               int _len_cdev__i0__devdata0 = 1;
           cdev[_i0].devdata = (struct cpufreq_cooling_device *) malloc(_len_cdev__i0__devdata0*sizeof(struct cpufreq_cooling_device));
           for(int _j0 = 0; _j0 < _len_cdev__i0__devdata0; _j0++) {
-            cdev[_i0].devdata->cpufreq_state = ((-2 * (next_i()%2)) + 1) * next_i();
+              cdev[_i0].devdata->cpufreq_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
-          int _len_state0 = 1;
+        
+          int _len_state0 = 65025;
           unsigned long * state = (unsigned long *) malloc(_len_state0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_state0; _i0++) {
             state[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = cpufreq_get_cur_state(cdev,state);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_cdev0; _aux++) {
@@ -111,7 +111,68 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_cdev0 = 100;
+          struct thermal_cooling_device * cdev = (struct thermal_cooling_device *) malloc(_len_cdev0*sizeof(struct thermal_cooling_device));
+          for(int _i0 = 0; _i0 < _len_cdev0; _i0++) {
+              int _len_cdev__i0__devdata0 = 1;
+          cdev[_i0].devdata = (struct cpufreq_cooling_device *) malloc(_len_cdev__i0__devdata0*sizeof(struct cpufreq_cooling_device));
+          for(int _j0 = 0; _j0 < _len_cdev__i0__devdata0; _j0++) {
+              cdev[_i0].devdata->cpufreq_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_state0 = 100;
+          unsigned long * state = (unsigned long *) malloc(_len_state0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+            state[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = cpufreq_get_cur_state(cdev,state);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cdev0; _aux++) {
+          free(cdev[_aux].devdata);
+          }
+          free(cdev);
+          free(state);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_cdev0 = 1;
+          struct thermal_cooling_device * cdev = (struct thermal_cooling_device *) malloc(_len_cdev0*sizeof(struct thermal_cooling_device));
+          for(int _i0 = 0; _i0 < _len_cdev0; _i0++) {
+              int _len_cdev__i0__devdata0 = 1;
+          cdev[_i0].devdata = (struct cpufreq_cooling_device *) malloc(_len_cdev__i0__devdata0*sizeof(struct cpufreq_cooling_device));
+          for(int _j0 = 0; _j0 < _len_cdev__i0__devdata0; _j0++) {
+              cdev[_i0].devdata->cpufreq_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_state0 = 1;
+          unsigned long * state = (unsigned long *) malloc(_len_state0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+            state[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = cpufreq_get_cur_state(cdev,state);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cdev0; _aux++) {
+          free(cdev[_aux].devdata);
+          }
+          free(cdev);
+          free(state);
+        
+        break;
+    }
     default:
         usage();
         break;

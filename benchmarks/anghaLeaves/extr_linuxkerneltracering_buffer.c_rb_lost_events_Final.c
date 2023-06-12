@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static int rb_lost_events(struct ring_buffer_per_cpu *cpu_
 	return cpu_buffer->lost_events;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cpu_buffer0 = 1;
+          int _len_cpu_buffer0 = 65025;
           struct ring_buffer_per_cpu * cpu_buffer = (struct ring_buffer_per_cpu *) malloc(_len_cpu_buffer0*sizeof(struct ring_buffer_per_cpu));
           for(int _i0 = 0; _i0 < _len_cpu_buffer0; _i0++) {
-            cpu_buffer[_i0].lost_events = ((-2 * (next_i()%2)) + 1) * next_i();
+              cpu_buffer[_i0].lost_events = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = rb_lost_events(cpu_buffer);
           printf("%d\n", benchRet); 
           free(cpu_buffer);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_cpu_buffer0 = 100;
           struct ring_buffer_per_cpu * cpu_buffer = (struct ring_buffer_per_cpu *) malloc(_len_cpu_buffer0*sizeof(struct ring_buffer_per_cpu));
           for(int _i0 = 0; _i0 < _len_cpu_buffer0; _i0++) {
-            cpu_buffer[_i0].lost_events = ((-2 * (next_i()%2)) + 1) * next_i();
+              cpu_buffer[_i0].lost_events = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = rb_lost_events(cpu_buffer);
           printf("%d\n", benchRet); 
           free(cpu_buffer);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_cpu_buffer0 = 1;
+          struct ring_buffer_per_cpu * cpu_buffer = (struct ring_buffer_per_cpu *) malloc(_len_cpu_buffer0*sizeof(struct ring_buffer_per_cpu));
+          for(int _i0 = 0; _i0 < _len_cpu_buffer0; _i0++) {
+              cpu_buffer[_i0].lost_events = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rb_lost_events(cpu_buffer);
+          printf("%d\n", benchRet); 
+          free(cpu_buffer);
+        
+        break;
+    }
     default:
         usage();
         break;

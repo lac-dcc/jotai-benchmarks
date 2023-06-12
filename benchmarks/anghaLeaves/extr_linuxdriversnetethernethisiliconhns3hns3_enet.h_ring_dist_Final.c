@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static inline int ring_dist(struct hns3_enet_ring *ring, i
 	return (end - begin + ring->desc_num) % ring->desc_num;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,32 +75,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int begin = 100;
+        
           int end = 100;
+        
           int _len_ring0 = 1;
           struct hns3_enet_ring * ring = (struct hns3_enet_ring *) malloc(_len_ring0*sizeof(struct hns3_enet_ring));
           for(int _i0 = 0; _i0 < _len_ring0; _i0++) {
-            ring[_i0].desc_num = ((-2 * (next_i()%2)) + 1) * next_i();
+              ring[_i0].desc_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ring_dist(ring,begin,end);
           printf("%d\n", benchRet); 
           free(ring);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int begin = 255;
+        
+          int end = 255;
+        
+          int _len_ring0 = 65025;
+          struct hns3_enet_ring * ring = (struct hns3_enet_ring *) malloc(_len_ring0*sizeof(struct hns3_enet_ring));
+          for(int _i0 = 0; _i0 < _len_ring0; _i0++) {
+              ring[_i0].desc_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ring_dist(ring,begin,end);
+          printf("%d\n", benchRet); 
+          free(ring);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int begin = 10;
+        
           int end = 10;
+        
           int _len_ring0 = 100;
           struct hns3_enet_ring * ring = (struct hns3_enet_ring *) malloc(_len_ring0*sizeof(struct hns3_enet_ring));
           for(int _i0 = 0; _i0 < _len_ring0; _i0++) {
-            ring[_i0].desc_num = ((-2 * (next_i()%2)) + 1) * next_i();
+              ring[_i0].desc_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = ring_dist(ring,begin,end);
+          printf("%d\n", benchRet); 
+          free(ring);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int begin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ring0 = 1;
+          struct hns3_enet_ring * ring = (struct hns3_enet_ring *) malloc(_len_ring0*sizeof(struct hns3_enet_ring));
+          for(int _i0 = 0; _i0 < _len_ring0; _i0++) {
+              ring[_i0].desc_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = ring_dist(ring,begin,end);
           printf("%d\n", benchRet); 
           free(ring);

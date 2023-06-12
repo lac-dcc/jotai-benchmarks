@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static inline size_t rlwit_literal_words(struct rlw_iterat
 	return it->pointer - it->rlw.literal_words;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,15 +76,125 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_it0 = 65025;
+          struct rlw_iterator * it = (struct rlw_iterator *) malloc(_len_it0*sizeof(struct rlw_iterator));
+          for(int _i0 = 0; _i0 < _len_it0; _i0++) {
+              it[_i0].pointer = ((-2 * (next_i()%2)) + 1) * next_i();
+          it[_i0].rlw.literal_words = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          unsigned long benchRet = rlwit_literal_words(it);
+          printf("%lu\n", benchRet); 
+          free(it);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_it0 = 100;
+          struct rlw_iterator * it = (struct rlw_iterator *) malloc(_len_it0*sizeof(struct rlw_iterator));
+          for(int _i0 = 0; _i0 < _len_it0; _i0++) {
+              it[_i0].pointer = ((-2 * (next_i()%2)) + 1) * next_i();
+          it[_i0].rlw.literal_words = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          unsigned long benchRet = rlwit_literal_words(it);
+          printf("%lu\n", benchRet); 
+          free(it);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_it0 = 1;
           struct rlw_iterator * it = (struct rlw_iterator *) malloc(_len_it0*sizeof(struct rlw_iterator));
           for(int _i0 = 0; _i0 < _len_it0; _i0++) {
-            it[_i0].pointer = ((-2 * (next_i()%2)) + 1) * next_i();
-        it[_i0].rlw.literal_words = ((-2 * (next_i()%2)) + 1) * next_i();
+              it[_i0].pointer = ((-2 * (next_i()%2)) + 1) * next_i();
+          it[_i0].rlw.literal_words = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           unsigned long benchRet = rlwit_literal_words(it);
           printf("%lu\n", benchRet); 
           free(it);

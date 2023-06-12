@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -79,12 +80,6 @@ __attribute__((used)) static inline SegmentType select_segment_type(SegmentType 
     return segment_type;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,7 +96,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long segment_type = 100;
+        
           enum AVCodecID codec_id = 0;
+        
           long benchRet = select_segment_type(segment_type,codec_id);
           printf("%ld\n", benchRet); 
         
@@ -111,7 +108,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long segment_type = 255;
+        
           enum AVCodecID codec_id = 0;
+        
           long benchRet = select_segment_type(segment_type,codec_id);
           printf("%ld\n", benchRet); 
         
@@ -121,13 +120,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long segment_type = 10;
+        
           enum AVCodecID codec_id = 0;
+        
           long benchRet = select_segment_type(segment_type,codec_id);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long segment_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          enum AVCodecID codec_id = 0;
+        
+          long benchRet = select_segment_type(segment_type,codec_id);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

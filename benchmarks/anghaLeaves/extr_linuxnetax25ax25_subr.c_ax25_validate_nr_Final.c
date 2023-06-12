@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +74,6 @@ int ax25_validate_nr(ax25_cb *ax25, unsigned short nr)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,17 +86,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           unsigned short nr = 100;
+        
           int _len_ax250 = 1;
           struct TYPE_3__ * ax25 = (struct TYPE_3__ *) malloc(_len_ax250*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_ax250; _i0++) {
-            ax25[_i0].va = ((-2 * (next_i()%2)) + 1) * next_i();
-        ax25[_i0].vs = ((-2 * (next_i()%2)) + 1) * next_i();
-        ax25[_i0].modulus = ((-2 * (next_i()%2)) + 1) * next_i();
+              ax25[_i0].va = ((-2 * (next_i()%2)) + 1) * next_i();
+          ax25[_i0].vs = ((-2 * (next_i()%2)) + 1) * next_i();
+          ax25[_i0].modulus = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = ax25_validate_nr(ax25,nr);
+          printf("%d\n", benchRet); 
+          free(ax25);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          unsigned short nr = 255;
+        
+          int _len_ax250 = 65025;
+          struct TYPE_3__ * ax25 = (struct TYPE_3__ *) malloc(_len_ax250*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ax250; _i0++) {
+              ax25[_i0].va = ((-2 * (next_i()%2)) + 1) * next_i();
+          ax25[_i0].vs = ((-2 * (next_i()%2)) + 1) * next_i();
+          ax25[_i0].modulus = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ax25_validate_nr(ax25,nr);
+          printf("%d\n", benchRet); 
+          free(ax25);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          unsigned short nr = 10;
+        
+          int _len_ax250 = 100;
+          struct TYPE_3__ * ax25 = (struct TYPE_3__ *) malloc(_len_ax250*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ax250; _i0++) {
+              ax25[_i0].va = ((-2 * (next_i()%2)) + 1) * next_i();
+          ax25[_i0].vs = ((-2 * (next_i()%2)) + 1) * next_i();
+          ax25[_i0].modulus = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ax25_validate_nr(ax25,nr);
+          printf("%d\n", benchRet); 
+          free(ax25);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          unsigned short nr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ax250 = 1;
+          struct TYPE_3__ * ax25 = (struct TYPE_3__ *) malloc(_len_ax250*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ax250; _i0++) {
+              ax25[_i0].va = ((-2 * (next_i()%2)) + 1) * next_i();
+          ax25[_i0].vs = ((-2 * (next_i()%2)) + 1) * next_i();
+          ax25[_i0].modulus = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = ax25_validate_nr(ax25,nr);
           printf("%d\n", benchRet); 
           free(ax25);

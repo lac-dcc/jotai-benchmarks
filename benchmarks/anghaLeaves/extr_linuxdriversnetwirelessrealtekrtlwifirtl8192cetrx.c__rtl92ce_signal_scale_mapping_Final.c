@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -85,12 +87,6 @@ __attribute__((used)) static long _rtl92ce_signal_scale_mapping(struct ieee80211
 	return retsig;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,30 +99,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           long currsig = 100;
+        
           int _len_hw0 = 1;
           struct ieee80211_hw * hw = (struct ieee80211_hw *) malloc(_len_hw0*sizeof(struct ieee80211_hw));
           for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
-            hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = _rtl92ce_signal_scale_mapping(hw,currsig);
           printf("%ld\n", benchRet); 
           free(hw);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 45
+          // dynamic_instructions_O0 : 45
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          long currsig = 255;
+        
+          int _len_hw0 = 65025;
+          struct ieee80211_hw * hw = (struct ieee80211_hw *) malloc(_len_hw0*sizeof(struct ieee80211_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = _rtl92ce_signal_scale_mapping(hw,currsig);
+          printf("%ld\n", benchRet); 
+          free(hw);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 29
+          // dynamic_instructions_O1 : 29
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 31
+          // dynamic_instructions_O3 : 31
+          // ------------------------------- 
+          // static_instructions_Ofast : 31
+          // dynamic_instructions_Ofast : 31
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 29
+          // dynamic_instructions_Oz : 29
+          // ------------------------------- 
+
           long currsig = 10;
+        
           int _len_hw0 = 100;
           struct ieee80211_hw * hw = (struct ieee80211_hw *) malloc(_len_hw0*sizeof(struct ieee80211_hw));
           for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
-            hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          long benchRet = _rtl92ce_signal_scale_mapping(hw,currsig);
+          printf("%ld\n", benchRet); 
+          free(hw);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          long currsig = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hw0 = 1;
+          struct ieee80211_hw * hw = (struct ieee80211_hw *) malloc(_len_hw0*sizeof(struct ieee80211_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           long benchRet = _rtl92ce_signal_scale_mapping(hw,currsig);
           printf("%ld\n", benchRet); 
           free(hw);

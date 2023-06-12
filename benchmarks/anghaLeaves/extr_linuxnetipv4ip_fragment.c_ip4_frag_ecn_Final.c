@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static u8 ip4_frag_ecn(u8 tos)
 	return 1 << (tos & INET_ECN_MASK);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int tos = 100;
+        
           int benchRet = ip4_frag_ecn(tos);
           printf("%d\n", benchRet); 
         
@@ -94,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int tos = 255;
+        
           int benchRet = ip4_frag_ecn(tos);
           printf("%d\n", benchRet); 
         
@@ -103,12 +100,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int tos = 10;
+        
           int benchRet = ip4_frag_ecn(tos);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int tos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = ip4_frag_ecn(tos);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

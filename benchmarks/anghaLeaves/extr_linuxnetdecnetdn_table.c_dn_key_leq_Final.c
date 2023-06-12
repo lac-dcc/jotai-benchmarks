@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -62,12 +62,6 @@ __attribute__((used)) static inline int dn_key_leq(dn_fib_key_t a, dn_fib_key_t 
 	return a.datum <= b.datum;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,19 +74,20 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           struct TYPE_4__ a;
-        a.datum = ((-2 * (next_i()%2)) + 1) * next_i();
+          a.datum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           struct TYPE_4__ b;
-        b.datum = ((-2 * (next_i()%2)) + 1) * next_i();
+          b.datum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = dn_key_leq(a,b);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

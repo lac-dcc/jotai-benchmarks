@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +82,6 @@ __attribute__((used)) static int kvm_vz_check_extension(struct kvm *kvm, long ex
 	return r;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,11 +98,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long ext = 100;
+        
           int _len_kvm0 = 1;
           struct kvm * kvm = (struct kvm *) malloc(_len_kvm0*sizeof(struct kvm));
           for(int _i0 = 0; _i0 < _len_kvm0; _i0++) {
-            kvm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              kvm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = kvm_vz_check_extension(kvm,ext);
+          printf("%d\n", benchRet); 
+          free(kvm);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long ext = 255;
+        
+          int _len_kvm0 = 65025;
+          struct kvm * kvm = (struct kvm *) malloc(_len_kvm0*sizeof(struct kvm));
+          for(int _i0 = 0; _i0 < _len_kvm0; _i0++) {
+              kvm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = kvm_vz_check_extension(kvm,ext);
           printf("%d\n", benchRet); 
           free(kvm);
@@ -114,21 +131,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long ext = 10;
+        
           int _len_kvm0 = 100;
           struct kvm * kvm = (struct kvm *) malloc(_len_kvm0*sizeof(struct kvm));
           for(int _i0 = 0; _i0 < _len_kvm0; _i0++) {
-            kvm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              kvm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = kvm_vz_check_extension(kvm,ext);
           printf("%d\n", benchRet); 
           free(kvm);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long ext = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_kvm0 = 1;
+          struct kvm * kvm = (struct kvm *) malloc(_len_kvm0*sizeof(struct kvm));
+          for(int _i0 = 0; _i0 < _len_kvm0; _i0++) {
+              kvm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = kvm_vz_check_extension(kvm,ext);
+          printf("%d\n", benchRet); 
+          free(kvm);
+        
+        break;
+    }
     default:
         usage();
         break;

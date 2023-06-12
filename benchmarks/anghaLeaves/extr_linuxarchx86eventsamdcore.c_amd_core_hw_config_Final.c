@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -81,12 +83,6 @@ __attribute__((used)) static int amd_core_hw_config(struct perf_event *event)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,23 +95,66 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_event0 = 1;
+          int _len_event0 = 65025;
           struct perf_event * event = (struct perf_event *) malloc(_len_event0*sizeof(struct perf_event));
           for(int _i0 = 0; _i0 < _len_event0; _i0++) {
-            event[_i0].hw.config = ((-2 * (next_i()%2)) + 1) * next_i();
-        event[_i0].attr.exclude_guest = ((-2 * (next_i()%2)) + 1) * next_i();
-        event[_i0].attr.exclude_host = ((-2 * (next_i()%2)) + 1) * next_i();
+              event[_i0].hw.config = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          event[_i0].attr.exclude_guest = ((-2 * (next_i()%2)) + 1) * next_i();
+          event[_i0].attr.exclude_host = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = amd_core_hw_config(event);
           printf("%d\n", benchRet); 
           free(event);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_event0 = 100;
+          struct perf_event * event = (struct perf_event *) malloc(_len_event0*sizeof(struct perf_event));
+          for(int _i0 = 0; _i0 < _len_event0; _i0++) {
+              event[_i0].hw.config = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          event[_i0].attr.exclude_guest = ((-2 * (next_i()%2)) + 1) * next_i();
+          event[_i0].attr.exclude_host = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = amd_core_hw_config(event);
+          printf("%d\n", benchRet); 
+          free(event);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_event0 = 1;
+          struct perf_event * event = (struct perf_event *) malloc(_len_event0*sizeof(struct perf_event));
+          for(int _i0 = 0; _i0 < _len_event0; _i0++) {
+              event[_i0].hw.config = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          event[_i0].attr.exclude_guest = ((-2 * (next_i()%2)) + 1) * next_i();
+          event[_i0].attr.exclude_host = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = amd_core_hw_config(event);
+          printf("%d\n", benchRet); 
+          free(event);
+        
+        break;
+    }
     default:
         usage();
         break;

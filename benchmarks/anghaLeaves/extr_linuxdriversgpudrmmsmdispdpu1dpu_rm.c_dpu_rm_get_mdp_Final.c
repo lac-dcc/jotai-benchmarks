@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ struct dpu_hw_mdp *dpu_rm_get_mdp(struct dpu_rm *rm)
 	return rm->hw_mdp;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,18 +75,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rm0 = 1;
+          int _len_rm0 = 65025;
           struct dpu_rm * rm = (struct dpu_rm *) malloc(_len_rm0*sizeof(struct dpu_rm));
           for(int _i0 = 0; _i0 < _len_rm0; _i0++) {
               int _len_rm__i0__hw_mdp0 = 1;
           rm[_i0].hw_mdp = (struct dpu_hw_mdp *) malloc(_len_rm__i0__hw_mdp0*sizeof(struct dpu_hw_mdp));
           for(int _j0 = 0; _j0 < _len_rm__i0__hw_mdp0; _j0++) {
-            rm[_i0].hw_mdp->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rm[_i0].hw_mdp->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct dpu_hw_mdp * benchRet = dpu_rm_get_mdp(rm);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_rm0; _aux++) {
@@ -100,7 +99,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_rm0 = 100;
+          struct dpu_rm * rm = (struct dpu_rm *) malloc(_len_rm0*sizeof(struct dpu_rm));
+          for(int _i0 = 0; _i0 < _len_rm0; _i0++) {
+              int _len_rm__i0__hw_mdp0 = 1;
+          rm[_i0].hw_mdp = (struct dpu_hw_mdp *) malloc(_len_rm__i0__hw_mdp0*sizeof(struct dpu_hw_mdp));
+          for(int _j0 = 0; _j0 < _len_rm__i0__hw_mdp0; _j0++) {
+              rm[_i0].hw_mdp->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct dpu_hw_mdp * benchRet = dpu_rm_get_mdp(rm);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_rm0; _aux++) {
+          free(rm[_aux].hw_mdp);
+          }
+          free(rm);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_rm0 = 1;
+          struct dpu_rm * rm = (struct dpu_rm *) malloc(_len_rm0*sizeof(struct dpu_rm));
+          for(int _i0 = 0; _i0 < _len_rm0; _i0++) {
+              int _len_rm__i0__hw_mdp0 = 1;
+          rm[_i0].hw_mdp = (struct dpu_hw_mdp *) malloc(_len_rm__i0__hw_mdp0*sizeof(struct dpu_hw_mdp));
+          for(int _j0 = 0; _j0 < _len_rm__i0__hw_mdp0; _j0++) {
+              rm[_i0].hw_mdp->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct dpu_hw_mdp * benchRet = dpu_rm_get_mdp(rm);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_rm0; _aux++) {
+          free(rm[_aux].hw_mdp);
+          }
+          free(rm);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ void cpdma_set_num_rx_descs(struct cpdma_ctlr *ctlr, int num_rx_desc)
 	ctlr->num_tx_desc = ctlr->pool->num_desc - ctlr->num_rx_desc;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,21 +78,201 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int num_rx_desc = 100;
+        
           int _len_ctlr0 = 1;
           struct cpdma_ctlr * ctlr = (struct cpdma_ctlr *) malloc(_len_ctlr0*sizeof(struct cpdma_ctlr));
           for(int _i0 = 0; _i0 < _len_ctlr0; _i0++) {
-            ctlr[_i0].num_rx_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctlr[_i0].num_rx_desc = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_ctlr__i0__pool0 = 1;
           ctlr[_i0].pool = (struct TYPE_2__ *) malloc(_len_ctlr__i0__pool0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_ctlr__i0__pool0; _j0++) {
-            ctlr[_i0].pool->num_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctlr[_i0].pool->num_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        ctlr[_i0].num_tx_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctlr[_i0].num_tx_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          cpdma_set_num_rx_descs(ctlr,num_rx_desc);
+          for(int _aux = 0; _aux < _len_ctlr0; _aux++) {
+          free(ctlr[_aux].pool);
+          }
+          free(ctlr);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int num_rx_desc = 255;
+        
+          int _len_ctlr0 = 65025;
+          struct cpdma_ctlr * ctlr = (struct cpdma_ctlr *) malloc(_len_ctlr0*sizeof(struct cpdma_ctlr));
+          for(int _i0 = 0; _i0 < _len_ctlr0; _i0++) {
+              ctlr[_i0].num_rx_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ctlr__i0__pool0 = 1;
+          ctlr[_i0].pool = (struct TYPE_2__ *) malloc(_len_ctlr__i0__pool0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ctlr__i0__pool0; _j0++) {
+              ctlr[_i0].pool->num_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          ctlr[_i0].num_tx_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cpdma_set_num_rx_descs(ctlr,num_rx_desc);
+          for(int _aux = 0; _aux < _len_ctlr0; _aux++) {
+          free(ctlr[_aux].pool);
+          }
+          free(ctlr);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int num_rx_desc = 10;
+        
+          int _len_ctlr0 = 100;
+          struct cpdma_ctlr * ctlr = (struct cpdma_ctlr *) malloc(_len_ctlr0*sizeof(struct cpdma_ctlr));
+          for(int _i0 = 0; _i0 < _len_ctlr0; _i0++) {
+              ctlr[_i0].num_rx_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ctlr__i0__pool0 = 1;
+          ctlr[_i0].pool = (struct TYPE_2__ *) malloc(_len_ctlr__i0__pool0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ctlr__i0__pool0; _j0++) {
+              ctlr[_i0].pool->num_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          ctlr[_i0].num_tx_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cpdma_set_num_rx_descs(ctlr,num_rx_desc);
+          for(int _aux = 0; _aux < _len_ctlr0; _aux++) {
+          free(ctlr[_aux].pool);
+          }
+          free(ctlr);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int num_rx_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ctlr0 = 1;
+          struct cpdma_ctlr * ctlr = (struct cpdma_ctlr *) malloc(_len_ctlr0*sizeof(struct cpdma_ctlr));
+          for(int _i0 = 0; _i0 < _len_ctlr0; _i0++) {
+              ctlr[_i0].num_rx_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ctlr__i0__pool0 = 1;
+          ctlr[_i0].pool = (struct TYPE_2__ *) malloc(_len_ctlr__i0__pool0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ctlr__i0__pool0; _j0++) {
+              ctlr[_i0].pool->num_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          ctlr[_i0].num_tx_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           cpdma_set_num_rx_descs(ctlr,num_rx_desc);
           for(int _aux = 0; _aux < _len_ctlr0; _aux++) {
           free(ctlr[_aux].pool);

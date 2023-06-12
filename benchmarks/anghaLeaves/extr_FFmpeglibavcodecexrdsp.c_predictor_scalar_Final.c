@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static void predictor_scalar(uint8_t *src, ptrdiff_t size)
         src[i] += src[i-1] - 128;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,21 +77,38 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          unsigned long size = 10;
-          int _len_src0 = 100;
+          unsigned long size = 255;
+        
+          int _len_src0 = 65025;
           int * src = (int *) malloc(_len_src0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_src0; _i0++) {
             src[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           predictor_scalar(src,size);
           free(src);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          unsigned long size = 10;
+        
+          int _len_src0 = 100;
+          int * src = (int *) malloc(_len_src0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+            src[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          predictor_scalar(src,size);
+          free(src);
+        
+        break;
+    }
     default:
         usage();
         break;

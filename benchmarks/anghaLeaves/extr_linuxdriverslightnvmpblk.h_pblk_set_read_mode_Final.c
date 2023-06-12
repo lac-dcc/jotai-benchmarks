@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +80,6 @@ __attribute__((used)) static inline int pblk_set_read_mode(struct pblk *pblk, in
 	return flags;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,16 +96,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int type = 100;
+        
           int _len_pblk0 = 1;
           struct pblk * pblk = (struct pblk *) malloc(_len_pblk0*sizeof(struct pblk));
           for(int _i0 = 0; _i0 < _len_pblk0; _i0++) {
               int _len_pblk__i0__dev0 = 1;
           pblk[_i0].dev = (struct nvm_tgt_dev *) malloc(_len_pblk__i0__dev0*sizeof(struct nvm_tgt_dev));
           for(int _j0 = 0; _j0 < _len_pblk__i0__dev0; _j0++) {
-            pblk[_i0].dev->geo.version = ((-2 * (next_i()%2)) + 1) * next_i();
-        pblk[_i0].dev->geo.pln_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              pblk[_i0].dev->geo.version = ((-2 * (next_i()%2)) + 1) * next_i();
+          pblk[_i0].dev->geo.pln_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           int benchRet = pblk_set_read_mode(pblk,type);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_pblk0; _aux++) {
@@ -118,7 +120,90 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int type = 255;
+        
+          int _len_pblk0 = 65025;
+          struct pblk * pblk = (struct pblk *) malloc(_len_pblk0*sizeof(struct pblk));
+          for(int _i0 = 0; _i0 < _len_pblk0; _i0++) {
+              int _len_pblk__i0__dev0 = 1;
+          pblk[_i0].dev = (struct nvm_tgt_dev *) malloc(_len_pblk__i0__dev0*sizeof(struct nvm_tgt_dev));
+          for(int _j0 = 0; _j0 < _len_pblk__i0__dev0; _j0++) {
+              pblk[_i0].dev->geo.version = ((-2 * (next_i()%2)) + 1) * next_i();
+          pblk[_i0].dev->geo.pln_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = pblk_set_read_mode(pblk,type);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pblk0; _aux++) {
+          free(pblk[_aux].dev);
+          }
+          free(pblk);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int type = 10;
+        
+          int _len_pblk0 = 100;
+          struct pblk * pblk = (struct pblk *) malloc(_len_pblk0*sizeof(struct pblk));
+          for(int _i0 = 0; _i0 < _len_pblk0; _i0++) {
+              int _len_pblk__i0__dev0 = 1;
+          pblk[_i0].dev = (struct nvm_tgt_dev *) malloc(_len_pblk__i0__dev0*sizeof(struct nvm_tgt_dev));
+          for(int _j0 = 0; _j0 < _len_pblk__i0__dev0; _j0++) {
+              pblk[_i0].dev->geo.version = ((-2 * (next_i()%2)) + 1) * next_i();
+          pblk[_i0].dev->geo.pln_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = pblk_set_read_mode(pblk,type);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pblk0; _aux++) {
+          free(pblk[_aux].dev);
+          }
+          free(pblk);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pblk0 = 1;
+          struct pblk * pblk = (struct pblk *) malloc(_len_pblk0*sizeof(struct pblk));
+          for(int _i0 = 0; _i0 < _len_pblk0; _i0++) {
+              int _len_pblk__i0__dev0 = 1;
+          pblk[_i0].dev = (struct nvm_tgt_dev *) malloc(_len_pblk__i0__dev0*sizeof(struct nvm_tgt_dev));
+          for(int _j0 = 0; _j0 < _len_pblk__i0__dev0; _j0++) {
+              pblk[_i0].dev->geo.version = ((-2 * (next_i()%2)) + 1) * next_i();
+          pblk[_i0].dev->geo.pln_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = pblk_set_read_mode(pblk,type);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pblk0; _aux++) {
+          free(pblk[_aux].dev);
+          }
+          free(pblk);
+        
+        break;
+    }
     default:
         usage();
         break;

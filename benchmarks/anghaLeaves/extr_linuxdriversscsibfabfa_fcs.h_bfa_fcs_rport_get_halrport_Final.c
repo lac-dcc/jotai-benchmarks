@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ bfa_fcs_rport_get_halrport(struct bfa_fcs_rport_s *rport)
 	return rport->bfa_rport;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,18 +76,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rport0 = 1;
+          int _len_rport0 = 65025;
           struct bfa_fcs_rport_s * rport = (struct bfa_fcs_rport_s *) malloc(_len_rport0*sizeof(struct bfa_fcs_rport_s));
           for(int _i0 = 0; _i0 < _len_rport0; _i0++) {
               int _len_rport__i0__bfa_rport0 = 1;
           rport[_i0].bfa_rport = (struct bfa_rport_s *) malloc(_len_rport__i0__bfa_rport0*sizeof(struct bfa_rport_s));
           for(int _j0 = 0; _j0 < _len_rport__i0__bfa_rport0; _j0++) {
-            rport[_i0].bfa_rport->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rport[_i0].bfa_rport->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct bfa_rport_s * benchRet = bfa_fcs_rport_get_halrport(rport);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_rport0; _aux++) {
@@ -101,7 +100,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_rport0 = 100;
+          struct bfa_fcs_rport_s * rport = (struct bfa_fcs_rport_s *) malloc(_len_rport0*sizeof(struct bfa_fcs_rport_s));
+          for(int _i0 = 0; _i0 < _len_rport0; _i0++) {
+              int _len_rport__i0__bfa_rport0 = 1;
+          rport[_i0].bfa_rport = (struct bfa_rport_s *) malloc(_len_rport__i0__bfa_rport0*sizeof(struct bfa_rport_s));
+          for(int _j0 = 0; _j0 < _len_rport__i0__bfa_rport0; _j0++) {
+              rport[_i0].bfa_rport->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct bfa_rport_s * benchRet = bfa_fcs_rport_get_halrport(rport);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_rport0; _aux++) {
+          free(rport[_aux].bfa_rport);
+          }
+          free(rport);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_rport0 = 1;
+          struct bfa_fcs_rport_s * rport = (struct bfa_fcs_rport_s *) malloc(_len_rport0*sizeof(struct bfa_fcs_rport_s));
+          for(int _i0 = 0; _i0 < _len_rport0; _i0++) {
+              int _len_rport__i0__bfa_rport0 = 1;
+          rport[_i0].bfa_rport = (struct bfa_rport_s *) malloc(_len_rport__i0__bfa_rport0*sizeof(struct bfa_rport_s));
+          for(int _j0 = 0; _j0 < _len_rport__i0__bfa_rport0; _j0++) {
+              rport[_i0].bfa_rport->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct bfa_rport_s * benchRet = bfa_fcs_rport_get_halrport(rport);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_rport0; _aux++) {
+          free(rport[_aux].bfa_rport);
+          }
+          free(rport);
+        
+        break;
+    }
     default:
         usage();
         break;

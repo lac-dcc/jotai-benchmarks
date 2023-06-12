@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ void setreg(Node p, Symbol r) {
 	p->syms[RX] = r;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +82,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int r = 100;
+        
           int _len_p0 = 1;
           struct TYPE_3__ * p = (struct TYPE_3__ *) malloc(_len_p0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
@@ -93,7 +91,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_p__i0__syms0; _j0++) {
             p[_i0].syms[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           setreg(p,r);
           for(int _aux = 0; _aux < _len_p0; _aux++) {
           free(p[_aux].syms);
@@ -102,7 +102,78 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int r = 255;
+        
+          int _len_p0 = 65025;
+          struct TYPE_3__ * p = (struct TYPE_3__ *) malloc(_len_p0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              int _len_p__i0__syms0 = 1;
+          p[_i0].syms = (int *) malloc(_len_p__i0__syms0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_p__i0__syms0; _j0++) {
+            p[_i0].syms[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          setreg(p,r);
+          for(int _aux = 0; _aux < _len_p0; _aux++) {
+          free(p[_aux].syms);
+          }
+          free(p);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int r = 10;
+        
+          int _len_p0 = 100;
+          struct TYPE_3__ * p = (struct TYPE_3__ *) malloc(_len_p0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              int _len_p__i0__syms0 = 1;
+          p[_i0].syms = (int *) malloc(_len_p__i0__syms0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_p__i0__syms0; _j0++) {
+            p[_i0].syms[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          setreg(p,r);
+          for(int _aux = 0; _aux < _len_p0; _aux++) {
+          free(p[_aux].syms);
+          }
+          free(p);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int r = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_p0 = 1;
+          struct TYPE_3__ * p = (struct TYPE_3__ *) malloc(_len_p0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              int _len_p__i0__syms0 = 1;
+          p[_i0].syms = (int *) malloc(_len_p__i0__syms0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_p__i0__syms0; _j0++) {
+            p[_i0].syms[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          setreg(p,r);
+          for(int _aux = 0; _aux < _len_p0; _aux++) {
+          free(p[_aux].syms);
+          }
+          free(p);
+        
+        break;
+    }
     default:
         usage();
         break;

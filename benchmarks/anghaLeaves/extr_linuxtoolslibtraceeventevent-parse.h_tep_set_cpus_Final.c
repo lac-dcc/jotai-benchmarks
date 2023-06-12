@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static inline void tep_set_cpus(struct tep_handle *pevent,
 	pevent->cpus = cpus;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,31 +79,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int cpus = 100;
+        
           int _len_pevent0 = 1;
           struct tep_handle * pevent = (struct tep_handle *) malloc(_len_pevent0*sizeof(struct tep_handle));
           for(int _i0 = 0; _i0 < _len_pevent0; _i0++) {
-            pevent[_i0].cpus = ((-2 * (next_i()%2)) + 1) * next_i();
+              pevent[_i0].cpus = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          tep_set_cpus(pevent,cpus);
+          free(pevent);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int cpus = 255;
+        
+          int _len_pevent0 = 65025;
+          struct tep_handle * pevent = (struct tep_handle *) malloc(_len_pevent0*sizeof(struct tep_handle));
+          for(int _i0 = 0; _i0 < _len_pevent0; _i0++) {
+              pevent[_i0].cpus = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           tep_set_cpus(pevent,cpus);
           free(pevent);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int cpus = 10;
+        
           int _len_pevent0 = 100;
           struct tep_handle * pevent = (struct tep_handle *) malloc(_len_pevent0*sizeof(struct tep_handle));
           for(int _i0 = 0; _i0 < _len_pevent0; _i0++) {
-            pevent[_i0].cpus = ((-2 * (next_i()%2)) + 1) * next_i();
+              pevent[_i0].cpus = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           tep_set_cpus(pevent,cpus);
           free(pevent);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int cpus = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pevent0 = 1;
+          struct tep_handle * pevent = (struct tep_handle *) malloc(_len_pevent0*sizeof(struct tep_handle));
+          for(int _i0 = 0; _i0 < _len_pevent0; _i0++) {
+              pevent[_i0].cpus = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          tep_set_cpus(pevent,cpus);
+          free(pevent);
+        
+        break;
+    }
     default:
         usage();
         break;

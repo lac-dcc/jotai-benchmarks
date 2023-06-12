@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +64,6 @@ __attribute__((used)) static unsigned long sprd_adi_to_vaddr(struct sprd_adi *sa
 	return (paddr - sadi->slave_pbase + sadi->slave_vbase);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,19 +80,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long paddr = 100;
+        
           int _len_sadi0 = 1;
           struct sprd_adi * sadi = (struct sprd_adi *) malloc(_len_sadi0*sizeof(struct sprd_adi));
           for(int _i0 = 0; _i0 < _len_sadi0; _i0++) {
-            sadi[_i0].slave_pbase = ((-2 * (next_i()%2)) + 1) * next_i();
-        sadi[_i0].slave_vbase = ((-2 * (next_i()%2)) + 1) * next_i();
+              sadi[_i0].slave_pbase = ((-2 * (next_i()%2)) + 1) * next_i();
+          sadi[_i0].slave_vbase = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = sprd_adi_to_vaddr(sadi,paddr);
           printf("%lu\n", benchRet); 
           free(sadi);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long paddr = 255;
+        
+          int _len_sadi0 = 65025;
+          struct sprd_adi * sadi = (struct sprd_adi *) malloc(_len_sadi0*sizeof(struct sprd_adi));
+          for(int _i0 = 0; _i0 < _len_sadi0; _i0++) {
+              sadi[_i0].slave_pbase = ((-2 * (next_i()%2)) + 1) * next_i();
+          sadi[_i0].slave_vbase = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = sprd_adi_to_vaddr(sadi,paddr);
+          printf("%lu\n", benchRet); 
+          free(sadi);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long paddr = 10;
+        
+          int _len_sadi0 = 100;
+          struct sprd_adi * sadi = (struct sprd_adi *) malloc(_len_sadi0*sizeof(struct sprd_adi));
+          for(int _i0 = 0; _i0 < _len_sadi0; _i0++) {
+              sadi[_i0].slave_pbase = ((-2 * (next_i()%2)) + 1) * next_i();
+          sadi[_i0].slave_vbase = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = sprd_adi_to_vaddr(sadi,paddr);
+          printf("%lu\n", benchRet); 
+          free(sadi);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long paddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sadi0 = 1;
+          struct sprd_adi * sadi = (struct sprd_adi *) malloc(_len_sadi0*sizeof(struct sprd_adi));
+          for(int _i0 = 0; _i0 < _len_sadi0; _i0++) {
+              sadi[_i0].slave_pbase = ((-2 * (next_i()%2)) + 1) * next_i();
+          sadi[_i0].slave_vbase = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = sprd_adi_to_vaddr(sadi,paddr);
+          printf("%lu\n", benchRet); 
+          free(sadi);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static void put_32(unsigned char *s, unsigned c, int e)
 	s[e^3] = c;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,16 +76,84 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 41
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          unsigned int c = 255;
+        
+          int e = 255;
+        
+          int _len_s0 = 65025;
+          unsigned char * s = (unsigned char *) malloc(_len_s0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+            s[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          put_32(s,c,e);
+          free(s);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 41
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
           unsigned int c = 10;
+        
           int e = 10;
+        
           int _len_s0 = 100;
           unsigned char * s = (unsigned char *) malloc(_len_s0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
             s[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           put_32(s,c,e);
           free(s);
         

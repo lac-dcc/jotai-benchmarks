@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ simple_nosetlease(struct file *filp, long arg, struct file_lock **flp,
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,38 +79,260 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           long arg = 100;
+        
           int _len_filp0 = 1;
           struct file * filp = (struct file *) malloc(_len_filp0*sizeof(struct file));
           for(int _i0 = 0; _i0 < _len_filp0; _i0++) {
-            filp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              filp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_flp0 = 1;
           struct file_lock ** flp = (struct file_lock **) malloc(_len_flp0*sizeof(struct file_lock *));
           for(int _i0 = 0; _i0 < _len_flp0; _i0++) {
             int _len_flp1 = 1;
             flp[_i0] = (struct file_lock *) malloc(_len_flp1*sizeof(struct file_lock));
             for(int _i1 = 0; _i1 < _len_flp1; _i1++) {
-              flp[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+                flp[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           int _len_priv0 = 1;
           void ** priv = (void **) malloc(_len_priv0*sizeof(void *));
           for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
           }
+        
           int benchRet = simple_nosetlease(filp,arg,flp,priv);
           printf("%d\n", benchRet); 
           free(filp);
           for(int i1 = 0; i1 < _len_flp0; i1++) {
-            int _len_flp1 = 1;
               free(flp[i1]);
           }
           free(flp);
           for(int i1 = 0; i1 < _len_priv0; i1++) {
-            int _len_priv1 = 1;
+              }
+          free(priv);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          long arg = 255;
+        
+          int _len_filp0 = 65025;
+          struct file * filp = (struct file *) malloc(_len_filp0*sizeof(struct file));
+          for(int _i0 = 0; _i0 < _len_filp0; _i0++) {
+              filp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_flp0 = 65025;
+          struct file_lock ** flp = (struct file_lock **) malloc(_len_flp0*sizeof(struct file_lock *));
+          for(int _i0 = 0; _i0 < _len_flp0; _i0++) {
+            int _len_flp1 = 1;
+            flp[_i0] = (struct file_lock *) malloc(_len_flp1*sizeof(struct file_lock));
+            for(int _i1 = 0; _i1 < _len_flp1; _i1++) {
+                flp[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int _len_priv0 = 65025;
+          void ** priv = (void **) malloc(_len_priv0*sizeof(void *));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+          }
+        
+          int benchRet = simple_nosetlease(filp,arg,flp,priv);
+          printf("%d\n", benchRet); 
+          free(filp);
+          for(int i1 = 0; i1 < _len_flp0; i1++) {
+              free(flp[i1]);
+          }
+          free(flp);
+          for(int i1 = 0; i1 < _len_priv0; i1++) {
+              }
+          free(priv);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          long arg = 10;
+        
+          int _len_filp0 = 100;
+          struct file * filp = (struct file *) malloc(_len_filp0*sizeof(struct file));
+          for(int _i0 = 0; _i0 < _len_filp0; _i0++) {
+              filp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_flp0 = 100;
+          struct file_lock ** flp = (struct file_lock **) malloc(_len_flp0*sizeof(struct file_lock *));
+          for(int _i0 = 0; _i0 < _len_flp0; _i0++) {
+            int _len_flp1 = 1;
+            flp[_i0] = (struct file_lock *) malloc(_len_flp1*sizeof(struct file_lock));
+            for(int _i1 = 0; _i1 < _len_flp1; _i1++) {
+                flp[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int _len_priv0 = 100;
+          void ** priv = (void **) malloc(_len_priv0*sizeof(void *));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+          }
+        
+          int benchRet = simple_nosetlease(filp,arg,flp,priv);
+          printf("%d\n", benchRet); 
+          free(filp);
+          for(int i1 = 0; i1 < _len_flp0; i1++) {
+              free(flp[i1]);
+          }
+          free(flp);
+          for(int i1 = 0; i1 < _len_priv0; i1++) {
+              }
+          free(priv);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          long arg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_filp0 = 1;
+          struct file * filp = (struct file *) malloc(_len_filp0*sizeof(struct file));
+          for(int _i0 = 0; _i0 < _len_filp0; _i0++) {
+              filp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_flp0 = 1;
+          struct file_lock ** flp = (struct file_lock **) malloc(_len_flp0*sizeof(struct file_lock *));
+          for(int _i0 = 0; _i0 < _len_flp0; _i0++) {
+            int _len_flp1 = 1;
+            flp[_i0] = (struct file_lock *) malloc(_len_flp1*sizeof(struct file_lock));
+            for(int _i1 = 0; _i1 < _len_flp1; _i1++) {
+                flp[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int _len_priv0 = 1;
+          void ** priv = (void **) malloc(_len_priv0*sizeof(void *));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+          }
+        
+          int benchRet = simple_nosetlease(filp,arg,flp,priv);
+          printf("%d\n", benchRet); 
+          free(filp);
+          for(int i1 = 0; i1 < _len_flp0; i1++) {
+              free(flp[i1]);
+          }
+          free(flp);
+          for(int i1 = 0; i1 < _len_priv0; i1++) {
               }
           free(priv);
         

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +77,6 @@ __attribute__((used)) static int cec_validate_phys_addr(u16 phys_addr)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,28 +89,136 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 45
+          // dynamic_instructions_O0 : 55
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 39
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 29
+          // dynamic_instructions_O3 : 29
+          // ------------------------------- 
+          // static_instructions_Ofast : 29
+          // dynamic_instructions_Ofast : 29
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 33
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 33
+          // ------------------------------- 
+
           int phys_addr = 100;
+        
           int benchRet = cec_validate_phys_addr(phys_addr);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 45
+          // dynamic_instructions_O0 : 55
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 39
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 29
+          // dynamic_instructions_O3 : 29
+          // ------------------------------- 
+          // static_instructions_Ofast : 29
+          // dynamic_instructions_Ofast : 29
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 33
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 33
+          // ------------------------------- 
+
           int phys_addr = 255;
+        
           int benchRet = cec_validate_phys_addr(phys_addr);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 30
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
           int phys_addr = 10;
+        
+          int benchRet = cec_validate_phys_addr(phys_addr);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 74
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 48
+          // ------------------------------- 
+          // static_instructions_O2 : 31
+          // dynamic_instructions_O2 : 31
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 41
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 42
+          // ------------------------------- 
+
+          int phys_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = cec_validate_phys_addr(phys_addr);
           printf("%d\n", benchRet); 
         

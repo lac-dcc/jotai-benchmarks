@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -71,12 +71,6 @@ int va_get_colorspace_flag(enum mp_csp csp)
     return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,16 +83,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum mp_csp csp = 0;
+        
           int benchRet = va_get_colorspace_flag(csp);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

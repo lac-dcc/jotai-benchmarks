@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +76,6 @@ mbuf_set_vlan_tag(
 	return (0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,19 +92,82 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int vlan = 100;
+        
           int _len_mbuf0 = 1;
           struct TYPE_5__ * mbuf = (struct TYPE_5__ *) malloc(_len_mbuf0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_mbuf0; _i0++) {
-            mbuf[_i0].m_pkthdr.vlan_tag = ((-2 * (next_i()%2)) + 1) * next_i();
-        mbuf[_i0].m_pkthdr.csum_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              mbuf[_i0].m_pkthdr.vlan_tag = ((-2 * (next_i()%2)) + 1) * next_i();
+          mbuf[_i0].m_pkthdr.csum_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = mbuf_set_vlan_tag(mbuf,vlan);
           printf("%d\n", benchRet); 
           free(mbuf);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int vlan = 255;
+        
+          int _len_mbuf0 = 65025;
+          struct TYPE_5__ * mbuf = (struct TYPE_5__ *) malloc(_len_mbuf0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_mbuf0; _i0++) {
+              mbuf[_i0].m_pkthdr.vlan_tag = ((-2 * (next_i()%2)) + 1) * next_i();
+          mbuf[_i0].m_pkthdr.csum_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = mbuf_set_vlan_tag(mbuf,vlan);
+          printf("%d\n", benchRet); 
+          free(mbuf);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int vlan = 10;
+        
+          int _len_mbuf0 = 100;
+          struct TYPE_5__ * mbuf = (struct TYPE_5__ *) malloc(_len_mbuf0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_mbuf0; _i0++) {
+              mbuf[_i0].m_pkthdr.vlan_tag = ((-2 * (next_i()%2)) + 1) * next_i();
+          mbuf[_i0].m_pkthdr.csum_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = mbuf_set_vlan_tag(mbuf,vlan);
+          printf("%d\n", benchRet); 
+          free(mbuf);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int vlan = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_mbuf0 = 1;
+          struct TYPE_5__ * mbuf = (struct TYPE_5__ *) malloc(_len_mbuf0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_mbuf0; _i0++) {
+              mbuf[_i0].m_pkthdr.vlan_tag = ((-2 * (next_i()%2)) + 1) * next_i();
+          mbuf[_i0].m_pkthdr.csum_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = mbuf_set_vlan_tag(mbuf,vlan);
+          printf("%d\n", benchRet); 
+          free(mbuf);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static void ctx_signal_notify(struct vmci_ctx *context)
 	*context->notify = true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,9 +74,124 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_context0 = 65025;
+          struct vmci_ctx * context = (struct vmci_ctx *) malloc(_len_context0*sizeof(struct vmci_ctx));
+          for(int _i0 = 0; _i0 < _len_context0; _i0++) {
+              int _len_context__i0__notify0 = 1;
+          context[_i0].notify = (int *) malloc(_len_context__i0__notify0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_context__i0__notify0; _j0++) {
+            context[_i0].notify[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          ctx_signal_notify(context);
+          for(int _aux = 0; _aux < _len_context0; _aux++) {
+          free(context[_aux].notify);
+          }
+          free(context);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_context0 = 100;
+          struct vmci_ctx * context = (struct vmci_ctx *) malloc(_len_context0*sizeof(struct vmci_ctx));
+          for(int _i0 = 0; _i0 < _len_context0; _i0++) {
+              int _len_context__i0__notify0 = 1;
+          context[_i0].notify = (int *) malloc(_len_context__i0__notify0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_context__i0__notify0; _j0++) {
+            context[_i0].notify[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          ctx_signal_notify(context);
+          for(int _aux = 0; _aux < _len_context0; _aux++) {
+          free(context[_aux].notify);
+          }
+          free(context);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_context0 = 1;
           struct vmci_ctx * context = (struct vmci_ctx *) malloc(_len_context0*sizeof(struct vmci_ctx));
           for(int _i0 = 0; _i0 < _len_context0; _i0++) {
@@ -89,7 +200,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_context__i0__notify0; _j0++) {
             context[_i0].notify[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           ctx_signal_notify(context);
           for(int _aux = 0; _aux < _len_context0; _aux++) {
           free(context[_aux].notify);

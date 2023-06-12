@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -78,12 +78,6 @@ __attribute__((used)) static inline int get_ffmpeg_scale_type(enum video_scale_t
 	return SWS_POINT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,16 +90,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum video_scale_type type = 0;
+        
           int benchRet = get_ffmpeg_scale_type(type);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

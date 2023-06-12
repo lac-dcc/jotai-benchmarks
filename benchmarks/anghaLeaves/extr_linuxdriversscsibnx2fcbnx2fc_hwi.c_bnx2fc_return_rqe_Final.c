@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ void bnx2fc_return_rqe(struct bnx2fc_rport *tgt, u8 num_items)
 	tgt->conn_db->rq_prod = tgt->rq_prod_idx;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,20 +87,197 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int num_items = 100;
+        
           int _len_tgt0 = 1;
           struct bnx2fc_rport * tgt = (struct bnx2fc_rport *) malloc(_len_tgt0*sizeof(struct bnx2fc_rport));
           for(int _i0 = 0; _i0 < _len_tgt0; _i0++) {
-            tgt[_i0].rq_prod_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+              tgt[_i0].rq_prod_idx = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_tgt__i0__conn_db0 = 1;
           tgt[_i0].conn_db = (struct TYPE_2__ *) malloc(_len_tgt__i0__conn_db0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_tgt__i0__conn_db0; _j0++) {
-            tgt[_i0].conn_db->rq_prod = ((-2 * (next_i()%2)) + 1) * next_i();
+              tgt[_i0].conn_db->rq_prod = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          bnx2fc_return_rqe(tgt,num_items);
+          for(int _aux = 0; _aux < _len_tgt0; _aux++) {
+          free(tgt[_aux].conn_db);
+          }
+          free(tgt);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int num_items = 255;
+        
+          int _len_tgt0 = 65025;
+          struct bnx2fc_rport * tgt = (struct bnx2fc_rport *) malloc(_len_tgt0*sizeof(struct bnx2fc_rport));
+          for(int _i0 = 0; _i0 < _len_tgt0; _i0++) {
+              tgt[_i0].rq_prod_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_tgt__i0__conn_db0 = 1;
+          tgt[_i0].conn_db = (struct TYPE_2__ *) malloc(_len_tgt__i0__conn_db0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_tgt__i0__conn_db0; _j0++) {
+              tgt[_i0].conn_db->rq_prod = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          bnx2fc_return_rqe(tgt,num_items);
+          for(int _aux = 0; _aux < _len_tgt0; _aux++) {
+          free(tgt[_aux].conn_db);
+          }
+          free(tgt);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int num_items = 10;
+        
+          int _len_tgt0 = 100;
+          struct bnx2fc_rport * tgt = (struct bnx2fc_rport *) malloc(_len_tgt0*sizeof(struct bnx2fc_rport));
+          for(int _i0 = 0; _i0 < _len_tgt0; _i0++) {
+              tgt[_i0].rq_prod_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_tgt__i0__conn_db0 = 1;
+          tgt[_i0].conn_db = (struct TYPE_2__ *) malloc(_len_tgt__i0__conn_db0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_tgt__i0__conn_db0; _j0++) {
+              tgt[_i0].conn_db->rq_prod = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          bnx2fc_return_rqe(tgt,num_items);
+          for(int _aux = 0; _aux < _len_tgt0; _aux++) {
+          free(tgt[_aux].conn_db);
+          }
+          free(tgt);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int num_items = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_tgt0 = 1;
+          struct bnx2fc_rport * tgt = (struct bnx2fc_rport *) malloc(_len_tgt0*sizeof(struct bnx2fc_rport));
+          for(int _i0 = 0; _i0 < _len_tgt0; _i0++) {
+              tgt[_i0].rq_prod_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_tgt__i0__conn_db0 = 1;
+          tgt[_i0].conn_db = (struct TYPE_2__ *) malloc(_len_tgt__i0__conn_db0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_tgt__i0__conn_db0; _j0++) {
+              tgt[_i0].conn_db->rq_prod = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           bnx2fc_return_rqe(tgt,num_items);
           for(int _aux = 0; _aux < _len_tgt0; _aux++) {
           free(tgt[_aux].conn_db);

@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -82,12 +82,6 @@ __attribute__((used)) static inline int get_sws_colorspace(enum AVColorSpace cs)
 	return SWS_CS_ITU601;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,16 +94,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum AVColorSpace cs = 0;
+        
           int benchRet = get_sws_colorspace(cs);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

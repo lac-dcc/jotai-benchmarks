@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ bfa_ioc_fwver_md5_check(struct bfi_ioc_image_hdr *fwhdr_1,
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,10 +84,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_fwhdr_10 = 1;
+          int _len_fwhdr_10 = 65025;
           struct bfi_ioc_image_hdr * fwhdr_1 = (struct bfi_ioc_image_hdr *) malloc(_len_fwhdr_10*sizeof(struct bfi_ioc_image_hdr));
           for(int _i0 = 0; _i0 < _len_fwhdr_10; _i0++) {
               int _len_fwhdr_1__i0__md5sum0 = 1;
@@ -99,8 +95,10 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_fwhdr_1__i0__md5sum0; _j0++) {
             fwhdr_1[_i0].md5sum[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
-          int _len_fwhdr_20 = 1;
+        
+          int _len_fwhdr_20 = 65025;
           struct bfi_ioc_image_hdr * fwhdr_2 = (struct bfi_ioc_image_hdr *) malloc(_len_fwhdr_20*sizeof(struct bfi_ioc_image_hdr));
           for(int _i0 = 0; _i0 < _len_fwhdr_20; _i0++) {
               int _len_fwhdr_2__i0__md5sum0 = 1;
@@ -108,7 +106,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_fwhdr_2__i0__md5sum0; _j0++) {
             fwhdr_2[_i0].md5sum[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = bfa_ioc_fwver_md5_check(fwhdr_1,fwhdr_2);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_fwhdr_10; _aux++) {
@@ -122,7 +122,82 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_fwhdr_10 = 100;
+          struct bfi_ioc_image_hdr * fwhdr_1 = (struct bfi_ioc_image_hdr *) malloc(_len_fwhdr_10*sizeof(struct bfi_ioc_image_hdr));
+          for(int _i0 = 0; _i0 < _len_fwhdr_10; _i0++) {
+              int _len_fwhdr_1__i0__md5sum0 = 1;
+          fwhdr_1[_i0].md5sum = (long *) malloc(_len_fwhdr_1__i0__md5sum0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_fwhdr_1__i0__md5sum0; _j0++) {
+            fwhdr_1[_i0].md5sum[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_fwhdr_20 = 100;
+          struct bfi_ioc_image_hdr * fwhdr_2 = (struct bfi_ioc_image_hdr *) malloc(_len_fwhdr_20*sizeof(struct bfi_ioc_image_hdr));
+          for(int _i0 = 0; _i0 < _len_fwhdr_20; _i0++) {
+              int _len_fwhdr_2__i0__md5sum0 = 1;
+          fwhdr_2[_i0].md5sum = (long *) malloc(_len_fwhdr_2__i0__md5sum0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_fwhdr_2__i0__md5sum0; _j0++) {
+            fwhdr_2[_i0].md5sum[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = bfa_ioc_fwver_md5_check(fwhdr_1,fwhdr_2);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_fwhdr_10; _aux++) {
+          free(fwhdr_1[_aux].md5sum);
+          }
+          free(fwhdr_1);
+          for(int _aux = 0; _aux < _len_fwhdr_20; _aux++) {
+          free(fwhdr_2[_aux].md5sum);
+          }
+          free(fwhdr_2);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_fwhdr_10 = 1;
+          struct bfi_ioc_image_hdr * fwhdr_1 = (struct bfi_ioc_image_hdr *) malloc(_len_fwhdr_10*sizeof(struct bfi_ioc_image_hdr));
+          for(int _i0 = 0; _i0 < _len_fwhdr_10; _i0++) {
+              int _len_fwhdr_1__i0__md5sum0 = 1;
+          fwhdr_1[_i0].md5sum = (long *) malloc(_len_fwhdr_1__i0__md5sum0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_fwhdr_1__i0__md5sum0; _j0++) {
+            fwhdr_1[_i0].md5sum[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_fwhdr_20 = 1;
+          struct bfi_ioc_image_hdr * fwhdr_2 = (struct bfi_ioc_image_hdr *) malloc(_len_fwhdr_20*sizeof(struct bfi_ioc_image_hdr));
+          for(int _i0 = 0; _i0 < _len_fwhdr_20; _i0++) {
+              int _len_fwhdr_2__i0__md5sum0 = 1;
+          fwhdr_2[_i0].md5sum = (long *) malloc(_len_fwhdr_2__i0__md5sum0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_fwhdr_2__i0__md5sum0; _j0++) {
+            fwhdr_2[_i0].md5sum[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = bfa_ioc_fwver_md5_check(fwhdr_1,fwhdr_2);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_fwhdr_10; _aux++) {
+          free(fwhdr_1[_aux].md5sum);
+          }
+          free(fwhdr_1);
+          for(int _aux = 0; _aux < _len_fwhdr_20; _aux++) {
+          free(fwhdr_2[_aux].md5sum);
+          }
+          free(fwhdr_2);
+        
+        break;
+    }
     default:
         usage();
         break;

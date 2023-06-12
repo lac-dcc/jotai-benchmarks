@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ void xlgmac_init_desc_ops(struct xlgmac_desc_ops *desc_ops)
 	desc_ops->rx_desc_init = xlgmac_rx_desc_init;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,20 +87,135 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_desc_ops0 = 65025;
+          struct xlgmac_desc_ops * desc_ops = (struct xlgmac_desc_ops *) malloc(_len_desc_ops0*sizeof(struct xlgmac_desc_ops));
+          for(int _i0 = 0; _i0 < _len_desc_ops0; _i0++) {
+              desc_ops[_i0].rx_desc_init = ((-2 * (next_i()%2)) + 1) * next_i();
+          desc_ops[_i0].tx_desc_init = ((-2 * (next_i()%2)) + 1) * next_i();
+          desc_ops[_i0].unmap_desc_data = ((-2 * (next_i()%2)) + 1) * next_i();
+          desc_ops[_i0].map_rx_buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+          desc_ops[_i0].map_tx_skb = ((-2 * (next_i()%2)) + 1) * next_i();
+          desc_ops[_i0].free_channels_and_rings = ((-2 * (next_i()%2)) + 1) * next_i();
+          desc_ops[_i0].alloc_channles_and_rings = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          xlgmac_init_desc_ops(desc_ops);
+          free(desc_ops);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_desc_ops0 = 100;
+          struct xlgmac_desc_ops * desc_ops = (struct xlgmac_desc_ops *) malloc(_len_desc_ops0*sizeof(struct xlgmac_desc_ops));
+          for(int _i0 = 0; _i0 < _len_desc_ops0; _i0++) {
+              desc_ops[_i0].rx_desc_init = ((-2 * (next_i()%2)) + 1) * next_i();
+          desc_ops[_i0].tx_desc_init = ((-2 * (next_i()%2)) + 1) * next_i();
+          desc_ops[_i0].unmap_desc_data = ((-2 * (next_i()%2)) + 1) * next_i();
+          desc_ops[_i0].map_rx_buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+          desc_ops[_i0].map_tx_skb = ((-2 * (next_i()%2)) + 1) * next_i();
+          desc_ops[_i0].free_channels_and_rings = ((-2 * (next_i()%2)) + 1) * next_i();
+          desc_ops[_i0].alloc_channles_and_rings = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          xlgmac_init_desc_ops(desc_ops);
+          free(desc_ops);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int _len_desc_ops0 = 1;
           struct xlgmac_desc_ops * desc_ops = (struct xlgmac_desc_ops *) malloc(_len_desc_ops0*sizeof(struct xlgmac_desc_ops));
           for(int _i0 = 0; _i0 < _len_desc_ops0; _i0++) {
-            desc_ops[_i0].rx_desc_init = ((-2 * (next_i()%2)) + 1) * next_i();
-        desc_ops[_i0].tx_desc_init = ((-2 * (next_i()%2)) + 1) * next_i();
-        desc_ops[_i0].unmap_desc_data = ((-2 * (next_i()%2)) + 1) * next_i();
-        desc_ops[_i0].map_rx_buffer = ((-2 * (next_i()%2)) + 1) * next_i();
-        desc_ops[_i0].map_tx_skb = ((-2 * (next_i()%2)) + 1) * next_i();
-        desc_ops[_i0].free_channels_and_rings = ((-2 * (next_i()%2)) + 1) * next_i();
-        desc_ops[_i0].alloc_channles_and_rings = ((-2 * (next_i()%2)) + 1) * next_i();
+              desc_ops[_i0].rx_desc_init = ((-2 * (next_i()%2)) + 1) * next_i();
+          desc_ops[_i0].tx_desc_init = ((-2 * (next_i()%2)) + 1) * next_i();
+          desc_ops[_i0].unmap_desc_data = ((-2 * (next_i()%2)) + 1) * next_i();
+          desc_ops[_i0].map_rx_buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+          desc_ops[_i0].map_tx_skb = ((-2 * (next_i()%2)) + 1) * next_i();
+          desc_ops[_i0].free_channels_and_rings = ((-2 * (next_i()%2)) + 1) * next_i();
+          desc_ops[_i0].alloc_channles_and_rings = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           xlgmac_init_desc_ops(desc_ops);
           free(desc_ops);
         

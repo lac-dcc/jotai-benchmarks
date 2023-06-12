@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -98,12 +101,6 @@ __attribute__((used)) static void dp_aux_ch_ctl_link_training(struct intel_vgpu_
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -116,10 +113,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int t = 100;
+        
           int _len_dpcd0 = 1;
           struct intel_vgpu_dpcd_data * dpcd = (struct intel_vgpu_dpcd_data *) malloc(_len_dpcd0*sizeof(struct intel_vgpu_dpcd_data));
           for(int _i0 = 0; _i0 < _len_dpcd0; _i0++) {
@@ -128,7 +149,153 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_dpcd__i0__data0; _j0++) {
             dpcd[_i0].data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          dp_aux_ch_ctl_link_training(dpcd,t);
+          for(int _aux = 0; _aux < _len_dpcd0; _aux++) {
+          free(dpcd[_aux].data);
+          }
+          free(dpcd);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int t = 255;
+        
+          int _len_dpcd0 = 65025;
+          struct intel_vgpu_dpcd_data * dpcd = (struct intel_vgpu_dpcd_data *) malloc(_len_dpcd0*sizeof(struct intel_vgpu_dpcd_data));
+          for(int _i0 = 0; _i0 < _len_dpcd0; _i0++) {
+              int _len_dpcd__i0__data0 = 1;
+          dpcd[_i0].data = (int *) malloc(_len_dpcd__i0__data0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_dpcd__i0__data0; _j0++) {
+            dpcd[_i0].data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          dp_aux_ch_ctl_link_training(dpcd,t);
+          for(int _aux = 0; _aux < _len_dpcd0; _aux++) {
+          free(dpcd[_aux].data);
+          }
+          free(dpcd);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int t = 10;
+        
+          int _len_dpcd0 = 100;
+          struct intel_vgpu_dpcd_data * dpcd = (struct intel_vgpu_dpcd_data *) malloc(_len_dpcd0*sizeof(struct intel_vgpu_dpcd_data));
+          for(int _i0 = 0; _i0 < _len_dpcd0; _i0++) {
+              int _len_dpcd__i0__data0 = 1;
+          dpcd[_i0].data = (int *) malloc(_len_dpcd__i0__data0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_dpcd__i0__data0; _j0++) {
+            dpcd[_i0].data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          dp_aux_ch_ctl_link_training(dpcd,t);
+          for(int _aux = 0; _aux < _len_dpcd0; _aux++) {
+          free(dpcd[_aux].data);
+          }
+          free(dpcd);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int t = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dpcd0 = 1;
+          struct intel_vgpu_dpcd_data * dpcd = (struct intel_vgpu_dpcd_data *) malloc(_len_dpcd0*sizeof(struct intel_vgpu_dpcd_data));
+          for(int _i0 = 0; _i0 < _len_dpcd0; _i0++) {
+              int _len_dpcd__i0__data0 = 1;
+          dpcd[_i0].data = (int *) malloc(_len_dpcd__i0__data0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_dpcd__i0__data0; _j0++) {
+            dpcd[_i0].data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           dp_aux_ch_ctl_link_training(dpcd,t);
           for(int _aux = 0; _aux < _len_dpcd0; _aux++) {
           free(dpcd[_aux].data);

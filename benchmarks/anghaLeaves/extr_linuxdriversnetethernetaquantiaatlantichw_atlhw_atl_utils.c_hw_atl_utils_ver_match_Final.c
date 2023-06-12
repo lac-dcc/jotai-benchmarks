@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +74,6 @@ err_exit:
 	return err;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,7 +90,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           const int ver_expected = 100;
+        
           const int ver_actual = 100;
+        
           int benchRet = hw_atl_utils_ver_match(ver_expected,ver_actual);
           printf("%d\n", benchRet); 
         
@@ -105,7 +102,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           const int ver_expected = 255;
+        
           const int ver_actual = 255;
+        
           int benchRet = hw_atl_utils_ver_match(ver_expected,ver_actual);
           printf("%d\n", benchRet); 
         
@@ -115,13 +114,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           const int ver_expected = 10;
+        
           const int ver_actual = 10;
+        
           int benchRet = hw_atl_utils_ver_match(ver_expected,ver_actual);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          const int ver_expected = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          const int ver_actual = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = hw_atl_utils_ver_match(ver_expected,ver_actual);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

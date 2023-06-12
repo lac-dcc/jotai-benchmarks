@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static int occupied(float *b, int i)
     return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,22 +74,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int i = 10;
-          int _len_b0 = 100;
+          int i = 255;
+        
+          int _len_b0 = 65025;
           float * b = (float *) malloc(_len_b0*sizeof(float));
           for(int _i0 = 0; _i0 < _len_b0; _i0++) {
             b[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
+        
           int benchRet = occupied(b,i);
           printf("%d\n", benchRet); 
           free(b);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int i = 10;
+        
+          int _len_b0 = 100;
+          float * b = (float *) malloc(_len_b0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+            b[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          int benchRet = occupied(b,i);
+          printf("%d\n", benchRet); 
+          free(b);
+        
+        break;
+    }
     default:
         usage();
         break;

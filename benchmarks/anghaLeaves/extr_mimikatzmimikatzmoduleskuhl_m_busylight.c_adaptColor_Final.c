@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +81,6 @@ BUSYLIGHT_COLOR adaptColor(PCBUSYLIGHT_COLOR color, BYTE percent)
 	return rColor;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,13 +97,16 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int percent = 100;
+        
           int _len_color0 = 1;
           struct TYPE_5__ * color = (struct TYPE_5__ *) malloc(_len_color0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_color0; _i0++) {
-            color[_i0].blue = ((-2 * (next_i()%2)) + 1) * next_i();
-        color[_i0].green = ((-2 * (next_i()%2)) + 1) * next_i();
-        color[_i0].red = ((-2 * (next_i()%2)) + 1) * next_i();
+              color[_i0].blue = ((-2 * (next_i()%2)) + 1) * next_i();
+          color[_i0].green = ((-2 * (next_i()%2)) + 1) * next_i();
+          color[_i0].red = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           struct TYPE_6__ benchRet = adaptColor(color,percent);
           printf("%d\n", benchRet.member_0);
           printf("%d\n", benchRet.member_1);
@@ -118,7 +118,81 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int percent = 255;
+        
+          int _len_color0 = 65025;
+          struct TYPE_5__ * color = (struct TYPE_5__ *) malloc(_len_color0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_color0; _i0++) {
+              color[_i0].blue = ((-2 * (next_i()%2)) + 1) * next_i();
+          color[_i0].green = ((-2 * (next_i()%2)) + 1) * next_i();
+          color[_i0].red = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct TYPE_6__ benchRet = adaptColor(color,percent);
+          printf("%d\n", benchRet.member_0);
+          printf("%d\n", benchRet.member_1);
+          printf("%d\n", benchRet.member_2);
+          printf("%d\n", benchRet.red);
+          printf("%d\n", benchRet.green);
+          printf("%d\n", benchRet.blue);
+          free(color);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int percent = 10;
+        
+          int _len_color0 = 100;
+          struct TYPE_5__ * color = (struct TYPE_5__ *) malloc(_len_color0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_color0; _i0++) {
+              color[_i0].blue = ((-2 * (next_i()%2)) + 1) * next_i();
+          color[_i0].green = ((-2 * (next_i()%2)) + 1) * next_i();
+          color[_i0].red = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct TYPE_6__ benchRet = adaptColor(color,percent);
+          printf("%d\n", benchRet.member_0);
+          printf("%d\n", benchRet.member_1);
+          printf("%d\n", benchRet.member_2);
+          printf("%d\n", benchRet.red);
+          printf("%d\n", benchRet.green);
+          printf("%d\n", benchRet.blue);
+          free(color);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int percent = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_color0 = 1;
+          struct TYPE_5__ * color = (struct TYPE_5__ *) malloc(_len_color0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_color0; _i0++) {
+              color[_i0].blue = ((-2 * (next_i()%2)) + 1) * next_i();
+          color[_i0].green = ((-2 * (next_i()%2)) + 1) * next_i();
+          color[_i0].red = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct TYPE_6__ benchRet = adaptColor(color,percent);
+          printf("%d\n", benchRet.member_0);
+          printf("%d\n", benchRet.member_1);
+          printf("%d\n", benchRet.member_2);
+          printf("%d\n", benchRet.red);
+          printf("%d\n", benchRet.green);
+          printf("%d\n", benchRet.blue);
+          free(color);
+        
+        break;
+    }
     default:
         usage();
         break;

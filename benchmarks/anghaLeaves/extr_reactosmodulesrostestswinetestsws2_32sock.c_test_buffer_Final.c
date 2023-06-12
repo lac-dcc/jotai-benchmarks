@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static int test_buffer ( char *buf, int chunk_size, int n_
     return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,12 +86,34 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int chunk_size = 100;
+        
           int n_chunks = 100;
+        
           int _len_buf0 = 1;
           char * buf = (char *) malloc(_len_buf0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
             buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = test_buffer(buf,chunk_size,n_chunks);
+          printf("%d\n", benchRet); 
+          free(buf);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int chunk_size = 255;
+        
+          int n_chunks = 255;
+        
+          int _len_buf0 = 65025;
+          char * buf = (char *) malloc(_len_buf0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = test_buffer(buf,chunk_size,n_chunks);
           printf("%d\n", benchRet); 
           free(buf);
@@ -103,22 +121,43 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int chunk_size = 10;
+        
           int n_chunks = 10;
+        
           int _len_buf0 = 100;
           char * buf = (char *) malloc(_len_buf0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
             buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = test_buffer(buf,chunk_size,n_chunks);
           printf("%d\n", benchRet); 
           free(buf);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int chunk_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int n_chunks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_buf0 = 1;
+          char * buf = (char *) malloc(_len_buf0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = test_buffer(buf,chunk_size,n_chunks);
+          printf("%d\n", benchRet); 
+          free(buf);
+        
+        break;
+    }
     default:
         usage();
         break;

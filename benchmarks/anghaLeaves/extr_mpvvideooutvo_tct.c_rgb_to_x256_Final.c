@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +81,6 @@ __attribute__((used)) static int rgb_to_x256(uint8_t r, uint8_t g, uint8_t b)
     return color_err <= gray_err ? 16 + color_index() : 232 + gray_index;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,34 +93,152 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 112
+          // dynamic_instructions_O0 : 112
+          // ------------------------------- 
+          // static_instructions_O1 : 74
+          // dynamic_instructions_O1 : 74
+          // ------------------------------- 
+          // static_instructions_O2 : 74
+          // dynamic_instructions_O2 : 74
+          // ------------------------------- 
+          // static_instructions_O3 : 74
+          // dynamic_instructions_O3 : 74
+          // ------------------------------- 
+          // static_instructions_Ofast : 74
+          // dynamic_instructions_Ofast : 74
+          // ------------------------------- 
+          // static_instructions_Os : 74
+          // dynamic_instructions_Os : 74
+          // ------------------------------- 
+          // static_instructions_Oz : 72
+          // dynamic_instructions_Oz : 72
+          // ------------------------------- 
+
           int r = 100;
+        
           int g = 100;
+        
           int b = 100;
+        
           int benchRet = rgb_to_x256(r,g,b);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 122
+          // dynamic_instructions_O0 : 122
+          // ------------------------------- 
+          // static_instructions_O1 : 87
+          // dynamic_instructions_O1 : 87
+          // ------------------------------- 
+          // static_instructions_O2 : 87
+          // dynamic_instructions_O2 : 87
+          // ------------------------------- 
+          // static_instructions_O3 : 87
+          // dynamic_instructions_O3 : 87
+          // ------------------------------- 
+          // static_instructions_Ofast : 87
+          // dynamic_instructions_Ofast : 87
+          // ------------------------------- 
+          // static_instructions_Os : 87
+          // dynamic_instructions_Os : 87
+          // ------------------------------- 
+          // static_instructions_Oz : 76
+          // dynamic_instructions_Oz : 76
+          // ------------------------------- 
+
           int r = 255;
+        
           int g = 255;
+        
           int b = 255;
+        
           int benchRet = rgb_to_x256(r,g,b);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 100
+          // dynamic_instructions_O0 : 100
+          // ------------------------------- 
+          // static_instructions_O1 : 65
+          // dynamic_instructions_O1 : 65
+          // ------------------------------- 
+          // static_instructions_O2 : 65
+          // dynamic_instructions_O2 : 65
+          // ------------------------------- 
+          // static_instructions_O3 : 65
+          // dynamic_instructions_O3 : 65
+          // ------------------------------- 
+          // static_instructions_Ofast : 65
+          // dynamic_instructions_Ofast : 65
+          // ------------------------------- 
+          // static_instructions_Os : 65
+          // dynamic_instructions_Os : 65
+          // ------------------------------- 
+          // static_instructions_Oz : 60
+          // dynamic_instructions_Oz : 60
+          // ------------------------------- 
+
           int r = 10;
+        
           int g = 10;
+        
           int b = 10;
+        
+          int benchRet = rgb_to_x256(r,g,b);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 100
+          // dynamic_instructions_O0 : 100
+          // ------------------------------- 
+          // static_instructions_O1 : 65
+          // dynamic_instructions_O1 : 65
+          // ------------------------------- 
+          // static_instructions_O2 : 65
+          // dynamic_instructions_O2 : 65
+          // ------------------------------- 
+          // static_instructions_O3 : 65
+          // dynamic_instructions_O3 : 65
+          // ------------------------------- 
+          // static_instructions_Ofast : 65
+          // dynamic_instructions_Ofast : 65
+          // ------------------------------- 
+          // static_instructions_Os : 65
+          // dynamic_instructions_Os : 65
+          // ------------------------------- 
+          // static_instructions_Oz : 60
+          // dynamic_instructions_Oz : 60
+          // ------------------------------- 
+
+          int r = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int g = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = rgb_to_x256(r,g,b);
           printf("%d\n", benchRet); 
         

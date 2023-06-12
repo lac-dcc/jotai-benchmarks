@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ int sqliterkSetNotify(sqliterk *rk, sqliterk_notify notify)
     return SQLITERK_OK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,11 +88,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int notify = 100;
+        
           int _len_rk0 = 1;
           struct TYPE_3__ * rk = (struct TYPE_3__ *) malloc(_len_rk0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_rk0; _i0++) {
-            rk[_i0].notify = ((-2 * (next_i()%2)) + 1) * next_i();
+              rk[_i0].notify = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = sqliterkSetNotify(rk,notify);
+          printf("%d\n", benchRet); 
+          free(rk);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int notify = 255;
+        
+          int _len_rk0 = 65025;
+          struct TYPE_3__ * rk = (struct TYPE_3__ *) malloc(_len_rk0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_rk0; _i0++) {
+              rk[_i0].notify = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = sqliterkSetNotify(rk,notify);
           printf("%d\n", benchRet); 
           free(rk);
@@ -104,21 +121,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int notify = 10;
+        
           int _len_rk0 = 100;
           struct TYPE_3__ * rk = (struct TYPE_3__ *) malloc(_len_rk0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_rk0; _i0++) {
-            rk[_i0].notify = ((-2 * (next_i()%2)) + 1) * next_i();
+              rk[_i0].notify = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = sqliterkSetNotify(rk,notify);
           printf("%d\n", benchRet); 
           free(rk);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int notify = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rk0 = 1;
+          struct TYPE_3__ * rk = (struct TYPE_3__ *) malloc(_len_rk0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_rk0; _i0++) {
+              rk[_i0].notify = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sqliterkSetNotify(rk,notify);
+          printf("%d\n", benchRet); 
+          free(rk);
+        
+        break;
+    }
     default:
         usage();
         break;

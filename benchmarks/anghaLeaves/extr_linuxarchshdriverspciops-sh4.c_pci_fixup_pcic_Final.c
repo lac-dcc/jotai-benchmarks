@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ int __attribute__((weak)) pci_fixup_pcic(struct pci_channel *chan)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_chan0 = 1;
+          int _len_chan0 = 65025;
           struct pci_channel * chan = (struct pci_channel *) malloc(_len_chan0*sizeof(struct pci_channel));
           for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
-            chan[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              chan[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = pci_fixup_pcic(chan);
           printf("%d\n", benchRet); 
           free(chan);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_chan0 = 100;
           struct pci_channel * chan = (struct pci_channel *) malloc(_len_chan0*sizeof(struct pci_channel));
           for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
-            chan[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              chan[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = pci_fixup_pcic(chan);
           printf("%d\n", benchRet); 
           free(chan);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_chan0 = 1;
+          struct pci_channel * chan = (struct pci_channel *) malloc(_len_chan0*sizeof(struct pci_channel));
+          for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
+              chan[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pci_fixup_pcic(chan);
+          printf("%d\n", benchRet); 
+          free(chan);
+        
+        break;
+    }
     default:
         usage();
         break;

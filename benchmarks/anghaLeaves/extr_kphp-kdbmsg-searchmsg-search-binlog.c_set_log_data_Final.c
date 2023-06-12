@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ void set_log_data (int logfd, long long logsize) {
   binlog_size = logsize;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,7 +80,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int logfd = 100;
+        
           long long logsize = 100;
+        
           set_log_data(logfd,logsize);
         
         break;
@@ -94,7 +91,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int logfd = 255;
+        
           long long logsize = 255;
+        
           set_log_data(logfd,logsize);
         
         break;
@@ -103,12 +102,24 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int logfd = 10;
+        
           long long logsize = 10;
+        
           set_log_data(logfd,logsize);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int logfd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long long logsize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          set_log_data(logfd,logsize);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ ifnet_set_metric(ifnet_t interface, u_int32_t metric)
 	return (0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,11 +91,34 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int metric = 100;
+        
           int _len_interface0 = 1;
           struct TYPE_5__ * interface = (struct TYPE_5__ *) malloc(_len_interface0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_interface0; _i0++) {
-            interface[_i0].if_data.ifi_metric = ((-2 * (next_i()%2)) + 1) * next_i();
+              interface[_i0].if_data.ifi_metric = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = ifnet_set_metric(interface,metric);
+          printf("%d\n", benchRet); 
+          free(interface);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int metric = 255;
+        
+          int _len_interface0 = 65025;
+          struct TYPE_5__ * interface = (struct TYPE_5__ *) malloc(_len_interface0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_interface0; _i0++) {
+              interface[_i0].if_data.ifi_metric = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = ifnet_set_metric(interface,metric);
           printf("%d\n", benchRet); 
           free(interface);
@@ -107,21 +126,43 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int metric = 10;
+        
           int _len_interface0 = 100;
           struct TYPE_5__ * interface = (struct TYPE_5__ *) malloc(_len_interface0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_interface0; _i0++) {
-            interface[_i0].if_data.ifi_metric = ((-2 * (next_i()%2)) + 1) * next_i();
+              interface[_i0].if_data.ifi_metric = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = ifnet_set_metric(interface,metric);
           printf("%d\n", benchRet); 
           free(interface);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int metric = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_interface0 = 1;
+          struct TYPE_5__ * interface = (struct TYPE_5__ *) malloc(_len_interface0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_interface0; _i0++) {
+              interface[_i0].if_data.ifi_metric = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = ifnet_set_metric(interface,metric);
+          printf("%d\n", benchRet); 
+          free(interface);
+        
+        break;
+    }
     default:
         usage();
         break;

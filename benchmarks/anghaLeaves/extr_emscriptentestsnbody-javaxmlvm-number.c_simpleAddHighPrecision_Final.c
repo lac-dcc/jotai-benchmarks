@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -73,12 +74,6 @@ simpleAddHighPrecision (U_64 * arg1, IDATA length, U_64 arg2)
 	return (IDATA) index == length;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,23 +86,44 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int length = 10;
-          long arg2 = 10;
-          int _len_arg10 = 100;
+          int length = 255;
+        
+          long arg2 = 255;
+        
+          int _len_arg10 = 65025;
           long * arg1 = (long *) malloc(_len_arg10*sizeof(long));
           for(int _i0 = 0; _i0 < _len_arg10; _i0++) {
             arg1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = simpleAddHighPrecision(arg1,length,arg2);
           printf("%d\n", benchRet); 
           free(arg1);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int length = 10;
+        
+          long arg2 = 10;
+        
+          int _len_arg10 = 100;
+          long * arg1 = (long *) malloc(_len_arg10*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_arg10; _i0++) {
+            arg1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = simpleAddHighPrecision(arg1,length,arg2);
+          printf("%d\n", benchRet); 
+          free(arg1);
+        
+        break;
+    }
     default:
         usage();
         break;

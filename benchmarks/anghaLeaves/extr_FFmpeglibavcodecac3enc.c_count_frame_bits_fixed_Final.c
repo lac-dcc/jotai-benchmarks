@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -158,12 +160,6 @@ __attribute__((used)) static void count_frame_bits_fixed(AC3EncodeContext *s)
     s->frame_bits_fixed = frame_bits;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -176,21 +172,138 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 76
+          // dynamic_instructions_O0 : 76
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 36
+          // dynamic_instructions_O2 : 36
+          // ------------------------------- 
+          // static_instructions_O3 : 36
+          // dynamic_instructions_O3 : 36
+          // ------------------------------- 
+          // static_instructions_Ofast : 36
+          // dynamic_instructions_Ofast : 36
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 36
+          // ------------------------------- 
+          // static_instructions_Oz : 45
+          // dynamic_instructions_Oz : 45
+          // ------------------------------- 
+
+          int _len_s0 = 65025;
+          struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].num_blocks = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].fbw_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].num_blks_code = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].channel_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].frame_bits_fixed = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].eac3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].lfe_on = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].use_frame_exp_strategy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          count_frame_bits_fixed(s);
+          free(s);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 76
+          // dynamic_instructions_O0 : 76
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 36
+          // dynamic_instructions_O2 : 36
+          // ------------------------------- 
+          // static_instructions_O3 : 36
+          // dynamic_instructions_O3 : 36
+          // ------------------------------- 
+          // static_instructions_Ofast : 36
+          // dynamic_instructions_Ofast : 36
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 36
+          // ------------------------------- 
+          // static_instructions_Oz : 45
+          // dynamic_instructions_Oz : 45
+          // ------------------------------- 
+
+          int _len_s0 = 100;
+          struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].num_blocks = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].fbw_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].num_blks_code = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].channel_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].frame_bits_fixed = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].eac3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].lfe_on = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].use_frame_exp_strategy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          count_frame_bits_fixed(s);
+          free(s);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 76
+          // dynamic_instructions_O0 : 76
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 36
+          // dynamic_instructions_O2 : 36
+          // ------------------------------- 
+          // static_instructions_O3 : 36
+          // dynamic_instructions_O3 : 36
+          // ------------------------------- 
+          // static_instructions_Ofast : 36
+          // dynamic_instructions_Ofast : 36
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 36
+          // ------------------------------- 
+          // static_instructions_Oz : 45
+          // dynamic_instructions_Oz : 45
+          // ------------------------------- 
+
           int _len_s0 = 1;
           struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].num_blocks = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].fbw_channels = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].num_blks_code = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].channel_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].frame_bits_fixed = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].eac3 = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].lfe_on = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].use_frame_exp_strategy = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].num_blocks = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].fbw_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].num_blks_code = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].channel_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].frame_bits_fixed = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].eac3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].lfe_on = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].use_frame_exp_strategy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           count_frame_bits_fixed(s);
           free(s);
         

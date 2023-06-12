@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static bool binding_switch_compare(struct sway_switch_bind
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,21 +80,25 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_binding_a0 = 1;
+          int _len_binding_a0 = 65025;
           struct sway_switch_binding * binding_a = (struct sway_switch_binding *) malloc(_len_binding_a0*sizeof(struct sway_switch_binding));
           for(int _i0 = 0; _i0 < _len_binding_a0; _i0++) {
-            binding_a[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        binding_a[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+              binding_a[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          binding_a[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_binding_b0 = 1;
+        
+          int _len_binding_b0 = 65025;
           struct sway_switch_binding * binding_b = (struct sway_switch_binding *) malloc(_len_binding_b0*sizeof(struct sway_switch_binding));
           for(int _i0 = 0; _i0 < _len_binding_b0; _i0++) {
-            binding_b[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        binding_b[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+              binding_b[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          binding_b[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = binding_switch_compare(binding_a,binding_b);
           printf("%d\n", benchRet); 
           free(binding_a);
@@ -106,7 +106,58 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_binding_a0 = 100;
+          struct sway_switch_binding * binding_a = (struct sway_switch_binding *) malloc(_len_binding_a0*sizeof(struct sway_switch_binding));
+          for(int _i0 = 0; _i0 < _len_binding_a0; _i0++) {
+              binding_a[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          binding_a[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_binding_b0 = 100;
+          struct sway_switch_binding * binding_b = (struct sway_switch_binding *) malloc(_len_binding_b0*sizeof(struct sway_switch_binding));
+          for(int _i0 = 0; _i0 < _len_binding_b0; _i0++) {
+              binding_b[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          binding_b[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = binding_switch_compare(binding_a,binding_b);
+          printf("%d\n", benchRet); 
+          free(binding_a);
+          free(binding_b);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_binding_a0 = 1;
+          struct sway_switch_binding * binding_a = (struct sway_switch_binding *) malloc(_len_binding_a0*sizeof(struct sway_switch_binding));
+          for(int _i0 = 0; _i0 < _len_binding_a0; _i0++) {
+              binding_a[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          binding_a[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_binding_b0 = 1;
+          struct sway_switch_binding * binding_b = (struct sway_switch_binding *) malloc(_len_binding_b0*sizeof(struct sway_switch_binding));
+          for(int _i0 = 0; _i0 < _len_binding_b0; _i0++) {
+              binding_b[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          binding_b[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = binding_switch_compare(binding_a,binding_b);
+          printf("%d\n", benchRet); 
+          free(binding_a);
+          free(binding_b);
+        
+        break;
+    }
     default:
         usage();
         break;

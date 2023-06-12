@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ rto(struct aoedev *d)
 	return t;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,15 +84,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_d0 = 65025;
+          struct aoedev * d = (struct aoedev *) malloc(_len_d0*sizeof(struct aoedev));
+          for(int _i0 = 0; _i0 < _len_d0; _i0++) {
+              d[_i0].rttavg = ((-2 * (next_i()%2)) + 1) * next_i();
+          d[_i0].rttdev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = rto(d);
+          printf("%ld\n", benchRet); 
+          free(d);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_d0 = 100;
+          struct aoedev * d = (struct aoedev *) malloc(_len_d0*sizeof(struct aoedev));
+          for(int _i0 = 0; _i0 < _len_d0; _i0++) {
+              d[_i0].rttavg = ((-2 * (next_i()%2)) + 1) * next_i();
+          d[_i0].rttdev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = rto(d);
+          printf("%ld\n", benchRet); 
+          free(d);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int _len_d0 = 1;
           struct aoedev * d = (struct aoedev *) malloc(_len_d0*sizeof(struct aoedev));
           for(int _i0 = 0; _i0 < _len_d0; _i0++) {
-            d[_i0].rttavg = ((-2 * (next_i()%2)) + 1) * next_i();
-        d[_i0].rttdev = ((-2 * (next_i()%2)) + 1) * next_i();
+              d[_i0].rttavg = ((-2 * (next_i()%2)) + 1) * next_i();
+          d[_i0].rttdev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = rto(d);
           printf("%ld\n", benchRet); 
           free(d);

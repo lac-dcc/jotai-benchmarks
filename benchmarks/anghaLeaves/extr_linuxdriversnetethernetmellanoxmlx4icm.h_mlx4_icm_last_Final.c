@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline int mlx4_icm_last(struct mlx4_icm_iter *iter
 	return !iter->chunk;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_iter0 = 1;
+          int _len_iter0 = 65025;
           struct mlx4_icm_iter * iter = (struct mlx4_icm_iter *) malloc(_len_iter0*sizeof(struct mlx4_icm_iter));
           for(int _i0 = 0; _i0 < _len_iter0; _i0++) {
-            iter[_i0].chunk = ((-2 * (next_i()%2)) + 1) * next_i();
+              iter[_i0].chunk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mlx4_icm_last(iter);
           printf("%d\n", benchRet); 
           free(iter);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_iter0 = 100;
           struct mlx4_icm_iter * iter = (struct mlx4_icm_iter *) malloc(_len_iter0*sizeof(struct mlx4_icm_iter));
           for(int _i0 = 0; _i0 < _len_iter0; _i0++) {
-            iter[_i0].chunk = ((-2 * (next_i()%2)) + 1) * next_i();
+              iter[_i0].chunk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mlx4_icm_last(iter);
           printf("%d\n", benchRet); 
           free(iter);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_iter0 = 1;
+          struct mlx4_icm_iter * iter = (struct mlx4_icm_iter *) malloc(_len_iter0*sizeof(struct mlx4_icm_iter));
+          for(int _i0 = 0; _i0 < _len_iter0; _i0++) {
+              iter[_i0].chunk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mlx4_icm_last(iter);
+          printf("%d\n", benchRet); 
+          free(iter);
+        
+        break;
+    }
     default:
         usage();
         break;

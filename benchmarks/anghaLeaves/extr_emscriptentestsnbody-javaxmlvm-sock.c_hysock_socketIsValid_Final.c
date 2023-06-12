@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ I_32 hysock_socketIsValid (hysocket_t handle)
     return ((handle != NULL) && (handle != INVALID_SOCKET));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_handle0 = 1;
+          int _len_handle0 = 65025;
           int * handle = (int *) malloc(_len_handle0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_handle0; _i0++) {
             handle[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = hysock_socketIsValid(handle);
           printf("%d\n", benchRet); 
           free(handle);
@@ -103,13 +99,28 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_handle0; _i0++) {
             handle[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = hysock_socketIsValid(handle);
           printf("%d\n", benchRet); 
           free(handle);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_handle0 = 1;
+          int * handle = (int *) malloc(_len_handle0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_handle0; _i0++) {
+            handle[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = hysock_socketIsValid(handle);
+          printf("%d\n", benchRet); 
+          free(handle);
+        
+        break;
+    }
     default:
         usage();
         break;

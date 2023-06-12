@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ __attribute__((used)) static int xgene_gpio_sb_domain_translate(struct irq_domai
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,38 +87,224 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_d0 = 65025;
+          struct irq_domain * d = (struct irq_domain *) malloc(_len_d0*sizeof(struct irq_domain));
+          for(int _i0 = 0; _i0 < _len_d0; _i0++) {
+              int _len_d__i0__host_data0 = 1;
+          d[_i0].host_data = (struct xgene_gpio_sb *) malloc(_len_d__i0__host_data0*sizeof(struct xgene_gpio_sb));
+          for(int _j0 = 0; _j0 < _len_d__i0__host_data0; _j0++) {
+              d[_i0].host_data->nirq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_fwspec0 = 65025;
+          struct irq_fwspec * fwspec = (struct irq_fwspec *) malloc(_len_fwspec0*sizeof(struct irq_fwspec));
+          for(int _i0 = 0; _i0 < _len_fwspec0; _i0++) {
+              fwspec[_i0].param_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_fwspec__i0__param0 = 1;
+          fwspec[_i0].param = (long *) malloc(_len_fwspec__i0__param0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_fwspec__i0__param0; _j0++) {
+            fwspec[_i0].param[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_hwirq0 = 65025;
+          unsigned long * hwirq = (unsigned long *) malloc(_len_hwirq0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_hwirq0; _i0++) {
+            hwirq[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_type0 = 65025;
+          unsigned int * type = (unsigned int *) malloc(_len_type0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_type0; _i0++) {
+            type[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = xgene_gpio_sb_domain_translate(d,fwspec,hwirq,type);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_d0; _aux++) {
+          free(d[_aux].host_data);
+          }
+          free(d);
+          for(int _aux = 0; _aux < _len_fwspec0; _aux++) {
+          free(fwspec[_aux].param);
+          }
+          free(fwspec);
+          free(hwirq);
+          free(type);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_d0 = 100;
+          struct irq_domain * d = (struct irq_domain *) malloc(_len_d0*sizeof(struct irq_domain));
+          for(int _i0 = 0; _i0 < _len_d0; _i0++) {
+              int _len_d__i0__host_data0 = 1;
+          d[_i0].host_data = (struct xgene_gpio_sb *) malloc(_len_d__i0__host_data0*sizeof(struct xgene_gpio_sb));
+          for(int _j0 = 0; _j0 < _len_d__i0__host_data0; _j0++) {
+              d[_i0].host_data->nirq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_fwspec0 = 100;
+          struct irq_fwspec * fwspec = (struct irq_fwspec *) malloc(_len_fwspec0*sizeof(struct irq_fwspec));
+          for(int _i0 = 0; _i0 < _len_fwspec0; _i0++) {
+              fwspec[_i0].param_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_fwspec__i0__param0 = 1;
+          fwspec[_i0].param = (long *) malloc(_len_fwspec__i0__param0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_fwspec__i0__param0; _j0++) {
+            fwspec[_i0].param[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_hwirq0 = 100;
+          unsigned long * hwirq = (unsigned long *) malloc(_len_hwirq0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_hwirq0; _i0++) {
+            hwirq[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_type0 = 100;
+          unsigned int * type = (unsigned int *) malloc(_len_type0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_type0; _i0++) {
+            type[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = xgene_gpio_sb_domain_translate(d,fwspec,hwirq,type);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_d0; _aux++) {
+          free(d[_aux].host_data);
+          }
+          free(d);
+          for(int _aux = 0; _aux < _len_fwspec0; _aux++) {
+          free(fwspec[_aux].param);
+          }
+          free(fwspec);
+          free(hwirq);
+          free(type);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_d0 = 1;
           struct irq_domain * d = (struct irq_domain *) malloc(_len_d0*sizeof(struct irq_domain));
           for(int _i0 = 0; _i0 < _len_d0; _i0++) {
               int _len_d__i0__host_data0 = 1;
           d[_i0].host_data = (struct xgene_gpio_sb *) malloc(_len_d__i0__host_data0*sizeof(struct xgene_gpio_sb));
           for(int _j0 = 0; _j0 < _len_d__i0__host_data0; _j0++) {
-            d[_i0].host_data->nirq = ((-2 * (next_i()%2)) + 1) * next_i();
+              d[_i0].host_data->nirq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_fwspec0 = 1;
           struct irq_fwspec * fwspec = (struct irq_fwspec *) malloc(_len_fwspec0*sizeof(struct irq_fwspec));
           for(int _i0 = 0; _i0 < _len_fwspec0; _i0++) {
-            fwspec[_i0].param_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              fwspec[_i0].param_count = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_fwspec__i0__param0 = 1;
           fwspec[_i0].param = (long *) malloc(_len_fwspec__i0__param0*sizeof(long));
           for(int _j0 = 0; _j0 < _len_fwspec__i0__param0; _j0++) {
             fwspec[_i0].param[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int _len_hwirq0 = 1;
           unsigned long * hwirq = (unsigned long *) malloc(_len_hwirq0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_hwirq0; _i0++) {
             hwirq[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_type0 = 1;
           unsigned int * type = (unsigned int *) malloc(_len_type0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_type0; _i0++) {
             type[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = xgene_gpio_sb_domain_translate(d,fwspec,hwirq,type);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_d0; _aux++) {

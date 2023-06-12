@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static inline BOOL right_join_causing(CHAR joining_type)
     return (joining_type == jtL || joining_type == jtD || joining_type == jtC);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,6 +83,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long joining_type = 100;
+        
           int benchRet = right_join_causing(joining_type);
           printf("%d\n", benchRet); 
         
@@ -97,6 +93,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long joining_type = 255;
+        
           int benchRet = right_join_causing(joining_type);
           printf("%d\n", benchRet); 
         
@@ -106,12 +103,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long joining_type = 10;
+        
           int benchRet = right_join_causing(joining_type);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long joining_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = right_join_causing(joining_type);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

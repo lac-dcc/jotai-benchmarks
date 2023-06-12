@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -85,12 +86,6 @@ __attribute__((used)) static int __get_pbl_pg_idx(struct bnxt_qplib_pbl *pbl)
 				      CMDQ_INITIALIZE_FW_QPC_PG_SIZE_PG_4K);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,28 +98,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_pbl0 = 1;
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 42
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_pbl0 = 65025;
           struct bnxt_qplib_pbl * pbl = (struct bnxt_qplib_pbl *) malloc(_len_pbl0*sizeof(struct bnxt_qplib_pbl));
           for(int _i0 = 0; _i0 < _len_pbl0; _i0++) {
-            pbl[_i0].pg_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              pbl[_i0].pg_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = __get_pbl_pg_idx(pbl);
           printf("%d\n", benchRet); 
           free(pbl);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 42
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           int _len_pbl0 = 100;
           struct bnxt_qplib_pbl * pbl = (struct bnxt_qplib_pbl *) malloc(_len_pbl0*sizeof(struct bnxt_qplib_pbl));
           for(int _i0 = 0; _i0 < _len_pbl0; _i0++) {
-            pbl[_i0].pg_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              pbl[_i0].pg_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = __get_pbl_pg_idx(pbl);
+          printf("%d\n", benchRet); 
+          free(pbl);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 42
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_pbl0 = 1;
+          struct bnxt_qplib_pbl * pbl = (struct bnxt_qplib_pbl *) malloc(_len_pbl0*sizeof(struct bnxt_qplib_pbl));
+          for(int _i0 = 0; _i0 < _len_pbl0; _i0++) {
+              pbl[_i0].pg_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = __get_pbl_pg_idx(pbl);
           printf("%d\n", benchRet); 
           free(pbl);

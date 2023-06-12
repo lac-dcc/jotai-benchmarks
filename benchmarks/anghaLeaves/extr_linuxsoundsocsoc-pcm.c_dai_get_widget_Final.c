@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ __attribute__((used)) static inline struct snd_soc_dapm_widget *
 		return dai->capture_widget;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,24 +81,229 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int stream = 100;
+        
           int _len_dai0 = 1;
           struct snd_soc_dai * dai = (struct snd_soc_dai *) malloc(_len_dai0*sizeof(struct snd_soc_dai));
           for(int _i0 = 0; _i0 < _len_dai0; _i0++) {
               int _len_dai__i0__capture_widget0 = 1;
           dai[_i0].capture_widget = (struct snd_soc_dapm_widget *) malloc(_len_dai__i0__capture_widget0*sizeof(struct snd_soc_dapm_widget));
           for(int _j0 = 0; _j0 < _len_dai__i0__capture_widget0; _j0++) {
-            dai[_i0].capture_widget->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dai[_i0].capture_widget->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_dai__i0__playback_widget0 = 1;
           dai[_i0].playback_widget = (struct snd_soc_dapm_widget *) malloc(_len_dai__i0__playback_widget0*sizeof(struct snd_soc_dapm_widget));
           for(int _j0 = 0; _j0 < _len_dai__i0__playback_widget0; _j0++) {
-            dai[_i0].playback_widget->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dai[_i0].playback_widget->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          struct snd_soc_dapm_widget * benchRet = dai_get_widget(dai,stream);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_dai0; _aux++) {
+          free(dai[_aux].capture_widget);
+          }
+          for(int _aux = 0; _aux < _len_dai0; _aux++) {
+          free(dai[_aux].playback_widget);
+          }
+          free(dai);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int stream = 255;
+        
+          int _len_dai0 = 65025;
+          struct snd_soc_dai * dai = (struct snd_soc_dai *) malloc(_len_dai0*sizeof(struct snd_soc_dai));
+          for(int _i0 = 0; _i0 < _len_dai0; _i0++) {
+              int _len_dai__i0__capture_widget0 = 1;
+          dai[_i0].capture_widget = (struct snd_soc_dapm_widget *) malloc(_len_dai__i0__capture_widget0*sizeof(struct snd_soc_dapm_widget));
+          for(int _j0 = 0; _j0 < _len_dai__i0__capture_widget0; _j0++) {
+              dai[_i0].capture_widget->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_dai__i0__playback_widget0 = 1;
+          dai[_i0].playback_widget = (struct snd_soc_dapm_widget *) malloc(_len_dai__i0__playback_widget0*sizeof(struct snd_soc_dapm_widget));
+          for(int _j0 = 0; _j0 < _len_dai__i0__playback_widget0; _j0++) {
+              dai[_i0].playback_widget->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct snd_soc_dapm_widget * benchRet = dai_get_widget(dai,stream);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_dai0; _aux++) {
+          free(dai[_aux].capture_widget);
+          }
+          for(int _aux = 0; _aux < _len_dai0; _aux++) {
+          free(dai[_aux].playback_widget);
+          }
+          free(dai);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int stream = 10;
+        
+          int _len_dai0 = 100;
+          struct snd_soc_dai * dai = (struct snd_soc_dai *) malloc(_len_dai0*sizeof(struct snd_soc_dai));
+          for(int _i0 = 0; _i0 < _len_dai0; _i0++) {
+              int _len_dai__i0__capture_widget0 = 1;
+          dai[_i0].capture_widget = (struct snd_soc_dapm_widget *) malloc(_len_dai__i0__capture_widget0*sizeof(struct snd_soc_dapm_widget));
+          for(int _j0 = 0; _j0 < _len_dai__i0__capture_widget0; _j0++) {
+              dai[_i0].capture_widget->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_dai__i0__playback_widget0 = 1;
+          dai[_i0].playback_widget = (struct snd_soc_dapm_widget *) malloc(_len_dai__i0__playback_widget0*sizeof(struct snd_soc_dapm_widget));
+          for(int _j0 = 0; _j0 < _len_dai__i0__playback_widget0; _j0++) {
+              dai[_i0].playback_widget->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct snd_soc_dapm_widget * benchRet = dai_get_widget(dai,stream);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_dai0; _aux++) {
+          free(dai[_aux].capture_widget);
+          }
+          for(int _aux = 0; _aux < _len_dai0; _aux++) {
+          free(dai[_aux].playback_widget);
+          }
+          free(dai);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int stream = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dai0 = 1;
+          struct snd_soc_dai * dai = (struct snd_soc_dai *) malloc(_len_dai0*sizeof(struct snd_soc_dai));
+          for(int _i0 = 0; _i0 < _len_dai0; _i0++) {
+              int _len_dai__i0__capture_widget0 = 1;
+          dai[_i0].capture_widget = (struct snd_soc_dapm_widget *) malloc(_len_dai__i0__capture_widget0*sizeof(struct snd_soc_dapm_widget));
+          for(int _j0 = 0; _j0 < _len_dai__i0__capture_widget0; _j0++) {
+              dai[_i0].capture_widget->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_dai__i0__playback_widget0 = 1;
+          dai[_i0].playback_widget = (struct snd_soc_dapm_widget *) malloc(_len_dai__i0__playback_widget0*sizeof(struct snd_soc_dapm_widget));
+          for(int _j0 = 0; _j0 < _len_dai__i0__playback_widget0; _j0++) {
+              dai[_i0].playback_widget->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           struct snd_soc_dapm_widget * benchRet = dai_get_widget(dai,stream);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_dai0; _aux++) {

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +74,6 @@ mwifiex_copy_rates(u8 *dest, u32 pos, u8 *src, int len)
 	return pos;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,17 +90,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long pos = 100;
+        
           int len = 100;
+        
           int _len_dest0 = 1;
           long * dest = (long *) malloc(_len_dest0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_dest0; _i0++) {
             dest[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_src0 = 1;
           long * src = (long *) malloc(_len_src0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_src0; _i0++) {
             src[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned long benchRet = mwifiex_copy_rates(dest,pos,src,len);
           printf("%lu\n", benchRet); 
           free(dest);
@@ -111,7 +112,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long pos = 255;
+        
+          int len = 255;
+        
+          int _len_dest0 = 65025;
+          long * dest = (long *) malloc(_len_dest0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_dest0; _i0++) {
+            dest[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_src0 = 65025;
+          long * src = (long *) malloc(_len_src0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+            src[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned long benchRet = mwifiex_copy_rates(dest,pos,src,len);
+          printf("%lu\n", benchRet); 
+          free(dest);
+          free(src);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long pos = 10;
+        
+          int len = 10;
+        
+          int _len_dest0 = 100;
+          long * dest = (long *) malloc(_len_dest0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_dest0; _i0++) {
+            dest[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_src0 = 100;
+          long * src = (long *) malloc(_len_src0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+            src[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned long benchRet = mwifiex_copy_rates(dest,pos,src,len);
+          printf("%lu\n", benchRet); 
+          free(dest);
+          free(src);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dest0 = 1;
+          long * dest = (long *) malloc(_len_dest0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_dest0; _i0++) {
+            dest[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_src0 = 1;
+          long * src = (long *) malloc(_len_src0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+            src[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned long benchRet = mwifiex_copy_rates(dest,pos,src,len);
+          printf("%lu\n", benchRet); 
+          free(dest);
+          free(src);
+        
+        break;
+    }
     default:
         usage();
         break;

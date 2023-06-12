@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ void ad_sd_set_comm(struct ad_sigma_delta *sigma_delta, uint8_t comm)
 	sigma_delta->comm = comm & AD_SD_COMM_CHAN_MASK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,31 +83,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int comm = 100;
+        
           int _len_sigma_delta0 = 1;
           struct ad_sigma_delta * sigma_delta = (struct ad_sigma_delta *) malloc(_len_sigma_delta0*sizeof(struct ad_sigma_delta));
           for(int _i0 = 0; _i0 < _len_sigma_delta0; _i0++) {
-            sigma_delta[_i0].comm = ((-2 * (next_i()%2)) + 1) * next_i();
+              sigma_delta[_i0].comm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          ad_sd_set_comm(sigma_delta,comm);
+          free(sigma_delta);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int comm = 255;
+        
+          int _len_sigma_delta0 = 65025;
+          struct ad_sigma_delta * sigma_delta = (struct ad_sigma_delta *) malloc(_len_sigma_delta0*sizeof(struct ad_sigma_delta));
+          for(int _i0 = 0; _i0 < _len_sigma_delta0; _i0++) {
+              sigma_delta[_i0].comm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           ad_sd_set_comm(sigma_delta,comm);
           free(sigma_delta);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int comm = 10;
+        
           int _len_sigma_delta0 = 100;
           struct ad_sigma_delta * sigma_delta = (struct ad_sigma_delta *) malloc(_len_sigma_delta0*sizeof(struct ad_sigma_delta));
           for(int _i0 = 0; _i0 < _len_sigma_delta0; _i0++) {
-            sigma_delta[_i0].comm = ((-2 * (next_i()%2)) + 1) * next_i();
+              sigma_delta[_i0].comm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ad_sd_set_comm(sigma_delta,comm);
           free(sigma_delta);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int comm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sigma_delta0 = 1;
+          struct ad_sigma_delta * sigma_delta = (struct ad_sigma_delta *) malloc(_len_sigma_delta0*sizeof(struct ad_sigma_delta));
+          for(int _i0 = 0; _i0 < _len_sigma_delta0; _i0++) {
+              sigma_delta[_i0].comm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ad_sd_set_comm(sigma_delta,comm);
+          free(sigma_delta);
+        
+        break;
+    }
     default:
         usage();
         break;

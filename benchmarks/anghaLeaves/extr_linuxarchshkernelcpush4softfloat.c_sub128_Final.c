@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ sub128(bits64 a0, bits64 a1, bits64 b0, bits64 b1, bits64 * z0Ptr,
 	*z0Ptr = a0 - b0 - (a1 < b1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,26 +82,118 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long a0 = 100;
+        
           long a1 = 100;
+        
           long b0 = 100;
+        
           long b1 = 100;
+        
           int _len_z0Ptr0 = 1;
           long * z0Ptr = (long *) malloc(_len_z0Ptr0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_z0Ptr0; _i0++) {
             z0Ptr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_z1Ptr0 = 1;
           long * z1Ptr = (long *) malloc(_len_z1Ptr0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_z1Ptr0; _i0++) {
             z1Ptr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           sub128(a0,a1,b0,b1,z0Ptr,z1Ptr);
           free(z0Ptr);
           free(z1Ptr);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long a0 = 255;
+        
+          long a1 = 255;
+        
+          long b0 = 255;
+        
+          long b1 = 255;
+        
+          int _len_z0Ptr0 = 65025;
+          long * z0Ptr = (long *) malloc(_len_z0Ptr0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_z0Ptr0; _i0++) {
+            z0Ptr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_z1Ptr0 = 65025;
+          long * z1Ptr = (long *) malloc(_len_z1Ptr0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_z1Ptr0; _i0++) {
+            z1Ptr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          sub128(a0,a1,b0,b1,z0Ptr,z1Ptr);
+          free(z0Ptr);
+          free(z1Ptr);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long a0 = 10;
+        
+          long a1 = 10;
+        
+          long b0 = 10;
+        
+          long b1 = 10;
+        
+          int _len_z0Ptr0 = 100;
+          long * z0Ptr = (long *) malloc(_len_z0Ptr0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_z0Ptr0; _i0++) {
+            z0Ptr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_z1Ptr0 = 100;
+          long * z1Ptr = (long *) malloc(_len_z1Ptr0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_z1Ptr0; _i0++) {
+            z1Ptr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          sub128(a0,a1,b0,b1,z0Ptr,z1Ptr);
+          free(z0Ptr);
+          free(z1Ptr);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long a0 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long a1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long b0 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long b1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_z0Ptr0 = 1;
+          long * z0Ptr = (long *) malloc(_len_z0Ptr0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_z0Ptr0; _i0++) {
+            z0Ptr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_z1Ptr0 = 1;
+          long * z1Ptr = (long *) malloc(_len_z1Ptr0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_z1Ptr0; _i0++) {
+            z1Ptr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          sub128(a0,a1,b0,b1,z0Ptr,z1Ptr);
+          free(z0Ptr);
+          free(z1Ptr);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ bfa_fcs_rport_set_max_logins(u32 max_logins)
 		bfa_fcs_rport_max_logins = max_logins;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,26 +78,133 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           long max_logins = 100;
+        
           bfa_fcs_rport_set_max_logins(max_logins);
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           long max_logins = 255;
+        
           bfa_fcs_rport_set_max_logins(max_logins);
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           long max_logins = 10;
+        
+          bfa_fcs_rport_set_max_logins(max_logins);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 3
+          // dynamic_instructions_O1 : 3
+          // ------------------------------- 
+          // static_instructions_O2 : 3
+          // dynamic_instructions_O2 : 3
+          // ------------------------------- 
+          // static_instructions_O3 : 3
+          // dynamic_instructions_O3 : 3
+          // ------------------------------- 
+          // static_instructions_Ofast : 3
+          // dynamic_instructions_Ofast : 3
+          // ------------------------------- 
+          // static_instructions_Os : 3
+          // dynamic_instructions_Os : 3
+          // ------------------------------- 
+          // static_instructions_Oz : 3
+          // dynamic_instructions_Oz : 3
+          // ------------------------------- 
+
+          long max_logins = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           bfa_fcs_rport_set_max_logins(max_logins);
         
         break;

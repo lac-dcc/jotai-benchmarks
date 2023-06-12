@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +83,6 @@ buf_setupl(buf_t bp, upl_t upl, uint32_t offset)
 	return (0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,19 +95,187 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           long upl = 100;
+        
           int offset = 100;
+        
           int _len_bp0 = 1;
           struct TYPE_3__ * bp = (struct TYPE_3__ *) malloc(_len_bp0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
-            bp[_i0].b_lflags = ((-2 * (next_i()%2)) + 1) * next_i();
-        bp[_i0].b_uploffset = ((-2 * (next_i()%2)) + 1) * next_i();
-        bp[_i0].b_upl = ((-2 * (next_i()%2)) + 1) * next_i();
-        bp[_i0].b_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              bp[_i0].b_lflags = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].b_uploffset = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].b_upl = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].b_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = buf_setupl(bp,upl,offset);
+          printf("%d\n", benchRet); 
+          free(bp);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          long upl = 255;
+        
+          int offset = 255;
+        
+          int _len_bp0 = 65025;
+          struct TYPE_3__ * bp = (struct TYPE_3__ *) malloc(_len_bp0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
+              bp[_i0].b_lflags = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].b_uploffset = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].b_upl = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].b_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = buf_setupl(bp,upl,offset);
+          printf("%d\n", benchRet); 
+          free(bp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          long upl = 10;
+        
+          int offset = 10;
+        
+          int _len_bp0 = 100;
+          struct TYPE_3__ * bp = (struct TYPE_3__ *) malloc(_len_bp0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
+              bp[_i0].b_lflags = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].b_uploffset = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].b_upl = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].b_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = buf_setupl(bp,upl,offset);
+          printf("%d\n", benchRet); 
+          free(bp);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          long upl = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_bp0 = 1;
+          struct TYPE_3__ * bp = (struct TYPE_3__ *) malloc(_len_bp0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
+              bp[_i0].b_lflags = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].b_uploffset = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].b_upl = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].b_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = buf_setupl(bp,upl,offset);
           printf("%d\n", benchRet); 
           free(bp);

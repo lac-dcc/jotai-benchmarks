@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -105,12 +108,6 @@ void evergreen_tiling_fields(unsigned tiling_flags, unsigned *bankw,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -123,30 +120,241 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 77
+          // dynamic_instructions_O0 : 77
+          // ------------------------------- 
+          // static_instructions_O1 : 45
+          // dynamic_instructions_O1 : 45
+          // ------------------------------- 
+          // static_instructions_O2 : 45
+          // dynamic_instructions_O2 : 45
+          // ------------------------------- 
+          // static_instructions_O3 : 45
+          // dynamic_instructions_O3 : 45
+          // ------------------------------- 
+          // static_instructions_Ofast : 45
+          // dynamic_instructions_Ofast : 45
+          // ------------------------------- 
+          // static_instructions_Os : 45
+          // dynamic_instructions_Os : 45
+          // ------------------------------- 
+          // static_instructions_Oz : 45
+          // dynamic_instructions_Oz : 45
+          // ------------------------------- 
+
           unsigned int tiling_flags = 100;
+        
           int _len_bankw0 = 1;
           unsigned int * bankw = (unsigned int *) malloc(_len_bankw0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_bankw0; _i0++) {
             bankw[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_bankh0 = 1;
           unsigned int * bankh = (unsigned int *) malloc(_len_bankh0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_bankh0; _i0++) {
             bankh[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_mtaspect0 = 1;
           unsigned int * mtaspect = (unsigned int *) malloc(_len_mtaspect0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_mtaspect0; _i0++) {
             mtaspect[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_tile_split0 = 1;
           unsigned int * tile_split = (unsigned int *) malloc(_len_tile_split0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_tile_split0; _i0++) {
             tile_split[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          evergreen_tiling_fields(tiling_flags,bankw,bankh,mtaspect,tile_split);
+          free(bankw);
+          free(bankh);
+          free(mtaspect);
+          free(tile_split);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 77
+          // dynamic_instructions_O0 : 77
+          // ------------------------------- 
+          // static_instructions_O1 : 45
+          // dynamic_instructions_O1 : 45
+          // ------------------------------- 
+          // static_instructions_O2 : 45
+          // dynamic_instructions_O2 : 45
+          // ------------------------------- 
+          // static_instructions_O3 : 45
+          // dynamic_instructions_O3 : 45
+          // ------------------------------- 
+          // static_instructions_Ofast : 45
+          // dynamic_instructions_Ofast : 45
+          // ------------------------------- 
+          // static_instructions_Os : 45
+          // dynamic_instructions_Os : 45
+          // ------------------------------- 
+          // static_instructions_Oz : 45
+          // dynamic_instructions_Oz : 45
+          // ------------------------------- 
+
+          unsigned int tiling_flags = 255;
+        
+          int _len_bankw0 = 65025;
+          unsigned int * bankw = (unsigned int *) malloc(_len_bankw0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_bankw0; _i0++) {
+            bankw[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_bankh0 = 65025;
+          unsigned int * bankh = (unsigned int *) malloc(_len_bankh0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_bankh0; _i0++) {
+            bankh[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_mtaspect0 = 65025;
+          unsigned int * mtaspect = (unsigned int *) malloc(_len_mtaspect0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_mtaspect0; _i0++) {
+            mtaspect[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_tile_split0 = 65025;
+          unsigned int * tile_split = (unsigned int *) malloc(_len_tile_split0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_tile_split0; _i0++) {
+            tile_split[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          evergreen_tiling_fields(tiling_flags,bankw,bankh,mtaspect,tile_split);
+          free(bankw);
+          free(bankh);
+          free(mtaspect);
+          free(tile_split);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 77
+          // dynamic_instructions_O0 : 77
+          // ------------------------------- 
+          // static_instructions_O1 : 45
+          // dynamic_instructions_O1 : 45
+          // ------------------------------- 
+          // static_instructions_O2 : 45
+          // dynamic_instructions_O2 : 45
+          // ------------------------------- 
+          // static_instructions_O3 : 45
+          // dynamic_instructions_O3 : 45
+          // ------------------------------- 
+          // static_instructions_Ofast : 45
+          // dynamic_instructions_Ofast : 45
+          // ------------------------------- 
+          // static_instructions_Os : 45
+          // dynamic_instructions_Os : 45
+          // ------------------------------- 
+          // static_instructions_Oz : 45
+          // dynamic_instructions_Oz : 45
+          // ------------------------------- 
+
+          unsigned int tiling_flags = 10;
+        
+          int _len_bankw0 = 100;
+          unsigned int * bankw = (unsigned int *) malloc(_len_bankw0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_bankw0; _i0++) {
+            bankw[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_bankh0 = 100;
+          unsigned int * bankh = (unsigned int *) malloc(_len_bankh0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_bankh0; _i0++) {
+            bankh[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_mtaspect0 = 100;
+          unsigned int * mtaspect = (unsigned int *) malloc(_len_mtaspect0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_mtaspect0; _i0++) {
+            mtaspect[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_tile_split0 = 100;
+          unsigned int * tile_split = (unsigned int *) malloc(_len_tile_split0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_tile_split0; _i0++) {
+            tile_split[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          evergreen_tiling_fields(tiling_flags,bankw,bankh,mtaspect,tile_split);
+          free(bankw);
+          free(bankh);
+          free(mtaspect);
+          free(tile_split);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 77
+          // dynamic_instructions_O0 : 77
+          // ------------------------------- 
+          // static_instructions_O1 : 45
+          // dynamic_instructions_O1 : 45
+          // ------------------------------- 
+          // static_instructions_O2 : 45
+          // dynamic_instructions_O2 : 45
+          // ------------------------------- 
+          // static_instructions_O3 : 45
+          // dynamic_instructions_O3 : 45
+          // ------------------------------- 
+          // static_instructions_Ofast : 45
+          // dynamic_instructions_Ofast : 45
+          // ------------------------------- 
+          // static_instructions_Os : 45
+          // dynamic_instructions_Os : 45
+          // ------------------------------- 
+          // static_instructions_Oz : 45
+          // dynamic_instructions_Oz : 45
+          // ------------------------------- 
+
+          unsigned int tiling_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_bankw0 = 1;
+          unsigned int * bankw = (unsigned int *) malloc(_len_bankw0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_bankw0; _i0++) {
+            bankw[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_bankh0 = 1;
+          unsigned int * bankh = (unsigned int *) malloc(_len_bankh0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_bankh0; _i0++) {
+            bankh[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_mtaspect0 = 1;
+          unsigned int * mtaspect = (unsigned int *) malloc(_len_mtaspect0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_mtaspect0; _i0++) {
+            mtaspect[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_tile_split0 = 1;
+          unsigned int * tile_split = (unsigned int *) malloc(_len_tile_split0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_tile_split0; _i0++) {
+            tile_split[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           evergreen_tiling_fields(tiling_flags,bankw,bankh,mtaspect,tile_split);
           free(bankw);
           free(bankh);

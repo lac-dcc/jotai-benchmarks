@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ unsigned int mvpp2_prs_tcam_port_map_get(struct mvpp2_prs_entry *pe)
 	return (~pe->tcam[MVPP2_PRS_TCAM_PORT_WORD] >> 24) & MVPP2_PRS_PORT_MASK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,9 +76,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_pe0 = 65025;
+          struct mvpp2_prs_entry * pe = (struct mvpp2_prs_entry *) malloc(_len_pe0*sizeof(struct mvpp2_prs_entry));
+          for(int _i0 = 0; _i0 < _len_pe0; _i0++) {
+              int _len_pe__i0__tcam0 = 1;
+          pe[_i0].tcam = (int *) malloc(_len_pe__i0__tcam0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_pe__i0__tcam0; _j0++) {
+            pe[_i0].tcam[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          unsigned int benchRet = mvpp2_prs_tcam_port_map_get(pe);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pe0; _aux++) {
+          free(pe[_aux].tcam);
+          }
+          free(pe);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_pe0 = 100;
+          struct mvpp2_prs_entry * pe = (struct mvpp2_prs_entry *) malloc(_len_pe0*sizeof(struct mvpp2_prs_entry));
+          for(int _i0 = 0; _i0 < _len_pe0; _i0++) {
+              int _len_pe__i0__tcam0 = 1;
+          pe[_i0].tcam = (int *) malloc(_len_pe__i0__tcam0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_pe__i0__tcam0; _j0++) {
+            pe[_i0].tcam[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          unsigned int benchRet = mvpp2_prs_tcam_port_map_get(pe);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pe0; _aux++) {
+          free(pe[_aux].tcam);
+          }
+          free(pe);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_pe0 = 1;
           struct mvpp2_prs_entry * pe = (struct mvpp2_prs_entry *) malloc(_len_pe0*sizeof(struct mvpp2_prs_entry));
           for(int _i0 = 0; _i0 < _len_pe0; _i0++) {
@@ -91,7 +204,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_pe__i0__tcam0; _j0++) {
             pe[_i0].tcam[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           unsigned int benchRet = mvpp2_prs_tcam_port_map_get(pe);
           printf("%u\n", benchRet); 
           for(int _aux = 0; _aux < _len_pe0; _aux++) {

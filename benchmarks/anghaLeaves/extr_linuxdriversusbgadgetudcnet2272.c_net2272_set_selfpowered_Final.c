@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ net2272_set_selfpowered(struct usb_gadget *_gadget, int value)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,11 +86,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int value = 100;
+        
           int _len__gadget0 = 1;
           struct usb_gadget * _gadget = (struct usb_gadget *) malloc(_len__gadget0*sizeof(struct usb_gadget));
           for(int _i0 = 0; _i0 < _len__gadget0; _i0++) {
-            _gadget[_i0].is_selfpowered = ((-2 * (next_i()%2)) + 1) * next_i();
+              _gadget[_i0].is_selfpowered = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = net2272_set_selfpowered(_gadget,value);
+          printf("%d\n", benchRet); 
+          free(_gadget);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int value = 255;
+        
+          int _len__gadget0 = 65025;
+          struct usb_gadget * _gadget = (struct usb_gadget *) malloc(_len__gadget0*sizeof(struct usb_gadget));
+          for(int _i0 = 0; _i0 < _len__gadget0; _i0++) {
+              _gadget[_i0].is_selfpowered = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = net2272_set_selfpowered(_gadget,value);
           printf("%d\n", benchRet); 
           free(_gadget);
@@ -102,21 +119,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int value = 10;
+        
           int _len__gadget0 = 100;
           struct usb_gadget * _gadget = (struct usb_gadget *) malloc(_len__gadget0*sizeof(struct usb_gadget));
           for(int _i0 = 0; _i0 < _len__gadget0; _i0++) {
-            _gadget[_i0].is_selfpowered = ((-2 * (next_i()%2)) + 1) * next_i();
+              _gadget[_i0].is_selfpowered = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = net2272_set_selfpowered(_gadget,value);
           printf("%d\n", benchRet); 
           free(_gadget);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len__gadget0 = 1;
+          struct usb_gadget * _gadget = (struct usb_gadget *) malloc(_len__gadget0*sizeof(struct usb_gadget));
+          for(int _i0 = 0; _i0 < _len__gadget0; _i0++) {
+              _gadget[_i0].is_selfpowered = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = net2272_set_selfpowered(_gadget,value);
+          printf("%d\n", benchRet); 
+          free(_gadget);
+        
+        break;
+    }
     default:
         usage();
         break;

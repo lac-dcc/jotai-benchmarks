@@ -64,12 +64,6 @@ __attribute__((used)) static uint32_t gf_poly_mul2(uint32_t x)
     (((x & 0x80808080) >> 7) * 0x1b);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int x = 100;
+        
           int benchRet = gf_poly_mul2(x);
           printf("%d\n", benchRet); 
         
@@ -95,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int x = 255;
+        
           int benchRet = gf_poly_mul2(x);
           printf("%d\n", benchRet); 
         
@@ -104,12 +100,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int x = 10;
+        
           int benchRet = gf_poly_mul2(x);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static int pnv_eeh_get_pe_addr(struct eeh_pe *pe)
 	return pe->addr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,28 +74,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_pe0 = 1;
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_pe0 = 65025;
           struct eeh_pe * pe = (struct eeh_pe *) malloc(_len_pe0*sizeof(struct eeh_pe));
           for(int _i0 = 0; _i0 < _len_pe0; _i0++) {
-            pe[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+              pe[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = pnv_eeh_get_pe_addr(pe);
           printf("%d\n", benchRet); 
           free(pe);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_pe0 = 100;
           struct eeh_pe * pe = (struct eeh_pe *) malloc(_len_pe0*sizeof(struct eeh_pe));
           for(int _i0 = 0; _i0 < _len_pe0; _i0++) {
-            pe[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+              pe[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = pnv_eeh_get_pe_addr(pe);
+          printf("%d\n", benchRet); 
+          free(pe);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_pe0 = 1;
+          struct eeh_pe * pe = (struct eeh_pe *) malloc(_len_pe0*sizeof(struct eeh_pe));
+          for(int _i0 = 0; _i0 < _len_pe0; _i0++) {
+              pe[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = pnv_eeh_get_pe_addr(pe);
           printf("%d\n", benchRet); 
           free(pe);

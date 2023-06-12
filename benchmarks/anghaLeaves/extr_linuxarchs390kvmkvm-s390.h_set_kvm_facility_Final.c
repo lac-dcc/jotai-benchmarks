@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static inline int set_kvm_facility(u64 *fac_list, unsigned
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,11 +87,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long nr = 100;
+        
           int _len_fac_list0 = 1;
           int * fac_list = (int *) malloc(_len_fac_list0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_fac_list0; _i0++) {
             fac_list[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = set_kvm_facility(fac_list,nr);
+          printf("%d\n", benchRet); 
+          free(fac_list);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned long nr = 255;
+        
+          int _len_fac_list0 = 65025;
+          int * fac_list = (int *) malloc(_len_fac_list0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_fac_list0; _i0++) {
+            fac_list[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = set_kvm_facility(fac_list,nr);
           printf("%d\n", benchRet); 
           free(fac_list);
@@ -103,21 +118,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned long nr = 10;
+        
           int _len_fac_list0 = 100;
           int * fac_list = (int *) malloc(_len_fac_list0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_fac_list0; _i0++) {
             fac_list[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = set_kvm_facility(fac_list,nr);
           printf("%d\n", benchRet); 
           free(fac_list);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long nr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fac_list0 = 1;
+          int * fac_list = (int *) malloc(_len_fac_list0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_fac_list0; _i0++) {
+            fac_list[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = set_kvm_facility(fac_list,nr);
+          printf("%d\n", benchRet); 
+          free(fac_list);
+        
+        break;
+    }
     default:
         usage();
         break;

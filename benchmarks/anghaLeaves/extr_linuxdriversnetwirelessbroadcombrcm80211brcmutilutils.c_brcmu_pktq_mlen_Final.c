@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +76,6 @@ int brcmu_pktq_mlen(struct pktq *pq, uint prec_bmp)
 	return len;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,16 +92,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int prec_bmp = 100;
+        
           int _len_pq0 = 1;
           struct pktq * pq = (struct pktq *) malloc(_len_pq0*sizeof(struct pktq));
           for(int _i0 = 0; _i0 < _len_pq0; _i0++) {
-            pq[_i0].hi_prec = ((-2 * (next_i()%2)) + 1) * next_i();
+              pq[_i0].hi_prec = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_pq__i0__q0 = 1;
           pq[_i0].q = (struct TYPE_4__ *) malloc(_len_pq__i0__q0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_pq__i0__q0; _j0++) {
-            pq[_i0].q->skblist.qlen = ((-2 * (next_i()%2)) + 1) * next_i();
+              pq[_i0].q->skblist.qlen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           int benchRet = brcmu_pktq_mlen(pq,prec_bmp);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_pq0; _aux++) {
@@ -114,7 +116,90 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int prec_bmp = 255;
+        
+          int _len_pq0 = 65025;
+          struct pktq * pq = (struct pktq *) malloc(_len_pq0*sizeof(struct pktq));
+          for(int _i0 = 0; _i0 < _len_pq0; _i0++) {
+              pq[_i0].hi_prec = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pq__i0__q0 = 1;
+          pq[_i0].q = (struct TYPE_4__ *) malloc(_len_pq__i0__q0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_pq__i0__q0; _j0++) {
+              pq[_i0].q->skblist.qlen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = brcmu_pktq_mlen(pq,prec_bmp);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pq0; _aux++) {
+          free(pq[_aux].q);
+          }
+          free(pq);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int prec_bmp = 10;
+        
+          int _len_pq0 = 100;
+          struct pktq * pq = (struct pktq *) malloc(_len_pq0*sizeof(struct pktq));
+          for(int _i0 = 0; _i0 < _len_pq0; _i0++) {
+              pq[_i0].hi_prec = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pq__i0__q0 = 1;
+          pq[_i0].q = (struct TYPE_4__ *) malloc(_len_pq__i0__q0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_pq__i0__q0; _j0++) {
+              pq[_i0].q->skblist.qlen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = brcmu_pktq_mlen(pq,prec_bmp);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pq0; _aux++) {
+          free(pq[_aux].q);
+          }
+          free(pq);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int prec_bmp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pq0 = 1;
+          struct pktq * pq = (struct pktq *) malloc(_len_pq0*sizeof(struct pktq));
+          for(int _i0 = 0; _i0 < _len_pq0; _i0++) {
+              pq[_i0].hi_prec = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pq__i0__q0 = 1;
+          pq[_i0].q = (struct TYPE_4__ *) malloc(_len_pq__i0__q0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_pq__i0__q0; _j0++) {
+              pq[_i0].q->skblist.qlen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = brcmu_pktq_mlen(pq,prec_bmp);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pq0; _aux++) {
+          free(pq[_aux].q);
+          }
+          free(pq);
+        
+        break;
+    }
     default:
         usage();
         break;

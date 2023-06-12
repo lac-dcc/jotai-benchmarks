@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static int desc_namespace(struct ra *ra, enum ra_vartype t
     return type;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,15 +80,18 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           enum ra_vartype type = 0;
-          int _len_ra0 = 1;
+        
+          int _len_ra0 = 65025;
           struct ra * ra = (struct ra *) malloc(_len_ra0*sizeof(struct ra));
           for(int _i0 = 0; _i0 < _len_ra0; _i0++) {
-            ra[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ra[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = desc_namespace(ra,type);
           printf("%d\n", benchRet); 
           free(ra);
@@ -104,18 +102,38 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           enum ra_vartype type = 0;
+        
           int _len_ra0 = 100;
           struct ra * ra = (struct ra *) malloc(_len_ra0*sizeof(struct ra));
           for(int _i0 = 0; _i0 < _len_ra0; _i0++) {
-            ra[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ra[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = desc_namespace(ra,type);
           printf("%d\n", benchRet); 
           free(ra);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          enum ra_vartype type = 0;
+        
+          int _len_ra0 = 1;
+          struct ra * ra = (struct ra *) malloc(_len_ra0*sizeof(struct ra));
+          for(int _i0 = 0; _i0 < _len_ra0; _i0++) {
+              ra[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = desc_namespace(ra,type);
+          printf("%d\n", benchRet); 
+          free(ra);
+        
+        break;
+    }
     default:
         usage();
         break;

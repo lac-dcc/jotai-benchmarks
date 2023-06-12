@@ -64,12 +64,6 @@ __attribute__((used)) static inline uint32_t MDP4_PIPE_SRC_STRIDE_B_P2(uint32_t 
 	return ((val) << MDP4_PIPE_SRC_STRIDE_B_P2__SHIFT) & MDP4_PIPE_SRC_STRIDE_B_P2__MASK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int val = 100;
+        
           int benchRet = MDP4_PIPE_SRC_STRIDE_B_P2(val);
           printf("%d\n", benchRet); 
         
@@ -95,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int val = 255;
+        
           int benchRet = MDP4_PIPE_SRC_STRIDE_B_P2(val);
           printf("%d\n", benchRet); 
         
@@ -104,12 +100,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int val = 10;
+        
           int benchRet = MDP4_PIPE_SRC_STRIDE_B_P2(val);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

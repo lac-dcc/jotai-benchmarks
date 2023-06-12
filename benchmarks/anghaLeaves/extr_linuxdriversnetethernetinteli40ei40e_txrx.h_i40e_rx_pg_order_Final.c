@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static inline unsigned int i40e_rx_pg_order(struct i40e_ri
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,14 +79,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ring0 = 1;
+          int _len_ring0 = 65025;
           struct i40e_ring * ring = (struct i40e_ring *) malloc(_len_ring0*sizeof(struct i40e_ring));
           for(int _i0 = 0; _i0 < _len_ring0; _i0++) {
-            ring[_i0].rx_buf_len = ((-2 * (next_i()%2)) + 1) * next_i();
+              ring[_i0].rx_buf_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = i40e_rx_pg_order(ring);
           printf("%u\n", benchRet); 
           free(ring);
@@ -104,15 +101,32 @@ int main(int argc, char *argv[]) {
           int _len_ring0 = 100;
           struct i40e_ring * ring = (struct i40e_ring *) malloc(_len_ring0*sizeof(struct i40e_ring));
           for(int _i0 = 0; _i0 < _len_ring0; _i0++) {
-            ring[_i0].rx_buf_len = ((-2 * (next_i()%2)) + 1) * next_i();
+              ring[_i0].rx_buf_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = i40e_rx_pg_order(ring);
           printf("%u\n", benchRet); 
           free(ring);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ring0 = 1;
+          struct i40e_ring * ring = (struct i40e_ring *) malloc(_len_ring0*sizeof(struct i40e_ring));
+          for(int _i0 = 0; _i0 < _len_ring0; _i0++) {
+              ring[_i0].rx_buf_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = i40e_rx_pg_order(ring);
+          printf("%u\n", benchRet); 
+          free(ring);
+        
+        break;
+    }
     default:
         usage();
         break;

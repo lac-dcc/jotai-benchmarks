@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static int64_t framesync_pts_extrapolate(FFFrameSync *fs, 
     return pts + 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,12 +82,34 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int in = 100;
+        
           long pts = 100;
+        
           int _len_fs0 = 1;
           int * fs = (int *) malloc(_len_fs0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
             fs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          long benchRet = framesync_pts_extrapolate(fs,in,pts);
+          printf("%ld\n", benchRet); 
+          free(fs);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned int in = 255;
+        
+          long pts = 255;
+        
+          int _len_fs0 = 65025;
+          int * fs = (int *) malloc(_len_fs0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
+            fs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           long benchRet = framesync_pts_extrapolate(fs,in,pts);
           printf("%ld\n", benchRet); 
           free(fs);
@@ -99,22 +117,43 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned int in = 10;
+        
           long pts = 10;
+        
           int _len_fs0 = 100;
           int * fs = (int *) malloc(_len_fs0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
             fs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           long benchRet = framesync_pts_extrapolate(fs,in,pts);
           printf("%ld\n", benchRet); 
           free(fs);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int in = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long pts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fs0 = 1;
+          int * fs = (int *) malloc(_len_fs0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
+            fs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          long benchRet = framesync_pts_extrapolate(fs,in,pts);
+          printf("%ld\n", benchRet); 
+          free(fs);
+        
+        break;
+    }
     default:
         usage();
         break;

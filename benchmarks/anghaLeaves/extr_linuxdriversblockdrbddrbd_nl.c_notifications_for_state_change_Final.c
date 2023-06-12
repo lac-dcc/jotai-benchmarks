@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static unsigned int notifications_for_state_change(struct 
 	       state_change->n_devices * state_change->n_connections;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,22 +77,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_state_change0 = 1;
+          int _len_state_change0 = 65025;
           struct drbd_state_change * state_change = (struct drbd_state_change *) malloc(_len_state_change0*sizeof(struct drbd_state_change));
           for(int _i0 = 0; _i0 < _len_state_change0; _i0++) {
-            state_change[_i0].n_connections = ((-2 * (next_i()%2)) + 1) * next_i();
-        state_change[_i0].n_devices = ((-2 * (next_i()%2)) + 1) * next_i();
+              state_change[_i0].n_connections = ((-2 * (next_i()%2)) + 1) * next_i();
+          state_change[_i0].n_devices = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = notifications_for_state_change(state_change);
           printf("%u\n", benchRet); 
           free(state_change);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_state_change0 = 100;
+          struct drbd_state_change * state_change = (struct drbd_state_change *) malloc(_len_state_change0*sizeof(struct drbd_state_change));
+          for(int _i0 = 0; _i0 < _len_state_change0; _i0++) {
+              state_change[_i0].n_connections = ((-2 * (next_i()%2)) + 1) * next_i();
+          state_change[_i0].n_devices = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = notifications_for_state_change(state_change);
+          printf("%u\n", benchRet); 
+          free(state_change);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_state_change0 = 1;
+          struct drbd_state_change * state_change = (struct drbd_state_change *) malloc(_len_state_change0*sizeof(struct drbd_state_change));
+          for(int _i0 = 0; _i0 < _len_state_change0; _i0++) {
+              state_change[_i0].n_connections = ((-2 * (next_i()%2)) + 1) * next_i();
+          state_change[_i0].n_devices = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = notifications_for_state_change(state_change);
+          printf("%u\n", benchRet); 
+          free(state_change);
+        
+        break;
+    }
     default:
         usage();
         break;

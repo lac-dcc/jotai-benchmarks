@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ void Curl_pgrsSetDownloadCounter(struct Curl_easy *data, curl_off_t size)
   data->progress.downloaded = size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,31 +82,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int size = 100;
+        
           int _len_data0 = 1;
           struct Curl_easy * data = (struct Curl_easy *) malloc(_len_data0*sizeof(struct Curl_easy));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
-            data[_i0].progress.downloaded = ((-2 * (next_i()%2)) + 1) * next_i();
+              data[_i0].progress.downloaded = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          Curl_pgrsSetDownloadCounter(data,size);
+          free(data);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int size = 255;
+        
+          int _len_data0 = 65025;
+          struct Curl_easy * data = (struct Curl_easy *) malloc(_len_data0*sizeof(struct Curl_easy));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].progress.downloaded = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           Curl_pgrsSetDownloadCounter(data,size);
           free(data);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int size = 10;
+        
           int _len_data0 = 100;
           struct Curl_easy * data = (struct Curl_easy *) malloc(_len_data0*sizeof(struct Curl_easy));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
-            data[_i0].progress.downloaded = ((-2 * (next_i()%2)) + 1) * next_i();
+              data[_i0].progress.downloaded = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           Curl_pgrsSetDownloadCounter(data,size);
           free(data);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_data0 = 1;
+          struct Curl_easy * data = (struct Curl_easy *) malloc(_len_data0*sizeof(struct Curl_easy));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].progress.downloaded = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          Curl_pgrsSetDownloadCounter(data,size);
+          free(data);
+        
+        break;
+    }
     default:
         usage();
         break;

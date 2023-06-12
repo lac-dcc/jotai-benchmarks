@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ int b43legacy_is_cck_rate(int rate)
 		rate == B43legacy_CCK_RATE_11MB);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,6 +86,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int rate = 100;
+        
           int benchRet = b43legacy_is_cck_rate(rate);
           printf("%d\n", benchRet); 
         
@@ -100,6 +96,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int rate = 255;
+        
           int benchRet = b43legacy_is_cck_rate(rate);
           printf("%d\n", benchRet); 
         
@@ -109,12 +106,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int rate = 10;
+        
           int benchRet = b43legacy_is_cck_rate(rate);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = b43legacy_is_cck_rate(rate);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

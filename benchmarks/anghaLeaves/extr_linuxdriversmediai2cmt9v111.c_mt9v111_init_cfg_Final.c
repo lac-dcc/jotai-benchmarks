@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static int mt9v111_init_cfg(struct v4l2_subdev *subdev,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,19 +79,142 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_subdev0 = 65025;
+          struct v4l2_subdev * subdev = (struct v4l2_subdev *) malloc(_len_subdev0*sizeof(struct v4l2_subdev));
+          for(int _i0 = 0; _i0 < _len_subdev0; _i0++) {
+              subdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cfg0 = 65025;
+          struct v4l2_subdev_pad_config * cfg = (struct v4l2_subdev_pad_config *) malloc(_len_cfg0*sizeof(struct v4l2_subdev_pad_config));
+          for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
+              cfg[_i0].try_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mt9v111_init_cfg(subdev,cfg);
+          printf("%d\n", benchRet); 
+          free(subdev);
+          free(cfg);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_subdev0 = 100;
+          struct v4l2_subdev * subdev = (struct v4l2_subdev *) malloc(_len_subdev0*sizeof(struct v4l2_subdev));
+          for(int _i0 = 0; _i0 < _len_subdev0; _i0++) {
+              subdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cfg0 = 100;
+          struct v4l2_subdev_pad_config * cfg = (struct v4l2_subdev_pad_config *) malloc(_len_cfg0*sizeof(struct v4l2_subdev_pad_config));
+          for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
+              cfg[_i0].try_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mt9v111_init_cfg(subdev,cfg);
+          printf("%d\n", benchRet); 
+          free(subdev);
+          free(cfg);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_subdev0 = 1;
           struct v4l2_subdev * subdev = (struct v4l2_subdev *) malloc(_len_subdev0*sizeof(struct v4l2_subdev));
           for(int _i0 = 0; _i0 < _len_subdev0; _i0++) {
-            subdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              subdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_cfg0 = 1;
           struct v4l2_subdev_pad_config * cfg = (struct v4l2_subdev_pad_config *) malloc(_len_cfg0*sizeof(struct v4l2_subdev_pad_config));
           for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
-            cfg[_i0].try_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+              cfg[_i0].try_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mt9v111_init_cfg(subdev,cfg);
           printf("%d\n", benchRet); 
           free(subdev);

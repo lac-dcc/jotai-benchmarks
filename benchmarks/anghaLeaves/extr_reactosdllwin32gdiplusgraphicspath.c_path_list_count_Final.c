@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -68,7 +69,6 @@ __attribute__((used)) static INT path_list_count(path_list_node_t *node)
     return count;
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct TYPE_3__ *_allocate_node(int length, struct TYPE_3__ *aux_node[]) {
@@ -96,7 +96,6 @@ void _delete_node(struct TYPE_3__ *aux_node[], int aux_node_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -109,11 +108,71 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // linked
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 90003
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 40006
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 40006
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 40006
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 40006
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 40005
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 40005
+          // ------------------------------- 
+
+          struct TYPE_3__ * aux_node[10000];
+          struct TYPE_3__ * node = _allocate_node(10000, aux_node);
+        
+          int benchRet = path_list_count(node);
+          printf("%d\n", benchRet); 
+          _delete_node(aux_node, 10000);
+        
+        break;
+    }
+
+
+    // empty
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           struct TYPE_3__ * aux_node[1];
           struct TYPE_3__ * node = _allocate_node(1, aux_node);
+        
           int benchRet = path_list_count(node);
           printf("%d\n", benchRet); 
           _delete_node(aux_node, 1);

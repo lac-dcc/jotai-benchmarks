@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ int cpdma_get_num_tx_descs(struct cpdma_ctlr *ctlr)
 	return ctlr->num_tx_desc;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ctlr0 = 1;
+          int _len_ctlr0 = 65025;
           struct cpdma_ctlr * ctlr = (struct cpdma_ctlr *) malloc(_len_ctlr0*sizeof(struct cpdma_ctlr));
           for(int _i0 = 0; _i0 < _len_ctlr0; _i0++) {
-            ctlr[_i0].num_tx_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctlr[_i0].num_tx_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cpdma_get_num_tx_descs(ctlr);
           printf("%d\n", benchRet); 
           free(ctlr);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_ctlr0 = 100;
           struct cpdma_ctlr * ctlr = (struct cpdma_ctlr *) malloc(_len_ctlr0*sizeof(struct cpdma_ctlr));
           for(int _i0 = 0; _i0 < _len_ctlr0; _i0++) {
-            ctlr[_i0].num_tx_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctlr[_i0].num_tx_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cpdma_get_num_tx_descs(ctlr);
           printf("%d\n", benchRet); 
           free(ctlr);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ctlr0 = 1;
+          struct cpdma_ctlr * ctlr = (struct cpdma_ctlr *) malloc(_len_ctlr0*sizeof(struct cpdma_ctlr));
+          for(int _i0 = 0; _i0 < _len_ctlr0; _i0++) {
+              ctlr[_i0].num_tx_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cpdma_get_num_tx_descs(ctlr);
+          printf("%d\n", benchRet); 
+          free(ctlr);
+        
+        break;
+    }
     default:
         usage();
         break;

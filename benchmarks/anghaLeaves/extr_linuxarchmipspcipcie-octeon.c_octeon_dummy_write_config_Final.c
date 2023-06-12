@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static int octeon_dummy_write_config(struct pci_bus *bus, 
 	return PCIBIOS_FUNC_NOT_SUPPORTED;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,36 +78,191 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           unsigned int devfn = 100;
+        
           int reg = 100;
+        
           int size = 100;
+        
           int val = 100;
+        
           int _len_bus0 = 1;
           struct pci_bus * bus = (struct pci_bus *) malloc(_len_bus0*sizeof(struct pci_bus));
           for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
-            bus[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              bus[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = octeon_dummy_write_config(bus,devfn,reg,size,val);
           printf("%d\n", benchRet); 
           free(bus);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          unsigned int devfn = 255;
+        
+          int reg = 255;
+        
+          int size = 255;
+        
+          int val = 255;
+        
+          int _len_bus0 = 65025;
+          struct pci_bus * bus = (struct pci_bus *) malloc(_len_bus0*sizeof(struct pci_bus));
+          for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
+              bus[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = octeon_dummy_write_config(bus,devfn,reg,size,val);
+          printf("%d\n", benchRet); 
+          free(bus);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           unsigned int devfn = 10;
+        
           int reg = 10;
+        
           int size = 10;
+        
           int val = 10;
+        
           int _len_bus0 = 100;
           struct pci_bus * bus = (struct pci_bus *) malloc(_len_bus0*sizeof(struct pci_bus));
           for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
-            bus[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              bus[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = octeon_dummy_write_config(bus,devfn,reg,size,val);
+          printf("%d\n", benchRet); 
+          free(bus);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          unsigned int devfn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_bus0 = 1;
+          struct pci_bus * bus = (struct pci_bus *) malloc(_len_bus0*sizeof(struct pci_bus));
+          for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
+              bus[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = octeon_dummy_write_config(bus,devfn,reg,size,val);
           printf("%d\n", benchRet); 
           free(bus);

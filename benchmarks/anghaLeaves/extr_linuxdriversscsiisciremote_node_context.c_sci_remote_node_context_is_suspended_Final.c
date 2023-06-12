@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ bool sci_remote_node_context_is_suspended(struct sci_remote_node_context *sci_rn
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,28 +82,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_sci_rnc0 = 1;
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_sci_rnc0 = 65025;
           struct sci_remote_node_context * sci_rnc = (struct sci_remote_node_context *) malloc(_len_sci_rnc0*sizeof(struct sci_remote_node_context));
           for(int _i0 = 0; _i0 < _len_sci_rnc0; _i0++) {
-            sci_rnc[_i0].sm.current_state_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              sci_rnc[_i0].sm.current_state_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = sci_remote_node_context_is_suspended(sci_rnc);
           printf("%d\n", benchRet); 
           free(sci_rnc);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_sci_rnc0 = 100;
           struct sci_remote_node_context * sci_rnc = (struct sci_remote_node_context *) malloc(_len_sci_rnc0*sizeof(struct sci_remote_node_context));
           for(int _i0 = 0; _i0 < _len_sci_rnc0; _i0++) {
-            sci_rnc[_i0].sm.current_state_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              sci_rnc[_i0].sm.current_state_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = sci_remote_node_context_is_suspended(sci_rnc);
+          printf("%d\n", benchRet); 
+          free(sci_rnc);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_sci_rnc0 = 1;
+          struct sci_remote_node_context * sci_rnc = (struct sci_remote_node_context *) malloc(_len_sci_rnc0*sizeof(struct sci_remote_node_context));
+          for(int _i0 = 0; _i0 < _len_sci_rnc0; _i0++) {
+              sci_rnc[_i0].sm.current_state_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = sci_remote_node_context_is_suspended(sci_rnc);
           printf("%d\n", benchRet); 
           free(sci_rnc);

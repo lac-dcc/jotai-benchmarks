@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ il3945_set_tkip_dynamic_key_info(struct il_priv *il,
 	return -EOPNOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,16 +84,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int sta_id = 100;
+        
           int _len_il0 = 1;
           struct il_priv * il = (struct il_priv *) malloc(_len_il0*sizeof(struct il_priv));
           for(int _i0 = 0; _i0 < _len_il0; _i0++) {
-            il[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              il[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_keyconf0 = 1;
           struct ieee80211_key_conf * keyconf = (struct ieee80211_key_conf *) malloc(_len_keyconf0*sizeof(struct ieee80211_key_conf));
           for(int _i0 = 0; _i0 < _len_keyconf0; _i0++) {
-            keyconf[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              keyconf[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = il3945_set_tkip_dynamic_key_info(il,keyconf,sta_id);
           printf("%d\n", benchRet); 
           free(il);
@@ -104,7 +106,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int sta_id = 255;
+        
+          int _len_il0 = 65025;
+          struct il_priv * il = (struct il_priv *) malloc(_len_il0*sizeof(struct il_priv));
+          for(int _i0 = 0; _i0 < _len_il0; _i0++) {
+              il[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_keyconf0 = 65025;
+          struct ieee80211_key_conf * keyconf = (struct ieee80211_key_conf *) malloc(_len_keyconf0*sizeof(struct ieee80211_key_conf));
+          for(int _i0 = 0; _i0 < _len_keyconf0; _i0++) {
+              keyconf[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = il3945_set_tkip_dynamic_key_info(il,keyconf,sta_id);
+          printf("%d\n", benchRet); 
+          free(il);
+          free(keyconf);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int sta_id = 10;
+        
+          int _len_il0 = 100;
+          struct il_priv * il = (struct il_priv *) malloc(_len_il0*sizeof(struct il_priv));
+          for(int _i0 = 0; _i0 < _len_il0; _i0++) {
+              il[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_keyconf0 = 100;
+          struct ieee80211_key_conf * keyconf = (struct ieee80211_key_conf *) malloc(_len_keyconf0*sizeof(struct ieee80211_key_conf));
+          for(int _i0 = 0; _i0 < _len_keyconf0; _i0++) {
+              keyconf[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = il3945_set_tkip_dynamic_key_info(il,keyconf,sta_id);
+          printf("%d\n", benchRet); 
+          free(il);
+          free(keyconf);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int sta_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_il0 = 1;
+          struct il_priv * il = (struct il_priv *) malloc(_len_il0*sizeof(struct il_priv));
+          for(int _i0 = 0; _i0 < _len_il0; _i0++) {
+              il[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_keyconf0 = 1;
+          struct ieee80211_key_conf * keyconf = (struct ieee80211_key_conf *) malloc(_len_keyconf0*sizeof(struct ieee80211_key_conf));
+          for(int _i0 = 0; _i0 < _len_keyconf0; _i0++) {
+              keyconf[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = il3945_set_tkip_dynamic_key_info(il,keyconf,sta_id);
+          printf("%d\n", benchRet); 
+          free(il);
+          free(keyconf);
+        
+        break;
+    }
     default:
         usage();
         break;

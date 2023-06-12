@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ __attribute__((used)) static inline int adi_get_bits(struct adi *adi, int count)
 	return bits;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,21 +80,200 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int count = 100;
+        
           int _len_adi0 = 1;
           struct adi * adi = (struct adi *) malloc(_len_adi0*sizeof(struct adi));
           for(int _i0 = 0; _i0 < _len_adi0; _i0++) {
-            adi[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
-        adi[_i0].ret = ((-2 * (next_i()%2)) + 1) * next_i();
+              adi[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          adi[_i0].ret = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_adi__i0__data0 = 1;
           adi[_i0].data = (int *) malloc(_len_adi__i0__data0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_adi__i0__data0; _j0++) {
             adi[_i0].data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int benchRet = adi_get_bits(adi,count);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_adi0; _aux++) {
+          free(adi[_aux].data);
+          }
+          free(adi);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int count = 255;
+        
+          int _len_adi0 = 65025;
+          struct adi * adi = (struct adi *) malloc(_len_adi0*sizeof(struct adi));
+          for(int _i0 = 0; _i0 < _len_adi0; _i0++) {
+              adi[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          adi[_i0].ret = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_adi__i0__data0 = 1;
+          adi[_i0].data = (int *) malloc(_len_adi__i0__data0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_adi__i0__data0; _j0++) {
+            adi[_i0].data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = adi_get_bits(adi,count);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_adi0; _aux++) {
+          free(adi[_aux].data);
+          }
+          free(adi);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int count = 10;
+        
+          int _len_adi0 = 100;
+          struct adi * adi = (struct adi *) malloc(_len_adi0*sizeof(struct adi));
+          for(int _i0 = 0; _i0 < _len_adi0; _i0++) {
+              adi[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          adi[_i0].ret = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_adi__i0__data0 = 1;
+          adi[_i0].data = (int *) malloc(_len_adi__i0__data0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_adi__i0__data0; _j0++) {
+            adi[_i0].data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = adi_get_bits(adi,count);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_adi0; _aux++) {
+          free(adi[_aux].data);
+          }
+          free(adi);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_adi0 = 1;
+          struct adi * adi = (struct adi *) malloc(_len_adi0*sizeof(struct adi));
+          for(int _i0 = 0; _i0 < _len_adi0; _i0++) {
+              adi[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          adi[_i0].ret = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_adi__i0__data0 = 1;
+          adi[_i0].data = (int *) malloc(_len_adi__i0__data0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_adi__i0__data0; _j0++) {
+            adi[_i0].data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int benchRet = adi_get_bits(adi,count);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_adi0; _aux++) {

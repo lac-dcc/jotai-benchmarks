@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -88,12 +90,6 @@ __attribute__((used)) static void sh_eth_set_default_cpu_data(struct sh_eth_cpu_
 		cd->trscer_err_mask = DEFAULT_TRSCER_ERR_MASK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,20 +102,135 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_cd0 = 65025;
+          struct sh_eth_cpu_data * cd = (struct sh_eth_cpu_data *) malloc(_len_cd0*sizeof(struct sh_eth_cpu_data));
+          for(int _i0 = 0; _i0 < _len_cd0; _i0++) {
+              cd[_i0].fcftr_value = ((-2 * (next_i()%2)) + 1) * next_i();
+          cd[_i0].trscer_err_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          cd[_i0].eesr_err_check = ((-2 * (next_i()%2)) + 1) * next_i();
+          cd[_i0].tx_check = ((-2 * (next_i()%2)) + 1) * next_i();
+          cd[_i0].fdr_value = ((-2 * (next_i()%2)) + 1) * next_i();
+          cd[_i0].ecsipr_value = ((-2 * (next_i()%2)) + 1) * next_i();
+          cd[_i0].ecsr_value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          sh_eth_set_default_cpu_data(cd);
+          free(cd);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_cd0 = 100;
+          struct sh_eth_cpu_data * cd = (struct sh_eth_cpu_data *) malloc(_len_cd0*sizeof(struct sh_eth_cpu_data));
+          for(int _i0 = 0; _i0 < _len_cd0; _i0++) {
+              cd[_i0].fcftr_value = ((-2 * (next_i()%2)) + 1) * next_i();
+          cd[_i0].trscer_err_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          cd[_i0].eesr_err_check = ((-2 * (next_i()%2)) + 1) * next_i();
+          cd[_i0].tx_check = ((-2 * (next_i()%2)) + 1) * next_i();
+          cd[_i0].fdr_value = ((-2 * (next_i()%2)) + 1) * next_i();
+          cd[_i0].ecsipr_value = ((-2 * (next_i()%2)) + 1) * next_i();
+          cd[_i0].ecsr_value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          sh_eth_set_default_cpu_data(cd);
+          free(cd);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int _len_cd0 = 1;
           struct sh_eth_cpu_data * cd = (struct sh_eth_cpu_data *) malloc(_len_cd0*sizeof(struct sh_eth_cpu_data));
           for(int _i0 = 0; _i0 < _len_cd0; _i0++) {
-            cd[_i0].fcftr_value = ((-2 * (next_i()%2)) + 1) * next_i();
-        cd[_i0].trscer_err_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        cd[_i0].eesr_err_check = ((-2 * (next_i()%2)) + 1) * next_i();
-        cd[_i0].tx_check = ((-2 * (next_i()%2)) + 1) * next_i();
-        cd[_i0].fdr_value = ((-2 * (next_i()%2)) + 1) * next_i();
-        cd[_i0].ecsipr_value = ((-2 * (next_i()%2)) + 1) * next_i();
-        cd[_i0].ecsr_value = ((-2 * (next_i()%2)) + 1) * next_i();
+              cd[_i0].fcftr_value = ((-2 * (next_i()%2)) + 1) * next_i();
+          cd[_i0].trscer_err_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          cd[_i0].eesr_err_check = ((-2 * (next_i()%2)) + 1) * next_i();
+          cd[_i0].tx_check = ((-2 * (next_i()%2)) + 1) * next_i();
+          cd[_i0].fdr_value = ((-2 * (next_i()%2)) + 1) * next_i();
+          cd[_i0].ecsipr_value = ((-2 * (next_i()%2)) + 1) * next_i();
+          cd[_i0].ecsr_value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           sh_eth_set_default_cpu_data(cd);
           free(cd);
         

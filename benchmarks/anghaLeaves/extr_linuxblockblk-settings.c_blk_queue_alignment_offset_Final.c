@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ void blk_queue_alignment_offset(struct request_queue *q, unsigned int offset)
 	q->limits.misaligned = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,19 +83,82 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int offset = 100;
+        
           int _len_q0 = 1;
           struct request_queue * q = (struct request_queue *) malloc(_len_q0*sizeof(struct request_queue));
           for(int _i0 = 0; _i0 < _len_q0; _i0++) {
-            q[_i0].limits.alignment_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].limits.physical_block_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].limits.misaligned = ((-2 * (next_i()%2)) + 1) * next_i();
+              q[_i0].limits.alignment_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].limits.physical_block_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].limits.misaligned = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           blk_queue_alignment_offset(q,offset);
           free(q);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int offset = 255;
+        
+          int _len_q0 = 65025;
+          struct request_queue * q = (struct request_queue *) malloc(_len_q0*sizeof(struct request_queue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].limits.alignment_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].limits.physical_block_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].limits.misaligned = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          blk_queue_alignment_offset(q,offset);
+          free(q);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int offset = 10;
+        
+          int _len_q0 = 100;
+          struct request_queue * q = (struct request_queue *) malloc(_len_q0*sizeof(struct request_queue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].limits.alignment_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].limits.physical_block_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].limits.misaligned = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          blk_queue_alignment_offset(q,offset);
+          free(q);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_q0 = 1;
+          struct request_queue * q = (struct request_queue *) malloc(_len_q0*sizeof(struct request_queue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].limits.alignment_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].limits.physical_block_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].limits.misaligned = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          blk_queue_alignment_offset(q,offset);
+          free(q);
+        
+        break;
+    }
     default:
         usage();
         break;

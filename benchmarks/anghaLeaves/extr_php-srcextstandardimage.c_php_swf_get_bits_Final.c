@@ -31,6 +31,7 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            big-arr-10x\n\
+       1            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static unsigned long int php_swf_get_bits (unsigned char* 
 	return result;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,16 +80,85 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // big-arr-10x
     case 0:
     {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 326
+          // ------------------------------- 
+          // static_instructions_O1 : 27
+          // dynamic_instructions_O1 : 162
+          // ------------------------------- 
+          // static_instructions_O2 : 49
+          // dynamic_instructions_O2 : 161
+          // ------------------------------- 
+          // static_instructions_O3 : 47
+          // dynamic_instructions_O3 : 159
+          // ------------------------------- 
+          // static_instructions_Ofast : 47
+          // dynamic_instructions_Ofast : 159
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 161
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 180
+          // ------------------------------- 
+
           unsigned int pos = 10;
+        
           unsigned int count = 10;
+        
           int _len_buffer0 = 100;
           unsigned char * buffer = (unsigned char *) malloc(_len_buffer0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_buffer0; _i0++) {
             buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          unsigned long benchRet = php_swf_get_bits(buffer,pos,count);
+          printf("%lu\n", benchRet); 
+          free(buffer);
+        
+        break;
+    }
+
+
+    // empty
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          unsigned int pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_buffer0 = 1;
+          unsigned char * buffer = (unsigned char *) malloc(_len_buffer0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_buffer0; _i0++) {
+            buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           unsigned long benchRet = php_swf_get_bits(buffer,pos,count);
           printf("%lu\n", benchRet); 
           free(buffer);

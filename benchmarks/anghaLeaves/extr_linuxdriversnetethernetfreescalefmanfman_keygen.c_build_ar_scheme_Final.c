@@ -77,12 +77,6 @@ __attribute__((used)) static u32 build_ar_scheme(u8 scheme_id, bool update_count
 			(update_counter ? FM_KG_KGAR_SCM_WSEL_UPDATE_CNT : 0));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,8 +93,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long scheme_id = 100;
+        
           int update_counter = 100;
+        
           int write = 100;
+        
           int benchRet = build_ar_scheme(scheme_id,update_counter,write);
           printf("%d\n", benchRet); 
         
@@ -110,8 +107,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long scheme_id = 255;
+        
           int update_counter = 255;
+        
           int write = 255;
+        
           int benchRet = build_ar_scheme(scheme_id,update_counter,write);
           printf("%d\n", benchRet); 
         
@@ -121,14 +121,16 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long scheme_id = 10;
+        
           int update_counter = 10;
+        
           int write = 10;
+        
           int benchRet = build_ar_scheme(scheme_id,update_counter,write);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

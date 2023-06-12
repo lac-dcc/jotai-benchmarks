@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -84,12 +86,6 @@ il3945_init_hw_rates(struct il_priv *il, struct ieee80211_rate *rates)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,29 +98,84 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_il0 = 1;
+          int _len_il0 = 65025;
           struct il_priv * il = (struct il_priv *) malloc(_len_il0*sizeof(struct il_priv));
           for(int _i0 = 0; _i0 < _len_il0; _i0++) {
-            il[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              il[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_rates0 = 1;
+        
+          int _len_rates0 = 65025;
           struct ieee80211_rate * rates = (struct ieee80211_rate *) malloc(_len_rates0*sizeof(struct ieee80211_rate));
           for(int _i0 = 0; _i0 < _len_rates0; _i0++) {
-            rates[_i0].bitrate = ((-2 * (next_i()%2)) + 1) * next_i();
-        rates[_i0].hw_value = ((-2 * (next_i()%2)) + 1) * next_i();
-        rates[_i0].hw_value_short = ((-2 * (next_i()%2)) + 1) * next_i();
-        rates[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              rates[_i0].bitrate = ((-2 * (next_i()%2)) + 1) * next_i();
+          rates[_i0].hw_value = ((-2 * (next_i()%2)) + 1) * next_i();
+          rates[_i0].hw_value_short = ((-2 * (next_i()%2)) + 1) * next_i();
+          rates[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           il3945_init_hw_rates(il,rates);
           free(il);
           free(rates);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_il0 = 100;
+          struct il_priv * il = (struct il_priv *) malloc(_len_il0*sizeof(struct il_priv));
+          for(int _i0 = 0; _i0 < _len_il0; _i0++) {
+              il[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rates0 = 100;
+          struct ieee80211_rate * rates = (struct ieee80211_rate *) malloc(_len_rates0*sizeof(struct ieee80211_rate));
+          for(int _i0 = 0; _i0 < _len_rates0; _i0++) {
+              rates[_i0].bitrate = ((-2 * (next_i()%2)) + 1) * next_i();
+          rates[_i0].hw_value = ((-2 * (next_i()%2)) + 1) * next_i();
+          rates[_i0].hw_value_short = ((-2 * (next_i()%2)) + 1) * next_i();
+          rates[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          il3945_init_hw_rates(il,rates);
+          free(il);
+          free(rates);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_il0 = 1;
+          struct il_priv * il = (struct il_priv *) malloc(_len_il0*sizeof(struct il_priv));
+          for(int _i0 = 0; _i0 < _len_il0; _i0++) {
+              il[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rates0 = 1;
+          struct ieee80211_rate * rates = (struct ieee80211_rate *) malloc(_len_rates0*sizeof(struct ieee80211_rate));
+          for(int _i0 = 0; _i0 < _len_rates0; _i0++) {
+              rates[_i0].bitrate = ((-2 * (next_i()%2)) + 1) * next_i();
+          rates[_i0].hw_value = ((-2 * (next_i()%2)) + 1) * next_i();
+          rates[_i0].hw_value_short = ((-2 * (next_i()%2)) + 1) * next_i();
+          rates[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          il3945_init_hw_rates(il,rates);
+          free(il);
+          free(rates);
+        
+        break;
+    }
     default:
         usage();
         break;

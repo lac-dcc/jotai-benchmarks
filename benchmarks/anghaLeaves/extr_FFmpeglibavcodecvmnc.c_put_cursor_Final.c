@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -119,12 +122,6 @@ __attribute__((used)) static void put_cursor(uint8_t *dst, int stride, VmncConte
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -141,23 +138,27 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int stride = 100;
+        
           int dx = 100;
+        
           int dy = 100;
+        
           int _len_dst0 = 1;
           int * dst = (int *) malloc(_len_dst0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
             dst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_c0 = 1;
           struct TYPE_3__ * c = (struct TYPE_3__ *) malloc(_len_c0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_c0; _i0++) {
-            c[_i0].cur_w = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].cur_x = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].cur_h = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].cur_y = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].bpp2 = ((-2 * (next_i()%2)) + 1) * next_i();
+              c[_i0].cur_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].cur_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].cur_h = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].cur_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].bpp2 = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_c__i0__curbits0 = 1;
           c[_i0].curbits = (int *) malloc(_len_c__i0__curbits0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_c__i0__curbits0; _j0++) {
@@ -168,7 +169,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_c__i0__curmask0; _j0++) {
             c[_i0].curmask[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           put_cursor(dst,stride,c,dx,dy);
           free(dst);
           for(int _aux = 0; _aux < _len_c0; _aux++) {
@@ -181,7 +184,156 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int stride = 255;
+        
+          int dx = 255;
+        
+          int dy = 255;
+        
+          int _len_dst0 = 65025;
+          int * dst = (int *) malloc(_len_dst0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+            dst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_c0 = 65025;
+          struct TYPE_3__ * c = (struct TYPE_3__ *) malloc(_len_c0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].cur_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].cur_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].cur_h = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].cur_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].bpp2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_c__i0__curbits0 = 1;
+          c[_i0].curbits = (int *) malloc(_len_c__i0__curbits0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_c__i0__curbits0; _j0++) {
+            c[_i0].curbits[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_c__i0__curmask0 = 1;
+          c[_i0].curmask = (int *) malloc(_len_c__i0__curmask0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_c__i0__curmask0; _j0++) {
+            c[_i0].curmask[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          put_cursor(dst,stride,c,dx,dy);
+          free(dst);
+          for(int _aux = 0; _aux < _len_c0; _aux++) {
+          free(c[_aux].curbits);
+          }
+          for(int _aux = 0; _aux < _len_c0; _aux++) {
+          free(c[_aux].curmask);
+          }
+          free(c);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int stride = 10;
+        
+          int dx = 10;
+        
+          int dy = 10;
+        
+          int _len_dst0 = 100;
+          int * dst = (int *) malloc(_len_dst0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+            dst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_c0 = 100;
+          struct TYPE_3__ * c = (struct TYPE_3__ *) malloc(_len_c0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].cur_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].cur_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].cur_h = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].cur_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].bpp2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_c__i0__curbits0 = 1;
+          c[_i0].curbits = (int *) malloc(_len_c__i0__curbits0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_c__i0__curbits0; _j0++) {
+            c[_i0].curbits[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_c__i0__curmask0 = 1;
+          c[_i0].curmask = (int *) malloc(_len_c__i0__curmask0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_c__i0__curmask0; _j0++) {
+            c[_i0].curmask[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          put_cursor(dst,stride,c,dx,dy);
+          free(dst);
+          for(int _aux = 0; _aux < _len_c0; _aux++) {
+          free(c[_aux].curbits);
+          }
+          for(int _aux = 0; _aux < _len_c0; _aux++) {
+          free(c[_aux].curmask);
+          }
+          free(c);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int stride = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int dx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int dy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dst0 = 1;
+          int * dst = (int *) malloc(_len_dst0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+            dst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_c0 = 1;
+          struct TYPE_3__ * c = (struct TYPE_3__ *) malloc(_len_c0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].cur_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].cur_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].cur_h = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].cur_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].bpp2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_c__i0__curbits0 = 1;
+          c[_i0].curbits = (int *) malloc(_len_c__i0__curbits0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_c__i0__curbits0; _j0++) {
+            c[_i0].curbits[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_c__i0__curmask0 = 1;
+          c[_i0].curmask = (int *) malloc(_len_c__i0__curmask0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_c__i0__curmask0; _j0++) {
+            c[_i0].curmask[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          put_cursor(dst,stride,c,dx,dy);
+          free(dst);
+          for(int _aux = 0; _aux < _len_c0; _aux++) {
+          free(c[_aux].curbits);
+          }
+          for(int _aux = 0; _aux < _len_c0; _aux++) {
+          free(c[_aux].curmask);
+          }
+          free(c);
+        
+        break;
+    }
     default:
         usage();
         break;

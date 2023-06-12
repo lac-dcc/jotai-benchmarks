@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -89,12 +91,6 @@ __attribute__((used)) static inline int chcr_ipsec_setauthsize(struct xfrm_state
 	return hmac_ctrl;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,23 +103,163 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_x0 = 65025;
+          struct xfrm_state * x = (struct xfrm_state *) malloc(_len_x0*sizeof(struct xfrm_state));
+          for(int _i0 = 0; _i0 < _len_x0; _i0++) {
+              int _len_x__i0__aead0 = 1;
+          x[_i0].aead = (struct TYPE_2__ *) malloc(_len_x__i0__aead0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_x__i0__aead0; _j0++) {
+              x[_i0].aead->alg_icv_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_sa_entry0 = 65025;
+          struct ipsec_sa_entry * sa_entry = (struct ipsec_sa_entry *) malloc(_len_sa_entry0*sizeof(struct ipsec_sa_entry));
+          for(int _i0 = 0; _i0 < _len_sa_entry0; _i0++) {
+              sa_entry[_i0].authsize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = chcr_ipsec_setauthsize(x,sa_entry);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_x0; _aux++) {
+          free(x[_aux].aead);
+          }
+          free(x);
+          free(sa_entry);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_x0 = 100;
+          struct xfrm_state * x = (struct xfrm_state *) malloc(_len_x0*sizeof(struct xfrm_state));
+          for(int _i0 = 0; _i0 < _len_x0; _i0++) {
+              int _len_x__i0__aead0 = 1;
+          x[_i0].aead = (struct TYPE_2__ *) malloc(_len_x__i0__aead0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_x__i0__aead0; _j0++) {
+              x[_i0].aead->alg_icv_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_sa_entry0 = 100;
+          struct ipsec_sa_entry * sa_entry = (struct ipsec_sa_entry *) malloc(_len_sa_entry0*sizeof(struct ipsec_sa_entry));
+          for(int _i0 = 0; _i0 < _len_sa_entry0; _i0++) {
+              sa_entry[_i0].authsize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = chcr_ipsec_setauthsize(x,sa_entry);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_x0; _aux++) {
+          free(x[_aux].aead);
+          }
+          free(x);
+          free(sa_entry);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int _len_x0 = 1;
           struct xfrm_state * x = (struct xfrm_state *) malloc(_len_x0*sizeof(struct xfrm_state));
           for(int _i0 = 0; _i0 < _len_x0; _i0++) {
               int _len_x__i0__aead0 = 1;
           x[_i0].aead = (struct TYPE_2__ *) malloc(_len_x__i0__aead0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_x__i0__aead0; _j0++) {
-            x[_i0].aead->alg_icv_len = ((-2 * (next_i()%2)) + 1) * next_i();
+              x[_i0].aead->alg_icv_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_sa_entry0 = 1;
           struct ipsec_sa_entry * sa_entry = (struct ipsec_sa_entry *) malloc(_len_sa_entry0*sizeof(struct ipsec_sa_entry));
           for(int _i0 = 0; _i0 < _len_sa_entry0; _i0++) {
-            sa_entry[_i0].authsize = ((-2 * (next_i()%2)) + 1) * next_i();
+              sa_entry[_i0].authsize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = chcr_ipsec_setauthsize(x,sa_entry);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_x0; _aux++) {

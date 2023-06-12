@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ unsigned evaluate_uniq_words_count (pair_word_freqs_t *Q, int n) {
   return r;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,22 +85,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int n = 10;
-          int _len_Q0 = 100;
+          int n = 255;
+        
+          int _len_Q0 = 65025;
           struct TYPE_3__ * Q = (struct TYPE_3__ *) malloc(_len_Q0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_Q0; _i0++) {
-            Q[_i0].freqs = ((-2 * (next_i()%2)) + 1) * next_i();
+              Q[_i0].freqs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = evaluate_uniq_words_count(Q,n);
           printf("%u\n", benchRet); 
           free(Q);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int n = 10;
+        
+          int _len_Q0 = 100;
+          struct TYPE_3__ * Q = (struct TYPE_3__ *) malloc(_len_Q0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_Q0; _i0++) {
+              Q[_i0].freqs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = evaluate_uniq_words_count(Q,n);
+          printf("%u\n", benchRet); 
+          free(Q);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_Q0 = 1;
+          struct TYPE_3__ * Q = (struct TYPE_3__ *) malloc(_len_Q0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_Q0; _i0++) {
+              Q[_i0].freqs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = evaluate_uniq_words_count(Q,n);
+          printf("%u\n", benchRet); 
+          free(Q);
+        
+        break;
+    }
     default:
         usage();
         break;

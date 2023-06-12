@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ int hisi_uncore_pmu_counter_valid(struct hisi_pmu *hisi_pmu, int idx)
 	return idx >= 0 && idx < hisi_pmu->num_counters;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,30 +75,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int idx = 100;
+        
           int _len_hisi_pmu0 = 1;
           struct hisi_pmu * hisi_pmu = (struct hisi_pmu *) malloc(_len_hisi_pmu0*sizeof(struct hisi_pmu));
           for(int _i0 = 0; _i0 < _len_hisi_pmu0; _i0++) {
-            hisi_pmu[_i0].num_counters = ((-2 * (next_i()%2)) + 1) * next_i();
+              hisi_pmu[_i0].num_counters = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = hisi_uncore_pmu_counter_valid(hisi_pmu,idx);
           printf("%d\n", benchRet); 
           free(hisi_pmu);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int idx = 255;
+        
+          int _len_hisi_pmu0 = 65025;
+          struct hisi_pmu * hisi_pmu = (struct hisi_pmu *) malloc(_len_hisi_pmu0*sizeof(struct hisi_pmu));
+          for(int _i0 = 0; _i0 < _len_hisi_pmu0; _i0++) {
+              hisi_pmu[_i0].num_counters = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hisi_uncore_pmu_counter_valid(hisi_pmu,idx);
+          printf("%d\n", benchRet); 
+          free(hisi_pmu);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int idx = 10;
+        
           int _len_hisi_pmu0 = 100;
           struct hisi_pmu * hisi_pmu = (struct hisi_pmu *) malloc(_len_hisi_pmu0*sizeof(struct hisi_pmu));
           for(int _i0 = 0; _i0 < _len_hisi_pmu0; _i0++) {
-            hisi_pmu[_i0].num_counters = ((-2 * (next_i()%2)) + 1) * next_i();
+              hisi_pmu[_i0].num_counters = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = hisi_uncore_pmu_counter_valid(hisi_pmu,idx);
+          printf("%d\n", benchRet); 
+          free(hisi_pmu);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
+          int idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hisi_pmu0 = 1;
+          struct hisi_pmu * hisi_pmu = (struct hisi_pmu *) malloc(_len_hisi_pmu0*sizeof(struct hisi_pmu));
+          for(int _i0 = 0; _i0 < _len_hisi_pmu0; _i0++) {
+              hisi_pmu[_i0].num_counters = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = hisi_uncore_pmu_counter_valid(hisi_pmu,idx);
           printf("%d\n", benchRet); 
           free(hisi_pmu);

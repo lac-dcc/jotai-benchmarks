@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static void hack_disable_optional_pipe_split(struct dcn_bw
 	v->max_dispclk[0] = v->max_dppclk_vmin0p65;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,19 +78,138 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_v0 = 1;
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_v0 = 65025;
           struct dcn_bw_internal_vars * v = (struct dcn_bw_internal_vars *) malloc(_len_v0*sizeof(struct dcn_bw_internal_vars));
           for(int _i0 = 0; _i0 < _len_v0; _i0++) {
-            v[_i0].max_dppclk_vmin0p65 = ((-2 * (next_i()%2)) + 1) * next_i();
+              v[_i0].max_dppclk_vmin0p65 = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_v__i0__max_dispclk0 = 1;
           v[_i0].max_dispclk = (int *) malloc(_len_v__i0__max_dispclk0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_v__i0__max_dispclk0; _j0++) {
             v[_i0].max_dispclk[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          hack_disable_optional_pipe_split(v);
+          for(int _aux = 0; _aux < _len_v0; _aux++) {
+          free(v[_aux].max_dispclk);
+          }
+          free(v);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_v0 = 100;
+          struct dcn_bw_internal_vars * v = (struct dcn_bw_internal_vars *) malloc(_len_v0*sizeof(struct dcn_bw_internal_vars));
+          for(int _i0 = 0; _i0 < _len_v0; _i0++) {
+              v[_i0].max_dppclk_vmin0p65 = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_v__i0__max_dispclk0 = 1;
+          v[_i0].max_dispclk = (int *) malloc(_len_v__i0__max_dispclk0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_v__i0__max_dispclk0; _j0++) {
+            v[_i0].max_dispclk[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          hack_disable_optional_pipe_split(v);
+          for(int _aux = 0; _aux < _len_v0; _aux++) {
+          free(v[_aux].max_dispclk);
+          }
+          free(v);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_v0 = 1;
+          struct dcn_bw_internal_vars * v = (struct dcn_bw_internal_vars *) malloc(_len_v0*sizeof(struct dcn_bw_internal_vars));
+          for(int _i0 = 0; _i0 < _len_v0; _i0++) {
+              v[_i0].max_dppclk_vmin0p65 = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_v__i0__max_dispclk0 = 1;
+          v[_i0].max_dispclk = (int *) malloc(_len_v__i0__max_dispclk0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_v__i0__max_dispclk0; _j0++) {
+            v[_i0].max_dispclk[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           hack_disable_optional_pipe_split(v);
           for(int _aux = 0; _aux < _len_v0; _aux++) {
           free(v[_aux].max_dispclk);

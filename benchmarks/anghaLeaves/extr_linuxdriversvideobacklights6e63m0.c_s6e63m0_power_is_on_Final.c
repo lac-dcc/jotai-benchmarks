@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static int s6e63m0_power_is_on(int power)
 	return power <= FB_BLANK_NORMAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int power = 100;
+        
           int benchRet = s6e63m0_power_is_on(power);
           printf("%d\n", benchRet); 
         
@@ -93,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int power = 255;
+        
           int benchRet = s6e63m0_power_is_on(power);
           printf("%d\n", benchRet); 
         
@@ -102,12 +99,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int power = 10;
+        
           int benchRet = s6e63m0_power_is_on(power);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int power = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = s6e63m0_power_is_on(power);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

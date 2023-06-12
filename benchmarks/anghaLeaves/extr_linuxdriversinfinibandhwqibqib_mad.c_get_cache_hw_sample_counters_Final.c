@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -94,12 +97,6 @@ __attribute__((used)) static u64 get_cache_hw_sample_counters(struct qib_pportda
 	return ret;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -112,19 +109,191 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int sel = 100;
+        
           int _len_ppd0 = 1;
           struct qib_pportdata * ppd = (struct qib_pportdata *) malloc(_len_ppd0*sizeof(struct qib_pportdata));
           for(int _i0 = 0; _i0 < _len_ppd0; _i0++) {
-            ppd[_i0].cong_stats.counter_cache.psxmitwait = ((-2 * (next_i()%2)) + 1) * next_i();
-        ppd[_i0].cong_stats.counter_cache.psrcvpkts = ((-2 * (next_i()%2)) + 1) * next_i();
-        ppd[_i0].cong_stats.counter_cache.psxmitpkts = ((-2 * (next_i()%2)) + 1) * next_i();
-        ppd[_i0].cong_stats.counter_cache.psrcvdata = ((-2 * (next_i()%2)) + 1) * next_i();
-        ppd[_i0].cong_stats.counter_cache.psxmitdata = ((-2 * (next_i()%2)) + 1) * next_i();
+              ppd[_i0].cong_stats.counter_cache.psxmitwait = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppd[_i0].cong_stats.counter_cache.psrcvpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppd[_i0].cong_stats.counter_cache.psxmitpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppd[_i0].cong_stats.counter_cache.psrcvdata = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppd[_i0].cong_stats.counter_cache.psxmitdata = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
+          int benchRet = get_cache_hw_sample_counters(ppd,sel);
+          printf("%d\n", benchRet); 
+          free(ppd);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int sel = 255;
+        
+          int _len_ppd0 = 65025;
+          struct qib_pportdata * ppd = (struct qib_pportdata *) malloc(_len_ppd0*sizeof(struct qib_pportdata));
+          for(int _i0 = 0; _i0 < _len_ppd0; _i0++) {
+              ppd[_i0].cong_stats.counter_cache.psxmitwait = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppd[_i0].cong_stats.counter_cache.psrcvpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppd[_i0].cong_stats.counter_cache.psxmitpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppd[_i0].cong_stats.counter_cache.psrcvdata = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppd[_i0].cong_stats.counter_cache.psxmitdata = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = get_cache_hw_sample_counters(ppd,sel);
+          printf("%d\n", benchRet); 
+          free(ppd);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int sel = 10;
+        
+          int _len_ppd0 = 100;
+          struct qib_pportdata * ppd = (struct qib_pportdata *) malloc(_len_ppd0*sizeof(struct qib_pportdata));
+          for(int _i0 = 0; _i0 < _len_ppd0; _i0++) {
+              ppd[_i0].cong_stats.counter_cache.psxmitwait = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppd[_i0].cong_stats.counter_cache.psrcvpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppd[_i0].cong_stats.counter_cache.psxmitpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppd[_i0].cong_stats.counter_cache.psrcvdata = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppd[_i0].cong_stats.counter_cache.psxmitdata = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = get_cache_hw_sample_counters(ppd,sel);
+          printf("%d\n", benchRet); 
+          free(ppd);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int sel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ppd0 = 1;
+          struct qib_pportdata * ppd = (struct qib_pportdata *) malloc(_len_ppd0*sizeof(struct qib_pportdata));
+          for(int _i0 = 0; _i0 < _len_ppd0; _i0++) {
+              ppd[_i0].cong_stats.counter_cache.psxmitwait = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppd[_i0].cong_stats.counter_cache.psrcvpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppd[_i0].cong_stats.counter_cache.psxmitpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppd[_i0].cong_stats.counter_cache.psrcvdata = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppd[_i0].cong_stats.counter_cache.psxmitdata = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
           int benchRet = get_cache_hw_sample_counters(ppd,sel);
           printf("%d\n", benchRet); 
           free(ppd);

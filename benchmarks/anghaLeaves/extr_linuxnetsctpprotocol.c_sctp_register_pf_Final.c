@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +82,6 @@ int sctp_register_pf(struct sctp_pf *pf, sa_family_t family)
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,11 +98,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int family = 100;
+        
           int _len_pf0 = 1;
           struct sctp_pf * pf = (struct sctp_pf *) malloc(_len_pf0*sizeof(struct sctp_pf));
           for(int _i0 = 0; _i0 < _len_pf0; _i0++) {
-            pf[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              pf[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = sctp_register_pf(pf,family);
+          printf("%d\n", benchRet); 
+          free(pf);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int family = 255;
+        
+          int _len_pf0 = 65025;
+          struct sctp_pf * pf = (struct sctp_pf *) malloc(_len_pf0*sizeof(struct sctp_pf));
+          for(int _i0 = 0; _i0 < _len_pf0; _i0++) {
+              pf[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = sctp_register_pf(pf,family);
           printf("%d\n", benchRet); 
           free(pf);
@@ -114,21 +131,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int family = 10;
+        
           int _len_pf0 = 100;
           struct sctp_pf * pf = (struct sctp_pf *) malloc(_len_pf0*sizeof(struct sctp_pf));
           for(int _i0 = 0; _i0 < _len_pf0; _i0++) {
-            pf[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              pf[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = sctp_register_pf(pf,family);
           printf("%d\n", benchRet); 
           free(pf);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int family = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pf0 = 1;
+          struct sctp_pf * pf = (struct sctp_pf *) malloc(_len_pf0*sizeof(struct sctp_pf));
+          for(int _i0 = 0; _i0 < _len_pf0; _i0++) {
+              pf[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sctp_register_pf(pf,family);
+          printf("%d\n", benchRet); 
+          free(pf);
+        
+        break;
+    }
     default:
         usage();
         break;

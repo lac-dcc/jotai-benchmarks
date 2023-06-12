@@ -60,12 +60,6 @@ __attribute__((used)) static inline bool vhost_has_feature(struct vhost_virtqueu
 	return vq->acked_features & (1ULL << bit);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,18 +76,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int bit = 10;
+        
           int _len_vq0 = 100;
           struct vhost_virtqueue * vq = (struct vhost_virtqueue *) malloc(_len_vq0*sizeof(struct vhost_virtqueue));
           for(int _i0 = 0; _i0 < _len_vq0; _i0++) {
-            vq[_i0].acked_features = ((-2 * (next_i()%2)) + 1) * next_i();
+              vq[_i0].acked_features = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = vhost_has_feature(vq,bit);
           printf("%d\n", benchRet); 
           free(vq);
         
         break;
     }
-
     default:
         usage();
         break;

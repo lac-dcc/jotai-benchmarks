@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static int atlas7_wdt_settimeout(struct watchdog_device *w
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,11 +81,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int to = 100;
+        
           int _len_wdd0 = 1;
           struct watchdog_device * wdd = (struct watchdog_device *) malloc(_len_wdd0*sizeof(struct watchdog_device));
           for(int _i0 = 0; _i0 < _len_wdd0; _i0++) {
-            wdd[_i0].timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+              wdd[_i0].timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = atlas7_wdt_settimeout(wdd,to);
+          printf("%d\n", benchRet); 
+          free(wdd);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned int to = 255;
+        
+          int _len_wdd0 = 65025;
+          struct watchdog_device * wdd = (struct watchdog_device *) malloc(_len_wdd0*sizeof(struct watchdog_device));
+          for(int _i0 = 0; _i0 < _len_wdd0; _i0++) {
+              wdd[_i0].timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = atlas7_wdt_settimeout(wdd,to);
           printf("%d\n", benchRet); 
           free(wdd);
@@ -97,21 +114,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned int to = 10;
+        
           int _len_wdd0 = 100;
           struct watchdog_device * wdd = (struct watchdog_device *) malloc(_len_wdd0*sizeof(struct watchdog_device));
           for(int _i0 = 0; _i0 < _len_wdd0; _i0++) {
-            wdd[_i0].timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+              wdd[_i0].timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = atlas7_wdt_settimeout(wdd,to);
           printf("%d\n", benchRet); 
           free(wdd);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int to = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_wdd0 = 1;
+          struct watchdog_device * wdd = (struct watchdog_device *) malloc(_len_wdd0*sizeof(struct watchdog_device));
+          for(int _i0 = 0; _i0 < _len_wdd0; _i0++) {
+              wdd[_i0].timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = atlas7_wdt_settimeout(wdd,to);
+          printf("%d\n", benchRet); 
+          free(wdd);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -85,12 +85,6 @@ __attribute__((used)) static inline u32 mdp5_lm_use_fg_alpha_mask(enum mdp_mixer
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,16 +97,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum mdp_mixer_stage_id stage = 0;
+        
           int benchRet = mdp5_lm_use_fg_alpha_mask(stage);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

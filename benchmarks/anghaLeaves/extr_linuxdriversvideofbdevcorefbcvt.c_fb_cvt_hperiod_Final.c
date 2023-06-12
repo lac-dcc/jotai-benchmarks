@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -77,12 +79,6 @@ __attribute__((used)) static u32 fb_cvt_hperiod(struct fb_cvt_data *cvt)
 	return 2 * (num/den);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,25 +91,66 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cvt0 = 1;
+          int _len_cvt0 = 65025;
           struct fb_cvt_data * cvt = (struct fb_cvt_data *) malloc(_len_cvt0*sizeof(struct fb_cvt_data));
           for(int _i0 = 0; _i0 < _len_cvt0; _i0++) {
-            cvt[_i0].f_refresh = ((-2 * (next_i()%2)) + 1) * next_i();
-        cvt[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        cvt[_i0].yres = ((-2 * (next_i()%2)) + 1) * next_i();
-        cvt[_i0].interlace = ((-2 * (next_i()%2)) + 1) * next_i();
-        cvt[_i0].v_margin = ((-2 * (next_i()%2)) + 1) * next_i();
+              cvt[_i0].f_refresh = ((-2 * (next_i()%2)) + 1) * next_i();
+          cvt[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          cvt[_i0].yres = ((-2 * (next_i()%2)) + 1) * next_i();
+          cvt[_i0].interlace = ((-2 * (next_i()%2)) + 1) * next_i();
+          cvt[_i0].v_margin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = fb_cvt_hperiod(cvt);
           printf("%d\n", benchRet); 
           free(cvt);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_cvt0 = 100;
+          struct fb_cvt_data * cvt = (struct fb_cvt_data *) malloc(_len_cvt0*sizeof(struct fb_cvt_data));
+          for(int _i0 = 0; _i0 < _len_cvt0; _i0++) {
+              cvt[_i0].f_refresh = ((-2 * (next_i()%2)) + 1) * next_i();
+          cvt[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          cvt[_i0].yres = ((-2 * (next_i()%2)) + 1) * next_i();
+          cvt[_i0].interlace = ((-2 * (next_i()%2)) + 1) * next_i();
+          cvt[_i0].v_margin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fb_cvt_hperiod(cvt);
+          printf("%d\n", benchRet); 
+          free(cvt);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_cvt0 = 1;
+          struct fb_cvt_data * cvt = (struct fb_cvt_data *) malloc(_len_cvt0*sizeof(struct fb_cvt_data));
+          for(int _i0 = 0; _i0 < _len_cvt0; _i0++) {
+              cvt[_i0].f_refresh = ((-2 * (next_i()%2)) + 1) * next_i();
+          cvt[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          cvt[_i0].yres = ((-2 * (next_i()%2)) + 1) * next_i();
+          cvt[_i0].interlace = ((-2 * (next_i()%2)) + 1) * next_i();
+          cvt[_i0].v_margin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fb_cvt_hperiod(cvt);
+          printf("%d\n", benchRet); 
+          free(cvt);
+        
+        break;
+    }
     default:
         usage();
         break;

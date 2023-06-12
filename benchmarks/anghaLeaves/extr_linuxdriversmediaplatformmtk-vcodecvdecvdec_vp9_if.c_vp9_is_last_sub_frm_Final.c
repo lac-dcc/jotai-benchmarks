@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static bool vp9_is_last_sub_frm(struct vdec_vp9_inst *inst
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,19 +80,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_inst0 = 65025;
+          struct vdec_vp9_inst * inst = (struct vdec_vp9_inst *) malloc(_len_inst0*sizeof(struct vdec_vp9_inst));
+          for(int _i0 = 0; _i0 < _len_inst0; _i0++) {
+              int _len_inst__i0__vsi0 = 1;
+          inst[_i0].vsi = (struct vdec_vp9_vsi *) malloc(_len_inst__i0__vsi0*sizeof(struct vdec_vp9_vsi));
+          for(int _j0 = 0; _j0 < _len_inst__i0__vsi0; _j0++) {
+              inst[_i0].vsi->sf_frm_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].vsi->sf_frm_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = vp9_is_last_sub_frm(inst);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_inst0; _aux++) {
+          free(inst[_aux].vsi);
+          }
+          free(inst);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_inst0 = 100;
+          struct vdec_vp9_inst * inst = (struct vdec_vp9_inst *) malloc(_len_inst0*sizeof(struct vdec_vp9_inst));
+          for(int _i0 = 0; _i0 < _len_inst0; _i0++) {
+              int _len_inst__i0__vsi0 = 1;
+          inst[_i0].vsi = (struct vdec_vp9_vsi *) malloc(_len_inst__i0__vsi0*sizeof(struct vdec_vp9_vsi));
+          for(int _j0 = 0; _j0 < _len_inst__i0__vsi0; _j0++) {
+              inst[_i0].vsi->sf_frm_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].vsi->sf_frm_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = vp9_is_last_sub_frm(inst);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_inst0; _aux++) {
+          free(inst[_aux].vsi);
+          }
+          free(inst);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_inst0 = 1;
           struct vdec_vp9_inst * inst = (struct vdec_vp9_inst *) malloc(_len_inst0*sizeof(struct vdec_vp9_inst));
           for(int _i0 = 0; _i0 < _len_inst0; _i0++) {
               int _len_inst__i0__vsi0 = 1;
           inst[_i0].vsi = (struct vdec_vp9_vsi *) malloc(_len_inst__i0__vsi0*sizeof(struct vdec_vp9_vsi));
           for(int _j0 = 0; _j0 < _len_inst__i0__vsi0; _j0++) {
-            inst[_i0].vsi->sf_frm_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        inst[_i0].vsi->sf_frm_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+              inst[_i0].vsi->sf_frm_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].vsi->sf_frm_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = vp9_is_last_sub_frm(inst);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_inst0; _aux++) {

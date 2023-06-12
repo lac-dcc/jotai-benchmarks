@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ __attribute__((used)) static bool _dpu_encoder_phys_is_dual_ctl(struct dpu_encod
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,14 +81,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_phys_enc0 = 1;
+          int _len_phys_enc0 = 65025;
           struct dpu_encoder_phys * phys_enc = (struct dpu_encoder_phys *) malloc(_len_phys_enc0*sizeof(struct dpu_encoder_phys));
           for(int _i0 = 0; _i0 < _len_phys_enc0; _i0++) {
-            phys_enc[_i0].topology_name = ((-2 * (next_i()%2)) + 1) * next_i();
+              phys_enc[_i0].topology_name = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = _dpu_encoder_phys_is_dual_ctl(phys_enc);
           printf("%d\n", benchRet); 
           free(phys_enc);
@@ -106,15 +103,32 @@ int main(int argc, char *argv[]) {
           int _len_phys_enc0 = 100;
           struct dpu_encoder_phys * phys_enc = (struct dpu_encoder_phys *) malloc(_len_phys_enc0*sizeof(struct dpu_encoder_phys));
           for(int _i0 = 0; _i0 < _len_phys_enc0; _i0++) {
-            phys_enc[_i0].topology_name = ((-2 * (next_i()%2)) + 1) * next_i();
+              phys_enc[_i0].topology_name = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = _dpu_encoder_phys_is_dual_ctl(phys_enc);
           printf("%d\n", benchRet); 
           free(phys_enc);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_phys_enc0 = 1;
+          struct dpu_encoder_phys * phys_enc = (struct dpu_encoder_phys *) malloc(_len_phys_enc0*sizeof(struct dpu_encoder_phys));
+          for(int _i0 = 0; _i0 < _len_phys_enc0; _i0++) {
+              phys_enc[_i0].topology_name = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = _dpu_encoder_phys_is_dual_ctl(phys_enc);
+          printf("%d\n", benchRet); 
+          free(phys_enc);
+        
+        break;
+    }
     default:
         usage();
         break;

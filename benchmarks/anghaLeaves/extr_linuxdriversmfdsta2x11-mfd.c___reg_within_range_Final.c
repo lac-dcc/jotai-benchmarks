@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline int __reg_within_range(unsigned int r,
 	return ((r >= start) && (r <= end));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,8 +80,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int r = 100;
+        
           unsigned int start = 100;
+        
           unsigned int end = 100;
+        
           int benchRet = __reg_within_range(r,start,end);
           printf("%d\n", benchRet); 
         
@@ -96,8 +94,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int r = 255;
+        
           unsigned int start = 255;
+        
           unsigned int end = 255;
+        
           int benchRet = __reg_within_range(r,start,end);
           printf("%d\n", benchRet); 
         
@@ -107,14 +108,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int r = 10;
+        
           unsigned int start = 10;
+        
           unsigned int end = 10;
+        
           int benchRet = __reg_within_range(r,start,end);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int r = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = __reg_within_range(r,start,end);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

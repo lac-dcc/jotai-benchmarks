@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -84,12 +87,6 @@ int ikcp_nodelay(ikcpcb *kcp, int nodelay, int interval, int resend, int nc)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,22 +99,207 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 42
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
           int nodelay = 100;
+        
           int interval = 100;
+        
           int resend = 100;
+        
           int nc = 100;
+        
           int _len_kcp0 = 1;
           struct TYPE_3__ * kcp = (struct TYPE_3__ *) malloc(_len_kcp0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_kcp0; _i0++) {
-            kcp[_i0].nodelay = ((-2 * (next_i()%2)) + 1) * next_i();
-        kcp[_i0].interval = ((-2 * (next_i()%2)) + 1) * next_i();
-        kcp[_i0].fastresend = ((-2 * (next_i()%2)) + 1) * next_i();
-        kcp[_i0].nocwnd = ((-2 * (next_i()%2)) + 1) * next_i();
-        kcp[_i0].rx_minrto = ((-2 * (next_i()%2)) + 1) * next_i();
+              kcp[_i0].nodelay = ((-2 * (next_i()%2)) + 1) * next_i();
+          kcp[_i0].interval = ((-2 * (next_i()%2)) + 1) * next_i();
+          kcp[_i0].fastresend = ((-2 * (next_i()%2)) + 1) * next_i();
+          kcp[_i0].nocwnd = ((-2 * (next_i()%2)) + 1) * next_i();
+          kcp[_i0].rx_minrto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = ikcp_nodelay(kcp,nodelay,interval,resend,nc);
+          printf("%d\n", benchRet); 
+          free(kcp);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 42
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
+          int nodelay = 255;
+        
+          int interval = 255;
+        
+          int resend = 255;
+        
+          int nc = 255;
+        
+          int _len_kcp0 = 65025;
+          struct TYPE_3__ * kcp = (struct TYPE_3__ *) malloc(_len_kcp0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_kcp0; _i0++) {
+              kcp[_i0].nodelay = ((-2 * (next_i()%2)) + 1) * next_i();
+          kcp[_i0].interval = ((-2 * (next_i()%2)) + 1) * next_i();
+          kcp[_i0].fastresend = ((-2 * (next_i()%2)) + 1) * next_i();
+          kcp[_i0].nocwnd = ((-2 * (next_i()%2)) + 1) * next_i();
+          kcp[_i0].rx_minrto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ikcp_nodelay(kcp,nodelay,interval,resend,nc);
+          printf("%d\n", benchRet); 
+          free(kcp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 42
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
+          int nodelay = 10;
+        
+          int interval = 10;
+        
+          int resend = 10;
+        
+          int nc = 10;
+        
+          int _len_kcp0 = 100;
+          struct TYPE_3__ * kcp = (struct TYPE_3__ *) malloc(_len_kcp0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_kcp0; _i0++) {
+              kcp[_i0].nodelay = ((-2 * (next_i()%2)) + 1) * next_i();
+          kcp[_i0].interval = ((-2 * (next_i()%2)) + 1) * next_i();
+          kcp[_i0].fastresend = ((-2 * (next_i()%2)) + 1) * next_i();
+          kcp[_i0].nocwnd = ((-2 * (next_i()%2)) + 1) * next_i();
+          kcp[_i0].rx_minrto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ikcp_nodelay(kcp,nodelay,interval,resend,nc);
+          printf("%d\n", benchRet); 
+          free(kcp);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int nodelay = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int interval = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int resend = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int nc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_kcp0 = 1;
+          struct TYPE_3__ * kcp = (struct TYPE_3__ *) malloc(_len_kcp0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_kcp0; _i0++) {
+              kcp[_i0].nodelay = ((-2 * (next_i()%2)) + 1) * next_i();
+          kcp[_i0].interval = ((-2 * (next_i()%2)) + 1) * next_i();
+          kcp[_i0].fastresend = ((-2 * (next_i()%2)) + 1) * next_i();
+          kcp[_i0].nocwnd = ((-2 * (next_i()%2)) + 1) * next_i();
+          kcp[_i0].rx_minrto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = ikcp_nodelay(kcp,nodelay,interval,resend,nc);
           printf("%d\n", benchRet); 
           free(kcp);

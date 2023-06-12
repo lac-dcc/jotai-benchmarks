@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ kcs_set_elem_size(kcdata_subtype_descriptor_t d, uint32_t size, uint32_t count)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,32 +89,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int size = 100;
+        
           int count = 100;
+        
           int _len_d0 = 1;
           struct TYPE_3__ * d = (struct TYPE_3__ *) malloc(_len_d0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_d0; _i0++) {
-            d[_i0].kcs_elem_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              d[_i0].kcs_elem_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = kcs_set_elem_size(d,size,count);
           printf("%d\n", benchRet); 
           free(d);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int size = 255;
+        
+          int count = 255;
+        
+          int _len_d0 = 65025;
+          struct TYPE_3__ * d = (struct TYPE_3__ *) malloc(_len_d0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_d0; _i0++) {
+              d[_i0].kcs_elem_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = kcs_set_elem_size(d,size,count);
+          printf("%d\n", benchRet); 
+          free(d);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int size = 10;
+        
           int count = 10;
+        
           int _len_d0 = 100;
           struct TYPE_3__ * d = (struct TYPE_3__ *) malloc(_len_d0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_d0; _i0++) {
-            d[_i0].kcs_elem_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              d[_i0].kcs_elem_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = kcs_set_elem_size(d,size,count);
+          printf("%d\n", benchRet); 
+          free(d);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_d0 = 1;
+          struct TYPE_3__ * d = (struct TYPE_3__ *) malloc(_len_d0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_d0; _i0++) {
+              d[_i0].kcs_elem_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = kcs_set_elem_size(d,size,count);
           printf("%d\n", benchRet); 
           free(d);

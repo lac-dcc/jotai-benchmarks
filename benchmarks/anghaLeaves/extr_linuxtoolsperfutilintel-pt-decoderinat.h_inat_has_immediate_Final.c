@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline int inat_has_immediate(insn_attr_t attr)
 	return attr & INAT_IMM_MASK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int attr = 100;
+        
           int benchRet = inat_has_immediate(attr);
           printf("%d\n", benchRet); 
         
@@ -94,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int attr = 255;
+        
           int benchRet = inat_has_immediate(attr);
           printf("%d\n", benchRet); 
         
@@ -103,12 +100,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int attr = 10;
+        
           int benchRet = inat_has_immediate(attr);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int attr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = inat_has_immediate(attr);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

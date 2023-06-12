@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +72,6 @@ __attribute__((used)) static bool alps_check_valid_firmware_id(unsigned char id[
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,14 +84,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_id0 = 1;
+          int _len_id0 = 65025;
           unsigned char * id = (unsigned char *) malloc(_len_id0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_id0; _i0++) {
             id[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = alps_check_valid_firmware_id(id);
           printf("%d\n", benchRet); 
           free(id);
@@ -111,13 +107,28 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_id0; _i0++) {
             id[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = alps_check_valid_firmware_id(id);
           printf("%d\n", benchRet); 
           free(id);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_id0 = 1;
+          unsigned char * id = (unsigned char *) malloc(_len_id0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_id0; _i0++) {
+            id[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = alps_check_valid_firmware_id(id);
+          printf("%d\n", benchRet); 
+          free(id);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ void ivtv_udma_get_page_info(struct ivtv_dma_page_info *dma_page, unsigned long 
 	if (dma_page->page_count == 1) dma_page->tail -= dma_page->offset;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,21 +83,192 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 59
+          // dynamic_instructions_O0 : 59
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
           unsigned long first = 100;
+        
           unsigned long size = 100;
+        
           int _len_dma_page0 = 1;
           struct ivtv_dma_page_info * dma_page = (struct ivtv_dma_page_info *) malloc(_len_dma_page0*sizeof(struct ivtv_dma_page_info));
           for(int _i0 = 0; _i0 < _len_dma_page0; _i0++) {
-            dma_page[_i0].uaddr = ((-2 * (next_i()%2)) + 1) * next_i();
-        dma_page[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        dma_page[_i0].tail = ((-2 * (next_i()%2)) + 1) * next_i();
-        dma_page[_i0].first = ((-2 * (next_i()%2)) + 1) * next_i();
-        dma_page[_i0].last = ((-2 * (next_i()%2)) + 1) * next_i();
-        dma_page[_i0].page_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              dma_page[_i0].uaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma_page[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma_page[_i0].tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma_page[_i0].first = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma_page[_i0].last = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma_page[_i0].page_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          ivtv_udma_get_page_info(dma_page,first,size);
+          free(dma_page);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 59
+          // dynamic_instructions_O0 : 59
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
+          unsigned long first = 255;
+        
+          unsigned long size = 255;
+        
+          int _len_dma_page0 = 65025;
+          struct ivtv_dma_page_info * dma_page = (struct ivtv_dma_page_info *) malloc(_len_dma_page0*sizeof(struct ivtv_dma_page_info));
+          for(int _i0 = 0; _i0 < _len_dma_page0; _i0++) {
+              dma_page[_i0].uaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma_page[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma_page[_i0].tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma_page[_i0].first = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma_page[_i0].last = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma_page[_i0].page_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ivtv_udma_get_page_info(dma_page,first,size);
+          free(dma_page);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 59
+          // dynamic_instructions_O0 : 59
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
+          unsigned long first = 10;
+        
+          unsigned long size = 10;
+        
+          int _len_dma_page0 = 100;
+          struct ivtv_dma_page_info * dma_page = (struct ivtv_dma_page_info *) malloc(_len_dma_page0*sizeof(struct ivtv_dma_page_info));
+          for(int _i0 = 0; _i0 < _len_dma_page0; _i0++) {
+              dma_page[_i0].uaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma_page[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma_page[_i0].tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma_page[_i0].first = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma_page[_i0].last = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma_page[_i0].page_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ivtv_udma_get_page_info(dma_page,first,size);
+          free(dma_page);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 59
+          // dynamic_instructions_O0 : 59
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
+          unsigned long first = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dma_page0 = 1;
+          struct ivtv_dma_page_info * dma_page = (struct ivtv_dma_page_info *) malloc(_len_dma_page0*sizeof(struct ivtv_dma_page_info));
+          for(int _i0 = 0; _i0 < _len_dma_page0; _i0++) {
+              dma_page[_i0].uaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma_page[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma_page[_i0].tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma_page[_i0].first = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma_page[_i0].last = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma_page[_i0].page_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           ivtv_udma_get_page_info(dma_page,first,size);
           free(dma_page);
         

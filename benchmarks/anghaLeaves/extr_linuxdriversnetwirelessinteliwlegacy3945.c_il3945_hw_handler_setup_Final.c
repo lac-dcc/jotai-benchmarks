@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ il3945_hw_handler_setup(struct il_priv *il)
 	il->handlers[N_3945_RX] = il3945_hdl_rx;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,8 +80,52 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
+    {
+          int _len_il0 = 65025;
+          struct il_priv * il = (struct il_priv *) malloc(_len_il0*sizeof(struct il_priv));
+          for(int _i0 = 0; _i0 < _len_il0; _i0++) {
+              int _len_il__i0__handlers0 = 1;
+          il[_i0].handlers = (int *) malloc(_len_il__i0__handlers0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_il__i0__handlers0; _j0++) {
+            il[_i0].handlers[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          il3945_hw_handler_setup(il);
+          for(int _aux = 0; _aux < _len_il0; _aux++) {
+          free(il[_aux].handlers);
+          }
+          free(il);
+        
+        break;
+    }
+    // big-arr-10x
+    case 1:
+    {
+          int _len_il0 = 100;
+          struct il_priv * il = (struct il_priv *) malloc(_len_il0*sizeof(struct il_priv));
+          for(int _i0 = 0; _i0 < _len_il0; _i0++) {
+              int _len_il__i0__handlers0 = 1;
+          il[_i0].handlers = (int *) malloc(_len_il__i0__handlers0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_il__i0__handlers0; _j0++) {
+            il[_i0].handlers[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          il3945_hw_handler_setup(il);
+          for(int _aux = 0; _aux < _len_il0; _aux++) {
+          free(il[_aux].handlers);
+          }
+          free(il);
+        
+        break;
+    }
+    // empty
+    case 2:
     {
           int _len_il0 = 1;
           struct il_priv * il = (struct il_priv *) malloc(_len_il0*sizeof(struct il_priv));
@@ -95,7 +135,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_il__i0__handlers0; _j0++) {
             il[_i0].handlers[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           il3945_hw_handler_setup(il);
           for(int _aux = 0; _aux < _len_il0; _aux++) {
           free(il[_aux].handlers);
@@ -104,7 +146,6 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
     default:
         usage();
         break;

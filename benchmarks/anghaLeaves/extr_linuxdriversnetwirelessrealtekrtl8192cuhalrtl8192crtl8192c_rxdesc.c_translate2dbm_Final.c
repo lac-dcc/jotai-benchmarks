@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ __attribute__((used)) static s32  translate2dbm(u8 signal_strength_idx)
 	return signal_power;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,6 +87,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int signal_strength_idx = 100;
+        
           long benchRet = translate2dbm(signal_strength_idx);
           printf("%ld\n", benchRet); 
         
@@ -101,6 +97,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int signal_strength_idx = 255;
+        
           long benchRet = translate2dbm(signal_strength_idx);
           printf("%ld\n", benchRet); 
         
@@ -110,12 +107,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int signal_strength_idx = 10;
+        
           long benchRet = translate2dbm(signal_strength_idx);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int signal_strength_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long benchRet = translate2dbm(signal_strength_idx);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

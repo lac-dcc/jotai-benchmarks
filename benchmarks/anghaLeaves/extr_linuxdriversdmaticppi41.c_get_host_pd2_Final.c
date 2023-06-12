@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ __attribute__((used)) static u32 get_host_pd2(struct cppi41_channel *c)
 	return reg;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,14 +81,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_c0 = 1;
+          int _len_c0 = 65025;
           struct cppi41_channel * c = (struct cppi41_channel *) malloc(_len_c0*sizeof(struct cppi41_channel));
           for(int _i0 = 0; _i0 < _len_c0; _i0++) {
-            c[_i0].q_comp_num = ((-2 * (next_i()%2)) + 1) * next_i();
+              c[_i0].q_comp_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = get_host_pd2(c);
           printf("%d\n", benchRet); 
           free(c);
@@ -106,15 +103,32 @@ int main(int argc, char *argv[]) {
           int _len_c0 = 100;
           struct cppi41_channel * c = (struct cppi41_channel *) malloc(_len_c0*sizeof(struct cppi41_channel));
           for(int _i0 = 0; _i0 < _len_c0; _i0++) {
-            c[_i0].q_comp_num = ((-2 * (next_i()%2)) + 1) * next_i();
+              c[_i0].q_comp_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = get_host_pd2(c);
           printf("%d\n", benchRet); 
           free(c);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_c0 = 1;
+          struct cppi41_channel * c = (struct cppi41_channel *) malloc(_len_c0*sizeof(struct cppi41_channel));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].q_comp_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = get_host_pd2(c);
+          printf("%d\n", benchRet); 
+          free(c);
+        
+        break;
+    }
     default:
         usage();
         break;

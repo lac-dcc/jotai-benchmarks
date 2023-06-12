@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -77,12 +79,6 @@ __attribute__((used)) static int ocfs2_ei_is_contained(struct ocfs2_extent_map_i
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,21 +91,148 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int _len_emi10 = 65025;
+          struct ocfs2_extent_map_item * emi1 = (struct ocfs2_extent_map_item *) malloc(_len_emi10*sizeof(struct ocfs2_extent_map_item));
+          for(int _i0 = 0; _i0 < _len_emi10; _i0++) {
+              emi1[_i0].ei_cpos = ((-2 * (next_i()%2)) + 1) * next_i();
+          emi1[_i0].ei_clusters = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_emi20 = 65025;
+          struct ocfs2_extent_map_item * emi2 = (struct ocfs2_extent_map_item *) malloc(_len_emi20*sizeof(struct ocfs2_extent_map_item));
+          for(int _i0 = 0; _i0 < _len_emi20; _i0++) {
+              emi2[_i0].ei_cpos = ((-2 * (next_i()%2)) + 1) * next_i();
+          emi2[_i0].ei_clusters = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ocfs2_ei_is_contained(emi1,emi2);
+          printf("%d\n", benchRet); 
+          free(emi1);
+          free(emi2);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int _len_emi10 = 100;
+          struct ocfs2_extent_map_item * emi1 = (struct ocfs2_extent_map_item *) malloc(_len_emi10*sizeof(struct ocfs2_extent_map_item));
+          for(int _i0 = 0; _i0 < _len_emi10; _i0++) {
+              emi1[_i0].ei_cpos = ((-2 * (next_i()%2)) + 1) * next_i();
+          emi1[_i0].ei_clusters = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_emi20 = 100;
+          struct ocfs2_extent_map_item * emi2 = (struct ocfs2_extent_map_item *) malloc(_len_emi20*sizeof(struct ocfs2_extent_map_item));
+          for(int _i0 = 0; _i0 < _len_emi20; _i0++) {
+              emi2[_i0].ei_cpos = ((-2 * (next_i()%2)) + 1) * next_i();
+          emi2[_i0].ei_clusters = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ocfs2_ei_is_contained(emi1,emi2);
+          printf("%d\n", benchRet); 
+          free(emi1);
+          free(emi2);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
           int _len_emi10 = 1;
           struct ocfs2_extent_map_item * emi1 = (struct ocfs2_extent_map_item *) malloc(_len_emi10*sizeof(struct ocfs2_extent_map_item));
           for(int _i0 = 0; _i0 < _len_emi10; _i0++) {
-            emi1[_i0].ei_cpos = ((-2 * (next_i()%2)) + 1) * next_i();
-        emi1[_i0].ei_clusters = ((-2 * (next_i()%2)) + 1) * next_i();
+              emi1[_i0].ei_cpos = ((-2 * (next_i()%2)) + 1) * next_i();
+          emi1[_i0].ei_clusters = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_emi20 = 1;
           struct ocfs2_extent_map_item * emi2 = (struct ocfs2_extent_map_item *) malloc(_len_emi20*sizeof(struct ocfs2_extent_map_item));
           for(int _i0 = 0; _i0 < _len_emi20; _i0++) {
-            emi2[_i0].ei_cpos = ((-2 * (next_i()%2)) + 1) * next_i();
-        emi2[_i0].ei_clusters = ((-2 * (next_i()%2)) + 1) * next_i();
+              emi2[_i0].ei_cpos = ((-2 * (next_i()%2)) + 1) * next_i();
+          emi2[_i0].ei_clusters = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ocfs2_ei_is_contained(emi1,emi2);
           printf("%d\n", benchRet); 
           free(emi1);

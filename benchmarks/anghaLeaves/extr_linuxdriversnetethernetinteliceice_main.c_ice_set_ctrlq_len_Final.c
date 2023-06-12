@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ __attribute__((used)) static void ice_set_ctrlq_len(struct ice_hw *hw)
 	hw->adminq.sq_buf_size = ICE_AQ_MAX_BUF_LEN;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,13 +81,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_hw0 = 1;
+          int _len_hw0 = 65025;
           struct ice_hw * hw = (struct ice_hw *) malloc(_len_hw0*sizeof(struct ice_hw));
           for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
-              }
+            
+        
+          }
+        
           ice_set_ctrlq_len(hw);
           free(hw);
         
@@ -104,13 +102,30 @@ int main(int argc, char *argv[]) {
           int _len_hw0 = 100;
           struct ice_hw * hw = (struct ice_hw *) malloc(_len_hw0*sizeof(struct ice_hw));
           for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
-              }
+            
+        
+          }
+        
           ice_set_ctrlq_len(hw);
           free(hw);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_hw0 = 1;
+          struct ice_hw * hw = (struct ice_hw *) malloc(_len_hw0*sizeof(struct ice_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+            
+        
+          }
+        
+          ice_set_ctrlq_len(hw);
+          free(hw);
+        
+        break;
+    }
     default:
         usage();
         break;

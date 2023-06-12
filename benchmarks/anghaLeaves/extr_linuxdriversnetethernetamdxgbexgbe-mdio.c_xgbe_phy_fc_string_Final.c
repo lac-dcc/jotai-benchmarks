@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static const char *xgbe_phy_fc_string(struct xgbe_prv_data
 		return "off";
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,15 +81,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_pdata0 = 65025;
+          struct xgbe_prv_data * pdata = (struct xgbe_prv_data *) malloc(_len_pdata0*sizeof(struct xgbe_prv_data));
+          for(int _i0 = 0; _i0 < _len_pdata0; _i0++) {
+              pdata[_i0].tx_pause = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdata[_i0].rx_pause = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          const char * benchRet = xgbe_phy_fc_string(pdata);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          free(pdata);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_pdata0 = 100;
+          struct xgbe_prv_data * pdata = (struct xgbe_prv_data *) malloc(_len_pdata0*sizeof(struct xgbe_prv_data));
+          for(int _i0 = 0; _i0 < _len_pdata0; _i0++) {
+              pdata[_i0].tx_pause = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdata[_i0].rx_pause = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          const char * benchRet = xgbe_phy_fc_string(pdata);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          free(pdata);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int _len_pdata0 = 1;
           struct xgbe_prv_data * pdata = (struct xgbe_prv_data *) malloc(_len_pdata0*sizeof(struct xgbe_prv_data));
           for(int _i0 = 0; _i0 < _len_pdata0; _i0++) {
-            pdata[_i0].tx_pause = ((-2 * (next_i()%2)) + 1) * next_i();
-        pdata[_i0].rx_pause = ((-2 * (next_i()%2)) + 1) * next_i();
+              pdata[_i0].tx_pause = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdata[_i0].rx_pause = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           const char * benchRet = xgbe_phy_fc_string(pdata);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(pdata);

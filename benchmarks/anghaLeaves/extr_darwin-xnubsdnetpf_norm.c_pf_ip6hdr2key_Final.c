@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ pf_ip6hdr2key(struct pf_fragment *key, struct ip6_hdr *ip6,
 	key->fr_dstx.v6addr = ip6->ip6_dst;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,30 +87,187 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_key0 = 65025;
+          struct pf_fragment * key = (struct pf_fragment *) malloc(_len_key0*sizeof(struct pf_fragment));
+          for(int _i0 = 0; _i0 < _len_key0; _i0++) {
+              key[_i0].fr_dstx.v6addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          key[_i0].fr_srcx.v6addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          key[_i0].fr_af = ((-2 * (next_i()%2)) + 1) * next_i();
+          key[_i0].fr_id6 = ((-2 * (next_i()%2)) + 1) * next_i();
+          key[_i0].fr_p = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ip60 = 65025;
+          struct ip6_hdr * ip6 = (struct ip6_hdr *) malloc(_len_ip60*sizeof(struct ip6_hdr));
+          for(int _i0 = 0; _i0 < _len_ip60; _i0++) {
+              ip6[_i0].ip6_dst = ((-2 * (next_i()%2)) + 1) * next_i();
+          ip6[_i0].ip6_src = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fh0 = 65025;
+          struct ip6_frag * fh = (struct ip6_frag *) malloc(_len_fh0*sizeof(struct ip6_frag));
+          for(int _i0 = 0; _i0 < _len_fh0; _i0++) {
+              fh[_i0].ip6f_ident = ((-2 * (next_i()%2)) + 1) * next_i();
+          fh[_i0].ip6f_nxt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          pf_ip6hdr2key(key,ip6,fh);
+          free(key);
+          free(ip6);
+          free(fh);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_key0 = 100;
+          struct pf_fragment * key = (struct pf_fragment *) malloc(_len_key0*sizeof(struct pf_fragment));
+          for(int _i0 = 0; _i0 < _len_key0; _i0++) {
+              key[_i0].fr_dstx.v6addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          key[_i0].fr_srcx.v6addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          key[_i0].fr_af = ((-2 * (next_i()%2)) + 1) * next_i();
+          key[_i0].fr_id6 = ((-2 * (next_i()%2)) + 1) * next_i();
+          key[_i0].fr_p = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ip60 = 100;
+          struct ip6_hdr * ip6 = (struct ip6_hdr *) malloc(_len_ip60*sizeof(struct ip6_hdr));
+          for(int _i0 = 0; _i0 < _len_ip60; _i0++) {
+              ip6[_i0].ip6_dst = ((-2 * (next_i()%2)) + 1) * next_i();
+          ip6[_i0].ip6_src = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fh0 = 100;
+          struct ip6_frag * fh = (struct ip6_frag *) malloc(_len_fh0*sizeof(struct ip6_frag));
+          for(int _i0 = 0; _i0 < _len_fh0; _i0++) {
+              fh[_i0].ip6f_ident = ((-2 * (next_i()%2)) + 1) * next_i();
+          fh[_i0].ip6f_nxt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          pf_ip6hdr2key(key,ip6,fh);
+          free(key);
+          free(ip6);
+          free(fh);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int _len_key0 = 1;
           struct pf_fragment * key = (struct pf_fragment *) malloc(_len_key0*sizeof(struct pf_fragment));
           for(int _i0 = 0; _i0 < _len_key0; _i0++) {
-            key[_i0].fr_dstx.v6addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        key[_i0].fr_srcx.v6addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        key[_i0].fr_af = ((-2 * (next_i()%2)) + 1) * next_i();
-        key[_i0].fr_id6 = ((-2 * (next_i()%2)) + 1) * next_i();
-        key[_i0].fr_p = ((-2 * (next_i()%2)) + 1) * next_i();
+              key[_i0].fr_dstx.v6addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          key[_i0].fr_srcx.v6addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          key[_i0].fr_af = ((-2 * (next_i()%2)) + 1) * next_i();
+          key[_i0].fr_id6 = ((-2 * (next_i()%2)) + 1) * next_i();
+          key[_i0].fr_p = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_ip60 = 1;
           struct ip6_hdr * ip6 = (struct ip6_hdr *) malloc(_len_ip60*sizeof(struct ip6_hdr));
           for(int _i0 = 0; _i0 < _len_ip60; _i0++) {
-            ip6[_i0].ip6_dst = ((-2 * (next_i()%2)) + 1) * next_i();
-        ip6[_i0].ip6_src = ((-2 * (next_i()%2)) + 1) * next_i();
+              ip6[_i0].ip6_dst = ((-2 * (next_i()%2)) + 1) * next_i();
+          ip6[_i0].ip6_src = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_fh0 = 1;
           struct ip6_frag * fh = (struct ip6_frag *) malloc(_len_fh0*sizeof(struct ip6_frag));
           for(int _i0 = 0; _i0 < _len_fh0; _i0++) {
-            fh[_i0].ip6f_ident = ((-2 * (next_i()%2)) + 1) * next_i();
-        fh[_i0].ip6f_nxt = ((-2 * (next_i()%2)) + 1) * next_i();
+              fh[_i0].ip6f_ident = ((-2 * (next_i()%2)) + 1) * next_i();
+          fh[_i0].ip6f_nxt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           pf_ip6hdr2key(key,ip6,fh);
           free(key);
           free(ip6);

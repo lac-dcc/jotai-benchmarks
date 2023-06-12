@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ get_adapter_status(struct hotplug_slot *hotplug_slot, u8 *value)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,23 +79,27 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_hotplug_slot0 = 1;
+          int _len_hotplug_slot0 = 65025;
           struct hotplug_slot * hotplug_slot = (struct hotplug_slot *) malloc(_len_hotplug_slot0*sizeof(struct hotplug_slot));
           for(int _i0 = 0; _i0 < _len_hotplug_slot0; _i0++) {
               int _len_hotplug_slot__i0__info0 = 1;
           hotplug_slot[_i0].info = (struct TYPE_2__ *) malloc(_len_hotplug_slot__i0__info0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_hotplug_slot__i0__info0; _j0++) {
-            hotplug_slot[_i0].info->adapter_status = ((-2 * (next_i()%2)) + 1) * next_i();
+              hotplug_slot[_i0].info->adapter_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
-          int _len_value0 = 1;
+        
+          int _len_value0 = 65025;
           int * value = (int *) malloc(_len_value0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_value0; _i0++) {
             value[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = get_adapter_status(hotplug_slot,value);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_hotplug_slot0; _aux++) {
@@ -110,7 +110,68 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_hotplug_slot0 = 100;
+          struct hotplug_slot * hotplug_slot = (struct hotplug_slot *) malloc(_len_hotplug_slot0*sizeof(struct hotplug_slot));
+          for(int _i0 = 0; _i0 < _len_hotplug_slot0; _i0++) {
+              int _len_hotplug_slot__i0__info0 = 1;
+          hotplug_slot[_i0].info = (struct TYPE_2__ *) malloc(_len_hotplug_slot__i0__info0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_hotplug_slot__i0__info0; _j0++) {
+              hotplug_slot[_i0].info->adapter_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_value0 = 100;
+          int * value = (int *) malloc(_len_value0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_value0; _i0++) {
+            value[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = get_adapter_status(hotplug_slot,value);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hotplug_slot0; _aux++) {
+          free(hotplug_slot[_aux].info);
+          }
+          free(hotplug_slot);
+          free(value);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_hotplug_slot0 = 1;
+          struct hotplug_slot * hotplug_slot = (struct hotplug_slot *) malloc(_len_hotplug_slot0*sizeof(struct hotplug_slot));
+          for(int _i0 = 0; _i0 < _len_hotplug_slot0; _i0++) {
+              int _len_hotplug_slot__i0__info0 = 1;
+          hotplug_slot[_i0].info = (struct TYPE_2__ *) malloc(_len_hotplug_slot__i0__info0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_hotplug_slot__i0__info0; _j0++) {
+              hotplug_slot[_i0].info->adapter_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_value0 = 1;
+          int * value = (int *) malloc(_len_value0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_value0; _i0++) {
+            value[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = get_adapter_status(hotplug_slot,value);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hotplug_slot0; _aux++) {
+          free(hotplug_slot[_aux].info);
+          }
+          free(hotplug_slot);
+          free(value);
+        
+        break;
+    }
     default:
         usage();
         break;

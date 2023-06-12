@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +79,6 @@ __attribute__((used)) static inline long nr_pages_to_write(struct f2fs_sb_info *
 	return desired - nr_to_write;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,17 +95,22 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int type = 100;
+        
           int _len_sbi0 = 1;
           struct f2fs_sb_info * sbi = (struct f2fs_sb_info *) malloc(_len_sbi0*sizeof(struct f2fs_sb_info));
           for(int _i0 = 0; _i0 < _len_sbi0; _i0++) {
-            sbi[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              sbi[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_wbc0 = 1;
           struct writeback_control * wbc = (struct writeback_control *) malloc(_len_wbc0*sizeof(struct writeback_control));
           for(int _i0 = 0; _i0 < _len_wbc0; _i0++) {
-            wbc[_i0].sync_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        wbc[_i0].nr_to_write = ((-2 * (next_i()%2)) + 1) * next_i();
+              wbc[_i0].sync_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          wbc[_i0].nr_to_write = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = nr_pages_to_write(sbi,type,wbc);
           printf("%ld\n", benchRet); 
           free(sbi);
@@ -116,7 +118,87 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int type = 255;
+        
+          int _len_sbi0 = 65025;
+          struct f2fs_sb_info * sbi = (struct f2fs_sb_info *) malloc(_len_sbi0*sizeof(struct f2fs_sb_info));
+          for(int _i0 = 0; _i0 < _len_sbi0; _i0++) {
+              sbi[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_wbc0 = 65025;
+          struct writeback_control * wbc = (struct writeback_control *) malloc(_len_wbc0*sizeof(struct writeback_control));
+          for(int _i0 = 0; _i0 < _len_wbc0; _i0++) {
+              wbc[_i0].sync_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          wbc[_i0].nr_to_write = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = nr_pages_to_write(sbi,type,wbc);
+          printf("%ld\n", benchRet); 
+          free(sbi);
+          free(wbc);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int type = 10;
+        
+          int _len_sbi0 = 100;
+          struct f2fs_sb_info * sbi = (struct f2fs_sb_info *) malloc(_len_sbi0*sizeof(struct f2fs_sb_info));
+          for(int _i0 = 0; _i0 < _len_sbi0; _i0++) {
+              sbi[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_wbc0 = 100;
+          struct writeback_control * wbc = (struct writeback_control *) malloc(_len_wbc0*sizeof(struct writeback_control));
+          for(int _i0 = 0; _i0 < _len_wbc0; _i0++) {
+              wbc[_i0].sync_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          wbc[_i0].nr_to_write = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = nr_pages_to_write(sbi,type,wbc);
+          printf("%ld\n", benchRet); 
+          free(sbi);
+          free(wbc);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sbi0 = 1;
+          struct f2fs_sb_info * sbi = (struct f2fs_sb_info *) malloc(_len_sbi0*sizeof(struct f2fs_sb_info));
+          for(int _i0 = 0; _i0 < _len_sbi0; _i0++) {
+              sbi[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_wbc0 = 1;
+          struct writeback_control * wbc = (struct writeback_control *) malloc(_len_wbc0*sizeof(struct writeback_control));
+          for(int _i0 = 0; _i0 < _len_wbc0; _i0++) {
+              wbc[_i0].sync_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          wbc[_i0].nr_to_write = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = nr_pages_to_write(sbi,type,wbc);
+          printf("%ld\n", benchRet); 
+          free(sbi);
+          free(wbc);
+        
+        break;
+    }
     default:
         usage();
         break;

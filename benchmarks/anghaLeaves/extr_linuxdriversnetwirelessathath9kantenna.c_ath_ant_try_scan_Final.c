@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -133,12 +136,6 @@ __attribute__((used)) static void ath_ant_try_scan(struct ath_ant_comb *antcomb,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -151,28 +148,235 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int curr_alt_set = 100;
+        
           int alt_rssi_avg = 100;
+        
           int main_rssi_avg = 100;
+        
           int _len_antcomb0 = 1;
           struct ath_ant_comb * antcomb = (struct ath_ant_comb *) malloc(_len_antcomb0*sizeof(struct ath_ant_comb));
           for(int _i0 = 0; _i0 < _len_antcomb0; _i0++) {
-            antcomb[_i0].rssi_lna2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        antcomb[_i0].rssi_lna1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        antcomb[_i0].scan = ((-2 * (next_i()%2)) + 1) * next_i();
-        antcomb[_i0].rssi_add = ((-2 * (next_i()%2)) + 1) * next_i();
-        antcomb[_i0].rssi_sub = ((-2 * (next_i()%2)) + 1) * next_i();
+              antcomb[_i0].rssi_lna2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          antcomb[_i0].rssi_lna1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          antcomb[_i0].scan = ((-2 * (next_i()%2)) + 1) * next_i();
+          antcomb[_i0].rssi_add = ((-2 * (next_i()%2)) + 1) * next_i();
+          antcomb[_i0].rssi_sub = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_conf0 = 1;
           struct ath_hw_antcomb_conf * conf = (struct ath_hw_antcomb_conf *) malloc(_len_conf0*sizeof(struct ath_hw_antcomb_conf));
           for(int _i0 = 0; _i0 < _len_conf0; _i0++) {
-            conf[_i0].main_lna_conf = ((-2 * (next_i()%2)) + 1) * next_i();
-        conf[_i0].alt_lna_conf = ((-2 * (next_i()%2)) + 1) * next_i();
-        conf[_i0].lna1_lna2_switch_delta = ((-2 * (next_i()%2)) + 1) * next_i();
+              conf[_i0].main_lna_conf = ((-2 * (next_i()%2)) + 1) * next_i();
+          conf[_i0].alt_lna_conf = ((-2 * (next_i()%2)) + 1) * next_i();
+          conf[_i0].lna1_lna2_switch_delta = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          ath_ant_try_scan(antcomb,conf,curr_alt_set,alt_rssi_avg,main_rssi_avg);
+          free(antcomb);
+          free(conf);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int curr_alt_set = 255;
+        
+          int alt_rssi_avg = 255;
+        
+          int main_rssi_avg = 255;
+        
+          int _len_antcomb0 = 65025;
+          struct ath_ant_comb * antcomb = (struct ath_ant_comb *) malloc(_len_antcomb0*sizeof(struct ath_ant_comb));
+          for(int _i0 = 0; _i0 < _len_antcomb0; _i0++) {
+              antcomb[_i0].rssi_lna2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          antcomb[_i0].rssi_lna1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          antcomb[_i0].scan = ((-2 * (next_i()%2)) + 1) * next_i();
+          antcomb[_i0].rssi_add = ((-2 * (next_i()%2)) + 1) * next_i();
+          antcomb[_i0].rssi_sub = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_conf0 = 65025;
+          struct ath_hw_antcomb_conf * conf = (struct ath_hw_antcomb_conf *) malloc(_len_conf0*sizeof(struct ath_hw_antcomb_conf));
+          for(int _i0 = 0; _i0 < _len_conf0; _i0++) {
+              conf[_i0].main_lna_conf = ((-2 * (next_i()%2)) + 1) * next_i();
+          conf[_i0].alt_lna_conf = ((-2 * (next_i()%2)) + 1) * next_i();
+          conf[_i0].lna1_lna2_switch_delta = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ath_ant_try_scan(antcomb,conf,curr_alt_set,alt_rssi_avg,main_rssi_avg);
+          free(antcomb);
+          free(conf);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int curr_alt_set = 10;
+        
+          int alt_rssi_avg = 10;
+        
+          int main_rssi_avg = 10;
+        
+          int _len_antcomb0 = 100;
+          struct ath_ant_comb * antcomb = (struct ath_ant_comb *) malloc(_len_antcomb0*sizeof(struct ath_ant_comb));
+          for(int _i0 = 0; _i0 < _len_antcomb0; _i0++) {
+              antcomb[_i0].rssi_lna2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          antcomb[_i0].rssi_lna1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          antcomb[_i0].scan = ((-2 * (next_i()%2)) + 1) * next_i();
+          antcomb[_i0].rssi_add = ((-2 * (next_i()%2)) + 1) * next_i();
+          antcomb[_i0].rssi_sub = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_conf0 = 100;
+          struct ath_hw_antcomb_conf * conf = (struct ath_hw_antcomb_conf *) malloc(_len_conf0*sizeof(struct ath_hw_antcomb_conf));
+          for(int _i0 = 0; _i0 < _len_conf0; _i0++) {
+              conf[_i0].main_lna_conf = ((-2 * (next_i()%2)) + 1) * next_i();
+          conf[_i0].alt_lna_conf = ((-2 * (next_i()%2)) + 1) * next_i();
+          conf[_i0].lna1_lna2_switch_delta = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ath_ant_try_scan(antcomb,conf,curr_alt_set,alt_rssi_avg,main_rssi_avg);
+          free(antcomb);
+          free(conf);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int curr_alt_set = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int alt_rssi_avg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int main_rssi_avg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_antcomb0 = 1;
+          struct ath_ant_comb * antcomb = (struct ath_ant_comb *) malloc(_len_antcomb0*sizeof(struct ath_ant_comb));
+          for(int _i0 = 0; _i0 < _len_antcomb0; _i0++) {
+              antcomb[_i0].rssi_lna2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          antcomb[_i0].rssi_lna1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          antcomb[_i0].scan = ((-2 * (next_i()%2)) + 1) * next_i();
+          antcomb[_i0].rssi_add = ((-2 * (next_i()%2)) + 1) * next_i();
+          antcomb[_i0].rssi_sub = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_conf0 = 1;
+          struct ath_hw_antcomb_conf * conf = (struct ath_hw_antcomb_conf *) malloc(_len_conf0*sizeof(struct ath_hw_antcomb_conf));
+          for(int _i0 = 0; _i0 < _len_conf0; _i0++) {
+              conf[_i0].main_lna_conf = ((-2 * (next_i()%2)) + 1) * next_i();
+          conf[_i0].alt_lna_conf = ((-2 * (next_i()%2)) + 1) * next_i();
+          conf[_i0].lna1_lna2_switch_delta = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           ath_ant_try_scan(antcomb,conf,curr_alt_set,alt_rssi_avg,main_rssi_avg);
           free(antcomb);
           free(conf);

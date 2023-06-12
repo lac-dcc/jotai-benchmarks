@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -80,12 +81,6 @@ __attribute__((used)) static const char *kempld_get_type_string(struct kempld_de
 	return version_type;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,14 +93,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pld0 = 1;
+          int _len_pld0 = 65025;
           struct kempld_device_data * pld = (struct kempld_device_data *) malloc(_len_pld0*sizeof(struct kempld_device_data));
           for(int _i0 = 0; _i0 < _len_pld0; _i0++) {
-            pld[_i0].info.type = ((-2 * (next_i()%2)) + 1) * next_i();
+              pld[_i0].info.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           const char * benchRet = kempld_get_type_string(pld);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(pld);
@@ -118,15 +116,34 @@ int main(int argc, char *argv[]) {
           int _len_pld0 = 100;
           struct kempld_device_data * pld = (struct kempld_device_data *) malloc(_len_pld0*sizeof(struct kempld_device_data));
           for(int _i0 = 0; _i0 < _len_pld0; _i0++) {
-            pld[_i0].info.type = ((-2 * (next_i()%2)) + 1) * next_i();
+              pld[_i0].info.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           const char * benchRet = kempld_get_type_string(pld);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(pld);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_pld0 = 1;
+          struct kempld_device_data * pld = (struct kempld_device_data *) malloc(_len_pld0*sizeof(struct kempld_device_data));
+          for(int _i0 = 0; _i0 < _len_pld0; _i0++) {
+              pld[_i0].info.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          const char * benchRet = kempld_get_type_string(pld);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          free(pld);
+        
+        break;
+    }
     default:
         usage();
         break;

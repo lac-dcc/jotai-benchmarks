@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ void xcb_xcursor_offset(xcb_xcursor_t* data, const int x_org, const int y_org)
 	data->y_org = y_org;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,17 +78,176 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           const int x_org = 100;
+        
           const int y_org = 100;
+        
           int _len_data0 = 1;
           struct TYPE_3__ * data = (struct TYPE_3__ *) malloc(_len_data0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
-            data[_i0].x_org = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].y_org = ((-2 * (next_i()%2)) + 1) * next_i();
+              data[_i0].x_org = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].y_org = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          xcb_xcursor_offset(data,x_org,y_org);
+          free(data);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          const int x_org = 255;
+        
+          const int y_org = 255;
+        
+          int _len_data0 = 65025;
+          struct TYPE_3__ * data = (struct TYPE_3__ *) malloc(_len_data0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].x_org = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].y_org = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          xcb_xcursor_offset(data,x_org,y_org);
+          free(data);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          const int x_org = 10;
+        
+          const int y_org = 10;
+        
+          int _len_data0 = 100;
+          struct TYPE_3__ * data = (struct TYPE_3__ *) malloc(_len_data0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].x_org = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].y_org = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          xcb_xcursor_offset(data,x_org,y_org);
+          free(data);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          const int x_org = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          const int y_org = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_data0 = 1;
+          struct TYPE_3__ * data = (struct TYPE_3__ *) malloc(_len_data0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].x_org = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].y_org = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           xcb_xcursor_offset(data,x_org,y_org);
           free(data);
         

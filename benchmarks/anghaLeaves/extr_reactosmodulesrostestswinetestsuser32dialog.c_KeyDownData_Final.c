@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static DWORD KeyDownData (int repeat, int scancode, int ex
             (extended ? 0x01000000 : 0) | (wasdown ? 0x40000000 : 0));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,9 +80,13 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int repeat = 100;
+        
           int scancode = 100;
+        
           int extended = 100;
+        
           int wasdown = 100;
+        
           int benchRet = KeyDownData(repeat,scancode,extended,wasdown);
           printf("%d\n", benchRet); 
         
@@ -97,9 +96,13 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int repeat = 255;
+        
           int scancode = 255;
+        
           int extended = 255;
+        
           int wasdown = 255;
+        
           int benchRet = KeyDownData(repeat,scancode,extended,wasdown);
           printf("%d\n", benchRet); 
         
@@ -109,15 +112,34 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int repeat = 10;
+        
           int scancode = 10;
+        
           int extended = 10;
+        
           int wasdown = 10;
+        
           int benchRet = KeyDownData(repeat,scancode,extended,wasdown);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int repeat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int scancode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int extended = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int wasdown = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = KeyDownData(repeat,scancode,extended,wasdown);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

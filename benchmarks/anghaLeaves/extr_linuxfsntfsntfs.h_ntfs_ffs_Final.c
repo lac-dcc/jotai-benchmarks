@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -85,12 +86,6 @@ __attribute__((used)) static inline int ntfs_ffs(int x)
 	return r;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,28 +98,136 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 37
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 35
+          // dynamic_instructions_O3 : 35
+          // ------------------------------- 
+          // static_instructions_Ofast : 35
+          // dynamic_instructions_Ofast : 35
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 36
+          // ------------------------------- 
+          // static_instructions_Oz : 36
+          // dynamic_instructions_Oz : 36
+          // ------------------------------- 
+
           int x = 100;
+        
           int benchRet = ntfs_ffs(x);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 35
+          // dynamic_instructions_O3 : 35
+          // ------------------------------- 
+          // static_instructions_Ofast : 35
+          // dynamic_instructions_Ofast : 35
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 36
+          // ------------------------------- 
+          // static_instructions_Oz : 36
+          // dynamic_instructions_Oz : 36
+          // ------------------------------- 
+
           int x = 255;
+        
           int benchRet = ntfs_ffs(x);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 37
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 35
+          // dynamic_instructions_O3 : 35
+          // ------------------------------- 
+          // static_instructions_Ofast : 35
+          // dynamic_instructions_Ofast : 35
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 36
+          // ------------------------------- 
+          // static_instructions_Oz : 36
+          // dynamic_instructions_Oz : 36
+          // ------------------------------- 
+
           int x = 10;
+        
+          int benchRet = ntfs_ffs(x);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 35
+          // dynamic_instructions_O3 : 35
+          // ------------------------------- 
+          // static_instructions_Ofast : 35
+          // dynamic_instructions_Ofast : 35
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 36
+          // ------------------------------- 
+          // static_instructions_Oz : 36
+          // dynamic_instructions_Oz : 36
+          // ------------------------------- 
+
+          int x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = ntfs_ffs(x);
           printf("%d\n", benchRet); 
         

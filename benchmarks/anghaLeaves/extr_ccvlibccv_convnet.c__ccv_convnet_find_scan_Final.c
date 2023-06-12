@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static int _ccv_convnet_find_scan(ccv_convnet_t* convnet)
 	return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,19 +85,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_convnet0 = 1;
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_convnet0 = 65025;
           struct TYPE_4__ * convnet = (struct TYPE_4__ *) malloc(_len_convnet0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_convnet0; _i0++) {
-            convnet[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+              convnet[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_convnet__i0__layers0 = 1;
           convnet[_i0].layers = (struct TYPE_5__ *) malloc(_len_convnet__i0__layers0*sizeof(struct TYPE_5__));
           for(int _j0 = 0; _j0 < _len_convnet__i0__layers0; _j0++) {
-            convnet[_i0].layers->type = ((-2 * (next_i()%2)) + 1) * next_i();
+              convnet[_i0].layers->type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = _ccv_convnet_find_scan(convnet);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_convnet0; _aux++) {
+          free(convnet[_aux].layers);
+          }
+          free(convnet);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_convnet0 = 100;
+          struct TYPE_4__ * convnet = (struct TYPE_4__ *) malloc(_len_convnet0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_convnet0; _i0++) {
+              convnet[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_convnet__i0__layers0 = 1;
+          convnet[_i0].layers = (struct TYPE_5__ *) malloc(_len_convnet__i0__layers0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_convnet__i0__layers0; _j0++) {
+              convnet[_i0].layers->type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = _ccv_convnet_find_scan(convnet);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_convnet0; _aux++) {
+          free(convnet[_aux].layers);
+          }
+          free(convnet);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_convnet0 = 1;
+          struct TYPE_4__ * convnet = (struct TYPE_4__ *) malloc(_len_convnet0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_convnet0; _i0++) {
+              convnet[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_convnet__i0__layers0 = 1;
+          convnet[_i0].layers = (struct TYPE_5__ *) malloc(_len_convnet__i0__layers0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_convnet__i0__layers0; _j0++) {
+              convnet[_i0].layers->type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = _ccv_convnet_find_scan(convnet);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_convnet0; _aux++) {

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -82,12 +84,6 @@ __attribute__((used)) static u32 qed_calc_crc32c(u8 *crc32_packet,
 	return crc32_result;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,34 +96,179 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           long crc32_length = 100;
+        
           long crc32_seed = 100;
+        
           long complement = 100;
+        
           int _len_crc32_packet0 = 1;
           long * crc32_packet = (long *) malloc(_len_crc32_packet0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_crc32_packet0; _i0++) {
             crc32_packet[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           long benchRet = qed_calc_crc32c(crc32_packet,crc32_length,crc32_seed,complement);
           printf("%ld\n", benchRet); 
           free(crc32_packet);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          long crc32_length = 255;
+        
+          long crc32_seed = 255;
+        
+          long complement = 255;
+        
+          int _len_crc32_packet0 = 65025;
+          long * crc32_packet = (long *) malloc(_len_crc32_packet0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_crc32_packet0; _i0++) {
+            crc32_packet[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          long benchRet = qed_calc_crc32c(crc32_packet,crc32_length,crc32_seed,complement);
+          printf("%ld\n", benchRet); 
+          free(crc32_packet);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           long crc32_length = 10;
+        
           long crc32_seed = 10;
+        
           long complement = 10;
+        
           int _len_crc32_packet0 = 100;
           long * crc32_packet = (long *) malloc(_len_crc32_packet0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_crc32_packet0; _i0++) {
             crc32_packet[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          long benchRet = qed_calc_crc32c(crc32_packet,crc32_length,crc32_seed,complement);
+          printf("%ld\n", benchRet); 
+          free(crc32_packet);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          long crc32_length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long crc32_seed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long complement = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_crc32_packet0 = 1;
+          long * crc32_packet = (long *) malloc(_len_crc32_packet0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_crc32_packet0; _i0++) {
+            crc32_packet[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           long benchRet = qed_calc_crc32c(crc32_packet,crc32_length,crc32_seed,complement);
           printf("%ld\n", benchRet); 
           free(crc32_packet);

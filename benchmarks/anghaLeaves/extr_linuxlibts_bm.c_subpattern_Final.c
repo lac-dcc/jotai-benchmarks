@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -73,12 +74,6 @@ __attribute__((used)) static int subpattern(u8 *pattern, int i, int j, int g)
 	return ret;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,24 +86,48 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int i = 10;
-          int j = 10;
-          int g = 10;
-          int _len_pattern0 = 100;
+          int i = 255;
+        
+          int j = 255;
+        
+          int g = 255;
+        
+          int _len_pattern0 = 65025;
           long * pattern = (long *) malloc(_len_pattern0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_pattern0; _i0++) {
             pattern[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = subpattern(pattern,i,j,g);
           printf("%d\n", benchRet); 
           free(pattern);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int i = 10;
+        
+          int j = 10;
+        
+          int g = 10;
+        
+          int _len_pattern0 = 100;
+          long * pattern = (long *) malloc(_len_pattern0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_pattern0; _i0++) {
+            pattern[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = subpattern(pattern,i,j,g);
+          printf("%d\n", benchRet); 
+          free(pattern);
+        
+        break;
+    }
     default:
         usage();
         break;

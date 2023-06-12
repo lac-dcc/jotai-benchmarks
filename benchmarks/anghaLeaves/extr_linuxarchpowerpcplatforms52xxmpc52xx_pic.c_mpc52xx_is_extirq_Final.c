@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static int mpc52xx_is_extirq(int l1, int l2)
 	       ((l1 == 1) && (l2 >= 1) && (l2 <= 3));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,7 +79,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int l1 = 100;
+        
           int l2 = 100;
+        
           int benchRet = mpc52xx_is_extirq(l1,l2);
           printf("%d\n", benchRet); 
         
@@ -94,7 +91,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int l1 = 255;
+        
           int l2 = 255;
+        
           int benchRet = mpc52xx_is_extirq(l1,l2);
           printf("%d\n", benchRet); 
         
@@ -104,13 +103,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int l1 = 10;
+        
           int l2 = 10;
+        
           int benchRet = mpc52xx_is_extirq(l1,l2);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int l1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int l2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = mpc52xx_is_extirq(l1,l2);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ int ENGINE_set_pkey_meths(ENGINE *e, ENGINE_PKEY_METHS_PTR f)
     return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,11 +83,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int f = 100;
+        
           int _len_e0 = 1;
           struct TYPE_3__ * e = (struct TYPE_3__ *) malloc(_len_e0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_e0; _i0++) {
-            e[_i0].pkey_meths = ((-2 * (next_i()%2)) + 1) * next_i();
+              e[_i0].pkey_meths = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = ENGINE_set_pkey_meths(e,f);
+          printf("%d\n", benchRet); 
+          free(e);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int f = 255;
+        
+          int _len_e0 = 65025;
+          struct TYPE_3__ * e = (struct TYPE_3__ *) malloc(_len_e0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_e0; _i0++) {
+              e[_i0].pkey_meths = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = ENGINE_set_pkey_meths(e,f);
           printf("%d\n", benchRet); 
           free(e);
@@ -99,21 +116,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int f = 10;
+        
           int _len_e0 = 100;
           struct TYPE_3__ * e = (struct TYPE_3__ *) malloc(_len_e0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_e0; _i0++) {
-            e[_i0].pkey_meths = ((-2 * (next_i()%2)) + 1) * next_i();
+              e[_i0].pkey_meths = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ENGINE_set_pkey_meths(e,f);
           printf("%d\n", benchRet); 
           free(e);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int f = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_e0 = 1;
+          struct TYPE_3__ * e = (struct TYPE_3__ *) malloc(_len_e0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_e0; _i0++) {
+              e[_i0].pkey_meths = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ENGINE_set_pkey_meths(e,f);
+          printf("%d\n", benchRet); 
+          free(e);
+        
+        break;
+    }
     default:
         usage();
         break;

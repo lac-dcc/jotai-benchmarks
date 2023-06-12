@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -79,12 +80,6 @@ __attribute__((used)) static u32 frac28(u32 N, u32 D)
 	return Q1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,31 +92,144 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 45
+          // dynamic_instructions_O0 : 173
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 88
+          // ------------------------------- 
+          // static_instructions_O2 : 64
+          // dynamic_instructions_O2 : 64
+          // ------------------------------- 
+          // static_instructions_O3 : 64
+          // dynamic_instructions_O3 : 64
+          // ------------------------------- 
+          // static_instructions_Ofast : 64
+          // dynamic_instructions_Ofast : 64
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 86
+          // ------------------------------- 
+          // static_instructions_Oz : 29
+          // dynamic_instructions_Oz : 120
+          // ------------------------------- 
+
           int N = 100;
+        
           int D = 100;
+        
           int benchRet = frac28(N,D);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 45
+          // dynamic_instructions_O0 : 173
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 88
+          // ------------------------------- 
+          // static_instructions_O2 : 64
+          // dynamic_instructions_O2 : 64
+          // ------------------------------- 
+          // static_instructions_O3 : 64
+          // dynamic_instructions_O3 : 64
+          // ------------------------------- 
+          // static_instructions_Ofast : 64
+          // dynamic_instructions_Ofast : 64
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 86
+          // ------------------------------- 
+          // static_instructions_Oz : 29
+          // dynamic_instructions_Oz : 120
+          // ------------------------------- 
+
           int N = 255;
+        
           int D = 255;
+        
           int benchRet = frac28(N,D);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 45
+          // dynamic_instructions_O0 : 173
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 88
+          // ------------------------------- 
+          // static_instructions_O2 : 64
+          // dynamic_instructions_O2 : 64
+          // ------------------------------- 
+          // static_instructions_O3 : 64
+          // dynamic_instructions_O3 : 64
+          // ------------------------------- 
+          // static_instructions_Ofast : 64
+          // dynamic_instructions_Ofast : 64
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 86
+          // ------------------------------- 
+          // static_instructions_Oz : 29
+          // dynamic_instructions_Oz : 120
+          // ------------------------------- 
+
           int N = 10;
+        
           int D = 10;
+        
+          int benchRet = frac28(N,D);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 48
+          // dynamic_instructions_O0 : 176
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 88
+          // ------------------------------- 
+          // static_instructions_O2 : 64
+          // dynamic_instructions_O2 : 64
+          // ------------------------------- 
+          // static_instructions_O3 : 64
+          // dynamic_instructions_O3 : 64
+          // ------------------------------- 
+          // static_instructions_Ofast : 64
+          // dynamic_instructions_Ofast : 64
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 86
+          // ------------------------------- 
+          // static_instructions_Oz : 29
+          // dynamic_instructions_Oz : 120
+          // ------------------------------- 
+
+          int N = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int D = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = frac28(N,D);
           printf("%d\n", benchRet); 
         

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +82,6 @@ __attribute__((used)) static u8 ci_get_sleep_divider_id_from_clock(struct radeon
 	return (u8)i;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,32 +94,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
           long sclk = 100;
+        
           long min_sclk_in_sr = 100;
+        
           int _len_rdev0 = 1;
           struct radeon_device * rdev = (struct radeon_device *) malloc(_len_rdev0*sizeof(struct radeon_device));
           for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
-            rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ci_get_sleep_divider_id_from_clock(rdev,sclk,min_sclk_in_sr);
           printf("%d\n", benchRet); 
           free(rdev);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          long sclk = 255;
+        
+          long min_sclk_in_sr = 255;
+        
+          int _len_rdev0 = 65025;
+          struct radeon_device * rdev = (struct radeon_device *) malloc(_len_rdev0*sizeof(struct radeon_device));
+          for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
+              rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ci_get_sleep_divider_id_from_clock(rdev,sclk,min_sclk_in_sr);
+          printf("%d\n", benchRet); 
+          free(rdev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
           long sclk = 10;
+        
           long min_sclk_in_sr = 10;
+        
           int _len_rdev0 = 100;
           struct radeon_device * rdev = (struct radeon_device *) malloc(_len_rdev0*sizeof(struct radeon_device));
           for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
-            rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = ci_get_sleep_divider_id_from_clock(rdev,sclk,min_sclk_in_sr);
+          printf("%d\n", benchRet); 
+          free(rdev);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          long sclk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long min_sclk_in_sr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rdev0 = 1;
+          struct radeon_device * rdev = (struct radeon_device *) malloc(_len_rdev0*sizeof(struct radeon_device));
+          for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
+              rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = ci_get_sleep_divider_id_from_clock(rdev,sclk,min_sclk_in_sr);
           printf("%d\n", benchRet); 
           free(rdev);

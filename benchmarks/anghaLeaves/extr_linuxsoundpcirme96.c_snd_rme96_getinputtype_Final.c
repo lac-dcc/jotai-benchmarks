@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ snd_rme96_getinputtype(struct rme96 *rme96)
 		(((rme96->wcreg >> RME96_WCR_BITPOS_INP_1) & 1) << 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,15 +83,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_rme960 = 65025;
+          struct rme96 * rme96 = (struct rme96 *) malloc(_len_rme960*sizeof(struct rme96));
+          for(int _i0 = 0; _i0 < _len_rme960; _i0++) {
+              rme96[_i0].areg = ((-2 * (next_i()%2)) + 1) * next_i();
+          rme96[_i0].wcreg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = snd_rme96_getinputtype(rme96);
+          printf("%d\n", benchRet); 
+          free(rme96);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_rme960 = 100;
+          struct rme96 * rme96 = (struct rme96 *) malloc(_len_rme960*sizeof(struct rme96));
+          for(int _i0 = 0; _i0 < _len_rme960; _i0++) {
+              rme96[_i0].areg = ((-2 * (next_i()%2)) + 1) * next_i();
+          rme96[_i0].wcreg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = snd_rme96_getinputtype(rme96);
+          printf("%d\n", benchRet); 
+          free(rme96);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int _len_rme960 = 1;
           struct rme96 * rme96 = (struct rme96 *) malloc(_len_rme960*sizeof(struct rme96));
           for(int _i0 = 0; _i0 < _len_rme960; _i0++) {
-            rme96[_i0].areg = ((-2 * (next_i()%2)) + 1) * next_i();
-        rme96[_i0].wcreg = ((-2 * (next_i()%2)) + 1) * next_i();
+              rme96[_i0].areg = ((-2 * (next_i()%2)) + 1) * next_i();
+          rme96[_i0].wcreg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = snd_rme96_getinputtype(rme96);
           printf("%d\n", benchRet); 
           free(rme96);

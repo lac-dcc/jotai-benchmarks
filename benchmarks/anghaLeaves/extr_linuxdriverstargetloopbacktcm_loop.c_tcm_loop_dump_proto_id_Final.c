@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +76,6 @@ __attribute__((used)) static char *tcm_loop_dump_proto_id(struct tcm_loop_hba *t
 	return "Unknown";
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,14 +88,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_tl_hba0 = 1;
+          int _len_tl_hba0 = 65025;
           struct tcm_loop_hba * tl_hba = (struct tcm_loop_hba *) malloc(_len_tl_hba0*sizeof(struct tcm_loop_hba));
           for(int _i0 = 0; _i0 < _len_tl_hba0; _i0++) {
-            tl_hba[_i0].tl_proto_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              tl_hba[_i0].tl_proto_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           char * benchRet = tcm_loop_dump_proto_id(tl_hba);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(tl_hba);
@@ -113,15 +110,32 @@ int main(int argc, char *argv[]) {
           int _len_tl_hba0 = 100;
           struct tcm_loop_hba * tl_hba = (struct tcm_loop_hba *) malloc(_len_tl_hba0*sizeof(struct tcm_loop_hba));
           for(int _i0 = 0; _i0 < _len_tl_hba0; _i0++) {
-            tl_hba[_i0].tl_proto_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              tl_hba[_i0].tl_proto_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           char * benchRet = tcm_loop_dump_proto_id(tl_hba);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(tl_hba);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_tl_hba0 = 1;
+          struct tcm_loop_hba * tl_hba = (struct tcm_loop_hba *) malloc(_len_tl_hba0*sizeof(struct tcm_loop_hba));
+          for(int _i0 = 0; _i0 < _len_tl_hba0; _i0++) {
+              tl_hba[_i0].tl_proto_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          char * benchRet = tcm_loop_dump_proto_id(tl_hba);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          free(tl_hba);
+        
+        break;
+    }
     default:
         usage();
         break;

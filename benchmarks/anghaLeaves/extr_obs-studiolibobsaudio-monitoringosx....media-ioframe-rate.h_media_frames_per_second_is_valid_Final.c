@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -61,12 +61,6 @@ __attribute__((used)) static inline bool media_frames_per_second_is_valid(
 	return fps.numerator && fps.denominator;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,12 +73,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // empty
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           struct media_frames_per_second fps;
-        fps.denominator = ((-2 * (next_i()%2)) + 1) * next_i();
-        fps.numerator = ((-2 * (next_i()%2)) + 1) * next_i();
+          fps.denominator = ((-2 * (next_i()%2)) + 1) * next_i();
+          fps.numerator = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = media_frames_per_second_is_valid(fps);
           printf("%d\n", benchRet); 
         

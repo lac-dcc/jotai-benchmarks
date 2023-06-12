@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ bool arch_uprobe_xol_was_trapped(struct task_struct *t)
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,14 +80,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_t0 = 1;
+          int _len_t0 = 65025;
           struct task_struct * t = (struct task_struct *) malloc(_len_t0*sizeof(struct task_struct));
           for(int _i0 = 0; _i0 < _len_t0; _i0++) {
-            t[_i0].thread.trap_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+              t[_i0].thread.trap_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = arch_uprobe_xol_was_trapped(t);
           printf("%d\n", benchRet); 
           free(t);
@@ -105,15 +103,34 @@ int main(int argc, char *argv[]) {
           int _len_t0 = 100;
           struct task_struct * t = (struct task_struct *) malloc(_len_t0*sizeof(struct task_struct));
           for(int _i0 = 0; _i0 < _len_t0; _i0++) {
-            t[_i0].thread.trap_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+              t[_i0].thread.trap_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = arch_uprobe_xol_was_trapped(t);
           printf("%d\n", benchRet); 
           free(t);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_t0 = 1;
+          struct task_struct * t = (struct task_struct *) malloc(_len_t0*sizeof(struct task_struct));
+          for(int _i0 = 0; _i0 < _len_t0; _i0++) {
+              t[_i0].thread.trap_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = arch_uprobe_xol_was_trapped(t);
+          printf("%d\n", benchRet); 
+          free(t);
+        
+        break;
+    }
     default:
         usage();
         break;

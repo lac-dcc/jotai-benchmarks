@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline u32 rfc3390_bytes_to_packets(const u32 smss)
 	return smss <= 1095 ? 4 : (smss > 2190 ? 2 : 3);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           const int smss = 100;
+        
           int benchRet = rfc3390_bytes_to_packets(smss);
           printf("%d\n", benchRet); 
         
@@ -93,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           const int smss = 255;
+        
           int benchRet = rfc3390_bytes_to_packets(smss);
           printf("%d\n", benchRet); 
         
@@ -102,12 +99,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           const int smss = 10;
+        
           int benchRet = rfc3390_bytes_to_packets(smss);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          const int smss = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = rfc3390_bytes_to_packets(smss);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

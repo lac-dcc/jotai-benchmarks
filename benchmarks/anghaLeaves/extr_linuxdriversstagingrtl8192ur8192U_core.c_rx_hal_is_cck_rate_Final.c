@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ __attribute__((used)) static inline bool rx_hal_is_cck_rate(struct rx_drvinfo_81
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,22 +89,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pdrvinfo0 = 1;
+          int _len_pdrvinfo0 = 65025;
           struct rx_drvinfo_819x_usb * pdrvinfo = (struct rx_drvinfo_819x_usb *) malloc(_len_pdrvinfo0*sizeof(struct rx_drvinfo_819x_usb));
           for(int _i0 = 0; _i0 < _len_pdrvinfo0; _i0++) {
-            pdrvinfo[_i0].RxRate = ((-2 * (next_i()%2)) + 1) * next_i();
-        pdrvinfo[_i0].RxHT = ((-2 * (next_i()%2)) + 1) * next_i();
+              pdrvinfo[_i0].RxRate = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdrvinfo[_i0].RxHT = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = rx_hal_is_cck_rate(pdrvinfo);
           printf("%d\n", benchRet); 
           free(pdrvinfo);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_pdrvinfo0 = 100;
+          struct rx_drvinfo_819x_usb * pdrvinfo = (struct rx_drvinfo_819x_usb *) malloc(_len_pdrvinfo0*sizeof(struct rx_drvinfo_819x_usb));
+          for(int _i0 = 0; _i0 < _len_pdrvinfo0; _i0++) {
+              pdrvinfo[_i0].RxRate = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdrvinfo[_i0].RxHT = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rx_hal_is_cck_rate(pdrvinfo);
+          printf("%d\n", benchRet); 
+          free(pdrvinfo);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_pdrvinfo0 = 1;
+          struct rx_drvinfo_819x_usb * pdrvinfo = (struct rx_drvinfo_819x_usb *) malloc(_len_pdrvinfo0*sizeof(struct rx_drvinfo_819x_usb));
+          for(int _i0 = 0; _i0 < _len_pdrvinfo0; _i0++) {
+              pdrvinfo[_i0].RxRate = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdrvinfo[_i0].RxHT = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rx_hal_is_cck_rate(pdrvinfo);
+          printf("%d\n", benchRet); 
+          free(pdrvinfo);
+        
+        break;
+    }
     default:
         usage();
         break;

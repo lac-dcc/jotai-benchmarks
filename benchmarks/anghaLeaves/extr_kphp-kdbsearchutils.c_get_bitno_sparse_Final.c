@@ -64,12 +64,6 @@ int get_bitno_sparse(int mask, int i) {
   }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,13 +80,14 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int mask = 10;
+        
           int i = 10;
+        
           int benchRet = get_bitno_sparse(mask,i);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

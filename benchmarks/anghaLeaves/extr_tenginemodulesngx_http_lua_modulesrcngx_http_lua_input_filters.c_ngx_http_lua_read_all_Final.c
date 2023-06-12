@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -81,12 +84,6 @@ ngx_http_lua_read_all(ngx_buf_t *src, ngx_chain_t *buf_in, ssize_t bytes,
     return NGX_AGAIN;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,29 +96,254 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           long bytes = 100;
+        
           int _len_src0 = 1;
           struct TYPE_8__ * src = (struct TYPE_8__ *) malloc(_len_src0*sizeof(struct TYPE_8__));
           for(int _i0 = 0; _i0 < _len_src0; _i0++) {
-            src[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+              src[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_buf_in0 = 1;
           struct TYPE_7__ * buf_in = (struct TYPE_7__ *) malloc(_len_buf_in0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_buf_in0; _i0++) {
               int _len_buf_in__i0__buf0 = 1;
           buf_in[_i0].buf = (struct TYPE_6__ *) malloc(_len_buf_in__i0__buf0*sizeof(struct TYPE_6__));
           for(int _j0 = 0; _j0 < _len_buf_in__i0__buf0; _j0++) {
-            buf_in[_i0].buf->last = ((-2 * (next_i()%2)) + 1) * next_i();
+              buf_in[_i0].buf->last = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_log0 = 1;
           int * log = (int *) malloc(_len_log0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_log0; _i0++) {
             log[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = ngx_http_lua_read_all(src,buf_in,bytes,log);
+          printf("%d\n", benchRet); 
+          free(src);
+          for(int _aux = 0; _aux < _len_buf_in0; _aux++) {
+          free(buf_in[_aux].buf);
+          }
+          free(buf_in);
+          free(log);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long bytes = 255;
+        
+          int _len_src0 = 65025;
+          struct TYPE_8__ * src = (struct TYPE_8__ *) malloc(_len_src0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+              src[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_buf_in0 = 65025;
+          struct TYPE_7__ * buf_in = (struct TYPE_7__ *) malloc(_len_buf_in0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_buf_in0; _i0++) {
+              int _len_buf_in__i0__buf0 = 1;
+          buf_in[_i0].buf = (struct TYPE_6__ *) malloc(_len_buf_in__i0__buf0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_buf_in__i0__buf0; _j0++) {
+              buf_in[_i0].buf->last = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_log0 = 65025;
+          int * log = (int *) malloc(_len_log0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_log0; _i0++) {
+            log[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ngx_http_lua_read_all(src,buf_in,bytes,log);
+          printf("%d\n", benchRet); 
+          free(src);
+          for(int _aux = 0; _aux < _len_buf_in0; _aux++) {
+          free(buf_in[_aux].buf);
+          }
+          free(buf_in);
+          free(log);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long bytes = 10;
+        
+          int _len_src0 = 100;
+          struct TYPE_8__ * src = (struct TYPE_8__ *) malloc(_len_src0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+              src[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_buf_in0 = 100;
+          struct TYPE_7__ * buf_in = (struct TYPE_7__ *) malloc(_len_buf_in0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_buf_in0; _i0++) {
+              int _len_buf_in__i0__buf0 = 1;
+          buf_in[_i0].buf = (struct TYPE_6__ *) malloc(_len_buf_in__i0__buf0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_buf_in__i0__buf0; _j0++) {
+              buf_in[_i0].buf->last = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_log0 = 100;
+          int * log = (int *) malloc(_len_log0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_log0; _i0++) {
+            log[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ngx_http_lua_read_all(src,buf_in,bytes,log);
+          printf("%d\n", benchRet); 
+          free(src);
+          for(int _aux = 0; _aux < _len_buf_in0; _aux++) {
+          free(buf_in[_aux].buf);
+          }
+          free(buf_in);
+          free(log);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_src0 = 1;
+          struct TYPE_8__ * src = (struct TYPE_8__ *) malloc(_len_src0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+              src[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_buf_in0 = 1;
+          struct TYPE_7__ * buf_in = (struct TYPE_7__ *) malloc(_len_buf_in0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_buf_in0; _i0++) {
+              int _len_buf_in__i0__buf0 = 1;
+          buf_in[_i0].buf = (struct TYPE_6__ *) malloc(_len_buf_in__i0__buf0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_buf_in__i0__buf0; _j0++) {
+              buf_in[_i0].buf->last = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_log0 = 1;
+          int * log = (int *) malloc(_len_log0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_log0; _i0++) {
+            log[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = ngx_http_lua_read_all(src,buf_in,bytes,log);
           printf("%d\n", benchRet); 
           free(src);

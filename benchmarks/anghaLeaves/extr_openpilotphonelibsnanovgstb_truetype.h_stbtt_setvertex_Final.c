@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static void stbtt_setvertex(stbtt_vertex *v, stbtt_uint8 t
    v->cy = (stbtt_int16) cy;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,37 +84,196 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int type = 100;
+        
           long x = 100;
+        
           long y = 100;
+        
           long cx = 100;
+        
           long cy = 100;
+        
           int _len_v0 = 1;
           struct TYPE_3__ * v = (struct TYPE_3__ *) malloc(_len_v0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_v0; _i0++) {
-            v[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+              v[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           stbtt_setvertex(v,type,x,y,cx,cy);
           free(v);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int type = 255;
+        
+          long x = 255;
+        
+          long y = 255;
+        
+          long cx = 255;
+        
+          long cy = 255;
+        
+          int _len_v0 = 65025;
+          struct TYPE_3__ * v = (struct TYPE_3__ *) malloc(_len_v0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_v0; _i0++) {
+              v[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          stbtt_setvertex(v,type,x,y,cx,cy);
+          free(v);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int type = 10;
+        
           long x = 10;
+        
           long y = 10;
+        
           long cx = 10;
+        
           long cy = 10;
+        
           int _len_v0 = 100;
           struct TYPE_3__ * v = (struct TYPE_3__ *) malloc(_len_v0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_v0; _i0++) {
-            v[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+              v[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          stbtt_setvertex(v,type,x,y,cx,cy);
+          free(v);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long cx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long cy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_v0 = 1;
+          struct TYPE_3__ * v = (struct TYPE_3__ *) malloc(_len_v0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_v0; _i0++) {
+              v[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           stbtt_setvertex(v,type,x,y,cx,cy);
           free(v);
         

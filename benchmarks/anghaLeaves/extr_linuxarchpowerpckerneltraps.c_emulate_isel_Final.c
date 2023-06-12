@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ __attribute__((used)) static int emulate_isel(struct pt_regs *regs, u32 instword
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,10 +88,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 52
+          // dynamic_instructions_O0 : 52
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
           int instword = 100;
+        
           int _len_regs0 = 1;
           struct pt_regs * regs = (struct pt_regs *) malloc(_len_regs0*sizeof(struct pt_regs));
           for(int _i0 = 0; _i0 < _len_regs0; _i0++) {
@@ -104,8 +124,110 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_regs__i0__gpr0; _j0++) {
             regs[_i0].gpr[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        regs[_i0].ccr = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].ccr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = emulate_isel(regs,instword);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_regs0; _aux++) {
+          free(regs[_aux].gpr);
+          }
+          free(regs);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 52
+          // dynamic_instructions_O0 : 52
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int instword = 255;
+        
+          int _len_regs0 = 65025;
+          struct pt_regs * regs = (struct pt_regs *) malloc(_len_regs0*sizeof(struct pt_regs));
+          for(int _i0 = 0; _i0 < _len_regs0; _i0++) {
+              int _len_regs__i0__gpr0 = 1;
+          regs[_i0].gpr = (unsigned long *) malloc(_len_regs__i0__gpr0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_regs__i0__gpr0; _j0++) {
+            regs[_i0].gpr[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          regs[_i0].ccr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = emulate_isel(regs,instword);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_regs0; _aux++) {
+          free(regs[_aux].gpr);
+          }
+          free(regs);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 52
+          // dynamic_instructions_O0 : 52
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int instword = 10;
+        
+          int _len_regs0 = 100;
+          struct pt_regs * regs = (struct pt_regs *) malloc(_len_regs0*sizeof(struct pt_regs));
+          for(int _i0 = 0; _i0 < _len_regs0; _i0++) {
+              int _len_regs__i0__gpr0 = 1;
+          regs[_i0].gpr = (unsigned long *) malloc(_len_regs__i0__gpr0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_regs__i0__gpr0; _j0++) {
+            regs[_i0].gpr[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          regs[_i0].ccr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = emulate_isel(regs,instword);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_regs0; _aux++) {

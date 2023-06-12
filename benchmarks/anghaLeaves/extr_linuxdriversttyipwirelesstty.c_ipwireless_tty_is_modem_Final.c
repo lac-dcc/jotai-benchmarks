@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ int ipwireless_tty_is_modem(struct ipw_tty *tty)
 	return tty->tty_type == TTYTYPE_MODEM;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_tty0 = 1;
+          int _len_tty0 = 65025;
           struct ipw_tty * tty = (struct ipw_tty *) malloc(_len_tty0*sizeof(struct ipw_tty));
           for(int _i0 = 0; _i0 < _len_tty0; _i0++) {
-            tty[_i0].tty_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              tty[_i0].tty_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ipwireless_tty_is_modem(tty);
           printf("%d\n", benchRet); 
           free(tty);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_tty0 = 100;
           struct ipw_tty * tty = (struct ipw_tty *) malloc(_len_tty0*sizeof(struct ipw_tty));
           for(int _i0 = 0; _i0 < _len_tty0; _i0++) {
-            tty[_i0].tty_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              tty[_i0].tty_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ipwireless_tty_is_modem(tty);
           printf("%d\n", benchRet); 
           free(tty);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_tty0 = 1;
+          struct ipw_tty * tty = (struct ipw_tty *) malloc(_len_tty0*sizeof(struct ipw_tty));
+          for(int _i0 = 0; _i0 < _len_tty0; _i0++) {
+              tty[_i0].tty_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ipwireless_tty_is_modem(tty);
+          printf("%d\n", benchRet); 
+          free(tty);
+        
+        break;
+    }
     default:
         usage();
         break;

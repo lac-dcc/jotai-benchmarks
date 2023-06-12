@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ sigaction_kern_to_user64(struct kern_sigaction *in, struct user64_sigaction *out
 	out->sa_flags = in->sa_flags;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,30 +83,93 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_in0 = 1;
+          int _len_in0 = 65025;
           struct kern_sigaction * in = (struct kern_sigaction *) malloc(_len_in0*sizeof(struct kern_sigaction));
           for(int _i0 = 0; _i0 < _len_in0; _i0++) {
-            in[_i0].sa_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        in[_i0].sa_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        in[_i0].__sigaction_u.__sa_handler = ((-2 * (next_i()%2)) + 1) * next_i();
+              in[_i0].sa_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].sa_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].__sigaction_u.__sa_handler = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-          int _len_out0 = 1;
+        
+          int _len_out0 = 65025;
           struct user64_sigaction * out = (struct user64_sigaction *) malloc(_len_out0*sizeof(struct user64_sigaction));
           for(int _i0 = 0; _i0 < _len_out0; _i0++) {
-            out[_i0].sa_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        out[_i0].sa_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        out[_i0].__sigaction_u.__sa_handler = ((-2 * (next_i()%2)) + 1) * next_i();
+              out[_i0].sa_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          out[_i0].sa_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          out[_i0].__sigaction_u.__sa_handler = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           sigaction_kern_to_user64(in,out);
           free(in);
           free(out);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_in0 = 100;
+          struct kern_sigaction * in = (struct kern_sigaction *) malloc(_len_in0*sizeof(struct kern_sigaction));
+          for(int _i0 = 0; _i0 < _len_in0; _i0++) {
+              in[_i0].sa_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].sa_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].__sigaction_u.__sa_handler = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_out0 = 100;
+          struct user64_sigaction * out = (struct user64_sigaction *) malloc(_len_out0*sizeof(struct user64_sigaction));
+          for(int _i0 = 0; _i0 < _len_out0; _i0++) {
+              out[_i0].sa_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          out[_i0].sa_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          out[_i0].__sigaction_u.__sa_handler = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          sigaction_kern_to_user64(in,out);
+          free(in);
+          free(out);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_in0 = 1;
+          struct kern_sigaction * in = (struct kern_sigaction *) malloc(_len_in0*sizeof(struct kern_sigaction));
+          for(int _i0 = 0; _i0 < _len_in0; _i0++) {
+              in[_i0].sa_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].sa_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].__sigaction_u.__sa_handler = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_out0 = 1;
+          struct user64_sigaction * out = (struct user64_sigaction *) malloc(_len_out0*sizeof(struct user64_sigaction));
+          for(int _i0 = 0; _i0 < _len_out0; _i0++) {
+              out[_i0].sa_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          out[_i0].sa_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          out[_i0].__sigaction_u.__sa_handler = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          sigaction_kern_to_user64(in,out);
+          free(in);
+          free(out);
+        
+        break;
+    }
     default:
         usage();
         break;

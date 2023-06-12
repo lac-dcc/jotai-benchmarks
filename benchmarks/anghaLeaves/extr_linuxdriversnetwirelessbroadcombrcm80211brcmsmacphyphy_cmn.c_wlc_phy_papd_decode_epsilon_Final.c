@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ wlc_phy_papd_decode_epsilon(u32 epsilon, s32 *eps_real, s32 *eps_imag)
 		*eps_real -= 0x2000;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,20 +83,187 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
           int epsilon = 100;
+        
           int _len_eps_real0 = 1;
           int * eps_real = (int *) malloc(_len_eps_real0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_eps_real0; _i0++) {
             eps_real[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_eps_imag0 = 1;
           int * eps_imag = (int *) malloc(_len_eps_imag0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_eps_imag0; _i0++) {
             eps_imag[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          wlc_phy_papd_decode_epsilon(epsilon,eps_real,eps_imag);
+          free(eps_real);
+          free(eps_imag);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int epsilon = 255;
+        
+          int _len_eps_real0 = 65025;
+          int * eps_real = (int *) malloc(_len_eps_real0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_eps_real0; _i0++) {
+            eps_real[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_eps_imag0 = 65025;
+          int * eps_imag = (int *) malloc(_len_eps_imag0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_eps_imag0; _i0++) {
+            eps_imag[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          wlc_phy_papd_decode_epsilon(epsilon,eps_real,eps_imag);
+          free(eps_real);
+          free(eps_imag);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int epsilon = 10;
+        
+          int _len_eps_real0 = 100;
+          int * eps_real = (int *) malloc(_len_eps_real0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_eps_real0; _i0++) {
+            eps_real[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_eps_imag0 = 100;
+          int * eps_imag = (int *) malloc(_len_eps_imag0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_eps_imag0; _i0++) {
+            eps_imag[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          wlc_phy_papd_decode_epsilon(epsilon,eps_real,eps_imag);
+          free(eps_real);
+          free(eps_imag);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int epsilon = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_eps_real0 = 1;
+          int * eps_real = (int *) malloc(_len_eps_real0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_eps_real0; _i0++) {
+            eps_real[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_eps_imag0 = 1;
+          int * eps_imag = (int *) malloc(_len_eps_imag0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_eps_imag0; _i0++) {
+            eps_imag[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           wlc_phy_papd_decode_epsilon(epsilon,eps_real,eps_imag);
           free(eps_real);
           free(eps_imag);

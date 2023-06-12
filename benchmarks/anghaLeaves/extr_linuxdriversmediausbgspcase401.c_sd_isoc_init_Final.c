@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static int sd_isoc_init(struct gspca_dev *gspca_dev)
 	return gspca_dev->usb_err;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,22 +76,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_gspca_dev0 = 1;
+          int _len_gspca_dev0 = 65025;
           struct gspca_dev * gspca_dev = (struct gspca_dev *) malloc(_len_gspca_dev0*sizeof(struct gspca_dev));
           for(int _i0 = 0; _i0 < _len_gspca_dev0; _i0++) {
-            gspca_dev[_i0].alt = ((-2 * (next_i()%2)) + 1) * next_i();
-        gspca_dev[_i0].usb_err = ((-2 * (next_i()%2)) + 1) * next_i();
+              gspca_dev[_i0].alt = ((-2 * (next_i()%2)) + 1) * next_i();
+          gspca_dev[_i0].usb_err = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = sd_isoc_init(gspca_dev);
           printf("%d\n", benchRet); 
           free(gspca_dev);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_gspca_dev0 = 100;
+          struct gspca_dev * gspca_dev = (struct gspca_dev *) malloc(_len_gspca_dev0*sizeof(struct gspca_dev));
+          for(int _i0 = 0; _i0 < _len_gspca_dev0; _i0++) {
+              gspca_dev[_i0].alt = ((-2 * (next_i()%2)) + 1) * next_i();
+          gspca_dev[_i0].usb_err = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sd_isoc_init(gspca_dev);
+          printf("%d\n", benchRet); 
+          free(gspca_dev);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_gspca_dev0 = 1;
+          struct gspca_dev * gspca_dev = (struct gspca_dev *) malloc(_len_gspca_dev0*sizeof(struct gspca_dev));
+          for(int _i0 = 0; _i0 < _len_gspca_dev0; _i0++) {
+              gspca_dev[_i0].alt = ((-2 * (next_i()%2)) + 1) * next_i();
+          gspca_dev[_i0].usb_err = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sd_isoc_init(gspca_dev);
+          printf("%d\n", benchRet); 
+          free(gspca_dev);
+        
+        break;
+    }
     default:
         usage();
         break;

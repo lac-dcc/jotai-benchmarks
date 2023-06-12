@@ -63,12 +63,6 @@ __attribute__((used)) static inline u32 dtd_xfer_length_height(int line_length, 
 	return (line_length << DTD_LINE_LENGTH_SHFT) | xfer_height;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,7 +79,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int line_length = 100;
+        
           int xfer_height = 100;
+        
           int benchRet = dtd_xfer_length_height(line_length,xfer_height);
           printf("%d\n", benchRet); 
         
@@ -95,7 +91,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int line_length = 255;
+        
           int xfer_height = 255;
+        
           int benchRet = dtd_xfer_length_height(line_length,xfer_height);
           printf("%d\n", benchRet); 
         
@@ -105,13 +103,14 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int line_length = 10;
+        
           int xfer_height = 10;
+        
           int benchRet = dtd_xfer_length_height(line_length,xfer_height);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

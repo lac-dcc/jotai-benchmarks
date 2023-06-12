@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ __attribute__((used)) static void snd_ps3_bump_buffer(struct snd_ps3_card_info *
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,12 +85,38 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 43
+          // dynamic_instructions_O0 : 43
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
           enum snd_ps3_ch ch = 0;
+        
           unsigned long byte_count = 100;
+        
           int stage = 100;
+        
           int _len_card0 = 1;
           struct snd_ps3_card_info * card = (struct snd_ps3_card_info *) malloc(_len_card0*sizeof(struct snd_ps3_card_info));
           for(int _i0 = 0; _i0 < _len_card0; _i0++) {
@@ -112,8 +135,217 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_card__i0__dma_start_vaddr0; _j0++) {
             card[_i0].dma_start_vaddr[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        card[_i0].dma_buffer_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          card[_i0].dma_buffer_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          snd_ps3_bump_buffer(card,ch,byte_count,stage);
+          for(int _aux = 0; _aux < _len_card0; _aux++) {
+          free(card[_aux].dma_last_transfer_vaddr);
+          }
+          for(int _aux = 0; _aux < _len_card0; _aux++) {
+          free(card[_aux].dma_next_transfer_vaddr);
+          }
+          for(int _aux = 0; _aux < _len_card0; _aux++) {
+          free(card[_aux].dma_start_vaddr);
+          }
+          free(card);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 43
+          // dynamic_instructions_O0 : 43
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          enum snd_ps3_ch ch = 0;
+        
+          unsigned long byte_count = 255;
+        
+          int stage = 255;
+        
+          int _len_card0 = 65025;
+          struct snd_ps3_card_info * card = (struct snd_ps3_card_info *) malloc(_len_card0*sizeof(struct snd_ps3_card_info));
+          for(int _i0 = 0; _i0 < _len_card0; _i0++) {
+              int _len_card__i0__dma_last_transfer_vaddr0 = 1;
+          card[_i0].dma_last_transfer_vaddr = (long *) malloc(_len_card__i0__dma_last_transfer_vaddr0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_card__i0__dma_last_transfer_vaddr0; _j0++) {
+            card[_i0].dma_last_transfer_vaddr[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_card__i0__dma_next_transfer_vaddr0 = 1;
+          card[_i0].dma_next_transfer_vaddr = (long *) malloc(_len_card__i0__dma_next_transfer_vaddr0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_card__i0__dma_next_transfer_vaddr0; _j0++) {
+            card[_i0].dma_next_transfer_vaddr[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_card__i0__dma_start_vaddr0 = 1;
+          card[_i0].dma_start_vaddr = (long *) malloc(_len_card__i0__dma_start_vaddr0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_card__i0__dma_start_vaddr0; _j0++) {
+            card[_i0].dma_start_vaddr[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          card[_i0].dma_buffer_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          snd_ps3_bump_buffer(card,ch,byte_count,stage);
+          for(int _aux = 0; _aux < _len_card0; _aux++) {
+          free(card[_aux].dma_last_transfer_vaddr);
+          }
+          for(int _aux = 0; _aux < _len_card0; _aux++) {
+          free(card[_aux].dma_next_transfer_vaddr);
+          }
+          for(int _aux = 0; _aux < _len_card0; _aux++) {
+          free(card[_aux].dma_start_vaddr);
+          }
+          free(card);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 43
+          // dynamic_instructions_O0 : 43
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          enum snd_ps3_ch ch = 0;
+        
+          unsigned long byte_count = 10;
+        
+          int stage = 10;
+        
+          int _len_card0 = 100;
+          struct snd_ps3_card_info * card = (struct snd_ps3_card_info *) malloc(_len_card0*sizeof(struct snd_ps3_card_info));
+          for(int _i0 = 0; _i0 < _len_card0; _i0++) {
+              int _len_card__i0__dma_last_transfer_vaddr0 = 1;
+          card[_i0].dma_last_transfer_vaddr = (long *) malloc(_len_card__i0__dma_last_transfer_vaddr0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_card__i0__dma_last_transfer_vaddr0; _j0++) {
+            card[_i0].dma_last_transfer_vaddr[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_card__i0__dma_next_transfer_vaddr0 = 1;
+          card[_i0].dma_next_transfer_vaddr = (long *) malloc(_len_card__i0__dma_next_transfer_vaddr0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_card__i0__dma_next_transfer_vaddr0; _j0++) {
+            card[_i0].dma_next_transfer_vaddr[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_card__i0__dma_start_vaddr0 = 1;
+          card[_i0].dma_start_vaddr = (long *) malloc(_len_card__i0__dma_start_vaddr0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_card__i0__dma_start_vaddr0; _j0++) {
+            card[_i0].dma_start_vaddr[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          card[_i0].dma_buffer_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          snd_ps3_bump_buffer(card,ch,byte_count,stage);
+          for(int _aux = 0; _aux < _len_card0; _aux++) {
+          free(card[_aux].dma_last_transfer_vaddr);
+          }
+          for(int _aux = 0; _aux < _len_card0; _aux++) {
+          free(card[_aux].dma_next_transfer_vaddr);
+          }
+          for(int _aux = 0; _aux < _len_card0; _aux++) {
+          free(card[_aux].dma_start_vaddr);
+          }
+          free(card);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          enum snd_ps3_ch ch = 0;
+        
+          unsigned long byte_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int stage = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_card0 = 1;
+          struct snd_ps3_card_info * card = (struct snd_ps3_card_info *) malloc(_len_card0*sizeof(struct snd_ps3_card_info));
+          for(int _i0 = 0; _i0 < _len_card0; _i0++) {
+              int _len_card__i0__dma_last_transfer_vaddr0 = 1;
+          card[_i0].dma_last_transfer_vaddr = (long *) malloc(_len_card__i0__dma_last_transfer_vaddr0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_card__i0__dma_last_transfer_vaddr0; _j0++) {
+            card[_i0].dma_last_transfer_vaddr[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_card__i0__dma_next_transfer_vaddr0 = 1;
+          card[_i0].dma_next_transfer_vaddr = (long *) malloc(_len_card__i0__dma_next_transfer_vaddr0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_card__i0__dma_next_transfer_vaddr0; _j0++) {
+            card[_i0].dma_next_transfer_vaddr[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_card__i0__dma_start_vaddr0 = 1;
+          card[_i0].dma_start_vaddr = (long *) malloc(_len_card__i0__dma_start_vaddr0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_card__i0__dma_start_vaddr0; _j0++) {
+            card[_i0].dma_start_vaddr[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          card[_i0].dma_buffer_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           snd_ps3_bump_buffer(card,ch,byte_count,stage);
           for(int _aux = 0; _aux < _len_card0; _aux++) {
           free(card[_aux].dma_last_transfer_vaddr);

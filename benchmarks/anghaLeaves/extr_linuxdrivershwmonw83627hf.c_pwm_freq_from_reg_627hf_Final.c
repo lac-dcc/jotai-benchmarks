@@ -63,12 +63,6 @@ __attribute__((used)) static inline unsigned long pwm_freq_from_reg_627hf(u8 reg
 	return freq;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,12 +79,12 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long reg = 10;
+        
           unsigned long benchRet = pwm_freq_from_reg_627hf(reg);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

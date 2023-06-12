@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ __attribute__((used)) static int drop_transfer(uint32_t trgt_fr, uint32_t curr_f
 	return retval;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,8 +86,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long trgt_fr = 100;
+        
           long curr_fr = 100;
+        
           long frm_overrun = 100;
+        
           int benchRet = drop_transfer(trgt_fr,curr_fr,frm_overrun);
           printf("%d\n", benchRet); 
         
@@ -102,8 +100,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long trgt_fr = 255;
+        
           long curr_fr = 255;
+        
           long frm_overrun = 255;
+        
           int benchRet = drop_transfer(trgt_fr,curr_fr,frm_overrun);
           printf("%d\n", benchRet); 
         
@@ -113,14 +114,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long trgt_fr = 10;
+        
           long curr_fr = 10;
+        
           long frm_overrun = 10;
+        
           int benchRet = drop_transfer(trgt_fr,curr_fr,frm_overrun);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long trgt_fr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long curr_fr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long frm_overrun = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = drop_transfer(trgt_fr,curr_fr,frm_overrun);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -81,12 +84,6 @@ __attribute__((used)) static void rv770_calculate_fractional_mpll_feedback_divid
 	*clkfrac = feedback_divider8 % 8;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,24 +100,31 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int memory_clock = 100;
+        
           int reference_clock = 100;
+        
           int gddr5 = 100;
+        
           int _len_dividers0 = 1;
           struct atom_clock_dividers * dividers = (struct atom_clock_dividers *) malloc(_len_dividers0*sizeof(struct atom_clock_dividers));
           for(int _i0 = 0; _i0 < _len_dividers0; _i0++) {
-            dividers[_i0].post_div = ((-2 * (next_i()%2)) + 1) * next_i();
-        dividers[_i0].ref_div = ((-2 * (next_i()%2)) + 1) * next_i();
+              dividers[_i0].post_div = ((-2 * (next_i()%2)) + 1) * next_i();
+          dividers[_i0].ref_div = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_clkf0 = 1;
           int * clkf = (int *) malloc(_len_clkf0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_clkf0; _i0++) {
             clkf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_clkfrac0 = 1;
           int * clkfrac = (int *) malloc(_len_clkfrac0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_clkfrac0; _i0++) {
             clkfrac[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           rv770_calculate_fractional_mpll_feedback_divider(memory_clock,reference_clock,gddr5,dividers,clkf,clkfrac);
           free(dividers);
           free(clkf);
@@ -128,7 +132,114 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int memory_clock = 255;
+        
+          int reference_clock = 255;
+        
+          int gddr5 = 255;
+        
+          int _len_dividers0 = 65025;
+          struct atom_clock_dividers * dividers = (struct atom_clock_dividers *) malloc(_len_dividers0*sizeof(struct atom_clock_dividers));
+          for(int _i0 = 0; _i0 < _len_dividers0; _i0++) {
+              dividers[_i0].post_div = ((-2 * (next_i()%2)) + 1) * next_i();
+          dividers[_i0].ref_div = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_clkf0 = 65025;
+          int * clkf = (int *) malloc(_len_clkf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_clkf0; _i0++) {
+            clkf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_clkfrac0 = 65025;
+          int * clkfrac = (int *) malloc(_len_clkfrac0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_clkfrac0; _i0++) {
+            clkfrac[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          rv770_calculate_fractional_mpll_feedback_divider(memory_clock,reference_clock,gddr5,dividers,clkf,clkfrac);
+          free(dividers);
+          free(clkf);
+          free(clkfrac);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int memory_clock = 10;
+        
+          int reference_clock = 10;
+        
+          int gddr5 = 10;
+        
+          int _len_dividers0 = 100;
+          struct atom_clock_dividers * dividers = (struct atom_clock_dividers *) malloc(_len_dividers0*sizeof(struct atom_clock_dividers));
+          for(int _i0 = 0; _i0 < _len_dividers0; _i0++) {
+              dividers[_i0].post_div = ((-2 * (next_i()%2)) + 1) * next_i();
+          dividers[_i0].ref_div = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_clkf0 = 100;
+          int * clkf = (int *) malloc(_len_clkf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_clkf0; _i0++) {
+            clkf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_clkfrac0 = 100;
+          int * clkfrac = (int *) malloc(_len_clkfrac0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_clkfrac0; _i0++) {
+            clkfrac[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          rv770_calculate_fractional_mpll_feedback_divider(memory_clock,reference_clock,gddr5,dividers,clkf,clkfrac);
+          free(dividers);
+          free(clkf);
+          free(clkfrac);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int memory_clock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int reference_clock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int gddr5 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dividers0 = 1;
+          struct atom_clock_dividers * dividers = (struct atom_clock_dividers *) malloc(_len_dividers0*sizeof(struct atom_clock_dividers));
+          for(int _i0 = 0; _i0 < _len_dividers0; _i0++) {
+              dividers[_i0].post_div = ((-2 * (next_i()%2)) + 1) * next_i();
+          dividers[_i0].ref_div = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_clkf0 = 1;
+          int * clkf = (int *) malloc(_len_clkf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_clkf0; _i0++) {
+            clkf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_clkfrac0 = 1;
+          int * clkfrac = (int *) malloc(_len_clkfrac0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_clkfrac0; _i0++) {
+            clkfrac[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          rv770_calculate_fractional_mpll_feedback_divider(memory_clock,reference_clock,gddr5,dividers,clkf,clkfrac);
+          free(dividers);
+          free(clkf);
+          free(clkfrac);
+        
+        break;
+    }
     default:
         usage();
         break;

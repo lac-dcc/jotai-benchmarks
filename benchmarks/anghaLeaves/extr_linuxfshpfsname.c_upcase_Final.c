@@ -31,7 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline unsigned char upcase(unsigned char *dir, uns
 	return dir[a-128];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,30 +75,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           unsigned char a = 100;
+        
           int _len_dir0 = 1;
           unsigned char * dir = (unsigned char *) malloc(_len_dir0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_dir0; _i0++) {
             dir[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned char benchRet = upcase(dir,a);
           printf("%c\n", (benchRet %26) + 'a'); 
           free(dir);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          unsigned char a = 255;
+        
+          int _len_dir0 = 65025;
+          unsigned char * dir = (unsigned char *) malloc(_len_dir0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_dir0; _i0++) {
+            dir[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned char benchRet = upcase(dir,a);
+          printf("%c\n", (benchRet %26) + 'a'); 
+          free(dir);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           unsigned char a = 10;
+        
           int _len_dir0 = 100;
           unsigned char * dir = (unsigned char *) malloc(_len_dir0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_dir0; _i0++) {
             dir[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned char benchRet = upcase(dir,a);
           printf("%c\n", (benchRet %26) + 'a'); 
           free(dir);

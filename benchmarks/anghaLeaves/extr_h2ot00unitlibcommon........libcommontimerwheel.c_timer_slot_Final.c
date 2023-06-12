@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static size_t timer_slot(size_t wheel, uint64_t expire)
     return H2O_TIMERWHEEL_SLOTS_MASK & (expire >> (wheel * H2O_TIMERWHEEL_BITS_PER_WHEEL));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,7 +81,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long wheel = 100;
+        
           unsigned long expire = 100;
+        
           unsigned long benchRet = timer_slot(wheel,expire);
           printf("%lu\n", benchRet); 
         
@@ -96,7 +93,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long wheel = 255;
+        
           unsigned long expire = 255;
+        
           unsigned long benchRet = timer_slot(wheel,expire);
           printf("%lu\n", benchRet); 
         
@@ -106,13 +105,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long wheel = 10;
+        
           unsigned long expire = 10;
+        
           unsigned long benchRet = timer_slot(wheel,expire);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long wheel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long expire = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = timer_slot(wheel,expire);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

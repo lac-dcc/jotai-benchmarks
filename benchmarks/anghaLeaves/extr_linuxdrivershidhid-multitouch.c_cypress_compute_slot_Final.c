@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static int cypress_compute_slot(struct mt_application *app
 		return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,15 +79,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_application0 = 1;
+          int _len_application0 = 65025;
           struct mt_application * application = (struct mt_application *) malloc(_len_application0*sizeof(struct mt_application));
           for(int _i0 = 0; _i0 < _len_application0; _i0++) {
-            application[_i0].num_received = ((-2 * (next_i()%2)) + 1) * next_i();
+              application[_i0].num_received = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_slot0 = 1;
+        
+          int _len_slot0 = 65025;
           struct mt_usages * slot = (struct mt_usages *) malloc(_len_slot0*sizeof(struct mt_usages));
           for(int _i0 = 0; _i0 < _len_slot0; _i0++) {
               int _len_slot__i0__contactid0 = 1;
@@ -99,7 +97,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_slot__i0__contactid0; _j0++) {
             slot[_i0].contactid[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = cypress_compute_slot(application,slot);
           printf("%d\n", benchRet); 
           free(application);
@@ -110,7 +110,68 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_application0 = 100;
+          struct mt_application * application = (struct mt_application *) malloc(_len_application0*sizeof(struct mt_application));
+          for(int _i0 = 0; _i0 < _len_application0; _i0++) {
+              application[_i0].num_received = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_slot0 = 100;
+          struct mt_usages * slot = (struct mt_usages *) malloc(_len_slot0*sizeof(struct mt_usages));
+          for(int _i0 = 0; _i0 < _len_slot0; _i0++) {
+              int _len_slot__i0__contactid0 = 1;
+          slot[_i0].contactid = (long *) malloc(_len_slot__i0__contactid0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_slot__i0__contactid0; _j0++) {
+            slot[_i0].contactid[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = cypress_compute_slot(application,slot);
+          printf("%d\n", benchRet); 
+          free(application);
+          for(int _aux = 0; _aux < _len_slot0; _aux++) {
+          free(slot[_aux].contactid);
+          }
+          free(slot);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_application0 = 1;
+          struct mt_application * application = (struct mt_application *) malloc(_len_application0*sizeof(struct mt_application));
+          for(int _i0 = 0; _i0 < _len_application0; _i0++) {
+              application[_i0].num_received = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_slot0 = 1;
+          struct mt_usages * slot = (struct mt_usages *) malloc(_len_slot0*sizeof(struct mt_usages));
+          for(int _i0 = 0; _i0 < _len_slot0; _i0++) {
+              int _len_slot__i0__contactid0 = 1;
+          slot[_i0].contactid = (long *) malloc(_len_slot__i0__contactid0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_slot__i0__contactid0; _j0++) {
+            slot[_i0].contactid[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = cypress_compute_slot(application,slot);
+          printf("%d\n", benchRet); 
+          free(application);
+          for(int _aux = 0; _aux < _len_slot0; _aux++) {
+          free(slot[_aux].contactid);
+          }
+          free(slot);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ __attribute__((used)) static int smu8_smu_initialize_toc_empty_job_list(struct p
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,18 +88,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_hwmgr0 = 1;
+          int _len_hwmgr0 = 65025;
           struct pp_hwmgr * hwmgr = (struct pp_hwmgr *) malloc(_len_hwmgr0*sizeof(struct pp_hwmgr));
           for(int _i0 = 0; _i0 < _len_hwmgr0; _i0++) {
               int _len_hwmgr__i0__smu_backend0 = 1;
           hwmgr[_i0].smu_backend = (struct smu8_smumgr *) malloc(_len_hwmgr__i0__smu_backend0*sizeof(struct smu8_smumgr));
           for(int _j0 = 0; _j0 < _len_hwmgr__i0__smu_backend0; _j0++) {
-            hwmgr[_i0].smu_backend->toc_buffer.kaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+              hwmgr[_i0].smu_backend->toc_buffer.kaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           int benchRet = smu8_smu_initialize_toc_empty_job_list(hwmgr);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_hwmgr0; _aux++) {
@@ -113,7 +113,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_hwmgr0 = 100;
+          struct pp_hwmgr * hwmgr = (struct pp_hwmgr *) malloc(_len_hwmgr0*sizeof(struct pp_hwmgr));
+          for(int _i0 = 0; _i0 < _len_hwmgr0; _i0++) {
+              int _len_hwmgr__i0__smu_backend0 = 1;
+          hwmgr[_i0].smu_backend = (struct smu8_smumgr *) malloc(_len_hwmgr__i0__smu_backend0*sizeof(struct smu8_smumgr));
+          for(int _j0 = 0; _j0 < _len_hwmgr__i0__smu_backend0; _j0++) {
+              hwmgr[_i0].smu_backend->toc_buffer.kaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = smu8_smu_initialize_toc_empty_job_list(hwmgr);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hwmgr0; _aux++) {
+          free(hwmgr[_aux].smu_backend);
+          }
+          free(hwmgr);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_hwmgr0 = 1;
+          struct pp_hwmgr * hwmgr = (struct pp_hwmgr *) malloc(_len_hwmgr0*sizeof(struct pp_hwmgr));
+          for(int _i0 = 0; _i0 < _len_hwmgr0; _i0++) {
+              int _len_hwmgr__i0__smu_backend0 = 1;
+          hwmgr[_i0].smu_backend = (struct smu8_smumgr *) malloc(_len_hwmgr__i0__smu_backend0*sizeof(struct smu8_smumgr));
+          for(int _j0 = 0; _j0 < _len_hwmgr__i0__smu_backend0; _j0++) {
+              hwmgr[_i0].smu_backend->toc_buffer.kaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = smu8_smu_initialize_toc_empty_job_list(hwmgr);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hwmgr0; _aux++) {
+          free(hwmgr[_aux].smu_backend);
+          }
+          free(hwmgr);
+        
+        break;
+    }
     default:
         usage();
         break;

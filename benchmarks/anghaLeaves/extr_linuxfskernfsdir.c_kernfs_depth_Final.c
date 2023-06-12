@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -65,7 +66,6 @@ __attribute__((used)) static size_t kernfs_depth(struct kernfs_node *from, struc
 	}
 	return depth;
 }
-
 
 // ------------------------------------------------------------------------- //
 
@@ -117,7 +117,6 @@ void _delete_to(struct kernfs_node *aux_to[], int aux_to_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -130,13 +129,31 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // linked
     case 0:
+    {
+          struct kernfs_node * aux_from[10000];
+          struct kernfs_node * from = _allocate_from(10000, aux_from);
+        
+          struct kernfs_node * aux_to[10000];
+          struct kernfs_node * to = _allocate_to(10000, aux_to);
+        
+          unsigned long benchRet = kernfs_depth(from,to);
+          printf("%lu\n", benchRet); 
+          _delete_from(aux_from, 10000);
+          _delete_to(aux_to, 10000);
+        
+        break;
+    }
+    // empty
+    case 1:
     {
           struct kernfs_node * aux_from[1];
           struct kernfs_node * from = _allocate_from(1, aux_from);
+        
           struct kernfs_node * aux_to[1];
           struct kernfs_node * to = _allocate_to(1, aux_to);
+        
           unsigned long benchRet = kernfs_depth(from,to);
           printf("%lu\n", benchRet); 
           _delete_from(aux_from, 1);
@@ -144,7 +161,6 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +73,6 @@ __attribute__((used)) static unsigned int uds_output_size(unsigned int input, un
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,7 +89,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int input = 100;
+        
           unsigned int ratio = 100;
+        
           unsigned int benchRet = uds_output_size(input,ratio);
           printf("%u\n", benchRet); 
         
@@ -104,7 +101,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int input = 255;
+        
           unsigned int ratio = 255;
+        
           unsigned int benchRet = uds_output_size(input,ratio);
           printf("%u\n", benchRet); 
         
@@ -114,13 +113,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int input = 10;
+        
           unsigned int ratio = 10;
+        
           unsigned int benchRet = uds_output_size(input,ratio);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int input = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int ratio = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = uds_output_size(input,ratio);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

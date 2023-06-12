@@ -59,12 +59,6 @@ __attribute__((used)) static int ecw2cw(int ecw)
 	return (1 << ecw) - 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,12 +75,12 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int ecw = 10;
+        
           int benchRet = ecw2cw(ecw);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

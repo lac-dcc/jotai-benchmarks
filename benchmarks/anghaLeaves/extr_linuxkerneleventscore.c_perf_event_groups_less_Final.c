@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ perf_event_groups_less(struct perf_event *left, struct perf_event *right)
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,21 +85,25 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_left0 = 1;
+          int _len_left0 = 65025;
           struct perf_event * left = (struct perf_event *) malloc(_len_left0*sizeof(struct perf_event));
           for(int _i0 = 0; _i0 < _len_left0; _i0++) {
-            left[_i0].cpu = ((-2 * (next_i()%2)) + 1) * next_i();
-        left[_i0].group_index = ((-2 * (next_i()%2)) + 1) * next_i();
+              left[_i0].cpu = ((-2 * (next_i()%2)) + 1) * next_i();
+          left[_i0].group_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_right0 = 1;
+        
+          int _len_right0 = 65025;
           struct perf_event * right = (struct perf_event *) malloc(_len_right0*sizeof(struct perf_event));
           for(int _i0 = 0; _i0 < _len_right0; _i0++) {
-            right[_i0].cpu = ((-2 * (next_i()%2)) + 1) * next_i();
-        right[_i0].group_index = ((-2 * (next_i()%2)) + 1) * next_i();
+              right[_i0].cpu = ((-2 * (next_i()%2)) + 1) * next_i();
+          right[_i0].group_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = perf_event_groups_less(left,right);
           printf("%d\n", benchRet); 
           free(left);
@@ -111,7 +111,58 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_left0 = 100;
+          struct perf_event * left = (struct perf_event *) malloc(_len_left0*sizeof(struct perf_event));
+          for(int _i0 = 0; _i0 < _len_left0; _i0++) {
+              left[_i0].cpu = ((-2 * (next_i()%2)) + 1) * next_i();
+          left[_i0].group_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_right0 = 100;
+          struct perf_event * right = (struct perf_event *) malloc(_len_right0*sizeof(struct perf_event));
+          for(int _i0 = 0; _i0 < _len_right0; _i0++) {
+              right[_i0].cpu = ((-2 * (next_i()%2)) + 1) * next_i();
+          right[_i0].group_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = perf_event_groups_less(left,right);
+          printf("%d\n", benchRet); 
+          free(left);
+          free(right);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_left0 = 1;
+          struct perf_event * left = (struct perf_event *) malloc(_len_left0*sizeof(struct perf_event));
+          for(int _i0 = 0; _i0 < _len_left0; _i0++) {
+              left[_i0].cpu = ((-2 * (next_i()%2)) + 1) * next_i();
+          left[_i0].group_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_right0 = 1;
+          struct perf_event * right = (struct perf_event *) malloc(_len_right0*sizeof(struct perf_event));
+          for(int _i0 = 0; _i0 < _len_right0; _i0++) {
+              right[_i0].cpu = ((-2 * (next_i()%2)) + 1) * next_i();
+          right[_i0].group_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = perf_event_groups_less(left,right);
+          printf("%d\n", benchRet); 
+          free(left);
+          free(right);
+        
+        break;
+    }
     default:
         usage();
         break;

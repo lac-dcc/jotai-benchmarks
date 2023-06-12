@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ __attribute__((used)) static int64_t get_timeleft(h2o_cache_t *cache, h2o_cache_
     return (int64_t)(ref->at + cache->duration) - now;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,20 +82,198 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           long now = 100;
+        
           int _len_cache0 = 1;
           struct TYPE_5__ * cache = (struct TYPE_5__ *) malloc(_len_cache0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_cache0; _i0++) {
-            cache[_i0].duration = ((-2 * (next_i()%2)) + 1) * next_i();
+              cache[_i0].duration = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_ref0 = 1;
           struct TYPE_6__ * ref = (struct TYPE_6__ *) malloc(_len_ref0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_ref0; _i0++) {
-            ref[_i0].at = ((-2 * (next_i()%2)) + 1) * next_i();
+              ref[_i0].at = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          long benchRet = get_timeleft(cache,ref,now);
+          printf("%ld\n", benchRet); 
+          free(cache);
+          free(ref);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          long now = 255;
+        
+          int _len_cache0 = 65025;
+          struct TYPE_5__ * cache = (struct TYPE_5__ *) malloc(_len_cache0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_cache0; _i0++) {
+              cache[_i0].duration = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ref0 = 65025;
+          struct TYPE_6__ * ref = (struct TYPE_6__ *) malloc(_len_ref0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_ref0; _i0++) {
+              ref[_i0].at = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = get_timeleft(cache,ref,now);
+          printf("%ld\n", benchRet); 
+          free(cache);
+          free(ref);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          long now = 10;
+        
+          int _len_cache0 = 100;
+          struct TYPE_5__ * cache = (struct TYPE_5__ *) malloc(_len_cache0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_cache0; _i0++) {
+              cache[_i0].duration = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ref0 = 100;
+          struct TYPE_6__ * ref = (struct TYPE_6__ *) malloc(_len_ref0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_ref0; _i0++) {
+              ref[_i0].at = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = get_timeleft(cache,ref,now);
+          printf("%ld\n", benchRet); 
+          free(cache);
+          free(ref);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          long now = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cache0 = 1;
+          struct TYPE_5__ * cache = (struct TYPE_5__ *) malloc(_len_cache0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_cache0; _i0++) {
+              cache[_i0].duration = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ref0 = 1;
+          struct TYPE_6__ * ref = (struct TYPE_6__ *) malloc(_len_ref0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_ref0; _i0++) {
+              ref[_i0].at = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           long benchRet = get_timeleft(cache,ref,now);
           printf("%ld\n", benchRet); 
           free(cache);

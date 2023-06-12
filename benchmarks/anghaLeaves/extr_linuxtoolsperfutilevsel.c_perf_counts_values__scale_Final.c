@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +80,6 @@ void perf_counts_values__scale(struct perf_counts_values *count,
 		*pscaled = scaled;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,25 +96,106 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int scale = 100;
+        
           int _len_count0 = 1;
           struct perf_counts_values * count = (struct perf_counts_values *) malloc(_len_count0*sizeof(struct perf_counts_values));
           for(int _i0 = 0; _i0 < _len_count0; _i0++) {
-            count[_i0].run = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        count[_i0].ena = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        count[_i0].val = ((-2 * (next_i()%2)) + 1) * next_i();
+              count[_i0].run = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          count[_i0].ena = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          count[_i0].val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_pscaled0 = 1;
           int * pscaled = (int *) malloc(_len_pscaled0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pscaled0; _i0++) {
             pscaled[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           perf_counts_values__scale(count,scale,pscaled);
           free(count);
           free(pscaled);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int scale = 255;
+        
+          int _len_count0 = 65025;
+          struct perf_counts_values * count = (struct perf_counts_values *) malloc(_len_count0*sizeof(struct perf_counts_values));
+          for(int _i0 = 0; _i0 < _len_count0; _i0++) {
+              count[_i0].run = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          count[_i0].ena = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          count[_i0].val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pscaled0 = 65025;
+          int * pscaled = (int *) malloc(_len_pscaled0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pscaled0; _i0++) {
+            pscaled[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          perf_counts_values__scale(count,scale,pscaled);
+          free(count);
+          free(pscaled);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int scale = 10;
+        
+          int _len_count0 = 100;
+          struct perf_counts_values * count = (struct perf_counts_values *) malloc(_len_count0*sizeof(struct perf_counts_values));
+          for(int _i0 = 0; _i0 < _len_count0; _i0++) {
+              count[_i0].run = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          count[_i0].ena = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          count[_i0].val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pscaled0 = 100;
+          int * pscaled = (int *) malloc(_len_pscaled0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pscaled0; _i0++) {
+            pscaled[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          perf_counts_values__scale(count,scale,pscaled);
+          free(count);
+          free(pscaled);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int scale = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_count0 = 1;
+          struct perf_counts_values * count = (struct perf_counts_values *) malloc(_len_count0*sizeof(struct perf_counts_values));
+          for(int _i0 = 0; _i0 < _len_count0; _i0++) {
+              count[_i0].run = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          count[_i0].ena = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          count[_i0].val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pscaled0 = 1;
+          int * pscaled = (int *) malloc(_len_pscaled0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pscaled0; _i0++) {
+            pscaled[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          perf_counts_values__scale(count,scale,pscaled);
+          free(count);
+          free(pscaled);
+        
+        break;
+    }
     default:
         usage();
         break;

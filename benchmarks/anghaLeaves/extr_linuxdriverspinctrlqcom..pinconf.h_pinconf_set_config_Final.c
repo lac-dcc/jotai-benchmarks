@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +65,6 @@ __attribute__((used)) static inline int pinconf_set_config(struct pinctrl_dev *p
 	return -ENOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,21 +77,202 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           unsigned int pin = 100;
+        
           unsigned long nconfigs = 100;
+        
           int _len_pctldev0 = 1;
           struct pinctrl_dev * pctldev = (struct pinctrl_dev *) malloc(_len_pctldev0*sizeof(struct pinctrl_dev));
           for(int _i0 = 0; _i0 < _len_pctldev0; _i0++) {
-            pctldev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              pctldev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_configs0 = 1;
           unsigned long * configs = (unsigned long *) malloc(_len_configs0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_configs0; _i0++) {
             configs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = pinconf_set_config(pctldev,pin,configs,nconfigs);
+          printf("%d\n", benchRet); 
+          free(pctldev);
+          free(configs);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int pin = 255;
+        
+          unsigned long nconfigs = 255;
+        
+          int _len_pctldev0 = 65025;
+          struct pinctrl_dev * pctldev = (struct pinctrl_dev *) malloc(_len_pctldev0*sizeof(struct pinctrl_dev));
+          for(int _i0 = 0; _i0 < _len_pctldev0; _i0++) {
+              pctldev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_configs0 = 65025;
+          unsigned long * configs = (unsigned long *) malloc(_len_configs0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_configs0; _i0++) {
+            configs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = pinconf_set_config(pctldev,pin,configs,nconfigs);
+          printf("%d\n", benchRet); 
+          free(pctldev);
+          free(configs);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int pin = 10;
+        
+          unsigned long nconfigs = 10;
+        
+          int _len_pctldev0 = 100;
+          struct pinctrl_dev * pctldev = (struct pinctrl_dev *) malloc(_len_pctldev0*sizeof(struct pinctrl_dev));
+          for(int _i0 = 0; _i0 < _len_pctldev0; _i0++) {
+              pctldev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_configs0 = 100;
+          unsigned long * configs = (unsigned long *) malloc(_len_configs0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_configs0; _i0++) {
+            configs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = pinconf_set_config(pctldev,pin,configs,nconfigs);
+          printf("%d\n", benchRet); 
+          free(pctldev);
+          free(configs);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int pin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long nconfigs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pctldev0 = 1;
+          struct pinctrl_dev * pctldev = (struct pinctrl_dev *) malloc(_len_pctldev0*sizeof(struct pinctrl_dev));
+          for(int _i0 = 0; _i0 < _len_pctldev0; _i0++) {
+              pctldev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_configs0 = 1;
+          unsigned long * configs = (unsigned long *) malloc(_len_configs0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_configs0; _i0++) {
+            configs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = pinconf_set_config(pctldev,pin,configs,nconfigs);
           printf("%d\n", benchRet); 
           free(pctldev);

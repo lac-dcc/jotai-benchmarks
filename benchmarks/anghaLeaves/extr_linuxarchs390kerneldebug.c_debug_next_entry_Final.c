@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -92,12 +94,6 @@ out:
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -110,24 +106,158 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_p_info0 = 1;
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_p_info0 = 65025;
           struct TYPE_4__ * p_info = (struct TYPE_4__ *) malloc(_len_p_info0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_p_info0; _i0++) {
-            p_info[_i0].act_entry = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_info[_i0].act_page = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_info[_i0].act_area = ((-2 * (next_i()%2)) + 1) * next_i();
+              p_info[_i0].act_entry = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_info[_i0].act_page = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_info[_i0].act_area = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_p_info__i0__debug_info_snap0 = 1;
           p_info[_i0].debug_info_snap = (struct TYPE_5__ *) malloc(_len_p_info__i0__debug_info_snap0*sizeof(struct TYPE_5__));
           for(int _j0 = 0; _j0 < _len_p_info__i0__debug_info_snap0; _j0++) {
-            p_info[_i0].debug_info_snap->entry_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_info[_i0].debug_info_snap->pages_per_area = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_info[_i0].debug_info_snap->nr_areas = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_info[_i0].debug_info_snap->areas = ((-2 * (next_i()%2)) + 1) * next_i();
+              p_info[_i0].debug_info_snap->entry_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_info[_i0].debug_info_snap->pages_per_area = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_info[_i0].debug_info_snap->nr_areas = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_info[_i0].debug_info_snap->areas = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = debug_next_entry(p_info);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_p_info0; _aux++) {
+          free(p_info[_aux].debug_info_snap);
+          }
+          free(p_info);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_p_info0 = 100;
+          struct TYPE_4__ * p_info = (struct TYPE_4__ *) malloc(_len_p_info0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_p_info0; _i0++) {
+              p_info[_i0].act_entry = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_info[_i0].act_page = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_info[_i0].act_area = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_p_info__i0__debug_info_snap0 = 1;
+          p_info[_i0].debug_info_snap = (struct TYPE_5__ *) malloc(_len_p_info__i0__debug_info_snap0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_p_info__i0__debug_info_snap0; _j0++) {
+              p_info[_i0].debug_info_snap->entry_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_info[_i0].debug_info_snap->pages_per_area = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_info[_i0].debug_info_snap->nr_areas = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_info[_i0].debug_info_snap->areas = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = debug_next_entry(p_info);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_p_info0; _aux++) {
+          free(p_info[_aux].debug_info_snap);
+          }
+          free(p_info);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_p_info0 = 1;
+          struct TYPE_4__ * p_info = (struct TYPE_4__ *) malloc(_len_p_info0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_p_info0; _i0++) {
+              p_info[_i0].act_entry = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_info[_i0].act_page = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_info[_i0].act_area = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_p_info__i0__debug_info_snap0 = 1;
+          p_info[_i0].debug_info_snap = (struct TYPE_5__ *) malloc(_len_p_info__i0__debug_info_snap0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_p_info__i0__debug_info_snap0; _j0++) {
+              p_info[_i0].debug_info_snap->entry_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_info[_i0].debug_info_snap->pages_per_area = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_info[_i0].debug_info_snap->nr_areas = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_info[_i0].debug_info_snap->areas = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = debug_next_entry(p_info);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_p_info0; _aux++) {

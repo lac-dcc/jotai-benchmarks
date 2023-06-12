@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static inline int LSAPI_SetRespStatus_r( LSAPI_Request * p
     return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,11 +88,36 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int code = 100;
+        
           int _len_pReq0 = 1;
           struct TYPE_7__ * pReq = (struct TYPE_7__ *) malloc(_len_pReq0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_pReq0; _i0++) {
-            pReq[_i0].m_respHeader.m_respInfo.m_status = ((-2 * (next_i()%2)) + 1) * next_i();
+              pReq[_i0].m_respHeader.m_respInfo.m_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
+          int benchRet = LSAPI_SetRespStatus_r(pReq,code);
+          printf("%d\n", benchRet); 
+          free(pReq);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int code = 255;
+        
+          int _len_pReq0 = 65025;
+          struct TYPE_7__ * pReq = (struct TYPE_7__ *) malloc(_len_pReq0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_pReq0; _i0++) {
+              pReq[_i0].m_respHeader.m_respInfo.m_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
           int benchRet = LSAPI_SetRespStatus_r(pReq,code);
           printf("%d\n", benchRet); 
           free(pReq);
@@ -104,21 +125,45 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int code = 10;
+        
           int _len_pReq0 = 100;
           struct TYPE_7__ * pReq = (struct TYPE_7__ *) malloc(_len_pReq0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_pReq0; _i0++) {
-            pReq[_i0].m_respHeader.m_respInfo.m_status = ((-2 * (next_i()%2)) + 1) * next_i();
+              pReq[_i0].m_respHeader.m_respInfo.m_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int benchRet = LSAPI_SetRespStatus_r(pReq,code);
           printf("%d\n", benchRet); 
           free(pReq);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pReq0 = 1;
+          struct TYPE_7__ * pReq = (struct TYPE_7__ *) malloc(_len_pReq0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_pReq0; _i0++) {
+              pReq[_i0].m_respHeader.m_respInfo.m_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = LSAPI_SetRespStatus_r(pReq,code);
+          printf("%d\n", benchRet); 
+          free(pReq);
+        
+        break;
+    }
     default:
         usage();
         break;

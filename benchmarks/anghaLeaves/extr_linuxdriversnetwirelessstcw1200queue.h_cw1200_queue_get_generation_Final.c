@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline u8 cw1200_queue_get_generation(u32 packet_id
 	return (packet_id >>  8) & 0xFF;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int packet_id = 100;
+        
           int benchRet = cw1200_queue_get_generation(packet_id);
           printf("%d\n", benchRet); 
         
@@ -94,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int packet_id = 255;
+        
           int benchRet = cw1200_queue_get_generation(packet_id);
           printf("%d\n", benchRet); 
         
@@ -103,12 +100,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int packet_id = 10;
+        
           int benchRet = cw1200_queue_get_generation(packet_id);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int packet_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = cw1200_queue_get_generation(packet_id);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

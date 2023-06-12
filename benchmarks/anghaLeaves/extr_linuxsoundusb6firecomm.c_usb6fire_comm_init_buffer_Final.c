@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -92,12 +93,6 @@ __attribute__((used)) static void usb6fire_comm_init_buffer(u8 *buffer, u8 id, u
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -110,19 +105,96 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int id = 255;
+        
+          int request = 255;
+        
+          int reg = 255;
+        
+          int vl = 255;
+        
+          int vh = 255;
+        
+          int _len_buffer0 = 65025;
+          int * buffer = (int *) malloc(_len_buffer0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_buffer0; _i0++) {
+            buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          usb6fire_comm_init_buffer(buffer,id,request,reg,vl,vh);
+          free(buffer);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int id = 10;
+        
           int request = 10;
+        
           int reg = 10;
+        
           int vl = 10;
+        
           int vh = 10;
+        
           int _len_buffer0 = 100;
           int * buffer = (int *) malloc(_len_buffer0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_buffer0; _i0++) {
             buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           usb6fire_comm_init_buffer(buffer,id,request,reg,vl,vh);
           free(buffer);
         

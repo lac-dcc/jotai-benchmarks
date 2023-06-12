@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ ngx_http_ssi_buffered(ngx_http_request_t *r, ngx_http_ssi_ctx_t *ctx)
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,27 +86,78 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_r0 = 1;
+          int _len_r0 = 65025;
           struct TYPE_6__ * r = (struct TYPE_6__ *) malloc(_len_r0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_r0; _i0++) {
-            r[_i0].buffered = ((-2 * (next_i()%2)) + 1) * next_i();
+              r[_i0].buffered = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_ctx0 = 1;
+        
+          int _len_ctx0 = 65025;
           struct TYPE_5__ * ctx = (struct TYPE_5__ *) malloc(_len_ctx0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
-            ctx[_i0].buf = ((-2 * (next_i()%2)) + 1) * next_i();
-        ctx[_i0].in = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctx[_i0].buf = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].in = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ngx_http_ssi_buffered(r,ctx);
           free(r);
           free(ctx);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_r0 = 100;
+          struct TYPE_6__ * r = (struct TYPE_6__ *) malloc(_len_r0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+              r[_i0].buffered = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ctx0 = 100;
+          struct TYPE_5__ * ctx = (struct TYPE_5__ *) malloc(_len_ctx0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].buf = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].in = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ngx_http_ssi_buffered(r,ctx);
+          free(r);
+          free(ctx);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_r0 = 1;
+          struct TYPE_6__ * r = (struct TYPE_6__ *) malloc(_len_r0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+              r[_i0].buffered = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ctx0 = 1;
+          struct TYPE_5__ * ctx = (struct TYPE_5__ *) malloc(_len_ctx0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].buf = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].in = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ngx_http_ssi_buffered(r,ctx);
+          free(r);
+          free(ctx);
+        
+        break;
+    }
     default:
         usage();
         break;

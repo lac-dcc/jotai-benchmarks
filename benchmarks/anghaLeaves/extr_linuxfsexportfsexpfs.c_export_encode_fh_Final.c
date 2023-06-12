@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -88,12 +90,6 @@ __attribute__((used)) static int export_encode_fh(struct inode *inode, struct fi
 	return type;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,34 +102,203 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_inode0 = 65025;
+          struct inode * inode = (struct inode *) malloc(_len_inode0*sizeof(struct inode));
+          for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
+              inode[_i0].i_generation = ((-2 * (next_i()%2)) + 1) * next_i();
+          inode[_i0].i_ino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fid0 = 65025;
+          struct fid * fid = (struct fid *) malloc(_len_fid0*sizeof(struct fid));
+          for(int _i0 = 0; _i0 < _len_fid0; _i0++) {
+              fid[_i0].i32.parent_gen = ((-2 * (next_i()%2)) + 1) * next_i();
+          fid[_i0].i32.parent_ino = ((-2 * (next_i()%2)) + 1) * next_i();
+          fid[_i0].i32.gen = ((-2 * (next_i()%2)) + 1) * next_i();
+          fid[_i0].i32.ino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_max_len0 = 65025;
+          int * max_len = (int *) malloc(_len_max_len0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_max_len0; _i0++) {
+            max_len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_parent0 = 65025;
+          struct inode * parent = (struct inode *) malloc(_len_parent0*sizeof(struct inode));
+          for(int _i0 = 0; _i0 < _len_parent0; _i0++) {
+              parent[_i0].i_generation = ((-2 * (next_i()%2)) + 1) * next_i();
+          parent[_i0].i_ino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = export_encode_fh(inode,fid,max_len,parent);
+          printf("%d\n", benchRet); 
+          free(inode);
+          free(fid);
+          free(max_len);
+          free(parent);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_inode0 = 100;
+          struct inode * inode = (struct inode *) malloc(_len_inode0*sizeof(struct inode));
+          for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
+              inode[_i0].i_generation = ((-2 * (next_i()%2)) + 1) * next_i();
+          inode[_i0].i_ino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fid0 = 100;
+          struct fid * fid = (struct fid *) malloc(_len_fid0*sizeof(struct fid));
+          for(int _i0 = 0; _i0 < _len_fid0; _i0++) {
+              fid[_i0].i32.parent_gen = ((-2 * (next_i()%2)) + 1) * next_i();
+          fid[_i0].i32.parent_ino = ((-2 * (next_i()%2)) + 1) * next_i();
+          fid[_i0].i32.gen = ((-2 * (next_i()%2)) + 1) * next_i();
+          fid[_i0].i32.ino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_max_len0 = 100;
+          int * max_len = (int *) malloc(_len_max_len0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_max_len0; _i0++) {
+            max_len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_parent0 = 100;
+          struct inode * parent = (struct inode *) malloc(_len_parent0*sizeof(struct inode));
+          for(int _i0 = 0; _i0 < _len_parent0; _i0++) {
+              parent[_i0].i_generation = ((-2 * (next_i()%2)) + 1) * next_i();
+          parent[_i0].i_ino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = export_encode_fh(inode,fid,max_len,parent);
+          printf("%d\n", benchRet); 
+          free(inode);
+          free(fid);
+          free(max_len);
+          free(parent);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int _len_inode0 = 1;
           struct inode * inode = (struct inode *) malloc(_len_inode0*sizeof(struct inode));
           for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
-            inode[_i0].i_generation = ((-2 * (next_i()%2)) + 1) * next_i();
-        inode[_i0].i_ino = ((-2 * (next_i()%2)) + 1) * next_i();
+              inode[_i0].i_generation = ((-2 * (next_i()%2)) + 1) * next_i();
+          inode[_i0].i_ino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_fid0 = 1;
           struct fid * fid = (struct fid *) malloc(_len_fid0*sizeof(struct fid));
           for(int _i0 = 0; _i0 < _len_fid0; _i0++) {
-            fid[_i0].i32.parent_gen = ((-2 * (next_i()%2)) + 1) * next_i();
-        fid[_i0].i32.parent_ino = ((-2 * (next_i()%2)) + 1) * next_i();
-        fid[_i0].i32.gen = ((-2 * (next_i()%2)) + 1) * next_i();
-        fid[_i0].i32.ino = ((-2 * (next_i()%2)) + 1) * next_i();
+              fid[_i0].i32.parent_gen = ((-2 * (next_i()%2)) + 1) * next_i();
+          fid[_i0].i32.parent_ino = ((-2 * (next_i()%2)) + 1) * next_i();
+          fid[_i0].i32.gen = ((-2 * (next_i()%2)) + 1) * next_i();
+          fid[_i0].i32.ino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_max_len0 = 1;
           int * max_len = (int *) malloc(_len_max_len0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_max_len0; _i0++) {
             max_len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_parent0 = 1;
           struct inode * parent = (struct inode *) malloc(_len_parent0*sizeof(struct inode));
           for(int _i0 = 0; _i0 < _len_parent0; _i0++) {
-            parent[_i0].i_generation = ((-2 * (next_i()%2)) + 1) * next_i();
-        parent[_i0].i_ino = ((-2 * (next_i()%2)) + 1) * next_i();
+              parent[_i0].i_generation = ((-2 * (next_i()%2)) + 1) * next_i();
+          parent[_i0].i_ino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = export_encode_fh(inode,fid,max_len,parent);
           printf("%d\n", benchRet); 
           free(inode);

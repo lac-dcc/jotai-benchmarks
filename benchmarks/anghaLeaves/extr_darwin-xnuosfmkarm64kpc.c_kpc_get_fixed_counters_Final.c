@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ kpc_get_fixed_counters(uint64_t *counterv)
 #endif /* !MONOTONIC */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,14 +82,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_counterv0 = 1;
+          int _len_counterv0 = 65025;
           int * counterv = (int *) malloc(_len_counterv0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_counterv0; _i0++) {
             counterv[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = kpc_get_fixed_counters(counterv);
           printf("%d\n", benchRet); 
           free(counterv);
@@ -109,13 +105,28 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_counterv0; _i0++) {
             counterv[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = kpc_get_fixed_counters(counterv);
           printf("%d\n", benchRet); 
           free(counterv);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_counterv0 = 1;
+          int * counterv = (int *) malloc(_len_counterv0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_counterv0; _i0++) {
+            counterv[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = kpc_get_fixed_counters(counterv);
+          printf("%d\n", benchRet); 
+          free(counterv);
+        
+        break;
+    }
     default:
         usage();
         break;

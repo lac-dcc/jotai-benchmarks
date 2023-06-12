@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -72,12 +72,6 @@ __attribute__((used)) static inline fw_port_cap32_t cc_to_fwcap_fec(enum cc_fec 
 	return fw_fec;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,16 +84,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum cc_fec cc_fec = 0;
+        
           int benchRet = cc_to_fwcap_fec(cc_fec);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

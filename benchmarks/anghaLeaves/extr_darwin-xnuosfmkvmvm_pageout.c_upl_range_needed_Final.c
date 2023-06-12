@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -84,12 +87,6 @@ upl_range_needed(
 		user_page_list[index++].needed = TRUE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,19 +103,82 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int index = 100;
+        
           int count = 100;
+        
           int _len_upl0 = 1;
           struct TYPE_4__ * upl = (struct TYPE_4__ *) malloc(_len_upl0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_upl0; _i0++) {
-            upl[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        upl[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              upl[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          upl[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           upl_range_needed(upl,index,count);
           free(upl);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int index = 255;
+        
+          int count = 255;
+        
+          int _len_upl0 = 65025;
+          struct TYPE_4__ * upl = (struct TYPE_4__ *) malloc(_len_upl0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_upl0; _i0++) {
+              upl[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          upl[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          upl_range_needed(upl,index,count);
+          free(upl);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int index = 10;
+        
+          int count = 10;
+        
+          int _len_upl0 = 100;
+          struct TYPE_4__ * upl = (struct TYPE_4__ *) malloc(_len_upl0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_upl0; _i0++) {
+              upl[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          upl[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          upl_range_needed(upl,index,count);
+          free(upl);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_upl0 = 1;
+          struct TYPE_4__ * upl = (struct TYPE_4__ *) malloc(_len_upl0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_upl0; _i0++) {
+              upl[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          upl[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          upl_range_needed(upl,index,count);
+          free(upl);
+        
+        break;
+    }
     default:
         usage();
         break;

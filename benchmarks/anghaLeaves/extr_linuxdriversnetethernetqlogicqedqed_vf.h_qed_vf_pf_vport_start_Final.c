@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static inline int qed_vf_pf_vport_start(struct qed_hwfn *p
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,40 +85,207 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int vport_id = 100;
+        
           int mtu = 100;
+        
           int inner_vlan_removal = 100;
+        
           enum qed_tpa_mode tpa_mode = 0;
+        
           int max_buffers_per_cqe = 100;
+        
           int only_untagged = 100;
+        
           int _len_p_hwfn0 = 1;
           struct qed_hwfn * p_hwfn = (struct qed_hwfn *) malloc(_len_p_hwfn0*sizeof(struct qed_hwfn));
           for(int _i0 = 0; _i0 < _len_p_hwfn0; _i0++) {
-            p_hwfn[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              p_hwfn[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = qed_vf_pf_vport_start(p_hwfn,vport_id,mtu,inner_vlan_removal,tpa_mode,max_buffers_per_cqe,only_untagged);
           printf("%d\n", benchRet); 
           free(p_hwfn);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
-          int vport_id = 10;
-          int mtu = 10;
-          int inner_vlan_removal = 10;
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int vport_id = 255;
+        
+          int mtu = 255;
+        
+          int inner_vlan_removal = 255;
+        
           enum qed_tpa_mode tpa_mode = 0;
+        
+          int max_buffers_per_cqe = 255;
+        
+          int only_untagged = 255;
+        
+          int _len_p_hwfn0 = 65025;
+          struct qed_hwfn * p_hwfn = (struct qed_hwfn *) malloc(_len_p_hwfn0*sizeof(struct qed_hwfn));
+          for(int _i0 = 0; _i0 < _len_p_hwfn0; _i0++) {
+              p_hwfn[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = qed_vf_pf_vport_start(p_hwfn,vport_id,mtu,inner_vlan_removal,tpa_mode,max_buffers_per_cqe,only_untagged);
+          printf("%d\n", benchRet); 
+          free(p_hwfn);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int vport_id = 10;
+        
+          int mtu = 10;
+        
+          int inner_vlan_removal = 10;
+        
+          enum qed_tpa_mode tpa_mode = 0;
+        
           int max_buffers_per_cqe = 10;
+        
           int only_untagged = 10;
+        
           int _len_p_hwfn0 = 100;
           struct qed_hwfn * p_hwfn = (struct qed_hwfn *) malloc(_len_p_hwfn0*sizeof(struct qed_hwfn));
           for(int _i0 = 0; _i0 < _len_p_hwfn0; _i0++) {
-            p_hwfn[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              p_hwfn[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = qed_vf_pf_vport_start(p_hwfn,vport_id,mtu,inner_vlan_removal,tpa_mode,max_buffers_per_cqe,only_untagged);
+          printf("%d\n", benchRet); 
+          free(p_hwfn);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int vport_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int inner_vlan_removal = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          enum qed_tpa_mode tpa_mode = 0;
+        
+          int max_buffers_per_cqe = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int only_untagged = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_p_hwfn0 = 1;
+          struct qed_hwfn * p_hwfn = (struct qed_hwfn *) malloc(_len_p_hwfn0*sizeof(struct qed_hwfn));
+          for(int _i0 = 0; _i0 < _len_p_hwfn0; _i0++) {
+              p_hwfn[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = qed_vf_pf_vport_start(p_hwfn,vport_id,mtu,inner_vlan_removal,tpa_mode,max_buffers_per_cqe,only_untagged);
           printf("%d\n", benchRet); 
           free(p_hwfn);

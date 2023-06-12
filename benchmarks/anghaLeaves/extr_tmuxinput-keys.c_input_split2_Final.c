@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ input_split2(u_int c, u_char *dst)
 	return (1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,11 +87,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int c = 100;
+        
           int _len_dst0 = 1;
           int * dst = (int *) malloc(_len_dst0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
             dst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          unsigned long benchRet = input_split2(c,dst);
+          printf("%lu\n", benchRet); 
+          free(dst);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int c = 255;
+        
+          int _len_dst0 = 65025;
+          int * dst = (int *) malloc(_len_dst0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+            dst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           unsigned long benchRet = input_split2(c,dst);
           printf("%lu\n", benchRet); 
           free(dst);
@@ -103,21 +118,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int c = 10;
+        
           int _len_dst0 = 100;
           int * dst = (int *) malloc(_len_dst0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
             dst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned long benchRet = input_split2(c,dst);
           printf("%lu\n", benchRet); 
           free(dst);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int c = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dst0 = 1;
+          int * dst = (int *) malloc(_len_dst0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+            dst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned long benchRet = input_split2(c,dst);
+          printf("%lu\n", benchRet); 
+          free(dst);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static inline void z_erofs_vle_set_workgrp_fmt(
 	grp->flags = fmt | (grp->flags & ~Z_EROFS_VLE_WORKGRP_FMT_MASK);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,29 +78,164 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           unsigned int fmt = 100;
+        
           int _len_grp0 = 1;
           struct z_erofs_vle_workgroup * grp = (struct z_erofs_vle_workgroup *) malloc(_len_grp0*sizeof(struct z_erofs_vle_workgroup));
           for(int _i0 = 0; _i0 < _len_grp0; _i0++) {
-            grp[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              grp[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           z_erofs_vle_set_workgrp_fmt(grp,fmt);
           free(grp);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          unsigned int fmt = 255;
+        
+          int _len_grp0 = 65025;
+          struct z_erofs_vle_workgroup * grp = (struct z_erofs_vle_workgroup *) malloc(_len_grp0*sizeof(struct z_erofs_vle_workgroup));
+          for(int _i0 = 0; _i0 < _len_grp0; _i0++) {
+              grp[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          z_erofs_vle_set_workgrp_fmt(grp,fmt);
+          free(grp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           unsigned int fmt = 10;
+        
           int _len_grp0 = 100;
           struct z_erofs_vle_workgroup * grp = (struct z_erofs_vle_workgroup *) malloc(_len_grp0*sizeof(struct z_erofs_vle_workgroup));
           for(int _i0 = 0; _i0 < _len_grp0; _i0++) {
-            grp[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              grp[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          z_erofs_vle_set_workgrp_fmt(grp,fmt);
+          free(grp);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          unsigned int fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_grp0 = 1;
+          struct z_erofs_vle_workgroup * grp = (struct z_erofs_vle_workgroup *) malloc(_len_grp0*sizeof(struct z_erofs_vle_workgroup));
+          for(int _i0 = 0; _i0 < _len_grp0; _i0++) {
+              grp[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           z_erofs_vle_set_workgrp_fmt(grp,fmt);
           free(grp);
         

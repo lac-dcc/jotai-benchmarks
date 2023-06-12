@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ int stream_file_tell(R_STREAM_FILE *stream_file) {
 	return stream_file->pos;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_stream_file0 = 1;
+          int _len_stream_file0 = 65025;
           struct TYPE_3__ * stream_file = (struct TYPE_3__ *) malloc(_len_stream_file0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_stream_file0; _i0++) {
-            stream_file[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+              stream_file[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = stream_file_tell(stream_file);
           printf("%d\n", benchRet); 
           free(stream_file);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_stream_file0 = 100;
           struct TYPE_3__ * stream_file = (struct TYPE_3__ *) malloc(_len_stream_file0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_stream_file0; _i0++) {
-            stream_file[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+              stream_file[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = stream_file_tell(stream_file);
           printf("%d\n", benchRet); 
           free(stream_file);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_stream_file0 = 1;
+          struct TYPE_3__ * stream_file = (struct TYPE_3__ *) malloc(_len_stream_file0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_stream_file0; _i0++) {
+              stream_file[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = stream_file_tell(stream_file);
+          printf("%d\n", benchRet); 
+          free(stream_file);
+        
+        break;
+    }
     default:
         usage();
         break;

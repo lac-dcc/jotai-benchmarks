@@ -63,12 +63,6 @@ __attribute__((used)) static inline void set_control(int line, int value)
 		control_value &= ~(1 << line);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,12 +79,13 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int line = 10;
+        
           int value = 10;
+        
           set_control(line,value);
         
         break;
     }
-
     default:
         usage();
         break;

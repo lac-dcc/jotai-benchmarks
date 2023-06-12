@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static inline bool kvm_msi_route_invalid(struct kvm *kvm,
 	return kvm->arch.x2apic_format && (e->msi.address_hi & 0xff);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,19 +80,148 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_kvm0 = 65025;
+          struct kvm * kvm = (struct kvm *) malloc(_len_kvm0*sizeof(struct kvm));
+          for(int _i0 = 0; _i0 < _len_kvm0; _i0++) {
+              kvm[_i0].arch.x2apic_format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_e0 = 65025;
+          struct kvm_kernel_irq_routing_entry * e = (struct kvm_kernel_irq_routing_entry *) malloc(_len_e0*sizeof(struct kvm_kernel_irq_routing_entry));
+          for(int _i0 = 0; _i0 < _len_e0; _i0++) {
+              e[_i0].msi.address_hi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = kvm_msi_route_invalid(kvm,e);
+          printf("%d\n", benchRet); 
+          free(kvm);
+          free(e);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_kvm0 = 100;
+          struct kvm * kvm = (struct kvm *) malloc(_len_kvm0*sizeof(struct kvm));
+          for(int _i0 = 0; _i0 < _len_kvm0; _i0++) {
+              kvm[_i0].arch.x2apic_format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_e0 = 100;
+          struct kvm_kernel_irq_routing_entry * e = (struct kvm_kernel_irq_routing_entry *) malloc(_len_e0*sizeof(struct kvm_kernel_irq_routing_entry));
+          for(int _i0 = 0; _i0 < _len_e0; _i0++) {
+              e[_i0].msi.address_hi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = kvm_msi_route_invalid(kvm,e);
+          printf("%d\n", benchRet); 
+          free(kvm);
+          free(e);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_kvm0 = 1;
           struct kvm * kvm = (struct kvm *) malloc(_len_kvm0*sizeof(struct kvm));
           for(int _i0 = 0; _i0 < _len_kvm0; _i0++) {
-            kvm[_i0].arch.x2apic_format = ((-2 * (next_i()%2)) + 1) * next_i();
+              kvm[_i0].arch.x2apic_format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_e0 = 1;
           struct kvm_kernel_irq_routing_entry * e = (struct kvm_kernel_irq_routing_entry *) malloc(_len_e0*sizeof(struct kvm_kernel_irq_routing_entry));
           for(int _i0 = 0; _i0 < _len_e0; _i0++) {
-            e[_i0].msi.address_hi = ((-2 * (next_i()%2)) + 1) * next_i();
+              e[_i0].msi.address_hi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = kvm_msi_route_invalid(kvm,e);
           printf("%d\n", benchRet); 
           free(kvm);

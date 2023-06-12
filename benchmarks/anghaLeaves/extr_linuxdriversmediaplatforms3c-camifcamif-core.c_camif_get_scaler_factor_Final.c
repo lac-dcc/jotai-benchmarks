@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +77,6 @@ __attribute__((used)) static int camif_get_scaler_factor(u32 src, u32 tar, u32 *
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,17 +93,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int src = 100;
+        
           int tar = 100;
+        
           int _len_ratio0 = 1;
           int * ratio = (int *) malloc(_len_ratio0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_ratio0; _i0++) {
             ratio[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_shift0 = 1;
           int * shift = (int *) malloc(_len_shift0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_shift0; _i0++) {
             shift[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = camif_get_scaler_factor(src,tar,ratio,shift);
           printf("%d\n", benchRet); 
           free(ratio);
@@ -114,7 +115,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int src = 255;
+        
+          int tar = 255;
+        
+          int _len_ratio0 = 65025;
+          int * ratio = (int *) malloc(_len_ratio0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ratio0; _i0++) {
+            ratio[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_shift0 = 65025;
+          int * shift = (int *) malloc(_len_shift0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_shift0; _i0++) {
+            shift[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = camif_get_scaler_factor(src,tar,ratio,shift);
+          printf("%d\n", benchRet); 
+          free(ratio);
+          free(shift);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int src = 10;
+        
+          int tar = 10;
+        
+          int _len_ratio0 = 100;
+          int * ratio = (int *) malloc(_len_ratio0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ratio0; _i0++) {
+            ratio[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_shift0 = 100;
+          int * shift = (int *) malloc(_len_shift0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_shift0; _i0++) {
+            shift[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = camif_get_scaler_factor(src,tar,ratio,shift);
+          printf("%d\n", benchRet); 
+          free(ratio);
+          free(shift);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int src = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int tar = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ratio0 = 1;
+          int * ratio = (int *) malloc(_len_ratio0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ratio0; _i0++) {
+            ratio[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_shift0 = 1;
+          int * shift = (int *) malloc(_len_shift0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_shift0; _i0++) {
+            shift[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = camif_get_scaler_factor(src,tar,ratio,shift);
+          printf("%d\n", benchRet); 
+          free(ratio);
+          free(shift);
+        
+        break;
+    }
     default:
         usage();
         break;

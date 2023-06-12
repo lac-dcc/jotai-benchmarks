@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -78,12 +79,6 @@ user_ssize_t uio_resid( uio_t a_uio )
 	return( a_uio->uio_resid_64 );
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,28 +91,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_a_uio0 = 1;
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_a_uio0 = 65025;
           struct TYPE_3__ * a_uio = (struct TYPE_3__ *) malloc(_len_a_uio0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_a_uio0; _i0++) {
-            a_uio[_i0].uio_resid_64 = ((-2 * (next_i()%2)) + 1) * next_i();
+              a_uio[_i0].uio_resid_64 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = uio_resid(a_uio);
           printf("%d\n", benchRet); 
           free(a_uio);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_a_uio0 = 100;
           struct TYPE_3__ * a_uio = (struct TYPE_3__ *) malloc(_len_a_uio0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_a_uio0; _i0++) {
-            a_uio[_i0].uio_resid_64 = ((-2 * (next_i()%2)) + 1) * next_i();
+              a_uio[_i0].uio_resid_64 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = uio_resid(a_uio);
+          printf("%d\n", benchRet); 
+          free(a_uio);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_a_uio0 = 1;
+          struct TYPE_3__ * a_uio = (struct TYPE_3__ *) malloc(_len_a_uio0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_a_uio0; _i0++) {
+              a_uio[_i0].uio_resid_64 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = uio_resid(a_uio);
           printf("%d\n", benchRet); 
           free(a_uio);

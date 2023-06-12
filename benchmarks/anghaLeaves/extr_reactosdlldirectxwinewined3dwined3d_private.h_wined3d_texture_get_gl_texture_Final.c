@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ __attribute__((used)) static inline struct gl_texture *wined3d_texture_get_gl_te
     return srgb ? &texture->texture_srgb : &texture->texture_rgb;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,16 +78,179 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           long srgb = 100;
+        
           int _len_texture0 = 1;
           struct wined3d_texture * texture = (struct wined3d_texture *) malloc(_len_texture0*sizeof(struct wined3d_texture));
           for(int _i0 = 0; _i0 < _len_texture0; _i0++) {
-            texture[_i0].texture_rgb.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-        texture[_i0].texture_srgb.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              texture[_i0].texture_rgb.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          texture[_i0].texture_srgb.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          struct gl_texture * benchRet = wined3d_texture_get_gl_texture(texture,srgb);
+          printf("%d\n", (*benchRet).dummy);
+          free(texture);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          long srgb = 255;
+        
+          int _len_texture0 = 65025;
+          struct wined3d_texture * texture = (struct wined3d_texture *) malloc(_len_texture0*sizeof(struct wined3d_texture));
+          for(int _i0 = 0; _i0 < _len_texture0; _i0++) {
+              texture[_i0].texture_rgb.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          texture[_i0].texture_srgb.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          struct gl_texture * benchRet = wined3d_texture_get_gl_texture(texture,srgb);
+          printf("%d\n", (*benchRet).dummy);
+          free(texture);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          long srgb = 10;
+        
+          int _len_texture0 = 100;
+          struct wined3d_texture * texture = (struct wined3d_texture *) malloc(_len_texture0*sizeof(struct wined3d_texture));
+          for(int _i0 = 0; _i0 < _len_texture0; _i0++) {
+              texture[_i0].texture_rgb.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          texture[_i0].texture_srgb.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          struct gl_texture * benchRet = wined3d_texture_get_gl_texture(texture,srgb);
+          printf("%d\n", (*benchRet).dummy);
+          free(texture);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          long srgb = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_texture0 = 1;
+          struct wined3d_texture * texture = (struct wined3d_texture *) malloc(_len_texture0*sizeof(struct wined3d_texture));
+          for(int _i0 = 0; _i0 < _len_texture0; _i0++) {
+              texture[_i0].texture_rgb.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          texture[_i0].texture_srgb.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           struct gl_texture * benchRet = wined3d_texture_get_gl_texture(texture,srgb);
           printf("%d\n", (*benchRet).dummy);
           free(texture);

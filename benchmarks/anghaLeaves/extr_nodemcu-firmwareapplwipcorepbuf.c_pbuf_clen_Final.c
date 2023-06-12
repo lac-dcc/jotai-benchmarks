@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -69,7 +70,6 @@ pbuf_clen(struct pbuf *p)
   return len;
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct pbuf *_allocate_p(int length, struct pbuf *aux_p[]) {
@@ -97,7 +97,6 @@ void _delete_p(struct pbuf *aux_p[], int aux_p_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -110,11 +109,71 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // linked
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 90009
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 40008
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 40008
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 40008
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 40008
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 50007
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 50007
+          // ------------------------------- 
+
+          struct pbuf * aux_p[10000];
+          struct pbuf * p = _allocate_p(10000, aux_p);
+        
+          long benchRet = pbuf_clen(p);
+          printf("%ld\n", benchRet); 
+          _delete_p(aux_p, 10000);
+        
+        break;
+    }
+
+
+    // empty
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           struct pbuf * aux_p[1];
           struct pbuf * p = _allocate_p(1, aux_p);
+        
           long benchRet = pbuf_clen(p);
           printf("%ld\n", benchRet); 
           _delete_p(aux_p, 1);

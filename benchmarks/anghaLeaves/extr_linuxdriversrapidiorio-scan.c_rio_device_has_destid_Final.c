@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ __attribute__((used)) static int rio_device_has_destid(struct rio_mport *port, i
 	return !!((src_ops | dst_ops) & mask);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,12 +90,36 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int src_ops = 100;
+        
           int dst_ops = 100;
+        
           int _len_port0 = 1;
           struct rio_mport * port = (struct rio_mport *) malloc(_len_port0*sizeof(struct rio_mport));
           for(int _i0 = 0; _i0 < _len_port0; _i0++) {
-            port[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              port[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = rio_device_has_destid(port,src_ops,dst_ops);
+          printf("%d\n", benchRet); 
+          free(port);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int src_ops = 255;
+        
+          int dst_ops = 255;
+        
+          int _len_port0 = 65025;
+          struct rio_mport * port = (struct rio_mport *) malloc(_len_port0*sizeof(struct rio_mport));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              port[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = rio_device_has_destid(port,src_ops,dst_ops);
           printf("%d\n", benchRet); 
           free(port);
@@ -107,22 +127,45 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int src_ops = 10;
+        
           int dst_ops = 10;
+        
           int _len_port0 = 100;
           struct rio_mport * port = (struct rio_mport *) malloc(_len_port0*sizeof(struct rio_mport));
           for(int _i0 = 0; _i0 < _len_port0; _i0++) {
-            port[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              port[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = rio_device_has_destid(port,src_ops,dst_ops);
           printf("%d\n", benchRet); 
           free(port);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int src_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int dst_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_port0 = 1;
+          struct rio_mport * port = (struct rio_mport *) malloc(_len_port0*sizeof(struct rio_mport));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              port[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rio_device_has_destid(port,src_ops,dst_ops);
+          printf("%d\n", benchRet); 
+          free(port);
+        
+        break;
+    }
     default:
         usage();
         break;

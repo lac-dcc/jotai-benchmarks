@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +64,6 @@ __attribute__((used)) static void start_new_sequence(__u32 * start, int *len, __
 	*len = 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,23 +80,94 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int new = 100;
+        
           int _len_start0 = 1;
           int * start = (int *) malloc(_len_start0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_start0; _i0++) {
             start[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_len0 = 1;
           int * len = (int *) malloc(_len_len0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_len0; _i0++) {
             len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           start_new_sequence(start,len,new);
           free(start);
           free(len);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int new = 255;
+        
+          int _len_start0 = 65025;
+          int * start = (int *) malloc(_len_start0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_start0; _i0++) {
+            start[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_len0 = 65025;
+          int * len = (int *) malloc(_len_len0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_len0; _i0++) {
+            len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          start_new_sequence(start,len,new);
+          free(start);
+          free(len);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int new = 10;
+        
+          int _len_start0 = 100;
+          int * start = (int *) malloc(_len_start0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_start0; _i0++) {
+            start[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_len0 = 100;
+          int * len = (int *) malloc(_len_len0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_len0; _i0++) {
+            len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          start_new_sequence(start,len,new);
+          free(start);
+          free(len);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int new = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_start0 = 1;
+          int * start = (int *) malloc(_len_start0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_start0; _i0++) {
+            start[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_len0 = 1;
+          int * len = (int *) malloc(_len_len0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_len0; _i0++) {
+            len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          start_new_sequence(start,len,new);
+          free(start);
+          free(len);
+        
+        break;
+    }
     default:
         usage();
         break;

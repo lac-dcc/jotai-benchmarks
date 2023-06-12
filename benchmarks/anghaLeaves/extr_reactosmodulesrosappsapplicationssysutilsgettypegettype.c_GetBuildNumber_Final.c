@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ GetBuildNumber(BOOL bLocal, LPOSVERSIONINFOEX osvi, LPSERVER_INFO_102 pBuf102)
 	return BuildNum;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,12 +94,36 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int bLocal = 100;
+        
           int pBuf102 = 100;
+        
           int _len_osvi0 = 1;
           struct TYPE_3__ * osvi = (struct TYPE_3__ *) malloc(_len_osvi0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_osvi0; _i0++) {
-            osvi[_i0].dwBuildNumber = ((-2 * (next_i()%2)) + 1) * next_i();
+              osvi[_i0].dwBuildNumber = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = GetBuildNumber(bLocal,osvi,pBuf102);
+          printf("%d\n", benchRet); 
+          free(osvi);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int bLocal = 255;
+        
+          int pBuf102 = 255;
+        
+          int _len_osvi0 = 65025;
+          struct TYPE_3__ * osvi = (struct TYPE_3__ *) malloc(_len_osvi0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_osvi0; _i0++) {
+              osvi[_i0].dwBuildNumber = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = GetBuildNumber(bLocal,osvi,pBuf102);
           printf("%d\n", benchRet); 
           free(osvi);
@@ -111,22 +131,45 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int bLocal = 10;
+        
           int pBuf102 = 10;
+        
           int _len_osvi0 = 100;
           struct TYPE_3__ * osvi = (struct TYPE_3__ *) malloc(_len_osvi0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_osvi0; _i0++) {
-            osvi[_i0].dwBuildNumber = ((-2 * (next_i()%2)) + 1) * next_i();
+              osvi[_i0].dwBuildNumber = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = GetBuildNumber(bLocal,osvi,pBuf102);
           printf("%d\n", benchRet); 
           free(osvi);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int bLocal = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int pBuf102 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_osvi0 = 1;
+          struct TYPE_3__ * osvi = (struct TYPE_3__ *) malloc(_len_osvi0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_osvi0; _i0++) {
+              osvi[_i0].dwBuildNumber = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = GetBuildNumber(bLocal,osvi,pBuf102);
+          printf("%d\n", benchRet); 
+          free(osvi);
+        
+        break;
+    }
     default:
         usage();
         break;

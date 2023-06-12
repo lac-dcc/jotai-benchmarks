@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static bool rpcrdma_results_inline(struct rpcrdma_xprt *r_
 	return rqst->rq_rcv_buf.buflen <= ia->ri_max_inline_read;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,19 +81,148 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_r_xprt0 = 65025;
+          struct rpcrdma_xprt * r_xprt = (struct rpcrdma_xprt *) malloc(_len_r_xprt0*sizeof(struct rpcrdma_xprt));
+          for(int _i0 = 0; _i0 < _len_r_xprt0; _i0++) {
+              r_xprt[_i0].rx_ia.ri_max_inline_read = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_rqst0 = 65025;
+          struct rpc_rqst * rqst = (struct rpc_rqst *) malloc(_len_rqst0*sizeof(struct rpc_rqst));
+          for(int _i0 = 0; _i0 < _len_rqst0; _i0++) {
+              rqst[_i0].rq_rcv_buf.buflen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = rpcrdma_results_inline(r_xprt,rqst);
+          printf("%d\n", benchRet); 
+          free(r_xprt);
+          free(rqst);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_r_xprt0 = 100;
+          struct rpcrdma_xprt * r_xprt = (struct rpcrdma_xprt *) malloc(_len_r_xprt0*sizeof(struct rpcrdma_xprt));
+          for(int _i0 = 0; _i0 < _len_r_xprt0; _i0++) {
+              r_xprt[_i0].rx_ia.ri_max_inline_read = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_rqst0 = 100;
+          struct rpc_rqst * rqst = (struct rpc_rqst *) malloc(_len_rqst0*sizeof(struct rpc_rqst));
+          for(int _i0 = 0; _i0 < _len_rqst0; _i0++) {
+              rqst[_i0].rq_rcv_buf.buflen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = rpcrdma_results_inline(r_xprt,rqst);
+          printf("%d\n", benchRet); 
+          free(r_xprt);
+          free(rqst);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_r_xprt0 = 1;
           struct rpcrdma_xprt * r_xprt = (struct rpcrdma_xprt *) malloc(_len_r_xprt0*sizeof(struct rpcrdma_xprt));
           for(int _i0 = 0; _i0 < _len_r_xprt0; _i0++) {
-            r_xprt[_i0].rx_ia.ri_max_inline_read = ((-2 * (next_i()%2)) + 1) * next_i();
+              r_xprt[_i0].rx_ia.ri_max_inline_read = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_rqst0 = 1;
           struct rpc_rqst * rqst = (struct rpc_rqst *) malloc(_len_rqst0*sizeof(struct rpc_rqst));
           for(int _i0 = 0; _i0 < _len_rqst0; _i0++) {
-            rqst[_i0].rq_rcv_buf.buflen = ((-2 * (next_i()%2)) + 1) * next_i();
+              rqst[_i0].rq_rcv_buf.buflen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = rpcrdma_results_inline(r_xprt,rqst);
           printf("%d\n", benchRet); 
           free(r_xprt);

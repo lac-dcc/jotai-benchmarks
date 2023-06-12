@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -707,12 +709,6 @@ __attribute__((used)) static bool rt5682_readable_register(struct device *dev, u
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -729,11 +725,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int reg = 100;
+        
           int _len_dev0 = 1;
           struct device * dev = (struct device *) malloc(_len_dev0*sizeof(struct device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = rt5682_readable_register(dev,reg);
+          printf("%d\n", benchRet); 
+          free(dev);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned int reg = 255;
+        
+          int _len_dev0 = 65025;
+          struct device * dev = (struct device *) malloc(_len_dev0*sizeof(struct device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = rt5682_readable_register(dev,reg);
           printf("%d\n", benchRet); 
           free(dev);
@@ -741,21 +758,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned int reg = 10;
+        
           int _len_dev0 = 100;
           struct device * dev = (struct device *) malloc(_len_dev0*sizeof(struct device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = rt5682_readable_register(dev,reg);
           printf("%d\n", benchRet); 
           free(dev);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dev0 = 1;
+          struct device * dev = (struct device *) malloc(_len_dev0*sizeof(struct device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rt5682_readable_register(dev,reg);
+          printf("%d\n", benchRet); 
+          free(dev);
+        
+        break;
+    }
     default:
         usage();
         break;

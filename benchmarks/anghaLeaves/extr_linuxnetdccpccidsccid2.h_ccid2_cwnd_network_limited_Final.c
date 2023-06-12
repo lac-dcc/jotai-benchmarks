@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static inline bool ccid2_cwnd_network_limited(struct ccid2
 	return hc->tx_pipe >= hc->tx_cwnd;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,15 +74,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_hc0 = 65025;
+          struct ccid2_hc_tx_sock * hc = (struct ccid2_hc_tx_sock *) malloc(_len_hc0*sizeof(struct ccid2_hc_tx_sock));
+          for(int _i0 = 0; _i0 < _len_hc0; _i0++) {
+              hc[_i0].tx_pipe = ((-2 * (next_i()%2)) + 1) * next_i();
+          hc[_i0].tx_cwnd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ccid2_cwnd_network_limited(hc);
+          printf("%d\n", benchRet); 
+          free(hc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_hc0 = 100;
+          struct ccid2_hc_tx_sock * hc = (struct ccid2_hc_tx_sock *) malloc(_len_hc0*sizeof(struct ccid2_hc_tx_sock));
+          for(int _i0 = 0; _i0 < _len_hc0; _i0++) {
+              hc[_i0].tx_pipe = ((-2 * (next_i()%2)) + 1) * next_i();
+          hc[_i0].tx_cwnd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ccid2_cwnd_network_limited(hc);
+          printf("%d\n", benchRet); 
+          free(hc);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_hc0 = 1;
           struct ccid2_hc_tx_sock * hc = (struct ccid2_hc_tx_sock *) malloc(_len_hc0*sizeof(struct ccid2_hc_tx_sock));
           for(int _i0 = 0; _i0 < _len_hc0; _i0++) {
-            hc[_i0].tx_pipe = ((-2 * (next_i()%2)) + 1) * next_i();
-        hc[_i0].tx_cwnd = ((-2 * (next_i()%2)) + 1) * next_i();
+              hc[_i0].tx_pipe = ((-2 * (next_i()%2)) + 1) * next_i();
+          hc[_i0].tx_cwnd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ccid2_cwnd_network_limited(hc);
           printf("%d\n", benchRet); 
           free(hc);

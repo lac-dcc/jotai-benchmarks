@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ void ASN1_STRING_length_set(ASN1_STRING *x, int len)
     x->length = len;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,31 +81,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int len = 100;
+        
           int _len_x0 = 1;
           struct TYPE_3__ * x = (struct TYPE_3__ *) malloc(_len_x0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_x0; _i0++) {
-            x[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+              x[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          ASN1_STRING_length_set(x,len);
+          free(x);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int len = 255;
+        
+          int _len_x0 = 65025;
+          struct TYPE_3__ * x = (struct TYPE_3__ *) malloc(_len_x0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_x0; _i0++) {
+              x[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           ASN1_STRING_length_set(x,len);
           free(x);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int len = 10;
+        
           int _len_x0 = 100;
           struct TYPE_3__ * x = (struct TYPE_3__ *) malloc(_len_x0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_x0; _i0++) {
-            x[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+              x[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ASN1_STRING_length_set(x,len);
           free(x);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_x0 = 1;
+          struct TYPE_3__ * x = (struct TYPE_3__ *) malloc(_len_x0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_x0; _i0++) {
+              x[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ASN1_STRING_length_set(x,len);
+          free(x);
+        
+        break;
+    }
     default:
         usage();
         break;

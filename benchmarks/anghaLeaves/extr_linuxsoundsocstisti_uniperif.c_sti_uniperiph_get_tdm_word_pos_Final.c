@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -99,12 +101,6 @@ int sti_uniperiph_get_tdm_word_pos(struct uniperif *uni,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -117,21 +113,148 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          int _len_uni0 = 65025;
+          struct uniperif * uni = (struct uniperif *) malloc(_len_uni0*sizeof(struct uniperif));
+          for(int _i0 = 0; _i0 < _len_uni0; _i0++) {
+              uni[_i0].tdm_slot.slot_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          uni[_i0].tdm_slot.slots = ((-2 * (next_i()%2)) + 1) * next_i();
+          uni[_i0].tdm_slot.mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_word_pos0 = 65025;
+          unsigned int * word_pos = (unsigned int *) malloc(_len_word_pos0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_word_pos0; _i0++) {
+            word_pos[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = sti_uniperiph_get_tdm_word_pos(uni,word_pos);
+          printf("%d\n", benchRet); 
+          free(uni);
+          free(word_pos);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          int _len_uni0 = 100;
+          struct uniperif * uni = (struct uniperif *) malloc(_len_uni0*sizeof(struct uniperif));
+          for(int _i0 = 0; _i0 < _len_uni0; _i0++) {
+              uni[_i0].tdm_slot.slot_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          uni[_i0].tdm_slot.slots = ((-2 * (next_i()%2)) + 1) * next_i();
+          uni[_i0].tdm_slot.mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_word_pos0 = 100;
+          unsigned int * word_pos = (unsigned int *) malloc(_len_word_pos0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_word_pos0; _i0++) {
+            word_pos[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = sti_uniperiph_get_tdm_word_pos(uni,word_pos);
+          printf("%d\n", benchRet); 
+          free(uni);
+          free(word_pos);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
           int _len_uni0 = 1;
           struct uniperif * uni = (struct uniperif *) malloc(_len_uni0*sizeof(struct uniperif));
           for(int _i0 = 0; _i0 < _len_uni0; _i0++) {
-            uni[_i0].tdm_slot.slot_width = ((-2 * (next_i()%2)) + 1) * next_i();
-        uni[_i0].tdm_slot.slots = ((-2 * (next_i()%2)) + 1) * next_i();
-        uni[_i0].tdm_slot.mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              uni[_i0].tdm_slot.slot_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          uni[_i0].tdm_slot.slots = ((-2 * (next_i()%2)) + 1) * next_i();
+          uni[_i0].tdm_slot.mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_word_pos0 = 1;
           unsigned int * word_pos = (unsigned int *) malloc(_len_word_pos0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_word_pos0; _i0++) {
             word_pos[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = sti_uniperiph_get_tdm_word_pos(uni,word_pos);
           printf("%d\n", benchRet); 
           free(uni);

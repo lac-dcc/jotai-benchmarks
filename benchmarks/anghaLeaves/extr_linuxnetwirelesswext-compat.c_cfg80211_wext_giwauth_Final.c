@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static int cfg80211_wext_giwauth(struct net_device *dev,
 	return -EOPNOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,29 +81,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dev0 = 1;
+          int _len_dev0 = 65025;
           struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_info0 = 1;
+        
+          int _len_info0 = 65025;
           struct iw_request_info * info = (struct iw_request_info *) malloc(_len_info0*sizeof(struct iw_request_info));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_data0 = 1;
+        
+          int _len_data0 = 65025;
           struct iw_param * data = (struct iw_param *) malloc(_len_data0*sizeof(struct iw_param));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
-            data[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              data[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_extra0 = 1;
+        
+          int _len_extra0 = 65025;
           char * extra = (char *) malloc(_len_extra0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_extra0; _i0++) {
             extra[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = cfg80211_wext_giwauth(dev,info,data,extra);
           printf("%d\n", benchRet); 
           free(dev);
@@ -117,7 +120,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dev0 = 100;
+          struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_info0 = 100;
+          struct iw_request_info * info = (struct iw_request_info *) malloc(_len_info0*sizeof(struct iw_request_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_data0 = 100;
+          struct iw_param * data = (struct iw_param *) malloc(_len_data0*sizeof(struct iw_param));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_extra0 = 100;
+          char * extra = (char *) malloc(_len_extra0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_extra0; _i0++) {
+            extra[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = cfg80211_wext_giwauth(dev,info,data,extra);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(info);
+          free(data);
+          free(extra);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dev0 = 1;
+          struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_info0 = 1;
+          struct iw_request_info * info = (struct iw_request_info *) malloc(_len_info0*sizeof(struct iw_request_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_data0 = 1;
+          struct iw_param * data = (struct iw_param *) malloc(_len_data0*sizeof(struct iw_param));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_extra0 = 1;
+          char * extra = (char *) malloc(_len_extra0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_extra0; _i0++) {
+            extra[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = cfg80211_wext_giwauth(dev,info,data,extra);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(info);
+          free(data);
+          free(extra);
+        
+        break;
+    }
     default:
         usage();
         break;

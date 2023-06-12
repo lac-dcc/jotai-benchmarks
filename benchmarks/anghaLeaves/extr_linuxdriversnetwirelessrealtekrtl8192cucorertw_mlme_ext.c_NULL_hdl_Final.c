@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ u8 NULL_hdl(_adapter *padapter, u8 *pbuf)
 	return H2C_SUCCESS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,19 +76,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_padapter0 = 1;
+          int _len_padapter0 = 65025;
           int * padapter = (int *) malloc(_len_padapter0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
             padapter[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_pbuf0 = 1;
+        
+          int _len_pbuf0 = 65025;
           int * pbuf = (int *) malloc(_len_pbuf0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pbuf0; _i0++) {
             pbuf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = NULL_hdl(padapter,pbuf);
           printf("%d\n", benchRet); 
           free(padapter);
@@ -100,7 +98,50 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_padapter0 = 100;
+          int * padapter = (int *) malloc(_len_padapter0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
+            padapter[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pbuf0 = 100;
+          int * pbuf = (int *) malloc(_len_pbuf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pbuf0; _i0++) {
+            pbuf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = NULL_hdl(padapter,pbuf);
+          printf("%d\n", benchRet); 
+          free(padapter);
+          free(pbuf);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_padapter0 = 1;
+          int * padapter = (int *) malloc(_len_padapter0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
+            padapter[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pbuf0 = 1;
+          int * pbuf = (int *) malloc(_len_pbuf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pbuf0; _i0++) {
+            pbuf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = NULL_hdl(padapter,pbuf);
+          printf("%d\n", benchRet); 
+          free(padapter);
+          free(pbuf);
+        
+        break;
+    }
     default:
         usage();
         break;

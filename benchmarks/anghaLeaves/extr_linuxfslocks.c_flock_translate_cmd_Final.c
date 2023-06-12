@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -79,12 +80,6 @@ __attribute__((used)) static inline int flock_translate_cmd(int cmd) {
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,6 +96,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int cmd = 100;
+        
           int benchRet = flock_translate_cmd(cmd);
           printf("%d\n", benchRet); 
         
@@ -110,6 +106,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int cmd = 255;
+        
           int benchRet = flock_translate_cmd(cmd);
           printf("%d\n", benchRet); 
         
@@ -119,12 +116,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int cmd = 10;
+        
           int benchRet = flock_translate_cmd(cmd);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = flock_translate_cmd(cmd);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

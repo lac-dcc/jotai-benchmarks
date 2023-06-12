@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ int r_coff_is_stripped(struct r_bin_coff_obj *obj) {
 		COFF_FLAGS_TI_F_LNNO | COFF_FLAGS_TI_F_LSYMS));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,28 +79,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_obj0 = 1;
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_obj0 = 65025;
           struct r_bin_coff_obj * obj = (struct r_bin_coff_obj *) malloc(_len_obj0*sizeof(struct r_bin_coff_obj));
           for(int _i0 = 0; _i0 < _len_obj0; _i0++) {
-            obj[_i0].hdr.f_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              obj[_i0].hdr.f_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = r_coff_is_stripped(obj);
           printf("%d\n", benchRet); 
           free(obj);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_obj0 = 100;
           struct r_bin_coff_obj * obj = (struct r_bin_coff_obj *) malloc(_len_obj0*sizeof(struct r_bin_coff_obj));
           for(int _i0 = 0; _i0 < _len_obj0; _i0++) {
-            obj[_i0].hdr.f_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              obj[_i0].hdr.f_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = r_coff_is_stripped(obj);
+          printf("%d\n", benchRet); 
+          free(obj);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_obj0 = 1;
+          struct r_bin_coff_obj * obj = (struct r_bin_coff_obj *) malloc(_len_obj0*sizeof(struct r_bin_coff_obj));
+          for(int _i0 = 0; _i0 < _len_obj0; _i0++) {
+              obj[_i0].hdr.f_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = r_coff_is_stripped(obj);
           printf("%d\n", benchRet); 
           free(obj);

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ __attribute__((used)) static int hdmi_get_pin_cvt_mux(struct hdmi_spec *spec,
 	return mux_idx;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,21 +87,26 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long cvt_nid = 100;
+        
           int _len_spec0 = 1;
           struct hdmi_spec * spec = (struct hdmi_spec *) malloc(_len_spec0*sizeof(struct hdmi_spec));
           for(int _i0 = 0; _i0 < _len_spec0; _i0++) {
-            spec[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              spec[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_per_pin0 = 1;
           struct hdmi_spec_per_pin * per_pin = (struct hdmi_spec_per_pin *) malloc(_len_per_pin0*sizeof(struct hdmi_spec_per_pin));
           for(int _i0 = 0; _i0 < _len_per_pin0; _i0++) {
-            per_pin[_i0].num_mux_nids = ((-2 * (next_i()%2)) + 1) * next_i();
+              per_pin[_i0].num_mux_nids = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_per_pin__i0__mux_nids0 = 1;
           per_pin[_i0].mux_nids = (long *) malloc(_len_per_pin__i0__mux_nids0*sizeof(long));
           for(int _j0 = 0; _j0 < _len_per_pin__i0__mux_nids0; _j0++) {
             per_pin[_i0].mux_nids[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = hdmi_get_pin_cvt_mux(spec,per_pin,cvt_nid);
           printf("%d\n", benchRet); 
           free(spec);
@@ -115,7 +117,108 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long cvt_nid = 255;
+        
+          int _len_spec0 = 65025;
+          struct hdmi_spec * spec = (struct hdmi_spec *) malloc(_len_spec0*sizeof(struct hdmi_spec));
+          for(int _i0 = 0; _i0 < _len_spec0; _i0++) {
+              spec[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_per_pin0 = 65025;
+          struct hdmi_spec_per_pin * per_pin = (struct hdmi_spec_per_pin *) malloc(_len_per_pin0*sizeof(struct hdmi_spec_per_pin));
+          for(int _i0 = 0; _i0 < _len_per_pin0; _i0++) {
+              per_pin[_i0].num_mux_nids = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_per_pin__i0__mux_nids0 = 1;
+          per_pin[_i0].mux_nids = (long *) malloc(_len_per_pin__i0__mux_nids0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_per_pin__i0__mux_nids0; _j0++) {
+            per_pin[_i0].mux_nids[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = hdmi_get_pin_cvt_mux(spec,per_pin,cvt_nid);
+          printf("%d\n", benchRet); 
+          free(spec);
+          for(int _aux = 0; _aux < _len_per_pin0; _aux++) {
+          free(per_pin[_aux].mux_nids);
+          }
+          free(per_pin);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long cvt_nid = 10;
+        
+          int _len_spec0 = 100;
+          struct hdmi_spec * spec = (struct hdmi_spec *) malloc(_len_spec0*sizeof(struct hdmi_spec));
+          for(int _i0 = 0; _i0 < _len_spec0; _i0++) {
+              spec[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_per_pin0 = 100;
+          struct hdmi_spec_per_pin * per_pin = (struct hdmi_spec_per_pin *) malloc(_len_per_pin0*sizeof(struct hdmi_spec_per_pin));
+          for(int _i0 = 0; _i0 < _len_per_pin0; _i0++) {
+              per_pin[_i0].num_mux_nids = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_per_pin__i0__mux_nids0 = 1;
+          per_pin[_i0].mux_nids = (long *) malloc(_len_per_pin__i0__mux_nids0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_per_pin__i0__mux_nids0; _j0++) {
+            per_pin[_i0].mux_nids[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = hdmi_get_pin_cvt_mux(spec,per_pin,cvt_nid);
+          printf("%d\n", benchRet); 
+          free(spec);
+          for(int _aux = 0; _aux < _len_per_pin0; _aux++) {
+          free(per_pin[_aux].mux_nids);
+          }
+          free(per_pin);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long cvt_nid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_spec0 = 1;
+          struct hdmi_spec * spec = (struct hdmi_spec *) malloc(_len_spec0*sizeof(struct hdmi_spec));
+          for(int _i0 = 0; _i0 < _len_spec0; _i0++) {
+              spec[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_per_pin0 = 1;
+          struct hdmi_spec_per_pin * per_pin = (struct hdmi_spec_per_pin *) malloc(_len_per_pin0*sizeof(struct hdmi_spec_per_pin));
+          for(int _i0 = 0; _i0 < _len_per_pin0; _i0++) {
+              per_pin[_i0].num_mux_nids = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_per_pin__i0__mux_nids0 = 1;
+          per_pin[_i0].mux_nids = (long *) malloc(_len_per_pin__i0__mux_nids0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_per_pin__i0__mux_nids0; _j0++) {
+            per_pin[_i0].mux_nids[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = hdmi_get_pin_cvt_mux(spec,per_pin,cvt_nid);
+          printf("%d\n", benchRet); 
+          free(spec);
+          for(int _aux = 0; _aux < _len_per_pin0; _aux++) {
+          free(per_pin[_aux].mux_nids);
+          }
+          free(per_pin);
+        
+        break;
+    }
     default:
         usage();
         break;

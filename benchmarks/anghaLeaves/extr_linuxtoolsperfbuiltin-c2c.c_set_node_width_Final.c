@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ __attribute__((used)) static void set_node_width(struct c2c_hist_entry *c2c_he, 
 		dim->width = len;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,10 +87,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int len = 100;
+        
           int _len_c2c_he0 = 1;
           struct c2c_hist_entry * c2c_he = (struct c2c_hist_entry *) malloc(_len_c2c_he0*sizeof(struct c2c_hist_entry));
           for(int _i0 = 0; _i0 < _len_c2c_he0; _i0++) {
@@ -102,7 +123,153 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_c2c_he__i0__hists0; _j0++) {
             c2c_he[_i0].hists[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          set_node_width(c2c_he,len);
+          for(int _aux = 0; _aux < _len_c2c_he0; _aux++) {
+          free(c2c_he[_aux].hists);
+          }
+          free(c2c_he);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int len = 255;
+        
+          int _len_c2c_he0 = 65025;
+          struct c2c_hist_entry * c2c_he = (struct c2c_hist_entry *) malloc(_len_c2c_he0*sizeof(struct c2c_hist_entry));
+          for(int _i0 = 0; _i0 < _len_c2c_he0; _i0++) {
+              int _len_c2c_he__i0__hists0 = 1;
+          c2c_he[_i0].hists = (int *) malloc(_len_c2c_he__i0__hists0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_c2c_he__i0__hists0; _j0++) {
+            c2c_he[_i0].hists[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          set_node_width(c2c_he,len);
+          for(int _aux = 0; _aux < _len_c2c_he0; _aux++) {
+          free(c2c_he[_aux].hists);
+          }
+          free(c2c_he);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int len = 10;
+        
+          int _len_c2c_he0 = 100;
+          struct c2c_hist_entry * c2c_he = (struct c2c_hist_entry *) malloc(_len_c2c_he0*sizeof(struct c2c_hist_entry));
+          for(int _i0 = 0; _i0 < _len_c2c_he0; _i0++) {
+              int _len_c2c_he__i0__hists0 = 1;
+          c2c_he[_i0].hists = (int *) malloc(_len_c2c_he__i0__hists0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_c2c_he__i0__hists0; _j0++) {
+            c2c_he[_i0].hists[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          set_node_width(c2c_he,len);
+          for(int _aux = 0; _aux < _len_c2c_he0; _aux++) {
+          free(c2c_he[_aux].hists);
+          }
+          free(c2c_he);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_c2c_he0 = 1;
+          struct c2c_hist_entry * c2c_he = (struct c2c_hist_entry *) malloc(_len_c2c_he0*sizeof(struct c2c_hist_entry));
+          for(int _i0 = 0; _i0 < _len_c2c_he0; _i0++) {
+              int _len_c2c_he__i0__hists0 = 1;
+          c2c_he[_i0].hists = (int *) malloc(_len_c2c_he__i0__hists0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_c2c_he__i0__hists0; _j0++) {
+            c2c_he[_i0].hists[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           set_node_width(c2c_he,len);
           for(int _aux = 0; _aux < _len_c2c_he0; _aux++) {
           free(c2c_he[_aux].hists);

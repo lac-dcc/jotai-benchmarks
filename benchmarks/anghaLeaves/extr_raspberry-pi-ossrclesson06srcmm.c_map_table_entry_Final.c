@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ void map_table_entry(unsigned long *pte, unsigned long va, unsigned long pa) {
 	pte[index] = entry;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,22 +77,42 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          unsigned long va = 10;
-          unsigned long pa = 10;
-          int _len_pte0 = 100;
+          unsigned long va = 255;
+        
+          unsigned long pa = 255;
+        
+          int _len_pte0 = 65025;
           unsigned long * pte = (unsigned long *) malloc(_len_pte0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_pte0; _i0++) {
             pte[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           map_table_entry(pte,va,pa);
           free(pte);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          unsigned long va = 10;
+        
+          unsigned long pa = 10;
+        
+          int _len_pte0 = 100;
+          unsigned long * pte = (unsigned long *) malloc(_len_pte0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_pte0; _i0++) {
+            pte[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          map_table_entry(pte,va,pa);
+          free(pte);
+        
+        break;
+    }
     default:
         usage();
         break;

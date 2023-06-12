@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ u64 mlx4_mtt_addr(struct mlx4_dev *dev, struct mlx4_mtt *mtt)
 	return (u64) mtt->offset * dev->caps.mtt_entry_sz;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,19 +78,24 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dev0 = 1;
+          int _len_dev0 = 65025;
           struct mlx4_dev * dev = (struct mlx4_dev *) malloc(_len_dev0*sizeof(struct mlx4_dev));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].caps.mtt_entry_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].caps.mtt_entry_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-          int _len_mtt0 = 1;
+        
+          int _len_mtt0 = 65025;
           struct mlx4_mtt * mtt = (struct mlx4_mtt *) malloc(_len_mtt0*sizeof(struct mlx4_mtt));
           for(int _i0 = 0; _i0 < _len_mtt0; _i0++) {
-            mtt[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              mtt[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mlx4_mtt_addr(dev,mtt);
           printf("%d\n", benchRet); 
           free(dev);
@@ -102,7 +103,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dev0 = 100;
+          struct mlx4_dev * dev = (struct mlx4_dev *) malloc(_len_dev0*sizeof(struct mlx4_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].caps.mtt_entry_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_mtt0 = 100;
+          struct mlx4_mtt * mtt = (struct mlx4_mtt *) malloc(_len_mtt0*sizeof(struct mlx4_mtt));
+          for(int _i0 = 0; _i0 < _len_mtt0; _i0++) {
+              mtt[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mlx4_mtt_addr(dev,mtt);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(mtt);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dev0 = 1;
+          struct mlx4_dev * dev = (struct mlx4_dev *) malloc(_len_dev0*sizeof(struct mlx4_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].caps.mtt_entry_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_mtt0 = 1;
+          struct mlx4_mtt * mtt = (struct mlx4_mtt *) malloc(_len_mtt0*sizeof(struct mlx4_mtt));
+          for(int _i0 = 0; _i0 < _len_mtt0; _i0++) {
+              mtt[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mlx4_mtt_addr(dev,mtt);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(mtt);
+        
+        break;
+    }
     default:
         usage();
         break;

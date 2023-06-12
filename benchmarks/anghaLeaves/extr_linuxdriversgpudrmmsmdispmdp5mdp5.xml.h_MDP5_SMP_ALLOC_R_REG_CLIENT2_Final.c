@@ -64,12 +64,6 @@ __attribute__((used)) static inline uint32_t MDP5_SMP_ALLOC_R_REG_CLIENT2(uint32
 	return ((val) << MDP5_SMP_ALLOC_R_REG_CLIENT2__SHIFT) & MDP5_SMP_ALLOC_R_REG_CLIENT2__MASK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int val = 100;
+        
           int benchRet = MDP5_SMP_ALLOC_R_REG_CLIENT2(val);
           printf("%d\n", benchRet); 
         
@@ -95,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int val = 255;
+        
           int benchRet = MDP5_SMP_ALLOC_R_REG_CLIENT2(val);
           printf("%d\n", benchRet); 
         
@@ -104,12 +100,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int val = 10;
+        
           int benchRet = MDP5_SMP_ALLOC_R_REG_CLIENT2(val);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

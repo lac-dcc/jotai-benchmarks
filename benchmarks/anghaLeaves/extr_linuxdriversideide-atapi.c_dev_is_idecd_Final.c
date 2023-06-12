@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static inline int dev_is_idecd(ide_drive_t *drive)
 	return drive->media == ide_cdrom || drive->media == ide_optical;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,14 +78,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_drive0 = 1;
+          int _len_drive0 = 65025;
           struct TYPE_3__ * drive = (struct TYPE_3__ *) malloc(_len_drive0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_drive0; _i0++) {
-            drive[_i0].media = ((-2 * (next_i()%2)) + 1) * next_i();
+              drive[_i0].media = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dev_is_idecd(drive);
           printf("%d\n", benchRet); 
           free(drive);
@@ -103,15 +100,32 @@ int main(int argc, char *argv[]) {
           int _len_drive0 = 100;
           struct TYPE_3__ * drive = (struct TYPE_3__ *) malloc(_len_drive0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_drive0; _i0++) {
-            drive[_i0].media = ((-2 * (next_i()%2)) + 1) * next_i();
+              drive[_i0].media = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dev_is_idecd(drive);
           printf("%d\n", benchRet); 
           free(drive);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_drive0 = 1;
+          struct TYPE_3__ * drive = (struct TYPE_3__ *) malloc(_len_drive0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_drive0; _i0++) {
+              drive[_i0].media = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dev_is_idecd(drive);
+          printf("%d\n", benchRet); 
+          free(drive);
+        
+        break;
+    }
     default:
         usage();
         break;

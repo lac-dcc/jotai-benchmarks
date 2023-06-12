@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static void fib_dealloc(struct fib * fibptr)
 	hw_fib->header.XferState = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,18 +78,141 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_fibptr0 = 65025;
+          struct fib * fibptr = (struct fib *) malloc(_len_fibptr0*sizeof(struct fib));
+          for(int _i0 = 0; _i0 < _len_fibptr0; _i0++) {
+              int _len_fibptr__i0__hw_fib_va0 = 1;
+          fibptr[_i0].hw_fib_va = (struct hw_fib *) malloc(_len_fibptr__i0__hw_fib_va0*sizeof(struct hw_fib));
+          for(int _j0 = 0; _j0 < _len_fibptr__i0__hw_fib_va0; _j0++) {
+              fibptr[_i0].hw_fib_va->header.XferState = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          fib_dealloc(fibptr);
+          for(int _aux = 0; _aux < _len_fibptr0; _aux++) {
+          free(fibptr[_aux].hw_fib_va);
+          }
+          free(fibptr);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_fibptr0 = 100;
+          struct fib * fibptr = (struct fib *) malloc(_len_fibptr0*sizeof(struct fib));
+          for(int _i0 = 0; _i0 < _len_fibptr0; _i0++) {
+              int _len_fibptr__i0__hw_fib_va0 = 1;
+          fibptr[_i0].hw_fib_va = (struct hw_fib *) malloc(_len_fibptr__i0__hw_fib_va0*sizeof(struct hw_fib));
+          for(int _j0 = 0; _j0 < _len_fibptr__i0__hw_fib_va0; _j0++) {
+              fibptr[_i0].hw_fib_va->header.XferState = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          fib_dealloc(fibptr);
+          for(int _aux = 0; _aux < _len_fibptr0; _aux++) {
+          free(fibptr[_aux].hw_fib_va);
+          }
+          free(fibptr);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_fibptr0 = 1;
           struct fib * fibptr = (struct fib *) malloc(_len_fibptr0*sizeof(struct fib));
           for(int _i0 = 0; _i0 < _len_fibptr0; _i0++) {
               int _len_fibptr__i0__hw_fib_va0 = 1;
           fibptr[_i0].hw_fib_va = (struct hw_fib *) malloc(_len_fibptr__i0__hw_fib_va0*sizeof(struct hw_fib));
           for(int _j0 = 0; _j0 < _len_fibptr__i0__hw_fib_va0; _j0++) {
-            fibptr[_i0].hw_fib_va->header.XferState = ((-2 * (next_i()%2)) + 1) * next_i();
+              fibptr[_i0].hw_fib_va->header.XferState = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           fib_dealloc(fibptr);
           for(int _aux = 0; _aux < _len_fibptr0; _aux++) {
           free(fibptr[_aux].hw_fib_va);

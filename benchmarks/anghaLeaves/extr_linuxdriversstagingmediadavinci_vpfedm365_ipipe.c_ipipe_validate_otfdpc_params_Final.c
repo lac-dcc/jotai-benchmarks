@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -108,12 +110,6 @@ __attribute__((used)) static int ipipe_validate_otfdpc_params(struct vpfe_ipipe_
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -126,32 +122,188 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 53
+          // dynamic_instructions_O0 : 53
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
+          int _len_dpc_param0 = 65025;
+          struct vpfe_ipipe_otfdpc * dpc_param = (struct vpfe_ipipe_otfdpc *) malloc(_len_dpc_param0*sizeof(struct vpfe_ipipe_otfdpc));
+          for(int _i0 = 0; _i0 < _len_dpc_param0; _i0++) {
+              dpc_param[_i0].en = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_3_0.act_adj_shf = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_3_0.det_thr = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_3_0.det_slp = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_3_0.det_thr_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_3_0.det_thr_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_3_0.corr_thr = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_3_0.corr_slp = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_3_0.corr_thr_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_3_0.corr_thr_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          dpc_param[_i0].alg_cfg.dpc_2_0.corr_thr.r = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_2_0.corr_thr.gr = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_2_0.corr_thr.gb = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_2_0.corr_thr.b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          dpc_param[_i0].alg_cfg.dpc_2_0.det_thr.r = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_2_0.det_thr.gr = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_2_0.det_thr.gb = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_2_0.det_thr.b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
+          }
+        
+          int benchRet = ipipe_validate_otfdpc_params(dpc_param);
+          printf("%d\n", benchRet); 
+          free(dpc_param);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 53
+          // dynamic_instructions_O0 : 53
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
+          int _len_dpc_param0 = 100;
+          struct vpfe_ipipe_otfdpc * dpc_param = (struct vpfe_ipipe_otfdpc *) malloc(_len_dpc_param0*sizeof(struct vpfe_ipipe_otfdpc));
+          for(int _i0 = 0; _i0 < _len_dpc_param0; _i0++) {
+              dpc_param[_i0].en = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_3_0.act_adj_shf = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_3_0.det_thr = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_3_0.det_slp = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_3_0.det_thr_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_3_0.det_thr_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_3_0.corr_thr = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_3_0.corr_slp = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_3_0.corr_thr_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_3_0.corr_thr_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          dpc_param[_i0].alg_cfg.dpc_2_0.corr_thr.r = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_2_0.corr_thr.gr = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_2_0.corr_thr.gb = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_2_0.corr_thr.b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          dpc_param[_i0].alg_cfg.dpc_2_0.det_thr.r = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_2_0.det_thr.gr = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_2_0.det_thr.gb = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_2_0.det_thr.b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
+          }
+        
+          int benchRet = ipipe_validate_otfdpc_params(dpc_param);
+          printf("%d\n", benchRet); 
+          free(dpc_param);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 53
+          // dynamic_instructions_O0 : 53
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
           int _len_dpc_param0 = 1;
           struct vpfe_ipipe_otfdpc * dpc_param = (struct vpfe_ipipe_otfdpc *) malloc(_len_dpc_param0*sizeof(struct vpfe_ipipe_otfdpc));
           for(int _i0 = 0; _i0 < _len_dpc_param0; _i0++) {
-            dpc_param[_i0].en = ((-2 * (next_i()%2)) + 1) * next_i();
-        dpc_param[_i0].alg = ((-2 * (next_i()%2)) + 1) * next_i();
-        dpc_param[_i0].alg_cfg.dpc_3_0.act_adj_shf = ((-2 * (next_i()%2)) + 1) * next_i();
-        dpc_param[_i0].alg_cfg.dpc_3_0.det_thr = ((-2 * (next_i()%2)) + 1) * next_i();
-        dpc_param[_i0].alg_cfg.dpc_3_0.det_slp = ((-2 * (next_i()%2)) + 1) * next_i();
-        dpc_param[_i0].alg_cfg.dpc_3_0.det_thr_min = ((-2 * (next_i()%2)) + 1) * next_i();
-        dpc_param[_i0].alg_cfg.dpc_3_0.det_thr_max = ((-2 * (next_i()%2)) + 1) * next_i();
-        dpc_param[_i0].alg_cfg.dpc_3_0.corr_thr = ((-2 * (next_i()%2)) + 1) * next_i();
-        dpc_param[_i0].alg_cfg.dpc_3_0.corr_slp = ((-2 * (next_i()%2)) + 1) * next_i();
-        dpc_param[_i0].alg_cfg.dpc_3_0.corr_thr_min = ((-2 * (next_i()%2)) + 1) * next_i();
-        dpc_param[_i0].alg_cfg.dpc_3_0.corr_thr_max = ((-2 * (next_i()%2)) + 1) * next_i();
-        dpc_param[_i0].alg_cfg.dpc_2_0.corr_thr.r = ((-2 * (next_i()%2)) + 1) * next_i();
-        dpc_param[_i0].alg_cfg.dpc_2_0.corr_thr.gr = ((-2 * (next_i()%2)) + 1) * next_i();
-        dpc_param[_i0].alg_cfg.dpc_2_0.corr_thr.gb = ((-2 * (next_i()%2)) + 1) * next_i();
-        dpc_param[_i0].alg_cfg.dpc_2_0.corr_thr.b = ((-2 * (next_i()%2)) + 1) * next_i();
-        dpc_param[_i0].alg_cfg.dpc_2_0.det_thr.r = ((-2 * (next_i()%2)) + 1) * next_i();
-        dpc_param[_i0].alg_cfg.dpc_2_0.det_thr.gr = ((-2 * (next_i()%2)) + 1) * next_i();
-        dpc_param[_i0].alg_cfg.dpc_2_0.det_thr.gb = ((-2 * (next_i()%2)) + 1) * next_i();
-        dpc_param[_i0].alg_cfg.dpc_2_0.det_thr.b = ((-2 * (next_i()%2)) + 1) * next_i();
+              dpc_param[_i0].en = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_3_0.act_adj_shf = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_3_0.det_thr = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_3_0.det_slp = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_3_0.det_thr_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_3_0.det_thr_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_3_0.corr_thr = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_3_0.corr_slp = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_3_0.corr_thr_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_3_0.corr_thr_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          dpc_param[_i0].alg_cfg.dpc_2_0.corr_thr.r = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_2_0.corr_thr.gr = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_2_0.corr_thr.gb = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_2_0.corr_thr.b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          dpc_param[_i0].alg_cfg.dpc_2_0.det_thr.r = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_2_0.det_thr.gr = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_2_0.det_thr.gb = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpc_param[_i0].alg_cfg.dpc_2_0.det_thr.b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
           }
+        
           int benchRet = ipipe_validate_otfdpc_params(dpc_param);
           printf("%d\n", benchRet); 
           free(dpc_param);

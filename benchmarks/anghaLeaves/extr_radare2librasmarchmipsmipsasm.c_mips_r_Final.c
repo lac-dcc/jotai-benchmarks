@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ __attribute__((used)) static int mips_r(ut8 *b, int op, int rs, int rt, int rd, 
 	return 4;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,20 +82,101 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 49
+          // dynamic_instructions_O0 : 49
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 33
+          // dynamic_instructions_Os : 33
+          // ------------------------------- 
+          // static_instructions_Oz : 33
+          // dynamic_instructions_Oz : 33
+          // ------------------------------- 
+
+          int op = 255;
+        
+          int rs = 255;
+        
+          int rt = 255;
+        
+          int rd = 255;
+        
+          int sa = 255;
+        
+          int fun = 255;
+        
+          int _len_b0 = 65025;
+          int * b = (int *) malloc(_len_b0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+            b[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = mips_r(b,op,rs,rt,rd,sa,fun);
+          printf("%d\n", benchRet); 
+          free(b);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 49
+          // dynamic_instructions_O0 : 49
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 33
+          // dynamic_instructions_Os : 33
+          // ------------------------------- 
+          // static_instructions_Oz : 33
+          // dynamic_instructions_Oz : 33
+          // ------------------------------- 
+
           int op = 10;
+        
           int rs = 10;
+        
           int rt = 10;
+        
           int rd = 10;
+        
           int sa = 10;
+        
           int fun = 10;
+        
           int _len_b0 = 100;
           int * b = (int *) malloc(_len_b0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_b0; _i0++) {
             b[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = mips_r(b,op,rs,rt,rd,sa,fun);
           printf("%d\n", benchRet); 
           free(b);

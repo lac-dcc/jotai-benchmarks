@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ int mtd_pairing_groups(struct mtd_info *mtd)
 	return mtd->pairing->ngroups;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,18 +79,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_mtd0 = 1;
+          int _len_mtd0 = 65025;
           struct mtd_info * mtd = (struct mtd_info *) malloc(_len_mtd0*sizeof(struct mtd_info));
           for(int _i0 = 0; _i0 < _len_mtd0; _i0++) {
               int _len_mtd__i0__pairing0 = 1;
           mtd[_i0].pairing = (struct TYPE_2__ *) malloc(_len_mtd__i0__pairing0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_mtd__i0__pairing0; _j0++) {
-            mtd[_i0].pairing->ngroups = ((-2 * (next_i()%2)) + 1) * next_i();
+              mtd[_i0].pairing->ngroups = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = mtd_pairing_groups(mtd);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_mtd0; _aux++) {
@@ -104,7 +103,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_mtd0 = 100;
+          struct mtd_info * mtd = (struct mtd_info *) malloc(_len_mtd0*sizeof(struct mtd_info));
+          for(int _i0 = 0; _i0 < _len_mtd0; _i0++) {
+              int _len_mtd__i0__pairing0 = 1;
+          mtd[_i0].pairing = (struct TYPE_2__ *) malloc(_len_mtd__i0__pairing0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_mtd__i0__pairing0; _j0++) {
+              mtd[_i0].pairing->ngroups = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = mtd_pairing_groups(mtd);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mtd0; _aux++) {
+          free(mtd[_aux].pairing);
+          }
+          free(mtd);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_mtd0 = 1;
+          struct mtd_info * mtd = (struct mtd_info *) malloc(_len_mtd0*sizeof(struct mtd_info));
+          for(int _i0 = 0; _i0 < _len_mtd0; _i0++) {
+              int _len_mtd__i0__pairing0 = 1;
+          mtd[_i0].pairing = (struct TYPE_2__ *) malloc(_len_mtd__i0__pairing0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_mtd__i0__pairing0; _j0++) {
+              mtd[_i0].pairing->ngroups = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = mtd_pairing_groups(mtd);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mtd0; _aux++) {
+          free(mtd[_aux].pairing);
+          }
+          free(mtd);
+        
+        break;
+    }
     default:
         usage();
         break;

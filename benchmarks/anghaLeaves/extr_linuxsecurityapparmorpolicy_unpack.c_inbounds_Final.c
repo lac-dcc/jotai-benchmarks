@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -60,12 +63,6 @@ __attribute__((used)) static bool inbounds(struct aa_ext *e, size_t size)
 	return (size <= e->end - e->pos);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,16 +75,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           unsigned long size = 100;
+        
           int _len_e0 = 1;
           struct aa_ext * e = (struct aa_ext *) malloc(_len_e0*sizeof(struct aa_ext));
           for(int _i0 = 0; _i0 < _len_e0; _i0++) {
-            e[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
-        e[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+              e[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+          e[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = inbounds(e,size);
+          printf("%d\n", benchRet); 
+          free(e);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          unsigned long size = 255;
+        
+          int _len_e0 = 65025;
+          struct aa_ext * e = (struct aa_ext *) malloc(_len_e0*sizeof(struct aa_ext));
+          for(int _i0 = 0; _i0 < _len_e0; _i0++) {
+              e[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+          e[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = inbounds(e,size);
+          printf("%d\n", benchRet); 
+          free(e);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          unsigned long size = 10;
+        
+          int _len_e0 = 100;
+          struct aa_ext * e = (struct aa_ext *) malloc(_len_e0*sizeof(struct aa_ext));
+          for(int _i0 = 0; _i0 < _len_e0; _i0++) {
+              e[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+          e[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = inbounds(e,size);
+          printf("%d\n", benchRet); 
+          free(e);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          unsigned long size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_e0 = 1;
+          struct aa_ext * e = (struct aa_ext *) malloc(_len_e0*sizeof(struct aa_ext));
+          for(int _i0 = 0; _i0 < _len_e0; _i0++) {
+              e[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+          e[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = inbounds(e,size);
           printf("%d\n", benchRet); 
           free(e);

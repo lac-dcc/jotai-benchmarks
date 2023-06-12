@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +76,6 @@ __attribute__((used)) static int get_ramp_delay(int ramp_delay)
 	return cnt;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,6 +92,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int ramp_delay = 100;
+        
           int benchRet = get_ramp_delay(ramp_delay);
           printf("%d\n", benchRet); 
         
@@ -106,6 +102,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int ramp_delay = 255;
+        
           int benchRet = get_ramp_delay(ramp_delay);
           printf("%d\n", benchRet); 
         
@@ -115,12 +112,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int ramp_delay = 10;
+        
           int benchRet = get_ramp_delay(ramp_delay);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int ramp_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = get_ramp_delay(ramp_delay);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

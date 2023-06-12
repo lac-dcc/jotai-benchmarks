@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -123,12 +125,6 @@ ipc_kmsg_copyout_size(
     return send_size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -141,24 +137,29 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_kmsg0 = 1;
+          int _len_kmsg0 = 65025;
           struct TYPE_14__ * kmsg = (struct TYPE_14__ *) malloc(_len_kmsg0*sizeof(struct TYPE_14__));
           for(int _i0 = 0; _i0 < _len_kmsg0; _i0++) {
               int _len_kmsg__i0__ikm_header0 = 1;
           kmsg[_i0].ikm_header = (struct TYPE_10__ *) malloc(_len_kmsg__i0__ikm_header0*sizeof(struct TYPE_10__));
           for(int _j0 = 0; _j0 < _len_kmsg__i0__ikm_header0; _j0++) {
-            kmsg[_i0].ikm_header->msgh_bits = ((-2 * (next_i()%2)) + 1) * next_i();
-        kmsg[_i0].ikm_header->msgh_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              kmsg[_i0].ikm_header->msgh_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+          kmsg[_i0].ikm_header->msgh_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
-          int _len_map0 = 1;
+        
+          int _len_map0 = 65025;
           struct TYPE_11__ * map = (struct TYPE_11__ *) malloc(_len_map0*sizeof(struct TYPE_11__));
           for(int _i0 = 0; _i0 < _len_map0; _i0++) {
-            map[_i0].max_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              map[_i0].max_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ipc_kmsg_copyout_size(kmsg,map);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_kmsg0; _aux++) {
@@ -169,7 +170,72 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_kmsg0 = 100;
+          struct TYPE_14__ * kmsg = (struct TYPE_14__ *) malloc(_len_kmsg0*sizeof(struct TYPE_14__));
+          for(int _i0 = 0; _i0 < _len_kmsg0; _i0++) {
+              int _len_kmsg__i0__ikm_header0 = 1;
+          kmsg[_i0].ikm_header = (struct TYPE_10__ *) malloc(_len_kmsg__i0__ikm_header0*sizeof(struct TYPE_10__));
+          for(int _j0 = 0; _j0 < _len_kmsg__i0__ikm_header0; _j0++) {
+              kmsg[_i0].ikm_header->msgh_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+          kmsg[_i0].ikm_header->msgh_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_map0 = 100;
+          struct TYPE_11__ * map = (struct TYPE_11__ *) malloc(_len_map0*sizeof(struct TYPE_11__));
+          for(int _i0 = 0; _i0 < _len_map0; _i0++) {
+              map[_i0].max_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ipc_kmsg_copyout_size(kmsg,map);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_kmsg0; _aux++) {
+          free(kmsg[_aux].ikm_header);
+          }
+          free(kmsg);
+          free(map);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_kmsg0 = 1;
+          struct TYPE_14__ * kmsg = (struct TYPE_14__ *) malloc(_len_kmsg0*sizeof(struct TYPE_14__));
+          for(int _i0 = 0; _i0 < _len_kmsg0; _i0++) {
+              int _len_kmsg__i0__ikm_header0 = 1;
+          kmsg[_i0].ikm_header = (struct TYPE_10__ *) malloc(_len_kmsg__i0__ikm_header0*sizeof(struct TYPE_10__));
+          for(int _j0 = 0; _j0 < _len_kmsg__i0__ikm_header0; _j0++) {
+              kmsg[_i0].ikm_header->msgh_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+          kmsg[_i0].ikm_header->msgh_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_map0 = 1;
+          struct TYPE_11__ * map = (struct TYPE_11__ *) malloc(_len_map0*sizeof(struct TYPE_11__));
+          for(int _i0 = 0; _i0 < _len_map0; _i0++) {
+              map[_i0].max_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ipc_kmsg_copyout_size(kmsg,map);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_kmsg0; _aux++) {
+          free(kmsg[_aux].ikm_header);
+          }
+          free(kmsg);
+          free(map);
+        
+        break;
+    }
     default:
         usage();
         break;

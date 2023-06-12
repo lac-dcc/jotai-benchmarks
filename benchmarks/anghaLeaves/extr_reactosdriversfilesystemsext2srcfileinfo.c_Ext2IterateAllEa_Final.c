@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ __attribute__((used)) static int Ext2IterateAllEa(struct ext4_xattr_ref *xattr_r
     return EXT4_XATTR_ITERATE_CONT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,10 +84,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int is_last = 100;
+        
           int _len_xattr_ref0 = 1;
           struct ext4_xattr_ref * xattr_ref = (struct ext4_xattr_ref *) malloc(_len_xattr_ref0*sizeof(struct ext4_xattr_ref));
           for(int _i0 = 0; _i0 < _len_xattr_ref0; _i0++) {
@@ -99,13 +120,191 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_xattr_ref__i0__iter_arg0; _j0++) {
             xattr_ref[_i0].iter_arg[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int _len_item0 = 1;
           struct ext4_xattr_item * item = (struct ext4_xattr_item *) malloc(_len_item0*sizeof(struct ext4_xattr_item));
           for(int _i0 = 0; _i0 < _len_item0; _i0++) {
-            item[_i0].name_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        item[_i0].data_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              item[_i0].name_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          item[_i0].data_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = Ext2IterateAllEa(xattr_ref,item,is_last);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_xattr_ref0; _aux++) {
+          free(xattr_ref[_aux].iter_arg);
+          }
+          free(xattr_ref);
+          free(item);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int is_last = 255;
+        
+          int _len_xattr_ref0 = 65025;
+          struct ext4_xattr_ref * xattr_ref = (struct ext4_xattr_ref *) malloc(_len_xattr_ref0*sizeof(struct ext4_xattr_ref));
+          for(int _i0 = 0; _i0 < _len_xattr_ref0; _i0++) {
+              int _len_xattr_ref__i0__iter_arg0 = 1;
+          xattr_ref[_i0].iter_arg = (int *) malloc(_len_xattr_ref__i0__iter_arg0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_xattr_ref__i0__iter_arg0; _j0++) {
+            xattr_ref[_i0].iter_arg[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_item0 = 65025;
+          struct ext4_xattr_item * item = (struct ext4_xattr_item *) malloc(_len_item0*sizeof(struct ext4_xattr_item));
+          for(int _i0 = 0; _i0 < _len_item0; _i0++) {
+              item[_i0].name_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          item[_i0].data_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = Ext2IterateAllEa(xattr_ref,item,is_last);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_xattr_ref0; _aux++) {
+          free(xattr_ref[_aux].iter_arg);
+          }
+          free(xattr_ref);
+          free(item);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int is_last = 10;
+        
+          int _len_xattr_ref0 = 100;
+          struct ext4_xattr_ref * xattr_ref = (struct ext4_xattr_ref *) malloc(_len_xattr_ref0*sizeof(struct ext4_xattr_ref));
+          for(int _i0 = 0; _i0 < _len_xattr_ref0; _i0++) {
+              int _len_xattr_ref__i0__iter_arg0 = 1;
+          xattr_ref[_i0].iter_arg = (int *) malloc(_len_xattr_ref__i0__iter_arg0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_xattr_ref__i0__iter_arg0; _j0++) {
+            xattr_ref[_i0].iter_arg[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_item0 = 100;
+          struct ext4_xattr_item * item = (struct ext4_xattr_item *) malloc(_len_item0*sizeof(struct ext4_xattr_item));
+          for(int _i0 = 0; _i0 < _len_item0; _i0++) {
+              item[_i0].name_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          item[_i0].data_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = Ext2IterateAllEa(xattr_ref,item,is_last);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_xattr_ref0; _aux++) {
+          free(xattr_ref[_aux].iter_arg);
+          }
+          free(xattr_ref);
+          free(item);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int is_last = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_xattr_ref0 = 1;
+          struct ext4_xattr_ref * xattr_ref = (struct ext4_xattr_ref *) malloc(_len_xattr_ref0*sizeof(struct ext4_xattr_ref));
+          for(int _i0 = 0; _i0 < _len_xattr_ref0; _i0++) {
+              int _len_xattr_ref__i0__iter_arg0 = 1;
+          xattr_ref[_i0].iter_arg = (int *) malloc(_len_xattr_ref__i0__iter_arg0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_xattr_ref__i0__iter_arg0; _j0++) {
+            xattr_ref[_i0].iter_arg[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_item0 = 1;
+          struct ext4_xattr_item * item = (struct ext4_xattr_item *) malloc(_len_item0*sizeof(struct ext4_xattr_item));
+          for(int _i0 = 0; _i0 < _len_item0; _i0++) {
+              item[_i0].name_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          item[_i0].data_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = Ext2IterateAllEa(xattr_ref,item,is_last);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_xattr_ref0; _aux++) {

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static void ulite_stop_rx(struct uart_port *port)
 		| ULITE_STATUS_FRAME | ULITE_STATUS_OVERRUN;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,14 +80,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_port0 = 1;
+          int _len_port0 = 65025;
           struct uart_port * port = (struct uart_port *) malloc(_len_port0*sizeof(struct uart_port));
           for(int _i0 = 0; _i0 < _len_port0; _i0++) {
-            port[_i0].ignore_status_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              port[_i0].ignore_status_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ulite_stop_rx(port);
           free(port);
         
@@ -104,14 +101,30 @@ int main(int argc, char *argv[]) {
           int _len_port0 = 100;
           struct uart_port * port = (struct uart_port *) malloc(_len_port0*sizeof(struct uart_port));
           for(int _i0 = 0; _i0 < _len_port0; _i0++) {
-            port[_i0].ignore_status_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              port[_i0].ignore_status_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ulite_stop_rx(port);
           free(port);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_port0 = 1;
+          struct uart_port * port = (struct uart_port *) malloc(_len_port0*sizeof(struct uart_port));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              port[_i0].ignore_status_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ulite_stop_rx(port);
+          free(port);
+        
+        break;
+    }
     default:
         usage();
         break;

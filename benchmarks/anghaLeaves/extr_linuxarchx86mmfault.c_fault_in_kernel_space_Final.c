@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static int fault_in_kernel_space(unsigned long address)
 	return address >= TASK_SIZE_MAX;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long address = 100;
+        
           int benchRet = fault_in_kernel_space(address);
           printf("%d\n", benchRet); 
         
@@ -93,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long address = 255;
+        
           int benchRet = fault_in_kernel_space(address);
           printf("%d\n", benchRet); 
         
@@ -102,12 +99,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long address = 10;
+        
           int benchRet = fault_in_kernel_space(address);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long address = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = fault_in_kernel_space(address);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

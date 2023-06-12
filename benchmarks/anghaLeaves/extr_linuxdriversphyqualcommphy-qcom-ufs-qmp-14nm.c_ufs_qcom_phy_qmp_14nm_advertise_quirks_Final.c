@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ void ufs_qcom_phy_qmp_14nm_advertise_quirks(struct ufs_qcom_phy *phy_common)
 		UFS_QCOM_PHY_QUIRK_HIBERN8_EXIT_AFTER_PHY_PWR_COLLAPSE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,27 +77,117 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_phy_common0 = 1;
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_phy_common0 = 65025;
           struct ufs_qcom_phy * phy_common = (struct ufs_qcom_phy *) malloc(_len_phy_common0*sizeof(struct ufs_qcom_phy));
           for(int _i0 = 0; _i0 < _len_phy_common0; _i0++) {
-            phy_common[_i0].quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+              phy_common[_i0].quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ufs_qcom_phy_qmp_14nm_advertise_quirks(phy_common);
           free(phy_common);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_phy_common0 = 100;
           struct ufs_qcom_phy * phy_common = (struct ufs_qcom_phy *) malloc(_len_phy_common0*sizeof(struct ufs_qcom_phy));
           for(int _i0 = 0; _i0 < _len_phy_common0; _i0++) {
-            phy_common[_i0].quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+              phy_common[_i0].quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          ufs_qcom_phy_qmp_14nm_advertise_quirks(phy_common);
+          free(phy_common);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_phy_common0 = 1;
+          struct ufs_qcom_phy * phy_common = (struct ufs_qcom_phy *) malloc(_len_phy_common0*sizeof(struct ufs_qcom_phy));
+          for(int _i0 = 0; _i0 < _len_phy_common0; _i0++) {
+              phy_common[_i0].quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           ufs_qcom_phy_qmp_14nm_advertise_quirks(phy_common);
           free(phy_common);
         

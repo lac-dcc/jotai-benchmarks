@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ int stb_bitcount(unsigned int a)
    return a & 0xff;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,28 +79,136 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 37
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
           unsigned int a = 100;
+        
           int benchRet = stb_bitcount(a);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 37
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
           unsigned int a = 255;
+        
           int benchRet = stb_bitcount(a);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 37
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
           unsigned int a = 10;
+        
+          int benchRet = stb_bitcount(a);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 37
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
+          unsigned int a = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = stb_bitcount(a);
           printf("%d\n", benchRet); 
         

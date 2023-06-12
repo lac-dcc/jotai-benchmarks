@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static inline unsigned int adfs_readval(unsigned char *p, 
 	return val;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,30 +82,163 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int len = 100;
+        
           int _len_p0 = 1;
           unsigned char * p = (unsigned char *) malloc(_len_p0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
             p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned int benchRet = adfs_readval(p,len);
           printf("%u\n", benchRet); 
           free(p);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int len = 255;
+        
+          int _len_p0 = 65025;
+          unsigned char * p = (unsigned char *) malloc(_len_p0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+            p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned int benchRet = adfs_readval(p,len);
+          printf("%u\n", benchRet); 
+          free(p);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int len = 10;
+        
           int _len_p0 = 100;
           unsigned char * p = (unsigned char *) malloc(_len_p0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
             p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          unsigned int benchRet = adfs_readval(p,len);
+          printf("%u\n", benchRet); 
+          free(p);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_p0 = 1;
+          unsigned char * p = (unsigned char *) malloc(_len_p0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+            p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           unsigned int benchRet = adfs_readval(p,len);
           printf("%u\n", benchRet); 
           free(p);

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline int bd_entry_valid(struct mpx_bd_entry *boun
 	return (__bd_entry & MPX_BOUNDS_TABLE_ENTRY_VALID_BIT);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,28 +76,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_bounds_dir_entry0 = 1;
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_bounds_dir_entry0 = 65025;
           struct mpx_bd_entry * bounds_dir_entry = (struct mpx_bd_entry *) malloc(_len_bounds_dir_entry0*sizeof(struct mpx_bd_entry));
           for(int _i0 = 0; _i0 < _len_bounds_dir_entry0; _i0++) {
-            bounds_dir_entry[_i0].contents = ((-2 * (next_i()%2)) + 1) * next_i();
+              bounds_dir_entry[_i0].contents = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = bd_entry_valid(bounds_dir_entry);
           printf("%d\n", benchRet); 
           free(bounds_dir_entry);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_bounds_dir_entry0 = 100;
           struct mpx_bd_entry * bounds_dir_entry = (struct mpx_bd_entry *) malloc(_len_bounds_dir_entry0*sizeof(struct mpx_bd_entry));
           for(int _i0 = 0; _i0 < _len_bounds_dir_entry0; _i0++) {
-            bounds_dir_entry[_i0].contents = ((-2 * (next_i()%2)) + 1) * next_i();
+              bounds_dir_entry[_i0].contents = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = bd_entry_valid(bounds_dir_entry);
+          printf("%d\n", benchRet); 
+          free(bounds_dir_entry);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_bounds_dir_entry0 = 1;
+          struct mpx_bd_entry * bounds_dir_entry = (struct mpx_bd_entry *) malloc(_len_bounds_dir_entry0*sizeof(struct mpx_bd_entry));
+          for(int _i0 = 0; _i0 < _len_bounds_dir_entry0; _i0++) {
+              bounds_dir_entry[_i0].contents = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = bd_entry_valid(bounds_dir_entry);
           printf("%d\n", benchRet); 
           free(bounds_dir_entry);

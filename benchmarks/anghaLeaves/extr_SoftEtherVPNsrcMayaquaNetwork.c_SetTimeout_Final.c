@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -106,12 +109,6 @@ void SetTimeout(SOCK *sock, UINT timeout)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -128,18 +125,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long timeout = 100;
+        
           int _len_sock0 = 1;
           struct TYPE_3__ * sock = (struct TYPE_3__ *) malloc(_len_sock0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_sock0; _i0++) {
-            sock[_i0].Type = ((-2 * (next_i()%2)) + 1) * next_i();
-        sock[_i0].TimeOut = ((-2 * (next_i()%2)) + 1) * next_i();
+              sock[_i0].Type = ((-2 * (next_i()%2)) + 1) * next_i();
+          sock[_i0].TimeOut = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           SetTimeout(sock,timeout);
           free(sock);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long timeout = 255;
+        
+          int _len_sock0 = 65025;
+          struct TYPE_3__ * sock = (struct TYPE_3__ *) malloc(_len_sock0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_sock0; _i0++) {
+              sock[_i0].Type = ((-2 * (next_i()%2)) + 1) * next_i();
+          sock[_i0].TimeOut = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          SetTimeout(sock,timeout);
+          free(sock);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long timeout = 10;
+        
+          int _len_sock0 = 100;
+          struct TYPE_3__ * sock = (struct TYPE_3__ *) malloc(_len_sock0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_sock0; _i0++) {
+              sock[_i0].Type = ((-2 * (next_i()%2)) + 1) * next_i();
+          sock[_i0].TimeOut = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          SetTimeout(sock,timeout);
+          free(sock);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sock0 = 1;
+          struct TYPE_3__ * sock = (struct TYPE_3__ *) malloc(_len_sock0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_sock0; _i0++) {
+              sock[_i0].Type = ((-2 * (next_i()%2)) + 1) * next_i();
+          sock[_i0].TimeOut = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          SetTimeout(sock,timeout);
+          free(sock);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ __attribute__((used)) static int igb_ptp_verify_pin(struct ptp_clock_info *ptp, 
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,13 +93,40 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int pin = 100;
+        
           enum ptp_pin_function func = 0;
+        
           unsigned int chan = 100;
+        
           int _len_ptp0 = 1;
           struct ptp_clock_info * ptp = (struct ptp_clock_info *) malloc(_len_ptp0*sizeof(struct ptp_clock_info));
           for(int _i0 = 0; _i0 < _len_ptp0; _i0++) {
-            ptp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ptp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = igb_ptp_verify_pin(ptp,pin,func,chan);
+          printf("%d\n", benchRet); 
+          free(ptp);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned int pin = 255;
+        
+          enum ptp_pin_function func = 0;
+        
+          unsigned int chan = 255;
+        
+          int _len_ptp0 = 65025;
+          struct ptp_clock_info * ptp = (struct ptp_clock_info *) malloc(_len_ptp0*sizeof(struct ptp_clock_info));
+          for(int _i0 = 0; _i0 < _len_ptp0; _i0++) {
+              ptp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = igb_ptp_verify_pin(ptp,pin,func,chan);
           printf("%d\n", benchRet); 
           free(ptp);
@@ -111,23 +134,49 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned int pin = 10;
+        
           enum ptp_pin_function func = 0;
+        
           unsigned int chan = 10;
+        
           int _len_ptp0 = 100;
           struct ptp_clock_info * ptp = (struct ptp_clock_info *) malloc(_len_ptp0*sizeof(struct ptp_clock_info));
           for(int _i0 = 0; _i0 < _len_ptp0; _i0++) {
-            ptp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ptp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = igb_ptp_verify_pin(ptp,pin,func,chan);
           printf("%d\n", benchRet); 
           free(ptp);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int pin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          enum ptp_pin_function func = 0;
+        
+          unsigned int chan = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ptp0 = 1;
+          struct ptp_clock_info * ptp = (struct ptp_clock_info *) malloc(_len_ptp0*sizeof(struct ptp_clock_info));
+          for(int _i0 = 0; _i0 < _len_ptp0; _i0++) {
+              ptp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = igb_ptp_verify_pin(ptp,pin,func,chan);
+          printf("%d\n", benchRet); 
+          free(ptp);
+        
+        break;
+    }
     default:
         usage();
         break;

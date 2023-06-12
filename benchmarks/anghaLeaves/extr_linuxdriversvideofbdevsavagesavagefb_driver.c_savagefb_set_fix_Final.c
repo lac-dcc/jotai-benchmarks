@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ __attribute__((used)) static void savagefb_set_fix(struct fb_info *info)
 
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,18 +90,135 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int _len_info0 = 65025;
+          struct fb_info * info = (struct fb_info *) malloc(_len_info0*sizeof(struct fb_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].fix.line_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.xpanstep = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.visual = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].var.xres_virtual = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          savagefb_set_fix(info);
+          free(info);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int _len_info0 = 100;
+          struct fb_info * info = (struct fb_info *) malloc(_len_info0*sizeof(struct fb_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].fix.line_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.xpanstep = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.visual = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].var.xres_virtual = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          savagefb_set_fix(info);
+          free(info);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
           int _len_info0 = 1;
           struct fb_info * info = (struct fb_info *) malloc(_len_info0*sizeof(struct fb_info));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].fix.line_length = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].fix.xpanstep = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].fix.visual = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].var.xres_virtual = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].var.bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].fix.line_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.xpanstep = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.visual = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].var.xres_virtual = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           savagefb_set_fix(info);
           free(info);
         

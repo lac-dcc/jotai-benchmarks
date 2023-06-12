@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ int selectDb(client *c, int id) {
     return C_OK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,10 +84,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int id = 100;
+        
           int _len_c0 = 1;
           struct TYPE_4__ * c = (struct TYPE_4__ *) malloc(_len_c0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_c0; _i0++) {
@@ -99,7 +120,156 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_c__i0__db0; _j0++) {
             c[_i0].db[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int benchRet = selectDb(c,id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_c0; _aux++) {
+          free(c[_aux].db);
+          }
+          free(c);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int id = 255;
+        
+          int _len_c0 = 65025;
+          struct TYPE_4__ * c = (struct TYPE_4__ *) malloc(_len_c0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              int _len_c__i0__db0 = 1;
+          c[_i0].db = (int *) malloc(_len_c__i0__db0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_c__i0__db0; _j0++) {
+            c[_i0].db[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = selectDb(c,id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_c0; _aux++) {
+          free(c[_aux].db);
+          }
+          free(c);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int id = 10;
+        
+          int _len_c0 = 100;
+          struct TYPE_4__ * c = (struct TYPE_4__ *) malloc(_len_c0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              int _len_c__i0__db0 = 1;
+          c[_i0].db = (int *) malloc(_len_c__i0__db0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_c__i0__db0; _j0++) {
+            c[_i0].db[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = selectDb(c,id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_c0; _aux++) {
+          free(c[_aux].db);
+          }
+          free(c);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_c0 = 1;
+          struct TYPE_4__ * c = (struct TYPE_4__ *) malloc(_len_c0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              int _len_c__i0__db0 = 1;
+          c[_i0].db = (int *) malloc(_len_c__i0__db0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_c__i0__db0; _j0++) {
+            c[_i0].db[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int benchRet = selectDb(c,id);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_c0; _aux++) {

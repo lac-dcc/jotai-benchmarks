@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static void velocity_set_rxbufsize(struct velocity_info *v
 	vptr->rx.buf_sz = (mtu <= ETH_DATA_LEN) ? PKT_BUF_SZ : mtu + 32;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,31 +83,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int mtu = 100;
+        
           int _len_vptr0 = 1;
           struct velocity_info * vptr = (struct velocity_info *) malloc(_len_vptr0*sizeof(struct velocity_info));
           for(int _i0 = 0; _i0 < _len_vptr0; _i0++) {
-            vptr[_i0].rx.buf_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+              vptr[_i0].rx.buf_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          velocity_set_rxbufsize(vptr,mtu);
+          free(vptr);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int mtu = 255;
+        
+          int _len_vptr0 = 65025;
+          struct velocity_info * vptr = (struct velocity_info *) malloc(_len_vptr0*sizeof(struct velocity_info));
+          for(int _i0 = 0; _i0 < _len_vptr0; _i0++) {
+              vptr[_i0].rx.buf_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           velocity_set_rxbufsize(vptr,mtu);
           free(vptr);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int mtu = 10;
+        
           int _len_vptr0 = 100;
           struct velocity_info * vptr = (struct velocity_info *) malloc(_len_vptr0*sizeof(struct velocity_info));
           for(int _i0 = 0; _i0 < _len_vptr0; _i0++) {
-            vptr[_i0].rx.buf_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+              vptr[_i0].rx.buf_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           velocity_set_rxbufsize(vptr,mtu);
           free(vptr);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_vptr0 = 1;
+          struct velocity_info * vptr = (struct velocity_info *) malloc(_len_vptr0*sizeof(struct velocity_info));
+          for(int _i0 = 0; _i0 < _len_vptr0; _i0++) {
+              vptr[_i0].rx.buf_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          velocity_set_rxbufsize(vptr,mtu);
+          free(vptr);
+        
+        break;
+    }
     default:
         usage();
         break;

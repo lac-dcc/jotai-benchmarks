@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static int rmnet_vnd_change_mtu(struct net_device *rmnet_d
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,30 +81,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int new_mtu = 100;
+        
           int _len_rmnet_dev0 = 1;
           struct net_device * rmnet_dev = (struct net_device *) malloc(_len_rmnet_dev0*sizeof(struct net_device));
           for(int _i0 = 0; _i0 < _len_rmnet_dev0; _i0++) {
-            rmnet_dev[_i0].mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+              rmnet_dev[_i0].mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = rmnet_vnd_change_mtu(rmnet_dev,new_mtu);
           printf("%d\n", benchRet); 
           free(rmnet_dev);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int new_mtu = 255;
+        
+          int _len_rmnet_dev0 = 65025;
+          struct net_device * rmnet_dev = (struct net_device *) malloc(_len_rmnet_dev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_rmnet_dev0; _i0++) {
+              rmnet_dev[_i0].mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rmnet_vnd_change_mtu(rmnet_dev,new_mtu);
+          printf("%d\n", benchRet); 
+          free(rmnet_dev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int new_mtu = 10;
+        
           int _len_rmnet_dev0 = 100;
           struct net_device * rmnet_dev = (struct net_device *) malloc(_len_rmnet_dev0*sizeof(struct net_device));
           for(int _i0 = 0; _i0 < _len_rmnet_dev0; _i0++) {
-            rmnet_dev[_i0].mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+              rmnet_dev[_i0].mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = rmnet_vnd_change_mtu(rmnet_dev,new_mtu);
+          printf("%d\n", benchRet); 
+          free(rmnet_dev);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int new_mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rmnet_dev0 = 1;
+          struct net_device * rmnet_dev = (struct net_device *) malloc(_len_rmnet_dev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_rmnet_dev0; _i0++) {
+              rmnet_dev[_i0].mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = rmnet_vnd_change_mtu(rmnet_dev,new_mtu);
           printf("%d\n", benchRet); 
           free(rmnet_dev);

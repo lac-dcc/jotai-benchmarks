@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -67,7 +68,6 @@ __attribute__((used)) static inline SLIST_ENTRY *SimplePopSlist(SLIST_ENTRY *SLi
     return sListEntry;
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct TYPE_4__ *_allocate_SListHdr(int length, struct TYPE_4__ *aux_SListHdr[]) {
@@ -95,7 +95,6 @@ void _delete_SListHdr(struct TYPE_4__ *aux_SListHdr[], int aux_SListHdr_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -108,11 +107,70 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // linked
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          struct TYPE_4__ * aux_SListHdr[10000];
+          struct TYPE_4__ * SListHdr = _allocate_SListHdr(10000, aux_SListHdr);
+        
+          struct TYPE_4__ * benchRet = SimplePopSlist(SListHdr);
+          _delete_SListHdr(aux_SListHdr, 10000);
+        
+        break;
+    }
+
+
+    // empty
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           struct TYPE_4__ * aux_SListHdr[1];
           struct TYPE_4__ * SListHdr = _allocate_SListHdr(1, aux_SListHdr);
+        
           struct TYPE_4__ * benchRet = SimplePopSlist(SListHdr);
           _delete_SListHdr(aux_SListHdr, 1);
         

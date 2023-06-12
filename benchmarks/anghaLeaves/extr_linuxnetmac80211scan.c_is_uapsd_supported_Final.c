@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ __attribute__((used)) static bool is_uapsd_supported(struct ieee802_11_elems *el
 	return qos_info & IEEE80211_WMM_IE_AP_QOSINFO_UAPSD;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,10 +88,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_elems0 = 1;
+          int _len_elems0 = 65025;
           struct ieee802_11_elems * elems = (struct ieee802_11_elems *) malloc(_len_elems0*sizeof(struct ieee802_11_elems));
           for(int _i0 = 0; _i0 < _len_elems0; _i0++) {
               int _len_elems__i0__wmm_info0 = 1;
@@ -103,14 +99,16 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_elems__i0__wmm_info0; _j0++) {
             elems[_i0].wmm_info[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        elems[_i0].wmm_info_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          elems[_i0].wmm_info_len = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_elems__i0__wmm_param0 = 1;
           elems[_i0].wmm_param = (int *) malloc(_len_elems__i0__wmm_param0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_elems__i0__wmm_param0; _j0++) {
             elems[_i0].wmm_param[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        elems[_i0].wmm_param_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          elems[_i0].wmm_param_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_uapsd_supported(elems);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_elems0; _aux++) {
@@ -123,7 +121,72 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_elems0 = 100;
+          struct ieee802_11_elems * elems = (struct ieee802_11_elems *) malloc(_len_elems0*sizeof(struct ieee802_11_elems));
+          for(int _i0 = 0; _i0 < _len_elems0; _i0++) {
+              int _len_elems__i0__wmm_info0 = 1;
+          elems[_i0].wmm_info = (int *) malloc(_len_elems__i0__wmm_info0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_elems__i0__wmm_info0; _j0++) {
+            elems[_i0].wmm_info[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          elems[_i0].wmm_info_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_elems__i0__wmm_param0 = 1;
+          elems[_i0].wmm_param = (int *) malloc(_len_elems__i0__wmm_param0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_elems__i0__wmm_param0; _j0++) {
+            elems[_i0].wmm_param[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          elems[_i0].wmm_param_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_uapsd_supported(elems);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_elems0; _aux++) {
+          free(elems[_aux].wmm_info);
+          }
+          for(int _aux = 0; _aux < _len_elems0; _aux++) {
+          free(elems[_aux].wmm_param);
+          }
+          free(elems);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_elems0 = 1;
+          struct ieee802_11_elems * elems = (struct ieee802_11_elems *) malloc(_len_elems0*sizeof(struct ieee802_11_elems));
+          for(int _i0 = 0; _i0 < _len_elems0; _i0++) {
+              int _len_elems__i0__wmm_info0 = 1;
+          elems[_i0].wmm_info = (int *) malloc(_len_elems__i0__wmm_info0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_elems__i0__wmm_info0; _j0++) {
+            elems[_i0].wmm_info[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          elems[_i0].wmm_info_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_elems__i0__wmm_param0 = 1;
+          elems[_i0].wmm_param = (int *) malloc(_len_elems__i0__wmm_param0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_elems__i0__wmm_param0; _j0++) {
+            elems[_i0].wmm_param[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          elems[_i0].wmm_param_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_uapsd_supported(elems);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_elems0; _aux++) {
+          free(elems[_aux].wmm_info);
+          }
+          for(int _aux = 0; _aux < _len_elems0; _aux++) {
+          free(elems[_aux].wmm_param);
+          }
+          free(elems);
+        
+        break;
+    }
     default:
         usage();
         break;

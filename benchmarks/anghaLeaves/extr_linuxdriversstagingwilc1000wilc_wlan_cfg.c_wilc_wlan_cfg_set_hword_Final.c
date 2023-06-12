@@ -31,7 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -78,12 +79,6 @@ __attribute__((used)) static int wilc_wlan_cfg_set_hword(u8 *frame, u32 offset, 
 	return 6;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,13 +95,38 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int offset = 100;
+        
           int id = 100;
+        
           int val16 = 100;
+        
           int _len_frame0 = 1;
           int * frame = (int *) malloc(_len_frame0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_frame0; _i0++) {
             frame[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = wilc_wlan_cfg_set_hword(frame,offset,id,val16);
+          printf("%d\n", benchRet); 
+          free(frame);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int offset = 255;
+        
+          int id = 255;
+        
+          int val16 = 255;
+        
+          int _len_frame0 = 65025;
+          int * frame = (int *) malloc(_len_frame0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_frame0; _i0++) {
+            frame[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = wilc_wlan_cfg_set_hword(frame,offset,id,val16);
           printf("%d\n", benchRet); 
           free(frame);
@@ -114,23 +134,26 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int offset = 10;
+        
           int id = 10;
+        
           int val16 = 10;
+        
           int _len_frame0 = 100;
           int * frame = (int *) malloc(_len_frame0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_frame0; _i0++) {
             frame[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = wilc_wlan_cfg_set_hword(frame,offset,id,val16);
           printf("%d\n", benchRet); 
           free(frame);
         
         break;
     }
-
     default:
         usage();
         break;

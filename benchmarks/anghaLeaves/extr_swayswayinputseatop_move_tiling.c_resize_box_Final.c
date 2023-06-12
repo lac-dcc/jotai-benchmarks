@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -87,12 +90,6 @@ __attribute__((used)) static void resize_box(struct wlr_box *box, enum wlr_edges
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -109,21 +106,90 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           enum wlr_edges edge = 0;
+        
           int thickness = 100;
+        
           int _len_box0 = 1;
           struct wlr_box * box = (struct wlr_box *) malloc(_len_box0*sizeof(struct wlr_box));
           for(int _i0 = 0; _i0 < _len_box0; _i0++) {
-            box[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
-        box[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
-        box[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
-        box[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+              box[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          box[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          box[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          box[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           resize_box(box,edge,thickness);
           free(box);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          enum wlr_edges edge = 0;
+        
+          int thickness = 255;
+        
+          int _len_box0 = 65025;
+          struct wlr_box * box = (struct wlr_box *) malloc(_len_box0*sizeof(struct wlr_box));
+          for(int _i0 = 0; _i0 < _len_box0; _i0++) {
+              box[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          box[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          box[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          box[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          resize_box(box,edge,thickness);
+          free(box);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          enum wlr_edges edge = 0;
+        
+          int thickness = 10;
+        
+          int _len_box0 = 100;
+          struct wlr_box * box = (struct wlr_box *) malloc(_len_box0*sizeof(struct wlr_box));
+          for(int _i0 = 0; _i0 < _len_box0; _i0++) {
+              box[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          box[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          box[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          box[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          resize_box(box,edge,thickness);
+          free(box);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          enum wlr_edges edge = 0;
+        
+          int thickness = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_box0 = 1;
+          struct wlr_box * box = (struct wlr_box *) malloc(_len_box0*sizeof(struct wlr_box));
+          for(int _i0 = 0; _i0 < _len_box0; _i0++) {
+              box[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          box[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          box[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          box[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          resize_box(box,edge,thickness);
+          free(box);
+        
+        break;
+    }
     default:
         usage();
         break;

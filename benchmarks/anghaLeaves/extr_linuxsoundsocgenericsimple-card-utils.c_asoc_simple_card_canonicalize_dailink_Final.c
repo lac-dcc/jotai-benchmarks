@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ int asoc_simple_card_canonicalize_dailink(struct snd_soc_dai_link *dai_link)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,15 +78,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_dai_link0 = 65025;
+          struct snd_soc_dai_link * dai_link = (struct snd_soc_dai_link *) malloc(_len_dai_link0*sizeof(struct snd_soc_dai_link));
+          for(int _i0 = 0; _i0 < _len_dai_link0; _i0++) {
+              dai_link[_i0].cpu_of_node = ((-2 * (next_i()%2)) + 1) * next_i();
+          dai_link[_i0].platform_of_node = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = asoc_simple_card_canonicalize_dailink(dai_link);
+          printf("%d\n", benchRet); 
+          free(dai_link);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_dai_link0 = 100;
+          struct snd_soc_dai_link * dai_link = (struct snd_soc_dai_link *) malloc(_len_dai_link0*sizeof(struct snd_soc_dai_link));
+          for(int _i0 = 0; _i0 < _len_dai_link0; _i0++) {
+              dai_link[_i0].cpu_of_node = ((-2 * (next_i()%2)) + 1) * next_i();
+          dai_link[_i0].platform_of_node = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = asoc_simple_card_canonicalize_dailink(dai_link);
+          printf("%d\n", benchRet); 
+          free(dai_link);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_dai_link0 = 1;
           struct snd_soc_dai_link * dai_link = (struct snd_soc_dai_link *) malloc(_len_dai_link0*sizeof(struct snd_soc_dai_link));
           for(int _i0 = 0; _i0 < _len_dai_link0; _i0++) {
-            dai_link[_i0].cpu_of_node = ((-2 * (next_i()%2)) + 1) * next_i();
-        dai_link[_i0].platform_of_node = ((-2 * (next_i()%2)) + 1) * next_i();
+              dai_link[_i0].cpu_of_node = ((-2 * (next_i()%2)) + 1) * next_i();
+          dai_link[_i0].platform_of_node = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = asoc_simple_card_canonicalize_dailink(dai_link);
           printf("%d\n", benchRet); 
           free(dai_link);

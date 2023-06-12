@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ count_axes(int ndim, npy_bool *axis_flags)
     return naxes;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,15 +83,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 3837
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 1285
+          // ------------------------------- 
+          // static_instructions_O2 : 37
+          // dynamic_instructions_O2 : 729
+          // ------------------------------- 
+          // static_instructions_O3 : 37
+          // dynamic_instructions_O3 : 729
+          // ------------------------------- 
+          // static_instructions_Ofast : 37
+          // dynamic_instructions_Ofast : 729
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 1285
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 1540
+          // ------------------------------- 
+
+          int ndim = 255;
+        
+          int _len_axis_flags0 = 65025;
+          long * axis_flags = (long *) malloc(_len_axis_flags0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_axis_flags0; _i0++) {
+            axis_flags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = count_axes(ndim,axis_flags);
+          printf("%d\n", benchRet); 
+          free(axis_flags);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 162
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 60
+          // ------------------------------- 
+          // static_instructions_O2 : 37
+          // dynamic_instructions_O2 : 53
+          // ------------------------------- 
+          // static_instructions_O3 : 37
+          // dynamic_instructions_O3 : 53
+          // ------------------------------- 
+          // static_instructions_Ofast : 37
+          // dynamic_instructions_Ofast : 53
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 60
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 70
+          // ------------------------------- 
+
           int ndim = 10;
+        
           int _len_axis_flags0 = 100;
           long * axis_flags = (long *) malloc(_len_axis_flags0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_axis_flags0; _i0++) {
             axis_flags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = count_axes(ndim,axis_flags);
+          printf("%d\n", benchRet); 
+          free(axis_flags);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int ndim = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_axis_flags0 = 1;
+          long * axis_flags = (long *) malloc(_len_axis_flags0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_axis_flags0; _i0++) {
+            axis_flags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = count_axes(ndim,axis_flags);
           printf("%d\n", benchRet); 
           free(axis_flags);

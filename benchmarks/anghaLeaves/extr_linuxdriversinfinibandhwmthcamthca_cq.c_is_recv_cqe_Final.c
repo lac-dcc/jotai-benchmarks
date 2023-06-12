@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static inline int is_recv_cqe(struct mthca_cqe *cqe)
 		return !(cqe->is_send & 0x80);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,22 +79,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cqe0 = 1;
+          int _len_cqe0 = 65025;
           struct mthca_cqe * cqe = (struct mthca_cqe *) malloc(_len_cqe0*sizeof(struct mthca_cqe));
           for(int _i0 = 0; _i0 < _len_cqe0; _i0++) {
-            cqe[_i0].opcode = ((-2 * (next_i()%2)) + 1) * next_i();
-        cqe[_i0].is_send = ((-2 * (next_i()%2)) + 1) * next_i();
+              cqe[_i0].opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+          cqe[_i0].is_send = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_recv_cqe(cqe);
           printf("%d\n", benchRet); 
           free(cqe);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_cqe0 = 100;
+          struct mthca_cqe * cqe = (struct mthca_cqe *) malloc(_len_cqe0*sizeof(struct mthca_cqe));
+          for(int _i0 = 0; _i0 < _len_cqe0; _i0++) {
+              cqe[_i0].opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+          cqe[_i0].is_send = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_recv_cqe(cqe);
+          printf("%d\n", benchRet); 
+          free(cqe);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_cqe0 = 1;
+          struct mthca_cqe * cqe = (struct mthca_cqe *) malloc(_len_cqe0*sizeof(struct mthca_cqe));
+          for(int _i0 = 0; _i0 < _len_cqe0; _i0++) {
+              cqe[_i0].opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+          cqe[_i0].is_send = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_recv_cqe(cqe);
+          printf("%d\n", benchRet); 
+          free(cqe);
+        
+        break;
+    }
     default:
         usage();
         break;

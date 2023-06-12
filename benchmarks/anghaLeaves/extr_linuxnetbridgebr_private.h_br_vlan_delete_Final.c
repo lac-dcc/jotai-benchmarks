@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline int br_vlan_delete(struct net_bridge *br, u1
 	return -EOPNOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,11 +81,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int vid = 100;
+        
           int _len_br0 = 1;
           struct net_bridge * br = (struct net_bridge *) malloc(_len_br0*sizeof(struct net_bridge));
           for(int _i0 = 0; _i0 < _len_br0; _i0++) {
-            br[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              br[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = br_vlan_delete(br,vid);
+          printf("%d\n", benchRet); 
+          free(br);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int vid = 255;
+        
+          int _len_br0 = 65025;
+          struct net_bridge * br = (struct net_bridge *) malloc(_len_br0*sizeof(struct net_bridge));
+          for(int _i0 = 0; _i0 < _len_br0; _i0++) {
+              br[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = br_vlan_delete(br,vid);
           printf("%d\n", benchRet); 
           free(br);
@@ -97,21 +114,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int vid = 10;
+        
           int _len_br0 = 100;
           struct net_bridge * br = (struct net_bridge *) malloc(_len_br0*sizeof(struct net_bridge));
           for(int _i0 = 0; _i0 < _len_br0; _i0++) {
-            br[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              br[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = br_vlan_delete(br,vid);
           printf("%d\n", benchRet); 
           free(br);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int vid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_br0 = 1;
+          struct net_bridge * br = (struct net_bridge *) malloc(_len_br0*sizeof(struct net_bridge));
+          for(int _i0 = 0; _i0 < _len_br0; _i0++) {
+              br[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = br_vlan_delete(br,vid);
+          printf("%d\n", benchRet); 
+          free(br);
+        
+        break;
+    }
     default:
         usage();
         break;

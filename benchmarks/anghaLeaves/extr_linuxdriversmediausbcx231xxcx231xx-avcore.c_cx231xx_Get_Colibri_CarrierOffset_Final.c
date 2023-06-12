@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -83,12 +84,6 @@ u32 cx231xx_Get_Colibri_CarrierOffset(u32 mode, u32 standerd)
 	return colibri_carrier_offset;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,7 +100,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long mode = 100;
+        
           long standerd = 100;
+        
           long benchRet = cx231xx_Get_Colibri_CarrierOffset(mode,standerd);
           printf("%ld\n", benchRet); 
         
@@ -115,7 +112,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long mode = 255;
+        
           long standerd = 255;
+        
           long benchRet = cx231xx_Get_Colibri_CarrierOffset(mode,standerd);
           printf("%ld\n", benchRet); 
         
@@ -125,13 +124,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long mode = 10;
+        
           long standerd = 10;
+        
           long benchRet = cx231xx_Get_Colibri_CarrierOffset(mode,standerd);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long standerd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long benchRet = cx231xx_Get_Colibri_CarrierOffset(mode,standerd);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

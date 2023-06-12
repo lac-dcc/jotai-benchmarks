@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -93,12 +95,6 @@ __attribute__((used)) static void fbtft_merge_fbtftops(struct fbtft_ops *dst, st
 		dst->set_gamma = src->set_gamma;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -111,58 +107,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dst0 = 1;
+          int _len_dst0 = 65025;
           struct fbtft_ops * dst = (struct fbtft_ops *) malloc(_len_dst0*sizeof(struct fbtft_ops));
           for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
-            dst[_i0].set_gamma = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].set_var = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].unregister_backlight = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].register_backlight = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].verify_gpios = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].request_gpios = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].request_gpios_match = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].blank = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].init_display = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].update_display = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].mkdirty = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].reset = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].set_addr_win = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].write_register = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].write_vmem = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].read = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].write = ((-2 * (next_i()%2)) + 1) * next_i();
+              dst[_i0].set_gamma = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].set_var = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].unregister_backlight = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].register_backlight = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].verify_gpios = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].request_gpios = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].request_gpios_match = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].blank = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].init_display = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].update_display = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].mkdirty = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].reset = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].set_addr_win = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].write_register = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].write_vmem = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].read = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].write = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_src0 = 1;
+        
+          int _len_src0 = 65025;
           struct fbtft_ops * src = (struct fbtft_ops *) malloc(_len_src0*sizeof(struct fbtft_ops));
           for(int _i0 = 0; _i0 < _len_src0; _i0++) {
-            src[_i0].set_gamma = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].set_var = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].unregister_backlight = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].register_backlight = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].verify_gpios = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].request_gpios = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].request_gpios_match = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].blank = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].init_display = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].update_display = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].mkdirty = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].reset = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].set_addr_win = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].write_register = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].write_vmem = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].read = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].write = ((-2 * (next_i()%2)) + 1) * next_i();
+              src[_i0].set_gamma = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].set_var = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].unregister_backlight = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].register_backlight = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].verify_gpios = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].request_gpios = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].request_gpios_match = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].blank = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].init_display = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].update_display = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].mkdirty = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].reset = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].set_addr_win = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].write_register = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].write_vmem = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].read = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].write = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           fbtft_merge_fbtftops(dst,src);
           free(dst);
           free(src);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dst0 = 100;
+          struct fbtft_ops * dst = (struct fbtft_ops *) malloc(_len_dst0*sizeof(struct fbtft_ops));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+              dst[_i0].set_gamma = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].set_var = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].unregister_backlight = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].register_backlight = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].verify_gpios = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].request_gpios = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].request_gpios_match = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].blank = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].init_display = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].update_display = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].mkdirty = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].reset = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].set_addr_win = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].write_register = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].write_vmem = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].read = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].write = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_src0 = 100;
+          struct fbtft_ops * src = (struct fbtft_ops *) malloc(_len_src0*sizeof(struct fbtft_ops));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+              src[_i0].set_gamma = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].set_var = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].unregister_backlight = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].register_backlight = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].verify_gpios = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].request_gpios = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].request_gpios_match = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].blank = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].init_display = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].update_display = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].mkdirty = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].reset = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].set_addr_win = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].write_register = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].write_vmem = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].read = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].write = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          fbtft_merge_fbtftops(dst,src);
+          free(dst);
+          free(src);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dst0 = 1;
+          struct fbtft_ops * dst = (struct fbtft_ops *) malloc(_len_dst0*sizeof(struct fbtft_ops));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+              dst[_i0].set_gamma = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].set_var = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].unregister_backlight = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].register_backlight = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].verify_gpios = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].request_gpios = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].request_gpios_match = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].blank = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].init_display = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].update_display = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].mkdirty = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].reset = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].set_addr_win = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].write_register = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].write_vmem = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].read = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].write = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_src0 = 1;
+          struct fbtft_ops * src = (struct fbtft_ops *) malloc(_len_src0*sizeof(struct fbtft_ops));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+              src[_i0].set_gamma = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].set_var = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].unregister_backlight = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].register_backlight = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].verify_gpios = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].request_gpios = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].request_gpios_match = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].blank = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].init_display = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].update_display = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].mkdirty = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].reset = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].set_addr_win = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].write_register = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].write_vmem = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].read = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].write = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          fbtft_merge_fbtftops(dst,src);
+          free(dst);
+          free(src);
+        
+        break;
+    }
     default:
         usage();
         break;

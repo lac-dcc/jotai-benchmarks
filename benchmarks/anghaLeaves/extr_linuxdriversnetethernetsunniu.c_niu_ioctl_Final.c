@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +65,6 @@ __attribute__((used)) static int niu_ioctl(struct net_device *dev, struct ifreq 
 	return -EOPNOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,16 +81,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int cmd = 100;
+        
           int _len_dev0 = 1;
           struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_ifr0 = 1;
           struct ifreq * ifr = (struct ifreq *) malloc(_len_ifr0*sizeof(struct ifreq));
           for(int _i0 = 0; _i0 < _len_ifr0; _i0++) {
-            ifr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ifr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = niu_ioctl(dev,ifr,cmd);
           printf("%d\n", benchRet); 
           free(dev);
@@ -101,7 +103,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int cmd = 255;
+        
+          int _len_dev0 = 65025;
+          struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ifr0 = 65025;
+          struct ifreq * ifr = (struct ifreq *) malloc(_len_ifr0*sizeof(struct ifreq));
+          for(int _i0 = 0; _i0 < _len_ifr0; _i0++) {
+              ifr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = niu_ioctl(dev,ifr,cmd);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(ifr);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int cmd = 10;
+        
+          int _len_dev0 = 100;
+          struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ifr0 = 100;
+          struct ifreq * ifr = (struct ifreq *) malloc(_len_ifr0*sizeof(struct ifreq));
+          for(int _i0 = 0; _i0 < _len_ifr0; _i0++) {
+              ifr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = niu_ioctl(dev,ifr,cmd);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(ifr);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dev0 = 1;
+          struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ifr0 = 1;
+          struct ifreq * ifr = (struct ifreq *) malloc(_len_ifr0*sizeof(struct ifreq));
+          for(int _i0 = 0; _i0 < _len_ifr0; _i0++) {
+              ifr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = niu_ioctl(dev,ifr,cmd);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(ifr);
+        
+        break;
+    }
     default:
         usage();
         break;

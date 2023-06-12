@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -83,12 +84,6 @@ __attribute__((used)) static unsigned long calc_core_clk_34xx(unsigned long pclk
 	return pclk * vf * hf;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,43 +96,176 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           unsigned long pclk = 100;
+        
           int width = 100;
+        
           int height = 100;
+        
           int out_width = 100;
+        
           int out_height = 100;
+        
           int mem_to_mem = 100;
+        
           unsigned long benchRet = calc_core_clk_34xx(pclk,width,height,out_width,out_height,mem_to_mem);
           printf("%lu\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           unsigned long pclk = 255;
+        
           int width = 255;
+        
           int height = 255;
+        
           int out_width = 255;
+        
           int out_height = 255;
+        
           int mem_to_mem = 255;
+        
           unsigned long benchRet = calc_core_clk_34xx(pclk,width,height,out_width,out_height,mem_to_mem);
           printf("%lu\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           unsigned long pclk = 10;
+        
           int width = 10;
+        
           int height = 10;
+        
           int out_width = 10;
+        
           int out_height = 10;
+        
           int mem_to_mem = 10;
+        
+          unsigned long benchRet = calc_core_clk_34xx(pclk,width,height,out_width,out_height,mem_to_mem);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          unsigned long pclk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int out_width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int out_height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int mem_to_mem = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           unsigned long benchRet = calc_core_clk_34xx(pclk,width,height,out_width,out_height,mem_to_mem);
           printf("%lu\n", benchRet); 
         

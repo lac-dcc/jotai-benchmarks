@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static inline long count_masked_bytes(long mask)
 	return a & mask;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +81,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long mask = 100;
+        
           long benchRet = count_masked_bytes(mask);
           printf("%ld\n", benchRet); 
         
@@ -95,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long mask = 255;
+        
           long benchRet = count_masked_bytes(mask);
           printf("%ld\n", benchRet); 
         
@@ -104,12 +101,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long mask = 10;
+        
           long benchRet = count_masked_bytes(mask);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long benchRet = count_masked_bytes(mask);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

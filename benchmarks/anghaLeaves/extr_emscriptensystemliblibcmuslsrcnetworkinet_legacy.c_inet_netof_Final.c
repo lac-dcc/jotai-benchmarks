@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -65,12 +65,6 @@ in_addr_t inet_netof(struct in_addr in)
 	return h >> 8;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,17 +77,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           struct in_addr in;
-        in.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          in.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = inet_netof(in);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

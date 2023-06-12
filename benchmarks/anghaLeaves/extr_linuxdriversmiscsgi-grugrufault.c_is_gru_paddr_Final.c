@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline int is_gru_paddr(unsigned long paddr)
 	return paddr >= gru_start_paddr && paddr < gru_end_paddr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long paddr = 100;
+        
           int benchRet = is_gru_paddr(paddr);
           printf("%d\n", benchRet); 
         
@@ -94,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long paddr = 255;
+        
           int benchRet = is_gru_paddr(paddr);
           printf("%d\n", benchRet); 
         
@@ -103,12 +100,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long paddr = 10;
+        
           int benchRet = is_gru_paddr(paddr);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long paddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = is_gru_paddr(paddr);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

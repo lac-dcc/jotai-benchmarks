@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static u8 qed_get_ext_voq(struct qed_hwfn *p_hwfn,
 		return port_id * max_phys_tcs_per_port + tc;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,34 +83,183 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           long port_id = 100;
+        
           long tc = 100;
+        
           long max_phys_tcs_per_port = 100;
+        
           int _len_p_hwfn0 = 1;
           struct qed_hwfn * p_hwfn = (struct qed_hwfn *) malloc(_len_p_hwfn0*sizeof(struct qed_hwfn));
           for(int _i0 = 0; _i0 < _len_p_hwfn0; _i0++) {
-            p_hwfn[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              p_hwfn[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = qed_get_ext_voq(p_hwfn,port_id,tc,max_phys_tcs_per_port);
           printf("%ld\n", benchRet); 
           free(p_hwfn);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          long port_id = 255;
+        
+          long tc = 255;
+        
+          long max_phys_tcs_per_port = 255;
+        
+          int _len_p_hwfn0 = 65025;
+          struct qed_hwfn * p_hwfn = (struct qed_hwfn *) malloc(_len_p_hwfn0*sizeof(struct qed_hwfn));
+          for(int _i0 = 0; _i0 < _len_p_hwfn0; _i0++) {
+              p_hwfn[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = qed_get_ext_voq(p_hwfn,port_id,tc,max_phys_tcs_per_port);
+          printf("%ld\n", benchRet); 
+          free(p_hwfn);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           long port_id = 10;
+        
           long tc = 10;
+        
           long max_phys_tcs_per_port = 10;
+        
           int _len_p_hwfn0 = 100;
           struct qed_hwfn * p_hwfn = (struct qed_hwfn *) malloc(_len_p_hwfn0*sizeof(struct qed_hwfn));
           for(int _i0 = 0; _i0 < _len_p_hwfn0; _i0++) {
-            p_hwfn[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              p_hwfn[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          long benchRet = qed_get_ext_voq(p_hwfn,port_id,tc,max_phys_tcs_per_port);
+          printf("%ld\n", benchRet); 
+          free(p_hwfn);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          long port_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long tc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long max_phys_tcs_per_port = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_p_hwfn0 = 1;
+          struct qed_hwfn * p_hwfn = (struct qed_hwfn *) malloc(_len_p_hwfn0*sizeof(struct qed_hwfn));
+          for(int _i0 = 0; _i0 < _len_p_hwfn0; _i0++) {
+              p_hwfn[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           long benchRet = qed_get_ext_voq(p_hwfn,port_id,tc,max_phys_tcs_per_port);
           printf("%ld\n", benchRet); 
           free(p_hwfn);

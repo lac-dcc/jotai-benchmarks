@@ -64,12 +64,6 @@ __attribute__((used)) static int get_track_order(int track_config, size_t mix_in
 	return position;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,11 +76,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // big-arr-10x
     case 0:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 178
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 59
+          // ------------------------------- 
+          // static_instructions_O2 : 70
+          // dynamic_instructions_O2 : 75
+          // ------------------------------- 
+          // static_instructions_O3 : 70
+          // dynamic_instructions_O3 : 75
+          // ------------------------------- 
+          // static_instructions_Ofast : 70
+          // dynamic_instructions_Ofast : 75
+          // ------------------------------- 
+          // static_instructions_Os : 73
+          // dynamic_instructions_Os : 119
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 68
+          // ------------------------------- 
+
           int track_config = 10;
+        
           unsigned long mix_index = 10;
+        
           int benchRet = get_track_order(track_config,mix_index);
           printf("%d\n", benchRet); 
         

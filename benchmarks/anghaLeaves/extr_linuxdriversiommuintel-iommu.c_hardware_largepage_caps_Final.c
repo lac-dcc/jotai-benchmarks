@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -85,12 +87,6 @@ __attribute__((used)) static inline int hardware_largepage_caps(struct dmar_doma
 	return level;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,13 +103,40 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long iov_pfn = 100;
+        
           unsigned long phy_pfn = 100;
+        
           unsigned long pages = 100;
+        
           int _len_domain0 = 1;
           struct dmar_domain * domain = (struct dmar_domain *) malloc(_len_domain0*sizeof(struct dmar_domain));
           for(int _i0 = 0; _i0 < _len_domain0; _i0++) {
-            domain[_i0].iommu_superpage = ((-2 * (next_i()%2)) + 1) * next_i();
+              domain[_i0].iommu_superpage = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = hardware_largepage_caps(domain,iov_pfn,phy_pfn,pages);
+          printf("%d\n", benchRet); 
+          free(domain);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned long iov_pfn = 255;
+        
+          unsigned long phy_pfn = 255;
+        
+          unsigned long pages = 255;
+        
+          int _len_domain0 = 65025;
+          struct dmar_domain * domain = (struct dmar_domain *) malloc(_len_domain0*sizeof(struct dmar_domain));
+          for(int _i0 = 0; _i0 < _len_domain0; _i0++) {
+              domain[_i0].iommu_superpage = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = hardware_largepage_caps(domain,iov_pfn,phy_pfn,pages);
           printf("%d\n", benchRet); 
           free(domain);
@@ -121,23 +144,49 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned long iov_pfn = 10;
+        
           unsigned long phy_pfn = 10;
+        
           unsigned long pages = 10;
+        
           int _len_domain0 = 100;
           struct dmar_domain * domain = (struct dmar_domain *) malloc(_len_domain0*sizeof(struct dmar_domain));
           for(int _i0 = 0; _i0 < _len_domain0; _i0++) {
-            domain[_i0].iommu_superpage = ((-2 * (next_i()%2)) + 1) * next_i();
+              domain[_i0].iommu_superpage = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = hardware_largepage_caps(domain,iov_pfn,phy_pfn,pages);
           printf("%d\n", benchRet); 
           free(domain);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long iov_pfn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long phy_pfn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long pages = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_domain0 = 1;
+          struct dmar_domain * domain = (struct dmar_domain *) malloc(_len_domain0*sizeof(struct dmar_domain));
+          for(int _i0 = 0; _i0 < _len_domain0; _i0++) {
+              domain[_i0].iommu_superpage = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hardware_largepage_caps(domain,iov_pfn,phy_pfn,pages);
+          printf("%d\n", benchRet); 
+          free(domain);
+        
+        break;
+    }
     default:
         usage();
         break;

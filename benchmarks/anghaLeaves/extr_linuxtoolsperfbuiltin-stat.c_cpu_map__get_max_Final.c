@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static int cpu_map__get_max(struct cpu_map *map)
 	return max;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,19 +81,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_map0 = 1;
+          int _len_map0 = 65025;
           struct cpu_map * map = (struct cpu_map *) malloc(_len_map0*sizeof(struct cpu_map));
           for(int _i0 = 0; _i0 < _len_map0; _i0++) {
-            map[_i0].nr = ((-2 * (next_i()%2)) + 1) * next_i();
+              map[_i0].nr = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_map__i0__map0 = 1;
           map[_i0].map = (int *) malloc(_len_map__i0__map0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_map__i0__map0; _j0++) {
             map[_i0].map[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = cpu_map__get_max(map);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_map0; _aux++) {
@@ -107,7 +105,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_map0 = 100;
+          struct cpu_map * map = (struct cpu_map *) malloc(_len_map0*sizeof(struct cpu_map));
+          for(int _i0 = 0; _i0 < _len_map0; _i0++) {
+              map[_i0].nr = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_map__i0__map0 = 1;
+          map[_i0].map = (int *) malloc(_len_map__i0__map0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_map__i0__map0; _j0++) {
+            map[_i0].map[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = cpu_map__get_max(map);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_map0; _aux++) {
+          free(map[_aux].map);
+          }
+          free(map);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_map0 = 1;
+          struct cpu_map * map = (struct cpu_map *) malloc(_len_map0*sizeof(struct cpu_map));
+          for(int _i0 = 0; _i0 < _len_map0; _i0++) {
+              map[_i0].nr = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_map__i0__map0 = 1;
+          map[_i0].map = (int *) malloc(_len_map__i0__map0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_map__i0__map0; _j0++) {
+            map[_i0].map[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = cpu_map__get_max(map);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_map0; _aux++) {
+          free(map[_aux].map);
+          }
+          free(map);
+        
+        break;
+    }
     default:
         usage();
         break;

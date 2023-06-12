@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ errcode_t ext2fs_set_data_io(ext2_filsys fs, io_channel new_io)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,20 +88,82 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long new_io = 100;
+        
           int _len_fs0 = 1;
           struct TYPE_3__ * fs = (struct TYPE_3__ *) malloc(_len_fs0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
-            fs[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        fs[_i0].image_io = ((-2 * (next_i()%2)) + 1) * next_i();
-        fs[_i0].io = ((-2 * (next_i()%2)) + 1) * next_i();
+              fs[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs[_i0].image_io = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs[_i0].io = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ext2fs_set_data_io(fs,new_io);
           printf("%d\n", benchRet); 
           free(fs);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long new_io = 255;
+        
+          int _len_fs0 = 65025;
+          struct TYPE_3__ * fs = (struct TYPE_3__ *) malloc(_len_fs0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
+              fs[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs[_i0].image_io = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs[_i0].io = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ext2fs_set_data_io(fs,new_io);
+          printf("%d\n", benchRet); 
+          free(fs);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long new_io = 10;
+        
+          int _len_fs0 = 100;
+          struct TYPE_3__ * fs = (struct TYPE_3__ *) malloc(_len_fs0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
+              fs[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs[_i0].image_io = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs[_i0].io = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ext2fs_set_data_io(fs,new_io);
+          printf("%d\n", benchRet); 
+          free(fs);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long new_io = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fs0 = 1;
+          struct TYPE_3__ * fs = (struct TYPE_3__ *) malloc(_len_fs0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
+              fs[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs[_i0].image_io = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs[_i0].io = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ext2fs_set_data_io(fs,new_io);
+          printf("%d\n", benchRet); 
+          free(fs);
+        
+        break;
+    }
     default:
         usage();
         break;

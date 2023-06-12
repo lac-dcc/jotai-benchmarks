@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static bool valid_mtrr_type(unsigned t)
 	return t < 8 && (1 << t) & 0x73; /* 0, 1, 4, 5, 6 */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,6 +78,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int t = 100;
+        
           int benchRet = valid_mtrr_type(t);
           printf("%d\n", benchRet); 
         
@@ -92,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int t = 255;
+        
           int benchRet = valid_mtrr_type(t);
           printf("%d\n", benchRet); 
         
@@ -101,12 +98,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int t = 10;
+        
           int benchRet = valid_mtrr_type(t);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int t = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = valid_mtrr_type(t);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

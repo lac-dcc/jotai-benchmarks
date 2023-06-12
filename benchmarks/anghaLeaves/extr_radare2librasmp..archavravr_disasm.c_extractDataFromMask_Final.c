@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -79,12 +80,6 @@ __attribute__((used)) static uint16_t extractDataFromMask(uint16_t data, uint16_
 	return result;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,31 +92,144 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 303
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 163
+          // ------------------------------- 
+          // static_instructions_O2 : 39
+          // dynamic_instructions_O2 : 145
+          // ------------------------------- 
+          // static_instructions_O3 : 73
+          // dynamic_instructions_O3 : 73
+          // ------------------------------- 
+          // static_instructions_Ofast : 73
+          // dynamic_instructions_Ofast : 73
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 159
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 178
+          // ------------------------------- 
+
           int data = 100;
+        
           int mask = 100;
+        
           int benchRet = extractDataFromMask(data,mask);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 388
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 208
+          // ------------------------------- 
+          // static_instructions_O2 : 39
+          // dynamic_instructions_O2 : 188
+          // ------------------------------- 
+          // static_instructions_O3 : 103
+          // dynamic_instructions_O3 : 103
+          // ------------------------------- 
+          // static_instructions_Ofast : 103
+          // dynamic_instructions_Ofast : 103
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 199
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 218
+          // ------------------------------- 
+
           int data = 255;
+        
           int mask = 255;
+        
           int benchRet = extractDataFromMask(data,mask);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 286
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 154
+          // ------------------------------- 
+          // static_instructions_O2 : 31
+          // dynamic_instructions_O2 : 138
+          // ------------------------------- 
+          // static_instructions_O3 : 68
+          // dynamic_instructions_O3 : 68
+          // ------------------------------- 
+          // static_instructions_Ofast : 68
+          // dynamic_instructions_Ofast : 68
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 151
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 170
+          // ------------------------------- 
+
           int data = 10;
+        
           int mask = 10;
+        
+          int benchRet = extractDataFromMask(data,mask);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 456
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 244
+          // ------------------------------- 
+          // static_instructions_O2 : 39
+          // dynamic_instructions_O2 : 222
+          // ------------------------------- 
+          // static_instructions_O3 : 128
+          // dynamic_instructions_O3 : 128
+          // ------------------------------- 
+          // static_instructions_Ofast : 128
+          // dynamic_instructions_Ofast : 128
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 231
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 250
+          // ------------------------------- 
+
+          int data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = extractDataFromMask(data,mask);
           printf("%d\n", benchRet); 
         

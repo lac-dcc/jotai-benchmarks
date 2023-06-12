@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -87,12 +89,6 @@ ngx_http_upstream_chash_get_server_index(
     return low;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,16 +101,131 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 44
+          // dynamic_instructions_O0 : 185
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 100
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 100
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 100
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 100
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 99
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 106
+          // ------------------------------- 
+
+          int n = 255;
+        
+          int hash = 255;
+        
+          int _len_servers0 = 65025;
+          struct TYPE_3__ * servers = (struct TYPE_3__ *) malloc(_len_servers0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_servers0; _i0++) {
+              servers[_i0].hash = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ngx_http_upstream_chash_get_server_index(servers,n,hash);
+          printf("%d\n", benchRet); 
+          free(servers);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 44
+          // dynamic_instructions_O0 : 93
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 52
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 52
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 52
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 52
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 51
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 54
+          // ------------------------------- 
+
           int n = 10;
+        
           int hash = 10;
+        
           int _len_servers0 = 100;
           struct TYPE_3__ * servers = (struct TYPE_3__ *) malloc(_len_servers0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_servers0; _i0++) {
-            servers[_i0].hash = ((-2 * (next_i()%2)) + 1) * next_i();
+              servers[_i0].hash = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = ngx_http_upstream_chash_get_server_index(servers,n,hash);
+          printf("%d\n", benchRet); 
+          free(servers);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int hash = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_servers0 = 1;
+          struct TYPE_3__ * servers = (struct TYPE_3__ *) malloc(_len_servers0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_servers0; _i0++) {
+              servers[_i0].hash = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = ngx_http_upstream_chash_get_server_index(servers,n,hash);
           printf("%d\n", benchRet); 
           free(servers);

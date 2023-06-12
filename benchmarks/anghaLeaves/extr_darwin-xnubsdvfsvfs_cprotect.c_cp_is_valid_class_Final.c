@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +81,6 @@ cp_is_valid_class(int isdir, int32_t protectionclass)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,7 +97,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int isdir = 100;
+        
           long protectionclass = 100;
+        
           int benchRet = cp_is_valid_class(isdir,protectionclass);
           printf("%d\n", benchRet); 
         
@@ -112,7 +109,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int isdir = 255;
+        
           long protectionclass = 255;
+        
           int benchRet = cp_is_valid_class(isdir,protectionclass);
           printf("%d\n", benchRet); 
         
@@ -122,13 +121,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int isdir = 10;
+        
           long protectionclass = 10;
+        
           int benchRet = cp_is_valid_class(isdir,protectionclass);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int isdir = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long protectionclass = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = cp_is_valid_class(isdir,protectionclass);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

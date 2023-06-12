@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static void updateheight(struct node *n) {
 	n->height++;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,24 +82,165 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_n0 = 1;
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_n0 = 65025;
           struct node * n = (struct node *) malloc(_len_n0*sizeof(struct node));
           for(int _i0 = 0; _i0 < _len_n0; _i0++) {
-            n[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+              n[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_n__i0__right0 = 1;
           n[_i0].right = (struct TYPE_3__ *) malloc(_len_n__i0__right0*sizeof(struct TYPE_3__));
           for(int _j0 = 0; _j0 < _len_n__i0__right0; _j0++) {
-            n[_i0].right->height = ((-2 * (next_i()%2)) + 1) * next_i();
+              n[_i0].right->height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_n__i0__left0 = 1;
           n[_i0].left = (struct TYPE_4__ *) malloc(_len_n__i0__left0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_n__i0__left0; _j0++) {
-            n[_i0].left->height = ((-2 * (next_i()%2)) + 1) * next_i();
+              n[_i0].left->height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          updateheight(n);
+          for(int _aux = 0; _aux < _len_n0; _aux++) {
+          free(n[_aux].right);
+          }
+          for(int _aux = 0; _aux < _len_n0; _aux++) {
+          free(n[_aux].left);
+          }
+          free(n);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_n0 = 100;
+          struct node * n = (struct node *) malloc(_len_n0*sizeof(struct node));
+          for(int _i0 = 0; _i0 < _len_n0; _i0++) {
+              n[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_n__i0__right0 = 1;
+          n[_i0].right = (struct TYPE_3__ *) malloc(_len_n__i0__right0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_n__i0__right0; _j0++) {
+              n[_i0].right->height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_n__i0__left0 = 1;
+          n[_i0].left = (struct TYPE_4__ *) malloc(_len_n__i0__left0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_n__i0__left0; _j0++) {
+              n[_i0].left->height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          updateheight(n);
+          for(int _aux = 0; _aux < _len_n0; _aux++) {
+          free(n[_aux].right);
+          }
+          for(int _aux = 0; _aux < _len_n0; _aux++) {
+          free(n[_aux].left);
+          }
+          free(n);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_n0 = 1;
+          struct node * n = (struct node *) malloc(_len_n0*sizeof(struct node));
+          for(int _i0 = 0; _i0 < _len_n0; _i0++) {
+              n[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_n__i0__right0 = 1;
+          n[_i0].right = (struct TYPE_3__ *) malloc(_len_n__i0__right0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_n__i0__right0; _j0++) {
+              n[_i0].right->height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_n__i0__left0 = 1;
+          n[_i0].left = (struct TYPE_4__ *) malloc(_len_n__i0__left0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_n__i0__left0; _j0++) {
+              n[_i0].left->height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           updateheight(n);
           for(int _aux = 0; _aux < _len_n0; _aux++) {
           free(n[_aux].right);

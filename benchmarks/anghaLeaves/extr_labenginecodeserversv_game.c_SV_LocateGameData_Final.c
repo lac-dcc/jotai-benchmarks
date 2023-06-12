@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ void SV_LocateGameData( sharedEntity_t *gEnts, int numGEntities, int sizeofGEnti
 	sv.gameClientSize = sizeofGameClient;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,25 +88,110 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int numGEntities = 100;
+        
           int sizeofGEntity_t = 100;
+        
           int sizeofGameClient = 100;
+        
           int _len_gEnts0 = 1;
           int * gEnts = (int *) malloc(_len_gEnts0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_gEnts0; _i0++) {
             gEnts[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_clients0 = 1;
           int * clients = (int *) malloc(_len_clients0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_clients0; _i0++) {
             clients[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           SV_LocateGameData(gEnts,numGEntities,sizeofGEntity_t,clients,sizeofGameClient);
           free(gEnts);
           free(clients);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int numGEntities = 255;
+        
+          int sizeofGEntity_t = 255;
+        
+          int sizeofGameClient = 255;
+        
+          int _len_gEnts0 = 65025;
+          int * gEnts = (int *) malloc(_len_gEnts0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_gEnts0; _i0++) {
+            gEnts[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_clients0 = 65025;
+          int * clients = (int *) malloc(_len_clients0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_clients0; _i0++) {
+            clients[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          SV_LocateGameData(gEnts,numGEntities,sizeofGEntity_t,clients,sizeofGameClient);
+          free(gEnts);
+          free(clients);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int numGEntities = 10;
+        
+          int sizeofGEntity_t = 10;
+        
+          int sizeofGameClient = 10;
+        
+          int _len_gEnts0 = 100;
+          int * gEnts = (int *) malloc(_len_gEnts0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_gEnts0; _i0++) {
+            gEnts[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_clients0 = 100;
+          int * clients = (int *) malloc(_len_clients0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_clients0; _i0++) {
+            clients[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          SV_LocateGameData(gEnts,numGEntities,sizeofGEntity_t,clients,sizeofGameClient);
+          free(gEnts);
+          free(clients);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int numGEntities = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int sizeofGEntity_t = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int sizeofGameClient = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_gEnts0 = 1;
+          int * gEnts = (int *) malloc(_len_gEnts0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_gEnts0; _i0++) {
+            gEnts[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_clients0 = 1;
+          int * clients = (int *) malloc(_len_clients0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_clients0; _i0++) {
+            clients[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          SV_LocateGameData(gEnts,numGEntities,sizeofGEntity_t,clients,sizeofGameClient);
+          free(gEnts);
+          free(clients);
+        
+        break;
+    }
     default:
         usage();
         break;

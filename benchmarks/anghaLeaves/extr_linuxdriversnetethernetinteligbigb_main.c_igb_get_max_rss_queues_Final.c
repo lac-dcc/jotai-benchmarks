@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -105,12 +107,6 @@ unsigned int igb_get_max_rss_queues(struct igb_adapter *adapter)
 	return max_rss_queues;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -123,22 +119,63 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_adapter0 = 1;
+          int _len_adapter0 = 65025;
           struct igb_adapter * adapter = (struct igb_adapter *) malloc(_len_adapter0*sizeof(struct igb_adapter));
           for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
-            adapter[_i0].vfs_allocated_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].hw.mac.type = ((-2 * (next_i()%2)) + 1) * next_i();
+              adapter[_i0].vfs_allocated_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].hw.mac.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           unsigned int benchRet = igb_get_max_rss_queues(adapter);
           printf("%u\n", benchRet); 
           free(adapter);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_adapter0 = 100;
+          struct igb_adapter * adapter = (struct igb_adapter *) malloc(_len_adapter0*sizeof(struct igb_adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].vfs_allocated_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].hw.mac.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          unsigned int benchRet = igb_get_max_rss_queues(adapter);
+          printf("%u\n", benchRet); 
+          free(adapter);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_adapter0 = 1;
+          struct igb_adapter * adapter = (struct igb_adapter *) malloc(_len_adapter0*sizeof(struct igb_adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].vfs_allocated_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].hw.mac.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          unsigned int benchRet = igb_get_max_rss_queues(adapter);
+          printf("%u\n", benchRet); 
+          free(adapter);
+        
+        break;
+    }
     default:
         usage();
         break;

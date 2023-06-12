@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ __attribute__((used)) static ARC_STATUS PxeDiskRead(ULONG FileId, VOID* Buffer, 
     return EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,21 +79,198 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int FileId = 100;
+        
           int N = 100;
+        
           int _len_Buffer0 = 1;
           int * Buffer = (int *) malloc(_len_Buffer0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_Buffer0; _i0++) {
             Buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_Count0 = 1;
           int * Count = (int *) malloc(_len_Count0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_Count0; _i0++) {
             Count[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = PxeDiskRead(FileId,Buffer,N,Count);
+          printf("%d\n", benchRet); 
+          free(Buffer);
+          free(Count);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int FileId = 255;
+        
+          int N = 255;
+        
+          int _len_Buffer0 = 65025;
+          int * Buffer = (int *) malloc(_len_Buffer0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_Buffer0; _i0++) {
+            Buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_Count0 = 65025;
+          int * Count = (int *) malloc(_len_Count0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_Count0; _i0++) {
+            Count[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = PxeDiskRead(FileId,Buffer,N,Count);
+          printf("%d\n", benchRet); 
+          free(Buffer);
+          free(Count);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int FileId = 10;
+        
+          int N = 10;
+        
+          int _len_Buffer0 = 100;
+          int * Buffer = (int *) malloc(_len_Buffer0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_Buffer0; _i0++) {
+            Buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_Count0 = 100;
+          int * Count = (int *) malloc(_len_Count0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_Count0; _i0++) {
+            Count[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = PxeDiskRead(FileId,Buffer,N,Count);
+          printf("%d\n", benchRet); 
+          free(Buffer);
+          free(Count);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int FileId = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int N = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_Buffer0 = 1;
+          int * Buffer = (int *) malloc(_len_Buffer0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_Buffer0; _i0++) {
+            Buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_Count0 = 1;
+          int * Count = (int *) malloc(_len_Count0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_Count0; _i0++) {
+            Count[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = PxeDiskRead(FileId,Buffer,N,Count);
           printf("%d\n", benchRet); 
           free(Buffer);

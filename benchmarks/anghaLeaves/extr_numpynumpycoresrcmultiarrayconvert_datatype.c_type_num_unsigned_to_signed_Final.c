@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -85,12 +86,6 @@ type_num_unsigned_to_signed(int type_num)
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,6 +102,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int type_num = 100;
+        
           int benchRet = type_num_unsigned_to_signed(type_num);
           printf("%d\n", benchRet); 
         
@@ -116,6 +112,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int type_num = 255;
+        
           int benchRet = type_num_unsigned_to_signed(type_num);
           printf("%d\n", benchRet); 
         
@@ -125,12 +122,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int type_num = 10;
+        
           int benchRet = type_num_unsigned_to_signed(type_num);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int type_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = type_num_unsigned_to_signed(type_num);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

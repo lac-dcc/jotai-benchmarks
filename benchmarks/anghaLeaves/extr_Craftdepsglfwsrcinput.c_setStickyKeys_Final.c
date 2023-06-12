@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +83,6 @@ __attribute__((used)) static void setStickyKeys(_GLFWwindow* window, int enabled
     window->stickyKeys = enabled;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,16 +99,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int enabled = 100;
+        
           int _len_window0 = 1;
           struct TYPE_3__ * window = (struct TYPE_3__ *) malloc(_len_window0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_window0; _i0++) {
-            window[_i0].stickyKeys = ((-2 * (next_i()%2)) + 1) * next_i();
+              window[_i0].stickyKeys = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_window__i0__keys0 = 1;
           window[_i0].keys = (long *) malloc(_len_window__i0__keys0*sizeof(long));
           for(int _j0 = 0; _j0 < _len_window__i0__keys0; _j0++) {
             window[_i0].keys[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           setStickyKeys(window,enabled);
           for(int _aux = 0; _aux < _len_window0; _aux++) {
           free(window[_aux].keys);
@@ -120,7 +120,81 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int enabled = 255;
+        
+          int _len_window0 = 65025;
+          struct TYPE_3__ * window = (struct TYPE_3__ *) malloc(_len_window0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_window0; _i0++) {
+              window[_i0].stickyKeys = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_window__i0__keys0 = 1;
+          window[_i0].keys = (long *) malloc(_len_window__i0__keys0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_window__i0__keys0; _j0++) {
+            window[_i0].keys[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          setStickyKeys(window,enabled);
+          for(int _aux = 0; _aux < _len_window0; _aux++) {
+          free(window[_aux].keys);
+          }
+          free(window);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int enabled = 10;
+        
+          int _len_window0 = 100;
+          struct TYPE_3__ * window = (struct TYPE_3__ *) malloc(_len_window0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_window0; _i0++) {
+              window[_i0].stickyKeys = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_window__i0__keys0 = 1;
+          window[_i0].keys = (long *) malloc(_len_window__i0__keys0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_window__i0__keys0; _j0++) {
+            window[_i0].keys[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          setStickyKeys(window,enabled);
+          for(int _aux = 0; _aux < _len_window0; _aux++) {
+          free(window[_aux].keys);
+          }
+          free(window);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_window0 = 1;
+          struct TYPE_3__ * window = (struct TYPE_3__ *) malloc(_len_window0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_window0; _i0++) {
+              window[_i0].stickyKeys = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_window__i0__keys0 = 1;
+          window[_i0].keys = (long *) malloc(_len_window__i0__keys0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_window__i0__keys0; _j0++) {
+            window[_i0].keys[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          setStickyKeys(window,enabled);
+          for(int _aux = 0; _aux < _len_window0; _aux++) {
+          free(window[_aux].keys);
+          }
+          free(window);
+        
+        break;
+    }
     default:
         usage();
         break;

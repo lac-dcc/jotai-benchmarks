@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +79,6 @@ iser_dif_prot_caps(int prot_caps)
 		SHOST_DIF_TYPE3_PROTECTION | SHOST_DIX_TYPE3_PROTECTION : 0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,6 +95,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int prot_caps = 100;
+        
           unsigned int benchRet = iser_dif_prot_caps(prot_caps);
           printf("%u\n", benchRet); 
         
@@ -109,6 +105,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int prot_caps = 255;
+        
           unsigned int benchRet = iser_dif_prot_caps(prot_caps);
           printf("%u\n", benchRet); 
         
@@ -118,12 +115,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int prot_caps = 10;
+        
           unsigned int benchRet = iser_dif_prot_caps(prot_caps);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int prot_caps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = iser_dif_prot_caps(prot_caps);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

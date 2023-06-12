@@ -61,12 +61,6 @@ __attribute__((used)) static void map_set(u64 *up_map, int i, unsigned int v)
 	*up_map |= ((u64)v << i);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,16 +73,42 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // big-arr-10x
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int i = 10;
+        
           unsigned int v = 10;
+        
           int _len_up_map0 = 100;
           unsigned long long * up_map = (unsigned long long *) malloc(_len_up_map0*sizeof(unsigned long long));
           for(int _i0 = 0; _i0 < _len_up_map0; _i0++) {
             up_map[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           map_set(up_map,i,v);
           free(up_map);
         

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -134,12 +136,6 @@ void HalSetBrateCfg(struct adapter *adapt, u8 *brates, u16 *rate_cfg)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -152,24 +148,28 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_adapt0 = 1;
+          int _len_adapt0 = 65025;
           struct adapter * adapt = (struct adapter *) malloc(_len_adapt0*sizeof(struct adapter));
           for(int _i0 = 0; _i0 < _len_adapt0; _i0++) {
-            adapt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              adapt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_brates0 = 1;
+        
+          int _len_brates0 = 65025;
           unsigned long * brates = (unsigned long *) malloc(_len_brates0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_brates0; _i0++) {
             brates[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_rate_cfg0 = 1;
+        
+          int _len_rate_cfg0 = 65025;
           int * rate_cfg = (int *) malloc(_len_rate_cfg0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_rate_cfg0; _i0++) {
             rate_cfg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           HalSetBrateCfg(adapt,brates,rate_cfg);
           free(adapt);
           free(brates);
@@ -177,7 +177,64 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_adapt0 = 100;
+          struct adapter * adapt = (struct adapter *) malloc(_len_adapt0*sizeof(struct adapter));
+          for(int _i0 = 0; _i0 < _len_adapt0; _i0++) {
+              adapt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_brates0 = 100;
+          unsigned long * brates = (unsigned long *) malloc(_len_brates0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_brates0; _i0++) {
+            brates[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_rate_cfg0 = 100;
+          int * rate_cfg = (int *) malloc(_len_rate_cfg0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_rate_cfg0; _i0++) {
+            rate_cfg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          HalSetBrateCfg(adapt,brates,rate_cfg);
+          free(adapt);
+          free(brates);
+          free(rate_cfg);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_adapt0 = 1;
+          struct adapter * adapt = (struct adapter *) malloc(_len_adapt0*sizeof(struct adapter));
+          for(int _i0 = 0; _i0 < _len_adapt0; _i0++) {
+              adapt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_brates0 = 1;
+          unsigned long * brates = (unsigned long *) malloc(_len_brates0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_brates0; _i0++) {
+            brates[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_rate_cfg0 = 1;
+          int * rate_cfg = (int *) malloc(_len_rate_cfg0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_rate_cfg0; _i0++) {
+            rate_cfg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          HalSetBrateCfg(adapt,brates,rate_cfg);
+          free(adapt);
+          free(brates);
+          free(rate_cfg);
+        
+        break;
+    }
     default:
         usage();
         break;

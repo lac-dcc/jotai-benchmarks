@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -88,12 +90,6 @@ nstat_ifnet_compute_percentages(struct if_tcp_ecn_perf_stat *ifst)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,27 +102,72 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ifst0 = 1;
+          int _len_ifst0 = 65025;
           struct if_tcp_ecn_perf_stat * ifst = (struct if_tcp_ecn_perf_stat *) malloc(_len_ifst0*sizeof(struct if_tcp_ecn_perf_stat));
           for(int _i0 = 0; _i0 < _len_ifst0; _i0++) {
-            ifst[_i0].total_rxmitpkts = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifst[_i0].total_txpkts = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifst[_i0].rxmit_percent = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifst[_i0].total_oopkts = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifst[_i0].total_rxpkts = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifst[_i0].oo_percent = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifst[_i0].total_reorderpkts = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifst[_i0].reorder_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+              ifst[_i0].total_rxmitpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifst[_i0].total_txpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifst[_i0].rxmit_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifst[_i0].total_oopkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifst[_i0].total_rxpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifst[_i0].oo_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifst[_i0].total_reorderpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifst[_i0].reorder_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           nstat_ifnet_compute_percentages(ifst);
           free(ifst);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ifst0 = 100;
+          struct if_tcp_ecn_perf_stat * ifst = (struct if_tcp_ecn_perf_stat *) malloc(_len_ifst0*sizeof(struct if_tcp_ecn_perf_stat));
+          for(int _i0 = 0; _i0 < _len_ifst0; _i0++) {
+              ifst[_i0].total_rxmitpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifst[_i0].total_txpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifst[_i0].rxmit_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifst[_i0].total_oopkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifst[_i0].total_rxpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifst[_i0].oo_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifst[_i0].total_reorderpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifst[_i0].reorder_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          nstat_ifnet_compute_percentages(ifst);
+          free(ifst);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ifst0 = 1;
+          struct if_tcp_ecn_perf_stat * ifst = (struct if_tcp_ecn_perf_stat *) malloc(_len_ifst0*sizeof(struct if_tcp_ecn_perf_stat));
+          for(int _i0 = 0; _i0 < _len_ifst0; _i0++) {
+              ifst[_i0].total_rxmitpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifst[_i0].total_txpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifst[_i0].rxmit_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifst[_i0].total_oopkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifst[_i0].total_rxpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifst[_i0].oo_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifst[_i0].total_reorderpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifst[_i0].reorder_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          nstat_ifnet_compute_percentages(ifst);
+          free(ifst);
+        
+        break;
+    }
     default:
         usage();
         break;

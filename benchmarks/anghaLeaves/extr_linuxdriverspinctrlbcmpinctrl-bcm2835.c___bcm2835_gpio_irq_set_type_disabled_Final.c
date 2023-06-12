@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -81,12 +84,6 @@ __attribute__((used)) static int __bcm2835_gpio_irq_set_type_disabled(struct bcm
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,7 +100,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int offset = 100;
+        
           unsigned int type = 100;
+        
           int _len_pc0 = 1;
           struct bcm2835_pinctrl * pc = (struct bcm2835_pinctrl *) malloc(_len_pc0*sizeof(struct bcm2835_pinctrl));
           for(int _i0 = 0; _i0 < _len_pc0; _i0++) {
@@ -112,7 +111,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_pc__i0__irq_type0; _j0++) {
             pc[_i0].irq_type[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = __bcm2835_gpio_irq_set_type_disabled(pc,offset,type);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_pc0; _aux++) {
@@ -122,7 +123,87 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int offset = 255;
+        
+          unsigned int type = 255;
+        
+          int _len_pc0 = 65025;
+          struct bcm2835_pinctrl * pc = (struct bcm2835_pinctrl *) malloc(_len_pc0*sizeof(struct bcm2835_pinctrl));
+          for(int _i0 = 0; _i0 < _len_pc0; _i0++) {
+              int _len_pc__i0__irq_type0 = 1;
+          pc[_i0].irq_type = (unsigned int *) malloc(_len_pc__i0__irq_type0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len_pc__i0__irq_type0; _j0++) {
+            pc[_i0].irq_type[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = __bcm2835_gpio_irq_set_type_disabled(pc,offset,type);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pc0; _aux++) {
+          free(pc[_aux].irq_type);
+          }
+          free(pc);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int offset = 10;
+        
+          unsigned int type = 10;
+        
+          int _len_pc0 = 100;
+          struct bcm2835_pinctrl * pc = (struct bcm2835_pinctrl *) malloc(_len_pc0*sizeof(struct bcm2835_pinctrl));
+          for(int _i0 = 0; _i0 < _len_pc0; _i0++) {
+              int _len_pc__i0__irq_type0 = 1;
+          pc[_i0].irq_type = (unsigned int *) malloc(_len_pc__i0__irq_type0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len_pc__i0__irq_type0; _j0++) {
+            pc[_i0].irq_type[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = __bcm2835_gpio_irq_set_type_disabled(pc,offset,type);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pc0; _aux++) {
+          free(pc[_aux].irq_type);
+          }
+          free(pc);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pc0 = 1;
+          struct bcm2835_pinctrl * pc = (struct bcm2835_pinctrl *) malloc(_len_pc0*sizeof(struct bcm2835_pinctrl));
+          for(int _i0 = 0; _i0 < _len_pc0; _i0++) {
+              int _len_pc__i0__irq_type0 = 1;
+          pc[_i0].irq_type = (unsigned int *) malloc(_len_pc__i0__irq_type0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len_pc__i0__irq_type0; _j0++) {
+            pc[_i0].irq_type[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = __bcm2835_gpio_irq_set_type_disabled(pc,offset,type);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pc0; _aux++) {
+          free(pc[_aux].irq_type);
+          }
+          free(pc);
+        
+        break;
+    }
     default:
         usage();
         break;

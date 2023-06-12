@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static inline int cxio_wq_db_enabled(struct t3_wq *wq)
 	return !(wq->queue->wq_in_err.err & 2);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,18 +78,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_wq0 = 65025;
+          struct t3_wq * wq = (struct t3_wq *) malloc(_len_wq0*sizeof(struct t3_wq));
+          for(int _i0 = 0; _i0 < _len_wq0; _i0++) {
+              int _len_wq__i0__queue0 = 1;
+          wq[_i0].queue = (struct TYPE_4__ *) malloc(_len_wq__i0__queue0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_wq__i0__queue0; _j0++) {
+              wq[_i0].queue->wq_in_err.err = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = cxio_wq_db_enabled(wq);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_wq0; _aux++) {
+          free(wq[_aux].queue);
+          }
+          free(wq);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_wq0 = 100;
+          struct t3_wq * wq = (struct t3_wq *) malloc(_len_wq0*sizeof(struct t3_wq));
+          for(int _i0 = 0; _i0 < _len_wq0; _i0++) {
+              int _len_wq__i0__queue0 = 1;
+          wq[_i0].queue = (struct TYPE_4__ *) malloc(_len_wq__i0__queue0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_wq__i0__queue0; _j0++) {
+              wq[_i0].queue->wq_in_err.err = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = cxio_wq_db_enabled(wq);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_wq0; _aux++) {
+          free(wq[_aux].queue);
+          }
+          free(wq);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_wq0 = 1;
           struct t3_wq * wq = (struct t3_wq *) malloc(_len_wq0*sizeof(struct t3_wq));
           for(int _i0 = 0; _i0 < _len_wq0; _i0++) {
               int _len_wq__i0__queue0 = 1;
           wq[_i0].queue = (struct TYPE_4__ *) malloc(_len_wq__i0__queue0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_wq__i0__queue0; _j0++) {
-            wq[_i0].queue->wq_in_err.err = ((-2 * (next_i()%2)) + 1) * next_i();
+              wq[_i0].queue->wq_in_err.err = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           int benchRet = cxio_wq_db_enabled(wq);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_wq0; _aux++) {

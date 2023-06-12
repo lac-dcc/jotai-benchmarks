@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ __attribute__((used)) static inline int qlt_need_explicit_conf(struct qla_tgt_cm
                     cmd->conf_compl_supported;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,21 +85,204 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int sending_sense = 100;
+        
           int _len_cmd0 = 1;
           struct qla_tgt_cmd * cmd = (struct qla_tgt_cmd *) malloc(_len_cmd0*sizeof(struct qla_tgt_cmd));
           for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
-            cmd[_i0].conf_compl_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmd[_i0].conf_compl_supported = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_cmd__i0__qpair0 = 1;
           cmd[_i0].qpair = (struct TYPE_2__ *) malloc(_len_cmd__i0__qpair0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_cmd__i0__qpair0; _j0++) {
-            cmd[_i0].qpair->enable_explicit_conf = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd[_i0].qpair->enable_class_2 = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmd[_i0].qpair->enable_explicit_conf = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].qpair->enable_class_2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = qlt_need_explicit_conf(cmd,sending_sense);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cmd0; _aux++) {
+          free(cmd[_aux].qpair);
+          }
+          free(cmd);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int sending_sense = 255;
+        
+          int _len_cmd0 = 65025;
+          struct qla_tgt_cmd * cmd = (struct qla_tgt_cmd *) malloc(_len_cmd0*sizeof(struct qla_tgt_cmd));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].conf_compl_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cmd__i0__qpair0 = 1;
+          cmd[_i0].qpair = (struct TYPE_2__ *) malloc(_len_cmd__i0__qpair0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_cmd__i0__qpair0; _j0++) {
+              cmd[_i0].qpair->enable_explicit_conf = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].qpair->enable_class_2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = qlt_need_explicit_conf(cmd,sending_sense);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cmd0; _aux++) {
+          free(cmd[_aux].qpair);
+          }
+          free(cmd);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int sending_sense = 10;
+        
+          int _len_cmd0 = 100;
+          struct qla_tgt_cmd * cmd = (struct qla_tgt_cmd *) malloc(_len_cmd0*sizeof(struct qla_tgt_cmd));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].conf_compl_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cmd__i0__qpair0 = 1;
+          cmd[_i0].qpair = (struct TYPE_2__ *) malloc(_len_cmd__i0__qpair0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_cmd__i0__qpair0; _j0++) {
+              cmd[_i0].qpair->enable_explicit_conf = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].qpair->enable_class_2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = qlt_need_explicit_conf(cmd,sending_sense);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cmd0; _aux++) {
+          free(cmd[_aux].qpair);
+          }
+          free(cmd);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int sending_sense = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cmd0 = 1;
+          struct qla_tgt_cmd * cmd = (struct qla_tgt_cmd *) malloc(_len_cmd0*sizeof(struct qla_tgt_cmd));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].conf_compl_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cmd__i0__qpair0 = 1;
+          cmd[_i0].qpair = (struct TYPE_2__ *) malloc(_len_cmd__i0__qpair0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_cmd__i0__qpair0; _j0++) {
+              cmd[_i0].qpair->enable_explicit_conf = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].qpair->enable_class_2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = qlt_need_explicit_conf(cmd,sending_sense);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_cmd0; _aux++) {

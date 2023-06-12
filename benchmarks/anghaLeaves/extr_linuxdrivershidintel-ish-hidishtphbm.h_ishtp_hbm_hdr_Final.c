@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ __attribute__((used)) static inline void ishtp_hbm_hdr(struct ishtp_msg_hdr *hdr
 	hdr->reserved = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,19 +79,180 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           unsigned long length = 100;
+        
           int _len_hdr0 = 1;
           struct ishtp_msg_hdr * hdr = (struct ishtp_msg_hdr *) malloc(_len_hdr0*sizeof(struct ishtp_msg_hdr));
           for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
-            hdr[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdr[_i0].msg_complete = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdr[_i0].reserved = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdr[_i0].fw_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdr[_i0].host_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+              hdr[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].msg_complete = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].reserved = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].fw_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].host_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          ishtp_hbm_hdr(hdr,length);
+          free(hdr);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          unsigned long length = 255;
+        
+          int _len_hdr0 = 65025;
+          struct ishtp_msg_hdr * hdr = (struct ishtp_msg_hdr *) malloc(_len_hdr0*sizeof(struct ishtp_msg_hdr));
+          for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
+              hdr[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].msg_complete = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].reserved = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].fw_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].host_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ishtp_hbm_hdr(hdr,length);
+          free(hdr);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          unsigned long length = 10;
+        
+          int _len_hdr0 = 100;
+          struct ishtp_msg_hdr * hdr = (struct ishtp_msg_hdr *) malloc(_len_hdr0*sizeof(struct ishtp_msg_hdr));
+          for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
+              hdr[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].msg_complete = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].reserved = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].fw_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].host_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ishtp_hbm_hdr(hdr,length);
+          free(hdr);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          unsigned long length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hdr0 = 1;
+          struct ishtp_msg_hdr * hdr = (struct ishtp_msg_hdr *) malloc(_len_hdr0*sizeof(struct ishtp_msg_hdr));
+          for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
+              hdr[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].msg_complete = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].reserved = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].fw_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].host_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           ishtp_hbm_hdr(hdr,length);
           free(hdr);
         

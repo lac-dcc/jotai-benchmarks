@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static bool cake_dsrc(int flow_mode)
 	return (flow_mode & CAKE_FLOW_DUAL_SRC) == CAKE_FLOW_DUAL_SRC;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int flow_mode = 100;
+        
           int benchRet = cake_dsrc(flow_mode);
           printf("%d\n", benchRet); 
         
@@ -93,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int flow_mode = 255;
+        
           int benchRet = cake_dsrc(flow_mode);
           printf("%d\n", benchRet); 
         
@@ -102,12 +99,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int flow_mode = 10;
+        
           int benchRet = cake_dsrc(flow_mode);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int flow_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = cake_dsrc(flow_mode);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -92,12 +94,6 @@ update_policy:
 		ap->target_lpm_policy = policy;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -110,19 +106,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_ap0 = 65025;
+          struct ata_port * ap = (struct ata_port *) malloc(_len_ap0*sizeof(struct ata_port));
+          for(int _i0 = 0; _i0 < _len_ap0; _i0++) {
+              ap[_i0].target_lpm_policy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_hpriv0 = 65025;
+          struct ahci_host_priv * hpriv = (struct ahci_host_priv *) malloc(_len_hpriv0*sizeof(struct ahci_host_priv));
+          for(int _i0 = 0; _i0 < _len_hpriv0; _i0++) {
+              hpriv[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ahci_update_initial_lpm_policy(ap,hpriv);
+          free(ap);
+          free(hpriv);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_ap0 = 100;
+          struct ata_port * ap = (struct ata_port *) malloc(_len_ap0*sizeof(struct ata_port));
+          for(int _i0 = 0; _i0 < _len_ap0; _i0++) {
+              ap[_i0].target_lpm_policy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_hpriv0 = 100;
+          struct ahci_host_priv * hpriv = (struct ahci_host_priv *) malloc(_len_hpriv0*sizeof(struct ahci_host_priv));
+          for(int _i0 = 0; _i0 < _len_hpriv0; _i0++) {
+              hpriv[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ahci_update_initial_lpm_policy(ap,hpriv);
+          free(ap);
+          free(hpriv);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_ap0 = 1;
           struct ata_port * ap = (struct ata_port *) malloc(_len_ap0*sizeof(struct ata_port));
           for(int _i0 = 0; _i0 < _len_ap0; _i0++) {
-            ap[_i0].target_lpm_policy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ap[_i0].target_lpm_policy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_hpriv0 = 1;
           struct ahci_host_priv * hpriv = (struct ahci_host_priv *) malloc(_len_hpriv0*sizeof(struct ahci_host_priv));
           for(int _i0 = 0; _i0 < _len_hpriv0; _i0++) {
-            hpriv[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              hpriv[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ahci_update_initial_lpm_policy(ap,hpriv);
           free(ap);
           free(hpriv);

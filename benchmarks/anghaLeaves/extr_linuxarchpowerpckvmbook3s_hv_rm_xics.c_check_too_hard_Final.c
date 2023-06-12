@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static inline int check_too_hard(struct kvmppc_xics *xics,
 	return (xics->real_mode_dbg || icp->rm_action) ? H_TOO_HARD : H_SUCCESS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,19 +78,142 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_xics0 = 65025;
+          struct kvmppc_xics * xics = (struct kvmppc_xics *) malloc(_len_xics0*sizeof(struct kvmppc_xics));
+          for(int _i0 = 0; _i0 < _len_xics0; _i0++) {
+              xics[_i0].real_mode_dbg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_icp0 = 65025;
+          struct kvmppc_icp * icp = (struct kvmppc_icp *) malloc(_len_icp0*sizeof(struct kvmppc_icp));
+          for(int _i0 = 0; _i0 < _len_icp0; _i0++) {
+              icp[_i0].rm_action = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = check_too_hard(xics,icp);
+          printf("%d\n", benchRet); 
+          free(xics);
+          free(icp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_xics0 = 100;
+          struct kvmppc_xics * xics = (struct kvmppc_xics *) malloc(_len_xics0*sizeof(struct kvmppc_xics));
+          for(int _i0 = 0; _i0 < _len_xics0; _i0++) {
+              xics[_i0].real_mode_dbg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_icp0 = 100;
+          struct kvmppc_icp * icp = (struct kvmppc_icp *) malloc(_len_icp0*sizeof(struct kvmppc_icp));
+          for(int _i0 = 0; _i0 < _len_icp0; _i0++) {
+              icp[_i0].rm_action = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = check_too_hard(xics,icp);
+          printf("%d\n", benchRet); 
+          free(xics);
+          free(icp);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_xics0 = 1;
           struct kvmppc_xics * xics = (struct kvmppc_xics *) malloc(_len_xics0*sizeof(struct kvmppc_xics));
           for(int _i0 = 0; _i0 < _len_xics0; _i0++) {
-            xics[_i0].real_mode_dbg = ((-2 * (next_i()%2)) + 1) * next_i();
+              xics[_i0].real_mode_dbg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_icp0 = 1;
           struct kvmppc_icp * icp = (struct kvmppc_icp *) malloc(_len_icp0*sizeof(struct kvmppc_icp));
           for(int _i0 = 0; _i0 < _len_icp0; _i0++) {
-            icp[_i0].rm_action = ((-2 * (next_i()%2)) + 1) * next_i();
+              icp[_i0].rm_action = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = check_too_hard(xics,icp);
           printf("%d\n", benchRet); 
           free(xics);

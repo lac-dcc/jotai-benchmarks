@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +78,6 @@ __attribute__((used)) static int msic_gpio_to_oreg(unsigned offset)
 	return INTEL_MSIC_GPIO1HV0CTLO - offset + 20;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,6 +94,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int offset = 100;
+        
           int benchRet = msic_gpio_to_oreg(offset);
           printf("%d\n", benchRet); 
         
@@ -108,6 +104,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int offset = 255;
+        
           int benchRet = msic_gpio_to_oreg(offset);
           printf("%d\n", benchRet); 
         
@@ -117,12 +114,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int offset = 10;
+        
           int benchRet = msic_gpio_to_oreg(offset);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = msic_gpio_to_oreg(offset);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

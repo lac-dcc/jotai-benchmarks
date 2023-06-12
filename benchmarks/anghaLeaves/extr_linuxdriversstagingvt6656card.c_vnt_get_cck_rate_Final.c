@@ -31,6 +31,7 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            big-arr-10x\n\
+       1            empty\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ __attribute__((used)) static u16 vnt_get_cck_rate(struct vnt_private *priv, u16 
 	return RATE_1M;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,18 +87,38 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int rate_idx = 10;
+        
           int _len_priv0 = 100;
           struct vnt_private * priv = (struct vnt_private *) malloc(_len_priv0*sizeof(struct vnt_private));
           for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
-            priv[_i0].basic_rates = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].basic_rates = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = vnt_get_cck_rate(priv,rate_idx);
           printf("%d\n", benchRet); 
           free(priv);
         
         break;
     }
-
+    // empty
+    case 1:
+    {
+          int rate_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_priv0 = 1;
+          struct vnt_private * priv = (struct vnt_private *) malloc(_len_priv0*sizeof(struct vnt_private));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].basic_rates = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vnt_get_cck_rate(priv,rate_idx);
+          printf("%d\n", benchRet); 
+          free(priv);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +83,6 @@ __attribute__((used)) static u8 trinity_calculate_display_wm(struct radeon_devic
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,21 +99,27 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long index = 100;
+        
           int _len_rdev0 = 1;
           struct radeon_device * rdev = (struct radeon_device *) malloc(_len_rdev0*sizeof(struct radeon_device));
           for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
-            rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_ps0 = 1;
           struct trinity_ps * ps = (struct trinity_ps *) malloc(_len_ps0*sizeof(struct trinity_ps));
           for(int _i0 = 0; _i0 < _len_ps0; _i0++) {
-            ps[_i0].num_levels = ((-2 * (next_i()%2)) + 1) * next_i();
+              ps[_i0].num_levels = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_ps__i0__levels0 = 1;
           ps[_i0].levels = (struct TYPE_2__ *) malloc(_len_ps__i0__levels0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_ps__i0__levels0; _j0++) {
-            ps[_i0].levels->sclk = ((-2 * (next_i()%2)) + 1) * next_i();
+              ps[_i0].levels->sclk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = trinity_calculate_display_wm(rdev,ps,index);
           printf("%d\n", benchRet); 
           free(rdev);
@@ -127,7 +130,111 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long index = 255;
+        
+          int _len_rdev0 = 65025;
+          struct radeon_device * rdev = (struct radeon_device *) malloc(_len_rdev0*sizeof(struct radeon_device));
+          for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
+              rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ps0 = 65025;
+          struct trinity_ps * ps = (struct trinity_ps *) malloc(_len_ps0*sizeof(struct trinity_ps));
+          for(int _i0 = 0; _i0 < _len_ps0; _i0++) {
+              ps[_i0].num_levels = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ps__i0__levels0 = 1;
+          ps[_i0].levels = (struct TYPE_2__ *) malloc(_len_ps__i0__levels0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ps__i0__levels0; _j0++) {
+              ps[_i0].levels->sclk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = trinity_calculate_display_wm(rdev,ps,index);
+          printf("%d\n", benchRet); 
+          free(rdev);
+          for(int _aux = 0; _aux < _len_ps0; _aux++) {
+          free(ps[_aux].levels);
+          }
+          free(ps);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long index = 10;
+        
+          int _len_rdev0 = 100;
+          struct radeon_device * rdev = (struct radeon_device *) malloc(_len_rdev0*sizeof(struct radeon_device));
+          for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
+              rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ps0 = 100;
+          struct trinity_ps * ps = (struct trinity_ps *) malloc(_len_ps0*sizeof(struct trinity_ps));
+          for(int _i0 = 0; _i0 < _len_ps0; _i0++) {
+              ps[_i0].num_levels = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ps__i0__levels0 = 1;
+          ps[_i0].levels = (struct TYPE_2__ *) malloc(_len_ps__i0__levels0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ps__i0__levels0; _j0++) {
+              ps[_i0].levels->sclk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = trinity_calculate_display_wm(rdev,ps,index);
+          printf("%d\n", benchRet); 
+          free(rdev);
+          for(int _aux = 0; _aux < _len_ps0; _aux++) {
+          free(ps[_aux].levels);
+          }
+          free(ps);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rdev0 = 1;
+          struct radeon_device * rdev = (struct radeon_device *) malloc(_len_rdev0*sizeof(struct radeon_device));
+          for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
+              rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ps0 = 1;
+          struct trinity_ps * ps = (struct trinity_ps *) malloc(_len_ps0*sizeof(struct trinity_ps));
+          for(int _i0 = 0; _i0 < _len_ps0; _i0++) {
+              ps[_i0].num_levels = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ps__i0__levels0 = 1;
+          ps[_i0].levels = (struct TYPE_2__ *) malloc(_len_ps__i0__levels0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ps__i0__levels0; _j0++) {
+              ps[_i0].levels->sclk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = trinity_calculate_display_wm(rdev,ps,index);
+          printf("%d\n", benchRet); 
+          free(rdev);
+          for(int _aux = 0; _aux < _len_ps0; _aux++) {
+          free(ps[_aux].levels);
+          }
+          free(ps);
+        
+        break;
+    }
     default:
         usage();
         break;

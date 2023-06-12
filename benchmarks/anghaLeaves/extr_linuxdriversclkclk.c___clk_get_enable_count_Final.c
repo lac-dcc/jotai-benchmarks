@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ unsigned int __clk_get_enable_count(struct clk *clk)
 	return !clk ? 0 : clk->core->enable_count;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,18 +76,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_clk0 = 65025;
+          struct clk * clk = (struct clk *) malloc(_len_clk0*sizeof(struct clk));
+          for(int _i0 = 0; _i0 < _len_clk0; _i0++) {
+              int _len_clk__i0__core0 = 1;
+          clk[_i0].core = (struct TYPE_2__ *) malloc(_len_clk__i0__core0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_clk__i0__core0; _j0++) {
+              clk[_i0].core->enable_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = __clk_get_enable_count(clk);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_clk0; _aux++) {
+          free(clk[_aux].core);
+          }
+          free(clk);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_clk0 = 100;
+          struct clk * clk = (struct clk *) malloc(_len_clk0*sizeof(struct clk));
+          for(int _i0 = 0; _i0 < _len_clk0; _i0++) {
+              int _len_clk__i0__core0 = 1;
+          clk[_i0].core = (struct TYPE_2__ *) malloc(_len_clk__i0__core0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_clk__i0__core0; _j0++) {
+              clk[_i0].core->enable_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = __clk_get_enable_count(clk);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_clk0; _aux++) {
+          free(clk[_aux].core);
+          }
+          free(clk);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_clk0 = 1;
           struct clk * clk = (struct clk *) malloc(_len_clk0*sizeof(struct clk));
           for(int _i0 = 0; _i0 < _len_clk0; _i0++) {
               int _len_clk__i0__core0 = 1;
           clk[_i0].core = (struct TYPE_2__ *) malloc(_len_clk__i0__core0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_clk__i0__core0; _j0++) {
-            clk[_i0].core->enable_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              clk[_i0].core->enable_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           unsigned int benchRet = __clk_get_enable_count(clk);
           printf("%u\n", benchRet); 
           for(int _aux = 0; _aux < _len_clk0; _aux++) {

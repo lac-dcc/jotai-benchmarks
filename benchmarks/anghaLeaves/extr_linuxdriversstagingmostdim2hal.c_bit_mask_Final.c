@@ -61,12 +61,6 @@ __attribute__((used)) static inline u32 bit_mask(u8 position)
 	return (u32)1 << position;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,12 +77,12 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int position = 10;
+        
           int benchRet = bit_mask(position);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -181,12 +182,6 @@ __attribute__((used)) static int ucc_get_tdm_rx_clk(u32 tdm_num, enum qe_clock c
 	return clock_bits;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -203,7 +198,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int tdm_num = 100;
+        
           enum qe_clock clock = 0;
+        
           int benchRet = ucc_get_tdm_rx_clk(tdm_num,clock);
           printf("%d\n", benchRet); 
         
@@ -213,7 +210,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int tdm_num = 255;
+        
           enum qe_clock clock = 0;
+        
           int benchRet = ucc_get_tdm_rx_clk(tdm_num,clock);
           printf("%d\n", benchRet); 
         
@@ -223,13 +222,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int tdm_num = 10;
+        
           enum qe_clock clock = 0;
+        
           int benchRet = ucc_get_tdm_rx_clk(tdm_num,clock);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int tdm_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          enum qe_clock clock = 0;
+        
+          int benchRet = ucc_get_tdm_rx_clk(tdm_num,clock);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

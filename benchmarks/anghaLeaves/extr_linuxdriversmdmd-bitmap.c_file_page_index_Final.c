@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static inline unsigned long file_page_index(struct bitmap_
 	return chunk >> PAGE_BIT_SHIFT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,11 +84,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long chunk = 100;
+        
           int _len_store0 = 1;
           struct bitmap_storage * store = (struct bitmap_storage *) malloc(_len_store0*sizeof(struct bitmap_storage));
           for(int _i0 = 0; _i0 < _len_store0; _i0++) {
-            store[_i0].sb_page = ((-2 * (next_i()%2)) + 1) * next_i();
+              store[_i0].sb_page = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          unsigned long benchRet = file_page_index(store,chunk);
+          printf("%lu\n", benchRet); 
+          free(store);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned long chunk = 255;
+        
+          int _len_store0 = 65025;
+          struct bitmap_storage * store = (struct bitmap_storage *) malloc(_len_store0*sizeof(struct bitmap_storage));
+          for(int _i0 = 0; _i0 < _len_store0; _i0++) {
+              store[_i0].sb_page = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           unsigned long benchRet = file_page_index(store,chunk);
           printf("%lu\n", benchRet); 
           free(store);
@@ -100,21 +117,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned long chunk = 10;
+        
           int _len_store0 = 100;
           struct bitmap_storage * store = (struct bitmap_storage *) malloc(_len_store0*sizeof(struct bitmap_storage));
           for(int _i0 = 0; _i0 < _len_store0; _i0++) {
-            store[_i0].sb_page = ((-2 * (next_i()%2)) + 1) * next_i();
+              store[_i0].sb_page = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = file_page_index(store,chunk);
           printf("%lu\n", benchRet); 
           free(store);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long chunk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_store0 = 1;
+          struct bitmap_storage * store = (struct bitmap_storage *) malloc(_len_store0*sizeof(struct bitmap_storage));
+          for(int _i0 = 0; _i0 < _len_store0; _i0++) {
+              store[_i0].sb_page = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = file_page_index(store,chunk);
+          printf("%lu\n", benchRet); 
+          free(store);
+        
+        break;
+    }
     default:
         usage();
         break;

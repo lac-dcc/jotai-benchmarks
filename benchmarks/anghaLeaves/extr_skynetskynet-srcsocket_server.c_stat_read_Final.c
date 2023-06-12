@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ stat_read(struct socket_server *ss, struct socket *s, int n) {
 	s->stat.rtime = ss->time;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,21 +79,203 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int n = 100;
+        
           int _len_ss0 = 1;
           struct socket_server * ss = (struct socket_server *) malloc(_len_ss0*sizeof(struct socket_server));
           for(int _i0 = 0; _i0 < _len_ss0; _i0++) {
-            ss[_i0].time = ((-2 * (next_i()%2)) + 1) * next_i();
+              ss[_i0].time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_s0 = 1;
           struct socket * s = (struct socket *) malloc(_len_s0*sizeof(struct socket));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].stat.read = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].stat.rtime = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].stat.read = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].stat.rtime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          stat_read(ss,s,n);
+          free(ss);
+          free(s);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int n = 255;
+        
+          int _len_ss0 = 65025;
+          struct socket_server * ss = (struct socket_server *) malloc(_len_ss0*sizeof(struct socket_server));
+          for(int _i0 = 0; _i0 < _len_ss0; _i0++) {
+              ss[_i0].time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_s0 = 65025;
+          struct socket * s = (struct socket *) malloc(_len_s0*sizeof(struct socket));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].stat.read = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].stat.rtime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          stat_read(ss,s,n);
+          free(ss);
+          free(s);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int n = 10;
+        
+          int _len_ss0 = 100;
+          struct socket_server * ss = (struct socket_server *) malloc(_len_ss0*sizeof(struct socket_server));
+          for(int _i0 = 0; _i0 < _len_ss0; _i0++) {
+              ss[_i0].time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_s0 = 100;
+          struct socket * s = (struct socket *) malloc(_len_s0*sizeof(struct socket));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].stat.read = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].stat.rtime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          stat_read(ss,s,n);
+          free(ss);
+          free(s);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ss0 = 1;
+          struct socket_server * ss = (struct socket_server *) malloc(_len_ss0*sizeof(struct socket_server));
+          for(int _i0 = 0; _i0 < _len_ss0; _i0++) {
+              ss[_i0].time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_s0 = 1;
+          struct socket * s = (struct socket *) malloc(_len_s0*sizeof(struct socket));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].stat.read = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].stat.rtime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           stat_read(ss,s,n);
           free(ss);
           free(s);

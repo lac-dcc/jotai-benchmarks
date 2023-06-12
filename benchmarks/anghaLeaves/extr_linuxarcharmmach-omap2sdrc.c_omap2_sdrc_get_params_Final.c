@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -83,12 +86,6 @@ int omap2_sdrc_get_params(unsigned long r,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,40 +102,162 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long r = 100;
+        
           int _len_sdrc_cs00 = 1;
           struct omap_sdrc_params ** sdrc_cs0 = (struct omap_sdrc_params **) malloc(_len_sdrc_cs00*sizeof(struct omap_sdrc_params *));
           for(int _i0 = 0; _i0 < _len_sdrc_cs00; _i0++) {
             int _len_sdrc_cs01 = 1;
             sdrc_cs0[_i0] = (struct omap_sdrc_params *) malloc(_len_sdrc_cs01*sizeof(struct omap_sdrc_params));
             for(int _i1 = 0; _i1 < _len_sdrc_cs01; _i1++) {
-              sdrc_cs0[_i0][_i1].rate = ((-2 * (next_i()%2)) + 1) * next_i();
+                sdrc_cs0[_i0][_i1].rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           int _len_sdrc_cs10 = 1;
           struct omap_sdrc_params ** sdrc_cs1 = (struct omap_sdrc_params **) malloc(_len_sdrc_cs10*sizeof(struct omap_sdrc_params *));
           for(int _i0 = 0; _i0 < _len_sdrc_cs10; _i0++) {
             int _len_sdrc_cs11 = 1;
             sdrc_cs1[_i0] = (struct omap_sdrc_params *) malloc(_len_sdrc_cs11*sizeof(struct omap_sdrc_params));
             for(int _i1 = 0; _i1 < _len_sdrc_cs11; _i1++) {
-              sdrc_cs1[_i0][_i1].rate = ((-2 * (next_i()%2)) + 1) * next_i();
+                sdrc_cs1[_i0][_i1].rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           int benchRet = omap2_sdrc_get_params(r,sdrc_cs0,sdrc_cs1);
           printf("%d\n", benchRet); 
           for(int i1 = 0; i1 < _len_sdrc_cs00; i1++) {
-            int _len_sdrc_cs01 = 1;
               free(sdrc_cs0[i1]);
           }
           free(sdrc_cs0);
           for(int i1 = 0; i1 < _len_sdrc_cs10; i1++) {
-            int _len_sdrc_cs11 = 1;
               free(sdrc_cs1[i1]);
           }
           free(sdrc_cs1);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long r = 255;
+        
+          int _len_sdrc_cs00 = 65025;
+          struct omap_sdrc_params ** sdrc_cs0 = (struct omap_sdrc_params **) malloc(_len_sdrc_cs00*sizeof(struct omap_sdrc_params *));
+          for(int _i0 = 0; _i0 < _len_sdrc_cs00; _i0++) {
+            int _len_sdrc_cs01 = 1;
+            sdrc_cs0[_i0] = (struct omap_sdrc_params *) malloc(_len_sdrc_cs01*sizeof(struct omap_sdrc_params));
+            for(int _i1 = 0; _i1 < _len_sdrc_cs01; _i1++) {
+                sdrc_cs0[_i0][_i1].rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int _len_sdrc_cs10 = 65025;
+          struct omap_sdrc_params ** sdrc_cs1 = (struct omap_sdrc_params **) malloc(_len_sdrc_cs10*sizeof(struct omap_sdrc_params *));
+          for(int _i0 = 0; _i0 < _len_sdrc_cs10; _i0++) {
+            int _len_sdrc_cs11 = 1;
+            sdrc_cs1[_i0] = (struct omap_sdrc_params *) malloc(_len_sdrc_cs11*sizeof(struct omap_sdrc_params));
+            for(int _i1 = 0; _i1 < _len_sdrc_cs11; _i1++) {
+                sdrc_cs1[_i0][_i1].rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int benchRet = omap2_sdrc_get_params(r,sdrc_cs0,sdrc_cs1);
+          printf("%d\n", benchRet); 
+          for(int i1 = 0; i1 < _len_sdrc_cs00; i1++) {
+              free(sdrc_cs0[i1]);
+          }
+          free(sdrc_cs0);
+          for(int i1 = 0; i1 < _len_sdrc_cs10; i1++) {
+              free(sdrc_cs1[i1]);
+          }
+          free(sdrc_cs1);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long r = 10;
+        
+          int _len_sdrc_cs00 = 100;
+          struct omap_sdrc_params ** sdrc_cs0 = (struct omap_sdrc_params **) malloc(_len_sdrc_cs00*sizeof(struct omap_sdrc_params *));
+          for(int _i0 = 0; _i0 < _len_sdrc_cs00; _i0++) {
+            int _len_sdrc_cs01 = 1;
+            sdrc_cs0[_i0] = (struct omap_sdrc_params *) malloc(_len_sdrc_cs01*sizeof(struct omap_sdrc_params));
+            for(int _i1 = 0; _i1 < _len_sdrc_cs01; _i1++) {
+                sdrc_cs0[_i0][_i1].rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int _len_sdrc_cs10 = 100;
+          struct omap_sdrc_params ** sdrc_cs1 = (struct omap_sdrc_params **) malloc(_len_sdrc_cs10*sizeof(struct omap_sdrc_params *));
+          for(int _i0 = 0; _i0 < _len_sdrc_cs10; _i0++) {
+            int _len_sdrc_cs11 = 1;
+            sdrc_cs1[_i0] = (struct omap_sdrc_params *) malloc(_len_sdrc_cs11*sizeof(struct omap_sdrc_params));
+            for(int _i1 = 0; _i1 < _len_sdrc_cs11; _i1++) {
+                sdrc_cs1[_i0][_i1].rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int benchRet = omap2_sdrc_get_params(r,sdrc_cs0,sdrc_cs1);
+          printf("%d\n", benchRet); 
+          for(int i1 = 0; i1 < _len_sdrc_cs00; i1++) {
+              free(sdrc_cs0[i1]);
+          }
+          free(sdrc_cs0);
+          for(int i1 = 0; i1 < _len_sdrc_cs10; i1++) {
+              free(sdrc_cs1[i1]);
+          }
+          free(sdrc_cs1);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long r = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sdrc_cs00 = 1;
+          struct omap_sdrc_params ** sdrc_cs0 = (struct omap_sdrc_params **) malloc(_len_sdrc_cs00*sizeof(struct omap_sdrc_params *));
+          for(int _i0 = 0; _i0 < _len_sdrc_cs00; _i0++) {
+            int _len_sdrc_cs01 = 1;
+            sdrc_cs0[_i0] = (struct omap_sdrc_params *) malloc(_len_sdrc_cs01*sizeof(struct omap_sdrc_params));
+            for(int _i1 = 0; _i1 < _len_sdrc_cs01; _i1++) {
+                sdrc_cs0[_i0][_i1].rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int _len_sdrc_cs10 = 1;
+          struct omap_sdrc_params ** sdrc_cs1 = (struct omap_sdrc_params **) malloc(_len_sdrc_cs10*sizeof(struct omap_sdrc_params *));
+          for(int _i0 = 0; _i0 < _len_sdrc_cs10; _i0++) {
+            int _len_sdrc_cs11 = 1;
+            sdrc_cs1[_i0] = (struct omap_sdrc_params *) malloc(_len_sdrc_cs11*sizeof(struct omap_sdrc_params));
+            for(int _i1 = 0; _i1 < _len_sdrc_cs11; _i1++) {
+                sdrc_cs1[_i0][_i1].rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int benchRet = omap2_sdrc_get_params(r,sdrc_cs0,sdrc_cs1);
+          printf("%d\n", benchRet); 
+          for(int i1 = 0; i1 < _len_sdrc_cs00; i1++) {
+              free(sdrc_cs0[i1]);
+          }
+          free(sdrc_cs0);
+          for(int i1 = 0; i1 < _len_sdrc_cs10; i1++) {
+              free(sdrc_cs1[i1]);
+          }
+          free(sdrc_cs1);
+        
+        break;
+    }
     default:
         usage();
         break;

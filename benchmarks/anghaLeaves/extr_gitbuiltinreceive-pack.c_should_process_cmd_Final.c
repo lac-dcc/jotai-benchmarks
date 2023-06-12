@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static int should_process_cmd(struct command *cmd)
 	return !cmd->error_string && !cmd->skip_update;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,22 +74,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cmd0 = 1;
+          int _len_cmd0 = 65025;
           struct command * cmd = (struct command *) malloc(_len_cmd0*sizeof(struct command));
           for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
-            cmd[_i0].skip_update = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd[_i0].error_string = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmd[_i0].skip_update = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].error_string = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = should_process_cmd(cmd);
           printf("%d\n", benchRet); 
           free(cmd);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_cmd0 = 100;
+          struct command * cmd = (struct command *) malloc(_len_cmd0*sizeof(struct command));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].skip_update = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].error_string = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = should_process_cmd(cmd);
+          printf("%d\n", benchRet); 
+          free(cmd);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_cmd0 = 1;
+          struct command * cmd = (struct command *) malloc(_len_cmd0*sizeof(struct command));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].skip_update = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].error_string = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = should_process_cmd(cmd);
+          printf("%d\n", benchRet); 
+          free(cmd);
+        
+        break;
+    }
     default:
         usage();
         break;

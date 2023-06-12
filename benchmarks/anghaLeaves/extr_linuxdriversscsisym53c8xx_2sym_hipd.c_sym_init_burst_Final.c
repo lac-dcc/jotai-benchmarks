@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ __attribute__((used)) static inline void sym_init_burst(struct sym_hcb *np, u_ch
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,17 +87,172 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
           int bc = 100;
+        
           int _len_np0 = 1;
           struct sym_hcb * np = (struct sym_hcb *) malloc(_len_np0*sizeof(struct sym_hcb));
           for(int _i0 = 0; _i0 < _len_np0; _i0++) {
-            np[_i0].rv_ctest4 = ((-2 * (next_i()%2)) + 1) * next_i();
-        np[_i0].rv_dmode = ((-2 * (next_i()%2)) + 1) * next_i();
-        np[_i0].rv_ctest5 = ((-2 * (next_i()%2)) + 1) * next_i();
+              np[_i0].rv_ctest4 = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].rv_dmode = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].rv_ctest5 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          sym_init_burst(np,bc);
+          free(np);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
+          int bc = 255;
+        
+          int _len_np0 = 65025;
+          struct sym_hcb * np = (struct sym_hcb *) malloc(_len_np0*sizeof(struct sym_hcb));
+          for(int _i0 = 0; _i0 < _len_np0; _i0++) {
+              np[_i0].rv_ctest4 = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].rv_dmode = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].rv_ctest5 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          sym_init_burst(np,bc);
+          free(np);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
+          int bc = 10;
+        
+          int _len_np0 = 100;
+          struct sym_hcb * np = (struct sym_hcb *) malloc(_len_np0*sizeof(struct sym_hcb));
+          for(int _i0 = 0; _i0 < _len_np0; _i0++) {
+              np[_i0].rv_ctest4 = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].rv_dmode = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].rv_ctest5 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          sym_init_burst(np,bc);
+          free(np);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
+          int bc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_np0 = 1;
+          struct sym_hcb * np = (struct sym_hcb *) malloc(_len_np0*sizeof(struct sym_hcb));
+          for(int _i0 = 0; _i0 < _len_np0; _i0++) {
+              np[_i0].rv_ctest4 = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].rv_dmode = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].rv_ctest5 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           sym_init_burst(np,bc);
           free(np);
         

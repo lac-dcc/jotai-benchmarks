@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -60,12 +63,6 @@ __attribute__((used)) static int nfp_net_tx_full(struct nfp_net_tx_ring *tx_ring
 	return (tx_ring->wr_p - tx_ring->rd_p) >= (tx_ring->cnt - dcnt);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,17 +75,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int dcnt = 100;
+        
           int _len_tx_ring0 = 1;
           struct nfp_net_tx_ring * tx_ring = (struct nfp_net_tx_ring *) malloc(_len_tx_ring0*sizeof(struct nfp_net_tx_ring));
           for(int _i0 = 0; _i0 < _len_tx_ring0; _i0++) {
-            tx_ring[_i0].wr_p = ((-2 * (next_i()%2)) + 1) * next_i();
-        tx_ring[_i0].rd_p = ((-2 * (next_i()%2)) + 1) * next_i();
-        tx_ring[_i0].cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+              tx_ring[_i0].wr_p = ((-2 * (next_i()%2)) + 1) * next_i();
+          tx_ring[_i0].rd_p = ((-2 * (next_i()%2)) + 1) * next_i();
+          tx_ring[_i0].cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = nfp_net_tx_full(tx_ring,dcnt);
+          printf("%d\n", benchRet); 
+          free(tx_ring);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int dcnt = 255;
+        
+          int _len_tx_ring0 = 65025;
+          struct nfp_net_tx_ring * tx_ring = (struct nfp_net_tx_ring *) malloc(_len_tx_ring0*sizeof(struct nfp_net_tx_ring));
+          for(int _i0 = 0; _i0 < _len_tx_ring0; _i0++) {
+              tx_ring[_i0].wr_p = ((-2 * (next_i()%2)) + 1) * next_i();
+          tx_ring[_i0].rd_p = ((-2 * (next_i()%2)) + 1) * next_i();
+          tx_ring[_i0].cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nfp_net_tx_full(tx_ring,dcnt);
+          printf("%d\n", benchRet); 
+          free(tx_ring);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int dcnt = 10;
+        
+          int _len_tx_ring0 = 100;
+          struct nfp_net_tx_ring * tx_ring = (struct nfp_net_tx_ring *) malloc(_len_tx_ring0*sizeof(struct nfp_net_tx_ring));
+          for(int _i0 = 0; _i0 < _len_tx_ring0; _i0++) {
+              tx_ring[_i0].wr_p = ((-2 * (next_i()%2)) + 1) * next_i();
+          tx_ring[_i0].rd_p = ((-2 * (next_i()%2)) + 1) * next_i();
+          tx_ring[_i0].cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nfp_net_tx_full(tx_ring,dcnt);
+          printf("%d\n", benchRet); 
+          free(tx_ring);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int dcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_tx_ring0 = 1;
+          struct nfp_net_tx_ring * tx_ring = (struct nfp_net_tx_ring *) malloc(_len_tx_ring0*sizeof(struct nfp_net_tx_ring));
+          for(int _i0 = 0; _i0 < _len_tx_ring0; _i0++) {
+              tx_ring[_i0].wr_p = ((-2 * (next_i()%2)) + 1) * next_i();
+          tx_ring[_i0].rd_p = ((-2 * (next_i()%2)) + 1) * next_i();
+          tx_ring[_i0].cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = nfp_net_tx_full(tx_ring,dcnt);
           printf("%d\n", benchRet); 
           free(tx_ring);

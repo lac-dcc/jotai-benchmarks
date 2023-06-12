@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ __attribute__((used)) static resource_size_t pcmcia_common_align(struct pcmcia_a
 	return ret;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,16 +84,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int start = 100;
+        
           int _len_align_data0 = 1;
           struct pcmcia_align_data * align_data = (struct pcmcia_align_data *) malloc(_len_align_data0*sizeof(struct pcmcia_align_data));
           for(int _i0 = 0; _i0 < _len_align_data0; _i0++) {
-            align_data[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        align_data[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              align_data[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          align_data[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = pcmcia_common_align(align_data,start);
+          printf("%d\n", benchRet); 
+          free(align_data);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int start = 255;
+        
+          int _len_align_data0 = 65025;
+          struct pcmcia_align_data * align_data = (struct pcmcia_align_data *) malloc(_len_align_data0*sizeof(struct pcmcia_align_data));
+          for(int _i0 = 0; _i0 < _len_align_data0; _i0++) {
+              align_data[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          align_data[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pcmcia_common_align(align_data,start);
+          printf("%d\n", benchRet); 
+          free(align_data);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int start = 10;
+        
+          int _len_align_data0 = 100;
+          struct pcmcia_align_data * align_data = (struct pcmcia_align_data *) malloc(_len_align_data0*sizeof(struct pcmcia_align_data));
+          for(int _i0 = 0; _i0 < _len_align_data0; _i0++) {
+              align_data[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          align_data[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pcmcia_common_align(align_data,start);
+          printf("%d\n", benchRet); 
+          free(align_data);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_align_data0 = 1;
+          struct pcmcia_align_data * align_data = (struct pcmcia_align_data *) malloc(_len_align_data0*sizeof(struct pcmcia_align_data));
+          for(int _i0 = 0; _i0 < _len_align_data0; _i0++) {
+              align_data[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          align_data[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = pcmcia_common_align(align_data,start);
           printf("%d\n", benchRet); 
           free(align_data);

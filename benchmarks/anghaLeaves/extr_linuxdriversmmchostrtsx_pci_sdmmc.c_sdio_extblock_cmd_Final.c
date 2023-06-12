@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline int sdio_extblock_cmd(struct mmc_command *cm
 	return (cmd->opcode == SD_IO_RW_EXTENDED) && (data->blksz == 512);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,19 +77,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cmd0 = 1;
+          int _len_cmd0 = 65025;
           struct mmc_command * cmd = (struct mmc_command *) malloc(_len_cmd0*sizeof(struct mmc_command));
           for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
-            cmd[_i0].opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmd[_i0].opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_data0 = 1;
+        
+          int _len_data0 = 65025;
           struct mmc_data * data = (struct mmc_data *) malloc(_len_data0*sizeof(struct mmc_data));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
-            data[_i0].blksz = ((-2 * (next_i()%2)) + 1) * next_i();
+              data[_i0].blksz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = sdio_extblock_cmd(cmd,data);
           printf("%d\n", benchRet); 
           free(cmd);
@@ -101,7 +101,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_cmd0 = 100;
+          struct mmc_command * cmd = (struct mmc_command *) malloc(_len_cmd0*sizeof(struct mmc_command));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_data0 = 100;
+          struct mmc_data * data = (struct mmc_data *) malloc(_len_data0*sizeof(struct mmc_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].blksz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sdio_extblock_cmd(cmd,data);
+          printf("%d\n", benchRet); 
+          free(cmd);
+          free(data);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_cmd0 = 1;
+          struct mmc_command * cmd = (struct mmc_command *) malloc(_len_cmd0*sizeof(struct mmc_command));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_data0 = 1;
+          struct mmc_data * data = (struct mmc_data *) malloc(_len_data0*sizeof(struct mmc_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].blksz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sdio_extblock_cmd(cmd,data);
+          printf("%d\n", benchRet); 
+          free(cmd);
+          free(data);
+        
+        break;
+    }
     default:
         usage();
         break;

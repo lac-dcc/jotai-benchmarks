@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ void ext2_update_dynamic_rev(PEXT2_FILESYS fs)
     /* other fields should be left alone */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,20 +92,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_fs0 = 1;
+          int _len_fs0 = 65025;
           struct TYPE_5__ * fs = (struct TYPE_5__ *) malloc(_len_fs0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
               int _len_fs__i0__ext2_sb0 = 1;
           fs[_i0].ext2_sb = (struct TYPE_4__ *) malloc(_len_fs__i0__ext2_sb0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_fs__i0__ext2_sb0; _j0++) {
-            fs[_i0].ext2_sb->s_rev_level = ((-2 * (next_i()%2)) + 1) * next_i();
-        fs[_i0].ext2_sb->s_inode_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        fs[_i0].ext2_sb->s_first_ino = ((-2 * (next_i()%2)) + 1) * next_i();
+              fs[_i0].ext2_sb->s_rev_level = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs[_i0].ext2_sb->s_inode_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs[_i0].ext2_sb->s_first_ino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           ext2_update_dynamic_rev(fs);
           for(int _aux = 0; _aux < _len_fs0; _aux++) {
           free(fs[_aux].ext2_sb);
@@ -118,7 +117,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_fs0 = 100;
+          struct TYPE_5__ * fs = (struct TYPE_5__ *) malloc(_len_fs0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
+              int _len_fs__i0__ext2_sb0 = 1;
+          fs[_i0].ext2_sb = (struct TYPE_4__ *) malloc(_len_fs__i0__ext2_sb0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_fs__i0__ext2_sb0; _j0++) {
+              fs[_i0].ext2_sb->s_rev_level = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs[_i0].ext2_sb->s_inode_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs[_i0].ext2_sb->s_first_ino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          ext2_update_dynamic_rev(fs);
+          for(int _aux = 0; _aux < _len_fs0; _aux++) {
+          free(fs[_aux].ext2_sb);
+          }
+          free(fs);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_fs0 = 1;
+          struct TYPE_5__ * fs = (struct TYPE_5__ *) malloc(_len_fs0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
+              int _len_fs__i0__ext2_sb0 = 1;
+          fs[_i0].ext2_sb = (struct TYPE_4__ *) malloc(_len_fs__i0__ext2_sb0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_fs__i0__ext2_sb0; _j0++) {
+              fs[_i0].ext2_sb->s_rev_level = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs[_i0].ext2_sb->s_inode_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs[_i0].ext2_sb->s_first_ino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          ext2_update_dynamic_rev(fs);
+          for(int _aux = 0; _aux < _len_fs0; _aux++) {
+          free(fs[_aux].ext2_sb);
+          }
+          free(fs);
+        
+        break;
+    }
     default:
         usage();
         break;

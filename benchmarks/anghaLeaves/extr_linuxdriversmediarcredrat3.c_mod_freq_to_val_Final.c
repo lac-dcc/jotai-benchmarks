@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static u16 mod_freq_to_val(unsigned int mod_freq)
 	return 65536 - (mult / mod_freq);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,6 +82,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int mod_freq = 100;
+        
           int benchRet = mod_freq_to_val(mod_freq);
           printf("%d\n", benchRet); 
         
@@ -96,6 +92,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int mod_freq = 255;
+        
           int benchRet = mod_freq_to_val(mod_freq);
           printf("%d\n", benchRet); 
         
@@ -105,12 +102,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int mod_freq = 10;
+        
           int benchRet = mod_freq_to_val(mod_freq);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int mod_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = mod_freq_to_val(mod_freq);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

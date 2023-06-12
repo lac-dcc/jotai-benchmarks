@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ __attribute__((used)) static bool diff_file_content_binary_by_size(git_diff_file
 	return ((fc->file->flags & GIT_DIFF_FLAG_BINARY) != 0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,20 +86,146 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_fc0 = 1;
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_fc0 = 65025;
           struct TYPE_5__ * fc = (struct TYPE_5__ *) malloc(_len_fc0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_fc0; _i0++) {
-            fc[_i0].opts_max_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              fc[_i0].opts_max_size = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_fc__i0__file0 = 1;
           fc[_i0].file = (struct TYPE_4__ *) malloc(_len_fc__i0__file0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_fc__i0__file0; _j0++) {
-            fc[_i0].file->flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc[_i0].file->size = ((-2 * (next_i()%2)) + 1) * next_i();
+              fc[_i0].file->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          fc[_i0].file->size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = diff_file_content_binary_by_size(fc);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_fc0; _aux++) {
+          free(fc[_aux].file);
+          }
+          free(fc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_fc0 = 100;
+          struct TYPE_5__ * fc = (struct TYPE_5__ *) malloc(_len_fc0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_fc0; _i0++) {
+              fc[_i0].opts_max_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_fc__i0__file0 = 1;
+          fc[_i0].file = (struct TYPE_4__ *) malloc(_len_fc__i0__file0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_fc__i0__file0; _j0++) {
+              fc[_i0].file->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          fc[_i0].file->size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = diff_file_content_binary_by_size(fc);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_fc0; _aux++) {
+          free(fc[_aux].file);
+          }
+          free(fc);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_fc0 = 1;
+          struct TYPE_5__ * fc = (struct TYPE_5__ *) malloc(_len_fc0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_fc0; _i0++) {
+              fc[_i0].opts_max_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_fc__i0__file0 = 1;
+          fc[_i0].file = (struct TYPE_4__ *) malloc(_len_fc__i0__file0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_fc__i0__file0; _j0++) {
+              fc[_i0].file->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          fc[_i0].file->size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = diff_file_content_binary_by_size(fc);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_fc0; _aux++) {

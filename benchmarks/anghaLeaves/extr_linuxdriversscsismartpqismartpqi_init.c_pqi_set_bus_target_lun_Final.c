@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ __attribute__((used)) static inline void pqi_set_bus_target_lun(struct pqi_scsi_
 	device->lun = lun;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,19 +78,188 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int bus = 100;
+        
           int target = 100;
+        
           int lun = 100;
+        
           int _len_device0 = 1;
           struct pqi_scsi_dev * device = (struct pqi_scsi_dev *) malloc(_len_device0*sizeof(struct pqi_scsi_dev));
           for(int _i0 = 0; _i0 < _len_device0; _i0++) {
-            device[_i0].bus = ((-2 * (next_i()%2)) + 1) * next_i();
-        device[_i0].target = ((-2 * (next_i()%2)) + 1) * next_i();
-        device[_i0].lun = ((-2 * (next_i()%2)) + 1) * next_i();
+              device[_i0].bus = ((-2 * (next_i()%2)) + 1) * next_i();
+          device[_i0].target = ((-2 * (next_i()%2)) + 1) * next_i();
+          device[_i0].lun = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          pqi_set_bus_target_lun(device,bus,target,lun);
+          free(device);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int bus = 255;
+        
+          int target = 255;
+        
+          int lun = 255;
+        
+          int _len_device0 = 65025;
+          struct pqi_scsi_dev * device = (struct pqi_scsi_dev *) malloc(_len_device0*sizeof(struct pqi_scsi_dev));
+          for(int _i0 = 0; _i0 < _len_device0; _i0++) {
+              device[_i0].bus = ((-2 * (next_i()%2)) + 1) * next_i();
+          device[_i0].target = ((-2 * (next_i()%2)) + 1) * next_i();
+          device[_i0].lun = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          pqi_set_bus_target_lun(device,bus,target,lun);
+          free(device);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int bus = 10;
+        
+          int target = 10;
+        
+          int lun = 10;
+        
+          int _len_device0 = 100;
+          struct pqi_scsi_dev * device = (struct pqi_scsi_dev *) malloc(_len_device0*sizeof(struct pqi_scsi_dev));
+          for(int _i0 = 0; _i0 < _len_device0; _i0++) {
+              device[_i0].bus = ((-2 * (next_i()%2)) + 1) * next_i();
+          device[_i0].target = ((-2 * (next_i()%2)) + 1) * next_i();
+          device[_i0].lun = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          pqi_set_bus_target_lun(device,bus,target,lun);
+          free(device);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int bus = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int target = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int lun = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_device0 = 1;
+          struct pqi_scsi_dev * device = (struct pqi_scsi_dev *) malloc(_len_device0*sizeof(struct pqi_scsi_dev));
+          for(int _i0 = 0; _i0 < _len_device0; _i0++) {
+              device[_i0].bus = ((-2 * (next_i()%2)) + 1) * next_i();
+          device[_i0].target = ((-2 * (next_i()%2)) + 1) * next_i();
+          device[_i0].lun = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           pqi_set_bus_target_lun(device,bus,target,lun);
           free(device);
         

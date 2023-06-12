@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ int maccmp( u8b dest[16], u8b source[16] )
   return equal;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,19 +81,136 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 235
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 121
+          // ------------------------------- 
+          // static_instructions_O2 : 54
+          // dynamic_instructions_O2 : 54
+          // ------------------------------- 
+          // static_instructions_O3 : 54
+          // dynamic_instructions_O3 : 54
+          // ------------------------------- 
+          // static_instructions_Ofast : 54
+          // dynamic_instructions_Ofast : 54
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 120
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 138
+          // ------------------------------- 
+
+          int _len_dest0 = 65025;
+          long * dest = (long *) malloc(_len_dest0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_dest0; _i0++) {
+            dest[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_source0 = 65025;
+          long * source = (long *) malloc(_len_source0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_source0; _i0++) {
+            source[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = maccmp(dest,source);
+          printf("%d\n", benchRet); 
+          free(dest);
+          free(source);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 235
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 121
+          // ------------------------------- 
+          // static_instructions_O2 : 54
+          // dynamic_instructions_O2 : 54
+          // ------------------------------- 
+          // static_instructions_O3 : 54
+          // dynamic_instructions_O3 : 54
+          // ------------------------------- 
+          // static_instructions_Ofast : 54
+          // dynamic_instructions_Ofast : 54
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 120
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 138
+          // ------------------------------- 
+
+          int _len_dest0 = 100;
+          long * dest = (long *) malloc(_len_dest0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_dest0; _i0++) {
+            dest[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_source0 = 100;
+          long * source = (long *) malloc(_len_source0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_source0; _i0++) {
+            source[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = maccmp(dest,source);
+          printf("%d\n", benchRet); 
+          free(dest);
+          free(source);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 235
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 121
+          // ------------------------------- 
+          // static_instructions_O2 : 54
+          // dynamic_instructions_O2 : 54
+          // ------------------------------- 
+          // static_instructions_O3 : 54
+          // dynamic_instructions_O3 : 54
+          // ------------------------------- 
+          // static_instructions_Ofast : 54
+          // dynamic_instructions_Ofast : 54
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 120
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 138
+          // ------------------------------- 
+
           int _len_dest0 = 16;
           long * dest = (long *) malloc(_len_dest0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_dest0; _i0++) {
             dest[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_source0 = 16;
           long * source = (long *) malloc(_len_source0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_source0; _i0++) {
             source[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = maccmp(dest,source);
           printf("%d\n", benchRet); 
           free(dest);

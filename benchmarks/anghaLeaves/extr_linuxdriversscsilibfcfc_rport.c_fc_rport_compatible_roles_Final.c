@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -77,12 +79,6 @@ fc_rport_compatible_roles(struct fc_lport *lport, struct fc_rport_priv *rdata)
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,19 +91,145 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_lport0 = 65025;
+          struct fc_lport * lport = (struct fc_lport *) malloc(_len_lport0*sizeof(struct fc_lport));
+          for(int _i0 = 0; _i0 < _len_lport0; _i0++) {
+              lport[_i0].service_params = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rdata0 = 65025;
+          struct fc_rport_priv * rdata = (struct fc_rport_priv *) malloc(_len_rdata0*sizeof(struct fc_rport_priv));
+          for(int _i0 = 0; _i0 < _len_rdata0; _i0++) {
+              rdata[_i0].ids.roles = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = fc_rport_compatible_roles(lport,rdata);
+          printf("%d\n", benchRet); 
+          free(lport);
+          free(rdata);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_lport0 = 100;
+          struct fc_lport * lport = (struct fc_lport *) malloc(_len_lport0*sizeof(struct fc_lport));
+          for(int _i0 = 0; _i0 < _len_lport0; _i0++) {
+              lport[_i0].service_params = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rdata0 = 100;
+          struct fc_rport_priv * rdata = (struct fc_rport_priv *) malloc(_len_rdata0*sizeof(struct fc_rport_priv));
+          for(int _i0 = 0; _i0 < _len_rdata0; _i0++) {
+              rdata[_i0].ids.roles = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = fc_rport_compatible_roles(lport,rdata);
+          printf("%d\n", benchRet); 
+          free(lport);
+          free(rdata);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int _len_lport0 = 1;
           struct fc_lport * lport = (struct fc_lport *) malloc(_len_lport0*sizeof(struct fc_lport));
           for(int _i0 = 0; _i0 < _len_lport0; _i0++) {
-            lport[_i0].service_params = ((-2 * (next_i()%2)) + 1) * next_i();
+              lport[_i0].service_params = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_rdata0 = 1;
           struct fc_rport_priv * rdata = (struct fc_rport_priv *) malloc(_len_rdata0*sizeof(struct fc_rport_priv));
           for(int _i0 = 0; _i0 < _len_rdata0; _i0++) {
-            rdata[_i0].ids.roles = ((-2 * (next_i()%2)) + 1) * next_i();
+              rdata[_i0].ids.roles = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = fc_rport_compatible_roles(lport,rdata);
           printf("%d\n", benchRet); 
           free(lport);

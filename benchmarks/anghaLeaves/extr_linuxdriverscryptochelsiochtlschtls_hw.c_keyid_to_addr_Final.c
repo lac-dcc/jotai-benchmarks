@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ unsigned int keyid_to_addr(int start_addr, int keyid)
 	return (start_addr + (keyid * TLS_KEY_CONTEXT_SZ)) >> 5;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,7 +79,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int start_addr = 100;
+        
           int keyid = 100;
+        
           unsigned int benchRet = keyid_to_addr(start_addr,keyid);
           printf("%u\n", benchRet); 
         
@@ -94,7 +91,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int start_addr = 255;
+        
           int keyid = 255;
+        
           unsigned int benchRet = keyid_to_addr(start_addr,keyid);
           printf("%u\n", benchRet); 
         
@@ -104,13 +103,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int start_addr = 10;
+        
           int keyid = 10;
+        
           unsigned int benchRet = keyid_to_addr(start_addr,keyid);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int start_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int keyid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = keyid_to_addr(start_addr,keyid);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

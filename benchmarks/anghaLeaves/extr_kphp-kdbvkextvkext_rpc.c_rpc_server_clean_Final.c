@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static void rpc_server_clean (struct rpc_server *server) {
   server->inbound_packet_num = server->packet_num = -2;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,19 +75,132 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_server0 = 65025;
+          struct rpc_server * server = (struct rpc_server *) malloc(_len_server0*sizeof(struct rpc_server));
+          for(int _i0 = 0; _i0 < _len_server0; _i0++) {
+              server[_i0].inbound_packet_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].packet_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].out_buf = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].out_rptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].out_wptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].in_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          rpc_server_clean(server);
+          free(server);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_server0 = 100;
+          struct rpc_server * server = (struct rpc_server *) malloc(_len_server0*sizeof(struct rpc_server));
+          for(int _i0 = 0; _i0 < _len_server0; _i0++) {
+              server[_i0].inbound_packet_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].packet_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].out_buf = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].out_rptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].out_wptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].in_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          rpc_server_clean(server);
+          free(server);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_server0 = 1;
           struct rpc_server * server = (struct rpc_server *) malloc(_len_server0*sizeof(struct rpc_server));
           for(int _i0 = 0; _i0 < _len_server0; _i0++) {
-            server[_i0].inbound_packet_num = ((-2 * (next_i()%2)) + 1) * next_i();
-        server[_i0].packet_num = ((-2 * (next_i()%2)) + 1) * next_i();
-        server[_i0].out_buf = ((-2 * (next_i()%2)) + 1) * next_i();
-        server[_i0].out_rptr = ((-2 * (next_i()%2)) + 1) * next_i();
-        server[_i0].out_wptr = ((-2 * (next_i()%2)) + 1) * next_i();
-        server[_i0].in_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+              server[_i0].inbound_packet_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].packet_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].out_buf = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].out_rptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].out_wptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].in_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           rpc_server_clean(server);
           free(server);
         

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -81,12 +84,6 @@ unsigned long tpm_calc_ordinal_duration(struct tpm_chip *chip,
 		return duration;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,10 +96,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           unsigned long ordinal = 100;
+        
           int _len_chip0 = 1;
           struct tpm_chip * chip = (struct tpm_chip *) malloc(_len_chip0*sizeof(struct tpm_chip));
           for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
@@ -111,7 +132,156 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_chip__i0__duration0; _j0++) {
             chip[_i0].duration[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          unsigned long benchRet = tpm_calc_ordinal_duration(chip,ordinal);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_chip0; _aux++) {
+          free(chip[_aux].duration);
+          }
+          free(chip);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          unsigned long ordinal = 255;
+        
+          int _len_chip0 = 65025;
+          struct tpm_chip * chip = (struct tpm_chip *) malloc(_len_chip0*sizeof(struct tpm_chip));
+          for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
+              int _len_chip__i0__duration0 = 1;
+          chip[_i0].duration = (int *) malloc(_len_chip__i0__duration0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_chip__i0__duration0; _j0++) {
+            chip[_i0].duration[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          unsigned long benchRet = tpm_calc_ordinal_duration(chip,ordinal);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_chip0; _aux++) {
+          free(chip[_aux].duration);
+          }
+          free(chip);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          unsigned long ordinal = 10;
+        
+          int _len_chip0 = 100;
+          struct tpm_chip * chip = (struct tpm_chip *) malloc(_len_chip0*sizeof(struct tpm_chip));
+          for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
+              int _len_chip__i0__duration0 = 1;
+          chip[_i0].duration = (int *) malloc(_len_chip__i0__duration0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_chip__i0__duration0; _j0++) {
+            chip[_i0].duration[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          unsigned long benchRet = tpm_calc_ordinal_duration(chip,ordinal);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_chip0; _aux++) {
+          free(chip[_aux].duration);
+          }
+          free(chip);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          unsigned long ordinal = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_chip0 = 1;
+          struct tpm_chip * chip = (struct tpm_chip *) malloc(_len_chip0*sizeof(struct tpm_chip));
+          for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
+              int _len_chip__i0__duration0 = 1;
+          chip[_i0].duration = (int *) malloc(_len_chip__i0__duration0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_chip__i0__duration0; _j0++) {
+            chip[_i0].duration[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           unsigned long benchRet = tpm_calc_ordinal_duration(chip,ordinal);
           printf("%lu\n", benchRet); 
           for(int _aux = 0; _aux < _len_chip0; _aux++) {

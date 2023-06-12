@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ struct dm_block_manager *dm_tm_get_bm(struct dm_transaction_manager *tm)
 	return tm->bm;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,18 +75,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_tm0 = 1;
+          int _len_tm0 = 65025;
           struct dm_transaction_manager * tm = (struct dm_transaction_manager *) malloc(_len_tm0*sizeof(struct dm_transaction_manager));
           for(int _i0 = 0; _i0 < _len_tm0; _i0++) {
               int _len_tm__i0__bm0 = 1;
           tm[_i0].bm = (struct dm_block_manager *) malloc(_len_tm__i0__bm0*sizeof(struct dm_block_manager));
           for(int _j0 = 0; _j0 < _len_tm__i0__bm0; _j0++) {
-            tm[_i0].bm->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              tm[_i0].bm->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct dm_block_manager * benchRet = dm_tm_get_bm(tm);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_tm0; _aux++) {
@@ -100,7 +99,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_tm0 = 100;
+          struct dm_transaction_manager * tm = (struct dm_transaction_manager *) malloc(_len_tm0*sizeof(struct dm_transaction_manager));
+          for(int _i0 = 0; _i0 < _len_tm0; _i0++) {
+              int _len_tm__i0__bm0 = 1;
+          tm[_i0].bm = (struct dm_block_manager *) malloc(_len_tm__i0__bm0*sizeof(struct dm_block_manager));
+          for(int _j0 = 0; _j0 < _len_tm__i0__bm0; _j0++) {
+              tm[_i0].bm->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct dm_block_manager * benchRet = dm_tm_get_bm(tm);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_tm0; _aux++) {
+          free(tm[_aux].bm);
+          }
+          free(tm);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_tm0 = 1;
+          struct dm_transaction_manager * tm = (struct dm_transaction_manager *) malloc(_len_tm0*sizeof(struct dm_transaction_manager));
+          for(int _i0 = 0; _i0 < _len_tm0; _i0++) {
+              int _len_tm__i0__bm0 = 1;
+          tm[_i0].bm = (struct dm_block_manager *) malloc(_len_tm__i0__bm0*sizeof(struct dm_block_manager));
+          for(int _j0 = 0; _j0 < _len_tm__i0__bm0; _j0++) {
+              tm[_i0].bm->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct dm_block_manager * benchRet = dm_tm_get_bm(tm);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_tm0; _aux++) {
+          free(tm[_aux].bm);
+          }
+          free(tm);
+        
+        break;
+    }
     default:
         usage();
         break;

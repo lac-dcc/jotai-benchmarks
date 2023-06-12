@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static inline size_t num_buffered_packets(struct rtmp_stre
 	return stream->packets.size / sizeof(struct encoder_packet);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_stream0 = 1;
+          int _len_stream0 = 65025;
           struct rtmp_stream * stream = (struct rtmp_stream *) malloc(_len_stream0*sizeof(struct rtmp_stream));
           for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
-            stream[_i0].packets.size = ((-2 * (next_i()%2)) + 1) * next_i();
+              stream[_i0].packets.size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           unsigned long benchRet = num_buffered_packets(stream);
           printf("%lu\n", benchRet); 
           free(stream);
@@ -102,15 +100,34 @@ int main(int argc, char *argv[]) {
           int _len_stream0 = 100;
           struct rtmp_stream * stream = (struct rtmp_stream *) malloc(_len_stream0*sizeof(struct rtmp_stream));
           for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
-            stream[_i0].packets.size = ((-2 * (next_i()%2)) + 1) * next_i();
+              stream[_i0].packets.size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           unsigned long benchRet = num_buffered_packets(stream);
           printf("%lu\n", benchRet); 
           free(stream);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_stream0 = 1;
+          struct rtmp_stream * stream = (struct rtmp_stream *) malloc(_len_stream0*sizeof(struct rtmp_stream));
+          for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
+              stream[_i0].packets.size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          unsigned long benchRet = num_buffered_packets(stream);
+          printf("%lu\n", benchRet); 
+          free(stream);
+        
+        break;
+    }
     default:
         usage();
         break;

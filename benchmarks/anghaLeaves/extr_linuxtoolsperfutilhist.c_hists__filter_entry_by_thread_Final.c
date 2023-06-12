@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static bool hists__filter_entry_by_thread(struct hists *hi
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,10 +83,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_hists0 = 1;
+          int _len_hists0 = 65025;
           struct hists * hists = (struct hists *) malloc(_len_hists0*sizeof(struct hists));
           for(int _i0 = 0; _i0 < _len_hists0; _i0++) {
               int _len_hists__i0__thread_filter0 = 1;
@@ -98,17 +94,21 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_hists__i0__thread_filter0; _j0++) {
             hists[_i0].thread_filter[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
-          int _len_he0 = 1;
+        
+          int _len_he0 = 65025;
           struct hist_entry * he = (struct hist_entry *) malloc(_len_he0*sizeof(struct hist_entry));
           for(int _i0 = 0; _i0 < _len_he0; _i0++) {
-            he[_i0].filtered = ((-2 * (next_i()%2)) + 1) * next_i();
+              he[_i0].filtered = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_he__i0__thread0 = 1;
           he[_i0].thread = (int *) malloc(_len_he__i0__thread0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_he__i0__thread0; _j0++) {
             he[_i0].thread[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = hists__filter_entry_by_thread(hists,he);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_hists0; _aux++) {
@@ -122,7 +122,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_hists0 = 100;
+          struct hists * hists = (struct hists *) malloc(_len_hists0*sizeof(struct hists));
+          for(int _i0 = 0; _i0 < _len_hists0; _i0++) {
+              int _len_hists__i0__thread_filter0 = 1;
+          hists[_i0].thread_filter = (int *) malloc(_len_hists__i0__thread_filter0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_hists__i0__thread_filter0; _j0++) {
+            hists[_i0].thread_filter[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_he0 = 100;
+          struct hist_entry * he = (struct hist_entry *) malloc(_len_he0*sizeof(struct hist_entry));
+          for(int _i0 = 0; _i0 < _len_he0; _i0++) {
+              he[_i0].filtered = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_he__i0__thread0 = 1;
+          he[_i0].thread = (int *) malloc(_len_he__i0__thread0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_he__i0__thread0; _j0++) {
+            he[_i0].thread[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = hists__filter_entry_by_thread(hists,he);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hists0; _aux++) {
+          free(hists[_aux].thread_filter);
+          }
+          free(hists);
+          for(int _aux = 0; _aux < _len_he0; _aux++) {
+          free(he[_aux].thread);
+          }
+          free(he);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_hists0 = 1;
+          struct hists * hists = (struct hists *) malloc(_len_hists0*sizeof(struct hists));
+          for(int _i0 = 0; _i0 < _len_hists0; _i0++) {
+              int _len_hists__i0__thread_filter0 = 1;
+          hists[_i0].thread_filter = (int *) malloc(_len_hists__i0__thread_filter0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_hists__i0__thread_filter0; _j0++) {
+            hists[_i0].thread_filter[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_he0 = 1;
+          struct hist_entry * he = (struct hist_entry *) malloc(_len_he0*sizeof(struct hist_entry));
+          for(int _i0 = 0; _i0 < _len_he0; _i0++) {
+              he[_i0].filtered = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_he__i0__thread0 = 1;
+          he[_i0].thread = (int *) malloc(_len_he__i0__thread0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_he__i0__thread0; _j0++) {
+            he[_i0].thread[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = hists__filter_entry_by_thread(hists,he);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hists0; _aux++) {
+          free(hists[_aux].thread_filter);
+          }
+          free(hists);
+          for(int _aux = 0; _aux < _len_he0; _aux++) {
+          free(he[_aux].thread);
+          }
+          free(he);
+        
+        break;
+    }
     default:
         usage();
         break;

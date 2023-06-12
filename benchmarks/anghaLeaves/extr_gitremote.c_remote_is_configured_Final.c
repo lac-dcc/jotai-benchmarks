@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ int remote_is_configured(struct remote *remote, int in_repo)
 	return !!remote->origin;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,16 +79,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int in_repo = 100;
+        
           int _len_remote0 = 1;
           struct remote * remote = (struct remote *) malloc(_len_remote0*sizeof(struct remote));
           for(int _i0 = 0; _i0 < _len_remote0; _i0++) {
-            remote[_i0].configured_in_repo = ((-2 * (next_i()%2)) + 1) * next_i();
-        remote[_i0].origin = ((-2 * (next_i()%2)) + 1) * next_i();
+              remote[_i0].configured_in_repo = ((-2 * (next_i()%2)) + 1) * next_i();
+          remote[_i0].origin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = remote_is_configured(remote,in_repo);
+          printf("%d\n", benchRet); 
+          free(remote);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int in_repo = 255;
+        
+          int _len_remote0 = 65025;
+          struct remote * remote = (struct remote *) malloc(_len_remote0*sizeof(struct remote));
+          for(int _i0 = 0; _i0 < _len_remote0; _i0++) {
+              remote[_i0].configured_in_repo = ((-2 * (next_i()%2)) + 1) * next_i();
+          remote[_i0].origin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = remote_is_configured(remote,in_repo);
+          printf("%d\n", benchRet); 
+          free(remote);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int in_repo = 10;
+        
+          int _len_remote0 = 100;
+          struct remote * remote = (struct remote *) malloc(_len_remote0*sizeof(struct remote));
+          for(int _i0 = 0; _i0 < _len_remote0; _i0++) {
+              remote[_i0].configured_in_repo = ((-2 * (next_i()%2)) + 1) * next_i();
+          remote[_i0].origin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = remote_is_configured(remote,in_repo);
+          printf("%d\n", benchRet); 
+          free(remote);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int in_repo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_remote0 = 1;
+          struct remote * remote = (struct remote *) malloc(_len_remote0*sizeof(struct remote));
+          for(int _i0 = 0; _i0 < _len_remote0; _i0++) {
+              remote[_i0].configured_in_repo = ((-2 * (next_i()%2)) + 1) * next_i();
+          remote[_i0].origin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = remote_is_configured(remote,in_repo);
           printf("%d\n", benchRet); 
           free(remote);

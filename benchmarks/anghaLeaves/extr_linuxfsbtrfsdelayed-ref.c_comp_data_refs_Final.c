@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -83,12 +85,6 @@ __attribute__((used)) static int comp_data_refs(struct btrfs_delayed_data_ref *r
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,27 +97,33 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ref10 = 1;
+          int _len_ref10 = 65025;
           struct btrfs_delayed_data_ref * ref1 = (struct btrfs_delayed_data_ref *) malloc(_len_ref10*sizeof(struct btrfs_delayed_data_ref));
           for(int _i0 = 0; _i0 < _len_ref10; _i0++) {
-            ref1[_i0].root = ((-2 * (next_i()%2)) + 1) * next_i();
-        ref1[_i0].objectid = ((-2 * (next_i()%2)) + 1) * next_i();
-        ref1[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        ref1[_i0].parent = ((-2 * (next_i()%2)) + 1) * next_i();
-        ref1[_i0].node.type = ((-2 * (next_i()%2)) + 1) * next_i();
+              ref1[_i0].root = ((-2 * (next_i()%2)) + 1) * next_i();
+          ref1[_i0].objectid = ((-2 * (next_i()%2)) + 1) * next_i();
+          ref1[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          ref1[_i0].parent = ((-2 * (next_i()%2)) + 1) * next_i();
+          ref1[_i0].node.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-          int _len_ref20 = 1;
+        
+          int _len_ref20 = 65025;
           struct btrfs_delayed_data_ref * ref2 = (struct btrfs_delayed_data_ref *) malloc(_len_ref20*sizeof(struct btrfs_delayed_data_ref));
           for(int _i0 = 0; _i0 < _len_ref20; _i0++) {
-            ref2[_i0].root = ((-2 * (next_i()%2)) + 1) * next_i();
-        ref2[_i0].objectid = ((-2 * (next_i()%2)) + 1) * next_i();
-        ref2[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        ref2[_i0].parent = ((-2 * (next_i()%2)) + 1) * next_i();
-        ref2[_i0].node.type = ((-2 * (next_i()%2)) + 1) * next_i();
+              ref2[_i0].root = ((-2 * (next_i()%2)) + 1) * next_i();
+          ref2[_i0].objectid = ((-2 * (next_i()%2)) + 1) * next_i();
+          ref2[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          ref2[_i0].parent = ((-2 * (next_i()%2)) + 1) * next_i();
+          ref2[_i0].node.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = comp_data_refs(ref1,ref2);
           printf("%d\n", benchRet); 
           free(ref1);
@@ -129,7 +131,74 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ref10 = 100;
+          struct btrfs_delayed_data_ref * ref1 = (struct btrfs_delayed_data_ref *) malloc(_len_ref10*sizeof(struct btrfs_delayed_data_ref));
+          for(int _i0 = 0; _i0 < _len_ref10; _i0++) {
+              ref1[_i0].root = ((-2 * (next_i()%2)) + 1) * next_i();
+          ref1[_i0].objectid = ((-2 * (next_i()%2)) + 1) * next_i();
+          ref1[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          ref1[_i0].parent = ((-2 * (next_i()%2)) + 1) * next_i();
+          ref1[_i0].node.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_ref20 = 100;
+          struct btrfs_delayed_data_ref * ref2 = (struct btrfs_delayed_data_ref *) malloc(_len_ref20*sizeof(struct btrfs_delayed_data_ref));
+          for(int _i0 = 0; _i0 < _len_ref20; _i0++) {
+              ref2[_i0].root = ((-2 * (next_i()%2)) + 1) * next_i();
+          ref2[_i0].objectid = ((-2 * (next_i()%2)) + 1) * next_i();
+          ref2[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          ref2[_i0].parent = ((-2 * (next_i()%2)) + 1) * next_i();
+          ref2[_i0].node.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = comp_data_refs(ref1,ref2);
+          printf("%d\n", benchRet); 
+          free(ref1);
+          free(ref2);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ref10 = 1;
+          struct btrfs_delayed_data_ref * ref1 = (struct btrfs_delayed_data_ref *) malloc(_len_ref10*sizeof(struct btrfs_delayed_data_ref));
+          for(int _i0 = 0; _i0 < _len_ref10; _i0++) {
+              ref1[_i0].root = ((-2 * (next_i()%2)) + 1) * next_i();
+          ref1[_i0].objectid = ((-2 * (next_i()%2)) + 1) * next_i();
+          ref1[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          ref1[_i0].parent = ((-2 * (next_i()%2)) + 1) * next_i();
+          ref1[_i0].node.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_ref20 = 1;
+          struct btrfs_delayed_data_ref * ref2 = (struct btrfs_delayed_data_ref *) malloc(_len_ref20*sizeof(struct btrfs_delayed_data_ref));
+          for(int _i0 = 0; _i0 < _len_ref20; _i0++) {
+              ref2[_i0].root = ((-2 * (next_i()%2)) + 1) * next_i();
+          ref2[_i0].objectid = ((-2 * (next_i()%2)) + 1) * next_i();
+          ref2[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          ref2[_i0].parent = ((-2 * (next_i()%2)) + 1) * next_i();
+          ref2[_i0].node.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = comp_data_refs(ref1,ref2);
+          printf("%d\n", benchRet); 
+          free(ref1);
+          free(ref2);
+        
+        break;
+    }
     default:
         usage();
         break;

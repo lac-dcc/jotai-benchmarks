@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -101,12 +103,6 @@ __attribute__((used)) static s32 e1000_init_mac_params_vf(struct e1000_hw *hw)
 	return E1000_SUCCESS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -119,24 +115,155 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 39
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          int _len_hw0 = 65025;
+          struct e1000_hw * hw = (struct e1000_hw *) malloc(_len_hw0*sizeof(struct e1000_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].mac.mta_reg_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mac.rar_entry_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mac.ops.set_vfta = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mac.ops.set_uc_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mac.ops.read_mac_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mac.ops.rar_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mac.ops.update_mc_addr_list = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mac.ops.get_link_up_info = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mac.ops.check_for_link = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mac.ops.init_hw = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mac.ops.reset_hw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = e1000_init_mac_params_vf(hw);
+          printf("%d\n", benchRet); 
+          free(hw);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 39
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          int _len_hw0 = 100;
+          struct e1000_hw * hw = (struct e1000_hw *) malloc(_len_hw0*sizeof(struct e1000_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].mac.mta_reg_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mac.rar_entry_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mac.ops.set_vfta = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mac.ops.set_uc_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mac.ops.read_mac_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mac.ops.rar_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mac.ops.update_mc_addr_list = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mac.ops.get_link_up_info = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mac.ops.check_for_link = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mac.ops.init_hw = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mac.ops.reset_hw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = e1000_init_mac_params_vf(hw);
+          printf("%d\n", benchRet); 
+          free(hw);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 39
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
           int _len_hw0 = 1;
           struct e1000_hw * hw = (struct e1000_hw *) malloc(_len_hw0*sizeof(struct e1000_hw));
           for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
-            hw[_i0].mac.mta_reg_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].mac.rar_entry_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].mac.ops.set_vfta = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].mac.ops.set_uc_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].mac.ops.read_mac_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].mac.ops.rar_set = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].mac.ops.update_mc_addr_list = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].mac.ops.get_link_up_info = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].mac.ops.check_for_link = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].mac.ops.init_hw = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].mac.ops.reset_hw = ((-2 * (next_i()%2)) + 1) * next_i();
+              hw[_i0].mac.mta_reg_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mac.rar_entry_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mac.ops.set_vfta = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mac.ops.set_uc_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mac.ops.read_mac_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mac.ops.rar_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mac.ops.update_mc_addr_list = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mac.ops.get_link_up_info = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mac.ops.check_for_link = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mac.ops.init_hw = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mac.ops.reset_hw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int benchRet = e1000_init_mac_params_vf(hw);
           printf("%d\n", benchRet); 
           free(hw);

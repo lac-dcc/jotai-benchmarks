@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ plip_none(struct net_device *dev, struct net_local *nl,
 	return OK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,29 +79,188 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_dev0 = 65025;
+          struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_nl0 = 65025;
+          struct net_local * nl = (struct net_local *) malloc(_len_nl0*sizeof(struct net_local));
+          for(int _i0 = 0; _i0 < _len_nl0; _i0++) {
+              nl[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_snd0 = 65025;
+          struct plip_local * snd = (struct plip_local *) malloc(_len_snd0*sizeof(struct plip_local));
+          for(int _i0 = 0; _i0 < _len_snd0; _i0++) {
+              snd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rcv0 = 65025;
+          struct plip_local * rcv = (struct plip_local *) malloc(_len_rcv0*sizeof(struct plip_local));
+          for(int _i0 = 0; _i0 < _len_rcv0; _i0++) {
+              rcv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = plip_none(dev,nl,snd,rcv);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(nl);
+          free(snd);
+          free(rcv);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_dev0 = 100;
+          struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_nl0 = 100;
+          struct net_local * nl = (struct net_local *) malloc(_len_nl0*sizeof(struct net_local));
+          for(int _i0 = 0; _i0 < _len_nl0; _i0++) {
+              nl[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_snd0 = 100;
+          struct plip_local * snd = (struct plip_local *) malloc(_len_snd0*sizeof(struct plip_local));
+          for(int _i0 = 0; _i0 < _len_snd0; _i0++) {
+              snd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rcv0 = 100;
+          struct plip_local * rcv = (struct plip_local *) malloc(_len_rcv0*sizeof(struct plip_local));
+          for(int _i0 = 0; _i0 < _len_rcv0; _i0++) {
+              rcv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = plip_none(dev,nl,snd,rcv);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(nl);
+          free(snd);
+          free(rcv);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_dev0 = 1;
           struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_nl0 = 1;
           struct net_local * nl = (struct net_local *) malloc(_len_nl0*sizeof(struct net_local));
           for(int _i0 = 0; _i0 < _len_nl0; _i0++) {
-            nl[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              nl[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_snd0 = 1;
           struct plip_local * snd = (struct plip_local *) malloc(_len_snd0*sizeof(struct plip_local));
           for(int _i0 = 0; _i0 < _len_snd0; _i0++) {
-            snd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              snd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_rcv0 = 1;
           struct plip_local * rcv = (struct plip_local *) malloc(_len_rcv0*sizeof(struct plip_local));
           for(int _i0 = 0; _i0 < _len_rcv0; _i0++) {
-            rcv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rcv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = plip_none(dev,nl,snd,rcv);
           printf("%d\n", benchRet); 
           free(dev);

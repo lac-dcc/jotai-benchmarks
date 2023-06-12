@@ -70,12 +70,6 @@ __attribute__((used)) static u32 snd_ymfpci_calc_delta(u32 rate)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,6 +86,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int rate = 100;
+        
           int benchRet = snd_ymfpci_calc_delta(rate);
           printf("%d\n", benchRet); 
         
@@ -101,6 +96,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int rate = 255;
+        
           int benchRet = snd_ymfpci_calc_delta(rate);
           printf("%d\n", benchRet); 
         
@@ -110,12 +106,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int rate = 10;
+        
           int benchRet = snd_ymfpci_calc_delta(rate);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

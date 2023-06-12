@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -79,12 +82,6 @@ __attribute__((used)) static void hda_format_parse(unsigned int format, unsigned
 	*channels = (format & AC_FMT_CHAN_MASK) >> AC_FMT_CHAN_SHIFT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,20 +94,187 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 42
+          // ------------------------------- 
+          // static_instructions_O1 : 29
+          // dynamic_instructions_O1 : 29
+          // ------------------------------- 
+          // static_instructions_O2 : 29
+          // dynamic_instructions_O2 : 29
+          // ------------------------------- 
+          // static_instructions_O3 : 29
+          // dynamic_instructions_O3 : 29
+          // ------------------------------- 
+          // static_instructions_Ofast : 29
+          // dynamic_instructions_Ofast : 29
+          // ------------------------------- 
+          // static_instructions_Os : 29
+          // dynamic_instructions_Os : 29
+          // ------------------------------- 
+          // static_instructions_Oz : 29
+          // dynamic_instructions_Oz : 29
+          // ------------------------------- 
+
           unsigned int format = 100;
+        
           int _len_rate0 = 1;
           unsigned int * rate = (unsigned int *) malloc(_len_rate0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_rate0; _i0++) {
             rate[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_channels0 = 1;
           unsigned int * channels = (unsigned int *) malloc(_len_channels0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_channels0; _i0++) {
             channels[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          hda_format_parse(format,rate,channels);
+          free(rate);
+          free(channels);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 42
+          // ------------------------------- 
+          // static_instructions_O1 : 29
+          // dynamic_instructions_O1 : 29
+          // ------------------------------- 
+          // static_instructions_O2 : 29
+          // dynamic_instructions_O2 : 29
+          // ------------------------------- 
+          // static_instructions_O3 : 29
+          // dynamic_instructions_O3 : 29
+          // ------------------------------- 
+          // static_instructions_Ofast : 29
+          // dynamic_instructions_Ofast : 29
+          // ------------------------------- 
+          // static_instructions_Os : 29
+          // dynamic_instructions_Os : 29
+          // ------------------------------- 
+          // static_instructions_Oz : 29
+          // dynamic_instructions_Oz : 29
+          // ------------------------------- 
+
+          unsigned int format = 255;
+        
+          int _len_rate0 = 65025;
+          unsigned int * rate = (unsigned int *) malloc(_len_rate0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_rate0; _i0++) {
+            rate[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_channels0 = 65025;
+          unsigned int * channels = (unsigned int *) malloc(_len_channels0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_channels0; _i0++) {
+            channels[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          hda_format_parse(format,rate,channels);
+          free(rate);
+          free(channels);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 42
+          // ------------------------------- 
+          // static_instructions_O1 : 29
+          // dynamic_instructions_O1 : 29
+          // ------------------------------- 
+          // static_instructions_O2 : 29
+          // dynamic_instructions_O2 : 29
+          // ------------------------------- 
+          // static_instructions_O3 : 29
+          // dynamic_instructions_O3 : 29
+          // ------------------------------- 
+          // static_instructions_Ofast : 29
+          // dynamic_instructions_Ofast : 29
+          // ------------------------------- 
+          // static_instructions_Os : 29
+          // dynamic_instructions_Os : 29
+          // ------------------------------- 
+          // static_instructions_Oz : 29
+          // dynamic_instructions_Oz : 29
+          // ------------------------------- 
+
+          unsigned int format = 10;
+        
+          int _len_rate0 = 100;
+          unsigned int * rate = (unsigned int *) malloc(_len_rate0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_rate0; _i0++) {
+            rate[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_channels0 = 100;
+          unsigned int * channels = (unsigned int *) malloc(_len_channels0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_channels0; _i0++) {
+            channels[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          hda_format_parse(format,rate,channels);
+          free(rate);
+          free(channels);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 42
+          // ------------------------------- 
+          // static_instructions_O1 : 29
+          // dynamic_instructions_O1 : 29
+          // ------------------------------- 
+          // static_instructions_O2 : 29
+          // dynamic_instructions_O2 : 29
+          // ------------------------------- 
+          // static_instructions_O3 : 29
+          // dynamic_instructions_O3 : 29
+          // ------------------------------- 
+          // static_instructions_Ofast : 29
+          // dynamic_instructions_Ofast : 29
+          // ------------------------------- 
+          // static_instructions_Os : 29
+          // dynamic_instructions_Os : 29
+          // ------------------------------- 
+          // static_instructions_Oz : 29
+          // dynamic_instructions_Oz : 29
+          // ------------------------------- 
+
+          unsigned int format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rate0 = 1;
+          unsigned int * rate = (unsigned int *) malloc(_len_rate0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_rate0; _i0++) {
+            rate[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_channels0 = 1;
+          unsigned int * channels = (unsigned int *) malloc(_len_channels0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_channels0; _i0++) {
+            channels[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           hda_format_parse(format,rate,channels);
           free(rate);
           free(channels);

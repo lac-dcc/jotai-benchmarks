@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static u8 time_to_val(unsigned *t, unsigned t_min, unsigne
 	return (u8)val;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,14 +86,42 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int t_min = 100;
+        
           unsigned int t_step = 100;
+        
           unsigned int v_min = 100;
+        
           unsigned int v_max = 100;
+        
           int _len_t0 = 1;
           unsigned int * t = (unsigned int *) malloc(_len_t0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_t0; _i0++) {
             t[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          unsigned int benchRet = time_to_val(t,t_min,t_step,v_min,v_max);
+          printf("%u\n", benchRet); 
+          free(t);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned int t_min = 255;
+        
+          unsigned int t_step = 255;
+        
+          unsigned int v_min = 255;
+        
+          unsigned int v_max = 255;
+        
+          int _len_t0 = 65025;
+          unsigned int * t = (unsigned int *) malloc(_len_t0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_t0; _i0++) {
+            t[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           unsigned int benchRet = time_to_val(t,t_min,t_step,v_min,v_max);
           printf("%u\n", benchRet); 
           free(t);
@@ -105,24 +129,51 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned int t_min = 10;
+        
           unsigned int t_step = 10;
+        
           unsigned int v_min = 10;
+        
           unsigned int v_max = 10;
+        
           int _len_t0 = 100;
           unsigned int * t = (unsigned int *) malloc(_len_t0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_t0; _i0++) {
             t[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned int benchRet = time_to_val(t,t_min,t_step,v_min,v_max);
           printf("%u\n", benchRet); 
           free(t);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int t_min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int t_step = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int v_min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int v_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_t0 = 1;
+          unsigned int * t = (unsigned int *) malloc(_len_t0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_t0; _i0++) {
+            t[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned int benchRet = time_to_val(t,t_min,t_step,v_min,v_max);
+          printf("%u\n", benchRet); 
+          free(t);
+        
+        break;
+    }
     default:
         usage();
         break;

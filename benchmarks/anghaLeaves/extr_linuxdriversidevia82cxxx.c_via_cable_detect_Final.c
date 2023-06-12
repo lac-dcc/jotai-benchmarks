@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -105,12 +108,6 @@ __attribute__((used)) static void via_cable_detect(struct via82cxxx_dev *vdev, u
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -123,20 +120,197 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int u = 100;
+        
           int _len_vdev0 = 1;
           struct via82cxxx_dev * vdev = (struct via82cxxx_dev *) malloc(_len_vdev0*sizeof(struct via82cxxx_dev));
           for(int _i0 = 0; _i0 < _len_vdev0; _i0++) {
-            vdev[_i0].via_80w = ((-2 * (next_i()%2)) + 1) * next_i();
+              vdev[_i0].via_80w = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_vdev__i0__via_config0 = 1;
           vdev[_i0].via_config = (struct TYPE_2__ *) malloc(_len_vdev__i0__via_config0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_vdev__i0__via_config0; _j0++) {
-            vdev[_i0].via_config->udma_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              vdev[_i0].via_config->udma_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          via_cable_detect(vdev,u);
+          for(int _aux = 0; _aux < _len_vdev0; _aux++) {
+          free(vdev[_aux].via_config);
+          }
+          free(vdev);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int u = 255;
+        
+          int _len_vdev0 = 65025;
+          struct via82cxxx_dev * vdev = (struct via82cxxx_dev *) malloc(_len_vdev0*sizeof(struct via82cxxx_dev));
+          for(int _i0 = 0; _i0 < _len_vdev0; _i0++) {
+              vdev[_i0].via_80w = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_vdev__i0__via_config0 = 1;
+          vdev[_i0].via_config = (struct TYPE_2__ *) malloc(_len_vdev__i0__via_config0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_vdev__i0__via_config0; _j0++) {
+              vdev[_i0].via_config->udma_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          via_cable_detect(vdev,u);
+          for(int _aux = 0; _aux < _len_vdev0; _aux++) {
+          free(vdev[_aux].via_config);
+          }
+          free(vdev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int u = 10;
+        
+          int _len_vdev0 = 100;
+          struct via82cxxx_dev * vdev = (struct via82cxxx_dev *) malloc(_len_vdev0*sizeof(struct via82cxxx_dev));
+          for(int _i0 = 0; _i0 < _len_vdev0; _i0++) {
+              vdev[_i0].via_80w = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_vdev__i0__via_config0 = 1;
+          vdev[_i0].via_config = (struct TYPE_2__ *) malloc(_len_vdev__i0__via_config0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_vdev__i0__via_config0; _j0++) {
+              vdev[_i0].via_config->udma_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          via_cable_detect(vdev,u);
+          for(int _aux = 0; _aux < _len_vdev0; _aux++) {
+          free(vdev[_aux].via_config);
+          }
+          free(vdev);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int u = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_vdev0 = 1;
+          struct via82cxxx_dev * vdev = (struct via82cxxx_dev *) malloc(_len_vdev0*sizeof(struct via82cxxx_dev));
+          for(int _i0 = 0; _i0 < _len_vdev0; _i0++) {
+              vdev[_i0].via_80w = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_vdev__i0__via_config0 = 1;
+          vdev[_i0].via_config = (struct TYPE_2__ *) malloc(_len_vdev__i0__via_config0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_vdev__i0__via_config0; _j0++) {
+              vdev[_i0].via_config->udma_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           via_cable_detect(vdev,u);
           for(int _aux = 0; _aux < _len_vdev0; _aux++) {
           free(vdev[_aux].via_config);

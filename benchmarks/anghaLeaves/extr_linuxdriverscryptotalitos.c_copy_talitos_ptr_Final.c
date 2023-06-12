@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ __attribute__((used)) static void copy_talitos_ptr(struct talitos_ptr *dst_ptr,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,26 +82,219 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int is_sec1 = 100;
+        
           int _len_dst_ptr0 = 1;
           struct talitos_ptr * dst_ptr = (struct talitos_ptr *) malloc(_len_dst_ptr0*sizeof(struct talitos_ptr));
           for(int _i0 = 0; _i0 < _len_dst_ptr0; _i0++) {
-            dst_ptr[_i0].eptr = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst_ptr[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst_ptr[_i0].len1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst_ptr[_i0].ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+              dst_ptr[_i0].eptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_ptr[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_ptr[_i0].len1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_ptr[_i0].ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_src_ptr0 = 1;
           struct talitos_ptr * src_ptr = (struct talitos_ptr *) malloc(_len_src_ptr0*sizeof(struct talitos_ptr));
           for(int _i0 = 0; _i0 < _len_src_ptr0; _i0++) {
-            src_ptr[_i0].eptr = ((-2 * (next_i()%2)) + 1) * next_i();
-        src_ptr[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
-        src_ptr[_i0].len1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        src_ptr[_i0].ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+              src_ptr[_i0].eptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          src_ptr[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          src_ptr[_i0].len1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          src_ptr[_i0].ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          copy_talitos_ptr(dst_ptr,src_ptr,is_sec1);
+          free(dst_ptr);
+          free(src_ptr);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int is_sec1 = 255;
+        
+          int _len_dst_ptr0 = 65025;
+          struct talitos_ptr * dst_ptr = (struct talitos_ptr *) malloc(_len_dst_ptr0*sizeof(struct talitos_ptr));
+          for(int _i0 = 0; _i0 < _len_dst_ptr0; _i0++) {
+              dst_ptr[_i0].eptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_ptr[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_ptr[_i0].len1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_ptr[_i0].ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_src_ptr0 = 65025;
+          struct talitos_ptr * src_ptr = (struct talitos_ptr *) malloc(_len_src_ptr0*sizeof(struct talitos_ptr));
+          for(int _i0 = 0; _i0 < _len_src_ptr0; _i0++) {
+              src_ptr[_i0].eptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          src_ptr[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          src_ptr[_i0].len1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          src_ptr[_i0].ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          copy_talitos_ptr(dst_ptr,src_ptr,is_sec1);
+          free(dst_ptr);
+          free(src_ptr);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int is_sec1 = 10;
+        
+          int _len_dst_ptr0 = 100;
+          struct talitos_ptr * dst_ptr = (struct talitos_ptr *) malloc(_len_dst_ptr0*sizeof(struct talitos_ptr));
+          for(int _i0 = 0; _i0 < _len_dst_ptr0; _i0++) {
+              dst_ptr[_i0].eptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_ptr[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_ptr[_i0].len1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_ptr[_i0].ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_src_ptr0 = 100;
+          struct talitos_ptr * src_ptr = (struct talitos_ptr *) malloc(_len_src_ptr0*sizeof(struct talitos_ptr));
+          for(int _i0 = 0; _i0 < _len_src_ptr0; _i0++) {
+              src_ptr[_i0].eptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          src_ptr[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          src_ptr[_i0].len1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          src_ptr[_i0].ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          copy_talitos_ptr(dst_ptr,src_ptr,is_sec1);
+          free(dst_ptr);
+          free(src_ptr);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int is_sec1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dst_ptr0 = 1;
+          struct talitos_ptr * dst_ptr = (struct talitos_ptr *) malloc(_len_dst_ptr0*sizeof(struct talitos_ptr));
+          for(int _i0 = 0; _i0 < _len_dst_ptr0; _i0++) {
+              dst_ptr[_i0].eptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_ptr[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_ptr[_i0].len1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_ptr[_i0].ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_src_ptr0 = 1;
+          struct talitos_ptr * src_ptr = (struct talitos_ptr *) malloc(_len_src_ptr0*sizeof(struct talitos_ptr));
+          for(int _i0 = 0; _i0 < _len_src_ptr0; _i0++) {
+              src_ptr[_i0].eptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          src_ptr[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          src_ptr[_i0].len1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          src_ptr[_i0].ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           copy_talitos_ptr(dst_ptr,src_ptr,is_sec1);
           free(dst_ptr);
           free(src_ptr);

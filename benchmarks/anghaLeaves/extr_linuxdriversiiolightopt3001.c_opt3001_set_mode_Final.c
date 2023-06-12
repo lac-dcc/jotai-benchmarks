@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ __attribute__((used)) static void opt3001_set_mode(struct opt3001 *opt, u16 *reg
 	opt->mode = mode;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,20 +79,191 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int mode = 100;
+        
           int _len_opt0 = 1;
           struct opt3001 * opt = (struct opt3001 *) malloc(_len_opt0*sizeof(struct opt3001));
           for(int _i0 = 0; _i0 < _len_opt0; _i0++) {
-            opt[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              opt[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_reg0 = 1;
           int * reg = (int *) malloc(_len_reg0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_reg0; _i0++) {
             reg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          opt3001_set_mode(opt,reg,mode);
+          free(opt);
+          free(reg);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int mode = 255;
+        
+          int _len_opt0 = 65025;
+          struct opt3001 * opt = (struct opt3001 *) malloc(_len_opt0*sizeof(struct opt3001));
+          for(int _i0 = 0; _i0 < _len_opt0; _i0++) {
+              opt[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_reg0 = 65025;
+          int * reg = (int *) malloc(_len_reg0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_reg0; _i0++) {
+            reg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          opt3001_set_mode(opt,reg,mode);
+          free(opt);
+          free(reg);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int mode = 10;
+        
+          int _len_opt0 = 100;
+          struct opt3001 * opt = (struct opt3001 *) malloc(_len_opt0*sizeof(struct opt3001));
+          for(int _i0 = 0; _i0 < _len_opt0; _i0++) {
+              opt[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_reg0 = 100;
+          int * reg = (int *) malloc(_len_reg0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_reg0; _i0++) {
+            reg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          opt3001_set_mode(opt,reg,mode);
+          free(opt);
+          free(reg);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_opt0 = 1;
+          struct opt3001 * opt = (struct opt3001 *) malloc(_len_opt0*sizeof(struct opt3001));
+          for(int _i0 = 0; _i0 < _len_opt0; _i0++) {
+              opt[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_reg0 = 1;
+          int * reg = (int *) malloc(_len_reg0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_reg0; _i0++) {
+            reg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           opt3001_set_mode(opt,reg,mode);
           free(opt);
           free(reg);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static void videobuf_dma_contig_user_put(struct videobuf_d
 	mem->size = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,15 +75,120 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_mem0 = 65025;
+          struct videobuf_dma_contig_memory * mem = (struct videobuf_dma_contig_memory *) malloc(_len_mem0*sizeof(struct videobuf_dma_contig_memory));
+          for(int _i0 = 0; _i0 < _len_mem0; _i0++) {
+              mem[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          mem[_i0].dma_handle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          videobuf_dma_contig_user_put(mem);
+          free(mem);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_mem0 = 100;
+          struct videobuf_dma_contig_memory * mem = (struct videobuf_dma_contig_memory *) malloc(_len_mem0*sizeof(struct videobuf_dma_contig_memory));
+          for(int _i0 = 0; _i0 < _len_mem0; _i0++) {
+              mem[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          mem[_i0].dma_handle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          videobuf_dma_contig_user_put(mem);
+          free(mem);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_mem0 = 1;
           struct videobuf_dma_contig_memory * mem = (struct videobuf_dma_contig_memory *) malloc(_len_mem0*sizeof(struct videobuf_dma_contig_memory));
           for(int _i0 = 0; _i0 < _len_mem0; _i0++) {
-            mem[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
-        mem[_i0].dma_handle = ((-2 * (next_i()%2)) + 1) * next_i();
+              mem[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          mem[_i0].dma_handle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           videobuf_dma_contig_user_put(mem);
           free(mem);
         

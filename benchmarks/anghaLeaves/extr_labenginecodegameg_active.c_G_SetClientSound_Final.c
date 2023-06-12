@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -80,12 +82,6 @@ void G_SetClientSound( gentity_t *ent ) {
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,20 +94,24 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ent0 = 1;
+          int _len_ent0 = 65025;
           struct TYPE_8__ * ent = (struct TYPE_8__ *) malloc(_len_ent0*sizeof(struct TYPE_8__));
           for(int _i0 = 0; _i0 < _len_ent0; _i0++) {
-            ent[_i0].watertype = ((-2 * (next_i()%2)) + 1) * next_i();
+              ent[_i0].watertype = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_ent__i0__client0 = 1;
           ent[_i0].client = (struct TYPE_7__ *) malloc(_len_ent__i0__client0*sizeof(struct TYPE_7__));
           for(int _j0 = 0; _j0 < _len_ent__i0__client0; _j0++) {
-            ent[_i0].client->ps.loopSound = ((-2 * (next_i()%2)) + 1) * next_i();
+              ent[_i0].client->ps.loopSound = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-        ent[_i0].waterlevel = ((-2 * (next_i()%2)) + 1) * next_i();
+          ent[_i0].waterlevel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           G_SetClientSound(ent);
           for(int _aux = 0; _aux < _len_ent0; _aux++) {
           free(ent[_aux].client);
@@ -120,7 +120,58 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ent0 = 100;
+          struct TYPE_8__ * ent = (struct TYPE_8__ *) malloc(_len_ent0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_ent0; _i0++) {
+              ent[_i0].watertype = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ent__i0__client0 = 1;
+          ent[_i0].client = (struct TYPE_7__ *) malloc(_len_ent__i0__client0*sizeof(struct TYPE_7__));
+          for(int _j0 = 0; _j0 < _len_ent__i0__client0; _j0++) {
+              ent[_i0].client->ps.loopSound = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+          ent[_i0].waterlevel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          G_SetClientSound(ent);
+          for(int _aux = 0; _aux < _len_ent0; _aux++) {
+          free(ent[_aux].client);
+          }
+          free(ent);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ent0 = 1;
+          struct TYPE_8__ * ent = (struct TYPE_8__ *) malloc(_len_ent0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_ent0; _i0++) {
+              ent[_i0].watertype = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ent__i0__client0 = 1;
+          ent[_i0].client = (struct TYPE_7__ *) malloc(_len_ent__i0__client0*sizeof(struct TYPE_7__));
+          for(int _j0 = 0; _j0 < _len_ent__i0__client0; _j0++) {
+              ent[_i0].client->ps.loopSound = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+          ent[_i0].waterlevel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          G_SetClientSound(ent);
+          for(int _aux = 0; _aux < _len_ent0; _aux++) {
+          free(ent[_aux].client);
+          }
+          free(ent);
+        
+        break;
+    }
     default:
         usage();
         break;

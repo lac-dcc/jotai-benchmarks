@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ KdbpInNmiOrDoubleFaultHandler(
            (Address > (ULONG_PTR)KiTrap08 && Address < (ULONG_PTR)KiTrap09);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,6 +87,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long Address = 100;
+        
           int benchRet = KdbpInNmiOrDoubleFaultHandler(Address);
           printf("%d\n", benchRet); 
         
@@ -101,6 +97,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long Address = 255;
+        
           int benchRet = KdbpInNmiOrDoubleFaultHandler(Address);
           printf("%d\n", benchRet); 
         
@@ -110,12 +107,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long Address = 10;
+        
           int benchRet = KdbpInNmiOrDoubleFaultHandler(Address);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long Address = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = KdbpInNmiOrDoubleFaultHandler(Address);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

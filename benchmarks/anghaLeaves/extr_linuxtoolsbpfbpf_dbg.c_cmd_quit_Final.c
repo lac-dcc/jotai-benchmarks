@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static int cmd_quit(char *dontcare)
 	return CMD_EX;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dontcare0 = 1;
+          int _len_dontcare0 = 65025;
           char * dontcare = (char *) malloc(_len_dontcare0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_dontcare0; _i0++) {
             dontcare[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = cmd_quit(dontcare);
           printf("%d\n", benchRet); 
           free(dontcare);
@@ -101,13 +97,28 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_dontcare0; _i0++) {
             dontcare[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = cmd_quit(dontcare);
           printf("%d\n", benchRet); 
           free(dontcare);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_dontcare0 = 1;
+          char * dontcare = (char *) malloc(_len_dontcare0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_dontcare0; _i0++) {
+            dontcare[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = cmd_quit(dontcare);
+          printf("%d\n", benchRet); 
+          free(dontcare);
+        
+        break;
+    }
     default:
         usage();
         break;

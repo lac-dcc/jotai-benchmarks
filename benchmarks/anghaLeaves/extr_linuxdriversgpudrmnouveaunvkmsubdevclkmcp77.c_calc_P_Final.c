@@ -31,7 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -74,12 +75,6 @@ calc_P(u32 src, u32 target, int *div)
 	return clk1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,12 +91,34 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int src = 100;
+        
           int target = 100;
+        
           int _len_div0 = 1;
           int * div = (int *) malloc(_len_div0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_div0; _i0++) {
             div[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = calc_P(src,target,div);
+          printf("%d\n", benchRet); 
+          free(div);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int src = 255;
+        
+          int target = 255;
+        
+          int _len_div0 = 65025;
+          int * div = (int *) malloc(_len_div0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_div0; _i0++) {
+            div[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = calc_P(src,target,div);
           printf("%d\n", benchRet); 
           free(div);
@@ -109,22 +126,24 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int src = 10;
+        
           int target = 10;
+        
           int _len_div0 = 100;
           int * div = (int *) malloc(_len_div0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_div0; _i0++) {
             div[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = calc_P(src,target,div);
           printf("%d\n", benchRet); 
           free(div);
         
         break;
     }
-
     default:
         usage();
         break;

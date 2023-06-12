@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static void adjust_ctr_counters (struct advert *A) {
   A->g_clicked_old = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,23 +81,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_A0 = 1;
+          int _len_A0 = 65025;
           struct advert * A = (struct advert *) malloc(_len_A0*sizeof(struct advert));
           for(int _i0 = 0; _i0 < _len_A0; _i0++) {
-            A[_i0].l_views = ((-2 * (next_i()%2)) + 1) * next_i();
-        A[_i0].l_clicked_old = ((-2 * (next_i()%2)) + 1) * next_i();
-        A[_i0].g_clicked_old = ((-2 * (next_i()%2)) + 1) * next_i();
-        A[_i0].g_views = ((-2 * (next_i()%2)) + 1) * next_i();
+              A[_i0].l_views = ((-2 * (next_i()%2)) + 1) * next_i();
+          A[_i0].l_clicked_old = ((-2 * (next_i()%2)) + 1) * next_i();
+          A[_i0].g_clicked_old = ((-2 * (next_i()%2)) + 1) * next_i();
+          A[_i0].g_views = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           adjust_ctr_counters(A);
           free(A);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_A0 = 100;
+          struct advert * A = (struct advert *) malloc(_len_A0*sizeof(struct advert));
+          for(int _i0 = 0; _i0 < _len_A0; _i0++) {
+              A[_i0].l_views = ((-2 * (next_i()%2)) + 1) * next_i();
+          A[_i0].l_clicked_old = ((-2 * (next_i()%2)) + 1) * next_i();
+          A[_i0].g_clicked_old = ((-2 * (next_i()%2)) + 1) * next_i();
+          A[_i0].g_views = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          adjust_ctr_counters(A);
+          free(A);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_A0 = 1;
+          struct advert * A = (struct advert *) malloc(_len_A0*sizeof(struct advert));
+          for(int _i0 = 0; _i0 < _len_A0; _i0++) {
+              A[_i0].l_views = ((-2 * (next_i()%2)) + 1) * next_i();
+          A[_i0].l_clicked_old = ((-2 * (next_i()%2)) + 1) * next_i();
+          A[_i0].g_clicked_old = ((-2 * (next_i()%2)) + 1) * next_i();
+          A[_i0].g_views = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          adjust_ctr_counters(A);
+          free(A);
+        
+        break;
+    }
     default:
         usage();
         break;

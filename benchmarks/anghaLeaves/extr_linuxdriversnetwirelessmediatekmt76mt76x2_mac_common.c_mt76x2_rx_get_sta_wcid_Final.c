@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ mt76x2_rx_get_sta_wcid(struct mt76x2_dev *dev, struct mt76x2_sta *sta,
 		return &sta->vif->group_wcid;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,25 +87,239 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int unicast = 100;
+        
           int _len_dev0 = 1;
           struct mt76x2_dev * dev = (struct mt76x2_dev *) malloc(_len_dev0*sizeof(struct mt76x2_dev));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_sta0 = 1;
           struct mt76x2_sta * sta = (struct mt76x2_sta *) malloc(_len_sta0*sizeof(struct mt76x2_sta));
           for(int _i0 = 0; _i0 < _len_sta0; _i0++) {
               int _len_sta__i0__vif0 = 1;
           sta[_i0].vif = (struct TYPE_2__ *) malloc(_len_sta__i0__vif0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_sta__i0__vif0; _j0++) {
-            sta[_i0].vif->group_wcid.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              sta[_i0].vif->group_wcid.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-        sta[_i0].wcid.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+          sta[_i0].wcid.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          struct mt76_wcid * benchRet = mt76x2_rx_get_sta_wcid(dev,sta,unicast);
+          printf("%d\n", (*benchRet).dummy);
+          free(dev);
+          for(int _aux = 0; _aux < _len_sta0; _aux++) {
+          free(sta[_aux].vif);
+          }
+          free(sta);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int unicast = 255;
+        
+          int _len_dev0 = 65025;
+          struct mt76x2_dev * dev = (struct mt76x2_dev *) malloc(_len_dev0*sizeof(struct mt76x2_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_sta0 = 65025;
+          struct mt76x2_sta * sta = (struct mt76x2_sta *) malloc(_len_sta0*sizeof(struct mt76x2_sta));
+          for(int _i0 = 0; _i0 < _len_sta0; _i0++) {
+              int _len_sta__i0__vif0 = 1;
+          sta[_i0].vif = (struct TYPE_2__ *) malloc(_len_sta__i0__vif0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_sta__i0__vif0; _j0++) {
+              sta[_i0].vif->group_wcid.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+          sta[_i0].wcid.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          struct mt76_wcid * benchRet = mt76x2_rx_get_sta_wcid(dev,sta,unicast);
+          printf("%d\n", (*benchRet).dummy);
+          free(dev);
+          for(int _aux = 0; _aux < _len_sta0; _aux++) {
+          free(sta[_aux].vif);
+          }
+          free(sta);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int unicast = 10;
+        
+          int _len_dev0 = 100;
+          struct mt76x2_dev * dev = (struct mt76x2_dev *) malloc(_len_dev0*sizeof(struct mt76x2_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_sta0 = 100;
+          struct mt76x2_sta * sta = (struct mt76x2_sta *) malloc(_len_sta0*sizeof(struct mt76x2_sta));
+          for(int _i0 = 0; _i0 < _len_sta0; _i0++) {
+              int _len_sta__i0__vif0 = 1;
+          sta[_i0].vif = (struct TYPE_2__ *) malloc(_len_sta__i0__vif0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_sta__i0__vif0; _j0++) {
+              sta[_i0].vif->group_wcid.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+          sta[_i0].wcid.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          struct mt76_wcid * benchRet = mt76x2_rx_get_sta_wcid(dev,sta,unicast);
+          printf("%d\n", (*benchRet).dummy);
+          free(dev);
+          for(int _aux = 0; _aux < _len_sta0; _aux++) {
+          free(sta[_aux].vif);
+          }
+          free(sta);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int unicast = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dev0 = 1;
+          struct mt76x2_dev * dev = (struct mt76x2_dev *) malloc(_len_dev0*sizeof(struct mt76x2_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_sta0 = 1;
+          struct mt76x2_sta * sta = (struct mt76x2_sta *) malloc(_len_sta0*sizeof(struct mt76x2_sta));
+          for(int _i0 = 0; _i0 < _len_sta0; _i0++) {
+              int _len_sta__i0__vif0 = 1;
+          sta[_i0].vif = (struct TYPE_2__ *) malloc(_len_sta__i0__vif0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_sta__i0__vif0; _j0++) {
+              sta[_i0].vif->group_wcid.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+          sta[_i0].wcid.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           struct mt76_wcid * benchRet = mt76x2_rx_get_sta_wcid(dev,sta,unicast);
           printf("%d\n", (*benchRet).dummy);
           free(dev);

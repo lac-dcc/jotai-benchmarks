@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -98,12 +99,6 @@ sizeok:
 
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -120,7 +115,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int is64bit = 100;
+        
           int size = 100;
+        
           int benchRet = validate_namespace_args(is64bit,size);
           printf("%d\n", benchRet); 
         
@@ -130,7 +127,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int is64bit = 255;
+        
           int size = 255;
+        
           int benchRet = validate_namespace_args(is64bit,size);
           printf("%d\n", benchRet); 
         
@@ -140,13 +139,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int is64bit = 10;
+        
           int size = 10;
+        
           int benchRet = validate_namespace_args(is64bit,size);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int is64bit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = validate_namespace_args(is64bit,size);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

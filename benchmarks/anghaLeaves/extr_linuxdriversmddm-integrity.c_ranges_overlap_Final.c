@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static bool ranges_overlap(struct dm_integrity_range *rang
 	       range1->logical_sector + range1->n_sectors > range2->logical_sector;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,21 +75,148 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_range10 = 65025;
+          struct dm_integrity_range * range1 = (struct dm_integrity_range *) malloc(_len_range10*sizeof(struct dm_integrity_range));
+          for(int _i0 = 0; _i0 < _len_range10; _i0++) {
+              range1[_i0].logical_sector = ((-2 * (next_i()%2)) + 1) * next_i();
+          range1[_i0].n_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_range20 = 65025;
+          struct dm_integrity_range * range2 = (struct dm_integrity_range *) malloc(_len_range20*sizeof(struct dm_integrity_range));
+          for(int _i0 = 0; _i0 < _len_range20; _i0++) {
+              range2[_i0].logical_sector = ((-2 * (next_i()%2)) + 1) * next_i();
+          range2[_i0].n_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ranges_overlap(range1,range2);
+          printf("%d\n", benchRet); 
+          free(range1);
+          free(range2);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_range10 = 100;
+          struct dm_integrity_range * range1 = (struct dm_integrity_range *) malloc(_len_range10*sizeof(struct dm_integrity_range));
+          for(int _i0 = 0; _i0 < _len_range10; _i0++) {
+              range1[_i0].logical_sector = ((-2 * (next_i()%2)) + 1) * next_i();
+          range1[_i0].n_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_range20 = 100;
+          struct dm_integrity_range * range2 = (struct dm_integrity_range *) malloc(_len_range20*sizeof(struct dm_integrity_range));
+          for(int _i0 = 0; _i0 < _len_range20; _i0++) {
+              range2[_i0].logical_sector = ((-2 * (next_i()%2)) + 1) * next_i();
+          range2[_i0].n_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ranges_overlap(range1,range2);
+          printf("%d\n", benchRet); 
+          free(range1);
+          free(range2);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_range10 = 1;
           struct dm_integrity_range * range1 = (struct dm_integrity_range *) malloc(_len_range10*sizeof(struct dm_integrity_range));
           for(int _i0 = 0; _i0 < _len_range10; _i0++) {
-            range1[_i0].logical_sector = ((-2 * (next_i()%2)) + 1) * next_i();
-        range1[_i0].n_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+              range1[_i0].logical_sector = ((-2 * (next_i()%2)) + 1) * next_i();
+          range1[_i0].n_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_range20 = 1;
           struct dm_integrity_range * range2 = (struct dm_integrity_range *) malloc(_len_range20*sizeof(struct dm_integrity_range));
           for(int _i0 = 0; _i0 < _len_range20; _i0++) {
-            range2[_i0].logical_sector = ((-2 * (next_i()%2)) + 1) * next_i();
-        range2[_i0].n_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+              range2[_i0].logical_sector = ((-2 * (next_i()%2)) + 1) * next_i();
+          range2[_i0].n_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ranges_overlap(range1,range2);
           printf("%d\n", benchRet); 
           free(range1);

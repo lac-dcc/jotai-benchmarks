@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -93,12 +95,6 @@ void gdImageFlipHorizontal(gdImagePtr im)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -111,13 +107,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_im0 = 1;
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_im0 = 65025;
           struct TYPE_3__ * im = (struct TYPE_3__ *) malloc(_len_im0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_im0; _i0++) {
-            im[_i0].sy = ((-2 * (next_i()%2)) + 1) * next_i();
+              im[_i0].sy = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_im__i0__tpixels0 = 1;
           im[_i0].tpixels = (int **) malloc(_len_im__i0__tpixels0*sizeof(int *));
           for(int _j0 = 0; _j0 < _len_im__i0__tpixels0; _j0++) {
@@ -127,7 +146,7 @@ int main(int argc, char *argv[]) {
               im[_i0].tpixels[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
-        im[_i0].sx = ((-2 * (next_i()%2)) + 1) * next_i();
+          im[_i0].sx = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_im__i0__pixels0 = 1;
           im[_i0].pixels = (unsigned char **) malloc(_len_im__i0__pixels0*sizeof(unsigned char *));
           for(int _j0 = 0; _j0 < _len_im__i0__pixels0; _j0++) {
@@ -137,8 +156,144 @@ int main(int argc, char *argv[]) {
               im[_i0].pixels[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
-        im[_i0].trueColor = ((-2 * (next_i()%2)) + 1) * next_i();
+          im[_i0].trueColor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          gdImageFlipHorizontal(im);
+          for(int _aux = 0; _aux < _len_im0; _aux++) {
+          free(*(im[_aux].tpixels));
+        free(im[_aux].tpixels);
+          }
+          for(int _aux = 0; _aux < _len_im0; _aux++) {
+          free(*(im[_aux].pixels));
+        free(im[_aux].pixels);
+          }
+          free(im);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_im0 = 100;
+          struct TYPE_3__ * im = (struct TYPE_3__ *) malloc(_len_im0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_im0; _i0++) {
+              im[_i0].sy = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_im__i0__tpixels0 = 1;
+          im[_i0].tpixels = (int **) malloc(_len_im__i0__tpixels0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_im__i0__tpixels0; _j0++) {
+            int _len_im__i0__tpixels1 = 1;
+            im[_i0].tpixels[_j0] = (int *) malloc(_len_im__i0__tpixels1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_im__i0__tpixels1; _j1++) {
+              im[_i0].tpixels[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+          im[_i0].sx = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_im__i0__pixels0 = 1;
+          im[_i0].pixels = (unsigned char **) malloc(_len_im__i0__pixels0*sizeof(unsigned char *));
+          for(int _j0 = 0; _j0 < _len_im__i0__pixels0; _j0++) {
+            int _len_im__i0__pixels1 = 1;
+            im[_i0].pixels[_j0] = (unsigned char *) malloc(_len_im__i0__pixels1*sizeof(unsigned char));
+            for(int _j1 = 0; _j1 < _len_im__i0__pixels1; _j1++) {
+              im[_i0].pixels[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+          im[_i0].trueColor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          gdImageFlipHorizontal(im);
+          for(int _aux = 0; _aux < _len_im0; _aux++) {
+          free(*(im[_aux].tpixels));
+        free(im[_aux].tpixels);
+          }
+          for(int _aux = 0; _aux < _len_im0; _aux++) {
+          free(*(im[_aux].pixels));
+        free(im[_aux].pixels);
+          }
+          free(im);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_im0 = 1;
+          struct TYPE_3__ * im = (struct TYPE_3__ *) malloc(_len_im0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_im0; _i0++) {
+              im[_i0].sy = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_im__i0__tpixels0 = 1;
+          im[_i0].tpixels = (int **) malloc(_len_im__i0__tpixels0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_im__i0__tpixels0; _j0++) {
+            int _len_im__i0__tpixels1 = 1;
+            im[_i0].tpixels[_j0] = (int *) malloc(_len_im__i0__tpixels1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_im__i0__tpixels1; _j1++) {
+              im[_i0].tpixels[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+          im[_i0].sx = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_im__i0__pixels0 = 1;
+          im[_i0].pixels = (unsigned char **) malloc(_len_im__i0__pixels0*sizeof(unsigned char *));
+          for(int _j0 = 0; _j0 < _len_im__i0__pixels0; _j0++) {
+            int _len_im__i0__pixels1 = 1;
+            im[_i0].pixels[_j0] = (unsigned char *) malloc(_len_im__i0__pixels1*sizeof(unsigned char));
+            for(int _j1 = 0; _j1 < _len_im__i0__pixels1; _j1++) {
+              im[_i0].pixels[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+          im[_i0].trueColor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           gdImageFlipHorizontal(im);
           for(int _aux = 0; _aux < _len_im0; _aux++) {
           free(*(im[_aux].tpixels));

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static int ib_prio_to_core_prio(unsigned int priority, boo
 	return priority;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,7 +81,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int priority = 100;
+        
           int dont_trap = 100;
+        
           int benchRet = ib_prio_to_core_prio(priority,dont_trap);
           printf("%d\n", benchRet); 
         
@@ -96,7 +93,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int priority = 255;
+        
           int dont_trap = 255;
+        
           int benchRet = ib_prio_to_core_prio(priority,dont_trap);
           printf("%d\n", benchRet); 
         
@@ -106,13 +105,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int priority = 10;
+        
           int dont_trap = 10;
+        
           int benchRet = ib_prio_to_core_prio(priority,dont_trap);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int priority = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int dont_trap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = ib_prio_to_core_prio(priority,dont_trap);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

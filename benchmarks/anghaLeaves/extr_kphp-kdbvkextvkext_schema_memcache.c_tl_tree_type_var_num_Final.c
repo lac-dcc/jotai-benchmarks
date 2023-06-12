@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ int tl_tree_type_var_num (struct tl_tree *x) {
   return NODE_TYPE_VAR_NUM;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_x0 = 1;
+          int _len_x0 = 65025;
           struct tl_tree * x = (struct tl_tree *) malloc(_len_x0*sizeof(struct tl_tree));
           for(int _i0 = 0; _i0 < _len_x0; _i0++) {
-            x[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              x[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = tl_tree_type_var_num(x);
           printf("%d\n", benchRet); 
           free(x);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_x0 = 100;
           struct tl_tree * x = (struct tl_tree *) malloc(_len_x0*sizeof(struct tl_tree));
           for(int _i0 = 0; _i0 < _len_x0; _i0++) {
-            x[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              x[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = tl_tree_type_var_num(x);
           printf("%d\n", benchRet); 
           free(x);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_x0 = 1;
+          struct tl_tree * x = (struct tl_tree *) malloc(_len_x0*sizeof(struct tl_tree));
+          for(int _i0 = 0; _i0 < _len_x0; _i0++) {
+              x[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = tl_tree_type_var_num(x);
+          printf("%d\n", benchRet); 
+          free(x);
+        
+        break;
+    }
     default:
         usage();
         break;

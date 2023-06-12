@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -185,12 +188,6 @@ status_prompt_translate_key(struct client *c, key_code key, key_code *new_key)
 	return (0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -207,17 +204,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int key = 100;
+        
           int _len_c0 = 1;
           struct client * c = (struct client *) malloc(_len_c0*sizeof(struct client));
           for(int _i0 = 0; _i0 < _len_c0; _i0++) {
-            c[_i0].prompt_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              c[_i0].prompt_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_new_key0 = 1;
           int * new_key = (int *) malloc(_len_new_key0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_new_key0; _i0++) {
             new_key[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = status_prompt_translate_key(c,key,new_key);
           printf("%d\n", benchRet); 
           free(c);
@@ -225,7 +226,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int key = 255;
+        
+          int _len_c0 = 65025;
+          struct client * c = (struct client *) malloc(_len_c0*sizeof(struct client));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].prompt_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_new_key0 = 65025;
+          int * new_key = (int *) malloc(_len_new_key0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_new_key0; _i0++) {
+            new_key[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = status_prompt_translate_key(c,key,new_key);
+          printf("%d\n", benchRet); 
+          free(c);
+          free(new_key);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int key = 10;
+        
+          int _len_c0 = 100;
+          struct client * c = (struct client *) malloc(_len_c0*sizeof(struct client));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].prompt_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_new_key0 = 100;
+          int * new_key = (int *) malloc(_len_new_key0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_new_key0; _i0++) {
+            new_key[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = status_prompt_translate_key(c,key,new_key);
+          printf("%d\n", benchRet); 
+          free(c);
+          free(new_key);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int key = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_c0 = 1;
+          struct client * c = (struct client *) malloc(_len_c0*sizeof(struct client));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].prompt_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_new_key0 = 1;
+          int * new_key = (int *) malloc(_len_new_key0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_new_key0; _i0++) {
+            new_key[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = status_prompt_translate_key(c,key,new_key);
+          printf("%d\n", benchRet); 
+          free(c);
+          free(new_key);
+        
+        break;
+    }
     default:
         usage();
         break;

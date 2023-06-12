@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -122,12 +125,6 @@ VMwareVideoGetAttributes(const SVGAOverlayFormat format,    /* IN */
     return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -140,35 +137,271 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           const int format = 100;
+        
           int _len_width0 = 1;
           int * width = (int *) malloc(_len_width0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_width0; _i0++) {
             width[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_height0 = 1;
           int * height = (int *) malloc(_len_height0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_height0; _i0++) {
             height[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_size0 = 1;
           int * size = (int *) malloc(_len_size0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_size0; _i0++) {
             size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_pitches0 = 1;
           int * pitches = (int *) malloc(_len_pitches0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pitches0; _i0++) {
             pitches[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_offsets0 = 1;
           int * offsets = (int *) malloc(_len_offsets0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_offsets0; _i0++) {
             offsets[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = VMwareVideoGetAttributes(format,width,height,size,pitches,offsets);
+          printf("%d\n", benchRet); 
+          free(width);
+          free(height);
+          free(size);
+          free(pitches);
+          free(offsets);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          const int format = 255;
+        
+          int _len_width0 = 65025;
+          int * width = (int *) malloc(_len_width0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_width0; _i0++) {
+            width[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_height0 = 65025;
+          int * height = (int *) malloc(_len_height0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_height0; _i0++) {
+            height[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_size0 = 65025;
+          int * size = (int *) malloc(_len_size0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_size0; _i0++) {
+            size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pitches0 = 65025;
+          int * pitches = (int *) malloc(_len_pitches0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pitches0; _i0++) {
+            pitches[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_offsets0 = 65025;
+          int * offsets = (int *) malloc(_len_offsets0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_offsets0; _i0++) {
+            offsets[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = VMwareVideoGetAttributes(format,width,height,size,pitches,offsets);
+          printf("%d\n", benchRet); 
+          free(width);
+          free(height);
+          free(size);
+          free(pitches);
+          free(offsets);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          const int format = 10;
+        
+          int _len_width0 = 100;
+          int * width = (int *) malloc(_len_width0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_width0; _i0++) {
+            width[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_height0 = 100;
+          int * height = (int *) malloc(_len_height0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_height0; _i0++) {
+            height[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_size0 = 100;
+          int * size = (int *) malloc(_len_size0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_size0; _i0++) {
+            size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pitches0 = 100;
+          int * pitches = (int *) malloc(_len_pitches0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pitches0; _i0++) {
+            pitches[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_offsets0 = 100;
+          int * offsets = (int *) malloc(_len_offsets0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_offsets0; _i0++) {
+            offsets[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = VMwareVideoGetAttributes(format,width,height,size,pitches,offsets);
+          printf("%d\n", benchRet); 
+          free(width);
+          free(height);
+          free(size);
+          free(pitches);
+          free(offsets);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          const int format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_width0 = 1;
+          int * width = (int *) malloc(_len_width0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_width0; _i0++) {
+            width[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_height0 = 1;
+          int * height = (int *) malloc(_len_height0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_height0; _i0++) {
+            height[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_size0 = 1;
+          int * size = (int *) malloc(_len_size0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_size0; _i0++) {
+            size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pitches0 = 1;
+          int * pitches = (int *) malloc(_len_pitches0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pitches0; _i0++) {
+            pitches[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_offsets0 = 1;
+          int * offsets = (int *) malloc(_len_offsets0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_offsets0; _i0++) {
+            offsets[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = VMwareVideoGetAttributes(format,width,height,size,pitches,offsets);
           printf("%d\n", benchRet); 
           free(width);

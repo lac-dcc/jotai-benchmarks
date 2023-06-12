@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ __attribute__((used)) static u32 vmx_segment_access_rights(struct kvm_segment *v
 	return ar;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,29 +90,78 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_var0 = 1;
+          int _len_var0 = 65025;
           struct kvm_segment * var = (struct kvm_segment *) malloc(_len_var0*sizeof(struct kvm_segment));
           for(int _i0 = 0; _i0 < _len_var0; _i0++) {
-            var[_i0].present = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].s = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].dpl = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].avl = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].l = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].db = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].g = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].unusable = ((-2 * (next_i()%2)) + 1) * next_i();
+              var[_i0].present = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].s = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].dpl = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].avl = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].l = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].db = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].g = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].unusable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = vmx_segment_access_rights(var);
           printf("%d\n", benchRet); 
           free(var);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_var0 = 100;
+          struct kvm_segment * var = (struct kvm_segment *) malloc(_len_var0*sizeof(struct kvm_segment));
+          for(int _i0 = 0; _i0 < _len_var0; _i0++) {
+              var[_i0].present = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].s = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].dpl = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].avl = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].l = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].db = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].g = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].unusable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vmx_segment_access_rights(var);
+          printf("%d\n", benchRet); 
+          free(var);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_var0 = 1;
+          struct kvm_segment * var = (struct kvm_segment *) malloc(_len_var0*sizeof(struct kvm_segment));
+          for(int _i0 = 0; _i0 < _len_var0; _i0++) {
+              var[_i0].present = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].s = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].dpl = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].avl = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].l = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].db = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].g = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].unusable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vmx_segment_access_rights(var);
+          printf("%d\n", benchRet); 
+          free(var);
+        
+        break;
+    }
     default:
         usage();
         break;

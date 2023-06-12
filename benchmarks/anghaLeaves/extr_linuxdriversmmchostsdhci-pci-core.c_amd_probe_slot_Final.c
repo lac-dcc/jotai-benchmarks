@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static int amd_probe_slot(struct sdhci_pci_slot *slot)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,18 +82,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_slot0 = 65025;
+          struct sdhci_pci_slot * slot = (struct sdhci_pci_slot *) malloc(_len_slot0*sizeof(struct sdhci_pci_slot));
+          for(int _i0 = 0; _i0 < _len_slot0; _i0++) {
+              int _len_slot__i0__host0 = 1;
+          slot[_i0].host = (struct TYPE_2__ *) malloc(_len_slot__i0__host0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_slot__i0__host0; _j0++) {
+              slot[_i0].host->mmc_host_ops.execute_tuning = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = amd_probe_slot(slot);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_slot0; _aux++) {
+          free(slot[_aux].host);
+          }
+          free(slot);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_slot0 = 100;
+          struct sdhci_pci_slot * slot = (struct sdhci_pci_slot *) malloc(_len_slot0*sizeof(struct sdhci_pci_slot));
+          for(int _i0 = 0; _i0 < _len_slot0; _i0++) {
+              int _len_slot__i0__host0 = 1;
+          slot[_i0].host = (struct TYPE_2__ *) malloc(_len_slot__i0__host0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_slot__i0__host0; _j0++) {
+              slot[_i0].host->mmc_host_ops.execute_tuning = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = amd_probe_slot(slot);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_slot0; _aux++) {
+          free(slot[_aux].host);
+          }
+          free(slot);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_slot0 = 1;
           struct sdhci_pci_slot * slot = (struct sdhci_pci_slot *) malloc(_len_slot0*sizeof(struct sdhci_pci_slot));
           for(int _i0 = 0; _i0 < _len_slot0; _i0++) {
               int _len_slot__i0__host0 = 1;
           slot[_i0].host = (struct TYPE_2__ *) malloc(_len_slot__i0__host0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_slot__i0__host0; _j0++) {
-            slot[_i0].host->mmc_host_ops.execute_tuning = ((-2 * (next_i()%2)) + 1) * next_i();
+              slot[_i0].host->mmc_host_ops.execute_tuning = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           int benchRet = amd_probe_slot(slot);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_slot0; _aux++) {

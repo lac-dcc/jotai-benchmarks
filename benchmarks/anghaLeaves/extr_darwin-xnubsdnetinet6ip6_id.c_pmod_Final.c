@@ -76,12 +76,6 @@ pmod(u_int32_t gen, u_int32_t expo, u_int32_t mod)
 	return (s);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,8 +92,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int gen = 100;
+        
           int expo = 100;
+        
           int mod = 100;
+        
           int benchRet = pmod(gen,expo,mod);
           printf("%d\n", benchRet); 
         
@@ -109,8 +106,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int gen = 255;
+        
           int expo = 255;
+        
           int mod = 255;
+        
           int benchRet = pmod(gen,expo,mod);
           printf("%d\n", benchRet); 
         
@@ -120,14 +120,16 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int gen = 10;
+        
           int expo = 10;
+        
           int mod = 10;
+        
           int benchRet = pmod(gen,expo,mod);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

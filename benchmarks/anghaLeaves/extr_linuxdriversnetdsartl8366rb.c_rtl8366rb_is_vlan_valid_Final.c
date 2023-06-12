@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static bool rtl8366rb_is_vlan_valid(struct realtek_smi *sm
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,30 +85,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           unsigned int vlan = 100;
+        
           int _len_smi0 = 1;
           struct realtek_smi * smi = (struct realtek_smi *) malloc(_len_smi0*sizeof(struct realtek_smi));
           for(int _i0 = 0; _i0 < _len_smi0; _i0++) {
-            smi[_i0].vlan4k_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+              smi[_i0].vlan4k_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = rtl8366rb_is_vlan_valid(smi,vlan);
           printf("%d\n", benchRet); 
           free(smi);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          unsigned int vlan = 255;
+        
+          int _len_smi0 = 65025;
+          struct realtek_smi * smi = (struct realtek_smi *) malloc(_len_smi0*sizeof(struct realtek_smi));
+          for(int _i0 = 0; _i0 < _len_smi0; _i0++) {
+              smi[_i0].vlan4k_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rtl8366rb_is_vlan_valid(smi,vlan);
+          printf("%d\n", benchRet); 
+          free(smi);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           unsigned int vlan = 10;
+        
           int _len_smi0 = 100;
           struct realtek_smi * smi = (struct realtek_smi *) malloc(_len_smi0*sizeof(struct realtek_smi));
           for(int _i0 = 0; _i0 < _len_smi0; _i0++) {
-            smi[_i0].vlan4k_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+              smi[_i0].vlan4k_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = rtl8366rb_is_vlan_valid(smi,vlan);
+          printf("%d\n", benchRet); 
+          free(smi);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          unsigned int vlan = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_smi0 = 1;
+          struct realtek_smi * smi = (struct realtek_smi *) malloc(_len_smi0*sizeof(struct realtek_smi));
+          for(int _i0 = 0; _i0 < _len_smi0; _i0++) {
+              smi[_i0].vlan4k_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = rtl8366rb_is_vlan_valid(smi,vlan);
           printf("%d\n", benchRet); 
           free(smi);

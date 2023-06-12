@@ -60,12 +60,6 @@ __attribute__((used)) static int map_get(u64 up_map, int i)
 	return (up_map & (1 << i)) >> i;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,13 +76,14 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int up_map = 10;
+        
           int i = 10;
+        
           int benchRet = map_get(up_map,i);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

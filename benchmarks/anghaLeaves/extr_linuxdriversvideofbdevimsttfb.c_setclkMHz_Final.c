@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -90,12 +92,6 @@ setclkMHz(struct imstt_par *par, __u32 MHz)
 	par->init.pclk_p = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -108,17 +104,132 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 45
+          // dynamic_instructions_O0 : 116
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 79
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 79
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 79
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 79
+          // ------------------------------- 
+          // static_instructions_Os : 29
+          // dynamic_instructions_Os : 78
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 81
+          // ------------------------------- 
+
           int MHz = 100;
+        
           int _len_par0 = 1;
           struct imstt_par * par = (struct imstt_par *) malloc(_len_par0*sizeof(struct imstt_par));
           for(int _i0 = 0; _i0 < _len_par0; _i0++) {
-            par[_i0].init.pclk_m = ((-2 * (next_i()%2)) + 1) * next_i();
-        par[_i0].init.pclk_n = ((-2 * (next_i()%2)) + 1) * next_i();
-        par[_i0].init.pclk_p = ((-2 * (next_i()%2)) + 1) * next_i();
+              par[_i0].init.pclk_m = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].init.pclk_n = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].init.pclk_p = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          setclkMHz(par,MHz);
+          free(par);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 59
+          // dynamic_instructions_O0 : 1551
+          // ------------------------------- 
+          // static_instructions_O1 : 38
+          // dynamic_instructions_O1 : 1104
+          // ------------------------------- 
+          // static_instructions_O2 : 38
+          // dynamic_instructions_O2 : 1104
+          // ------------------------------- 
+          // static_instructions_O3 : 38
+          // dynamic_instructions_O3 : 1104
+          // ------------------------------- 
+          // static_instructions_Ofast : 38
+          // dynamic_instructions_Ofast : 1104
+          // ------------------------------- 
+          // static_instructions_Os : 37
+          // dynamic_instructions_Os : 1103
+          // ------------------------------- 
+          // static_instructions_Oz : 40
+          // dynamic_instructions_Oz : 1106
+          // ------------------------------- 
+
+          int MHz = 255;
+        
+          int _len_par0 = 65025;
+          struct imstt_par * par = (struct imstt_par *) malloc(_len_par0*sizeof(struct imstt_par));
+          for(int _i0 = 0; _i0 < _len_par0; _i0++) {
+              par[_i0].init.pclk_m = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].init.pclk_n = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].init.pclk_p = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          setclkMHz(par,MHz);
+          free(par);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 52
+          // dynamic_instructions_O0 : 125
+          // ------------------------------- 
+          // static_instructions_O1 : 31
+          // dynamic_instructions_O1 : 70
+          // ------------------------------- 
+          // static_instructions_O2 : 31
+          // dynamic_instructions_O2 : 70
+          // ------------------------------- 
+          // static_instructions_O3 : 31
+          // dynamic_instructions_O3 : 70
+          // ------------------------------- 
+          // static_instructions_Ofast : 31
+          // dynamic_instructions_Ofast : 70
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 69
+          // ------------------------------- 
+          // static_instructions_Oz : 33
+          // dynamic_instructions_Oz : 72
+          // ------------------------------- 
+
+          int MHz = 10;
+        
+          int _len_par0 = 100;
+          struct imstt_par * par = (struct imstt_par *) malloc(_len_par0*sizeof(struct imstt_par));
+          for(int _i0 = 0; _i0 < _len_par0; _i0++) {
+              par[_i0].init.pclk_m = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].init.pclk_n = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].init.pclk_p = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           setclkMHz(par,MHz);
           free(par);
         

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static int device_needs_bus_num_war(uint32_t deviceid)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,6 +83,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int deviceid = 100;
+        
           int benchRet = device_needs_bus_num_war(deviceid);
           printf("%d\n", benchRet); 
         
@@ -97,6 +93,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int deviceid = 255;
+        
           int benchRet = device_needs_bus_num_war(deviceid);
           printf("%d\n", benchRet); 
         
@@ -106,12 +103,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int deviceid = 10;
+        
           int benchRet = device_needs_bus_num_war(deviceid);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int deviceid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = device_needs_bus_num_war(deviceid);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

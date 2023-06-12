@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +73,6 @@ __attribute__((used)) static u32 __ieee80211_idle_off(struct ieee80211_local *lo
 	return IEEE80211_CONF_CHANGE_IDLE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,28 +85,125 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_local0 = 1;
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_local0 = 65025;
           struct ieee80211_local * local = (struct ieee80211_local *) malloc(_len_local0*sizeof(struct ieee80211_local));
           for(int _i0 = 0; _i0 < _len_local0; _i0++) {
-            local[_i0].hw.conf.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              local[_i0].hw.conf.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int benchRet = __ieee80211_idle_off(local);
           printf("%d\n", benchRet); 
           free(local);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_local0 = 100;
           struct ieee80211_local * local = (struct ieee80211_local *) malloc(_len_local0*sizeof(struct ieee80211_local));
           for(int _i0 = 0; _i0 < _len_local0; _i0++) {
-            local[_i0].hw.conf.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              local[_i0].hw.conf.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
+          int benchRet = __ieee80211_idle_off(local);
+          printf("%d\n", benchRet); 
+          free(local);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_local0 = 1;
+          struct ieee80211_local * local = (struct ieee80211_local *) malloc(_len_local0*sizeof(struct ieee80211_local));
+          for(int _i0 = 0; _i0 < _len_local0; _i0++) {
+              local[_i0].hw.conf.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
           int benchRet = __ieee80211_idle_off(local);
           printf("%d\n", benchRet); 
           free(local);

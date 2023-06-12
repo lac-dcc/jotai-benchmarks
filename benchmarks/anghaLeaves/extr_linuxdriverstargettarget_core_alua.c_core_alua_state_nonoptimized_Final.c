@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ __attribute__((used)) static inline void core_alua_state_nonoptimized(
 	cmd->alua_nonop_delay = nonop_delay_msecs;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,21 +85,195 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int nonop_delay_msecs = 100;
+        
           int _len_cmd0 = 1;
           struct se_cmd * cmd = (struct se_cmd *) malloc(_len_cmd0*sizeof(struct se_cmd));
           for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
-            cmd[_i0].alua_nonop_delay = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd[_i0].se_cmd_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmd[_i0].alua_nonop_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].se_cmd_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_cdb0 = 1;
           unsigned char * cdb = (unsigned char *) malloc(_len_cdb0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_cdb0; _i0++) {
             cdb[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          core_alua_state_nonoptimized(cmd,cdb,nonop_delay_msecs);
+          free(cmd);
+          free(cdb);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int nonop_delay_msecs = 255;
+        
+          int _len_cmd0 = 65025;
+          struct se_cmd * cmd = (struct se_cmd *) malloc(_len_cmd0*sizeof(struct se_cmd));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].alua_nonop_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].se_cmd_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cdb0 = 65025;
+          unsigned char * cdb = (unsigned char *) malloc(_len_cdb0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_cdb0; _i0++) {
+            cdb[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          core_alua_state_nonoptimized(cmd,cdb,nonop_delay_msecs);
+          free(cmd);
+          free(cdb);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int nonop_delay_msecs = 10;
+        
+          int _len_cmd0 = 100;
+          struct se_cmd * cmd = (struct se_cmd *) malloc(_len_cmd0*sizeof(struct se_cmd));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].alua_nonop_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].se_cmd_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cdb0 = 100;
+          unsigned char * cdb = (unsigned char *) malloc(_len_cdb0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_cdb0; _i0++) {
+            cdb[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          core_alua_state_nonoptimized(cmd,cdb,nonop_delay_msecs);
+          free(cmd);
+          free(cdb);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int nonop_delay_msecs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cmd0 = 1;
+          struct se_cmd * cmd = (struct se_cmd *) malloc(_len_cmd0*sizeof(struct se_cmd));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].alua_nonop_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].se_cmd_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cdb0 = 1;
+          unsigned char * cdb = (unsigned char *) malloc(_len_cdb0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_cdb0; _i0++) {
+            cdb[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           core_alua_state_nonoptimized(cmd,cdb,nonop_delay_msecs);
           free(cmd);
           free(cdb);

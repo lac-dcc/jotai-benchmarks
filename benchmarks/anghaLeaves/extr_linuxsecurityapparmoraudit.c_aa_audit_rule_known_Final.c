@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ int aa_audit_rule_known(struct audit_krule *rule)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,19 +87,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_rule0 = 1;
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_rule0 = 65025;
           struct audit_krule * rule = (struct audit_krule *) malloc(_len_rule0*sizeof(struct audit_krule));
           for(int _i0 = 0; _i0 < _len_rule0; _i0++) {
-            rule[_i0].field_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              rule[_i0].field_count = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_rule__i0__fields0 = 1;
           rule[_i0].fields = (struct audit_field *) malloc(_len_rule__i0__fields0*sizeof(struct audit_field));
           for(int _j0 = 0; _j0 < _len_rule__i0__fields0; _j0++) {
-            rule[_i0].fields->type = ((-2 * (next_i()%2)) + 1) * next_i();
+              rule[_i0].fields->type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = aa_audit_rule_known(rule);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_rule0; _aux++) {
+          free(rule[_aux].fields);
+          }
+          free(rule);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_rule0 = 100;
+          struct audit_krule * rule = (struct audit_krule *) malloc(_len_rule0*sizeof(struct audit_krule));
+          for(int _i0 = 0; _i0 < _len_rule0; _i0++) {
+              rule[_i0].field_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_rule__i0__fields0 = 1;
+          rule[_i0].fields = (struct audit_field *) malloc(_len_rule__i0__fields0*sizeof(struct audit_field));
+          for(int _j0 = 0; _j0 < _len_rule__i0__fields0; _j0++) {
+              rule[_i0].fields->type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = aa_audit_rule_known(rule);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_rule0; _aux++) {
+          free(rule[_aux].fields);
+          }
+          free(rule);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_rule0 = 1;
+          struct audit_krule * rule = (struct audit_krule *) malloc(_len_rule0*sizeof(struct audit_krule));
+          for(int _i0 = 0; _i0 < _len_rule0; _i0++) {
+              rule[_i0].field_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_rule__i0__fields0 = 1;
+          rule[_i0].fields = (struct audit_field *) malloc(_len_rule__i0__fields0*sizeof(struct audit_field));
+          for(int _j0 = 0; _j0 < _len_rule__i0__fields0; _j0++) {
+              rule[_i0].fields->type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = aa_audit_rule_known(rule);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_rule0; _aux++) {

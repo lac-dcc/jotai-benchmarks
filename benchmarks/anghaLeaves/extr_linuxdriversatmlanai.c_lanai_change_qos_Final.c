@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ __attribute__((used)) static int lanai_change_qos(struct atm_vcc *atmvcc,
 	return -EBUSY;		/* TODO: need to write this */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,20 +78,198 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int flags = 100;
+        
           int _len_atmvcc0 = 1;
           struct atm_vcc * atmvcc = (struct atm_vcc *) malloc(_len_atmvcc0*sizeof(struct atm_vcc));
           for(int _i0 = 0; _i0 < _len_atmvcc0; _i0++) {
-            atmvcc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              atmvcc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_qos0 = 1;
           struct atm_qos * qos = (struct atm_qos *) malloc(_len_qos0*sizeof(struct atm_qos));
           for(int _i0 = 0; _i0 < _len_qos0; _i0++) {
-            qos[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              qos[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = lanai_change_qos(atmvcc,qos,flags);
+          printf("%d\n", benchRet); 
+          free(atmvcc);
+          free(qos);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int flags = 255;
+        
+          int _len_atmvcc0 = 65025;
+          struct atm_vcc * atmvcc = (struct atm_vcc *) malloc(_len_atmvcc0*sizeof(struct atm_vcc));
+          for(int _i0 = 0; _i0 < _len_atmvcc0; _i0++) {
+              atmvcc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_qos0 = 65025;
+          struct atm_qos * qos = (struct atm_qos *) malloc(_len_qos0*sizeof(struct atm_qos));
+          for(int _i0 = 0; _i0 < _len_qos0; _i0++) {
+              qos[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = lanai_change_qos(atmvcc,qos,flags);
+          printf("%d\n", benchRet); 
+          free(atmvcc);
+          free(qos);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int flags = 10;
+        
+          int _len_atmvcc0 = 100;
+          struct atm_vcc * atmvcc = (struct atm_vcc *) malloc(_len_atmvcc0*sizeof(struct atm_vcc));
+          for(int _i0 = 0; _i0 < _len_atmvcc0; _i0++) {
+              atmvcc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_qos0 = 100;
+          struct atm_qos * qos = (struct atm_qos *) malloc(_len_qos0*sizeof(struct atm_qos));
+          for(int _i0 = 0; _i0 < _len_qos0; _i0++) {
+              qos[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = lanai_change_qos(atmvcc,qos,flags);
+          printf("%d\n", benchRet); 
+          free(atmvcc);
+          free(qos);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_atmvcc0 = 1;
+          struct atm_vcc * atmvcc = (struct atm_vcc *) malloc(_len_atmvcc0*sizeof(struct atm_vcc));
+          for(int _i0 = 0; _i0 < _len_atmvcc0; _i0++) {
+              atmvcc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_qos0 = 1;
+          struct atm_qos * qos = (struct atm_qos *) malloc(_len_qos0*sizeof(struct atm_qos));
+          for(int _i0 = 0; _i0 < _len_qos0; _i0++) {
+              qos[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = lanai_change_qos(atmvcc,qos,flags);
           printf("%d\n", benchRet); 
           free(atmvcc);

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -95,12 +98,6 @@ __attribute__((used)) static int pxa2xx_i2s_trigger(struct snd_pcm_substream *su
 	return ret;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -117,16 +114,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int cmd = 100;
+        
           int _len_substream0 = 1;
           struct snd_pcm_substream * substream = (struct snd_pcm_substream *) malloc(_len_substream0*sizeof(struct snd_pcm_substream));
           for(int _i0 = 0; _i0 < _len_substream0; _i0++) {
-            substream[_i0].stream = ((-2 * (next_i()%2)) + 1) * next_i();
+              substream[_i0].stream = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_dai0 = 1;
           struct snd_soc_dai * dai = (struct snd_soc_dai *) malloc(_len_dai0*sizeof(struct snd_soc_dai));
           for(int _i0 = 0; _i0 < _len_dai0; _i0++) {
-            dai[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dai[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = pxa2xx_i2s_trigger(substream,cmd,dai);
           printf("%d\n", benchRet); 
           free(substream);
@@ -134,7 +136,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int cmd = 255;
+        
+          int _len_substream0 = 65025;
+          struct snd_pcm_substream * substream = (struct snd_pcm_substream *) malloc(_len_substream0*sizeof(struct snd_pcm_substream));
+          for(int _i0 = 0; _i0 < _len_substream0; _i0++) {
+              substream[_i0].stream = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dai0 = 65025;
+          struct snd_soc_dai * dai = (struct snd_soc_dai *) malloc(_len_dai0*sizeof(struct snd_soc_dai));
+          for(int _i0 = 0; _i0 < _len_dai0; _i0++) {
+              dai[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pxa2xx_i2s_trigger(substream,cmd,dai);
+          printf("%d\n", benchRet); 
+          free(substream);
+          free(dai);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int cmd = 10;
+        
+          int _len_substream0 = 100;
+          struct snd_pcm_substream * substream = (struct snd_pcm_substream *) malloc(_len_substream0*sizeof(struct snd_pcm_substream));
+          for(int _i0 = 0; _i0 < _len_substream0; _i0++) {
+              substream[_i0].stream = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dai0 = 100;
+          struct snd_soc_dai * dai = (struct snd_soc_dai *) malloc(_len_dai0*sizeof(struct snd_soc_dai));
+          for(int _i0 = 0; _i0 < _len_dai0; _i0++) {
+              dai[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pxa2xx_i2s_trigger(substream,cmd,dai);
+          printf("%d\n", benchRet); 
+          free(substream);
+          free(dai);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_substream0 = 1;
+          struct snd_pcm_substream * substream = (struct snd_pcm_substream *) malloc(_len_substream0*sizeof(struct snd_pcm_substream));
+          for(int _i0 = 0; _i0 < _len_substream0; _i0++) {
+              substream[_i0].stream = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dai0 = 1;
+          struct snd_soc_dai * dai = (struct snd_soc_dai *) malloc(_len_dai0*sizeof(struct snd_soc_dai));
+          for(int _i0 = 0; _i0 < _len_dai0; _i0++) {
+              dai[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pxa2xx_i2s_trigger(substream,cmd,dai);
+          printf("%d\n", benchRet); 
+          free(substream);
+          free(dai);
+        
+        break;
+    }
     default:
         usage();
         break;

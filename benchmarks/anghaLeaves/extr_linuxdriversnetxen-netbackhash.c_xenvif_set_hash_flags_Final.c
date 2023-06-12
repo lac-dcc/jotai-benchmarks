@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -81,12 +84,6 @@ u32 xenvif_set_hash_flags(struct xenvif *vif, u32 flags)
 	return XEN_NETIF_CTRL_STATUS_SUCCESS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,16 +96,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int flags = 100;
+        
           int _len_vif0 = 1;
           struct xenvif * vif = (struct xenvif *) malloc(_len_vif0*sizeof(struct xenvif));
           for(int _i0 = 0; _i0 < _len_vif0; _i0++) {
-            vif[_i0].hash.alg = ((-2 * (next_i()%2)) + 1) * next_i();
-        vif[_i0].hash.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              vif[_i0].hash.alg = ((-2 * (next_i()%2)) + 1) * next_i();
+          vif[_i0].hash.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = xenvif_set_hash_flags(vif,flags);
+          printf("%d\n", benchRet); 
+          free(vif);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int flags = 255;
+        
+          int _len_vif0 = 65025;
+          struct xenvif * vif = (struct xenvif *) malloc(_len_vif0*sizeof(struct xenvif));
+          for(int _i0 = 0; _i0 < _len_vif0; _i0++) {
+              vif[_i0].hash.alg = ((-2 * (next_i()%2)) + 1) * next_i();
+          vif[_i0].hash.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = xenvif_set_hash_flags(vif,flags);
+          printf("%d\n", benchRet); 
+          free(vif);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int flags = 10;
+        
+          int _len_vif0 = 100;
+          struct xenvif * vif = (struct xenvif *) malloc(_len_vif0*sizeof(struct xenvif));
+          for(int _i0 = 0; _i0 < _len_vif0; _i0++) {
+              vif[_i0].hash.alg = ((-2 * (next_i()%2)) + 1) * next_i();
+          vif[_i0].hash.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = xenvif_set_hash_flags(vif,flags);
+          printf("%d\n", benchRet); 
+          free(vif);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_vif0 = 1;
+          struct xenvif * vif = (struct xenvif *) malloc(_len_vif0*sizeof(struct xenvif));
+          for(int _i0 = 0; _i0 < _len_vif0; _i0++) {
+              vif[_i0].hash.alg = ((-2 * (next_i()%2)) + 1) * next_i();
+          vif[_i0].hash.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = xenvif_set_hash_flags(vif,flags);
           printf("%d\n", benchRet); 
           free(vif);

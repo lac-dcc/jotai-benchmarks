@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static int gr2d_is_valid_class(u32 class)
 		class == HOST1X_CLASS_GR2D_SB);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,6 +82,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long class = 100;
+        
           int benchRet = gr2d_is_valid_class(class);
           printf("%d\n", benchRet); 
         
@@ -96,6 +92,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long class = 255;
+        
           int benchRet = gr2d_is_valid_class(class);
           printf("%d\n", benchRet); 
         
@@ -105,12 +102,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long class = 10;
+        
           int benchRet = gr2d_is_valid_class(class);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long class = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = gr2d_is_valid_class(class);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

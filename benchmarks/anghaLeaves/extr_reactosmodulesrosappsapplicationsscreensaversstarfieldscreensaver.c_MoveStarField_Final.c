@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +77,6 @@ void MoveStarField (int nXofs, int nYofs, int nZofs)
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,8 +93,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int nXofs = 100;
+        
           int nYofs = 100;
+        
           int nZofs = 100;
+        
           MoveStarField(nXofs,nYofs,nZofs);
         
         break;
@@ -108,8 +106,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int nXofs = 255;
+        
           int nYofs = 255;
+        
           int nZofs = 255;
+        
           MoveStarField(nXofs,nYofs,nZofs);
         
         break;
@@ -118,13 +119,28 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int nXofs = 10;
+        
           int nYofs = 10;
+        
           int nZofs = 10;
+        
           MoveStarField(nXofs,nYofs,nZofs);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int nXofs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int nYofs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int nZofs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          MoveStarField(nXofs,nYofs,nZofs);
+        
+        break;
+    }
     default:
         usage();
         break;

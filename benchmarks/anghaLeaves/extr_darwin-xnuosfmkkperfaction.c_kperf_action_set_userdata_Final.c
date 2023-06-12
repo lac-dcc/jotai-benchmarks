@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +75,6 @@ kperf_action_set_userdata(unsigned actionid, uint32_t userdata)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,7 +91,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int actionid = 100;
+        
           int userdata = 100;
+        
           int benchRet = kperf_action_set_userdata(actionid,userdata);
           printf("%d\n", benchRet); 
         
@@ -106,7 +103,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int actionid = 255;
+        
           int userdata = 255;
+        
           int benchRet = kperf_action_set_userdata(actionid,userdata);
           printf("%d\n", benchRet); 
         
@@ -116,13 +115,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int actionid = 10;
+        
           int userdata = 10;
+        
           int benchRet = kperf_action_set_userdata(actionid,userdata);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int actionid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int userdata = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = kperf_action_set_userdata(actionid,userdata);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

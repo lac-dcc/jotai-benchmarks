@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -77,12 +79,6 @@ __attribute__((used)) static  u32 get_ring_space(struct intelfb_info *dinfo)
 	return ring_space;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,23 +91,63 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dinfo0 = 1;
+          int _len_dinfo0 = 65025;
           struct intelfb_info * dinfo = (struct intelfb_info *) malloc(_len_dinfo0*sizeof(struct intelfb_info));
           for(int _i0 = 0; _i0 < _len_dinfo0; _i0++) {
-            dinfo[_i0].ring_tail = ((-2 * (next_i()%2)) + 1) * next_i();
-        dinfo[_i0].ring_head = ((-2 * (next_i()%2)) + 1) * next_i();
-        dinfo[_i0].ring.size = ((-2 * (next_i()%2)) + 1) * next_i();
+              dinfo[_i0].ring_tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          dinfo[_i0].ring_head = ((-2 * (next_i()%2)) + 1) * next_i();
+          dinfo[_i0].ring.size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           long benchRet = get_ring_space(dinfo);
           printf("%ld\n", benchRet); 
           free(dinfo);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dinfo0 = 100;
+          struct intelfb_info * dinfo = (struct intelfb_info *) malloc(_len_dinfo0*sizeof(struct intelfb_info));
+          for(int _i0 = 0; _i0 < _len_dinfo0; _i0++) {
+              dinfo[_i0].ring_tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          dinfo[_i0].ring_head = ((-2 * (next_i()%2)) + 1) * next_i();
+          dinfo[_i0].ring.size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          long benchRet = get_ring_space(dinfo);
+          printf("%ld\n", benchRet); 
+          free(dinfo);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dinfo0 = 1;
+          struct intelfb_info * dinfo = (struct intelfb_info *) malloc(_len_dinfo0*sizeof(struct intelfb_info));
+          for(int _i0 = 0; _i0 < _len_dinfo0; _i0++) {
+              dinfo[_i0].ring_tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          dinfo[_i0].ring_head = ((-2 * (next_i()%2)) + 1) * next_i();
+          dinfo[_i0].ring.size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          long benchRet = get_ring_space(dinfo);
+          printf("%ld\n", benchRet); 
+          free(dinfo);
+        
+        break;
+    }
     default:
         usage();
         break;

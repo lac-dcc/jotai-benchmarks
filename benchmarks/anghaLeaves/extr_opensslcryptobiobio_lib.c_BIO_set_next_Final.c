@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -61,7 +62,6 @@ void BIO_set_next(BIO *b, BIO *next)
 {
     b->next_bio = next;
 }
-
 
 // ------------------------------------------------------------------------- //
 
@@ -113,7 +113,6 @@ void _delete_next(struct TYPE_4__ *aux_next[], int aux_next_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -126,20 +125,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // linked
     case 0:
+    {
+          struct TYPE_4__ * aux_b[10000];
+          struct TYPE_4__ * b = _allocate_b(10000, aux_b);
+        
+          struct TYPE_4__ * aux_next[10000];
+          struct TYPE_4__ * next = _allocate_next(10000, aux_next);
+        
+          BIO_set_next(b,next);
+          _delete_b(aux_b, 10000);
+          _delete_next(aux_next, 10000);
+        
+        break;
+    }
+    // empty
+    case 1:
     {
           struct TYPE_4__ * aux_b[1];
           struct TYPE_4__ * b = _allocate_b(1, aux_b);
+        
           struct TYPE_4__ * aux_next[1];
           struct TYPE_4__ * next = _allocate_next(1, aux_next);
+        
           BIO_set_next(b,next);
           _delete_b(aux_b, 1);
           _delete_next(aux_next, 1);
         
         break;
     }
-
     default:
         usage();
         break;

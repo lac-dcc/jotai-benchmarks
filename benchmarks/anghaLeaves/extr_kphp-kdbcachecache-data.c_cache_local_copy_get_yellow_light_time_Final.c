@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ void cache_local_copy_get_yellow_light_time (struct cache_local_copy *L, int *re
   *remaining_time = duration - (*elapsed_time);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,25 +81,29 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_L0 = 1;
+          int _len_L0 = 65025;
           struct cache_local_copy * L = (struct cache_local_copy *) malloc(_len_L0*sizeof(struct cache_local_copy));
           for(int _i0 = 0; _i0 < _len_L0; _i0++) {
-            L[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        L[_i0].yellow_light_start = ((-2 * (next_i()%2)) + 1) * next_i();
+              L[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          L[_i0].yellow_light_start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_remaining_time0 = 1;
+        
+          int _len_remaining_time0 = 65025;
           int * remaining_time = (int *) malloc(_len_remaining_time0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_remaining_time0; _i0++) {
             remaining_time[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_elapsed_time0 = 1;
+        
+          int _len_elapsed_time0 = 65025;
           int * elapsed_time = (int *) malloc(_len_elapsed_time0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_elapsed_time0; _i0++) {
             elapsed_time[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           cache_local_copy_get_yellow_light_time(L,remaining_time,elapsed_time);
           free(L);
           free(remaining_time);
@@ -111,7 +111,66 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_L0 = 100;
+          struct cache_local_copy * L = (struct cache_local_copy *) malloc(_len_L0*sizeof(struct cache_local_copy));
+          for(int _i0 = 0; _i0 < _len_L0; _i0++) {
+              L[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          L[_i0].yellow_light_start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_remaining_time0 = 100;
+          int * remaining_time = (int *) malloc(_len_remaining_time0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_remaining_time0; _i0++) {
+            remaining_time[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_elapsed_time0 = 100;
+          int * elapsed_time = (int *) malloc(_len_elapsed_time0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_elapsed_time0; _i0++) {
+            elapsed_time[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          cache_local_copy_get_yellow_light_time(L,remaining_time,elapsed_time);
+          free(L);
+          free(remaining_time);
+          free(elapsed_time);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_L0 = 1;
+          struct cache_local_copy * L = (struct cache_local_copy *) malloc(_len_L0*sizeof(struct cache_local_copy));
+          for(int _i0 = 0; _i0 < _len_L0; _i0++) {
+              L[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          L[_i0].yellow_light_start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_remaining_time0 = 1;
+          int * remaining_time = (int *) malloc(_len_remaining_time0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_remaining_time0; _i0++) {
+            remaining_time[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_elapsed_time0 = 1;
+          int * elapsed_time = (int *) malloc(_len_elapsed_time0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_elapsed_time0; _i0++) {
+            elapsed_time[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          cache_local_copy_get_yellow_light_time(L,remaining_time,elapsed_time);
+          free(L);
+          free(remaining_time);
+          free(elapsed_time);
+        
+        break;
+    }
     default:
         usage();
         break;

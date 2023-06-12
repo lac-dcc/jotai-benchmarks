@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static inline unsigned int afs_cb_break_sum(struct afs_vno
 	return vnode->cb_break + cbi->server->cb_s_break + vnode->volume->cb_v_break;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,28 +80,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_vnode0 = 1;
+          int _len_vnode0 = 65025;
           struct afs_vnode * vnode = (struct afs_vnode *) malloc(_len_vnode0*sizeof(struct afs_vnode));
           for(int _i0 = 0; _i0 < _len_vnode0; _i0++) {
-            vnode[_i0].cb_break = ((-2 * (next_i()%2)) + 1) * next_i();
+              vnode[_i0].cb_break = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_vnode__i0__volume0 = 1;
           vnode[_i0].volume = (struct TYPE_4__ *) malloc(_len_vnode__i0__volume0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_vnode__i0__volume0; _j0++) {
-            vnode[_i0].volume->cb_v_break = ((-2 * (next_i()%2)) + 1) * next_i();
+              vnode[_i0].volume->cb_v_break = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
-          int _len_cbi0 = 1;
+        
+          int _len_cbi0 = 65025;
           struct afs_cb_interest * cbi = (struct afs_cb_interest *) malloc(_len_cbi0*sizeof(struct afs_cb_interest));
           for(int _i0 = 0; _i0 < _len_cbi0; _i0++) {
               int _len_cbi__i0__server0 = 1;
           cbi[_i0].server = (struct TYPE_3__ *) malloc(_len_cbi__i0__server0*sizeof(struct TYPE_3__));
           for(int _j0 = 0; _j0 < _len_cbi__i0__server0; _j0++) {
-            cbi[_i0].server->cb_s_break = ((-2 * (next_i()%2)) + 1) * next_i();
+              cbi[_i0].server->cb_s_break = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           unsigned int benchRet = afs_cb_break_sum(vnode,cbi);
           printf("%u\n", benchRet); 
           for(int _aux = 0; _aux < _len_vnode0; _aux++) {
@@ -119,7 +121,88 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_vnode0 = 100;
+          struct afs_vnode * vnode = (struct afs_vnode *) malloc(_len_vnode0*sizeof(struct afs_vnode));
+          for(int _i0 = 0; _i0 < _len_vnode0; _i0++) {
+              vnode[_i0].cb_break = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_vnode__i0__volume0 = 1;
+          vnode[_i0].volume = (struct TYPE_4__ *) malloc(_len_vnode__i0__volume0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_vnode__i0__volume0; _j0++) {
+              vnode[_i0].volume->cb_v_break = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_cbi0 = 100;
+          struct afs_cb_interest * cbi = (struct afs_cb_interest *) malloc(_len_cbi0*sizeof(struct afs_cb_interest));
+          for(int _i0 = 0; _i0 < _len_cbi0; _i0++) {
+              int _len_cbi__i0__server0 = 1;
+          cbi[_i0].server = (struct TYPE_3__ *) malloc(_len_cbi__i0__server0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_cbi__i0__server0; _j0++) {
+              cbi[_i0].server->cb_s_break = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = afs_cb_break_sum(vnode,cbi);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vnode0; _aux++) {
+          free(vnode[_aux].volume);
+          }
+          free(vnode);
+          for(int _aux = 0; _aux < _len_cbi0; _aux++) {
+          free(cbi[_aux].server);
+          }
+          free(cbi);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_vnode0 = 1;
+          struct afs_vnode * vnode = (struct afs_vnode *) malloc(_len_vnode0*sizeof(struct afs_vnode));
+          for(int _i0 = 0; _i0 < _len_vnode0; _i0++) {
+              vnode[_i0].cb_break = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_vnode__i0__volume0 = 1;
+          vnode[_i0].volume = (struct TYPE_4__ *) malloc(_len_vnode__i0__volume0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_vnode__i0__volume0; _j0++) {
+              vnode[_i0].volume->cb_v_break = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_cbi0 = 1;
+          struct afs_cb_interest * cbi = (struct afs_cb_interest *) malloc(_len_cbi0*sizeof(struct afs_cb_interest));
+          for(int _i0 = 0; _i0 < _len_cbi0; _i0++) {
+              int _len_cbi__i0__server0 = 1;
+          cbi[_i0].server = (struct TYPE_3__ *) malloc(_len_cbi__i0__server0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_cbi__i0__server0; _j0++) {
+              cbi[_i0].server->cb_s_break = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = afs_cb_break_sum(vnode,cbi);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vnode0; _aux++) {
+          free(vnode[_aux].volume);
+          }
+          free(vnode);
+          for(int _aux = 0; _aux < _len_cbi0; _aux++) {
+          free(cbi[_aux].server);
+          }
+          free(cbi);
+        
+        break;
+    }
     default:
         usage();
         break;

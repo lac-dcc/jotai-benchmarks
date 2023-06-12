@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static void sig_handler(int sig)
 	interrupted = sig == SIGINT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,6 +82,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int sig = 100;
+        
           sig_handler(sig);
         
         break;
@@ -95,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int sig = 255;
+        
           sig_handler(sig);
         
         break;
@@ -103,11 +100,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int sig = 10;
+        
           sig_handler(sig);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int sig = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          sig_handler(sig);
+        
+        break;
+    }
     default:
         usage();
         break;

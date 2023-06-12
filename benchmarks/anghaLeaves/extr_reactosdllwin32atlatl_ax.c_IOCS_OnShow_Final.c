@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ __attribute__((used)) static void IOCS_OnShow( IOCS *This, BOOL fShow )
     This->fActive = TRUE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,18 +86,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int fShow = 100;
+        
           int _len_This0 = 1;
           struct TYPE_3__ * This = (struct TYPE_3__ *) malloc(_len_This0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_This0; _i0++) {
-            This[_i0].fActive = ((-2 * (next_i()%2)) + 1) * next_i();
-        This[_i0].control = ((-2 * (next_i()%2)) + 1) * next_i();
+              This[_i0].fActive = ((-2 * (next_i()%2)) + 1) * next_i();
+          This[_i0].control = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           IOCS_OnShow(This,fShow);
           free(This);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int fShow = 255;
+        
+          int _len_This0 = 65025;
+          struct TYPE_3__ * This = (struct TYPE_3__ *) malloc(_len_This0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_This0; _i0++) {
+              This[_i0].fActive = ((-2 * (next_i()%2)) + 1) * next_i();
+          This[_i0].control = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          IOCS_OnShow(This,fShow);
+          free(This);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int fShow = 10;
+        
+          int _len_This0 = 100;
+          struct TYPE_3__ * This = (struct TYPE_3__ *) malloc(_len_This0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_This0; _i0++) {
+              This[_i0].fActive = ((-2 * (next_i()%2)) + 1) * next_i();
+          This[_i0].control = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          IOCS_OnShow(This,fShow);
+          free(This);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int fShow = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_This0 = 1;
+          struct TYPE_3__ * This = (struct TYPE_3__ *) malloc(_len_This0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_This0; _i0++) {
+              This[_i0].fActive = ((-2 * (next_i()%2)) + 1) * next_i();
+          This[_i0].control = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          IOCS_OnShow(This,fShow);
+          free(This);
+        
+        break;
+    }
     default:
         usage();
         break;

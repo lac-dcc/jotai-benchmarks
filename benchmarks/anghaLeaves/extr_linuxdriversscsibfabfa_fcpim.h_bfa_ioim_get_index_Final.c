@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -86,12 +87,6 @@ bfa_ioim_get_index(u32 n) {
 	return (n == 0) ? (0) : pos;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,28 +99,136 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
           unsigned long n = 100;
+        
           unsigned long benchRet = bfa_ioim_get_index(n);
           printf("%lu\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
           unsigned long n = 255;
+        
           unsigned long benchRet = bfa_ioim_get_index(n);
           printf("%lu\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
           unsigned long n = 10;
+        
+          unsigned long benchRet = bfa_ioim_get_index(n);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          unsigned long n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           unsigned long benchRet = bfa_ioim_get_index(n);
           printf("%lu\n", benchRet); 
         

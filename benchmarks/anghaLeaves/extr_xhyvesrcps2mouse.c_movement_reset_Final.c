@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ movement_reset(struct ps2mouse_softc *sc)
 	sc->delta_y = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,21 +76,54 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_sc0 = 1;
+          int _len_sc0 = 65025;
           struct ps2mouse_softc * sc = (struct ps2mouse_softc *) malloc(_len_sc0*sizeof(struct ps2mouse_softc));
           for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
-            sc[_i0].delta_y = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].delta_x = ((-2 * (next_i()%2)) + 1) * next_i();
+              sc[_i0].delta_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].delta_x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           movement_reset(sc);
           free(sc);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_sc0 = 100;
+          struct ps2mouse_softc * sc = (struct ps2mouse_softc *) malloc(_len_sc0*sizeof(struct ps2mouse_softc));
+          for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
+              sc[_i0].delta_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].delta_x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          movement_reset(sc);
+          free(sc);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_sc0 = 1;
+          struct ps2mouse_softc * sc = (struct ps2mouse_softc *) malloc(_len_sc0*sizeof(struct ps2mouse_softc));
+          for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
+              sc[_i0].delta_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].delta_x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          movement_reset(sc);
+          free(sc);
+        
+        break;
+    }
     default:
         usage();
         break;

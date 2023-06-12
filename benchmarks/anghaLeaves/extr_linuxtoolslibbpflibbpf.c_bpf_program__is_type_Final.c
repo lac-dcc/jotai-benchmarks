@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static bool bpf_program__is_type(struct bpf_program *prog,
 	return prog ? (prog->type == type) : false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,15 +76,18 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           enum bpf_prog_type type = 0;
-          int _len_prog0 = 1;
+        
+          int _len_prog0 = 65025;
           struct bpf_program * prog = (struct bpf_program *) malloc(_len_prog0*sizeof(struct bpf_program));
           for(int _i0 = 0; _i0 < _len_prog0; _i0++) {
-            prog[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+              prog[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = bpf_program__is_type(prog,type);
           printf("%d\n", benchRet); 
           free(prog);
@@ -100,18 +98,38 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           enum bpf_prog_type type = 0;
+        
           int _len_prog0 = 100;
           struct bpf_program * prog = (struct bpf_program *) malloc(_len_prog0*sizeof(struct bpf_program));
           for(int _i0 = 0; _i0 < _len_prog0; _i0++) {
-            prog[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+              prog[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = bpf_program__is_type(prog,type);
           printf("%d\n", benchRet); 
           free(prog);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          enum bpf_prog_type type = 0;
+        
+          int _len_prog0 = 1;
+          struct bpf_program * prog = (struct bpf_program *) malloc(_len_prog0*sizeof(struct bpf_program));
+          for(int _i0 = 0; _i0 < _len_prog0; _i0++) {
+              prog[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = bpf_program__is_type(prog,type);
+          printf("%d\n", benchRet); 
+          free(prog);
+        
+        break;
+    }
     default:
         usage();
         break;

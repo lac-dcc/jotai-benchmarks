@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ ReadSeparator(
     return FALSE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,9 +86,124 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_s0 = 65025;
+          int ** s = (int **) malloc(_len_s0*sizeof(int *));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+            int _len_s1 = 1;
+            s[_i0] = (int *) malloc(_len_s1*sizeof(int));
+            for(int _i1 = 0; _i1 < _len_s1; _i1++) {
+              s[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int benchRet = ReadSeparator(s);
+          printf("%d\n", benchRet); 
+          for(int i1 = 0; i1 < _len_s0; i1++) {
+              free(s[i1]);
+          }
+          free(s);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_s0 = 100;
+          int ** s = (int **) malloc(_len_s0*sizeof(int *));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+            int _len_s1 = 1;
+            s[_i0] = (int *) malloc(_len_s1*sizeof(int));
+            for(int _i1 = 0; _i1 < _len_s1; _i1++) {
+              s[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int benchRet = ReadSeparator(s);
+          printf("%d\n", benchRet); 
+          for(int i1 = 0; i1 < _len_s0; i1++) {
+              free(s[i1]);
+          }
+          free(s);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_s0 = 1;
           int ** s = (int **) malloc(_len_s0*sizeof(int *));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
@@ -102,10 +213,10 @@ int main(int argc, char *argv[]) {
               s[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           int benchRet = ReadSeparator(s);
           printf("%d\n", benchRet); 
           for(int i1 = 0; i1 < _len_s0; i1++) {
-            int _len_s1 = 1;
               free(s[i1]);
           }
           free(s);

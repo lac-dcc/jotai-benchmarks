@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ __attribute__((used)) static BOOL s_is_power_of_two(mp_digit b, int *p)
    return FALSE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,11 +91,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int b = 100;
+        
           int _len_p0 = 1;
           int * p = (int *) malloc(_len_p0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
             p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = s_is_power_of_two(b,p);
+          printf("%d\n", benchRet); 
+          free(p);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int b = 255;
+        
+          int _len_p0 = 65025;
+          int * p = (int *) malloc(_len_p0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+            p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = s_is_power_of_two(b,p);
           printf("%d\n", benchRet); 
           free(p);
@@ -107,21 +122,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int b = 10;
+        
           int _len_p0 = 100;
           int * p = (int *) malloc(_len_p0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
             p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = s_is_power_of_two(b,p);
           printf("%d\n", benchRet); 
           free(p);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_p0 = 1;
+          int * p = (int *) malloc(_len_p0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+            p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = s_is_power_of_two(b,p);
+          printf("%d\n", benchRet); 
+          free(p);
+        
+        break;
+    }
     default:
         usage();
         break;

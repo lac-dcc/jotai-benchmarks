@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +83,6 @@ necp_mark_packet_from_ip(struct mbuf *packet, necp_kernel_policy_id policy_id)
 	return (0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,19 +99,86 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long policy_id = 100;
+        
           int _len_packet0 = 1;
           struct mbuf * packet = (struct mbuf *) malloc(_len_packet0*sizeof(struct mbuf));
           for(int _i0 = 0; _i0 < _len_packet0; _i0++) {
-            packet[_i0].m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        packet[_i0].m_pkthdr.necp_mtag.necp_policy_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              packet[_i0].m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          packet[_i0].m_pkthdr.necp_mtag.necp_policy_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int benchRet = necp_mark_packet_from_ip(packet,policy_id);
           printf("%d\n", benchRet); 
           free(packet);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long policy_id = 255;
+        
+          int _len_packet0 = 65025;
+          struct mbuf * packet = (struct mbuf *) malloc(_len_packet0*sizeof(struct mbuf));
+          for(int _i0 = 0; _i0 < _len_packet0; _i0++) {
+              packet[_i0].m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          packet[_i0].m_pkthdr.necp_mtag.necp_policy_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = necp_mark_packet_from_ip(packet,policy_id);
+          printf("%d\n", benchRet); 
+          free(packet);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long policy_id = 10;
+        
+          int _len_packet0 = 100;
+          struct mbuf * packet = (struct mbuf *) malloc(_len_packet0*sizeof(struct mbuf));
+          for(int _i0 = 0; _i0 < _len_packet0; _i0++) {
+              packet[_i0].m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          packet[_i0].m_pkthdr.necp_mtag.necp_policy_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = necp_mark_packet_from_ip(packet,policy_id);
+          printf("%d\n", benchRet); 
+          free(packet);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long policy_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_packet0 = 1;
+          struct mbuf * packet = (struct mbuf *) malloc(_len_packet0*sizeof(struct mbuf));
+          for(int _i0 = 0; _i0 < _len_packet0; _i0++) {
+              packet[_i0].m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          packet[_i0].m_pkthdr.necp_mtag.necp_policy_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = necp_mark_packet_from_ip(packet,policy_id);
+          printf("%d\n", benchRet); 
+          free(packet);
+        
+        break;
+    }
     default:
         usage();
         break;

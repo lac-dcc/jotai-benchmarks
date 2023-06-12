@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ nilfs_get_segment_start_blocknr(struct the_nilfs *nilfs, __u64 segnum)
 		(sector_t)nilfs->ns_blocks_per_segment * segnum;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,16 +79,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int segnum = 100;
+        
           int _len_nilfs0 = 1;
           struct the_nilfs * nilfs = (struct the_nilfs *) malloc(_len_nilfs0*sizeof(struct the_nilfs));
           for(int _i0 = 0; _i0 < _len_nilfs0; _i0++) {
-            nilfs[_i0].ns_first_data_block = ((-2 * (next_i()%2)) + 1) * next_i();
-        nilfs[_i0].ns_blocks_per_segment = ((-2 * (next_i()%2)) + 1) * next_i();
+              nilfs[_i0].ns_first_data_block = ((-2 * (next_i()%2)) + 1) * next_i();
+          nilfs[_i0].ns_blocks_per_segment = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = nilfs_get_segment_start_blocknr(nilfs,segnum);
+          printf("%d\n", benchRet); 
+          free(nilfs);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int segnum = 255;
+        
+          int _len_nilfs0 = 65025;
+          struct the_nilfs * nilfs = (struct the_nilfs *) malloc(_len_nilfs0*sizeof(struct the_nilfs));
+          for(int _i0 = 0; _i0 < _len_nilfs0; _i0++) {
+              nilfs[_i0].ns_first_data_block = ((-2 * (next_i()%2)) + 1) * next_i();
+          nilfs[_i0].ns_blocks_per_segment = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nilfs_get_segment_start_blocknr(nilfs,segnum);
+          printf("%d\n", benchRet); 
+          free(nilfs);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int segnum = 10;
+        
+          int _len_nilfs0 = 100;
+          struct the_nilfs * nilfs = (struct the_nilfs *) malloc(_len_nilfs0*sizeof(struct the_nilfs));
+          for(int _i0 = 0; _i0 < _len_nilfs0; _i0++) {
+              nilfs[_i0].ns_first_data_block = ((-2 * (next_i()%2)) + 1) * next_i();
+          nilfs[_i0].ns_blocks_per_segment = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nilfs_get_segment_start_blocknr(nilfs,segnum);
+          printf("%d\n", benchRet); 
+          free(nilfs);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int segnum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_nilfs0 = 1;
+          struct the_nilfs * nilfs = (struct the_nilfs *) malloc(_len_nilfs0*sizeof(struct the_nilfs));
+          for(int _i0 = 0; _i0 < _len_nilfs0; _i0++) {
+              nilfs[_i0].ns_first_data_block = ((-2 * (next_i()%2)) + 1) * next_i();
+          nilfs[_i0].ns_blocks_per_segment = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = nilfs_get_segment_start_blocknr(nilfs,segnum);
           printf("%d\n", benchRet); 
           free(nilfs);

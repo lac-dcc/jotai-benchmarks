@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ __attribute__((used)) static int ms1bit(unsigned long x)
 	return b;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,28 +82,136 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 70
+          // dynamic_instructions_O0 : 70
+          // ------------------------------- 
+          // static_instructions_O1 : 34
+          // dynamic_instructions_O1 : 34
+          // ------------------------------- 
+          // static_instructions_O2 : 34
+          // dynamic_instructions_O2 : 34
+          // ------------------------------- 
+          // static_instructions_O3 : 34
+          // dynamic_instructions_O3 : 34
+          // ------------------------------- 
+          // static_instructions_Ofast : 34
+          // dynamic_instructions_Ofast : 34
+          // ------------------------------- 
+          // static_instructions_Os : 34
+          // dynamic_instructions_Os : 34
+          // ------------------------------- 
+          // static_instructions_Oz : 34
+          // dynamic_instructions_Oz : 34
+          // ------------------------------- 
+
           unsigned long x = 100;
+        
           int benchRet = ms1bit(x);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 69
+          // dynamic_instructions_O0 : 69
+          // ------------------------------- 
+          // static_instructions_O1 : 34
+          // dynamic_instructions_O1 : 34
+          // ------------------------------- 
+          // static_instructions_O2 : 34
+          // dynamic_instructions_O2 : 34
+          // ------------------------------- 
+          // static_instructions_O3 : 34
+          // dynamic_instructions_O3 : 34
+          // ------------------------------- 
+          // static_instructions_Ofast : 34
+          // dynamic_instructions_Ofast : 34
+          // ------------------------------- 
+          // static_instructions_Os : 34
+          // dynamic_instructions_Os : 34
+          // ------------------------------- 
+          // static_instructions_Oz : 34
+          // dynamic_instructions_Oz : 34
+          // ------------------------------- 
+
           unsigned long x = 255;
+        
           int benchRet = ms1bit(x);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 70
+          // dynamic_instructions_O0 : 70
+          // ------------------------------- 
+          // static_instructions_O1 : 34
+          // dynamic_instructions_O1 : 34
+          // ------------------------------- 
+          // static_instructions_O2 : 34
+          // dynamic_instructions_O2 : 34
+          // ------------------------------- 
+          // static_instructions_O3 : 34
+          // dynamic_instructions_O3 : 34
+          // ------------------------------- 
+          // static_instructions_Ofast : 34
+          // dynamic_instructions_Ofast : 34
+          // ------------------------------- 
+          // static_instructions_Os : 34
+          // dynamic_instructions_Os : 34
+          // ------------------------------- 
+          // static_instructions_Oz : 34
+          // dynamic_instructions_Oz : 34
+          // ------------------------------- 
+
           unsigned long x = 10;
+        
+          int benchRet = ms1bit(x);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 67
+          // dynamic_instructions_O0 : 67
+          // ------------------------------- 
+          // static_instructions_O1 : 34
+          // dynamic_instructions_O1 : 34
+          // ------------------------------- 
+          // static_instructions_O2 : 34
+          // dynamic_instructions_O2 : 34
+          // ------------------------------- 
+          // static_instructions_O3 : 34
+          // dynamic_instructions_O3 : 34
+          // ------------------------------- 
+          // static_instructions_Ofast : 34
+          // dynamic_instructions_Ofast : 34
+          // ------------------------------- 
+          // static_instructions_Os : 34
+          // dynamic_instructions_Os : 34
+          // ------------------------------- 
+          // static_instructions_Oz : 34
+          // dynamic_instructions_Oz : 34
+          // ------------------------------- 
+
+          unsigned long x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = ms1bit(x);
           printf("%d\n", benchRet); 
         

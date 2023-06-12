@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline int ef4_filter_set_uc_def(struct ef4_filter_
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_spec0 = 1;
+          int _len_spec0 = 65025;
           struct ef4_filter_spec * spec = (struct ef4_filter_spec *) malloc(_len_spec0*sizeof(struct ef4_filter_spec));
           for(int _i0 = 0; _i0 < _len_spec0; _i0++) {
-            spec[_i0].match_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              spec[_i0].match_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ef4_filter_set_uc_def(spec);
           printf("%d\n", benchRet); 
           free(spec);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_spec0 = 100;
           struct ef4_filter_spec * spec = (struct ef4_filter_spec *) malloc(_len_spec0*sizeof(struct ef4_filter_spec));
           for(int _i0 = 0; _i0 < _len_spec0; _i0++) {
-            spec[_i0].match_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              spec[_i0].match_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ef4_filter_set_uc_def(spec);
           printf("%d\n", benchRet); 
           free(spec);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_spec0 = 1;
+          struct ef4_filter_spec * spec = (struct ef4_filter_spec *) malloc(_len_spec0*sizeof(struct ef4_filter_spec));
+          for(int _i0 = 0; _i0 < _len_spec0; _i0++) {
+              spec[_i0].match_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ef4_filter_set_uc_def(spec);
+          printf("%d\n", benchRet); 
+          free(spec);
+        
+        break;
+    }
     default:
         usage();
         break;

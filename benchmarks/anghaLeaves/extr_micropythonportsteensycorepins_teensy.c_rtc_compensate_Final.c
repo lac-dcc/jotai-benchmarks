@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -90,12 +91,6 @@ void rtc_compensate(int adjust)
 	RTC_TCR = ((interval - 1) << 8) | tcr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -108,26 +103,133 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 33
+          // dynamic_instructions_O2 : 33
+          // ------------------------------- 
+          // static_instructions_O3 : 33
+          // dynamic_instructions_O3 : 33
+          // ------------------------------- 
+          // static_instructions_Ofast : 33
+          // dynamic_instructions_Ofast : 33
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
           int adjust = 100;
+        
           rtc_compensate(adjust);
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 1433
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 789
+          // ------------------------------- 
+          // static_instructions_O2 : 50
+          // dynamic_instructions_O2 : 514
+          // ------------------------------- 
+          // static_instructions_O3 : 50
+          // dynamic_instructions_O3 : 514
+          // ------------------------------- 
+          // static_instructions_Ofast : 50
+          // dynamic_instructions_Ofast : 514
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 787
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 787
+          // ------------------------------- 
+
           int adjust = 255;
+        
           rtc_compensate(adjust);
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 33
+          // dynamic_instructions_O2 : 33
+          // ------------------------------- 
+          // static_instructions_O3 : 33
+          // dynamic_instructions_O3 : 33
+          // ------------------------------- 
+          // static_instructions_Ofast : 33
+          // dynamic_instructions_Ofast : 33
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
           int adjust = 10;
+        
+          rtc_compensate(adjust);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 36
+          // dynamic_instructions_O2 : 36
+          // ------------------------------- 
+          // static_instructions_O3 : 36
+          // dynamic_instructions_O3 : 36
+          // ------------------------------- 
+          // static_instructions_Ofast : 36
+          // dynamic_instructions_Ofast : 36
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int adjust = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           rtc_compensate(adjust);
         
         break;

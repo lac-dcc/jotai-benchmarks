@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +78,6 @@ __attribute__((used)) static void ci_leaf_init(struct cacheinfo *this_leaf,
 		| CACHE_WRITE_ALLOCATE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,27 +94,122 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           enum cache_type type = 0;
+        
           unsigned int level = 100;
+        
           int _len_this_leaf0 = 1;
           struct cacheinfo * this_leaf = (struct cacheinfo *) malloc(_len_this_leaf0*sizeof(struct cacheinfo));
           for(int _i0 = 0; _i0 < _len_this_leaf0; _i0++) {
-            this_leaf[_i0].level = ((-2 * (next_i()%2)) + 1) * next_i();
-        this_leaf[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        this_leaf[_i0].physical_line_partition = ((-2 * (next_i()%2)) + 1) * next_i();
-        this_leaf[_i0].attributes = ((-2 * (next_i()%2)) + 1) * next_i();
+              this_leaf[_i0].level = ((-2 * (next_i()%2)) + 1) * next_i();
+          this_leaf[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          this_leaf[_i0].physical_line_partition = ((-2 * (next_i()%2)) + 1) * next_i();
+          this_leaf[_i0].attributes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_node0 = 1;
           struct device_node * node = (struct device_node *) malloc(_len_node0*sizeof(struct device_node));
           for(int _i0 = 0; _i0 < _len_node0; _i0++) {
-            node[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              node[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ci_leaf_init(this_leaf,node,type,level);
           free(this_leaf);
           free(node);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          enum cache_type type = 0;
+        
+          unsigned int level = 255;
+        
+          int _len_this_leaf0 = 65025;
+          struct cacheinfo * this_leaf = (struct cacheinfo *) malloc(_len_this_leaf0*sizeof(struct cacheinfo));
+          for(int _i0 = 0; _i0 < _len_this_leaf0; _i0++) {
+              this_leaf[_i0].level = ((-2 * (next_i()%2)) + 1) * next_i();
+          this_leaf[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          this_leaf[_i0].physical_line_partition = ((-2 * (next_i()%2)) + 1) * next_i();
+          this_leaf[_i0].attributes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_node0 = 65025;
+          struct device_node * node = (struct device_node *) malloc(_len_node0*sizeof(struct device_node));
+          for(int _i0 = 0; _i0 < _len_node0; _i0++) {
+              node[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ci_leaf_init(this_leaf,node,type,level);
+          free(this_leaf);
+          free(node);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          enum cache_type type = 0;
+        
+          unsigned int level = 10;
+        
+          int _len_this_leaf0 = 100;
+          struct cacheinfo * this_leaf = (struct cacheinfo *) malloc(_len_this_leaf0*sizeof(struct cacheinfo));
+          for(int _i0 = 0; _i0 < _len_this_leaf0; _i0++) {
+              this_leaf[_i0].level = ((-2 * (next_i()%2)) + 1) * next_i();
+          this_leaf[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          this_leaf[_i0].physical_line_partition = ((-2 * (next_i()%2)) + 1) * next_i();
+          this_leaf[_i0].attributes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_node0 = 100;
+          struct device_node * node = (struct device_node *) malloc(_len_node0*sizeof(struct device_node));
+          for(int _i0 = 0; _i0 < _len_node0; _i0++) {
+              node[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ci_leaf_init(this_leaf,node,type,level);
+          free(this_leaf);
+          free(node);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          enum cache_type type = 0;
+        
+          unsigned int level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_this_leaf0 = 1;
+          struct cacheinfo * this_leaf = (struct cacheinfo *) malloc(_len_this_leaf0*sizeof(struct cacheinfo));
+          for(int _i0 = 0; _i0 < _len_this_leaf0; _i0++) {
+              this_leaf[_i0].level = ((-2 * (next_i()%2)) + 1) * next_i();
+          this_leaf[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          this_leaf[_i0].physical_line_partition = ((-2 * (next_i()%2)) + 1) * next_i();
+          this_leaf[_i0].attributes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_node0 = 1;
+          struct device_node * node = (struct device_node *) malloc(_len_node0*sizeof(struct device_node));
+          for(int _i0 = 0; _i0 < _len_node0; _i0++) {
+              node[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ci_leaf_init(this_leaf,node,type,level);
+          free(this_leaf);
+          free(node);
+        
+        break;
+    }
     default:
         usage();
         break;

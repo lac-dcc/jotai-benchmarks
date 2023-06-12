@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -62,12 +62,6 @@ __attribute__((used)) static inline uint32_t A5XX_GRAS_SU_POINT_MINMAX_MIN(float
 	return ((((uint32_t)(val * 16.0))) << A5XX_GRAS_SU_POINT_MINMAX_MIN__SHIFT) & A5XX_GRAS_SU_POINT_MINMAX_MIN__MASK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,16 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           float val = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           int benchRet = A5XX_GRAS_SU_POINT_MINMAX_MIN(val);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

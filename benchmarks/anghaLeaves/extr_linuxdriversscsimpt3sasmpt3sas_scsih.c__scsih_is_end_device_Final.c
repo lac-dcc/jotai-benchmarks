@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +74,6 @@ _scsih_is_end_device(u32 device_info)
 		return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int device_info = 100;
+        
           int benchRet = _scsih_is_end_device(device_info);
           printf("%d\n", benchRet); 
         
@@ -104,6 +100,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int device_info = 255;
+        
           int benchRet = _scsih_is_end_device(device_info);
           printf("%d\n", benchRet); 
         
@@ -113,12 +110,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int device_info = 10;
+        
           int benchRet = _scsih_is_end_device(device_info);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int device_info = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = _scsih_is_end_device(device_info);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

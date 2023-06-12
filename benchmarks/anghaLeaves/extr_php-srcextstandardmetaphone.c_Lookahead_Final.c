@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static char Lookahead(char *word, int how_far)
 	return letter_ahead;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,22 +81,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int how_far = 10;
-          int _len_word0 = 100;
+          int how_far = 255;
+        
+          int _len_word0 = 65025;
           char * word = (char *) malloc(_len_word0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_word0; _i0++) {
             word[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           char benchRet = Lookahead(word,how_far);
           printf("%c\n", (benchRet %26) + 'a'); 
           free(word);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int how_far = 10;
+        
+          int _len_word0 = 100;
+          char * word = (char *) malloc(_len_word0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_word0; _i0++) {
+            word[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          char benchRet = Lookahead(word,how_far);
+          printf("%c\n", (benchRet %26) + 'a'); 
+          free(word);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int how_far = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_word0 = 1;
+          char * word = (char *) malloc(_len_word0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_word0; _i0++) {
+            word[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          char benchRet = Lookahead(word,how_far);
+          printf("%c\n", (benchRet %26) + 'a'); 
+          free(word);
+        
+        break;
+    }
     default:
         usage();
         break;

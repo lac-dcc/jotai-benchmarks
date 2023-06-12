@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ bool cfg80211_supported_cipher_suite(struct wiphy *wiphy, u32 cipher)
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,16 +84,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long cipher = 100;
+        
           int _len_wiphy0 = 1;
           struct wiphy * wiphy = (struct wiphy *) malloc(_len_wiphy0*sizeof(struct wiphy));
           for(int _i0 = 0; _i0 < _len_wiphy0; _i0++) {
-            wiphy[_i0].n_cipher_suites = ((-2 * (next_i()%2)) + 1) * next_i();
+              wiphy[_i0].n_cipher_suites = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_wiphy__i0__cipher_suites0 = 1;
           wiphy[_i0].cipher_suites = (long *) malloc(_len_wiphy__i0__cipher_suites0*sizeof(long));
           for(int _j0 = 0; _j0 < _len_wiphy__i0__cipher_suites0; _j0++) {
             wiphy[_i0].cipher_suites[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = cfg80211_supported_cipher_suite(wiphy,cipher);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_wiphy0; _aux++) {
@@ -106,7 +106,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long cipher = 255;
+        
+          int _len_wiphy0 = 65025;
+          struct wiphy * wiphy = (struct wiphy *) malloc(_len_wiphy0*sizeof(struct wiphy));
+          for(int _i0 = 0; _i0 < _len_wiphy0; _i0++) {
+              wiphy[_i0].n_cipher_suites = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_wiphy__i0__cipher_suites0 = 1;
+          wiphy[_i0].cipher_suites = (long *) malloc(_len_wiphy__i0__cipher_suites0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_wiphy__i0__cipher_suites0; _j0++) {
+            wiphy[_i0].cipher_suites[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = cfg80211_supported_cipher_suite(wiphy,cipher);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_wiphy0; _aux++) {
+          free(wiphy[_aux].cipher_suites);
+          }
+          free(wiphy);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long cipher = 10;
+        
+          int _len_wiphy0 = 100;
+          struct wiphy * wiphy = (struct wiphy *) malloc(_len_wiphy0*sizeof(struct wiphy));
+          for(int _i0 = 0; _i0 < _len_wiphy0; _i0++) {
+              wiphy[_i0].n_cipher_suites = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_wiphy__i0__cipher_suites0 = 1;
+          wiphy[_i0].cipher_suites = (long *) malloc(_len_wiphy__i0__cipher_suites0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_wiphy__i0__cipher_suites0; _j0++) {
+            wiphy[_i0].cipher_suites[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = cfg80211_supported_cipher_suite(wiphy,cipher);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_wiphy0; _aux++) {
+          free(wiphy[_aux].cipher_suites);
+          }
+          free(wiphy);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long cipher = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_wiphy0 = 1;
+          struct wiphy * wiphy = (struct wiphy *) malloc(_len_wiphy0*sizeof(struct wiphy));
+          for(int _i0 = 0; _i0 < _len_wiphy0; _i0++) {
+              wiphy[_i0].n_cipher_suites = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_wiphy__i0__cipher_suites0 = 1;
+          wiphy[_i0].cipher_suites = (long *) malloc(_len_wiphy__i0__cipher_suites0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_wiphy__i0__cipher_suites0; _j0++) {
+            wiphy[_i0].cipher_suites[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = cfg80211_supported_cipher_suite(wiphy,cipher);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_wiphy0; _aux++) {
+          free(wiphy[_aux].cipher_suites);
+          }
+          free(wiphy);
+        
+        break;
+    }
     default:
         usage();
         break;

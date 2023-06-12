@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -88,12 +89,6 @@ __attribute__((used)) static inline __u32 ext4_iflags_to_xflags(unsigned long if
 	return xflags;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,28 +101,136 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 27
+          // dynamic_instructions_O1 : 27
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 27
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
           unsigned long iflags = 100;
+        
           int benchRet = ext4_iflags_to_xflags(iflags);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 27
+          // dynamic_instructions_O1 : 27
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 27
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
           unsigned long iflags = 255;
+        
           int benchRet = ext4_iflags_to_xflags(iflags);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 27
+          // dynamic_instructions_O1 : 27
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 27
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
           unsigned long iflags = 10;
+        
+          int benchRet = ext4_iflags_to_xflags(iflags);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 27
+          // dynamic_instructions_O1 : 27
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 27
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
+          unsigned long iflags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = ext4_iflags_to_xflags(iflags);
           printf("%d\n", benchRet); 
         

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -97,12 +99,6 @@ __attribute__((used)) static void init_params_sja1000(struct ems_cpc_msg *msg)
 	sja1000->mode = SJA1000_MOD_RM;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -115,35 +111,108 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_msg0 = 1;
+          int _len_msg0 = 65025;
           struct ems_cpc_msg * msg = (struct ems_cpc_msg *) malloc(_len_msg0*sizeof(struct ems_cpc_msg));
           for(int _i0 = 0; _i0 < _len_msg0; _i0++) {
-            msg[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
-        msg[_i0].msg.can_params.cc_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        msg[_i0].msg.can_params.cc_params.sja1000.acc_code0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        msg[_i0].msg.can_params.cc_params.sja1000.acc_code1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        msg[_i0].msg.can_params.cc_params.sja1000.acc_code2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        msg[_i0].msg.can_params.cc_params.sja1000.acc_code3 = ((-2 * (next_i()%2)) + 1) * next_i();
-        msg[_i0].msg.can_params.cc_params.sja1000.acc_mask0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        msg[_i0].msg.can_params.cc_params.sja1000.acc_mask1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        msg[_i0].msg.can_params.cc_params.sja1000.acc_mask2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        msg[_i0].msg.can_params.cc_params.sja1000.acc_mask3 = ((-2 * (next_i()%2)) + 1) * next_i();
-        msg[_i0].msg.can_params.cc_params.sja1000.mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        msg[_i0].msg.can_params.cc_params.sja1000.outp_contr = ((-2 * (next_i()%2)) + 1) * next_i();
-        msg[_i0].msg.can_params.cc_params.sja1000.btr1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        msg[_i0].msg.can_params.cc_params.sja1000.btr0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        msg[_i0].msgid = ((-2 * (next_i()%2)) + 1) * next_i();
-        msg[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+              msg[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].msg.can_params.cc_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].msg.can_params.cc_params.sja1000.acc_code0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].msg.can_params.cc_params.sja1000.acc_code1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].msg.can_params.cc_params.sja1000.acc_code2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].msg.can_params.cc_params.sja1000.acc_code3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].msg.can_params.cc_params.sja1000.acc_mask0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].msg.can_params.cc_params.sja1000.acc_mask1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].msg.can_params.cc_params.sja1000.acc_mask2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].msg.can_params.cc_params.sja1000.acc_mask3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].msg.can_params.cc_params.sja1000.mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].msg.can_params.cc_params.sja1000.outp_contr = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].msg.can_params.cc_params.sja1000.btr1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].msg.can_params.cc_params.sja1000.btr0 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
+          msg[_i0].msgid = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           init_params_sja1000(msg);
           free(msg);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_msg0 = 100;
+          struct ems_cpc_msg * msg = (struct ems_cpc_msg *) malloc(_len_msg0*sizeof(struct ems_cpc_msg));
+          for(int _i0 = 0; _i0 < _len_msg0; _i0++) {
+              msg[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].msg.can_params.cc_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].msg.can_params.cc_params.sja1000.acc_code0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].msg.can_params.cc_params.sja1000.acc_code1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].msg.can_params.cc_params.sja1000.acc_code2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].msg.can_params.cc_params.sja1000.acc_code3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].msg.can_params.cc_params.sja1000.acc_mask0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].msg.can_params.cc_params.sja1000.acc_mask1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].msg.can_params.cc_params.sja1000.acc_mask2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].msg.can_params.cc_params.sja1000.acc_mask3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].msg.can_params.cc_params.sja1000.mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].msg.can_params.cc_params.sja1000.outp_contr = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].msg.can_params.cc_params.sja1000.btr1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].msg.can_params.cc_params.sja1000.btr0 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
+          msg[_i0].msgid = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          init_params_sja1000(msg);
+          free(msg);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_msg0 = 1;
+          struct ems_cpc_msg * msg = (struct ems_cpc_msg *) malloc(_len_msg0*sizeof(struct ems_cpc_msg));
+          for(int _i0 = 0; _i0 < _len_msg0; _i0++) {
+              msg[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].msg.can_params.cc_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].msg.can_params.cc_params.sja1000.acc_code0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].msg.can_params.cc_params.sja1000.acc_code1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].msg.can_params.cc_params.sja1000.acc_code2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].msg.can_params.cc_params.sja1000.acc_code3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].msg.can_params.cc_params.sja1000.acc_mask0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].msg.can_params.cc_params.sja1000.acc_mask1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].msg.can_params.cc_params.sja1000.acc_mask2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].msg.can_params.cc_params.sja1000.acc_mask3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].msg.can_params.cc_params.sja1000.mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].msg.can_params.cc_params.sja1000.outp_contr = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].msg.can_params.cc_params.sja1000.btr1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].msg.can_params.cc_params.sja1000.btr0 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
+          msg[_i0].msgid = ((-2 * (next_i()%2)) + 1) * next_i();
+          msg[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          init_params_sja1000(msg);
+          free(msg);
+        
+        break;
+    }
     default:
         usage();
         break;

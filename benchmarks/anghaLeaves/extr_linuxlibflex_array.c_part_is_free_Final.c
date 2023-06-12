@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static int part_is_free(struct flex_array_part *part)
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,9 +80,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_part0 = 65025;
+          struct flex_array_part * part = (struct flex_array_part *) malloc(_len_part0*sizeof(struct flex_array_part));
+          for(int _i0 = 0; _i0 < _len_part0; _i0++) {
+              int _len_part__i0__elements0 = 1;
+          part[_i0].elements = (long *) malloc(_len_part__i0__elements0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_part__i0__elements0; _j0++) {
+            part[_i0].elements[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = part_is_free(part);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_part0; _aux++) {
+          free(part[_aux].elements);
+          }
+          free(part);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_part0 = 100;
+          struct flex_array_part * part = (struct flex_array_part *) malloc(_len_part0*sizeof(struct flex_array_part));
+          for(int _i0 = 0; _i0 < _len_part0; _i0++) {
+              int _len_part__i0__elements0 = 1;
+          part[_i0].elements = (long *) malloc(_len_part__i0__elements0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_part__i0__elements0; _j0++) {
+            part[_i0].elements[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = part_is_free(part);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_part0; _aux++) {
+          free(part[_aux].elements);
+          }
+          free(part);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int _len_part0 = 1;
           struct flex_array_part * part = (struct flex_array_part *) malloc(_len_part0*sizeof(struct flex_array_part));
           for(int _i0 = 0; _i0 < _len_part0; _i0++) {
@@ -95,7 +208,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_part__i0__elements0; _j0++) {
             part[_i0].elements[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = part_is_free(part);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_part0; _aux++) {

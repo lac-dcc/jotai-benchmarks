@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline void ib_sa_disable_local_svc(struct ib_sa_qu
 	query->flags &= ~IB_SA_ENABLE_LOCAL_SERVICE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_query0 = 1;
+          int _len_query0 = 65025;
           struct ib_sa_query * query = (struct ib_sa_query *) malloc(_len_query0*sizeof(struct ib_sa_query));
           for(int _i0 = 0; _i0 < _len_query0; _i0++) {
-            query[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              query[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ib_sa_disable_local_svc(query);
           free(query);
         
@@ -99,14 +96,30 @@ int main(int argc, char *argv[]) {
           int _len_query0 = 100;
           struct ib_sa_query * query = (struct ib_sa_query *) malloc(_len_query0*sizeof(struct ib_sa_query));
           for(int _i0 = 0; _i0 < _len_query0; _i0++) {
-            query[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              query[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ib_sa_disable_local_svc(query);
           free(query);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_query0 = 1;
+          struct ib_sa_query * query = (struct ib_sa_query *) malloc(_len_query0*sizeof(struct ib_sa_query));
+          for(int _i0 = 0; _i0 < _len_query0; _i0++) {
+              query[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ib_sa_disable_local_svc(query);
+          free(query);
+        
+        break;
+    }
     default:
         usage();
         break;

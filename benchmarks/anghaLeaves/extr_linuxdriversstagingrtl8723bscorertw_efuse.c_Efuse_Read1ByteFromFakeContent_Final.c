@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +81,6 @@ Efuse_Read1ByteFromFakeContent(
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,16 +97,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long Offset = 100;
+        
           int _len_padapter0 = 1;
           struct adapter * padapter = (struct adapter *) malloc(_len_padapter0*sizeof(struct adapter));
           for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
-            padapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              padapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_Value0 = 1;
           int * Value = (int *) malloc(_len_Value0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_Value0; _i0++) {
             Value[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = Efuse_Read1ByteFromFakeContent(padapter,Offset,Value);
           printf("%d\n", benchRet); 
           free(padapter);
@@ -117,7 +118,81 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long Offset = 255;
+        
+          int _len_padapter0 = 65025;
+          struct adapter * padapter = (struct adapter *) malloc(_len_padapter0*sizeof(struct adapter));
+          for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
+              padapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_Value0 = 65025;
+          int * Value = (int *) malloc(_len_Value0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_Value0; _i0++) {
+            Value[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = Efuse_Read1ByteFromFakeContent(padapter,Offset,Value);
+          printf("%d\n", benchRet); 
+          free(padapter);
+          free(Value);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long Offset = 10;
+        
+          int _len_padapter0 = 100;
+          struct adapter * padapter = (struct adapter *) malloc(_len_padapter0*sizeof(struct adapter));
+          for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
+              padapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_Value0 = 100;
+          int * Value = (int *) malloc(_len_Value0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_Value0; _i0++) {
+            Value[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = Efuse_Read1ByteFromFakeContent(padapter,Offset,Value);
+          printf("%d\n", benchRet); 
+          free(padapter);
+          free(Value);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long Offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_padapter0 = 1;
+          struct adapter * padapter = (struct adapter *) malloc(_len_padapter0*sizeof(struct adapter));
+          for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
+              padapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_Value0 = 1;
+          int * Value = (int *) malloc(_len_Value0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_Value0; _i0++) {
+            Value[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = Efuse_Read1ByteFromFakeContent(padapter,Offset,Value);
+          printf("%d\n", benchRet); 
+          free(padapter);
+          free(Value);
+        
+        break;
+    }
     default:
         usage();
         break;

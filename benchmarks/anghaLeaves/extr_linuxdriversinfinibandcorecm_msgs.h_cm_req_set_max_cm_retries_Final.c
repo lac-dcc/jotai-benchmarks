@@ -31,7 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline void cm_req_set_max_cm_retries(struct cm_req
 	req_msg->offset51 = (u8) ((req_msg->offset51 & 0xF) | (retries << 4));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,29 +76,123 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int retries = 100;
+        
           int _len_req_msg0 = 1;
           struct cm_req_msg * req_msg = (struct cm_req_msg *) malloc(_len_req_msg0*sizeof(struct cm_req_msg));
           for(int _i0 = 0; _i0 < _len_req_msg0; _i0++) {
-            req_msg[_i0].offset51 = ((-2 * (next_i()%2)) + 1) * next_i();
+              req_msg[_i0].offset51 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           cm_req_set_max_cm_retries(req_msg,retries);
           free(req_msg);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int retries = 255;
+        
+          int _len_req_msg0 = 65025;
+          struct cm_req_msg * req_msg = (struct cm_req_msg *) malloc(_len_req_msg0*sizeof(struct cm_req_msg));
+          for(int _i0 = 0; _i0 < _len_req_msg0; _i0++) {
+              req_msg[_i0].offset51 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cm_req_set_max_cm_retries(req_msg,retries);
+          free(req_msg);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int retries = 10;
+        
           int _len_req_msg0 = 100;
           struct cm_req_msg * req_msg = (struct cm_req_msg *) malloc(_len_req_msg0*sizeof(struct cm_req_msg));
           for(int _i0 = 0; _i0 < _len_req_msg0; _i0++) {
-            req_msg[_i0].offset51 = ((-2 * (next_i()%2)) + 1) * next_i();
+              req_msg[_i0].offset51 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           cm_req_set_max_cm_retries(req_msg,retries);
           free(req_msg);
         

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -94,12 +95,6 @@ __attribute__((used)) static int s3c64xx_irq_get_trigger(unsigned int type)
 	return trigger;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -116,6 +111,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int type = 100;
+        
           int benchRet = s3c64xx_irq_get_trigger(type);
           printf("%d\n", benchRet); 
         
@@ -125,6 +121,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int type = 255;
+        
           int benchRet = s3c64xx_irq_get_trigger(type);
           printf("%d\n", benchRet); 
         
@@ -134,12 +131,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int type = 10;
+        
           int benchRet = s3c64xx_irq_get_trigger(type);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = s3c64xx_irq_get_trigger(type);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

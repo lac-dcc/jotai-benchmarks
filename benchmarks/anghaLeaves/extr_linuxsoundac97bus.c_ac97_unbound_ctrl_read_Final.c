@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static int ac97_unbound_ctrl_read(struct ac97_controller *
 	return -ENODEV;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,12 +81,36 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int slot = 100;
+        
           unsigned short reg = 100;
+        
           int _len_adrv0 = 1;
           struct ac97_controller * adrv = (struct ac97_controller *) malloc(_len_adrv0*sizeof(struct ac97_controller));
           for(int _i0 = 0; _i0 < _len_adrv0; _i0++) {
-            adrv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              adrv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = ac97_unbound_ctrl_read(adrv,slot,reg);
+          printf("%d\n", benchRet); 
+          free(adrv);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int slot = 255;
+        
+          unsigned short reg = 255;
+        
+          int _len_adrv0 = 65025;
+          struct ac97_controller * adrv = (struct ac97_controller *) malloc(_len_adrv0*sizeof(struct ac97_controller));
+          for(int _i0 = 0; _i0 < _len_adrv0; _i0++) {
+              adrv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = ac97_unbound_ctrl_read(adrv,slot,reg);
           printf("%d\n", benchRet); 
           free(adrv);
@@ -98,22 +118,45 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int slot = 10;
+        
           unsigned short reg = 10;
+        
           int _len_adrv0 = 100;
           struct ac97_controller * adrv = (struct ac97_controller *) malloc(_len_adrv0*sizeof(struct ac97_controller));
           for(int _i0 = 0; _i0 < _len_adrv0; _i0++) {
-            adrv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              adrv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ac97_unbound_ctrl_read(adrv,slot,reg);
           printf("%d\n", benchRet); 
           free(adrv);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int slot = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned short reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_adrv0 = 1;
+          struct ac97_controller * adrv = (struct ac97_controller *) malloc(_len_adrv0*sizeof(struct ac97_controller));
+          for(int _i0 = 0; _i0 < _len_adrv0; _i0++) {
+              adrv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ac97_unbound_ctrl_read(adrv,slot,reg);
+          printf("%d\n", benchRet); 
+          free(adrv);
+        
+        break;
+    }
     default:
         usage();
         break;

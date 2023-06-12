@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -116,12 +118,6 @@ __attribute__((used)) static u8 phydm_trans_h2c_id(struct phy_dm_struct *dm, u8 
 	return platform_h2c_id;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -138,11 +134,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int phydm_h2c_id = 100;
+        
           int _len_dm0 = 1;
           struct phy_dm_struct * dm = (struct phy_dm_struct *) malloc(_len_dm0*sizeof(struct phy_dm_struct));
           for(int _i0 = 0; _i0 < _len_dm0; _i0++) {
-            dm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = phydm_trans_h2c_id(dm,phydm_h2c_id);
+          printf("%d\n", benchRet); 
+          free(dm);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int phydm_h2c_id = 255;
+        
+          int _len_dm0 = 65025;
+          struct phy_dm_struct * dm = (struct phy_dm_struct *) malloc(_len_dm0*sizeof(struct phy_dm_struct));
+          for(int _i0 = 0; _i0 < _len_dm0; _i0++) {
+              dm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = phydm_trans_h2c_id(dm,phydm_h2c_id);
           printf("%d\n", benchRet); 
           free(dm);
@@ -150,21 +167,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int phydm_h2c_id = 10;
+        
           int _len_dm0 = 100;
           struct phy_dm_struct * dm = (struct phy_dm_struct *) malloc(_len_dm0*sizeof(struct phy_dm_struct));
           for(int _i0 = 0; _i0 < _len_dm0; _i0++) {
-            dm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = phydm_trans_h2c_id(dm,phydm_h2c_id);
           printf("%d\n", benchRet); 
           free(dm);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int phydm_h2c_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dm0 = 1;
+          struct phy_dm_struct * dm = (struct phy_dm_struct *) malloc(_len_dm0*sizeof(struct phy_dm_struct));
+          for(int _i0 = 0; _i0 < _len_dm0; _i0++) {
+              dm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = phydm_trans_h2c_id(dm,phydm_h2c_id);
+          printf("%d\n", benchRet); 
+          free(dm);
+        
+        break;
+    }
     default:
         usage();
         break;

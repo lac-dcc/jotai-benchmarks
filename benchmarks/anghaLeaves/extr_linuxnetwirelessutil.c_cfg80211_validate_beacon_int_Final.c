@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ int cfg80211_validate_beacon_int(struct cfg80211_registered_device *rdev,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,32 +90,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           enum nl80211_iftype iftype = 0;
+        
           int beacon_int = 100;
+        
           int _len_rdev0 = 1;
           struct cfg80211_registered_device * rdev = (struct cfg80211_registered_device *) malloc(_len_rdev0*sizeof(struct cfg80211_registered_device));
           for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
-            rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cfg80211_validate_beacon_int(rdev,iftype,beacon_int);
           printf("%d\n", benchRet); 
           free(rdev);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           enum nl80211_iftype iftype = 0;
+        
+          int beacon_int = 255;
+        
+          int _len_rdev0 = 65025;
+          struct cfg80211_registered_device * rdev = (struct cfg80211_registered_device *) malloc(_len_rdev0*sizeof(struct cfg80211_registered_device));
+          for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
+              rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cfg80211_validate_beacon_int(rdev,iftype,beacon_int);
+          printf("%d\n", benchRet); 
+          free(rdev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          enum nl80211_iftype iftype = 0;
+        
           int beacon_int = 10;
+        
           int _len_rdev0 = 100;
           struct cfg80211_registered_device * rdev = (struct cfg80211_registered_device *) malloc(_len_rdev0*sizeof(struct cfg80211_registered_device));
           for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
-            rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = cfg80211_validate_beacon_int(rdev,iftype,beacon_int);
+          printf("%d\n", benchRet); 
+          free(rdev);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          enum nl80211_iftype iftype = 0;
+        
+          int beacon_int = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rdev0 = 1;
+          struct cfg80211_registered_device * rdev = (struct cfg80211_registered_device *) malloc(_len_rdev0*sizeof(struct cfg80211_registered_device));
+          for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
+              rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = cfg80211_validate_beacon_int(rdev,iftype,beacon_int);
           printf("%d\n", benchRet); 
           free(rdev);

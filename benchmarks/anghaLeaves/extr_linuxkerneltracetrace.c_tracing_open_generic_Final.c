@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ int tracing_open_generic(struct inode *inode, struct file *filp)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,19 +81,142 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_inode0 = 65025;
+          struct inode * inode = (struct inode *) malloc(_len_inode0*sizeof(struct inode));
+          for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
+              inode[_i0].i_private = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_filp0 = 65025;
+          struct file * filp = (struct file *) malloc(_len_filp0*sizeof(struct file));
+          for(int _i0 = 0; _i0 < _len_filp0; _i0++) {
+              filp[_i0].private_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = tracing_open_generic(inode,filp);
+          printf("%d\n", benchRet); 
+          free(inode);
+          free(filp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_inode0 = 100;
+          struct inode * inode = (struct inode *) malloc(_len_inode0*sizeof(struct inode));
+          for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
+              inode[_i0].i_private = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_filp0 = 100;
+          struct file * filp = (struct file *) malloc(_len_filp0*sizeof(struct file));
+          for(int _i0 = 0; _i0 < _len_filp0; _i0++) {
+              filp[_i0].private_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = tracing_open_generic(inode,filp);
+          printf("%d\n", benchRet); 
+          free(inode);
+          free(filp);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_inode0 = 1;
           struct inode * inode = (struct inode *) malloc(_len_inode0*sizeof(struct inode));
           for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
-            inode[_i0].i_private = ((-2 * (next_i()%2)) + 1) * next_i();
+              inode[_i0].i_private = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_filp0 = 1;
           struct file * filp = (struct file *) malloc(_len_filp0*sizeof(struct file));
           for(int _i0 = 0; _i0 < _len_filp0; _i0++) {
-            filp[_i0].private_data = ((-2 * (next_i()%2)) + 1) * next_i();
+              filp[_i0].private_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = tracing_open_generic(inode,filp);
           printf("%d\n", benchRet); 
           free(inode);

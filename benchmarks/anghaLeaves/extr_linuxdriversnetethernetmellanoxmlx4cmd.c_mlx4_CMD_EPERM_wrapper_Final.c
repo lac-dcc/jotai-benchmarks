@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ __attribute__((used)) static int mlx4_CMD_EPERM_wrapper(struct mlx4_dev *dev, in
 	return -EPERM;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,35 +83,291 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int slave = 100;
+        
           int _len_dev0 = 1;
           struct mlx4_dev * dev = (struct mlx4_dev *) malloc(_len_dev0*sizeof(struct mlx4_dev));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_vhcr0 = 1;
           struct mlx4_vhcr * vhcr = (struct mlx4_vhcr *) malloc(_len_vhcr0*sizeof(struct mlx4_vhcr));
           for(int _i0 = 0; _i0 < _len_vhcr0; _i0++) {
-            vhcr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              vhcr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_inbox0 = 1;
           struct mlx4_cmd_mailbox * inbox = (struct mlx4_cmd_mailbox *) malloc(_len_inbox0*sizeof(struct mlx4_cmd_mailbox));
           for(int _i0 = 0; _i0 < _len_inbox0; _i0++) {
-            inbox[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              inbox[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_outbox0 = 1;
           struct mlx4_cmd_mailbox * outbox = (struct mlx4_cmd_mailbox *) malloc(_len_outbox0*sizeof(struct mlx4_cmd_mailbox));
           for(int _i0 = 0; _i0 < _len_outbox0; _i0++) {
-            outbox[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              outbox[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_cmd0 = 1;
           struct mlx4_cmd_info * cmd = (struct mlx4_cmd_info *) malloc(_len_cmd0*sizeof(struct mlx4_cmd_info));
           for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
-            cmd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = mlx4_CMD_EPERM_wrapper(dev,slave,vhcr,inbox,outbox,cmd);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(vhcr);
+          free(inbox);
+          free(outbox);
+          free(cmd);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int slave = 255;
+        
+          int _len_dev0 = 65025;
+          struct mlx4_dev * dev = (struct mlx4_dev *) malloc(_len_dev0*sizeof(struct mlx4_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_vhcr0 = 65025;
+          struct mlx4_vhcr * vhcr = (struct mlx4_vhcr *) malloc(_len_vhcr0*sizeof(struct mlx4_vhcr));
+          for(int _i0 = 0; _i0 < _len_vhcr0; _i0++) {
+              vhcr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_inbox0 = 65025;
+          struct mlx4_cmd_mailbox * inbox = (struct mlx4_cmd_mailbox *) malloc(_len_inbox0*sizeof(struct mlx4_cmd_mailbox));
+          for(int _i0 = 0; _i0 < _len_inbox0; _i0++) {
+              inbox[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_outbox0 = 65025;
+          struct mlx4_cmd_mailbox * outbox = (struct mlx4_cmd_mailbox *) malloc(_len_outbox0*sizeof(struct mlx4_cmd_mailbox));
+          for(int _i0 = 0; _i0 < _len_outbox0; _i0++) {
+              outbox[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cmd0 = 65025;
+          struct mlx4_cmd_info * cmd = (struct mlx4_cmd_info *) malloc(_len_cmd0*sizeof(struct mlx4_cmd_info));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mlx4_CMD_EPERM_wrapper(dev,slave,vhcr,inbox,outbox,cmd);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(vhcr);
+          free(inbox);
+          free(outbox);
+          free(cmd);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int slave = 10;
+        
+          int _len_dev0 = 100;
+          struct mlx4_dev * dev = (struct mlx4_dev *) malloc(_len_dev0*sizeof(struct mlx4_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_vhcr0 = 100;
+          struct mlx4_vhcr * vhcr = (struct mlx4_vhcr *) malloc(_len_vhcr0*sizeof(struct mlx4_vhcr));
+          for(int _i0 = 0; _i0 < _len_vhcr0; _i0++) {
+              vhcr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_inbox0 = 100;
+          struct mlx4_cmd_mailbox * inbox = (struct mlx4_cmd_mailbox *) malloc(_len_inbox0*sizeof(struct mlx4_cmd_mailbox));
+          for(int _i0 = 0; _i0 < _len_inbox0; _i0++) {
+              inbox[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_outbox0 = 100;
+          struct mlx4_cmd_mailbox * outbox = (struct mlx4_cmd_mailbox *) malloc(_len_outbox0*sizeof(struct mlx4_cmd_mailbox));
+          for(int _i0 = 0; _i0 < _len_outbox0; _i0++) {
+              outbox[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cmd0 = 100;
+          struct mlx4_cmd_info * cmd = (struct mlx4_cmd_info *) malloc(_len_cmd0*sizeof(struct mlx4_cmd_info));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mlx4_CMD_EPERM_wrapper(dev,slave,vhcr,inbox,outbox,cmd);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(vhcr);
+          free(inbox);
+          free(outbox);
+          free(cmd);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int slave = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dev0 = 1;
+          struct mlx4_dev * dev = (struct mlx4_dev *) malloc(_len_dev0*sizeof(struct mlx4_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_vhcr0 = 1;
+          struct mlx4_vhcr * vhcr = (struct mlx4_vhcr *) malloc(_len_vhcr0*sizeof(struct mlx4_vhcr));
+          for(int _i0 = 0; _i0 < _len_vhcr0; _i0++) {
+              vhcr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_inbox0 = 1;
+          struct mlx4_cmd_mailbox * inbox = (struct mlx4_cmd_mailbox *) malloc(_len_inbox0*sizeof(struct mlx4_cmd_mailbox));
+          for(int _i0 = 0; _i0 < _len_inbox0; _i0++) {
+              inbox[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_outbox0 = 1;
+          struct mlx4_cmd_mailbox * outbox = (struct mlx4_cmd_mailbox *) malloc(_len_outbox0*sizeof(struct mlx4_cmd_mailbox));
+          for(int _i0 = 0; _i0 < _len_outbox0; _i0++) {
+              outbox[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cmd0 = 1;
+          struct mlx4_cmd_info * cmd = (struct mlx4_cmd_info *) malloc(_len_cmd0*sizeof(struct mlx4_cmd_info));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = mlx4_CMD_EPERM_wrapper(dev,slave,vhcr,inbox,outbox,cmd);
           printf("%d\n", benchRet); 
           free(dev);

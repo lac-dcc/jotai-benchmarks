@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ void osd_get_text_size(struct osd_state *osd, int *out_screen_h, int *out_font_h
     *out_font_h = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,24 +75,157 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_osd0 = 65025;
+          struct osd_state * osd = (struct osd_state *) malloc(_len_osd0*sizeof(struct osd_state));
+          for(int _i0 = 0; _i0 < _len_osd0; _i0++) {
+              osd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_out_screen_h0 = 65025;
+          int * out_screen_h = (int *) malloc(_len_out_screen_h0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_out_screen_h0; _i0++) {
+            out_screen_h[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_out_font_h0 = 65025;
+          int * out_font_h = (int *) malloc(_len_out_font_h0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_out_font_h0; _i0++) {
+            out_font_h[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          osd_get_text_size(osd,out_screen_h,out_font_h);
+          free(osd);
+          free(out_screen_h);
+          free(out_font_h);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_osd0 = 100;
+          struct osd_state * osd = (struct osd_state *) malloc(_len_osd0*sizeof(struct osd_state));
+          for(int _i0 = 0; _i0 < _len_osd0; _i0++) {
+              osd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_out_screen_h0 = 100;
+          int * out_screen_h = (int *) malloc(_len_out_screen_h0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_out_screen_h0; _i0++) {
+            out_screen_h[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_out_font_h0 = 100;
+          int * out_font_h = (int *) malloc(_len_out_font_h0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_out_font_h0; _i0++) {
+            out_font_h[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          osd_get_text_size(osd,out_screen_h,out_font_h);
+          free(osd);
+          free(out_screen_h);
+          free(out_font_h);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_osd0 = 1;
           struct osd_state * osd = (struct osd_state *) malloc(_len_osd0*sizeof(struct osd_state));
           for(int _i0 = 0; _i0 < _len_osd0; _i0++) {
-            osd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              osd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_out_screen_h0 = 1;
           int * out_screen_h = (int *) malloc(_len_out_screen_h0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_out_screen_h0; _i0++) {
             out_screen_h[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_out_font_h0 = 1;
           int * out_font_h = (int *) malloc(_len_out_font_h0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_out_font_h0; _i0++) {
             out_font_h[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           osd_get_text_size(osd,out_screen_h,out_font_h);
           free(osd);
           free(out_screen_h);

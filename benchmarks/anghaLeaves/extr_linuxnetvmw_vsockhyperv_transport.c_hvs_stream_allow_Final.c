@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +78,6 @@ __attribute__((used)) static bool hvs_stream_allow(u32 cid, u32 port)
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,7 +94,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long cid = 100;
+        
           long port = 100;
+        
           int benchRet = hvs_stream_allow(cid,port);
           printf("%d\n", benchRet); 
         
@@ -109,7 +106,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long cid = 255;
+        
           long port = 255;
+        
           int benchRet = hvs_stream_allow(cid,port);
           printf("%d\n", benchRet); 
         
@@ -119,13 +118,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long cid = 10;
+        
           long port = 10;
+        
           int benchRet = hvs_stream_allow(cid,port);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long cid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long port = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = hvs_stream_allow(cid,port);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

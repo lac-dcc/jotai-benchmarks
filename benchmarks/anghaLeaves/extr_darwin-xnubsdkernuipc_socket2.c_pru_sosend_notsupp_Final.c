@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ pru_sosend_notsupp(struct socket *so, struct sockaddr *addr, struct uio *uio,
 	return (EOPNOTSUPP);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,31 +86,42 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int flags = 100;
+        
           int _len_so0 = 1;
           struct socket * so = (struct socket *) malloc(_len_so0*sizeof(struct socket));
           for(int _i0 = 0; _i0 < _len_so0; _i0++) {
-            so[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              so[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_addr0 = 1;
           struct sockaddr * addr = (struct sockaddr *) malloc(_len_addr0*sizeof(struct sockaddr));
           for(int _i0 = 0; _i0 < _len_addr0; _i0++) {
-            addr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              addr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_uio0 = 1;
           struct uio * uio = (struct uio *) malloc(_len_uio0*sizeof(struct uio));
           for(int _i0 = 0; _i0 < _len_uio0; _i0++) {
-            uio[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              uio[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_top0 = 1;
           struct mbuf * top = (struct mbuf *) malloc(_len_top0*sizeof(struct mbuf));
           for(int _i0 = 0; _i0 < _len_top0; _i0++) {
-            top[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              top[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_control0 = 1;
           struct mbuf * control = (struct mbuf *) malloc(_len_control0*sizeof(struct mbuf));
           for(int _i0 = 0; _i0 < _len_control0; _i0++) {
-            control[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              control[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = pru_sosend_notsupp(so,addr,uio,top,control,flags);
           printf("%d\n", benchRet); 
           free(so);
@@ -124,7 +132,156 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int flags = 255;
+        
+          int _len_so0 = 65025;
+          struct socket * so = (struct socket *) malloc(_len_so0*sizeof(struct socket));
+          for(int _i0 = 0; _i0 < _len_so0; _i0++) {
+              so[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_addr0 = 65025;
+          struct sockaddr * addr = (struct sockaddr *) malloc(_len_addr0*sizeof(struct sockaddr));
+          for(int _i0 = 0; _i0 < _len_addr0; _i0++) {
+              addr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_uio0 = 65025;
+          struct uio * uio = (struct uio *) malloc(_len_uio0*sizeof(struct uio));
+          for(int _i0 = 0; _i0 < _len_uio0; _i0++) {
+              uio[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_top0 = 65025;
+          struct mbuf * top = (struct mbuf *) malloc(_len_top0*sizeof(struct mbuf));
+          for(int _i0 = 0; _i0 < _len_top0; _i0++) {
+              top[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_control0 = 65025;
+          struct mbuf * control = (struct mbuf *) malloc(_len_control0*sizeof(struct mbuf));
+          for(int _i0 = 0; _i0 < _len_control0; _i0++) {
+              control[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pru_sosend_notsupp(so,addr,uio,top,control,flags);
+          printf("%d\n", benchRet); 
+          free(so);
+          free(addr);
+          free(uio);
+          free(top);
+          free(control);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int flags = 10;
+        
+          int _len_so0 = 100;
+          struct socket * so = (struct socket *) malloc(_len_so0*sizeof(struct socket));
+          for(int _i0 = 0; _i0 < _len_so0; _i0++) {
+              so[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_addr0 = 100;
+          struct sockaddr * addr = (struct sockaddr *) malloc(_len_addr0*sizeof(struct sockaddr));
+          for(int _i0 = 0; _i0 < _len_addr0; _i0++) {
+              addr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_uio0 = 100;
+          struct uio * uio = (struct uio *) malloc(_len_uio0*sizeof(struct uio));
+          for(int _i0 = 0; _i0 < _len_uio0; _i0++) {
+              uio[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_top0 = 100;
+          struct mbuf * top = (struct mbuf *) malloc(_len_top0*sizeof(struct mbuf));
+          for(int _i0 = 0; _i0 < _len_top0; _i0++) {
+              top[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_control0 = 100;
+          struct mbuf * control = (struct mbuf *) malloc(_len_control0*sizeof(struct mbuf));
+          for(int _i0 = 0; _i0 < _len_control0; _i0++) {
+              control[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pru_sosend_notsupp(so,addr,uio,top,control,flags);
+          printf("%d\n", benchRet); 
+          free(so);
+          free(addr);
+          free(uio);
+          free(top);
+          free(control);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_so0 = 1;
+          struct socket * so = (struct socket *) malloc(_len_so0*sizeof(struct socket));
+          for(int _i0 = 0; _i0 < _len_so0; _i0++) {
+              so[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_addr0 = 1;
+          struct sockaddr * addr = (struct sockaddr *) malloc(_len_addr0*sizeof(struct sockaddr));
+          for(int _i0 = 0; _i0 < _len_addr0; _i0++) {
+              addr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_uio0 = 1;
+          struct uio * uio = (struct uio *) malloc(_len_uio0*sizeof(struct uio));
+          for(int _i0 = 0; _i0 < _len_uio0; _i0++) {
+              uio[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_top0 = 1;
+          struct mbuf * top = (struct mbuf *) malloc(_len_top0*sizeof(struct mbuf));
+          for(int _i0 = 0; _i0 < _len_top0; _i0++) {
+              top[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_control0 = 1;
+          struct mbuf * control = (struct mbuf *) malloc(_len_control0*sizeof(struct mbuf));
+          for(int _i0 = 0; _i0 < _len_control0; _i0++) {
+              control[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pru_sosend_notsupp(so,addr,uio,top,control,flags);
+          printf("%d\n", benchRet); 
+          free(so);
+          free(addr);
+          free(uio);
+          free(top);
+          free(control);
+        
+        break;
+    }
     default:
         usage();
         break;

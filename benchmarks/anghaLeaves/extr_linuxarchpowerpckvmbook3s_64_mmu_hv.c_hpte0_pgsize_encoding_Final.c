@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline unsigned long hpte0_pgsize_encoding(unsigned
 	return (pgsize > 0x1000) ? HPTE_V_LARGE : 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long pgsize = 100;
+        
           unsigned long benchRet = hpte0_pgsize_encoding(pgsize);
           printf("%lu\n", benchRet); 
         
@@ -93,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long pgsize = 255;
+        
           unsigned long benchRet = hpte0_pgsize_encoding(pgsize);
           printf("%lu\n", benchRet); 
         
@@ -102,12 +99,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long pgsize = 10;
+        
           unsigned long benchRet = hpte0_pgsize_encoding(pgsize);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long pgsize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = hpte0_pgsize_encoding(pgsize);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

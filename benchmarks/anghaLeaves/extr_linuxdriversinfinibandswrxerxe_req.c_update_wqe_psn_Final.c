@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -87,12 +90,6 @@ __attribute__((used)) static void update_wqe_psn(struct rxe_qp *qp,
 		qp->req.psn = (qp->req.psn + 1) & BTH_PSN_MASK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,28 +102,246 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
           int payload = 100;
+        
           int _len_qp0 = 1;
           struct rxe_qp * qp = (struct rxe_qp *) malloc(_len_qp0*sizeof(struct rxe_qp));
           for(int _i0 = 0; _i0 < _len_qp0; _i0++) {
-            qp[_i0].mtu = ((-2 * (next_i()%2)) + 1) * next_i();
-        qp[_i0].req.psn = ((-2 * (next_i()%2)) + 1) * next_i();
+              qp[_i0].mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].req.psn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_wqe0 = 1;
           struct rxe_send_wqe * wqe = (struct rxe_send_wqe *) malloc(_len_wqe0*sizeof(struct rxe_send_wqe));
           for(int _i0 = 0; _i0 < _len_wqe0; _i0++) {
-            wqe[_i0].first_psn = ((-2 * (next_i()%2)) + 1) * next_i();
-        wqe[_i0].last_psn = ((-2 * (next_i()%2)) + 1) * next_i();
-        wqe[_i0].dma.resid = ((-2 * (next_i()%2)) + 1) * next_i();
+              wqe[_i0].first_psn = ((-2 * (next_i()%2)) + 1) * next_i();
+          wqe[_i0].last_psn = ((-2 * (next_i()%2)) + 1) * next_i();
+          wqe[_i0].dma.resid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_pkt0 = 1;
           struct rxe_pkt_info * pkt = (struct rxe_pkt_info *) malloc(_len_pkt0*sizeof(struct rxe_pkt_info));
           for(int _i0 = 0; _i0 < _len_pkt0; _i0++) {
-            pkt[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              pkt[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          update_wqe_psn(qp,wqe,pkt,payload);
+          free(qp);
+          free(wqe);
+          free(pkt);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 37
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          int payload = 255;
+        
+          int _len_qp0 = 65025;
+          struct rxe_qp * qp = (struct rxe_qp *) malloc(_len_qp0*sizeof(struct rxe_qp));
+          for(int _i0 = 0; _i0 < _len_qp0; _i0++) {
+              qp[_i0].mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].req.psn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_wqe0 = 65025;
+          struct rxe_send_wqe * wqe = (struct rxe_send_wqe *) malloc(_len_wqe0*sizeof(struct rxe_send_wqe));
+          for(int _i0 = 0; _i0 < _len_wqe0; _i0++) {
+              wqe[_i0].first_psn = ((-2 * (next_i()%2)) + 1) * next_i();
+          wqe[_i0].last_psn = ((-2 * (next_i()%2)) + 1) * next_i();
+          wqe[_i0].dma.resid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_pkt0 = 65025;
+          struct rxe_pkt_info * pkt = (struct rxe_pkt_info *) malloc(_len_pkt0*sizeof(struct rxe_pkt_info));
+          for(int _i0 = 0; _i0 < _len_pkt0; _i0++) {
+              pkt[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          update_wqe_psn(qp,wqe,pkt,payload);
+          free(qp);
+          free(wqe);
+          free(pkt);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          int payload = 10;
+        
+          int _len_qp0 = 100;
+          struct rxe_qp * qp = (struct rxe_qp *) malloc(_len_qp0*sizeof(struct rxe_qp));
+          for(int _i0 = 0; _i0 < _len_qp0; _i0++) {
+              qp[_i0].mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].req.psn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_wqe0 = 100;
+          struct rxe_send_wqe * wqe = (struct rxe_send_wqe *) malloc(_len_wqe0*sizeof(struct rxe_send_wqe));
+          for(int _i0 = 0; _i0 < _len_wqe0; _i0++) {
+              wqe[_i0].first_psn = ((-2 * (next_i()%2)) + 1) * next_i();
+          wqe[_i0].last_psn = ((-2 * (next_i()%2)) + 1) * next_i();
+          wqe[_i0].dma.resid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_pkt0 = 100;
+          struct rxe_pkt_info * pkt = (struct rxe_pkt_info *) malloc(_len_pkt0*sizeof(struct rxe_pkt_info));
+          for(int _i0 = 0; _i0 < _len_pkt0; _i0++) {
+              pkt[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          update_wqe_psn(qp,wqe,pkt,payload);
+          free(qp);
+          free(wqe);
+          free(pkt);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          int payload = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_qp0 = 1;
+          struct rxe_qp * qp = (struct rxe_qp *) malloc(_len_qp0*sizeof(struct rxe_qp));
+          for(int _i0 = 0; _i0 < _len_qp0; _i0++) {
+              qp[_i0].mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].req.psn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_wqe0 = 1;
+          struct rxe_send_wqe * wqe = (struct rxe_send_wqe *) malloc(_len_wqe0*sizeof(struct rxe_send_wqe));
+          for(int _i0 = 0; _i0 < _len_wqe0; _i0++) {
+              wqe[_i0].first_psn = ((-2 * (next_i()%2)) + 1) * next_i();
+          wqe[_i0].last_psn = ((-2 * (next_i()%2)) + 1) * next_i();
+          wqe[_i0].dma.resid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_pkt0 = 1;
+          struct rxe_pkt_info * pkt = (struct rxe_pkt_info *) malloc(_len_pkt0*sizeof(struct rxe_pkt_info));
+          for(int _i0 = 0; _i0 < _len_pkt0; _i0++) {
+              pkt[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           update_wqe_psn(qp,wqe,pkt,payload);
           free(qp);
           free(wqe);

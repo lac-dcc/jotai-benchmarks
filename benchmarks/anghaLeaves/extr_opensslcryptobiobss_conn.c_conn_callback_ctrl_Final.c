@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -82,12 +85,6 @@ __attribute__((used)) static long conn_callback_ctrl(BIO *b, int cmd, BIO_info_c
     return ret;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,16 +101,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int cmd = 100;
+        
           int _len_b0 = 1;
           struct TYPE_5__ * b = (struct TYPE_5__ *) malloc(_len_b0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_b0; _i0++) {
-            b[_i0].ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+              b[_i0].ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_fp0 = 1;
           int * fp = (int *) malloc(_len_fp0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_fp0; _i0++) {
             fp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           long benchRet = conn_callback_ctrl(b,cmd,fp);
           printf("%ld\n", benchRet); 
           free(b);
@@ -121,7 +122,81 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int cmd = 255;
+        
+          int _len_b0 = 65025;
+          struct TYPE_5__ * b = (struct TYPE_5__ *) malloc(_len_b0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fp0 = 65025;
+          int * fp = (int *) malloc(_len_fp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_fp0; _i0++) {
+            fp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          long benchRet = conn_callback_ctrl(b,cmd,fp);
+          printf("%ld\n", benchRet); 
+          free(b);
+          free(fp);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int cmd = 10;
+        
+          int _len_b0 = 100;
+          struct TYPE_5__ * b = (struct TYPE_5__ *) malloc(_len_b0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fp0 = 100;
+          int * fp = (int *) malloc(_len_fp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_fp0; _i0++) {
+            fp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          long benchRet = conn_callback_ctrl(b,cmd,fp);
+          printf("%ld\n", benchRet); 
+          free(b);
+          free(fp);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_b0 = 1;
+          struct TYPE_5__ * b = (struct TYPE_5__ *) malloc(_len_b0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fp0 = 1;
+          int * fp = (int *) malloc(_len_fp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_fp0; _i0++) {
+            fp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          long benchRet = conn_callback_ctrl(b,cmd,fp);
+          printf("%ld\n", benchRet); 
+          free(b);
+          free(fp);
+        
+        break;
+    }
     default:
         usage();
         break;

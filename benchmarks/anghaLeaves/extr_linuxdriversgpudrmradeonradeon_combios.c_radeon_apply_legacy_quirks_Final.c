@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -91,12 +94,6 @@ __attribute__((used)) static bool radeon_apply_legacy_quirks(struct drm_device *
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -113,32 +110,41 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int bios_index = 100;
+        
           int _len_dev0 = 1;
           struct drm_device * dev = (struct drm_device *) malloc(_len_dev0*sizeof(struct drm_device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
               int _len_dev__i0__pdev0 = 1;
           dev[_i0].pdev = (struct TYPE_2__ *) malloc(_len_dev__i0__pdev0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_dev__i0__pdev0; _j0++) {
-            dev[_i0].pdev->device = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].pdev->subsystem_vendor = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].pdev->subsystem_device = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].pdev->device = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].pdev->subsystem_vendor = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].pdev->subsystem_device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_legacy_connector0 = 1;
           enum radeon_combios_connector * legacy_connector = (enum radeon_combios_connector *) malloc(_len_legacy_connector0*sizeof(enum radeon_combios_connector));
           for(int _i0 = 0; _i0 < _len_legacy_connector0; _i0++) {
             legacy_connector[_i0] = 0;
           }
+        
           int _len_ddc_i2c0 = 1;
           struct radeon_i2c_bus_rec * ddc_i2c = (struct radeon_i2c_bus_rec *) malloc(_len_ddc_i2c0*sizeof(struct radeon_i2c_bus_rec));
           for(int _i0 = 0; _i0 < _len_ddc_i2c0; _i0++) {
-            ddc_i2c[_i0].mask_clk_reg = ((-2 * (next_i()%2)) + 1) * next_i();
+              ddc_i2c[_i0].mask_clk_reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_hpd0 = 1;
           struct radeon_hpd * hpd = (struct radeon_hpd *) malloc(_len_hpd0*sizeof(struct radeon_hpd));
           for(int _i0 = 0; _i0 < _len_hpd0; _i0++) {
-            hpd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              hpd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = radeon_apply_legacy_quirks(dev,bios_index,legacy_connector,ddc_i2c,hpd);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_dev0; _aux++) {
@@ -151,7 +157,159 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int bios_index = 255;
+        
+          int _len_dev0 = 65025;
+          struct drm_device * dev = (struct drm_device *) malloc(_len_dev0*sizeof(struct drm_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              int _len_dev__i0__pdev0 = 1;
+          dev[_i0].pdev = (struct TYPE_2__ *) malloc(_len_dev__i0__pdev0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_dev__i0__pdev0; _j0++) {
+              dev[_i0].pdev->device = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].pdev->subsystem_vendor = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].pdev->subsystem_device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_legacy_connector0 = 65025;
+          enum radeon_combios_connector * legacy_connector = (enum radeon_combios_connector *) malloc(_len_legacy_connector0*sizeof(enum radeon_combios_connector));
+          for(int _i0 = 0; _i0 < _len_legacy_connector0; _i0++) {
+            legacy_connector[_i0] = 0;
+          }
+        
+          int _len_ddc_i2c0 = 65025;
+          struct radeon_i2c_bus_rec * ddc_i2c = (struct radeon_i2c_bus_rec *) malloc(_len_ddc_i2c0*sizeof(struct radeon_i2c_bus_rec));
+          for(int _i0 = 0; _i0 < _len_ddc_i2c0; _i0++) {
+              ddc_i2c[_i0].mask_clk_reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_hpd0 = 65025;
+          struct radeon_hpd * hpd = (struct radeon_hpd *) malloc(_len_hpd0*sizeof(struct radeon_hpd));
+          for(int _i0 = 0; _i0 < _len_hpd0; _i0++) {
+              hpd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = radeon_apply_legacy_quirks(dev,bios_index,legacy_connector,ddc_i2c,hpd);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(dev[_aux].pdev);
+          }
+          free(dev);
+          free(legacy_connector);
+          free(ddc_i2c);
+          free(hpd);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int bios_index = 10;
+        
+          int _len_dev0 = 100;
+          struct drm_device * dev = (struct drm_device *) malloc(_len_dev0*sizeof(struct drm_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              int _len_dev__i0__pdev0 = 1;
+          dev[_i0].pdev = (struct TYPE_2__ *) malloc(_len_dev__i0__pdev0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_dev__i0__pdev0; _j0++) {
+              dev[_i0].pdev->device = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].pdev->subsystem_vendor = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].pdev->subsystem_device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_legacy_connector0 = 100;
+          enum radeon_combios_connector * legacy_connector = (enum radeon_combios_connector *) malloc(_len_legacy_connector0*sizeof(enum radeon_combios_connector));
+          for(int _i0 = 0; _i0 < _len_legacy_connector0; _i0++) {
+            legacy_connector[_i0] = 0;
+          }
+        
+          int _len_ddc_i2c0 = 100;
+          struct radeon_i2c_bus_rec * ddc_i2c = (struct radeon_i2c_bus_rec *) malloc(_len_ddc_i2c0*sizeof(struct radeon_i2c_bus_rec));
+          for(int _i0 = 0; _i0 < _len_ddc_i2c0; _i0++) {
+              ddc_i2c[_i0].mask_clk_reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_hpd0 = 100;
+          struct radeon_hpd * hpd = (struct radeon_hpd *) malloc(_len_hpd0*sizeof(struct radeon_hpd));
+          for(int _i0 = 0; _i0 < _len_hpd0; _i0++) {
+              hpd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = radeon_apply_legacy_quirks(dev,bios_index,legacy_connector,ddc_i2c,hpd);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(dev[_aux].pdev);
+          }
+          free(dev);
+          free(legacy_connector);
+          free(ddc_i2c);
+          free(hpd);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int bios_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dev0 = 1;
+          struct drm_device * dev = (struct drm_device *) malloc(_len_dev0*sizeof(struct drm_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              int _len_dev__i0__pdev0 = 1;
+          dev[_i0].pdev = (struct TYPE_2__ *) malloc(_len_dev__i0__pdev0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_dev__i0__pdev0; _j0++) {
+              dev[_i0].pdev->device = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].pdev->subsystem_vendor = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].pdev->subsystem_device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_legacy_connector0 = 1;
+          enum radeon_combios_connector * legacy_connector = (enum radeon_combios_connector *) malloc(_len_legacy_connector0*sizeof(enum radeon_combios_connector));
+          for(int _i0 = 0; _i0 < _len_legacy_connector0; _i0++) {
+            legacy_connector[_i0] = 0;
+          }
+        
+          int _len_ddc_i2c0 = 1;
+          struct radeon_i2c_bus_rec * ddc_i2c = (struct radeon_i2c_bus_rec *) malloc(_len_ddc_i2c0*sizeof(struct radeon_i2c_bus_rec));
+          for(int _i0 = 0; _i0 < _len_ddc_i2c0; _i0++) {
+              ddc_i2c[_i0].mask_clk_reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_hpd0 = 1;
+          struct radeon_hpd * hpd = (struct radeon_hpd *) malloc(_len_hpd0*sizeof(struct radeon_hpd));
+          for(int _i0 = 0; _i0 < _len_hpd0; _i0++) {
+              hpd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = radeon_apply_legacy_quirks(dev,bios_index,legacy_connector,ddc_i2c,hpd);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(dev[_aux].pdev);
+          }
+          free(dev);
+          free(legacy_connector);
+          free(ddc_i2c);
+          free(hpd);
+        
+        break;
+    }
     default:
         usage();
         break;

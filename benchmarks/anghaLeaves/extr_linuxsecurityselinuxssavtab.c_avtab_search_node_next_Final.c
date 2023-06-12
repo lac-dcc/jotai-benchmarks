@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            linked\n\
+       2            empty\n\
 \n\
 ");
 
@@ -88,17 +90,17 @@ avtab_search_node_next(struct avtab_node *node, int specified)
 	return NULL;
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct avtab_node *_allocate_node(int length, struct avtab_node *aux_node[]) {
   struct avtab_node *walker = (struct avtab_node *)malloc(sizeof(struct avtab_node));
 
   aux_node[0] = walker;
-walker->key.source_type = ((-2 * (next_i()%2)) + 1) * next_i();
-walker->key.target_type = ((-2 * (next_i()%2)) + 1) * next_i();
-walker->key.target_class = ((-2 * (next_i()%2)) + 1) * next_i();
-walker->key.specified = ((-2 * (next_i()%2)) + 1) * next_i();
+  walker->key.source_type = ((-2 * (next_i()%2)) + 1) * next_i();
+  walker->key.target_type = ((-2 * (next_i()%2)) + 1) * next_i();
+  walker->key.target_class = ((-2 * (next_i()%2)) + 1) * next_i();
+  walker->key.specified = ((-2 * (next_i()%2)) + 1) * next_i();
+
   walker->next = NULL;
 
   struct avtab_node *head = walker;
@@ -106,10 +108,11 @@ walker->key.specified = ((-2 * (next_i()%2)) + 1) * next_i();
     walker->next = (struct avtab_node *)malloc(sizeof(struct avtab_node));
     walker = walker->next;
     aux_node[i] = walker;
-walker->key.source_type = ((-2 * (next_i()%2)) + 1) * next_i();
-walker->key.target_type = ((-2 * (next_i()%2)) + 1) * next_i();
-walker->key.target_class = ((-2 * (next_i()%2)) + 1) * next_i();
-walker->key.specified = ((-2 * (next_i()%2)) + 1) * next_i();
+  walker->key.source_type = ((-2 * (next_i()%2)) + 1) * next_i();
+  walker->key.target_type = ((-2 * (next_i()%2)) + 1) * next_i();
+  walker->key.target_class = ((-2 * (next_i()%2)) + 1) * next_i();
+  walker->key.specified = ((-2 * (next_i()%2)) + 1) * next_i();
+
     walker->next = NULL;
   }
 
@@ -121,7 +124,6 @@ void _delete_node(struct avtab_node *aux_node[], int aux_node_size) {
     if(aux_node[i])
       free(aux_node[i]);
 }
-
 
 
 
@@ -137,12 +139,111 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int specified = 100;
+        
           struct avtab_node * aux_node[1];
           struct avtab_node * node = _allocate_node(1, aux_node);
+        
+          struct avtab_node * benchRet = avtab_search_node_next(node,specified);
+          _delete_node(aux_node, 1);
+        
+        break;
+    }
+
+
+    // linked
+    case 1:
+    {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 42
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 26
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 26
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
+          int specified = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          struct avtab_node * aux_node[10000];
+          struct avtab_node * node = _allocate_node(10000, aux_node);
+        
+          struct avtab_node * benchRet = avtab_search_node_next(node,specified);
+          _delete_node(aux_node, 10000);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int specified = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          struct avtab_node * aux_node[1];
+          struct avtab_node * node = _allocate_node(1, aux_node);
+        
           struct avtab_node * benchRet = avtab_search_node_next(node,specified);
           _delete_node(aux_node, 1);
         

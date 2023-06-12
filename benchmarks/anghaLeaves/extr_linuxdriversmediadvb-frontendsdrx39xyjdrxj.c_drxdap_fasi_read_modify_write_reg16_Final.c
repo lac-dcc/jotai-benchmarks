@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +80,6 @@ __attribute__((used)) static int drxdap_fasi_read_modify_write_reg16(struct i2c_
 	return rc;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,18 +96,24 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int waddr = 100;
+        
           int raddr = 100;
+        
           int wdata = 100;
+        
           int _len_dev_addr0 = 1;
           struct i2c_device_addr * dev_addr = (struct i2c_device_addr *) malloc(_len_dev_addr0*sizeof(struct i2c_device_addr));
           for(int _i0 = 0; _i0 < _len_dev_addr0; _i0++) {
-            dev_addr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev_addr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_rdata0 = 1;
           int * rdata = (int *) malloc(_len_rdata0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_rdata0; _i0++) {
             rdata[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = drxdap_fasi_read_modify_write_reg16(dev_addr,waddr,raddr,wdata,rdata);
           printf("%d\n", benchRet); 
           free(dev_addr);
@@ -118,7 +121,93 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int waddr = 255;
+        
+          int raddr = 255;
+        
+          int wdata = 255;
+        
+          int _len_dev_addr0 = 65025;
+          struct i2c_device_addr * dev_addr = (struct i2c_device_addr *) malloc(_len_dev_addr0*sizeof(struct i2c_device_addr));
+          for(int _i0 = 0; _i0 < _len_dev_addr0; _i0++) {
+              dev_addr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rdata0 = 65025;
+          int * rdata = (int *) malloc(_len_rdata0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_rdata0; _i0++) {
+            rdata[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = drxdap_fasi_read_modify_write_reg16(dev_addr,waddr,raddr,wdata,rdata);
+          printf("%d\n", benchRet); 
+          free(dev_addr);
+          free(rdata);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int waddr = 10;
+        
+          int raddr = 10;
+        
+          int wdata = 10;
+        
+          int _len_dev_addr0 = 100;
+          struct i2c_device_addr * dev_addr = (struct i2c_device_addr *) malloc(_len_dev_addr0*sizeof(struct i2c_device_addr));
+          for(int _i0 = 0; _i0 < _len_dev_addr0; _i0++) {
+              dev_addr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rdata0 = 100;
+          int * rdata = (int *) malloc(_len_rdata0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_rdata0; _i0++) {
+            rdata[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = drxdap_fasi_read_modify_write_reg16(dev_addr,waddr,raddr,wdata,rdata);
+          printf("%d\n", benchRet); 
+          free(dev_addr);
+          free(rdata);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int waddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int raddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int wdata = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dev_addr0 = 1;
+          struct i2c_device_addr * dev_addr = (struct i2c_device_addr *) malloc(_len_dev_addr0*sizeof(struct i2c_device_addr));
+          for(int _i0 = 0; _i0 < _len_dev_addr0; _i0++) {
+              dev_addr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rdata0 = 1;
+          int * rdata = (int *) malloc(_len_rdata0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_rdata0; _i0++) {
+            rdata[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = drxdap_fasi_read_modify_write_reg16(dev_addr,waddr,raddr,wdata,rdata);
+          printf("%d\n", benchRet); 
+          free(dev_addr);
+          free(rdata);
+        
+        break;
+    }
     default:
         usage();
         break;

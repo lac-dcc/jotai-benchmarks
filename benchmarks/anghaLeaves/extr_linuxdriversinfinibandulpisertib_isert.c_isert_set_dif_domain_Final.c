@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -90,12 +92,6 @@ isert_set_dif_domain(struct se_cmd *se_cmd, struct ib_sig_attrs *sig_attrs,
 		domain->sig.dif.ref_remap = true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -108,37 +104,47 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_se_cmd0 = 1;
+          int _len_se_cmd0 = 65025;
           struct se_cmd * se_cmd = (struct se_cmd *) malloc(_len_se_cmd0*sizeof(struct se_cmd));
           for(int _i0 = 0; _i0 < _len_se_cmd0; _i0++) {
-            se_cmd[_i0].prot_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        se_cmd[_i0].reftag_seed = ((-2 * (next_i()%2)) + 1) * next_i();
+              se_cmd[_i0].prot_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          se_cmd[_i0].reftag_seed = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_se_cmd__i0__se_dev0 = 1;
           se_cmd[_i0].se_dev = (struct TYPE_6__ *) malloc(_len_se_cmd__i0__se_dev0*sizeof(struct TYPE_6__));
           for(int _j0 = 0; _j0 < _len_se_cmd__i0__se_dev0; _j0++) {
-            se_cmd[_i0].se_dev->dev_attrib.block_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              se_cmd[_i0].se_dev->dev_attrib.block_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
-          int _len_sig_attrs0 = 1;
+        
+          int _len_sig_attrs0 = 65025;
           struct ib_sig_attrs * sig_attrs = (struct ib_sig_attrs *) malloc(_len_sig_attrs0*sizeof(struct ib_sig_attrs));
           for(int _i0 = 0; _i0 < _len_sig_attrs0; _i0++) {
-            sig_attrs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              sig_attrs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_domain0 = 1;
+        
+          int _len_domain0 = 65025;
           struct ib_sig_domain * domain = (struct ib_sig_domain *) malloc(_len_domain0*sizeof(struct ib_sig_domain));
           for(int _i0 = 0; _i0 < _len_domain0; _i0++) {
-            domain[_i0].sig.dif.apptag_check_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        domain[_i0].sig.dif.app_escape = ((-2 * (next_i()%2)) + 1) * next_i();
-        domain[_i0].sig.dif.ref_escape = ((-2 * (next_i()%2)) + 1) * next_i();
-        domain[_i0].sig.dif.ref_remap = ((-2 * (next_i()%2)) + 1) * next_i();
-        domain[_i0].sig.dif.ref_tag = ((-2 * (next_i()%2)) + 1) * next_i();
-        domain[_i0].sig.dif.pi_interval = ((-2 * (next_i()%2)) + 1) * next_i();
-        domain[_i0].sig.dif.bg_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        domain[_i0].sig_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              domain[_i0].sig.dif.apptag_check_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          domain[_i0].sig.dif.app_escape = ((-2 * (next_i()%2)) + 1) * next_i();
+          domain[_i0].sig.dif.ref_escape = ((-2 * (next_i()%2)) + 1) * next_i();
+          domain[_i0].sig.dif.ref_remap = ((-2 * (next_i()%2)) + 1) * next_i();
+          domain[_i0].sig.dif.ref_tag = ((-2 * (next_i()%2)) + 1) * next_i();
+          domain[_i0].sig.dif.pi_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+          domain[_i0].sig.dif.bg_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          domain[_i0].sig_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           isert_set_dif_domain(se_cmd,sig_attrs,domain);
           for(int _aux = 0; _aux < _len_se_cmd0; _aux++) {
           free(se_cmd[_aux].se_dev);
@@ -149,7 +155,108 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_se_cmd0 = 100;
+          struct se_cmd * se_cmd = (struct se_cmd *) malloc(_len_se_cmd0*sizeof(struct se_cmd));
+          for(int _i0 = 0; _i0 < _len_se_cmd0; _i0++) {
+              se_cmd[_i0].prot_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          se_cmd[_i0].reftag_seed = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_se_cmd__i0__se_dev0 = 1;
+          se_cmd[_i0].se_dev = (struct TYPE_6__ *) malloc(_len_se_cmd__i0__se_dev0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_se_cmd__i0__se_dev0; _j0++) {
+              se_cmd[_i0].se_dev->dev_attrib.block_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int _len_sig_attrs0 = 100;
+          struct ib_sig_attrs * sig_attrs = (struct ib_sig_attrs *) malloc(_len_sig_attrs0*sizeof(struct ib_sig_attrs));
+          for(int _i0 = 0; _i0 < _len_sig_attrs0; _i0++) {
+              sig_attrs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_domain0 = 100;
+          struct ib_sig_domain * domain = (struct ib_sig_domain *) malloc(_len_domain0*sizeof(struct ib_sig_domain));
+          for(int _i0 = 0; _i0 < _len_domain0; _i0++) {
+              domain[_i0].sig.dif.apptag_check_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          domain[_i0].sig.dif.app_escape = ((-2 * (next_i()%2)) + 1) * next_i();
+          domain[_i0].sig.dif.ref_escape = ((-2 * (next_i()%2)) + 1) * next_i();
+          domain[_i0].sig.dif.ref_remap = ((-2 * (next_i()%2)) + 1) * next_i();
+          domain[_i0].sig.dif.ref_tag = ((-2 * (next_i()%2)) + 1) * next_i();
+          domain[_i0].sig.dif.pi_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+          domain[_i0].sig.dif.bg_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          domain[_i0].sig_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          isert_set_dif_domain(se_cmd,sig_attrs,domain);
+          for(int _aux = 0; _aux < _len_se_cmd0; _aux++) {
+          free(se_cmd[_aux].se_dev);
+          }
+          free(se_cmd);
+          free(sig_attrs);
+          free(domain);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_se_cmd0 = 1;
+          struct se_cmd * se_cmd = (struct se_cmd *) malloc(_len_se_cmd0*sizeof(struct se_cmd));
+          for(int _i0 = 0; _i0 < _len_se_cmd0; _i0++) {
+              se_cmd[_i0].prot_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          se_cmd[_i0].reftag_seed = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_se_cmd__i0__se_dev0 = 1;
+          se_cmd[_i0].se_dev = (struct TYPE_6__ *) malloc(_len_se_cmd__i0__se_dev0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_se_cmd__i0__se_dev0; _j0++) {
+              se_cmd[_i0].se_dev->dev_attrib.block_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int _len_sig_attrs0 = 1;
+          struct ib_sig_attrs * sig_attrs = (struct ib_sig_attrs *) malloc(_len_sig_attrs0*sizeof(struct ib_sig_attrs));
+          for(int _i0 = 0; _i0 < _len_sig_attrs0; _i0++) {
+              sig_attrs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_domain0 = 1;
+          struct ib_sig_domain * domain = (struct ib_sig_domain *) malloc(_len_domain0*sizeof(struct ib_sig_domain));
+          for(int _i0 = 0; _i0 < _len_domain0; _i0++) {
+              domain[_i0].sig.dif.apptag_check_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          domain[_i0].sig.dif.app_escape = ((-2 * (next_i()%2)) + 1) * next_i();
+          domain[_i0].sig.dif.ref_escape = ((-2 * (next_i()%2)) + 1) * next_i();
+          domain[_i0].sig.dif.ref_remap = ((-2 * (next_i()%2)) + 1) * next_i();
+          domain[_i0].sig.dif.ref_tag = ((-2 * (next_i()%2)) + 1) * next_i();
+          domain[_i0].sig.dif.pi_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+          domain[_i0].sig.dif.bg_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          domain[_i0].sig_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          isert_set_dif_domain(se_cmd,sig_attrs,domain);
+          for(int _aux = 0; _aux < _len_se_cmd0; _aux++) {
+          free(se_cmd[_aux].se_dev);
+          }
+          free(se_cmd);
+          free(sig_attrs);
+          free(domain);
+        
+        break;
+    }
     default:
         usage();
         break;

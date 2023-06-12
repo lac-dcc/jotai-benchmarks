@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline int PWM_RR_EN_TO_REG(long val, int ix, int r
 	return val ? reg | en : reg & ~en;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,8 +80,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long val = 100;
+        
           int ix = 100;
+        
           int reg = 100;
+        
           int benchRet = PWM_RR_EN_TO_REG(val,ix,reg);
           printf("%d\n", benchRet); 
         
@@ -96,8 +94,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long val = 255;
+        
           int ix = 255;
+        
           int reg = 255;
+        
           int benchRet = PWM_RR_EN_TO_REG(val,ix,reg);
           printf("%d\n", benchRet); 
         
@@ -107,14 +108,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long val = 10;
+        
           int ix = 10;
+        
           int reg = 10;
+        
           int benchRet = PWM_RR_EN_TO_REG(val,ix,reg);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int ix = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = PWM_RR_EN_TO_REG(val,ix,reg);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

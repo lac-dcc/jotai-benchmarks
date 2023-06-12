@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -122,12 +123,6 @@ __attribute__((used)) static uint32_t assign_dim_result_type(
 	return tmp;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -144,9 +139,13 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int arr_type = 100;
+        
           int dim_type = 100;
+        
           int value_type = 100;
+        
           long dim_op_type = 100;
+        
           int benchRet = assign_dim_result_type(arr_type,dim_type,value_type,dim_op_type);
           printf("%d\n", benchRet); 
         
@@ -156,9 +155,13 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int arr_type = 255;
+        
           int dim_type = 255;
+        
           int value_type = 255;
+        
           long dim_op_type = 255;
+        
           int benchRet = assign_dim_result_type(arr_type,dim_type,value_type,dim_op_type);
           printf("%d\n", benchRet); 
         
@@ -168,15 +171,34 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int arr_type = 10;
+        
           int dim_type = 10;
+        
           int value_type = 10;
+        
           long dim_op_type = 10;
+        
           int benchRet = assign_dim_result_type(arr_type,dim_type,value_type,dim_op_type);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int arr_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int dim_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int value_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long dim_op_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = assign_dim_result_type(arr_type,dim_type,value_type,dim_op_type);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

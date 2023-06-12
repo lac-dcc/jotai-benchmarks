@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static void savePanelPos(RPanel* panel) {
 	panel->view->prevPos.h = panel->view->pos.h;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,25 +84,165 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_panel0 = 65025;
+          struct TYPE_9__ * panel = (struct TYPE_9__ *) malloc(_len_panel0*sizeof(struct TYPE_9__));
+          for(int _i0 = 0; _i0 < _len_panel0; _i0++) {
+              int _len_panel__i0__view0 = 1;
+          panel[_i0].view = (struct TYPE_7__ *) malloc(_len_panel__i0__view0*sizeof(struct TYPE_7__));
+          for(int _j0 = 0; _j0 < _len_panel__i0__view0; _j0++) {
+              panel[_i0].view->pos.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          panel[_i0].view->pos.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          panel[_i0].view->pos.y = ((-2 * (next_i()%2)) + 1) * next_i();
+          panel[_i0].view->pos.x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          panel[_i0].view->prevPos.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          panel[_i0].view->prevPos.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          panel[_i0].view->prevPos.y = ((-2 * (next_i()%2)) + 1) * next_i();
+          panel[_i0].view->prevPos.x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          savePanelPos(panel);
+          for(int _aux = 0; _aux < _len_panel0; _aux++) {
+          free(panel[_aux].view);
+          }
+          free(panel);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_panel0 = 100;
+          struct TYPE_9__ * panel = (struct TYPE_9__ *) malloc(_len_panel0*sizeof(struct TYPE_9__));
+          for(int _i0 = 0; _i0 < _len_panel0; _i0++) {
+              int _len_panel__i0__view0 = 1;
+          panel[_i0].view = (struct TYPE_7__ *) malloc(_len_panel__i0__view0*sizeof(struct TYPE_7__));
+          for(int _j0 = 0; _j0 < _len_panel__i0__view0; _j0++) {
+              panel[_i0].view->pos.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          panel[_i0].view->pos.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          panel[_i0].view->pos.y = ((-2 * (next_i()%2)) + 1) * next_i();
+          panel[_i0].view->pos.x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          panel[_i0].view->prevPos.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          panel[_i0].view->prevPos.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          panel[_i0].view->prevPos.y = ((-2 * (next_i()%2)) + 1) * next_i();
+          panel[_i0].view->prevPos.x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          savePanelPos(panel);
+          for(int _aux = 0; _aux < _len_panel0; _aux++) {
+          free(panel[_aux].view);
+          }
+          free(panel);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_panel0 = 1;
           struct TYPE_9__ * panel = (struct TYPE_9__ *) malloc(_len_panel0*sizeof(struct TYPE_9__));
           for(int _i0 = 0; _i0 < _len_panel0; _i0++) {
               int _len_panel__i0__view0 = 1;
           panel[_i0].view = (struct TYPE_7__ *) malloc(_len_panel__i0__view0*sizeof(struct TYPE_7__));
           for(int _j0 = 0; _j0 < _len_panel__i0__view0; _j0++) {
-            panel[_i0].view->pos.h = ((-2 * (next_i()%2)) + 1) * next_i();
-        panel[_i0].view->pos.w = ((-2 * (next_i()%2)) + 1) * next_i();
-        panel[_i0].view->pos.y = ((-2 * (next_i()%2)) + 1) * next_i();
-        panel[_i0].view->pos.x = ((-2 * (next_i()%2)) + 1) * next_i();
-        panel[_i0].view->prevPos.h = ((-2 * (next_i()%2)) + 1) * next_i();
-        panel[_i0].view->prevPos.w = ((-2 * (next_i()%2)) + 1) * next_i();
-        panel[_i0].view->prevPos.y = ((-2 * (next_i()%2)) + 1) * next_i();
-        panel[_i0].view->prevPos.x = ((-2 * (next_i()%2)) + 1) * next_i();
+              panel[_i0].view->pos.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          panel[_i0].view->pos.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          panel[_i0].view->pos.y = ((-2 * (next_i()%2)) + 1) * next_i();
+          panel[_i0].view->pos.x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          panel[_i0].view->prevPos.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          panel[_i0].view->prevPos.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          panel[_i0].view->prevPos.y = ((-2 * (next_i()%2)) + 1) * next_i();
+          panel[_i0].view->prevPos.x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           savePanelPos(panel);
           for(int _aux = 0; _aux < _len_panel0; _aux++) {
           free(panel[_aux].view);

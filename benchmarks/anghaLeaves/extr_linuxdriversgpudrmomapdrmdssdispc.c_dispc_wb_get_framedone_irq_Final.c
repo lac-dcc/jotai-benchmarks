@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static u32 dispc_wb_get_framedone_irq(struct dispc_device 
 	return DISPC_IRQ_FRAMEDONEWB;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dispc0 = 1;
+          int _len_dispc0 = 65025;
           struct dispc_device * dispc = (struct dispc_device *) malloc(_len_dispc0*sizeof(struct dispc_device));
           for(int _i0 = 0; _i0 < _len_dispc0; _i0++) {
-            dispc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dispc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dispc_wb_get_framedone_irq(dispc);
           printf("%d\n", benchRet); 
           free(dispc);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_dispc0 = 100;
           struct dispc_device * dispc = (struct dispc_device *) malloc(_len_dispc0*sizeof(struct dispc_device));
           for(int _i0 = 0; _i0 < _len_dispc0; _i0++) {
-            dispc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dispc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dispc_wb_get_framedone_irq(dispc);
           printf("%d\n", benchRet); 
           free(dispc);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_dispc0 = 1;
+          struct dispc_device * dispc = (struct dispc_device *) malloc(_len_dispc0*sizeof(struct dispc_device));
+          for(int _i0 = 0; _i0 < _len_dispc0; _i0++) {
+              dispc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dispc_wb_get_framedone_irq(dispc);
+          printf("%d\n", benchRet); 
+          free(dispc);
+        
+        break;
+    }
     default:
         usage();
         break;

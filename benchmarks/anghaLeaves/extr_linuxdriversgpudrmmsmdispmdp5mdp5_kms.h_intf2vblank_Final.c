@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -91,12 +93,6 @@ __attribute__((used)) static inline uint32_t intf2vblank(struct mdp5_hw_mixer *m
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -109,21 +105,25 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_mixer0 = 1;
+          int _len_mixer0 = 65025;
           struct mdp5_hw_mixer * mixer = (struct mdp5_hw_mixer *) malloc(_len_mixer0*sizeof(struct mdp5_hw_mixer));
           for(int _i0 = 0; _i0 < _len_mixer0; _i0++) {
-            mixer[_i0].pp = ((-2 * (next_i()%2)) + 1) * next_i();
+              mixer[_i0].pp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_intf0 = 1;
+        
+          int _len_intf0 = 65025;
           struct mdp5_interface * intf = (struct mdp5_interface *) malloc(_len_intf0*sizeof(struct mdp5_interface));
           for(int _i0 = 0; _i0 < _len_intf0; _i0++) {
-            intf[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        intf[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        intf[_i0].num = ((-2 * (next_i()%2)) + 1) * next_i();
+              intf[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          intf[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          intf[_i0].num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = intf2vblank(mixer,intf);
           printf("%d\n", benchRet); 
           free(mixer);
@@ -131,7 +131,58 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_mixer0 = 100;
+          struct mdp5_hw_mixer * mixer = (struct mdp5_hw_mixer *) malloc(_len_mixer0*sizeof(struct mdp5_hw_mixer));
+          for(int _i0 = 0; _i0 < _len_mixer0; _i0++) {
+              mixer[_i0].pp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_intf0 = 100;
+          struct mdp5_interface * intf = (struct mdp5_interface *) malloc(_len_intf0*sizeof(struct mdp5_interface));
+          for(int _i0 = 0; _i0 < _len_intf0; _i0++) {
+              intf[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          intf[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          intf[_i0].num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = intf2vblank(mixer,intf);
+          printf("%d\n", benchRet); 
+          free(mixer);
+          free(intf);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_mixer0 = 1;
+          struct mdp5_hw_mixer * mixer = (struct mdp5_hw_mixer *) malloc(_len_mixer0*sizeof(struct mdp5_hw_mixer));
+          for(int _i0 = 0; _i0 < _len_mixer0; _i0++) {
+              mixer[_i0].pp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_intf0 = 1;
+          struct mdp5_interface * intf = (struct mdp5_interface *) malloc(_len_intf0*sizeof(struct mdp5_interface));
+          for(int _i0 = 0; _i0 < _len_intf0; _i0++) {
+              intf[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          intf[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          intf[_i0].num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = intf2vblank(mixer,intf);
+          printf("%d\n", benchRet); 
+          free(mixer);
+          free(intf);
+        
+        break;
+    }
     default:
         usage();
         break;

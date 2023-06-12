@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +73,6 @@ __attribute__((used)) static u32 atmel_hlcdc_plane_phiscaler_get_factor(u32 srcs
 	return factor;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,34 +85,152 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
           int srcsize = 100;
+        
           int dstsize = 100;
+        
           int phidef = 100;
+        
           int benchRet = atmel_hlcdc_plane_phiscaler_get_factor(srcsize,dstsize,phidef);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
           int srcsize = 255;
+        
           int dstsize = 255;
+        
           int phidef = 255;
+        
           int benchRet = atmel_hlcdc_plane_phiscaler_get_factor(srcsize,dstsize,phidef);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
           int srcsize = 10;
+        
           int dstsize = 10;
+        
           int phidef = 10;
+        
+          int benchRet = atmel_hlcdc_plane_phiscaler_get_factor(srcsize,dstsize,phidef);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 37
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
+          int srcsize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int dstsize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int phidef = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = atmel_hlcdc_plane_phiscaler_get_factor(srcsize,dstsize,phidef);
           printf("%d\n", benchRet); 
         

@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -60,12 +60,6 @@ __attribute__((used)) static inline int is_black(struct color c)
     return c.red == 0 && c.green == 0 && c.blue == 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,19 +72,19 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           struct color c;
-        c.red = ((-2 * (next_i()%2)) + 1) * next_i();
-        c.green = ((-2 * (next_i()%2)) + 1) * next_i();
-        c.blue = ((-2 * (next_i()%2)) + 1) * next_i();
+          c.red = ((-2 * (next_i()%2)) + 1) * next_i();
+          c.green = ((-2 * (next_i()%2)) + 1) * next_i();
+          c.blue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = is_black(c);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

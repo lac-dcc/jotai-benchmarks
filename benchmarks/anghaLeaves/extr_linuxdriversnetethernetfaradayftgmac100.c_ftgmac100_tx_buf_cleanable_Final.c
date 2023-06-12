@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static bool ftgmac100_tx_buf_cleanable(struct ftgmac100 *p
 	return priv->tx_pointer != priv->tx_clean_pointer;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,15 +74,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_priv0 = 65025;
+          struct ftgmac100 * priv = (struct ftgmac100 *) malloc(_len_priv0*sizeof(struct ftgmac100));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].tx_pointer = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].tx_clean_pointer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ftgmac100_tx_buf_cleanable(priv);
+          printf("%d\n", benchRet); 
+          free(priv);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_priv0 = 100;
+          struct ftgmac100 * priv = (struct ftgmac100 *) malloc(_len_priv0*sizeof(struct ftgmac100));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].tx_pointer = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].tx_clean_pointer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ftgmac100_tx_buf_cleanable(priv);
+          printf("%d\n", benchRet); 
+          free(priv);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_priv0 = 1;
           struct ftgmac100 * priv = (struct ftgmac100 *) malloc(_len_priv0*sizeof(struct ftgmac100));
           for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
-            priv[_i0].tx_pointer = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].tx_clean_pointer = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].tx_pointer = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].tx_clean_pointer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ftgmac100_tx_buf_cleanable(priv);
           printf("%d\n", benchRet); 
           free(priv);

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ int percent (long long a, long long b) {
   return (a*100 / b);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,7 +79,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long long a = 100;
+        
           long long b = 100;
+        
           int benchRet = percent(a,b);
           printf("%d\n", benchRet); 
         
@@ -94,7 +91,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long long a = 255;
+        
           long long b = 255;
+        
           int benchRet = percent(a,b);
           printf("%d\n", benchRet); 
         
@@ -104,13 +103,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long long a = 10;
+        
           long long b = 10;
+        
           int benchRet = percent(a,b);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long long a = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long long b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = percent(a,b);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

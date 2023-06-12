@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static s32 wf_fcu_fan_min(struct wf_control *ct)
 	return fan->min;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,18 +78,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ct0 = 1;
+          int _len_ct0 = 65025;
           struct wf_control * ct = (struct wf_control *) malloc(_len_ct0*sizeof(struct wf_control));
           for(int _i0 = 0; _i0 < _len_ct0; _i0++) {
               int _len_ct__i0__priv0 = 1;
           ct[_i0].priv = (struct wf_fcu_fan *) malloc(_len_ct__i0__priv0*sizeof(struct wf_fcu_fan));
           for(int _j0 = 0; _j0 < _len_ct__i0__priv0; _j0++) {
-            ct[_i0].priv->min = ((-2 * (next_i()%2)) + 1) * next_i();
+              ct[_i0].priv->min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = wf_fcu_fan_min(ct);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_ct0; _aux++) {
@@ -103,7 +102,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ct0 = 100;
+          struct wf_control * ct = (struct wf_control *) malloc(_len_ct0*sizeof(struct wf_control));
+          for(int _i0 = 0; _i0 < _len_ct0; _i0++) {
+              int _len_ct__i0__priv0 = 1;
+          ct[_i0].priv = (struct wf_fcu_fan *) malloc(_len_ct__i0__priv0*sizeof(struct wf_fcu_fan));
+          for(int _j0 = 0; _j0 < _len_ct__i0__priv0; _j0++) {
+              ct[_i0].priv->min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = wf_fcu_fan_min(ct);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ct0; _aux++) {
+          free(ct[_aux].priv);
+          }
+          free(ct);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ct0 = 1;
+          struct wf_control * ct = (struct wf_control *) malloc(_len_ct0*sizeof(struct wf_control));
+          for(int _i0 = 0; _i0 < _len_ct0; _i0++) {
+              int _len_ct__i0__priv0 = 1;
+          ct[_i0].priv = (struct wf_fcu_fan *) malloc(_len_ct__i0__priv0*sizeof(struct wf_fcu_fan));
+          for(int _j0 = 0; _j0 < _len_ct__i0__priv0; _j0++) {
+              ct[_i0].priv->min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = wf_fcu_fan_min(ct);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ct0; _aux++) {
+          free(ct[_aux].priv);
+          }
+          free(ct);
+        
+        break;
+    }
     default:
         usage();
         break;

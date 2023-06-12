@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static size_t etnaviv_iommuv1_dump_size(struct etnaviv_iom
 	return PT_SIZE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_domain0 = 1;
+          int _len_domain0 = 65025;
           struct etnaviv_iommu_domain * domain = (struct etnaviv_iommu_domain *) malloc(_len_domain0*sizeof(struct etnaviv_iommu_domain));
           for(int _i0 = 0; _i0 < _len_domain0; _i0++) {
-            domain[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              domain[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = etnaviv_iommuv1_dump_size(domain);
           printf("%lu\n", benchRet); 
           free(domain);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_domain0 = 100;
           struct etnaviv_iommu_domain * domain = (struct etnaviv_iommu_domain *) malloc(_len_domain0*sizeof(struct etnaviv_iommu_domain));
           for(int _i0 = 0; _i0 < _len_domain0; _i0++) {
-            domain[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              domain[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = etnaviv_iommuv1_dump_size(domain);
           printf("%lu\n", benchRet); 
           free(domain);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_domain0 = 1;
+          struct etnaviv_iommu_domain * domain = (struct etnaviv_iommu_domain *) malloc(_len_domain0*sizeof(struct etnaviv_iommu_domain));
+          for(int _i0 = 0; _i0 < _len_domain0; _i0++) {
+              domain[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = etnaviv_iommuv1_dump_size(domain);
+          printf("%lu\n", benchRet); 
+          free(domain);
+        
+        break;
+    }
     default:
         usage();
         break;

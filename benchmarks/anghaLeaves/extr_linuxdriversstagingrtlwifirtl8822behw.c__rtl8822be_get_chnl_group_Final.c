@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -108,12 +110,6 @@ __attribute__((used)) static bool _rtl8822be_get_chnl_group(u8 chnl, u8 *group)
 	return in_24g;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -126,30 +122,163 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 38
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
           int chnl = 100;
+        
           int _len_group0 = 1;
           int * group = (int *) malloc(_len_group0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_group0; _i0++) {
             group[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = _rtl8822be_get_chnl_group(chnl,group);
           printf("%d\n", benchRet); 
           free(group);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 80
+          // dynamic_instructions_O0 : 80
+          // ------------------------------- 
+          // static_instructions_O1 : 49
+          // dynamic_instructions_O1 : 49
+          // ------------------------------- 
+          // static_instructions_O2 : 49
+          // dynamic_instructions_O2 : 49
+          // ------------------------------- 
+          // static_instructions_O3 : 49
+          // dynamic_instructions_O3 : 49
+          // ------------------------------- 
+          // static_instructions_Ofast : 49
+          // dynamic_instructions_Ofast : 49
+          // ------------------------------- 
+          // static_instructions_Os : 49
+          // dynamic_instructions_Os : 49
+          // ------------------------------- 
+          // static_instructions_Oz : 49
+          // dynamic_instructions_Oz : 49
+          // ------------------------------- 
+
+          int chnl = 255;
+        
+          int _len_group0 = 65025;
+          int * group = (int *) malloc(_len_group0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_group0; _i0++) {
+            group[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _rtl8822be_get_chnl_group(chnl,group);
+          printf("%d\n", benchRet); 
+          free(group);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
           int chnl = 10;
+        
           int _len_group0 = 100;
           int * group = (int *) malloc(_len_group0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_group0; _i0++) {
             group[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = _rtl8822be_get_chnl_group(chnl,group);
+          printf("%d\n", benchRet); 
+          free(group);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          int chnl = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_group0 = 1;
+          int * group = (int *) malloc(_len_group0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_group0; _i0++) {
+            group[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = _rtl8822be_get_chnl_group(chnl,group);
           printf("%d\n", benchRet); 
           free(group);

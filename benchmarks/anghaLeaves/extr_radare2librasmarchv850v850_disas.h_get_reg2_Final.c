@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline ut8 get_reg2(const ut16 instr) {
 	return instr >> 11;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           const int instr = 100;
+        
           const int benchRet = get_reg2(instr);
           printf("%d\n", benchRet); 
         
@@ -93,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           const int instr = 255;
+        
           const int benchRet = get_reg2(instr);
           printf("%d\n", benchRet); 
         
@@ -102,12 +99,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           const int instr = 10;
+        
           const int benchRet = get_reg2(instr);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          const int instr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          const int benchRet = get_reg2(instr);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

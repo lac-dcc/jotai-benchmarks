@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static bool addr_check(unsigned int check, unsigned int lo
 	return check - (lo + 1) < (hi - 1) - lo;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,8 +78,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int check = 100;
+        
           unsigned int lo = 100;
+        
           unsigned int hi = 100;
+        
           int benchRet = addr_check(check,lo,hi);
           printf("%d\n", benchRet); 
         
@@ -94,8 +92,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int check = 255;
+        
           unsigned int lo = 255;
+        
           unsigned int hi = 255;
+        
           int benchRet = addr_check(check,lo,hi);
           printf("%d\n", benchRet); 
         
@@ -105,14 +106,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int check = 10;
+        
           unsigned int lo = 10;
+        
           unsigned int hi = 10;
+        
           int benchRet = addr_check(check,lo,hi);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int check = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int lo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int hi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = addr_check(check,lo,hi);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

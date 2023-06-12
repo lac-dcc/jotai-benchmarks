@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +77,6 @@ __attribute__((used)) static int get_freq(RangeCoder *rc, uint32_t total_freq, u
     return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,21 +89,198 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           int total_freq = 100;
+        
           int _len_rc0 = 1;
           struct TYPE_3__ * rc = (struct TYPE_3__ *) malloc(_len_rc0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_rc0; _i0++) {
-            rc[_i0].range = ((-2 * (next_i()%2)) + 1) * next_i();
-        rc[_i0].code = ((-2 * (next_i()%2)) + 1) * next_i();
+              rc[_i0].range = ((-2 * (next_i()%2)) + 1) * next_i();
+          rc[_i0].code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_freq0 = 1;
           int * freq = (int *) malloc(_len_freq0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_freq0; _i0++) {
             freq[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = get_freq(rc,total_freq,freq);
+          printf("%d\n", benchRet); 
+          free(rc);
+          free(freq);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int total_freq = 255;
+        
+          int _len_rc0 = 65025;
+          struct TYPE_3__ * rc = (struct TYPE_3__ *) malloc(_len_rc0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_rc0; _i0++) {
+              rc[_i0].range = ((-2 * (next_i()%2)) + 1) * next_i();
+          rc[_i0].code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_freq0 = 65025;
+          int * freq = (int *) malloc(_len_freq0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_freq0; _i0++) {
+            freq[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = get_freq(rc,total_freq,freq);
+          printf("%d\n", benchRet); 
+          free(rc);
+          free(freq);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int total_freq = 10;
+        
+          int _len_rc0 = 100;
+          struct TYPE_3__ * rc = (struct TYPE_3__ *) malloc(_len_rc0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_rc0; _i0++) {
+              rc[_i0].range = ((-2 * (next_i()%2)) + 1) * next_i();
+          rc[_i0].code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_freq0 = 100;
+          int * freq = (int *) malloc(_len_freq0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_freq0; _i0++) {
+            freq[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = get_freq(rc,total_freq,freq);
+          printf("%d\n", benchRet); 
+          free(rc);
+          free(freq);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int total_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rc0 = 1;
+          struct TYPE_3__ * rc = (struct TYPE_3__ *) malloc(_len_rc0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_rc0; _i0++) {
+              rc[_i0].range = ((-2 * (next_i()%2)) + 1) * next_i();
+          rc[_i0].code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_freq0 = 1;
+          int * freq = (int *) malloc(_len_freq0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_freq0; _i0++) {
+            freq[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = get_freq(rc,total_freq,freq);
           printf("%d\n", benchRet); 
           free(rc);

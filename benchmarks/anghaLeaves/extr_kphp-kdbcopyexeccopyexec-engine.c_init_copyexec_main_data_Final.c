@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ int init_copyexec_main_data (int schema) {
   return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int schema = 100;
+        
           int benchRet = init_copyexec_main_data(schema);
           printf("%d\n", benchRet); 
         
@@ -94,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int schema = 255;
+        
           int benchRet = init_copyexec_main_data(schema);
           printf("%d\n", benchRet); 
         
@@ -103,12 +100,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int schema = 10;
+        
           int benchRet = init_copyexec_main_data(schema);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int schema = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = init_copyexec_main_data(schema);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static void of_bus_ambapp_count_cells(struct device_node *
 		*sizec = 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,24 +78,28 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_child0 = 1;
+          int _len_child0 = 65025;
           struct device_node * child = (struct device_node *) malloc(_len_child0*sizeof(struct device_node));
           for(int _i0 = 0; _i0 < _len_child0; _i0++) {
-            child[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              child[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_addrc0 = 1;
+        
+          int _len_addrc0 = 65025;
           int * addrc = (int *) malloc(_len_addrc0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_addrc0; _i0++) {
             addrc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_sizec0 = 1;
+        
+          int _len_sizec0 = 65025;
           int * sizec = (int *) malloc(_len_sizec0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_sizec0; _i0++) {
             sizec[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           of_bus_ambapp_count_cells(child,addrc,sizec);
           free(child);
           free(addrc);
@@ -107,7 +107,64 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_child0 = 100;
+          struct device_node * child = (struct device_node *) malloc(_len_child0*sizeof(struct device_node));
+          for(int _i0 = 0; _i0 < _len_child0; _i0++) {
+              child[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_addrc0 = 100;
+          int * addrc = (int *) malloc(_len_addrc0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_addrc0; _i0++) {
+            addrc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_sizec0 = 100;
+          int * sizec = (int *) malloc(_len_sizec0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_sizec0; _i0++) {
+            sizec[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          of_bus_ambapp_count_cells(child,addrc,sizec);
+          free(child);
+          free(addrc);
+          free(sizec);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_child0 = 1;
+          struct device_node * child = (struct device_node *) malloc(_len_child0*sizeof(struct device_node));
+          for(int _i0 = 0; _i0 < _len_child0; _i0++) {
+              child[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_addrc0 = 1;
+          int * addrc = (int *) malloc(_len_addrc0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_addrc0; _i0++) {
+            addrc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_sizec0 = 1;
+          int * sizec = (int *) malloc(_len_sizec0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_sizec0; _i0++) {
+            sizec[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          of_bus_ambapp_count_cells(child,addrc,sizec);
+          free(child);
+          free(addrc);
+          free(sizec);
+        
+        break;
+    }
     default:
         usage();
         break;

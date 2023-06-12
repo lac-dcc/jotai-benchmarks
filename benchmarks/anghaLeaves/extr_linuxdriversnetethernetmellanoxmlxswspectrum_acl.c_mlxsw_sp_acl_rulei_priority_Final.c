@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ void mlxsw_sp_acl_rulei_priority(struct mlxsw_sp_acl_rule_info *rulei,
 	rulei->priority = priority >> 16;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,31 +80,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int priority = 100;
+        
           int _len_rulei0 = 1;
           struct mlxsw_sp_acl_rule_info * rulei = (struct mlxsw_sp_acl_rule_info *) malloc(_len_rulei0*sizeof(struct mlxsw_sp_acl_rule_info));
           for(int _i0 = 0; _i0 < _len_rulei0; _i0++) {
-            rulei[_i0].priority = ((-2 * (next_i()%2)) + 1) * next_i();
+              rulei[_i0].priority = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          mlxsw_sp_acl_rulei_priority(rulei,priority);
+          free(rulei);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned int priority = 255;
+        
+          int _len_rulei0 = 65025;
+          struct mlxsw_sp_acl_rule_info * rulei = (struct mlxsw_sp_acl_rule_info *) malloc(_len_rulei0*sizeof(struct mlxsw_sp_acl_rule_info));
+          for(int _i0 = 0; _i0 < _len_rulei0; _i0++) {
+              rulei[_i0].priority = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           mlxsw_sp_acl_rulei_priority(rulei,priority);
           free(rulei);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned int priority = 10;
+        
           int _len_rulei0 = 100;
           struct mlxsw_sp_acl_rule_info * rulei = (struct mlxsw_sp_acl_rule_info *) malloc(_len_rulei0*sizeof(struct mlxsw_sp_acl_rule_info));
           for(int _i0 = 0; _i0 < _len_rulei0; _i0++) {
-            rulei[_i0].priority = ((-2 * (next_i()%2)) + 1) * next_i();
+              rulei[_i0].priority = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           mlxsw_sp_acl_rulei_priority(rulei,priority);
           free(rulei);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int priority = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rulei0 = 1;
+          struct mlxsw_sp_acl_rule_info * rulei = (struct mlxsw_sp_acl_rule_info *) malloc(_len_rulei0*sizeof(struct mlxsw_sp_acl_rule_info));
+          for(int _i0 = 0; _i0 < _len_rulei0; _i0++) {
+              rulei[_i0].priority = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mlxsw_sp_acl_rulei_priority(rulei,priority);
+          free(rulei);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline int dtd_get_xfer_height(struct vpdma_dtd *dt
 	return dtd->xfer_length_height & DTD_XFER_HEIGHT_MASK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dtd0 = 1;
+          int _len_dtd0 = 65025;
           struct vpdma_dtd * dtd = (struct vpdma_dtd *) malloc(_len_dtd0*sizeof(struct vpdma_dtd));
           for(int _i0 = 0; _i0 < _len_dtd0; _i0++) {
-            dtd[_i0].xfer_length_height = ((-2 * (next_i()%2)) + 1) * next_i();
+              dtd[_i0].xfer_length_height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dtd_get_xfer_height(dtd);
           printf("%d\n", benchRet); 
           free(dtd);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_dtd0 = 100;
           struct vpdma_dtd * dtd = (struct vpdma_dtd *) malloc(_len_dtd0*sizeof(struct vpdma_dtd));
           for(int _i0 = 0; _i0 < _len_dtd0; _i0++) {
-            dtd[_i0].xfer_length_height = ((-2 * (next_i()%2)) + 1) * next_i();
+              dtd[_i0].xfer_length_height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dtd_get_xfer_height(dtd);
           printf("%d\n", benchRet); 
           free(dtd);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_dtd0 = 1;
+          struct vpdma_dtd * dtd = (struct vpdma_dtd *) malloc(_len_dtd0*sizeof(struct vpdma_dtd));
+          for(int _i0 = 0; _i0 < _len_dtd0; _i0++) {
+              dtd[_i0].xfer_length_height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dtd_get_xfer_height(dtd);
+          printf("%d\n", benchRet); 
+          free(dtd);
+        
+        break;
+    }
     default:
         usage();
         break;

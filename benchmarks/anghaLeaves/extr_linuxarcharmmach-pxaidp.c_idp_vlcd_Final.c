@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static void idp_vlcd(int on)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,6 +83,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int on = 100;
+        
           idp_vlcd(on);
         
         break;
@@ -96,6 +92,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int on = 255;
+        
           idp_vlcd(on);
         
         break;
@@ -104,11 +101,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int on = 10;
+        
           idp_vlcd(on);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int on = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          idp_vlcd(on);
+        
+        break;
+    }
     default:
         usage();
         break;

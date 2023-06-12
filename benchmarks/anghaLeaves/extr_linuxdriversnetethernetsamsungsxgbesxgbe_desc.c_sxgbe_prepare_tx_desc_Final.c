@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +80,6 @@ __attribute__((used)) static void sxgbe_prepare_tx_desc(struct sxgbe_tx_norm_des
 		p->tdes23.tx_rd_des23.cksum_ctl = cic_full;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,23 +96,122 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int is_fd = 100;
+        
           int buf1_len = 100;
+        
           int pkt_len = 100;
+        
           int cksum = 100;
+        
           int _len_p0 = 1;
           struct sxgbe_tx_norm_desc * p = (struct sxgbe_tx_norm_desc *) malloc(_len_p0*sizeof(struct sxgbe_tx_norm_desc));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].tdes23.tx_rd_des23.buf1_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].tdes23.tx_rd_des23.cksum_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].tdes23.tx_rd_des23.tx_pkt_len.pkt_len.total_pkt_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].tdes23.tx_rd_des23.first_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].tdes23.tx_rd_des23.buf1_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].tdes23.tx_rd_des23.cksum_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].tdes23.tx_rd_des23.tx_pkt_len.pkt_len.total_pkt_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          p[_i0].tdes23.tx_rd_des23.first_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           sxgbe_prepare_tx_desc(p,is_fd,buf1_len,pkt_len,cksum);
           free(p);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int is_fd = 255;
+        
+          int buf1_len = 255;
+        
+          int pkt_len = 255;
+        
+          int cksum = 255;
+        
+          int _len_p0 = 65025;
+          struct sxgbe_tx_norm_desc * p = (struct sxgbe_tx_norm_desc *) malloc(_len_p0*sizeof(struct sxgbe_tx_norm_desc));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].tdes23.tx_rd_des23.buf1_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].tdes23.tx_rd_des23.cksum_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].tdes23.tx_rd_des23.tx_pkt_len.pkt_len.total_pkt_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          p[_i0].tdes23.tx_rd_des23.first_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          sxgbe_prepare_tx_desc(p,is_fd,buf1_len,pkt_len,cksum);
+          free(p);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int is_fd = 10;
+        
+          int buf1_len = 10;
+        
+          int pkt_len = 10;
+        
+          int cksum = 10;
+        
+          int _len_p0 = 100;
+          struct sxgbe_tx_norm_desc * p = (struct sxgbe_tx_norm_desc *) malloc(_len_p0*sizeof(struct sxgbe_tx_norm_desc));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].tdes23.tx_rd_des23.buf1_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].tdes23.tx_rd_des23.cksum_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].tdes23.tx_rd_des23.tx_pkt_len.pkt_len.total_pkt_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          p[_i0].tdes23.tx_rd_des23.first_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          sxgbe_prepare_tx_desc(p,is_fd,buf1_len,pkt_len,cksum);
+          free(p);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int is_fd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int buf1_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int pkt_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int cksum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_p0 = 1;
+          struct sxgbe_tx_norm_desc * p = (struct sxgbe_tx_norm_desc *) malloc(_len_p0*sizeof(struct sxgbe_tx_norm_desc));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].tdes23.tx_rd_des23.buf1_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].tdes23.tx_rd_des23.cksum_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].tdes23.tx_rd_des23.tx_pkt_len.pkt_len.total_pkt_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          p[_i0].tdes23.tx_rd_des23.first_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          sxgbe_prepare_tx_desc(p,is_fd,buf1_len,pkt_len,cksum);
+          free(p);
+        
+        break;
+    }
     default:
         usage();
         break;

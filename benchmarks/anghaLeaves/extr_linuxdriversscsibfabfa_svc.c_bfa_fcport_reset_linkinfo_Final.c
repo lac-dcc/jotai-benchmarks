@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ bfa_fcport_reset_linkinfo(struct bfa_fcport_s *fcport)
 	fcport->fec_state = BFA_FEC_OFFLINE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,22 +80,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_fcport0 = 1;
+          int _len_fcport0 = 65025;
           struct bfa_fcport_s * fcport = (struct bfa_fcport_s *) malloc(_len_fcport0*sizeof(struct bfa_fcport_s));
           for(int _i0 = 0; _i0 < _len_fcport0; _i0++) {
-            fcport[_i0].fec_state = ((-2 * (next_i()%2)) + 1) * next_i();
-        fcport[_i0].topology = ((-2 * (next_i()%2)) + 1) * next_i();
-        fcport[_i0].speed = ((-2 * (next_i()%2)) + 1) * next_i();
+              fcport[_i0].fec_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          fcport[_i0].topology = ((-2 * (next_i()%2)) + 1) * next_i();
+          fcport[_i0].speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           bfa_fcport_reset_linkinfo(fcport);
           free(fcport);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_fcport0 = 100;
+          struct bfa_fcport_s * fcport = (struct bfa_fcport_s *) malloc(_len_fcport0*sizeof(struct bfa_fcport_s));
+          for(int _i0 = 0; _i0 < _len_fcport0; _i0++) {
+              fcport[_i0].fec_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          fcport[_i0].topology = ((-2 * (next_i()%2)) + 1) * next_i();
+          fcport[_i0].speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          bfa_fcport_reset_linkinfo(fcport);
+          free(fcport);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_fcport0 = 1;
+          struct bfa_fcport_s * fcport = (struct bfa_fcport_s *) malloc(_len_fcport0*sizeof(struct bfa_fcport_s));
+          for(int _i0 = 0; _i0 < _len_fcport0; _i0++) {
+              fcport[_i0].fec_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          fcport[_i0].topology = ((-2 * (next_i()%2)) + 1) * next_i();
+          fcport[_i0].speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          bfa_fcport_reset_linkinfo(fcport);
+          free(fcport);
+        
+        break;
+    }
     default:
         usage();
         break;

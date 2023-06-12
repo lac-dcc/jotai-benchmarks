@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +82,6 @@ __attribute__((used)) static void ipr_update_ata_class(struct ipr_resource_entry
 	};
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,31 +98,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int proto = 100;
+        
           int _len_res0 = 1;
           struct ipr_resource_entry * res = (struct ipr_resource_entry *) malloc(_len_res0*sizeof(struct ipr_resource_entry));
           for(int _i0 = 0; _i0 < _len_res0; _i0++) {
-            res[_i0].ata_class = ((-2 * (next_i()%2)) + 1) * next_i();
+              res[_i0].ata_class = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          ipr_update_ata_class(res,proto);
+          free(res);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned int proto = 255;
+        
+          int _len_res0 = 65025;
+          struct ipr_resource_entry * res = (struct ipr_resource_entry *) malloc(_len_res0*sizeof(struct ipr_resource_entry));
+          for(int _i0 = 0; _i0 < _len_res0; _i0++) {
+              res[_i0].ata_class = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           ipr_update_ata_class(res,proto);
           free(res);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned int proto = 10;
+        
           int _len_res0 = 100;
           struct ipr_resource_entry * res = (struct ipr_resource_entry *) malloc(_len_res0*sizeof(struct ipr_resource_entry));
           for(int _i0 = 0; _i0 < _len_res0; _i0++) {
-            res[_i0].ata_class = ((-2 * (next_i()%2)) + 1) * next_i();
+              res[_i0].ata_class = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ipr_update_ata_class(res,proto);
           free(res);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int proto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_res0 = 1;
+          struct ipr_resource_entry * res = (struct ipr_resource_entry *) malloc(_len_res0*sizeof(struct ipr_resource_entry));
+          for(int _i0 = 0; _i0 < _len_res0; _i0++) {
+              res[_i0].ata_class = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ipr_update_ata_class(res,proto);
+          free(res);
+        
+        break;
+    }
     default:
         usage();
         break;

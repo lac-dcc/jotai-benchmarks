@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +74,6 @@ __attribute__((used)) static int tplc_chan_get_shift(struct soc_tplg *tplg,
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,21 +86,202 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int map = 100;
+        
           int _len_tplg0 = 1;
           struct soc_tplg * tplg = (struct soc_tplg *) malloc(_len_tplg0*sizeof(struct soc_tplg));
           for(int _i0 = 0; _i0 < _len_tplg0; _i0++) {
-            tplg[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              tplg[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_chan0 = 1;
           struct snd_soc_tplg_channel * chan = (struct snd_soc_tplg_channel *) malloc(_len_chan0*sizeof(struct snd_soc_tplg_channel));
           for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
-            chan[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
-        chan[_i0].shift = ((-2 * (next_i()%2)) + 1) * next_i();
+              chan[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+          chan[_i0].shift = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = tplc_chan_get_shift(tplg,chan,map);
+          printf("%d\n", benchRet); 
+          free(tplg);
+          free(chan);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int map = 255;
+        
+          int _len_tplg0 = 65025;
+          struct soc_tplg * tplg = (struct soc_tplg *) malloc(_len_tplg0*sizeof(struct soc_tplg));
+          for(int _i0 = 0; _i0 < _len_tplg0; _i0++) {
+              tplg[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_chan0 = 65025;
+          struct snd_soc_tplg_channel * chan = (struct snd_soc_tplg_channel *) malloc(_len_chan0*sizeof(struct snd_soc_tplg_channel));
+          for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
+              chan[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+          chan[_i0].shift = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = tplc_chan_get_shift(tplg,chan,map);
+          printf("%d\n", benchRet); 
+          free(tplg);
+          free(chan);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int map = 10;
+        
+          int _len_tplg0 = 100;
+          struct soc_tplg * tplg = (struct soc_tplg *) malloc(_len_tplg0*sizeof(struct soc_tplg));
+          for(int _i0 = 0; _i0 < _len_tplg0; _i0++) {
+              tplg[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_chan0 = 100;
+          struct snd_soc_tplg_channel * chan = (struct snd_soc_tplg_channel *) malloc(_len_chan0*sizeof(struct snd_soc_tplg_channel));
+          for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
+              chan[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+          chan[_i0].shift = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = tplc_chan_get_shift(tplg,chan,map);
+          printf("%d\n", benchRet); 
+          free(tplg);
+          free(chan);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int map = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_tplg0 = 1;
+          struct soc_tplg * tplg = (struct soc_tplg *) malloc(_len_tplg0*sizeof(struct soc_tplg));
+          for(int _i0 = 0; _i0 < _len_tplg0; _i0++) {
+              tplg[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_chan0 = 1;
+          struct snd_soc_tplg_channel * chan = (struct snd_soc_tplg_channel *) malloc(_len_chan0*sizeof(struct snd_soc_tplg_channel));
+          for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
+              chan[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+          chan[_i0].shift = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = tplc_chan_get_shift(tplg,chan,map);
           printf("%d\n", benchRet); 
           free(tplg);

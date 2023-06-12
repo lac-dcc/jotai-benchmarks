@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ ln_setexpire(struct llinfo_nd6 *ln, uint64_t expiry)
 	ln->ln_expire = expiry;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,31 +81,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int expiry = 100;
+        
           int _len_ln0 = 1;
           struct llinfo_nd6 * ln = (struct llinfo_nd6 *) malloc(_len_ln0*sizeof(struct llinfo_nd6));
           for(int _i0 = 0; _i0 < _len_ln0; _i0++) {
-            ln[_i0].ln_expire = ((-2 * (next_i()%2)) + 1) * next_i();
+              ln[_i0].ln_expire = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          ln_setexpire(ln,expiry);
+          free(ln);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int expiry = 255;
+        
+          int _len_ln0 = 65025;
+          struct llinfo_nd6 * ln = (struct llinfo_nd6 *) malloc(_len_ln0*sizeof(struct llinfo_nd6));
+          for(int _i0 = 0; _i0 < _len_ln0; _i0++) {
+              ln[_i0].ln_expire = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           ln_setexpire(ln,expiry);
           free(ln);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int expiry = 10;
+        
           int _len_ln0 = 100;
           struct llinfo_nd6 * ln = (struct llinfo_nd6 *) malloc(_len_ln0*sizeof(struct llinfo_nd6));
           for(int _i0 = 0; _i0 < _len_ln0; _i0++) {
-            ln[_i0].ln_expire = ((-2 * (next_i()%2)) + 1) * next_i();
+              ln[_i0].ln_expire = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ln_setexpire(ln,expiry);
           free(ln);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int expiry = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ln0 = 1;
+          struct llinfo_nd6 * ln = (struct llinfo_nd6 *) malloc(_len_ln0*sizeof(struct llinfo_nd6));
+          for(int _i0 = 0; _i0 < _len_ln0; _i0++) {
+              ln[_i0].ln_expire = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ln_setexpire(ln,expiry);
+          free(ln);
+        
+        break;
+    }
     default:
         usage();
         break;

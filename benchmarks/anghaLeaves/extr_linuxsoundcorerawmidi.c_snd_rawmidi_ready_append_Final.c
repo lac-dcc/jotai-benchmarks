@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ __attribute__((used)) static inline int snd_rawmidi_ready_append(struct snd_rawm
 	       (!substream->append || runtime->avail >= count);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,21 +80,204 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           unsigned long count = 100;
+        
           int _len_substream0 = 1;
           struct snd_rawmidi_substream * substream = (struct snd_rawmidi_substream *) malloc(_len_substream0*sizeof(struct snd_rawmidi_substream));
           for(int _i0 = 0; _i0 < _len_substream0; _i0++) {
-            substream[_i0].append = ((-2 * (next_i()%2)) + 1) * next_i();
+              substream[_i0].append = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_substream__i0__runtime0 = 1;
           substream[_i0].runtime = (struct snd_rawmidi_runtime *) malloc(_len_substream__i0__runtime0*sizeof(struct snd_rawmidi_runtime));
           for(int _j0 = 0; _j0 < _len_substream__i0__runtime0; _j0++) {
-            substream[_i0].runtime->avail = ((-2 * (next_i()%2)) + 1) * next_i();
-        substream[_i0].runtime->avail_min = ((-2 * (next_i()%2)) + 1) * next_i();
+              substream[_i0].runtime->avail = ((-2 * (next_i()%2)) + 1) * next_i();
+          substream[_i0].runtime->avail_min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = snd_rawmidi_ready_append(substream,count);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_substream0; _aux++) {
+          free(substream[_aux].runtime);
+          }
+          free(substream);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          unsigned long count = 255;
+        
+          int _len_substream0 = 65025;
+          struct snd_rawmidi_substream * substream = (struct snd_rawmidi_substream *) malloc(_len_substream0*sizeof(struct snd_rawmidi_substream));
+          for(int _i0 = 0; _i0 < _len_substream0; _i0++) {
+              substream[_i0].append = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_substream__i0__runtime0 = 1;
+          substream[_i0].runtime = (struct snd_rawmidi_runtime *) malloc(_len_substream__i0__runtime0*sizeof(struct snd_rawmidi_runtime));
+          for(int _j0 = 0; _j0 < _len_substream__i0__runtime0; _j0++) {
+              substream[_i0].runtime->avail = ((-2 * (next_i()%2)) + 1) * next_i();
+          substream[_i0].runtime->avail_min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = snd_rawmidi_ready_append(substream,count);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_substream0; _aux++) {
+          free(substream[_aux].runtime);
+          }
+          free(substream);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          unsigned long count = 10;
+        
+          int _len_substream0 = 100;
+          struct snd_rawmidi_substream * substream = (struct snd_rawmidi_substream *) malloc(_len_substream0*sizeof(struct snd_rawmidi_substream));
+          for(int _i0 = 0; _i0 < _len_substream0; _i0++) {
+              substream[_i0].append = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_substream__i0__runtime0 = 1;
+          substream[_i0].runtime = (struct snd_rawmidi_runtime *) malloc(_len_substream__i0__runtime0*sizeof(struct snd_rawmidi_runtime));
+          for(int _j0 = 0; _j0 < _len_substream__i0__runtime0; _j0++) {
+              substream[_i0].runtime->avail = ((-2 * (next_i()%2)) + 1) * next_i();
+          substream[_i0].runtime->avail_min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = snd_rawmidi_ready_append(substream,count);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_substream0; _aux++) {
+          free(substream[_aux].runtime);
+          }
+          free(substream);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          unsigned long count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_substream0 = 1;
+          struct snd_rawmidi_substream * substream = (struct snd_rawmidi_substream *) malloc(_len_substream0*sizeof(struct snd_rawmidi_substream));
+          for(int _i0 = 0; _i0 < _len_substream0; _i0++) {
+              substream[_i0].append = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_substream__i0__runtime0 = 1;
+          substream[_i0].runtime = (struct snd_rawmidi_runtime *) malloc(_len_substream__i0__runtime0*sizeof(struct snd_rawmidi_runtime));
+          for(int _j0 = 0; _j0 < _len_substream__i0__runtime0; _j0++) {
+              substream[_i0].runtime->avail = ((-2 * (next_i()%2)) + 1) * next_i();
+          substream[_i0].runtime->avail_min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = snd_rawmidi_ready_append(substream,count);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_substream0; _aux++) {

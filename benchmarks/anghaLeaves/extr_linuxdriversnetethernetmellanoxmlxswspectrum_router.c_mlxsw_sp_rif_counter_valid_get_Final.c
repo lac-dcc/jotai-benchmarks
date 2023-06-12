@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ mlxsw_sp_rif_counter_valid_get(struct mlxsw_sp_rif *rif,
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,23 +85,63 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           enum mlxsw_sp_rif_counter_dir dir = 0;
-          int _len_rif0 = 1;
+        
+          int _len_rif0 = 65025;
           struct mlxsw_sp_rif * rif = (struct mlxsw_sp_rif *) malloc(_len_rif0*sizeof(struct mlxsw_sp_rif));
           for(int _i0 = 0; _i0 < _len_rif0; _i0++) {
-            rif[_i0].counter_egress_valid = ((-2 * (next_i()%2)) + 1) * next_i();
-        rif[_i0].counter_ingress_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+              rif[_i0].counter_egress_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          rif[_i0].counter_ingress_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mlxsw_sp_rif_counter_valid_get(rif,dir);
           printf("%d\n", benchRet); 
           free(rif);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          enum mlxsw_sp_rif_counter_dir dir = 0;
+        
+          int _len_rif0 = 100;
+          struct mlxsw_sp_rif * rif = (struct mlxsw_sp_rif *) malloc(_len_rif0*sizeof(struct mlxsw_sp_rif));
+          for(int _i0 = 0; _i0 < _len_rif0; _i0++) {
+              rif[_i0].counter_egress_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          rif[_i0].counter_ingress_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mlxsw_sp_rif_counter_valid_get(rif,dir);
+          printf("%d\n", benchRet); 
+          free(rif);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          enum mlxsw_sp_rif_counter_dir dir = 0;
+        
+          int _len_rif0 = 1;
+          struct mlxsw_sp_rif * rif = (struct mlxsw_sp_rif *) malloc(_len_rif0*sizeof(struct mlxsw_sp_rif));
+          for(int _i0 = 0; _i0 < _len_rif0; _i0++) {
+              rif[_i0].counter_egress_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          rif[_i0].counter_ingress_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mlxsw_sp_rif_counter_valid_get(rif,dir);
+          printf("%d\n", benchRet); 
+          free(rif);
+        
+        break;
+    }
     default:
         usage();
         break;

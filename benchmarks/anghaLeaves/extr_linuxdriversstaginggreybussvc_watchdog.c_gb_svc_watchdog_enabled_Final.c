@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ bool gb_svc_watchdog_enabled(struct gb_svc *svc)
 	return svc->watchdog->enabled;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,18 +78,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_svc0 = 1;
+          int _len_svc0 = 65025;
           struct gb_svc * svc = (struct gb_svc *) malloc(_len_svc0*sizeof(struct gb_svc));
           for(int _i0 = 0; _i0 < _len_svc0; _i0++) {
               int _len_svc__i0__watchdog0 = 1;
           svc[_i0].watchdog = (struct TYPE_2__ *) malloc(_len_svc__i0__watchdog0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_svc__i0__watchdog0; _j0++) {
-            svc[_i0].watchdog->enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+              svc[_i0].watchdog->enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = gb_svc_watchdog_enabled(svc);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_svc0; _aux++) {
@@ -103,7 +102,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_svc0 = 100;
+          struct gb_svc * svc = (struct gb_svc *) malloc(_len_svc0*sizeof(struct gb_svc));
+          for(int _i0 = 0; _i0 < _len_svc0; _i0++) {
+              int _len_svc__i0__watchdog0 = 1;
+          svc[_i0].watchdog = (struct TYPE_2__ *) malloc(_len_svc__i0__watchdog0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_svc__i0__watchdog0; _j0++) {
+              svc[_i0].watchdog->enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = gb_svc_watchdog_enabled(svc);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_svc0; _aux++) {
+          free(svc[_aux].watchdog);
+          }
+          free(svc);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_svc0 = 1;
+          struct gb_svc * svc = (struct gb_svc *) malloc(_len_svc0*sizeof(struct gb_svc));
+          for(int _i0 = 0; _i0 < _len_svc0; _i0++) {
+              int _len_svc__i0__watchdog0 = 1;
+          svc[_i0].watchdog = (struct TYPE_2__ *) malloc(_len_svc__i0__watchdog0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_svc__i0__watchdog0; _j0++) {
+              svc[_i0].watchdog->enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = gb_svc_watchdog_enabled(svc);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_svc0; _aux++) {
+          free(svc[_aux].watchdog);
+          }
+          free(svc);
+        
+        break;
+    }
     default:
         usage();
         break;

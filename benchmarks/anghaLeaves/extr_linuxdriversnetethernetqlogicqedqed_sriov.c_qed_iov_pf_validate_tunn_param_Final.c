@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ qed_iov_pf_validate_tunn_param(struct vfpf_update_tunn_param_tlv *p_req)
 	return b_update_requested;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,17 +81,128 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_p_req0 = 65025;
+          struct vfpf_update_tunn_param_tlv * p_req = (struct vfpf_update_tunn_param_tlv *) malloc(_len_p_req0*sizeof(struct vfpf_update_tunn_param_tlv));
+          for(int _i0 = 0; _i0 < _len_p_req0; _i0++) {
+              p_req[_i0].update_vxlan_port = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_req[_i0].update_geneve_port = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_req[_i0].update_tun_cls = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_req[_i0].tun_mode_update_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = qed_iov_pf_validate_tunn_param(p_req);
+          printf("%d\n", benchRet); 
+          free(p_req);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_p_req0 = 100;
+          struct vfpf_update_tunn_param_tlv * p_req = (struct vfpf_update_tunn_param_tlv *) malloc(_len_p_req0*sizeof(struct vfpf_update_tunn_param_tlv));
+          for(int _i0 = 0; _i0 < _len_p_req0; _i0++) {
+              p_req[_i0].update_vxlan_port = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_req[_i0].update_geneve_port = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_req[_i0].update_tun_cls = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_req[_i0].tun_mode_update_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = qed_iov_pf_validate_tunn_param(p_req);
+          printf("%d\n", benchRet); 
+          free(p_req);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_p_req0 = 1;
           struct vfpf_update_tunn_param_tlv * p_req = (struct vfpf_update_tunn_param_tlv *) malloc(_len_p_req0*sizeof(struct vfpf_update_tunn_param_tlv));
           for(int _i0 = 0; _i0 < _len_p_req0; _i0++) {
-            p_req[_i0].update_vxlan_port = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_req[_i0].update_geneve_port = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_req[_i0].update_tun_cls = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_req[_i0].tun_mode_update_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              p_req[_i0].update_vxlan_port = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_req[_i0].update_geneve_port = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_req[_i0].update_tun_cls = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_req[_i0].tun_mode_update_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = qed_iov_pf_validate_tunn_param(p_req);
           printf("%d\n", benchRet); 
           free(p_req);

@@ -66,12 +66,6 @@ __attribute__((used)) static uint64_t key_shift_left(uint64_t CDn)
     return CDn;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,6 +82,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int CDn = 100;
+        
           int benchRet = key_shift_left(CDn);
           printf("%d\n", benchRet); 
         
@@ -97,6 +92,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int CDn = 255;
+        
           int benchRet = key_shift_left(CDn);
           printf("%d\n", benchRet); 
         
@@ -106,12 +102,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int CDn = 10;
+        
           int benchRet = key_shift_left(CDn);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

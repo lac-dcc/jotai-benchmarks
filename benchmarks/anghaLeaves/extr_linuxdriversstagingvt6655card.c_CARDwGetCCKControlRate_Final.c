@@ -71,12 +71,6 @@ __attribute__((used)) static unsigned short CARDwGetCCKControlRate(struct vnt_pr
 	return (unsigned short)RATE_1M;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,18 +87,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned short wRateIdx = 10;
+        
           int _len_priv0 = 100;
           struct vnt_private * priv = (struct vnt_private *) malloc(_len_priv0*sizeof(struct vnt_private));
           for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
-            priv[_i0].basic_rates = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].basic_rates = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned short benchRet = CARDwGetCCKControlRate(priv,wRateIdx);
           printf("%hu\n", benchRet); 
           free(priv);
         
         break;
     }
-
     default:
         usage();
         break;

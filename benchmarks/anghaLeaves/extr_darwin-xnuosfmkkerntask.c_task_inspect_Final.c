@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -112,12 +114,6 @@ task_inspect(task_inspect_t task_insp, task_inspect_flavor_t flavor,
 #endif /* !MONOTONIC */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -130,34 +126,179 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int task_insp = 100;
+        
           int flavor = 100;
+        
           int info_out = 100;
+        
           int _len_size_in_out0 = 1;
           int * size_in_out = (int *) malloc(_len_size_in_out0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_size_in_out0; _i0++) {
             size_in_out[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = task_inspect(task_insp,flavor,info_out,size_in_out);
           printf("%d\n", benchRet); 
           free(size_in_out);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int task_insp = 255;
+        
+          int flavor = 255;
+        
+          int info_out = 255;
+        
+          int _len_size_in_out0 = 65025;
+          int * size_in_out = (int *) malloc(_len_size_in_out0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_size_in_out0; _i0++) {
+            size_in_out[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = task_inspect(task_insp,flavor,info_out,size_in_out);
+          printf("%d\n", benchRet); 
+          free(size_in_out);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int task_insp = 10;
+        
           int flavor = 10;
+        
           int info_out = 10;
+        
           int _len_size_in_out0 = 100;
           int * size_in_out = (int *) malloc(_len_size_in_out0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_size_in_out0; _i0++) {
             size_in_out[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = task_inspect(task_insp,flavor,info_out,size_in_out);
+          printf("%d\n", benchRet); 
+          free(size_in_out);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int task_insp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int flavor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int info_out = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_size_in_out0 = 1;
+          int * size_in_out = (int *) malloc(_len_size_in_out0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_size_in_out0; _i0++) {
+            size_in_out[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = task_inspect(task_insp,flavor,info_out,size_in_out);
           printf("%d\n", benchRet); 
           free(size_in_out);

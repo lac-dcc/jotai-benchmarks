@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +79,6 @@ xsltSetCtxtParseOptions(xsltTransformContextPtr ctxt, int options)
     return(oldopts);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,19 +95,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int options = 100;
+        
           int _len_ctxt0 = 1;
           struct TYPE_3__ * ctxt = (struct TYPE_3__ *) malloc(_len_ctxt0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_ctxt0; _i0++) {
-            ctxt[_i0].parserOptions = ((-2 * (next_i()%2)) + 1) * next_i();
-        ctxt[_i0].xinclude = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctxt[_i0].parserOptions = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctxt[_i0].xinclude = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = xsltSetCtxtParseOptions(ctxt,options);
           printf("%d\n", benchRet); 
           free(ctxt);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int options = 255;
+        
+          int _len_ctxt0 = 65025;
+          struct TYPE_3__ * ctxt = (struct TYPE_3__ *) malloc(_len_ctxt0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ctxt0; _i0++) {
+              ctxt[_i0].parserOptions = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctxt[_i0].xinclude = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = xsltSetCtxtParseOptions(ctxt,options);
+          printf("%d\n", benchRet); 
+          free(ctxt);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int options = 10;
+        
+          int _len_ctxt0 = 100;
+          struct TYPE_3__ * ctxt = (struct TYPE_3__ *) malloc(_len_ctxt0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ctxt0; _i0++) {
+              ctxt[_i0].parserOptions = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctxt[_i0].xinclude = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = xsltSetCtxtParseOptions(ctxt,options);
+          printf("%d\n", benchRet); 
+          free(ctxt);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int options = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ctxt0 = 1;
+          struct TYPE_3__ * ctxt = (struct TYPE_3__ *) malloc(_len_ctxt0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ctxt0; _i0++) {
+              ctxt[_i0].parserOptions = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctxt[_i0].xinclude = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = xsltSetCtxtParseOptions(ctxt,options);
+          printf("%d\n", benchRet); 
+          free(ctxt);
+        
+        break;
+    }
     default:
         usage();
         break;

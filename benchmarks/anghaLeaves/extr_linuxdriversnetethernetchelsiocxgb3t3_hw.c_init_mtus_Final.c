@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -79,12 +80,6 @@ __attribute__((used)) static void init_mtus(unsigned short mtus[])
 	mtus[15] = 9600;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,20 +92,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
+    {
+          int _len_mtus0 = 65025;
+          unsigned short * mtus = (unsigned short *) malloc(_len_mtus0*sizeof(unsigned short));
+          for(int _i0 = 0; _i0 < _len_mtus0; _i0++) {
+            mtus[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          init_mtus(mtus);
+          free(mtus);
+        
+        break;
+    }
+    // big-arr-10x
+    case 1:
     {
           int _len_mtus0 = 100;
           unsigned short * mtus = (unsigned short *) malloc(_len_mtus0*sizeof(unsigned short));
           for(int _i0 = 0; _i0 < _len_mtus0; _i0++) {
             mtus[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           init_mtus(mtus);
           free(mtus);
         
         break;
     }
-
     default:
         usage();
         break;

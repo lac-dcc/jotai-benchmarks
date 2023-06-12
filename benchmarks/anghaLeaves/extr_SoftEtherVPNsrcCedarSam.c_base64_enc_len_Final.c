@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ int base64_enc_len(unsigned int plainLen) {
 	return (n + 2 - ((n + 2) % 3)) / 3 * 4;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,6 +78,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int plainLen = 100;
+        
           int benchRet = base64_enc_len(plainLen);
           printf("%d\n", benchRet); 
         
@@ -92,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int plainLen = 255;
+        
           int benchRet = base64_enc_len(plainLen);
           printf("%d\n", benchRet); 
         
@@ -101,12 +98,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int plainLen = 10;
+        
           int benchRet = base64_enc_len(plainLen);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int plainLen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = base64_enc_len(plainLen);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

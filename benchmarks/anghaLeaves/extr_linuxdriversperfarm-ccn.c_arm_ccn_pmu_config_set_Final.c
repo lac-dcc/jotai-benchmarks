@@ -63,12 +63,6 @@ __attribute__((used)) static void arm_ccn_pmu_config_set(u64 *config, u32 node_x
 	*config |= (node_xp << 0) | (type << 8) | (port << 24);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,33 +75,88 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int node_xp = 100;
+        
           int type = 100;
+        
           int port = 100;
+        
           int _len_config0 = 1;
           int * config = (int *) malloc(_len_config0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_config0; _i0++) {
             config[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           arm_ccn_pmu_config_set(config,node_xp,type,port);
           free(config);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int node_xp = 10;
+        
           int type = 10;
+        
           int port = 10;
+        
           int _len_config0 = 100;
           int * config = (int *) malloc(_len_config0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_config0; _i0++) {
             config[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           arm_ccn_pmu_config_set(config,node_xp,type,port);
           free(config);
         

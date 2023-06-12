@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ des_init_local(struct php_crypt_extended_data *data)
 	data->initialized = 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,24 +79,63 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_data0 = 1;
+          int _len_data0 = 65025;
           struct php_crypt_extended_data * data = (struct php_crypt_extended_data *) malloc(_len_data0*sizeof(struct php_crypt_extended_data));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
-            data[_i0].initialized = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].old_salt = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].saltbits = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].old_rawkey1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].old_rawkey0 = ((-2 * (next_i()%2)) + 1) * next_i();
+              data[_i0].initialized = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].old_salt = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].saltbits = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].old_rawkey1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].old_rawkey0 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           des_init_local(data);
           free(data);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_data0 = 100;
+          struct php_crypt_extended_data * data = (struct php_crypt_extended_data *) malloc(_len_data0*sizeof(struct php_crypt_extended_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].initialized = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].old_salt = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].saltbits = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].old_rawkey1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].old_rawkey0 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          des_init_local(data);
+          free(data);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_data0 = 1;
+          struct php_crypt_extended_data * data = (struct php_crypt_extended_data *) malloc(_len_data0*sizeof(struct php_crypt_extended_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].initialized = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].old_salt = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].saltbits = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].old_rawkey1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].old_rawkey0 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          des_init_local(data);
+          free(data);
+        
+        break;
+    }
     default:
         usage();
         break;

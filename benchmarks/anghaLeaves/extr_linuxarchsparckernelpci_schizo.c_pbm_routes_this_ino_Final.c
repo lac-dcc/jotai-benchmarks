@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static int pbm_routes_this_ino(struct pci_pbm_info *pbm, u
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,11 +86,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long ino = 100;
+        
           int _len_pbm0 = 1;
           struct pci_pbm_info * pbm = (struct pci_pbm_info *) malloc(_len_pbm0*sizeof(struct pci_pbm_info));
           for(int _i0 = 0; _i0 < _len_pbm0; _i0++) {
-            pbm[_i0].ino_bitmap = ((-2 * (next_i()%2)) + 1) * next_i();
+              pbm[_i0].ino_bitmap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = pbm_routes_this_ino(pbm,ino);
+          printf("%d\n", benchRet); 
+          free(pbm);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned long ino = 255;
+        
+          int _len_pbm0 = 65025;
+          struct pci_pbm_info * pbm = (struct pci_pbm_info *) malloc(_len_pbm0*sizeof(struct pci_pbm_info));
+          for(int _i0 = 0; _i0 < _len_pbm0; _i0++) {
+              pbm[_i0].ino_bitmap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = pbm_routes_this_ino(pbm,ino);
           printf("%d\n", benchRet); 
           free(pbm);
@@ -102,21 +119,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned long ino = 10;
+        
           int _len_pbm0 = 100;
           struct pci_pbm_info * pbm = (struct pci_pbm_info *) malloc(_len_pbm0*sizeof(struct pci_pbm_info));
           for(int _i0 = 0; _i0 < _len_pbm0; _i0++) {
-            pbm[_i0].ino_bitmap = ((-2 * (next_i()%2)) + 1) * next_i();
+              pbm[_i0].ino_bitmap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = pbm_routes_this_ino(pbm,ino);
           printf("%d\n", benchRet); 
           free(pbm);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long ino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pbm0 = 1;
+          struct pci_pbm_info * pbm = (struct pci_pbm_info *) malloc(_len_pbm0*sizeof(struct pci_pbm_info));
+          for(int _i0 = 0; _i0 < _len_pbm0; _i0++) {
+              pbm[_i0].ino_bitmap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pbm_routes_this_ino(pbm,ino);
+          printf("%d\n", benchRet); 
+          free(pbm);
+        
+        break;
+    }
     default:
         usage();
         break;

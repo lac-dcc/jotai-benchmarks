@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static qboolean IQM_CheckRange( iqmHeader_t *header, int o
 		 offset + count * size > header->filesize );
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,13 +88,40 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int offset = 100;
+        
           int count = 100;
+        
           int size = 100;
+        
           int _len_header0 = 1;
           struct TYPE_3__ * header = (struct TYPE_3__ *) malloc(_len_header0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_header0; _i0++) {
-            header[_i0].filesize = ((-2 * (next_i()%2)) + 1) * next_i();
+              header[_i0].filesize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = IQM_CheckRange(header,offset,count,size);
+          printf("%d\n", benchRet); 
+          free(header);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int offset = 255;
+        
+          int count = 255;
+        
+          int size = 255;
+        
+          int _len_header0 = 65025;
+          struct TYPE_3__ * header = (struct TYPE_3__ *) malloc(_len_header0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_header0; _i0++) {
+              header[_i0].filesize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = IQM_CheckRange(header,offset,count,size);
           printf("%d\n", benchRet); 
           free(header);
@@ -106,23 +129,49 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int offset = 10;
+        
           int count = 10;
+        
           int size = 10;
+        
           int _len_header0 = 100;
           struct TYPE_3__ * header = (struct TYPE_3__ *) malloc(_len_header0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_header0; _i0++) {
-            header[_i0].filesize = ((-2 * (next_i()%2)) + 1) * next_i();
+              header[_i0].filesize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = IQM_CheckRange(header,offset,count,size);
           printf("%d\n", benchRet); 
           free(header);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_header0 = 1;
+          struct TYPE_3__ * header = (struct TYPE_3__ *) malloc(_len_header0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_header0; _i0++) {
+              header[_i0].filesize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = IQM_CheckRange(header,offset,count,size);
+          printf("%d\n", benchRet); 
+          free(header);
+        
+        break;
+    }
     default:
         usage();
         break;

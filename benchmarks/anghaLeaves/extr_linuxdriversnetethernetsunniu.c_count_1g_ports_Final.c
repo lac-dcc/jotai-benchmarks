@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static int count_1g_ports(struct phy_probe_info *p, int *l
 	return p->cur[PHY_TYPE_MII];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,9 +79,166 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_p0 = 65025;
+          struct phy_probe_info * p = (struct phy_probe_info *) malloc(_len_p0*sizeof(struct phy_probe_info));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              int _len_p__i0__cur0 = 1;
+          p[_i0].cur = (int *) malloc(_len_p__i0__cur0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_p__i0__cur0; _j0++) {
+            p[_i0].cur[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_p__i0__phy_port0 = 1;
+          p[_i0].phy_port = (int **) malloc(_len_p__i0__phy_port0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_p__i0__phy_port0; _j0++) {
+            int _len_p__i0__phy_port1 = 1;
+            p[_i0].phy_port[_j0] = (int *) malloc(_len_p__i0__phy_port1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_p__i0__phy_port1; _j1++) {
+              p[_i0].phy_port[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          }
+        
+          int _len_lowest0 = 65025;
+          int * lowest = (int *) malloc(_len_lowest0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_lowest0; _i0++) {
+            lowest[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = count_1g_ports(p,lowest);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_p0; _aux++) {
+          free(p[_aux].cur);
+          }
+          for(int _aux = 0; _aux < _len_p0; _aux++) {
+          free(*(p[_aux].phy_port));
+        free(p[_aux].phy_port);
+          }
+          free(p);
+          free(lowest);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_p0 = 100;
+          struct phy_probe_info * p = (struct phy_probe_info *) malloc(_len_p0*sizeof(struct phy_probe_info));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              int _len_p__i0__cur0 = 1;
+          p[_i0].cur = (int *) malloc(_len_p__i0__cur0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_p__i0__cur0; _j0++) {
+            p[_i0].cur[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_p__i0__phy_port0 = 1;
+          p[_i0].phy_port = (int **) malloc(_len_p__i0__phy_port0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_p__i0__phy_port0; _j0++) {
+            int _len_p__i0__phy_port1 = 1;
+            p[_i0].phy_port[_j0] = (int *) malloc(_len_p__i0__phy_port1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_p__i0__phy_port1; _j1++) {
+              p[_i0].phy_port[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          }
+        
+          int _len_lowest0 = 100;
+          int * lowest = (int *) malloc(_len_lowest0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_lowest0; _i0++) {
+            lowest[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = count_1g_ports(p,lowest);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_p0; _aux++) {
+          free(p[_aux].cur);
+          }
+          for(int _aux = 0; _aux < _len_p0; _aux++) {
+          free(*(p[_aux].phy_port));
+        free(p[_aux].phy_port);
+          }
+          free(p);
+          free(lowest);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int _len_p0 = 1;
           struct phy_probe_info * p = (struct phy_probe_info *) malloc(_len_p0*sizeof(struct phy_probe_info));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
@@ -103,12 +256,15 @@ int main(int argc, char *argv[]) {
               p[_i0].phy_port[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           }
+        
           int _len_lowest0 = 1;
           int * lowest = (int *) malloc(_len_lowest0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_lowest0; _i0++) {
             lowest[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = count_1g_ports(p,lowest);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_p0; _aux++) {

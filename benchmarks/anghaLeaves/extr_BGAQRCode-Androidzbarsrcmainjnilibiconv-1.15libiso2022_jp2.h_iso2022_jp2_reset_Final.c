@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -84,12 +87,6 @@ iso2022_jp2_reset (conv_t conv, unsigned char *r, size_t n)
     return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,20 +99,194 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           unsigned long n = 100;
+        
           int _len_conv0 = 1;
           struct TYPE_3__ * conv = (struct TYPE_3__ *) malloc(_len_conv0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_conv0; _i0++) {
-            conv[_i0].ostate = ((-2 * (next_i()%2)) + 1) * next_i();
+              conv[_i0].ostate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_r0 = 1;
           unsigned char * r = (unsigned char *) malloc(_len_r0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_r0; _i0++) {
             r[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = iso2022_jp2_reset(conv,r,n);
+          printf("%d\n", benchRet); 
+          free(conv);
+          free(r);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          unsigned long n = 255;
+        
+          int _len_conv0 = 65025;
+          struct TYPE_3__ * conv = (struct TYPE_3__ *) malloc(_len_conv0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_conv0; _i0++) {
+              conv[_i0].ostate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_r0 = 65025;
+          unsigned char * r = (unsigned char *) malloc(_len_r0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+            r[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = iso2022_jp2_reset(conv,r,n);
+          printf("%d\n", benchRet); 
+          free(conv);
+          free(r);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          unsigned long n = 10;
+        
+          int _len_conv0 = 100;
+          struct TYPE_3__ * conv = (struct TYPE_3__ *) malloc(_len_conv0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_conv0; _i0++) {
+              conv[_i0].ostate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_r0 = 100;
+          unsigned char * r = (unsigned char *) malloc(_len_r0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+            r[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = iso2022_jp2_reset(conv,r,n);
+          printf("%d\n", benchRet); 
+          free(conv);
+          free(r);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          unsigned long n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_conv0 = 1;
+          struct TYPE_3__ * conv = (struct TYPE_3__ *) malloc(_len_conv0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_conv0; _i0++) {
+              conv[_i0].ostate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_r0 = 1;
+          unsigned char * r = (unsigned char *) malloc(_len_r0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+            r[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = iso2022_jp2_reset(conv,r,n);
           printf("%d\n", benchRet); 
           free(conv);

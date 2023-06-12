@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static inline char *ikcp_encode16u(char *p, unsigned short
 	return p;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,22 +79,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          unsigned short w = 10;
-          int _len_p0 = 100;
+          unsigned short w = 255;
+        
+          int _len_p0 = 65025;
           char * p = (char *) malloc(_len_p0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
             p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           char * benchRet = ikcp_encode16u(p,w);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(p);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          unsigned short w = 10;
+        
+          int _len_p0 = 100;
+          char * p = (char *) malloc(_len_p0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+            p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          char * benchRet = ikcp_encode16u(p,w);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          free(p);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ unsigned pcapfile_percentdone(struct PcapFile *capfile, uint64_t *r_bytes_read)
     return (unsigned)(capfile->bytes_read*100/capfile->file_size);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,25 +80,163 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_capfile0 = 1;
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_capfile0 = 65025;
           struct PcapFile * capfile = (struct PcapFile *) malloc(_len_capfile0*sizeof(struct PcapFile));
           for(int _i0 = 0; _i0 < _len_capfile0; _i0++) {
-            capfile[_i0].bytes_read = ((-2 * (next_i()%2)) + 1) * next_i();
-        capfile[_i0].file_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              capfile[_i0].bytes_read = ((-2 * (next_i()%2)) + 1) * next_i();
+          capfile[_i0].file_size = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_capfile__i0__fp0 = 1;
           capfile[_i0].fp = (int *) malloc(_len_capfile__i0__fp0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_capfile__i0__fp0; _j0++) {
             capfile[_i0].fp[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int _len_r_bytes_read0 = 65025;
+          int * r_bytes_read = (int *) malloc(_len_r_bytes_read0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_r_bytes_read0; _i0++) {
+            r_bytes_read[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned int benchRet = pcapfile_percentdone(capfile,r_bytes_read);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_capfile0; _aux++) {
+          free(capfile[_aux].fp);
+          }
+          free(capfile);
+          free(r_bytes_read);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_capfile0 = 100;
+          struct PcapFile * capfile = (struct PcapFile *) malloc(_len_capfile0*sizeof(struct PcapFile));
+          for(int _i0 = 0; _i0 < _len_capfile0; _i0++) {
+              capfile[_i0].bytes_read = ((-2 * (next_i()%2)) + 1) * next_i();
+          capfile[_i0].file_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_capfile__i0__fp0 = 1;
+          capfile[_i0].fp = (int *) malloc(_len_capfile__i0__fp0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_capfile__i0__fp0; _j0++) {
+            capfile[_i0].fp[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_r_bytes_read0 = 100;
+          int * r_bytes_read = (int *) malloc(_len_r_bytes_read0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_r_bytes_read0; _i0++) {
+            r_bytes_read[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned int benchRet = pcapfile_percentdone(capfile,r_bytes_read);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_capfile0; _aux++) {
+          free(capfile[_aux].fp);
+          }
+          free(capfile);
+          free(r_bytes_read);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_capfile0 = 1;
+          struct PcapFile * capfile = (struct PcapFile *) malloc(_len_capfile0*sizeof(struct PcapFile));
+          for(int _i0 = 0; _i0 < _len_capfile0; _i0++) {
+              capfile[_i0].bytes_read = ((-2 * (next_i()%2)) + 1) * next_i();
+          capfile[_i0].file_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_capfile__i0__fp0 = 1;
+          capfile[_i0].fp = (int *) malloc(_len_capfile__i0__fp0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_capfile__i0__fp0; _j0++) {
+            capfile[_i0].fp[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int _len_r_bytes_read0 = 1;
           int * r_bytes_read = (int *) malloc(_len_r_bytes_read0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_r_bytes_read0; _i0++) {
             r_bytes_read[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned int benchRet = pcapfile_percentdone(capfile,r_bytes_read);
           printf("%u\n", benchRet); 
           for(int _aux = 0; _aux < _len_capfile0; _aux++) {

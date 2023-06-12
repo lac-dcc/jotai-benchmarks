@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +74,6 @@ __attribute__((used)) static unsigned int ad5360_get_channel_vref_index(struct a
 	return i;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,20 +86,200 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           unsigned int channel = 100;
+        
           int _len_st0 = 1;
           struct ad5360_state * st = (struct ad5360_state *) malloc(_len_st0*sizeof(struct ad5360_state));
           for(int _i0 = 0; _i0 < _len_st0; _i0++) {
               int _len_st__i0__chip_info0 = 1;
           st[_i0].chip_info = (struct TYPE_2__ *) malloc(_len_st__i0__chip_info0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_st__i0__chip_info0; _j0++) {
-            st[_i0].chip_info->channels_per_group = ((-2 * (next_i()%2)) + 1) * next_i();
-        st[_i0].chip_info->num_vrefs = ((-2 * (next_i()%2)) + 1) * next_i();
+              st[_i0].chip_info->channels_per_group = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].chip_info->num_vrefs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          unsigned int benchRet = ad5360_get_channel_vref_index(st,channel);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_st0; _aux++) {
+          free(st[_aux].chip_info);
+          }
+          free(st);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          unsigned int channel = 255;
+        
+          int _len_st0 = 65025;
+          struct ad5360_state * st = (struct ad5360_state *) malloc(_len_st0*sizeof(struct ad5360_state));
+          for(int _i0 = 0; _i0 < _len_st0; _i0++) {
+              int _len_st__i0__chip_info0 = 1;
+          st[_i0].chip_info = (struct TYPE_2__ *) malloc(_len_st__i0__chip_info0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_st__i0__chip_info0; _j0++) {
+              st[_i0].chip_info->channels_per_group = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].chip_info->num_vrefs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = ad5360_get_channel_vref_index(st,channel);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_st0; _aux++) {
+          free(st[_aux].chip_info);
+          }
+          free(st);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          unsigned int channel = 10;
+        
+          int _len_st0 = 100;
+          struct ad5360_state * st = (struct ad5360_state *) malloc(_len_st0*sizeof(struct ad5360_state));
+          for(int _i0 = 0; _i0 < _len_st0; _i0++) {
+              int _len_st__i0__chip_info0 = 1;
+          st[_i0].chip_info = (struct TYPE_2__ *) malloc(_len_st__i0__chip_info0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_st__i0__chip_info0; _j0++) {
+              st[_i0].chip_info->channels_per_group = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].chip_info->num_vrefs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = ad5360_get_channel_vref_index(st,channel);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_st0; _aux++) {
+          free(st[_aux].chip_info);
+          }
+          free(st);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          unsigned int channel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_st0 = 1;
+          struct ad5360_state * st = (struct ad5360_state *) malloc(_len_st0*sizeof(struct ad5360_state));
+          for(int _i0 = 0; _i0 < _len_st0; _i0++) {
+              int _len_st__i0__chip_info0 = 1;
+          st[_i0].chip_info = (struct TYPE_2__ *) malloc(_len_st__i0__chip_info0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_st__i0__chip_info0; _j0++) {
+              st[_i0].chip_info->channels_per_group = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].chip_info->num_vrefs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           unsigned int benchRet = ad5360_get_channel_vref_index(st,channel);
           printf("%u\n", benchRet); 
           for(int _aux = 0; _aux < _len_st0; _aux++) {

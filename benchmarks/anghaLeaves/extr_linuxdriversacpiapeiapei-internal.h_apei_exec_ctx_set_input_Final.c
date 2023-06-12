@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline void apei_exec_ctx_set_input(struct apei_exe
 	ctx->value = input;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,31 +81,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int input = 100;
+        
           int _len_ctx0 = 1;
           struct apei_exec_context * ctx = (struct apei_exec_context *) malloc(_len_ctx0*sizeof(struct apei_exec_context));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
-            ctx[_i0].value = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctx[_i0].value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          apei_exec_ctx_set_input(ctx,input);
+          free(ctx);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int input = 255;
+        
+          int _len_ctx0 = 65025;
+          struct apei_exec_context * ctx = (struct apei_exec_context *) malloc(_len_ctx0*sizeof(struct apei_exec_context));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           apei_exec_ctx_set_input(ctx,input);
           free(ctx);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int input = 10;
+        
           int _len_ctx0 = 100;
           struct apei_exec_context * ctx = (struct apei_exec_context *) malloc(_len_ctx0*sizeof(struct apei_exec_context));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
-            ctx[_i0].value = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctx[_i0].value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           apei_exec_ctx_set_input(ctx,input);
           free(ctx);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int input = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ctx0 = 1;
+          struct apei_exec_context * ctx = (struct apei_exec_context *) malloc(_len_ctx0*sizeof(struct apei_exec_context));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          apei_exec_ctx_set_input(ctx,input);
+          free(ctx);
+        
+        break;
+    }
     default:
         usage();
         break;

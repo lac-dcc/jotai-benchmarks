@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static void fcgi_signal_handler(int signo)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,6 +83,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int signo = 100;
+        
           fcgi_signal_handler(signo);
         
         break;
@@ -96,6 +92,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int signo = 255;
+        
           fcgi_signal_handler(signo);
         
         break;
@@ -104,11 +101,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int signo = 10;
+        
           fcgi_signal_handler(signo);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int signo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          fcgi_signal_handler(signo);
+        
+        break;
+    }
     default:
         usage();
         break;

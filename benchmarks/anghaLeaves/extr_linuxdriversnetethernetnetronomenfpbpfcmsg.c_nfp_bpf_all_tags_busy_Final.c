@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static bool nfp_bpf_all_tags_busy(struct nfp_app_bpf *bpf)
 	return used_tags > NFP_BPF_TAG_ALLOC_SPAN;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,22 +80,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_bpf0 = 1;
+          int _len_bpf0 = 65025;
           struct nfp_app_bpf * bpf = (struct nfp_app_bpf *) malloc(_len_bpf0*sizeof(struct nfp_app_bpf));
           for(int _i0 = 0; _i0 < _len_bpf0; _i0++) {
-            bpf[_i0].tag_alloc_next = ((-2 * (next_i()%2)) + 1) * next_i();
-        bpf[_i0].tag_alloc_last = ((-2 * (next_i()%2)) + 1) * next_i();
+              bpf[_i0].tag_alloc_next = ((-2 * (next_i()%2)) + 1) * next_i();
+          bpf[_i0].tag_alloc_last = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = nfp_bpf_all_tags_busy(bpf);
           printf("%d\n", benchRet); 
           free(bpf);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_bpf0 = 100;
+          struct nfp_app_bpf * bpf = (struct nfp_app_bpf *) malloc(_len_bpf0*sizeof(struct nfp_app_bpf));
+          for(int _i0 = 0; _i0 < _len_bpf0; _i0++) {
+              bpf[_i0].tag_alloc_next = ((-2 * (next_i()%2)) + 1) * next_i();
+          bpf[_i0].tag_alloc_last = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nfp_bpf_all_tags_busy(bpf);
+          printf("%d\n", benchRet); 
+          free(bpf);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_bpf0 = 1;
+          struct nfp_app_bpf * bpf = (struct nfp_app_bpf *) malloc(_len_bpf0*sizeof(struct nfp_app_bpf));
+          for(int _i0 = 0; _i0 < _len_bpf0; _i0++) {
+              bpf[_i0].tag_alloc_next = ((-2 * (next_i()%2)) + 1) * next_i();
+          bpf[_i0].tag_alloc_last = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nfp_bpf_all_tags_busy(bpf);
+          printf("%d\n", benchRet); 
+          free(bpf);
+        
+        break;
+    }
     default:
         usage();
         break;

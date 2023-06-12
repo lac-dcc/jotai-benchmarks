@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ struct list_head *vmw_binding_state_list(struct vmw_ctx_binding_state *cbs)
 	return &cbs->list;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,28 +75,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_cbs0 = 1;
+          // static_instructions_O0 : 6
+          // dynamic_instructions_O0 : 6
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_cbs0 = 65025;
           struct vmw_ctx_binding_state * cbs = (struct vmw_ctx_binding_state *) malloc(_len_cbs0*sizeof(struct vmw_ctx_binding_state));
           for(int _i0 = 0; _i0 < _len_cbs0; _i0++) {
-            cbs[_i0].list.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              cbs[_i0].list.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           struct list_head * benchRet = vmw_binding_state_list(cbs);
           printf("%d\n", (*benchRet).dummy);
           free(cbs);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 6
+          // dynamic_instructions_O0 : 6
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_cbs0 = 100;
           struct vmw_ctx_binding_state * cbs = (struct vmw_ctx_binding_state *) malloc(_len_cbs0*sizeof(struct vmw_ctx_binding_state));
           for(int _i0 = 0; _i0 < _len_cbs0; _i0++) {
-            cbs[_i0].list.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              cbs[_i0].list.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          struct list_head * benchRet = vmw_binding_state_list(cbs);
+          printf("%d\n", (*benchRet).dummy);
+          free(cbs);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 6
+          // dynamic_instructions_O0 : 6
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_cbs0 = 1;
+          struct vmw_ctx_binding_state * cbs = (struct vmw_ctx_binding_state *) malloc(_len_cbs0*sizeof(struct vmw_ctx_binding_state));
+          for(int _i0 = 0; _i0 < _len_cbs0; _i0++) {
+              cbs[_i0].list.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           struct list_head * benchRet = vmw_binding_state_list(cbs);
           printf("%d\n", (*benchRet).dummy);
           free(cbs);

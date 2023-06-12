@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ __attribute__((used)) static BOOL d3drm_validate_image(D3DRMIMAGE *image)
     return TRUE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,27 +89,72 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_image0 = 1;
+          int _len_image0 = 65025;
           struct TYPE_3__ * image = (struct TYPE_3__ *) malloc(_len_image0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_image0; _i0++) {
-            image[_i0].palette_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        image[_i0].palette = ((-2 * (next_i()%2)) + 1) * next_i();
-        image[_i0].rgb = ((-2 * (next_i()%2)) + 1) * next_i();
-        image[_i0].buffer1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        image[_i0].blue_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        image[_i0].green_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        image[_i0].red_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              image[_i0].palette_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].palette = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].rgb = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].buffer1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].blue_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].green_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].red_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = d3drm_validate_image(image);
           printf("%d\n", benchRet); 
           free(image);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_image0 = 100;
+          struct TYPE_3__ * image = (struct TYPE_3__ *) malloc(_len_image0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_image0; _i0++) {
+              image[_i0].palette_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].palette = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].rgb = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].buffer1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].blue_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].green_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].red_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = d3drm_validate_image(image);
+          printf("%d\n", benchRet); 
+          free(image);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_image0 = 1;
+          struct TYPE_3__ * image = (struct TYPE_3__ *) malloc(_len_image0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_image0; _i0++) {
+              image[_i0].palette_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].palette = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].rgb = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].buffer1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].blue_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].green_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].red_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = d3drm_validate_image(image);
+          printf("%d\n", benchRet); 
+          free(image);
+        
+        break;
+    }
     default:
         usage();
         break;

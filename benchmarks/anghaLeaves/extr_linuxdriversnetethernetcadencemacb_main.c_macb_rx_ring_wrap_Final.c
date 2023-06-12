@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static unsigned int macb_rx_ring_wrap(struct macb *bp, uns
 	return index & (bp->rx_ring_size - 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,30 +75,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           unsigned int index = 100;
+        
           int _len_bp0 = 1;
           struct macb * bp = (struct macb *) malloc(_len_bp0*sizeof(struct macb));
           for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
-            bp[_i0].rx_ring_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              bp[_i0].rx_ring_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = macb_rx_ring_wrap(bp,index);
           printf("%u\n", benchRet); 
           free(bp);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          unsigned int index = 255;
+        
+          int _len_bp0 = 65025;
+          struct macb * bp = (struct macb *) malloc(_len_bp0*sizeof(struct macb));
+          for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
+              bp[_i0].rx_ring_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = macb_rx_ring_wrap(bp,index);
+          printf("%u\n", benchRet); 
+          free(bp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           unsigned int index = 10;
+        
           int _len_bp0 = 100;
           struct macb * bp = (struct macb *) malloc(_len_bp0*sizeof(struct macb));
           for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
-            bp[_i0].rx_ring_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              bp[_i0].rx_ring_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          unsigned int benchRet = macb_rx_ring_wrap(bp,index);
+          printf("%u\n", benchRet); 
+          free(bp);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          unsigned int index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_bp0 = 1;
+          struct macb * bp = (struct macb *) malloc(_len_bp0*sizeof(struct macb));
+          for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
+              bp[_i0].rx_ring_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           unsigned int benchRet = macb_rx_ring_wrap(bp,index);
           printf("%u\n", benchRet); 
           free(bp);

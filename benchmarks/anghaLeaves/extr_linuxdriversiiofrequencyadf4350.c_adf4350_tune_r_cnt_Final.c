@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ __attribute__((used)) static int adf4350_tune_r_cnt(struct adf4350_state *st, un
 	return r_cnt;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,22 +85,208 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
           unsigned short r_cnt = 100;
+        
           int _len_st0 = 1;
           struct adf4350_state * st = (struct adf4350_state *) malloc(_len_st0*sizeof(struct adf4350_state));
           for(int _i0 = 0; _i0 < _len_st0; _i0++) {
-            st[_i0].fpfd = ((-2 * (next_i()%2)) + 1) * next_i();
-        st[_i0].clkin = ((-2 * (next_i()%2)) + 1) * next_i();
+              st[_i0].fpfd = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].clkin = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_st__i0__pdata0 = 1;
           st[_i0].pdata = (struct adf4350_platform_data *) malloc(_len_st__i0__pdata0*sizeof(struct adf4350_platform_data));
           for(int _j0 = 0; _j0 < _len_st__i0__pdata0; _j0++) {
-            st[_i0].pdata->ref_div2_en = ((-2 * (next_i()%2)) + 1) * next_i();
-        st[_i0].pdata->ref_doubler_en = ((-2 * (next_i()%2)) + 1) * next_i();
+              st[_i0].pdata->ref_div2_en = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].pdata->ref_doubler_en = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = adf4350_tune_r_cnt(st,r_cnt);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_st0; _aux++) {
+          free(st[_aux].pdata);
+          }
+          free(st);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
+          unsigned short r_cnt = 255;
+        
+          int _len_st0 = 65025;
+          struct adf4350_state * st = (struct adf4350_state *) malloc(_len_st0*sizeof(struct adf4350_state));
+          for(int _i0 = 0; _i0 < _len_st0; _i0++) {
+              st[_i0].fpfd = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].clkin = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_st__i0__pdata0 = 1;
+          st[_i0].pdata = (struct adf4350_platform_data *) malloc(_len_st__i0__pdata0*sizeof(struct adf4350_platform_data));
+          for(int _j0 = 0; _j0 < _len_st__i0__pdata0; _j0++) {
+              st[_i0].pdata->ref_div2_en = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].pdata->ref_doubler_en = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = adf4350_tune_r_cnt(st,r_cnt);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_st0; _aux++) {
+          free(st[_aux].pdata);
+          }
+          free(st);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
+          unsigned short r_cnt = 10;
+        
+          int _len_st0 = 100;
+          struct adf4350_state * st = (struct adf4350_state *) malloc(_len_st0*sizeof(struct adf4350_state));
+          for(int _i0 = 0; _i0 < _len_st0; _i0++) {
+              st[_i0].fpfd = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].clkin = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_st__i0__pdata0 = 1;
+          st[_i0].pdata = (struct adf4350_platform_data *) malloc(_len_st__i0__pdata0*sizeof(struct adf4350_platform_data));
+          for(int _j0 = 0; _j0 < _len_st__i0__pdata0; _j0++) {
+              st[_i0].pdata->ref_div2_en = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].pdata->ref_doubler_en = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = adf4350_tune_r_cnt(st,r_cnt);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_st0; _aux++) {
+          free(st[_aux].pdata);
+          }
+          free(st);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
+          unsigned short r_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_st0 = 1;
+          struct adf4350_state * st = (struct adf4350_state *) malloc(_len_st0*sizeof(struct adf4350_state));
+          for(int _i0 = 0; _i0 < _len_st0; _i0++) {
+              st[_i0].fpfd = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].clkin = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_st__i0__pdata0 = 1;
+          st[_i0].pdata = (struct adf4350_platform_data *) malloc(_len_st__i0__pdata0*sizeof(struct adf4350_platform_data));
+          for(int _j0 = 0; _j0 < _len_st__i0__pdata0; _j0++) {
+              st[_i0].pdata->ref_div2_en = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].pdata->ref_doubler_en = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = adf4350_tune_r_cnt(st,r_cnt);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_st0; _aux++) {

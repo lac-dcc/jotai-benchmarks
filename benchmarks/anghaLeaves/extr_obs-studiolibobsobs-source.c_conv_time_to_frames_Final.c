@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline size_t conv_time_to_frames(const size_t samp
 	return (size_t)(duration * (uint64_t)sample_rate / 1000000000ULL);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,7 +80,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           const unsigned long sample_rate = 100;
+        
           const unsigned long long duration = 100;
+        
           unsigned long benchRet = conv_time_to_frames(sample_rate,duration);
           printf("%lu\n", benchRet); 
         
@@ -95,7 +92,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           const unsigned long sample_rate = 255;
+        
           const unsigned long long duration = 255;
+        
           unsigned long benchRet = conv_time_to_frames(sample_rate,duration);
           printf("%lu\n", benchRet); 
         
@@ -105,13 +104,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           const unsigned long sample_rate = 10;
+        
           const unsigned long long duration = 10;
+        
           unsigned long benchRet = conv_time_to_frames(sample_rate,duration);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          const unsigned long sample_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          const unsigned long long duration = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = conv_time_to_frames(sample_rate,duration);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

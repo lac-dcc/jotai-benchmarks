@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +77,6 @@ void LzmaDec_InitDicAndState(CLzmaDec *p, Bool initDic, Bool initState)
     p->needInitState = 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,23 +93,98 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long initDic = 100;
+        
           long initState = 100;
+        
           int _len_p0 = 1;
           struct TYPE_3__ * p = (struct TYPE_3__ *) malloc(_len_p0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].needFlush = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].needInitState = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].checkDicSize = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].processedPos = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].tempBufSize = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].remainLen = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].needFlush = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].needInitState = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].checkDicSize = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].processedPos = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].tempBufSize = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].remainLen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           LzmaDec_InitDicAndState(p,initDic,initState);
           free(p);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long initDic = 255;
+        
+          long initState = 255;
+        
+          int _len_p0 = 65025;
+          struct TYPE_3__ * p = (struct TYPE_3__ *) malloc(_len_p0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].needFlush = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].needInitState = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].checkDicSize = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].processedPos = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].tempBufSize = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].remainLen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          LzmaDec_InitDicAndState(p,initDic,initState);
+          free(p);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long initDic = 10;
+        
+          long initState = 10;
+        
+          int _len_p0 = 100;
+          struct TYPE_3__ * p = (struct TYPE_3__ *) malloc(_len_p0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].needFlush = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].needInitState = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].checkDicSize = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].processedPos = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].tempBufSize = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].remainLen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          LzmaDec_InitDicAndState(p,initDic,initState);
+          free(p);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long initDic = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long initState = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_p0 = 1;
+          struct TYPE_3__ * p = (struct TYPE_3__ *) malloc(_len_p0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].needFlush = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].needInitState = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].checkDicSize = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].processedPos = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].tempBufSize = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].remainLen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          LzmaDec_InitDicAndState(p,initDic,initState);
+          free(p);
+        
+        break;
+    }
     default:
         usage();
         break;

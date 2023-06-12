@@ -31,7 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ set_channel_address(struct mISDNchannel *ch, u_int sapi, u_int tei)
 	ch->addr = sapi | (tei << 8);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,33 +80,59 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int sapi = 100;
+        
           int tei = 100;
+        
           int _len_ch0 = 1;
           struct mISDNchannel * ch = (struct mISDNchannel *) malloc(_len_ch0*sizeof(struct mISDNchannel));
           for(int _i0 = 0; _i0 < _len_ch0; _i0++) {
-            ch[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+              ch[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          set_channel_address(ch,sapi,tei);
+          free(ch);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int sapi = 255;
+        
+          int tei = 255;
+        
+          int _len_ch0 = 65025;
+          struct mISDNchannel * ch = (struct mISDNchannel *) malloc(_len_ch0*sizeof(struct mISDNchannel));
+          for(int _i0 = 0; _i0 < _len_ch0; _i0++) {
+              ch[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           set_channel_address(ch,sapi,tei);
           free(ch);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int sapi = 10;
+        
           int tei = 10;
+        
           int _len_ch0 = 100;
           struct mISDNchannel * ch = (struct mISDNchannel *) malloc(_len_ch0*sizeof(struct mISDNchannel));
           for(int _i0 = 0; _i0 < _len_ch0; _i0++) {
-            ch[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+              ch[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           set_channel_address(ch,sapi,tei);
           free(ch);
         
         break;
     }
-
     default:
         usage();
         break;

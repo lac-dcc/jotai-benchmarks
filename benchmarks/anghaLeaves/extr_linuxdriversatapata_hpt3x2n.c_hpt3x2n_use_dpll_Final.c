@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +74,6 @@ __attribute__((used)) static int hpt3x2n_use_dpll(struct ata_port *ap, int writi
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,19 +86,196 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int writing = 100;
+        
           int _len_ap0 = 1;
           struct ata_port * ap = (struct ata_port *) malloc(_len_ap0*sizeof(struct ata_port));
           for(int _i0 = 0; _i0 < _len_ap0; _i0++) {
               int _len_ap__i0__host0 = 1;
           ap[_i0].host = (struct TYPE_2__ *) malloc(_len_ap__i0__host0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_ap__i0__host0; _j0++) {
-            ap[_i0].host->private_data = ((-2 * (next_i()%2)) + 1) * next_i();
+              ap[_i0].host->private_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = hpt3x2n_use_dpll(ap,writing);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ap0; _aux++) {
+          free(ap[_aux].host);
+          }
+          free(ap);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int writing = 255;
+        
+          int _len_ap0 = 65025;
+          struct ata_port * ap = (struct ata_port *) malloc(_len_ap0*sizeof(struct ata_port));
+          for(int _i0 = 0; _i0 < _len_ap0; _i0++) {
+              int _len_ap__i0__host0 = 1;
+          ap[_i0].host = (struct TYPE_2__ *) malloc(_len_ap__i0__host0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ap__i0__host0; _j0++) {
+              ap[_i0].host->private_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = hpt3x2n_use_dpll(ap,writing);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ap0; _aux++) {
+          free(ap[_aux].host);
+          }
+          free(ap);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int writing = 10;
+        
+          int _len_ap0 = 100;
+          struct ata_port * ap = (struct ata_port *) malloc(_len_ap0*sizeof(struct ata_port));
+          for(int _i0 = 0; _i0 < _len_ap0; _i0++) {
+              int _len_ap__i0__host0 = 1;
+          ap[_i0].host = (struct TYPE_2__ *) malloc(_len_ap__i0__host0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ap__i0__host0; _j0++) {
+              ap[_i0].host->private_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = hpt3x2n_use_dpll(ap,writing);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ap0; _aux++) {
+          free(ap[_aux].host);
+          }
+          free(ap);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int writing = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ap0 = 1;
+          struct ata_port * ap = (struct ata_port *) malloc(_len_ap0*sizeof(struct ata_port));
+          for(int _i0 = 0; _i0 < _len_ap0; _i0++) {
+              int _len_ap__i0__host0 = 1;
+          ap[_i0].host = (struct TYPE_2__ *) malloc(_len_ap__i0__host0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ap__i0__host0; _j0++) {
+              ap[_i0].host->private_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = hpt3x2n_use_dpll(ap,writing);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_ap0; _aux++) {

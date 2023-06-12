@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ void cursor_copy_to(Cursor *src, Cursor *dest) {
     CCY(bold); CCY(italic); CCY(strikethrough); CCY(dim); CCY(reverse); CCY(decoration); CCY(fg); CCY(bg); CCY(decoration_fg);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,43 +77,212 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 58
+          // dynamic_instructions_O0 : 58
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 30
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_src0 = 65025;
+          struct TYPE_4__ * src = (struct TYPE_4__ *) malloc(_len_src0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+              src[_i0].decoration_fg = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].bg = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].fg = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].decoration = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].reverse = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].dim = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].strikethrough = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].italic = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].bold = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].blink = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].shape = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dest0 = 65025;
+          struct TYPE_4__ * dest = (struct TYPE_4__ *) malloc(_len_dest0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_dest0; _i0++) {
+              dest[_i0].decoration_fg = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].bg = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].fg = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].decoration = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].reverse = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].dim = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].strikethrough = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].italic = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].bold = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].blink = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].shape = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cursor_copy_to(src,dest);
+          free(src);
+          free(dest);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 58
+          // dynamic_instructions_O0 : 58
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 30
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_src0 = 100;
+          struct TYPE_4__ * src = (struct TYPE_4__ *) malloc(_len_src0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+              src[_i0].decoration_fg = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].bg = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].fg = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].decoration = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].reverse = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].dim = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].strikethrough = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].italic = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].bold = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].blink = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].shape = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dest0 = 100;
+          struct TYPE_4__ * dest = (struct TYPE_4__ *) malloc(_len_dest0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_dest0; _i0++) {
+              dest[_i0].decoration_fg = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].bg = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].fg = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].decoration = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].reverse = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].dim = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].strikethrough = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].italic = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].bold = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].blink = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].shape = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cursor_copy_to(src,dest);
+          free(src);
+          free(dest);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 58
+          // dynamic_instructions_O0 : 58
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 30
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_src0 = 1;
           struct TYPE_4__ * src = (struct TYPE_4__ *) malloc(_len_src0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_src0; _i0++) {
-            src[_i0].decoration_fg = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].bg = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].fg = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].decoration = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].reverse = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].dim = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].strikethrough = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].italic = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].bold = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].blink = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].shape = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+              src[_i0].decoration_fg = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].bg = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].fg = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].decoration = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].reverse = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].dim = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].strikethrough = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].italic = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].bold = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].blink = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].shape = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_dest0 = 1;
           struct TYPE_4__ * dest = (struct TYPE_4__ *) malloc(_len_dest0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_dest0; _i0++) {
-            dest[_i0].decoration_fg = ((-2 * (next_i()%2)) + 1) * next_i();
-        dest[_i0].bg = ((-2 * (next_i()%2)) + 1) * next_i();
-        dest[_i0].fg = ((-2 * (next_i()%2)) + 1) * next_i();
-        dest[_i0].decoration = ((-2 * (next_i()%2)) + 1) * next_i();
-        dest[_i0].reverse = ((-2 * (next_i()%2)) + 1) * next_i();
-        dest[_i0].dim = ((-2 * (next_i()%2)) + 1) * next_i();
-        dest[_i0].strikethrough = ((-2 * (next_i()%2)) + 1) * next_i();
-        dest[_i0].italic = ((-2 * (next_i()%2)) + 1) * next_i();
-        dest[_i0].bold = ((-2 * (next_i()%2)) + 1) * next_i();
-        dest[_i0].blink = ((-2 * (next_i()%2)) + 1) * next_i();
-        dest[_i0].shape = ((-2 * (next_i()%2)) + 1) * next_i();
-        dest[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
-        dest[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+              dest[_i0].decoration_fg = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].bg = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].fg = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].decoration = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].reverse = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].dim = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].strikethrough = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].italic = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].bold = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].blink = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].shape = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+          dest[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           cursor_copy_to(src,dest);
           free(src);
           free(dest);

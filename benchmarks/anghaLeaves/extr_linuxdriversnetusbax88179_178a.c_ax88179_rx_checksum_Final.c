@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -79,12 +81,6 @@ ax88179_rx_checksum(struct sk_buff *skb, u32 *pkt_hdr)
 		skb->ip_summed = CHECKSUM_UNNECESSARY;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,26 +93,72 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_skb0 = 1;
+          int _len_skb0 = 65025;
           struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
           for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
-            skb[_i0].ip_summed = ((-2 * (next_i()%2)) + 1) * next_i();
+              skb[_i0].ip_summed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_pkt_hdr0 = 1;
+        
+          int _len_pkt_hdr0 = 65025;
           int * pkt_hdr = (int *) malloc(_len_pkt_hdr0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pkt_hdr0; _i0++) {
             pkt_hdr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           ax88179_rx_checksum(skb,pkt_hdr);
           free(skb);
           free(pkt_hdr);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_skb0 = 100;
+          struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
+          for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
+              skb[_i0].ip_summed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pkt_hdr0 = 100;
+          int * pkt_hdr = (int *) malloc(_len_pkt_hdr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pkt_hdr0; _i0++) {
+            pkt_hdr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          ax88179_rx_checksum(skb,pkt_hdr);
+          free(skb);
+          free(pkt_hdr);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_skb0 = 1;
+          struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
+          for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
+              skb[_i0].ip_summed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pkt_hdr0 = 1;
+          int * pkt_hdr = (int *) malloc(_len_pkt_hdr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pkt_hdr0; _i0++) {
+            pkt_hdr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          ax88179_rx_checksum(skb,pkt_hdr);
+          free(skb);
+          free(pkt_hdr);
+        
+        break;
+    }
     default:
         usage();
         break;

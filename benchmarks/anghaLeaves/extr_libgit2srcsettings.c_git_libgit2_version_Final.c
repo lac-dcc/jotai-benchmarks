@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ void git_libgit2_version(int *major, int *minor, int *rev)
 	*rev = LIBGIT2_VER_REVISION;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,24 +78,154 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_major0 = 65025;
+          int * major = (int *) malloc(_len_major0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_major0; _i0++) {
+            major[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_minor0 = 65025;
+          int * minor = (int *) malloc(_len_minor0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_minor0; _i0++) {
+            minor[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_rev0 = 65025;
+          int * rev = (int *) malloc(_len_rev0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_rev0; _i0++) {
+            rev[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          git_libgit2_version(major,minor,rev);
+          free(major);
+          free(minor);
+          free(rev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_major0 = 100;
+          int * major = (int *) malloc(_len_major0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_major0; _i0++) {
+            major[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_minor0 = 100;
+          int * minor = (int *) malloc(_len_minor0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_minor0; _i0++) {
+            minor[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_rev0 = 100;
+          int * rev = (int *) malloc(_len_rev0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_rev0; _i0++) {
+            rev[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          git_libgit2_version(major,minor,rev);
+          free(major);
+          free(minor);
+          free(rev);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_major0 = 1;
           int * major = (int *) malloc(_len_major0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_major0; _i0++) {
             major[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_minor0 = 1;
           int * minor = (int *) malloc(_len_minor0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_minor0; _i0++) {
             minor[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_rev0 = 1;
           int * rev = (int *) malloc(_len_rev0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_rev0; _i0++) {
             rev[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           git_libgit2_version(major,minor,rev);
           free(major);
           free(minor);

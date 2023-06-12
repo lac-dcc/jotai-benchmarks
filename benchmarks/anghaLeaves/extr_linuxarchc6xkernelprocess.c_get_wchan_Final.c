@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ unsigned long get_wchan(struct task_struct *p)
 	return p->thread.wchan;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_p0 = 1;
+          int _len_p0 = 65025;
           struct task_struct * p = (struct task_struct *) malloc(_len_p0*sizeof(struct task_struct));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].thread.wchan = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].thread.wchan = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           unsigned long benchRet = get_wchan(p);
           printf("%lu\n", benchRet); 
           free(p);
@@ -101,15 +99,34 @@ int main(int argc, char *argv[]) {
           int _len_p0 = 100;
           struct task_struct * p = (struct task_struct *) malloc(_len_p0*sizeof(struct task_struct));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].thread.wchan = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].thread.wchan = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           unsigned long benchRet = get_wchan(p);
           printf("%lu\n", benchRet); 
           free(p);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_p0 = 1;
+          struct task_struct * p = (struct task_struct *) malloc(_len_p0*sizeof(struct task_struct));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].thread.wchan = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          unsigned long benchRet = get_wchan(p);
+          printf("%lu\n", benchRet); 
+          free(p);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ void usb_phy_set_event(struct usb_phy *x, unsigned long event)
 	x->last_event = event;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,31 +79,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long event = 100;
+        
           int _len_x0 = 1;
           struct usb_phy * x = (struct usb_phy *) malloc(_len_x0*sizeof(struct usb_phy));
           for(int _i0 = 0; _i0 < _len_x0; _i0++) {
-            x[_i0].last_event = ((-2 * (next_i()%2)) + 1) * next_i();
+              x[_i0].last_event = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          usb_phy_set_event(x,event);
+          free(x);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned long event = 255;
+        
+          int _len_x0 = 65025;
+          struct usb_phy * x = (struct usb_phy *) malloc(_len_x0*sizeof(struct usb_phy));
+          for(int _i0 = 0; _i0 < _len_x0; _i0++) {
+              x[_i0].last_event = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           usb_phy_set_event(x,event);
           free(x);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned long event = 10;
+        
           int _len_x0 = 100;
           struct usb_phy * x = (struct usb_phy *) malloc(_len_x0*sizeof(struct usb_phy));
           for(int _i0 = 0; _i0 < _len_x0; _i0++) {
-            x[_i0].last_event = ((-2 * (next_i()%2)) + 1) * next_i();
+              x[_i0].last_event = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           usb_phy_set_event(x,event);
           free(x);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long event = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_x0 = 1;
+          struct usb_phy * x = (struct usb_phy *) malloc(_len_x0*sizeof(struct usb_phy));
+          for(int _i0 = 0; _i0 < _len_x0; _i0++) {
+              x[_i0].last_event = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          usb_phy_set_event(x,event);
+          free(x);
+        
+        break;
+    }
     default:
         usage();
         break;

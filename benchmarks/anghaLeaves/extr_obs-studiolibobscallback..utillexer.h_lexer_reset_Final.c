@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static inline void lexer_reset(struct lexer *lex)
 	lex->offset = lex->text;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,21 +74,54 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_lex0 = 1;
+          int _len_lex0 = 65025;
           struct lexer * lex = (struct lexer *) malloc(_len_lex0*sizeof(struct lexer));
           for(int _i0 = 0; _i0 < _len_lex0; _i0++) {
-            lex[_i0].text = ((-2 * (next_i()%2)) + 1) * next_i();
-        lex[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              lex[_i0].text = ((-2 * (next_i()%2)) + 1) * next_i();
+          lex[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           lexer_reset(lex);
           free(lex);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_lex0 = 100;
+          struct lexer * lex = (struct lexer *) malloc(_len_lex0*sizeof(struct lexer));
+          for(int _i0 = 0; _i0 < _len_lex0; _i0++) {
+              lex[_i0].text = ((-2 * (next_i()%2)) + 1) * next_i();
+          lex[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          lexer_reset(lex);
+          free(lex);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_lex0 = 1;
+          struct lexer * lex = (struct lexer *) malloc(_len_lex0*sizeof(struct lexer));
+          for(int _i0 = 0; _i0 < _len_lex0; _i0++) {
+              lex[_i0].text = ((-2 * (next_i()%2)) + 1) * next_i();
+          lex[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          lexer_reset(lex);
+          free(lex);
+        
+        break;
+    }
     default:
         usage();
         break;

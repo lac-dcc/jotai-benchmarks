@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static inline PLARGE_INTEGER get_nt_timeout( PLARGE_INTEGE
     return pTime;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,30 +82,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           long timeout = 100;
+        
           int _len_pTime0 = 1;
           struct TYPE_4__ * pTime = (struct TYPE_4__ *) malloc(_len_pTime0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_pTime0; _i0++) {
-            pTime[_i0].QuadPart = ((-2 * (next_i()%2)) + 1) * next_i();
+              pTime[_i0].QuadPart = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           struct TYPE_4__ * benchRet = get_nt_timeout(pTime,timeout);
           printf("%d\n", (*benchRet).QuadPart);
           free(pTime);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          long timeout = 255;
+        
+          int _len_pTime0 = 65025;
+          struct TYPE_4__ * pTime = (struct TYPE_4__ *) malloc(_len_pTime0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_pTime0; _i0++) {
+              pTime[_i0].QuadPart = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct TYPE_4__ * benchRet = get_nt_timeout(pTime,timeout);
+          printf("%d\n", (*benchRet).QuadPart);
+          free(pTime);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           long timeout = 10;
+        
           int _len_pTime0 = 100;
           struct TYPE_4__ * pTime = (struct TYPE_4__ *) malloc(_len_pTime0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_pTime0; _i0++) {
-            pTime[_i0].QuadPart = ((-2 * (next_i()%2)) + 1) * next_i();
+              pTime[_i0].QuadPart = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          struct TYPE_4__ * benchRet = get_nt_timeout(pTime,timeout);
+          printf("%d\n", (*benchRet).QuadPart);
+          free(pTime);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          long timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pTime0 = 1;
+          struct TYPE_4__ * pTime = (struct TYPE_4__ *) malloc(_len_pTime0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_pTime0; _i0++) {
+              pTime[_i0].QuadPart = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           struct TYPE_4__ * benchRet = get_nt_timeout(pTime,timeout);
           printf("%d\n", (*benchRet).QuadPart);
           free(pTime);

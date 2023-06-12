@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline bool mlx5e_rx_hw_stamp(struct hwtstamp_confi
 	return config->rx_filter == HWTSTAMP_FILTER_ALL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_config0 = 1;
+          int _len_config0 = 65025;
           struct hwtstamp_config * config = (struct hwtstamp_config *) malloc(_len_config0*sizeof(struct hwtstamp_config));
           for(int _i0 = 0; _i0 < _len_config0; _i0++) {
-            config[_i0].rx_filter = ((-2 * (next_i()%2)) + 1) * next_i();
+              config[_i0].rx_filter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mlx5e_rx_hw_stamp(config);
           printf("%d\n", benchRet); 
           free(config);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_config0 = 100;
           struct hwtstamp_config * config = (struct hwtstamp_config *) malloc(_len_config0*sizeof(struct hwtstamp_config));
           for(int _i0 = 0; _i0 < _len_config0; _i0++) {
-            config[_i0].rx_filter = ((-2 * (next_i()%2)) + 1) * next_i();
+              config[_i0].rx_filter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mlx5e_rx_hw_stamp(config);
           printf("%d\n", benchRet); 
           free(config);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_config0 = 1;
+          struct hwtstamp_config * config = (struct hwtstamp_config *) malloc(_len_config0*sizeof(struct hwtstamp_config));
+          for(int _i0 = 0; _i0 < _len_config0; _i0++) {
+              config[_i0].rx_filter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mlx5e_rx_hw_stamp(config);
+          printf("%d\n", benchRet); 
+          free(config);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -61,12 +61,6 @@ __attribute__((used)) static size_t get_workspace_size(layer l){
     return (size_t)l.h*l.w*l.size*l.size*l.n*sizeof(float);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +73,38 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // empty
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           struct TYPE_3__ l;
-        l.w = ((-2 * (next_i()%2)) + 1) * next_i();
-        l.size = ((-2 * (next_i()%2)) + 1) * next_i();
-        l.n = ((-2 * (next_i()%2)) + 1) * next_i();
-        l.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          l.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          l.size = ((-2 * (next_i()%2)) + 1) * next_i();
+          l.n = ((-2 * (next_i()%2)) + 1) * next_i();
+          l.h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           unsigned long benchRet = get_workspace_size(l);
           printf("%lu\n", benchRet); 
         

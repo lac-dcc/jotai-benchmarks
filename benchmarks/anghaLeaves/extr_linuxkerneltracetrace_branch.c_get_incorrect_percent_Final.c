@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static inline long get_incorrect_percent(struct ftrace_bra
 	return percent;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,22 +82,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_p0 = 1;
+          int _len_p0 = 65025;
           struct ftrace_branch_data * p = (struct ftrace_branch_data *) malloc(_len_p0*sizeof(struct ftrace_branch_data));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].correct = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].incorrect = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].correct = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].incorrect = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = get_incorrect_percent(p);
           printf("%ld\n", benchRet); 
           free(p);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_p0 = 100;
+          struct ftrace_branch_data * p = (struct ftrace_branch_data *) malloc(_len_p0*sizeof(struct ftrace_branch_data));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].correct = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].incorrect = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = get_incorrect_percent(p);
+          printf("%ld\n", benchRet); 
+          free(p);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_p0 = 1;
+          struct ftrace_branch_data * p = (struct ftrace_branch_data *) malloc(_len_p0*sizeof(struct ftrace_branch_data));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].correct = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].incorrect = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = get_incorrect_percent(p);
+          printf("%ld\n", benchRet); 
+          free(p);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static int char2digit(char c, int base) {
     return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,7 +81,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           char c = 100;
+        
           int base = 100;
+        
           int benchRet = char2digit(c,base);
           printf("%d\n", benchRet); 
         
@@ -96,7 +93,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           char c = 255;
+        
           int base = 255;
+        
           int benchRet = char2digit(c,base);
           printf("%d\n", benchRet); 
         
@@ -106,13 +105,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           char c = 10;
+        
           int base = 10;
+        
           int benchRet = char2digit(c,base);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          char c = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = char2digit(c,base);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

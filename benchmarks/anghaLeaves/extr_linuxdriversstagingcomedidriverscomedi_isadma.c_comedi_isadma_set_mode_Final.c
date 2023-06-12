@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ void comedi_isadma_set_mode(struct comedi_isadma_desc *desc, char dma_dir)
 						     : DMA_MODE_WRITE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,31 +83,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           char dma_dir = 100;
+        
           int _len_desc0 = 1;
           struct comedi_isadma_desc * desc = (struct comedi_isadma_desc *) malloc(_len_desc0*sizeof(struct comedi_isadma_desc));
           for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
-            desc[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              desc[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          comedi_isadma_set_mode(desc,dma_dir);
+          free(desc);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          char dma_dir = 255;
+        
+          int _len_desc0 = 65025;
+          struct comedi_isadma_desc * desc = (struct comedi_isadma_desc *) malloc(_len_desc0*sizeof(struct comedi_isadma_desc));
+          for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
+              desc[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           comedi_isadma_set_mode(desc,dma_dir);
           free(desc);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           char dma_dir = 10;
+        
           int _len_desc0 = 100;
           struct comedi_isadma_desc * desc = (struct comedi_isadma_desc *) malloc(_len_desc0*sizeof(struct comedi_isadma_desc));
           for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
-            desc[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              desc[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           comedi_isadma_set_mode(desc,dma_dir);
           free(desc);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          char dma_dir = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_desc0 = 1;
+          struct comedi_isadma_desc * desc = (struct comedi_isadma_desc *) malloc(_len_desc0*sizeof(struct comedi_isadma_desc));
+          for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
+              desc[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          comedi_isadma_set_mode(desc,dma_dir);
+          free(desc);
+        
+        break;
+    }
     default:
         usage();
         break;

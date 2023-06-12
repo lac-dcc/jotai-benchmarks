@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ __attribute__((used)) static void unixModeBit(unixFile *pFile, unsigned char mas
   }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,20 +82,191 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           unsigned char mask = 100;
+        
           int _len_pFile0 = 1;
           struct TYPE_3__ * pFile = (struct TYPE_3__ *) malloc(_len_pFile0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_pFile0; _i0++) {
-            pFile[_i0].ctrlFlags = ((-2 * (next_i()%2)) + 1) * next_i();
+              pFile[_i0].ctrlFlags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_pArg0 = 1;
           int * pArg = (int *) malloc(_len_pArg0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pArg0; _i0++) {
             pArg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          unixModeBit(pFile,mask,pArg);
+          free(pFile);
+          free(pArg);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          unsigned char mask = 255;
+        
+          int _len_pFile0 = 65025;
+          struct TYPE_3__ * pFile = (struct TYPE_3__ *) malloc(_len_pFile0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_pFile0; _i0++) {
+              pFile[_i0].ctrlFlags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pArg0 = 65025;
+          int * pArg = (int *) malloc(_len_pArg0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pArg0; _i0++) {
+            pArg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unixModeBit(pFile,mask,pArg);
+          free(pFile);
+          free(pArg);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          unsigned char mask = 10;
+        
+          int _len_pFile0 = 100;
+          struct TYPE_3__ * pFile = (struct TYPE_3__ *) malloc(_len_pFile0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_pFile0; _i0++) {
+              pFile[_i0].ctrlFlags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pArg0 = 100;
+          int * pArg = (int *) malloc(_len_pArg0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pArg0; _i0++) {
+            pArg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unixModeBit(pFile,mask,pArg);
+          free(pFile);
+          free(pArg);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          unsigned char mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pFile0 = 1;
+          struct TYPE_3__ * pFile = (struct TYPE_3__ *) malloc(_len_pFile0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_pFile0; _i0++) {
+              pFile[_i0].ctrlFlags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pArg0 = 1;
+          int * pArg = (int *) malloc(_len_pArg0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pArg0; _i0++) {
+            pArg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           unixModeBit(pFile,mask,pArg);
           free(pFile);
           free(pArg);

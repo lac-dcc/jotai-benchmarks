@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -82,12 +85,6 @@ efs_extent_check(efs_extent *ptr, efs_block_t block, struct efs_sb_info *sb) {
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,22 +97,210 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           long block = 100;
+        
           int _len_ptr0 = 1;
           struct TYPE_5__ * ptr = (struct TYPE_5__ *) malloc(_len_ptr0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_ptr0; _i0++) {
-            ptr[_i0].cooked.ex_bn = ((-2 * (next_i()%2)) + 1) * next_i();
-        ptr[_i0].cooked.ex_length = ((-2 * (next_i()%2)) + 1) * next_i();
-        ptr[_i0].cooked.ex_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              ptr[_i0].cooked.ex_bn = ((-2 * (next_i()%2)) + 1) * next_i();
+          ptr[_i0].cooked.ex_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          ptr[_i0].cooked.ex_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_sb0 = 1;
           struct efs_sb_info * sb = (struct efs_sb_info *) malloc(_len_sb0*sizeof(struct efs_sb_info));
           for(int _i0 = 0; _i0 < _len_sb0; _i0++) {
-            sb[_i0].fs_start = ((-2 * (next_i()%2)) + 1) * next_i();
+              sb[_i0].fs_start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          long benchRet = efs_extent_check(ptr,block,sb);
+          printf("%ld\n", benchRet); 
+          free(ptr);
+          free(sb);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          long block = 255;
+        
+          int _len_ptr0 = 65025;
+          struct TYPE_5__ * ptr = (struct TYPE_5__ *) malloc(_len_ptr0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_ptr0; _i0++) {
+              ptr[_i0].cooked.ex_bn = ((-2 * (next_i()%2)) + 1) * next_i();
+          ptr[_i0].cooked.ex_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          ptr[_i0].cooked.ex_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_sb0 = 65025;
+          struct efs_sb_info * sb = (struct efs_sb_info *) malloc(_len_sb0*sizeof(struct efs_sb_info));
+          for(int _i0 = 0; _i0 < _len_sb0; _i0++) {
+              sb[_i0].fs_start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = efs_extent_check(ptr,block,sb);
+          printf("%ld\n", benchRet); 
+          free(ptr);
+          free(sb);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          long block = 10;
+        
+          int _len_ptr0 = 100;
+          struct TYPE_5__ * ptr = (struct TYPE_5__ *) malloc(_len_ptr0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_ptr0; _i0++) {
+              ptr[_i0].cooked.ex_bn = ((-2 * (next_i()%2)) + 1) * next_i();
+          ptr[_i0].cooked.ex_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          ptr[_i0].cooked.ex_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_sb0 = 100;
+          struct efs_sb_info * sb = (struct efs_sb_info *) malloc(_len_sb0*sizeof(struct efs_sb_info));
+          for(int _i0 = 0; _i0 < _len_sb0; _i0++) {
+              sb[_i0].fs_start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = efs_extent_check(ptr,block,sb);
+          printf("%ld\n", benchRet); 
+          free(ptr);
+          free(sb);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          long block = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ptr0 = 1;
+          struct TYPE_5__ * ptr = (struct TYPE_5__ *) malloc(_len_ptr0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_ptr0; _i0++) {
+              ptr[_i0].cooked.ex_bn = ((-2 * (next_i()%2)) + 1) * next_i();
+          ptr[_i0].cooked.ex_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          ptr[_i0].cooked.ex_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_sb0 = 1;
+          struct efs_sb_info * sb = (struct efs_sb_info *) malloc(_len_sb0*sizeof(struct efs_sb_info));
+          for(int _i0 = 0; _i0 < _len_sb0; _i0++) {
+              sb[_i0].fs_start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           long benchRet = efs_extent_check(ptr,block,sb);
           printf("%ld\n", benchRet); 
           free(ptr);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ struct mp_log *mp_client_get_log(struct mpv_handle *ctx)
     return ctx->log;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,18 +75,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ctx0 = 1;
+          int _len_ctx0 = 65025;
           struct mpv_handle * ctx = (struct mpv_handle *) malloc(_len_ctx0*sizeof(struct mpv_handle));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
               int _len_ctx__i0__log0 = 1;
           ctx[_i0].log = (struct mp_log *) malloc(_len_ctx__i0__log0*sizeof(struct mp_log));
           for(int _j0 = 0; _j0 < _len_ctx__i0__log0; _j0++) {
-            ctx[_i0].log->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctx[_i0].log->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct mp_log * benchRet = mp_client_get_log(ctx);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_ctx0; _aux++) {
@@ -100,7 +99,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ctx0 = 100;
+          struct mpv_handle * ctx = (struct mpv_handle *) malloc(_len_ctx0*sizeof(struct mpv_handle));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              int _len_ctx__i0__log0 = 1;
+          ctx[_i0].log = (struct mp_log *) malloc(_len_ctx__i0__log0*sizeof(struct mp_log));
+          for(int _j0 = 0; _j0 < _len_ctx__i0__log0; _j0++) {
+              ctx[_i0].log->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct mp_log * benchRet = mp_client_get_log(ctx);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_ctx0; _aux++) {
+          free(ctx[_aux].log);
+          }
+          free(ctx);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ctx0 = 1;
+          struct mpv_handle * ctx = (struct mpv_handle *) malloc(_len_ctx0*sizeof(struct mpv_handle));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              int _len_ctx__i0__log0 = 1;
+          ctx[_i0].log = (struct mp_log *) malloc(_len_ctx__i0__log0*sizeof(struct mp_log));
+          for(int _j0 = 0; _j0 < _len_ctx__i0__log0; _j0++) {
+              ctx[_i0].log->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct mp_log * benchRet = mp_client_get_log(ctx);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_ctx0; _aux++) {
+          free(ctx[_aux].log);
+          }
+          free(ctx);
+        
+        break;
+    }
     default:
         usage();
         break;

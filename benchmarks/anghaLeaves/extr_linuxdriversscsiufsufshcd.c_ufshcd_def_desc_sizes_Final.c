@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ __attribute__((used)) static void ufshcd_def_desc_sizes(struct ufs_hba *hba)
 	hba->desc_size.hlth_desc = QUERY_DESC_HEALTH_DEF_SIZE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,20 +89,138 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_hba0 = 65025;
+          struct ufs_hba * hba = (struct ufs_hba *) malloc(_len_hba0*sizeof(struct ufs_hba));
+          for(int _i0 = 0; _i0 < _len_hba0; _i0++) {
+              hba[_i0].desc_size.hlth_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].desc_size.geom_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].desc_size.unit_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].desc_size.conf_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].desc_size.interc_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].desc_size.pwr_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].desc_size.dev_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          ufshcd_def_desc_sizes(hba);
+          free(hba);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_hba0 = 100;
+          struct ufs_hba * hba = (struct ufs_hba *) malloc(_len_hba0*sizeof(struct ufs_hba));
+          for(int _i0 = 0; _i0 < _len_hba0; _i0++) {
+              hba[_i0].desc_size.hlth_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].desc_size.geom_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].desc_size.unit_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].desc_size.conf_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].desc_size.interc_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].desc_size.pwr_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].desc_size.dev_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          ufshcd_def_desc_sizes(hba);
+          free(hba);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int _len_hba0 = 1;
           struct ufs_hba * hba = (struct ufs_hba *) malloc(_len_hba0*sizeof(struct ufs_hba));
           for(int _i0 = 0; _i0 < _len_hba0; _i0++) {
-            hba[_i0].desc_size.hlth_desc = ((-2 * (next_i()%2)) + 1) * next_i();
-        hba[_i0].desc_size.geom_desc = ((-2 * (next_i()%2)) + 1) * next_i();
-        hba[_i0].desc_size.unit_desc = ((-2 * (next_i()%2)) + 1) * next_i();
-        hba[_i0].desc_size.conf_desc = ((-2 * (next_i()%2)) + 1) * next_i();
-        hba[_i0].desc_size.interc_desc = ((-2 * (next_i()%2)) + 1) * next_i();
-        hba[_i0].desc_size.pwr_desc = ((-2 * (next_i()%2)) + 1) * next_i();
-        hba[_i0].desc_size.dev_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+              hba[_i0].desc_size.hlth_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].desc_size.geom_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].desc_size.unit_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].desc_size.conf_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].desc_size.interc_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].desc_size.pwr_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].desc_size.dev_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           ufshcd_def_desc_sizes(hba);
           free(hba);
         

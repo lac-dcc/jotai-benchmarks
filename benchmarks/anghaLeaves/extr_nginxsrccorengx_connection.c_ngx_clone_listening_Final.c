@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -93,12 +95,6 @@ ngx_clone_listening(ngx_cycle_t *cycle, ngx_listening_t *ls)
     return NGX_OK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -111,19 +107,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cycle0 = 1;
+          int _len_cycle0 = 65025;
           int * cycle = (int *) malloc(_len_cycle0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_cycle0; _i0++) {
             cycle[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_ls0 = 1;
+        
+          int _len_ls0 = 65025;
           int * ls = (int *) malloc(_len_ls0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_ls0; _i0++) {
             ls[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = ngx_clone_listening(cycle,ls);
           printf("%d\n", benchRet); 
           free(cycle);
@@ -131,7 +129,50 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_cycle0 = 100;
+          int * cycle = (int *) malloc(_len_cycle0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_cycle0; _i0++) {
+            cycle[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ls0 = 100;
+          int * ls = (int *) malloc(_len_ls0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ls0; _i0++) {
+            ls[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ngx_clone_listening(cycle,ls);
+          printf("%d\n", benchRet); 
+          free(cycle);
+          free(ls);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_cycle0 = 1;
+          int * cycle = (int *) malloc(_len_cycle0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_cycle0; _i0++) {
+            cycle[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ls0 = 1;
+          int * ls = (int *) malloc(_len_ls0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ls0; _i0++) {
+            ls[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ngx_clone_listening(cycle,ls);
+          printf("%d\n", benchRet); 
+          free(cycle);
+          free(ls);
+        
+        break;
+    }
     default:
         usage();
         break;

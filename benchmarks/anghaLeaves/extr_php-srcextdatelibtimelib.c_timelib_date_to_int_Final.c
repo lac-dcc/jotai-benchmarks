@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -79,12 +81,6 @@ timelib_long timelib_date_to_int(timelib_time *d, int *error)
 	return (timelib_long) d->sse;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,19 +93,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_d0 = 1;
+          int _len_d0 = 65025;
           struct TYPE_3__ * d = (struct TYPE_3__ *) malloc(_len_d0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_d0; _i0++) {
-            d[_i0].sse = ((-2 * (next_i()%2)) + 1) * next_i();
+              d[_i0].sse = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_error0 = 1;
+        
+          int _len_error0 = 65025;
           int * error = (int *) malloc(_len_error0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_error0; _i0++) {
             error[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = timelib_date_to_int(d,error);
           printf("%d\n", benchRet); 
           free(d);
@@ -117,7 +116,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_d0 = 100;
+          struct TYPE_3__ * d = (struct TYPE_3__ *) malloc(_len_d0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_d0; _i0++) {
+              d[_i0].sse = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_error0 = 100;
+          int * error = (int *) malloc(_len_error0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_error0; _i0++) {
+            error[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = timelib_date_to_int(d,error);
+          printf("%d\n", benchRet); 
+          free(d);
+          free(error);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_d0 = 1;
+          struct TYPE_3__ * d = (struct TYPE_3__ *) malloc(_len_d0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_d0; _i0++) {
+              d[_i0].sse = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_error0 = 1;
+          int * error = (int *) malloc(_len_error0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_error0; _i0++) {
+            error[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = timelib_date_to_int(d,error);
+          printf("%d\n", benchRet); 
+          free(d);
+          free(error);
+        
+        break;
+    }
     default:
         usage();
         break;

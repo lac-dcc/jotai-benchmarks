@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -89,12 +91,6 @@ __attribute__((used)) static u32 acpi_smbus_cmi_func(struct i2c_adapter *adapter
 	return ret;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,19 +103,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_adapter0 = 1;
+          int _len_adapter0 = 65025;
           struct i2c_adapter * adapter = (struct i2c_adapter *) malloc(_len_adapter0*sizeof(struct i2c_adapter));
           for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
               int _len_adapter__i0__algo_data0 = 1;
           adapter[_i0].algo_data = (struct acpi_smbus_cmi *) malloc(_len_adapter__i0__algo_data0*sizeof(struct acpi_smbus_cmi));
           for(int _j0 = 0; _j0 < _len_adapter__i0__algo_data0; _j0++) {
-            adapter[_i0].algo_data->cap_read = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].algo_data->cap_write = ((-2 * (next_i()%2)) + 1) * next_i();
+              adapter[_i0].algo_data->cap_read = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].algo_data->cap_write = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = acpi_smbus_cmi_func(adapter);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_adapter0; _aux++) {
@@ -129,7 +128,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_adapter0 = 100;
+          struct i2c_adapter * adapter = (struct i2c_adapter *) malloc(_len_adapter0*sizeof(struct i2c_adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              int _len_adapter__i0__algo_data0 = 1;
+          adapter[_i0].algo_data = (struct acpi_smbus_cmi *) malloc(_len_adapter__i0__algo_data0*sizeof(struct acpi_smbus_cmi));
+          for(int _j0 = 0; _j0 < _len_adapter__i0__algo_data0; _j0++) {
+              adapter[_i0].algo_data->cap_read = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].algo_data->cap_write = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = acpi_smbus_cmi_func(adapter);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_adapter0; _aux++) {
+          free(adapter[_aux].algo_data);
+          }
+          free(adapter);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_adapter0 = 1;
+          struct i2c_adapter * adapter = (struct i2c_adapter *) malloc(_len_adapter0*sizeof(struct i2c_adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              int _len_adapter__i0__algo_data0 = 1;
+          adapter[_i0].algo_data = (struct acpi_smbus_cmi *) malloc(_len_adapter__i0__algo_data0*sizeof(struct acpi_smbus_cmi));
+          for(int _j0 = 0; _j0 < _len_adapter__i0__algo_data0; _j0++) {
+              adapter[_i0].algo_data->cap_read = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].algo_data->cap_write = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = acpi_smbus_cmi_func(adapter);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_adapter0; _aux++) {
+          free(adapter[_aux].algo_data);
+          }
+          free(adapter);
+        
+        break;
+    }
     default:
         usage();
         break;

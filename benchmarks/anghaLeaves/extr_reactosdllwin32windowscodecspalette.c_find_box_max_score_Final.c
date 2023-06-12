@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static struct box *find_box_max_score(struct box *b, int c
     return best;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,15 +76,83 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 5366
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 3066
+          // ------------------------------- 
+          // static_instructions_O2 : 34
+          // dynamic_instructions_O2 : 2428
+          // ------------------------------- 
+          // static_instructions_O3 : 34
+          // dynamic_instructions_O3 : 2428
+          // ------------------------------- 
+          // static_instructions_Ofast : 34
+          // dynamic_instructions_Ofast : 2428
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 3066
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 2811
+          // ------------------------------- 
+
+          int count = 255;
+        
+          int _len_b0 = 65025;
+          struct box * b = (struct box *) malloc(_len_b0*sizeof(struct box));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].score = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct box * benchRet = find_box_max_score(b,count);
+          printf("%ld\n", (*benchRet).score);
+          free(b);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 221
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 126
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 106
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 106
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 106
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 126
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 116
+          // ------------------------------- 
+
           int count = 10;
+        
           int _len_b0 = 100;
           struct box * b = (struct box *) malloc(_len_b0*sizeof(struct box));
           for(int _i0 = 0; _i0 < _len_b0; _i0++) {
-            b[_i0].score = ((-2 * (next_i()%2)) + 1) * next_i();
+              b[_i0].score = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           struct box * benchRet = find_box_max_score(b,count);
           printf("%ld\n", (*benchRet).score);
           free(b);

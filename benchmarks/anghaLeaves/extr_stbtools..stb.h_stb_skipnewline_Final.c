@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ char *stb_skipnewline(char *s)
    return s;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_s0 = 1;
+          int _len_s0 = 65025;
           char * s = (char *) malloc(_len_s0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
             s[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           char * benchRet = stb_skipnewline(s);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(s);
@@ -104,13 +100,28 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
             s[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           char * benchRet = stb_skipnewline(s);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(s);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_s0 = 1;
+          char * s = (char *) malloc(_len_s0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+            s[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          char * benchRet = stb_skipnewline(s);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          free(s);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -112,12 +112,6 @@ uint32_t hsv2grb(uint16_t hue, uint8_t sat, uint8_t val)
   return result;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -134,8 +128,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int hue = 100;
+        
           int sat = 100;
+        
           int val = 100;
+        
           int benchRet = hsv2grb(hue,sat,val);
           printf("%d\n", benchRet); 
         
@@ -145,8 +142,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int hue = 255;
+        
           int sat = 255;
+        
           int val = 255;
+        
           int benchRet = hsv2grb(hue,sat,val);
           printf("%d\n", benchRet); 
         
@@ -156,14 +156,16 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int hue = 10;
+        
           int sat = 10;
+        
           int val = 10;
+        
           int benchRet = hsv2grb(hue,sat,val);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

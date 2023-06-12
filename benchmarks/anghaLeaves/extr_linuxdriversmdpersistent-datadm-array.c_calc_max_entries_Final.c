@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static uint32_t calc_max_entries(size_t value_size, size_t
 	return (size_of_block - sizeof(struct array_block)) / value_size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,7 +80,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long value_size = 100;
+        
           unsigned long size_of_block = 100;
+        
           unsigned long benchRet = calc_max_entries(value_size,size_of_block);
           printf("%lu\n", benchRet); 
         
@@ -95,7 +92,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long value_size = 255;
+        
           unsigned long size_of_block = 255;
+        
           unsigned long benchRet = calc_max_entries(value_size,size_of_block);
           printf("%lu\n", benchRet); 
         
@@ -105,13 +104,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long value_size = 10;
+        
           unsigned long size_of_block = 10;
+        
           unsigned long benchRet = calc_max_entries(value_size,size_of_block);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long value_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long size_of_block = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = calc_max_entries(value_size,size_of_block);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

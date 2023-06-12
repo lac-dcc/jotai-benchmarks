@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static void gb_lights_led_operations_set(struct gb_channel
 		cdev->blink_set = gb_blink_set;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,21 +84,146 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_channel0 = 65025;
+          struct gb_channel * channel = (struct gb_channel *) malloc(_len_channel0*sizeof(struct gb_channel));
+          for(int _i0 = 0; _i0 < _len_channel0; _i0++) {
+              channel[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cdev0 = 65025;
+          struct led_classdev * cdev = (struct led_classdev *) malloc(_len_cdev0*sizeof(struct led_classdev));
+          for(int _i0 = 0; _i0 < _len_cdev0; _i0++) {
+              cdev[_i0].blink_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          cdev[_i0].brightness_set_blocking = ((-2 * (next_i()%2)) + 1) * next_i();
+          cdev[_i0].brightness_get = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          gb_lights_led_operations_set(channel,cdev);
+          free(channel);
+          free(cdev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_channel0 = 100;
+          struct gb_channel * channel = (struct gb_channel *) malloc(_len_channel0*sizeof(struct gb_channel));
+          for(int _i0 = 0; _i0 < _len_channel0; _i0++) {
+              channel[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cdev0 = 100;
+          struct led_classdev * cdev = (struct led_classdev *) malloc(_len_cdev0*sizeof(struct led_classdev));
+          for(int _i0 = 0; _i0 < _len_cdev0; _i0++) {
+              cdev[_i0].blink_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          cdev[_i0].brightness_set_blocking = ((-2 * (next_i()%2)) + 1) * next_i();
+          cdev[_i0].brightness_get = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          gb_lights_led_operations_set(channel,cdev);
+          free(channel);
+          free(cdev);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_channel0 = 1;
           struct gb_channel * channel = (struct gb_channel *) malloc(_len_channel0*sizeof(struct gb_channel));
           for(int _i0 = 0; _i0 < _len_channel0; _i0++) {
-            channel[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              channel[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_cdev0 = 1;
           struct led_classdev * cdev = (struct led_classdev *) malloc(_len_cdev0*sizeof(struct led_classdev));
           for(int _i0 = 0; _i0 < _len_cdev0; _i0++) {
-            cdev[_i0].blink_set = ((-2 * (next_i()%2)) + 1) * next_i();
-        cdev[_i0].brightness_set_blocking = ((-2 * (next_i()%2)) + 1) * next_i();
-        cdev[_i0].brightness_get = ((-2 * (next_i()%2)) + 1) * next_i();
+              cdev[_i0].blink_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          cdev[_i0].brightness_set_blocking = ((-2 * (next_i()%2)) + 1) * next_i();
+          cdev[_i0].brightness_get = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           gb_lights_led_operations_set(channel,cdev);
           free(channel);
           free(cdev);

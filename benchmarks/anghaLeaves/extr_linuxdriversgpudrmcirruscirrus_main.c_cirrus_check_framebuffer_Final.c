@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -79,12 +81,6 @@ bool cirrus_check_framebuffer(struct cirrus_device *cdev, int width, int height,
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,14 +97,46 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int width = 100;
+        
           int height = 100;
+        
           int bpp = 100;
+        
           int pitch = 100;
+        
           int _len_cdev0 = 1;
           struct cirrus_device * cdev = (struct cirrus_device *) malloc(_len_cdev0*sizeof(struct cirrus_device));
           for(int _i0 = 0; _i0 < _len_cdev0; _i0++) {
-            cdev[_i0].mc.vram_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              cdev[_i0].mc.vram_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = cirrus_check_framebuffer(cdev,width,height,bpp,pitch);
+          printf("%d\n", benchRet); 
+          free(cdev);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int width = 255;
+        
+          int height = 255;
+        
+          int bpp = 255;
+        
+          int pitch = 255;
+        
+          int _len_cdev0 = 65025;
+          struct cirrus_device * cdev = (struct cirrus_device *) malloc(_len_cdev0*sizeof(struct cirrus_device));
+          for(int _i0 = 0; _i0 < _len_cdev0; _i0++) {
+              cdev[_i0].mc.vram_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = cirrus_check_framebuffer(cdev,width,height,bpp,pitch);
           printf("%d\n", benchRet); 
           free(cdev);
@@ -116,24 +144,55 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int width = 10;
+        
           int height = 10;
+        
           int bpp = 10;
+        
           int pitch = 10;
+        
           int _len_cdev0 = 100;
           struct cirrus_device * cdev = (struct cirrus_device *) malloc(_len_cdev0*sizeof(struct cirrus_device));
           for(int _i0 = 0; _i0 < _len_cdev0; _i0++) {
-            cdev[_i0].mc.vram_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              cdev[_i0].mc.vram_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = cirrus_check_framebuffer(cdev,width,height,bpp,pitch);
           printf("%d\n", benchRet); 
           free(cdev);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int bpp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int pitch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cdev0 = 1;
+          struct cirrus_device * cdev = (struct cirrus_device *) malloc(_len_cdev0*sizeof(struct cirrus_device));
+          for(int _i0 = 0; _i0 < _len_cdev0; _i0++) {
+              cdev[_i0].mc.vram_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = cirrus_check_framebuffer(cdev,width,height,bpp,pitch);
+          printf("%d\n", benchRet); 
+          free(cdev);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +75,6 @@ __attribute__((used)) static inline int convert_to_internal_xattr_flags(int setx
 	return internal_flag;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int setxattr_flags = 100;
+        
           int benchRet = convert_to_internal_xattr_flags(setxattr_flags);
           printf("%d\n", benchRet); 
         
@@ -105,6 +101,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int setxattr_flags = 255;
+        
           int benchRet = convert_to_internal_xattr_flags(setxattr_flags);
           printf("%d\n", benchRet); 
         
@@ -114,12 +111,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int setxattr_flags = 10;
+        
           int benchRet = convert_to_internal_xattr_flags(setxattr_flags);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int setxattr_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = convert_to_internal_xattr_flags(setxattr_flags);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

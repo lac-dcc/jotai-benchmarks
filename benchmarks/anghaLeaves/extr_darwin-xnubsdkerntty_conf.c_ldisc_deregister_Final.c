@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ ldisc_deregister(int discipline)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,6 +85,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int discipline = 100;
+        
           ldisc_deregister(discipline);
         
         break;
@@ -98,6 +94,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int discipline = 255;
+        
           ldisc_deregister(discipline);
         
         break;
@@ -106,11 +103,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int discipline = 10;
+        
           ldisc_deregister(discipline);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int discipline = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ldisc_deregister(discipline);
+        
+        break;
+    }
     default:
         usage();
         break;

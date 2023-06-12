@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -85,12 +87,6 @@ __attribute__((used)) static int v4l2_rot_to_dss_rot(int v4l2_rotation,
 	return ret;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,12 +103,34 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int v4l2_rotation = 100;
+        
           int mirror = 100;
+        
           int _len_rotation0 = 1;
           enum dss_rotation * rotation = (enum dss_rotation *) malloc(_len_rotation0*sizeof(enum dss_rotation));
           for(int _i0 = 0; _i0 < _len_rotation0; _i0++) {
             rotation[_i0] = 0;
           }
+        
+          int benchRet = v4l2_rot_to_dss_rot(v4l2_rotation,rotation,mirror);
+          printf("%d\n", benchRet); 
+          free(rotation);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int v4l2_rotation = 255;
+        
+          int mirror = 255;
+        
+          int _len_rotation0 = 65025;
+          enum dss_rotation * rotation = (enum dss_rotation *) malloc(_len_rotation0*sizeof(enum dss_rotation));
+          for(int _i0 = 0; _i0 < _len_rotation0; _i0++) {
+            rotation[_i0] = 0;
+          }
+        
           int benchRet = v4l2_rot_to_dss_rot(v4l2_rotation,rotation,mirror);
           printf("%d\n", benchRet); 
           free(rotation);
@@ -120,22 +138,43 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int v4l2_rotation = 10;
+        
           int mirror = 10;
+        
           int _len_rotation0 = 100;
           enum dss_rotation * rotation = (enum dss_rotation *) malloc(_len_rotation0*sizeof(enum dss_rotation));
           for(int _i0 = 0; _i0 < _len_rotation0; _i0++) {
             rotation[_i0] = 0;
           }
+        
           int benchRet = v4l2_rot_to_dss_rot(v4l2_rotation,rotation,mirror);
           printf("%d\n", benchRet); 
           free(rotation);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int v4l2_rotation = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int mirror = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rotation0 = 1;
+          enum dss_rotation * rotation = (enum dss_rotation *) malloc(_len_rotation0*sizeof(enum dss_rotation));
+          for(int _i0 = 0; _i0 < _len_rotation0; _i0++) {
+            rotation[_i0] = 0;
+          }
+        
+          int benchRet = v4l2_rot_to_dss_rot(v4l2_rotation,rotation,mirror);
+          printf("%d\n", benchRet); 
+          free(rotation);
+        
+        break;
+    }
     default:
         usage();
         break;

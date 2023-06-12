@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ set_placement_list(struct ttm_place *pl, unsigned *n, uint32_t type, uint32_t fl
 		pl[(*n)++].flags = TTM_PL_FLAG_SYSTEM | flags;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,24 +91,106 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int type = 100;
+        
           int flags = 100;
+        
           int _len_pl0 = 1;
           struct ttm_place * pl = (struct ttm_place *) malloc(_len_pl0*sizeof(struct ttm_place));
           for(int _i0 = 0; _i0 < _len_pl0; _i0++) {
-            pl[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              pl[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_n0 = 1;
           unsigned int * n = (unsigned int *) malloc(_len_n0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_n0; _i0++) {
             n[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           set_placement_list(pl,n,type,flags);
           free(pl);
           free(n);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int type = 255;
+        
+          int flags = 255;
+        
+          int _len_pl0 = 65025;
+          struct ttm_place * pl = (struct ttm_place *) malloc(_len_pl0*sizeof(struct ttm_place));
+          for(int _i0 = 0; _i0 < _len_pl0; _i0++) {
+              pl[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_n0 = 65025;
+          unsigned int * n = (unsigned int *) malloc(_len_n0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_n0; _i0++) {
+            n[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          set_placement_list(pl,n,type,flags);
+          free(pl);
+          free(n);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int type = 10;
+        
+          int flags = 10;
+        
+          int _len_pl0 = 100;
+          struct ttm_place * pl = (struct ttm_place *) malloc(_len_pl0*sizeof(struct ttm_place));
+          for(int _i0 = 0; _i0 < _len_pl0; _i0++) {
+              pl[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_n0 = 100;
+          unsigned int * n = (unsigned int *) malloc(_len_n0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_n0; _i0++) {
+            n[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          set_placement_list(pl,n,type,flags);
+          free(pl);
+          free(n);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pl0 = 1;
+          struct ttm_place * pl = (struct ttm_place *) malloc(_len_pl0*sizeof(struct ttm_place));
+          for(int _i0 = 0; _i0 < _len_pl0; _i0++) {
+              pl[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_n0 = 1;
+          unsigned int * n = (unsigned int *) malloc(_len_n0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_n0; _i0++) {
+            n[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          set_placement_list(pl,n,type,flags);
+          free(pl);
+          free(n);
+        
+        break;
+    }
     default:
         usage();
         break;

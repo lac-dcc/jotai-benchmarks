@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -60,12 +63,6 @@ bool mp_rect_contains(struct mp_rect *rc, int x, int y)
     return rc->x0 <= x && x < rc->x1 && rc->y0 <= y && y < rc->y1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,22 +79,94 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int x = 100;
+        
           int y = 100;
+        
           int _len_rc0 = 1;
           struct mp_rect * rc = (struct mp_rect *) malloc(_len_rc0*sizeof(struct mp_rect));
           for(int _i0 = 0; _i0 < _len_rc0; _i0++) {
-            rc[_i0].x0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        rc[_i0].x1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        rc[_i0].y0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        rc[_i0].y1 = ((-2 * (next_i()%2)) + 1) * next_i();
+              rc[_i0].x0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rc[_i0].x1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rc[_i0].y0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rc[_i0].y1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mp_rect_contains(rc,x,y);
           printf("%d\n", benchRet); 
           free(rc);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int x = 255;
+        
+          int y = 255;
+        
+          int _len_rc0 = 65025;
+          struct mp_rect * rc = (struct mp_rect *) malloc(_len_rc0*sizeof(struct mp_rect));
+          for(int _i0 = 0; _i0 < _len_rc0; _i0++) {
+              rc[_i0].x0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rc[_i0].x1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rc[_i0].y0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rc[_i0].y1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mp_rect_contains(rc,x,y);
+          printf("%d\n", benchRet); 
+          free(rc);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int x = 10;
+        
+          int y = 10;
+        
+          int _len_rc0 = 100;
+          struct mp_rect * rc = (struct mp_rect *) malloc(_len_rc0*sizeof(struct mp_rect));
+          for(int _i0 = 0; _i0 < _len_rc0; _i0++) {
+              rc[_i0].x0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rc[_i0].x1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rc[_i0].y0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rc[_i0].y1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mp_rect_contains(rc,x,y);
+          printf("%d\n", benchRet); 
+          free(rc);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rc0 = 1;
+          struct mp_rect * rc = (struct mp_rect *) malloc(_len_rc0*sizeof(struct mp_rect));
+          for(int _i0 = 0; _i0 < _len_rc0; _i0++) {
+              rc[_i0].x0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rc[_i0].x1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rc[_i0].y0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rc[_i0].y1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mp_rect_contains(rc,x,y);
+          printf("%d\n", benchRet); 
+          free(rc);
+        
+        break;
+    }
     default:
         usage();
         break;

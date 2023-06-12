@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline void xfs_sb_version_addattr2(struct xfs_sb *
 	sbp->sb_features2 |= XFS_SB_VERSION2_ATTR2BIT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,15 +77,120 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_sbp0 = 65025;
+          struct xfs_sb * sbp = (struct xfs_sb *) malloc(_len_sbp0*sizeof(struct xfs_sb));
+          for(int _i0 = 0; _i0 < _len_sbp0; _i0++) {
+              sbp[_i0].sb_features2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          sbp[_i0].sb_versionnum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          xfs_sb_version_addattr2(sbp);
+          free(sbp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_sbp0 = 100;
+          struct xfs_sb * sbp = (struct xfs_sb *) malloc(_len_sbp0*sizeof(struct xfs_sb));
+          for(int _i0 = 0; _i0 < _len_sbp0; _i0++) {
+              sbp[_i0].sb_features2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          sbp[_i0].sb_versionnum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          xfs_sb_version_addattr2(sbp);
+          free(sbp);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_sbp0 = 1;
           struct xfs_sb * sbp = (struct xfs_sb *) malloc(_len_sbp0*sizeof(struct xfs_sb));
           for(int _i0 = 0; _i0 < _len_sbp0; _i0++) {
-            sbp[_i0].sb_features2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        sbp[_i0].sb_versionnum = ((-2 * (next_i()%2)) + 1) * next_i();
+              sbp[_i0].sb_features2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          sbp[_i0].sb_versionnum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           xfs_sb_version_addattr2(sbp);
           free(sbp);
         

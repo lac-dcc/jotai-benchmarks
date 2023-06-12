@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ void listRewindTail(list *list, listIter *li) {
     li->direction = AL_START_TAIL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,20 +80,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_list0 = 65025;
+          struct TYPE_6__ * list = (struct TYPE_6__ *) malloc(_len_list0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_list0; _i0++) {
+              list[_i0].tail = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_li0 = 65025;
+          struct TYPE_5__ * li = (struct TYPE_5__ *) malloc(_len_li0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_li0; _i0++) {
+              li[_i0].direction = ((-2 * (next_i()%2)) + 1) * next_i();
+          li[_i0].next = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          listRewindTail(list,li);
+          free(list);
+          free(li);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_list0 = 100;
+          struct TYPE_6__ * list = (struct TYPE_6__ *) malloc(_len_list0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_list0; _i0++) {
+              list[_i0].tail = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_li0 = 100;
+          struct TYPE_5__ * li = (struct TYPE_5__ *) malloc(_len_li0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_li0; _i0++) {
+              li[_i0].direction = ((-2 * (next_i()%2)) + 1) * next_i();
+          li[_i0].next = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          listRewindTail(list,li);
+          free(list);
+          free(li);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_list0 = 1;
           struct TYPE_6__ * list = (struct TYPE_6__ *) malloc(_len_list0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_list0; _i0++) {
-            list[_i0].tail = ((-2 * (next_i()%2)) + 1) * next_i();
+              list[_i0].tail = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_li0 = 1;
           struct TYPE_5__ * li = (struct TYPE_5__ *) malloc(_len_li0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_li0; _i0++) {
-            li[_i0].direction = ((-2 * (next_i()%2)) + 1) * next_i();
-        li[_i0].next = ((-2 * (next_i()%2)) + 1) * next_i();
+              li[_i0].direction = ((-2 * (next_i()%2)) + 1) * next_i();
+          li[_i0].next = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           listRewindTail(list,li);
           free(list);
           free(li);

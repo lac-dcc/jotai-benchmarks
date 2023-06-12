@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +73,6 @@ rv2p_fw_fixup(u32 rv2p_proc, int idx, u32 loc, u32 rv2p_code)
 	return rv2p_code;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,37 +85,160 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
           int rv2p_proc = 100;
+        
           int idx = 100;
+        
           int loc = 100;
+        
           int rv2p_code = 100;
+        
           int benchRet = rv2p_fw_fixup(rv2p_proc,idx,loc,rv2p_code);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
           int rv2p_proc = 255;
+        
           int idx = 255;
+        
           int loc = 255;
+        
           int rv2p_code = 255;
+        
           int benchRet = rv2p_fw_fixup(rv2p_proc,idx,loc,rv2p_code);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
           int rv2p_proc = 10;
+        
           int idx = 10;
+        
           int loc = 10;
+        
           int rv2p_code = 10;
+        
+          int benchRet = rv2p_fw_fixup(rv2p_proc,idx,loc,rv2p_code);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
+          int rv2p_proc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int loc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int rv2p_code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = rv2p_fw_fixup(rv2p_proc,idx,loc,rv2p_code);
           printf("%d\n", benchRet); 
         

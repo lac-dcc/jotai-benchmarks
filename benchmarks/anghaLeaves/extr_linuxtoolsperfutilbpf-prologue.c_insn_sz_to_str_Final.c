@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +78,6 @@ insn_sz_to_str(int insn_sz)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,6 +94,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int insn_sz = 100;
+        
           const char * benchRet = insn_sz_to_str(insn_sz);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
@@ -108,6 +104,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int insn_sz = 255;
+        
           const char * benchRet = insn_sz_to_str(insn_sz);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
@@ -117,12 +114,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int insn_sz = 10;
+        
           const char * benchRet = insn_sz_to_str(insn_sz);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int insn_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          const char * benchRet = insn_sz_to_str(insn_sz);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+        
+        break;
+    }
     default:
         usage();
         break;

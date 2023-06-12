@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ rb_event_data_length(struct ring_buffer_event *event)
 	return length + RB_EVNT_HDR_SIZE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,19 +83,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_event0 = 1;
+          int _len_event0 = 65025;
           struct ring_buffer_event * event = (struct ring_buffer_event *) malloc(_len_event0*sizeof(struct ring_buffer_event));
           for(int _i0 = 0; _i0 < _len_event0; _i0++) {
-            event[_i0].type_len = ((-2 * (next_i()%2)) + 1) * next_i();
+              event[_i0].type_len = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_event__i0__array0 = 1;
           event[_i0].array = (unsigned int *) malloc(_len_event__i0__array0*sizeof(unsigned int));
           for(int _j0 = 0; _j0 < _len_event__i0__array0; _j0++) {
             event[_i0].array[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           unsigned int benchRet = rb_event_data_length(event);
           printf("%u\n", benchRet); 
           for(int _aux = 0; _aux < _len_event0; _aux++) {
@@ -109,7 +107,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_event0 = 100;
+          struct ring_buffer_event * event = (struct ring_buffer_event *) malloc(_len_event0*sizeof(struct ring_buffer_event));
+          for(int _i0 = 0; _i0 < _len_event0; _i0++) {
+              event[_i0].type_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_event__i0__array0 = 1;
+          event[_i0].array = (unsigned int *) malloc(_len_event__i0__array0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len_event__i0__array0; _j0++) {
+            event[_i0].array[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          unsigned int benchRet = rb_event_data_length(event);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_event0; _aux++) {
+          free(event[_aux].array);
+          }
+          free(event);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_event0 = 1;
+          struct ring_buffer_event * event = (struct ring_buffer_event *) malloc(_len_event0*sizeof(struct ring_buffer_event));
+          for(int _i0 = 0; _i0 < _len_event0; _i0++) {
+              event[_i0].type_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_event__i0__array0 = 1;
+          event[_i0].array = (unsigned int *) malloc(_len_event__i0__array0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len_event__i0__array0; _j0++) {
+            event[_i0].array[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          unsigned int benchRet = rb_event_data_length(event);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_event0; _aux++) {
+          free(event[_aux].array);
+          }
+          free(event);
+        
+        break;
+    }
     default:
         usage();
         break;

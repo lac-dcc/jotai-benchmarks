@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +74,6 @@ mode_tree_up(struct mode_tree_data *mtd, int wrap)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,18 +86,176 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int wrap = 100;
+        
           int _len_mtd0 = 1;
           struct mode_tree_data * mtd = (struct mode_tree_data *) malloc(_len_mtd0*sizeof(struct mode_tree_data));
           for(int _i0 = 0; _i0 < _len_mtd0; _i0++) {
-            mtd[_i0].current = ((-2 * (next_i()%2)) + 1) * next_i();
-        mtd[_i0].line_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        mtd[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
-        mtd[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              mtd[_i0].current = ((-2 * (next_i()%2)) + 1) * next_i();
+          mtd[_i0].line_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          mtd[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          mtd[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          mode_tree_up(mtd,wrap);
+          free(mtd);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int wrap = 255;
+        
+          int _len_mtd0 = 65025;
+          struct mode_tree_data * mtd = (struct mode_tree_data *) malloc(_len_mtd0*sizeof(struct mode_tree_data));
+          for(int _i0 = 0; _i0 < _len_mtd0; _i0++) {
+              mtd[_i0].current = ((-2 * (next_i()%2)) + 1) * next_i();
+          mtd[_i0].line_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          mtd[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          mtd[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mode_tree_up(mtd,wrap);
+          free(mtd);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int wrap = 10;
+        
+          int _len_mtd0 = 100;
+          struct mode_tree_data * mtd = (struct mode_tree_data *) malloc(_len_mtd0*sizeof(struct mode_tree_data));
+          for(int _i0 = 0; _i0 < _len_mtd0; _i0++) {
+              mtd[_i0].current = ((-2 * (next_i()%2)) + 1) * next_i();
+          mtd[_i0].line_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          mtd[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          mtd[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mode_tree_up(mtd,wrap);
+          free(mtd);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int wrap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_mtd0 = 1;
+          struct mode_tree_data * mtd = (struct mode_tree_data *) malloc(_len_mtd0*sizeof(struct mode_tree_data));
+          for(int _i0 = 0; _i0 < _len_mtd0; _i0++) {
+              mtd[_i0].current = ((-2 * (next_i()%2)) + 1) * next_i();
+          mtd[_i0].line_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          mtd[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          mtd[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           mode_tree_up(mtd,wrap);
           free(mtd);
         

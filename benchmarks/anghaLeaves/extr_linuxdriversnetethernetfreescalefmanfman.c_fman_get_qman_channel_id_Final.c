@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -92,12 +95,6 @@ u32 fman_get_qman_channel_id(struct fman *fman, u32 port_id)
 	return fman->state->qman_channel_base + i;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -110,21 +107,208 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
           int port_id = 100;
+        
           int _len_fman0 = 1;
           struct fman * fman = (struct fman *) malloc(_len_fman0*sizeof(struct fman));
           for(int _i0 = 0; _i0 < _len_fman0; _i0++) {
               int _len_fman__i0__state0 = 1;
           fman[_i0].state = (struct TYPE_4__ *) malloc(_len_fman__i0__state0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_fman__i0__state0; _j0++) {
-            fman[_i0].state->num_of_qman_channels = ((-2 * (next_i()%2)) + 1) * next_i();
-        fman[_i0].state->qman_channel_base = ((-2 * (next_i()%2)) + 1) * next_i();
-        fman[_i0].state->rev_info.major = ((-2 * (next_i()%2)) + 1) * next_i();
+              fman[_i0].state->num_of_qman_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          fman[_i0].state->qman_channel_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          fman[_i0].state->rev_info.major = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
+          int benchRet = fman_get_qman_channel_id(fman,port_id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_fman0; _aux++) {
+          free(fman[_aux].state);
+          }
+          free(fman);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int port_id = 255;
+        
+          int _len_fman0 = 65025;
+          struct fman * fman = (struct fman *) malloc(_len_fman0*sizeof(struct fman));
+          for(int _i0 = 0; _i0 < _len_fman0; _i0++) {
+              int _len_fman__i0__state0 = 1;
+          fman[_i0].state = (struct TYPE_4__ *) malloc(_len_fman__i0__state0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_fman__i0__state0; _j0++) {
+              fman[_i0].state->num_of_qman_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          fman[_i0].state->qman_channel_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          fman[_i0].state->rev_info.major = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = fman_get_qman_channel_id(fman,port_id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_fman0; _aux++) {
+          free(fman[_aux].state);
+          }
+          free(fman);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int port_id = 10;
+        
+          int _len_fman0 = 100;
+          struct fman * fman = (struct fman *) malloc(_len_fman0*sizeof(struct fman));
+          for(int _i0 = 0; _i0 < _len_fman0; _i0++) {
+              int _len_fman__i0__state0 = 1;
+          fman[_i0].state = (struct TYPE_4__ *) malloc(_len_fman__i0__state0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_fman__i0__state0; _j0++) {
+              fman[_i0].state->num_of_qman_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          fman[_i0].state->qman_channel_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          fman[_i0].state->rev_info.major = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = fman_get_qman_channel_id(fman,port_id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_fman0; _aux++) {
+          free(fman[_aux].state);
+          }
+          free(fman);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int port_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fman0 = 1;
+          struct fman * fman = (struct fman *) malloc(_len_fman0*sizeof(struct fman));
+          for(int _i0 = 0; _i0 < _len_fman0; _i0++) {
+              int _len_fman__i0__state0 = 1;
+          fman[_i0].state = (struct TYPE_4__ *) malloc(_len_fman__i0__state0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_fman__i0__state0; _j0++) {
+              fman[_i0].state->num_of_qman_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          fman[_i0].state->qman_channel_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          fman[_i0].state->rev_info.major = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
           int benchRet = fman_get_qman_channel_id(fman,port_id);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_fman0; _aux++) {

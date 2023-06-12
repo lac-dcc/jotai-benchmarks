@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ __attribute__((used)) static int sfb_change_class(struct Qdisc *sch, u32 classid
 	return -ENOSYS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,40 +81,293 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int classid = 100;
+        
           int parentid = 100;
+        
           int _len_sch0 = 1;
           struct Qdisc * sch = (struct Qdisc *) malloc(_len_sch0*sizeof(struct Qdisc));
           for(int _i0 = 0; _i0 < _len_sch0; _i0++) {
-            sch[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              sch[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_tca0 = 1;
           struct nlattr ** tca = (struct nlattr **) malloc(_len_tca0*sizeof(struct nlattr *));
           for(int _i0 = 0; _i0 < _len_tca0; _i0++) {
             int _len_tca1 = 1;
             tca[_i0] = (struct nlattr *) malloc(_len_tca1*sizeof(struct nlattr));
             for(int _i1 = 0; _i1 < _len_tca1; _i1++) {
-              tca[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+                tca[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           int _len_arg0 = 1;
           unsigned long * arg = (unsigned long *) malloc(_len_arg0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_arg0; _i0++) {
             arg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_extack0 = 1;
           struct netlink_ext_ack * extack = (struct netlink_ext_ack *) malloc(_len_extack0*sizeof(struct netlink_ext_ack));
           for(int _i0 = 0; _i0 < _len_extack0; _i0++) {
-            extack[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              extack[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = sfb_change_class(sch,classid,parentid,tca,arg,extack);
           printf("%d\n", benchRet); 
           free(sch);
           for(int i1 = 0; i1 < _len_tca0; i1++) {
+              free(tca[i1]);
+          }
+          free(tca);
+          free(arg);
+          free(extack);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int classid = 255;
+        
+          int parentid = 255;
+        
+          int _len_sch0 = 65025;
+          struct Qdisc * sch = (struct Qdisc *) malloc(_len_sch0*sizeof(struct Qdisc));
+          for(int _i0 = 0; _i0 < _len_sch0; _i0++) {
+              sch[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_tca0 = 65025;
+          struct nlattr ** tca = (struct nlattr **) malloc(_len_tca0*sizeof(struct nlattr *));
+          for(int _i0 = 0; _i0 < _len_tca0; _i0++) {
             int _len_tca1 = 1;
+            tca[_i0] = (struct nlattr *) malloc(_len_tca1*sizeof(struct nlattr));
+            for(int _i1 = 0; _i1 < _len_tca1; _i1++) {
+                tca[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int _len_arg0 = 65025;
+          unsigned long * arg = (unsigned long *) malloc(_len_arg0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_arg0; _i0++) {
+            arg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_extack0 = 65025;
+          struct netlink_ext_ack * extack = (struct netlink_ext_ack *) malloc(_len_extack0*sizeof(struct netlink_ext_ack));
+          for(int _i0 = 0; _i0 < _len_extack0; _i0++) {
+              extack[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sfb_change_class(sch,classid,parentid,tca,arg,extack);
+          printf("%d\n", benchRet); 
+          free(sch);
+          for(int i1 = 0; i1 < _len_tca0; i1++) {
+              free(tca[i1]);
+          }
+          free(tca);
+          free(arg);
+          free(extack);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int classid = 10;
+        
+          int parentid = 10;
+        
+          int _len_sch0 = 100;
+          struct Qdisc * sch = (struct Qdisc *) malloc(_len_sch0*sizeof(struct Qdisc));
+          for(int _i0 = 0; _i0 < _len_sch0; _i0++) {
+              sch[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_tca0 = 100;
+          struct nlattr ** tca = (struct nlattr **) malloc(_len_tca0*sizeof(struct nlattr *));
+          for(int _i0 = 0; _i0 < _len_tca0; _i0++) {
+            int _len_tca1 = 1;
+            tca[_i0] = (struct nlattr *) malloc(_len_tca1*sizeof(struct nlattr));
+            for(int _i1 = 0; _i1 < _len_tca1; _i1++) {
+                tca[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int _len_arg0 = 100;
+          unsigned long * arg = (unsigned long *) malloc(_len_arg0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_arg0; _i0++) {
+            arg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_extack0 = 100;
+          struct netlink_ext_ack * extack = (struct netlink_ext_ack *) malloc(_len_extack0*sizeof(struct netlink_ext_ack));
+          for(int _i0 = 0; _i0 < _len_extack0; _i0++) {
+              extack[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sfb_change_class(sch,classid,parentid,tca,arg,extack);
+          printf("%d\n", benchRet); 
+          free(sch);
+          for(int i1 = 0; i1 < _len_tca0; i1++) {
+              free(tca[i1]);
+          }
+          free(tca);
+          free(arg);
+          free(extack);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int classid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int parentid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sch0 = 1;
+          struct Qdisc * sch = (struct Qdisc *) malloc(_len_sch0*sizeof(struct Qdisc));
+          for(int _i0 = 0; _i0 < _len_sch0; _i0++) {
+              sch[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_tca0 = 1;
+          struct nlattr ** tca = (struct nlattr **) malloc(_len_tca0*sizeof(struct nlattr *));
+          for(int _i0 = 0; _i0 < _len_tca0; _i0++) {
+            int _len_tca1 = 1;
+            tca[_i0] = (struct nlattr *) malloc(_len_tca1*sizeof(struct nlattr));
+            for(int _i1 = 0; _i1 < _len_tca1; _i1++) {
+                tca[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int _len_arg0 = 1;
+          unsigned long * arg = (unsigned long *) malloc(_len_arg0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_arg0; _i0++) {
+            arg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_extack0 = 1;
+          struct netlink_ext_ack * extack = (struct netlink_ext_ack *) malloc(_len_extack0*sizeof(struct netlink_ext_ack));
+          for(int _i0 = 0; _i0 < _len_extack0; _i0++) {
+              extack[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sfb_change_class(sch,classid,parentid,tca,arg,extack);
+          printf("%d\n", benchRet); 
+          free(sch);
+          for(int i1 = 0; i1 < _len_tca0; i1++) {
               free(tca[i1]);
           }
           free(tca);

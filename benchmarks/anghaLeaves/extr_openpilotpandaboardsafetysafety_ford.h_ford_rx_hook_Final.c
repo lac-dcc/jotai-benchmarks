@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -100,12 +102,6 @@ __attribute__((used)) static void ford_rx_hook(CAN_FIFOMailBox_TypeDef *to_push)
   }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -118,16 +114,123 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_to_push0 = 65025;
+          struct TYPE_3__ * to_push = (struct TYPE_3__ *) malloc(_len_to_push0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_to_push0; _i0++) {
+              to_push[_i0].RIR = ((-2 * (next_i()%2)) + 1) * next_i();
+          to_push[_i0].RDLR = ((-2 * (next_i()%2)) + 1) * next_i();
+          to_push[_i0].RDHR = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ford_rx_hook(to_push);
+          free(to_push);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_to_push0 = 100;
+          struct TYPE_3__ * to_push = (struct TYPE_3__ *) malloc(_len_to_push0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_to_push0; _i0++) {
+              to_push[_i0].RIR = ((-2 * (next_i()%2)) + 1) * next_i();
+          to_push[_i0].RDLR = ((-2 * (next_i()%2)) + 1) * next_i();
+          to_push[_i0].RDHR = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ford_rx_hook(to_push);
+          free(to_push);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           int _len_to_push0 = 1;
           struct TYPE_3__ * to_push = (struct TYPE_3__ *) malloc(_len_to_push0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_to_push0; _i0++) {
-            to_push[_i0].RIR = ((-2 * (next_i()%2)) + 1) * next_i();
-        to_push[_i0].RDLR = ((-2 * (next_i()%2)) + 1) * next_i();
-        to_push[_i0].RDHR = ((-2 * (next_i()%2)) + 1) * next_i();
+              to_push[_i0].RIR = ((-2 * (next_i()%2)) + 1) * next_i();
+          to_push[_i0].RDLR = ((-2 * (next_i()%2)) + 1) * next_i();
+          to_push[_i0].RDHR = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ford_rx_hook(to_push);
           free(to_push);
         

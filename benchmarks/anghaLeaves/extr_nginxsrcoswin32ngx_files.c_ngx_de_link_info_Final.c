@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ ngx_de_link_info(u_char *name, ngx_dir_t *dir)
     return NGX_OK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,19 +78,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_name0 = 1;
+          int _len_name0 = 65025;
           int * name = (int *) malloc(_len_name0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_name0; _i0++) {
             name[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_dir0 = 1;
+        
+          int _len_dir0 = 65025;
           int * dir = (int *) malloc(_len_dir0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_dir0; _i0++) {
             dir[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = ngx_de_link_info(name,dir);
           printf("%d\n", benchRet); 
           free(name);
@@ -102,7 +100,50 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_name0 = 100;
+          int * name = (int *) malloc(_len_name0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_name0; _i0++) {
+            name[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_dir0 = 100;
+          int * dir = (int *) malloc(_len_dir0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dir0; _i0++) {
+            dir[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ngx_de_link_info(name,dir);
+          printf("%d\n", benchRet); 
+          free(name);
+          free(dir);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_name0 = 1;
+          int * name = (int *) malloc(_len_name0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_name0; _i0++) {
+            name[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_dir0 = 1;
+          int * dir = (int *) malloc(_len_dir0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dir0; _i0++) {
+            dir[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ngx_de_link_info(name,dir);
+          printf("%d\n", benchRet); 
+          free(name);
+          free(dir);
+        
+        break;
+    }
     default:
         usage();
         break;

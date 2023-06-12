@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -127,12 +129,6 @@ __attribute__((used)) static int next_opcode_uc(struct rxe_qp *qp, u32 opcode, i
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -149,12 +145,38 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int opcode = 100;
+        
           int fits = 100;
+        
           int _len_qp0 = 1;
           struct rxe_qp * qp = (struct rxe_qp *) malloc(_len_qp0*sizeof(struct rxe_qp));
           for(int _i0 = 0; _i0 < _len_qp0; _i0++) {
-            qp[_i0].req.opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+              qp[_i0].req.opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = next_opcode_uc(qp,opcode,fits);
+          printf("%d\n", benchRet); 
+          free(qp);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int opcode = 255;
+        
+          int fits = 255;
+        
+          int _len_qp0 = 65025;
+          struct rxe_qp * qp = (struct rxe_qp *) malloc(_len_qp0*sizeof(struct rxe_qp));
+          for(int _i0 = 0; _i0 < _len_qp0; _i0++) {
+              qp[_i0].req.opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = next_opcode_uc(qp,opcode,fits);
           printf("%d\n", benchRet); 
           free(qp);
@@ -162,22 +184,47 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int opcode = 10;
+        
           int fits = 10;
+        
           int _len_qp0 = 100;
           struct rxe_qp * qp = (struct rxe_qp *) malloc(_len_qp0*sizeof(struct rxe_qp));
           for(int _i0 = 0; _i0 < _len_qp0; _i0++) {
-            qp[_i0].req.opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+              qp[_i0].req.opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = next_opcode_uc(qp,opcode,fits);
           printf("%d\n", benchRet); 
           free(qp);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int fits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_qp0 = 1;
+          struct rxe_qp * qp = (struct rxe_qp *) malloc(_len_qp0*sizeof(struct rxe_qp));
+          for(int _i0 = 0; _i0 < _len_qp0; _i0++) {
+              qp[_i0].req.opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = next_opcode_uc(qp,opcode,fits);
+          printf("%d\n", benchRet); 
+          free(qp);
+        
+        break;
+    }
     default:
         usage();
         break;

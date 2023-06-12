@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +79,6 @@ __attribute__((used)) static void stbi__float_postprocess(float *result, int *x,
    }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,30 +91,241 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
           int req_comp = 100;
+        
           int _len_result0 = 1;
           float * result = (float *) malloc(_len_result0*sizeof(float));
           for(int _i0 = 0; _i0 < _len_result0; _i0++) {
             result[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
+        
           int _len_x0 = 1;
           int * x = (int *) malloc(_len_x0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_x0; _i0++) {
             x[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_y0 = 1;
           int * y = (int *) malloc(_len_y0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_y0; _i0++) {
             y[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_comp0 = 1;
           int * comp = (int *) malloc(_len_comp0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_comp0; _i0++) {
             comp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          stbi__float_postprocess(result,x,y,comp,req_comp);
+          free(result);
+          free(x);
+          free(y);
+          free(comp);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int req_comp = 255;
+        
+          int _len_result0 = 65025;
+          float * result = (float *) malloc(_len_result0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_result0; _i0++) {
+            result[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          int _len_x0 = 65025;
+          int * x = (int *) malloc(_len_x0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_x0; _i0++) {
+            x[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_y0 = 65025;
+          int * y = (int *) malloc(_len_y0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_y0; _i0++) {
+            y[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_comp0 = 65025;
+          int * comp = (int *) malloc(_len_comp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_comp0; _i0++) {
+            comp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          stbi__float_postprocess(result,x,y,comp,req_comp);
+          free(result);
+          free(x);
+          free(y);
+          free(comp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int req_comp = 10;
+        
+          int _len_result0 = 100;
+          float * result = (float *) malloc(_len_result0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_result0; _i0++) {
+            result[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          int _len_x0 = 100;
+          int * x = (int *) malloc(_len_x0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_x0; _i0++) {
+            x[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_y0 = 100;
+          int * y = (int *) malloc(_len_y0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_y0; _i0++) {
+            y[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_comp0 = 100;
+          int * comp = (int *) malloc(_len_comp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_comp0; _i0++) {
+            comp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          stbi__float_postprocess(result,x,y,comp,req_comp);
+          free(result);
+          free(x);
+          free(y);
+          free(comp);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int req_comp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_result0 = 1;
+          float * result = (float *) malloc(_len_result0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_result0; _i0++) {
+            result[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          int _len_x0 = 1;
+          int * x = (int *) malloc(_len_x0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_x0; _i0++) {
+            x[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_y0 = 1;
+          int * y = (int *) malloc(_len_y0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_y0; _i0++) {
+            y[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_comp0 = 1;
+          int * comp = (int *) malloc(_len_comp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_comp0; _i0++) {
+            comp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           stbi__float_postprocess(result,x,y,comp,req_comp);
           free(result);
           free(x);

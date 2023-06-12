@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ void av_fifo_reset(AVFifoBuffer *f)
     f->wndx = f->rndx = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,24 +77,63 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_f0 = 1;
+          int _len_f0 = 65025;
           struct TYPE_3__ * f = (struct TYPE_3__ *) malloc(_len_f0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_f0; _i0++) {
-            f[_i0].rndx = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].wndx = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].buffer = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].rptr = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].wptr = ((-2 * (next_i()%2)) + 1) * next_i();
+              f[_i0].rndx = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].wndx = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].rptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].wptr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           av_fifo_reset(f);
           free(f);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_f0 = 100;
+          struct TYPE_3__ * f = (struct TYPE_3__ *) malloc(_len_f0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_f0; _i0++) {
+              f[_i0].rndx = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].wndx = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].rptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].wptr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          av_fifo_reset(f);
+          free(f);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_f0 = 1;
+          struct TYPE_3__ * f = (struct TYPE_3__ *) malloc(_len_f0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_f0; _i0++) {
+              f[_i0].rndx = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].wndx = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].rptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].wptr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          av_fifo_reset(f);
+          free(f);
+        
+        break;
+    }
     default:
         usage();
         break;

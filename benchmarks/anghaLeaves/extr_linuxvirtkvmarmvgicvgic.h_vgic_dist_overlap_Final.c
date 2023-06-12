@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static inline bool vgic_dist_overlap(struct kvm *kvm, gpa_
 		(base < d->vgic_dist_base + KVM_VGIC_V3_DIST_SIZE);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,32 +83,183 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           long base = 100;
+        
           unsigned long size = 100;
+        
           int _len_kvm0 = 1;
           struct kvm * kvm = (struct kvm *) malloc(_len_kvm0*sizeof(struct kvm));
           for(int _i0 = 0; _i0 < _len_kvm0; _i0++) {
-            kvm[_i0].arch.vgic.vgic_dist_base = ((-2 * (next_i()%2)) + 1) * next_i();
+              kvm[_i0].arch.vgic.vgic_dist_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int benchRet = vgic_dist_overlap(kvm,base,size);
           printf("%d\n", benchRet); 
           free(kvm);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          long base = 255;
+        
+          unsigned long size = 255;
+        
+          int _len_kvm0 = 65025;
+          struct kvm * kvm = (struct kvm *) malloc(_len_kvm0*sizeof(struct kvm));
+          for(int _i0 = 0; _i0 < _len_kvm0; _i0++) {
+              kvm[_i0].arch.vgic.vgic_dist_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = vgic_dist_overlap(kvm,base,size);
+          printf("%d\n", benchRet); 
+          free(kvm);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           long base = 10;
+        
           unsigned long size = 10;
+        
           int _len_kvm0 = 100;
           struct kvm * kvm = (struct kvm *) malloc(_len_kvm0*sizeof(struct kvm));
           for(int _i0 = 0; _i0 < _len_kvm0; _i0++) {
-            kvm[_i0].arch.vgic.vgic_dist_base = ((-2 * (next_i()%2)) + 1) * next_i();
+              kvm[_i0].arch.vgic.vgic_dist_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
+          int benchRet = vgic_dist_overlap(kvm,base,size);
+          printf("%d\n", benchRet); 
+          free(kvm);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          long base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_kvm0 = 1;
+          struct kvm * kvm = (struct kvm *) malloc(_len_kvm0*sizeof(struct kvm));
+          for(int _i0 = 0; _i0 < _len_kvm0; _i0++) {
+              kvm[_i0].arch.vgic.vgic_dist_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
           int benchRet = vgic_dist_overlap(kvm,base,size);
           printf("%d\n", benchRet); 
           free(kvm);

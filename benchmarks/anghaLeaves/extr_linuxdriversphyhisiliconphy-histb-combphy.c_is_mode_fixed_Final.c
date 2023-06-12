@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static int is_mode_fixed(struct histb_combphy_mode *mode)
 	return (mode->fixed != PHY_NONE) ? true : false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_mode0 = 1;
+          int _len_mode0 = 65025;
           struct histb_combphy_mode * mode = (struct histb_combphy_mode *) malloc(_len_mode0*sizeof(struct histb_combphy_mode));
           for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
-            mode[_i0].fixed = ((-2 * (next_i()%2)) + 1) * next_i();
+              mode[_i0].fixed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_mode_fixed(mode);
           printf("%d\n", benchRet); 
           free(mode);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_mode0 = 100;
           struct histb_combphy_mode * mode = (struct histb_combphy_mode *) malloc(_len_mode0*sizeof(struct histb_combphy_mode));
           for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
-            mode[_i0].fixed = ((-2 * (next_i()%2)) + 1) * next_i();
+              mode[_i0].fixed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_mode_fixed(mode);
           printf("%d\n", benchRet); 
           free(mode);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_mode0 = 1;
+          struct histb_combphy_mode * mode = (struct histb_combphy_mode *) malloc(_len_mode0*sizeof(struct histb_combphy_mode));
+          for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
+              mode[_i0].fixed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_mode_fixed(mode);
+          printf("%d\n", benchRet); 
+          free(mode);
+        
+        break;
+    }
     default:
         usage();
         break;

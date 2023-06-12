@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static inline void orangefs_set_timeout(struct dentry *den
 	dentry->d_fsdata = (void *) time;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,13 +79,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dentry0 = 1;
+          int _len_dentry0 = 65025;
           struct dentry * dentry = (struct dentry *) malloc(_len_dentry0*sizeof(struct dentry));
           for(int _i0 = 0; _i0 < _len_dentry0; _i0++) {
-              }
+            
+          }
+        
           orangefs_set_timeout(dentry);
           free(dentry);
         
@@ -102,13 +99,28 @@ int main(int argc, char *argv[]) {
           int _len_dentry0 = 100;
           struct dentry * dentry = (struct dentry *) malloc(_len_dentry0*sizeof(struct dentry));
           for(int _i0 = 0; _i0 < _len_dentry0; _i0++) {
-              }
+            
+          }
+        
           orangefs_set_timeout(dentry);
           free(dentry);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_dentry0 = 1;
+          struct dentry * dentry = (struct dentry *) malloc(_len_dentry0*sizeof(struct dentry));
+          for(int _i0 = 0; _i0 < _len_dentry0; _i0++) {
+            
+          }
+        
+          orangefs_set_timeout(dentry);
+          free(dentry);
+        
+        break;
+    }
     default:
         usage();
         break;

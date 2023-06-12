@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ void CL_GetGameState( gameState_t *gs ) {
 	*gs = cl.gameState;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_gs0 = 1;
+          int _len_gs0 = 65025;
           int * gs = (int *) malloc(_len_gs0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_gs0; _i0++) {
             gs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           CL_GetGameState(gs);
           free(gs);
         
@@ -102,12 +98,26 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_gs0; _i0++) {
             gs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           CL_GetGameState(gs);
           free(gs);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_gs0 = 1;
+          int * gs = (int *) malloc(_len_gs0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_gs0; _i0++) {
+            gs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          CL_GetGameState(gs);
+          free(gs);
+        
+        break;
+    }
     default:
         usage();
         break;

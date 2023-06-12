@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static __s32 ext4_xattr_block_space(struct ext4_xattr_ref 
 	return xattr_ref->fs->BlockSize;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,18 +77,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_xattr_ref0 = 65025;
+          struct ext4_xattr_ref * xattr_ref = (struct ext4_xattr_ref *) malloc(_len_xattr_ref0*sizeof(struct ext4_xattr_ref));
+          for(int _i0 = 0; _i0 < _len_xattr_ref0; _i0++) {
+              int _len_xattr_ref__i0__fs0 = 1;
+          xattr_ref[_i0].fs = (struct TYPE_2__ *) malloc(_len_xattr_ref__i0__fs0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_xattr_ref__i0__fs0; _j0++) {
+              xattr_ref[_i0].fs->BlockSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ext4_xattr_block_space(xattr_ref);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_xattr_ref0; _aux++) {
+          free(xattr_ref[_aux].fs);
+          }
+          free(xattr_ref);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_xattr_ref0 = 100;
+          struct ext4_xattr_ref * xattr_ref = (struct ext4_xattr_ref *) malloc(_len_xattr_ref0*sizeof(struct ext4_xattr_ref));
+          for(int _i0 = 0; _i0 < _len_xattr_ref0; _i0++) {
+              int _len_xattr_ref__i0__fs0 = 1;
+          xattr_ref[_i0].fs = (struct TYPE_2__ *) malloc(_len_xattr_ref__i0__fs0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_xattr_ref__i0__fs0; _j0++) {
+              xattr_ref[_i0].fs->BlockSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ext4_xattr_block_space(xattr_ref);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_xattr_ref0; _aux++) {
+          free(xattr_ref[_aux].fs);
+          }
+          free(xattr_ref);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_xattr_ref0 = 1;
           struct ext4_xattr_ref * xattr_ref = (struct ext4_xattr_ref *) malloc(_len_xattr_ref0*sizeof(struct ext4_xattr_ref));
           for(int _i0 = 0; _i0 < _len_xattr_ref0; _i0++) {
               int _len_xattr_ref__i0__fs0 = 1;
           xattr_ref[_i0].fs = (struct TYPE_2__ *) malloc(_len_xattr_ref__i0__fs0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_xattr_ref__i0__fs0; _j0++) {
-            xattr_ref[_i0].fs->BlockSize = ((-2 * (next_i()%2)) + 1) * next_i();
+              xattr_ref[_i0].fs->BlockSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = ext4_xattr_block_space(xattr_ref);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_xattr_ref0; _aux++) {

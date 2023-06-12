@@ -69,12 +69,6 @@ int char_width(char input) {
     return lookup[input];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,6 +85,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           char input = 100;
+        
           int benchRet = char_width(input);
           printf("%d\n", benchRet); 
         
@@ -100,12 +95,12 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           char input = 10;
+        
           int benchRet = char_width(input);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

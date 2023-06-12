@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -73,7 +74,6 @@ CountBTreeKeys(PB_TREE_KEY FirstKey)
     return Count;
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct TYPE_3__ *_allocate_FirstKey(int length, struct TYPE_3__ *aux_FirstKey[]) {
@@ -101,7 +101,6 @@ void _delete_FirstKey(struct TYPE_3__ *aux_FirstKey[], int aux_FirstKey_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -114,11 +113,71 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // linked
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 90011
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 40008
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 40008
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 40008
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 40008
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 50007
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 50007
+          // ------------------------------- 
+
+          struct TYPE_3__ * aux_FirstKey[10000];
+          struct TYPE_3__ * FirstKey = _allocate_FirstKey(10000, aux_FirstKey);
+        
+          long benchRet = CountBTreeKeys(FirstKey);
+          printf("%ld\n", benchRet); 
+          _delete_FirstKey(aux_FirstKey, 10000);
+        
+        break;
+    }
+
+
+    // empty
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           struct TYPE_3__ * aux_FirstKey[1];
           struct TYPE_3__ * FirstKey = _allocate_FirstKey(1, aux_FirstKey);
+        
           long benchRet = CountBTreeKeys(FirstKey);
           printf("%ld\n", benchRet); 
           _delete_FirstKey(aux_FirstKey, 1);

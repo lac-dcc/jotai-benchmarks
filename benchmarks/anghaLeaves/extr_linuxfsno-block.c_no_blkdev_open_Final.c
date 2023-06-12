@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static int no_blkdev_open(struct inode * inode, struct fil
 	return -ENODEV;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,19 +76,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_inode0 = 1;
+          int _len_inode0 = 65025;
           struct inode * inode = (struct inode *) malloc(_len_inode0*sizeof(struct inode));
           for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
-            inode[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              inode[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_filp0 = 1;
+        
+          int _len_filp0 = 65025;
           struct file * filp = (struct file *) malloc(_len_filp0*sizeof(struct file));
           for(int _i0 = 0; _i0 < _len_filp0; _i0++) {
-            filp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              filp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = no_blkdev_open(inode,filp);
           printf("%d\n", benchRet); 
           free(inode);
@@ -100,7 +100,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_inode0 = 100;
+          struct inode * inode = (struct inode *) malloc(_len_inode0*sizeof(struct inode));
+          for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
+              inode[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_filp0 = 100;
+          struct file * filp = (struct file *) malloc(_len_filp0*sizeof(struct file));
+          for(int _i0 = 0; _i0 < _len_filp0; _i0++) {
+              filp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = no_blkdev_open(inode,filp);
+          printf("%d\n", benchRet); 
+          free(inode);
+          free(filp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_inode0 = 1;
+          struct inode * inode = (struct inode *) malloc(_len_inode0*sizeof(struct inode));
+          for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
+              inode[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_filp0 = 1;
+          struct file * filp = (struct file *) malloc(_len_filp0*sizeof(struct file));
+          for(int _i0 = 0; _i0 < _len_filp0; _i0++) {
+              filp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = no_blkdev_open(inode,filp);
+          printf("%d\n", benchRet); 
+          free(inode);
+          free(filp);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -89,12 +91,6 @@ __attribute__((used)) static int store_utf8(u32 c, char *p)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -111,11 +107,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int c = 100;
+        
           int _len_p0 = 1;
           char * p = (char *) malloc(_len_p0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
             p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = store_utf8(c,p);
+          printf("%d\n", benchRet); 
+          free(p);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int c = 255;
+        
+          int _len_p0 = 65025;
+          char * p = (char *) malloc(_len_p0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+            p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = store_utf8(c,p);
           printf("%d\n", benchRet); 
           free(p);
@@ -123,21 +138,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int c = 10;
+        
           int _len_p0 = 100;
           char * p = (char *) malloc(_len_p0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
             p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = store_utf8(c,p);
           printf("%d\n", benchRet); 
           free(p);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int c = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_p0 = 1;
+          char * p = (char *) malloc(_len_p0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+            p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = store_utf8(c,p);
+          printf("%d\n", benchRet); 
+          free(p);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ __attribute__((used)) static int fuse_verify_ioctl_iov(struct iovec *iov, size_t
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,11 +91,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long count = 100;
+        
           int _len_iov0 = 1;
           struct iovec * iov = (struct iovec *) malloc(_len_iov0*sizeof(struct iovec));
           for(int _i0 = 0; _i0 < _len_iov0; _i0++) {
-            iov[_i0].iov_len = ((-2 * (next_i()%2)) + 1) * next_i();
+              iov[_i0].iov_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = fuse_verify_ioctl_iov(iov,count);
+          printf("%d\n", benchRet); 
+          free(iov);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned long count = 255;
+        
+          int _len_iov0 = 65025;
+          struct iovec * iov = (struct iovec *) malloc(_len_iov0*sizeof(struct iovec));
+          for(int _i0 = 0; _i0 < _len_iov0; _i0++) {
+              iov[_i0].iov_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = fuse_verify_ioctl_iov(iov,count);
           printf("%d\n", benchRet); 
           free(iov);
@@ -107,21 +124,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned long count = 10;
+        
           int _len_iov0 = 100;
           struct iovec * iov = (struct iovec *) malloc(_len_iov0*sizeof(struct iovec));
           for(int _i0 = 0; _i0 < _len_iov0; _i0++) {
-            iov[_i0].iov_len = ((-2 * (next_i()%2)) + 1) * next_i();
+              iov[_i0].iov_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = fuse_verify_ioctl_iov(iov,count);
           printf("%d\n", benchRet); 
           free(iov);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_iov0 = 1;
+          struct iovec * iov = (struct iovec *) malloc(_len_iov0*sizeof(struct iovec));
+          for(int _i0 = 0; _i0 < _len_iov0; _i0++) {
+              iov[_i0].iov_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fuse_verify_ioctl_iov(iov,count);
+          printf("%d\n", benchRet); 
+          free(iov);
+        
+        break;
+    }
     default:
         usage();
         break;

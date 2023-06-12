@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ __attribute__((used)) static u16 tcam_get_index(struct niu *np, u16 idx)
 	return np->clas.tcam_top + ((idx+1) * np->parent->num_ports);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,17 +87,22 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int idx = 100;
+        
           int _len_np0 = 1;
           struct niu * np = (struct niu *) malloc(_len_np0*sizeof(struct niu));
           for(int _i0 = 0; _i0 < _len_np0; _i0++) {
               int _len_np__i0__parent0 = 1;
           np[_i0].parent = (struct TYPE_4__ *) malloc(_len_np__i0__parent0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_np__i0__parent0; _j0++) {
-            np[_i0].parent->num_ports = ((-2 * (next_i()%2)) + 1) * next_i();
+              np[_i0].parent->num_ports = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        np[_i0].clas.tcam_sz = ((-2 * (next_i()%2)) + 1) * next_i();
-        np[_i0].clas.tcam_top = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].clas.tcam_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].clas.tcam_top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = tcam_get_index(np,idx);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_np0; _aux++) {
@@ -110,7 +112,93 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int idx = 255;
+        
+          int _len_np0 = 65025;
+          struct niu * np = (struct niu *) malloc(_len_np0*sizeof(struct niu));
+          for(int _i0 = 0; _i0 < _len_np0; _i0++) {
+              int _len_np__i0__parent0 = 1;
+          np[_i0].parent = (struct TYPE_4__ *) malloc(_len_np__i0__parent0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_np__i0__parent0; _j0++) {
+              np[_i0].parent->num_ports = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          np[_i0].clas.tcam_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].clas.tcam_top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = tcam_get_index(np,idx);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_np0; _aux++) {
+          free(np[_aux].parent);
+          }
+          free(np);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int idx = 10;
+        
+          int _len_np0 = 100;
+          struct niu * np = (struct niu *) malloc(_len_np0*sizeof(struct niu));
+          for(int _i0 = 0; _i0 < _len_np0; _i0++) {
+              int _len_np__i0__parent0 = 1;
+          np[_i0].parent = (struct TYPE_4__ *) malloc(_len_np__i0__parent0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_np__i0__parent0; _j0++) {
+              np[_i0].parent->num_ports = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          np[_i0].clas.tcam_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].clas.tcam_top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = tcam_get_index(np,idx);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_np0; _aux++) {
+          free(np[_aux].parent);
+          }
+          free(np);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_np0 = 1;
+          struct niu * np = (struct niu *) malloc(_len_np0*sizeof(struct niu));
+          for(int _i0 = 0; _i0 < _len_np0; _i0++) {
+              int _len_np__i0__parent0 = 1;
+          np[_i0].parent = (struct TYPE_4__ *) malloc(_len_np__i0__parent0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_np__i0__parent0; _j0++) {
+              np[_i0].parent->num_ports = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          np[_i0].clas.tcam_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].clas.tcam_top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = tcam_get_index(np,idx);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_np0; _aux++) {
+          free(np[_aux].parent);
+          }
+          free(np);
+        
+        break;
+    }
     default:
         usage();
         break;

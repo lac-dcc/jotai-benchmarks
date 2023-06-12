@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ int iio_trigger_validate_own_device(struct iio_trigger *trig,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,19 +83,148 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_trig0 = 65025;
+          struct iio_trigger * trig = (struct iio_trigger *) malloc(_len_trig0*sizeof(struct iio_trigger));
+          for(int _i0 = 0; _i0 < _len_trig0; _i0++) {
+              trig[_i0].dev.parent = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_indio_dev0 = 65025;
+          struct iio_dev * indio_dev = (struct iio_dev *) malloc(_len_indio_dev0*sizeof(struct iio_dev));
+          for(int _i0 = 0; _i0 < _len_indio_dev0; _i0++) {
+              indio_dev[_i0].dev.parent = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = iio_trigger_validate_own_device(trig,indio_dev);
+          printf("%d\n", benchRet); 
+          free(trig);
+          free(indio_dev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_trig0 = 100;
+          struct iio_trigger * trig = (struct iio_trigger *) malloc(_len_trig0*sizeof(struct iio_trigger));
+          for(int _i0 = 0; _i0 < _len_trig0; _i0++) {
+              trig[_i0].dev.parent = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_indio_dev0 = 100;
+          struct iio_dev * indio_dev = (struct iio_dev *) malloc(_len_indio_dev0*sizeof(struct iio_dev));
+          for(int _i0 = 0; _i0 < _len_indio_dev0; _i0++) {
+              indio_dev[_i0].dev.parent = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = iio_trigger_validate_own_device(trig,indio_dev);
+          printf("%d\n", benchRet); 
+          free(trig);
+          free(indio_dev);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_trig0 = 1;
           struct iio_trigger * trig = (struct iio_trigger *) malloc(_len_trig0*sizeof(struct iio_trigger));
           for(int _i0 = 0; _i0 < _len_trig0; _i0++) {
-            trig[_i0].dev.parent = ((-2 * (next_i()%2)) + 1) * next_i();
+              trig[_i0].dev.parent = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_indio_dev0 = 1;
           struct iio_dev * indio_dev = (struct iio_dev *) malloc(_len_indio_dev0*sizeof(struct iio_dev));
           for(int _i0 = 0; _i0 < _len_indio_dev0; _i0++) {
-            indio_dev[_i0].dev.parent = ((-2 * (next_i()%2)) + 1) * next_i();
+              indio_dev[_i0].dev.parent = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = iio_trigger_validate_own_device(trig,indio_dev);
           printf("%d\n", benchRet); 
           free(trig);

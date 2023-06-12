@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +74,6 @@ __attribute__((used)) static inline bool check_recursive_alloc(struct stack_trac
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,16 +90,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long ip = 100;
+        
           int _len_trace0 = 1;
           struct stack_trace * trace = (struct stack_trace *) malloc(_len_trace0*sizeof(struct stack_trace));
           for(int _i0 = 0; _i0 < _len_trace0; _i0++) {
-            trace[_i0].nr_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+              trace[_i0].nr_entries = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_trace__i0__entries0 = 1;
           trace[_i0].entries = (unsigned long *) malloc(_len_trace__i0__entries0*sizeof(unsigned long));
           for(int _j0 = 0; _j0 < _len_trace__i0__entries0; _j0++) {
             trace[_i0].entries[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = check_recursive_alloc(trace,ip);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_trace0; _aux++) {
@@ -112,7 +112,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long ip = 255;
+        
+          int _len_trace0 = 65025;
+          struct stack_trace * trace = (struct stack_trace *) malloc(_len_trace0*sizeof(struct stack_trace));
+          for(int _i0 = 0; _i0 < _len_trace0; _i0++) {
+              trace[_i0].nr_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_trace__i0__entries0 = 1;
+          trace[_i0].entries = (unsigned long *) malloc(_len_trace__i0__entries0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_trace__i0__entries0; _j0++) {
+            trace[_i0].entries[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = check_recursive_alloc(trace,ip);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_trace0; _aux++) {
+          free(trace[_aux].entries);
+          }
+          free(trace);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long ip = 10;
+        
+          int _len_trace0 = 100;
+          struct stack_trace * trace = (struct stack_trace *) malloc(_len_trace0*sizeof(struct stack_trace));
+          for(int _i0 = 0; _i0 < _len_trace0; _i0++) {
+              trace[_i0].nr_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_trace__i0__entries0 = 1;
+          trace[_i0].entries = (unsigned long *) malloc(_len_trace__i0__entries0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_trace__i0__entries0; _j0++) {
+            trace[_i0].entries[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = check_recursive_alloc(trace,ip);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_trace0; _aux++) {
+          free(trace[_aux].entries);
+          }
+          free(trace);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long ip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_trace0 = 1;
+          struct stack_trace * trace = (struct stack_trace *) malloc(_len_trace0*sizeof(struct stack_trace));
+          for(int _i0 = 0; _i0 < _len_trace0; _i0++) {
+              trace[_i0].nr_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_trace__i0__entries0 = 1;
+          trace[_i0].entries = (unsigned long *) malloc(_len_trace__i0__entries0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_trace__i0__entries0; _j0++) {
+            trace[_i0].entries[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = check_recursive_alloc(trace,ip);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_trace0; _aux++) {
+          free(trace[_aux].entries);
+          }
+          free(trace);
+        
+        break;
+    }
     default:
         usage();
         break;

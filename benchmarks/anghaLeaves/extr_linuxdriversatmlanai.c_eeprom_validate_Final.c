@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static int eeprom_validate(struct lanai_dev *lanai)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,15 +77,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_lanai0 = 65025;
+          struct lanai_dev * lanai = (struct lanai_dev *) malloc(_len_lanai0*sizeof(struct lanai_dev));
+          for(int _i0 = 0; _i0 < _len_lanai0; _i0++) {
+              lanai[_i0].magicno = ((-2 * (next_i()%2)) + 1) * next_i();
+          lanai[_i0].serialno = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = eeprom_validate(lanai);
+          printf("%d\n", benchRet); 
+          free(lanai);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_lanai0 = 100;
+          struct lanai_dev * lanai = (struct lanai_dev *) malloc(_len_lanai0*sizeof(struct lanai_dev));
+          for(int _i0 = 0; _i0 < _len_lanai0; _i0++) {
+              lanai[_i0].magicno = ((-2 * (next_i()%2)) + 1) * next_i();
+          lanai[_i0].serialno = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = eeprom_validate(lanai);
+          printf("%d\n", benchRet); 
+          free(lanai);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_lanai0 = 1;
           struct lanai_dev * lanai = (struct lanai_dev *) malloc(_len_lanai0*sizeof(struct lanai_dev));
           for(int _i0 = 0; _i0 < _len_lanai0; _i0++) {
-            lanai[_i0].magicno = ((-2 * (next_i()%2)) + 1) * next_i();
-        lanai[_i0].serialno = ((-2 * (next_i()%2)) + 1) * next_i();
+              lanai[_i0].magicno = ((-2 * (next_i()%2)) + 1) * next_i();
+          lanai[_i0].serialno = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = eeprom_validate(lanai);
           printf("%d\n", benchRet); 
           free(lanai);

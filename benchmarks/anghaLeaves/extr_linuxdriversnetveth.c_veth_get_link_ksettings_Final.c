@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ __attribute__((used)) static int veth_get_link_ksettings(struct net_device *dev,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,22 +86,27 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dev0 = 1;
+          int _len_dev0 = 65025;
           struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_cmd0 = 1;
+        
+          int _len_cmd0 = 65025;
           struct ethtool_link_ksettings * cmd = (struct ethtool_link_ksettings *) malloc(_len_cmd0*sizeof(struct ethtool_link_ksettings));
           for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
-            cmd[_i0].base.autoneg = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd[_i0].base.port = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd[_i0].base.duplex = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd[_i0].base.speed = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmd[_i0].base.autoneg = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].base.port = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].base.duplex = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].base.speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = veth_get_link_ksettings(dev,cmd);
           printf("%d\n", benchRet); 
           free(dev);
@@ -113,7 +114,62 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dev0 = 100;
+          struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cmd0 = 100;
+          struct ethtool_link_ksettings * cmd = (struct ethtool_link_ksettings *) malloc(_len_cmd0*sizeof(struct ethtool_link_ksettings));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].base.autoneg = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].base.port = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].base.duplex = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].base.speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = veth_get_link_ksettings(dev,cmd);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(cmd);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dev0 = 1;
+          struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cmd0 = 1;
+          struct ethtool_link_ksettings * cmd = (struct ethtool_link_ksettings *) malloc(_len_cmd0*sizeof(struct ethtool_link_ksettings));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].base.autoneg = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].base.port = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].base.duplex = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].base.speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = veth_get_link_ksettings(dev,cmd);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(cmd);
+        
+        break;
+    }
     default:
         usage();
         break;

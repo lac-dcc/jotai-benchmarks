@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ bool Curl_ipvalid(struct connectdata *conn)
   return TRUE; /* OK, proceed */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,28 +81,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_conn0 = 1;
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_conn0 = 65025;
           struct connectdata * conn = (struct connectdata *) malloc(_len_conn0*sizeof(struct connectdata));
           for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
-            conn[_i0].ip_version = ((-2 * (next_i()%2)) + 1) * next_i();
+              conn[_i0].ip_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = Curl_ipvalid(conn);
           printf("%d\n", benchRet); 
           free(conn);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_conn0 = 100;
           struct connectdata * conn = (struct connectdata *) malloc(_len_conn0*sizeof(struct connectdata));
           for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
-            conn[_i0].ip_version = ((-2 * (next_i()%2)) + 1) * next_i();
+              conn[_i0].ip_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = Curl_ipvalid(conn);
+          printf("%d\n", benchRet); 
+          free(conn);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_conn0 = 1;
+          struct connectdata * conn = (struct connectdata *) malloc(_len_conn0*sizeof(struct connectdata));
+          for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
+              conn[_i0].ip_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = Curl_ipvalid(conn);
           printf("%d\n", benchRet); 
           free(conn);

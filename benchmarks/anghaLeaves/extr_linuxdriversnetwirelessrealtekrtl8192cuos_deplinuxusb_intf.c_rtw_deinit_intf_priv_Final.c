@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +75,6 @@ __attribute__((used)) static u8 rtw_deinit_intf_priv(struct dvobj_priv *dvobj)
 	return rst;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,14 +87,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dvobj0 = 1;
+          int _len_dvobj0 = 65025;
           struct dvobj_priv * dvobj = (struct dvobj_priv *) malloc(_len_dvobj0*sizeof(struct dvobj_priv));
           for(int _i0 = 0; _i0 < _len_dvobj0; _i0++) {
-            dvobj[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dvobj[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = rtw_deinit_intf_priv(dvobj);
           printf("%d\n", benchRet); 
           free(dvobj);
@@ -112,15 +109,32 @@ int main(int argc, char *argv[]) {
           int _len_dvobj0 = 100;
           struct dvobj_priv * dvobj = (struct dvobj_priv *) malloc(_len_dvobj0*sizeof(struct dvobj_priv));
           for(int _i0 = 0; _i0 < _len_dvobj0; _i0++) {
-            dvobj[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dvobj[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = rtw_deinit_intf_priv(dvobj);
           printf("%d\n", benchRet); 
           free(dvobj);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_dvobj0 = 1;
+          struct dvobj_priv * dvobj = (struct dvobj_priv *) malloc(_len_dvobj0*sizeof(struct dvobj_priv));
+          for(int _i0 = 0; _i0 < _len_dvobj0; _i0++) {
+              dvobj[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rtw_deinit_intf_priv(dvobj);
+          printf("%d\n", benchRet); 
+          free(dvobj);
+        
+        break;
+    }
     default:
         usage();
         break;

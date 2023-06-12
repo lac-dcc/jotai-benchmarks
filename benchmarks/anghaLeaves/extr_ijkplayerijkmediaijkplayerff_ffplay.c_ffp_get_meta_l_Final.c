@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ IjkMediaMeta *ffp_get_meta_l(FFPlayer *ffp)
     return ffp->meta;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,9 +80,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_ffp0 = 65025;
+          struct TYPE_3__ * ffp = (struct TYPE_3__ *) malloc(_len_ffp0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ffp0; _i0++) {
+              int _len_ffp__i0__meta0 = 1;
+          ffp[_i0].meta = (int *) malloc(_len_ffp__i0__meta0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ffp__i0__meta0; _j0++) {
+            ffp[_i0].meta[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int * benchRet = ffp_get_meta_l(ffp);
+          printf("%d\n", (*benchRet)); 
+          for(int _aux = 0; _aux < _len_ffp0; _aux++) {
+          free(ffp[_aux].meta);
+          }
+          free(ffp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_ffp0 = 100;
+          struct TYPE_3__ * ffp = (struct TYPE_3__ *) malloc(_len_ffp0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ffp0; _i0++) {
+              int _len_ffp__i0__meta0 = 1;
+          ffp[_i0].meta = (int *) malloc(_len_ffp__i0__meta0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ffp__i0__meta0; _j0++) {
+            ffp[_i0].meta[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int * benchRet = ffp_get_meta_l(ffp);
+          printf("%d\n", (*benchRet)); 
+          for(int _aux = 0; _aux < _len_ffp0; _aux++) {
+          free(ffp[_aux].meta);
+          }
+          free(ffp);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_ffp0 = 1;
           struct TYPE_3__ * ffp = (struct TYPE_3__ *) malloc(_len_ffp0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_ffp0; _i0++) {
@@ -95,7 +208,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_ffp__i0__meta0; _j0++) {
             ffp[_i0].meta[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int * benchRet = ffp_get_meta_l(ffp);
           printf("%d\n", (*benchRet)); 
           for(int _aux = 0; _aux < _len_ffp0; _aux++) {

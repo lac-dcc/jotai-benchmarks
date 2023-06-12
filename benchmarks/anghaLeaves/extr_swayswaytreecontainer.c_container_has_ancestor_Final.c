@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -65,7 +66,6 @@ bool container_has_ancestor(struct sway_container *descendant,
 	}
 	return false;
 }
-
 
 // ------------------------------------------------------------------------- //
 
@@ -117,7 +117,6 @@ void _delete_ancestor(struct sway_container *aux_ancestor[], int aux_ancestor_si
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -130,13 +129,78 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // linked
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 90010
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 50009
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 50009
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 50009
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 50009
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 50007
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 50008
+          // ------------------------------- 
+
+          struct sway_container * aux_descendant[10000];
+          struct sway_container * descendant = _allocate_descendant(10000, aux_descendant);
+        
+          struct sway_container * aux_ancestor[10000];
+          struct sway_container * ancestor = _allocate_ancestor(10000, aux_ancestor);
+        
+          int benchRet = container_has_ancestor(descendant,ancestor);
+          printf("%d\n", benchRet); 
+          _delete_descendant(aux_descendant, 10000);
+          _delete_ancestor(aux_ancestor, 10000);
+        
+        break;
+    }
+
+
+    // empty
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           struct sway_container * aux_descendant[1];
           struct sway_container * descendant = _allocate_descendant(1, aux_descendant);
+        
           struct sway_container * aux_ancestor[1];
           struct sway_container * ancestor = _allocate_ancestor(1, aux_ancestor);
+        
           int benchRet = container_has_ancestor(descendant,ancestor);
           printf("%d\n", benchRet); 
           _delete_descendant(aux_descendant, 1);

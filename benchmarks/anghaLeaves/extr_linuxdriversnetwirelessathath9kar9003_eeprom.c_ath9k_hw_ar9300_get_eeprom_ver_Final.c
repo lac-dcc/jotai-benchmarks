@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static int ath9k_hw_ar9300_get_eeprom_ver(struct ath_hw *a
 	return ah->eeprom.ar9300_eep.eepromVersion;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,14 +78,18 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ah0 = 1;
+          int _len_ah0 = 65025;
           struct ath_hw * ah = (struct ath_hw *) malloc(_len_ah0*sizeof(struct ath_hw));
           for(int _i0 = 0; _i0 < _len_ah0; _i0++) {
-            ah[_i0].eeprom.ar9300_eep.eepromVersion = ((-2 * (next_i()%2)) + 1) * next_i();
+              ah[_i0].eeprom.ar9300_eep.eepromVersion = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int benchRet = ath9k_hw_ar9300_get_eeprom_ver(ah);
           printf("%d\n", benchRet); 
           free(ah);
@@ -103,15 +102,36 @@ int main(int argc, char *argv[]) {
           int _len_ah0 = 100;
           struct ath_hw * ah = (struct ath_hw *) malloc(_len_ah0*sizeof(struct ath_hw));
           for(int _i0 = 0; _i0 < _len_ah0; _i0++) {
-            ah[_i0].eeprom.ar9300_eep.eepromVersion = ((-2 * (next_i()%2)) + 1) * next_i();
+              ah[_i0].eeprom.ar9300_eep.eepromVersion = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int benchRet = ath9k_hw_ar9300_get_eeprom_ver(ah);
           printf("%d\n", benchRet); 
           free(ah);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ah0 = 1;
+          struct ath_hw * ah = (struct ath_hw *) malloc(_len_ah0*sizeof(struct ath_hw));
+          for(int _i0 = 0; _i0 < _len_ah0; _i0++) {
+              ah[_i0].eeprom.ar9300_eep.eepromVersion = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = ath9k_hw_ar9300_get_eeprom_ver(ah);
+          printf("%d\n", benchRet); 
+          free(ah);
+        
+        break;
+    }
     default:
         usage();
         break;

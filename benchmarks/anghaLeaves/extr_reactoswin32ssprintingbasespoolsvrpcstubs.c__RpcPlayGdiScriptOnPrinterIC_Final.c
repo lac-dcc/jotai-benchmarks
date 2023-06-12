@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ _RpcPlayGdiScriptOnPrinterIC(WINSPOOL_GDI_HANDLE hPrinterIC, BYTE* pIn, DWORD cI
     return ERROR_INVALID_FUNCTION;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,23 +81,214 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int hPrinterIC = 100;
+        
           int cIn = 100;
+        
           int cOut = 100;
+        
           int ul = 100;
+        
           int _len_pIn0 = 1;
           int * pIn = (int *) malloc(_len_pIn0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pIn0; _i0++) {
             pIn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_pOut0 = 1;
           int * pOut = (int *) malloc(_len_pOut0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pOut0; _i0++) {
             pOut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = _RpcPlayGdiScriptOnPrinterIC(hPrinterIC,pIn,cIn,pOut,cOut,ul);
+          printf("%d\n", benchRet); 
+          free(pIn);
+          free(pOut);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int hPrinterIC = 255;
+        
+          int cIn = 255;
+        
+          int cOut = 255;
+        
+          int ul = 255;
+        
+          int _len_pIn0 = 65025;
+          int * pIn = (int *) malloc(_len_pIn0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pIn0; _i0++) {
+            pIn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pOut0 = 65025;
+          int * pOut = (int *) malloc(_len_pOut0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pOut0; _i0++) {
+            pOut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _RpcPlayGdiScriptOnPrinterIC(hPrinterIC,pIn,cIn,pOut,cOut,ul);
+          printf("%d\n", benchRet); 
+          free(pIn);
+          free(pOut);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int hPrinterIC = 10;
+        
+          int cIn = 10;
+        
+          int cOut = 10;
+        
+          int ul = 10;
+        
+          int _len_pIn0 = 100;
+          int * pIn = (int *) malloc(_len_pIn0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pIn0; _i0++) {
+            pIn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pOut0 = 100;
+          int * pOut = (int *) malloc(_len_pOut0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pOut0; _i0++) {
+            pOut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _RpcPlayGdiScriptOnPrinterIC(hPrinterIC,pIn,cIn,pOut,cOut,ul);
+          printf("%d\n", benchRet); 
+          free(pIn);
+          free(pOut);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int hPrinterIC = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int cIn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int cOut = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int ul = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pIn0 = 1;
+          int * pIn = (int *) malloc(_len_pIn0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pIn0; _i0++) {
+            pIn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pOut0 = 1;
+          int * pOut = (int *) malloc(_len_pOut0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pOut0; _i0++) {
+            pOut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = _RpcPlayGdiScriptOnPrinterIC(hPrinterIC,pIn,cIn,pOut,cOut,ul);
           printf("%d\n", benchRet); 
           free(pIn);

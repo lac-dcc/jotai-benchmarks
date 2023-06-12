@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static unsigned int max3191x_wordlen(struct max3191x_chip 
 	return max3191x->mode == STATUS_BYTE_ENABLED ? 2 : 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_max3191x0 = 1;
+          int _len_max3191x0 = 65025;
           struct max3191x_chip * max3191x = (struct max3191x_chip *) malloc(_len_max3191x0*sizeof(struct max3191x_chip));
           for(int _i0 = 0; _i0 < _len_max3191x0; _i0++) {
-            max3191x[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              max3191x[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = max3191x_wordlen(max3191x);
           printf("%u\n", benchRet); 
           free(max3191x);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_max3191x0 = 100;
           struct max3191x_chip * max3191x = (struct max3191x_chip *) malloc(_len_max3191x0*sizeof(struct max3191x_chip));
           for(int _i0 = 0; _i0 < _len_max3191x0; _i0++) {
-            max3191x[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              max3191x[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = max3191x_wordlen(max3191x);
           printf("%u\n", benchRet); 
           free(max3191x);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_max3191x0 = 1;
+          struct max3191x_chip * max3191x = (struct max3191x_chip *) malloc(_len_max3191x0*sizeof(struct max3191x_chip));
+          for(int _i0 = 0; _i0 < _len_max3191x0; _i0++) {
+              max3191x[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = max3191x_wordlen(max3191x);
+          printf("%u\n", benchRet); 
+          free(max3191x);
+        
+        break;
+    }
     default:
         usage();
         break;

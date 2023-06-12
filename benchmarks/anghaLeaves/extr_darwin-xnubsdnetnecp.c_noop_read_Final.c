@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ noop_read(struct fileproc *fp, struct uio *uio, int flags, vfs_context_t ctx)
 	return (ENXIO);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,17 +84,23 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int flags = 100;
+        
           int ctx = 100;
+        
           int _len_fp0 = 1;
           struct fileproc * fp = (struct fileproc *) malloc(_len_fp0*sizeof(struct fileproc));
           for(int _i0 = 0; _i0 < _len_fp0; _i0++) {
-            fp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              fp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_uio0 = 1;
           struct uio * uio = (struct uio *) malloc(_len_uio0*sizeof(struct uio));
           for(int _i0 = 0; _i0 < _len_uio0; _i0++) {
-            uio[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              uio[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = noop_read(fp,uio,flags,ctx);
           printf("%d\n", benchRet); 
           free(fp);
@@ -105,7 +108,90 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int flags = 255;
+        
+          int ctx = 255;
+        
+          int _len_fp0 = 65025;
+          struct fileproc * fp = (struct fileproc *) malloc(_len_fp0*sizeof(struct fileproc));
+          for(int _i0 = 0; _i0 < _len_fp0; _i0++) {
+              fp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_uio0 = 65025;
+          struct uio * uio = (struct uio *) malloc(_len_uio0*sizeof(struct uio));
+          for(int _i0 = 0; _i0 < _len_uio0; _i0++) {
+              uio[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = noop_read(fp,uio,flags,ctx);
+          printf("%d\n", benchRet); 
+          free(fp);
+          free(uio);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int flags = 10;
+        
+          int ctx = 10;
+        
+          int _len_fp0 = 100;
+          struct fileproc * fp = (struct fileproc *) malloc(_len_fp0*sizeof(struct fileproc));
+          for(int _i0 = 0; _i0 < _len_fp0; _i0++) {
+              fp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_uio0 = 100;
+          struct uio * uio = (struct uio *) malloc(_len_uio0*sizeof(struct uio));
+          for(int _i0 = 0; _i0 < _len_uio0; _i0++) {
+              uio[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = noop_read(fp,uio,flags,ctx);
+          printf("%d\n", benchRet); 
+          free(fp);
+          free(uio);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int ctx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fp0 = 1;
+          struct fileproc * fp = (struct fileproc *) malloc(_len_fp0*sizeof(struct fileproc));
+          for(int _i0 = 0; _i0 < _len_fp0; _i0++) {
+              fp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_uio0 = 1;
+          struct uio * uio = (struct uio *) malloc(_len_uio0*sizeof(struct uio));
+          for(int _i0 = 0; _i0 < _len_uio0; _i0++) {
+              uio[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = noop_read(fp,uio,flags,ctx);
+          printf("%d\n", benchRet); 
+          free(fp);
+          free(uio);
+        
+        break;
+    }
     default:
         usage();
         break;

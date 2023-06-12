@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -198,12 +199,6 @@ PicMidrangeOpcode pic_midrange_get_opcode (ut16 instr) {
 	return PIC_MIDRANGE_OPCODE_INVALID;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -216,28 +211,136 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 82
+          // dynamic_instructions_O0 : 82
+          // ------------------------------- 
+          // static_instructions_O1 : 53
+          // dynamic_instructions_O1 : 53
+          // ------------------------------- 
+          // static_instructions_O2 : 53
+          // dynamic_instructions_O2 : 53
+          // ------------------------------- 
+          // static_instructions_O3 : 53
+          // dynamic_instructions_O3 : 53
+          // ------------------------------- 
+          // static_instructions_Ofast : 53
+          // dynamic_instructions_Ofast : 53
+          // ------------------------------- 
+          // static_instructions_Os : 54
+          // dynamic_instructions_Os : 54
+          // ------------------------------- 
+          // static_instructions_Oz : 57
+          // dynamic_instructions_Oz : 57
+          // ------------------------------- 
+
           int instr = 100;
+        
           int benchRet = pic_midrange_get_opcode(instr);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 46
+          // dynamic_instructions_O0 : 46
+          // ------------------------------- 
+          // static_instructions_O1 : 37
+          // dynamic_instructions_O1 : 37
+          // ------------------------------- 
+          // static_instructions_O2 : 37
+          // dynamic_instructions_O2 : 37
+          // ------------------------------- 
+          // static_instructions_O3 : 37
+          // dynamic_instructions_O3 : 37
+          // ------------------------------- 
+          // static_instructions_Ofast : 37
+          // dynamic_instructions_Ofast : 37
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 36
+          // ------------------------------- 
+          // static_instructions_Oz : 35
+          // dynamic_instructions_Oz : 35
+          // ------------------------------- 
+
           int instr = 255;
+        
           int benchRet = pic_midrange_get_opcode(instr);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 101
+          // dynamic_instructions_O0 : 101
+          // ------------------------------- 
+          // static_instructions_O1 : 62
+          // dynamic_instructions_O1 : 62
+          // ------------------------------- 
+          // static_instructions_O2 : 62
+          // dynamic_instructions_O2 : 62
+          // ------------------------------- 
+          // static_instructions_O3 : 61
+          // dynamic_instructions_O3 : 61
+          // ------------------------------- 
+          // static_instructions_Ofast : 61
+          // dynamic_instructions_Ofast : 61
+          // ------------------------------- 
+          // static_instructions_Os : 63
+          // dynamic_instructions_Os : 63
+          // ------------------------------- 
+          // static_instructions_Oz : 64
+          // dynamic_instructions_Oz : 64
+          // ------------------------------- 
+
           int instr = 10;
+        
+          int benchRet = pic_midrange_get_opcode(instr);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int instr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = pic_midrange_get_opcode(instr);
           printf("%d\n", benchRet); 
         

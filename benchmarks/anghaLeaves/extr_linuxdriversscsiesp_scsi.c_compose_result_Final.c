@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static unsigned int compose_result(unsigned int status, un
 	return (status | (message << 8) | (driver_code << 16));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,8 +79,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int status = 100;
+        
           unsigned int message = 100;
+        
           unsigned int driver_code = 100;
+        
           unsigned int benchRet = compose_result(status,message,driver_code);
           printf("%u\n", benchRet); 
         
@@ -95,8 +93,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int status = 255;
+        
           unsigned int message = 255;
+        
           unsigned int driver_code = 255;
+        
           unsigned int benchRet = compose_result(status,message,driver_code);
           printf("%u\n", benchRet); 
         
@@ -106,14 +107,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int status = 10;
+        
           unsigned int message = 10;
+        
           unsigned int driver_code = 10;
+        
           unsigned int benchRet = compose_result(status,message,driver_code);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int message = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int driver_code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = compose_result(status,message,driver_code);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

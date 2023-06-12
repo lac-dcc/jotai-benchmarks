@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static int should_use_h2(int8_t ratio, int8_t *counter)
     return use_h2;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,11 +85,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int ratio = 100;
+        
           int _len_counter0 = 1;
           int * counter = (int *) malloc(_len_counter0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_counter0; _i0++) {
             counter[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = should_use_h2(ratio,counter);
+          printf("%d\n", benchRet); 
+          free(counter);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int ratio = 255;
+        
+          int _len_counter0 = 65025;
+          int * counter = (int *) malloc(_len_counter0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_counter0; _i0++) {
+            counter[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = should_use_h2(ratio,counter);
           printf("%d\n", benchRet); 
           free(counter);
@@ -101,21 +116,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int ratio = 10;
+        
           int _len_counter0 = 100;
           int * counter = (int *) malloc(_len_counter0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_counter0; _i0++) {
             counter[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = should_use_h2(ratio,counter);
           printf("%d\n", benchRet); 
           free(counter);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int ratio = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_counter0 = 1;
+          int * counter = (int *) malloc(_len_counter0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_counter0; _i0++) {
+            counter[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = should_use_h2(ratio,counter);
+          printf("%d\n", benchRet); 
+          free(counter);
+        
+        break;
+    }
     default:
         usage();
         break;

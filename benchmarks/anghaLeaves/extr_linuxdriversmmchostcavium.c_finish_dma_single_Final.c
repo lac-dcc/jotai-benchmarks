@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static int finish_dma_single(struct cvm_mmc_host *host, st
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,22 +77,26 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_host0 = 1;
+          int _len_host0 = 65025;
           struct cvm_mmc_host * host = (struct cvm_mmc_host *) malloc(_len_host0*sizeof(struct cvm_mmc_host));
           for(int _i0 = 0; _i0 < _len_host0; _i0++) {
-            host[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              host[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_data0 = 1;
+        
+          int _len_data0 = 65025;
           struct mmc_data * data = (struct mmc_data *) malloc(_len_data0*sizeof(struct mmc_data));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
-            data[_i0].bytes_xfered = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].blocks = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].blksz = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].error = ((-2 * (next_i()%2)) + 1) * next_i();
+              data[_i0].bytes_xfered = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].blocks = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].blksz = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].error = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = finish_dma_single(host,data);
           printf("%d\n", benchRet); 
           free(host);
@@ -104,7 +104,60 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_host0 = 100;
+          struct cvm_mmc_host * host = (struct cvm_mmc_host *) malloc(_len_host0*sizeof(struct cvm_mmc_host));
+          for(int _i0 = 0; _i0 < _len_host0; _i0++) {
+              host[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_data0 = 100;
+          struct mmc_data * data = (struct mmc_data *) malloc(_len_data0*sizeof(struct mmc_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].bytes_xfered = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].blocks = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].blksz = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].error = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = finish_dma_single(host,data);
+          printf("%d\n", benchRet); 
+          free(host);
+          free(data);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_host0 = 1;
+          struct cvm_mmc_host * host = (struct cvm_mmc_host *) malloc(_len_host0*sizeof(struct cvm_mmc_host));
+          for(int _i0 = 0; _i0 < _len_host0; _i0++) {
+              host[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_data0 = 1;
+          struct mmc_data * data = (struct mmc_data *) malloc(_len_data0*sizeof(struct mmc_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].bytes_xfered = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].blocks = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].blksz = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].error = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = finish_dma_single(host,data);
+          printf("%d\n", benchRet); 
+          free(host);
+          free(data);
+        
+        break;
+    }
     default:
         usage();
         break;

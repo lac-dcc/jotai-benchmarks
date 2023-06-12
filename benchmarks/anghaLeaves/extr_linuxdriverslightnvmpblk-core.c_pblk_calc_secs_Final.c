@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ int pblk_calc_secs(struct pblk *pblk, unsigned long secs_avail,
 	return secs_to_sync;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,17 +87,179 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           unsigned long secs_avail = 100;
+        
           unsigned long secs_to_flush = 100;
+        
           int _len_pblk0 = 1;
           struct pblk * pblk = (struct pblk *) malloc(_len_pblk0*sizeof(struct pblk));
           for(int _i0 = 0; _i0 < _len_pblk0; _i0++) {
-            pblk[_i0].sec_per_write = ((-2 * (next_i()%2)) + 1) * next_i();
-        pblk[_i0].min_write_pgs = ((-2 * (next_i()%2)) + 1) * next_i();
+              pblk[_i0].sec_per_write = ((-2 * (next_i()%2)) + 1) * next_i();
+          pblk[_i0].min_write_pgs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = pblk_calc_secs(pblk,secs_avail,secs_to_flush);
+          printf("%d\n", benchRet); 
+          free(pblk);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          unsigned long secs_avail = 255;
+        
+          unsigned long secs_to_flush = 255;
+        
+          int _len_pblk0 = 65025;
+          struct pblk * pblk = (struct pblk *) malloc(_len_pblk0*sizeof(struct pblk));
+          for(int _i0 = 0; _i0 < _len_pblk0; _i0++) {
+              pblk[_i0].sec_per_write = ((-2 * (next_i()%2)) + 1) * next_i();
+          pblk[_i0].min_write_pgs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pblk_calc_secs(pblk,secs_avail,secs_to_flush);
+          printf("%d\n", benchRet); 
+          free(pblk);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          unsigned long secs_avail = 10;
+        
+          unsigned long secs_to_flush = 10;
+        
+          int _len_pblk0 = 100;
+          struct pblk * pblk = (struct pblk *) malloc(_len_pblk0*sizeof(struct pblk));
+          for(int _i0 = 0; _i0 < _len_pblk0; _i0++) {
+              pblk[_i0].sec_per_write = ((-2 * (next_i()%2)) + 1) * next_i();
+          pblk[_i0].min_write_pgs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pblk_calc_secs(pblk,secs_avail,secs_to_flush);
+          printf("%d\n", benchRet); 
+          free(pblk);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          unsigned long secs_avail = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long secs_to_flush = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pblk0 = 1;
+          struct pblk * pblk = (struct pblk *) malloc(_len_pblk0*sizeof(struct pblk));
+          for(int _i0 = 0; _i0 < _len_pblk0; _i0++) {
+              pblk[_i0].sec_per_write = ((-2 * (next_i()%2)) + 1) * next_i();
+          pblk[_i0].min_write_pgs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = pblk_calc_secs(pblk,secs_avail,secs_to_flush);
           printf("%d\n", benchRet); 
           free(pblk);

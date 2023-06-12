@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -109,12 +111,6 @@ __attribute__((used)) static unsigned int sbp2_status_to_sense_data(u8 *sbp2_sta
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -127,19 +123,136 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_sbp2_status0 = 65025;
+          int * sbp2_status = (int *) malloc(_len_sbp2_status0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_sbp2_status0; _i0++) {
+            sbp2_status[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_sense_data0 = 65025;
+          int * sense_data = (int *) malloc(_len_sense_data0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_sense_data0; _i0++) {
+            sense_data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned int benchRet = sbp2_status_to_sense_data(sbp2_status,sense_data);
+          printf("%u\n", benchRet); 
+          free(sbp2_status);
+          free(sense_data);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_sbp2_status0 = 100;
+          int * sbp2_status = (int *) malloc(_len_sbp2_status0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_sbp2_status0; _i0++) {
+            sbp2_status[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_sense_data0 = 100;
+          int * sense_data = (int *) malloc(_len_sense_data0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_sense_data0; _i0++) {
+            sense_data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned int benchRet = sbp2_status_to_sense_data(sbp2_status,sense_data);
+          printf("%u\n", benchRet); 
+          free(sbp2_status);
+          free(sense_data);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_sbp2_status0 = 1;
           int * sbp2_status = (int *) malloc(_len_sbp2_status0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_sbp2_status0; _i0++) {
             sbp2_status[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_sense_data0 = 1;
           int * sense_data = (int *) malloc(_len_sense_data0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_sense_data0; _i0++) {
             sense_data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned int benchRet = sbp2_status_to_sense_data(sbp2_status,sense_data);
           printf("%u\n", benchRet); 
           free(sbp2_status);

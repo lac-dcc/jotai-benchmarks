@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ sym_inline_unpack_with_bit(mrb_sym sym, char *buf, int bit_per_char)
   return buf;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,16 +89,128 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
           int sym = 100;
+        
           int bit_per_char = 100;
+        
           int _len_buf0 = 1;
           char * buf = (char *) malloc(_len_buf0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
             buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          const char * benchRet = sym_inline_unpack_with_bit(sym,buf,bit_per_char);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          free(buf);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          int sym = 255;
+        
+          int bit_per_char = 255;
+        
+          int _len_buf0 = 65025;
+          char * buf = (char *) malloc(_len_buf0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          const char * benchRet = sym_inline_unpack_with_bit(sym,buf,bit_per_char);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          free(buf);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          int sym = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int bit_per_char = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_buf0 = 1;
+          char * buf = (char *) malloc(_len_buf0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           const char * benchRet = sym_inline_unpack_with_bit(sym,buf,bit_per_char);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(buf);

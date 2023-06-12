@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ AttributeDataLength(PNTFS_ATTR_RECORD AttrRecord)
         return AttrRecord->Resident.ValueLength;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,23 +85,66 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_AttrRecord0 = 1;
+          int _len_AttrRecord0 = 65025;
           struct TYPE_7__ * AttrRecord = (struct TYPE_7__ *) malloc(_len_AttrRecord0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_AttrRecord0; _i0++) {
-            AttrRecord[_i0].Resident.ValueLength = ((-2 * (next_i()%2)) + 1) * next_i();
-        AttrRecord[_i0].NonResident.DataSize = ((-2 * (next_i()%2)) + 1) * next_i();
-        AttrRecord[_i0].IsNonResident = ((-2 * (next_i()%2)) + 1) * next_i();
+              AttrRecord[_i0].Resident.ValueLength = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          AttrRecord[_i0].NonResident.DataSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          AttrRecord[_i0].IsNonResident = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = AttributeDataLength(AttrRecord);
           printf("%d\n", benchRet); 
           free(AttrRecord);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_AttrRecord0 = 100;
+          struct TYPE_7__ * AttrRecord = (struct TYPE_7__ *) malloc(_len_AttrRecord0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_AttrRecord0; _i0++) {
+              AttrRecord[_i0].Resident.ValueLength = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          AttrRecord[_i0].NonResident.DataSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          AttrRecord[_i0].IsNonResident = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = AttributeDataLength(AttrRecord);
+          printf("%d\n", benchRet); 
+          free(AttrRecord);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_AttrRecord0 = 1;
+          struct TYPE_7__ * AttrRecord = (struct TYPE_7__ *) malloc(_len_AttrRecord0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_AttrRecord0; _i0++) {
+              AttrRecord[_i0].Resident.ValueLength = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          AttrRecord[_i0].NonResident.DataSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          AttrRecord[_i0].IsNonResident = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = AttributeDataLength(AttrRecord);
+          printf("%d\n", benchRet); 
+          free(AttrRecord);
+        
+        break;
+    }
     default:
         usage();
         break;

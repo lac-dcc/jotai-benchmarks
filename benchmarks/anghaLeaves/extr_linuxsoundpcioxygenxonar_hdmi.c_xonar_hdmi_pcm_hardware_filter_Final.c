@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ void xonar_hdmi_pcm_hardware_filter(unsigned int channel,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,16 +87,168 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           unsigned int channel = 100;
+        
           int _len_hardware0 = 1;
           struct snd_pcm_hardware * hardware = (struct snd_pcm_hardware *) malloc(_len_hardware0*sizeof(struct snd_pcm_hardware));
           for(int _i0 = 0; _i0 < _len_hardware0; _i0++) {
-            hardware[_i0].rates = ((-2 * (next_i()%2)) + 1) * next_i();
-        hardware[_i0].rate_min = ((-2 * (next_i()%2)) + 1) * next_i();
+              hardware[_i0].rates = ((-2 * (next_i()%2)) + 1) * next_i();
+          hardware[_i0].rate_min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          xonar_hdmi_pcm_hardware_filter(channel,hardware);
+          free(hardware);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int channel = 255;
+        
+          int _len_hardware0 = 65025;
+          struct snd_pcm_hardware * hardware = (struct snd_pcm_hardware *) malloc(_len_hardware0*sizeof(struct snd_pcm_hardware));
+          for(int _i0 = 0; _i0 < _len_hardware0; _i0++) {
+              hardware[_i0].rates = ((-2 * (next_i()%2)) + 1) * next_i();
+          hardware[_i0].rate_min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          xonar_hdmi_pcm_hardware_filter(channel,hardware);
+          free(hardware);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int channel = 10;
+        
+          int _len_hardware0 = 100;
+          struct snd_pcm_hardware * hardware = (struct snd_pcm_hardware *) malloc(_len_hardware0*sizeof(struct snd_pcm_hardware));
+          for(int _i0 = 0; _i0 < _len_hardware0; _i0++) {
+              hardware[_i0].rates = ((-2 * (next_i()%2)) + 1) * next_i();
+          hardware[_i0].rate_min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          xonar_hdmi_pcm_hardware_filter(channel,hardware);
+          free(hardware);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int channel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hardware0 = 1;
+          struct snd_pcm_hardware * hardware = (struct snd_pcm_hardware *) malloc(_len_hardware0*sizeof(struct snd_pcm_hardware));
+          for(int _i0 = 0; _i0 < _len_hardware0; _i0++) {
+              hardware[_i0].rates = ((-2 * (next_i()%2)) + 1) * next_i();
+          hardware[_i0].rate_min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           xonar_hdmi_pcm_hardware_filter(channel,hardware);
           free(hardware);
         

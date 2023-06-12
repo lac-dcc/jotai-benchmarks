@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ audit_session_self(proc_t p, struct audit_session_self_args *uap,
 	return (ENOSYS);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,16 +86,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int p = 100;
+        
           int _len_uap0 = 1;
           struct audit_session_self_args * uap = (struct audit_session_self_args *) malloc(_len_uap0*sizeof(struct audit_session_self_args));
           for(int _i0 = 0; _i0 < _len_uap0; _i0++) {
-            uap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              uap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_ret_port0 = 1;
           int * ret_port = (int *) malloc(_len_ret_port0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_ret_port0; _i0++) {
             ret_port[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = audit_session_self(p,uap,ret_port);
           printf("%d\n", benchRet); 
           free(uap);
@@ -106,7 +107,81 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int p = 255;
+        
+          int _len_uap0 = 65025;
+          struct audit_session_self_args * uap = (struct audit_session_self_args *) malloc(_len_uap0*sizeof(struct audit_session_self_args));
+          for(int _i0 = 0; _i0 < _len_uap0; _i0++) {
+              uap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ret_port0 = 65025;
+          int * ret_port = (int *) malloc(_len_ret_port0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ret_port0; _i0++) {
+            ret_port[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = audit_session_self(p,uap,ret_port);
+          printf("%d\n", benchRet); 
+          free(uap);
+          free(ret_port);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int p = 10;
+        
+          int _len_uap0 = 100;
+          struct audit_session_self_args * uap = (struct audit_session_self_args *) malloc(_len_uap0*sizeof(struct audit_session_self_args));
+          for(int _i0 = 0; _i0 < _len_uap0; _i0++) {
+              uap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ret_port0 = 100;
+          int * ret_port = (int *) malloc(_len_ret_port0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ret_port0; _i0++) {
+            ret_port[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = audit_session_self(p,uap,ret_port);
+          printf("%d\n", benchRet); 
+          free(uap);
+          free(ret_port);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int p = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_uap0 = 1;
+          struct audit_session_self_args * uap = (struct audit_session_self_args *) malloc(_len_uap0*sizeof(struct audit_session_self_args));
+          for(int _i0 = 0; _i0 < _len_uap0; _i0++) {
+              uap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ret_port0 = 1;
+          int * ret_port = (int *) malloc(_len_ret_port0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ret_port0; _i0++) {
+            ret_port[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = audit_session_self(p,uap,ret_port);
+          printf("%d\n", benchRet); 
+          free(uap);
+          free(ret_port);
+        
+        break;
+    }
     default:
         usage();
         break;

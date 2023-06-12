@@ -131,7 +131,6 @@ m_adj(struct mbuf *mp, int req_len)
 	}
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct mbuf *_allocate_mp(int length, struct mbuf *aux_mp[]) {
@@ -142,7 +141,8 @@ walker->m_len = ((-2 * (next_i()%2)) + 1) * next_i();
 walker->m_data = ((-2 * (next_i()%2)) + 1) * next_i();
 walker->m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
   walker->m_next = NULL;
-walker->m_pkthdr.len = ((-2 * (next_i()%2)) + 1) * next_i();
+  walker->m_pkthdr.len = ((-2 * (next_i()%2)) + 1) * next_i();
+
 
   struct mbuf *head = walker;
   for(int i = 1; i < length; i++) {
@@ -153,7 +153,8 @@ walker->m_len = ((-2 * (next_i()%2)) + 1) * next_i();
 walker->m_data = ((-2 * (next_i()%2)) + 1) * next_i();
 walker->m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
     walker->m_next = NULL;
-walker->m_pkthdr.len = ((-2 * (next_i()%2)) + 1) * next_i();
+  walker->m_pkthdr.len = ((-2 * (next_i()%2)) + 1) * next_i();
+
   }
 
   return head;
@@ -164,7 +165,6 @@ void _delete_mp(struct mbuf *aux_mp[], int aux_mp_size) {
     if(aux_mp[i])
       free(aux_mp[i]);
 }
-
 
 
 
@@ -184,14 +184,15 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int req_len = 100;
+        
           struct mbuf * aux_mp[1];
           struct mbuf * mp = _allocate_mp(1, aux_mp);
+        
           m_adj(mp,req_len);
           _delete_mp(aux_mp, 1);
         
         break;
     }
-
     default:
         usage();
         break;

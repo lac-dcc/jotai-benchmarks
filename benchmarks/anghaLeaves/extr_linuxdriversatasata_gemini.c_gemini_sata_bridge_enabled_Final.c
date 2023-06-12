@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +78,6 @@ bool gemini_sata_bridge_enabled(struct sata_gemini *sg, bool is_ata1)
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,19 +94,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int is_ata1 = 100;
+        
           int _len_sg0 = 1;
           struct sata_gemini * sg = (struct sata_gemini *) malloc(_len_sg0*sizeof(struct sata_gemini));
           for(int _i0 = 0; _i0 < _len_sg0; _i0++) {
-            sg[_i0].muxmode = ((-2 * (next_i()%2)) + 1) * next_i();
-        sg[_i0].sata_bridge = ((-2 * (next_i()%2)) + 1) * next_i();
+              sg[_i0].muxmode = ((-2 * (next_i()%2)) + 1) * next_i();
+          sg[_i0].sata_bridge = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = gemini_sata_bridge_enabled(sg,is_ata1);
           printf("%d\n", benchRet); 
           free(sg);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int is_ata1 = 255;
+        
+          int _len_sg0 = 65025;
+          struct sata_gemini * sg = (struct sata_gemini *) malloc(_len_sg0*sizeof(struct sata_gemini));
+          for(int _i0 = 0; _i0 < _len_sg0; _i0++) {
+              sg[_i0].muxmode = ((-2 * (next_i()%2)) + 1) * next_i();
+          sg[_i0].sata_bridge = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = gemini_sata_bridge_enabled(sg,is_ata1);
+          printf("%d\n", benchRet); 
+          free(sg);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int is_ata1 = 10;
+        
+          int _len_sg0 = 100;
+          struct sata_gemini * sg = (struct sata_gemini *) malloc(_len_sg0*sizeof(struct sata_gemini));
+          for(int _i0 = 0; _i0 < _len_sg0; _i0++) {
+              sg[_i0].muxmode = ((-2 * (next_i()%2)) + 1) * next_i();
+          sg[_i0].sata_bridge = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = gemini_sata_bridge_enabled(sg,is_ata1);
+          printf("%d\n", benchRet); 
+          free(sg);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int is_ata1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sg0 = 1;
+          struct sata_gemini * sg = (struct sata_gemini *) malloc(_len_sg0*sizeof(struct sata_gemini));
+          for(int _i0 = 0; _i0 < _len_sg0; _i0++) {
+              sg[_i0].muxmode = ((-2 * (next_i()%2)) + 1) * next_i();
+          sg[_i0].sata_bridge = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = gemini_sata_bridge_enabled(sg,is_ata1);
+          printf("%d\n", benchRet); 
+          free(sg);
+        
+        break;
+    }
     default:
         usage();
         break;

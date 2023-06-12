@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ SiS_SetEnableDstn(struct SiS_Private *SiS_Pr, int enable)
    SiS_Pr->SiS_IF_DEF_DSTN = enable ? 1 : 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,31 +80,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int enable = 100;
+        
           int _len_SiS_Pr0 = 1;
           struct SiS_Private * SiS_Pr = (struct SiS_Private *) malloc(_len_SiS_Pr0*sizeof(struct SiS_Private));
           for(int _i0 = 0; _i0 < _len_SiS_Pr0; _i0++) {
-            SiS_Pr[_i0].SiS_IF_DEF_DSTN = ((-2 * (next_i()%2)) + 1) * next_i();
+              SiS_Pr[_i0].SiS_IF_DEF_DSTN = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          SiS_SetEnableDstn(SiS_Pr,enable);
+          free(SiS_Pr);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int enable = 255;
+        
+          int _len_SiS_Pr0 = 65025;
+          struct SiS_Private * SiS_Pr = (struct SiS_Private *) malloc(_len_SiS_Pr0*sizeof(struct SiS_Private));
+          for(int _i0 = 0; _i0 < _len_SiS_Pr0; _i0++) {
+              SiS_Pr[_i0].SiS_IF_DEF_DSTN = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           SiS_SetEnableDstn(SiS_Pr,enable);
           free(SiS_Pr);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int enable = 10;
+        
           int _len_SiS_Pr0 = 100;
           struct SiS_Private * SiS_Pr = (struct SiS_Private *) malloc(_len_SiS_Pr0*sizeof(struct SiS_Private));
           for(int _i0 = 0; _i0 < _len_SiS_Pr0; _i0++) {
-            SiS_Pr[_i0].SiS_IF_DEF_DSTN = ((-2 * (next_i()%2)) + 1) * next_i();
+              SiS_Pr[_i0].SiS_IF_DEF_DSTN = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           SiS_SetEnableDstn(SiS_Pr,enable);
           free(SiS_Pr);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_SiS_Pr0 = 1;
+          struct SiS_Private * SiS_Pr = (struct SiS_Private *) malloc(_len_SiS_Pr0*sizeof(struct SiS_Private));
+          for(int _i0 = 0; _i0 < _len_SiS_Pr0; _i0++) {
+              SiS_Pr[_i0].SiS_IF_DEF_DSTN = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          SiS_SetEnableDstn(SiS_Pr,enable);
+          free(SiS_Pr);
+        
+        break;
+    }
     default:
         usage();
         break;

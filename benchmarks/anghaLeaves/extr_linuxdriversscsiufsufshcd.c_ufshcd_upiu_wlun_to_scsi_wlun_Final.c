@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static inline u16 ufshcd_upiu_wlun_to_scsi_wlun(u8 upiu_wl
 	return (upiu_wlun_id & ~UFS_UPIU_WLUN_ID) | SCSI_W_LUN_BASE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,6 +82,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int upiu_wlun_id = 100;
+        
           int benchRet = ufshcd_upiu_wlun_to_scsi_wlun(upiu_wlun_id);
           printf("%d\n", benchRet); 
         
@@ -96,6 +92,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int upiu_wlun_id = 255;
+        
           int benchRet = ufshcd_upiu_wlun_to_scsi_wlun(upiu_wlun_id);
           printf("%d\n", benchRet); 
         
@@ -105,12 +102,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int upiu_wlun_id = 10;
+        
           int benchRet = ufshcd_upiu_wlun_to_scsi_wlun(upiu_wlun_id);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int upiu_wlun_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = ufshcd_upiu_wlun_to_scsi_wlun(upiu_wlun_id);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -90,12 +93,6 @@ __attribute__((used)) static int set_prescale_div(unsigned long rqst_prescaler, 
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -112,16 +109,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long rqst_prescaler = 100;
+        
           int _len_prescale_div0 = 1;
           unsigned long * prescale_div = (unsigned long *) malloc(_len_prescale_div0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_prescale_div0; _i0++) {
             prescale_div[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_tb_clk_div0 = 1;
           unsigned long * tb_clk_div = (unsigned long *) malloc(_len_tb_clk_div0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_tb_clk_div0; _i0++) {
             tb_clk_div[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = set_prescale_div(rqst_prescaler,prescale_div,tb_clk_div);
           printf("%d\n", benchRet); 
           free(prescale_div);
@@ -129,7 +129,78 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long rqst_prescaler = 255;
+        
+          int _len_prescale_div0 = 65025;
+          unsigned long * prescale_div = (unsigned long *) malloc(_len_prescale_div0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_prescale_div0; _i0++) {
+            prescale_div[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_tb_clk_div0 = 65025;
+          unsigned long * tb_clk_div = (unsigned long *) malloc(_len_tb_clk_div0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_tb_clk_div0; _i0++) {
+            tb_clk_div[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = set_prescale_div(rqst_prescaler,prescale_div,tb_clk_div);
+          printf("%d\n", benchRet); 
+          free(prescale_div);
+          free(tb_clk_div);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long rqst_prescaler = 10;
+        
+          int _len_prescale_div0 = 100;
+          unsigned long * prescale_div = (unsigned long *) malloc(_len_prescale_div0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_prescale_div0; _i0++) {
+            prescale_div[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_tb_clk_div0 = 100;
+          unsigned long * tb_clk_div = (unsigned long *) malloc(_len_tb_clk_div0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_tb_clk_div0; _i0++) {
+            tb_clk_div[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = set_prescale_div(rqst_prescaler,prescale_div,tb_clk_div);
+          printf("%d\n", benchRet); 
+          free(prescale_div);
+          free(tb_clk_div);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long rqst_prescaler = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_prescale_div0 = 1;
+          unsigned long * prescale_div = (unsigned long *) malloc(_len_prescale_div0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_prescale_div0; _i0++) {
+            prescale_div[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_tb_clk_div0 = 1;
+          unsigned long * tb_clk_div = (unsigned long *) malloc(_len_tb_clk_div0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_tb_clk_div0; _i0++) {
+            tb_clk_div[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = set_prescale_div(rqst_prescaler,prescale_div,tb_clk_div);
+          printf("%d\n", benchRet); 
+          free(prescale_div);
+          free(tb_clk_div);
+        
+        break;
+    }
     default:
         usage();
         break;

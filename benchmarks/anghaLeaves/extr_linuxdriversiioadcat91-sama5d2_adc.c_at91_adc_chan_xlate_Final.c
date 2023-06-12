@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ __attribute__((used)) static int at91_adc_chan_xlate(struct iio_dev *indio_dev, 
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,16 +88,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int chan = 100;
+        
           int _len_indio_dev0 = 1;
           struct iio_dev * indio_dev = (struct iio_dev *) malloc(_len_indio_dev0*sizeof(struct iio_dev));
           for(int _i0 = 0; _i0 < _len_indio_dev0; _i0++) {
-            indio_dev[_i0].num_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+              indio_dev[_i0].num_channels = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_indio_dev__i0__channels0 = 1;
           indio_dev[_i0].channels = (struct TYPE_2__ *) malloc(_len_indio_dev__i0__channels0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_indio_dev__i0__channels0; _j0++) {
-            indio_dev[_i0].channels->scan_index = ((-2 * (next_i()%2)) + 1) * next_i();
+              indio_dev[_i0].channels->scan_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = at91_adc_chan_xlate(indio_dev,chan);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_indio_dev0; _aux++) {
@@ -110,7 +111,87 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int chan = 255;
+        
+          int _len_indio_dev0 = 65025;
+          struct iio_dev * indio_dev = (struct iio_dev *) malloc(_len_indio_dev0*sizeof(struct iio_dev));
+          for(int _i0 = 0; _i0 < _len_indio_dev0; _i0++) {
+              indio_dev[_i0].num_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_indio_dev__i0__channels0 = 1;
+          indio_dev[_i0].channels = (struct TYPE_2__ *) malloc(_len_indio_dev__i0__channels0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_indio_dev__i0__channels0; _j0++) {
+              indio_dev[_i0].channels->scan_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = at91_adc_chan_xlate(indio_dev,chan);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_indio_dev0; _aux++) {
+          free(indio_dev[_aux].channels);
+          }
+          free(indio_dev);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int chan = 10;
+        
+          int _len_indio_dev0 = 100;
+          struct iio_dev * indio_dev = (struct iio_dev *) malloc(_len_indio_dev0*sizeof(struct iio_dev));
+          for(int _i0 = 0; _i0 < _len_indio_dev0; _i0++) {
+              indio_dev[_i0].num_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_indio_dev__i0__channels0 = 1;
+          indio_dev[_i0].channels = (struct TYPE_2__ *) malloc(_len_indio_dev__i0__channels0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_indio_dev__i0__channels0; _j0++) {
+              indio_dev[_i0].channels->scan_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = at91_adc_chan_xlate(indio_dev,chan);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_indio_dev0; _aux++) {
+          free(indio_dev[_aux].channels);
+          }
+          free(indio_dev);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int chan = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_indio_dev0 = 1;
+          struct iio_dev * indio_dev = (struct iio_dev *) malloc(_len_indio_dev0*sizeof(struct iio_dev));
+          for(int _i0 = 0; _i0 < _len_indio_dev0; _i0++) {
+              indio_dev[_i0].num_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_indio_dev__i0__channels0 = 1;
+          indio_dev[_i0].channels = (struct TYPE_2__ *) malloc(_len_indio_dev__i0__channels0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_indio_dev__i0__channels0; _j0++) {
+              indio_dev[_i0].channels->scan_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = at91_adc_chan_xlate(indio_dev,chan);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_indio_dev0; _aux++) {
+          free(indio_dev[_aux].channels);
+          }
+          free(indio_dev);
+        
+        break;
+    }
     default:
         usage();
         break;

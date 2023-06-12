@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static void stars(char *str, long val, long max, int width
 	str[i] = '\0';
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,23 +79,66 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          long val = 10;
-          long max = 10;
-          int width = 10;
-          int _len_str0 = 100;
+          long val = 255;
+        
+          long max = 255;
+        
+          int width = 255;
+        
+          int _len_str0 = 65025;
           char * str = (char *) malloc(_len_str0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_str0; _i0++) {
             str[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           stars(str,val,max,width);
           free(str);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          long val = 10;
+        
+          long max = 10;
+        
+          int width = 10;
+        
+          int _len_str0 = 100;
+          char * str = (char *) malloc(_len_str0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_str0; _i0++) {
+            str[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          stars(str,val,max,width);
+          free(str);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          long val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_str0 = 1;
+          char * str = (char *) malloc(_len_str0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_str0; _i0++) {
+            str[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          stars(str,val,max,width);
+          free(str);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ vnode_vfsisrdonly(vnode_t vp)
 	return ((vp->v_mount->mnt_flag & MNT_RDONLY)? 1 : 0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,18 +80,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_vp0 = 1;
+          int _len_vp0 = 65025;
           struct TYPE_5__ * vp = (struct TYPE_5__ *) malloc(_len_vp0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_vp0; _i0++) {
               int _len_vp__i0__v_mount0 = 1;
           vp[_i0].v_mount = (struct TYPE_4__ *) malloc(_len_vp__i0__v_mount0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_vp__i0__v_mount0; _j0++) {
-            vp[_i0].v_mount->mnt_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+              vp[_i0].v_mount->mnt_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = vnode_vfsisrdonly(vp);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_vp0; _aux++) {
@@ -105,7 +104,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_vp0 = 100;
+          struct TYPE_5__ * vp = (struct TYPE_5__ *) malloc(_len_vp0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_vp0; _i0++) {
+              int _len_vp__i0__v_mount0 = 1;
+          vp[_i0].v_mount = (struct TYPE_4__ *) malloc(_len_vp__i0__v_mount0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_vp__i0__v_mount0; _j0++) {
+              vp[_i0].v_mount->mnt_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = vnode_vfsisrdonly(vp);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vp0; _aux++) {
+          free(vp[_aux].v_mount);
+          }
+          free(vp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_vp0 = 1;
+          struct TYPE_5__ * vp = (struct TYPE_5__ *) malloc(_len_vp0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_vp0; _i0++) {
+              int _len_vp__i0__v_mount0 = 1;
+          vp[_i0].v_mount = (struct TYPE_4__ *) malloc(_len_vp__i0__v_mount0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_vp__i0__v_mount0; _j0++) {
+              vp[_i0].v_mount->mnt_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = vnode_vfsisrdonly(vp);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vp0; _aux++) {
+          free(vp[_aux].v_mount);
+          }
+          free(vp);
+        
+        break;
+    }
     default:
         usage();
         break;

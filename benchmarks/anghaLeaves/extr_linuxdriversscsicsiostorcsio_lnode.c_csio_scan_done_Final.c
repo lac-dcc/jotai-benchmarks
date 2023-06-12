@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -82,12 +85,6 @@ csio_scan_done(struct csio_lnode *ln, unsigned long ticks,
 	return rv;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,20 +97,199 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           unsigned long ticks = 100;
+        
           unsigned long time = 100;
+        
           unsigned long max_scan_ticks = 100;
+        
           unsigned long delta_scan_ticks = 100;
+        
           int _len_ln0 = 1;
           struct csio_lnode * ln = (struct csio_lnode *) malloc(_len_ln0*sizeof(struct csio_lnode));
           for(int _i0 = 0; _i0 < _len_ln0; _i0++) {
-            ln[_i0].tgt_scan_tick = ((-2 * (next_i()%2)) + 1) * next_i();
-        ln[_i0].last_scan_ntgts = ((-2 * (next_i()%2)) + 1) * next_i();
-        ln[_i0].n_scsi_tgts = ((-2 * (next_i()%2)) + 1) * next_i();
+              ln[_i0].tgt_scan_tick = ((-2 * (next_i()%2)) + 1) * next_i();
+          ln[_i0].last_scan_ntgts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ln[_i0].n_scsi_tgts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = csio_scan_done(ln,ticks,time,max_scan_ticks,delta_scan_ticks);
+          printf("%d\n", benchRet); 
+          free(ln);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          unsigned long ticks = 255;
+        
+          unsigned long time = 255;
+        
+          unsigned long max_scan_ticks = 255;
+        
+          unsigned long delta_scan_ticks = 255;
+        
+          int _len_ln0 = 65025;
+          struct csio_lnode * ln = (struct csio_lnode *) malloc(_len_ln0*sizeof(struct csio_lnode));
+          for(int _i0 = 0; _i0 < _len_ln0; _i0++) {
+              ln[_i0].tgt_scan_tick = ((-2 * (next_i()%2)) + 1) * next_i();
+          ln[_i0].last_scan_ntgts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ln[_i0].n_scsi_tgts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = csio_scan_done(ln,ticks,time,max_scan_ticks,delta_scan_ticks);
+          printf("%d\n", benchRet); 
+          free(ln);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          unsigned long ticks = 10;
+        
+          unsigned long time = 10;
+        
+          unsigned long max_scan_ticks = 10;
+        
+          unsigned long delta_scan_ticks = 10;
+        
+          int _len_ln0 = 100;
+          struct csio_lnode * ln = (struct csio_lnode *) malloc(_len_ln0*sizeof(struct csio_lnode));
+          for(int _i0 = 0; _i0 < _len_ln0; _i0++) {
+              ln[_i0].tgt_scan_tick = ((-2 * (next_i()%2)) + 1) * next_i();
+          ln[_i0].last_scan_ntgts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ln[_i0].n_scsi_tgts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = csio_scan_done(ln,ticks,time,max_scan_ticks,delta_scan_ticks);
+          printf("%d\n", benchRet); 
+          free(ln);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          unsigned long ticks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long max_scan_ticks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long delta_scan_ticks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ln0 = 1;
+          struct csio_lnode * ln = (struct csio_lnode *) malloc(_len_ln0*sizeof(struct csio_lnode));
+          for(int _i0 = 0; _i0 < _len_ln0; _i0++) {
+              ln[_i0].tgt_scan_tick = ((-2 * (next_i()%2)) + 1) * next_i();
+          ln[_i0].last_scan_ntgts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ln[_i0].n_scsi_tgts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = csio_scan_done(ln,ticks,time,max_scan_ticks,delta_scan_ticks);
           printf("%d\n", benchRet); 
           free(ln);

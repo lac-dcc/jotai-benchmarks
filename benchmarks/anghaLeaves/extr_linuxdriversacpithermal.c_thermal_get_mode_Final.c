@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ __attribute__((used)) static int thermal_get_mode(struct thermal_zone_device *th
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,23 +88,27 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_thermal0 = 1;
+          int _len_thermal0 = 65025;
           struct thermal_zone_device * thermal = (struct thermal_zone_device *) malloc(_len_thermal0*sizeof(struct thermal_zone_device));
           for(int _i0 = 0; _i0 < _len_thermal0; _i0++) {
               int _len_thermal__i0__devdata0 = 1;
           thermal[_i0].devdata = (struct acpi_thermal *) malloc(_len_thermal__i0__devdata0*sizeof(struct acpi_thermal));
           for(int _j0 = 0; _j0 < _len_thermal__i0__devdata0; _j0++) {
-            thermal[_i0].devdata->tz_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+              thermal[_i0].devdata->tz_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
-          int _len_mode0 = 1;
+        
+          int _len_mode0 = 65025;
           enum thermal_device_mode * mode = (enum thermal_device_mode *) malloc(_len_mode0*sizeof(enum thermal_device_mode));
           for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
             mode[_i0] = 0;
           }
+        
           int benchRet = thermal_get_mode(thermal,mode);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_thermal0; _aux++) {
@@ -119,7 +119,68 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_thermal0 = 100;
+          struct thermal_zone_device * thermal = (struct thermal_zone_device *) malloc(_len_thermal0*sizeof(struct thermal_zone_device));
+          for(int _i0 = 0; _i0 < _len_thermal0; _i0++) {
+              int _len_thermal__i0__devdata0 = 1;
+          thermal[_i0].devdata = (struct acpi_thermal *) malloc(_len_thermal__i0__devdata0*sizeof(struct acpi_thermal));
+          for(int _j0 = 0; _j0 < _len_thermal__i0__devdata0; _j0++) {
+              thermal[_i0].devdata->tz_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_mode0 = 100;
+          enum thermal_device_mode * mode = (enum thermal_device_mode *) malloc(_len_mode0*sizeof(enum thermal_device_mode));
+          for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
+            mode[_i0] = 0;
+          }
+        
+          int benchRet = thermal_get_mode(thermal,mode);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_thermal0; _aux++) {
+          free(thermal[_aux].devdata);
+          }
+          free(thermal);
+          free(mode);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_thermal0 = 1;
+          struct thermal_zone_device * thermal = (struct thermal_zone_device *) malloc(_len_thermal0*sizeof(struct thermal_zone_device));
+          for(int _i0 = 0; _i0 < _len_thermal0; _i0++) {
+              int _len_thermal__i0__devdata0 = 1;
+          thermal[_i0].devdata = (struct acpi_thermal *) malloc(_len_thermal__i0__devdata0*sizeof(struct acpi_thermal));
+          for(int _j0 = 0; _j0 < _len_thermal__i0__devdata0; _j0++) {
+              thermal[_i0].devdata->tz_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_mode0 = 1;
+          enum thermal_device_mode * mode = (enum thermal_device_mode *) malloc(_len_mode0*sizeof(enum thermal_device_mode));
+          for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
+            mode[_i0] = 0;
+          }
+        
+          int benchRet = thermal_get_mode(thermal,mode);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_thermal0; _aux++) {
+          free(thermal[_aux].devdata);
+          }
+          free(thermal);
+          free(mode);
+        
+        break;
+    }
     default:
         usage();
         break;

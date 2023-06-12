@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static inline size_t size_vstruct(size_t nelem, size_t ele
 	return base + nelem * elem_size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,8 +81,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long nelem = 100;
+        
           unsigned long elem_size = 100;
+        
           unsigned long base = 100;
+        
           unsigned long benchRet = size_vstruct(nelem,elem_size,base);
           printf("%lu\n", benchRet); 
         
@@ -97,8 +95,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long nelem = 255;
+        
           unsigned long elem_size = 255;
+        
           unsigned long base = 255;
+        
           unsigned long benchRet = size_vstruct(nelem,elem_size,base);
           printf("%lu\n", benchRet); 
         
@@ -108,14 +109,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long nelem = 10;
+        
           unsigned long elem_size = 10;
+        
           unsigned long base = 10;
+        
           unsigned long benchRet = size_vstruct(nelem,elem_size,base);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long nelem = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long elem_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = size_vstruct(nelem,elem_size,base);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

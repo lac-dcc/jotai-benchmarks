@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static unsigned long amb_reg_temp_mid(unsigned int amb)
 	       AMB_CONFIG_SIZE * amb;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,6 +82,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int amb = 100;
+        
           unsigned long benchRet = amb_reg_temp_mid(amb);
           printf("%lu\n", benchRet); 
         
@@ -96,6 +92,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int amb = 255;
+        
           unsigned long benchRet = amb_reg_temp_mid(amb);
           printf("%lu\n", benchRet); 
         
@@ -105,12 +102,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int amb = 10;
+        
           unsigned long benchRet = amb_reg_temp_mid(amb);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int amb = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = amb_reg_temp_mid(amb);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

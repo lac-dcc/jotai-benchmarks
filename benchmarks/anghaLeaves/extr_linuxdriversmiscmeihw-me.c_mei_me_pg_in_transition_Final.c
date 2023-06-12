@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static bool mei_me_pg_in_transition(struct mei_device *dev
 	       dev->pg_event <= MEI_PG_EVENT_INTR_WAIT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dev0 = 1;
+          int _len_dev0 = 65025;
           struct mei_device * dev = (struct mei_device *) malloc(_len_dev0*sizeof(struct mei_device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].pg_event = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].pg_event = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mei_me_pg_in_transition(dev);
           printf("%d\n", benchRet); 
           free(dev);
@@ -102,15 +99,32 @@ int main(int argc, char *argv[]) {
           int _len_dev0 = 100;
           struct mei_device * dev = (struct mei_device *) malloc(_len_dev0*sizeof(struct mei_device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].pg_event = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].pg_event = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mei_me_pg_in_transition(dev);
           printf("%d\n", benchRet); 
           free(dev);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_dev0 = 1;
+          struct mei_device * dev = (struct mei_device *) malloc(_len_dev0*sizeof(struct mei_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].pg_event = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mei_me_pg_in_transition(dev);
+          printf("%d\n", benchRet); 
+          free(dev);
+        
+        break;
+    }
     default:
         usage();
         break;

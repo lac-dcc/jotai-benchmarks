@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -108,12 +110,6 @@ u8 rtw_access_ctrl(_adapter *padapter, u8 *mac_addr)
 
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -126,19 +122,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_padapter0 = 1;
+          int _len_padapter0 = 65025;
           int * padapter = (int *) malloc(_len_padapter0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
             padapter[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_mac_addr0 = 1;
+        
+          int _len_mac_addr0 = 65025;
           int * mac_addr = (int *) malloc(_len_mac_addr0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_mac_addr0; _i0++) {
             mac_addr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = rtw_access_ctrl(padapter,mac_addr);
           printf("%d\n", benchRet); 
           free(padapter);
@@ -146,7 +144,50 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_padapter0 = 100;
+          int * padapter = (int *) malloc(_len_padapter0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
+            padapter[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_mac_addr0 = 100;
+          int * mac_addr = (int *) malloc(_len_mac_addr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mac_addr0; _i0++) {
+            mac_addr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = rtw_access_ctrl(padapter,mac_addr);
+          printf("%d\n", benchRet); 
+          free(padapter);
+          free(mac_addr);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_padapter0 = 1;
+          int * padapter = (int *) malloc(_len_padapter0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
+            padapter[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_mac_addr0 = 1;
+          int * mac_addr = (int *) malloc(_len_mac_addr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mac_addr0; _i0++) {
+            mac_addr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = rtw_access_ctrl(padapter,mac_addr);
+          printf("%d\n", benchRet); 
+          free(padapter);
+          free(mac_addr);
+        
+        break;
+    }
     default:
         usage();
         break;

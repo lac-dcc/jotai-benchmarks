@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ __attribute__((used)) static inline const char *intel_uc_fw_type_repr(enum intel
 	return "uC";
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,6 +87,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           enum intel_uc_fw_type type = 100;
+        
           const char * benchRet = intel_uc_fw_type_repr(type);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
@@ -101,6 +97,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           enum intel_uc_fw_type type = 255;
+        
           const char * benchRet = intel_uc_fw_type_repr(type);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
@@ -110,12 +107,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           enum intel_uc_fw_type type = 10;
+        
           const char * benchRet = intel_uc_fw_type_repr(type);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          enum intel_uc_fw_type type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          const char * benchRet = intel_uc_fw_type_repr(type);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+        
+        break;
+    }
     default:
         usage();
         break;

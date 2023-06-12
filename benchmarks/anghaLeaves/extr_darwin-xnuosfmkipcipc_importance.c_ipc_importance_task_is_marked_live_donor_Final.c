@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ ipc_importance_task_is_marked_live_donor(ipc_importance_task_t task_imp)
 	return (0 != task_imp->iit_live_donor);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,14 +83,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_task_imp0 = 1;
+          int _len_task_imp0 = 65025;
           struct TYPE_4__ * task_imp = (struct TYPE_4__ *) malloc(_len_task_imp0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_task_imp0; _i0++) {
-            task_imp[_i0].iit_live_donor = ((-2 * (next_i()%2)) + 1) * next_i();
+              task_imp[_i0].iit_live_donor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ipc_importance_task_is_marked_live_donor(task_imp);
           printf("%d\n", benchRet); 
           free(task_imp);
@@ -108,15 +105,32 @@ int main(int argc, char *argv[]) {
           int _len_task_imp0 = 100;
           struct TYPE_4__ * task_imp = (struct TYPE_4__ *) malloc(_len_task_imp0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_task_imp0; _i0++) {
-            task_imp[_i0].iit_live_donor = ((-2 * (next_i()%2)) + 1) * next_i();
+              task_imp[_i0].iit_live_donor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ipc_importance_task_is_marked_live_donor(task_imp);
           printf("%d\n", benchRet); 
           free(task_imp);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_task_imp0 = 1;
+          struct TYPE_4__ * task_imp = (struct TYPE_4__ *) malloc(_len_task_imp0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_task_imp0; _i0++) {
+              task_imp[_i0].iit_live_donor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ipc_importance_task_is_marked_live_donor(task_imp);
+          printf("%d\n", benchRet); 
+          free(task_imp);
+        
+        break;
+    }
     default:
         usage();
         break;

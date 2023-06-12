@@ -64,12 +64,6 @@ __attribute__((used)) static inline uint32_t HDMI_INFOFRAME_CTRL1_VENSPEC_INFO_L
 	return ((val) << HDMI_INFOFRAME_CTRL1_VENSPEC_INFO_LINE__SHIFT) & HDMI_INFOFRAME_CTRL1_VENSPEC_INFO_LINE__MASK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int val = 100;
+        
           int benchRet = HDMI_INFOFRAME_CTRL1_VENSPEC_INFO_LINE(val);
           printf("%d\n", benchRet); 
         
@@ -95,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int val = 255;
+        
           int benchRet = HDMI_INFOFRAME_CTRL1_VENSPEC_INFO_LINE(val);
           printf("%d\n", benchRet); 
         
@@ -104,12 +100,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int val = 10;
+        
           int benchRet = HDMI_INFOFRAME_CTRL1_VENSPEC_INFO_LINE(val);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

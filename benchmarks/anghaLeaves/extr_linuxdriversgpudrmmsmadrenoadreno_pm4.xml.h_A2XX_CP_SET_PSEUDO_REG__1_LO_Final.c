@@ -64,12 +64,6 @@ __attribute__((used)) static inline uint32_t A2XX_CP_SET_PSEUDO_REG__1_LO(uint32
 	return ((val) << A2XX_CP_SET_PSEUDO_REG__1_LO__SHIFT) & A2XX_CP_SET_PSEUDO_REG__1_LO__MASK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int val = 100;
+        
           int benchRet = A2XX_CP_SET_PSEUDO_REG__1_LO(val);
           printf("%d\n", benchRet); 
         
@@ -95,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int val = 255;
+        
           int benchRet = A2XX_CP_SET_PSEUDO_REG__1_LO(val);
           printf("%d\n", benchRet); 
         
@@ -104,12 +100,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int val = 10;
+        
           int benchRet = A2XX_CP_SET_PSEUDO_REG__1_LO(val);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

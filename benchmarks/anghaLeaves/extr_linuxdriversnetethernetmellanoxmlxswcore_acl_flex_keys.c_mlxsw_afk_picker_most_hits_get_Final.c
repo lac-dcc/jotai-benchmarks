@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ __attribute__((used)) static int mlxsw_afk_picker_most_hits_get(struct mlxsw_afk
 	return most_index;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,23 +89,163 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_mlxsw_afk0 = 65025;
+          struct mlxsw_afk * mlxsw_afk = (struct mlxsw_afk *) malloc(_len_mlxsw_afk0*sizeof(struct mlxsw_afk));
+          for(int _i0 = 0; _i0 < _len_mlxsw_afk0; _i0++) {
+              mlxsw_afk[_i0].blocks_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_picker0 = 65025;
+          struct mlxsw_afk_picker * picker = (struct mlxsw_afk_picker *) malloc(_len_picker0*sizeof(struct mlxsw_afk_picker));
+          for(int _i0 = 0; _i0 < _len_picker0; _i0++) {
+              int _len_picker__i0__hits0 = 1;
+          picker[_i0].hits = (struct TYPE_2__ *) malloc(_len_picker__i0__hits0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_picker__i0__hits0; _j0++) {
+              picker[_i0].hits->total = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = mlxsw_afk_picker_most_hits_get(mlxsw_afk,picker);
+          printf("%d\n", benchRet); 
+          free(mlxsw_afk);
+          for(int _aux = 0; _aux < _len_picker0; _aux++) {
+          free(picker[_aux].hits);
+          }
+          free(picker);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_mlxsw_afk0 = 100;
+          struct mlxsw_afk * mlxsw_afk = (struct mlxsw_afk *) malloc(_len_mlxsw_afk0*sizeof(struct mlxsw_afk));
+          for(int _i0 = 0; _i0 < _len_mlxsw_afk0; _i0++) {
+              mlxsw_afk[_i0].blocks_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_picker0 = 100;
+          struct mlxsw_afk_picker * picker = (struct mlxsw_afk_picker *) malloc(_len_picker0*sizeof(struct mlxsw_afk_picker));
+          for(int _i0 = 0; _i0 < _len_picker0; _i0++) {
+              int _len_picker__i0__hits0 = 1;
+          picker[_i0].hits = (struct TYPE_2__ *) malloc(_len_picker__i0__hits0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_picker__i0__hits0; _j0++) {
+              picker[_i0].hits->total = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = mlxsw_afk_picker_most_hits_get(mlxsw_afk,picker);
+          printf("%d\n", benchRet); 
+          free(mlxsw_afk);
+          for(int _aux = 0; _aux < _len_picker0; _aux++) {
+          free(picker[_aux].hits);
+          }
+          free(picker);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int _len_mlxsw_afk0 = 1;
           struct mlxsw_afk * mlxsw_afk = (struct mlxsw_afk *) malloc(_len_mlxsw_afk0*sizeof(struct mlxsw_afk));
           for(int _i0 = 0; _i0 < _len_mlxsw_afk0; _i0++) {
-            mlxsw_afk[_i0].blocks_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              mlxsw_afk[_i0].blocks_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_picker0 = 1;
           struct mlxsw_afk_picker * picker = (struct mlxsw_afk_picker *) malloc(_len_picker0*sizeof(struct mlxsw_afk_picker));
           for(int _i0 = 0; _i0 < _len_picker0; _i0++) {
               int _len_picker__i0__hits0 = 1;
           picker[_i0].hits = (struct TYPE_2__ *) malloc(_len_picker__i0__hits0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_picker__i0__hits0; _j0++) {
-            picker[_i0].hits->total = ((-2 * (next_i()%2)) + 1) * next_i();
+              picker[_i0].hits->total = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = mlxsw_afk_picker_most_hits_get(mlxsw_afk,picker);
           printf("%d\n", benchRet); 
           free(mlxsw_afk);

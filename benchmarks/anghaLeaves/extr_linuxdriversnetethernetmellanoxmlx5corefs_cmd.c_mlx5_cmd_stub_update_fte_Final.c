@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ __attribute__((used)) static int mlx5_cmd_stub_update_fte(struct mlx5_core_dev *
 	return -EOPNOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,26 +82,237 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           unsigned int group_id = 100;
+        
           int modify_mask = 100;
+        
           int _len_dev0 = 1;
           struct mlx5_core_dev * dev = (struct mlx5_core_dev *) malloc(_len_dev0*sizeof(struct mlx5_core_dev));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_ft0 = 1;
           struct mlx5_flow_table * ft = (struct mlx5_flow_table *) malloc(_len_ft0*sizeof(struct mlx5_flow_table));
           for(int _i0 = 0; _i0 < _len_ft0; _i0++) {
-            ft[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ft[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_fte0 = 1;
           struct fs_fte * fte = (struct fs_fte *) malloc(_len_fte0*sizeof(struct fs_fte));
           for(int _i0 = 0; _i0 < _len_fte0; _i0++) {
-            fte[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              fte[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = mlx5_cmd_stub_update_fte(dev,ft,group_id,modify_mask,fte);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(ft);
+          free(fte);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int group_id = 255;
+        
+          int modify_mask = 255;
+        
+          int _len_dev0 = 65025;
+          struct mlx5_core_dev * dev = (struct mlx5_core_dev *) malloc(_len_dev0*sizeof(struct mlx5_core_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ft0 = 65025;
+          struct mlx5_flow_table * ft = (struct mlx5_flow_table *) malloc(_len_ft0*sizeof(struct mlx5_flow_table));
+          for(int _i0 = 0; _i0 < _len_ft0; _i0++) {
+              ft[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fte0 = 65025;
+          struct fs_fte * fte = (struct fs_fte *) malloc(_len_fte0*sizeof(struct fs_fte));
+          for(int _i0 = 0; _i0 < _len_fte0; _i0++) {
+              fte[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mlx5_cmd_stub_update_fte(dev,ft,group_id,modify_mask,fte);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(ft);
+          free(fte);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int group_id = 10;
+        
+          int modify_mask = 10;
+        
+          int _len_dev0 = 100;
+          struct mlx5_core_dev * dev = (struct mlx5_core_dev *) malloc(_len_dev0*sizeof(struct mlx5_core_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ft0 = 100;
+          struct mlx5_flow_table * ft = (struct mlx5_flow_table *) malloc(_len_ft0*sizeof(struct mlx5_flow_table));
+          for(int _i0 = 0; _i0 < _len_ft0; _i0++) {
+              ft[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fte0 = 100;
+          struct fs_fte * fte = (struct fs_fte *) malloc(_len_fte0*sizeof(struct fs_fte));
+          for(int _i0 = 0; _i0 < _len_fte0; _i0++) {
+              fte[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mlx5_cmd_stub_update_fte(dev,ft,group_id,modify_mask,fte);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(ft);
+          free(fte);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int group_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int modify_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dev0 = 1;
+          struct mlx5_core_dev * dev = (struct mlx5_core_dev *) malloc(_len_dev0*sizeof(struct mlx5_core_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ft0 = 1;
+          struct mlx5_flow_table * ft = (struct mlx5_flow_table *) malloc(_len_ft0*sizeof(struct mlx5_flow_table));
+          for(int _i0 = 0; _i0 < _len_ft0; _i0++) {
+              ft[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fte0 = 1;
+          struct fs_fte * fte = (struct fs_fte *) malloc(_len_fte0*sizeof(struct fs_fte));
+          for(int _i0 = 0; _i0 < _len_fte0; _i0++) {
+              fte[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = mlx5_cmd_stub_update_fte(dev,ft,group_id,modify_mask,fte);
           printf("%d\n", benchRet); 
           free(dev);

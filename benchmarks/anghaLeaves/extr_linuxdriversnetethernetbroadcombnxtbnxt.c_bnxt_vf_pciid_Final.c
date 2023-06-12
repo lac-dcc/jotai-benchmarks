@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -64,12 +64,6 @@ __attribute__((used)) static bool bnxt_vf_pciid(enum board_idx idx)
 		idx == NETXTREME_S_VF);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,16 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum board_idx idx = 0;
+        
           int benchRet = bnxt_vf_pciid(idx);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

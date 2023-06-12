@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline D3DXHANDLE handle_from_constant(struct ctab_
     return (D3DXHANDLE)constant;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_constant0 = 1;
+          int _len_constant0 = 65025;
           struct ctab_constant * constant = (struct ctab_constant *) malloc(_len_constant0*sizeof(struct ctab_constant));
           for(int _i0 = 0; _i0 < _len_constant0; _i0++) {
-            constant[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              constant[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = handle_from_constant(constant);
           printf("%d\n", benchRet); 
           free(constant);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_constant0 = 100;
           struct ctab_constant * constant = (struct ctab_constant *) malloc(_len_constant0*sizeof(struct ctab_constant));
           for(int _i0 = 0; _i0 < _len_constant0; _i0++) {
-            constant[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              constant[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = handle_from_constant(constant);
           printf("%d\n", benchRet); 
           free(constant);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_constant0 = 1;
+          struct ctab_constant * constant = (struct ctab_constant *) malloc(_len_constant0*sizeof(struct ctab_constant));
+          for(int _i0 = 0; _i0 < _len_constant0; _i0++) {
+              constant[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = handle_from_constant(constant);
+          printf("%d\n", benchRet); 
+          free(constant);
+        
+        break;
+    }
     default:
         usage();
         break;

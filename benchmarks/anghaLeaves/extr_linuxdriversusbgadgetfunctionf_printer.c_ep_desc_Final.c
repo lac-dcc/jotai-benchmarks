@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ __attribute__((used)) static inline struct usb_endpoint_descriptor *ep_desc(stru
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,29 +87,37 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_gadget0 = 1;
+          int _len_gadget0 = 65025;
           struct usb_gadget * gadget = (struct usb_gadget *) malloc(_len_gadget0*sizeof(struct usb_gadget));
           for(int _i0 = 0; _i0 < _len_gadget0; _i0++) {
-            gadget[_i0].speed = ((-2 * (next_i()%2)) + 1) * next_i();
+              gadget[_i0].speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_fs0 = 1;
+        
+          int _len_fs0 = 65025;
           struct usb_endpoint_descriptor * fs = (struct usb_endpoint_descriptor *) malloc(_len_fs0*sizeof(struct usb_endpoint_descriptor));
           for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
-            fs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              fs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_hs0 = 1;
+        
+          int _len_hs0 = 65025;
           struct usb_endpoint_descriptor * hs = (struct usb_endpoint_descriptor *) malloc(_len_hs0*sizeof(struct usb_endpoint_descriptor));
           for(int _i0 = 0; _i0 < _len_hs0; _i0++) {
-            hs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              hs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_ss0 = 1;
+        
+          int _len_ss0 = 65025;
           struct usb_endpoint_descriptor * ss = (struct usb_endpoint_descriptor *) malloc(_len_ss0*sizeof(struct usb_endpoint_descriptor));
           for(int _i0 = 0; _i0 < _len_ss0; _i0++) {
-            ss[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ss[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           struct usb_endpoint_descriptor * benchRet = ep_desc(gadget,fs,hs,ss);
           printf("%d\n", (*benchRet).dummy);
           free(gadget);
@@ -123,7 +127,86 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_gadget0 = 100;
+          struct usb_gadget * gadget = (struct usb_gadget *) malloc(_len_gadget0*sizeof(struct usb_gadget));
+          for(int _i0 = 0; _i0 < _len_gadget0; _i0++) {
+              gadget[_i0].speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fs0 = 100;
+          struct usb_endpoint_descriptor * fs = (struct usb_endpoint_descriptor *) malloc(_len_fs0*sizeof(struct usb_endpoint_descriptor));
+          for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
+              fs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_hs0 = 100;
+          struct usb_endpoint_descriptor * hs = (struct usb_endpoint_descriptor *) malloc(_len_hs0*sizeof(struct usb_endpoint_descriptor));
+          for(int _i0 = 0; _i0 < _len_hs0; _i0++) {
+              hs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ss0 = 100;
+          struct usb_endpoint_descriptor * ss = (struct usb_endpoint_descriptor *) malloc(_len_ss0*sizeof(struct usb_endpoint_descriptor));
+          for(int _i0 = 0; _i0 < _len_ss0; _i0++) {
+              ss[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct usb_endpoint_descriptor * benchRet = ep_desc(gadget,fs,hs,ss);
+          printf("%d\n", (*benchRet).dummy);
+          free(gadget);
+          free(fs);
+          free(hs);
+          free(ss);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_gadget0 = 1;
+          struct usb_gadget * gadget = (struct usb_gadget *) malloc(_len_gadget0*sizeof(struct usb_gadget));
+          for(int _i0 = 0; _i0 < _len_gadget0; _i0++) {
+              gadget[_i0].speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fs0 = 1;
+          struct usb_endpoint_descriptor * fs = (struct usb_endpoint_descriptor *) malloc(_len_fs0*sizeof(struct usb_endpoint_descriptor));
+          for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
+              fs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_hs0 = 1;
+          struct usb_endpoint_descriptor * hs = (struct usb_endpoint_descriptor *) malloc(_len_hs0*sizeof(struct usb_endpoint_descriptor));
+          for(int _i0 = 0; _i0 < _len_hs0; _i0++) {
+              hs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ss0 = 1;
+          struct usb_endpoint_descriptor * ss = (struct usb_endpoint_descriptor *) malloc(_len_ss0*sizeof(struct usb_endpoint_descriptor));
+          for(int _i0 = 0; _i0 < _len_ss0; _i0++) {
+              ss[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct usb_endpoint_descriptor * benchRet = ep_desc(gadget,fs,hs,ss);
+          printf("%d\n", (*benchRet).dummy);
+          free(gadget);
+          free(fs);
+          free(hs);
+          free(ss);
+        
+        break;
+    }
     default:
         usage();
         break;

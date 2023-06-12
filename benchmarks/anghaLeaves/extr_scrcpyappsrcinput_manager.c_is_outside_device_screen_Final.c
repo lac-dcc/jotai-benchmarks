@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ is_outside_device_screen(struct input_manager *input_manager, int x, int y)
            y < 0 || y >= input_manager->screen->frame_size.height;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,21 +81,212 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int x = 100;
+        
           int y = 100;
+        
           int _len_input_manager0 = 1;
           struct input_manager * input_manager = (struct input_manager *) malloc(_len_input_manager0*sizeof(struct input_manager));
           for(int _i0 = 0; _i0 < _len_input_manager0; _i0++) {
               int _len_input_manager__i0__screen0 = 1;
           input_manager[_i0].screen = (struct TYPE_4__ *) malloc(_len_input_manager__i0__screen0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_input_manager__i0__screen0; _j0++) {
-            input_manager[_i0].screen->frame_size.width = ((-2 * (next_i()%2)) + 1) * next_i();
-        input_manager[_i0].screen->frame_size.height = ((-2 * (next_i()%2)) + 1) * next_i();
+              input_manager[_i0].screen->frame_size.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          input_manager[_i0].screen->frame_size.height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
+          int benchRet = is_outside_device_screen(input_manager,x,y);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_input_manager0; _aux++) {
+          free(input_manager[_aux].screen);
+          }
+          free(input_manager);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int x = 255;
+        
+          int y = 255;
+        
+          int _len_input_manager0 = 65025;
+          struct input_manager * input_manager = (struct input_manager *) malloc(_len_input_manager0*sizeof(struct input_manager));
+          for(int _i0 = 0; _i0 < _len_input_manager0; _i0++) {
+              int _len_input_manager__i0__screen0 = 1;
+          input_manager[_i0].screen = (struct TYPE_4__ *) malloc(_len_input_manager__i0__screen0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_input_manager__i0__screen0; _j0++) {
+              input_manager[_i0].screen->frame_size.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          input_manager[_i0].screen->frame_size.height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = is_outside_device_screen(input_manager,x,y);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_input_manager0; _aux++) {
+          free(input_manager[_aux].screen);
+          }
+          free(input_manager);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int x = 10;
+        
+          int y = 10;
+        
+          int _len_input_manager0 = 100;
+          struct input_manager * input_manager = (struct input_manager *) malloc(_len_input_manager0*sizeof(struct input_manager));
+          for(int _i0 = 0; _i0 < _len_input_manager0; _i0++) {
+              int _len_input_manager__i0__screen0 = 1;
+          input_manager[_i0].screen = (struct TYPE_4__ *) malloc(_len_input_manager__i0__screen0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_input_manager__i0__screen0; _j0++) {
+              input_manager[_i0].screen->frame_size.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          input_manager[_i0].screen->frame_size.height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = is_outside_device_screen(input_manager,x,y);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_input_manager0; _aux++) {
+          free(input_manager[_aux].screen);
+          }
+          free(input_manager);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_input_manager0 = 1;
+          struct input_manager * input_manager = (struct input_manager *) malloc(_len_input_manager0*sizeof(struct input_manager));
+          for(int _i0 = 0; _i0 < _len_input_manager0; _i0++) {
+              int _len_input_manager__i0__screen0 = 1;
+          input_manager[_i0].screen = (struct TYPE_4__ *) malloc(_len_input_manager__i0__screen0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_input_manager__i0__screen0; _j0++) {
+              input_manager[_i0].screen->frame_size.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          input_manager[_i0].screen->frame_size.height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
           int benchRet = is_outside_device_screen(input_manager,x,y);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_input_manager0; _aux++) {

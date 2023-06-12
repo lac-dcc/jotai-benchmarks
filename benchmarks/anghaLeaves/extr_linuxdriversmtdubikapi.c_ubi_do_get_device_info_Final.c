@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ void ubi_do_get_device_info(struct ubi_device *ubi, struct ubi_device_info *di)
 	di->cdev = ubi->cdev.dev;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,31 +83,179 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_ubi0 = 65025;
+          struct ubi_device * ubi = (struct ubi_device *) malloc(_len_ubi0*sizeof(struct ubi_device));
+          for(int _i0 = 0; _i0 < _len_ubi0; _i0++) {
+              ubi[_i0].cdev.dev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ubi[_i0].ro_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          ubi[_i0].max_write_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          ubi[_i0].min_io_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          ubi[_i0].leb_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          ubi[_i0].leb_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          ubi[_i0].ubi_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_di0 = 65025;
+          struct ubi_device_info * di = (struct ubi_device_info *) malloc(_len_di0*sizeof(struct ubi_device_info));
+          for(int _i0 = 0; _i0 < _len_di0; _i0++) {
+              di[_i0].cdev = ((-2 * (next_i()%2)) + 1) * next_i();
+          di[_i0].ro_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          di[_i0].max_write_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          di[_i0].min_io_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          di[_i0].leb_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          di[_i0].leb_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          di[_i0].ubi_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ubi_do_get_device_info(ubi,di);
+          free(ubi);
+          free(di);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_ubi0 = 100;
+          struct ubi_device * ubi = (struct ubi_device *) malloc(_len_ubi0*sizeof(struct ubi_device));
+          for(int _i0 = 0; _i0 < _len_ubi0; _i0++) {
+              ubi[_i0].cdev.dev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ubi[_i0].ro_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          ubi[_i0].max_write_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          ubi[_i0].min_io_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          ubi[_i0].leb_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          ubi[_i0].leb_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          ubi[_i0].ubi_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_di0 = 100;
+          struct ubi_device_info * di = (struct ubi_device_info *) malloc(_len_di0*sizeof(struct ubi_device_info));
+          for(int _i0 = 0; _i0 < _len_di0; _i0++) {
+              di[_i0].cdev = ((-2 * (next_i()%2)) + 1) * next_i();
+          di[_i0].ro_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          di[_i0].max_write_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          di[_i0].min_io_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          di[_i0].leb_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          di[_i0].leb_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          di[_i0].ubi_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ubi_do_get_device_info(ubi,di);
+          free(ubi);
+          free(di);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_ubi0 = 1;
           struct ubi_device * ubi = (struct ubi_device *) malloc(_len_ubi0*sizeof(struct ubi_device));
           for(int _i0 = 0; _i0 < _len_ubi0; _i0++) {
-            ubi[_i0].cdev.dev = ((-2 * (next_i()%2)) + 1) * next_i();
-        ubi[_i0].ro_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        ubi[_i0].max_write_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        ubi[_i0].min_io_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        ubi[_i0].leb_start = ((-2 * (next_i()%2)) + 1) * next_i();
-        ubi[_i0].leb_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        ubi[_i0].ubi_num = ((-2 * (next_i()%2)) + 1) * next_i();
+              ubi[_i0].cdev.dev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ubi[_i0].ro_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          ubi[_i0].max_write_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          ubi[_i0].min_io_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          ubi[_i0].leb_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          ubi[_i0].leb_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          ubi[_i0].ubi_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_di0 = 1;
           struct ubi_device_info * di = (struct ubi_device_info *) malloc(_len_di0*sizeof(struct ubi_device_info));
           for(int _i0 = 0; _i0 < _len_di0; _i0++) {
-            di[_i0].cdev = ((-2 * (next_i()%2)) + 1) * next_i();
-        di[_i0].ro_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        di[_i0].max_write_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        di[_i0].min_io_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        di[_i0].leb_start = ((-2 * (next_i()%2)) + 1) * next_i();
-        di[_i0].leb_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        di[_i0].ubi_num = ((-2 * (next_i()%2)) + 1) * next_i();
+              di[_i0].cdev = ((-2 * (next_i()%2)) + 1) * next_i();
+          di[_i0].ro_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          di[_i0].max_write_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          di[_i0].min_io_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          di[_i0].leb_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          di[_i0].leb_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          di[_i0].ubi_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ubi_do_get_device_info(ubi,di);
           free(ubi);
           free(di);

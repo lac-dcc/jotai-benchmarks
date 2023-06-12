@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ int attr_cmp(struct attr_cache_entry *lhs, struct attr_cache_entry *rhs)
     return lhs->fileid < rhs->fileid ? -1 : lhs->fileid > rhs->fileid;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,19 +74,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_lhs0 = 1;
+          int _len_lhs0 = 65025;
           struct attr_cache_entry * lhs = (struct attr_cache_entry *) malloc(_len_lhs0*sizeof(struct attr_cache_entry));
           for(int _i0 = 0; _i0 < _len_lhs0; _i0++) {
-            lhs[_i0].fileid = ((-2 * (next_i()%2)) + 1) * next_i();
+              lhs[_i0].fileid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_rhs0 = 1;
+        
+          int _len_rhs0 = 65025;
           struct attr_cache_entry * rhs = (struct attr_cache_entry *) malloc(_len_rhs0*sizeof(struct attr_cache_entry));
           for(int _i0 = 0; _i0 < _len_rhs0; _i0++) {
-            rhs[_i0].fileid = ((-2 * (next_i()%2)) + 1) * next_i();
+              rhs[_i0].fileid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = attr_cmp(lhs,rhs);
           printf("%d\n", benchRet); 
           free(lhs);
@@ -98,7 +98,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_lhs0 = 100;
+          struct attr_cache_entry * lhs = (struct attr_cache_entry *) malloc(_len_lhs0*sizeof(struct attr_cache_entry));
+          for(int _i0 = 0; _i0 < _len_lhs0; _i0++) {
+              lhs[_i0].fileid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rhs0 = 100;
+          struct attr_cache_entry * rhs = (struct attr_cache_entry *) malloc(_len_rhs0*sizeof(struct attr_cache_entry));
+          for(int _i0 = 0; _i0 < _len_rhs0; _i0++) {
+              rhs[_i0].fileid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = attr_cmp(lhs,rhs);
+          printf("%d\n", benchRet); 
+          free(lhs);
+          free(rhs);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_lhs0 = 1;
+          struct attr_cache_entry * lhs = (struct attr_cache_entry *) malloc(_len_lhs0*sizeof(struct attr_cache_entry));
+          for(int _i0 = 0; _i0 < _len_lhs0; _i0++) {
+              lhs[_i0].fileid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rhs0 = 1;
+          struct attr_cache_entry * rhs = (struct attr_cache_entry *) malloc(_len_rhs0*sizeof(struct attr_cache_entry));
+          for(int _i0 = 0; _i0 < _len_rhs0; _i0++) {
+              rhs[_i0].fileid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = attr_cmp(lhs,rhs);
+          printf("%d\n", benchRet); 
+          free(lhs);
+          free(rhs);
+        
+        break;
+    }
     default:
         usage();
         break;

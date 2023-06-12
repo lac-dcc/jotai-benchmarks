@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -88,12 +90,6 @@ __attribute__((used)) static void TI2_Config(TIM_TypeDef* TIMx, uint16_t TIM_ICP
   TIMx->CCER = tmpccer;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,18 +102,138 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 57
+          // dynamic_instructions_O0 : 57
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 26
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 26
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 26
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
           int TIM_ICPolarity = 100;
+        
           int TIM_ICSelection = 100;
+        
           int TIM_ICFilter = 100;
+        
           int _len_TIMx0 = 1;
           struct TYPE_3__ * TIMx = (struct TYPE_3__ *) malloc(_len_TIMx0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_TIMx0; _i0++) {
-            TIMx[_i0].CCER = ((-2 * (next_i()%2)) + 1) * next_i();
-        TIMx[_i0].CCMR1 = ((-2 * (next_i()%2)) + 1) * next_i();
+              TIMx[_i0].CCER = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIMx[_i0].CCMR1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          TI2_Config(TIMx,TIM_ICPolarity,TIM_ICSelection,TIM_ICFilter);
+          free(TIMx);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 57
+          // dynamic_instructions_O0 : 57
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 26
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 26
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 26
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
+          int TIM_ICPolarity = 255;
+        
+          int TIM_ICSelection = 255;
+        
+          int TIM_ICFilter = 255;
+        
+          int _len_TIMx0 = 65025;
+          struct TYPE_3__ * TIMx = (struct TYPE_3__ *) malloc(_len_TIMx0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_TIMx0; _i0++) {
+              TIMx[_i0].CCER = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIMx[_i0].CCMR1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          TI2_Config(TIMx,TIM_ICPolarity,TIM_ICSelection,TIM_ICFilter);
+          free(TIMx);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 57
+          // dynamic_instructions_O0 : 57
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 26
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 26
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 26
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
+          int TIM_ICPolarity = 10;
+        
+          int TIM_ICSelection = 10;
+        
+          int TIM_ICFilter = 10;
+        
+          int _len_TIMx0 = 100;
+          struct TYPE_3__ * TIMx = (struct TYPE_3__ *) malloc(_len_TIMx0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_TIMx0; _i0++) {
+              TIMx[_i0].CCER = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIMx[_i0].CCMR1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           TI2_Config(TIMx,TIM_ICPolarity,TIM_ICSelection,TIM_ICFilter);
           free(TIMx);
         

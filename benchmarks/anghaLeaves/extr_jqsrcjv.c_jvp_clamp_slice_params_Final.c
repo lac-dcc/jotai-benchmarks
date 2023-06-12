@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ __attribute__((used)) static void jvp_clamp_slice_params(int len, int *pstart, i
   if (*pend < *pstart) *pend = *pstart;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,20 +80,187 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 45
+          // dynamic_instructions_O0 : 45
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 31
+          // dynamic_instructions_O3 : 31
+          // ------------------------------- 
+          // static_instructions_Ofast : 31
+          // dynamic_instructions_Ofast : 31
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 30
+          // dynamic_instructions_Oz : 30
+          // ------------------------------- 
+
           int len = 100;
+        
           int _len_pstart0 = 1;
           int * pstart = (int *) malloc(_len_pstart0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pstart0; _i0++) {
             pstart[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_pend0 = 1;
           int * pend = (int *) malloc(_len_pend0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pend0; _i0++) {
             pend[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          jvp_clamp_slice_params(len,pstart,pend);
+          free(pstart);
+          free(pend);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 39
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 31
+          // dynamic_instructions_O3 : 31
+          // ------------------------------- 
+          // static_instructions_Ofast : 31
+          // dynamic_instructions_Ofast : 31
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 30
+          // dynamic_instructions_Oz : 30
+          // ------------------------------- 
+
+          int len = 255;
+        
+          int _len_pstart0 = 65025;
+          int * pstart = (int *) malloc(_len_pstart0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pstart0; _i0++) {
+            pstart[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pend0 = 65025;
+          int * pend = (int *) malloc(_len_pend0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pend0; _i0++) {
+            pend[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          jvp_clamp_slice_params(len,pstart,pend);
+          free(pstart);
+          free(pend);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 45
+          // dynamic_instructions_O0 : 45
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 31
+          // dynamic_instructions_O3 : 31
+          // ------------------------------- 
+          // static_instructions_Ofast : 31
+          // dynamic_instructions_Ofast : 31
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 30
+          // dynamic_instructions_Oz : 30
+          // ------------------------------- 
+
+          int len = 10;
+        
+          int _len_pstart0 = 100;
+          int * pstart = (int *) malloc(_len_pstart0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pstart0; _i0++) {
+            pstart[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pend0 = 100;
+          int * pend = (int *) malloc(_len_pend0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pend0; _i0++) {
+            pend[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          jvp_clamp_slice_params(len,pstart,pend);
+          free(pstart);
+          free(pend);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 48
+          // dynamic_instructions_O0 : 48
+          // ------------------------------- 
+          // static_instructions_O1 : 27
+          // dynamic_instructions_O1 : 27
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 31
+          // dynamic_instructions_O3 : 31
+          // ------------------------------- 
+          // static_instructions_Ofast : 31
+          // dynamic_instructions_Ofast : 31
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 30
+          // dynamic_instructions_Oz : 30
+          // ------------------------------- 
+
+          int len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pstart0 = 1;
+          int * pstart = (int *) malloc(_len_pstart0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pstart0; _i0++) {
+            pstart[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pend0 = 1;
+          int * pend = (int *) malloc(_len_pend0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pend0; _i0++) {
+            pend[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           jvp_clamp_slice_params(len,pstart,pend);
           free(pstart);
           free(pend);

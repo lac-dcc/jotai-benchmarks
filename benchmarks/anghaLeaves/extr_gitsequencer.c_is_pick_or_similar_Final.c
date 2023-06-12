@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -76,12 +76,6 @@ __attribute__((used)) static int is_pick_or_similar(enum todo_command command)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,16 +88,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum todo_command command = 0;
+        
           int benchRet = is_pick_or_similar(command);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

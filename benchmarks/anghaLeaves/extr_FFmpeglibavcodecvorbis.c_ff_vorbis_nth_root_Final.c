@@ -31,7 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ unsigned int ff_vorbis_nth_root(unsigned int x, unsigned int n)
     return ret - 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,21 +81,108 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 3618
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 931
+          // ------------------------------- 
+          // static_instructions_O2 : 126
+          // dynamic_instructions_O2 : 476
+          // ------------------------------- 
+          // static_instructions_O3 : 124
+          // dynamic_instructions_O3 : 466
+          // ------------------------------- 
+          // static_instructions_Ofast : 124
+          // dynamic_instructions_Ofast : 466
+          // ------------------------------- 
+          // static_instructions_Os : 57
+          // dynamic_instructions_Os : 1151
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 1515
+          // ------------------------------- 
+
           unsigned int x = 100;
+        
           unsigned int n = 100;
+        
           unsigned int benchRet = ff_vorbis_nth_root(x,n);
           printf("%u\n", benchRet); 
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 9198
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 2326
+          // ------------------------------- 
+          // static_instructions_O2 : 126
+          // dynamic_instructions_O2 : 881
+          // ------------------------------- 
+          // static_instructions_O3 : 124
+          // dynamic_instructions_O3 : 871
+          // ------------------------------- 
+          // static_instructions_Ofast : 124
+          // dynamic_instructions_Ofast : 871
+          // ------------------------------- 
+          // static_instructions_Os : 57
+          // dynamic_instructions_Os : 2789
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 3840
+          // ------------------------------- 
+
+          unsigned int x = 255;
+        
+          unsigned int n = 255;
+        
+          unsigned int benchRet = ff_vorbis_nth_root(x,n);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 255
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 83
+          // ------------------------------- 
+          // static_instructions_O2 : 82
+          // dynamic_instructions_O2 : 141
+          // ------------------------------- 
+          // static_instructions_O3 : 81
+          // dynamic_instructions_O3 : 137
+          // ------------------------------- 
+          // static_instructions_Ofast : 81
+          // dynamic_instructions_Ofast : 137
+          // ------------------------------- 
+          // static_instructions_Os : 57
+          // dynamic_instructions_Os : 156
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 112
+          // ------------------------------- 
+
           unsigned int x = 10;
+        
           unsigned int n = 10;
+        
           unsigned int benchRet = ff_vorbis_nth_root(x,n);
           printf("%u\n", benchRet); 
         

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +73,6 @@ __attribute__((used)) static u8 nfp_bytemask(int width, u64 addr)
 		return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,7 +89,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int width = 100;
+        
           int addr = 100;
+        
           int benchRet = nfp_bytemask(width,addr);
           printf("%d\n", benchRet); 
         
@@ -104,7 +101,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int width = 255;
+        
           int addr = 255;
+        
           int benchRet = nfp_bytemask(width,addr);
           printf("%d\n", benchRet); 
         
@@ -114,13 +113,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int width = 10;
+        
           int addr = 10;
+        
           int benchRet = nfp_bytemask(width,addr);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = nfp_bytemask(width,addr);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

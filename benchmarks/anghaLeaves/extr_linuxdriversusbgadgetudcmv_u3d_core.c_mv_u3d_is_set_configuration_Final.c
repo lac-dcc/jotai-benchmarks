@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static int mv_u3d_is_set_configuration(struct usb_ctrlrequ
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,22 +81,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_setup0 = 1;
+          int _len_setup0 = 65025;
           struct usb_ctrlrequest * setup = (struct usb_ctrlrequest *) malloc(_len_setup0*sizeof(struct usb_ctrlrequest));
           for(int _i0 = 0; _i0 < _len_setup0; _i0++) {
-            setup[_i0].bRequestType = ((-2 * (next_i()%2)) + 1) * next_i();
-        setup[_i0].bRequest = ((-2 * (next_i()%2)) + 1) * next_i();
+              setup[_i0].bRequestType = ((-2 * (next_i()%2)) + 1) * next_i();
+          setup[_i0].bRequest = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mv_u3d_is_set_configuration(setup);
           printf("%d\n", benchRet); 
           free(setup);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_setup0 = 100;
+          struct usb_ctrlrequest * setup = (struct usb_ctrlrequest *) malloc(_len_setup0*sizeof(struct usb_ctrlrequest));
+          for(int _i0 = 0; _i0 < _len_setup0; _i0++) {
+              setup[_i0].bRequestType = ((-2 * (next_i()%2)) + 1) * next_i();
+          setup[_i0].bRequest = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mv_u3d_is_set_configuration(setup);
+          printf("%d\n", benchRet); 
+          free(setup);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_setup0 = 1;
+          struct usb_ctrlrequest * setup = (struct usb_ctrlrequest *) malloc(_len_setup0*sizeof(struct usb_ctrlrequest));
+          for(int _i0 = 0; _i0 < _len_setup0; _i0++) {
+              setup[_i0].bRequestType = ((-2 * (next_i()%2)) + 1) * next_i();
+          setup[_i0].bRequest = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mv_u3d_is_set_configuration(setup);
+          printf("%d\n", benchRet); 
+          free(setup);
+        
+        break;
+    }
     default:
         usage();
         break;

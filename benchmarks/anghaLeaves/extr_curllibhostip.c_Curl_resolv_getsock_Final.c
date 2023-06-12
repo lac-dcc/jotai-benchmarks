@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +78,6 @@ int Curl_resolv_getsock(struct connectdata *conn,
 #endif
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,20 +90,194 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int numsocks = 100;
+        
           int _len_conn0 = 1;
           struct connectdata * conn = (struct connectdata *) malloc(_len_conn0*sizeof(struct connectdata));
           for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
-            conn[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              conn[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_socks0 = 1;
           int * socks = (int *) malloc(_len_socks0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_socks0; _i0++) {
             socks[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = Curl_resolv_getsock(conn,socks,numsocks);
+          printf("%d\n", benchRet); 
+          free(conn);
+          free(socks);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int numsocks = 255;
+        
+          int _len_conn0 = 65025;
+          struct connectdata * conn = (struct connectdata *) malloc(_len_conn0*sizeof(struct connectdata));
+          for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
+              conn[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_socks0 = 65025;
+          int * socks = (int *) malloc(_len_socks0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_socks0; _i0++) {
+            socks[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = Curl_resolv_getsock(conn,socks,numsocks);
+          printf("%d\n", benchRet); 
+          free(conn);
+          free(socks);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int numsocks = 10;
+        
+          int _len_conn0 = 100;
+          struct connectdata * conn = (struct connectdata *) malloc(_len_conn0*sizeof(struct connectdata));
+          for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
+              conn[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_socks0 = 100;
+          int * socks = (int *) malloc(_len_socks0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_socks0; _i0++) {
+            socks[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = Curl_resolv_getsock(conn,socks,numsocks);
+          printf("%d\n", benchRet); 
+          free(conn);
+          free(socks);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int numsocks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_conn0 = 1;
+          struct connectdata * conn = (struct connectdata *) malloc(_len_conn0*sizeof(struct connectdata));
+          for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
+              conn[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_socks0 = 1;
+          int * socks = (int *) malloc(_len_socks0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_socks0; _i0++) {
+            socks[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = Curl_resolv_getsock(conn,socks,numsocks);
           printf("%d\n", benchRet); 
           free(conn);

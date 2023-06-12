@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -148,12 +149,6 @@ __attribute__((used)) static umode_t iser_attr_is_visible(int param_type, int pa
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -170,7 +165,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int param_type = 100;
+        
           int param = 100;
+        
           int benchRet = iser_attr_is_visible(param_type,param);
           printf("%d\n", benchRet); 
         
@@ -180,7 +177,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int param_type = 255;
+        
           int param = 255;
+        
           int benchRet = iser_attr_is_visible(param_type,param);
           printf("%d\n", benchRet); 
         
@@ -190,13 +189,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int param_type = 10;
+        
           int param = 10;
+        
           int benchRet = iser_attr_is_visible(param_type,param);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int param_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int param = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = iser_attr_is_visible(param_type,param);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -82,12 +83,6 @@ mptcp_valid_mpcapable_common_opt(u_char *cp)
 	return (1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,14 +95,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cp0 = 1;
+          int _len_cp0 = 65025;
           int * cp = (int *) malloc(_len_cp0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_cp0; _i0++) {
             cp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = mptcp_valid_mpcapable_common_opt(cp);
           printf("%d\n", benchRet); 
           free(cp);
@@ -122,13 +118,28 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_cp0; _i0++) {
             cp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = mptcp_valid_mpcapable_common_opt(cp);
           printf("%d\n", benchRet); 
           free(cp);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_cp0 = 1;
+          int * cp = (int *) malloc(_len_cp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_cp0; _i0++) {
+            cp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = mptcp_valid_mpcapable_common_opt(cp);
+          printf("%d\n", benchRet); 
+          free(cp);
+        
+        break;
+    }
     default:
         usage();
         break;

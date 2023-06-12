@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ vnode_settag(vnode_t vp, int tag)
 
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,31 +83,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int tag = 100;
+        
           int _len_vp0 = 1;
           struct TYPE_3__ * vp = (struct TYPE_3__ *) malloc(_len_vp0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_vp0; _i0++) {
-            vp[_i0].v_tag = ((-2 * (next_i()%2)) + 1) * next_i();
+              vp[_i0].v_tag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          vnode_settag(vp,tag);
+          free(vp);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int tag = 255;
+        
+          int _len_vp0 = 65025;
+          struct TYPE_3__ * vp = (struct TYPE_3__ *) malloc(_len_vp0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_vp0; _i0++) {
+              vp[_i0].v_tag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           vnode_settag(vp,tag);
           free(vp);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int tag = 10;
+        
           int _len_vp0 = 100;
           struct TYPE_3__ * vp = (struct TYPE_3__ *) malloc(_len_vp0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_vp0; _i0++) {
-            vp[_i0].v_tag = ((-2 * (next_i()%2)) + 1) * next_i();
+              vp[_i0].v_tag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           vnode_settag(vp,tag);
           free(vp);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int tag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_vp0 = 1;
+          struct TYPE_3__ * vp = (struct TYPE_3__ *) malloc(_len_vp0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_vp0; _i0++) {
+              vp[_i0].v_tag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          vnode_settag(vp,tag);
+          free(vp);
+        
+        break;
+    }
     default:
         usage();
         break;

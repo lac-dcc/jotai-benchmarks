@@ -31,7 +31,10 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            linked\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            linked\n\
+       4            empty\n\
 \n\
 ");
 
@@ -164,12 +167,6 @@ screen_check_selection(struct screen *s, u_int px, u_int py)
 	return (1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -182,26 +179,54 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           long px = 100;
+        
           long py = 100;
+        
           int _len_s0 = 1;
           struct screen * s = (struct screen *) malloc(_len_s0*sizeof(struct screen));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
               int _len_s__i0__sel0 = 1;
           s[_i0].sel = (struct screen_sel *) malloc(_len_s__i0__sel0*sizeof(struct screen_sel));
           for(int _j0 = 0; _j0 < _len_s__i0__sel0; _j0++) {
-            s[_i0].sel->sy = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].sel->ey = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].sel->ex = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].sel->sx = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].sel->modekeys = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].sel->rectangle = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].sel->hidden = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].sel->sy = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].sel->ey = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].sel->ex = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].sel->sx = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].sel->modekeys = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].sel->rectangle = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].sel->hidden = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = screen_check_selection(s,px,py);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_s0; _aux++) {
@@ -211,26 +236,229 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-    // linked
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          long px = 255;
+        
+          long py = 255;
+        
+          int _len_s0 = 65025;
+          struct screen * s = (struct screen *) malloc(_len_s0*sizeof(struct screen));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              int _len_s__i0__sel0 = 1;
+          s[_i0].sel = (struct screen_sel *) malloc(_len_s__i0__sel0*sizeof(struct screen_sel));
+          for(int _j0 = 0; _j0 < _len_s__i0__sel0; _j0++) {
+              s[_i0].sel->sy = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].sel->ey = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].sel->ex = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].sel->sx = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].sel->modekeys = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].sel->rectangle = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].sel->hidden = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = screen_check_selection(s,px,py);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].sel);
+          }
+          free(s);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          long px = 10;
+        
+          long py = 10;
+        
+          int _len_s0 = 100;
+          struct screen * s = (struct screen *) malloc(_len_s0*sizeof(struct screen));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              int _len_s__i0__sel0 = 1;
+          s[_i0].sel = (struct screen_sel *) malloc(_len_s__i0__sel0*sizeof(struct screen_sel));
+          for(int _j0 = 0; _j0 < _len_s__i0__sel0; _j0++) {
+              s[_i0].sel->sy = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].sel->ey = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].sel->ex = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].sel->sx = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].sel->modekeys = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].sel->rectangle = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].sel->hidden = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = screen_check_selection(s,px,py);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].sel);
+          }
+          free(s);
+        
+        break;
+    }
+
+
+    // linked
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           long px = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           long py = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int _len_s0 = 1;
           struct screen * s = (struct screen *) malloc(_len_s0*sizeof(struct screen));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
               int _len_s__i0__sel0 = 1;
           s[_i0].sel = (struct screen_sel *) malloc(_len_s__i0__sel0*sizeof(struct screen_sel));
           for(int _j0 = 0; _j0 < _len_s__i0__sel0; _j0++) {
-            s[_i0].sel->sy = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].sel->ey = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].sel->ex = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].sel->sx = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].sel->modekeys = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].sel->rectangle = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].sel->hidden = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].sel->sy = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].sel->ey = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].sel->ex = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].sel->sx = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].sel->modekeys = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].sel->rectangle = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].sel->hidden = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = screen_check_selection(s,px,py);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].sel);
+          }
+          free(s);
+        
+        break;
+    }
+
+
+    // empty
+    case 4:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          long px = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long py = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_s0 = 1;
+          struct screen * s = (struct screen *) malloc(_len_s0*sizeof(struct screen));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              int _len_s__i0__sel0 = 1;
+          s[_i0].sel = (struct screen_sel *) malloc(_len_s__i0__sel0*sizeof(struct screen_sel));
+          for(int _j0 = 0; _j0 < _len_s__i0__sel0; _j0++) {
+              s[_i0].sel->sy = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].sel->ey = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].sel->ex = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].sel->sx = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].sel->modekeys = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].sel->rectangle = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].sel->hidden = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = screen_check_selection(s,px,py);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_s0; _aux++) {

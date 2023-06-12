@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ void ff_mpeg4_init_direct_mv(MpegEncContext *s)
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,9 +83,138 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_s0 = 65025;
+          struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              int _len_s__i0__direct_scale_mv0 = 1;
+          s[_i0].direct_scale_mv = (int **) malloc(_len_s__i0__direct_scale_mv0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_s__i0__direct_scale_mv0; _j0++) {
+            int _len_s__i0__direct_scale_mv1 = 1;
+            s[_i0].direct_scale_mv[_j0] = (int *) malloc(_len_s__i0__direct_scale_mv1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_s__i0__direct_scale_mv1; _j1++) {
+              s[_i0].direct_scale_mv[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+          s[_i0].pb_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].pp_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ff_mpeg4_init_direct_mv(s);
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(*(s[_aux].direct_scale_mv));
+        free(s[_aux].direct_scale_mv);
+          }
+          free(s);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_s0 = 100;
+          struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              int _len_s__i0__direct_scale_mv0 = 1;
+          s[_i0].direct_scale_mv = (int **) malloc(_len_s__i0__direct_scale_mv0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_s__i0__direct_scale_mv0; _j0++) {
+            int _len_s__i0__direct_scale_mv1 = 1;
+            s[_i0].direct_scale_mv[_j0] = (int *) malloc(_len_s__i0__direct_scale_mv1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_s__i0__direct_scale_mv1; _j1++) {
+              s[_i0].direct_scale_mv[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+          s[_i0].pb_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].pp_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ff_mpeg4_init_direct_mv(s);
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(*(s[_aux].direct_scale_mv));
+        free(s[_aux].direct_scale_mv);
+          }
+          free(s);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_s0 = 1;
           struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
@@ -102,9 +227,11 @@ int main(int argc, char *argv[]) {
               s[_i0].direct_scale_mv[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
-        s[_i0].pb_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].pp_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].pb_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].pp_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ff_mpeg4_init_direct_mv(s);
           for(int _aux = 0; _aux < _len_s0; _aux++) {
           free(*(s[_aux].direct_scale_mv));

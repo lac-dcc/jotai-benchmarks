@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -84,12 +87,6 @@ get_url_sentinel(Line *line, index_type url_start) {
     return sentinel;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,20 +99,200 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 44
+          // dynamic_instructions_O0 : 44
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int url_start = 100;
+        
           int _len_line0 = 1;
           struct TYPE_5__ * line = (struct TYPE_5__ *) malloc(_len_line0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_line0; _i0++) {
-            line[_i0].xnum = ((-2 * (next_i()%2)) + 1) * next_i();
+              line[_i0].xnum = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_line__i0__cpu_cells0 = 1;
           line[_i0].cpu_cells = (struct TYPE_4__ *) malloc(_len_line__i0__cpu_cells0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_line__i0__cpu_cells0; _j0++) {
-            line[_i0].cpu_cells->ch = ((-2 * (next_i()%2)) + 1) * next_i();
+              line[_i0].cpu_cells->ch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = get_url_sentinel(line,url_start);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_line0; _aux++) {
+          free(line[_aux].cpu_cells);
+          }
+          free(line);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 44
+          // dynamic_instructions_O0 : 44
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int url_start = 255;
+        
+          int _len_line0 = 65025;
+          struct TYPE_5__ * line = (struct TYPE_5__ *) malloc(_len_line0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_line0; _i0++) {
+              line[_i0].xnum = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_line__i0__cpu_cells0 = 1;
+          line[_i0].cpu_cells = (struct TYPE_4__ *) malloc(_len_line__i0__cpu_cells0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_line__i0__cpu_cells0; _j0++) {
+              line[_i0].cpu_cells->ch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = get_url_sentinel(line,url_start);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_line0; _aux++) {
+          free(line[_aux].cpu_cells);
+          }
+          free(line);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 44
+          // dynamic_instructions_O0 : 44
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int url_start = 10;
+        
+          int _len_line0 = 100;
+          struct TYPE_5__ * line = (struct TYPE_5__ *) malloc(_len_line0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_line0; _i0++) {
+              line[_i0].xnum = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_line__i0__cpu_cells0 = 1;
+          line[_i0].cpu_cells = (struct TYPE_4__ *) malloc(_len_line__i0__cpu_cells0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_line__i0__cpu_cells0; _j0++) {
+              line[_i0].cpu_cells->ch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = get_url_sentinel(line,url_start);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_line0; _aux++) {
+          free(line[_aux].cpu_cells);
+          }
+          free(line);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int url_start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_line0 = 1;
+          struct TYPE_5__ * line = (struct TYPE_5__ *) malloc(_len_line0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_line0; _i0++) {
+              line[_i0].xnum = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_line__i0__cpu_cells0 = 1;
+          line[_i0].cpu_cells = (struct TYPE_4__ *) malloc(_len_line__i0__cpu_cells0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_line__i0__cpu_cells0; _j0++) {
+              line[_i0].cpu_cells->ch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = get_url_sentinel(line,url_start);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_line0; _aux++) {

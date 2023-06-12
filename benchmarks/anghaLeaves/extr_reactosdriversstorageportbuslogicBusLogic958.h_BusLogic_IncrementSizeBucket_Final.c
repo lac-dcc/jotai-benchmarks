@@ -31,7 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -80,12 +81,6 @@ BusLogic_IncrementSizeBucket(BusLogic_CommandSizeBuckets_T CommandSizeBuckets,
   CommandSizeBuckets[Index]++;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,31 +97,50 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int Amount = 100;
+        
           int _len_CommandSizeBuckets0 = 1;
           int * CommandSizeBuckets = (int *) malloc(_len_CommandSizeBuckets0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_CommandSizeBuckets0; _i0++) {
             CommandSizeBuckets[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          BusLogic_IncrementSizeBucket(CommandSizeBuckets,Amount);
+          free(CommandSizeBuckets);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned int Amount = 255;
+        
+          int _len_CommandSizeBuckets0 = 65025;
+          int * CommandSizeBuckets = (int *) malloc(_len_CommandSizeBuckets0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_CommandSizeBuckets0; _i0++) {
+            CommandSizeBuckets[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           BusLogic_IncrementSizeBucket(CommandSizeBuckets,Amount);
           free(CommandSizeBuckets);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned int Amount = 10;
+        
           int _len_CommandSizeBuckets0 = 100;
           int * CommandSizeBuckets = (int *) malloc(_len_CommandSizeBuckets0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_CommandSizeBuckets0; _i0++) {
             CommandSizeBuckets[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           BusLogic_IncrementSizeBucket(CommandSizeBuckets,Amount);
           free(CommandSizeBuckets);
         
         break;
     }
-
     default:
         usage();
         break;

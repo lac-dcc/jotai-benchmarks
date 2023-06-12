@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -96,12 +99,6 @@ __attribute__((used)) static GLuint clip_span( GLcontext *ctx,
    }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -114,27 +111,243 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           long n = 100;
+        
           long x = 100;
+        
           long y = 100;
+        
           int _len_ctx0 = 1;
           struct TYPE_5__ * ctx = (struct TYPE_5__ *) malloc(_len_ctx0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
               int _len_ctx__i0__Buffer0 = 1;
           ctx[_i0].Buffer = (struct TYPE_4__ *) malloc(_len_ctx__i0__Buffer0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_ctx__i0__Buffer0; _j0++) {
-            ctx[_i0].Buffer->Height = ((-2 * (next_i()%2)) + 1) * next_i();
-        ctx[_i0].Buffer->Width = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctx[_i0].Buffer->Height = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].Buffer->Width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_mask0 = 1;
           long * mask = (long *) malloc(_len_mask0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_mask0; _i0++) {
             mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = clip_span(ctx,n,x,y,mask);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ctx0; _aux++) {
+          free(ctx[_aux].Buffer);
+          }
+          free(ctx);
+          free(mask);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          long n = 255;
+        
+          long x = 255;
+        
+          long y = 255;
+        
+          int _len_ctx0 = 65025;
+          struct TYPE_5__ * ctx = (struct TYPE_5__ *) malloc(_len_ctx0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              int _len_ctx__i0__Buffer0 = 1;
+          ctx[_i0].Buffer = (struct TYPE_4__ *) malloc(_len_ctx__i0__Buffer0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_ctx__i0__Buffer0; _j0++) {
+              ctx[_i0].Buffer->Height = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].Buffer->Width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_mask0 = 65025;
+          long * mask = (long *) malloc(_len_mask0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_mask0; _i0++) {
+            mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = clip_span(ctx,n,x,y,mask);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ctx0; _aux++) {
+          free(ctx[_aux].Buffer);
+          }
+          free(ctx);
+          free(mask);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          long n = 10;
+        
+          long x = 10;
+        
+          long y = 10;
+        
+          int _len_ctx0 = 100;
+          struct TYPE_5__ * ctx = (struct TYPE_5__ *) malloc(_len_ctx0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              int _len_ctx__i0__Buffer0 = 1;
+          ctx[_i0].Buffer = (struct TYPE_4__ *) malloc(_len_ctx__i0__Buffer0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_ctx__i0__Buffer0; _j0++) {
+              ctx[_i0].Buffer->Height = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].Buffer->Width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_mask0 = 100;
+          long * mask = (long *) malloc(_len_mask0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_mask0; _i0++) {
+            mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = clip_span(ctx,n,x,y,mask);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ctx0; _aux++) {
+          free(ctx[_aux].Buffer);
+          }
+          free(ctx);
+          free(mask);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          long n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ctx0 = 1;
+          struct TYPE_5__ * ctx = (struct TYPE_5__ *) malloc(_len_ctx0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              int _len_ctx__i0__Buffer0 = 1;
+          ctx[_i0].Buffer = (struct TYPE_4__ *) malloc(_len_ctx__i0__Buffer0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_ctx__i0__Buffer0; _j0++) {
+              ctx[_i0].Buffer->Height = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].Buffer->Width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_mask0 = 1;
+          long * mask = (long *) malloc(_len_mask0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_mask0; _i0++) {
+            mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = clip_span(ctx,n,x,y,mask);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_ctx0; _aux++) {

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -95,12 +97,6 @@ __attribute__((used)) static void iterate_diffusion_matrix(u32 xres, u32 yres, i
 		}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -113,39 +109,200 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 29
+          // dynamic_instructions_Oz : 29
+          // ------------------------------- 
+
           int xres = 100;
+        
           int yres = 100;
+        
           int x = 100;
+        
           int y = 100;
+        
           short pixel = 100;
+        
           short error = 100;
+        
           int _len_convert_buf0 = 1;
           short * convert_buf = (short *) malloc(_len_convert_buf0*sizeof(short));
           for(int _i0 = 0; _i0 < _len_convert_buf0; _i0++) {
             convert_buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           iterate_diffusion_matrix(xres,yres,x,y,convert_buf,pixel,error);
           free(convert_buf);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 29
+          // dynamic_instructions_Oz : 29
+          // ------------------------------- 
+
+          int xres = 255;
+        
+          int yres = 255;
+        
+          int x = 255;
+        
+          int y = 255;
+        
+          short pixel = 255;
+        
+          short error = 255;
+        
+          int _len_convert_buf0 = 65025;
+          short * convert_buf = (short *) malloc(_len_convert_buf0*sizeof(short));
+          for(int _i0 = 0; _i0 < _len_convert_buf0; _i0++) {
+            convert_buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          iterate_diffusion_matrix(xres,yres,x,y,convert_buf,pixel,error);
+          free(convert_buf);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 29
+          // dynamic_instructions_Oz : 29
+          // ------------------------------- 
+
           int xres = 10;
+        
           int yres = 10;
+        
           int x = 10;
+        
           int y = 10;
+        
           short pixel = 10;
+        
           short error = 10;
+        
           int _len_convert_buf0 = 100;
           short * convert_buf = (short *) malloc(_len_convert_buf0*sizeof(short));
           for(int _i0 = 0; _i0 < _len_convert_buf0; _i0++) {
             convert_buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          iterate_diffusion_matrix(xres,yres,x,y,convert_buf,pixel,error);
+          free(convert_buf);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 29
+          // dynamic_instructions_Oz : 29
+          // ------------------------------- 
+
+          int xres = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int yres = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          short pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          short error = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_convert_buf0 = 1;
+          short * convert_buf = (short *) malloc(_len_convert_buf0*sizeof(short));
+          for(int _i0 = 0; _i0 < _len_convert_buf0; _i0++) {
+            convert_buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           iterate_diffusion_matrix(xres,yres,x,y,convert_buf,pixel,error);
           free(convert_buf);
         

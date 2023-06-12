@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -98,12 +101,6 @@ __attribute__((used)) static unsigned int sx150x_maybe_swizzle(struct sx150x_pin
 	return val;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -116,22 +113,212 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           unsigned int reg = 100;
+        
           unsigned int val = 100;
+        
           int _len_pctl0 = 1;
           struct sx150x_pinctrl * pctl = (struct sx150x_pinctrl *) malloc(_len_pctl0*sizeof(struct sx150x_pinctrl));
           for(int _i0 = 0; _i0 < _len_pctl0; _i0++) {
               int _len_pctl__i0__data0 = 1;
           pctl[_i0].data = (struct sx150x_device_data *) malloc(_len_pctl__i0__data0*sizeof(struct sx150x_device_data));
           for(int _j0 = 0; _j0 < _len_pctl__i0__data0; _j0++) {
-            pctl[_i0].data->reg_sense = ((-2 * (next_i()%2)) + 1) * next_i();
-        pctl[_i0].data->ngpios = ((-2 * (next_i()%2)) + 1) * next_i();
-        pctl[_i0].data->model = ((-2 * (next_i()%2)) + 1) * next_i();
+              pctl[_i0].data->reg_sense = ((-2 * (next_i()%2)) + 1) * next_i();
+          pctl[_i0].data->ngpios = ((-2 * (next_i()%2)) + 1) * next_i();
+          pctl[_i0].data->model = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          unsigned int benchRet = sx150x_maybe_swizzle(pctl,reg,val);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pctl0; _aux++) {
+          free(pctl[_aux].data);
+          }
+          free(pctl);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          unsigned int reg = 255;
+        
+          unsigned int val = 255;
+        
+          int _len_pctl0 = 65025;
+          struct sx150x_pinctrl * pctl = (struct sx150x_pinctrl *) malloc(_len_pctl0*sizeof(struct sx150x_pinctrl));
+          for(int _i0 = 0; _i0 < _len_pctl0; _i0++) {
+              int _len_pctl__i0__data0 = 1;
+          pctl[_i0].data = (struct sx150x_device_data *) malloc(_len_pctl__i0__data0*sizeof(struct sx150x_device_data));
+          for(int _j0 = 0; _j0 < _len_pctl__i0__data0; _j0++) {
+              pctl[_i0].data->reg_sense = ((-2 * (next_i()%2)) + 1) * next_i();
+          pctl[_i0].data->ngpios = ((-2 * (next_i()%2)) + 1) * next_i();
+          pctl[_i0].data->model = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = sx150x_maybe_swizzle(pctl,reg,val);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pctl0; _aux++) {
+          free(pctl[_aux].data);
+          }
+          free(pctl);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          unsigned int reg = 10;
+        
+          unsigned int val = 10;
+        
+          int _len_pctl0 = 100;
+          struct sx150x_pinctrl * pctl = (struct sx150x_pinctrl *) malloc(_len_pctl0*sizeof(struct sx150x_pinctrl));
+          for(int _i0 = 0; _i0 < _len_pctl0; _i0++) {
+              int _len_pctl__i0__data0 = 1;
+          pctl[_i0].data = (struct sx150x_device_data *) malloc(_len_pctl__i0__data0*sizeof(struct sx150x_device_data));
+          for(int _j0 = 0; _j0 < _len_pctl__i0__data0; _j0++) {
+              pctl[_i0].data->reg_sense = ((-2 * (next_i()%2)) + 1) * next_i();
+          pctl[_i0].data->ngpios = ((-2 * (next_i()%2)) + 1) * next_i();
+          pctl[_i0].data->model = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = sx150x_maybe_swizzle(pctl,reg,val);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pctl0; _aux++) {
+          free(pctl[_aux].data);
+          }
+          free(pctl);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          unsigned int reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pctl0 = 1;
+          struct sx150x_pinctrl * pctl = (struct sx150x_pinctrl *) malloc(_len_pctl0*sizeof(struct sx150x_pinctrl));
+          for(int _i0 = 0; _i0 < _len_pctl0; _i0++) {
+              int _len_pctl__i0__data0 = 1;
+          pctl[_i0].data = (struct sx150x_device_data *) malloc(_len_pctl__i0__data0*sizeof(struct sx150x_device_data));
+          for(int _j0 = 0; _j0 < _len_pctl__i0__data0; _j0++) {
+              pctl[_i0].data->reg_sense = ((-2 * (next_i()%2)) + 1) * next_i();
+          pctl[_i0].data->ngpios = ((-2 * (next_i()%2)) + 1) * next_i();
+          pctl[_i0].data->model = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           unsigned int benchRet = sx150x_maybe_swizzle(pctl,reg,val);
           printf("%u\n", benchRet); 
           for(int _aux = 0; _aux < _len_pctl0; _aux++) {

@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -181,12 +181,6 @@ __attribute__((used)) static u8 mtk_hdmi_aud_get_chnl_count(enum hdmi_aud_channe
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -199,16 +193,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum hdmi_aud_channel_type channel_type = 0;
+        
           int benchRet = mtk_hdmi_aud_get_chnl_count(channel_type);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

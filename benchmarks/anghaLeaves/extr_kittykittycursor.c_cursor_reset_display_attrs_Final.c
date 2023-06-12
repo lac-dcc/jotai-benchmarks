@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ cursor_reset_display_attrs(Cursor *self) {
     self->decoration = 0; self->bold = false; self->italic = false; self->reverse = false; self->strikethrough = false; self->dim = false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,22 +77,141 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_self0 = 65025;
+          struct TYPE_3__ * self = (struct TYPE_3__ *) malloc(_len_self0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_self0; _i0++) {
+              self[_i0].bold = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].italic = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].reverse = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].strikethrough = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].dim = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].decoration = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].decoration_fg = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].fg = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].bg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cursor_reset_display_attrs(self);
+          free(self);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_self0 = 100;
+          struct TYPE_3__ * self = (struct TYPE_3__ *) malloc(_len_self0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_self0; _i0++) {
+              self[_i0].bold = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].italic = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].reverse = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].strikethrough = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].dim = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].decoration = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].decoration_fg = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].fg = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].bg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cursor_reset_display_attrs(self);
+          free(self);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_self0 = 1;
           struct TYPE_3__ * self = (struct TYPE_3__ *) malloc(_len_self0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_self0; _i0++) {
-            self[_i0].bold = ((-2 * (next_i()%2)) + 1) * next_i();
-        self[_i0].italic = ((-2 * (next_i()%2)) + 1) * next_i();
-        self[_i0].reverse = ((-2 * (next_i()%2)) + 1) * next_i();
-        self[_i0].strikethrough = ((-2 * (next_i()%2)) + 1) * next_i();
-        self[_i0].dim = ((-2 * (next_i()%2)) + 1) * next_i();
-        self[_i0].decoration = ((-2 * (next_i()%2)) + 1) * next_i();
-        self[_i0].decoration_fg = ((-2 * (next_i()%2)) + 1) * next_i();
-        self[_i0].fg = ((-2 * (next_i()%2)) + 1) * next_i();
-        self[_i0].bg = ((-2 * (next_i()%2)) + 1) * next_i();
+              self[_i0].bold = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].italic = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].reverse = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].strikethrough = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].dim = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].decoration = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].decoration_fg = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].fg = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].bg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           cursor_reset_display_attrs(self);
           free(self);
         

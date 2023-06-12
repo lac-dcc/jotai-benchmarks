@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -101,12 +103,6 @@ logical slaisnan_(real *sin1, real *sin2)
     return ret_val;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -119,19 +115,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_sin10 = 1;
+          int _len_sin10 = 65025;
           long * sin1 = (long *) malloc(_len_sin10*sizeof(long));
           for(int _i0 = 0; _i0 < _len_sin10; _i0++) {
             sin1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_sin20 = 1;
+        
+          int _len_sin20 = 65025;
           long * sin2 = (long *) malloc(_len_sin20*sizeof(long));
           for(int _i0 = 0; _i0 < _len_sin20; _i0++) {
             sin2[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = slaisnan_(sin1,sin2);
           printf("%d\n", benchRet); 
           free(sin1);
@@ -139,7 +137,50 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_sin10 = 100;
+          long * sin1 = (long *) malloc(_len_sin10*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_sin10; _i0++) {
+            sin1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_sin20 = 100;
+          long * sin2 = (long *) malloc(_len_sin20*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_sin20; _i0++) {
+            sin2[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = slaisnan_(sin1,sin2);
+          printf("%d\n", benchRet); 
+          free(sin1);
+          free(sin2);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_sin10 = 1;
+          long * sin1 = (long *) malloc(_len_sin10*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_sin10; _i0++) {
+            sin1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_sin20 = 1;
+          long * sin2 = (long *) malloc(_len_sin20*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_sin20; _i0++) {
+            sin2[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = slaisnan_(sin1,sin2);
+          printf("%d\n", benchRet); 
+          free(sin1);
+          free(sin2);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ int CRYPTO_atomic_add(int *val, int amount, int *ret, CRYPTO_RWLOCK *lock)
     return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,25 +78,217 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int amount = 100;
+        
           int _len_val0 = 1;
           int * val = (int *) malloc(_len_val0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_val0; _i0++) {
             val[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_ret0 = 1;
           int * ret = (int *) malloc(_len_ret0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_ret0; _i0++) {
             ret[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_lock0 = 1;
           int * lock = (int *) malloc(_len_lock0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_lock0; _i0++) {
             lock[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = CRYPTO_atomic_add(val,amount,ret,lock);
+          printf("%d\n", benchRet); 
+          free(val);
+          free(ret);
+          free(lock);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int amount = 255;
+        
+          int _len_val0 = 65025;
+          int * val = (int *) malloc(_len_val0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_val0; _i0++) {
+            val[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ret0 = 65025;
+          int * ret = (int *) malloc(_len_ret0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ret0; _i0++) {
+            ret[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_lock0 = 65025;
+          int * lock = (int *) malloc(_len_lock0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_lock0; _i0++) {
+            lock[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = CRYPTO_atomic_add(val,amount,ret,lock);
+          printf("%d\n", benchRet); 
+          free(val);
+          free(ret);
+          free(lock);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int amount = 10;
+        
+          int _len_val0 = 100;
+          int * val = (int *) malloc(_len_val0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_val0; _i0++) {
+            val[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ret0 = 100;
+          int * ret = (int *) malloc(_len_ret0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ret0; _i0++) {
+            ret[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_lock0 = 100;
+          int * lock = (int *) malloc(_len_lock0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_lock0; _i0++) {
+            lock[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = CRYPTO_atomic_add(val,amount,ret,lock);
+          printf("%d\n", benchRet); 
+          free(val);
+          free(ret);
+          free(lock);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int amount = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_val0 = 1;
+          int * val = (int *) malloc(_len_val0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_val0; _i0++) {
+            val[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ret0 = 1;
+          int * ret = (int *) malloc(_len_ret0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ret0; _i0++) {
+            ret[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_lock0 = 1;
+          int * lock = (int *) malloc(_len_lock0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_lock0; _i0++) {
+            lock[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = CRYPTO_atomic_add(val,amount,ret,lock);
           printf("%d\n", benchRet); 
           free(val);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ __attribute__((used)) static inline int isowbuf_freebytes(struct isowbuf_t *iwb)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,15 +90,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_iwb0 = 65025;
+          struct isowbuf_t * iwb = (struct isowbuf_t *) malloc(_len_iwb0*sizeof(struct isowbuf_t));
+          for(int _i0 = 0; _i0 < _len_iwb0; _i0++) {
+              iwb[_i0].read = ((-2 * (next_i()%2)) + 1) * next_i();
+          iwb[_i0].write = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = isowbuf_freebytes(iwb);
+          printf("%d\n", benchRet); 
+          free(iwb);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_iwb0 = 100;
+          struct isowbuf_t * iwb = (struct isowbuf_t *) malloc(_len_iwb0*sizeof(struct isowbuf_t));
+          for(int _i0 = 0; _i0 < _len_iwb0; _i0++) {
+              iwb[_i0].read = ((-2 * (next_i()%2)) + 1) * next_i();
+          iwb[_i0].write = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = isowbuf_freebytes(iwb);
+          printf("%d\n", benchRet); 
+          free(iwb);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int _len_iwb0 = 1;
           struct isowbuf_t * iwb = (struct isowbuf_t *) malloc(_len_iwb0*sizeof(struct isowbuf_t));
           for(int _i0 = 0; _i0 < _len_iwb0; _i0++) {
-            iwb[_i0].read = ((-2 * (next_i()%2)) + 1) * next_i();
-        iwb[_i0].write = ((-2 * (next_i()%2)) + 1) * next_i();
+              iwb[_i0].read = ((-2 * (next_i()%2)) + 1) * next_i();
+          iwb[_i0].write = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = isowbuf_freebytes(iwb);
           printf("%d\n", benchRet); 
           free(iwb);

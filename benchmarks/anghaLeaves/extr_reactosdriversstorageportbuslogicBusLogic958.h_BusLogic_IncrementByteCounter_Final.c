@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ BusLogic_IncrementByteCounter(BusLogic_ByteCounter_T *ByteCounter,
   }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,18 +88,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int Amount = 100;
+        
           int _len_ByteCounter0 = 1;
           struct TYPE_3__ * ByteCounter = (struct TYPE_3__ *) malloc(_len_ByteCounter0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_ByteCounter0; _i0++) {
-            ByteCounter[_i0].Units = ((-2 * (next_i()%2)) + 1) * next_i();
-        ByteCounter[_i0].Billions = ((-2 * (next_i()%2)) + 1) * next_i();
+              ByteCounter[_i0].Units = ((-2 * (next_i()%2)) + 1) * next_i();
+          ByteCounter[_i0].Billions = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           BusLogic_IncrementByteCounter(ByteCounter,Amount);
           free(ByteCounter);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int Amount = 255;
+        
+          int _len_ByteCounter0 = 65025;
+          struct TYPE_3__ * ByteCounter = (struct TYPE_3__ *) malloc(_len_ByteCounter0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ByteCounter0; _i0++) {
+              ByteCounter[_i0].Units = ((-2 * (next_i()%2)) + 1) * next_i();
+          ByteCounter[_i0].Billions = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          BusLogic_IncrementByteCounter(ByteCounter,Amount);
+          free(ByteCounter);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int Amount = 10;
+        
+          int _len_ByteCounter0 = 100;
+          struct TYPE_3__ * ByteCounter = (struct TYPE_3__ *) malloc(_len_ByteCounter0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ByteCounter0; _i0++) {
+              ByteCounter[_i0].Units = ((-2 * (next_i()%2)) + 1) * next_i();
+          ByteCounter[_i0].Billions = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          BusLogic_IncrementByteCounter(ByteCounter,Amount);
+          free(ByteCounter);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int Amount = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ByteCounter0 = 1;
+          struct TYPE_3__ * ByteCounter = (struct TYPE_3__ *) malloc(_len_ByteCounter0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ByteCounter0; _i0++) {
+              ByteCounter[_i0].Units = ((-2 * (next_i()%2)) + 1) * next_i();
+          ByteCounter[_i0].Billions = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          BusLogic_IncrementByteCounter(ByteCounter,Amount);
+          free(ByteCounter);
+        
+        break;
+    }
     default:
         usage();
         break;

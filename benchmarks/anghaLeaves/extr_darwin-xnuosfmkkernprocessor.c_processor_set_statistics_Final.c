@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -104,12 +107,6 @@ processor_set_statistics(
 	return(KERN_INVALID_ARGUMENT);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -122,21 +119,198 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int flavor = 100;
+        
           long info = 100;
+        
           int _len_pset0 = 1;
           int * pset = (int *) malloc(_len_pset0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pset0; _i0++) {
             pset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_count0 = 1;
           long * count = (long *) malloc(_len_count0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_count0; _i0++) {
             count[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = processor_set_statistics(pset,flavor,info,count);
+          printf("%d\n", benchRet); 
+          free(pset);
+          free(count);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int flavor = 255;
+        
+          long info = 255;
+        
+          int _len_pset0 = 65025;
+          int * pset = (int *) malloc(_len_pset0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pset0; _i0++) {
+            pset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_count0 = 65025;
+          long * count = (long *) malloc(_len_count0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_count0; _i0++) {
+            count[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = processor_set_statistics(pset,flavor,info,count);
+          printf("%d\n", benchRet); 
+          free(pset);
+          free(count);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int flavor = 10;
+        
+          long info = 10;
+        
+          int _len_pset0 = 100;
+          int * pset = (int *) malloc(_len_pset0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pset0; _i0++) {
+            pset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_count0 = 100;
+          long * count = (long *) malloc(_len_count0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_count0; _i0++) {
+            count[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = processor_set_statistics(pset,flavor,info,count);
+          printf("%d\n", benchRet); 
+          free(pset);
+          free(count);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int flavor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long info = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pset0 = 1;
+          int * pset = (int *) malloc(_len_pset0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pset0; _i0++) {
+            pset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_count0 = 1;
+          long * count = (long *) malloc(_len_count0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_count0; _i0++) {
+            count[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = processor_set_statistics(pset,flavor,info,count);
           printf("%d\n", benchRet); 
           free(pset);

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline unsigned char read8(le8_t * _p)
     return *_p;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len__p0 = 1;
+          int _len__p0 = 65025;
           unsigned char * _p = (unsigned char *) malloc(_len__p0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len__p0; _i0++) {
             _p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned char benchRet = read8(_p);
           printf("%c\n", (benchRet %26) + 'a'); 
           free(_p);
@@ -101,13 +97,28 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len__p0; _i0++) {
             _p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned char benchRet = read8(_p);
           printf("%c\n", (benchRet %26) + 'a'); 
           free(_p);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len__p0 = 1;
+          unsigned char * _p = (unsigned char *) malloc(_len__p0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len__p0; _i0++) {
+            _p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned char benchRet = read8(_p);
+          printf("%c\n", (benchRet %26) + 'a'); 
+          free(_p);
+        
+        break;
+    }
     default:
         usage();
         break;

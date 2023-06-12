@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ uint32_t get_ts_elapsed(uint32_t ts, uint32_t ts_last) {
   return ts > ts_last ? ts - ts_last : (0xFFFFFFFF - ts_last) + 1 + ts;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,7 +78,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int ts = 100;
+        
           int ts_last = 100;
+        
           int benchRet = get_ts_elapsed(ts,ts_last);
           printf("%d\n", benchRet); 
         
@@ -93,7 +90,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int ts = 255;
+        
           int ts_last = 255;
+        
           int benchRet = get_ts_elapsed(ts,ts_last);
           printf("%d\n", benchRet); 
         
@@ -103,13 +102,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int ts = 10;
+        
           int ts_last = 10;
+        
           int benchRet = get_ts_elapsed(ts,ts_last);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int ts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int ts_last = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = get_ts_elapsed(ts,ts_last);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

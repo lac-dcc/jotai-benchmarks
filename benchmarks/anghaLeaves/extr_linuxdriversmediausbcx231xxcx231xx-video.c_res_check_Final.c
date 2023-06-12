@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static int res_check(struct cx231xx_fh *fh)
 	return fh->stream_on;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_fh0 = 1;
+          int _len_fh0 = 65025;
           struct cx231xx_fh * fh = (struct cx231xx_fh *) malloc(_len_fh0*sizeof(struct cx231xx_fh));
           for(int _i0 = 0; _i0 < _len_fh0; _i0++) {
-            fh[_i0].stream_on = ((-2 * (next_i()%2)) + 1) * next_i();
+              fh[_i0].stream_on = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = res_check(fh);
           printf("%d\n", benchRet); 
           free(fh);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_fh0 = 100;
           struct cx231xx_fh * fh = (struct cx231xx_fh *) malloc(_len_fh0*sizeof(struct cx231xx_fh));
           for(int _i0 = 0; _i0 < _len_fh0; _i0++) {
-            fh[_i0].stream_on = ((-2 * (next_i()%2)) + 1) * next_i();
+              fh[_i0].stream_on = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = res_check(fh);
           printf("%d\n", benchRet); 
           free(fh);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_fh0 = 1;
+          struct cx231xx_fh * fh = (struct cx231xx_fh *) malloc(_len_fh0*sizeof(struct cx231xx_fh));
+          for(int _i0 = 0; _i0 < _len_fh0; _i0++) {
+              fh[_i0].stream_on = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = res_check(fh);
+          printf("%d\n", benchRet); 
+          free(fh);
+        
+        break;
+    }
     default:
         usage();
         break;

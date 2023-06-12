@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ void dma_counterreset(struct dma_pub *pub)
 	pub->txnobuf = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,16 +77,123 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_pub0 = 65025;
+          struct dma_pub * pub = (struct dma_pub *) malloc(_len_pub0*sizeof(struct dma_pub));
+          for(int _i0 = 0; _i0 < _len_pub0; _i0++) {
+              pub[_i0].txnobuf = ((-2 * (next_i()%2)) + 1) * next_i();
+          pub[_i0].rxnobuf = ((-2 * (next_i()%2)) + 1) * next_i();
+          pub[_i0].rxgiants = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          dma_counterreset(pub);
+          free(pub);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_pub0 = 100;
+          struct dma_pub * pub = (struct dma_pub *) malloc(_len_pub0*sizeof(struct dma_pub));
+          for(int _i0 = 0; _i0 < _len_pub0; _i0++) {
+              pub[_i0].txnobuf = ((-2 * (next_i()%2)) + 1) * next_i();
+          pub[_i0].rxnobuf = ((-2 * (next_i()%2)) + 1) * next_i();
+          pub[_i0].rxgiants = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          dma_counterreset(pub);
+          free(pub);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_pub0 = 1;
           struct dma_pub * pub = (struct dma_pub *) malloc(_len_pub0*sizeof(struct dma_pub));
           for(int _i0 = 0; _i0 < _len_pub0; _i0++) {
-            pub[_i0].txnobuf = ((-2 * (next_i()%2)) + 1) * next_i();
-        pub[_i0].rxnobuf = ((-2 * (next_i()%2)) + 1) * next_i();
-        pub[_i0].rxgiants = ((-2 * (next_i()%2)) + 1) * next_i();
+              pub[_i0].txnobuf = ((-2 * (next_i()%2)) + 1) * next_i();
+          pub[_i0].rxnobuf = ((-2 * (next_i()%2)) + 1) * next_i();
+          pub[_i0].rxgiants = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           dma_counterreset(pub);
           free(pub);
         

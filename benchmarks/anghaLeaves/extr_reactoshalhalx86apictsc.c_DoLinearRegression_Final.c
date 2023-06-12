@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -83,12 +85,6 @@ DoLinearRegression(
     return (SumXY + (SumXX/2)) / SumXX;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,22 +97,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int XMax = 10;
-          int _len_ArrayY0 = 100;
+          int XMax = 255;
+        
+          int _len_ArrayY0 = 65025;
           int * ArrayY = (int *) malloc(_len_ArrayY0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_ArrayY0; _i0++) {
             ArrayY[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = DoLinearRegression(XMax,ArrayY);
           printf("%d\n", benchRet); 
           free(ArrayY);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int XMax = 10;
+        
+          int _len_ArrayY0 = 100;
+          int * ArrayY = (int *) malloc(_len_ArrayY0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ArrayY0; _i0++) {
+            ArrayY[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = DoLinearRegression(XMax,ArrayY);
+          printf("%d\n", benchRet); 
+          free(ArrayY);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int XMax = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ArrayY0 = 1;
+          int * ArrayY = (int *) malloc(_len_ArrayY0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ArrayY0; _i0++) {
+            ArrayY[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = DoLinearRegression(XMax,ArrayY);
+          printf("%d\n", benchRet); 
+          free(ArrayY);
+        
+        break;
+    }
     default:
         usage();
         break;

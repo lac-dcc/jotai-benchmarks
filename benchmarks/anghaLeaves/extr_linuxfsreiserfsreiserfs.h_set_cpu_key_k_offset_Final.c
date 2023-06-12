@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static inline void set_cpu_key_k_offset(struct cpu_key *ke
 	key->on_disk_key.k_offset = offset;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,31 +82,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int offset = 100;
+        
           int _len_key0 = 1;
           struct cpu_key * key = (struct cpu_key *) malloc(_len_key0*sizeof(struct cpu_key));
           for(int _i0 = 0; _i0 < _len_key0; _i0++) {
-            key[_i0].on_disk_key.k_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              key[_i0].on_disk_key.k_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          set_cpu_key_k_offset(key,offset);
+          free(key);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int offset = 255;
+        
+          int _len_key0 = 65025;
+          struct cpu_key * key = (struct cpu_key *) malloc(_len_key0*sizeof(struct cpu_key));
+          for(int _i0 = 0; _i0 < _len_key0; _i0++) {
+              key[_i0].on_disk_key.k_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           set_cpu_key_k_offset(key,offset);
           free(key);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int offset = 10;
+        
           int _len_key0 = 100;
           struct cpu_key * key = (struct cpu_key *) malloc(_len_key0*sizeof(struct cpu_key));
           for(int _i0 = 0; _i0 < _len_key0; _i0++) {
-            key[_i0].on_disk_key.k_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              key[_i0].on_disk_key.k_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           set_cpu_key_k_offset(key,offset);
           free(key);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_key0 = 1;
+          struct cpu_key * key = (struct cpu_key *) malloc(_len_key0*sizeof(struct cpu_key));
+          for(int _i0 = 0; _i0 < _len_key0; _i0++) {
+              key[_i0].on_disk_key.k_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          set_cpu_key_k_offset(key,offset);
+          free(key);
+        
+        break;
+    }
     default:
         usage();
         break;

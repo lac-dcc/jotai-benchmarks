@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static void set_do_exit(int sig) {
   do_exit = 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,6 +78,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int sig = 100;
+        
           set_do_exit(sig);
         
         break;
@@ -91,6 +87,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int sig = 255;
+        
           set_do_exit(sig);
         
         break;
@@ -99,11 +96,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int sig = 10;
+        
           set_do_exit(sig);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int sig = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          set_do_exit(sig);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -60,12 +60,6 @@ __attribute__((used)) static int days_in_month(int m, int is_leap)
 	else return 30+((0xad5>>(m-1))&1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,13 +76,14 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int m = 10;
+        
           int is_leap = 10;
+        
           int benchRet = days_in_month(m,is_leap);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

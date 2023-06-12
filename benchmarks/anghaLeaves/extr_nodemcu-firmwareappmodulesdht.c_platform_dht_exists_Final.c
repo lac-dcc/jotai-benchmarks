@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ int platform_dht_exists( unsigned id )
   return ((id < NUM_DHT) && (id > 0));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int id = 100;
+        
           int benchRet = platform_dht_exists(id);
           printf("%d\n", benchRet); 
         
@@ -93,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int id = 255;
+        
           int benchRet = platform_dht_exists(id);
           printf("%d\n", benchRet); 
         
@@ -102,12 +99,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int id = 10;
+        
           int benchRet = platform_dht_exists(id);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = platform_dht_exists(id);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

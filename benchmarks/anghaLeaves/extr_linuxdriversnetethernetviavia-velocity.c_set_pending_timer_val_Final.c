@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ __attribute__((used)) static void set_pending_timer_val(int *val, u32 us)
 	*val = (mult << 6) | ((us >> shift) & 0x3f);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,29 +92,160 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
           int us = 100;
+        
           int _len_val0 = 1;
           int * val = (int *) malloc(_len_val0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_val0; _i0++) {
             val[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           set_pending_timer_val(val,us);
           free(val);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          int us = 255;
+        
+          int _len_val0 = 65025;
+          int * val = (int *) malloc(_len_val0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_val0; _i0++) {
+            val[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          set_pending_timer_val(val,us);
+          free(val);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
           int us = 10;
+        
           int _len_val0 = 100;
           int * val = (int *) malloc(_len_val0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_val0; _i0++) {
             val[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          set_pending_timer_val(val,us);
+          free(val);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          int us = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_val0 = 1;
+          int * val = (int *) malloc(_len_val0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_val0; _i0++) {
+            val[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           set_pending_timer_val(val,us);
           free(val);
         

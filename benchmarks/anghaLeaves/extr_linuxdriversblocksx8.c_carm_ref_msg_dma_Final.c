@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static inline dma_addr_t carm_ref_msg_dma(struct carm_host
 	return host->msg_dma + (msg_idx * CARM_MSG_SIZE);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,30 +78,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           unsigned int msg_idx = 100;
+        
           int _len_host0 = 1;
           struct carm_host * host = (struct carm_host *) malloc(_len_host0*sizeof(struct carm_host));
           for(int _i0 = 0; _i0 < _len_host0; _i0++) {
-            host[_i0].msg_dma = ((-2 * (next_i()%2)) + 1) * next_i();
+              host[_i0].msg_dma = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = carm_ref_msg_dma(host,msg_idx);
           printf("%ld\n", benchRet); 
           free(host);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          unsigned int msg_idx = 255;
+        
+          int _len_host0 = 65025;
+          struct carm_host * host = (struct carm_host *) malloc(_len_host0*sizeof(struct carm_host));
+          for(int _i0 = 0; _i0 < _len_host0; _i0++) {
+              host[_i0].msg_dma = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = carm_ref_msg_dma(host,msg_idx);
+          printf("%ld\n", benchRet); 
+          free(host);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           unsigned int msg_idx = 10;
+        
           int _len_host0 = 100;
           struct carm_host * host = (struct carm_host *) malloc(_len_host0*sizeof(struct carm_host));
           for(int _i0 = 0; _i0 < _len_host0; _i0++) {
-            host[_i0].msg_dma = ((-2 * (next_i()%2)) + 1) * next_i();
+              host[_i0].msg_dma = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          long benchRet = carm_ref_msg_dma(host,msg_idx);
+          printf("%ld\n", benchRet); 
+          free(host);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          unsigned int msg_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_host0 = 1;
+          struct carm_host * host = (struct carm_host *) malloc(_len_host0*sizeof(struct carm_host));
+          for(int _i0 = 0; _i0 < _len_host0; _i0++) {
+              host[_i0].msg_dma = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           long benchRet = carm_ref_msg_dma(host,msg_idx);
           printf("%ld\n", benchRet); 
           free(host);

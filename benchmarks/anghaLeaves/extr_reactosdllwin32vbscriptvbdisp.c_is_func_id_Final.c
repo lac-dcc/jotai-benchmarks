@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ __attribute__((used)) static inline BOOL is_func_id(vbdisp_t *This, DISPID id)
     return id < This->desc->func_cnt;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,19 +81,196 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           long id = 100;
+        
           int _len_This0 = 1;
           struct TYPE_5__ * This = (struct TYPE_5__ *) malloc(_len_This0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_This0; _i0++) {
               int _len_This__i0__desc0 = 1;
           This[_i0].desc = (struct TYPE_4__ *) malloc(_len_This__i0__desc0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_This__i0__desc0; _j0++) {
-            This[_i0].desc->func_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+              This[_i0].desc->func_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = is_func_id(This,id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_This0; _aux++) {
+          free(This[_aux].desc);
+          }
+          free(This);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          long id = 255;
+        
+          int _len_This0 = 65025;
+          struct TYPE_5__ * This = (struct TYPE_5__ *) malloc(_len_This0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_This0; _i0++) {
+              int _len_This__i0__desc0 = 1;
+          This[_i0].desc = (struct TYPE_4__ *) malloc(_len_This__i0__desc0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_This__i0__desc0; _j0++) {
+              This[_i0].desc->func_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = is_func_id(This,id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_This0; _aux++) {
+          free(This[_aux].desc);
+          }
+          free(This);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          long id = 10;
+        
+          int _len_This0 = 100;
+          struct TYPE_5__ * This = (struct TYPE_5__ *) malloc(_len_This0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_This0; _i0++) {
+              int _len_This__i0__desc0 = 1;
+          This[_i0].desc = (struct TYPE_4__ *) malloc(_len_This__i0__desc0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_This__i0__desc0; _j0++) {
+              This[_i0].desc->func_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = is_func_id(This,id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_This0; _aux++) {
+          free(This[_aux].desc);
+          }
+          free(This);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          long id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_This0 = 1;
+          struct TYPE_5__ * This = (struct TYPE_5__ *) malloc(_len_This0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_This0; _i0++) {
+              int _len_This__i0__desc0 = 1;
+          This[_i0].desc = (struct TYPE_4__ *) malloc(_len_This__i0__desc0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_This__i0__desc0; _j0++) {
+              This[_i0].desc->func_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = is_func_id(This,id);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_This0; _aux++) {

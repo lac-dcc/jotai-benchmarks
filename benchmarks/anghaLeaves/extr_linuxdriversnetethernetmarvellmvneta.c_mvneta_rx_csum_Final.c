@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +81,6 @@ __attribute__((used)) static void mvneta_rx_csum(struct mvneta_port *pp, u32 sta
 	skb->ip_summed = CHECKSUM_NONE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,25 +93,228 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int status = 100;
+        
           int _len_pp0 = 1;
           struct mvneta_port * pp = (struct mvneta_port *) malloc(_len_pp0*sizeof(struct mvneta_port));
           for(int _i0 = 0; _i0 < _len_pp0; _i0++) {
               int _len_pp__i0__dev0 = 1;
           pp[_i0].dev = (struct TYPE_2__ *) malloc(_len_pp__i0__dev0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_pp__i0__dev0; _j0++) {
-            pp[_i0].dev->features = ((-2 * (next_i()%2)) + 1) * next_i();
+              pp[_i0].dev->features = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_skb0 = 1;
           struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
           for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
-            skb[_i0].ip_summed = ((-2 * (next_i()%2)) + 1) * next_i();
-        skb[_i0].csum = ((-2 * (next_i()%2)) + 1) * next_i();
+              skb[_i0].ip_summed = ((-2 * (next_i()%2)) + 1) * next_i();
+          skb[_i0].csum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          mvneta_rx_csum(pp,status,skb);
+          for(int _aux = 0; _aux < _len_pp0; _aux++) {
+          free(pp[_aux].dev);
+          }
+          free(pp);
+          free(skb);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int status = 255;
+        
+          int _len_pp0 = 65025;
+          struct mvneta_port * pp = (struct mvneta_port *) malloc(_len_pp0*sizeof(struct mvneta_port));
+          for(int _i0 = 0; _i0 < _len_pp0; _i0++) {
+              int _len_pp__i0__dev0 = 1;
+          pp[_i0].dev = (struct TYPE_2__ *) malloc(_len_pp__i0__dev0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_pp__i0__dev0; _j0++) {
+              pp[_i0].dev->features = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_skb0 = 65025;
+          struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
+          for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
+              skb[_i0].ip_summed = ((-2 * (next_i()%2)) + 1) * next_i();
+          skb[_i0].csum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mvneta_rx_csum(pp,status,skb);
+          for(int _aux = 0; _aux < _len_pp0; _aux++) {
+          free(pp[_aux].dev);
+          }
+          free(pp);
+          free(skb);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int status = 10;
+        
+          int _len_pp0 = 100;
+          struct mvneta_port * pp = (struct mvneta_port *) malloc(_len_pp0*sizeof(struct mvneta_port));
+          for(int _i0 = 0; _i0 < _len_pp0; _i0++) {
+              int _len_pp__i0__dev0 = 1;
+          pp[_i0].dev = (struct TYPE_2__ *) malloc(_len_pp__i0__dev0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_pp__i0__dev0; _j0++) {
+              pp[_i0].dev->features = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_skb0 = 100;
+          struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
+          for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
+              skb[_i0].ip_summed = ((-2 * (next_i()%2)) + 1) * next_i();
+          skb[_i0].csum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mvneta_rx_csum(pp,status,skb);
+          for(int _aux = 0; _aux < _len_pp0; _aux++) {
+          free(pp[_aux].dev);
+          }
+          free(pp);
+          free(skb);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pp0 = 1;
+          struct mvneta_port * pp = (struct mvneta_port *) malloc(_len_pp0*sizeof(struct mvneta_port));
+          for(int _i0 = 0; _i0 < _len_pp0; _i0++) {
+              int _len_pp__i0__dev0 = 1;
+          pp[_i0].dev = (struct TYPE_2__ *) malloc(_len_pp__i0__dev0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_pp__i0__dev0; _j0++) {
+              pp[_i0].dev->features = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_skb0 = 1;
+          struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
+          for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
+              skb[_i0].ip_summed = ((-2 * (next_i()%2)) + 1) * next_i();
+          skb[_i0].csum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           mvneta_rx_csum(pp,status,skb);
           for(int _aux = 0; _aux < _len_pp0; _aux++) {
           free(pp[_aux].dev);

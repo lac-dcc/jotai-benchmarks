@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ rspq_sm_stopped_entry(struct bfa_msgq_rspq *rspq)
 	rspq->flags = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,16 +77,123 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_rspq0 = 65025;
+          struct bfa_msgq_rspq * rspq = (struct bfa_msgq_rspq *) malloc(_len_rspq0*sizeof(struct bfa_msgq_rspq));
+          for(int _i0 = 0; _i0 < _len_rspq0; _i0++) {
+              rspq[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          rspq[_i0].consumer_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          rspq[_i0].producer_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          rspq_sm_stopped_entry(rspq);
+          free(rspq);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_rspq0 = 100;
+          struct bfa_msgq_rspq * rspq = (struct bfa_msgq_rspq *) malloc(_len_rspq0*sizeof(struct bfa_msgq_rspq));
+          for(int _i0 = 0; _i0 < _len_rspq0; _i0++) {
+              rspq[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          rspq[_i0].consumer_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          rspq[_i0].producer_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          rspq_sm_stopped_entry(rspq);
+          free(rspq);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_rspq0 = 1;
           struct bfa_msgq_rspq * rspq = (struct bfa_msgq_rspq *) malloc(_len_rspq0*sizeof(struct bfa_msgq_rspq));
           for(int _i0 = 0; _i0 < _len_rspq0; _i0++) {
-            rspq[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        rspq[_i0].consumer_index = ((-2 * (next_i()%2)) + 1) * next_i();
-        rspq[_i0].producer_index = ((-2 * (next_i()%2)) + 1) * next_i();
+              rspq[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          rspq[_i0].consumer_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          rspq[_i0].producer_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           rspq_sm_stopped_entry(rspq);
           free(rspq);
         

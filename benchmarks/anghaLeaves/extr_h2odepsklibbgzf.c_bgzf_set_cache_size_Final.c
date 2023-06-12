@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ void bgzf_set_cache_size(BGZF *fp, int cache_size)
 	if (fp) fp->cache_size = cache_size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,29 +77,164 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int cache_size = 100;
+        
           int _len_fp0 = 1;
           struct TYPE_3__ * fp = (struct TYPE_3__ *) malloc(_len_fp0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_fp0; _i0++) {
-            fp[_i0].cache_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              fp[_i0].cache_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           bgzf_set_cache_size(fp,cache_size);
           free(fp);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int cache_size = 255;
+        
+          int _len_fp0 = 65025;
+          struct TYPE_3__ * fp = (struct TYPE_3__ *) malloc(_len_fp0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_fp0; _i0++) {
+              fp[_i0].cache_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          bgzf_set_cache_size(fp,cache_size);
+          free(fp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int cache_size = 10;
+        
           int _len_fp0 = 100;
           struct TYPE_3__ * fp = (struct TYPE_3__ *) malloc(_len_fp0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_fp0; _i0++) {
-            fp[_i0].cache_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              fp[_i0].cache_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          bgzf_set_cache_size(fp,cache_size);
+          free(fp);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int cache_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fp0 = 1;
+          struct TYPE_3__ * fp = (struct TYPE_3__ *) malloc(_len_fp0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_fp0; _i0++) {
+              fp[_i0].cache_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           bgzf_set_cache_size(fp,cache_size);
           free(fp);
         

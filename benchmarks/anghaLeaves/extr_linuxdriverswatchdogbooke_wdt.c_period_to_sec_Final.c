@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static unsigned long long period_to_sec(unsigned int perio
 	return period;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,6 +78,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int period = 100;
+        
           unsigned long long benchRet = period_to_sec(period);
           printf("%llu\n", benchRet); 
         
@@ -92,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int period = 255;
+        
           unsigned long long benchRet = period_to_sec(period);
           printf("%llu\n", benchRet); 
         
@@ -101,12 +98,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int period = 10;
+        
           unsigned long long benchRet = period_to_sec(period);
           printf("%llu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long long benchRet = period_to_sec(period);
+          printf("%llu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

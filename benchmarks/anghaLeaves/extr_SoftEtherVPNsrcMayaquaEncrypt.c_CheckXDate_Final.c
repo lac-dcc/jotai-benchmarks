@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +76,6 @@ bool CheckXDate(X *x, UINT64 current_system_time)
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,19 +92,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long current_system_time = 100;
+        
           int _len_x0 = 1;
           struct TYPE_3__ * x = (struct TYPE_3__ *) malloc(_len_x0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_x0; _i0++) {
-            x[_i0].notBefore = ((-2 * (next_i()%2)) + 1) * next_i();
-        x[_i0].notAfter = ((-2 * (next_i()%2)) + 1) * next_i();
+              x[_i0].notBefore = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].notAfter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = CheckXDate(x,current_system_time);
           printf("%d\n", benchRet); 
           free(x);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long current_system_time = 255;
+        
+          int _len_x0 = 65025;
+          struct TYPE_3__ * x = (struct TYPE_3__ *) malloc(_len_x0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_x0; _i0++) {
+              x[_i0].notBefore = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].notAfter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = CheckXDate(x,current_system_time);
+          printf("%d\n", benchRet); 
+          free(x);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long current_system_time = 10;
+        
+          int _len_x0 = 100;
+          struct TYPE_3__ * x = (struct TYPE_3__ *) malloc(_len_x0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_x0; _i0++) {
+              x[_i0].notBefore = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].notAfter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = CheckXDate(x,current_system_time);
+          printf("%d\n", benchRet); 
+          free(x);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long current_system_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_x0 = 1;
+          struct TYPE_3__ * x = (struct TYPE_3__ *) malloc(_len_x0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_x0; _i0++) {
+              x[_i0].notBefore = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].notAfter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = CheckXDate(x,current_system_time);
+          printf("%d\n", benchRet); 
+          free(x);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -90,12 +91,6 @@ GetDIBPixel(ULONG iFormat, PVOID pvBits, ULONG x)
     return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -112,8 +107,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int iFormat = 100;
+        
           int pvBits = 100;
+        
           int x = 100;
+        
           int benchRet = GetDIBPixel(iFormat,pvBits,x);
           printf("%d\n", benchRet); 
         
@@ -123,8 +121,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int iFormat = 255;
+        
           int pvBits = 255;
+        
           int x = 255;
+        
           int benchRet = GetDIBPixel(iFormat,pvBits,x);
           printf("%d\n", benchRet); 
         
@@ -134,14 +135,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int iFormat = 10;
+        
           int pvBits = 10;
+        
           int x = 10;
+        
           int benchRet = GetDIBPixel(iFormat,pvBits,x);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int iFormat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int pvBits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = GetDIBPixel(iFormat,pvBits,x);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

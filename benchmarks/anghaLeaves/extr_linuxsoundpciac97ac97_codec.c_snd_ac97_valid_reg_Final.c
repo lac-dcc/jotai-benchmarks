@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -120,12 +122,6 @@ __attribute__((used)) static int snd_ac97_valid_reg(struct snd_ac97 *ac97, unsig
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -142,11 +138,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned short reg = 100;
+        
           int _len_ac970 = 1;
           struct snd_ac97 * ac97 = (struct snd_ac97 *) malloc(_len_ac970*sizeof(struct snd_ac97));
           for(int _i0 = 0; _i0 < _len_ac970; _i0++) {
-            ac97[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+              ac97[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = snd_ac97_valid_reg(ac97,reg);
+          printf("%d\n", benchRet); 
+          free(ac97);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned short reg = 255;
+        
+          int _len_ac970 = 65025;
+          struct snd_ac97 * ac97 = (struct snd_ac97 *) malloc(_len_ac970*sizeof(struct snd_ac97));
+          for(int _i0 = 0; _i0 < _len_ac970; _i0++) {
+              ac97[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = snd_ac97_valid_reg(ac97,reg);
           printf("%d\n", benchRet); 
           free(ac97);
@@ -154,21 +171,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned short reg = 10;
+        
           int _len_ac970 = 100;
           struct snd_ac97 * ac97 = (struct snd_ac97 *) malloc(_len_ac970*sizeof(struct snd_ac97));
           for(int _i0 = 0; _i0 < _len_ac970; _i0++) {
-            ac97[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+              ac97[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = snd_ac97_valid_reg(ac97,reg);
           printf("%d\n", benchRet); 
           free(ac97);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned short reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ac970 = 1;
+          struct snd_ac97 * ac97 = (struct snd_ac97 *) malloc(_len_ac970*sizeof(struct snd_ac97));
+          for(int _i0 = 0; _i0 < _len_ac970; _i0++) {
+              ac97[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = snd_ac97_valid_reg(ac97,reg);
+          printf("%d\n", benchRet); 
+          free(ac97);
+        
+        break;
+    }
     default:
         usage();
         break;

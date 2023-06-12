@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline int nsim_bpf(struct net_device *dev, struct 
 	return bpf->command == XDP_QUERY_PROG ? 0 : -EOPNOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,19 +77,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dev0 = 1;
+          int _len_dev0 = 65025;
           struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_bpf0 = 1;
+        
+          int _len_bpf0 = 65025;
           struct netdev_bpf * bpf = (struct netdev_bpf *) malloc(_len_bpf0*sizeof(struct netdev_bpf));
           for(int _i0 = 0; _i0 < _len_bpf0; _i0++) {
-            bpf[_i0].command = ((-2 * (next_i()%2)) + 1) * next_i();
+              bpf[_i0].command = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = nsim_bpf(dev,bpf);
           printf("%d\n", benchRet); 
           free(dev);
@@ -101,7 +101,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dev0 = 100;
+          struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_bpf0 = 100;
+          struct netdev_bpf * bpf = (struct netdev_bpf *) malloc(_len_bpf0*sizeof(struct netdev_bpf));
+          for(int _i0 = 0; _i0 < _len_bpf0; _i0++) {
+              bpf[_i0].command = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nsim_bpf(dev,bpf);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(bpf);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dev0 = 1;
+          struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_bpf0 = 1;
+          struct netdev_bpf * bpf = (struct netdev_bpf *) malloc(_len_bpf0*sizeof(struct netdev_bpf));
+          for(int _i0 = 0; _i0 < _len_bpf0; _i0++) {
+              bpf[_i0].command = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nsim_bpf(dev,bpf);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(bpf);
+        
+        break;
+    }
     default:
         usage();
         break;

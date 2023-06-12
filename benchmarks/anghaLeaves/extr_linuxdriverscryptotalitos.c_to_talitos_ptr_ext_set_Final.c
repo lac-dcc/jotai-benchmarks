@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static void to_talitos_ptr_ext_set(struct talitos_ptr *ptr
 		ptr->j_extent = val;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,31 +78,172 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 3
+          // dynamic_instructions_O1 : 3
+          // ------------------------------- 
+          // static_instructions_O2 : 3
+          // dynamic_instructions_O2 : 3
+          // ------------------------------- 
+          // static_instructions_O3 : 3
+          // dynamic_instructions_O3 : 3
+          // ------------------------------- 
+          // static_instructions_Ofast : 3
+          // dynamic_instructions_Ofast : 3
+          // ------------------------------- 
+          // static_instructions_Os : 3
+          // dynamic_instructions_Os : 3
+          // ------------------------------- 
+          // static_instructions_Oz : 3
+          // dynamic_instructions_Oz : 3
+          // ------------------------------- 
+
           int val = 100;
+        
           int is_sec1 = 100;
+        
           int _len_ptr0 = 1;
           struct talitos_ptr * ptr = (struct talitos_ptr *) malloc(_len_ptr0*sizeof(struct talitos_ptr));
           for(int _i0 = 0; _i0 < _len_ptr0; _i0++) {
-            ptr[_i0].j_extent = ((-2 * (next_i()%2)) + 1) * next_i();
+              ptr[_i0].j_extent = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           to_talitos_ptr_ext_set(ptr,val,is_sec1);
           free(ptr);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 3
+          // dynamic_instructions_O1 : 3
+          // ------------------------------- 
+          // static_instructions_O2 : 3
+          // dynamic_instructions_O2 : 3
+          // ------------------------------- 
+          // static_instructions_O3 : 3
+          // dynamic_instructions_O3 : 3
+          // ------------------------------- 
+          // static_instructions_Ofast : 3
+          // dynamic_instructions_Ofast : 3
+          // ------------------------------- 
+          // static_instructions_Os : 3
+          // dynamic_instructions_Os : 3
+          // ------------------------------- 
+          // static_instructions_Oz : 3
+          // dynamic_instructions_Oz : 3
+          // ------------------------------- 
+
+          int val = 255;
+        
+          int is_sec1 = 255;
+        
+          int _len_ptr0 = 65025;
+          struct talitos_ptr * ptr = (struct talitos_ptr *) malloc(_len_ptr0*sizeof(struct talitos_ptr));
+          for(int _i0 = 0; _i0 < _len_ptr0; _i0++) {
+              ptr[_i0].j_extent = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          to_talitos_ptr_ext_set(ptr,val,is_sec1);
+          free(ptr);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 3
+          // dynamic_instructions_O1 : 3
+          // ------------------------------- 
+          // static_instructions_O2 : 3
+          // dynamic_instructions_O2 : 3
+          // ------------------------------- 
+          // static_instructions_O3 : 3
+          // dynamic_instructions_O3 : 3
+          // ------------------------------- 
+          // static_instructions_Ofast : 3
+          // dynamic_instructions_Ofast : 3
+          // ------------------------------- 
+          // static_instructions_Os : 3
+          // dynamic_instructions_Os : 3
+          // ------------------------------- 
+          // static_instructions_Oz : 3
+          // dynamic_instructions_Oz : 3
+          // ------------------------------- 
+
           int val = 10;
+        
           int is_sec1 = 10;
+        
           int _len_ptr0 = 100;
           struct talitos_ptr * ptr = (struct talitos_ptr *) malloc(_len_ptr0*sizeof(struct talitos_ptr));
           for(int _i0 = 0; _i0 < _len_ptr0; _i0++) {
-            ptr[_i0].j_extent = ((-2 * (next_i()%2)) + 1) * next_i();
+              ptr[_i0].j_extent = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          to_talitos_ptr_ext_set(ptr,val,is_sec1);
+          free(ptr);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 3
+          // dynamic_instructions_O1 : 3
+          // ------------------------------- 
+          // static_instructions_O2 : 3
+          // dynamic_instructions_O2 : 3
+          // ------------------------------- 
+          // static_instructions_O3 : 3
+          // dynamic_instructions_O3 : 3
+          // ------------------------------- 
+          // static_instructions_Ofast : 3
+          // dynamic_instructions_Ofast : 3
+          // ------------------------------- 
+          // static_instructions_Os : 3
+          // dynamic_instructions_Os : 3
+          // ------------------------------- 
+          // static_instructions_Oz : 3
+          // dynamic_instructions_Oz : 3
+          // ------------------------------- 
+
+          int val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int is_sec1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ptr0 = 1;
+          struct talitos_ptr * ptr = (struct talitos_ptr *) malloc(_len_ptr0*sizeof(struct talitos_ptr));
+          for(int _i0 = 0; _i0 < _len_ptr0; _i0++) {
+              ptr[_i0].j_extent = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           to_talitos_ptr_ext_set(ptr,val,is_sec1);
           free(ptr);
         

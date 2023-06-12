@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline int floating_point_load_or_store_p(unsigned 
 	return (insn >> 24) & 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,6 +78,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int insn = 100;
+        
           int benchRet = floating_point_load_or_store_p(insn);
           printf("%d\n", benchRet); 
         
@@ -92,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int insn = 255;
+        
           int benchRet = floating_point_load_or_store_p(insn);
           printf("%d\n", benchRet); 
         
@@ -101,12 +98,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int insn = 10;
+        
           int benchRet = floating_point_load_or_store_p(insn);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int insn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = floating_point_load_or_store_p(insn);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

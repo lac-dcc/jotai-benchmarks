@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ int TIFFGetTagListCount( TIFF *tif )
     return td->td_customValueCount;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,14 +82,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_tif0 = 1;
+          int _len_tif0 = 65025;
           struct TYPE_5__ * tif = (struct TYPE_5__ *) malloc(_len_tif0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_tif0; _i0++) {
-            tif[_i0].tif_dir.td_customValueCount = ((-2 * (next_i()%2)) + 1) * next_i();
+              tif[_i0].tif_dir.td_customValueCount = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = TIFFGetTagListCount(tif);
           printf("%d\n", benchRet); 
           free(tif);
@@ -107,15 +105,34 @@ int main(int argc, char *argv[]) {
           int _len_tif0 = 100;
           struct TYPE_5__ * tif = (struct TYPE_5__ *) malloc(_len_tif0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_tif0; _i0++) {
-            tif[_i0].tif_dir.td_customValueCount = ((-2 * (next_i()%2)) + 1) * next_i();
+              tif[_i0].tif_dir.td_customValueCount = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = TIFFGetTagListCount(tif);
           printf("%d\n", benchRet); 
           free(tif);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_tif0 = 1;
+          struct TYPE_5__ * tif = (struct TYPE_5__ *) malloc(_len_tif0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_tif0; _i0++) {
+              tif[_i0].tif_dir.td_customValueCount = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = TIFFGetTagListCount(tif);
+          printf("%d\n", benchRet); 
+          free(tif);
+        
+        break;
+    }
     default:
         usage();
         break;

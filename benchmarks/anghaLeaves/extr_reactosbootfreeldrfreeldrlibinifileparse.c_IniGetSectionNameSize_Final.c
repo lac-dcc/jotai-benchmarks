@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -97,12 +98,6 @@ ULONG IniGetSectionNameSize(PCHAR SectionNameLine, ULONG LineLength)
     return NameSize;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -115,15 +110,81 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 49
+          // dynamic_instructions_O0 : 5112
+          // ------------------------------- 
+          // static_instructions_O1 : 31
+          // dynamic_instructions_O1 : 2055
+          // ------------------------------- 
+          // static_instructions_O2 : 31
+          // dynamic_instructions_O2 : 2055
+          // ------------------------------- 
+          // static_instructions_O3 : 31
+          // dynamic_instructions_O3 : 2055
+          // ------------------------------- 
+          // static_instructions_Ofast : 31
+          // dynamic_instructions_Ofast : 2055
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 2052
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 2556
+          // ------------------------------- 
+
+          unsigned long LineLength = 255;
+        
+          int _len_SectionNameLine0 = 65025;
+          char * SectionNameLine = (char *) malloc(_len_SectionNameLine0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_SectionNameLine0; _i0++) {
+            SectionNameLine[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned long benchRet = IniGetSectionNameSize(SectionNameLine,LineLength);
+          printf("%lu\n", benchRet); 
+          free(SectionNameLine);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 49
+          // dynamic_instructions_O0 : 212
+          // ------------------------------- 
+          // static_instructions_O1 : 31
+          // dynamic_instructions_O1 : 95
+          // ------------------------------- 
+          // static_instructions_O2 : 31
+          // dynamic_instructions_O2 : 95
+          // ------------------------------- 
+          // static_instructions_O3 : 31
+          // dynamic_instructions_O3 : 95
+          // ------------------------------- 
+          // static_instructions_Ofast : 31
+          // dynamic_instructions_Ofast : 95
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 92
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 106
+          // ------------------------------- 
+
           unsigned long LineLength = 10;
+        
           int _len_SectionNameLine0 = 100;
           char * SectionNameLine = (char *) malloc(_len_SectionNameLine0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_SectionNameLine0; _i0++) {
             SectionNameLine[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned long benchRet = IniGetSectionNameSize(SectionNameLine,LineLength);
           printf("%lu\n", benchRet); 
           free(SectionNameLine);

@@ -63,12 +63,6 @@ __attribute__((used)) static inline long temp_of_remote(s8 hb, u8 lb)
 	return (hb << 3 | lb >> 5) * 125;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,7 +79,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int hb = 100;
+        
           int lb = 100;
+        
           long benchRet = temp_of_remote(hb,lb);
           printf("%ld\n", benchRet); 
         
@@ -95,7 +91,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int hb = 255;
+        
           int lb = 255;
+        
           long benchRet = temp_of_remote(hb,lb);
           printf("%ld\n", benchRet); 
         
@@ -105,13 +103,14 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int hb = 10;
+        
           int lb = 10;
+        
           long benchRet = temp_of_remote(hb,lb);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

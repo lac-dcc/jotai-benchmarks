@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static void SetSuccessor(CPpmd_State *p, CPpmd_Void_Ref v)
   (p)->SuccessorHigh = (UInt16)(((UInt32)(v) >> 16) & 0xFFFF);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,29 +86,66 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long v = 100;
+        
           int _len_p0 = 1;
           struct TYPE_3__ * p = (struct TYPE_3__ *) malloc(_len_p0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-              }
+            
+          }
+        
+          SetSuccessor(p,v);
+          free(p);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long v = 255;
+        
+          int _len_p0 = 65025;
+          struct TYPE_3__ * p = (struct TYPE_3__ *) malloc(_len_p0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+            
+          }
+        
           SetSuccessor(p,v);
           free(p);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long v = 10;
+        
           int _len_p0 = 100;
           struct TYPE_3__ * p = (struct TYPE_3__ *) malloc(_len_p0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-              }
+            
+          }
+        
           SetSuccessor(p,v);
           free(p);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long v = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_p0 = 1;
+          struct TYPE_3__ * p = (struct TYPE_3__ *) malloc(_len_p0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+            
+          }
+        
+          SetSuccessor(p,v);
+          free(p);
+        
+        break;
+    }
     default:
         usage();
         break;

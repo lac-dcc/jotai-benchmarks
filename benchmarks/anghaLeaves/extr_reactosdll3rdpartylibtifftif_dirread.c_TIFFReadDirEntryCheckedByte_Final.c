@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static void TIFFReadDirEntryCheckedByte(TIFF* tif, TIFFDir
 	*value=*(uint8*)(&direntry->tdir_offset);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,24 +79,28 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_tif0 = 1;
+          int _len_tif0 = 65025;
           int * tif = (int *) malloc(_len_tif0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_tif0; _i0++) {
             tif[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_direntry0 = 1;
+        
+          int _len_direntry0 = 65025;
           struct TYPE_3__ * direntry = (struct TYPE_3__ *) malloc(_len_direntry0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_direntry0; _i0++) {
-            direntry[_i0].tdir_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              direntry[_i0].tdir_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_value0 = 1;
+        
+          int _len_value0 = 65025;
           int * value = (int *) malloc(_len_value0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_value0; _i0++) {
             value[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           TIFFReadDirEntryCheckedByte(tif,direntry,value);
           free(tif);
           free(direntry);
@@ -108,7 +108,64 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_tif0 = 100;
+          int * tif = (int *) malloc(_len_tif0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_tif0; _i0++) {
+            tif[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_direntry0 = 100;
+          struct TYPE_3__ * direntry = (struct TYPE_3__ *) malloc(_len_direntry0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_direntry0; _i0++) {
+              direntry[_i0].tdir_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_value0 = 100;
+          int * value = (int *) malloc(_len_value0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_value0; _i0++) {
+            value[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          TIFFReadDirEntryCheckedByte(tif,direntry,value);
+          free(tif);
+          free(direntry);
+          free(value);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_tif0 = 1;
+          int * tif = (int *) malloc(_len_tif0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_tif0; _i0++) {
+            tif[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_direntry0 = 1;
+          struct TYPE_3__ * direntry = (struct TYPE_3__ *) malloc(_len_direntry0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_direntry0; _i0++) {
+              direntry[_i0].tdir_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_value0 = 1;
+          int * value = (int *) malloc(_len_value0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_value0; _i0++) {
+            value[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          TIFFReadDirEntryCheckedByte(tif,direntry,value);
+          free(tif);
+          free(direntry);
+          free(value);
+        
+        break;
+    }
     default:
         usage();
         break;

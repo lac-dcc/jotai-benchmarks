@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -78,12 +78,6 @@ const char *madera_name_from_type(enum madera_type type)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,16 +90,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum madera_type type = 0;
+        
           const char * benchRet = madera_name_from_type(type);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
         break;
     }
-
     default:
         usage();
         break;

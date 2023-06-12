@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ __attribute__((used)) static inline void ppc440spe_desc_set_xor_src_cnt(
 	hw_desc->cbc |= src_cnt;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,15 +86,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int src_cnt = 100;
+        
           int _len_desc0 = 1;
           struct ppc440spe_adma_desc_slot * desc = (struct ppc440spe_adma_desc_slot *) malloc(_len_desc0*sizeof(struct ppc440spe_adma_desc_slot));
           for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
               int _len_desc__i0__hw_desc0 = 1;
           desc[_i0].hw_desc = (struct xor_cb *) malloc(_len_desc__i0__hw_desc0*sizeof(struct xor_cb));
           for(int _j0 = 0; _j0 < _len_desc__i0__hw_desc0; _j0++) {
-            desc[_i0].hw_desc->cbc = ((-2 * (next_i()%2)) + 1) * next_i();
+              desc[_i0].hw_desc->cbc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           ppc440spe_desc_set_xor_src_cnt(desc,src_cnt);
           for(int _aux = 0; _aux < _len_desc0; _aux++) {
           free(desc[_aux].hw_desc);
@@ -106,7 +107,81 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int src_cnt = 255;
+        
+          int _len_desc0 = 65025;
+          struct ppc440spe_adma_desc_slot * desc = (struct ppc440spe_adma_desc_slot *) malloc(_len_desc0*sizeof(struct ppc440spe_adma_desc_slot));
+          for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
+              int _len_desc__i0__hw_desc0 = 1;
+          desc[_i0].hw_desc = (struct xor_cb *) malloc(_len_desc__i0__hw_desc0*sizeof(struct xor_cb));
+          for(int _j0 = 0; _j0 < _len_desc__i0__hw_desc0; _j0++) {
+              desc[_i0].hw_desc->cbc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          ppc440spe_desc_set_xor_src_cnt(desc,src_cnt);
+          for(int _aux = 0; _aux < _len_desc0; _aux++) {
+          free(desc[_aux].hw_desc);
+          }
+          free(desc);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int src_cnt = 10;
+        
+          int _len_desc0 = 100;
+          struct ppc440spe_adma_desc_slot * desc = (struct ppc440spe_adma_desc_slot *) malloc(_len_desc0*sizeof(struct ppc440spe_adma_desc_slot));
+          for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
+              int _len_desc__i0__hw_desc0 = 1;
+          desc[_i0].hw_desc = (struct xor_cb *) malloc(_len_desc__i0__hw_desc0*sizeof(struct xor_cb));
+          for(int _j0 = 0; _j0 < _len_desc__i0__hw_desc0; _j0++) {
+              desc[_i0].hw_desc->cbc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          ppc440spe_desc_set_xor_src_cnt(desc,src_cnt);
+          for(int _aux = 0; _aux < _len_desc0; _aux++) {
+          free(desc[_aux].hw_desc);
+          }
+          free(desc);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int src_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_desc0 = 1;
+          struct ppc440spe_adma_desc_slot * desc = (struct ppc440spe_adma_desc_slot *) malloc(_len_desc0*sizeof(struct ppc440spe_adma_desc_slot));
+          for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
+              int _len_desc__i0__hw_desc0 = 1;
+          desc[_i0].hw_desc = (struct xor_cb *) malloc(_len_desc__i0__hw_desc0*sizeof(struct xor_cb));
+          for(int _j0 = 0; _j0 < _len_desc__i0__hw_desc0; _j0++) {
+              desc[_i0].hw_desc->cbc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          ppc440spe_desc_set_xor_src_cnt(desc,src_cnt);
+          for(int _aux = 0; _aux < _len_desc0; _aux++) {
+          free(desc[_aux].hw_desc);
+          }
+          free(desc);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static void mg_ws_mask_frame(struct mbuf *mbuf, struct ws_
   }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,25 +78,164 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_mbuf0 = 1;
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_mbuf0 = 65025;
           struct mbuf * mbuf = (struct mbuf *) malloc(_len_mbuf0*sizeof(struct mbuf));
           for(int _i0 = 0; _i0 < _len_mbuf0; _i0++) {
-            mbuf[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+              mbuf[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_mbuf__i0__buf0 = 1;
           mbuf[_i0].buf = (char *) malloc(_len_mbuf__i0__buf0*sizeof(char));
           for(int _j0 = 0; _j0 < _len_mbuf__i0__buf0; _j0++) {
             mbuf[_i0].buf[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int _len_ctx0 = 65025;
+          struct ws_mask_ctx * ctx = (struct ws_mask_ctx *) malloc(_len_ctx0*sizeof(struct ws_mask_ctx));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mg_ws_mask_frame(mbuf,ctx);
+          for(int _aux = 0; _aux < _len_mbuf0; _aux++) {
+          free(mbuf[_aux].buf);
+          }
+          free(mbuf);
+          free(ctx);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_mbuf0 = 100;
+          struct mbuf * mbuf = (struct mbuf *) malloc(_len_mbuf0*sizeof(struct mbuf));
+          for(int _i0 = 0; _i0 < _len_mbuf0; _i0++) {
+              mbuf[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_mbuf__i0__buf0 = 1;
+          mbuf[_i0].buf = (char *) malloc(_len_mbuf__i0__buf0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_mbuf__i0__buf0; _j0++) {
+            mbuf[_i0].buf[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_ctx0 = 100;
+          struct ws_mask_ctx * ctx = (struct ws_mask_ctx *) malloc(_len_ctx0*sizeof(struct ws_mask_ctx));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mg_ws_mask_frame(mbuf,ctx);
+          for(int _aux = 0; _aux < _len_mbuf0; _aux++) {
+          free(mbuf[_aux].buf);
+          }
+          free(mbuf);
+          free(ctx);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_mbuf0 = 1;
+          struct mbuf * mbuf = (struct mbuf *) malloc(_len_mbuf0*sizeof(struct mbuf));
+          for(int _i0 = 0; _i0 < _len_mbuf0; _i0++) {
+              mbuf[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_mbuf__i0__buf0 = 1;
+          mbuf[_i0].buf = (char *) malloc(_len_mbuf__i0__buf0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_mbuf__i0__buf0; _j0++) {
+            mbuf[_i0].buf[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int _len_ctx0 = 1;
           struct ws_mask_ctx * ctx = (struct ws_mask_ctx *) malloc(_len_ctx0*sizeof(struct ws_mask_ctx));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
-            ctx[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
-        ctx[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctx[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           mg_ws_mask_frame(mbuf,ctx);
           for(int _aux = 0; _aux < _len_mbuf0; _aux++) {
           free(mbuf[_aux].buf);

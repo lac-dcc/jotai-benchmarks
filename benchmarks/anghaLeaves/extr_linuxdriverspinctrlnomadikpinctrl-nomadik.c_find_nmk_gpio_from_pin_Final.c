@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +78,6 @@ __attribute__((used)) static struct nmk_gpio_chip *find_nmk_gpio_from_pin(unsign
 	return NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,6 +94,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int pin = 100;
+        
           struct nmk_gpio_chip * benchRet = find_nmk_gpio_from_pin(pin);
         
         break;
@@ -107,6 +103,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int pin = 255;
+        
           struct nmk_gpio_chip * benchRet = find_nmk_gpio_from_pin(pin);
         
         break;
@@ -115,11 +112,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int pin = 10;
+        
           struct nmk_gpio_chip * benchRet = find_nmk_gpio_from_pin(pin);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int pin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          struct nmk_gpio_chip * benchRet = find_nmk_gpio_from_pin(pin);
+        
+        break;
+    }
     default:
         usage();
         break;

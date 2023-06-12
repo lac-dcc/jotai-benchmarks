@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static int sh_mobile_ceu_get_selection(struct soc_camera_d
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,23 +81,163 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_icd0 = 65025;
+          struct soc_camera_device * icd = (struct soc_camera_device *) malloc(_len_icd0*sizeof(struct soc_camera_device));
+          for(int _i0 = 0; _i0 < _len_icd0; _i0++) {
+              int _len_icd__i0__host_priv0 = 1;
+          icd[_i0].host_priv = (struct sh_mobile_ceu_cam *) malloc(_len_icd__i0__host_priv0*sizeof(struct sh_mobile_ceu_cam));
+          for(int _j0 = 0; _j0 < _len_icd__i0__host_priv0; _j0++) {
+              icd[_i0].host_priv->subrect = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_sel0 = 65025;
+          struct v4l2_selection * sel = (struct v4l2_selection *) malloc(_len_sel0*sizeof(struct v4l2_selection));
+          for(int _i0 = 0; _i0 < _len_sel0; _i0++) {
+              sel[_i0].r = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sh_mobile_ceu_get_selection(icd,sel);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_icd0; _aux++) {
+          free(icd[_aux].host_priv);
+          }
+          free(icd);
+          free(sel);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_icd0 = 100;
+          struct soc_camera_device * icd = (struct soc_camera_device *) malloc(_len_icd0*sizeof(struct soc_camera_device));
+          for(int _i0 = 0; _i0 < _len_icd0; _i0++) {
+              int _len_icd__i0__host_priv0 = 1;
+          icd[_i0].host_priv = (struct sh_mobile_ceu_cam *) malloc(_len_icd__i0__host_priv0*sizeof(struct sh_mobile_ceu_cam));
+          for(int _j0 = 0; _j0 < _len_icd__i0__host_priv0; _j0++) {
+              icd[_i0].host_priv->subrect = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_sel0 = 100;
+          struct v4l2_selection * sel = (struct v4l2_selection *) malloc(_len_sel0*sizeof(struct v4l2_selection));
+          for(int _i0 = 0; _i0 < _len_sel0; _i0++) {
+              sel[_i0].r = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sh_mobile_ceu_get_selection(icd,sel);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_icd0; _aux++) {
+          free(icd[_aux].host_priv);
+          }
+          free(icd);
+          free(sel);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_icd0 = 1;
           struct soc_camera_device * icd = (struct soc_camera_device *) malloc(_len_icd0*sizeof(struct soc_camera_device));
           for(int _i0 = 0; _i0 < _len_icd0; _i0++) {
               int _len_icd__i0__host_priv0 = 1;
           icd[_i0].host_priv = (struct sh_mobile_ceu_cam *) malloc(_len_icd__i0__host_priv0*sizeof(struct sh_mobile_ceu_cam));
           for(int _j0 = 0; _j0 < _len_icd__i0__host_priv0; _j0++) {
-            icd[_i0].host_priv->subrect = ((-2 * (next_i()%2)) + 1) * next_i();
+              icd[_i0].host_priv->subrect = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_sel0 = 1;
           struct v4l2_selection * sel = (struct v4l2_selection *) malloc(_len_sel0*sizeof(struct v4l2_selection));
           for(int _i0 = 0; _i0 < _len_sel0; _i0++) {
-            sel[_i0].r = ((-2 * (next_i()%2)) + 1) * next_i();
+              sel[_i0].r = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = sh_mobile_ceu_get_selection(icd,sel);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_icd0; _aux++) {

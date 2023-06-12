@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +79,6 @@ __attribute__((used)) static u16 find_tx_buff(struct atmel_private *priv, u16 le
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,19 +91,187 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           long len = 100;
+        
           int _len_priv0 = 1;
           struct atmel_private * priv = (struct atmel_private *) malloc(_len_priv0*sizeof(struct atmel_private));
           for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
-            priv[_i0].tx_buff_tail = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].tx_desc_free = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].tx_free_mem = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].host_info.tx_buff_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].host_info.tx_buff_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].tx_buff_tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].tx_desc_free = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].tx_free_mem = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].host_info.tx_buff_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].host_info.tx_buff_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          long benchRet = find_tx_buff(priv,len);
+          printf("%ld\n", benchRet); 
+          free(priv);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          long len = 255;
+        
+          int _len_priv0 = 65025;
+          struct atmel_private * priv = (struct atmel_private *) malloc(_len_priv0*sizeof(struct atmel_private));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].tx_buff_tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].tx_desc_free = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].tx_free_mem = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].host_info.tx_buff_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].host_info.tx_buff_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          long benchRet = find_tx_buff(priv,len);
+          printf("%ld\n", benchRet); 
+          free(priv);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          long len = 10;
+        
+          int _len_priv0 = 100;
+          struct atmel_private * priv = (struct atmel_private *) malloc(_len_priv0*sizeof(struct atmel_private));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].tx_buff_tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].tx_desc_free = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].tx_free_mem = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].host_info.tx_buff_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].host_info.tx_buff_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          long benchRet = find_tx_buff(priv,len);
+          printf("%ld\n", benchRet); 
+          free(priv);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          long len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_priv0 = 1;
+          struct atmel_private * priv = (struct atmel_private *) malloc(_len_priv0*sizeof(struct atmel_private));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].tx_buff_tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].tx_desc_free = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].tx_free_mem = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].host_info.tx_buff_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].host_info.tx_buff_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           long benchRet = find_tx_buff(priv,len);
           printf("%ld\n", benchRet); 
           free(priv);

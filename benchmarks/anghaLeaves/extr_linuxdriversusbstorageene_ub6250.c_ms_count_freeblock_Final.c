@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -83,12 +85,6 @@ __attribute__((used)) static int ms_count_freeblock(struct us_data *us, u16 PhyB
 	return Count;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,30 +97,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           unsigned long PhyBlock = 100;
+        
           int _len_us0 = 1;
           struct us_data * us = (struct us_data *) malloc(_len_us0*sizeof(struct us_data));
           for(int _i0 = 0; _i0 < _len_us0; _i0++) {
-            us[_i0].extra = ((-2 * (next_i()%2)) + 1) * next_i();
+              us[_i0].extra = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ms_count_freeblock(us,PhyBlock);
           printf("%d\n", benchRet); 
           free(us);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          unsigned long PhyBlock = 255;
+        
+          int _len_us0 = 65025;
+          struct us_data * us = (struct us_data *) malloc(_len_us0*sizeof(struct us_data));
+          for(int _i0 = 0; _i0 < _len_us0; _i0++) {
+              us[_i0].extra = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ms_count_freeblock(us,PhyBlock);
+          printf("%d\n", benchRet); 
+          free(us);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           unsigned long PhyBlock = 10;
+        
           int _len_us0 = 100;
           struct us_data * us = (struct us_data *) malloc(_len_us0*sizeof(struct us_data));
           for(int _i0 = 0; _i0 < _len_us0; _i0++) {
-            us[_i0].extra = ((-2 * (next_i()%2)) + 1) * next_i();
+              us[_i0].extra = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = ms_count_freeblock(us,PhyBlock);
+          printf("%d\n", benchRet); 
+          free(us);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          unsigned long PhyBlock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_us0 = 1;
+          struct us_data * us = (struct us_data *) malloc(_len_us0*sizeof(struct us_data));
+          for(int _i0 = 0; _i0 < _len_us0; _i0++) {
+              us[_i0].extra = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = ms_count_freeblock(us,PhyBlock);
           printf("%d\n", benchRet); 
           free(us);

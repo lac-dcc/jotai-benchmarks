@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ bool ena_com_get_admin_running_state(struct ena_com_dev *ena_dev)
 	return ena_dev->admin_queue.running_state;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ena_dev0 = 1;
+          int _len_ena_dev0 = 65025;
           struct ena_com_dev * ena_dev = (struct ena_com_dev *) malloc(_len_ena_dev0*sizeof(struct ena_com_dev));
           for(int _i0 = 0; _i0 < _len_ena_dev0; _i0++) {
-            ena_dev[_i0].admin_queue.running_state = ((-2 * (next_i()%2)) + 1) * next_i();
+              ena_dev[_i0].admin_queue.running_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = ena_com_get_admin_running_state(ena_dev);
           printf("%d\n", benchRet); 
           free(ena_dev);
@@ -101,15 +99,34 @@ int main(int argc, char *argv[]) {
           int _len_ena_dev0 = 100;
           struct ena_com_dev * ena_dev = (struct ena_com_dev *) malloc(_len_ena_dev0*sizeof(struct ena_com_dev));
           for(int _i0 = 0; _i0 < _len_ena_dev0; _i0++) {
-            ena_dev[_i0].admin_queue.running_state = ((-2 * (next_i()%2)) + 1) * next_i();
+              ena_dev[_i0].admin_queue.running_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = ena_com_get_admin_running_state(ena_dev);
           printf("%d\n", benchRet); 
           free(ena_dev);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ena_dev0 = 1;
+          struct ena_com_dev * ena_dev = (struct ena_com_dev *) malloc(_len_ena_dev0*sizeof(struct ena_com_dev));
+          for(int _i0 = 0; _i0 < _len_ena_dev0; _i0++) {
+              ena_dev[_i0].admin_queue.running_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = ena_com_get_admin_running_state(ena_dev);
+          printf("%d\n", benchRet); 
+          free(ena_dev);
+        
+        break;
+    }
     default:
         usage();
         break;

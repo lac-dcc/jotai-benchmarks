@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -122,12 +124,6 @@ u8 mwifiex_get_center_freq_index(struct mwifiex_private *priv, u8 band,
 	return center_freq_idx;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -144,13 +140,40 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int band = 100;
+        
           int pri_chan = 100;
+        
           int chan_bw = 100;
+        
           int _len_priv0 = 1;
           struct mwifiex_private * priv = (struct mwifiex_private *) malloc(_len_priv0*sizeof(struct mwifiex_private));
           for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
-            priv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = mwifiex_get_center_freq_index(priv,band,pri_chan,chan_bw);
+          printf("%d\n", benchRet); 
+          free(priv);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int band = 255;
+        
+          int pri_chan = 255;
+        
+          int chan_bw = 255;
+        
+          int _len_priv0 = 65025;
+          struct mwifiex_private * priv = (struct mwifiex_private *) malloc(_len_priv0*sizeof(struct mwifiex_private));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = mwifiex_get_center_freq_index(priv,band,pri_chan,chan_bw);
           printf("%d\n", benchRet); 
           free(priv);
@@ -158,23 +181,49 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int band = 10;
+        
           int pri_chan = 10;
+        
           int chan_bw = 10;
+        
           int _len_priv0 = 100;
           struct mwifiex_private * priv = (struct mwifiex_private *) malloc(_len_priv0*sizeof(struct mwifiex_private));
           for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
-            priv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mwifiex_get_center_freq_index(priv,band,pri_chan,chan_bw);
           printf("%d\n", benchRet); 
           free(priv);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int band = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int pri_chan = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int chan_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_priv0 = 1;
+          struct mwifiex_private * priv = (struct mwifiex_private *) malloc(_len_priv0*sizeof(struct mwifiex_private));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mwifiex_get_center_freq_index(priv,band,pri_chan,chan_bw);
+          printf("%d\n", benchRet); 
+          free(priv);
+        
+        break;
+    }
     default:
         usage();
         break;

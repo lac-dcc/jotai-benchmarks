@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -107,12 +109,6 @@ __attribute__((used)) static void odm_PTTryState_8188E(struct odm_ra_info *pRaIn
 	pRaInfo->PTPreRate = pRaInfo->DecisionRate;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -125,22 +121,141 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int _len_pRaInfo0 = 65025;
+          struct odm_ra_info * pRaInfo = (struct odm_ra_info *) malloc(_len_pRaInfo0*sizeof(struct odm_ra_info));
+          for(int _i0 = 0; _i0 < _len_pRaInfo0; _i0++) {
+              pRaInfo[_i0].PTTryState = ((-2 * (next_i()%2)) + 1) * next_i();
+          pRaInfo[_i0].PTModeSS = ((-2 * (next_i()%2)) + 1) * next_i();
+          pRaInfo[_i0].DecisionRate = ((-2 * (next_i()%2)) + 1) * next_i();
+          pRaInfo[_i0].RssiStaRA = ((-2 * (next_i()%2)) + 1) * next_i();
+          pRaInfo[_i0].PTStage = ((-2 * (next_i()%2)) + 1) * next_i();
+          pRaInfo[_i0].PTStopCount = ((-2 * (next_i()%2)) + 1) * next_i();
+          pRaInfo[_i0].PTPreRssi = ((-2 * (next_i()%2)) + 1) * next_i();
+          pRaInfo[_i0].PTPreRate = ((-2 * (next_i()%2)) + 1) * next_i();
+          pRaInfo[_i0].RAstage = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          odm_PTTryState_8188E(pRaInfo);
+          free(pRaInfo);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int _len_pRaInfo0 = 100;
+          struct odm_ra_info * pRaInfo = (struct odm_ra_info *) malloc(_len_pRaInfo0*sizeof(struct odm_ra_info));
+          for(int _i0 = 0; _i0 < _len_pRaInfo0; _i0++) {
+              pRaInfo[_i0].PTTryState = ((-2 * (next_i()%2)) + 1) * next_i();
+          pRaInfo[_i0].PTModeSS = ((-2 * (next_i()%2)) + 1) * next_i();
+          pRaInfo[_i0].DecisionRate = ((-2 * (next_i()%2)) + 1) * next_i();
+          pRaInfo[_i0].RssiStaRA = ((-2 * (next_i()%2)) + 1) * next_i();
+          pRaInfo[_i0].PTStage = ((-2 * (next_i()%2)) + 1) * next_i();
+          pRaInfo[_i0].PTStopCount = ((-2 * (next_i()%2)) + 1) * next_i();
+          pRaInfo[_i0].PTPreRssi = ((-2 * (next_i()%2)) + 1) * next_i();
+          pRaInfo[_i0].PTPreRate = ((-2 * (next_i()%2)) + 1) * next_i();
+          pRaInfo[_i0].RAstage = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          odm_PTTryState_8188E(pRaInfo);
+          free(pRaInfo);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
           int _len_pRaInfo0 = 1;
           struct odm_ra_info * pRaInfo = (struct odm_ra_info *) malloc(_len_pRaInfo0*sizeof(struct odm_ra_info));
           for(int _i0 = 0; _i0 < _len_pRaInfo0; _i0++) {
-            pRaInfo[_i0].PTTryState = ((-2 * (next_i()%2)) + 1) * next_i();
-        pRaInfo[_i0].PTModeSS = ((-2 * (next_i()%2)) + 1) * next_i();
-        pRaInfo[_i0].DecisionRate = ((-2 * (next_i()%2)) + 1) * next_i();
-        pRaInfo[_i0].RssiStaRA = ((-2 * (next_i()%2)) + 1) * next_i();
-        pRaInfo[_i0].PTStage = ((-2 * (next_i()%2)) + 1) * next_i();
-        pRaInfo[_i0].PTStopCount = ((-2 * (next_i()%2)) + 1) * next_i();
-        pRaInfo[_i0].PTPreRssi = ((-2 * (next_i()%2)) + 1) * next_i();
-        pRaInfo[_i0].PTPreRate = ((-2 * (next_i()%2)) + 1) * next_i();
-        pRaInfo[_i0].RAstage = ((-2 * (next_i()%2)) + 1) * next_i();
+              pRaInfo[_i0].PTTryState = ((-2 * (next_i()%2)) + 1) * next_i();
+          pRaInfo[_i0].PTModeSS = ((-2 * (next_i()%2)) + 1) * next_i();
+          pRaInfo[_i0].DecisionRate = ((-2 * (next_i()%2)) + 1) * next_i();
+          pRaInfo[_i0].RssiStaRA = ((-2 * (next_i()%2)) + 1) * next_i();
+          pRaInfo[_i0].PTStage = ((-2 * (next_i()%2)) + 1) * next_i();
+          pRaInfo[_i0].PTStopCount = ((-2 * (next_i()%2)) + 1) * next_i();
+          pRaInfo[_i0].PTPreRssi = ((-2 * (next_i()%2)) + 1) * next_i();
+          pRaInfo[_i0].PTPreRate = ((-2 * (next_i()%2)) + 1) * next_i();
+          pRaInfo[_i0].RAstage = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           odm_PTTryState_8188E(pRaInfo);
           free(pRaInfo);
         

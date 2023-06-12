@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -91,12 +92,6 @@ __attribute__((used)) static inline void idct_row(int16_t *blk)
     blk[7] = (t13          + 4) >> 3;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -109,14 +104,76 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 156
+          // dynamic_instructions_O0 : 156
+          // ------------------------------- 
+          // static_instructions_O1 : 91
+          // dynamic_instructions_O1 : 91
+          // ------------------------------- 
+          // static_instructions_O2 : 91
+          // dynamic_instructions_O2 : 91
+          // ------------------------------- 
+          // static_instructions_O3 : 91
+          // dynamic_instructions_O3 : 91
+          // ------------------------------- 
+          // static_instructions_Ofast : 91
+          // dynamic_instructions_Ofast : 91
+          // ------------------------------- 
+          // static_instructions_Os : 91
+          // dynamic_instructions_Os : 91
+          // ------------------------------- 
+          // static_instructions_Oz : 91
+          // dynamic_instructions_Oz : 91
+          // ------------------------------- 
+
+          int _len_blk0 = 65025;
+          int * blk = (int *) malloc(_len_blk0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_blk0; _i0++) {
+            blk[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          idct_row(blk);
+          free(blk);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 156
+          // dynamic_instructions_O0 : 156
+          // ------------------------------- 
+          // static_instructions_O1 : 91
+          // dynamic_instructions_O1 : 91
+          // ------------------------------- 
+          // static_instructions_O2 : 91
+          // dynamic_instructions_O2 : 91
+          // ------------------------------- 
+          // static_instructions_O3 : 91
+          // dynamic_instructions_O3 : 91
+          // ------------------------------- 
+          // static_instructions_Ofast : 91
+          // dynamic_instructions_Ofast : 91
+          // ------------------------------- 
+          // static_instructions_Os : 91
+          // dynamic_instructions_Os : 91
+          // ------------------------------- 
+          // static_instructions_Oz : 91
+          // dynamic_instructions_Oz : 91
+          // ------------------------------- 
+
           int _len_blk0 = 100;
           int * blk = (int *) malloc(_len_blk0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_blk0; _i0++) {
             blk[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           idct_row(blk);
           free(blk);
         

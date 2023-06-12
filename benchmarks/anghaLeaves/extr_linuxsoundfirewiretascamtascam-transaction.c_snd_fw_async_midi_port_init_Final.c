@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ void snd_fw_async_midi_port_init(struct snd_fw_async_midi_port *port)
 	port->on_sysex = false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,23 +77,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_port0 = 1;
+          int _len_port0 = 65025;
           struct snd_fw_async_midi_port * port = (struct snd_fw_async_midi_port *) malloc(_len_port0*sizeof(struct snd_fw_async_midi_port));
           for(int _i0 = 0; _i0 < _len_port0; _i0++) {
-            port[_i0].idling = ((-2 * (next_i()%2)) + 1) * next_i();
-        port[_i0].error = ((-2 * (next_i()%2)) + 1) * next_i();
-        port[_i0].on_sysex = ((-2 * (next_i()%2)) + 1) * next_i();
-        port[_i0].running_status = ((-2 * (next_i()%2)) + 1) * next_i();
+              port[_i0].idling = ((-2 * (next_i()%2)) + 1) * next_i();
+          port[_i0].error = ((-2 * (next_i()%2)) + 1) * next_i();
+          port[_i0].on_sysex = ((-2 * (next_i()%2)) + 1) * next_i();
+          port[_i0].running_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           snd_fw_async_midi_port_init(port);
           free(port);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_port0 = 100;
+          struct snd_fw_async_midi_port * port = (struct snd_fw_async_midi_port *) malloc(_len_port0*sizeof(struct snd_fw_async_midi_port));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              port[_i0].idling = ((-2 * (next_i()%2)) + 1) * next_i();
+          port[_i0].error = ((-2 * (next_i()%2)) + 1) * next_i();
+          port[_i0].on_sysex = ((-2 * (next_i()%2)) + 1) * next_i();
+          port[_i0].running_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          snd_fw_async_midi_port_init(port);
+          free(port);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_port0 = 1;
+          struct snd_fw_async_midi_port * port = (struct snd_fw_async_midi_port *) malloc(_len_port0*sizeof(struct snd_fw_async_midi_port));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              port[_i0].idling = ((-2 * (next_i()%2)) + 1) * next_i();
+          port[_i0].error = ((-2 * (next_i()%2)) + 1) * next_i();
+          port[_i0].on_sysex = ((-2 * (next_i()%2)) + 1) * next_i();
+          port[_i0].running_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          snd_fw_async_midi_port_init(port);
+          free(port);
+        
+        break;
+    }
     default:
         usage();
         break;

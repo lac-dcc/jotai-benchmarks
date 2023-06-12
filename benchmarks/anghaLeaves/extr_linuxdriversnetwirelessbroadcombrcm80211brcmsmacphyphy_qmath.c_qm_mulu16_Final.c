@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ u16 qm_mulu16(u16 op1, u16 op2)
 	return (u16) (((u32) op1 * (u32) op2) >> 16);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,7 +80,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long op1 = 100;
+        
           long op2 = 100;
+        
           long benchRet = qm_mulu16(op1,op2);
           printf("%ld\n", benchRet); 
         
@@ -95,7 +92,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long op1 = 255;
+        
           long op2 = 255;
+        
           long benchRet = qm_mulu16(op1,op2);
           printf("%ld\n", benchRet); 
         
@@ -105,13 +104,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long op1 = 10;
+        
           long op2 = 10;
+        
           long benchRet = qm_mulu16(op1,op2);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long op1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long op2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long benchRet = qm_mulu16(op1,op2);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

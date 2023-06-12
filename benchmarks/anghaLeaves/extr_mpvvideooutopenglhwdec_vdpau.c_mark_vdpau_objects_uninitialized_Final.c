@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static void mark_vdpau_objects_uninitialized(struct ra_hwd
     p->mapped = false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,19 +79,141 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_mapper0 = 65025;
+          struct ra_hwdec_mapper * mapper = (struct ra_hwdec_mapper *) malloc(_len_mapper0*sizeof(struct ra_hwdec_mapper));
+          for(int _i0 = 0; _i0 < _len_mapper0; _i0++) {
+              int _len_mapper__i0__priv0 = 1;
+          mapper[_i0].priv = (struct priv *) malloc(_len_mapper__i0__priv0*sizeof(struct priv));
+          for(int _j0 = 0; _j0 < _len_mapper__i0__priv0; _j0++) {
+              mapper[_i0].priv->mapped = ((-2 * (next_i()%2)) + 1) * next_i();
+          mapper[_i0].priv->vdp_surface = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          mark_vdpau_objects_uninitialized(mapper);
+          for(int _aux = 0; _aux < _len_mapper0; _aux++) {
+          free(mapper[_aux].priv);
+          }
+          free(mapper);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_mapper0 = 100;
+          struct ra_hwdec_mapper * mapper = (struct ra_hwdec_mapper *) malloc(_len_mapper0*sizeof(struct ra_hwdec_mapper));
+          for(int _i0 = 0; _i0 < _len_mapper0; _i0++) {
+              int _len_mapper__i0__priv0 = 1;
+          mapper[_i0].priv = (struct priv *) malloc(_len_mapper__i0__priv0*sizeof(struct priv));
+          for(int _j0 = 0; _j0 < _len_mapper__i0__priv0; _j0++) {
+              mapper[_i0].priv->mapped = ((-2 * (next_i()%2)) + 1) * next_i();
+          mapper[_i0].priv->vdp_surface = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          mark_vdpau_objects_uninitialized(mapper);
+          for(int _aux = 0; _aux < _len_mapper0; _aux++) {
+          free(mapper[_aux].priv);
+          }
+          free(mapper);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_mapper0 = 1;
           struct ra_hwdec_mapper * mapper = (struct ra_hwdec_mapper *) malloc(_len_mapper0*sizeof(struct ra_hwdec_mapper));
           for(int _i0 = 0; _i0 < _len_mapper0; _i0++) {
               int _len_mapper__i0__priv0 = 1;
           mapper[_i0].priv = (struct priv *) malloc(_len_mapper__i0__priv0*sizeof(struct priv));
           for(int _j0 = 0; _j0 < _len_mapper__i0__priv0; _j0++) {
-            mapper[_i0].priv->mapped = ((-2 * (next_i()%2)) + 1) * next_i();
-        mapper[_i0].priv->vdp_surface = ((-2 * (next_i()%2)) + 1) * next_i();
+              mapper[_i0].priv->mapped = ((-2 * (next_i()%2)) + 1) * next_i();
+          mapper[_i0].priv->vdp_surface = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           mark_vdpau_objects_uninitialized(mapper);
           for(int _aux = 0; _aux < _len_mapper0; _aux++) {
           free(mapper[_aux].priv);

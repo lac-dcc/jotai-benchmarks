@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ void dispc_set_tv_pclk(struct dispc_device *dispc, unsigned long pclk)
 	dispc->tv_pclk_rate = pclk;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,31 +79,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long pclk = 100;
+        
           int _len_dispc0 = 1;
           struct dispc_device * dispc = (struct dispc_device *) malloc(_len_dispc0*sizeof(struct dispc_device));
           for(int _i0 = 0; _i0 < _len_dispc0; _i0++) {
-            dispc[_i0].tv_pclk_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+              dispc[_i0].tv_pclk_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          dispc_set_tv_pclk(dispc,pclk);
+          free(dispc);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned long pclk = 255;
+        
+          int _len_dispc0 = 65025;
+          struct dispc_device * dispc = (struct dispc_device *) malloc(_len_dispc0*sizeof(struct dispc_device));
+          for(int _i0 = 0; _i0 < _len_dispc0; _i0++) {
+              dispc[_i0].tv_pclk_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           dispc_set_tv_pclk(dispc,pclk);
           free(dispc);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned long pclk = 10;
+        
           int _len_dispc0 = 100;
           struct dispc_device * dispc = (struct dispc_device *) malloc(_len_dispc0*sizeof(struct dispc_device));
           for(int _i0 = 0; _i0 < _len_dispc0; _i0++) {
-            dispc[_i0].tv_pclk_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+              dispc[_i0].tv_pclk_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           dispc_set_tv_pclk(dispc,pclk);
           free(dispc);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long pclk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dispc0 = 1;
+          struct dispc_device * dispc = (struct dispc_device *) malloc(_len_dispc0*sizeof(struct dispc_device));
+          for(int _i0 = 0; _i0 < _len_dispc0; _i0++) {
+              dispc[_i0].tv_pclk_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          dispc_set_tv_pclk(dispc,pclk);
+          free(dispc);
+        
+        break;
+    }
     default:
         usage();
         break;

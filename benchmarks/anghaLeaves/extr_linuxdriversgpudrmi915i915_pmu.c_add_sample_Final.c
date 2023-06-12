@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ add_sample(struct i915_pmu_sample *sample, u32 val)
 	sample->cur += val;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,29 +77,164 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           long val = 100;
+        
           int _len_sample0 = 1;
           struct i915_pmu_sample * sample = (struct i915_pmu_sample *) malloc(_len_sample0*sizeof(struct i915_pmu_sample));
           for(int _i0 = 0; _i0 < _len_sample0; _i0++) {
-            sample[_i0].cur = ((-2 * (next_i()%2)) + 1) * next_i();
+              sample[_i0].cur = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           add_sample(sample,val);
           free(sample);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          long val = 255;
+        
+          int _len_sample0 = 65025;
+          struct i915_pmu_sample * sample = (struct i915_pmu_sample *) malloc(_len_sample0*sizeof(struct i915_pmu_sample));
+          for(int _i0 = 0; _i0 < _len_sample0; _i0++) {
+              sample[_i0].cur = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          add_sample(sample,val);
+          free(sample);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           long val = 10;
+        
           int _len_sample0 = 100;
           struct i915_pmu_sample * sample = (struct i915_pmu_sample *) malloc(_len_sample0*sizeof(struct i915_pmu_sample));
           for(int _i0 = 0; _i0 < _len_sample0; _i0++) {
-            sample[_i0].cur = ((-2 * (next_i()%2)) + 1) * next_i();
+              sample[_i0].cur = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          add_sample(sample,val);
+          free(sample);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          long val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sample0 = 1;
+          struct i915_pmu_sample * sample = (struct i915_pmu_sample *) malloc(_len_sample0*sizeof(struct i915_pmu_sample));
+          for(int _i0 = 0; _i0 < _len_sample0; _i0++) {
+              sample[_i0].cur = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           add_sample(sample,val);
           free(sample);
         

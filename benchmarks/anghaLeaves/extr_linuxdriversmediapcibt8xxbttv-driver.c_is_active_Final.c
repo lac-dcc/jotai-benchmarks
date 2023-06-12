@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ __attribute__((used)) static inline int is_active(struct btcx_riscmem *risc, u32
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,19 +84,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long rc = 100;
+        
           int _len_risc0 = 1;
           struct btcx_riscmem * risc = (struct btcx_riscmem *) malloc(_len_risc0*sizeof(struct btcx_riscmem));
           for(int _i0 = 0; _i0 < _len_risc0; _i0++) {
-            risc[_i0].dma = ((-2 * (next_i()%2)) + 1) * next_i();
-        risc[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              risc[_i0].dma = ((-2 * (next_i()%2)) + 1) * next_i();
+          risc[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_active(risc,rc);
           printf("%d\n", benchRet); 
           free(risc);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long rc = 255;
+        
+          int _len_risc0 = 65025;
+          struct btcx_riscmem * risc = (struct btcx_riscmem *) malloc(_len_risc0*sizeof(struct btcx_riscmem));
+          for(int _i0 = 0; _i0 < _len_risc0; _i0++) {
+              risc[_i0].dma = ((-2 * (next_i()%2)) + 1) * next_i();
+          risc[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_active(risc,rc);
+          printf("%d\n", benchRet); 
+          free(risc);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long rc = 10;
+        
+          int _len_risc0 = 100;
+          struct btcx_riscmem * risc = (struct btcx_riscmem *) malloc(_len_risc0*sizeof(struct btcx_riscmem));
+          for(int _i0 = 0; _i0 < _len_risc0; _i0++) {
+              risc[_i0].dma = ((-2 * (next_i()%2)) + 1) * next_i();
+          risc[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_active(risc,rc);
+          printf("%d\n", benchRet); 
+          free(risc);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long rc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_risc0 = 1;
+          struct btcx_riscmem * risc = (struct btcx_riscmem *) malloc(_len_risc0*sizeof(struct btcx_riscmem));
+          for(int _i0 = 0; _i0 < _len_risc0; _i0++) {
+              risc[_i0].dma = ((-2 * (next_i()%2)) + 1) * next_i();
+          risc[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_active(risc,rc);
+          printf("%d\n", benchRet); 
+          free(risc);
+        
+        break;
+    }
     default:
         usage();
         break;

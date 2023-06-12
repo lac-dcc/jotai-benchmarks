@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -86,12 +88,6 @@ __attribute__((used)) static void radeon_var_to_panel_info(struct radeonfb_info 
 	rinfo->panel_info.pwr_delay = 200;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,40 +100,206 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 77
+          // dynamic_instructions_O0 : 77
+          // ------------------------------- 
+          // static_instructions_O1 : 38
+          // dynamic_instructions_O1 : 38
+          // ------------------------------- 
+          // static_instructions_O2 : 38
+          // dynamic_instructions_O2 : 38
+          // ------------------------------- 
+          // static_instructions_O3 : 38
+          // dynamic_instructions_O3 : 38
+          // ------------------------------- 
+          // static_instructions_Ofast : 38
+          // dynamic_instructions_Ofast : 38
+          // ------------------------------- 
+          // static_instructions_Os : 38
+          // dynamic_instructions_Os : 38
+          // ------------------------------- 
+          // static_instructions_Oz : 38
+          // dynamic_instructions_Oz : 38
+          // ------------------------------- 
+
+          int _len_rinfo0 = 65025;
+          struct radeonfb_info * rinfo = (struct radeonfb_info *) malloc(_len_rinfo0*sizeof(struct radeonfb_info));
+          for(int _i0 = 0; _i0 < _len_rinfo0; _i0++) {
+              rinfo[_i0].panel_info.clock = ((-2 * (next_i()%2)) + 1) * next_i();
+          rinfo[_i0].panel_info.hAct_high = ((-2 * (next_i()%2)) + 1) * next_i();
+          rinfo[_i0].panel_info.vAct_high = ((-2 * (next_i()%2)) + 1) * next_i();
+          rinfo[_i0].panel_info.valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          rinfo[_i0].panel_info.pwr_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+          rinfo[_i0].panel_info.vblank = ((-2 * (next_i()%2)) + 1) * next_i();
+          rinfo[_i0].panel_info.vSync_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          rinfo[_i0].panel_info.vOver_plus = ((-2 * (next_i()%2)) + 1) * next_i();
+          rinfo[_i0].panel_info.hblank = ((-2 * (next_i()%2)) + 1) * next_i();
+          rinfo[_i0].panel_info.hSync_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          rinfo[_i0].panel_info.hOver_plus = ((-2 * (next_i()%2)) + 1) * next_i();
+          rinfo[_i0].panel_info.yres = ((-2 * (next_i()%2)) + 1) * next_i();
+          rinfo[_i0].panel_info.xres = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_var0 = 65025;
+          struct fb_var_screeninfo * var = (struct fb_var_screeninfo *) malloc(_len_var0*sizeof(struct fb_var_screeninfo));
+          for(int _i0 = 0; _i0 < _len_var0; _i0++) {
+              var[_i0].pixclock = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].sync = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].vsync_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].lower_margin = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].upper_margin = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].hsync_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].right_margin = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].left_margin = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].yres = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].xres = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          radeon_var_to_panel_info(rinfo,var);
+          free(rinfo);
+          free(var);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 77
+          // dynamic_instructions_O0 : 77
+          // ------------------------------- 
+          // static_instructions_O1 : 38
+          // dynamic_instructions_O1 : 38
+          // ------------------------------- 
+          // static_instructions_O2 : 38
+          // dynamic_instructions_O2 : 38
+          // ------------------------------- 
+          // static_instructions_O3 : 38
+          // dynamic_instructions_O3 : 38
+          // ------------------------------- 
+          // static_instructions_Ofast : 38
+          // dynamic_instructions_Ofast : 38
+          // ------------------------------- 
+          // static_instructions_Os : 38
+          // dynamic_instructions_Os : 38
+          // ------------------------------- 
+          // static_instructions_Oz : 38
+          // dynamic_instructions_Oz : 38
+          // ------------------------------- 
+
+          int _len_rinfo0 = 100;
+          struct radeonfb_info * rinfo = (struct radeonfb_info *) malloc(_len_rinfo0*sizeof(struct radeonfb_info));
+          for(int _i0 = 0; _i0 < _len_rinfo0; _i0++) {
+              rinfo[_i0].panel_info.clock = ((-2 * (next_i()%2)) + 1) * next_i();
+          rinfo[_i0].panel_info.hAct_high = ((-2 * (next_i()%2)) + 1) * next_i();
+          rinfo[_i0].panel_info.vAct_high = ((-2 * (next_i()%2)) + 1) * next_i();
+          rinfo[_i0].panel_info.valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          rinfo[_i0].panel_info.pwr_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+          rinfo[_i0].panel_info.vblank = ((-2 * (next_i()%2)) + 1) * next_i();
+          rinfo[_i0].panel_info.vSync_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          rinfo[_i0].panel_info.vOver_plus = ((-2 * (next_i()%2)) + 1) * next_i();
+          rinfo[_i0].panel_info.hblank = ((-2 * (next_i()%2)) + 1) * next_i();
+          rinfo[_i0].panel_info.hSync_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          rinfo[_i0].panel_info.hOver_plus = ((-2 * (next_i()%2)) + 1) * next_i();
+          rinfo[_i0].panel_info.yres = ((-2 * (next_i()%2)) + 1) * next_i();
+          rinfo[_i0].panel_info.xres = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_var0 = 100;
+          struct fb_var_screeninfo * var = (struct fb_var_screeninfo *) malloc(_len_var0*sizeof(struct fb_var_screeninfo));
+          for(int _i0 = 0; _i0 < _len_var0; _i0++) {
+              var[_i0].pixclock = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].sync = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].vsync_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].lower_margin = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].upper_margin = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].hsync_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].right_margin = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].left_margin = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].yres = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].xres = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          radeon_var_to_panel_info(rinfo,var);
+          free(rinfo);
+          free(var);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 77
+          // dynamic_instructions_O0 : 77
+          // ------------------------------- 
+          // static_instructions_O1 : 38
+          // dynamic_instructions_O1 : 38
+          // ------------------------------- 
+          // static_instructions_O2 : 38
+          // dynamic_instructions_O2 : 38
+          // ------------------------------- 
+          // static_instructions_O3 : 38
+          // dynamic_instructions_O3 : 38
+          // ------------------------------- 
+          // static_instructions_Ofast : 38
+          // dynamic_instructions_Ofast : 38
+          // ------------------------------- 
+          // static_instructions_Os : 38
+          // dynamic_instructions_Os : 38
+          // ------------------------------- 
+          // static_instructions_Oz : 38
+          // dynamic_instructions_Oz : 38
+          // ------------------------------- 
+
           int _len_rinfo0 = 1;
           struct radeonfb_info * rinfo = (struct radeonfb_info *) malloc(_len_rinfo0*sizeof(struct radeonfb_info));
           for(int _i0 = 0; _i0 < _len_rinfo0; _i0++) {
-            rinfo[_i0].panel_info.clock = ((-2 * (next_i()%2)) + 1) * next_i();
-        rinfo[_i0].panel_info.hAct_high = ((-2 * (next_i()%2)) + 1) * next_i();
-        rinfo[_i0].panel_info.vAct_high = ((-2 * (next_i()%2)) + 1) * next_i();
-        rinfo[_i0].panel_info.valid = ((-2 * (next_i()%2)) + 1) * next_i();
-        rinfo[_i0].panel_info.pwr_delay = ((-2 * (next_i()%2)) + 1) * next_i();
-        rinfo[_i0].panel_info.vblank = ((-2 * (next_i()%2)) + 1) * next_i();
-        rinfo[_i0].panel_info.vSync_width = ((-2 * (next_i()%2)) + 1) * next_i();
-        rinfo[_i0].panel_info.vOver_plus = ((-2 * (next_i()%2)) + 1) * next_i();
-        rinfo[_i0].panel_info.hblank = ((-2 * (next_i()%2)) + 1) * next_i();
-        rinfo[_i0].panel_info.hSync_width = ((-2 * (next_i()%2)) + 1) * next_i();
-        rinfo[_i0].panel_info.hOver_plus = ((-2 * (next_i()%2)) + 1) * next_i();
-        rinfo[_i0].panel_info.yres = ((-2 * (next_i()%2)) + 1) * next_i();
-        rinfo[_i0].panel_info.xres = ((-2 * (next_i()%2)) + 1) * next_i();
+              rinfo[_i0].panel_info.clock = ((-2 * (next_i()%2)) + 1) * next_i();
+          rinfo[_i0].panel_info.hAct_high = ((-2 * (next_i()%2)) + 1) * next_i();
+          rinfo[_i0].panel_info.vAct_high = ((-2 * (next_i()%2)) + 1) * next_i();
+          rinfo[_i0].panel_info.valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          rinfo[_i0].panel_info.pwr_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+          rinfo[_i0].panel_info.vblank = ((-2 * (next_i()%2)) + 1) * next_i();
+          rinfo[_i0].panel_info.vSync_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          rinfo[_i0].panel_info.vOver_plus = ((-2 * (next_i()%2)) + 1) * next_i();
+          rinfo[_i0].panel_info.hblank = ((-2 * (next_i()%2)) + 1) * next_i();
+          rinfo[_i0].panel_info.hSync_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          rinfo[_i0].panel_info.hOver_plus = ((-2 * (next_i()%2)) + 1) * next_i();
+          rinfo[_i0].panel_info.yres = ((-2 * (next_i()%2)) + 1) * next_i();
+          rinfo[_i0].panel_info.xres = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_var0 = 1;
           struct fb_var_screeninfo * var = (struct fb_var_screeninfo *) malloc(_len_var0*sizeof(struct fb_var_screeninfo));
           for(int _i0 = 0; _i0 < _len_var0; _i0++) {
-            var[_i0].pixclock = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].sync = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].vsync_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].lower_margin = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].upper_margin = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].hsync_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].right_margin = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].left_margin = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].yres = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].xres = ((-2 * (next_i()%2)) + 1) * next_i();
+              var[_i0].pixclock = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].sync = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].vsync_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].lower_margin = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].upper_margin = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].hsync_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].right_margin = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].left_margin = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].yres = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].xres = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           radeon_var_to_panel_info(rinfo,var);
           free(rinfo);
           free(var);

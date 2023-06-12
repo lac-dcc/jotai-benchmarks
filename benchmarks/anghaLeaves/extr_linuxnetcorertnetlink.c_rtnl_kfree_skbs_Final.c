@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -63,7 +64,6 @@ void rtnl_kfree_skbs(struct sk_buff *head, struct sk_buff *tail)
 		defer_kfree_skb_list = head;
 	}
 }
-
 
 // ------------------------------------------------------------------------- //
 
@@ -115,7 +115,6 @@ void _delete_tail(struct sk_buff *aux_tail[], int aux_tail_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -128,20 +127,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // linked
     case 0:
+    {
+          struct sk_buff * aux_head[10000];
+          struct sk_buff * head = _allocate_head(10000, aux_head);
+        
+          struct sk_buff * aux_tail[10000];
+          struct sk_buff * tail = _allocate_tail(10000, aux_tail);
+        
+          rtnl_kfree_skbs(head,tail);
+          _delete_head(aux_head, 10000);
+          _delete_tail(aux_tail, 10000);
+        
+        break;
+    }
+    // empty
+    case 1:
     {
           struct sk_buff * aux_head[1];
           struct sk_buff * head = _allocate_head(1, aux_head);
+        
           struct sk_buff * aux_tail[1];
           struct sk_buff * tail = _allocate_tail(1, aux_tail);
+        
           rtnl_kfree_skbs(head,tail);
           _delete_head(aux_head, 1);
           _delete_tail(aux_tail, 1);
         
         break;
     }
-
     default:
         usage();
         break;

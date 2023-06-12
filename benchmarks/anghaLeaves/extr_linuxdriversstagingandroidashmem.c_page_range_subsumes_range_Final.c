@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +64,6 @@ __attribute__((used)) static inline bool page_range_subsumes_range(struct ashmem
 	return (range->pgstart >= start) && (range->pgend <= end);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,17 +76,179 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           unsigned long start = 100;
+        
           unsigned long end = 100;
+        
           int _len_range0 = 1;
           struct ashmem_range * range = (struct ashmem_range *) malloc(_len_range0*sizeof(struct ashmem_range));
           for(int _i0 = 0; _i0 < _len_range0; _i0++) {
-            range[_i0].pgstart = ((-2 * (next_i()%2)) + 1) * next_i();
-        range[_i0].pgend = ((-2 * (next_i()%2)) + 1) * next_i();
+              range[_i0].pgstart = ((-2 * (next_i()%2)) + 1) * next_i();
+          range[_i0].pgend = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = page_range_subsumes_range(range,start,end);
+          printf("%d\n", benchRet); 
+          free(range);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          unsigned long start = 255;
+        
+          unsigned long end = 255;
+        
+          int _len_range0 = 65025;
+          struct ashmem_range * range = (struct ashmem_range *) malloc(_len_range0*sizeof(struct ashmem_range));
+          for(int _i0 = 0; _i0 < _len_range0; _i0++) {
+              range[_i0].pgstart = ((-2 * (next_i()%2)) + 1) * next_i();
+          range[_i0].pgend = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = page_range_subsumes_range(range,start,end);
+          printf("%d\n", benchRet); 
+          free(range);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          unsigned long start = 10;
+        
+          unsigned long end = 10;
+        
+          int _len_range0 = 100;
+          struct ashmem_range * range = (struct ashmem_range *) malloc(_len_range0*sizeof(struct ashmem_range));
+          for(int _i0 = 0; _i0 < _len_range0; _i0++) {
+              range[_i0].pgstart = ((-2 * (next_i()%2)) + 1) * next_i();
+          range[_i0].pgend = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = page_range_subsumes_range(range,start,end);
+          printf("%d\n", benchRet); 
+          free(range);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          unsigned long start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_range0 = 1;
+          struct ashmem_range * range = (struct ashmem_range *) malloc(_len_range0*sizeof(struct ashmem_range));
+          for(int _i0 = 0; _i0 < _len_range0; _i0++) {
+              range[_i0].pgstart = ((-2 * (next_i()%2)) + 1) * next_i();
+          range[_i0].pgend = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = page_range_subsumes_range(range,start,end);
           printf("%d\n", benchRet); 
           free(range);

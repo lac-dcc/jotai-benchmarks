@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static int is_qp0(struct mthca_dev *dev, struct mthca_qp *
 		qp->qpn <= dev->qp_table.sqp_start + 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,19 +78,24 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dev0 = 1;
+          int _len_dev0 = 65025;
           struct mthca_dev * dev = (struct mthca_dev *) malloc(_len_dev0*sizeof(struct mthca_dev));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].qp_table.sqp_start = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].qp_table.sqp_start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-          int _len_qp0 = 1;
+        
+          int _len_qp0 = 65025;
           struct mthca_qp * qp = (struct mthca_qp *) malloc(_len_qp0*sizeof(struct mthca_qp));
           for(int _i0 = 0; _i0 < _len_qp0; _i0++) {
-            qp[_i0].qpn = ((-2 * (next_i()%2)) + 1) * next_i();
+              qp[_i0].qpn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_qp0(dev,qp);
           printf("%d\n", benchRet); 
           free(dev);
@@ -102,7 +103,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dev0 = 100;
+          struct mthca_dev * dev = (struct mthca_dev *) malloc(_len_dev0*sizeof(struct mthca_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].qp_table.sqp_start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_qp0 = 100;
+          struct mthca_qp * qp = (struct mthca_qp *) malloc(_len_qp0*sizeof(struct mthca_qp));
+          for(int _i0 = 0; _i0 < _len_qp0; _i0++) {
+              qp[_i0].qpn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_qp0(dev,qp);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(qp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dev0 = 1;
+          struct mthca_dev * dev = (struct mthca_dev *) malloc(_len_dev0*sizeof(struct mthca_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].qp_table.sqp_start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_qp0 = 1;
+          struct mthca_qp * qp = (struct mthca_qp *) malloc(_len_qp0*sizeof(struct mthca_qp));
+          for(int _i0 = 0; _i0 < _len_qp0; _i0++) {
+              qp[_i0].qpn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_qp0(dev,qp);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(qp);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ HRESULT MimeAllocator_create(IUnknown *outer, void **obj)
     return S_OK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,29 +81,75 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
+    {
+          int _len_outer0 = 65025;
+          int * outer = (int *) malloc(_len_outer0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_outer0; _i0++) {
+            outer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_obj0 = 65025;
+          void ** obj = (void **) malloc(_len_obj0*sizeof(void *));
+          for(int _i0 = 0; _i0 < _len_obj0; _i0++) {
+          }
+        
+          int benchRet = MimeAllocator_create(outer,obj);
+          printf("%d\n", benchRet); 
+          free(outer);
+          for(int i1 = 0; i1 < _len_obj0; i1++) {
+              }
+          free(obj);
+        
+        break;
+    }
+    // big-arr-10x
+    case 1:
+    {
+          int _len_outer0 = 100;
+          int * outer = (int *) malloc(_len_outer0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_outer0; _i0++) {
+            outer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_obj0 = 100;
+          void ** obj = (void **) malloc(_len_obj0*sizeof(void *));
+          for(int _i0 = 0; _i0 < _len_obj0; _i0++) {
+          }
+        
+          int benchRet = MimeAllocator_create(outer,obj);
+          printf("%d\n", benchRet); 
+          free(outer);
+          for(int i1 = 0; i1 < _len_obj0; i1++) {
+              }
+          free(obj);
+        
+        break;
+    }
+    // empty
+    case 2:
     {
           int _len_outer0 = 1;
           int * outer = (int *) malloc(_len_outer0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_outer0; _i0++) {
             outer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_obj0 = 1;
           void ** obj = (void **) malloc(_len_obj0*sizeof(void *));
           for(int _i0 = 0; _i0 < _len_obj0; _i0++) {
           }
+        
           int benchRet = MimeAllocator_create(outer,obj);
           printf("%d\n", benchRet); 
           free(outer);
           for(int i1 = 0; i1 < _len_obj0; i1++) {
-            int _len_obj1 = 1;
               }
           free(obj);
         
         break;
     }
-
     default:
         usage();
         break;

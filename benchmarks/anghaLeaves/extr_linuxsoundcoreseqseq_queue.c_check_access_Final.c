@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -60,12 +63,6 @@ __attribute__((used)) static inline int check_access(struct snd_seq_queue *q, in
 	return (q->owner == client) || (!q->locked && !q->klocked);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,17 +75,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int client = 100;
+        
           int _len_q0 = 1;
           struct snd_seq_queue * q = (struct snd_seq_queue *) malloc(_len_q0*sizeof(struct snd_seq_queue));
           for(int _i0 = 0; _i0 < _len_q0; _i0++) {
-            q[_i0].owner = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].klocked = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].locked = ((-2 * (next_i()%2)) + 1) * next_i();
+              q[_i0].owner = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].klocked = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].locked = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = check_access(q,client);
+          printf("%d\n", benchRet); 
+          free(q);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int client = 255;
+        
+          int _len_q0 = 65025;
+          struct snd_seq_queue * q = (struct snd_seq_queue *) malloc(_len_q0*sizeof(struct snd_seq_queue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].owner = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].klocked = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].locked = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = check_access(q,client);
+          printf("%d\n", benchRet); 
+          free(q);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int client = 10;
+        
+          int _len_q0 = 100;
+          struct snd_seq_queue * q = (struct snd_seq_queue *) malloc(_len_q0*sizeof(struct snd_seq_queue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].owner = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].klocked = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].locked = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = check_access(q,client);
+          printf("%d\n", benchRet); 
+          free(q);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int client = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_q0 = 1;
+          struct snd_seq_queue * q = (struct snd_seq_queue *) malloc(_len_q0*sizeof(struct snd_seq_queue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].owner = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].klocked = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].locked = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = check_access(q,client);
           printf("%d\n", benchRet); 
           free(q);

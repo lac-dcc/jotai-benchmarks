@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ int sst_byt_stream_set_rate(struct sst_byt *byt, struct sst_byt_stream *stream,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,16 +86,23 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int rate = 100;
+        
           int _len_byt0 = 1;
           struct sst_byt * byt = (struct sst_byt *) malloc(_len_byt0*sizeof(struct sst_byt));
           for(int _i0 = 0; _i0 < _len_byt0; _i0++) {
-            byt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              byt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_stream0 = 1;
           struct sst_byt_stream * stream = (struct sst_byt_stream *) malloc(_len_stream0*sizeof(struct sst_byt_stream));
           for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
-            stream[_i0].request.pcm_params.sfreq = ((-2 * (next_i()%2)) + 1) * next_i();
+              stream[_i0].request.pcm_params.sfreq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int benchRet = sst_byt_stream_set_rate(byt,stream,rate);
           printf("%d\n", benchRet); 
           free(byt);
@@ -106,7 +110,90 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int rate = 255;
+        
+          int _len_byt0 = 65025;
+          struct sst_byt * byt = (struct sst_byt *) malloc(_len_byt0*sizeof(struct sst_byt));
+          for(int _i0 = 0; _i0 < _len_byt0; _i0++) {
+              byt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_stream0 = 65025;
+          struct sst_byt_stream * stream = (struct sst_byt_stream *) malloc(_len_stream0*sizeof(struct sst_byt_stream));
+          for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
+              stream[_i0].request.pcm_params.sfreq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = sst_byt_stream_set_rate(byt,stream,rate);
+          printf("%d\n", benchRet); 
+          free(byt);
+          free(stream);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int rate = 10;
+        
+          int _len_byt0 = 100;
+          struct sst_byt * byt = (struct sst_byt *) malloc(_len_byt0*sizeof(struct sst_byt));
+          for(int _i0 = 0; _i0 < _len_byt0; _i0++) {
+              byt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_stream0 = 100;
+          struct sst_byt_stream * stream = (struct sst_byt_stream *) malloc(_len_stream0*sizeof(struct sst_byt_stream));
+          for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
+              stream[_i0].request.pcm_params.sfreq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = sst_byt_stream_set_rate(byt,stream,rate);
+          printf("%d\n", benchRet); 
+          free(byt);
+          free(stream);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_byt0 = 1;
+          struct sst_byt * byt = (struct sst_byt *) malloc(_len_byt0*sizeof(struct sst_byt));
+          for(int _i0 = 0; _i0 < _len_byt0; _i0++) {
+              byt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_stream0 = 1;
+          struct sst_byt_stream * stream = (struct sst_byt_stream *) malloc(_len_stream0*sizeof(struct sst_byt_stream));
+          for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
+              stream[_i0].request.pcm_params.sfreq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = sst_byt_stream_set_rate(byt,stream,rate);
+          printf("%d\n", benchRet); 
+          free(byt);
+          free(stream);
+        
+        break;
+    }
     default:
         usage();
         break;

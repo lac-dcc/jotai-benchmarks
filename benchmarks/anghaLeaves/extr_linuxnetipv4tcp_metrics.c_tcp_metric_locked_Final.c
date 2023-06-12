@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static bool tcp_metric_locked(struct tcp_metrics_block *tm
 	return tm->tcpm_lock & (1 << idx);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,30 +76,125 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           enum tcp_metric_index idx = 0;
-          int _len_tm0 = 1;
+        
+          int _len_tm0 = 65025;
           struct tcp_metrics_block * tm = (struct tcp_metrics_block *) malloc(_len_tm0*sizeof(struct tcp_metrics_block));
           for(int _i0 = 0; _i0 < _len_tm0; _i0++) {
-            tm[_i0].tcpm_lock = ((-2 * (next_i()%2)) + 1) * next_i();
+              tm[_i0].tcpm_lock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = tcp_metric_locked(tm,idx);
           printf("%d\n", benchRet); 
           free(tm);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           enum tcp_metric_index idx = 0;
+        
           int _len_tm0 = 100;
           struct tcp_metrics_block * tm = (struct tcp_metrics_block *) malloc(_len_tm0*sizeof(struct tcp_metrics_block));
           for(int _i0 = 0; _i0 < _len_tm0; _i0++) {
-            tm[_i0].tcpm_lock = ((-2 * (next_i()%2)) + 1) * next_i();
+              tm[_i0].tcpm_lock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = tcp_metric_locked(tm,idx);
+          printf("%d\n", benchRet); 
+          free(tm);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          enum tcp_metric_index idx = 0;
+        
+          int _len_tm0 = 1;
+          struct tcp_metrics_block * tm = (struct tcp_metrics_block *) malloc(_len_tm0*sizeof(struct tcp_metrics_block));
+          for(int _i0 = 0; _i0 < _len_tm0; _i0++) {
+              tm[_i0].tcpm_lock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = tcp_metric_locked(tm,idx);
           printf("%d\n", benchRet); 
           free(tm);

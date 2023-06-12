@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ head507d_curs_layout(struct nv50_head *head, struct nv50_wndw_atom *asyw,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,24 +89,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_head0 = 65025;
+          struct nv50_head * head = (struct nv50_head *) malloc(_len_head0*sizeof(struct nv50_head));
+          for(int _i0 = 0; _i0 < _len_head0; _i0++) {
+              head[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_asyw0 = 65025;
+          struct nv50_wndw_atom * asyw = (struct nv50_wndw_atom *) malloc(_len_asyw0*sizeof(struct nv50_wndw_atom));
+          for(int _i0 = 0; _i0 < _len_asyw0; _i0++) {
+              asyw[_i0].image.w = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_asyh0 = 65025;
+          struct nv50_head_atom * asyh = (struct nv50_head_atom *) malloc(_len_asyh0*sizeof(struct nv50_head_atom));
+          for(int _i0 = 0; _i0 < _len_asyh0; _i0++) {
+              asyh[_i0].curs.layout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = head507d_curs_layout(head,asyw,asyh);
+          printf("%d\n", benchRet); 
+          free(head);
+          free(asyw);
+          free(asyh);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_head0 = 100;
+          struct nv50_head * head = (struct nv50_head *) malloc(_len_head0*sizeof(struct nv50_head));
+          for(int _i0 = 0; _i0 < _len_head0; _i0++) {
+              head[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_asyw0 = 100;
+          struct nv50_wndw_atom * asyw = (struct nv50_wndw_atom *) malloc(_len_asyw0*sizeof(struct nv50_wndw_atom));
+          for(int _i0 = 0; _i0 < _len_asyw0; _i0++) {
+              asyw[_i0].image.w = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_asyh0 = 100;
+          struct nv50_head_atom * asyh = (struct nv50_head_atom *) malloc(_len_asyh0*sizeof(struct nv50_head_atom));
+          for(int _i0 = 0; _i0 < _len_asyh0; _i0++) {
+              asyh[_i0].curs.layout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = head507d_curs_layout(head,asyw,asyh);
+          printf("%d\n", benchRet); 
+          free(head);
+          free(asyw);
+          free(asyh);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_head0 = 1;
           struct nv50_head * head = (struct nv50_head *) malloc(_len_head0*sizeof(struct nv50_head));
           for(int _i0 = 0; _i0 < _len_head0; _i0++) {
-            head[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              head[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_asyw0 = 1;
           struct nv50_wndw_atom * asyw = (struct nv50_wndw_atom *) malloc(_len_asyw0*sizeof(struct nv50_wndw_atom));
           for(int _i0 = 0; _i0 < _len_asyw0; _i0++) {
-            asyw[_i0].image.w = ((-2 * (next_i()%2)) + 1) * next_i();
+              asyw[_i0].image.w = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_asyh0 = 1;
           struct nv50_head_atom * asyh = (struct nv50_head_atom *) malloc(_len_asyh0*sizeof(struct nv50_head_atom));
           for(int _i0 = 0; _i0 < _len_asyh0; _i0++) {
-            asyh[_i0].curs.layout = ((-2 * (next_i()%2)) + 1) * next_i();
+              asyh[_i0].curs.layout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = head507d_curs_layout(head,asyw,asyh);
           printf("%d\n", benchRet); 
           free(head);

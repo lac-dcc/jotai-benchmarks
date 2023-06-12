@@ -31,7 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ __attribute__((used)) static u32 fsl_asrc_cal_asrck_divisor(struct fsl_asrc_pair
 	return ((div - 1) << ASRCDRi_AxCPi_WIDTH) | ps;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,30 +82,125 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 50
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 35
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 35
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 34
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
           int div = 100;
+        
           int _len_pair0 = 1;
           struct fsl_asrc_pair * pair = (struct fsl_asrc_pair *) malloc(_len_pair0*sizeof(struct fsl_asrc_pair));
           for(int _i0 = 0; _i0 < _len_pair0; _i0++) {
-            pair[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              pair[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = fsl_asrc_cal_asrck_divisor(pair,div);
           printf("%d\n", benchRet); 
           free(pair);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 59
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 40
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 40
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 40
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 40
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 39
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 37
+          // ------------------------------- 
+
+          int div = 255;
+        
+          int _len_pair0 = 65025;
+          struct fsl_asrc_pair * pair = (struct fsl_asrc_pair *) malloc(_len_pair0*sizeof(struct fsl_asrc_pair));
+          for(int _i0 = 0; _i0 < _len_pair0; _i0++) {
+              pair[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fsl_asrc_cal_asrck_divisor(pair,div);
+          printf("%d\n", benchRet); 
+          free(pair);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int div = 10;
+        
           int _len_pair0 = 100;
           struct fsl_asrc_pair * pair = (struct fsl_asrc_pair *) malloc(_len_pair0*sizeof(struct fsl_asrc_pair));
           for(int _i0 = 0; _i0 < _len_pair0; _i0++) {
-            pair[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              pair[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = fsl_asrc_cal_asrck_divisor(pair,div);
           printf("%d\n", benchRet); 
           free(pair);

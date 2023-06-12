@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ ahd_extract_mode_state(struct ahd_softc *ahd, ahd_mode_state state,
 	*dst = (state & DST_MODE) >> DST_MODE_SHIFT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,25 +84,218 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int state = 100;
+        
           int _len_ahd0 = 1;
           struct ahd_softc * ahd = (struct ahd_softc *) malloc(_len_ahd0*sizeof(struct ahd_softc));
           for(int _i0 = 0; _i0 < _len_ahd0; _i0++) {
-            ahd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ahd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_src0 = 1;
           int * src = (int *) malloc(_len_src0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_src0; _i0++) {
             src[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_dst0 = 1;
           int * dst = (int *) malloc(_len_dst0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
             dst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          ahd_extract_mode_state(ahd,state,src,dst);
+          free(ahd);
+          free(src);
+          free(dst);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int state = 255;
+        
+          int _len_ahd0 = 65025;
+          struct ahd_softc * ahd = (struct ahd_softc *) malloc(_len_ahd0*sizeof(struct ahd_softc));
+          for(int _i0 = 0; _i0 < _len_ahd0; _i0++) {
+              ahd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_src0 = 65025;
+          int * src = (int *) malloc(_len_src0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+            src[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_dst0 = 65025;
+          int * dst = (int *) malloc(_len_dst0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+            dst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          ahd_extract_mode_state(ahd,state,src,dst);
+          free(ahd);
+          free(src);
+          free(dst);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int state = 10;
+        
+          int _len_ahd0 = 100;
+          struct ahd_softc * ahd = (struct ahd_softc *) malloc(_len_ahd0*sizeof(struct ahd_softc));
+          for(int _i0 = 0; _i0 < _len_ahd0; _i0++) {
+              ahd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_src0 = 100;
+          int * src = (int *) malloc(_len_src0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+            src[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_dst0 = 100;
+          int * dst = (int *) malloc(_len_dst0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+            dst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          ahd_extract_mode_state(ahd,state,src,dst);
+          free(ahd);
+          free(src);
+          free(dst);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ahd0 = 1;
+          struct ahd_softc * ahd = (struct ahd_softc *) malloc(_len_ahd0*sizeof(struct ahd_softc));
+          for(int _i0 = 0; _i0 < _len_ahd0; _i0++) {
+              ahd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_src0 = 1;
+          int * src = (int *) malloc(_len_src0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+            src[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_dst0 = 1;
+          int * dst = (int *) malloc(_len_dst0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+            dst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           ahd_extract_mode_state(ahd,state,src,dst);
           free(ahd);
           free(src);

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static inline int reassemble_21(int as21)
 		((as21 & 0x000003) << 12));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,6 +82,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int as21 = 100;
+        
           int benchRet = reassemble_21(as21);
           printf("%d\n", benchRet); 
         
@@ -96,6 +92,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int as21 = 255;
+        
           int benchRet = reassemble_21(as21);
           printf("%d\n", benchRet); 
         
@@ -105,12 +102,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int as21 = 10;
+        
           int benchRet = reassemble_21(as21);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int as21 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = reassemble_21(as21);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

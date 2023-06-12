@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -67,7 +68,6 @@ void pending_operation_push (struct pending_operation *P) {
   }
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct pending_operation *_allocate_P(int length, struct pending_operation *aux_P[]) {
@@ -95,7 +95,6 @@ void _delete_P(struct pending_operation *aux_P[], int aux_P_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -108,17 +107,28 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // linked
     case 0:
+    {
+          struct pending_operation * aux_P[10000];
+          struct pending_operation * P = _allocate_P(10000, aux_P);
+        
+          pending_operation_push(P);
+          _delete_P(aux_P, 10000);
+        
+        break;
+    }
+    // empty
+    case 1:
     {
           struct pending_operation * aux_P[1];
           struct pending_operation * P = _allocate_P(1, aux_P);
+        
           pending_operation_push(P);
           _delete_P(aux_P, 1);
         
         break;
     }
-
     default:
         usage();
         break;

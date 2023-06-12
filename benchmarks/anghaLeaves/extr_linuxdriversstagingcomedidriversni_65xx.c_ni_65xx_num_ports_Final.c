@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static unsigned int ni_65xx_num_ports(struct comedi_device
 	return board->num_dio_ports + board->num_di_ports + board->num_do_ports;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,20 +77,146 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_dev0 = 65025;
+          struct comedi_device * dev = (struct comedi_device *) malloc(_len_dev0*sizeof(struct comedi_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              int _len_dev__i0__board_ptr0 = 1;
+          dev[_i0].board_ptr = (struct ni_65xx_board *) malloc(_len_dev__i0__board_ptr0*sizeof(struct ni_65xx_board));
+          for(int _j0 = 0; _j0 < _len_dev__i0__board_ptr0; _j0++) {
+              dev[_i0].board_ptr->num_dio_ports = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].board_ptr->num_di_ports = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].board_ptr->num_do_ports = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = ni_65xx_num_ports(dev);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(dev[_aux].board_ptr);
+          }
+          free(dev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_dev0 = 100;
+          struct comedi_device * dev = (struct comedi_device *) malloc(_len_dev0*sizeof(struct comedi_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              int _len_dev__i0__board_ptr0 = 1;
+          dev[_i0].board_ptr = (struct ni_65xx_board *) malloc(_len_dev__i0__board_ptr0*sizeof(struct ni_65xx_board));
+          for(int _j0 = 0; _j0 < _len_dev__i0__board_ptr0; _j0++) {
+              dev[_i0].board_ptr->num_dio_ports = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].board_ptr->num_di_ports = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].board_ptr->num_do_ports = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = ni_65xx_num_ports(dev);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(dev[_aux].board_ptr);
+          }
+          free(dev);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_dev0 = 1;
           struct comedi_device * dev = (struct comedi_device *) malloc(_len_dev0*sizeof(struct comedi_device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
               int _len_dev__i0__board_ptr0 = 1;
           dev[_i0].board_ptr = (struct ni_65xx_board *) malloc(_len_dev__i0__board_ptr0*sizeof(struct ni_65xx_board));
           for(int _j0 = 0; _j0 < _len_dev__i0__board_ptr0; _j0++) {
-            dev[_i0].board_ptr->num_dio_ports = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].board_ptr->num_di_ports = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].board_ptr->num_do_ports = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].board_ptr->num_dio_ports = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].board_ptr->num_di_ports = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].board_ptr->num_do_ports = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           unsigned int benchRet = ni_65xx_num_ports(dev);
           printf("%u\n", benchRet); 
           for(int _aux = 0; _aux < _len_dev0; _aux++) {

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ void ringbuf_reset(ringbuf_t rb)
 	rb ->head = rb->tail = rb->buf;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,16 +76,123 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_rb0 = 65025;
+          struct TYPE_3__ * rb = (struct TYPE_3__ *) malloc(_len_rb0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_rb0; _i0++) {
+              rb[_i0].buf = ((-2 * (next_i()%2)) + 1) * next_i();
+          rb[_i0].tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          rb[_i0].head = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ringbuf_reset(rb);
+          free(rb);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_rb0 = 100;
+          struct TYPE_3__ * rb = (struct TYPE_3__ *) malloc(_len_rb0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_rb0; _i0++) {
+              rb[_i0].buf = ((-2 * (next_i()%2)) + 1) * next_i();
+          rb[_i0].tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          rb[_i0].head = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ringbuf_reset(rb);
+          free(rb);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_rb0 = 1;
           struct TYPE_3__ * rb = (struct TYPE_3__ *) malloc(_len_rb0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_rb0; _i0++) {
-            rb[_i0].buf = ((-2 * (next_i()%2)) + 1) * next_i();
-        rb[_i0].tail = ((-2 * (next_i()%2)) + 1) * next_i();
-        rb[_i0].head = ((-2 * (next_i()%2)) + 1) * next_i();
+              rb[_i0].buf = ((-2 * (next_i()%2)) + 1) * next_i();
+          rb[_i0].tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          rb[_i0].head = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ringbuf_reset(rb);
           free(rb);
         

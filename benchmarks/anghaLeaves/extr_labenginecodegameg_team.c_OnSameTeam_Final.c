@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -84,12 +86,6 @@ qboolean OnSameTeam( gentity_t *ent1, gentity_t *ent2 ) {
 	return qfalse;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,27 +98,190 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_ent10 = 65025;
+          struct TYPE_9__ * ent1 = (struct TYPE_9__ *) malloc(_len_ent10*sizeof(struct TYPE_9__));
+          for(int _i0 = 0; _i0 < _len_ent10; _i0++) {
+              int _len_ent1__i0__client0 = 1;
+          ent1[_i0].client = (struct TYPE_8__ *) malloc(_len_ent1__i0__client0*sizeof(struct TYPE_8__));
+          for(int _j0 = 0; _j0 < _len_ent1__i0__client0; _j0++) {
+              ent1[_i0].client->sess.sessionTeam = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int _len_ent20 = 65025;
+          struct TYPE_9__ * ent2 = (struct TYPE_9__ *) malloc(_len_ent20*sizeof(struct TYPE_9__));
+          for(int _i0 = 0; _i0 < _len_ent20; _i0++) {
+              int _len_ent2__i0__client0 = 1;
+          ent2[_i0].client = (struct TYPE_8__ *) malloc(_len_ent2__i0__client0*sizeof(struct TYPE_8__));
+          for(int _j0 = 0; _j0 < _len_ent2__i0__client0; _j0++) {
+              ent2[_i0].client->sess.sessionTeam = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = OnSameTeam(ent1,ent2);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ent10; _aux++) {
+          free(ent1[_aux].client);
+          }
+          free(ent1);
+          for(int _aux = 0; _aux < _len_ent20; _aux++) {
+          free(ent2[_aux].client);
+          }
+          free(ent2);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_ent10 = 100;
+          struct TYPE_9__ * ent1 = (struct TYPE_9__ *) malloc(_len_ent10*sizeof(struct TYPE_9__));
+          for(int _i0 = 0; _i0 < _len_ent10; _i0++) {
+              int _len_ent1__i0__client0 = 1;
+          ent1[_i0].client = (struct TYPE_8__ *) malloc(_len_ent1__i0__client0*sizeof(struct TYPE_8__));
+          for(int _j0 = 0; _j0 < _len_ent1__i0__client0; _j0++) {
+              ent1[_i0].client->sess.sessionTeam = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int _len_ent20 = 100;
+          struct TYPE_9__ * ent2 = (struct TYPE_9__ *) malloc(_len_ent20*sizeof(struct TYPE_9__));
+          for(int _i0 = 0; _i0 < _len_ent20; _i0++) {
+              int _len_ent2__i0__client0 = 1;
+          ent2[_i0].client = (struct TYPE_8__ *) malloc(_len_ent2__i0__client0*sizeof(struct TYPE_8__));
+          for(int _j0 = 0; _j0 < _len_ent2__i0__client0; _j0++) {
+              ent2[_i0].client->sess.sessionTeam = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = OnSameTeam(ent1,ent2);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ent10; _aux++) {
+          free(ent1[_aux].client);
+          }
+          free(ent1);
+          for(int _aux = 0; _aux < _len_ent20; _aux++) {
+          free(ent2[_aux].client);
+          }
+          free(ent2);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           int _len_ent10 = 1;
           struct TYPE_9__ * ent1 = (struct TYPE_9__ *) malloc(_len_ent10*sizeof(struct TYPE_9__));
           for(int _i0 = 0; _i0 < _len_ent10; _i0++) {
               int _len_ent1__i0__client0 = 1;
           ent1[_i0].client = (struct TYPE_8__ *) malloc(_len_ent1__i0__client0*sizeof(struct TYPE_8__));
           for(int _j0 = 0; _j0 < _len_ent1__i0__client0; _j0++) {
-            ent1[_i0].client->sess.sessionTeam = ((-2 * (next_i()%2)) + 1) * next_i();
+              ent1[_i0].client->sess.sessionTeam = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           int _len_ent20 = 1;
           struct TYPE_9__ * ent2 = (struct TYPE_9__ *) malloc(_len_ent20*sizeof(struct TYPE_9__));
           for(int _i0 = 0; _i0 < _len_ent20; _i0++) {
               int _len_ent2__i0__client0 = 1;
           ent2[_i0].client = (struct TYPE_8__ *) malloc(_len_ent2__i0__client0*sizeof(struct TYPE_8__));
           for(int _j0 = 0; _j0 < _len_ent2__i0__client0; _j0++) {
-            ent2[_i0].client->sess.sessionTeam = ((-2 * (next_i()%2)) + 1) * next_i();
+              ent2[_i0].client->sess.sessionTeam = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           int benchRet = OnSameTeam(ent1,ent2);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_ent10; _aux++) {

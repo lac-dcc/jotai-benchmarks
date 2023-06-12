@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static void vsp1_dl_ext_cmd_fill_header(struct vsp1_dl_ext
 	cmd->cmds[0].reserved = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,24 +79,27 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cmd0 = 1;
+          int _len_cmd0 = 65025;
           struct vsp1_dl_ext_cmd * cmd = (struct vsp1_dl_ext_cmd *) malloc(_len_cmd0*sizeof(struct vsp1_dl_ext_cmd));
           for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
               int _len_cmd__i0__cmds0 = 1;
           cmd[_i0].cmds = (struct TYPE_2__ *) malloc(_len_cmd__i0__cmds0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_cmd__i0__cmds0; _j0++) {
-            cmd[_i0].cmds->reserved = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd[_i0].cmds->address_set = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd[_i0].cmds->flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd[_i0].cmds->opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmd[_i0].cmds->reserved = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].cmds->address_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].cmds->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].cmds->opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        cmd[_i0].data_dma = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd[_i0].opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].data_dma = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           vsp1_dl_ext_cmd_fill_header(cmd);
           for(int _aux = 0; _aux < _len_cmd0; _aux++) {
           free(cmd[_aux].cmds);
@@ -109,7 +108,64 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_cmd0 = 100;
+          struct vsp1_dl_ext_cmd * cmd = (struct vsp1_dl_ext_cmd *) malloc(_len_cmd0*sizeof(struct vsp1_dl_ext_cmd));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              int _len_cmd__i0__cmds0 = 1;
+          cmd[_i0].cmds = (struct TYPE_2__ *) malloc(_len_cmd__i0__cmds0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_cmd__i0__cmds0; _j0++) {
+              cmd[_i0].cmds->reserved = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].cmds->address_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].cmds->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].cmds->opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          cmd[_i0].data_dma = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          vsp1_dl_ext_cmd_fill_header(cmd);
+          for(int _aux = 0; _aux < _len_cmd0; _aux++) {
+          free(cmd[_aux].cmds);
+          }
+          free(cmd);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_cmd0 = 1;
+          struct vsp1_dl_ext_cmd * cmd = (struct vsp1_dl_ext_cmd *) malloc(_len_cmd0*sizeof(struct vsp1_dl_ext_cmd));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              int _len_cmd__i0__cmds0 = 1;
+          cmd[_i0].cmds = (struct TYPE_2__ *) malloc(_len_cmd__i0__cmds0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_cmd__i0__cmds0; _j0++) {
+              cmd[_i0].cmds->reserved = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].cmds->address_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].cmds->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].cmds->opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          cmd[_i0].data_dma = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          vsp1_dl_ext_cmd_fill_header(cmd);
+          for(int _aux = 0; _aux < _len_cmd0; _aux++) {
+          free(cmd[_aux].cmds);
+          }
+          free(cmd);
+        
+        break;
+    }
     default:
         usage();
         break;

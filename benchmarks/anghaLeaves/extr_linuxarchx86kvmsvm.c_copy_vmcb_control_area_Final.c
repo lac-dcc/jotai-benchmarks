@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -86,12 +88,6 @@ __attribute__((used)) static inline void copy_vmcb_control_area(struct vmcb *dst
 	dst->virt_ext              = from->virt_ext;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,63 +100,278 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 102
+          // dynamic_instructions_O0 : 102
+          // ------------------------------- 
+          // static_instructions_O1 : 50
+          // dynamic_instructions_O1 : 50
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_dst_vmcb0 = 65025;
+          struct vmcb * dst_vmcb = (struct vmcb *) malloc(_len_dst_vmcb0*sizeof(struct vmcb));
+          for(int _i0 = 0; _i0 < _len_dst_vmcb0; _i0++) {
+              dst_vmcb[_i0].control.virt_ext = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.nested_cr3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.event_inj_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.event_inj = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.nested_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.exit_int_info_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.exit_int_info = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.exit_info_2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.exit_info_1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.exit_code_hi = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.exit_code = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.int_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.int_vector = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.int_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.tlb_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.asid = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.tsc_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.msrpm_base_pa = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.iopm_base_pa = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.intercept = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.intercept_exceptions = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.intercept_dr = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.intercept_cr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_from_vmcb0 = 65025;
+          struct vmcb * from_vmcb = (struct vmcb *) malloc(_len_from_vmcb0*sizeof(struct vmcb));
+          for(int _i0 = 0; _i0 < _len_from_vmcb0; _i0++) {
+              from_vmcb[_i0].control.virt_ext = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.nested_cr3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.event_inj_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.event_inj = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.nested_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.exit_int_info_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.exit_int_info = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.exit_info_2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.exit_info_1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.exit_code_hi = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.exit_code = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.int_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.int_vector = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.int_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.tlb_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.asid = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.tsc_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.msrpm_base_pa = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.iopm_base_pa = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.intercept = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.intercept_exceptions = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.intercept_dr = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.intercept_cr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          copy_vmcb_control_area(dst_vmcb,from_vmcb);
+          free(dst_vmcb);
+          free(from_vmcb);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 102
+          // dynamic_instructions_O0 : 102
+          // ------------------------------- 
+          // static_instructions_O1 : 50
+          // dynamic_instructions_O1 : 50
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_dst_vmcb0 = 100;
+          struct vmcb * dst_vmcb = (struct vmcb *) malloc(_len_dst_vmcb0*sizeof(struct vmcb));
+          for(int _i0 = 0; _i0 < _len_dst_vmcb0; _i0++) {
+              dst_vmcb[_i0].control.virt_ext = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.nested_cr3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.event_inj_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.event_inj = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.nested_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.exit_int_info_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.exit_int_info = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.exit_info_2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.exit_info_1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.exit_code_hi = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.exit_code = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.int_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.int_vector = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.int_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.tlb_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.asid = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.tsc_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.msrpm_base_pa = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.iopm_base_pa = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.intercept = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.intercept_exceptions = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.intercept_dr = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.intercept_cr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_from_vmcb0 = 100;
+          struct vmcb * from_vmcb = (struct vmcb *) malloc(_len_from_vmcb0*sizeof(struct vmcb));
+          for(int _i0 = 0; _i0 < _len_from_vmcb0; _i0++) {
+              from_vmcb[_i0].control.virt_ext = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.nested_cr3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.event_inj_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.event_inj = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.nested_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.exit_int_info_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.exit_int_info = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.exit_info_2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.exit_info_1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.exit_code_hi = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.exit_code = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.int_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.int_vector = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.int_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.tlb_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.asid = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.tsc_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.msrpm_base_pa = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.iopm_base_pa = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.intercept = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.intercept_exceptions = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.intercept_dr = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.intercept_cr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          copy_vmcb_control_area(dst_vmcb,from_vmcb);
+          free(dst_vmcb);
+          free(from_vmcb);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 102
+          // dynamic_instructions_O0 : 102
+          // ------------------------------- 
+          // static_instructions_O1 : 50
+          // dynamic_instructions_O1 : 50
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           int _len_dst_vmcb0 = 1;
           struct vmcb * dst_vmcb = (struct vmcb *) malloc(_len_dst_vmcb0*sizeof(struct vmcb));
           for(int _i0 = 0; _i0 < _len_dst_vmcb0; _i0++) {
-            dst_vmcb[_i0].control.virt_ext = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst_vmcb[_i0].control.nested_cr3 = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst_vmcb[_i0].control.event_inj_err = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst_vmcb[_i0].control.event_inj = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst_vmcb[_i0].control.nested_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst_vmcb[_i0].control.exit_int_info_err = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst_vmcb[_i0].control.exit_int_info = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst_vmcb[_i0].control.exit_info_2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst_vmcb[_i0].control.exit_info_1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst_vmcb[_i0].control.exit_code_hi = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst_vmcb[_i0].control.exit_code = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst_vmcb[_i0].control.int_state = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst_vmcb[_i0].control.int_vector = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst_vmcb[_i0].control.int_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst_vmcb[_i0].control.tlb_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst_vmcb[_i0].control.asid = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst_vmcb[_i0].control.tsc_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst_vmcb[_i0].control.msrpm_base_pa = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst_vmcb[_i0].control.iopm_base_pa = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst_vmcb[_i0].control.intercept = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst_vmcb[_i0].control.intercept_exceptions = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst_vmcb[_i0].control.intercept_dr = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst_vmcb[_i0].control.intercept_cr = ((-2 * (next_i()%2)) + 1) * next_i();
+              dst_vmcb[_i0].control.virt_ext = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.nested_cr3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.event_inj_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.event_inj = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.nested_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.exit_int_info_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.exit_int_info = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.exit_info_2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.exit_info_1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.exit_code_hi = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.exit_code = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.int_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.int_vector = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.int_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.tlb_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.asid = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.tsc_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.msrpm_base_pa = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.iopm_base_pa = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.intercept = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.intercept_exceptions = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.intercept_dr = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst_vmcb[_i0].control.intercept_cr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_from_vmcb0 = 1;
           struct vmcb * from_vmcb = (struct vmcb *) malloc(_len_from_vmcb0*sizeof(struct vmcb));
           for(int _i0 = 0; _i0 < _len_from_vmcb0; _i0++) {
-            from_vmcb[_i0].control.virt_ext = ((-2 * (next_i()%2)) + 1) * next_i();
-        from_vmcb[_i0].control.nested_cr3 = ((-2 * (next_i()%2)) + 1) * next_i();
-        from_vmcb[_i0].control.event_inj_err = ((-2 * (next_i()%2)) + 1) * next_i();
-        from_vmcb[_i0].control.event_inj = ((-2 * (next_i()%2)) + 1) * next_i();
-        from_vmcb[_i0].control.nested_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
-        from_vmcb[_i0].control.exit_int_info_err = ((-2 * (next_i()%2)) + 1) * next_i();
-        from_vmcb[_i0].control.exit_int_info = ((-2 * (next_i()%2)) + 1) * next_i();
-        from_vmcb[_i0].control.exit_info_2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        from_vmcb[_i0].control.exit_info_1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        from_vmcb[_i0].control.exit_code_hi = ((-2 * (next_i()%2)) + 1) * next_i();
-        from_vmcb[_i0].control.exit_code = ((-2 * (next_i()%2)) + 1) * next_i();
-        from_vmcb[_i0].control.int_state = ((-2 * (next_i()%2)) + 1) * next_i();
-        from_vmcb[_i0].control.int_vector = ((-2 * (next_i()%2)) + 1) * next_i();
-        from_vmcb[_i0].control.int_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
-        from_vmcb[_i0].control.tlb_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
-        from_vmcb[_i0].control.asid = ((-2 * (next_i()%2)) + 1) * next_i();
-        from_vmcb[_i0].control.tsc_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        from_vmcb[_i0].control.msrpm_base_pa = ((-2 * (next_i()%2)) + 1) * next_i();
-        from_vmcb[_i0].control.iopm_base_pa = ((-2 * (next_i()%2)) + 1) * next_i();
-        from_vmcb[_i0].control.intercept = ((-2 * (next_i()%2)) + 1) * next_i();
-        from_vmcb[_i0].control.intercept_exceptions = ((-2 * (next_i()%2)) + 1) * next_i();
-        from_vmcb[_i0].control.intercept_dr = ((-2 * (next_i()%2)) + 1) * next_i();
-        from_vmcb[_i0].control.intercept_cr = ((-2 * (next_i()%2)) + 1) * next_i();
+              from_vmcb[_i0].control.virt_ext = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.nested_cr3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.event_inj_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.event_inj = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.nested_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.exit_int_info_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.exit_int_info = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.exit_info_2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.exit_info_1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.exit_code_hi = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.exit_code = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.int_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.int_vector = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.int_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.tlb_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.asid = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.tsc_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.msrpm_base_pa = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.iopm_base_pa = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.intercept = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.intercept_exceptions = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.intercept_dr = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].control.intercept_cr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           copy_vmcb_control_area(dst_vmcb,from_vmcb);
           free(dst_vmcb);
           free(from_vmcb);

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static inline bool gma_out_of_range(unsigned long gma,
 		return (gma > gma_tail) && (gma < gma_head);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,8 +82,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long gma = 100;
+        
           unsigned long gma_head = 100;
+        
           unsigned int gma_tail = 100;
+        
           int benchRet = gma_out_of_range(gma,gma_head,gma_tail);
           printf("%d\n", benchRet); 
         
@@ -98,8 +96,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long gma = 255;
+        
           unsigned long gma_head = 255;
+        
           unsigned int gma_tail = 255;
+        
           int benchRet = gma_out_of_range(gma,gma_head,gma_tail);
           printf("%d\n", benchRet); 
         
@@ -109,14 +110,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long gma = 10;
+        
           unsigned long gma_head = 10;
+        
           unsigned int gma_tail = 10;
+        
           int benchRet = gma_out_of_range(gma,gma_head,gma_tail);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long gma = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long gma_head = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int gma_tail = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = gma_out_of_range(gma,gma_head,gma_tail);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ mpSetDigit(DIGIT_T* a, DIGIT_T d, unsigned int ndigits)
   a[0] = d;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,22 +80,42 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          long d = 10;
-          unsigned int ndigits = 10;
-          int _len_a0 = 100;
+          long d = 255;
+        
+          unsigned int ndigits = 255;
+        
+          int _len_a0 = 65025;
           long * a = (long *) malloc(_len_a0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_a0; _i0++) {
             a[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           mpSetDigit(a,d,ndigits);
           free(a);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          long d = 10;
+        
+          unsigned int ndigits = 10;
+        
+          int _len_a0 = 100;
+          long * a = (long *) malloc(_len_a0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+            a[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          mpSetDigit(a,d,ndigits);
+          free(a);
+        
+        break;
+    }
     default:
         usage();
         break;

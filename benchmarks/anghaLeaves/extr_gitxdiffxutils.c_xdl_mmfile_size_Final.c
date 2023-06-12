@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ long xdl_mmfile_size(mmfile_t *mmf)
 	return mmf->size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_mmf0 = 1;
+          int _len_mmf0 = 65025;
           struct TYPE_3__ * mmf = (struct TYPE_3__ *) malloc(_len_mmf0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_mmf0; _i0++) {
-            mmf[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              mmf[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = xdl_mmfile_size(mmf);
           printf("%ld\n", benchRet); 
           free(mmf);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_mmf0 = 100;
           struct TYPE_3__ * mmf = (struct TYPE_3__ *) malloc(_len_mmf0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_mmf0; _i0++) {
-            mmf[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              mmf[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = xdl_mmfile_size(mmf);
           printf("%ld\n", benchRet); 
           free(mmf);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_mmf0 = 1;
+          struct TYPE_3__ * mmf = (struct TYPE_3__ *) malloc(_len_mmf0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_mmf0; _i0++) {
+              mmf[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = xdl_mmfile_size(mmf);
+          printf("%ld\n", benchRet); 
+          free(mmf);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -88,12 +91,6 @@ float ffp_get_property_float(FFPlayer *ffp, int id, float default_value)
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -110,25 +107,110 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int id = 100;
+        
           float default_value = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           int _len_ffp0 = 1;
           struct TYPE_5__ * ffp = (struct TYPE_5__ *) malloc(_len_ffp0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_ffp0; _i0++) {
-            ffp[_i0].pf_playback_rate = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        ffp[_i0].pf_playback_volume = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        ffp[_i0].stat.vdps = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        ffp[_i0].stat.vfps = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        ffp[_i0].stat.avdelay = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        ffp[_i0].stat.avdiff = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        ffp[_i0].stat.drop_frame_rate = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+              ffp[_i0].pf_playback_rate = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          ffp[_i0].pf_playback_volume = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          ffp[_i0].stat.vdps = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          ffp[_i0].stat.vfps = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          ffp[_i0].stat.avdelay = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          ffp[_i0].stat.avdiff = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          ffp[_i0].stat.drop_frame_rate = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+        
           }
+        
           float benchRet = ffp_get_property_float(ffp,id,default_value);
           printf("%f\n", benchRet); 
           free(ffp);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int id = 255;
+        
+          float default_value = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          int _len_ffp0 = 65025;
+          struct TYPE_5__ * ffp = (struct TYPE_5__ *) malloc(_len_ffp0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_ffp0; _i0++) {
+              ffp[_i0].pf_playback_rate = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          ffp[_i0].pf_playback_volume = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          ffp[_i0].stat.vdps = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          ffp[_i0].stat.vfps = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          ffp[_i0].stat.avdelay = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          ffp[_i0].stat.avdiff = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          ffp[_i0].stat.drop_frame_rate = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+        
+          }
+        
+          float benchRet = ffp_get_property_float(ffp,id,default_value);
+          printf("%f\n", benchRet); 
+          free(ffp);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int id = 10;
+        
+          float default_value = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          int _len_ffp0 = 100;
+          struct TYPE_5__ * ffp = (struct TYPE_5__ *) malloc(_len_ffp0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_ffp0; _i0++) {
+              ffp[_i0].pf_playback_rate = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          ffp[_i0].pf_playback_volume = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          ffp[_i0].stat.vdps = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          ffp[_i0].stat.vfps = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          ffp[_i0].stat.avdelay = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          ffp[_i0].stat.avdiff = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          ffp[_i0].stat.drop_frame_rate = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+        
+          }
+        
+          float benchRet = ffp_get_property_float(ffp,id,default_value);
+          printf("%f\n", benchRet); 
+          free(ffp);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          float default_value = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          int _len_ffp0 = 1;
+          struct TYPE_5__ * ffp = (struct TYPE_5__ *) malloc(_len_ffp0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_ffp0; _i0++) {
+              ffp[_i0].pf_playback_rate = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          ffp[_i0].pf_playback_volume = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          ffp[_i0].stat.vdps = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          ffp[_i0].stat.vfps = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          ffp[_i0].stat.avdelay = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          ffp[_i0].stat.avdiff = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          ffp[_i0].stat.drop_frame_rate = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+        
+          }
+        
+          float benchRet = ffp_get_property_float(ffp,id,default_value);
+          printf("%f\n", benchRet); 
+          free(ffp);
+        
+        break;
+    }
     default:
         usage();
         break;

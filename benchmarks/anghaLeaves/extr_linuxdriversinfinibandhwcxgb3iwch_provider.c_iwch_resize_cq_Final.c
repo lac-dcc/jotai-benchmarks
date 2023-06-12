@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -124,12 +127,6 @@ __attribute__((used)) static int iwch_resize_cq(struct ib_cq *cq, int cqe, struc
 #endif
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -142,20 +139,198 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int cqe = 100;
+        
           int _len_cq0 = 1;
           struct ib_cq * cq = (struct ib_cq *) malloc(_len_cq0*sizeof(struct ib_cq));
           for(int _i0 = 0; _i0 < _len_cq0; _i0++) {
-            cq[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              cq[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_udata0 = 1;
           struct ib_udata * udata = (struct ib_udata *) malloc(_len_udata0*sizeof(struct ib_udata));
           for(int _i0 = 0; _i0 < _len_udata0; _i0++) {
-            udata[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              udata[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = iwch_resize_cq(cq,cqe,udata);
+          printf("%d\n", benchRet); 
+          free(cq);
+          free(udata);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int cqe = 255;
+        
+          int _len_cq0 = 65025;
+          struct ib_cq * cq = (struct ib_cq *) malloc(_len_cq0*sizeof(struct ib_cq));
+          for(int _i0 = 0; _i0 < _len_cq0; _i0++) {
+              cq[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_udata0 = 65025;
+          struct ib_udata * udata = (struct ib_udata *) malloc(_len_udata0*sizeof(struct ib_udata));
+          for(int _i0 = 0; _i0 < _len_udata0; _i0++) {
+              udata[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = iwch_resize_cq(cq,cqe,udata);
+          printf("%d\n", benchRet); 
+          free(cq);
+          free(udata);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int cqe = 10;
+        
+          int _len_cq0 = 100;
+          struct ib_cq * cq = (struct ib_cq *) malloc(_len_cq0*sizeof(struct ib_cq));
+          for(int _i0 = 0; _i0 < _len_cq0; _i0++) {
+              cq[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_udata0 = 100;
+          struct ib_udata * udata = (struct ib_udata *) malloc(_len_udata0*sizeof(struct ib_udata));
+          for(int _i0 = 0; _i0 < _len_udata0; _i0++) {
+              udata[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = iwch_resize_cq(cq,cqe,udata);
+          printf("%d\n", benchRet); 
+          free(cq);
+          free(udata);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int cqe = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cq0 = 1;
+          struct ib_cq * cq = (struct ib_cq *) malloc(_len_cq0*sizeof(struct ib_cq));
+          for(int _i0 = 0; _i0 < _len_cq0; _i0++) {
+              cq[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_udata0 = 1;
+          struct ib_udata * udata = (struct ib_udata *) malloc(_len_udata0*sizeof(struct ib_udata));
+          for(int _i0 = 0; _i0 < _len_udata0; _i0++) {
+              udata[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = iwch_resize_cq(cq,cqe,udata);
           printf("%d\n", benchRet); 
           free(cq);

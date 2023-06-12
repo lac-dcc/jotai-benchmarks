@@ -65,12 +65,6 @@ __attribute__((used)) static inline u32 rv6xx_calculate_spread_spectrum_clk_v(u3
 		(5375 * ((vco_freq * 10) / (4096 >> fb_divider_scale))));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,16 +81,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int vco_freq = 10;
+        
           int ref_freq = 10;
+        
           int ss_rate = 10;
+        
           int ss_percent = 10;
+        
           int fb_divider_scale = 10;
+        
           int benchRet = rv6xx_calculate_spread_spectrum_clk_v(vco_freq,ref_freq,ss_rate,ss_percent,fb_divider_scale);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -65,12 +65,6 @@ __attribute__((used)) static bool GreaterThan(fInt A, fInt B)
 		return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,19 +77,20 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           struct TYPE_4__ A;
-        A.full = ((-2 * (next_i()%2)) + 1) * next_i();
+          A.full = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           struct TYPE_4__ B;
-        B.full = ((-2 * (next_i()%2)) + 1) * next_i();
+          B.full = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = GreaterThan(A,B);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ __attribute__((used)) static s32 __led_brightness_to_intensity(struct v4l2_ctrl 
 	return (brightness * ctrl->step) + ctrl->minimum;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,17 +90,131 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           enum led_brightness brightness = 0;
+        
+          int _len_ctrl0 = 65025;
+          struct v4l2_ctrl * ctrl = (struct v4l2_ctrl *) malloc(_len_ctrl0*sizeof(struct v4l2_ctrl));
+          for(int _i0 = 0; _i0 < _len_ctrl0; _i0++) {
+              ctrl[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctrl[_i0].step = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctrl[_i0].minimum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = __led_brightness_to_intensity(ctrl,brightness);
+          printf("%ld\n", benchRet); 
+          free(ctrl);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          enum led_brightness brightness = 0;
+        
+          int _len_ctrl0 = 100;
+          struct v4l2_ctrl * ctrl = (struct v4l2_ctrl *) malloc(_len_ctrl0*sizeof(struct v4l2_ctrl));
+          for(int _i0 = 0; _i0 < _len_ctrl0; _i0++) {
+              ctrl[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctrl[_i0].step = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctrl[_i0].minimum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = __led_brightness_to_intensity(ctrl,brightness);
+          printf("%ld\n", benchRet); 
+          free(ctrl);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          enum led_brightness brightness = 0;
+        
           int _len_ctrl0 = 1;
           struct v4l2_ctrl * ctrl = (struct v4l2_ctrl *) malloc(_len_ctrl0*sizeof(struct v4l2_ctrl));
           for(int _i0 = 0; _i0 < _len_ctrl0; _i0++) {
-            ctrl[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
-        ctrl[_i0].step = ((-2 * (next_i()%2)) + 1) * next_i();
-        ctrl[_i0].minimum = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctrl[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctrl[_i0].step = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctrl[_i0].minimum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = __led_brightness_to_intensity(ctrl,brightness);
           printf("%ld\n", benchRet); 
           free(ctrl);

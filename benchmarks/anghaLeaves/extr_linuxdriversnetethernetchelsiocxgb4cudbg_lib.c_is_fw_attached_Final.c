@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static int is_fw_attached(struct cudbg_init *pdbg_init)
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,19 +81,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_pdbg_init0 = 65025;
+          struct cudbg_init * pdbg_init = (struct cudbg_init *) malloc(_len_pdbg_init0*sizeof(struct cudbg_init));
+          for(int _i0 = 0; _i0 < _len_pdbg_init0; _i0++) {
+              int _len_pdbg_init__i0__adap0 = 1;
+          pdbg_init[_i0].adap = (struct adapter *) malloc(_len_pdbg_init__i0__adap0*sizeof(struct adapter));
+          for(int _j0 = 0; _j0 < _len_pdbg_init__i0__adap0; _j0++) {
+              pdbg_init[_i0].adap->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdbg_init[_i0].adap->use_bd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = is_fw_attached(pdbg_init);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pdbg_init0; _aux++) {
+          free(pdbg_init[_aux].adap);
+          }
+          free(pdbg_init);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_pdbg_init0 = 100;
+          struct cudbg_init * pdbg_init = (struct cudbg_init *) malloc(_len_pdbg_init0*sizeof(struct cudbg_init));
+          for(int _i0 = 0; _i0 < _len_pdbg_init0; _i0++) {
+              int _len_pdbg_init__i0__adap0 = 1;
+          pdbg_init[_i0].adap = (struct adapter *) malloc(_len_pdbg_init__i0__adap0*sizeof(struct adapter));
+          for(int _j0 = 0; _j0 < _len_pdbg_init__i0__adap0; _j0++) {
+              pdbg_init[_i0].adap->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdbg_init[_i0].adap->use_bd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = is_fw_attached(pdbg_init);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pdbg_init0; _aux++) {
+          free(pdbg_init[_aux].adap);
+          }
+          free(pdbg_init);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_pdbg_init0 = 1;
           struct cudbg_init * pdbg_init = (struct cudbg_init *) malloc(_len_pdbg_init0*sizeof(struct cudbg_init));
           for(int _i0 = 0; _i0 < _len_pdbg_init0; _i0++) {
               int _len_pdbg_init__i0__adap0 = 1;
           pdbg_init[_i0].adap = (struct adapter *) malloc(_len_pdbg_init__i0__adap0*sizeof(struct adapter));
           for(int _j0 = 0; _j0 < _len_pdbg_init__i0__adap0; _j0++) {
-            pdbg_init[_i0].adap->flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        pdbg_init[_i0].adap->use_bd = ((-2 * (next_i()%2)) + 1) * next_i();
+              pdbg_init[_i0].adap->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdbg_init[_i0].adap->use_bd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = is_fw_attached(pdbg_init);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_pdbg_init0; _aux++) {

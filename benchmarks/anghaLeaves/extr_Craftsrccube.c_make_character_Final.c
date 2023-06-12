@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -79,12 +80,6 @@ void make_character(
     *(d++) = du + 0; *(d++) = dv + b;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,19 +92,96 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 205
+          // dynamic_instructions_O0 : 205
+          // ------------------------------- 
+          // static_instructions_O1 : 57
+          // dynamic_instructions_O1 : 57
+          // ------------------------------- 
+          // static_instructions_O2 : 58
+          // dynamic_instructions_O2 : 58
+          // ------------------------------- 
+          // static_instructions_O3 : 58
+          // dynamic_instructions_O3 : 58
+          // ------------------------------- 
+          // static_instructions_Ofast : 55
+          // dynamic_instructions_Ofast : 55
+          // ------------------------------- 
+          // static_instructions_Os : 58
+          // dynamic_instructions_Os : 58
+          // ------------------------------- 
+          // static_instructions_Oz : 57
+          // dynamic_instructions_Oz : 57
+          // ------------------------------- 
+
           float x = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           float y = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           float n = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           float m = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          char c = 255;
+        
+          int _len_data0 = 65025;
+          float * data = (float *) malloc(_len_data0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+            data[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          make_character(data,x,y,n,m,c);
+          free(data);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 205
+          // dynamic_instructions_O0 : 205
+          // ------------------------------- 
+          // static_instructions_O1 : 57
+          // dynamic_instructions_O1 : 57
+          // ------------------------------- 
+          // static_instructions_O2 : 58
+          // dynamic_instructions_O2 : 58
+          // ------------------------------- 
+          // static_instructions_O3 : 58
+          // dynamic_instructions_O3 : 58
+          // ------------------------------- 
+          // static_instructions_Ofast : 55
+          // dynamic_instructions_Ofast : 55
+          // ------------------------------- 
+          // static_instructions_Os : 58
+          // dynamic_instructions_Os : 58
+          // ------------------------------- 
+          // static_instructions_Oz : 57
+          // dynamic_instructions_Oz : 57
+          // ------------------------------- 
+
+          float x = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          float y = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          float n = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          float m = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           char c = 10;
+        
           int _len_data0 = 100;
           float * data = (float *) malloc(_len_data0*sizeof(float));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
             data[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
+        
           make_character(data,x,y,n,m,c);
           free(data);
         

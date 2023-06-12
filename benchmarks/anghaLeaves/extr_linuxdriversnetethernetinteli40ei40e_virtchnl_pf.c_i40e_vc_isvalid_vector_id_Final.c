@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ __attribute__((used)) static inline bool i40e_vc_isvalid_vector_id(struct i40e_v
 	return vector_id < pf->hw.func_caps.num_msix_vectors_vf;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,15 +87,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long vector_id = 100;
+        
           int _len_vf0 = 1;
           struct i40e_vf * vf = (struct i40e_vf *) malloc(_len_vf0*sizeof(struct i40e_vf));
           for(int _i0 = 0; _i0 < _len_vf0; _i0++) {
               int _len_vf__i0__pf0 = 1;
           vf[_i0].pf = (struct i40e_pf *) malloc(_len_vf__i0__pf0*sizeof(struct i40e_pf));
           for(int _j0 = 0; _j0 < _len_vf__i0__pf0; _j0++) {
-            vf[_i0].pf->hw.func_caps.num_msix_vectors_vf = ((-2 * (next_i()%2)) + 1) * next_i();
+              vf[_i0].pf->hw.func_caps.num_msix_vectors_vf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           }
+        
           int benchRet = i40e_vc_isvalid_vector_id(vf,vector_id);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_vf0; _aux++) {
@@ -108,7 +111,90 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long vector_id = 255;
+        
+          int _len_vf0 = 65025;
+          struct i40e_vf * vf = (struct i40e_vf *) malloc(_len_vf0*sizeof(struct i40e_vf));
+          for(int _i0 = 0; _i0 < _len_vf0; _i0++) {
+              int _len_vf__i0__pf0 = 1;
+          vf[_i0].pf = (struct i40e_pf *) malloc(_len_vf__i0__pf0*sizeof(struct i40e_pf));
+          for(int _j0 = 0; _j0 < _len_vf__i0__pf0; _j0++) {
+              vf[_i0].pf->hw.func_caps.num_msix_vectors_vf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          }
+        
+          int benchRet = i40e_vc_isvalid_vector_id(vf,vector_id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vf0; _aux++) {
+          free(vf[_aux].pf);
+          }
+          free(vf);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long vector_id = 10;
+        
+          int _len_vf0 = 100;
+          struct i40e_vf * vf = (struct i40e_vf *) malloc(_len_vf0*sizeof(struct i40e_vf));
+          for(int _i0 = 0; _i0 < _len_vf0; _i0++) {
+              int _len_vf__i0__pf0 = 1;
+          vf[_i0].pf = (struct i40e_pf *) malloc(_len_vf__i0__pf0*sizeof(struct i40e_pf));
+          for(int _j0 = 0; _j0 < _len_vf__i0__pf0; _j0++) {
+              vf[_i0].pf->hw.func_caps.num_msix_vectors_vf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          }
+        
+          int benchRet = i40e_vc_isvalid_vector_id(vf,vector_id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vf0; _aux++) {
+          free(vf[_aux].pf);
+          }
+          free(vf);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long vector_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_vf0 = 1;
+          struct i40e_vf * vf = (struct i40e_vf *) malloc(_len_vf0*sizeof(struct i40e_vf));
+          for(int _i0 = 0; _i0 < _len_vf0; _i0++) {
+              int _len_vf__i0__pf0 = 1;
+          vf[_i0].pf = (struct i40e_pf *) malloc(_len_vf__i0__pf0*sizeof(struct i40e_pf));
+          for(int _j0 = 0; _j0 < _len_vf__i0__pf0; _j0++) {
+              vf[_i0].pf->hw.func_caps.num_msix_vectors_vf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          }
+        
+          int benchRet = i40e_vc_isvalid_vector_id(vf,vector_id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vf0; _aux++) {
+          free(vf[_aux].pf);
+          }
+          free(vf);
+        
+        break;
+    }
     default:
         usage();
         break;

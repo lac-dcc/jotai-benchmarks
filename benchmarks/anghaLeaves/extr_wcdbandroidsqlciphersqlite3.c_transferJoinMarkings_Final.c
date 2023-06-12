@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static void transferJoinMarkings(Expr *pDerived, Expr *pBa
   }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,28 +79,81 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pDerived0 = 1;
+          int _len_pDerived0 = 65025;
           struct TYPE_4__ * pDerived = (struct TYPE_4__ *) malloc(_len_pDerived0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_pDerived0; _i0++) {
-            pDerived[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        pDerived[_i0].iRightJoinTable = ((-2 * (next_i()%2)) + 1) * next_i();
+              pDerived[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          pDerived[_i0].iRightJoinTable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_pBase0 = 1;
+        
+          int _len_pBase0 = 65025;
           struct TYPE_4__ * pBase = (struct TYPE_4__ *) malloc(_len_pBase0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_pBase0; _i0++) {
-            pBase[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        pBase[_i0].iRightJoinTable = ((-2 * (next_i()%2)) + 1) * next_i();
+              pBase[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          pBase[_i0].iRightJoinTable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           transferJoinMarkings(pDerived,pBase);
           free(pDerived);
           free(pBase);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_pDerived0 = 100;
+          struct TYPE_4__ * pDerived = (struct TYPE_4__ *) malloc(_len_pDerived0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_pDerived0; _i0++) {
+              pDerived[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          pDerived[_i0].iRightJoinTable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pBase0 = 100;
+          struct TYPE_4__ * pBase = (struct TYPE_4__ *) malloc(_len_pBase0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_pBase0; _i0++) {
+              pBase[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          pBase[_i0].iRightJoinTable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          transferJoinMarkings(pDerived,pBase);
+          free(pDerived);
+          free(pBase);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_pDerived0 = 1;
+          struct TYPE_4__ * pDerived = (struct TYPE_4__ *) malloc(_len_pDerived0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_pDerived0; _i0++) {
+              pDerived[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          pDerived[_i0].iRightJoinTable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pBase0 = 1;
+          struct TYPE_4__ * pBase = (struct TYPE_4__ *) malloc(_len_pBase0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_pBase0; _i0++) {
+              pBase[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          pBase[_i0].iRightJoinTable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          transferJoinMarkings(pDerived,pBase);
+          free(pDerived);
+          free(pBase);
+        
+        break;
+    }
     default:
         usage();
         break;

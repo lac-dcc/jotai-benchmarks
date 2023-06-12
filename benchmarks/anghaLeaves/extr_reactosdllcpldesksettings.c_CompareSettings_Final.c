@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +83,6 @@ CompareSettings(PSETTINGS_ENTRY Entry, DWORD dmPelsWidth, DWORD dmPelsHeight,
     return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,24 +99,110 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long dmPelsWidth = 100;
+        
           long dmPelsHeight = 100;
+        
           long dmBitsPerPel = 100;
+        
           long dmDisplayFrequency = 100;
+        
           int _len_Entry0 = 1;
           struct TYPE_3__ * Entry = (struct TYPE_3__ *) malloc(_len_Entry0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_Entry0; _i0++) {
-            Entry[_i0].dmPelsWidth = ((-2 * (next_i()%2)) + 1) * next_i();
-        Entry[_i0].dmPelsHeight = ((-2 * (next_i()%2)) + 1) * next_i();
-        Entry[_i0].dmBitsPerPel = ((-2 * (next_i()%2)) + 1) * next_i();
-        Entry[_i0].dmDisplayFrequency = ((-2 * (next_i()%2)) + 1) * next_i();
+              Entry[_i0].dmPelsWidth = ((-2 * (next_i()%2)) + 1) * next_i();
+          Entry[_i0].dmPelsHeight = ((-2 * (next_i()%2)) + 1) * next_i();
+          Entry[_i0].dmBitsPerPel = ((-2 * (next_i()%2)) + 1) * next_i();
+          Entry[_i0].dmDisplayFrequency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = CompareSettings(Entry,dmPelsWidth,dmPelsHeight,dmBitsPerPel,dmDisplayFrequency);
           printf("%d\n", benchRet); 
           free(Entry);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long dmPelsWidth = 255;
+        
+          long dmPelsHeight = 255;
+        
+          long dmBitsPerPel = 255;
+        
+          long dmDisplayFrequency = 255;
+        
+          int _len_Entry0 = 65025;
+          struct TYPE_3__ * Entry = (struct TYPE_3__ *) malloc(_len_Entry0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_Entry0; _i0++) {
+              Entry[_i0].dmPelsWidth = ((-2 * (next_i()%2)) + 1) * next_i();
+          Entry[_i0].dmPelsHeight = ((-2 * (next_i()%2)) + 1) * next_i();
+          Entry[_i0].dmBitsPerPel = ((-2 * (next_i()%2)) + 1) * next_i();
+          Entry[_i0].dmDisplayFrequency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = CompareSettings(Entry,dmPelsWidth,dmPelsHeight,dmBitsPerPel,dmDisplayFrequency);
+          printf("%d\n", benchRet); 
+          free(Entry);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long dmPelsWidth = 10;
+        
+          long dmPelsHeight = 10;
+        
+          long dmBitsPerPel = 10;
+        
+          long dmDisplayFrequency = 10;
+        
+          int _len_Entry0 = 100;
+          struct TYPE_3__ * Entry = (struct TYPE_3__ *) malloc(_len_Entry0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_Entry0; _i0++) {
+              Entry[_i0].dmPelsWidth = ((-2 * (next_i()%2)) + 1) * next_i();
+          Entry[_i0].dmPelsHeight = ((-2 * (next_i()%2)) + 1) * next_i();
+          Entry[_i0].dmBitsPerPel = ((-2 * (next_i()%2)) + 1) * next_i();
+          Entry[_i0].dmDisplayFrequency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = CompareSettings(Entry,dmPelsWidth,dmPelsHeight,dmBitsPerPel,dmDisplayFrequency);
+          printf("%d\n", benchRet); 
+          free(Entry);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long dmPelsWidth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long dmPelsHeight = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long dmBitsPerPel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long dmDisplayFrequency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_Entry0 = 1;
+          struct TYPE_3__ * Entry = (struct TYPE_3__ *) malloc(_len_Entry0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_Entry0; _i0++) {
+              Entry[_i0].dmPelsWidth = ((-2 * (next_i()%2)) + 1) * next_i();
+          Entry[_i0].dmPelsHeight = ((-2 * (next_i()%2)) + 1) * next_i();
+          Entry[_i0].dmBitsPerPel = ((-2 * (next_i()%2)) + 1) * next_i();
+          Entry[_i0].dmDisplayFrequency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = CompareSettings(Entry,dmPelsWidth,dmPelsHeight,dmBitsPerPel,dmDisplayFrequency);
+          printf("%d\n", benchRet); 
+          free(Entry);
+        
+        break;
+    }
     default:
         usage();
         break;

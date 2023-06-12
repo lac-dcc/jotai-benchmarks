@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static int via_rng_data_read(struct hwrng *rng, u32 *data)
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,19 +79,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rng0 = 1;
+          int _len_rng0 = 65025;
           struct hwrng * rng = (struct hwrng *) malloc(_len_rng0*sizeof(struct hwrng));
           for(int _i0 = 0; _i0 < _len_rng0; _i0++) {
-            rng[_i0].priv = ((-2 * (next_i()%2)) + 1) * next_i();
+              rng[_i0].priv = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_data0 = 1;
+        
+          int _len_data0 = 65025;
           int * data = (int *) malloc(_len_data0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
             data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = via_rng_data_read(rng,data);
           printf("%d\n", benchRet); 
           free(rng);
@@ -103,7 +102,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_rng0 = 100;
+          struct hwrng * rng = (struct hwrng *) malloc(_len_rng0*sizeof(struct hwrng));
+          for(int _i0 = 0; _i0 < _len_rng0; _i0++) {
+              rng[_i0].priv = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_data0 = 100;
+          int * data = (int *) malloc(_len_data0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+            data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = via_rng_data_read(rng,data);
+          printf("%d\n", benchRet); 
+          free(rng);
+          free(data);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_rng0 = 1;
+          struct hwrng * rng = (struct hwrng *) malloc(_len_rng0*sizeof(struct hwrng));
+          for(int _i0 = 0; _i0 < _len_rng0; _i0++) {
+              rng[_i0].priv = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_data0 = 1;
+          int * data = (int *) malloc(_len_data0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+            data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = via_rng_data_read(rng,data);
+          printf("%d\n", benchRet); 
+          free(rng);
+          free(data);
+        
+        break;
+    }
     default:
         usage();
         break;

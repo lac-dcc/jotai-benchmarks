@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static inline struct audio_convert_info *get_audio_convers
 	return output->audio_conversion_set ? &output->audio_conversion : NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,15 +76,125 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_output0 = 65025;
+          struct obs_output * output = (struct obs_output *) malloc(_len_output0*sizeof(struct obs_output));
+          for(int _i0 = 0; _i0 < _len_output0; _i0++) {
+              output[_i0].audio_conversion.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          output[_i0].audio_conversion_set = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct audio_convert_info * benchRet = get_audio_conversion(output);
+          printf("%d\n", (*benchRet).dummy);
+          free(output);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_output0 = 100;
+          struct obs_output * output = (struct obs_output *) malloc(_len_output0*sizeof(struct obs_output));
+          for(int _i0 = 0; _i0 < _len_output0; _i0++) {
+              output[_i0].audio_conversion.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          output[_i0].audio_conversion_set = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct audio_convert_info * benchRet = get_audio_conversion(output);
+          printf("%d\n", (*benchRet).dummy);
+          free(output);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_output0 = 1;
           struct obs_output * output = (struct obs_output *) malloc(_len_output0*sizeof(struct obs_output));
           for(int _i0 = 0; _i0 < _len_output0; _i0++) {
-            output[_i0].audio_conversion.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-        output[_i0].audio_conversion_set = ((-2 * (next_i()%2)) + 1) * next_i();
+              output[_i0].audio_conversion.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          output[_i0].audio_conversion_set = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           struct audio_convert_info * benchRet = get_audio_conversion(output);
           printf("%d\n", (*benchRet).dummy);
           free(output);

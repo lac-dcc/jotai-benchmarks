@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ nfs4_ff_layout_stat_io_update_requested(struct nfs4_ff_layoutstat *layoutstat,
 	iostat->bytes_requested += requested;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,16 +82,172 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           long requested = 100;
+        
           int _len_layoutstat0 = 1;
           struct nfs4_ff_layoutstat * layoutstat = (struct nfs4_ff_layoutstat *) malloc(_len_layoutstat0*sizeof(struct nfs4_ff_layoutstat));
           for(int _i0 = 0; _i0 < _len_layoutstat0; _i0++) {
-            layoutstat[_i0].io_stat.bytes_requested = ((-2 * (next_i()%2)) + 1) * next_i();
-        layoutstat[_i0].io_stat.ops_requested = ((-2 * (next_i()%2)) + 1) * next_i();
+              layoutstat[_i0].io_stat.bytes_requested = ((-2 * (next_i()%2)) + 1) * next_i();
+          layoutstat[_i0].io_stat.ops_requested = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          nfs4_ff_layout_stat_io_update_requested(layoutstat,requested);
+          free(layoutstat);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          long requested = 255;
+        
+          int _len_layoutstat0 = 65025;
+          struct nfs4_ff_layoutstat * layoutstat = (struct nfs4_ff_layoutstat *) malloc(_len_layoutstat0*sizeof(struct nfs4_ff_layoutstat));
+          for(int _i0 = 0; _i0 < _len_layoutstat0; _i0++) {
+              layoutstat[_i0].io_stat.bytes_requested = ((-2 * (next_i()%2)) + 1) * next_i();
+          layoutstat[_i0].io_stat.ops_requested = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          nfs4_ff_layout_stat_io_update_requested(layoutstat,requested);
+          free(layoutstat);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          long requested = 10;
+        
+          int _len_layoutstat0 = 100;
+          struct nfs4_ff_layoutstat * layoutstat = (struct nfs4_ff_layoutstat *) malloc(_len_layoutstat0*sizeof(struct nfs4_ff_layoutstat));
+          for(int _i0 = 0; _i0 < _len_layoutstat0; _i0++) {
+              layoutstat[_i0].io_stat.bytes_requested = ((-2 * (next_i()%2)) + 1) * next_i();
+          layoutstat[_i0].io_stat.ops_requested = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          nfs4_ff_layout_stat_io_update_requested(layoutstat,requested);
+          free(layoutstat);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          long requested = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_layoutstat0 = 1;
+          struct nfs4_ff_layoutstat * layoutstat = (struct nfs4_ff_layoutstat *) malloc(_len_layoutstat0*sizeof(struct nfs4_ff_layoutstat));
+          for(int _i0 = 0; _i0 < _len_layoutstat0; _i0++) {
+              layoutstat[_i0].io_stat.bytes_requested = ((-2 * (next_i()%2)) + 1) * next_i();
+          layoutstat[_i0].io_stat.ops_requested = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           nfs4_ff_layout_stat_io_update_requested(layoutstat,requested);
           free(layoutstat);
         

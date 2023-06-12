@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -87,12 +88,6 @@ __attribute__((used)) static inline int day_from_month(int month, int in_leap_ye
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -109,7 +104,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int month = 100;
+        
           int in_leap_year = 100;
+        
           int benchRet = day_from_month(month,in_leap_year);
           printf("%d\n", benchRet); 
         
@@ -119,7 +116,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int month = 255;
+        
           int in_leap_year = 255;
+        
           int benchRet = day_from_month(month,in_leap_year);
           printf("%d\n", benchRet); 
         
@@ -129,13 +128,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int month = 10;
+        
           int in_leap_year = 10;
+        
           int benchRet = day_from_month(month,in_leap_year);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int month = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int in_leap_year = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = day_from_month(month,in_leap_year);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

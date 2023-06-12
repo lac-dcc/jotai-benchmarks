@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline void dpu_hw_ctl_clear_pending_flush(struct d
 	ctx->pending_flush_mask = 0x0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,27 +74,117 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_ctx0 = 1;
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_ctx0 = 65025;
           struct dpu_hw_ctl * ctx = (struct dpu_hw_ctl *) malloc(_len_ctx0*sizeof(struct dpu_hw_ctl));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
-            ctx[_i0].pending_flush_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctx[_i0].pending_flush_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           dpu_hw_ctl_clear_pending_flush(ctx);
           free(ctx);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_ctx0 = 100;
           struct dpu_hw_ctl * ctx = (struct dpu_hw_ctl *) malloc(_len_ctx0*sizeof(struct dpu_hw_ctl));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
-            ctx[_i0].pending_flush_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctx[_i0].pending_flush_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          dpu_hw_ctl_clear_pending_flush(ctx);
+          free(ctx);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_ctx0 = 1;
+          struct dpu_hw_ctl * ctx = (struct dpu_hw_ctl *) malloc(_len_ctx0*sizeof(struct dpu_hw_ctl));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].pending_flush_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           dpu_hw_ctl_clear_pending_flush(ctx);
           free(ctx);
         

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline void snd_korg1212_setCardState(struct snd_ko
         korg1212->cardState = csState;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,29 +75,123 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           enum CardState csState = 0;
-          int _len_korg12120 = 1;
+        
+          int _len_korg12120 = 65025;
           struct snd_korg1212 * korg1212 = (struct snd_korg1212 *) malloc(_len_korg12120*sizeof(struct snd_korg1212));
           for(int _i0 = 0; _i0 < _len_korg12120; _i0++) {
-            korg1212[_i0].cardState = ((-2 * (next_i()%2)) + 1) * next_i();
+              korg1212[_i0].cardState = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           snd_korg1212_setCardState(korg1212,csState);
           free(korg1212);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           enum CardState csState = 0;
+        
           int _len_korg12120 = 100;
           struct snd_korg1212 * korg1212 = (struct snd_korg1212 *) malloc(_len_korg12120*sizeof(struct snd_korg1212));
           for(int _i0 = 0; _i0 < _len_korg12120; _i0++) {
-            korg1212[_i0].cardState = ((-2 * (next_i()%2)) + 1) * next_i();
+              korg1212[_i0].cardState = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          snd_korg1212_setCardState(korg1212,csState);
+          free(korg1212);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          enum CardState csState = 0;
+        
+          int _len_korg12120 = 1;
+          struct snd_korg1212 * korg1212 = (struct snd_korg1212 *) malloc(_len_korg12120*sizeof(struct snd_korg1212));
+          for(int _i0 = 0; _i0 < _len_korg12120; _i0++) {
+              korg1212[_i0].cardState = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           snd_korg1212_setCardState(korg1212,csState);
           free(korg1212);
         

@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -85,12 +87,6 @@ int cudbg_get_buff(struct cudbg_init *pdbg_init,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,39 +99,225 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           long size = 100;
+        
           int _len_pdbg_init0 = 1;
           struct cudbg_init * pdbg_init = (struct cudbg_init *) malloc(_len_pdbg_init0*sizeof(struct cudbg_init));
           for(int _i0 = 0; _i0 < _len_pdbg_init0; _i0++) {
-            pdbg_init[_i0].compress_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        pdbg_init[_i0].compress_buff_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        pdbg_init[_i0].compress_buff = ((-2 * (next_i()%2)) + 1) * next_i();
+              pdbg_init[_i0].compress_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdbg_init[_i0].compress_buff_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdbg_init[_i0].compress_buff = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_pdbg_buff0 = 1;
           struct cudbg_buffer * pdbg_buff = (struct cudbg_buffer *) malloc(_len_pdbg_buff0*sizeof(struct cudbg_buffer));
           for(int _i0 = 0; _i0 < _len_pdbg_buff0; _i0++) {
-            pdbg_buff[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        pdbg_buff[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              pdbg_buff[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdbg_buff[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_pdbg_buff__i0__data0 = 1;
           pdbg_buff[_i0].data = (char *) malloc(_len_pdbg_buff__i0__data0*sizeof(char));
           for(int _j0 = 0; _j0 < _len_pdbg_buff__i0__data0; _j0++) {
             pdbg_buff[_i0].data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int _len_pin_buff0 = 1;
           struct cudbg_buffer * pin_buff = (struct cudbg_buffer *) malloc(_len_pin_buff0*sizeof(struct cudbg_buffer));
           for(int _i0 = 0; _i0 < _len_pin_buff0; _i0++) {
-            pin_buff[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        pin_buff[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              pin_buff[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          pin_buff[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_pin_buff__i0__data0 = 1;
           pin_buff[_i0].data = (char *) malloc(_len_pin_buff__i0__data0*sizeof(char));
           for(int _j0 = 0; _j0 < _len_pin_buff__i0__data0; _j0++) {
             pin_buff[_i0].data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int benchRet = cudbg_get_buff(pdbg_init,pdbg_buff,size,pin_buff);
+          printf("%d\n", benchRet); 
+          free(pdbg_init);
+          for(int _aux = 0; _aux < _len_pdbg_buff0; _aux++) {
+          free(pdbg_buff[_aux].data);
+          }
+          free(pdbg_buff);
+          for(int _aux = 0; _aux < _len_pin_buff0; _aux++) {
+          free(pin_buff[_aux].data);
+          }
+          free(pin_buff);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          long size = 255;
+        
+          int _len_pdbg_init0 = 65025;
+          struct cudbg_init * pdbg_init = (struct cudbg_init *) malloc(_len_pdbg_init0*sizeof(struct cudbg_init));
+          for(int _i0 = 0; _i0 < _len_pdbg_init0; _i0++) {
+              pdbg_init[_i0].compress_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdbg_init[_i0].compress_buff_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdbg_init[_i0].compress_buff = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pdbg_buff0 = 65025;
+          struct cudbg_buffer * pdbg_buff = (struct cudbg_buffer *) malloc(_len_pdbg_buff0*sizeof(struct cudbg_buffer));
+          for(int _i0 = 0; _i0 < _len_pdbg_buff0; _i0++) {
+              pdbg_buff[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdbg_buff[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pdbg_buff__i0__data0 = 1;
+          pdbg_buff[_i0].data = (char *) malloc(_len_pdbg_buff__i0__data0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_pdbg_buff__i0__data0; _j0++) {
+            pdbg_buff[_i0].data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_pin_buff0 = 65025;
+          struct cudbg_buffer * pin_buff = (struct cudbg_buffer *) malloc(_len_pin_buff0*sizeof(struct cudbg_buffer));
+          for(int _i0 = 0; _i0 < _len_pin_buff0; _i0++) {
+              pin_buff[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          pin_buff[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pin_buff__i0__data0 = 1;
+          pin_buff[_i0].data = (char *) malloc(_len_pin_buff__i0__data0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_pin_buff__i0__data0; _j0++) {
+            pin_buff[_i0].data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = cudbg_get_buff(pdbg_init,pdbg_buff,size,pin_buff);
+          printf("%d\n", benchRet); 
+          free(pdbg_init);
+          for(int _aux = 0; _aux < _len_pdbg_buff0; _aux++) {
+          free(pdbg_buff[_aux].data);
+          }
+          free(pdbg_buff);
+          for(int _aux = 0; _aux < _len_pin_buff0; _aux++) {
+          free(pin_buff[_aux].data);
+          }
+          free(pin_buff);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          long size = 10;
+        
+          int _len_pdbg_init0 = 100;
+          struct cudbg_init * pdbg_init = (struct cudbg_init *) malloc(_len_pdbg_init0*sizeof(struct cudbg_init));
+          for(int _i0 = 0; _i0 < _len_pdbg_init0; _i0++) {
+              pdbg_init[_i0].compress_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdbg_init[_i0].compress_buff_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdbg_init[_i0].compress_buff = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pdbg_buff0 = 100;
+          struct cudbg_buffer * pdbg_buff = (struct cudbg_buffer *) malloc(_len_pdbg_buff0*sizeof(struct cudbg_buffer));
+          for(int _i0 = 0; _i0 < _len_pdbg_buff0; _i0++) {
+              pdbg_buff[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdbg_buff[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pdbg_buff__i0__data0 = 1;
+          pdbg_buff[_i0].data = (char *) malloc(_len_pdbg_buff__i0__data0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_pdbg_buff__i0__data0; _j0++) {
+            pdbg_buff[_i0].data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_pin_buff0 = 100;
+          struct cudbg_buffer * pin_buff = (struct cudbg_buffer *) malloc(_len_pin_buff0*sizeof(struct cudbg_buffer));
+          for(int _i0 = 0; _i0 < _len_pin_buff0; _i0++) {
+              pin_buff[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          pin_buff[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pin_buff__i0__data0 = 1;
+          pin_buff[_i0].data = (char *) malloc(_len_pin_buff__i0__data0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_pin_buff__i0__data0; _j0++) {
+            pin_buff[_i0].data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int benchRet = cudbg_get_buff(pdbg_init,pdbg_buff,size,pin_buff);
           printf("%d\n", benchRet); 
           free(pdbg_init);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ void btrfs_after_dev_replace_commit(struct btrfs_fs_info *fs_info)
 		dev_replace->cursor_left_last_write_of_item;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,21 +78,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_fs_info0 = 1;
+          int _len_fs_info0 = 65025;
           struct btrfs_fs_info * fs_info = (struct btrfs_fs_info *) malloc(_len_fs_info0*sizeof(struct btrfs_fs_info));
           for(int _i0 = 0; _i0 < _len_fs_info0; _i0++) {
-            fs_info[_i0].dev_replace.cursor_left_last_write_of_item = ((-2 * (next_i()%2)) + 1) * next_i();
-        fs_info[_i0].dev_replace.committed_cursor_left = ((-2 * (next_i()%2)) + 1) * next_i();
+              fs_info[_i0].dev_replace.cursor_left_last_write_of_item = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs_info[_i0].dev_replace.committed_cursor_left = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           btrfs_after_dev_replace_commit(fs_info);
           free(fs_info);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_fs_info0 = 100;
+          struct btrfs_fs_info * fs_info = (struct btrfs_fs_info *) malloc(_len_fs_info0*sizeof(struct btrfs_fs_info));
+          for(int _i0 = 0; _i0 < _len_fs_info0; _i0++) {
+              fs_info[_i0].dev_replace.cursor_left_last_write_of_item = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs_info[_i0].dev_replace.committed_cursor_left = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          btrfs_after_dev_replace_commit(fs_info);
+          free(fs_info);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_fs_info0 = 1;
+          struct btrfs_fs_info * fs_info = (struct btrfs_fs_info *) malloc(_len_fs_info0*sizeof(struct btrfs_fs_info));
+          for(int _i0 = 0; _i0 < _len_fs_info0; _i0++) {
+              fs_info[_i0].dev_replace.cursor_left_last_write_of_item = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs_info[_i0].dev_replace.committed_cursor_left = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          btrfs_after_dev_replace_commit(fs_info);
+          free(fs_info);
+        
+        break;
+    }
     default:
         usage();
         break;

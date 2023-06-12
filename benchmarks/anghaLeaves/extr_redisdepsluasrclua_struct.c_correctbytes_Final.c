@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static void correctbytes (char *b, int size, int endian) {
   }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,16 +82,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 3193
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 1155
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 1155
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 1155
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 1155
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 1154
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 1154
+          // ------------------------------- 
+
+          int size = 255;
+        
+          int endian = 255;
+        
+          int _len_b0 = 65025;
+          char * b = (char *) malloc(_len_b0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+            b[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          correctbytes(b,size,endian);
+          free(b);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 143
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 57
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 57
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 57
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 57
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 56
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 56
+          // ------------------------------- 
+
           int size = 10;
+        
           int endian = 10;
+        
           int _len_b0 = 100;
           char * b = (char *) malloc(_len_b0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_b0; _i0++) {
             b[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          correctbytes(b,size,endian);
+          free(b);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int endian = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_b0 = 1;
+          char * b = (char *) malloc(_len_b0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+            b[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           correctbytes(b,size,endian);
           free(b);
         

@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -81,12 +81,6 @@ __attribute__((used)) static int get_opcode_size(UNWIND_CODE op)
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,12 +93,37 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // empty
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           struct TYPE_5__ op;
-        op.u.UnwindOp = ((-2 * (next_i()%2)) + 1) * next_i();
-        op.u.OpInfo = ((-2 * (next_i()%2)) + 1) * next_i();
+          op.u.UnwindOp = ((-2 * (next_i()%2)) + 1) * next_i();
+          op.u.OpInfo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           int benchRet = get_opcode_size(op);
           printf("%d\n", benchRet); 
         

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static int receive_extralen(struct dlm_message *ms)
 	return (ms->m_header.h_length - sizeof(struct dlm_message));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ms0 = 1;
+          int _len_ms0 = 65025;
           struct dlm_message * ms = (struct dlm_message *) malloc(_len_ms0*sizeof(struct dlm_message));
           for(int _i0 = 0; _i0 < _len_ms0; _i0++) {
-            ms[_i0].m_header.h_length = ((-2 * (next_i()%2)) + 1) * next_i();
+              ms[_i0].m_header.h_length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = receive_extralen(ms);
           printf("%d\n", benchRet); 
           free(ms);
@@ -101,15 +99,34 @@ int main(int argc, char *argv[]) {
           int _len_ms0 = 100;
           struct dlm_message * ms = (struct dlm_message *) malloc(_len_ms0*sizeof(struct dlm_message));
           for(int _i0 = 0; _i0 < _len_ms0; _i0++) {
-            ms[_i0].m_header.h_length = ((-2 * (next_i()%2)) + 1) * next_i();
+              ms[_i0].m_header.h_length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = receive_extralen(ms);
           printf("%d\n", benchRet); 
           free(ms);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ms0 = 1;
+          struct dlm_message * ms = (struct dlm_message *) malloc(_len_ms0*sizeof(struct dlm_message));
+          for(int _i0 = 0; _i0 < _len_ms0; _i0++) {
+              ms[_i0].m_header.h_length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = receive_extralen(ms);
+          printf("%d\n", benchRet); 
+          free(ms);
+        
+        break;
+    }
     default:
         usage();
         break;

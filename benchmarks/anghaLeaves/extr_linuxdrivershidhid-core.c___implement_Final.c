@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -80,12 +81,6 @@ __attribute__((used)) static void __implement(u8 *report, unsigned offset, int n
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,17 +93,88 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 72
+          // dynamic_instructions_O0 : 1099
+          // ------------------------------- 
+          // static_instructions_O1 : 48
+          // dynamic_instructions_O1 : 575
+          // ------------------------------- 
+          // static_instructions_O2 : 59
+          // dynamic_instructions_O2 : 329
+          // ------------------------------- 
+          // static_instructions_O3 : 59
+          // dynamic_instructions_O3 : 329
+          // ------------------------------- 
+          // static_instructions_Ofast : 59
+          // dynamic_instructions_Ofast : 329
+          // ------------------------------- 
+          // static_instructions_Os : 46
+          // dynamic_instructions_Os : 573
+          // ------------------------------- 
+          // static_instructions_Oz : 49
+          // dynamic_instructions_Oz : 641
+          // ------------------------------- 
+
+          unsigned int offset = 255;
+        
+          int n = 255;
+        
+          unsigned int value = 255;
+        
+          int _len_report0 = 65025;
+          int * report = (int *) malloc(_len_report0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_report0; _i0++) {
+            report[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          __implement(report,offset,n,value);
+          free(report);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 72
+          // dynamic_instructions_O0 : 76
+          // ------------------------------- 
+          // static_instructions_O1 : 48
+          // dynamic_instructions_O1 : 48
+          // ------------------------------- 
+          // static_instructions_O2 : 46
+          // dynamic_instructions_O2 : 46
+          // ------------------------------- 
+          // static_instructions_O3 : 46
+          // dynamic_instructions_O3 : 46
+          // ------------------------------- 
+          // static_instructions_Ofast : 46
+          // dynamic_instructions_Ofast : 46
+          // ------------------------------- 
+          // static_instructions_Os : 46
+          // dynamic_instructions_Os : 46
+          // ------------------------------- 
+          // static_instructions_Oz : 49
+          // dynamic_instructions_Oz : 52
+          // ------------------------------- 
+
           unsigned int offset = 10;
+        
           int n = 10;
+        
           unsigned int value = 10;
+        
           int _len_report0 = 100;
           int * report = (int *) malloc(_len_report0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_report0; _i0++) {
             report[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           __implement(report,offset,n,value);
           free(report);
         

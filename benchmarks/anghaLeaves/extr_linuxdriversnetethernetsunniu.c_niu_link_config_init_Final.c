@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -93,12 +95,6 @@ __attribute__((used)) static void niu_link_config_init(struct niu *np)
 #endif
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -111,20 +107,138 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          int _len_np0 = 65025;
+          struct niu * np = (struct niu *) malloc(_len_np0*sizeof(struct niu));
+          for(int _i0 = 0; _i0 < _len_np0; _i0++) {
+              np[_i0].link_config.advertising = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].link_config.autoneg = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].link_config.loopback_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].link_config.active_duplex = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].link_config.duplex = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].link_config.active_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].link_config.speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          niu_link_config_init(np);
+          free(np);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          int _len_np0 = 100;
+          struct niu * np = (struct niu *) malloc(_len_np0*sizeof(struct niu));
+          for(int _i0 = 0; _i0 < _len_np0; _i0++) {
+              np[_i0].link_config.advertising = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].link_config.autoneg = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].link_config.loopback_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].link_config.active_duplex = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].link_config.duplex = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].link_config.active_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].link_config.speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          niu_link_config_init(np);
+          free(np);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
           int _len_np0 = 1;
           struct niu * np = (struct niu *) malloc(_len_np0*sizeof(struct niu));
           for(int _i0 = 0; _i0 < _len_np0; _i0++) {
-            np[_i0].link_config.advertising = ((-2 * (next_i()%2)) + 1) * next_i();
-        np[_i0].link_config.autoneg = ((-2 * (next_i()%2)) + 1) * next_i();
-        np[_i0].link_config.loopback_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        np[_i0].link_config.active_duplex = ((-2 * (next_i()%2)) + 1) * next_i();
-        np[_i0].link_config.duplex = ((-2 * (next_i()%2)) + 1) * next_i();
-        np[_i0].link_config.active_speed = ((-2 * (next_i()%2)) + 1) * next_i();
-        np[_i0].link_config.speed = ((-2 * (next_i()%2)) + 1) * next_i();
+              np[_i0].link_config.advertising = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].link_config.autoneg = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].link_config.loopback_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].link_config.active_duplex = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].link_config.duplex = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].link_config.active_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].link_config.speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           niu_link_config_init(np);
           free(np);
         

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ ngx_ssl_stapling_resolver(ngx_conf_t *cf, ngx_ssl_t *ssl,
     return NGX_OK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,25 +82,217 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int resolver_timeout = 100;
+        
           int _len_cf0 = 1;
           int * cf = (int *) malloc(_len_cf0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_cf0; _i0++) {
             cf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_ssl0 = 1;
           int * ssl = (int *) malloc(_len_ssl0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_ssl0; _i0++) {
             ssl[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_resolver0 = 1;
           int * resolver = (int *) malloc(_len_resolver0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_resolver0; _i0++) {
             resolver[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = ngx_ssl_stapling_resolver(cf,ssl,resolver,resolver_timeout);
+          printf("%d\n", benchRet); 
+          free(cf);
+          free(ssl);
+          free(resolver);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int resolver_timeout = 255;
+        
+          int _len_cf0 = 65025;
+          int * cf = (int *) malloc(_len_cf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_cf0; _i0++) {
+            cf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ssl0 = 65025;
+          int * ssl = (int *) malloc(_len_ssl0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ssl0; _i0++) {
+            ssl[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_resolver0 = 65025;
+          int * resolver = (int *) malloc(_len_resolver0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_resolver0; _i0++) {
+            resolver[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ngx_ssl_stapling_resolver(cf,ssl,resolver,resolver_timeout);
+          printf("%d\n", benchRet); 
+          free(cf);
+          free(ssl);
+          free(resolver);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int resolver_timeout = 10;
+        
+          int _len_cf0 = 100;
+          int * cf = (int *) malloc(_len_cf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_cf0; _i0++) {
+            cf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ssl0 = 100;
+          int * ssl = (int *) malloc(_len_ssl0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ssl0; _i0++) {
+            ssl[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_resolver0 = 100;
+          int * resolver = (int *) malloc(_len_resolver0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_resolver0; _i0++) {
+            resolver[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ngx_ssl_stapling_resolver(cf,ssl,resolver,resolver_timeout);
+          printf("%d\n", benchRet); 
+          free(cf);
+          free(ssl);
+          free(resolver);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int resolver_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cf0 = 1;
+          int * cf = (int *) malloc(_len_cf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_cf0; _i0++) {
+            cf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ssl0 = 1;
+          int * ssl = (int *) malloc(_len_ssl0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ssl0; _i0++) {
+            ssl[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_resolver0 = 1;
+          int * resolver = (int *) malloc(_len_resolver0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_resolver0; _i0++) {
+            resolver[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = ngx_ssl_stapling_resolver(cf,ssl,resolver,resolver_timeout);
           printf("%d\n", benchRet); 
           free(cf);

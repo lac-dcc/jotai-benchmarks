@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ irq_settings_clr_and_set(struct irq_desc *desc, u32 clr, u32 set)
 	desc->status_use_accessors |= (set & _IRQF_MODIFY_MASK);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,31 +79,172 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int clr = 100;
+        
           int set = 100;
+        
           int _len_desc0 = 1;
           struct irq_desc * desc = (struct irq_desc *) malloc(_len_desc0*sizeof(struct irq_desc));
           for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
-            desc[_i0].status_use_accessors = ((-2 * (next_i()%2)) + 1) * next_i();
+              desc[_i0].status_use_accessors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           irq_settings_clr_and_set(desc,clr,set);
           free(desc);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int clr = 255;
+        
+          int set = 255;
+        
+          int _len_desc0 = 65025;
+          struct irq_desc * desc = (struct irq_desc *) malloc(_len_desc0*sizeof(struct irq_desc));
+          for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
+              desc[_i0].status_use_accessors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          irq_settings_clr_and_set(desc,clr,set);
+          free(desc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int clr = 10;
+        
           int set = 10;
+        
           int _len_desc0 = 100;
           struct irq_desc * desc = (struct irq_desc *) malloc(_len_desc0*sizeof(struct irq_desc));
           for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
-            desc[_i0].status_use_accessors = ((-2 * (next_i()%2)) + 1) * next_i();
+              desc[_i0].status_use_accessors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          irq_settings_clr_and_set(desc,clr,set);
+          free(desc);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int clr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int set = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_desc0 = 1;
+          struct irq_desc * desc = (struct irq_desc *) malloc(_len_desc0*sizeof(struct irq_desc));
+          for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
+              desc[_i0].status_use_accessors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           irq_settings_clr_and_set(desc,clr,set);
           free(desc);
         

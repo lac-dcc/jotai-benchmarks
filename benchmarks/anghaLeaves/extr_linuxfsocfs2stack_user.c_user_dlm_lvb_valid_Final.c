@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static int user_dlm_lvb_valid(struct ocfs2_dlm_lksb *lksb)
 	return !invalid;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,14 +79,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_lksb0 = 1;
+          int _len_lksb0 = 65025;
           struct ocfs2_dlm_lksb * lksb = (struct ocfs2_dlm_lksb *) malloc(_len_lksb0*sizeof(struct ocfs2_dlm_lksb));
           for(int _i0 = 0; _i0 < _len_lksb0; _i0++) {
-            lksb[_i0].lksb_fsdlm.sb_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              lksb[_i0].lksb_fsdlm.sb_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = user_dlm_lvb_valid(lksb);
           printf("%d\n", benchRet); 
           free(lksb);
@@ -104,15 +102,34 @@ int main(int argc, char *argv[]) {
           int _len_lksb0 = 100;
           struct ocfs2_dlm_lksb * lksb = (struct ocfs2_dlm_lksb *) malloc(_len_lksb0*sizeof(struct ocfs2_dlm_lksb));
           for(int _i0 = 0; _i0 < _len_lksb0; _i0++) {
-            lksb[_i0].lksb_fsdlm.sb_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              lksb[_i0].lksb_fsdlm.sb_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = user_dlm_lvb_valid(lksb);
           printf("%d\n", benchRet); 
           free(lksb);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_lksb0 = 1;
+          struct ocfs2_dlm_lksb * lksb = (struct ocfs2_dlm_lksb *) malloc(_len_lksb0*sizeof(struct ocfs2_dlm_lksb));
+          for(int _i0 = 0; _i0 < _len_lksb0; _i0++) {
+              lksb[_i0].lksb_fsdlm.sb_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = user_dlm_lvb_valid(lksb);
+          printf("%d\n", benchRet); 
+          free(lksb);
+        
+        break;
+    }
     default:
         usage();
         break;

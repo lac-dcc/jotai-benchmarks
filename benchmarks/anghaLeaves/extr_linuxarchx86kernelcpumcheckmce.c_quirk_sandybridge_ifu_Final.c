@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -88,12 +91,6 @@ __attribute__((used)) static void quirk_sandybridge_ifu(int bank, struct mce *m,
 	m->cs = regs->cs;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,24 +103,211 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int bank = 100;
+        
           int _len_m0 = 1;
           struct mce * m = (struct mce *) malloc(_len_m0*sizeof(struct mce));
           for(int _i0 = 0; _i0 < _len_m0; _i0++) {
-            m[_i0].mcgstatus = ((-2 * (next_i()%2)) + 1) * next_i();
-        m[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
-        m[_i0].cs = ((-2 * (next_i()%2)) + 1) * next_i();
-        m[_i0].ip = ((-2 * (next_i()%2)) + 1) * next_i();
+              m[_i0].mcgstatus = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].cs = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].ip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_regs0 = 1;
           struct pt_regs * regs = (struct pt_regs *) malloc(_len_regs0*sizeof(struct pt_regs));
           for(int _i0 = 0; _i0 < _len_regs0; _i0++) {
-            regs[_i0].cs = ((-2 * (next_i()%2)) + 1) * next_i();
-        regs[_i0].ip = ((-2 * (next_i()%2)) + 1) * next_i();
+              regs[_i0].cs = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].ip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          quirk_sandybridge_ifu(bank,m,regs);
+          free(m);
+          free(regs);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int bank = 255;
+        
+          int _len_m0 = 65025;
+          struct mce * m = (struct mce *) malloc(_len_m0*sizeof(struct mce));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].mcgstatus = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].cs = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].ip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_regs0 = 65025;
+          struct pt_regs * regs = (struct pt_regs *) malloc(_len_regs0*sizeof(struct pt_regs));
+          for(int _i0 = 0; _i0 < _len_regs0; _i0++) {
+              regs[_i0].cs = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].ip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          quirk_sandybridge_ifu(bank,m,regs);
+          free(m);
+          free(regs);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int bank = 10;
+        
+          int _len_m0 = 100;
+          struct mce * m = (struct mce *) malloc(_len_m0*sizeof(struct mce));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].mcgstatus = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].cs = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].ip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_regs0 = 100;
+          struct pt_regs * regs = (struct pt_regs *) malloc(_len_regs0*sizeof(struct pt_regs));
+          for(int _i0 = 0; _i0 < _len_regs0; _i0++) {
+              regs[_i0].cs = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].ip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          quirk_sandybridge_ifu(bank,m,regs);
+          free(m);
+          free(regs);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int bank = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_m0 = 1;
+          struct mce * m = (struct mce *) malloc(_len_m0*sizeof(struct mce));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].mcgstatus = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].cs = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].ip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_regs0 = 1;
+          struct pt_regs * regs = (struct pt_regs *) malloc(_len_regs0*sizeof(struct pt_regs));
+          for(int _i0 = 0; _i0 < _len_regs0; _i0++) {
+              regs[_i0].cs = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].ip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           quirk_sandybridge_ifu(bank,m,regs);
           free(m);
           free(regs);

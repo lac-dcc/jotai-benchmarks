@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -120,12 +121,6 @@ sotc_index(int sotc)
 	return (SIZE_T_MAX);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -142,6 +137,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int sotc = 100;
+        
           unsigned long benchRet = sotc_index(sotc);
           printf("%lu\n", benchRet); 
         
@@ -151,6 +147,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int sotc = 255;
+        
           unsigned long benchRet = sotc_index(sotc);
           printf("%lu\n", benchRet); 
         
@@ -160,12 +157,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int sotc = 10;
+        
           unsigned long benchRet = sotc_index(sotc);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int sotc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = sotc_index(sotc);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

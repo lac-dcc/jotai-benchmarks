@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -66,12 +66,6 @@ uint32_t kcdata_iter_array_elem_count(kcdata_iter_t iter) {
 	return (iter.item->flags) & UINT32_MAX;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,15 +78,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // empty
     case 0:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           struct TYPE_5__ iter;
           int _len_iter_item0 = 1;
           iter.item = (struct TYPE_4__ *) malloc(_len_iter_item0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_iter_item0; _j0++) {
-            iter.item->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              iter.item->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = kcdata_iter_array_elem_count(iter);
           printf("%d\n", benchRet); 
           free(iter.item);

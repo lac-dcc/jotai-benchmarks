@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -68,12 +68,6 @@ const char* pnfs_layout_type_string(enum pnfs_layout_type type)
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,16 +80,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum pnfs_layout_type type = 0;
+        
           const char * benchRet = pnfs_layout_type_string(type);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
         break;
     }
-
     default:
         usage();
         break;

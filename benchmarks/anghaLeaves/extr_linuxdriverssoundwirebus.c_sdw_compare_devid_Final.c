@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static int sdw_compare_devid(struct sdw_slave *slave, stru
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,22 +85,149 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_slave0 = 65025;
+          struct sdw_slave * slave = (struct sdw_slave *) malloc(_len_slave0*sizeof(struct sdw_slave));
+          for(int _i0 = 0; _i0 < _len_slave0; _i0++) {
+              slave[_i0].id.unique_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          slave[_i0].id.mfg_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          slave[_i0].id.part_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          slave[_i0].id.class_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          struct sdw_slave_id id;
+          id.unique_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          id.mfg_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          id.part_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          id.class_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = sdw_compare_devid(slave,id);
+          printf("%d\n", benchRet); 
+          free(slave);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_slave0 = 100;
+          struct sdw_slave * slave = (struct sdw_slave *) malloc(_len_slave0*sizeof(struct sdw_slave));
+          for(int _i0 = 0; _i0 < _len_slave0; _i0++) {
+              slave[_i0].id.unique_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          slave[_i0].id.mfg_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          slave[_i0].id.part_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          slave[_i0].id.class_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          struct sdw_slave_id id;
+          id.unique_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          id.mfg_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          id.part_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          id.class_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = sdw_compare_devid(slave,id);
+          printf("%d\n", benchRet); 
+          free(slave);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int _len_slave0 = 1;
           struct sdw_slave * slave = (struct sdw_slave *) malloc(_len_slave0*sizeof(struct sdw_slave));
           for(int _i0 = 0; _i0 < _len_slave0; _i0++) {
-            slave[_i0].id.unique_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        slave[_i0].id.mfg_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        slave[_i0].id.part_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        slave[_i0].id.class_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              slave[_i0].id.unique_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          slave[_i0].id.mfg_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          slave[_i0].id.part_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          slave[_i0].id.class_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           struct sdw_slave_id id;
-        id.unique_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        id.mfg_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        id.part_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        id.class_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          id.unique_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          id.mfg_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          id.part_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          id.class_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = sdw_compare_devid(slave,id);
           printf("%d\n", benchRet); 
           free(slave);

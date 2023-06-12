@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -75,12 +75,6 @@ const char *usnic_transport_to_str(enum usnic_transport_type type)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,16 +87,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum usnic_transport_type type = 0;
+        
           const char * benchRet = usnic_transport_to_str(type);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
         break;
     }
-
     default:
         usage();
         break;

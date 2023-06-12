@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline void hostif_status_init(struct ks_wlan_priva
 	priv->connect_status = DISCONNECT_STATUS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,22 +77,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_priv0 = 1;
+          int _len_priv0 = 65025;
           struct ks_wlan_private * priv = (struct ks_wlan_private *) malloc(_len_priv0*sizeof(struct ks_wlan_private));
           for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
-            priv[_i0].current_rate = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].connect_status = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].infra_status = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].current_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].connect_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].infra_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           hostif_status_init(priv);
           free(priv);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_priv0 = 100;
+          struct ks_wlan_private * priv = (struct ks_wlan_private *) malloc(_len_priv0*sizeof(struct ks_wlan_private));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].current_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].connect_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].infra_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          hostif_status_init(priv);
+          free(priv);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_priv0 = 1;
+          struct ks_wlan_private * priv = (struct ks_wlan_private *) malloc(_len_priv0*sizeof(struct ks_wlan_private));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].current_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].connect_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].infra_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          hostif_status_init(priv);
+          free(priv);
+        
+        break;
+    }
     default:
         usage();
         break;

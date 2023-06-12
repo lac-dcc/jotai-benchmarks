@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static int bad_inode_setattr(struct dentry *direntry, stru
 	return -EIO;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,19 +76,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_direntry0 = 1;
+          int _len_direntry0 = 65025;
           struct dentry * direntry = (struct dentry *) malloc(_len_direntry0*sizeof(struct dentry));
           for(int _i0 = 0; _i0 < _len_direntry0; _i0++) {
-            direntry[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              direntry[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_attrs0 = 1;
+        
+          int _len_attrs0 = 65025;
           struct iattr * attrs = (struct iattr *) malloc(_len_attrs0*sizeof(struct iattr));
           for(int _i0 = 0; _i0 < _len_attrs0; _i0++) {
-            attrs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              attrs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = bad_inode_setattr(direntry,attrs);
           printf("%d\n", benchRet); 
           free(direntry);
@@ -100,7 +100,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_direntry0 = 100;
+          struct dentry * direntry = (struct dentry *) malloc(_len_direntry0*sizeof(struct dentry));
+          for(int _i0 = 0; _i0 < _len_direntry0; _i0++) {
+              direntry[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_attrs0 = 100;
+          struct iattr * attrs = (struct iattr *) malloc(_len_attrs0*sizeof(struct iattr));
+          for(int _i0 = 0; _i0 < _len_attrs0; _i0++) {
+              attrs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = bad_inode_setattr(direntry,attrs);
+          printf("%d\n", benchRet); 
+          free(direntry);
+          free(attrs);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_direntry0 = 1;
+          struct dentry * direntry = (struct dentry *) malloc(_len_direntry0*sizeof(struct dentry));
+          for(int _i0 = 0; _i0 < _len_direntry0; _i0++) {
+              direntry[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_attrs0 = 1;
+          struct iattr * attrs = (struct iattr *) malloc(_len_attrs0*sizeof(struct iattr));
+          for(int _i0 = 0; _i0 < _len_attrs0; _i0++) {
+              attrs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = bad_inode_setattr(direntry,attrs);
+          printf("%d\n", benchRet); 
+          free(direntry);
+          free(attrs);
+        
+        break;
+    }
     default:
         usage();
         break;

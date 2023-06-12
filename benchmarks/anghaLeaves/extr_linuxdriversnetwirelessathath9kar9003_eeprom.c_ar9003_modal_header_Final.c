@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ __attribute__((used)) static struct ar9300_modal_eep_header *ar9003_modal_header
 		return &eep->modalHeader5G;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,16 +85,187 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int is2ghz = 100;
+        
           int _len_ah0 = 1;
           struct ath_hw * ah = (struct ath_hw *) malloc(_len_ah0*sizeof(struct ath_hw));
           for(int _i0 = 0; _i0 < _len_ah0; _i0++) {
-            ah[_i0].eeprom.ar9300_eep.modalHeader5G.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-        ah[_i0].eeprom.ar9300_eep.modalHeader2G.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ah[_i0].eeprom.ar9300_eep.modalHeader5G.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ah[_i0].eeprom.ar9300_eep.modalHeader2G.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
           }
+        
+          struct ar9300_modal_eep_header * benchRet = ar9003_modal_header(ah,is2ghz);
+          printf("%d\n", (*benchRet).dummy);
+          free(ah);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int is2ghz = 255;
+        
+          int _len_ah0 = 65025;
+          struct ath_hw * ah = (struct ath_hw *) malloc(_len_ah0*sizeof(struct ath_hw));
+          for(int _i0 = 0; _i0 < _len_ah0; _i0++) {
+              ah[_i0].eeprom.ar9300_eep.modalHeader5G.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ah[_i0].eeprom.ar9300_eep.modalHeader2G.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
+          }
+        
+          struct ar9300_modal_eep_header * benchRet = ar9003_modal_header(ah,is2ghz);
+          printf("%d\n", (*benchRet).dummy);
+          free(ah);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int is2ghz = 10;
+        
+          int _len_ah0 = 100;
+          struct ath_hw * ah = (struct ath_hw *) malloc(_len_ah0*sizeof(struct ath_hw));
+          for(int _i0 = 0; _i0 < _len_ah0; _i0++) {
+              ah[_i0].eeprom.ar9300_eep.modalHeader5G.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ah[_i0].eeprom.ar9300_eep.modalHeader2G.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
+          }
+        
+          struct ar9300_modal_eep_header * benchRet = ar9003_modal_header(ah,is2ghz);
+          printf("%d\n", (*benchRet).dummy);
+          free(ah);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int is2ghz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ah0 = 1;
+          struct ath_hw * ah = (struct ath_hw *) malloc(_len_ah0*sizeof(struct ath_hw));
+          for(int _i0 = 0; _i0 < _len_ah0; _i0++) {
+              ah[_i0].eeprom.ar9300_eep.modalHeader5G.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ah[_i0].eeprom.ar9300_eep.modalHeader2G.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
+          }
+        
           struct ar9300_modal_eep_header * benchRet = ar9003_modal_header(ah,is2ghz);
           printf("%d\n", (*benchRet).dummy);
           free(ah);

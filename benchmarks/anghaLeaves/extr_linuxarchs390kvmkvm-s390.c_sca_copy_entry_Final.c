@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static inline void sca_copy_entry(struct esca_entry *d, st
 	d->sigp_ctrl.scn = s->sigp_ctrl.scn;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,23 +81,158 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_d0 = 65025;
+          struct esca_entry * d = (struct esca_entry *) malloc(_len_d0*sizeof(struct esca_entry));
+          for(int _i0 = 0; _i0 < _len_d0; _i0++) {
+              d[_i0].sigp_ctrl.scn = ((-2 * (next_i()%2)) + 1) * next_i();
+          d[_i0].sigp_ctrl.c = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          d[_i0].sda = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_s0 = 65025;
+          struct bsca_entry * s = (struct bsca_entry *) malloc(_len_s0*sizeof(struct bsca_entry));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].sigp_ctrl.scn = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].sigp_ctrl.c = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          s[_i0].sda = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          sca_copy_entry(d,s);
+          free(d);
+          free(s);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_d0 = 100;
+          struct esca_entry * d = (struct esca_entry *) malloc(_len_d0*sizeof(struct esca_entry));
+          for(int _i0 = 0; _i0 < _len_d0; _i0++) {
+              d[_i0].sigp_ctrl.scn = ((-2 * (next_i()%2)) + 1) * next_i();
+          d[_i0].sigp_ctrl.c = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          d[_i0].sda = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_s0 = 100;
+          struct bsca_entry * s = (struct bsca_entry *) malloc(_len_s0*sizeof(struct bsca_entry));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].sigp_ctrl.scn = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].sigp_ctrl.c = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          s[_i0].sda = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          sca_copy_entry(d,s);
+          free(d);
+          free(s);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_d0 = 1;
           struct esca_entry * d = (struct esca_entry *) malloc(_len_d0*sizeof(struct esca_entry));
           for(int _i0 = 0; _i0 < _len_d0; _i0++) {
-            d[_i0].sigp_ctrl.scn = ((-2 * (next_i()%2)) + 1) * next_i();
-        d[_i0].sigp_ctrl.c = ((-2 * (next_i()%2)) + 1) * next_i();
-        d[_i0].sda = ((-2 * (next_i()%2)) + 1) * next_i();
+              d[_i0].sigp_ctrl.scn = ((-2 * (next_i()%2)) + 1) * next_i();
+          d[_i0].sigp_ctrl.c = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          d[_i0].sda = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_s0 = 1;
           struct bsca_entry * s = (struct bsca_entry *) malloc(_len_s0*sizeof(struct bsca_entry));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].sigp_ctrl.scn = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].sigp_ctrl.c = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].sda = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].sigp_ctrl.scn = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].sigp_ctrl.c = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          s[_i0].sda = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           sca_copy_entry(d,s);
           free(d);
           free(s);

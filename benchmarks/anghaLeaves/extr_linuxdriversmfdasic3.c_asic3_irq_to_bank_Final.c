@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static inline int asic3_irq_to_bank(struct asic3 *asic, in
 	return (n * (ASIC3_GPIO_B_BASE - ASIC3_GPIO_A_BASE));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,30 +81,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int irq = 100;
+        
           int _len_asic0 = 1;
           struct asic3 * asic = (struct asic3 *) malloc(_len_asic0*sizeof(struct asic3));
           for(int _i0 = 0; _i0 < _len_asic0; _i0++) {
-            asic[_i0].irq_base = ((-2 * (next_i()%2)) + 1) * next_i();
+              asic[_i0].irq_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = asic3_irq_to_bank(asic,irq);
           printf("%d\n", benchRet); 
           free(asic);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int irq = 255;
+        
+          int _len_asic0 = 65025;
+          struct asic3 * asic = (struct asic3 *) malloc(_len_asic0*sizeof(struct asic3));
+          for(int _i0 = 0; _i0 < _len_asic0; _i0++) {
+              asic[_i0].irq_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = asic3_irq_to_bank(asic,irq);
+          printf("%d\n", benchRet); 
+          free(asic);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int irq = 10;
+        
           int _len_asic0 = 100;
           struct asic3 * asic = (struct asic3 *) malloc(_len_asic0*sizeof(struct asic3));
           for(int _i0 = 0; _i0 < _len_asic0; _i0++) {
-            asic[_i0].irq_base = ((-2 * (next_i()%2)) + 1) * next_i();
+              asic[_i0].irq_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = asic3_irq_to_bank(asic,irq);
+          printf("%d\n", benchRet); 
+          free(asic);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int irq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_asic0 = 1;
+          struct asic3 * asic = (struct asic3 *) malloc(_len_asic0*sizeof(struct asic3));
+          for(int _i0 = 0; _i0 < _len_asic0; _i0++) {
+              asic[_i0].irq_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = asic3_irq_to_bank(asic,irq);
           printf("%d\n", benchRet); 
           free(asic);

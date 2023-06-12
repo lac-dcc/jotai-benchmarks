@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static inline int psn_compare(u32 psn_a, u32 psn_b)
 	return diff;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,7 +83,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int psn_a = 100;
+        
           int psn_b = 100;
+        
           int benchRet = psn_compare(psn_a,psn_b);
           printf("%d\n", benchRet); 
         
@@ -98,7 +95,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int psn_a = 255;
+        
           int psn_b = 255;
+        
           int benchRet = psn_compare(psn_a,psn_b);
           printf("%d\n", benchRet); 
         
@@ -108,13 +107,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int psn_a = 10;
+        
           int psn_b = 10;
+        
           int benchRet = psn_compare(psn_a,psn_b);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int psn_a = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int psn_b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = psn_compare(psn_a,psn_b);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

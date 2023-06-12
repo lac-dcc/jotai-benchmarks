@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ struct mp_image *mp_refqueue_get_format(struct mp_refqueue *q)
     return q->in_format;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,18 +75,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_q0 = 65025;
+          struct mp_refqueue * q = (struct mp_refqueue *) malloc(_len_q0*sizeof(struct mp_refqueue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              int _len_q__i0__in_format0 = 1;
+          q[_i0].in_format = (struct mp_image *) malloc(_len_q__i0__in_format0*sizeof(struct mp_image));
+          for(int _j0 = 0; _j0 < _len_q__i0__in_format0; _j0++) {
+              q[_i0].in_format->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct mp_image * benchRet = mp_refqueue_get_format(q);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_q0; _aux++) {
+          free(q[_aux].in_format);
+          }
+          free(q);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_q0 = 100;
+          struct mp_refqueue * q = (struct mp_refqueue *) malloc(_len_q0*sizeof(struct mp_refqueue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              int _len_q__i0__in_format0 = 1;
+          q[_i0].in_format = (struct mp_image *) malloc(_len_q__i0__in_format0*sizeof(struct mp_image));
+          for(int _j0 = 0; _j0 < _len_q__i0__in_format0; _j0++) {
+              q[_i0].in_format->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct mp_image * benchRet = mp_refqueue_get_format(q);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_q0; _aux++) {
+          free(q[_aux].in_format);
+          }
+          free(q);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_q0 = 1;
           struct mp_refqueue * q = (struct mp_refqueue *) malloc(_len_q0*sizeof(struct mp_refqueue));
           for(int _i0 = 0; _i0 < _len_q0; _i0++) {
               int _len_q__i0__in_format0 = 1;
           q[_i0].in_format = (struct mp_image *) malloc(_len_q__i0__in_format0*sizeof(struct mp_image));
           for(int _j0 = 0; _j0 < _len_q__i0__in_format0; _j0++) {
-            q[_i0].in_format->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              q[_i0].in_format->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct mp_image * benchRet = mp_refqueue_get_format(q);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_q0; _aux++) {

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ number_of_bits (unsigned int val)
   return bits;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,6 +85,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int val = 100;
+        
           int benchRet = number_of_bits(val);
           printf("%d\n", benchRet); 
         
@@ -99,6 +95,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int val = 255;
+        
           int benchRet = number_of_bits(val);
           printf("%d\n", benchRet); 
         
@@ -108,12 +105,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int val = 10;
+        
           int benchRet = number_of_bits(val);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = number_of_bits(val);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

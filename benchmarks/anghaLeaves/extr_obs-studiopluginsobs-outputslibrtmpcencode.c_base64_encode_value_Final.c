@@ -32,6 +32,7 @@ void usage() {
 \nARGS:\n\
        0            int-bounds\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ char base64_encode_value(char value_in)
 	return encoding[(int)value_in];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,19 +75,102 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
           char value_in = 100;
+        
           char benchRet = base64_encode_value(value_in);
           printf("%c\n", (benchRet %26) + 'a'); 
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           char value_in = 10;
+        
+          char benchRet = base64_encode_value(value_in);
+          printf("%c\n", (benchRet %26) + 'a'); 
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          char value_in = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           char benchRet = base64_encode_value(value_in);
           printf("%c\n", (benchRet %26) + 'a'); 
         

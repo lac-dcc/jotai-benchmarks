@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static inline int cqhci_tag(struct mmc_request *mrq)
 	return mrq->cmd ? DCMD_SLOT : mrq->tag;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,22 +75,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_mrq0 = 1;
+          int _len_mrq0 = 65025;
           struct mmc_request * mrq = (struct mmc_request *) malloc(_len_mrq0*sizeof(struct mmc_request));
           for(int _i0 = 0; _i0 < _len_mrq0; _i0++) {
-            mrq[_i0].tag = ((-2 * (next_i()%2)) + 1) * next_i();
-        mrq[_i0].cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+              mrq[_i0].tag = ((-2 * (next_i()%2)) + 1) * next_i();
+          mrq[_i0].cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cqhci_tag(mrq);
           printf("%d\n", benchRet); 
           free(mrq);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_mrq0 = 100;
+          struct mmc_request * mrq = (struct mmc_request *) malloc(_len_mrq0*sizeof(struct mmc_request));
+          for(int _i0 = 0; _i0 < _len_mrq0; _i0++) {
+              mrq[_i0].tag = ((-2 * (next_i()%2)) + 1) * next_i();
+          mrq[_i0].cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cqhci_tag(mrq);
+          printf("%d\n", benchRet); 
+          free(mrq);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_mrq0 = 1;
+          struct mmc_request * mrq = (struct mmc_request *) malloc(_len_mrq0*sizeof(struct mmc_request));
+          for(int _i0 = 0; _i0 < _len_mrq0; _i0++) {
+              mrq[_i0].tag = ((-2 * (next_i()%2)) + 1) * next_i();
+          mrq[_i0].cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cqhci_tag(mrq);
+          printf("%d\n", benchRet); 
+          free(mrq);
+        
+        break;
+    }
     default:
         usage();
         break;

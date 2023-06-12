@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static inline struct block_range *block_range_iter(struct 
 	return iter->start;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,18 +75,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_iter0 = 1;
+          int _len_iter0 = 65025;
           struct block_range_iter * iter = (struct block_range_iter *) malloc(_len_iter0*sizeof(struct block_range_iter));
           for(int _i0 = 0; _i0 < _len_iter0; _i0++) {
               int _len_iter__i0__start0 = 1;
           iter[_i0].start = (struct block_range *) malloc(_len_iter__i0__start0*sizeof(struct block_range));
           for(int _j0 = 0; _j0 < _len_iter__i0__start0; _j0++) {
-            iter[_i0].start->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              iter[_i0].start->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct block_range * benchRet = block_range_iter(iter);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_iter0; _aux++) {
@@ -100,7 +99,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_iter0 = 100;
+          struct block_range_iter * iter = (struct block_range_iter *) malloc(_len_iter0*sizeof(struct block_range_iter));
+          for(int _i0 = 0; _i0 < _len_iter0; _i0++) {
+              int _len_iter__i0__start0 = 1;
+          iter[_i0].start = (struct block_range *) malloc(_len_iter__i0__start0*sizeof(struct block_range));
+          for(int _j0 = 0; _j0 < _len_iter__i0__start0; _j0++) {
+              iter[_i0].start->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct block_range * benchRet = block_range_iter(iter);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_iter0; _aux++) {
+          free(iter[_aux].start);
+          }
+          free(iter);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_iter0 = 1;
+          struct block_range_iter * iter = (struct block_range_iter *) malloc(_len_iter0*sizeof(struct block_range_iter));
+          for(int _i0 = 0; _i0 < _len_iter0; _i0++) {
+              int _len_iter__i0__start0 = 1;
+          iter[_i0].start = (struct block_range *) malloc(_len_iter__i0__start0*sizeof(struct block_range));
+          for(int _j0 = 0; _j0 < _len_iter__i0__start0; _j0++) {
+              iter[_i0].start->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct block_range * benchRet = block_range_iter(iter);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_iter0; _aux++) {
+          free(iter[_aux].start);
+          }
+          free(iter);
+        
+        break;
+    }
     default:
         usage();
         break;

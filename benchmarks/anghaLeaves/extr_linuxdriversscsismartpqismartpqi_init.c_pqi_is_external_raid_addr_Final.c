@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -60,12 +61,6 @@ __attribute__((used)) static inline bool pqi_is_external_raid_addr(u8 *scsi3addr
 	return scsi3addr[2] != 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,21 +73,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int _len_scsi3addr0 = 100;
+          int _len_scsi3addr0 = 65025;
           long * scsi3addr = (long *) malloc(_len_scsi3addr0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_scsi3addr0; _i0++) {
             scsi3addr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = pqi_is_external_raid_addr(scsi3addr);
           printf("%d\n", benchRet); 
           free(scsi3addr);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_scsi3addr0 = 100;
+          long * scsi3addr = (long *) malloc(_len_scsi3addr0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_scsi3addr0; _i0++) {
+            scsi3addr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = pqi_is_external_raid_addr(scsi3addr);
+          printf("%d\n", benchRet); 
+          free(scsi3addr);
+        
+        break;
+    }
     default:
         usage();
         break;

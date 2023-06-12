@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +65,6 @@ __attribute__((used)) static tree handle_randomize_considered_attr(tree *node, t
 	return NULL_TREE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,22 +77,206 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int name = 100;
+        
           int args = 100;
+        
           int flags = 100;
+        
           int _len_node0 = 1;
           int * node = (int *) malloc(_len_node0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_node0; _i0++) {
             node[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_no_add_attrs0 = 1;
           int * no_add_attrs = (int *) malloc(_len_no_add_attrs0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_no_add_attrs0; _i0++) {
             no_add_attrs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = handle_randomize_considered_attr(node,name,args,flags,no_add_attrs);
+          printf("%d\n", benchRet); 
+          free(node);
+          free(no_add_attrs);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int name = 255;
+        
+          int args = 255;
+        
+          int flags = 255;
+        
+          int _len_node0 = 65025;
+          int * node = (int *) malloc(_len_node0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_node0; _i0++) {
+            node[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_no_add_attrs0 = 65025;
+          int * no_add_attrs = (int *) malloc(_len_no_add_attrs0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_no_add_attrs0; _i0++) {
+            no_add_attrs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = handle_randomize_considered_attr(node,name,args,flags,no_add_attrs);
+          printf("%d\n", benchRet); 
+          free(node);
+          free(no_add_attrs);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int name = 10;
+        
+          int args = 10;
+        
+          int flags = 10;
+        
+          int _len_node0 = 100;
+          int * node = (int *) malloc(_len_node0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_node0; _i0++) {
+            node[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_no_add_attrs0 = 100;
+          int * no_add_attrs = (int *) malloc(_len_no_add_attrs0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_no_add_attrs0; _i0++) {
+            no_add_attrs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = handle_randomize_considered_attr(node,name,args,flags,no_add_attrs);
+          printf("%d\n", benchRet); 
+          free(node);
+          free(no_add_attrs);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int name = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int args = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_node0 = 1;
+          int * node = (int *) malloc(_len_node0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_node0; _i0++) {
+            node[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_no_add_attrs0 = 1;
+          int * no_add_attrs = (int *) malloc(_len_no_add_attrs0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_no_add_attrs0; _i0++) {
+            no_add_attrs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = handle_randomize_considered_attr(node,name,args,flags,no_add_attrs);
           printf("%d\n", benchRet); 
           free(node);

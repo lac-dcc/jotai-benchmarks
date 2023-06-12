@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -82,12 +84,6 @@ __attribute__((used)) static s32 ixgbevf_init_mbx_params_vf(struct ixgbe_hw *hw)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,28 +96,81 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_hw0 = 1;
+          int _len_hw0 = 65025;
           struct ixgbe_hw * hw = (struct ixgbe_hw *) malloc(_len_hw0*sizeof(struct ixgbe_hw));
           for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
-            hw[_i0].mbx.stats.rsts = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].mbx.stats.acks = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].mbx.stats.reqs = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].mbx.stats.msgs_rx = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].mbx.stats.msgs_tx = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].mbx.size = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].mbx.udelay = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].mbx.timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+              hw[_i0].mbx.stats.rsts = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.stats.acks = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.stats.reqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.stats.msgs_rx = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.stats.msgs_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hw[_i0].mbx.size = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.udelay = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = ixgbevf_init_mbx_params_vf(hw);
           printf("%d\n", benchRet); 
           free(hw);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_hw0 = 100;
+          struct ixgbe_hw * hw = (struct ixgbe_hw *) malloc(_len_hw0*sizeof(struct ixgbe_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].mbx.stats.rsts = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.stats.acks = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.stats.reqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.stats.msgs_rx = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.stats.msgs_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hw[_i0].mbx.size = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.udelay = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = ixgbevf_init_mbx_params_vf(hw);
+          printf("%d\n", benchRet); 
+          free(hw);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_hw0 = 1;
+          struct ixgbe_hw * hw = (struct ixgbe_hw *) malloc(_len_hw0*sizeof(struct ixgbe_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].mbx.stats.rsts = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.stats.acks = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.stats.reqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.stats.msgs_rx = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.stats.msgs_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hw[_i0].mbx.size = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.udelay = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mbx.timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = ixgbevf_init_mbx_params_vf(hw);
+          printf("%d\n", benchRet); 
+          free(hw);
+        
+        break;
+    }
     default:
         usage();
         break;

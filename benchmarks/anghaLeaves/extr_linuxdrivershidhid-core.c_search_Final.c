@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static int search(__s32 *array, __s32 value, unsigned n)
 	return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,23 +78,63 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          long value = 10;
-          unsigned int n = 10;
-          int _len_array0 = 100;
+          long value = 255;
+        
+          unsigned int n = 255;
+        
+          int _len_array0 = 65025;
           long * array = (long *) malloc(_len_array0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_array0; _i0++) {
             array[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = search(array,value,n);
           printf("%d\n", benchRet); 
           free(array);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          long value = 10;
+        
+          unsigned int n = 10;
+        
+          int _len_array0 = 100;
+          long * array = (long *) malloc(_len_array0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_array0; _i0++) {
+            array[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = search(array,value,n);
+          printf("%d\n", benchRet); 
+          free(array);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          long value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_array0 = 1;
+          long * array = (long *) malloc(_len_array0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_array0; _i0++) {
+            array[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = search(array,value,n);
+          printf("%d\n", benchRet); 
+          free(array);
+        
+        break;
+    }
     default:
         usage();
         break;

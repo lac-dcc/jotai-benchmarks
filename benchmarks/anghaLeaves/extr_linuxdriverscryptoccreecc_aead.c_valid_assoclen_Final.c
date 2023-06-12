@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline bool valid_assoclen(struct aead_request *req
 	return ((req->assoclen == 16) || (req->assoclen == 20));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,28 +74,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_req0 = 1;
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_req0 = 65025;
           struct aead_request * req = (struct aead_request *) malloc(_len_req0*sizeof(struct aead_request));
           for(int _i0 = 0; _i0 < _len_req0; _i0++) {
-            req[_i0].assoclen = ((-2 * (next_i()%2)) + 1) * next_i();
+              req[_i0].assoclen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = valid_assoclen(req);
           printf("%d\n", benchRet); 
           free(req);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_req0 = 100;
           struct aead_request * req = (struct aead_request *) malloc(_len_req0*sizeof(struct aead_request));
           for(int _i0 = 0; _i0 < _len_req0; _i0++) {
-            req[_i0].assoclen = ((-2 * (next_i()%2)) + 1) * next_i();
+              req[_i0].assoclen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = valid_assoclen(req);
+          printf("%d\n", benchRet); 
+          free(req);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_req0 = 1;
+          struct aead_request * req = (struct aead_request *) malloc(_len_req0*sizeof(struct aead_request));
+          for(int _i0 = 0; _i0 < _len_req0; _i0++) {
+              req[_i0].assoclen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = valid_assoclen(req);
           printf("%d\n", benchRet); 
           free(req);

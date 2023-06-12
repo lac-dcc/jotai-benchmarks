@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static inline struct l2tp_tunnel *l2tp_tunnel(struct sock 
 	return sk->sk_user_data;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,18 +75,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_sk0 = 1;
+          int _len_sk0 = 65025;
           struct sock * sk = (struct sock *) malloc(_len_sk0*sizeof(struct sock));
           for(int _i0 = 0; _i0 < _len_sk0; _i0++) {
               int _len_sk__i0__sk_user_data0 = 1;
           sk[_i0].sk_user_data = (struct l2tp_tunnel *) malloc(_len_sk__i0__sk_user_data0*sizeof(struct l2tp_tunnel));
           for(int _j0 = 0; _j0 < _len_sk__i0__sk_user_data0; _j0++) {
-            sk[_i0].sk_user_data->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              sk[_i0].sk_user_data->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct l2tp_tunnel * benchRet = l2tp_tunnel(sk);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_sk0; _aux++) {
@@ -100,7 +99,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_sk0 = 100;
+          struct sock * sk = (struct sock *) malloc(_len_sk0*sizeof(struct sock));
+          for(int _i0 = 0; _i0 < _len_sk0; _i0++) {
+              int _len_sk__i0__sk_user_data0 = 1;
+          sk[_i0].sk_user_data = (struct l2tp_tunnel *) malloc(_len_sk__i0__sk_user_data0*sizeof(struct l2tp_tunnel));
+          for(int _j0 = 0; _j0 < _len_sk__i0__sk_user_data0; _j0++) {
+              sk[_i0].sk_user_data->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct l2tp_tunnel * benchRet = l2tp_tunnel(sk);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_sk0; _aux++) {
+          free(sk[_aux].sk_user_data);
+          }
+          free(sk);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_sk0 = 1;
+          struct sock * sk = (struct sock *) malloc(_len_sk0*sizeof(struct sock));
+          for(int _i0 = 0; _i0 < _len_sk0; _i0++) {
+              int _len_sk__i0__sk_user_data0 = 1;
+          sk[_i0].sk_user_data = (struct l2tp_tunnel *) malloc(_len_sk__i0__sk_user_data0*sizeof(struct l2tp_tunnel));
+          for(int _j0 = 0; _j0 < _len_sk__i0__sk_user_data0; _j0++) {
+              sk[_i0].sk_user_data->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct l2tp_tunnel * benchRet = l2tp_tunnel(sk);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_sk0; _aux++) {
+          free(sk[_aux].sk_user_data);
+          }
+          free(sk);
+        
+        break;
+    }
     default:
         usage();
         break;

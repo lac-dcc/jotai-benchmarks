@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline int mmc_boot_partition_access(struct mmc_hos
 	return !(host->caps2 & MMC_CAP2_BOOTPART_NOACC);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_host0 = 1;
+          int _len_host0 = 65025;
           struct mmc_host * host = (struct mmc_host *) malloc(_len_host0*sizeof(struct mmc_host));
           for(int _i0 = 0; _i0 < _len_host0; _i0++) {
-            host[_i0].caps2 = ((-2 * (next_i()%2)) + 1) * next_i();
+              host[_i0].caps2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mmc_boot_partition_access(host);
           printf("%d\n", benchRet); 
           free(host);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_host0 = 100;
           struct mmc_host * host = (struct mmc_host *) malloc(_len_host0*sizeof(struct mmc_host));
           for(int _i0 = 0; _i0 < _len_host0; _i0++) {
-            host[_i0].caps2 = ((-2 * (next_i()%2)) + 1) * next_i();
+              host[_i0].caps2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mmc_boot_partition_access(host);
           printf("%d\n", benchRet); 
           free(host);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_host0 = 1;
+          struct mmc_host * host = (struct mmc_host *) malloc(_len_host0*sizeof(struct mmc_host));
+          for(int _i0 = 0; _i0 < _len_host0; _i0++) {
+              host[_i0].caps2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mmc_boot_partition_access(host);
+          printf("%d\n", benchRet); 
+          free(host);
+        
+        break;
+    }
     default:
         usage();
         break;

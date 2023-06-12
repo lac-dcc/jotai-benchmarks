@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +77,6 @@ __attribute__((used)) static inline int wl1271_tx_get_queue(int queue)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,6 +93,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int queue = 100;
+        
           int benchRet = wl1271_tx_get_queue(queue);
           printf("%d\n", benchRet); 
         
@@ -107,6 +103,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int queue = 255;
+        
           int benchRet = wl1271_tx_get_queue(queue);
           printf("%d\n", benchRet); 
         
@@ -116,12 +113,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int queue = 10;
+        
           int benchRet = wl1271_tx_get_queue(queue);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int queue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = wl1271_tx_get_queue(queue);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

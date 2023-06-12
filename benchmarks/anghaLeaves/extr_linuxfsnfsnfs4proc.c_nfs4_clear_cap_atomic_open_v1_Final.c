@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ __attribute__((used)) static bool nfs4_clear_cap_atomic_open_v1(struct nfs_serve
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,20 +85,198 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int err = 100;
+        
           int _len_server0 = 1;
           struct nfs_server * server = (struct nfs_server *) malloc(_len_server0*sizeof(struct nfs_server));
           for(int _i0 = 0; _i0 < _len_server0; _i0++) {
-            server[_i0].caps = ((-2 * (next_i()%2)) + 1) * next_i();
+              server[_i0].caps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_exception0 = 1;
           struct nfs4_exception * exception = (struct nfs4_exception *) malloc(_len_exception0*sizeof(struct nfs4_exception));
           for(int _i0 = 0; _i0 < _len_exception0; _i0++) {
-            exception[_i0].retry = ((-2 * (next_i()%2)) + 1) * next_i();
+              exception[_i0].retry = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = nfs4_clear_cap_atomic_open_v1(server,err,exception);
+          printf("%d\n", benchRet); 
+          free(server);
+          free(exception);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int err = 255;
+        
+          int _len_server0 = 65025;
+          struct nfs_server * server = (struct nfs_server *) malloc(_len_server0*sizeof(struct nfs_server));
+          for(int _i0 = 0; _i0 < _len_server0; _i0++) {
+              server[_i0].caps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_exception0 = 65025;
+          struct nfs4_exception * exception = (struct nfs4_exception *) malloc(_len_exception0*sizeof(struct nfs4_exception));
+          for(int _i0 = 0; _i0 < _len_exception0; _i0++) {
+              exception[_i0].retry = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nfs4_clear_cap_atomic_open_v1(server,err,exception);
+          printf("%d\n", benchRet); 
+          free(server);
+          free(exception);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int err = 10;
+        
+          int _len_server0 = 100;
+          struct nfs_server * server = (struct nfs_server *) malloc(_len_server0*sizeof(struct nfs_server));
+          for(int _i0 = 0; _i0 < _len_server0; _i0++) {
+              server[_i0].caps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_exception0 = 100;
+          struct nfs4_exception * exception = (struct nfs4_exception *) malloc(_len_exception0*sizeof(struct nfs4_exception));
+          for(int _i0 = 0; _i0 < _len_exception0; _i0++) {
+              exception[_i0].retry = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nfs4_clear_cap_atomic_open_v1(server,err,exception);
+          printf("%d\n", benchRet); 
+          free(server);
+          free(exception);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int err = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_server0 = 1;
+          struct nfs_server * server = (struct nfs_server *) malloc(_len_server0*sizeof(struct nfs_server));
+          for(int _i0 = 0; _i0 < _len_server0; _i0++) {
+              server[_i0].caps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_exception0 = 1;
+          struct nfs4_exception * exception = (struct nfs4_exception *) malloc(_len_exception0*sizeof(struct nfs4_exception));
+          for(int _i0 = 0; _i0 < _len_exception0; _i0++) {
+              exception[_i0].retry = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = nfs4_clear_cap_atomic_open_v1(server,err,exception);
           printf("%d\n", benchRet); 
           free(server);

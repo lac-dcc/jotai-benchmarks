@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline void nfs_init_server_aclclient(struct nfs_se
 	server->caps &= ~NFS_CAP_ACLS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,21 +77,54 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_server0 = 1;
+          int _len_server0 = 65025;
           struct nfs_server * server = (struct nfs_server *) malloc(_len_server0*sizeof(struct nfs_server));
           for(int _i0 = 0; _i0 < _len_server0; _i0++) {
-            server[_i0].caps = ((-2 * (next_i()%2)) + 1) * next_i();
-        server[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              server[_i0].caps = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           nfs_init_server_aclclient(server);
           free(server);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_server0 = 100;
+          struct nfs_server * server = (struct nfs_server *) malloc(_len_server0*sizeof(struct nfs_server));
+          for(int _i0 = 0; _i0 < _len_server0; _i0++) {
+              server[_i0].caps = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          nfs_init_server_aclclient(server);
+          free(server);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_server0 = 1;
+          struct nfs_server * server = (struct nfs_server *) malloc(_len_server0*sizeof(struct nfs_server));
+          for(int _i0 = 0; _i0 < _len_server0; _i0++) {
+              server[_i0].caps = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          nfs_init_server_aclclient(server);
+          free(server);
+        
+        break;
+    }
     default:
         usage();
         break;

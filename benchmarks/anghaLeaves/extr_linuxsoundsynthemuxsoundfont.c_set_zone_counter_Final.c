@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ set_zone_counter(struct snd_sf_list *sflist, struct snd_soundfont *sf,
 		sflist->zone_locked = sflist->zone_counter;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,25 +81,166 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_sflist0 = 65025;
+          struct snd_sf_list * sflist = (struct snd_sf_list *) malloc(_len_sflist0*sizeof(struct snd_sf_list));
+          for(int _i0 = 0; _i0 < _len_sflist0; _i0++) {
+              sflist[_i0].zone_counter = ((-2 * (next_i()%2)) + 1) * next_i();
+          sflist[_i0].zone_locked = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_sf0 = 65025;
+          struct snd_soundfont * sf = (struct snd_soundfont *) malloc(_len_sf0*sizeof(struct snd_soundfont));
+          for(int _i0 = 0; _i0 < _len_sf0; _i0++) {
+              sf[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_zp0 = 65025;
+          struct snd_sf_zone * zp = (struct snd_sf_zone *) malloc(_len_zp0*sizeof(struct snd_sf_zone));
+          for(int _i0 = 0; _i0 < _len_zp0; _i0++) {
+              zp[_i0].counter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_zone_counter(sflist,sf,zp);
+          free(sflist);
+          free(sf);
+          free(zp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_sflist0 = 100;
+          struct snd_sf_list * sflist = (struct snd_sf_list *) malloc(_len_sflist0*sizeof(struct snd_sf_list));
+          for(int _i0 = 0; _i0 < _len_sflist0; _i0++) {
+              sflist[_i0].zone_counter = ((-2 * (next_i()%2)) + 1) * next_i();
+          sflist[_i0].zone_locked = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_sf0 = 100;
+          struct snd_soundfont * sf = (struct snd_soundfont *) malloc(_len_sf0*sizeof(struct snd_soundfont));
+          for(int _i0 = 0; _i0 < _len_sf0; _i0++) {
+              sf[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_zp0 = 100;
+          struct snd_sf_zone * zp = (struct snd_sf_zone *) malloc(_len_zp0*sizeof(struct snd_sf_zone));
+          for(int _i0 = 0; _i0 < _len_zp0; _i0++) {
+              zp[_i0].counter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_zone_counter(sflist,sf,zp);
+          free(sflist);
+          free(sf);
+          free(zp);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_sflist0 = 1;
           struct snd_sf_list * sflist = (struct snd_sf_list *) malloc(_len_sflist0*sizeof(struct snd_sf_list));
           for(int _i0 = 0; _i0 < _len_sflist0; _i0++) {
-            sflist[_i0].zone_counter = ((-2 * (next_i()%2)) + 1) * next_i();
-        sflist[_i0].zone_locked = ((-2 * (next_i()%2)) + 1) * next_i();
+              sflist[_i0].zone_counter = ((-2 * (next_i()%2)) + 1) * next_i();
+          sflist[_i0].zone_locked = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_sf0 = 1;
           struct snd_soundfont * sf = (struct snd_soundfont *) malloc(_len_sf0*sizeof(struct snd_soundfont));
           for(int _i0 = 0; _i0 < _len_sf0; _i0++) {
-            sf[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+              sf[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_zp0 = 1;
           struct snd_sf_zone * zp = (struct snd_sf_zone *) malloc(_len_zp0*sizeof(struct snd_sf_zone));
           for(int _i0 = 0; _i0 < _len_zp0; _i0++) {
-            zp[_i0].counter = ((-2 * (next_i()%2)) + 1) * next_i();
+              zp[_i0].counter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           set_zone_counter(sflist,sf,zp);
           free(sflist);
           free(sf);

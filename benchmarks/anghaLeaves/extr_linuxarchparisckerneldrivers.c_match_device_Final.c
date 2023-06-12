@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -84,12 +86,6 @@ __attribute__((used)) static int match_device(struct parisc_driver *driver, stru
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,27 +98,178 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 42
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
+          int _len_driver0 = 65025;
+          struct parisc_driver * driver = (struct parisc_driver *) malloc(_len_driver0*sizeof(struct parisc_driver));
+          for(int _i0 = 0; _i0 < _len_driver0; _i0++) {
+              int _len_driver__i0__id_table0 = 1;
+          driver[_i0].id_table = (struct parisc_device_id *) malloc(_len_driver__i0__id_table0*sizeof(struct parisc_device_id));
+          for(int _j0 = 0; _j0 < _len_driver__i0__id_table0; _j0++) {
+              driver[_i0].id_table->sversion = ((-2 * (next_i()%2)) + 1) * next_i();
+          driver[_i0].id_table->hw_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          driver[_i0].id_table->hversion = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_dev0 = 65025;
+          struct parisc_device * dev = (struct parisc_device *) malloc(_len_dev0*sizeof(struct parisc_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].id.sversion = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].id.hw_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].id.hversion = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = match_device(driver,dev);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_driver0; _aux++) {
+          free(driver[_aux].id_table);
+          }
+          free(driver);
+          free(dev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 42
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
+          int _len_driver0 = 100;
+          struct parisc_driver * driver = (struct parisc_driver *) malloc(_len_driver0*sizeof(struct parisc_driver));
+          for(int _i0 = 0; _i0 < _len_driver0; _i0++) {
+              int _len_driver__i0__id_table0 = 1;
+          driver[_i0].id_table = (struct parisc_device_id *) malloc(_len_driver__i0__id_table0*sizeof(struct parisc_device_id));
+          for(int _j0 = 0; _j0 < _len_driver__i0__id_table0; _j0++) {
+              driver[_i0].id_table->sversion = ((-2 * (next_i()%2)) + 1) * next_i();
+          driver[_i0].id_table->hw_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          driver[_i0].id_table->hversion = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_dev0 = 100;
+          struct parisc_device * dev = (struct parisc_device *) malloc(_len_dev0*sizeof(struct parisc_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].id.sversion = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].id.hw_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].id.hversion = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = match_device(driver,dev);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_driver0; _aux++) {
+          free(driver[_aux].id_table);
+          }
+          free(driver);
+          free(dev);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 42
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
           int _len_driver0 = 1;
           struct parisc_driver * driver = (struct parisc_driver *) malloc(_len_driver0*sizeof(struct parisc_driver));
           for(int _i0 = 0; _i0 < _len_driver0; _i0++) {
               int _len_driver__i0__id_table0 = 1;
           driver[_i0].id_table = (struct parisc_device_id *) malloc(_len_driver__i0__id_table0*sizeof(struct parisc_device_id));
           for(int _j0 = 0; _j0 < _len_driver__i0__id_table0; _j0++) {
-            driver[_i0].id_table->sversion = ((-2 * (next_i()%2)) + 1) * next_i();
-        driver[_i0].id_table->hw_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        driver[_i0].id_table->hversion = ((-2 * (next_i()%2)) + 1) * next_i();
+              driver[_i0].id_table->sversion = ((-2 * (next_i()%2)) + 1) * next_i();
+          driver[_i0].id_table->hw_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          driver[_i0].id_table->hversion = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_dev0 = 1;
           struct parisc_device * dev = (struct parisc_device *) malloc(_len_dev0*sizeof(struct parisc_device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].id.sversion = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].id.hw_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].id.hversion = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].id.sversion = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].id.hw_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].id.hversion = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = match_device(driver,dev);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_driver0; _aux++) {

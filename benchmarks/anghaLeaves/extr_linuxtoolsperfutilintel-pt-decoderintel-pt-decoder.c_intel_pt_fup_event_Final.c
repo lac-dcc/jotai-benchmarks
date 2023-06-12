@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -115,12 +117,6 @@ __attribute__((used)) static bool intel_pt_fup_event(struct intel_pt_decoder *de
 	return ret;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -133,31 +129,173 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_decoder0 = 65025;
+          struct intel_pt_decoder * decoder = (struct intel_pt_decoder *) malloc(_len_decoder0*sizeof(struct intel_pt_decoder));
+          for(int _i0 = 0; _i0 < _len_decoder0; _i0++) {
+              decoder[_i0].set_fup_tx_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].set_fup_ptw = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].set_fup_mwait = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].set_fup_pwre = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].set_fup_exstop = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].state.to_ip = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].state.from_ip = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].state.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].state.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].state.pwre_payload = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].state.mwait_payload = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].state.ptw_payload = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          decoder[_i0].ip = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].fup_pwre_payload = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].fup_mwait_payload = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].fup_ptw_payload = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].fup_tx_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].tx_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = intel_pt_fup_event(decoder);
+          printf("%d\n", benchRet); 
+          free(decoder);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_decoder0 = 100;
+          struct intel_pt_decoder * decoder = (struct intel_pt_decoder *) malloc(_len_decoder0*sizeof(struct intel_pt_decoder));
+          for(int _i0 = 0; _i0 < _len_decoder0; _i0++) {
+              decoder[_i0].set_fup_tx_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].set_fup_ptw = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].set_fup_mwait = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].set_fup_pwre = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].set_fup_exstop = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].state.to_ip = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].state.from_ip = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].state.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].state.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].state.pwre_payload = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].state.mwait_payload = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].state.ptw_payload = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          decoder[_i0].ip = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].fup_pwre_payload = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].fup_mwait_payload = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].fup_ptw_payload = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].fup_tx_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].tx_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = intel_pt_fup_event(decoder);
+          printf("%d\n", benchRet); 
+          free(decoder);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int _len_decoder0 = 1;
           struct intel_pt_decoder * decoder = (struct intel_pt_decoder *) malloc(_len_decoder0*sizeof(struct intel_pt_decoder));
           for(int _i0 = 0; _i0 < _len_decoder0; _i0++) {
-            decoder[_i0].set_fup_tx_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        decoder[_i0].set_fup_ptw = ((-2 * (next_i()%2)) + 1) * next_i();
-        decoder[_i0].set_fup_mwait = ((-2 * (next_i()%2)) + 1) * next_i();
-        decoder[_i0].set_fup_pwre = ((-2 * (next_i()%2)) + 1) * next_i();
-        decoder[_i0].set_fup_exstop = ((-2 * (next_i()%2)) + 1) * next_i();
-        decoder[_i0].state.to_ip = ((-2 * (next_i()%2)) + 1) * next_i();
-        decoder[_i0].state.from_ip = ((-2 * (next_i()%2)) + 1) * next_i();
-        decoder[_i0].state.flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        decoder[_i0].state.type = ((-2 * (next_i()%2)) + 1) * next_i();
-        decoder[_i0].state.pwre_payload = ((-2 * (next_i()%2)) + 1) * next_i();
-        decoder[_i0].state.mwait_payload = ((-2 * (next_i()%2)) + 1) * next_i();
-        decoder[_i0].state.ptw_payload = ((-2 * (next_i()%2)) + 1) * next_i();
-        decoder[_i0].ip = ((-2 * (next_i()%2)) + 1) * next_i();
-        decoder[_i0].fup_pwre_payload = ((-2 * (next_i()%2)) + 1) * next_i();
-        decoder[_i0].fup_mwait_payload = ((-2 * (next_i()%2)) + 1) * next_i();
-        decoder[_i0].fup_ptw_payload = ((-2 * (next_i()%2)) + 1) * next_i();
-        decoder[_i0].fup_tx_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        decoder[_i0].tx_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              decoder[_i0].set_fup_tx_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].set_fup_ptw = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].set_fup_mwait = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].set_fup_pwre = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].set_fup_exstop = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].state.to_ip = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].state.from_ip = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].state.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].state.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].state.pwre_payload = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].state.mwait_payload = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].state.ptw_payload = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          decoder[_i0].ip = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].fup_pwre_payload = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].fup_mwait_payload = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].fup_ptw_payload = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].fup_tx_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].tx_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = intel_pt_fup_event(decoder);
           printf("%d\n", benchRet); 
           free(decoder);

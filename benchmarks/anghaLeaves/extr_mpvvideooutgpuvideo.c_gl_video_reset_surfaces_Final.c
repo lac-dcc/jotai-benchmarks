@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static void gl_video_reset_surfaces(struct gl_video *p)
     p->output_tex_valid = false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,23 +85,153 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_p0 = 1;
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_p0 = 65025;
           struct gl_video * p = (struct gl_video *) malloc(_len_p0*sizeof(struct gl_video));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].output_tex_valid = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].frames_drawn = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].surface_now = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].surface_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].output_tex_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].frames_drawn = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].surface_now = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].surface_idx = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_p__i0__surfaces0 = 1;
           p[_i0].surfaces = (struct TYPE_2__ *) malloc(_len_p__i0__surfaces0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_p__i0__surfaces0; _j0++) {
-            p[_i0].surfaces->pts = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].surfaces->id = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].surfaces->pts = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].surfaces->id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          gl_video_reset_surfaces(p);
+          for(int _aux = 0; _aux < _len_p0; _aux++) {
+          free(p[_aux].surfaces);
+          }
+          free(p);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_p0 = 100;
+          struct gl_video * p = (struct gl_video *) malloc(_len_p0*sizeof(struct gl_video));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].output_tex_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].frames_drawn = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].surface_now = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].surface_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_p__i0__surfaces0 = 1;
+          p[_i0].surfaces = (struct TYPE_2__ *) malloc(_len_p__i0__surfaces0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_p__i0__surfaces0; _j0++) {
+              p[_i0].surfaces->pts = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].surfaces->id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          gl_video_reset_surfaces(p);
+          for(int _aux = 0; _aux < _len_p0; _aux++) {
+          free(p[_aux].surfaces);
+          }
+          free(p);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_p0 = 1;
+          struct gl_video * p = (struct gl_video *) malloc(_len_p0*sizeof(struct gl_video));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].output_tex_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].frames_drawn = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].surface_now = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].surface_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_p__i0__surfaces0 = 1;
+          p[_i0].surfaces = (struct TYPE_2__ *) malloc(_len_p__i0__surfaces0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_p__i0__surfaces0; _j0++) {
+              p[_i0].surfaces->pts = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].surfaces->id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           gl_video_reset_surfaces(p);
           for(int _aux = 0; _aux < _len_p0; _aux++) {
           free(p[_aux].surfaces);

@@ -70,12 +70,6 @@ set_attribute_on_line(GPUCell *cells, uint32_t shift, uint32_t val, index_type x
     for (index_type i = 0; i < xnum; i++) cells[i].attrs = (cells[i].attrs & mask) | aval;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,17 +82,45 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // big-arr-10x
     case 0:
     {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 179
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 89
+          // ------------------------------- 
+          // static_instructions_O2 : 52
+          // dynamic_instructions_O2 : 59
+          // ------------------------------- 
+          // static_instructions_O3 : 52
+          // dynamic_instructions_O3 : 59
+          // ------------------------------- 
+          // static_instructions_Ofast : 52
+          // dynamic_instructions_Ofast : 59
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 88
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 98
+          // ------------------------------- 
+
           int shift = 10;
+        
           int val = 10;
+        
           unsigned long xnum = 10;
+        
           int _len_cells0 = 100;
           struct TYPE_3__ * cells = (struct TYPE_3__ *) malloc(_len_cells0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_cells0; _i0++) {
-            cells[_i0].attrs = ((-2 * (next_i()%2)) + 1) * next_i();
+              cells[_i0].attrs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           set_attribute_on_line(cells,shift,val,xnum);
           free(cells);
         

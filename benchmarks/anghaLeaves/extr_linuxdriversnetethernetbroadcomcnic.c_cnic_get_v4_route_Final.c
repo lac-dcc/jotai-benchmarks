@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ __attribute__((used)) static int cnic_get_v4_route(struct sockaddr_in *dst_addr,
 #endif
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,35 +88,99 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dst_addr0 = 1;
+          int _len_dst_addr0 = 65025;
           struct sockaddr_in * dst_addr = (struct sockaddr_in *) malloc(_len_dst_addr0*sizeof(struct sockaddr_in));
           for(int _i0 = 0; _i0 < _len_dst_addr0; _i0++) {
-            dst_addr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dst_addr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_dst0 = 1;
+        
+          int _len_dst0 = 65025;
           struct dst_entry ** dst = (struct dst_entry **) malloc(_len_dst0*sizeof(struct dst_entry *));
           for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
             int _len_dst1 = 1;
             dst[_i0] = (struct dst_entry *) malloc(_len_dst1*sizeof(struct dst_entry));
             for(int _i1 = 0; _i1 < _len_dst1; _i1++) {
-              dst[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+                dst[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           int benchRet = cnic_get_v4_route(dst_addr,dst);
           printf("%d\n", benchRet); 
           free(dst_addr);
           for(int i1 = 0; i1 < _len_dst0; i1++) {
-            int _len_dst1 = 1;
               free(dst[i1]);
           }
           free(dst);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dst_addr0 = 100;
+          struct sockaddr_in * dst_addr = (struct sockaddr_in *) malloc(_len_dst_addr0*sizeof(struct sockaddr_in));
+          for(int _i0 = 0; _i0 < _len_dst_addr0; _i0++) {
+              dst_addr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dst0 = 100;
+          struct dst_entry ** dst = (struct dst_entry **) malloc(_len_dst0*sizeof(struct dst_entry *));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+            int _len_dst1 = 1;
+            dst[_i0] = (struct dst_entry *) malloc(_len_dst1*sizeof(struct dst_entry));
+            for(int _i1 = 0; _i1 < _len_dst1; _i1++) {
+                dst[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int benchRet = cnic_get_v4_route(dst_addr,dst);
+          printf("%d\n", benchRet); 
+          free(dst_addr);
+          for(int i1 = 0; i1 < _len_dst0; i1++) {
+              free(dst[i1]);
+          }
+          free(dst);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dst_addr0 = 1;
+          struct sockaddr_in * dst_addr = (struct sockaddr_in *) malloc(_len_dst_addr0*sizeof(struct sockaddr_in));
+          for(int _i0 = 0; _i0 < _len_dst_addr0; _i0++) {
+              dst_addr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dst0 = 1;
+          struct dst_entry ** dst = (struct dst_entry **) malloc(_len_dst0*sizeof(struct dst_entry *));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+            int _len_dst1 = 1;
+            dst[_i0] = (struct dst_entry *) malloc(_len_dst1*sizeof(struct dst_entry));
+            for(int _i1 = 0; _i1 < _len_dst1; _i1++) {
+                dst[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int benchRet = cnic_get_v4_route(dst_addr,dst);
+          printf("%d\n", benchRet); 
+          free(dst_addr);
+          for(int i1 = 0; i1 < _len_dst0; i1++) {
+              free(dst[i1]);
+          }
+          free(dst);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -137,12 +138,6 @@ __attribute__((used)) static ut64 get_method_flags(ut64 MA) {
 	return flags;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -159,6 +154,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int MA = 100;
+        
           int benchRet = get_method_flags(MA);
           printf("%d\n", benchRet); 
         
@@ -168,6 +164,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int MA = 255;
+        
           int benchRet = get_method_flags(MA);
           printf("%d\n", benchRet); 
         
@@ -177,12 +174,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int MA = 10;
+        
           int benchRet = get_method_flags(MA);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int MA = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = get_method_flags(MA);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

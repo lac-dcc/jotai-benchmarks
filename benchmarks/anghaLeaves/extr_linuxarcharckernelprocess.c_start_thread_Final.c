@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -79,12 +82,6 @@ void start_thread(struct pt_regs * regs, unsigned long pc, unsigned long usp)
 	regs->lp_end = 0x80;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,22 +98,94 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long pc = 100;
+        
           unsigned long usp = 100;
+        
           int _len_regs0 = 1;
           struct pt_regs * regs = (struct pt_regs *) malloc(_len_regs0*sizeof(struct pt_regs));
           for(int _i0 = 0; _i0 < _len_regs0; _i0++) {
-            regs[_i0].sp = ((-2 * (next_i()%2)) + 1) * next_i();
-        regs[_i0].ret = ((-2 * (next_i()%2)) + 1) * next_i();
-        regs[_i0].status32 = ((-2 * (next_i()%2)) + 1) * next_i();
-        regs[_i0].lp_start = ((-2 * (next_i()%2)) + 1) * next_i();
-        regs[_i0].lp_end = ((-2 * (next_i()%2)) + 1) * next_i();
+              regs[_i0].sp = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].ret = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].status32 = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].lp_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].lp_end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           start_thread(regs,pc,usp);
           free(regs);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long pc = 255;
+        
+          unsigned long usp = 255;
+        
+          int _len_regs0 = 65025;
+          struct pt_regs * regs = (struct pt_regs *) malloc(_len_regs0*sizeof(struct pt_regs));
+          for(int _i0 = 0; _i0 < _len_regs0; _i0++) {
+              regs[_i0].sp = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].ret = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].status32 = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].lp_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].lp_end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          start_thread(regs,pc,usp);
+          free(regs);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long pc = 10;
+        
+          unsigned long usp = 10;
+        
+          int _len_regs0 = 100;
+          struct pt_regs * regs = (struct pt_regs *) malloc(_len_regs0*sizeof(struct pt_regs));
+          for(int _i0 = 0; _i0 < _len_regs0; _i0++) {
+              regs[_i0].sp = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].ret = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].status32 = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].lp_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].lp_end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          start_thread(regs,pc,usp);
+          free(regs);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long pc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long usp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_regs0 = 1;
+          struct pt_regs * regs = (struct pt_regs *) malloc(_len_regs0*sizeof(struct pt_regs));
+          for(int _i0 = 0; _i0 < _len_regs0; _i0++) {
+              regs[_i0].sp = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].ret = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].status32 = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].lp_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].lp_end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          start_thread(regs,pc,usp);
+          free(regs);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ filt_fsevent(struct knote *kn, long hint)
 	return (kn->kn_fflags != 0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,16 +85,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           long hint = 100;
+        
           int _len_kn0 = 1;
           struct knote * kn = (struct knote *) malloc(_len_kn0*sizeof(struct knote));
           for(int _i0 = 0; _i0 < _len_kn0; _i0++) {
-            kn[_i0].kn_sfflags = ((-2 * (next_i()%2)) + 1) * next_i();
-        kn[_i0].kn_fflags = ((-2 * (next_i()%2)) + 1) * next_i();
+              kn[_i0].kn_sfflags = ((-2 * (next_i()%2)) + 1) * next_i();
+          kn[_i0].kn_fflags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = filt_fsevent(kn,hint);
+          printf("%d\n", benchRet); 
+          free(kn);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          long hint = 255;
+        
+          int _len_kn0 = 65025;
+          struct knote * kn = (struct knote *) malloc(_len_kn0*sizeof(struct knote));
+          for(int _i0 = 0; _i0 < _len_kn0; _i0++) {
+              kn[_i0].kn_sfflags = ((-2 * (next_i()%2)) + 1) * next_i();
+          kn[_i0].kn_fflags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = filt_fsevent(kn,hint);
+          printf("%d\n", benchRet); 
+          free(kn);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          long hint = 10;
+        
+          int _len_kn0 = 100;
+          struct knote * kn = (struct knote *) malloc(_len_kn0*sizeof(struct knote));
+          for(int _i0 = 0; _i0 < _len_kn0; _i0++) {
+              kn[_i0].kn_sfflags = ((-2 * (next_i()%2)) + 1) * next_i();
+          kn[_i0].kn_fflags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = filt_fsevent(kn,hint);
+          printf("%d\n", benchRet); 
+          free(kn);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          long hint = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_kn0 = 1;
+          struct knote * kn = (struct knote *) malloc(_len_kn0*sizeof(struct knote));
+          for(int _i0 = 0; _i0 < _len_kn0; _i0++) {
+              kn[_i0].kn_sfflags = ((-2 * (next_i()%2)) + 1) * next_i();
+          kn[_i0].kn_fflags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = filt_fsevent(kn,hint);
           printf("%d\n", benchRet); 
           free(kn);

@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -105,12 +107,6 @@ InfGetDataField (
     return TRUE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -127,6 +123,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int FieldIndex = 100;
+        
           int _len_Context0 = 1;
           struct TYPE_5__ * Context = (struct TYPE_5__ *) malloc(_len_Context0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_Context0; _i0++) {
@@ -135,12 +132,15 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_Context__i0__Line0; _j0++) {
             Context[_i0].Line[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int _len_Data0 = 1;
           int * Data = (int *) malloc(_len_Data0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_Data0; _i0++) {
             Data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = InfGetDataField(Context,FieldIndex,Data);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_Context0; _aux++) {
@@ -151,7 +151,70 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int FieldIndex = 255;
+        
+          int _len_Context0 = 65025;
+          struct TYPE_5__ * Context = (struct TYPE_5__ *) malloc(_len_Context0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_Context0; _i0++) {
+              int _len_Context__i0__Line0 = 1;
+          Context[_i0].Line = (int *) malloc(_len_Context__i0__Line0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_Context__i0__Line0; _j0++) {
+            Context[_i0].Line[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_Data0 = 65025;
+          int * Data = (int *) malloc(_len_Data0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_Data0; _i0++) {
+            Data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = InfGetDataField(Context,FieldIndex,Data);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_Context0; _aux++) {
+          free(Context[_aux].Line);
+          }
+          free(Context);
+          free(Data);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int FieldIndex = 10;
+        
+          int _len_Context0 = 100;
+          struct TYPE_5__ * Context = (struct TYPE_5__ *) malloc(_len_Context0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_Context0; _i0++) {
+              int _len_Context__i0__Line0 = 1;
+          Context[_i0].Line = (int *) malloc(_len_Context__i0__Line0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_Context__i0__Line0; _j0++) {
+            Context[_i0].Line[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_Data0 = 100;
+          int * Data = (int *) malloc(_len_Data0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_Data0; _i0++) {
+            Data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = InfGetDataField(Context,FieldIndex,Data);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_Context0; _aux++) {
+          free(Context[_aux].Line);
+          }
+          free(Context);
+          free(Data);
+        
+        break;
+    }
     default:
         usage();
         break;

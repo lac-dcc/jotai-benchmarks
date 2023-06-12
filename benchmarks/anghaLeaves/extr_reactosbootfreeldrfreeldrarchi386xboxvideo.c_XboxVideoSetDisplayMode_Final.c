@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ XboxVideoSetDisplayMode(char *DisplayMode, BOOLEAN Init)
   return VideoTextMode;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,11 +83,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int Init = 100;
+        
           int _len_DisplayMode0 = 1;
           char * DisplayMode = (char *) malloc(_len_DisplayMode0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_DisplayMode0; _i0++) {
             DisplayMode[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = XboxVideoSetDisplayMode(DisplayMode,Init);
+          printf("%d\n", benchRet); 
+          free(DisplayMode);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int Init = 255;
+        
+          int _len_DisplayMode0 = 65025;
+          char * DisplayMode = (char *) malloc(_len_DisplayMode0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_DisplayMode0; _i0++) {
+            DisplayMode[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = XboxVideoSetDisplayMode(DisplayMode,Init);
           printf("%d\n", benchRet); 
           free(DisplayMode);
@@ -99,21 +114,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int Init = 10;
+        
           int _len_DisplayMode0 = 100;
           char * DisplayMode = (char *) malloc(_len_DisplayMode0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_DisplayMode0; _i0++) {
             DisplayMode[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = XboxVideoSetDisplayMode(DisplayMode,Init);
           printf("%d\n", benchRet); 
           free(DisplayMode);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int Init = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_DisplayMode0 = 1;
+          char * DisplayMode = (char *) malloc(_len_DisplayMode0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_DisplayMode0; _i0++) {
+            DisplayMode[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = XboxVideoSetDisplayMode(DisplayMode,Init);
+          printf("%d\n", benchRet); 
+          free(DisplayMode);
+        
+        break;
+    }
     default:
         usage();
         break;

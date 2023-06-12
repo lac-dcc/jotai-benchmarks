@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ __attribute__((used)) static inline struct hlist_head *stripe_hash(struct r5conf
 	return &conf->stripe_hashtbl[hash];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,15 +84,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int sect = 100;
+        
           int _len_conf0 = 1;
           struct r5conf * conf = (struct r5conf *) malloc(_len_conf0*sizeof(struct r5conf));
           for(int _i0 = 0; _i0 < _len_conf0; _i0++) {
               int _len_conf__i0__stripe_hashtbl0 = 1;
           conf[_i0].stripe_hashtbl = (struct hlist_head *) malloc(_len_conf__i0__stripe_hashtbl0*sizeof(struct hlist_head));
           for(int _j0 = 0; _j0 < _len_conf__i0__stripe_hashtbl0; _j0++) {
-            conf[_i0].stripe_hashtbl->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              conf[_i0].stripe_hashtbl->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct hlist_head * benchRet = stripe_hash(conf,sect);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_conf0; _aux++) {
@@ -105,7 +106,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int sect = 255;
+        
+          int _len_conf0 = 65025;
+          struct r5conf * conf = (struct r5conf *) malloc(_len_conf0*sizeof(struct r5conf));
+          for(int _i0 = 0; _i0 < _len_conf0; _i0++) {
+              int _len_conf__i0__stripe_hashtbl0 = 1;
+          conf[_i0].stripe_hashtbl = (struct hlist_head *) malloc(_len_conf__i0__stripe_hashtbl0*sizeof(struct hlist_head));
+          for(int _j0 = 0; _j0 < _len_conf__i0__stripe_hashtbl0; _j0++) {
+              conf[_i0].stripe_hashtbl->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct hlist_head * benchRet = stripe_hash(conf,sect);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_conf0; _aux++) {
+          free(conf[_aux].stripe_hashtbl);
+          }
+          free(conf);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int sect = 10;
+        
+          int _len_conf0 = 100;
+          struct r5conf * conf = (struct r5conf *) malloc(_len_conf0*sizeof(struct r5conf));
+          for(int _i0 = 0; _i0 < _len_conf0; _i0++) {
+              int _len_conf__i0__stripe_hashtbl0 = 1;
+          conf[_i0].stripe_hashtbl = (struct hlist_head *) malloc(_len_conf__i0__stripe_hashtbl0*sizeof(struct hlist_head));
+          for(int _j0 = 0; _j0 < _len_conf__i0__stripe_hashtbl0; _j0++) {
+              conf[_i0].stripe_hashtbl->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct hlist_head * benchRet = stripe_hash(conf,sect);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_conf0; _aux++) {
+          free(conf[_aux].stripe_hashtbl);
+          }
+          free(conf);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int sect = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_conf0 = 1;
+          struct r5conf * conf = (struct r5conf *) malloc(_len_conf0*sizeof(struct r5conf));
+          for(int _i0 = 0; _i0 < _len_conf0; _i0++) {
+              int _len_conf__i0__stripe_hashtbl0 = 1;
+          conf[_i0].stripe_hashtbl = (struct hlist_head *) malloc(_len_conf__i0__stripe_hashtbl0*sizeof(struct hlist_head));
+          for(int _j0 = 0; _j0 < _len_conf__i0__stripe_hashtbl0; _j0++) {
+              conf[_i0].stripe_hashtbl->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct hlist_head * benchRet = stripe_hash(conf,sect);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_conf0; _aux++) {
+          free(conf[_aux].stripe_hashtbl);
+          }
+          free(conf);
+        
+        break;
+    }
     default:
         usage();
         break;

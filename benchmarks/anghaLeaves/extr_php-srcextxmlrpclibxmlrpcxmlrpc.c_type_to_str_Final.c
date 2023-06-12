@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -104,12 +105,6 @@ const char* type_to_str(XMLRPC_VALUE_TYPE type, XMLRPC_VECTOR_TYPE vtype) {
     return "unknown";
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -126,7 +121,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int type = 100;
+        
           int vtype = 100;
+        
           const char * benchRet = type_to_str(type,vtype);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
@@ -136,7 +133,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int type = 255;
+        
           int vtype = 255;
+        
           const char * benchRet = type_to_str(type,vtype);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
@@ -146,13 +145,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int type = 10;
+        
           int vtype = 10;
+        
           const char * benchRet = type_to_str(type,vtype);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int vtype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          const char * benchRet = type_to_str(type,vtype);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static void sctp_enter_memory_pressure(struct sock *sk)
 	sctp_memory_pressure = 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_sk0 = 1;
+          int _len_sk0 = 65025;
           struct sock * sk = (struct sock *) malloc(_len_sk0*sizeof(struct sock));
           for(int _i0 = 0; _i0 < _len_sk0; _i0++) {
-            sk[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              sk[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           sctp_enter_memory_pressure(sk);
           free(sk);
         
@@ -99,14 +96,30 @@ int main(int argc, char *argv[]) {
           int _len_sk0 = 100;
           struct sock * sk = (struct sock *) malloc(_len_sk0*sizeof(struct sock));
           for(int _i0 = 0; _i0 < _len_sk0; _i0++) {
-            sk[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              sk[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           sctp_enter_memory_pressure(sk);
           free(sk);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_sk0 = 1;
+          struct sock * sk = (struct sock *) malloc(_len_sk0*sizeof(struct sock));
+          for(int _i0 = 0; _i0 < _len_sk0; _i0++) {
+              sk[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          sctp_enter_memory_pressure(sk);
+          free(sk);
+        
+        break;
+    }
     default:
         usage();
         break;

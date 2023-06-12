@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -92,12 +94,6 @@ __attribute__((used)) static u32 dwc2_gadget_get_desc_params(struct dwc2_hsotg_e
 	return desc_size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -110,22 +106,151 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_hs_ep0 = 65025;
+          struct dwc2_hsotg_ep * hs_ep = (struct dwc2_hsotg_ep *) malloc(_len_hs_ep0*sizeof(struct dwc2_hsotg_ep));
+          for(int _i0 = 0; _i0 < _len_hs_ep0; _i0++) {
+              hs_ep[_i0].dir_in = ((-2 * (next_i()%2)) + 1) * next_i();
+          hs_ep[_i0].isochronous = ((-2 * (next_i()%2)) + 1) * next_i();
+          hs_ep[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+          hs_ep[_i0].ep.maxpacket = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_mask0 = 65025;
+          int * mask = (int *) malloc(_len_mask0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mask0; _i0++) {
+            mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = dwc2_gadget_get_desc_params(hs_ep,mask);
+          printf("%d\n", benchRet); 
+          free(hs_ep);
+          free(mask);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_hs_ep0 = 100;
+          struct dwc2_hsotg_ep * hs_ep = (struct dwc2_hsotg_ep *) malloc(_len_hs_ep0*sizeof(struct dwc2_hsotg_ep));
+          for(int _i0 = 0; _i0 < _len_hs_ep0; _i0++) {
+              hs_ep[_i0].dir_in = ((-2 * (next_i()%2)) + 1) * next_i();
+          hs_ep[_i0].isochronous = ((-2 * (next_i()%2)) + 1) * next_i();
+          hs_ep[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+          hs_ep[_i0].ep.maxpacket = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_mask0 = 100;
+          int * mask = (int *) malloc(_len_mask0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mask0; _i0++) {
+            mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = dwc2_gadget_get_desc_params(hs_ep,mask);
+          printf("%d\n", benchRet); 
+          free(hs_ep);
+          free(mask);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int _len_hs_ep0 = 1;
           struct dwc2_hsotg_ep * hs_ep = (struct dwc2_hsotg_ep *) malloc(_len_hs_ep0*sizeof(struct dwc2_hsotg_ep));
           for(int _i0 = 0; _i0 < _len_hs_ep0; _i0++) {
-            hs_ep[_i0].dir_in = ((-2 * (next_i()%2)) + 1) * next_i();
-        hs_ep[_i0].isochronous = ((-2 * (next_i()%2)) + 1) * next_i();
-        hs_ep[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
-        hs_ep[_i0].ep.maxpacket = ((-2 * (next_i()%2)) + 1) * next_i();
+              hs_ep[_i0].dir_in = ((-2 * (next_i()%2)) + 1) * next_i();
+          hs_ep[_i0].isochronous = ((-2 * (next_i()%2)) + 1) * next_i();
+          hs_ep[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+          hs_ep[_i0].ep.maxpacket = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_mask0 = 1;
           int * mask = (int *) malloc(_len_mask0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_mask0; _i0++) {
             mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = dwc2_gadget_get_desc_params(hs_ep,mask);
           printf("%d\n", benchRet); 
           free(hs_ep);

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ __attribute__((used)) static int bad_inode_mkdir(struct inode *dir, struct dentr
 	return -EIO;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,16 +83,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int mode = 100;
+        
           int _len_dir0 = 1;
           struct inode * dir = (struct inode *) malloc(_len_dir0*sizeof(struct inode));
           for(int _i0 = 0; _i0 < _len_dir0; _i0++) {
-            dir[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dir[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_dentry0 = 1;
           struct dentry * dentry = (struct dentry *) malloc(_len_dentry0*sizeof(struct dentry));
           for(int _i0 = 0; _i0 < _len_dentry0; _i0++) {
-            dentry[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dentry[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = bad_inode_mkdir(dir,dentry,mode);
           printf("%d\n", benchRet); 
           free(dir);
@@ -103,7 +105,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int mode = 255;
+        
+          int _len_dir0 = 65025;
+          struct inode * dir = (struct inode *) malloc(_len_dir0*sizeof(struct inode));
+          for(int _i0 = 0; _i0 < _len_dir0; _i0++) {
+              dir[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dentry0 = 65025;
+          struct dentry * dentry = (struct dentry *) malloc(_len_dentry0*sizeof(struct dentry));
+          for(int _i0 = 0; _i0 < _len_dentry0; _i0++) {
+              dentry[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = bad_inode_mkdir(dir,dentry,mode);
+          printf("%d\n", benchRet); 
+          free(dir);
+          free(dentry);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int mode = 10;
+        
+          int _len_dir0 = 100;
+          struct inode * dir = (struct inode *) malloc(_len_dir0*sizeof(struct inode));
+          for(int _i0 = 0; _i0 < _len_dir0; _i0++) {
+              dir[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dentry0 = 100;
+          struct dentry * dentry = (struct dentry *) malloc(_len_dentry0*sizeof(struct dentry));
+          for(int _i0 = 0; _i0 < _len_dentry0; _i0++) {
+              dentry[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = bad_inode_mkdir(dir,dentry,mode);
+          printf("%d\n", benchRet); 
+          free(dir);
+          free(dentry);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dir0 = 1;
+          struct inode * dir = (struct inode *) malloc(_len_dir0*sizeof(struct inode));
+          for(int _i0 = 0; _i0 < _len_dir0; _i0++) {
+              dir[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dentry0 = 1;
+          struct dentry * dentry = (struct dentry *) malloc(_len_dentry0*sizeof(struct dentry));
+          for(int _i0 = 0; _i0 < _len_dentry0; _i0++) {
+              dentry[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = bad_inode_mkdir(dir,dentry,mode);
+          printf("%d\n", benchRet); 
+          free(dir);
+          free(dentry);
+        
+        break;
+    }
     default:
         usage();
         break;

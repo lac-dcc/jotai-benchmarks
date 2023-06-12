@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline int interpolate(int y0, int y1, int y2, int 
 	return y1 + (x < 50 ? y1 - y0 : y2 - y1) * (x - 50) / 50;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,9 +78,13 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int y0 = 100;
+        
           int y1 = 100;
+        
           int y2 = 100;
+        
           int x = 100;
+        
           int benchRet = interpolate(y0,y1,y2,x);
           printf("%d\n", benchRet); 
         
@@ -95,9 +94,13 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int y0 = 255;
+        
           int y1 = 255;
+        
           int y2 = 255;
+        
           int x = 255;
+        
           int benchRet = interpolate(y0,y1,y2,x);
           printf("%d\n", benchRet); 
         
@@ -107,15 +110,34 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int y0 = 10;
+        
           int y1 = 10;
+        
           int y2 = 10;
+        
           int x = 10;
+        
           int benchRet = interpolate(y0,y1,y2,x);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int y0 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int y1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int y2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = interpolate(y0,y1,y2,x);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

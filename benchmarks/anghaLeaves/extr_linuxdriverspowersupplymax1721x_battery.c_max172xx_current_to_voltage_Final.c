@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static inline int max172xx_current_to_voltage(unsigned int
 	return val * 156252;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +81,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int reg = 100;
+        
           int benchRet = max172xx_current_to_voltage(reg);
           printf("%d\n", benchRet); 
         
@@ -95,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int reg = 255;
+        
           int benchRet = max172xx_current_to_voltage(reg);
           printf("%d\n", benchRet); 
         
@@ -104,12 +101,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int reg = 10;
+        
           int benchRet = max172xx_current_to_voltage(reg);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = max172xx_current_to_voltage(reg);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

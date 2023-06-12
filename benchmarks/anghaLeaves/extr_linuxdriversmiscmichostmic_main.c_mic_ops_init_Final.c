@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ __attribute__((used)) static void mic_ops_init(struct mic_device *mdev)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,13 +86,13 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_mdev0 = 1;
+          int _len_mdev0 = 65025;
           struct mic_device * mdev = (struct mic_device *) malloc(_len_mdev0*sizeof(struct mic_device));
           for(int _i0 = 0; _i0 < _len_mdev0; _i0++) {
-            mdev[_i0].family = ((-2 * (next_i()%2)) + 1) * next_i();
+              mdev[_i0].family = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_mdev__i0__smpt_ops0 = 1;
           mdev[_i0].smpt_ops = (int *) malloc(_len_mdev__i0__smpt_ops0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_mdev__i0__smpt_ops0; _j0++) {
@@ -112,7 +108,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_mdev__i0__ops0; _j0++) {
             mdev[_i0].ops[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           mic_ops_init(mdev);
           for(int _aux = 0; _aux < _len_mdev0; _aux++) {
           free(mdev[_aux].smpt_ops);
@@ -127,7 +125,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_mdev0 = 100;
+          struct mic_device * mdev = (struct mic_device *) malloc(_len_mdev0*sizeof(struct mic_device));
+          for(int _i0 = 0; _i0 < _len_mdev0; _i0++) {
+              mdev[_i0].family = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_mdev__i0__smpt_ops0 = 1;
+          mdev[_i0].smpt_ops = (int *) malloc(_len_mdev__i0__smpt_ops0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_mdev__i0__smpt_ops0; _j0++) {
+            mdev[_i0].smpt_ops[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_mdev__i0__intr_ops0 = 1;
+          mdev[_i0].intr_ops = (int *) malloc(_len_mdev__i0__intr_ops0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_mdev__i0__intr_ops0; _j0++) {
+            mdev[_i0].intr_ops[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_mdev__i0__ops0 = 1;
+          mdev[_i0].ops = (int *) malloc(_len_mdev__i0__ops0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_mdev__i0__ops0; _j0++) {
+            mdev[_i0].ops[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          mic_ops_init(mdev);
+          for(int _aux = 0; _aux < _len_mdev0; _aux++) {
+          free(mdev[_aux].smpt_ops);
+          }
+          for(int _aux = 0; _aux < _len_mdev0; _aux++) {
+          free(mdev[_aux].intr_ops);
+          }
+          for(int _aux = 0; _aux < _len_mdev0; _aux++) {
+          free(mdev[_aux].ops);
+          }
+          free(mdev);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_mdev0 = 1;
+          struct mic_device * mdev = (struct mic_device *) malloc(_len_mdev0*sizeof(struct mic_device));
+          for(int _i0 = 0; _i0 < _len_mdev0; _i0++) {
+              mdev[_i0].family = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_mdev__i0__smpt_ops0 = 1;
+          mdev[_i0].smpt_ops = (int *) malloc(_len_mdev__i0__smpt_ops0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_mdev__i0__smpt_ops0; _j0++) {
+            mdev[_i0].smpt_ops[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_mdev__i0__intr_ops0 = 1;
+          mdev[_i0].intr_ops = (int *) malloc(_len_mdev__i0__intr_ops0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_mdev__i0__intr_ops0; _j0++) {
+            mdev[_i0].intr_ops[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_mdev__i0__ops0 = 1;
+          mdev[_i0].ops = (int *) malloc(_len_mdev__i0__ops0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_mdev__i0__ops0; _j0++) {
+            mdev[_i0].ops[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          mic_ops_init(mdev);
+          for(int _aux = 0; _aux < _len_mdev0; _aux++) {
+          free(mdev[_aux].smpt_ops);
+          }
+          for(int _aux = 0; _aux < _len_mdev0; _aux++) {
+          free(mdev[_aux].intr_ops);
+          }
+          for(int _aux = 0; _aux < _len_mdev0; _aux++) {
+          free(mdev[_aux].ops);
+          }
+          free(mdev);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static uint32_t via_cmdbuf_lag(drm_via_private_t *dev_priv
 		(dev_priv->dma_wrap + dev_priv->dma_low - hw_addr));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,22 +82,24 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dev_priv0 = 1;
+          int _len_dev_priv0 = 65025;
           struct TYPE_3__ * dev_priv = (struct TYPE_3__ *) malloc(_len_dev_priv0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_dev_priv0; _i0++) {
-            dev_priv[_i0].dma_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev_priv[_i0].dma_offset = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_dev_priv__i0__hw_addr_ptr0 = 1;
           dev_priv[_i0].hw_addr_ptr = (long *) malloc(_len_dev_priv__i0__hw_addr_ptr0*sizeof(long));
           for(int _j0 = 0; _j0 < _len_dev_priv__i0__hw_addr_ptr0; _j0++) {
             dev_priv[_i0].hw_addr_ptr[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        dev_priv[_i0].dma_low = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev_priv[_i0].dma_wrap = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev_priv[_i0].agpAddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev_priv[_i0].dma_low = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev_priv[_i0].dma_wrap = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev_priv[_i0].agpAddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = via_cmdbuf_lag(dev_priv);
           printf("%ld\n", benchRet); 
           for(int _aux = 0; _aux < _len_dev_priv0; _aux++) {
@@ -111,7 +109,60 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dev_priv0 = 100;
+          struct TYPE_3__ * dev_priv = (struct TYPE_3__ *) malloc(_len_dev_priv0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_dev_priv0; _i0++) {
+              dev_priv[_i0].dma_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_dev_priv__i0__hw_addr_ptr0 = 1;
+          dev_priv[_i0].hw_addr_ptr = (long *) malloc(_len_dev_priv__i0__hw_addr_ptr0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_dev_priv__i0__hw_addr_ptr0; _j0++) {
+            dev_priv[_i0].hw_addr_ptr[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          dev_priv[_i0].dma_low = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev_priv[_i0].dma_wrap = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev_priv[_i0].agpAddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = via_cmdbuf_lag(dev_priv);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dev_priv0; _aux++) {
+          free(dev_priv[_aux].hw_addr_ptr);
+          }
+          free(dev_priv);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dev_priv0 = 1;
+          struct TYPE_3__ * dev_priv = (struct TYPE_3__ *) malloc(_len_dev_priv0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_dev_priv0; _i0++) {
+              dev_priv[_i0].dma_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_dev_priv__i0__hw_addr_ptr0 = 1;
+          dev_priv[_i0].hw_addr_ptr = (long *) malloc(_len_dev_priv__i0__hw_addr_ptr0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_dev_priv__i0__hw_addr_ptr0; _j0++) {
+            dev_priv[_i0].hw_addr_ptr[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          dev_priv[_i0].dma_low = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev_priv[_i0].dma_wrap = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev_priv[_i0].agpAddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = via_cmdbuf_lag(dev_priv);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dev_priv0; _aux++) {
+          free(dev_priv[_aux].hw_addr_ptr);
+          }
+          free(dev_priv);
+        
+        break;
+    }
     default:
         usage();
         break;

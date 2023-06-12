@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline void dev_base_seq_inc(struct net *net)
 		;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_net0 = 1;
+          int _len_net0 = 65025;
           struct net * net = (struct net *) malloc(_len_net0*sizeof(struct net));
           for(int _i0 = 0; _i0 < _len_net0; _i0++) {
-            net[_i0].dev_base_seq = ((-2 * (next_i()%2)) + 1) * next_i();
+              net[_i0].dev_base_seq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           dev_base_seq_inc(net);
           free(net);
         
@@ -99,14 +96,30 @@ int main(int argc, char *argv[]) {
           int _len_net0 = 100;
           struct net * net = (struct net *) malloc(_len_net0*sizeof(struct net));
           for(int _i0 = 0; _i0 < _len_net0; _i0++) {
-            net[_i0].dev_base_seq = ((-2 * (next_i()%2)) + 1) * next_i();
+              net[_i0].dev_base_seq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           dev_base_seq_inc(net);
           free(net);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_net0 = 1;
+          struct net * net = (struct net *) malloc(_len_net0*sizeof(struct net));
+          for(int _i0 = 0; _i0 < _len_net0; _i0++) {
+              net[_i0].dev_base_seq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          dev_base_seq_inc(net);
+          free(net);
+        
+        break;
+    }
     default:
         usage();
         break;

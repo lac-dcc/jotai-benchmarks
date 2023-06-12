@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -88,12 +91,6 @@ __attribute__((used)) static void update_seek(RConsCanvas *can, RANode *n, int f
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,26 +103,219 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 77
+          // dynamic_instructions_O0 : 77
+          // ------------------------------- 
+          // static_instructions_O1 : 46
+          // dynamic_instructions_O1 : 46
+          // ------------------------------- 
+          // static_instructions_O2 : 48
+          // dynamic_instructions_O2 : 48
+          // ------------------------------- 
+          // static_instructions_O3 : 48
+          // dynamic_instructions_O3 : 48
+          // ------------------------------- 
+          // static_instructions_Ofast : 48
+          // dynamic_instructions_Ofast : 48
+          // ------------------------------- 
+          // static_instructions_Os : 48
+          // dynamic_instructions_Os : 48
+          // ------------------------------- 
+          // static_instructions_Oz : 50
+          // dynamic_instructions_Oz : 50
+          // ------------------------------- 
+
           int force = 100;
+        
           int _len_can0 = 1;
           struct TYPE_5__ * can = (struct TYPE_5__ *) malloc(_len_can0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_can0; _i0++) {
-            can[_i0].sx = ((-2 * (next_i()%2)) + 1) * next_i();
-        can[_i0].sy = ((-2 * (next_i()%2)) + 1) * next_i();
-        can[_i0].w = ((-2 * (next_i()%2)) + 1) * next_i();
-        can[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
+              can[_i0].sx = ((-2 * (next_i()%2)) + 1) * next_i();
+          can[_i0].sy = ((-2 * (next_i()%2)) + 1) * next_i();
+          can[_i0].w = ((-2 * (next_i()%2)) + 1) * next_i();
+          can[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_n0 = 1;
           struct TYPE_6__ * n = (struct TYPE_6__ *) malloc(_len_n0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_n0; _i0++) {
-            n[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
-        n[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
-        n[_i0].w = ((-2 * (next_i()%2)) + 1) * next_i();
-        n[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
+              n[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          n[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+          n[_i0].w = ((-2 * (next_i()%2)) + 1) * next_i();
+          n[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          update_seek(can,n,force);
+          free(can);
+          free(n);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 77
+          // dynamic_instructions_O0 : 77
+          // ------------------------------- 
+          // static_instructions_O1 : 46
+          // dynamic_instructions_O1 : 46
+          // ------------------------------- 
+          // static_instructions_O2 : 48
+          // dynamic_instructions_O2 : 48
+          // ------------------------------- 
+          // static_instructions_O3 : 48
+          // dynamic_instructions_O3 : 48
+          // ------------------------------- 
+          // static_instructions_Ofast : 48
+          // dynamic_instructions_Ofast : 48
+          // ------------------------------- 
+          // static_instructions_Os : 48
+          // dynamic_instructions_Os : 48
+          // ------------------------------- 
+          // static_instructions_Oz : 50
+          // dynamic_instructions_Oz : 50
+          // ------------------------------- 
+
+          int force = 255;
+        
+          int _len_can0 = 65025;
+          struct TYPE_5__ * can = (struct TYPE_5__ *) malloc(_len_can0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_can0; _i0++) {
+              can[_i0].sx = ((-2 * (next_i()%2)) + 1) * next_i();
+          can[_i0].sy = ((-2 * (next_i()%2)) + 1) * next_i();
+          can[_i0].w = ((-2 * (next_i()%2)) + 1) * next_i();
+          can[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_n0 = 65025;
+          struct TYPE_6__ * n = (struct TYPE_6__ *) malloc(_len_n0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_n0; _i0++) {
+              n[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          n[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+          n[_i0].w = ((-2 * (next_i()%2)) + 1) * next_i();
+          n[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          update_seek(can,n,force);
+          free(can);
+          free(n);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 77
+          // dynamic_instructions_O0 : 77
+          // ------------------------------- 
+          // static_instructions_O1 : 46
+          // dynamic_instructions_O1 : 46
+          // ------------------------------- 
+          // static_instructions_O2 : 48
+          // dynamic_instructions_O2 : 48
+          // ------------------------------- 
+          // static_instructions_O3 : 48
+          // dynamic_instructions_O3 : 48
+          // ------------------------------- 
+          // static_instructions_Ofast : 48
+          // dynamic_instructions_Ofast : 48
+          // ------------------------------- 
+          // static_instructions_Os : 48
+          // dynamic_instructions_Os : 48
+          // ------------------------------- 
+          // static_instructions_Oz : 50
+          // dynamic_instructions_Oz : 50
+          // ------------------------------- 
+
+          int force = 10;
+        
+          int _len_can0 = 100;
+          struct TYPE_5__ * can = (struct TYPE_5__ *) malloc(_len_can0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_can0; _i0++) {
+              can[_i0].sx = ((-2 * (next_i()%2)) + 1) * next_i();
+          can[_i0].sy = ((-2 * (next_i()%2)) + 1) * next_i();
+          can[_i0].w = ((-2 * (next_i()%2)) + 1) * next_i();
+          can[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_n0 = 100;
+          struct TYPE_6__ * n = (struct TYPE_6__ *) malloc(_len_n0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_n0; _i0++) {
+              n[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          n[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+          n[_i0].w = ((-2 * (next_i()%2)) + 1) * next_i();
+          n[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          update_seek(can,n,force);
+          free(can);
+          free(n);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 77
+          // dynamic_instructions_O0 : 77
+          // ------------------------------- 
+          // static_instructions_O1 : 46
+          // dynamic_instructions_O1 : 46
+          // ------------------------------- 
+          // static_instructions_O2 : 48
+          // dynamic_instructions_O2 : 48
+          // ------------------------------- 
+          // static_instructions_O3 : 48
+          // dynamic_instructions_O3 : 48
+          // ------------------------------- 
+          // static_instructions_Ofast : 48
+          // dynamic_instructions_Ofast : 48
+          // ------------------------------- 
+          // static_instructions_Os : 48
+          // dynamic_instructions_Os : 48
+          // ------------------------------- 
+          // static_instructions_Oz : 50
+          // dynamic_instructions_Oz : 50
+          // ------------------------------- 
+
+          int force = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_can0 = 1;
+          struct TYPE_5__ * can = (struct TYPE_5__ *) malloc(_len_can0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_can0; _i0++) {
+              can[_i0].sx = ((-2 * (next_i()%2)) + 1) * next_i();
+          can[_i0].sy = ((-2 * (next_i()%2)) + 1) * next_i();
+          can[_i0].w = ((-2 * (next_i()%2)) + 1) * next_i();
+          can[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_n0 = 1;
+          struct TYPE_6__ * n = (struct TYPE_6__ *) malloc(_len_n0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_n0; _i0++) {
+              n[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          n[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+          n[_i0].w = ((-2 * (next_i()%2)) + 1) * next_i();
+          n[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           update_seek(can,n,force);
           free(can);
           free(n);

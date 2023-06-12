@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +65,6 @@ __attribute__((used)) static int pcap_write(int fd, struct sk_buff *skb, struct 
 	return -EPERM;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,16 +81,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int fd = 100;
+        
           int _len_skb0 = 1;
           struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
           for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
-            skb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              skb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_lp0 = 1;
           struct uml_net_private * lp = (struct uml_net_private *) malloc(_len_lp0*sizeof(struct uml_net_private));
           for(int _i0 = 0; _i0 < _len_lp0; _i0++) {
-            lp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              lp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = pcap_write(fd,skb,lp);
           printf("%d\n", benchRet); 
           free(skb);
@@ -101,7 +103,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int fd = 255;
+        
+          int _len_skb0 = 65025;
+          struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
+          for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
+              skb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_lp0 = 65025;
+          struct uml_net_private * lp = (struct uml_net_private *) malloc(_len_lp0*sizeof(struct uml_net_private));
+          for(int _i0 = 0; _i0 < _len_lp0; _i0++) {
+              lp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pcap_write(fd,skb,lp);
+          printf("%d\n", benchRet); 
+          free(skb);
+          free(lp);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int fd = 10;
+        
+          int _len_skb0 = 100;
+          struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
+          for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
+              skb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_lp0 = 100;
+          struct uml_net_private * lp = (struct uml_net_private *) malloc(_len_lp0*sizeof(struct uml_net_private));
+          for(int _i0 = 0; _i0 < _len_lp0; _i0++) {
+              lp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pcap_write(fd,skb,lp);
+          printf("%d\n", benchRet); 
+          free(skb);
+          free(lp);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int fd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_skb0 = 1;
+          struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
+          for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
+              skb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_lp0 = 1;
+          struct uml_net_private * lp = (struct uml_net_private *) malloc(_len_lp0*sizeof(struct uml_net_private));
+          for(int _i0 = 0; _i0 < _len_lp0; _i0++) {
+              lp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pcap_write(fd,skb,lp);
+          printf("%d\n", benchRet); 
+          free(skb);
+          free(lp);
+        
+        break;
+    }
     default:
         usage();
         break;

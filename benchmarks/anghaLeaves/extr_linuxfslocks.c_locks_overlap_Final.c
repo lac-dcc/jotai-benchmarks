@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static inline int locks_overlap(struct file_lock *fl1, str
 		(fl2->fl_end >= fl1->fl_start));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,21 +75,148 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_fl10 = 65025;
+          struct file_lock * fl1 = (struct file_lock *) malloc(_len_fl10*sizeof(struct file_lock));
+          for(int _i0 = 0; _i0 < _len_fl10; _i0++) {
+              fl1[_i0].fl_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          fl1[_i0].fl_start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fl20 = 65025;
+          struct file_lock * fl2 = (struct file_lock *) malloc(_len_fl20*sizeof(struct file_lock));
+          for(int _i0 = 0; _i0 < _len_fl20; _i0++) {
+              fl2[_i0].fl_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          fl2[_i0].fl_start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = locks_overlap(fl1,fl2);
+          printf("%d\n", benchRet); 
+          free(fl1);
+          free(fl2);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_fl10 = 100;
+          struct file_lock * fl1 = (struct file_lock *) malloc(_len_fl10*sizeof(struct file_lock));
+          for(int _i0 = 0; _i0 < _len_fl10; _i0++) {
+              fl1[_i0].fl_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          fl1[_i0].fl_start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fl20 = 100;
+          struct file_lock * fl2 = (struct file_lock *) malloc(_len_fl20*sizeof(struct file_lock));
+          for(int _i0 = 0; _i0 < _len_fl20; _i0++) {
+              fl2[_i0].fl_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          fl2[_i0].fl_start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = locks_overlap(fl1,fl2);
+          printf("%d\n", benchRet); 
+          free(fl1);
+          free(fl2);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_fl10 = 1;
           struct file_lock * fl1 = (struct file_lock *) malloc(_len_fl10*sizeof(struct file_lock));
           for(int _i0 = 0; _i0 < _len_fl10; _i0++) {
-            fl1[_i0].fl_end = ((-2 * (next_i()%2)) + 1) * next_i();
-        fl1[_i0].fl_start = ((-2 * (next_i()%2)) + 1) * next_i();
+              fl1[_i0].fl_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          fl1[_i0].fl_start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_fl20 = 1;
           struct file_lock * fl2 = (struct file_lock *) malloc(_len_fl20*sizeof(struct file_lock));
           for(int _i0 = 0; _i0 < _len_fl20; _i0++) {
-            fl2[_i0].fl_end = ((-2 * (next_i()%2)) + 1) * next_i();
-        fl2[_i0].fl_start = ((-2 * (next_i()%2)) + 1) * next_i();
+              fl2[_i0].fl_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          fl2[_i0].fl_start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = locks_overlap(fl1,fl2);
           printf("%d\n", benchRet); 
           free(fl1);

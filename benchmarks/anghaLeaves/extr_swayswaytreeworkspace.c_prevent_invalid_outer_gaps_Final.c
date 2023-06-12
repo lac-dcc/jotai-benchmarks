@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ __attribute__((used)) static void prevent_invalid_outer_gaps(struct sway_workspa
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,24 +86,66 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ws0 = 1;
+          int _len_ws0 = 65025;
           struct sway_workspace * ws = (struct sway_workspace *) malloc(_len_ws0*sizeof(struct sway_workspace));
           for(int _i0 = 0; _i0 < _len_ws0; _i0++) {
-            ws[_i0].gaps_inner = ((-2 * (next_i()%2)) + 1) * next_i();
-        ws[_i0].gaps_outer.left = ((-2 * (next_i()%2)) + 1) * next_i();
-        ws[_i0].gaps_outer.bottom = ((-2 * (next_i()%2)) + 1) * next_i();
-        ws[_i0].gaps_outer.right = ((-2 * (next_i()%2)) + 1) * next_i();
-        ws[_i0].gaps_outer.top = ((-2 * (next_i()%2)) + 1) * next_i();
+              ws[_i0].gaps_inner = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].gaps_outer.left = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].gaps_outer.bottom = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].gaps_outer.right = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].gaps_outer.top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           prevent_invalid_outer_gaps(ws);
           free(ws);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ws0 = 100;
+          struct sway_workspace * ws = (struct sway_workspace *) malloc(_len_ws0*sizeof(struct sway_workspace));
+          for(int _i0 = 0; _i0 < _len_ws0; _i0++) {
+              ws[_i0].gaps_inner = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].gaps_outer.left = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].gaps_outer.bottom = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].gaps_outer.right = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].gaps_outer.top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          prevent_invalid_outer_gaps(ws);
+          free(ws);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ws0 = 1;
+          struct sway_workspace * ws = (struct sway_workspace *) malloc(_len_ws0*sizeof(struct sway_workspace));
+          for(int _i0 = 0; _i0 < _len_ws0; _i0++) {
+              ws[_i0].gaps_inner = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].gaps_outer.left = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].gaps_outer.bottom = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].gaps_outer.right = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].gaps_outer.top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          prevent_invalid_outer_gaps(ws);
+          free(ws);
+        
+        break;
+    }
     default:
         usage();
         break;

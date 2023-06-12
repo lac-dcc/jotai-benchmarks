@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -60,12 +61,6 @@ __attribute__((used)) static int row_byte_cns11643 (int row) {
   return 0x100 * (row / 94) + (row % 94) + 0x21;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,6 +77,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int row = 100;
+        
           int benchRet = row_byte_cns11643(row);
           printf("%d\n", benchRet); 
         
@@ -91,6 +87,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int row = 255;
+        
           int benchRet = row_byte_cns11643(row);
           printf("%d\n", benchRet); 
         
@@ -100,12 +97,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int row = 10;
+        
           int benchRet = row_byte_cns11643(row);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int row = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = row_byte_cns11643(row);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

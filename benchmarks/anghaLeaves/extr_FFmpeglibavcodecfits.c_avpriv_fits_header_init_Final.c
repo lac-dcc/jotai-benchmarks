@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +78,6 @@ int avpriv_fits_header_init(FITSHeader *header, FITSHeaderState state)
     return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,26 +90,211 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int state = 100;
+        
           int _len_header0 = 1;
           struct TYPE_3__ * header = (struct TYPE_3__ *) malloc(_len_header0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_header0; _i0++) {
-            header[_i0].gcount = ((-2 * (next_i()%2)) + 1) * next_i();
-        header[_i0].bscale = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        header[_i0].data_max_found = ((-2 * (next_i()%2)) + 1) * next_i();
-        header[_i0].data_min_found = ((-2 * (next_i()%2)) + 1) * next_i();
-        header[_i0].bzero = ((-2 * (next_i()%2)) + 1) * next_i();
-        header[_i0].image_extension = ((-2 * (next_i()%2)) + 1) * next_i();
-        header[_i0].rgb = ((-2 * (next_i()%2)) + 1) * next_i();
-        header[_i0].groups = ((-2 * (next_i()%2)) + 1) * next_i();
-        header[_i0].pcount = ((-2 * (next_i()%2)) + 1) * next_i();
-        header[_i0].blank_found = ((-2 * (next_i()%2)) + 1) * next_i();
-        header[_i0].naxis_index = ((-2 * (next_i()%2)) + 1) * next_i();
-        header[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+              header[_i0].gcount = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].bscale = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          header[_i0].data_max_found = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].data_min_found = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].bzero = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].image_extension = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].rgb = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].groups = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].pcount = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].blank_found = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].naxis_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = avpriv_fits_header_init(header,state);
+          printf("%d\n", benchRet); 
+          free(header);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int state = 255;
+        
+          int _len_header0 = 65025;
+          struct TYPE_3__ * header = (struct TYPE_3__ *) malloc(_len_header0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_header0; _i0++) {
+              header[_i0].gcount = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].bscale = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          header[_i0].data_max_found = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].data_min_found = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].bzero = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].image_extension = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].rgb = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].groups = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].pcount = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].blank_found = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].naxis_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = avpriv_fits_header_init(header,state);
+          printf("%d\n", benchRet); 
+          free(header);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int state = 10;
+        
+          int _len_header0 = 100;
+          struct TYPE_3__ * header = (struct TYPE_3__ *) malloc(_len_header0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_header0; _i0++) {
+              header[_i0].gcount = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].bscale = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          header[_i0].data_max_found = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].data_min_found = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].bzero = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].image_extension = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].rgb = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].groups = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].pcount = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].blank_found = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].naxis_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = avpriv_fits_header_init(header,state);
+          printf("%d\n", benchRet); 
+          free(header);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_header0 = 1;
+          struct TYPE_3__ * header = (struct TYPE_3__ *) malloc(_len_header0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_header0; _i0++) {
+              header[_i0].gcount = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].bscale = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          header[_i0].data_max_found = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].data_min_found = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].bzero = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].image_extension = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].rgb = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].groups = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].pcount = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].blank_found = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].naxis_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = avpriv_fits_header_init(header,state);
           printf("%d\n", benchRet); 
           free(header);

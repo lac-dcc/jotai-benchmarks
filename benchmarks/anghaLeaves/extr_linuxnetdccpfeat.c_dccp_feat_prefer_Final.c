@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -71,12 +72,6 @@ __attribute__((used)) static u8 dccp_feat_prefer(u8 preferred_value, u8 *array, 
 	return does_occur;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,23 +84,44 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          unsigned long preferred_value = 10;
-          unsigned long array_len = 10;
-          int _len_array0 = 100;
+          unsigned long preferred_value = 255;
+        
+          unsigned long array_len = 255;
+        
+          int _len_array0 = 65025;
           unsigned long * array = (unsigned long *) malloc(_len_array0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_array0; _i0++) {
             array[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned long benchRet = dccp_feat_prefer(preferred_value,array,array_len);
           printf("%lu\n", benchRet); 
           free(array);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          unsigned long preferred_value = 10;
+        
+          unsigned long array_len = 10;
+        
+          int _len_array0 = 100;
+          unsigned long * array = (unsigned long *) malloc(_len_array0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_array0; _i0++) {
+            array[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned long benchRet = dccp_feat_prefer(preferred_value,array,array_len);
+          printf("%lu\n", benchRet); 
+          free(array);
+        
+        break;
+    }
     default:
         usage();
         break;

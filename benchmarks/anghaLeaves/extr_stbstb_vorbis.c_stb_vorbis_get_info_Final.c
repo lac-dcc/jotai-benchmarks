@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ stb_vorbis_info stb_vorbis_get_info(stb_vorbis *f)
    return d;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,19 +86,144 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_f0 = 65025;
+          struct TYPE_6__ * f = (struct TYPE_6__ *) malloc(_len_f0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_f0; _i0++) {
+              f[_i0].blocksize_1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].temp_memory_required = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].setup_temp_memory_required = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].setup_memory_required = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].sample_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].channels = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct TYPE_5__ benchRet = stb_vorbis_get_info(f);
+          printf("%d\n", benchRet.max_frame_size);
+          printf("%d\n", benchRet.temp_memory_required);
+          printf("%d\n", benchRet.setup_temp_memory_required);
+          printf("%d\n", benchRet.setup_memory_required);
+          printf("%d\n", benchRet.sample_rate);
+          printf("%d\n", benchRet.channels);
+          free(f);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_f0 = 100;
+          struct TYPE_6__ * f = (struct TYPE_6__ *) malloc(_len_f0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_f0; _i0++) {
+              f[_i0].blocksize_1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].temp_memory_required = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].setup_temp_memory_required = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].setup_memory_required = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].sample_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].channels = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct TYPE_5__ benchRet = stb_vorbis_get_info(f);
+          printf("%d\n", benchRet.max_frame_size);
+          printf("%d\n", benchRet.temp_memory_required);
+          printf("%d\n", benchRet.setup_temp_memory_required);
+          printf("%d\n", benchRet.setup_memory_required);
+          printf("%d\n", benchRet.sample_rate);
+          printf("%d\n", benchRet.channels);
+          free(f);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_f0 = 1;
           struct TYPE_6__ * f = (struct TYPE_6__ *) malloc(_len_f0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_f0; _i0++) {
-            f[_i0].blocksize_1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].temp_memory_required = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].setup_temp_memory_required = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].setup_memory_required = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].sample_rate = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].channels = ((-2 * (next_i()%2)) + 1) * next_i();
+              f[_i0].blocksize_1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].temp_memory_required = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].setup_temp_memory_required = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].setup_memory_required = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].sample_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].channels = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           struct TYPE_5__ benchRet = stb_vorbis_get_info(f);
           printf("%d\n", benchRet.max_frame_size);
           printf("%d\n", benchRet.temp_memory_required);

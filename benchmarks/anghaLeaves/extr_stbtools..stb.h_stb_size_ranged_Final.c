@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ int     stb_size_ranged(int b, stb_uint n)
    return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,7 +82,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int b = 100;
+        
           int n = 100;
+        
           int benchRet = stb_size_ranged(b,n);
           printf("%d\n", benchRet); 
         
@@ -97,7 +94,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int b = 255;
+        
           int n = 255;
+        
           int benchRet = stb_size_ranged(b,n);
           printf("%d\n", benchRet); 
         
@@ -107,13 +106,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int b = 10;
+        
           int n = 10;
+        
           int benchRet = stb_size_ranged(b,n);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = stb_size_ranged(b,n);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

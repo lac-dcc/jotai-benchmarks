@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static int stimer_get_config(struct kvm_vcpu_hv_stimer *st
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,19 +76,139 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_stimer0 = 65025;
+          struct kvm_vcpu_hv_stimer * stimer = (struct kvm_vcpu_hv_stimer *) malloc(_len_stimer0*sizeof(struct kvm_vcpu_hv_stimer));
+          for(int _i0 = 0; _i0 < _len_stimer0; _i0++) {
+              stimer[_i0].config = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pconfig0 = 65025;
+          int * pconfig = (int *) malloc(_len_pconfig0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pconfig0; _i0++) {
+            pconfig[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = stimer_get_config(stimer,pconfig);
+          printf("%d\n", benchRet); 
+          free(stimer);
+          free(pconfig);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_stimer0 = 100;
+          struct kvm_vcpu_hv_stimer * stimer = (struct kvm_vcpu_hv_stimer *) malloc(_len_stimer0*sizeof(struct kvm_vcpu_hv_stimer));
+          for(int _i0 = 0; _i0 < _len_stimer0; _i0++) {
+              stimer[_i0].config = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pconfig0 = 100;
+          int * pconfig = (int *) malloc(_len_pconfig0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pconfig0; _i0++) {
+            pconfig[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = stimer_get_config(stimer,pconfig);
+          printf("%d\n", benchRet); 
+          free(stimer);
+          free(pconfig);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_stimer0 = 1;
           struct kvm_vcpu_hv_stimer * stimer = (struct kvm_vcpu_hv_stimer *) malloc(_len_stimer0*sizeof(struct kvm_vcpu_hv_stimer));
           for(int _i0 = 0; _i0 < _len_stimer0; _i0++) {
-            stimer[_i0].config = ((-2 * (next_i()%2)) + 1) * next_i();
+              stimer[_i0].config = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_pconfig0 = 1;
           int * pconfig = (int *) malloc(_len_pconfig0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pconfig0; _i0++) {
             pconfig[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = stimer_get_config(stimer,pconfig);
           printf("%d\n", benchRet); 
           free(stimer);

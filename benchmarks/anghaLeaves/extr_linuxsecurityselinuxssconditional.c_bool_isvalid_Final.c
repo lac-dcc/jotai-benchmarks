@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static int bool_isvalid(struct cond_bool_datum *b)
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_b0 = 1;
+          int _len_b0 = 65025;
           struct cond_bool_datum * b = (struct cond_bool_datum *) malloc(_len_b0*sizeof(struct cond_bool_datum));
           for(int _i0 = 0; _i0 < _len_b0; _i0++) {
-            b[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+              b[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = bool_isvalid(b);
           printf("%d\n", benchRet); 
           free(b);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_b0 = 100;
           struct cond_bool_datum * b = (struct cond_bool_datum *) malloc(_len_b0*sizeof(struct cond_bool_datum));
           for(int _i0 = 0; _i0 < _len_b0; _i0++) {
-            b[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+              b[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = bool_isvalid(b);
           printf("%d\n", benchRet); 
           free(b);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_b0 = 1;
+          struct cond_bool_datum * b = (struct cond_bool_datum *) malloc(_len_b0*sizeof(struct cond_bool_datum));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = bool_isvalid(b);
+          printf("%d\n", benchRet); 
+          free(b);
+        
+        break;
+    }
     default:
         usage();
         break;

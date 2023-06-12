@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ ext4_xattr_set_block_checksum(PEXT2_MCB inode_ref,
 	header->h_checksum = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,31 +81,172 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int inode_ref = 100;
+        
           int blocknr = 100;
+        
           int _len_header0 = 1;
           struct ext4_xattr_header * header = (struct ext4_xattr_header *) malloc(_len_header0*sizeof(struct ext4_xattr_header));
           for(int _i0 = 0; _i0 < _len_header0; _i0++) {
-            header[_i0].h_checksum = ((-2 * (next_i()%2)) + 1) * next_i();
+              header[_i0].h_checksum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ext4_xattr_set_block_checksum(inode_ref,blocknr,header);
           free(header);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int inode_ref = 255;
+        
+          int blocknr = 255;
+        
+          int _len_header0 = 65025;
+          struct ext4_xattr_header * header = (struct ext4_xattr_header *) malloc(_len_header0*sizeof(struct ext4_xattr_header));
+          for(int _i0 = 0; _i0 < _len_header0; _i0++) {
+              header[_i0].h_checksum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ext4_xattr_set_block_checksum(inode_ref,blocknr,header);
+          free(header);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int inode_ref = 10;
+        
           int blocknr = 10;
+        
           int _len_header0 = 100;
           struct ext4_xattr_header * header = (struct ext4_xattr_header *) malloc(_len_header0*sizeof(struct ext4_xattr_header));
           for(int _i0 = 0; _i0 < _len_header0; _i0++) {
-            header[_i0].h_checksum = ((-2 * (next_i()%2)) + 1) * next_i();
+              header[_i0].h_checksum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          ext4_xattr_set_block_checksum(inode_ref,blocknr,header);
+          free(header);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int inode_ref = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int blocknr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_header0 = 1;
+          struct ext4_xattr_header * header = (struct ext4_xattr_header *) malloc(_len_header0*sizeof(struct ext4_xattr_header));
+          for(int _i0 = 0; _i0 < _len_header0; _i0++) {
+              header[_i0].h_checksum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           ext4_xattr_set_block_checksum(inode_ref,blocknr,header);
           free(header);
         

@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -131,12 +133,6 @@ blst_leaf_alloc(blmeta_t *scan, daddr_t blk, int count)
 	return(SWAPBLK_NONE);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -149,17 +145,137 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           long blk = 100;
+        
           int count = 100;
+        
           int _len_scan0 = 1;
           struct TYPE_5__ * scan = (struct TYPE_5__ *) malloc(_len_scan0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_scan0; _i0++) {
-            scan[_i0].bm_bighint = ((-2 * (next_i()%2)) + 1) * next_i();
-        scan[_i0].u.bmu_bitmap = ((-2 * (next_i()%2)) + 1) * next_i();
+              scan[_i0].bm_bighint = ((-2 * (next_i()%2)) + 1) * next_i();
+          scan[_i0].u.bmu_bitmap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          long benchRet = blst_leaf_alloc(scan,blk,count);
+          printf("%ld\n", benchRet); 
+          free(scan);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          long blk = 255;
+        
+          int count = 255;
+        
+          int _len_scan0 = 65025;
+          struct TYPE_5__ * scan = (struct TYPE_5__ *) malloc(_len_scan0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_scan0; _i0++) {
+              scan[_i0].bm_bighint = ((-2 * (next_i()%2)) + 1) * next_i();
+          scan[_i0].u.bmu_bitmap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          long benchRet = blst_leaf_alloc(scan,blk,count);
+          printf("%ld\n", benchRet); 
+          free(scan);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          long blk = 10;
+        
+          int count = 10;
+        
+          int _len_scan0 = 100;
+          struct TYPE_5__ * scan = (struct TYPE_5__ *) malloc(_len_scan0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_scan0; _i0++) {
+              scan[_i0].bm_bighint = ((-2 * (next_i()%2)) + 1) * next_i();
+          scan[_i0].u.bmu_bitmap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           long benchRet = blst_leaf_alloc(scan,blk,count);
           printf("%ld\n", benchRet); 
           free(scan);

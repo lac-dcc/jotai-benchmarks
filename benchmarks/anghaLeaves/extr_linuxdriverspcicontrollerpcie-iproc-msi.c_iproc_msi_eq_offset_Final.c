@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static inline unsigned int iproc_msi_eq_offset(struct ipro
 		return eq * EQ_LEN * sizeof(u32);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,11 +85,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int eq = 100;
+        
           int _len_msi0 = 1;
           struct iproc_msi * msi = (struct iproc_msi *) malloc(_len_msi0*sizeof(struct iproc_msi));
           for(int _i0 = 0; _i0 < _len_msi0; _i0++) {
-            msi[_i0].nr_eq_region = ((-2 * (next_i()%2)) + 1) * next_i();
+              msi[_i0].nr_eq_region = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          unsigned int benchRet = iproc_msi_eq_offset(msi,eq);
+          printf("%u\n", benchRet); 
+          free(msi);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned int eq = 255;
+        
+          int _len_msi0 = 65025;
+          struct iproc_msi * msi = (struct iproc_msi *) malloc(_len_msi0*sizeof(struct iproc_msi));
+          for(int _i0 = 0; _i0 < _len_msi0; _i0++) {
+              msi[_i0].nr_eq_region = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           unsigned int benchRet = iproc_msi_eq_offset(msi,eq);
           printf("%u\n", benchRet); 
           free(msi);
@@ -101,21 +118,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned int eq = 10;
+        
           int _len_msi0 = 100;
           struct iproc_msi * msi = (struct iproc_msi *) malloc(_len_msi0*sizeof(struct iproc_msi));
           for(int _i0 = 0; _i0 < _len_msi0; _i0++) {
-            msi[_i0].nr_eq_region = ((-2 * (next_i()%2)) + 1) * next_i();
+              msi[_i0].nr_eq_region = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = iproc_msi_eq_offset(msi,eq);
           printf("%u\n", benchRet); 
           free(msi);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int eq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_msi0 = 1;
+          struct iproc_msi * msi = (struct iproc_msi *) malloc(_len_msi0*sizeof(struct iproc_msi));
+          for(int _i0 = 0; _i0 < _len_msi0; _i0++) {
+              msi[_i0].nr_eq_region = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = iproc_msi_eq_offset(msi,eq);
+          printf("%u\n", benchRet); 
+          free(msi);
+        
+        break;
+    }
     default:
         usage();
         break;

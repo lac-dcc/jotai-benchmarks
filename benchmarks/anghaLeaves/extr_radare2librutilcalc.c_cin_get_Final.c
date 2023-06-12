@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ __attribute__((used)) static int cin_get(RNum *num, RNumCalc *nc, char *c) {
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,30 +90,183 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_num0 = 1;
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_num0 = 65025;
           int * num = (int *) malloc(_len_num0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_num0; _i0++) {
             num[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_nc0 = 1;
+        
+          int _len_nc0 = 65025;
           struct TYPE_3__ * nc = (struct TYPE_3__ *) malloc(_len_nc0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_nc0; _i0++) {
-            nc[_i0].oc = ((-2 * (next_i()%2)) + 1) * next_i();
+              nc[_i0].oc = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_nc__i0__calc_buf0 = 1;
           nc[_i0].calc_buf = (char *) malloc(_len_nc__i0__calc_buf0*sizeof(char));
           for(int _j0 = 0; _j0 < _len_nc__i0__calc_buf0; _j0++) {
             nc[_i0].calc_buf[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        nc[_i0].calc_i = ((-2 * (next_i()%2)) + 1) * next_i();
+          nc[_i0].calc_i = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int _len_c0 = 65025;
+          char * c = (char *) malloc(_len_c0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+            c[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = cin_get(num,nc,c);
+          printf("%d\n", benchRet); 
+          free(num);
+          for(int _aux = 0; _aux < _len_nc0; _aux++) {
+          free(nc[_aux].calc_buf);
+          }
+          free(nc);
+          free(c);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_num0 = 100;
+          int * num = (int *) malloc(_len_num0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_num0; _i0++) {
+            num[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_nc0 = 100;
+          struct TYPE_3__ * nc = (struct TYPE_3__ *) malloc(_len_nc0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_nc0; _i0++) {
+              nc[_i0].oc = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_nc__i0__calc_buf0 = 1;
+          nc[_i0].calc_buf = (char *) malloc(_len_nc__i0__calc_buf0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_nc__i0__calc_buf0; _j0++) {
+            nc[_i0].calc_buf[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          nc[_i0].calc_i = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_c0 = 100;
+          char * c = (char *) malloc(_len_c0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+            c[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = cin_get(num,nc,c);
+          printf("%d\n", benchRet); 
+          free(num);
+          for(int _aux = 0; _aux < _len_nc0; _aux++) {
+          free(nc[_aux].calc_buf);
+          }
+          free(nc);
+          free(c);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_num0 = 1;
+          int * num = (int *) malloc(_len_num0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_num0; _i0++) {
+            num[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_nc0 = 1;
+          struct TYPE_3__ * nc = (struct TYPE_3__ *) malloc(_len_nc0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_nc0; _i0++) {
+              nc[_i0].oc = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_nc__i0__calc_buf0 = 1;
+          nc[_i0].calc_buf = (char *) malloc(_len_nc__i0__calc_buf0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_nc__i0__calc_buf0; _j0++) {
+            nc[_i0].calc_buf[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          nc[_i0].calc_i = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int _len_c0 = 1;
           char * c = (char *) malloc(_len_c0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_c0; _i0++) {
             c[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = cin_get(num,nc,c);
           printf("%d\n", benchRet); 
           free(num);

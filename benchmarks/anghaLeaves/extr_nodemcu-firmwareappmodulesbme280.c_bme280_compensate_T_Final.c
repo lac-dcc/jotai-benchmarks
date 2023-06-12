@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +72,6 @@ __attribute__((used)) static BME280_S32_t bme280_compensate_T(BME280_S32_t adc_T
 	return T;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int adc_T = 100;
+        
           int benchRet = bme280_compensate_T(adc_T);
           printf("%d\n", benchRet); 
         
@@ -102,6 +98,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int adc_T = 255;
+        
           int benchRet = bme280_compensate_T(adc_T);
           printf("%d\n", benchRet); 
         
@@ -111,12 +108,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int adc_T = 10;
+        
           int benchRet = bme280_compensate_T(adc_T);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int adc_T = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = bme280_compensate_T(adc_T);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

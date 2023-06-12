@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -82,12 +84,6 @@ __attribute__((used)) static unsigned int __fwtty_port_line_status(struct fwtty_
 	return status;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,15 +96,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
+          int _len_port0 = 65025;
+          struct fwtty_port * port = (struct fwtty_port *) malloc(_len_port0*sizeof(struct fwtty_port));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              port[_i0].mctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+          port[_i0].break_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = __fwtty_port_line_status(port);
+          printf("%u\n", benchRet); 
+          free(port);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
+          int _len_port0 = 100;
+          struct fwtty_port * port = (struct fwtty_port *) malloc(_len_port0*sizeof(struct fwtty_port));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              port[_i0].mctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+          port[_i0].break_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = __fwtty_port_line_status(port);
+          printf("%u\n", benchRet); 
+          free(port);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
           int _len_port0 = 1;
           struct fwtty_port * port = (struct fwtty_port *) malloc(_len_port0*sizeof(struct fwtty_port));
           for(int _i0 = 0; _i0 < _len_port0; _i0++) {
-            port[_i0].mctrl = ((-2 * (next_i()%2)) + 1) * next_i();
-        port[_i0].break_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+              port[_i0].mctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+          port[_i0].break_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = __fwtty_port_line_status(port);
           printf("%u\n", benchRet); 
           free(port);

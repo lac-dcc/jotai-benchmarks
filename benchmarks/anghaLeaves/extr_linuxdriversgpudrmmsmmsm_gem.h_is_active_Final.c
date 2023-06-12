@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static inline bool is_active(struct msm_gem_object *msm_ob
 	return msm_obj->gpu != NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,9 +74,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_msm_obj0 = 65025;
+          struct msm_gem_object * msm_obj = (struct msm_gem_object *) malloc(_len_msm_obj0*sizeof(struct msm_gem_object));
+          for(int _i0 = 0; _i0 < _len_msm_obj0; _i0++) {
+              int _len_msm_obj__i0__gpu0 = 1;
+          msm_obj[_i0].gpu = (int *) malloc(_len_msm_obj__i0__gpu0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_msm_obj__i0__gpu0; _j0++) {
+            msm_obj[_i0].gpu[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = is_active(msm_obj);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_msm_obj0; _aux++) {
+          free(msm_obj[_aux].gpu);
+          }
+          free(msm_obj);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_msm_obj0 = 100;
+          struct msm_gem_object * msm_obj = (struct msm_gem_object *) malloc(_len_msm_obj0*sizeof(struct msm_gem_object));
+          for(int _i0 = 0; _i0 < _len_msm_obj0; _i0++) {
+              int _len_msm_obj__i0__gpu0 = 1;
+          msm_obj[_i0].gpu = (int *) malloc(_len_msm_obj__i0__gpu0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_msm_obj__i0__gpu0; _j0++) {
+            msm_obj[_i0].gpu[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = is_active(msm_obj);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_msm_obj0; _aux++) {
+          free(msm_obj[_aux].gpu);
+          }
+          free(msm_obj);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_msm_obj0 = 1;
           struct msm_gem_object * msm_obj = (struct msm_gem_object *) malloc(_len_msm_obj0*sizeof(struct msm_gem_object));
           for(int _i0 = 0; _i0 < _len_msm_obj0; _i0++) {
@@ -89,7 +202,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_msm_obj__i0__gpu0; _j0++) {
             msm_obj[_i0].gpu[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = is_active(msm_obj);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_msm_obj0; _aux++) {

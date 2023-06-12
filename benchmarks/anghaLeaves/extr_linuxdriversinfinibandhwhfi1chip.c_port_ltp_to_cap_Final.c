@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +77,6 @@ int port_ltp_to_cap(int port_ltp)
 	return cap_mask;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,6 +93,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int port_ltp = 100;
+        
           int benchRet = port_ltp_to_cap(port_ltp);
           printf("%d\n", benchRet); 
         
@@ -107,6 +103,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int port_ltp = 255;
+        
           int benchRet = port_ltp_to_cap(port_ltp);
           printf("%d\n", benchRet); 
         
@@ -116,12 +113,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int port_ltp = 10;
+        
           int benchRet = port_ltp_to_cap(port_ltp);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int port_ltp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = port_ltp_to_cap(port_ltp);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

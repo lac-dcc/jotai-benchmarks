@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ __attribute__((used)) static int kvmppc_core_emulate_op_hv(struct kvm_run *run, 
 	return EMULATE_FAIL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,21 +82,27 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int inst = 100;
+        
           int _len_run0 = 1;
           struct kvm_run * run = (struct kvm_run *) malloc(_len_run0*sizeof(struct kvm_run));
           for(int _i0 = 0; _i0 < _len_run0; _i0++) {
-            run[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              run[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_vcpu0 = 1;
           struct kvm_vcpu * vcpu = (struct kvm_vcpu *) malloc(_len_vcpu0*sizeof(struct kvm_vcpu));
           for(int _i0 = 0; _i0 < _len_vcpu0; _i0++) {
-            vcpu[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              vcpu[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_advance0 = 1;
           int * advance = (int *) malloc(_len_advance0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_advance0; _i0++) {
             advance[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = kvmppc_core_emulate_op_hv(run,vcpu,inst,advance);
           printf("%d\n", benchRet); 
           free(run);
@@ -108,7 +111,105 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int inst = 255;
+        
+          int _len_run0 = 65025;
+          struct kvm_run * run = (struct kvm_run *) malloc(_len_run0*sizeof(struct kvm_run));
+          for(int _i0 = 0; _i0 < _len_run0; _i0++) {
+              run[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_vcpu0 = 65025;
+          struct kvm_vcpu * vcpu = (struct kvm_vcpu *) malloc(_len_vcpu0*sizeof(struct kvm_vcpu));
+          for(int _i0 = 0; _i0 < _len_vcpu0; _i0++) {
+              vcpu[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_advance0 = 65025;
+          int * advance = (int *) malloc(_len_advance0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_advance0; _i0++) {
+            advance[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = kvmppc_core_emulate_op_hv(run,vcpu,inst,advance);
+          printf("%d\n", benchRet); 
+          free(run);
+          free(vcpu);
+          free(advance);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int inst = 10;
+        
+          int _len_run0 = 100;
+          struct kvm_run * run = (struct kvm_run *) malloc(_len_run0*sizeof(struct kvm_run));
+          for(int _i0 = 0; _i0 < _len_run0; _i0++) {
+              run[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_vcpu0 = 100;
+          struct kvm_vcpu * vcpu = (struct kvm_vcpu *) malloc(_len_vcpu0*sizeof(struct kvm_vcpu));
+          for(int _i0 = 0; _i0 < _len_vcpu0; _i0++) {
+              vcpu[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_advance0 = 100;
+          int * advance = (int *) malloc(_len_advance0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_advance0; _i0++) {
+            advance[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = kvmppc_core_emulate_op_hv(run,vcpu,inst,advance);
+          printf("%d\n", benchRet); 
+          free(run);
+          free(vcpu);
+          free(advance);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int inst = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_run0 = 1;
+          struct kvm_run * run = (struct kvm_run *) malloc(_len_run0*sizeof(struct kvm_run));
+          for(int _i0 = 0; _i0 < _len_run0; _i0++) {
+              run[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_vcpu0 = 1;
+          struct kvm_vcpu * vcpu = (struct kvm_vcpu *) malloc(_len_vcpu0*sizeof(struct kvm_vcpu));
+          for(int _i0 = 0; _i0 < _len_vcpu0; _i0++) {
+              vcpu[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_advance0 = 1;
+          int * advance = (int *) malloc(_len_advance0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_advance0; _i0++) {
+            advance[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = kvmppc_core_emulate_op_hv(run,vcpu,inst,advance);
+          printf("%d\n", benchRet); 
+          free(run);
+          free(vcpu);
+          free(advance);
+        
+        break;
+    }
     default:
         usage();
         break;

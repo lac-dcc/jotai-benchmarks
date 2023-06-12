@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -79,12 +81,6 @@ __attribute__((used)) static Type super(Type ty) {
 	return ty;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,15 +93,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ty0 = 1;
+          int _len_ty0 = 65025;
           struct TYPE_7__ * ty = (struct TYPE_7__ *) malloc(_len_ty0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_ty0; _i0++) {
-            ty[_i0].op = ((-2 * (next_i()%2)) + 1) * next_i();
-        ty[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              ty[_i0].op = ((-2 * (next_i()%2)) + 1) * next_i();
+          ty[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           struct TYPE_7__ * benchRet = super(ty);
           printf("%d\n", (*benchRet).op);
           printf("%d\n", (*benchRet).size);
@@ -113,7 +111,42 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ty0 = 100;
+          struct TYPE_7__ * ty = (struct TYPE_7__ *) malloc(_len_ty0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_ty0; _i0++) {
+              ty[_i0].op = ((-2 * (next_i()%2)) + 1) * next_i();
+          ty[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct TYPE_7__ * benchRet = super(ty);
+          printf("%d\n", (*benchRet).op);
+          printf("%d\n", (*benchRet).size);
+          free(ty);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ty0 = 1;
+          struct TYPE_7__ * ty = (struct TYPE_7__ *) malloc(_len_ty0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_ty0; _i0++) {
+              ty[_i0].op = ((-2 * (next_i()%2)) + 1) * next_i();
+          ty[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct TYPE_7__ * benchRet = super(ty);
+          printf("%d\n", (*benchRet).op);
+          printf("%d\n", (*benchRet).size);
+          free(ty);
+        
+        break;
+    }
     default:
         usage();
         break;

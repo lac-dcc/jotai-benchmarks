@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ struct dim_ch_state_t *dim_get_channel_state(struct dim_channel *ch,
 	return state_ptr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,21 +84,153 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_ch0 = 65025;
+          struct dim_channel * ch = (struct dim_channel *) malloc(_len_ch0*sizeof(struct dim_channel));
+          for(int _i0 = 0; _i0 < _len_ch0; _i0++) {
+              ch[_i0].done_sw_buffers_number = ((-2 * (next_i()%2)) + 1) * next_i();
+          ch[_i0].state.level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_state_ptr0 = 65025;
+          struct dim_ch_state_t * state_ptr = (struct dim_ch_state_t *) malloc(_len_state_ptr0*sizeof(struct dim_ch_state_t));
+          for(int _i0 = 0; _i0 < _len_state_ptr0; _i0++) {
+              state_ptr[_i0].ready = ((-2 * (next_i()%2)) + 1) * next_i();
+          state_ptr[_i0].done_buffers = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct dim_ch_state_t * benchRet = dim_get_channel_state(ch,state_ptr);
+          printf("%d\n", (*benchRet).ready);
+          printf("%d\n", (*benchRet).done_buffers);
+          free(ch);
+          free(state_ptr);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_ch0 = 100;
+          struct dim_channel * ch = (struct dim_channel *) malloc(_len_ch0*sizeof(struct dim_channel));
+          for(int _i0 = 0; _i0 < _len_ch0; _i0++) {
+              ch[_i0].done_sw_buffers_number = ((-2 * (next_i()%2)) + 1) * next_i();
+          ch[_i0].state.level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_state_ptr0 = 100;
+          struct dim_ch_state_t * state_ptr = (struct dim_ch_state_t *) malloc(_len_state_ptr0*sizeof(struct dim_ch_state_t));
+          for(int _i0 = 0; _i0 < _len_state_ptr0; _i0++) {
+              state_ptr[_i0].ready = ((-2 * (next_i()%2)) + 1) * next_i();
+          state_ptr[_i0].done_buffers = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct dim_ch_state_t * benchRet = dim_get_channel_state(ch,state_ptr);
+          printf("%d\n", (*benchRet).ready);
+          printf("%d\n", (*benchRet).done_buffers);
+          free(ch);
+          free(state_ptr);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int _len_ch0 = 1;
           struct dim_channel * ch = (struct dim_channel *) malloc(_len_ch0*sizeof(struct dim_channel));
           for(int _i0 = 0; _i0 < _len_ch0; _i0++) {
-            ch[_i0].done_sw_buffers_number = ((-2 * (next_i()%2)) + 1) * next_i();
-        ch[_i0].state.level = ((-2 * (next_i()%2)) + 1) * next_i();
+              ch[_i0].done_sw_buffers_number = ((-2 * (next_i()%2)) + 1) * next_i();
+          ch[_i0].state.level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_state_ptr0 = 1;
           struct dim_ch_state_t * state_ptr = (struct dim_ch_state_t *) malloc(_len_state_ptr0*sizeof(struct dim_ch_state_t));
           for(int _i0 = 0; _i0 < _len_state_ptr0; _i0++) {
-            state_ptr[_i0].ready = ((-2 * (next_i()%2)) + 1) * next_i();
-        state_ptr[_i0].done_buffers = ((-2 * (next_i()%2)) + 1) * next_i();
+              state_ptr[_i0].ready = ((-2 * (next_i()%2)) + 1) * next_i();
+          state_ptr[_i0].done_buffers = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           struct dim_ch_state_t * benchRet = dim_get_channel_state(ch,state_ptr);
           printf("%d\n", (*benchRet).ready);
           printf("%d\n", (*benchRet).done_buffers);

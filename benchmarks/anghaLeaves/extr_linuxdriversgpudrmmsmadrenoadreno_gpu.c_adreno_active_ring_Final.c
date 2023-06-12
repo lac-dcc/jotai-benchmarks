@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ struct msm_ringbuffer *adreno_active_ring(struct msm_gpu *gpu)
 	return gpu->rb[0];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,10 +75,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_gpu0 = 1;
+          int _len_gpu0 = 65025;
           struct msm_gpu * gpu = (struct msm_gpu *) malloc(_len_gpu0*sizeof(struct msm_gpu));
           for(int _i0 = 0; _i0 < _len_gpu0; _i0++) {
               int _len_gpu__i0__rb0 = 1;
@@ -91,10 +87,13 @@ int main(int argc, char *argv[]) {
             int _len_gpu__i0__rb1 = 1;
             gpu[_i0].rb[_j0] = (struct msm_ringbuffer *) malloc(_len_gpu__i0__rb1*sizeof(struct msm_ringbuffer));
             for(int _j1 = 0; _j1 < _len_gpu__i0__rb1; _j1++) {
-              gpu[_i0].rb[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+                gpu[_i0].rb[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           }
+        
           struct msm_ringbuffer * benchRet = adreno_active_ring(gpu);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_gpu0; _aux++) {
@@ -105,7 +104,64 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_gpu0 = 100;
+          struct msm_gpu * gpu = (struct msm_gpu *) malloc(_len_gpu0*sizeof(struct msm_gpu));
+          for(int _i0 = 0; _i0 < _len_gpu0; _i0++) {
+              int _len_gpu__i0__rb0 = 1;
+          gpu[_i0].rb = (struct msm_ringbuffer **) malloc(_len_gpu__i0__rb0*sizeof(struct msm_ringbuffer *));
+          for(int _j0 = 0; _j0 < _len_gpu__i0__rb0; _j0++) {
+            int _len_gpu__i0__rb1 = 1;
+            gpu[_i0].rb[_j0] = (struct msm_ringbuffer *) malloc(_len_gpu__i0__rb1*sizeof(struct msm_ringbuffer));
+            for(int _j1 = 0; _j1 < _len_gpu__i0__rb1; _j1++) {
+                gpu[_i0].rb[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          struct msm_ringbuffer * benchRet = adreno_active_ring(gpu);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_gpu0; _aux++) {
+          free(*(gpu[_aux].rb));
+        free(gpu[_aux].rb);
+          }
+          free(gpu);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_gpu0 = 1;
+          struct msm_gpu * gpu = (struct msm_gpu *) malloc(_len_gpu0*sizeof(struct msm_gpu));
+          for(int _i0 = 0; _i0 < _len_gpu0; _i0++) {
+              int _len_gpu__i0__rb0 = 1;
+          gpu[_i0].rb = (struct msm_ringbuffer **) malloc(_len_gpu__i0__rb0*sizeof(struct msm_ringbuffer *));
+          for(int _j0 = 0; _j0 < _len_gpu__i0__rb0; _j0++) {
+            int _len_gpu__i0__rb1 = 1;
+            gpu[_i0].rb[_j0] = (struct msm_ringbuffer *) malloc(_len_gpu__i0__rb1*sizeof(struct msm_ringbuffer));
+            for(int _j1 = 0; _j1 < _len_gpu__i0__rb1; _j1++) {
+                gpu[_i0].rb[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          struct msm_ringbuffer * benchRet = adreno_active_ring(gpu);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_gpu0; _aux++) {
+          free(*(gpu[_aux].rb));
+        free(gpu[_aux].rb);
+          }
+          free(gpu);
+        
+        break;
+    }
     default:
         usage();
         break;

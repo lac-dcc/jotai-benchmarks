@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ __attribute__((used)) static int reply(struct ib_mad_hdr *smp)
 	return IB_MAD_RESULT_SUCCESS | IB_MAD_RESULT_REPLY;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,23 +86,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_smp0 = 1;
+          int _len_smp0 = 65025;
           struct ib_mad_hdr * smp = (struct ib_mad_hdr *) malloc(_len_smp0*sizeof(struct ib_mad_hdr));
           for(int _i0 = 0; _i0 < _len_smp0; _i0++) {
-            smp[_i0].mgmt_class = ((-2 * (next_i()%2)) + 1) * next_i();
-        smp[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
-        smp[_i0].method = ((-2 * (next_i()%2)) + 1) * next_i();
+              smp[_i0].mgmt_class = ((-2 * (next_i()%2)) + 1) * next_i();
+          smp[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+          smp[_i0].method = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = reply(smp);
           printf("%d\n", benchRet); 
           free(smp);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_smp0 = 100;
+          struct ib_mad_hdr * smp = (struct ib_mad_hdr *) malloc(_len_smp0*sizeof(struct ib_mad_hdr));
+          for(int _i0 = 0; _i0 < _len_smp0; _i0++) {
+              smp[_i0].mgmt_class = ((-2 * (next_i()%2)) + 1) * next_i();
+          smp[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+          smp[_i0].method = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = reply(smp);
+          printf("%d\n", benchRet); 
+          free(smp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_smp0 = 1;
+          struct ib_mad_hdr * smp = (struct ib_mad_hdr *) malloc(_len_smp0*sizeof(struct ib_mad_hdr));
+          for(int _i0 = 0; _i0 < _len_smp0; _i0++) {
+              smp[_i0].mgmt_class = ((-2 * (next_i()%2)) + 1) * next_i();
+          smp[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+          smp[_i0].method = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = reply(smp);
+          printf("%d\n", benchRet); 
+          free(smp);
+        
+        break;
+    }
     default:
         usage();
         break;

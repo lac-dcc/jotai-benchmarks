@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +77,6 @@ __attribute__((used)) static u32 qoriq_ptp_nominal_freq(u32 clk_src)
 	return clk_src * 1000000;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,28 +89,136 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 35
+          // dynamic_instructions_O3 : 35
+          // ------------------------------- 
+          // static_instructions_Ofast : 35
+          // dynamic_instructions_Ofast : 35
+          // ------------------------------- 
+          // static_instructions_Os : 34
+          // dynamic_instructions_Os : 34
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
           int clk_src = 100;
+        
           int benchRet = qoriq_ptp_nominal_freq(clk_src);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 35
+          // dynamic_instructions_O3 : 35
+          // ------------------------------- 
+          // static_instructions_Ofast : 35
+          // dynamic_instructions_Ofast : 35
+          // ------------------------------- 
+          // static_instructions_Os : 34
+          // dynamic_instructions_Os : 34
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
           int clk_src = 255;
+        
           int benchRet = qoriq_ptp_nominal_freq(clk_src);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 35
+          // dynamic_instructions_O3 : 35
+          // ------------------------------- 
+          // static_instructions_Ofast : 35
+          // dynamic_instructions_Ofast : 35
+          // ------------------------------- 
+          // static_instructions_Os : 34
+          // dynamic_instructions_Os : 34
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
           int clk_src = 10;
+        
+          int benchRet = qoriq_ptp_nominal_freq(clk_src);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 35
+          // dynamic_instructions_O3 : 35
+          // ------------------------------- 
+          // static_instructions_Ofast : 35
+          // dynamic_instructions_Ofast : 35
+          // ------------------------------- 
+          // static_instructions_Os : 34
+          // dynamic_instructions_Os : 34
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
+          int clk_src = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = qoriq_ptp_nominal_freq(clk_src);
           printf("%d\n", benchRet); 
         

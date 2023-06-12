@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -87,12 +90,6 @@ __attribute__((used)) static int vidioc_enum_fmt(struct v4l2_fmtdesc *f, bool ou
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,16 +102,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
           int output_queue = 100;
+        
           int _len_f0 = 1;
           struct v4l2_fmtdesc * f = (struct v4l2_fmtdesc *) malloc(_len_f0*sizeof(struct v4l2_fmtdesc));
           for(int _i0 = 0; _i0 < _len_f0; _i0++) {
-            f[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].pixelformat = ((-2 * (next_i()%2)) + 1) * next_i();
+              f[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].pixelformat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = vidioc_enum_fmt(f,output_queue);
+          printf("%d\n", benchRet); 
+          free(f);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          int output_queue = 255;
+        
+          int _len_f0 = 65025;
+          struct v4l2_fmtdesc * f = (struct v4l2_fmtdesc *) malloc(_len_f0*sizeof(struct v4l2_fmtdesc));
+          for(int _i0 = 0; _i0 < _len_f0; _i0++) {
+              f[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].pixelformat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vidioc_enum_fmt(f,output_queue);
+          printf("%d\n", benchRet); 
+          free(f);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          int output_queue = 10;
+        
+          int _len_f0 = 100;
+          struct v4l2_fmtdesc * f = (struct v4l2_fmtdesc *) malloc(_len_f0*sizeof(struct v4l2_fmtdesc));
+          for(int _i0 = 0; _i0 < _len_f0; _i0++) {
+              f[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].pixelformat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vidioc_enum_fmt(f,output_queue);
+          printf("%d\n", benchRet); 
+          free(f);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          int output_queue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_f0 = 1;
+          struct v4l2_fmtdesc * f = (struct v4l2_fmtdesc *) malloc(_len_f0*sizeof(struct v4l2_fmtdesc));
+          for(int _i0 = 0; _i0 < _len_f0; _i0++) {
+              f[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].pixelformat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = vidioc_enum_fmt(f,output_queue);
           printf("%d\n", benchRet); 
           free(f);

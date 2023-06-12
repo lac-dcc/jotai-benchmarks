@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static inline void seeq_go(struct sgiseeq_private *sp,
 	hregs->rx_ctrl = HPC3_ERXCTRL_ACTIVE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,24 +81,163 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_sp0 = 65025;
+          struct sgiseeq_private * sp = (struct sgiseeq_private *) malloc(_len_sp0*sizeof(struct sgiseeq_private));
+          for(int _i0 = 0; _i0 < _len_sp0; _i0++) {
+              sp[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_hregs0 = 65025;
+          struct hpc3_ethregs * hregs = (struct hpc3_ethregs *) malloc(_len_hregs0*sizeof(struct hpc3_ethregs));
+          for(int _i0 = 0; _i0 < _len_hregs0; _i0++) {
+              hregs[_i0].rx_ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_sregs0 = 65025;
+          struct sgiseeq_regs * sregs = (struct sgiseeq_regs *) malloc(_len_sregs0*sizeof(struct sgiseeq_regs));
+          for(int _i0 = 0; _i0 < _len_sregs0; _i0++) {
+              sregs[_i0].rstat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          seeq_go(sp,hregs,sregs);
+          free(sp);
+          free(hregs);
+          free(sregs);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_sp0 = 100;
+          struct sgiseeq_private * sp = (struct sgiseeq_private *) malloc(_len_sp0*sizeof(struct sgiseeq_private));
+          for(int _i0 = 0; _i0 < _len_sp0; _i0++) {
+              sp[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_hregs0 = 100;
+          struct hpc3_ethregs * hregs = (struct hpc3_ethregs *) malloc(_len_hregs0*sizeof(struct hpc3_ethregs));
+          for(int _i0 = 0; _i0 < _len_hregs0; _i0++) {
+              hregs[_i0].rx_ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_sregs0 = 100;
+          struct sgiseeq_regs * sregs = (struct sgiseeq_regs *) malloc(_len_sregs0*sizeof(struct sgiseeq_regs));
+          for(int _i0 = 0; _i0 < _len_sregs0; _i0++) {
+              sregs[_i0].rstat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          seeq_go(sp,hregs,sregs);
+          free(sp);
+          free(hregs);
+          free(sregs);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_sp0 = 1;
           struct sgiseeq_private * sp = (struct sgiseeq_private *) malloc(_len_sp0*sizeof(struct sgiseeq_private));
           for(int _i0 = 0; _i0 < _len_sp0; _i0++) {
-            sp[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              sp[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_hregs0 = 1;
           struct hpc3_ethregs * hregs = (struct hpc3_ethregs *) malloc(_len_hregs0*sizeof(struct hpc3_ethregs));
           for(int _i0 = 0; _i0 < _len_hregs0; _i0++) {
-            hregs[_i0].rx_ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+              hregs[_i0].rx_ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_sregs0 = 1;
           struct sgiseeq_regs * sregs = (struct sgiseeq_regs *) malloc(_len_sregs0*sizeof(struct sgiseeq_regs));
           for(int _i0 = 0; _i0 < _len_sregs0; _i0++) {
-            sregs[_i0].rstat = ((-2 * (next_i()%2)) + 1) * next_i();
+              sregs[_i0].rstat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           seeq_go(sp,hregs,sregs);
           free(sp);
           free(hregs);

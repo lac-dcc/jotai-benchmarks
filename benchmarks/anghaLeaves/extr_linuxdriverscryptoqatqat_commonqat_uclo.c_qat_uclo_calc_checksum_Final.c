@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +73,6 @@ __attribute__((used)) static unsigned int qat_uclo_calc_checksum(unsigned int re
 	return reg & 0xFFFF;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,31 +85,144 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 138
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 85
+          // ------------------------------- 
+          // static_instructions_O2 : 58
+          // dynamic_instructions_O2 : 58
+          // ------------------------------- 
+          // static_instructions_O3 : 58
+          // dynamic_instructions_O3 : 58
+          // ------------------------------- 
+          // static_instructions_Ofast : 58
+          // dynamic_instructions_Ofast : 58
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 83
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 101
+          // ------------------------------- 
+
           unsigned int reg = 100;
+        
           int ch = 100;
+        
           unsigned int benchRet = qat_uclo_calc_checksum(reg,ch);
           printf("%u\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 140
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 85
+          // ------------------------------- 
+          // static_instructions_O2 : 58
+          // dynamic_instructions_O2 : 58
+          // ------------------------------- 
+          // static_instructions_O3 : 58
+          // dynamic_instructions_O3 : 58
+          // ------------------------------- 
+          // static_instructions_Ofast : 58
+          // dynamic_instructions_Ofast : 58
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 83
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 101
+          // ------------------------------- 
+
           unsigned int reg = 255;
+        
           int ch = 255;
+        
           unsigned int benchRet = qat_uclo_calc_checksum(reg,ch);
           printf("%u\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 136
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 85
+          // ------------------------------- 
+          // static_instructions_O2 : 58
+          // dynamic_instructions_O2 : 58
+          // ------------------------------- 
+          // static_instructions_O3 : 58
+          // dynamic_instructions_O3 : 58
+          // ------------------------------- 
+          // static_instructions_Ofast : 58
+          // dynamic_instructions_Ofast : 58
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 83
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 101
+          // ------------------------------- 
+
           unsigned int reg = 10;
+        
           int ch = 10;
+        
+          unsigned int benchRet = qat_uclo_calc_checksum(reg,ch);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 136
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 85
+          // ------------------------------- 
+          // static_instructions_O2 : 58
+          // dynamic_instructions_O2 : 58
+          // ------------------------------- 
+          // static_instructions_O3 : 58
+          // dynamic_instructions_O3 : 58
+          // ------------------------------- 
+          // static_instructions_Ofast : 58
+          // dynamic_instructions_Ofast : 58
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 83
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 101
+          // ------------------------------- 
+
+          unsigned int reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int ch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           unsigned int benchRet = qat_uclo_calc_checksum(reg,ch);
           printf("%u\n", benchRet); 
         

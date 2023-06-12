@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -95,12 +97,6 @@ __attribute__((used)) static u32 efx_get_mcdi_phy_flags(struct efx_nic *efx)
 	return flags;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -113,19 +109,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_efx0 = 1;
+          int _len_efx0 = 65025;
           struct efx_nic * efx = (struct efx_nic *) malloc(_len_efx0*sizeof(struct efx_nic));
           for(int _i0 = 0; _i0 < _len_efx0; _i0++) {
-            efx[_i0].phy_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              efx[_i0].phy_mode = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_efx__i0__phy_data0 = 1;
           efx[_i0].phy_data = (struct efx_mcdi_phy_data *) malloc(_len_efx__i0__phy_data0*sizeof(struct efx_mcdi_phy_data));
           for(int _j0 = 0; _j0 < _len_efx__i0__phy_data0; _j0++) {
-            efx[_i0].phy_data->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              efx[_i0].phy_data->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = efx_get_mcdi_phy_flags(efx);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_efx0; _aux++) {
@@ -135,7 +134,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_efx0 = 100;
+          struct efx_nic * efx = (struct efx_nic *) malloc(_len_efx0*sizeof(struct efx_nic));
+          for(int _i0 = 0; _i0 < _len_efx0; _i0++) {
+              efx[_i0].phy_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_efx__i0__phy_data0 = 1;
+          efx[_i0].phy_data = (struct efx_mcdi_phy_data *) malloc(_len_efx__i0__phy_data0*sizeof(struct efx_mcdi_phy_data));
+          for(int _j0 = 0; _j0 < _len_efx__i0__phy_data0; _j0++) {
+              efx[_i0].phy_data->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = efx_get_mcdi_phy_flags(efx);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_efx0; _aux++) {
+          free(efx[_aux].phy_data);
+          }
+          free(efx);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_efx0 = 1;
+          struct efx_nic * efx = (struct efx_nic *) malloc(_len_efx0*sizeof(struct efx_nic));
+          for(int _i0 = 0; _i0 < _len_efx0; _i0++) {
+              efx[_i0].phy_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_efx__i0__phy_data0 = 1;
+          efx[_i0].phy_data = (struct efx_mcdi_phy_data *) malloc(_len_efx__i0__phy_data0*sizeof(struct efx_mcdi_phy_data));
+          for(int _j0 = 0; _j0 < _len_efx__i0__phy_data0; _j0++) {
+              efx[_i0].phy_data->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = efx_get_mcdi_phy_flags(efx);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_efx0; _aux++) {
+          free(efx[_aux].phy_data);
+          }
+          free(efx);
+        
+        break;
+    }
     default:
         usage();
         break;

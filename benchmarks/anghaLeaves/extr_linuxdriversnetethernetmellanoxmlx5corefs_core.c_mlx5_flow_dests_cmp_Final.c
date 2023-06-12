@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -79,12 +81,6 @@ __attribute__((used)) static bool mlx5_flow_dests_cmp(struct mlx5_flow_destinati
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,27 +93,33 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_d10 = 1;
+          int _len_d10 = 65025;
           struct mlx5_flow_destination * d1 = (struct mlx5_flow_destination *) malloc(_len_d10*sizeof(struct mlx5_flow_destination));
           for(int _i0 = 0; _i0 < _len_d10; _i0++) {
-            d1[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        d1[_i0].ft = ((-2 * (next_i()%2)) + 1) * next_i();
-        d1[_i0].tir_num = ((-2 * (next_i()%2)) + 1) * next_i();
-        d1[_i0].ft_num = ((-2 * (next_i()%2)) + 1) * next_i();
-        d1[_i0].vport.num = ((-2 * (next_i()%2)) + 1) * next_i();
+              d1[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          d1[_i0].ft = ((-2 * (next_i()%2)) + 1) * next_i();
+          d1[_i0].tir_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          d1[_i0].ft_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          d1[_i0].vport.num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-          int _len_d20 = 1;
+        
+          int _len_d20 = 65025;
           struct mlx5_flow_destination * d2 = (struct mlx5_flow_destination *) malloc(_len_d20*sizeof(struct mlx5_flow_destination));
           for(int _i0 = 0; _i0 < _len_d20; _i0++) {
-            d2[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        d2[_i0].ft = ((-2 * (next_i()%2)) + 1) * next_i();
-        d2[_i0].tir_num = ((-2 * (next_i()%2)) + 1) * next_i();
-        d2[_i0].ft_num = ((-2 * (next_i()%2)) + 1) * next_i();
-        d2[_i0].vport.num = ((-2 * (next_i()%2)) + 1) * next_i();
+              d2[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          d2[_i0].ft = ((-2 * (next_i()%2)) + 1) * next_i();
+          d2[_i0].tir_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          d2[_i0].ft_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          d2[_i0].vport.num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = mlx5_flow_dests_cmp(d1,d2);
           printf("%d\n", benchRet); 
           free(d1);
@@ -125,7 +127,74 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_d10 = 100;
+          struct mlx5_flow_destination * d1 = (struct mlx5_flow_destination *) malloc(_len_d10*sizeof(struct mlx5_flow_destination));
+          for(int _i0 = 0; _i0 < _len_d10; _i0++) {
+              d1[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          d1[_i0].ft = ((-2 * (next_i()%2)) + 1) * next_i();
+          d1[_i0].tir_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          d1[_i0].ft_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          d1[_i0].vport.num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_d20 = 100;
+          struct mlx5_flow_destination * d2 = (struct mlx5_flow_destination *) malloc(_len_d20*sizeof(struct mlx5_flow_destination));
+          for(int _i0 = 0; _i0 < _len_d20; _i0++) {
+              d2[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          d2[_i0].ft = ((-2 * (next_i()%2)) + 1) * next_i();
+          d2[_i0].tir_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          d2[_i0].ft_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          d2[_i0].vport.num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = mlx5_flow_dests_cmp(d1,d2);
+          printf("%d\n", benchRet); 
+          free(d1);
+          free(d2);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_d10 = 1;
+          struct mlx5_flow_destination * d1 = (struct mlx5_flow_destination *) malloc(_len_d10*sizeof(struct mlx5_flow_destination));
+          for(int _i0 = 0; _i0 < _len_d10; _i0++) {
+              d1[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          d1[_i0].ft = ((-2 * (next_i()%2)) + 1) * next_i();
+          d1[_i0].tir_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          d1[_i0].ft_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          d1[_i0].vport.num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_d20 = 1;
+          struct mlx5_flow_destination * d2 = (struct mlx5_flow_destination *) malloc(_len_d20*sizeof(struct mlx5_flow_destination));
+          for(int _i0 = 0; _i0 < _len_d20; _i0++) {
+              d2[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          d2[_i0].ft = ((-2 * (next_i()%2)) + 1) * next_i();
+          d2[_i0].tir_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          d2[_i0].ft_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          d2[_i0].vport.num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = mlx5_flow_dests_cmp(d1,d2);
+          printf("%d\n", benchRet); 
+          free(d1);
+          free(d2);
+        
+        break;
+    }
     default:
         usage();
         break;

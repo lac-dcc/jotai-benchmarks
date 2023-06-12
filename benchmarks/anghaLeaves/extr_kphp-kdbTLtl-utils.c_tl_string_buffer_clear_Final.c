@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +61,6 @@ void tl_string_buffer_clear (struct tl_buffer *b) {
   b->pos = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,14 +73,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_b0 = 1;
+          int _len_b0 = 65025;
           struct tl_buffer * b = (struct tl_buffer *) malloc(_len_b0*sizeof(struct tl_buffer));
           for(int _i0 = 0; _i0 < _len_b0; _i0++) {
-            b[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+              b[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           tl_string_buffer_clear(b);
           free(b);
         
@@ -97,14 +94,30 @@ int main(int argc, char *argv[]) {
           int _len_b0 = 100;
           struct tl_buffer * b = (struct tl_buffer *) malloc(_len_b0*sizeof(struct tl_buffer));
           for(int _i0 = 0; _i0 < _len_b0; _i0++) {
-            b[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+              b[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           tl_string_buffer_clear(b);
           free(b);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_b0 = 1;
+          struct tl_buffer * b = (struct tl_buffer *) malloc(_len_b0*sizeof(struct tl_buffer));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          tl_string_buffer_clear(b);
+          free(b);
+        
+        break;
+    }
     default:
         usage();
         break;

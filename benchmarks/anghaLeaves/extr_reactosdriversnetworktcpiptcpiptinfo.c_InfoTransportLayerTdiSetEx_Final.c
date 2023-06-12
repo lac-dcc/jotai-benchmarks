@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ TDI_STATUS InfoTransportLayerTdiSetEx( UINT InfoClass,
     return TDI_INVALID_REQUEST;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,16 +89,50 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int InfoClass = 100;
+        
           int InfoType = 100;
+        
           int InfoId = 100;
+        
           int Context = 100;
+        
           int Buffer = 100;
+        
           int BufferSize = 100;
+        
           int _len_id0 = 1;
           int * id = (int *) malloc(_len_id0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_id0; _i0++) {
             id[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = InfoTransportLayerTdiSetEx(InfoClass,InfoType,InfoId,Context,id,Buffer,BufferSize);
+          printf("%d\n", benchRet); 
+          free(id);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int InfoClass = 255;
+        
+          int InfoType = 255;
+        
+          int InfoId = 255;
+        
+          int Context = 255;
+        
+          int Buffer = 255;
+        
+          int BufferSize = 255;
+        
+          int _len_id0 = 65025;
+          int * id = (int *) malloc(_len_id0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_id0; _i0++) {
+            id[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = InfoTransportLayerTdiSetEx(InfoClass,InfoType,InfoId,Context,id,Buffer,BufferSize);
           printf("%d\n", benchRet); 
           free(id);
@@ -110,26 +140,59 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int InfoClass = 10;
+        
           int InfoType = 10;
+        
           int InfoId = 10;
+        
           int Context = 10;
+        
           int Buffer = 10;
+        
           int BufferSize = 10;
+        
           int _len_id0 = 100;
           int * id = (int *) malloc(_len_id0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_id0; _i0++) {
             id[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = InfoTransportLayerTdiSetEx(InfoClass,InfoType,InfoId,Context,id,Buffer,BufferSize);
           printf("%d\n", benchRet); 
           free(id);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int InfoClass = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int InfoType = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int InfoId = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int Context = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int Buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int BufferSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_id0 = 1;
+          int * id = (int *) malloc(_len_id0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_id0; _i0++) {
+            id[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = InfoTransportLayerTdiSetEx(InfoClass,InfoType,InfoId,Context,id,Buffer,BufferSize);
+          printf("%d\n", benchRet); 
+          free(id);
+        
+        break;
+    }
     default:
         usage();
         break;

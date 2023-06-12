@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ ngx_rtmp_log_var_session_readable_time_getlen(ngx_rtmp_session_t *s,
     return NGX_INT_T_LEN + sizeof("d 23h 59m 59s") - 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,19 +78,136 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_s0 = 65025;
+          int * s = (int *) malloc(_len_s0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+            s[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_op0 = 65025;
+          int * op = (int *) malloc(_len_op0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_op0; _i0++) {
+            op[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned long benchRet = ngx_rtmp_log_var_session_readable_time_getlen(s,op);
+          printf("%lu\n", benchRet); 
+          free(s);
+          free(op);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_s0 = 100;
+          int * s = (int *) malloc(_len_s0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+            s[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_op0 = 100;
+          int * op = (int *) malloc(_len_op0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_op0; _i0++) {
+            op[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned long benchRet = ngx_rtmp_log_var_session_readable_time_getlen(s,op);
+          printf("%lu\n", benchRet); 
+          free(s);
+          free(op);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_s0 = 1;
           int * s = (int *) malloc(_len_s0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
             s[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_op0 = 1;
           int * op = (int *) malloc(_len_op0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_op0; _i0++) {
             op[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned long benchRet = ngx_rtmp_log_var_session_readable_time_getlen(s,op);
           printf("%lu\n", benchRet); 
           free(s);

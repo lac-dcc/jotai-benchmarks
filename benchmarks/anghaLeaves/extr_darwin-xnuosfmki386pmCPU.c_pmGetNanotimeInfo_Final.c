@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ pmGetNanotimeInfo(pm_rtc_nanotime_t *rtc_nanotime)
 		&& rtc_nanotime->generation != pal_rtc_nanotime_info.generation);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,18 +90,129 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_rtc_nanotime0 = 65025;
+          struct TYPE_4__ * rtc_nanotime = (struct TYPE_4__ *) malloc(_len_rtc_nanotime0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_rtc_nanotime0; _i0++) {
+              rtc_nanotime[_i0].generation = ((-2 * (next_i()%2)) + 1) * next_i();
+          rtc_nanotime[_i0].shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          rtc_nanotime[_i0].scale = ((-2 * (next_i()%2)) + 1) * next_i();
+          rtc_nanotime[_i0].ns_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          rtc_nanotime[_i0].tsc_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          pmGetNanotimeInfo(rtc_nanotime);
+          free(rtc_nanotime);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_rtc_nanotime0 = 100;
+          struct TYPE_4__ * rtc_nanotime = (struct TYPE_4__ *) malloc(_len_rtc_nanotime0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_rtc_nanotime0; _i0++) {
+              rtc_nanotime[_i0].generation = ((-2 * (next_i()%2)) + 1) * next_i();
+          rtc_nanotime[_i0].shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          rtc_nanotime[_i0].scale = ((-2 * (next_i()%2)) + 1) * next_i();
+          rtc_nanotime[_i0].ns_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          rtc_nanotime[_i0].tsc_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          pmGetNanotimeInfo(rtc_nanotime);
+          free(rtc_nanotime);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_rtc_nanotime0 = 1;
           struct TYPE_4__ * rtc_nanotime = (struct TYPE_4__ *) malloc(_len_rtc_nanotime0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_rtc_nanotime0; _i0++) {
-            rtc_nanotime[_i0].generation = ((-2 * (next_i()%2)) + 1) * next_i();
-        rtc_nanotime[_i0].shift = ((-2 * (next_i()%2)) + 1) * next_i();
-        rtc_nanotime[_i0].scale = ((-2 * (next_i()%2)) + 1) * next_i();
-        rtc_nanotime[_i0].ns_base = ((-2 * (next_i()%2)) + 1) * next_i();
-        rtc_nanotime[_i0].tsc_base = ((-2 * (next_i()%2)) + 1) * next_i();
+              rtc_nanotime[_i0].generation = ((-2 * (next_i()%2)) + 1) * next_i();
+          rtc_nanotime[_i0].shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          rtc_nanotime[_i0].scale = ((-2 * (next_i()%2)) + 1) * next_i();
+          rtc_nanotime[_i0].ns_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          rtc_nanotime[_i0].tsc_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           pmGetNanotimeInfo(rtc_nanotime);
           free(rtc_nanotime);
         

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static void bn_zero(unsigned int *bn)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_bn0 = 1;
+          int _len_bn0 = 65025;
           unsigned int * bn = (unsigned int *) malloc(_len_bn0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_bn0; _i0++) {
             bn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           bn_zero(bn);
           free(bn);
         
@@ -103,12 +99,26 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_bn0; _i0++) {
             bn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           bn_zero(bn);
           free(bn);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_bn0 = 1;
+          unsigned int * bn = (unsigned int *) malloc(_len_bn0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_bn0; _i0++) {
+            bn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          bn_zero(bn);
+          free(bn);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ vm_map_has_hard_pagezero(
 	return (map->min_offset >= pagezero_size);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,30 +92,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           long pagezero_size = 100;
+        
           int _len_map0 = 1;
           struct TYPE_3__ * map = (struct TYPE_3__ *) malloc(_len_map0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_map0; _i0++) {
-            map[_i0].min_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              map[_i0].min_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = vm_map_has_hard_pagezero(map,pagezero_size);
           printf("%d\n", benchRet); 
           free(map);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          long pagezero_size = 255;
+        
+          int _len_map0 = 65025;
+          struct TYPE_3__ * map = (struct TYPE_3__ *) malloc(_len_map0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_map0; _i0++) {
+              map[_i0].min_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vm_map_has_hard_pagezero(map,pagezero_size);
+          printf("%d\n", benchRet); 
+          free(map);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           long pagezero_size = 10;
+        
           int _len_map0 = 100;
           struct TYPE_3__ * map = (struct TYPE_3__ *) malloc(_len_map0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_map0; _i0++) {
-            map[_i0].min_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              map[_i0].min_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = vm_map_has_hard_pagezero(map,pagezero_size);
+          printf("%d\n", benchRet); 
+          free(map);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          long pagezero_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_map0 = 1;
+          struct TYPE_3__ * map = (struct TYPE_3__ *) malloc(_len_map0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_map0; _i0++) {
+              map[_i0].min_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = vm_map_has_hard_pagezero(map,pagezero_size);
           printf("%d\n", benchRet); 
           free(map);

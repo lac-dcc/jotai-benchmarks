@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -91,12 +93,6 @@ NDIS_STATUS oid_rt_get_middle_packet_crc_hdl(struct oid_par_priv* poid_par_priv)
 	return status;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -109,22 +105,24 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_poid_par_priv0 = 1;
+          int _len_poid_par_priv0 = 65025;
           struct oid_par_priv * poid_par_priv = (struct oid_par_priv *) malloc(_len_poid_par_priv0*sizeof(struct oid_par_priv));
           for(int _i0 = 0; _i0 < _len_poid_par_priv0; _i0++) {
-            poid_par_priv[_i0].type_of_oid = ((-2 * (next_i()%2)) + 1) * next_i();
-        poid_par_priv[_i0].information_buf_len = ((-2 * (next_i()%2)) + 1) * next_i();
+              poid_par_priv[_i0].type_of_oid = ((-2 * (next_i()%2)) + 1) * next_i();
+          poid_par_priv[_i0].information_buf_len = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_poid_par_priv__i0__bytes_rw0 = 1;
           poid_par_priv[_i0].bytes_rw = (int *) malloc(_len_poid_par_priv__i0__bytes_rw0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_poid_par_priv__i0__bytes_rw0; _j0++) {
             poid_par_priv[_i0].bytes_rw[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        poid_par_priv[_i0].information_buf = ((-2 * (next_i()%2)) + 1) * next_i();
-        poid_par_priv[_i0].adapter_context = ((-2 * (next_i()%2)) + 1) * next_i();
+          poid_par_priv[_i0].information_buf = ((-2 * (next_i()%2)) + 1) * next_i();
+          poid_par_priv[_i0].adapter_context = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = oid_rt_get_middle_packet_crc_hdl(poid_par_priv);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_poid_par_priv0; _aux++) {
@@ -134,7 +132,60 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_poid_par_priv0 = 100;
+          struct oid_par_priv * poid_par_priv = (struct oid_par_priv *) malloc(_len_poid_par_priv0*sizeof(struct oid_par_priv));
+          for(int _i0 = 0; _i0 < _len_poid_par_priv0; _i0++) {
+              poid_par_priv[_i0].type_of_oid = ((-2 * (next_i()%2)) + 1) * next_i();
+          poid_par_priv[_i0].information_buf_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_poid_par_priv__i0__bytes_rw0 = 1;
+          poid_par_priv[_i0].bytes_rw = (int *) malloc(_len_poid_par_priv__i0__bytes_rw0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_poid_par_priv__i0__bytes_rw0; _j0++) {
+            poid_par_priv[_i0].bytes_rw[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          poid_par_priv[_i0].information_buf = ((-2 * (next_i()%2)) + 1) * next_i();
+          poid_par_priv[_i0].adapter_context = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = oid_rt_get_middle_packet_crc_hdl(poid_par_priv);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_poid_par_priv0; _aux++) {
+          free(poid_par_priv[_aux].bytes_rw);
+          }
+          free(poid_par_priv);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_poid_par_priv0 = 1;
+          struct oid_par_priv * poid_par_priv = (struct oid_par_priv *) malloc(_len_poid_par_priv0*sizeof(struct oid_par_priv));
+          for(int _i0 = 0; _i0 < _len_poid_par_priv0; _i0++) {
+              poid_par_priv[_i0].type_of_oid = ((-2 * (next_i()%2)) + 1) * next_i();
+          poid_par_priv[_i0].information_buf_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_poid_par_priv__i0__bytes_rw0 = 1;
+          poid_par_priv[_i0].bytes_rw = (int *) malloc(_len_poid_par_priv__i0__bytes_rw0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_poid_par_priv__i0__bytes_rw0; _j0++) {
+            poid_par_priv[_i0].bytes_rw[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          poid_par_priv[_i0].information_buf = ((-2 * (next_i()%2)) + 1) * next_i();
+          poid_par_priv[_i0].adapter_context = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = oid_rt_get_middle_packet_crc_hdl(poid_par_priv);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_poid_par_priv0; _aux++) {
+          free(poid_par_priv[_aux].bytes_rw);
+          }
+          free(poid_par_priv);
+        
+        break;
+    }
     default:
         usage();
         break;

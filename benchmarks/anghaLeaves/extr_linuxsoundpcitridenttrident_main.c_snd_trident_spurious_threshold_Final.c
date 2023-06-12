@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static unsigned int snd_trident_spurious_threshold(unsigne
 	return res;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,7 +84,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int rate = 100;
+        
           unsigned int period_size = 100;
+        
           unsigned int benchRet = snd_trident_spurious_threshold(rate,period_size);
           printf("%u\n", benchRet); 
         
@@ -99,7 +96,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int rate = 255;
+        
           unsigned int period_size = 255;
+        
           unsigned int benchRet = snd_trident_spurious_threshold(rate,period_size);
           printf("%u\n", benchRet); 
         
@@ -109,13 +108,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int rate = 10;
+        
           unsigned int period_size = 10;
+        
           unsigned int benchRet = snd_trident_spurious_threshold(rate,period_size);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int period_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = snd_trident_spurious_threshold(rate,period_size);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

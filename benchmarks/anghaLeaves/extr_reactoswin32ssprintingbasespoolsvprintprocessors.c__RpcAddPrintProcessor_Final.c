@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ _RpcAddPrintProcessor(WINSPOOL_HANDLE pName, WCHAR* pEnvironment, WCHAR* pPathNa
     return ERROR_INVALID_FUNCTION;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,25 +81,217 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int pName = 100;
+        
           int _len_pEnvironment0 = 1;
           int * pEnvironment = (int *) malloc(_len_pEnvironment0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pEnvironment0; _i0++) {
             pEnvironment[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_pPathName0 = 1;
           int * pPathName = (int *) malloc(_len_pPathName0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pPathName0; _i0++) {
             pPathName[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_pPrintProcessorName0 = 1;
           int * pPrintProcessorName = (int *) malloc(_len_pPrintProcessorName0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pPrintProcessorName0; _i0++) {
             pPrintProcessorName[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = _RpcAddPrintProcessor(pName,pEnvironment,pPathName,pPrintProcessorName);
+          printf("%d\n", benchRet); 
+          free(pEnvironment);
+          free(pPathName);
+          free(pPrintProcessorName);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int pName = 255;
+        
+          int _len_pEnvironment0 = 65025;
+          int * pEnvironment = (int *) malloc(_len_pEnvironment0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pEnvironment0; _i0++) {
+            pEnvironment[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pPathName0 = 65025;
+          int * pPathName = (int *) malloc(_len_pPathName0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pPathName0; _i0++) {
+            pPathName[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pPrintProcessorName0 = 65025;
+          int * pPrintProcessorName = (int *) malloc(_len_pPrintProcessorName0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pPrintProcessorName0; _i0++) {
+            pPrintProcessorName[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _RpcAddPrintProcessor(pName,pEnvironment,pPathName,pPrintProcessorName);
+          printf("%d\n", benchRet); 
+          free(pEnvironment);
+          free(pPathName);
+          free(pPrintProcessorName);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int pName = 10;
+        
+          int _len_pEnvironment0 = 100;
+          int * pEnvironment = (int *) malloc(_len_pEnvironment0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pEnvironment0; _i0++) {
+            pEnvironment[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pPathName0 = 100;
+          int * pPathName = (int *) malloc(_len_pPathName0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pPathName0; _i0++) {
+            pPathName[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pPrintProcessorName0 = 100;
+          int * pPrintProcessorName = (int *) malloc(_len_pPrintProcessorName0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pPrintProcessorName0; _i0++) {
+            pPrintProcessorName[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _RpcAddPrintProcessor(pName,pEnvironment,pPathName,pPrintProcessorName);
+          printf("%d\n", benchRet); 
+          free(pEnvironment);
+          free(pPathName);
+          free(pPrintProcessorName);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int pName = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pEnvironment0 = 1;
+          int * pEnvironment = (int *) malloc(_len_pEnvironment0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pEnvironment0; _i0++) {
+            pEnvironment[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pPathName0 = 1;
+          int * pPathName = (int *) malloc(_len_pPathName0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pPathName0; _i0++) {
+            pPathName[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pPrintProcessorName0 = 1;
+          int * pPrintProcessorName = (int *) malloc(_len_pPrintProcessorName0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pPrintProcessorName0; _i0++) {
+            pPrintProcessorName[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = _RpcAddPrintProcessor(pName,pEnvironment,pPathName,pPrintProcessorName);
           printf("%d\n", benchRet); 
           free(pEnvironment);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static void guc_policy_init(struct guc_policy *policy)
 	policy->policy_flags = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,17 +80,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_policy0 = 65025;
+          struct guc_policy * policy = (struct guc_policy *) malloc(_len_policy0*sizeof(struct guc_policy));
+          for(int _i0 = 0; _i0 < _len_policy0; _i0++) {
+              policy[_i0].policy_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          policy[_i0].fault_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          policy[_i0].preemption_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          policy[_i0].execution_quantum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          guc_policy_init(policy);
+          free(policy);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_policy0 = 100;
+          struct guc_policy * policy = (struct guc_policy *) malloc(_len_policy0*sizeof(struct guc_policy));
+          for(int _i0 = 0; _i0 < _len_policy0; _i0++) {
+              policy[_i0].policy_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          policy[_i0].fault_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          policy[_i0].preemption_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          policy[_i0].execution_quantum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          guc_policy_init(policy);
+          free(policy);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_policy0 = 1;
           struct guc_policy * policy = (struct guc_policy *) malloc(_len_policy0*sizeof(struct guc_policy));
           for(int _i0 = 0; _i0 < _len_policy0; _i0++) {
-            policy[_i0].policy_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        policy[_i0].fault_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        policy[_i0].preemption_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        policy[_i0].execution_quantum = ((-2 * (next_i()%2)) + 1) * next_i();
+              policy[_i0].policy_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          policy[_i0].fault_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          policy[_i0].preemption_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          policy[_i0].execution_quantum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           guc_policy_init(policy);
           free(policy);
         

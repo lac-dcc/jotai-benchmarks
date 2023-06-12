@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ bs_set_clip(int x, int y, int cx, int cy)
   g_clip_bottom1 = y + cy;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,9 +86,13 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int x = 100;
+        
           int y = 100;
+        
           int cx = 100;
+        
           int cy = 100;
+        
           bs_set_clip(x,y,cx,cy);
         
         break;
@@ -102,9 +101,13 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int x = 255;
+        
           int y = 255;
+        
           int cx = 255;
+        
           int cy = 255;
+        
           bs_set_clip(x,y,cx,cy);
         
         break;
@@ -113,14 +116,32 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int x = 10;
+        
           int y = 10;
+        
           int cx = 10;
+        
           int cy = 10;
+        
           bs_set_clip(x,y,cx,cy);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int cx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int cy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          bs_set_clip(x,y,cx,cy);
+        
+        break;
+    }
     default:
         usage();
         break;

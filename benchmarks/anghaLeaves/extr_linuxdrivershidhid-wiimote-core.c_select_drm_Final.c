@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -120,12 +122,6 @@ __attribute__((used)) static __u8 select_drm(struct wiimote_data *wdata)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -138,22 +134,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_wdata0 = 1;
+          int _len_wdata0 = 65025;
           struct wiimote_data * wdata = (struct wiimote_data *) malloc(_len_wdata0*sizeof(struct wiimote_data));
           for(int _i0 = 0; _i0 < _len_wdata0; _i0++) {
-            wdata[_i0].state.flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        wdata[_i0].state.devtype = ((-2 * (next_i()%2)) + 1) * next_i();
+              wdata[_i0].state.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          wdata[_i0].state.devtype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           long benchRet = select_drm(wdata);
           printf("%ld\n", benchRet); 
           free(wdata);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_wdata0 = 100;
+          struct wiimote_data * wdata = (struct wiimote_data *) malloc(_len_wdata0*sizeof(struct wiimote_data));
+          for(int _i0 = 0; _i0 < _len_wdata0; _i0++) {
+              wdata[_i0].state.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          wdata[_i0].state.devtype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          long benchRet = select_drm(wdata);
+          printf("%ld\n", benchRet); 
+          free(wdata);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_wdata0 = 1;
+          struct wiimote_data * wdata = (struct wiimote_data *) malloc(_len_wdata0*sizeof(struct wiimote_data));
+          for(int _i0 = 0; _i0 < _len_wdata0; _i0++) {
+              wdata[_i0].state.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          wdata[_i0].state.devtype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          long benchRet = select_drm(wdata);
+          printf("%ld\n", benchRet); 
+          free(wdata);
+        
+        break;
+    }
     default:
         usage();
         break;

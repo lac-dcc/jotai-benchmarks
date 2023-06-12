@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ ifproto_media_input_v1(struct ifnet *ifp, protocol_family_t protocol,
 	return (ENXIO);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,25 +82,225 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int protocol = 100;
+        
           int _len_ifp0 = 1;
           struct ifnet * ifp = (struct ifnet *) malloc(_len_ifp0*sizeof(struct ifnet));
           for(int _i0 = 0; _i0 < _len_ifp0; _i0++) {
-            ifp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ifp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_packet0 = 1;
           struct mbuf * packet = (struct mbuf *) malloc(_len_packet0*sizeof(struct mbuf));
           for(int _i0 = 0; _i0 < _len_packet0; _i0++) {
-            packet[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              packet[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_header0 = 1;
           char * header = (char *) malloc(_len_header0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_header0; _i0++) {
             header[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = ifproto_media_input_v1(ifp,protocol,packet,header);
+          printf("%d\n", benchRet); 
+          free(ifp);
+          free(packet);
+          free(header);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int protocol = 255;
+        
+          int _len_ifp0 = 65025;
+          struct ifnet * ifp = (struct ifnet *) malloc(_len_ifp0*sizeof(struct ifnet));
+          for(int _i0 = 0; _i0 < _len_ifp0; _i0++) {
+              ifp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_packet0 = 65025;
+          struct mbuf * packet = (struct mbuf *) malloc(_len_packet0*sizeof(struct mbuf));
+          for(int _i0 = 0; _i0 < _len_packet0; _i0++) {
+              packet[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_header0 = 65025;
+          char * header = (char *) malloc(_len_header0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_header0; _i0++) {
+            header[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ifproto_media_input_v1(ifp,protocol,packet,header);
+          printf("%d\n", benchRet); 
+          free(ifp);
+          free(packet);
+          free(header);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int protocol = 10;
+        
+          int _len_ifp0 = 100;
+          struct ifnet * ifp = (struct ifnet *) malloc(_len_ifp0*sizeof(struct ifnet));
+          for(int _i0 = 0; _i0 < _len_ifp0; _i0++) {
+              ifp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_packet0 = 100;
+          struct mbuf * packet = (struct mbuf *) malloc(_len_packet0*sizeof(struct mbuf));
+          for(int _i0 = 0; _i0 < _len_packet0; _i0++) {
+              packet[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_header0 = 100;
+          char * header = (char *) malloc(_len_header0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_header0; _i0++) {
+            header[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ifproto_media_input_v1(ifp,protocol,packet,header);
+          printf("%d\n", benchRet); 
+          free(ifp);
+          free(packet);
+          free(header);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int protocol = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ifp0 = 1;
+          struct ifnet * ifp = (struct ifnet *) malloc(_len_ifp0*sizeof(struct ifnet));
+          for(int _i0 = 0; _i0 < _len_ifp0; _i0++) {
+              ifp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_packet0 = 1;
+          struct mbuf * packet = (struct mbuf *) malloc(_len_packet0*sizeof(struct mbuf));
+          for(int _i0 = 0; _i0 < _len_packet0; _i0++) {
+              packet[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_header0 = 1;
+          char * header = (char *) malloc(_len_header0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_header0; _i0++) {
+            header[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = ifproto_media_input_v1(ifp,protocol,packet,header);
           printf("%d\n", benchRet); 
           free(ifp);

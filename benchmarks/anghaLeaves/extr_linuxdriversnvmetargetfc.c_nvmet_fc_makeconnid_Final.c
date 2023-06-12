@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ nvmet_fc_makeconnid(struct nvmet_fc_tgt_assoc *assoc, u16 qid)
 	return (assoc->association_id | qid);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,30 +78,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int qid = 100;
+        
           int _len_assoc0 = 1;
           struct nvmet_fc_tgt_assoc * assoc = (struct nvmet_fc_tgt_assoc *) malloc(_len_assoc0*sizeof(struct nvmet_fc_tgt_assoc));
           for(int _i0 = 0; _i0 < _len_assoc0; _i0++) {
-            assoc[_i0].association_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              assoc[_i0].association_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = nvmet_fc_makeconnid(assoc,qid);
           printf("%d\n", benchRet); 
           free(assoc);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int qid = 255;
+        
+          int _len_assoc0 = 65025;
+          struct nvmet_fc_tgt_assoc * assoc = (struct nvmet_fc_tgt_assoc *) malloc(_len_assoc0*sizeof(struct nvmet_fc_tgt_assoc));
+          for(int _i0 = 0; _i0 < _len_assoc0; _i0++) {
+              assoc[_i0].association_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nvmet_fc_makeconnid(assoc,qid);
+          printf("%d\n", benchRet); 
+          free(assoc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int qid = 10;
+        
           int _len_assoc0 = 100;
           struct nvmet_fc_tgt_assoc * assoc = (struct nvmet_fc_tgt_assoc *) malloc(_len_assoc0*sizeof(struct nvmet_fc_tgt_assoc));
           for(int _i0 = 0; _i0 < _len_assoc0; _i0++) {
-            assoc[_i0].association_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              assoc[_i0].association_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = nvmet_fc_makeconnid(assoc,qid);
+          printf("%d\n", benchRet); 
+          free(assoc);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int qid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_assoc0 = 1;
+          struct nvmet_fc_tgt_assoc * assoc = (struct nvmet_fc_tgt_assoc *) malloc(_len_assoc0*sizeof(struct nvmet_fc_tgt_assoc));
+          for(int _i0 = 0; _i0 < _len_assoc0; _i0++) {
+              assoc[_i0].association_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = nvmet_fc_makeconnid(assoc,qid);
           printf("%d\n", benchRet); 
           free(assoc);

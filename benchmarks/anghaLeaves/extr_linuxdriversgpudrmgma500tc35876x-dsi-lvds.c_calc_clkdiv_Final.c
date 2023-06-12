@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline u16 calc_clkdiv(unsigned long baseclk, unsig
 	return (baseclk - f) / f;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,7 +79,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long baseclk = 100;
+        
           unsigned int f = 100;
+        
           unsigned long benchRet = calc_clkdiv(baseclk,f);
           printf("%lu\n", benchRet); 
         
@@ -94,7 +91,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long baseclk = 255;
+        
           unsigned int f = 255;
+        
           unsigned long benchRet = calc_clkdiv(baseclk,f);
           printf("%lu\n", benchRet); 
         
@@ -104,13 +103,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long baseclk = 10;
+        
           unsigned int f = 10;
+        
           unsigned long benchRet = calc_clkdiv(baseclk,f);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long baseclk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int f = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = calc_clkdiv(baseclk,f);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

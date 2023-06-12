@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +80,6 @@ __attribute__((used)) static int rm_tcp_connection_from_conn(TCP_Connection_to *
     return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,17 +96,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int tcp_connections_number = 100;
+        
           int _len_con_to0 = 1;
           struct TYPE_5__ * con_to = (struct TYPE_5__ *) malloc(_len_con_to0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_con_to0; _i0++) {
               int _len_con_to__i0__connections0 = 1;
           con_to[_i0].connections = (struct TYPE_4__ *) malloc(_len_con_to__i0__connections0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_con_to__i0__connections0; _j0++) {
-            con_to[_i0].connections->tcp_connection = ((-2 * (next_i()%2)) + 1) * next_i();
-        con_to[_i0].connections->connection_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        con_to[_i0].connections->status = ((-2 * (next_i()%2)) + 1) * next_i();
+              con_to[_i0].connections->tcp_connection = ((-2 * (next_i()%2)) + 1) * next_i();
+          con_to[_i0].connections->connection_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          con_to[_i0].connections->status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = rm_tcp_connection_from_conn(con_to,tcp_connections_number);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_con_to0; _aux++) {
@@ -119,7 +120,90 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int tcp_connections_number = 255;
+        
+          int _len_con_to0 = 65025;
+          struct TYPE_5__ * con_to = (struct TYPE_5__ *) malloc(_len_con_to0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_con_to0; _i0++) {
+              int _len_con_to__i0__connections0 = 1;
+          con_to[_i0].connections = (struct TYPE_4__ *) malloc(_len_con_to__i0__connections0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_con_to__i0__connections0; _j0++) {
+              con_to[_i0].connections->tcp_connection = ((-2 * (next_i()%2)) + 1) * next_i();
+          con_to[_i0].connections->connection_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          con_to[_i0].connections->status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = rm_tcp_connection_from_conn(con_to,tcp_connections_number);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_con_to0; _aux++) {
+          free(con_to[_aux].connections);
+          }
+          free(con_to);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int tcp_connections_number = 10;
+        
+          int _len_con_to0 = 100;
+          struct TYPE_5__ * con_to = (struct TYPE_5__ *) malloc(_len_con_to0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_con_to0; _i0++) {
+              int _len_con_to__i0__connections0 = 1;
+          con_to[_i0].connections = (struct TYPE_4__ *) malloc(_len_con_to__i0__connections0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_con_to__i0__connections0; _j0++) {
+              con_to[_i0].connections->tcp_connection = ((-2 * (next_i()%2)) + 1) * next_i();
+          con_to[_i0].connections->connection_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          con_to[_i0].connections->status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = rm_tcp_connection_from_conn(con_to,tcp_connections_number);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_con_to0; _aux++) {
+          free(con_to[_aux].connections);
+          }
+          free(con_to);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int tcp_connections_number = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_con_to0 = 1;
+          struct TYPE_5__ * con_to = (struct TYPE_5__ *) malloc(_len_con_to0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_con_to0; _i0++) {
+              int _len_con_to__i0__connections0 = 1;
+          con_to[_i0].connections = (struct TYPE_4__ *) malloc(_len_con_to__i0__connections0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_con_to__i0__connections0; _j0++) {
+              con_to[_i0].connections->tcp_connection = ((-2 * (next_i()%2)) + 1) * next_i();
+          con_to[_i0].connections->connection_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          con_to[_i0].connections->status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = rm_tcp_connection_from_conn(con_to,tcp_connections_number);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_con_to0; _aux++) {
+          free(con_to[_aux].connections);
+          }
+          free(con_to);
+        
+        break;
+    }
     default:
         usage();
         break;

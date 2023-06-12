@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ __attribute__((used)) static void pxa_ssp_set_dma_params(struct ssp_device *ssp,
 	dma->addr = ssp->phys_base + SSDR;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,23 +83,211 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int width4 = 100;
+        
           int out = 100;
+        
           int _len_ssp0 = 1;
           struct ssp_device * ssp = (struct ssp_device *) malloc(_len_ssp0*sizeof(struct ssp_device));
           for(int _i0 = 0; _i0 < _len_ssp0; _i0++) {
-            ssp[_i0].phys_base = ((-2 * (next_i()%2)) + 1) * next_i();
+              ssp[_i0].phys_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_dma0 = 1;
           struct snd_dmaengine_dai_dma_data * dma = (struct snd_dmaengine_dai_dma_data *) malloc(_len_dma0*sizeof(struct snd_dmaengine_dai_dma_data));
           for(int _i0 = 0; _i0 < _len_dma0; _i0++) {
-            dma[_i0].maxburst = ((-2 * (next_i()%2)) + 1) * next_i();
-        dma[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        dma[_i0].addr_width = ((-2 * (next_i()%2)) + 1) * next_i();
+              dma[_i0].maxburst = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma[_i0].addr_width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          pxa_ssp_set_dma_params(ssp,width4,out,dma);
+          free(ssp);
+          free(dma);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int width4 = 255;
+        
+          int out = 255;
+        
+          int _len_ssp0 = 65025;
+          struct ssp_device * ssp = (struct ssp_device *) malloc(_len_ssp0*sizeof(struct ssp_device));
+          for(int _i0 = 0; _i0 < _len_ssp0; _i0++) {
+              ssp[_i0].phys_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dma0 = 65025;
+          struct snd_dmaengine_dai_dma_data * dma = (struct snd_dmaengine_dai_dma_data *) malloc(_len_dma0*sizeof(struct snd_dmaengine_dai_dma_data));
+          for(int _i0 = 0; _i0 < _len_dma0; _i0++) {
+              dma[_i0].maxburst = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma[_i0].addr_width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          pxa_ssp_set_dma_params(ssp,width4,out,dma);
+          free(ssp);
+          free(dma);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int width4 = 10;
+        
+          int out = 10;
+        
+          int _len_ssp0 = 100;
+          struct ssp_device * ssp = (struct ssp_device *) malloc(_len_ssp0*sizeof(struct ssp_device));
+          for(int _i0 = 0; _i0 < _len_ssp0; _i0++) {
+              ssp[_i0].phys_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dma0 = 100;
+          struct snd_dmaengine_dai_dma_data * dma = (struct snd_dmaengine_dai_dma_data *) malloc(_len_dma0*sizeof(struct snd_dmaengine_dai_dma_data));
+          for(int _i0 = 0; _i0 < _len_dma0; _i0++) {
+              dma[_i0].maxburst = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma[_i0].addr_width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          pxa_ssp_set_dma_params(ssp,width4,out,dma);
+          free(ssp);
+          free(dma);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int width4 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int out = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ssp0 = 1;
+          struct ssp_device * ssp = (struct ssp_device *) malloc(_len_ssp0*sizeof(struct ssp_device));
+          for(int _i0 = 0; _i0 < _len_ssp0; _i0++) {
+              ssp[_i0].phys_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dma0 = 1;
+          struct snd_dmaengine_dai_dma_data * dma = (struct snd_dmaengine_dai_dma_data *) malloc(_len_dma0*sizeof(struct snd_dmaengine_dai_dma_data));
+          for(int _i0 = 0; _i0 < _len_dma0; _i0++) {
+              dma[_i0].maxburst = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma[_i0].addr_width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           pxa_ssp_set_dma_params(ssp,width4,out,dma);
           free(ssp);
           free(dma);

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -89,12 +92,6 @@ enet_peer_throttle (ENetPeer * peer, enet_uint32 rtt)
     return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,20 +104,187 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           long rtt = 100;
+        
           int _len_peer0 = 1;
           struct TYPE_3__ * peer = (struct TYPE_3__ *) malloc(_len_peer0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_peer0; _i0++) {
-            peer[_i0].lastRoundTripTime = ((-2 * (next_i()%2)) + 1) * next_i();
-        peer[_i0].lastRoundTripTimeVariance = ((-2 * (next_i()%2)) + 1) * next_i();
-        peer[_i0].packetThrottle = ((-2 * (next_i()%2)) + 1) * next_i();
-        peer[_i0].packetThrottleLimit = ((-2 * (next_i()%2)) + 1) * next_i();
-        peer[_i0].packetThrottleAcceleration = ((-2 * (next_i()%2)) + 1) * next_i();
-        peer[_i0].packetThrottleDeceleration = ((-2 * (next_i()%2)) + 1) * next_i();
+              peer[_i0].lastRoundTripTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          peer[_i0].lastRoundTripTimeVariance = ((-2 * (next_i()%2)) + 1) * next_i();
+          peer[_i0].packetThrottle = ((-2 * (next_i()%2)) + 1) * next_i();
+          peer[_i0].packetThrottleLimit = ((-2 * (next_i()%2)) + 1) * next_i();
+          peer[_i0].packetThrottleAcceleration = ((-2 * (next_i()%2)) + 1) * next_i();
+          peer[_i0].packetThrottleDeceleration = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = enet_peer_throttle(peer,rtt);
+          printf("%d\n", benchRet); 
+          free(peer);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long rtt = 255;
+        
+          int _len_peer0 = 65025;
+          struct TYPE_3__ * peer = (struct TYPE_3__ *) malloc(_len_peer0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_peer0; _i0++) {
+              peer[_i0].lastRoundTripTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          peer[_i0].lastRoundTripTimeVariance = ((-2 * (next_i()%2)) + 1) * next_i();
+          peer[_i0].packetThrottle = ((-2 * (next_i()%2)) + 1) * next_i();
+          peer[_i0].packetThrottleLimit = ((-2 * (next_i()%2)) + 1) * next_i();
+          peer[_i0].packetThrottleAcceleration = ((-2 * (next_i()%2)) + 1) * next_i();
+          peer[_i0].packetThrottleDeceleration = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = enet_peer_throttle(peer,rtt);
+          printf("%d\n", benchRet); 
+          free(peer);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long rtt = 10;
+        
+          int _len_peer0 = 100;
+          struct TYPE_3__ * peer = (struct TYPE_3__ *) malloc(_len_peer0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_peer0; _i0++) {
+              peer[_i0].lastRoundTripTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          peer[_i0].lastRoundTripTimeVariance = ((-2 * (next_i()%2)) + 1) * next_i();
+          peer[_i0].packetThrottle = ((-2 * (next_i()%2)) + 1) * next_i();
+          peer[_i0].packetThrottleLimit = ((-2 * (next_i()%2)) + 1) * next_i();
+          peer[_i0].packetThrottleAcceleration = ((-2 * (next_i()%2)) + 1) * next_i();
+          peer[_i0].packetThrottleDeceleration = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = enet_peer_throttle(peer,rtt);
+          printf("%d\n", benchRet); 
+          free(peer);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long rtt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_peer0 = 1;
+          struct TYPE_3__ * peer = (struct TYPE_3__ *) malloc(_len_peer0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_peer0; _i0++) {
+              peer[_i0].lastRoundTripTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          peer[_i0].lastRoundTripTimeVariance = ((-2 * (next_i()%2)) + 1) * next_i();
+          peer[_i0].packetThrottle = ((-2 * (next_i()%2)) + 1) * next_i();
+          peer[_i0].packetThrottleLimit = ((-2 * (next_i()%2)) + 1) * next_i();
+          peer[_i0].packetThrottleAcceleration = ((-2 * (next_i()%2)) + 1) * next_i();
+          peer[_i0].packetThrottleDeceleration = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = enet_peer_throttle(peer,rtt);
           printf("%d\n", benchRet); 
           free(peer);

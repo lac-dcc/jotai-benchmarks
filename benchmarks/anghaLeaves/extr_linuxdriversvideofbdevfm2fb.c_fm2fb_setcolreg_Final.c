@@ -31,6 +31,7 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
 \n\
 ");
 
@@ -72,12 +73,6 @@ __attribute__((used)) static int fm2fb_setcolreg(u_int regno, u_int red, u_int g
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,19 +85,99 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
           int regno = 100;
+        
           int red = 100;
+        
           int green = 100;
+        
           int blue = 100;
+        
           int transp = 100;
+        
           int _len_info0 = 1;
           struct fb_info * info = (struct fb_info *) malloc(_len_info0*sizeof(struct fb_info));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].pseudo_palette = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].pseudo_palette = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = fm2fb_setcolreg(regno,red,green,blue,transp,info);
+          printf("%d\n", benchRet); 
+          free(info);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
+          int regno = 255;
+        
+          int red = 255;
+        
+          int green = 255;
+        
+          int blue = 255;
+        
+          int transp = 255;
+        
+          int _len_info0 = 65025;
+          struct fb_info * info = (struct fb_info *) malloc(_len_info0*sizeof(struct fb_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].pseudo_palette = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = fm2fb_setcolreg(regno,red,green,blue,transp,info);
           printf("%d\n", benchRet); 
           free(info);

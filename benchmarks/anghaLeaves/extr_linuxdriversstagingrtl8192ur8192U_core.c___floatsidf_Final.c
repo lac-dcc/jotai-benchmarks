@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ double __floatsidf(int i)
 	return i;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,6 +78,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int i = 100;
+        
           double benchRet = __floatsidf(i);
           printf("%lf\n", benchRet); 
         
@@ -92,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int i = 255;
+        
           double benchRet = __floatsidf(i);
           printf("%lf\n", benchRet); 
         
@@ -101,12 +98,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int i = 10;
+        
           double benchRet = __floatsidf(i);
           printf("%lf\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int i = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          double benchRet = __floatsidf(i);
+          printf("%lf\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

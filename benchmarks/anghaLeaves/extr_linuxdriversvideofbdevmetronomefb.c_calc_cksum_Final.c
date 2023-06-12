@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static u8 calc_cksum(int start, int end, u8 *mem)
 	return tmp;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,32 +81,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int start = 100;
+        
           int end = 100;
+        
           int _len_mem0 = 1;
           long * mem = (long *) malloc(_len_mem0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_mem0; _i0++) {
             mem[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           long benchRet = calc_cksum(start,end,mem);
           printf("%ld\n", benchRet); 
           free(mem);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int start = 255;
+        
+          int end = 255;
+        
+          int _len_mem0 = 65025;
+          long * mem = (long *) malloc(_len_mem0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_mem0; _i0++) {
+            mem[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          long benchRet = calc_cksum(start,end,mem);
+          printf("%ld\n", benchRet); 
+          free(mem);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int start = 10;
+        
           int end = 10;
+        
           int _len_mem0 = 100;
           long * mem = (long *) malloc(_len_mem0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_mem0; _i0++) {
             mem[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          long benchRet = calc_cksum(start,end,mem);
+          printf("%ld\n", benchRet); 
+          free(mem);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_mem0 = 1;
+          long * mem = (long *) malloc(_len_mem0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_mem0; _i0++) {
+            mem[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           long benchRet = calc_cksum(start,end,mem);
           printf("%ld\n", benchRet); 
           free(mem);

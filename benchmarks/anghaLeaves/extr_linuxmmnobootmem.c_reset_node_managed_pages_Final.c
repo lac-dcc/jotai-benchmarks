@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ void reset_node_managed_pages(pg_data_t *pgdat)
 		z->managed_pages = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,18 +81,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pgdat0 = 1;
+          int _len_pgdat0 = 65025;
           struct TYPE_3__ * pgdat = (struct TYPE_3__ *) malloc(_len_pgdat0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_pgdat0; _i0++) {
               int _len_pgdat__i0__node_zones0 = 1;
           pgdat[_i0].node_zones = (struct zone *) malloc(_len_pgdat__i0__node_zones0*sizeof(struct zone));
           for(int _j0 = 0; _j0 < _len_pgdat__i0__node_zones0; _j0++) {
-            pgdat[_i0].node_zones->managed_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+              pgdat[_i0].node_zones->managed_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           reset_node_managed_pages(pgdat);
           for(int _aux = 0; _aux < _len_pgdat0; _aux++) {
           free(pgdat[_aux].node_zones);
@@ -105,7 +104,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_pgdat0 = 100;
+          struct TYPE_3__ * pgdat = (struct TYPE_3__ *) malloc(_len_pgdat0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_pgdat0; _i0++) {
+              int _len_pgdat__i0__node_zones0 = 1;
+          pgdat[_i0].node_zones = (struct zone *) malloc(_len_pgdat__i0__node_zones0*sizeof(struct zone));
+          for(int _j0 = 0; _j0 < _len_pgdat__i0__node_zones0; _j0++) {
+              pgdat[_i0].node_zones->managed_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          reset_node_managed_pages(pgdat);
+          for(int _aux = 0; _aux < _len_pgdat0; _aux++) {
+          free(pgdat[_aux].node_zones);
+          }
+          free(pgdat);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_pgdat0 = 1;
+          struct TYPE_3__ * pgdat = (struct TYPE_3__ *) malloc(_len_pgdat0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_pgdat0; _i0++) {
+              int _len_pgdat__i0__node_zones0 = 1;
+          pgdat[_i0].node_zones = (struct zone *) malloc(_len_pgdat__i0__node_zones0*sizeof(struct zone));
+          for(int _j0 = 0; _j0 < _len_pgdat__i0__node_zones0; _j0++) {
+              pgdat[_i0].node_zones->managed_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          reset_node_managed_pages(pgdat);
+          for(int _aux = 0; _aux < _len_pgdat0; _aux++) {
+          free(pgdat[_aux].node_zones);
+          }
+          free(pgdat);
+        
+        break;
+    }
     default:
         usage();
         break;

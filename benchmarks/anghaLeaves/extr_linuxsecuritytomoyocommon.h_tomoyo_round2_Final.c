@@ -70,12 +70,6 @@ __attribute__((used)) static inline int tomoyo_round2(size_t size)
 	return bsize;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,6 +86,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long size = 100;
+        
           int benchRet = tomoyo_round2(size);
           printf("%d\n", benchRet); 
         
@@ -101,6 +96,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long size = 255;
+        
           int benchRet = tomoyo_round2(size);
           printf("%d\n", benchRet); 
         
@@ -110,12 +106,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long size = 10;
+        
           int benchRet = tomoyo_round2(size);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

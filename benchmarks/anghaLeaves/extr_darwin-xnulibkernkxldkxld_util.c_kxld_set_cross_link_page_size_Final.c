@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +78,6 @@ boolean_t kxld_set_cross_link_page_size(kxld_size_t target_page_size)
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,6 +94,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int target_page_size = 100;
+        
           int benchRet = kxld_set_cross_link_page_size(target_page_size);
           printf("%d\n", benchRet); 
         
@@ -108,6 +104,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int target_page_size = 255;
+        
           int benchRet = kxld_set_cross_link_page_size(target_page_size);
           printf("%d\n", benchRet); 
         
@@ -117,12 +114,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int target_page_size = 10;
+        
           int benchRet = kxld_set_cross_link_page_size(target_page_size);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int target_page_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = kxld_set_cross_link_page_size(target_page_size);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

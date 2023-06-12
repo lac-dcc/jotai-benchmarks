@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline int pciefd_irq_rx_cnt(u32 irq_status)
 	return (irq_status & 0x000007f0) >> 4;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int irq_status = 100;
+        
           int benchRet = pciefd_irq_rx_cnt(irq_status);
           printf("%d\n", benchRet); 
         
@@ -93,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int irq_status = 255;
+        
           int benchRet = pciefd_irq_rx_cnt(irq_status);
           printf("%d\n", benchRet); 
         
@@ -102,12 +99,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int irq_status = 10;
+        
           int benchRet = pciefd_irq_rx_cnt(irq_status);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int irq_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = pciefd_irq_rx_cnt(irq_status);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

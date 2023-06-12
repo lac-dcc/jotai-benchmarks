@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static void stk_v4l_vm_close(struct vm_area_struct *vma)
 		sbuf->v4lbuf.flags &= ~V4L2_BUF_FLAG_MAPPED;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,19 +81,144 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_vma0 = 65025;
+          struct vm_area_struct * vma = (struct vm_area_struct *) malloc(_len_vma0*sizeof(struct vm_area_struct));
+          for(int _i0 = 0; _i0 < _len_vma0; _i0++) {
+              int _len_vma__i0__vm_private_data0 = 1;
+          vma[_i0].vm_private_data = (struct stk_sio_buffer *) malloc(_len_vma__i0__vm_private_data0*sizeof(struct stk_sio_buffer));
+          for(int _j0 = 0; _j0 < _len_vma__i0__vm_private_data0; _j0++) {
+              vma[_i0].vm_private_data->mapcount = ((-2 * (next_i()%2)) + 1) * next_i();
+          vma[_i0].vm_private_data->v4lbuf.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          stk_v4l_vm_close(vma);
+          for(int _aux = 0; _aux < _len_vma0; _aux++) {
+          free(vma[_aux].vm_private_data);
+          }
+          free(vma);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_vma0 = 100;
+          struct vm_area_struct * vma = (struct vm_area_struct *) malloc(_len_vma0*sizeof(struct vm_area_struct));
+          for(int _i0 = 0; _i0 < _len_vma0; _i0++) {
+              int _len_vma__i0__vm_private_data0 = 1;
+          vma[_i0].vm_private_data = (struct stk_sio_buffer *) malloc(_len_vma__i0__vm_private_data0*sizeof(struct stk_sio_buffer));
+          for(int _j0 = 0; _j0 < _len_vma__i0__vm_private_data0; _j0++) {
+              vma[_i0].vm_private_data->mapcount = ((-2 * (next_i()%2)) + 1) * next_i();
+          vma[_i0].vm_private_data->v4lbuf.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          stk_v4l_vm_close(vma);
+          for(int _aux = 0; _aux < _len_vma0; _aux++) {
+          free(vma[_aux].vm_private_data);
+          }
+          free(vma);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_vma0 = 1;
           struct vm_area_struct * vma = (struct vm_area_struct *) malloc(_len_vma0*sizeof(struct vm_area_struct));
           for(int _i0 = 0; _i0 < _len_vma0; _i0++) {
               int _len_vma__i0__vm_private_data0 = 1;
           vma[_i0].vm_private_data = (struct stk_sio_buffer *) malloc(_len_vma__i0__vm_private_data0*sizeof(struct stk_sio_buffer));
           for(int _j0 = 0; _j0 < _len_vma__i0__vm_private_data0; _j0++) {
-            vma[_i0].vm_private_data->mapcount = ((-2 * (next_i()%2)) + 1) * next_i();
-        vma[_i0].vm_private_data->v4lbuf.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              vma[_i0].vm_private_data->mapcount = ((-2 * (next_i()%2)) + 1) * next_i();
+          vma[_i0].vm_private_data->v4lbuf.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           stk_v4l_vm_close(vma);
           for(int _aux = 0; _aux < _len_vma0; _aux++) {
           free(vma[_aux].vm_private_data);

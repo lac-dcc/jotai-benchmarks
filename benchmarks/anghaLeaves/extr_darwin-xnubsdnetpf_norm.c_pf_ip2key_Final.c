@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -79,12 +81,6 @@ pf_ip2key(struct pf_fragment *key, struct ip *ip)
 	key->fr_dstx.v4addr.s_addr = ip->ip_dst.s_addr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,26 +93,179 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_key0 = 65025;
+          struct pf_fragment * key = (struct pf_fragment *) malloc(_len_key0*sizeof(struct pf_fragment));
+          for(int _i0 = 0; _i0 < _len_key0; _i0++) {
+              key[_i0].fr_dstx.v4addr.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          key[_i0].fr_srcx.v4addr.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          key[_i0].fr_af = ((-2 * (next_i()%2)) + 1) * next_i();
+          key[_i0].fr_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          key[_i0].fr_p = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ip0 = 65025;
+          struct ip * ip = (struct ip *) malloc(_len_ip0*sizeof(struct ip));
+          for(int _i0 = 0; _i0 < _len_ip0; _i0++) {
+              ip[_i0].ip_dst.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ip[_i0].ip_src.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ip[_i0].ip_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          ip[_i0].ip_p = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          pf_ip2key(key,ip);
+          free(key);
+          free(ip);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_key0 = 100;
+          struct pf_fragment * key = (struct pf_fragment *) malloc(_len_key0*sizeof(struct pf_fragment));
+          for(int _i0 = 0; _i0 < _len_key0; _i0++) {
+              key[_i0].fr_dstx.v4addr.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          key[_i0].fr_srcx.v4addr.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          key[_i0].fr_af = ((-2 * (next_i()%2)) + 1) * next_i();
+          key[_i0].fr_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          key[_i0].fr_p = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ip0 = 100;
+          struct ip * ip = (struct ip *) malloc(_len_ip0*sizeof(struct ip));
+          for(int _i0 = 0; _i0 < _len_ip0; _i0++) {
+              ip[_i0].ip_dst.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ip[_i0].ip_src.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ip[_i0].ip_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          ip[_i0].ip_p = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          pf_ip2key(key,ip);
+          free(key);
+          free(ip);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int _len_key0 = 1;
           struct pf_fragment * key = (struct pf_fragment *) malloc(_len_key0*sizeof(struct pf_fragment));
           for(int _i0 = 0; _i0 < _len_key0; _i0++) {
-            key[_i0].fr_dstx.v4addr.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        key[_i0].fr_srcx.v4addr.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        key[_i0].fr_af = ((-2 * (next_i()%2)) + 1) * next_i();
-        key[_i0].fr_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        key[_i0].fr_p = ((-2 * (next_i()%2)) + 1) * next_i();
+              key[_i0].fr_dstx.v4addr.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          key[_i0].fr_srcx.v4addr.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          key[_i0].fr_af = ((-2 * (next_i()%2)) + 1) * next_i();
+          key[_i0].fr_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          key[_i0].fr_p = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_ip0 = 1;
           struct ip * ip = (struct ip *) malloc(_len_ip0*sizeof(struct ip));
           for(int _i0 = 0; _i0 < _len_ip0; _i0++) {
-            ip[_i0].ip_dst.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        ip[_i0].ip_src.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        ip[_i0].ip_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        ip[_i0].ip_p = ((-2 * (next_i()%2)) + 1) * next_i();
+              ip[_i0].ip_dst.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ip[_i0].ip_src.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ip[_i0].ip_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          ip[_i0].ip_p = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           pf_ip2key(key,ip);
           free(key);
           free(ip);

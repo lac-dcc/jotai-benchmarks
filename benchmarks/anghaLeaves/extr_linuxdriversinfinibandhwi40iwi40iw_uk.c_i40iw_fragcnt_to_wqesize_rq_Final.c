@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -83,12 +85,6 @@ enum i40iw_status_code i40iw_fragcnt_to_wqesize_rq(u32 frag_cnt, u8 *wqe_size)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,29 +97,160 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int frag_cnt = 100;
+        
           int _len_wqe_size0 = 1;
           int * wqe_size = (int *) malloc(_len_wqe_size0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_wqe_size0; _i0++) {
             wqe_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           enum i40iw_status_code benchRet = i40iw_fragcnt_to_wqesize_rq(frag_cnt,wqe_size);
           free(wqe_size);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int frag_cnt = 255;
+        
+          int _len_wqe_size0 = 65025;
+          int * wqe_size = (int *) malloc(_len_wqe_size0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_wqe_size0; _i0++) {
+            wqe_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          enum i40iw_status_code benchRet = i40iw_fragcnt_to_wqesize_rq(frag_cnt,wqe_size);
+          free(wqe_size);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int frag_cnt = 10;
+        
           int _len_wqe_size0 = 100;
           int * wqe_size = (int *) malloc(_len_wqe_size0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_wqe_size0; _i0++) {
             wqe_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          enum i40iw_status_code benchRet = i40iw_fragcnt_to_wqesize_rq(frag_cnt,wqe_size);
+          free(wqe_size);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int frag_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_wqe_size0 = 1;
+          int * wqe_size = (int *) malloc(_len_wqe_size0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_wqe_size0; _i0++) {
+            wqe_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           enum i40iw_status_code benchRet = i40iw_fragcnt_to_wqesize_rq(frag_cnt,wqe_size);
           free(wqe_size);
         

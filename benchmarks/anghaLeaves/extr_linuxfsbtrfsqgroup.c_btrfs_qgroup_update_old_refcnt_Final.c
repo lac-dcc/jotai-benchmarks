@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static void btrfs_qgroup_update_old_refcnt(struct btrfs_qg
 	qg->old_refcnt += mod;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,33 +83,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long seq = 100;
+        
           int mod = 100;
+        
           int _len_qg0 = 1;
           struct btrfs_qgroup * qg = (struct btrfs_qgroup *) malloc(_len_qg0*sizeof(struct btrfs_qgroup));
           for(int _i0 = 0; _i0 < _len_qg0; _i0++) {
-            qg[_i0].old_refcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+              qg[_i0].old_refcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          btrfs_qgroup_update_old_refcnt(qg,seq,mod);
+          free(qg);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long seq = 255;
+        
+          int mod = 255;
+        
+          int _len_qg0 = 65025;
+          struct btrfs_qgroup * qg = (struct btrfs_qgroup *) malloc(_len_qg0*sizeof(struct btrfs_qgroup));
+          for(int _i0 = 0; _i0 < _len_qg0; _i0++) {
+              qg[_i0].old_refcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           btrfs_qgroup_update_old_refcnt(qg,seq,mod);
           free(qg);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long seq = 10;
+        
           int mod = 10;
+        
           int _len_qg0 = 100;
           struct btrfs_qgroup * qg = (struct btrfs_qgroup *) malloc(_len_qg0*sizeof(struct btrfs_qgroup));
           for(int _i0 = 0; _i0 < _len_qg0; _i0++) {
-            qg[_i0].old_refcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+              qg[_i0].old_refcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           btrfs_qgroup_update_old_refcnt(qg,seq,mod);
           free(qg);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long seq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int mod = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_qg0 = 1;
+          struct btrfs_qgroup * qg = (struct btrfs_qgroup *) malloc(_len_qg0*sizeof(struct btrfs_qgroup));
+          for(int _i0 = 0; _i0 < _len_qg0; _i0++) {
+              qg[_i0].old_refcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          btrfs_qgroup_update_old_refcnt(qg,seq,mod);
+          free(qg);
+        
+        break;
+    }
     default:
         usage();
         break;

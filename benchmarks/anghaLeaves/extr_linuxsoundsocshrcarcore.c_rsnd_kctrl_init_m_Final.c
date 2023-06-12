@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ struct rsnd_kctrl_cfg *rsnd_kctrl_init_m(struct rsnd_kctrl_cfg_m *cfg)
 	return &cfg->cfg;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,22 +77,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cfg0 = 1;
+          int _len_cfg0 = 65025;
           struct rsnd_kctrl_cfg_m * cfg = (struct rsnd_kctrl_cfg_m *) malloc(_len_cfg0*sizeof(struct rsnd_kctrl_cfg_m));
           for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
-            cfg[_i0].cfg.val = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].val = ((-2 * (next_i()%2)) + 1) * next_i();
+              cfg[_i0].cfg.val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cfg[_i0].val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           struct rsnd_kctrl_cfg * benchRet = rsnd_kctrl_init_m(cfg);
           printf("%d\n", (*benchRet).val);
           free(cfg);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_cfg0 = 100;
+          struct rsnd_kctrl_cfg_m * cfg = (struct rsnd_kctrl_cfg_m *) malloc(_len_cfg0*sizeof(struct rsnd_kctrl_cfg_m));
+          for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
+              cfg[_i0].cfg.val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cfg[_i0].val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct rsnd_kctrl_cfg * benchRet = rsnd_kctrl_init_m(cfg);
+          printf("%d\n", (*benchRet).val);
+          free(cfg);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_cfg0 = 1;
+          struct rsnd_kctrl_cfg_m * cfg = (struct rsnd_kctrl_cfg_m *) malloc(_len_cfg0*sizeof(struct rsnd_kctrl_cfg_m));
+          for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
+              cfg[_i0].cfg.val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cfg[_i0].val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct rsnd_kctrl_cfg * benchRet = rsnd_kctrl_init_m(cfg);
+          printf("%d\n", (*benchRet).val);
+          free(cfg);
+        
+        break;
+    }
     default:
         usage();
         break;

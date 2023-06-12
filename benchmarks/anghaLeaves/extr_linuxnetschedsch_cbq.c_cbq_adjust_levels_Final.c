@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -75,7 +75,6 @@ __attribute__((used)) static void cbq_adjust_levels(struct cbq_class *this)
 	} while ((this = this->tparent) != NULL);
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct cbq_class *_allocate_this(int length, struct cbq_class *aux_this[]) {
@@ -115,7 +114,6 @@ void _delete_this(struct cbq_class *aux_this[], int aux_this_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -128,11 +126,35 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // empty
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           struct cbq_class * aux_this[1];
           struct cbq_class * this = _allocate_this(1, aux_this);
+        
           cbq_adjust_levels(this);
           _delete_this(aux_this, 1);
         

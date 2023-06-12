@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ __attribute__((used)) static u32 mlxsw_sp_fix_tb_id(u32 tb_id)
 	return tb_id;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,6 +85,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long tb_id = 100;
+        
           long benchRet = mlxsw_sp_fix_tb_id(tb_id);
           printf("%ld\n", benchRet); 
         
@@ -99,6 +95,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long tb_id = 255;
+        
           long benchRet = mlxsw_sp_fix_tb_id(tb_id);
           printf("%ld\n", benchRet); 
         
@@ -108,12 +105,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long tb_id = 10;
+        
           long benchRet = mlxsw_sp_fix_tb_id(tb_id);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long tb_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long benchRet = mlxsw_sp_fix_tb_id(tb_id);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

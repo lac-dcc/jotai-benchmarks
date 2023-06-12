@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static u32 get_rxpacket_shiftbytes_819xusb(struct ieee8021
 		+ pstats->RxBufShift);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,15 +77,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_pstats0 = 65025;
+          struct ieee80211_rx_stats * pstats = (struct ieee80211_rx_stats *) malloc(_len_pstats0*sizeof(struct ieee80211_rx_stats));
+          for(int _i0 = 0; _i0 < _len_pstats0; _i0++) {
+              pstats[_i0].RxBufShift = ((-2 * (next_i()%2)) + 1) * next_i();
+          pstats[_i0].RxDrvInfoSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = get_rxpacket_shiftbytes_819xusb(pstats);
+          printf("%ld\n", benchRet); 
+          free(pstats);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_pstats0 = 100;
+          struct ieee80211_rx_stats * pstats = (struct ieee80211_rx_stats *) malloc(_len_pstats0*sizeof(struct ieee80211_rx_stats));
+          for(int _i0 = 0; _i0 < _len_pstats0; _i0++) {
+              pstats[_i0].RxBufShift = ((-2 * (next_i()%2)) + 1) * next_i();
+          pstats[_i0].RxDrvInfoSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = get_rxpacket_shiftbytes_819xusb(pstats);
+          printf("%ld\n", benchRet); 
+          free(pstats);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_pstats0 = 1;
           struct ieee80211_rx_stats * pstats = (struct ieee80211_rx_stats *) malloc(_len_pstats0*sizeof(struct ieee80211_rx_stats));
           for(int _i0 = 0; _i0 < _len_pstats0; _i0++) {
-            pstats[_i0].RxBufShift = ((-2 * (next_i()%2)) + 1) * next_i();
-        pstats[_i0].RxDrvInfoSize = ((-2 * (next_i()%2)) + 1) * next_i();
+              pstats[_i0].RxBufShift = ((-2 * (next_i()%2)) + 1) * next_i();
+          pstats[_i0].RxDrvInfoSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = get_rxpacket_shiftbytes_819xusb(pstats);
           printf("%ld\n", benchRet); 
           free(pstats);

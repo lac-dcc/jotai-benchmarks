@@ -30,8 +30,10 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
-       1            linked\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            linked\n\
+       3            empty\n\
 \n\
 ");
 
@@ -81,12 +83,6 @@ void go7007_update_board(struct go7007 *go)
 	go->encoder_h_offset = board->sensor_h_offset;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,30 +95,56 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_go0 = 1;
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_go0 = 65025;
           struct go7007 * go = (struct go7007 *) malloc(_len_go0*sizeof(struct go7007));
           for(int _i0 = 0; _i0 < _len_go0; _i0++) {
-            go[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
-        go[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
-        go[_i0].sensor_framerate = ((-2 * (next_i()%2)) + 1) * next_i();
-        go[_i0].encoder_h_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        go[_i0].encoder_v_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        go[_i0].standard = ((-2 * (next_i()%2)) + 1) * next_i();
-        go[_i0].std = ((-2 * (next_i()%2)) + 1) * next_i();
+              go[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].sensor_framerate = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].encoder_h_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].encoder_v_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].standard = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].std = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_go__i0__board_info0 = 1;
           go[_i0].board_info = (struct go7007_board_info *) malloc(_len_go__i0__board_info0*sizeof(struct go7007_board_info));
           for(int _j0 = 0; _j0 < _len_go__i0__board_info0; _j0++) {
-            go[_i0].board_info->sensor_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        go[_i0].board_info->sensor_width = ((-2 * (next_i()%2)) + 1) * next_i();
-        go[_i0].board_info->sensor_height = ((-2 * (next_i()%2)) + 1) * next_i();
-        go[_i0].board_info->sensor_framerate = ((-2 * (next_i()%2)) + 1) * next_i();
-        go[_i0].board_info->sensor_h_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        go[_i0].board_info->sensor_v_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              go[_i0].board_info->sensor_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].board_info->sensor_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].board_info->sensor_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].board_info->sensor_framerate = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].board_info->sensor_h_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].board_info->sensor_v_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           go7007_update_board(go);
           for(int _aux = 0; _aux < _len_go0; _aux++) {
           free(go[_aux].board_info);
@@ -131,30 +153,175 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-    // linked
+
+
+    // big-arr-10x
     case 1:
     {
-          int _len_go0 = 1;
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_go0 = 100;
           struct go7007 * go = (struct go7007 *) malloc(_len_go0*sizeof(struct go7007));
           for(int _i0 = 0; _i0 < _len_go0; _i0++) {
-            go[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
-        go[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
-        go[_i0].sensor_framerate = ((-2 * (next_i()%2)) + 1) * next_i();
-        go[_i0].encoder_h_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        go[_i0].encoder_v_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        go[_i0].standard = ((-2 * (next_i()%2)) + 1) * next_i();
-        go[_i0].std = ((-2 * (next_i()%2)) + 1) * next_i();
+              go[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].sensor_framerate = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].encoder_h_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].encoder_v_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].standard = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].std = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_go__i0__board_info0 = 1;
           go[_i0].board_info = (struct go7007_board_info *) malloc(_len_go__i0__board_info0*sizeof(struct go7007_board_info));
           for(int _j0 = 0; _j0 < _len_go__i0__board_info0; _j0++) {
-            go[_i0].board_info->sensor_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        go[_i0].board_info->sensor_width = ((-2 * (next_i()%2)) + 1) * next_i();
-        go[_i0].board_info->sensor_height = ((-2 * (next_i()%2)) + 1) * next_i();
-        go[_i0].board_info->sensor_framerate = ((-2 * (next_i()%2)) + 1) * next_i();
-        go[_i0].board_info->sensor_h_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        go[_i0].board_info->sensor_v_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              go[_i0].board_info->sensor_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].board_info->sensor_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].board_info->sensor_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].board_info->sensor_framerate = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].board_info->sensor_h_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].board_info->sensor_v_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          go7007_update_board(go);
+          for(int _aux = 0; _aux < _len_go0; _aux++) {
+          free(go[_aux].board_info);
+          }
+          free(go);
+        
+        break;
+    }
+
+
+    // linked
+    case 2:
+    {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_go0 = 1;
+          struct go7007 * go = (struct go7007 *) malloc(_len_go0*sizeof(struct go7007));
+          for(int _i0 = 0; _i0 < _len_go0; _i0++) {
+              go[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].sensor_framerate = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].encoder_h_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].encoder_v_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].standard = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].std = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_go__i0__board_info0 = 1;
+          go[_i0].board_info = (struct go7007_board_info *) malloc(_len_go__i0__board_info0*sizeof(struct go7007_board_info));
+          for(int _j0 = 0; _j0 < _len_go__i0__board_info0; _j0++) {
+              go[_i0].board_info->sensor_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].board_info->sensor_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].board_info->sensor_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].board_info->sensor_framerate = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].board_info->sensor_h_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].board_info->sensor_v_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          go7007_update_board(go);
+          for(int _aux = 0; _aux < _len_go0; _aux++) {
+          free(go[_aux].board_info);
+          }
+          free(go);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_go0 = 1;
+          struct go7007 * go = (struct go7007 *) malloc(_len_go0*sizeof(struct go7007));
+          for(int _i0 = 0; _i0 < _len_go0; _i0++) {
+              go[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].sensor_framerate = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].encoder_h_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].encoder_v_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].standard = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].std = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_go__i0__board_info0 = 1;
+          go[_i0].board_info = (struct go7007_board_info *) malloc(_len_go__i0__board_info0*sizeof(struct go7007_board_info));
+          for(int _j0 = 0; _j0 < _len_go__i0__board_info0; _j0++) {
+              go[_i0].board_info->sensor_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].board_info->sensor_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].board_info->sensor_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].board_info->sensor_framerate = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].board_info->sensor_h_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          go[_i0].board_info->sensor_v_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           go7007_update_board(go);
           for(int _aux = 0; _aux < _len_go0; _aux++) {
           free(go[_aux].board_info);

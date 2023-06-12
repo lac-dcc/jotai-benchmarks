@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ bool Curl_sasl_can_authenticate(struct SASL *sasl, struct connectdata *conn)
   return FALSE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,20 +88,25 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_sasl0 = 1;
+          int _len_sasl0 = 65025;
           struct SASL * sasl = (struct SASL *) malloc(_len_sasl0*sizeof(struct SASL));
           for(int _i0 = 0; _i0 < _len_sasl0; _i0++) {
-            sasl[_i0].authmechs = ((-2 * (next_i()%2)) + 1) * next_i();
-        sasl[_i0].prefmech = ((-2 * (next_i()%2)) + 1) * next_i();
+              sasl[_i0].authmechs = ((-2 * (next_i()%2)) + 1) * next_i();
+          sasl[_i0].prefmech = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_conn0 = 1;
+        
+          int _len_conn0 = 65025;
           struct connectdata * conn = (struct connectdata *) malloc(_len_conn0*sizeof(struct connectdata));
           for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
-            conn[_i0].bits.user_passwd = ((-2 * (next_i()%2)) + 1) * next_i();
+              conn[_i0].bits.user_passwd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = Curl_sasl_can_authenticate(sasl,conn);
           printf("%d\n", benchRet); 
           free(sasl);
@@ -113,7 +114,58 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_sasl0 = 100;
+          struct SASL * sasl = (struct SASL *) malloc(_len_sasl0*sizeof(struct SASL));
+          for(int _i0 = 0; _i0 < _len_sasl0; _i0++) {
+              sasl[_i0].authmechs = ((-2 * (next_i()%2)) + 1) * next_i();
+          sasl[_i0].prefmech = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_conn0 = 100;
+          struct connectdata * conn = (struct connectdata *) malloc(_len_conn0*sizeof(struct connectdata));
+          for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
+              conn[_i0].bits.user_passwd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = Curl_sasl_can_authenticate(sasl,conn);
+          printf("%d\n", benchRet); 
+          free(sasl);
+          free(conn);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_sasl0 = 1;
+          struct SASL * sasl = (struct SASL *) malloc(_len_sasl0*sizeof(struct SASL));
+          for(int _i0 = 0; _i0 < _len_sasl0; _i0++) {
+              sasl[_i0].authmechs = ((-2 * (next_i()%2)) + 1) * next_i();
+          sasl[_i0].prefmech = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_conn0 = 1;
+          struct connectdata * conn = (struct connectdata *) malloc(_len_conn0*sizeof(struct connectdata));
+          for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
+              conn[_i0].bits.user_passwd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = Curl_sasl_can_authenticate(sasl,conn);
+          printf("%d\n", benchRet); 
+          free(sasl);
+          free(conn);
+        
+        break;
+    }
     default:
         usage();
         break;

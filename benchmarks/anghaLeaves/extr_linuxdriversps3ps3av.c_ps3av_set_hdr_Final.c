@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ void ps3av_set_hdr(u32 cid, u16 size, struct ps3av_send_hdr *hdr)
 	hdr->cid = cid;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,18 +81,180 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int cid = 100;
+        
           long size = 100;
+        
           int _len_hdr0 = 1;
           struct ps3av_send_hdr * hdr = (struct ps3av_send_hdr *) malloc(_len_hdr0*sizeof(struct ps3av_send_hdr));
           for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
-            hdr[_i0].cid = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdr[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdr[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+              hdr[_i0].cid = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          ps3av_set_hdr(cid,size,hdr);
+          free(hdr);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int cid = 255;
+        
+          long size = 255;
+        
+          int _len_hdr0 = 65025;
+          struct ps3av_send_hdr * hdr = (struct ps3av_send_hdr *) malloc(_len_hdr0*sizeof(struct ps3av_send_hdr));
+          for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
+              hdr[_i0].cid = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ps3av_set_hdr(cid,size,hdr);
+          free(hdr);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int cid = 10;
+        
+          long size = 10;
+        
+          int _len_hdr0 = 100;
+          struct ps3av_send_hdr * hdr = (struct ps3av_send_hdr *) malloc(_len_hdr0*sizeof(struct ps3av_send_hdr));
+          for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
+              hdr[_i0].cid = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ps3av_set_hdr(cid,size,hdr);
+          free(hdr);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int cid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hdr0 = 1;
+          struct ps3av_send_hdr * hdr = (struct ps3av_send_hdr *) malloc(_len_hdr0*sizeof(struct ps3av_send_hdr));
+          for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
+              hdr[_i0].cid = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           ps3av_set_hdr(cid,size,hdr);
           free(hdr);
         

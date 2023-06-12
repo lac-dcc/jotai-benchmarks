@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ __attribute__((used)) static inline void set_extent_info(struct extent_info *ei,
 	ei->len = len;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,19 +79,188 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           unsigned int fofs = 100;
+        
           int blk = 100;
+        
           unsigned int len = 100;
+        
           int _len_ei0 = 1;
           struct extent_info * ei = (struct extent_info *) malloc(_len_ei0*sizeof(struct extent_info));
           for(int _i0 = 0; _i0 < _len_ei0; _i0++) {
-            ei[_i0].fofs = ((-2 * (next_i()%2)) + 1) * next_i();
-        ei[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
-        ei[_i0].blk = ((-2 * (next_i()%2)) + 1) * next_i();
+              ei[_i0].fofs = ((-2 * (next_i()%2)) + 1) * next_i();
+          ei[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          ei[_i0].blk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          set_extent_info(ei,fofs,blk,len);
+          free(ei);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          unsigned int fofs = 255;
+        
+          int blk = 255;
+        
+          unsigned int len = 255;
+        
+          int _len_ei0 = 65025;
+          struct extent_info * ei = (struct extent_info *) malloc(_len_ei0*sizeof(struct extent_info));
+          for(int _i0 = 0; _i0 < _len_ei0; _i0++) {
+              ei[_i0].fofs = ((-2 * (next_i()%2)) + 1) * next_i();
+          ei[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          ei[_i0].blk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_extent_info(ei,fofs,blk,len);
+          free(ei);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          unsigned int fofs = 10;
+        
+          int blk = 10;
+        
+          unsigned int len = 10;
+        
+          int _len_ei0 = 100;
+          struct extent_info * ei = (struct extent_info *) malloc(_len_ei0*sizeof(struct extent_info));
+          for(int _i0 = 0; _i0 < _len_ei0; _i0++) {
+              ei[_i0].fofs = ((-2 * (next_i()%2)) + 1) * next_i();
+          ei[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          ei[_i0].blk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_extent_info(ei,fofs,blk,len);
+          free(ei);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          unsigned int fofs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int blk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ei0 = 1;
+          struct extent_info * ei = (struct extent_info *) malloc(_len_ei0*sizeof(struct extent_info));
+          for(int _i0 = 0; _i0 < _len_ei0; _i0++) {
+              ei[_i0].fofs = ((-2 * (next_i()%2)) + 1) * next_i();
+          ei[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          ei[_i0].blk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           set_extent_info(ei,fofs,blk,len);
           free(ei);
         

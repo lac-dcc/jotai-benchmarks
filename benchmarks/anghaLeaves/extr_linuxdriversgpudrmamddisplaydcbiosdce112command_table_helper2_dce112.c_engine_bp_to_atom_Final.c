@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -118,12 +119,6 @@ __attribute__((used)) static bool engine_bp_to_atom(enum engine_id id, uint32_t 
 	return result;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -136,30 +131,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           enum engine_id id = 0;
-          int _len_atom_engine_id0 = 1;
+        
+          int _len_atom_engine_id0 = 65025;
           int * atom_engine_id = (int *) malloc(_len_atom_engine_id0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_atom_engine_id0; _i0++) {
             atom_engine_id[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = engine_bp_to_atom(id,atom_engine_id);
           printf("%d\n", benchRet); 
           free(atom_engine_id);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           enum engine_id id = 0;
+        
           int _len_atom_engine_id0 = 100;
           int * atom_engine_id = (int *) malloc(_len_atom_engine_id0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_atom_engine_id0; _i0++) {
             atom_engine_id[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = engine_bp_to_atom(id,atom_engine_id);
+          printf("%d\n", benchRet); 
+          free(atom_engine_id);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          enum engine_id id = 0;
+        
+          int _len_atom_engine_id0 = 1;
+          int * atom_engine_id = (int *) malloc(_len_atom_engine_id0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_atom_engine_id0; _i0++) {
+            atom_engine_id[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = engine_bp_to_atom(id,atom_engine_id);
           printf("%d\n", benchRet); 
           free(atom_engine_id);

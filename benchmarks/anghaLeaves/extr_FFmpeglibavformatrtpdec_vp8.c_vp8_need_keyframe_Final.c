@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static int vp8_need_keyframe(PayloadContext *vp8)
     return vp8->sequence_dirty || !vp8->sequence_ok;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,22 +76,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_vp80 = 1;
+          int _len_vp80 = 65025;
           struct TYPE_3__ * vp8 = (struct TYPE_3__ *) malloc(_len_vp80*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_vp80; _i0++) {
-            vp8[_i0].sequence_ok = ((-2 * (next_i()%2)) + 1) * next_i();
-        vp8[_i0].sequence_dirty = ((-2 * (next_i()%2)) + 1) * next_i();
+              vp8[_i0].sequence_ok = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp8[_i0].sequence_dirty = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = vp8_need_keyframe(vp8);
           printf("%d\n", benchRet); 
           free(vp8);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_vp80 = 100;
+          struct TYPE_3__ * vp8 = (struct TYPE_3__ *) malloc(_len_vp80*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_vp80; _i0++) {
+              vp8[_i0].sequence_ok = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp8[_i0].sequence_dirty = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vp8_need_keyframe(vp8);
+          printf("%d\n", benchRet); 
+          free(vp8);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_vp80 = 1;
+          struct TYPE_3__ * vp8 = (struct TYPE_3__ *) malloc(_len_vp80*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_vp80; _i0++) {
+              vp8[_i0].sequence_ok = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp8[_i0].sequence_dirty = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vp8_need_keyframe(vp8);
+          printf("%d\n", benchRet); 
+          free(vp8);
+        
+        break;
+    }
     default:
         usage();
         break;

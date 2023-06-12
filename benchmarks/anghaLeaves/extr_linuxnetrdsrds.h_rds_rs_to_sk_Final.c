@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline struct sock *rds_rs_to_sk(struct rds_sock *r
 	return &rs->rs_sk;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,28 +75,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_rs0 = 1;
+          // static_instructions_O0 : 6
+          // dynamic_instructions_O0 : 6
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_rs0 = 65025;
           struct rds_sock * rs = (struct rds_sock *) malloc(_len_rs0*sizeof(struct rds_sock));
           for(int _i0 = 0; _i0 < _len_rs0; _i0++) {
-            rs[_i0].rs_sk.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rs[_i0].rs_sk.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           struct sock * benchRet = rds_rs_to_sk(rs);
           printf("%d\n", (*benchRet).dummy);
           free(rs);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 6
+          // dynamic_instructions_O0 : 6
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_rs0 = 100;
           struct rds_sock * rs = (struct rds_sock *) malloc(_len_rs0*sizeof(struct rds_sock));
           for(int _i0 = 0; _i0 < _len_rs0; _i0++) {
-            rs[_i0].rs_sk.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rs[_i0].rs_sk.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          struct sock * benchRet = rds_rs_to_sk(rs);
+          printf("%d\n", (*benchRet).dummy);
+          free(rs);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 6
+          // dynamic_instructions_O0 : 6
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_rs0 = 1;
+          struct rds_sock * rs = (struct rds_sock *) malloc(_len_rs0*sizeof(struct rds_sock));
+          for(int _i0 = 0; _i0 < _len_rs0; _i0++) {
+              rs[_i0].rs_sk.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           struct sock * benchRet = rds_rs_to_sk(rs);
           printf("%d\n", (*benchRet).dummy);
           free(rs);

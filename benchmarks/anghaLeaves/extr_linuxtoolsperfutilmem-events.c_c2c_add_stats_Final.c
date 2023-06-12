@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -86,12 +88,6 @@ void c2c_add_stats(struct c2c_stats *stats, struct c2c_stats *add)
 	stats->noparse		+= add->noparse;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,76 +100,225 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_stats0 = 1;
+          int _len_stats0 = 65025;
           struct c2c_stats * stats = (struct c2c_stats *) malloc(_len_stats0*sizeof(struct c2c_stats));
           for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
-            stats[_i0].noparse = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].nomap = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].rmt_dram = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].lcl_dram = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].rmt_hit = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].tot_hitm = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].rmt_hitm = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].lcl_hitm = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].ld_llchit = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].ld_l2hit = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].ld_l1hit = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].ld_fbhit = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].ld_noadrs = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].ld_miss = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].ld_io = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].ld_uncache = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].ld_shared = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].ld_excl = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].load = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].st_l1miss = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].st_l1hit = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].st_noadrs = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].st_uncache = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].store = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].locks = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].nr_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+              stats[_i0].noparse = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].nomap = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rmt_dram = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].lcl_dram = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rmt_hit = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].tot_hitm = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rmt_hitm = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].lcl_hitm = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].ld_llchit = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].ld_l2hit = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].ld_l1hit = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].ld_fbhit = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].ld_noadrs = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].ld_miss = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].ld_io = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].ld_uncache = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].ld_shared = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].ld_excl = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].load = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].st_l1miss = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].st_l1hit = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].st_noadrs = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].st_uncache = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].store = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].locks = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].nr_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_add0 = 1;
+        
+          int _len_add0 = 65025;
           struct c2c_stats * add = (struct c2c_stats *) malloc(_len_add0*sizeof(struct c2c_stats));
           for(int _i0 = 0; _i0 < _len_add0; _i0++) {
-            add[_i0].noparse = ((-2 * (next_i()%2)) + 1) * next_i();
-        add[_i0].nomap = ((-2 * (next_i()%2)) + 1) * next_i();
-        add[_i0].rmt_dram = ((-2 * (next_i()%2)) + 1) * next_i();
-        add[_i0].lcl_dram = ((-2 * (next_i()%2)) + 1) * next_i();
-        add[_i0].rmt_hit = ((-2 * (next_i()%2)) + 1) * next_i();
-        add[_i0].tot_hitm = ((-2 * (next_i()%2)) + 1) * next_i();
-        add[_i0].rmt_hitm = ((-2 * (next_i()%2)) + 1) * next_i();
-        add[_i0].lcl_hitm = ((-2 * (next_i()%2)) + 1) * next_i();
-        add[_i0].ld_llchit = ((-2 * (next_i()%2)) + 1) * next_i();
-        add[_i0].ld_l2hit = ((-2 * (next_i()%2)) + 1) * next_i();
-        add[_i0].ld_l1hit = ((-2 * (next_i()%2)) + 1) * next_i();
-        add[_i0].ld_fbhit = ((-2 * (next_i()%2)) + 1) * next_i();
-        add[_i0].ld_noadrs = ((-2 * (next_i()%2)) + 1) * next_i();
-        add[_i0].ld_miss = ((-2 * (next_i()%2)) + 1) * next_i();
-        add[_i0].ld_io = ((-2 * (next_i()%2)) + 1) * next_i();
-        add[_i0].ld_uncache = ((-2 * (next_i()%2)) + 1) * next_i();
-        add[_i0].ld_shared = ((-2 * (next_i()%2)) + 1) * next_i();
-        add[_i0].ld_excl = ((-2 * (next_i()%2)) + 1) * next_i();
-        add[_i0].load = ((-2 * (next_i()%2)) + 1) * next_i();
-        add[_i0].st_l1miss = ((-2 * (next_i()%2)) + 1) * next_i();
-        add[_i0].st_l1hit = ((-2 * (next_i()%2)) + 1) * next_i();
-        add[_i0].st_noadrs = ((-2 * (next_i()%2)) + 1) * next_i();
-        add[_i0].st_uncache = ((-2 * (next_i()%2)) + 1) * next_i();
-        add[_i0].store = ((-2 * (next_i()%2)) + 1) * next_i();
-        add[_i0].locks = ((-2 * (next_i()%2)) + 1) * next_i();
-        add[_i0].nr_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+              add[_i0].noparse = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].nomap = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].rmt_dram = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].lcl_dram = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].rmt_hit = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].tot_hitm = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].rmt_hitm = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].lcl_hitm = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].ld_llchit = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].ld_l2hit = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].ld_l1hit = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].ld_fbhit = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].ld_noadrs = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].ld_miss = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].ld_io = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].ld_uncache = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].ld_shared = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].ld_excl = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].load = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].st_l1miss = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].st_l1hit = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].st_noadrs = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].st_uncache = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].store = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].locks = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].nr_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           c2c_add_stats(stats,add);
           free(stats);
           free(add);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_stats0 = 100;
+          struct c2c_stats * stats = (struct c2c_stats *) malloc(_len_stats0*sizeof(struct c2c_stats));
+          for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
+              stats[_i0].noparse = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].nomap = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rmt_dram = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].lcl_dram = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rmt_hit = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].tot_hitm = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rmt_hitm = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].lcl_hitm = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].ld_llchit = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].ld_l2hit = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].ld_l1hit = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].ld_fbhit = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].ld_noadrs = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].ld_miss = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].ld_io = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].ld_uncache = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].ld_shared = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].ld_excl = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].load = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].st_l1miss = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].st_l1hit = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].st_noadrs = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].st_uncache = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].store = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].locks = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].nr_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_add0 = 100;
+          struct c2c_stats * add = (struct c2c_stats *) malloc(_len_add0*sizeof(struct c2c_stats));
+          for(int _i0 = 0; _i0 < _len_add0; _i0++) {
+              add[_i0].noparse = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].nomap = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].rmt_dram = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].lcl_dram = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].rmt_hit = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].tot_hitm = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].rmt_hitm = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].lcl_hitm = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].ld_llchit = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].ld_l2hit = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].ld_l1hit = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].ld_fbhit = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].ld_noadrs = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].ld_miss = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].ld_io = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].ld_uncache = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].ld_shared = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].ld_excl = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].load = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].st_l1miss = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].st_l1hit = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].st_noadrs = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].st_uncache = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].store = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].locks = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].nr_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          c2c_add_stats(stats,add);
+          free(stats);
+          free(add);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_stats0 = 1;
+          struct c2c_stats * stats = (struct c2c_stats *) malloc(_len_stats0*sizeof(struct c2c_stats));
+          for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
+              stats[_i0].noparse = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].nomap = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rmt_dram = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].lcl_dram = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rmt_hit = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].tot_hitm = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rmt_hitm = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].lcl_hitm = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].ld_llchit = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].ld_l2hit = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].ld_l1hit = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].ld_fbhit = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].ld_noadrs = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].ld_miss = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].ld_io = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].ld_uncache = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].ld_shared = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].ld_excl = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].load = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].st_l1miss = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].st_l1hit = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].st_noadrs = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].st_uncache = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].store = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].locks = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].nr_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_add0 = 1;
+          struct c2c_stats * add = (struct c2c_stats *) malloc(_len_add0*sizeof(struct c2c_stats));
+          for(int _i0 = 0; _i0 < _len_add0; _i0++) {
+              add[_i0].noparse = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].nomap = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].rmt_dram = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].lcl_dram = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].rmt_hit = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].tot_hitm = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].rmt_hitm = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].lcl_hitm = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].ld_llchit = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].ld_l2hit = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].ld_l1hit = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].ld_fbhit = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].ld_noadrs = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].ld_miss = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].ld_io = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].ld_uncache = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].ld_shared = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].ld_excl = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].load = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].st_l1miss = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].st_l1hit = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].st_noadrs = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].st_uncache = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].store = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].locks = ((-2 * (next_i()%2)) + 1) * next_i();
+          add[_i0].nr_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          c2c_add_stats(stats,add);
+          free(stats);
+          free(add);
+        
+        break;
+    }
     default:
         usage();
         break;

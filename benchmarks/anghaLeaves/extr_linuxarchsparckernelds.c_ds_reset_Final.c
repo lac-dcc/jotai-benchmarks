@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static void ds_reset(struct ds_info *dp)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,20 +84,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dp0 = 1;
+          int _len_dp0 = 65025;
           struct ds_info * dp = (struct ds_info *) malloc(_len_dp0*sizeof(struct ds_info));
           for(int _i0 = 0; _i0 < _len_dp0; _i0++) {
-            dp[_i0].num_ds_states = ((-2 * (next_i()%2)) + 1) * next_i();
+              dp[_i0].num_ds_states = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_dp__i0__ds_states0 = 1;
           dp[_i0].ds_states = (struct ds_cap_state *) malloc(_len_dp__i0__ds_states0*sizeof(struct ds_cap_state));
           for(int _j0 = 0; _j0 < _len_dp__i0__ds_states0; _j0++) {
-            dp[_i0].ds_states->state = ((-2 * (next_i()%2)) + 1) * next_i();
+              dp[_i0].ds_states->state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        dp[_i0].hs_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          dp[_i0].hs_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ds_reset(dp);
           for(int _aux = 0; _aux < _len_dp0; _aux++) {
           free(dp[_aux].ds_states);
@@ -110,7 +109,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dp0 = 100;
+          struct ds_info * dp = (struct ds_info *) malloc(_len_dp0*sizeof(struct ds_info));
+          for(int _i0 = 0; _i0 < _len_dp0; _i0++) {
+              dp[_i0].num_ds_states = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_dp__i0__ds_states0 = 1;
+          dp[_i0].ds_states = (struct ds_cap_state *) malloc(_len_dp__i0__ds_states0*sizeof(struct ds_cap_state));
+          for(int _j0 = 0; _j0 < _len_dp__i0__ds_states0; _j0++) {
+              dp[_i0].ds_states->state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          dp[_i0].hs_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ds_reset(dp);
+          for(int _aux = 0; _aux < _len_dp0; _aux++) {
+          free(dp[_aux].ds_states);
+          }
+          free(dp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dp0 = 1;
+          struct ds_info * dp = (struct ds_info *) malloc(_len_dp0*sizeof(struct ds_info));
+          for(int _i0 = 0; _i0 < _len_dp0; _i0++) {
+              dp[_i0].num_ds_states = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_dp__i0__ds_states0 = 1;
+          dp[_i0].ds_states = (struct ds_cap_state *) malloc(_len_dp__i0__ds_states0*sizeof(struct ds_cap_state));
+          for(int _j0 = 0; _j0 < _len_dp__i0__ds_states0; _j0++) {
+              dp[_i0].ds_states->state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          dp[_i0].hs_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ds_reset(dp);
+          for(int _aux = 0; _aux < _len_dp0; _aux++) {
+          free(dp[_aux].ds_states);
+          }
+          free(dp);
+        
+        break;
+    }
     default:
         usage();
         break;

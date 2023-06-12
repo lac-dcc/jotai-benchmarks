@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -84,12 +85,6 @@ __attribute__((used)) static uint8_t iceland_get_mclk_frequency_ratio(uint32_t m
 	return mc_para_index;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,7 +101,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int memory_clock = 100;
+        
           int strobe_mode = 100;
+        
           int benchRet = iceland_get_mclk_frequency_ratio(memory_clock,strobe_mode);
           printf("%d\n", benchRet); 
         
@@ -116,7 +113,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int memory_clock = 255;
+        
           int strobe_mode = 255;
+        
           int benchRet = iceland_get_mclk_frequency_ratio(memory_clock,strobe_mode);
           printf("%d\n", benchRet); 
         
@@ -126,13 +125,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int memory_clock = 10;
+        
           int strobe_mode = 10;
+        
           int benchRet = iceland_get_mclk_frequency_ratio(memory_clock,strobe_mode);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int memory_clock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int strobe_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = iceland_get_mclk_frequency_ratio(memory_clock,strobe_mode);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

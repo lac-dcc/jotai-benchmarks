@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -79,12 +81,6 @@ void odm_RateAdaptiveMaskInit(PDM_ODM_T pDM_Odm)
 	pOdmRA->LowRSSIThresh = 20;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,20 +93,138 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_pDM_Odm0 = 65025;
+          struct TYPE_5__ * pDM_Odm = (struct TYPE_5__ *) malloc(_len_pDM_Odm0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_pDM_Odm0; _i0++) {
+              pDM_Odm[_i0].bUseRAMask = ((-2 * (next_i()%2)) + 1) * next_i();
+          pDM_Odm[_i0].RateAdaptive.Type = ((-2 * (next_i()%2)) + 1) * next_i();
+          pDM_Odm[_i0].RateAdaptive.LdpcThres = ((-2 * (next_i()%2)) + 1) * next_i();
+          pDM_Odm[_i0].RateAdaptive.bUseLdpc = ((-2 * (next_i()%2)) + 1) * next_i();
+          pDM_Odm[_i0].RateAdaptive.HighRSSIThresh = ((-2 * (next_i()%2)) + 1) * next_i();
+          pDM_Odm[_i0].RateAdaptive.LowRSSIThresh = ((-2 * (next_i()%2)) + 1) * next_i();
+          pDM_Odm[_i0].RateAdaptive.RATRState = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          odm_RateAdaptiveMaskInit(pDM_Odm);
+          free(pDM_Odm);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_pDM_Odm0 = 100;
+          struct TYPE_5__ * pDM_Odm = (struct TYPE_5__ *) malloc(_len_pDM_Odm0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_pDM_Odm0; _i0++) {
+              pDM_Odm[_i0].bUseRAMask = ((-2 * (next_i()%2)) + 1) * next_i();
+          pDM_Odm[_i0].RateAdaptive.Type = ((-2 * (next_i()%2)) + 1) * next_i();
+          pDM_Odm[_i0].RateAdaptive.LdpcThres = ((-2 * (next_i()%2)) + 1) * next_i();
+          pDM_Odm[_i0].RateAdaptive.bUseLdpc = ((-2 * (next_i()%2)) + 1) * next_i();
+          pDM_Odm[_i0].RateAdaptive.HighRSSIThresh = ((-2 * (next_i()%2)) + 1) * next_i();
+          pDM_Odm[_i0].RateAdaptive.LowRSSIThresh = ((-2 * (next_i()%2)) + 1) * next_i();
+          pDM_Odm[_i0].RateAdaptive.RATRState = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          odm_RateAdaptiveMaskInit(pDM_Odm);
+          free(pDM_Odm);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_pDM_Odm0 = 1;
           struct TYPE_5__ * pDM_Odm = (struct TYPE_5__ *) malloc(_len_pDM_Odm0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_pDM_Odm0; _i0++) {
-            pDM_Odm[_i0].bUseRAMask = ((-2 * (next_i()%2)) + 1) * next_i();
-        pDM_Odm[_i0].RateAdaptive.Type = ((-2 * (next_i()%2)) + 1) * next_i();
-        pDM_Odm[_i0].RateAdaptive.LdpcThres = ((-2 * (next_i()%2)) + 1) * next_i();
-        pDM_Odm[_i0].RateAdaptive.bUseLdpc = ((-2 * (next_i()%2)) + 1) * next_i();
-        pDM_Odm[_i0].RateAdaptive.HighRSSIThresh = ((-2 * (next_i()%2)) + 1) * next_i();
-        pDM_Odm[_i0].RateAdaptive.LowRSSIThresh = ((-2 * (next_i()%2)) + 1) * next_i();
-        pDM_Odm[_i0].RateAdaptive.RATRState = ((-2 * (next_i()%2)) + 1) * next_i();
+              pDM_Odm[_i0].bUseRAMask = ((-2 * (next_i()%2)) + 1) * next_i();
+          pDM_Odm[_i0].RateAdaptive.Type = ((-2 * (next_i()%2)) + 1) * next_i();
+          pDM_Odm[_i0].RateAdaptive.LdpcThres = ((-2 * (next_i()%2)) + 1) * next_i();
+          pDM_Odm[_i0].RateAdaptive.bUseLdpc = ((-2 * (next_i()%2)) + 1) * next_i();
+          pDM_Odm[_i0].RateAdaptive.HighRSSIThresh = ((-2 * (next_i()%2)) + 1) * next_i();
+          pDM_Odm[_i0].RateAdaptive.LowRSSIThresh = ((-2 * (next_i()%2)) + 1) * next_i();
+          pDM_Odm[_i0].RateAdaptive.RATRState = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           odm_RateAdaptiveMaskInit(pDM_Odm);
           free(pDM_Odm);
         

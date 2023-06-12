@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ vnode_compound_op_available(vnode_t vp, compound_vnop_id_t opid)
 	return ((vp->v_mount->mnt_compound_ops & opid) != 0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,15 +85,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int opid = 100;
+        
           int _len_vp0 = 1;
           struct TYPE_5__ * vp = (struct TYPE_5__ *) malloc(_len_vp0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_vp0; _i0++) {
               int _len_vp__i0__v_mount0 = 1;
           vp[_i0].v_mount = (struct TYPE_4__ *) malloc(_len_vp__i0__v_mount0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_vp__i0__v_mount0; _j0++) {
-            vp[_i0].v_mount->mnt_compound_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+              vp[_i0].v_mount->mnt_compound_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = vnode_compound_op_available(vp,opid);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_vp0; _aux++) {
@@ -106,7 +107,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int opid = 255;
+        
+          int _len_vp0 = 65025;
+          struct TYPE_5__ * vp = (struct TYPE_5__ *) malloc(_len_vp0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_vp0; _i0++) {
+              int _len_vp__i0__v_mount0 = 1;
+          vp[_i0].v_mount = (struct TYPE_4__ *) malloc(_len_vp__i0__v_mount0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_vp__i0__v_mount0; _j0++) {
+              vp[_i0].v_mount->mnt_compound_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = vnode_compound_op_available(vp,opid);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vp0; _aux++) {
+          free(vp[_aux].v_mount);
+          }
+          free(vp);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int opid = 10;
+        
+          int _len_vp0 = 100;
+          struct TYPE_5__ * vp = (struct TYPE_5__ *) malloc(_len_vp0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_vp0; _i0++) {
+              int _len_vp__i0__v_mount0 = 1;
+          vp[_i0].v_mount = (struct TYPE_4__ *) malloc(_len_vp__i0__v_mount0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_vp__i0__v_mount0; _j0++) {
+              vp[_i0].v_mount->mnt_compound_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = vnode_compound_op_available(vp,opid);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vp0; _aux++) {
+          free(vp[_aux].v_mount);
+          }
+          free(vp);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int opid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_vp0 = 1;
+          struct TYPE_5__ * vp = (struct TYPE_5__ *) malloc(_len_vp0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_vp0; _i0++) {
+              int _len_vp__i0__v_mount0 = 1;
+          vp[_i0].v_mount = (struct TYPE_4__ *) malloc(_len_vp__i0__v_mount0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_vp__i0__v_mount0; _j0++) {
+              vp[_i0].v_mount->mnt_compound_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = vnode_compound_op_available(vp,opid);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vp0; _aux++) {
+          free(vp[_aux].v_mount);
+          }
+          free(vp);
+        
+        break;
+    }
     default:
         usage();
         break;

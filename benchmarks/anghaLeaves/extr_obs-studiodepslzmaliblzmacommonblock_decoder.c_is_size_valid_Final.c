@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ is_size_valid(lzma_vli size, lzma_vli reference)
 	return reference == LZMA_VLI_UNKNOWN || reference == size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,7 +81,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long size = 100;
+        
           long reference = 100;
+        
           int benchRet = is_size_valid(size,reference);
           printf("%d\n", benchRet); 
         
@@ -96,7 +93,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long size = 255;
+        
           long reference = 255;
+        
           int benchRet = is_size_valid(size,reference);
           printf("%d\n", benchRet); 
         
@@ -106,13 +105,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long size = 10;
+        
           long reference = 10;
+        
           int benchRet = is_size_valid(size,reference);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long reference = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = is_size_valid(size,reference);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

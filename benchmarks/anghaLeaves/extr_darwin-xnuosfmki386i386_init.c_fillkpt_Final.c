@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ fillkpt(pt_entry_t *base, int prot, uintptr_t src, int index, int count)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,18 +82,138 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 5113
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 2052
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 1670
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 1670
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 1670
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 2051
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 2307
+          // ------------------------------- 
+
+          int prot = 255;
+        
+          unsigned long src = 255;
+        
+          int index = 255;
+        
+          int count = 255;
+        
+          int _len_base0 = 65025;
+          unsigned long * base = (unsigned long *) malloc(_len_base0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_base0; _i0++) {
+            base[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          fillkpt(base,prot,src,index,count);
+          free(base);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 213
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 92
+          // ------------------------------- 
+          // static_instructions_O2 : 29
+          // dynamic_instructions_O2 : 81
+          // ------------------------------- 
+          // static_instructions_O3 : 29
+          // dynamic_instructions_O3 : 81
+          // ------------------------------- 
+          // static_instructions_Ofast : 29
+          // dynamic_instructions_Ofast : 81
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 91
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 102
+          // ------------------------------- 
+
           int prot = 10;
+        
           unsigned long src = 10;
+        
           int index = 10;
+        
           int count = 10;
+        
           int _len_base0 = 100;
           unsigned long * base = (unsigned long *) malloc(_len_base0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_base0; _i0++) {
             base[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          fillkpt(base,prot,src,index,count);
+          free(base);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int prot = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long src = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_base0 = 1;
+          unsigned long * base = (unsigned long *) malloc(_len_base0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_base0; _i0++) {
+            base[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           fillkpt(base,prot,src,index,count);
           free(base);
         

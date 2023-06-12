@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static inline unsigned long nested_read_cr4(struct vmcs12 
 		(fields->cr4_read_shadow & fields->cr4_guest_host_mask);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,16 +75,125 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_fields0 = 65025;
+          struct vmcs12 * fields = (struct vmcs12 *) malloc(_len_fields0*sizeof(struct vmcs12));
+          for(int _i0 = 0; _i0 < _len_fields0; _i0++) {
+              fields[_i0].guest_cr4 = ((-2 * (next_i()%2)) + 1) * next_i();
+          fields[_i0].cr4_guest_host_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          fields[_i0].cr4_read_shadow = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = nested_read_cr4(fields);
+          printf("%lu\n", benchRet); 
+          free(fields);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_fields0 = 100;
+          struct vmcs12 * fields = (struct vmcs12 *) malloc(_len_fields0*sizeof(struct vmcs12));
+          for(int _i0 = 0; _i0 < _len_fields0; _i0++) {
+              fields[_i0].guest_cr4 = ((-2 * (next_i()%2)) + 1) * next_i();
+          fields[_i0].cr4_guest_host_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          fields[_i0].cr4_read_shadow = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = nested_read_cr4(fields);
+          printf("%lu\n", benchRet); 
+          free(fields);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_fields0 = 1;
           struct vmcs12 * fields = (struct vmcs12 *) malloc(_len_fields0*sizeof(struct vmcs12));
           for(int _i0 = 0; _i0 < _len_fields0; _i0++) {
-            fields[_i0].guest_cr4 = ((-2 * (next_i()%2)) + 1) * next_i();
-        fields[_i0].cr4_guest_host_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        fields[_i0].cr4_read_shadow = ((-2 * (next_i()%2)) + 1) * next_i();
+              fields[_i0].guest_cr4 = ((-2 * (next_i()%2)) + 1) * next_i();
+          fields[_i0].cr4_guest_host_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          fields[_i0].cr4_read_shadow = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = nested_read_cr4(fields);
           printf("%lu\n", benchRet); 
           free(fields);

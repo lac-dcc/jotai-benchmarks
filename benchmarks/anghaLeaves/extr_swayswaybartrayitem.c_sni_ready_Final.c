@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static bool sni_ready(struct swaybar_sni *sni) {
 			sni->icon_name || sni->icon_pixmap);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,10 +75,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_sni0 = 1;
+          int _len_sni0 = 65025;
           struct swaybar_sni * sni = (struct swaybar_sni *) malloc(_len_sni0*sizeof(struct swaybar_sni));
           for(int _i0 = 0; _i0 < _len_sni0; _i0++) {
               int _len_sni__i0__status0 = 1;
@@ -90,11 +86,13 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_sni__i0__status0; _j0++) {
             sni[_i0].status[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        sni[_i0].icon_pixmap = ((-2 * (next_i()%2)) + 1) * next_i();
-        sni[_i0].icon_name = ((-2 * (next_i()%2)) + 1) * next_i();
-        sni[_i0].attention_icon_pixmap = ((-2 * (next_i()%2)) + 1) * next_i();
-        sni[_i0].attention_icon_name = ((-2 * (next_i()%2)) + 1) * next_i();
+          sni[_i0].icon_pixmap = ((-2 * (next_i()%2)) + 1) * next_i();
+          sni[_i0].icon_name = ((-2 * (next_i()%2)) + 1) * next_i();
+          sni[_i0].attention_icon_pixmap = ((-2 * (next_i()%2)) + 1) * next_i();
+          sni[_i0].attention_icon_name = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = sni_ready(sni);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_sni0; _aux++) {
@@ -104,7 +102,60 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_sni0 = 100;
+          struct swaybar_sni * sni = (struct swaybar_sni *) malloc(_len_sni0*sizeof(struct swaybar_sni));
+          for(int _i0 = 0; _i0 < _len_sni0; _i0++) {
+              int _len_sni__i0__status0 = 1;
+          sni[_i0].status = (char *) malloc(_len_sni__i0__status0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_sni__i0__status0; _j0++) {
+            sni[_i0].status[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          sni[_i0].icon_pixmap = ((-2 * (next_i()%2)) + 1) * next_i();
+          sni[_i0].icon_name = ((-2 * (next_i()%2)) + 1) * next_i();
+          sni[_i0].attention_icon_pixmap = ((-2 * (next_i()%2)) + 1) * next_i();
+          sni[_i0].attention_icon_name = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sni_ready(sni);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_sni0; _aux++) {
+          free(sni[_aux].status);
+          }
+          free(sni);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_sni0 = 1;
+          struct swaybar_sni * sni = (struct swaybar_sni *) malloc(_len_sni0*sizeof(struct swaybar_sni));
+          for(int _i0 = 0; _i0 < _len_sni0; _i0++) {
+              int _len_sni__i0__status0 = 1;
+          sni[_i0].status = (char *) malloc(_len_sni__i0__status0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_sni__i0__status0; _j0++) {
+            sni[_i0].status[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          sni[_i0].icon_pixmap = ((-2 * (next_i()%2)) + 1) * next_i();
+          sni[_i0].icon_name = ((-2 * (next_i()%2)) + 1) * next_i();
+          sni[_i0].attention_icon_pixmap = ((-2 * (next_i()%2)) + 1) * next_i();
+          sni[_i0].attention_icon_name = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sni_ready(sni);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_sni0; _aux++) {
+          free(sni[_aux].status);
+          }
+          free(sni);
+        
+        break;
+    }
     default:
         usage();
         break;

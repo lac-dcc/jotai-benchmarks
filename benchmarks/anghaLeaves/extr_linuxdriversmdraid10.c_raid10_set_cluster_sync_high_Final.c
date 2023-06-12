@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -94,12 +96,6 @@ __attribute__((used)) static void raid10_set_cluster_sync_high(struct r10conf *c
 	conf->cluster_sync_high = conf->cluster_sync_low + window_size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -112,22 +108,153 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_conf0 = 1;
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_conf0 = 65025;
           struct r10conf * conf = (struct r10conf *) malloc(_len_conf0*sizeof(struct r10conf));
           for(int _i0 = 0; _i0 < _len_conf0; _i0++) {
-            conf[_i0].cluster_sync_low = ((-2 * (next_i()%2)) + 1) * next_i();
-        conf[_i0].cluster_sync_high = ((-2 * (next_i()%2)) + 1) * next_i();
+              conf[_i0].cluster_sync_low = ((-2 * (next_i()%2)) + 1) * next_i();
+          conf[_i0].cluster_sync_high = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_conf__i0__mddev0 = 1;
           conf[_i0].mddev = (struct TYPE_3__ *) malloc(_len_conf__i0__mddev0*sizeof(struct TYPE_3__));
           for(int _j0 = 0; _j0 < _len_conf__i0__mddev0; _j0++) {
-            conf[_i0].mddev->chunk_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+              conf[_i0].mddev->chunk_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        conf[_i0].geo.raid_disks = ((-2 * (next_i()%2)) + 1) * next_i();
-        conf[_i0].geo.near_copies = ((-2 * (next_i()%2)) + 1) * next_i();
+          conf[_i0].geo.raid_disks = ((-2 * (next_i()%2)) + 1) * next_i();
+          conf[_i0].geo.near_copies = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          raid10_set_cluster_sync_high(conf);
+          for(int _aux = 0; _aux < _len_conf0; _aux++) {
+          free(conf[_aux].mddev);
+          }
+          free(conf);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_conf0 = 100;
+          struct r10conf * conf = (struct r10conf *) malloc(_len_conf0*sizeof(struct r10conf));
+          for(int _i0 = 0; _i0 < _len_conf0; _i0++) {
+              conf[_i0].cluster_sync_low = ((-2 * (next_i()%2)) + 1) * next_i();
+          conf[_i0].cluster_sync_high = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_conf__i0__mddev0 = 1;
+          conf[_i0].mddev = (struct TYPE_3__ *) malloc(_len_conf__i0__mddev0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_conf__i0__mddev0; _j0++) {
+              conf[_i0].mddev->chunk_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          conf[_i0].geo.raid_disks = ((-2 * (next_i()%2)) + 1) * next_i();
+          conf[_i0].geo.near_copies = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          raid10_set_cluster_sync_high(conf);
+          for(int _aux = 0; _aux < _len_conf0; _aux++) {
+          free(conf[_aux].mddev);
+          }
+          free(conf);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_conf0 = 1;
+          struct r10conf * conf = (struct r10conf *) malloc(_len_conf0*sizeof(struct r10conf));
+          for(int _i0 = 0; _i0 < _len_conf0; _i0++) {
+              conf[_i0].cluster_sync_low = ((-2 * (next_i()%2)) + 1) * next_i();
+          conf[_i0].cluster_sync_high = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_conf__i0__mddev0 = 1;
+          conf[_i0].mddev = (struct TYPE_3__ *) malloc(_len_conf__i0__mddev0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_conf__i0__mddev0; _j0++) {
+              conf[_i0].mddev->chunk_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          conf[_i0].geo.raid_disks = ((-2 * (next_i()%2)) + 1) * next_i();
+          conf[_i0].geo.near_copies = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           raid10_set_cluster_sync_high(conf);
           for(int _aux = 0; _aux < _len_conf0; _aux++) {
           free(conf[_aux].mddev);

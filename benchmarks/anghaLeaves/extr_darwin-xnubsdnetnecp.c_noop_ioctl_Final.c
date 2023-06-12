@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ noop_ioctl(struct fileproc *fp, unsigned long com, caddr_t data,
 	return (ENOTTY);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,34 +81,183 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           unsigned long com = 100;
+        
           int data = 100;
+        
           int ctx = 100;
+        
           int _len_fp0 = 1;
           struct fileproc * fp = (struct fileproc *) malloc(_len_fp0*sizeof(struct fileproc));
           for(int _i0 = 0; _i0 < _len_fp0; _i0++) {
-            fp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              fp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = noop_ioctl(fp,com,data,ctx);
           printf("%d\n", benchRet); 
           free(fp);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          unsigned long com = 255;
+        
+          int data = 255;
+        
+          int ctx = 255;
+        
+          int _len_fp0 = 65025;
+          struct fileproc * fp = (struct fileproc *) malloc(_len_fp0*sizeof(struct fileproc));
+          for(int _i0 = 0; _i0 < _len_fp0; _i0++) {
+              fp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = noop_ioctl(fp,com,data,ctx);
+          printf("%d\n", benchRet); 
+          free(fp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           unsigned long com = 10;
+        
           int data = 10;
+        
           int ctx = 10;
+        
           int _len_fp0 = 100;
           struct fileproc * fp = (struct fileproc *) malloc(_len_fp0*sizeof(struct fileproc));
           for(int _i0 = 0; _i0 < _len_fp0; _i0++) {
-            fp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              fp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = noop_ioctl(fp,com,data,ctx);
+          printf("%d\n", benchRet); 
+          free(fp);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          unsigned long com = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int ctx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fp0 = 1;
+          struct fileproc * fp = (struct fileproc *) malloc(_len_fp0*sizeof(struct fileproc));
+          for(int _i0 = 0; _i0 < _len_fp0; _i0++) {
+              fp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = noop_ioctl(fp,com,data,ctx);
           printf("%d\n", benchRet); 
           free(fp);

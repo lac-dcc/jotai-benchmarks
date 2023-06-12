@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static u16 tcam_get_valid_entry_cnt(struct niu *np)
 	return np->clas.tcam_valid_entries - 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,14 +78,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_np0 = 1;
+          int _len_np0 = 65025;
           struct niu * np = (struct niu *) malloc(_len_np0*sizeof(struct niu));
           for(int _i0 = 0; _i0 < _len_np0; _i0++) {
-            np[_i0].clas.tcam_valid_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+              np[_i0].clas.tcam_valid_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           long benchRet = tcam_get_valid_entry_cnt(np);
           printf("%ld\n", benchRet); 
           free(np);
@@ -103,15 +101,34 @@ int main(int argc, char *argv[]) {
           int _len_np0 = 100;
           struct niu * np = (struct niu *) malloc(_len_np0*sizeof(struct niu));
           for(int _i0 = 0; _i0 < _len_np0; _i0++) {
-            np[_i0].clas.tcam_valid_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+              np[_i0].clas.tcam_valid_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           long benchRet = tcam_get_valid_entry_cnt(np);
           printf("%ld\n", benchRet); 
           free(np);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_np0 = 1;
+          struct niu * np = (struct niu *) malloc(_len_np0*sizeof(struct niu));
+          for(int _i0 = 0; _i0 < _len_np0; _i0++) {
+              np[_i0].clas.tcam_valid_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          long benchRet = tcam_get_valid_entry_cnt(np);
+          printf("%ld\n", benchRet); 
+          free(np);
+        
+        break;
+    }
     default:
         usage();
         break;

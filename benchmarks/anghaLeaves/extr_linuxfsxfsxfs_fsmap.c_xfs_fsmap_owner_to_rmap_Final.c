@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -127,12 +129,6 @@ xfs_fsmap_owner_to_rmap(
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -145,20 +141,145 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_dest0 = 65025;
+          struct xfs_rmap_irec * dest = (struct xfs_rmap_irec *) malloc(_len_dest0*sizeof(struct xfs_rmap_irec));
+          for(int _i0 = 0; _i0 < _len_dest0; _i0++) {
+              dest[_i0].rm_owner = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_src0 = 65025;
+          struct xfs_fsmap * src = (struct xfs_fsmap *) malloc(_len_src0*sizeof(struct xfs_fsmap));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+              src[_i0].fmr_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].fmr_owner = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = xfs_fsmap_owner_to_rmap(dest,src);
+          printf("%d\n", benchRet); 
+          free(dest);
+          free(src);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_dest0 = 100;
+          struct xfs_rmap_irec * dest = (struct xfs_rmap_irec *) malloc(_len_dest0*sizeof(struct xfs_rmap_irec));
+          for(int _i0 = 0; _i0 < _len_dest0; _i0++) {
+              dest[_i0].rm_owner = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_src0 = 100;
+          struct xfs_fsmap * src = (struct xfs_fsmap *) malloc(_len_src0*sizeof(struct xfs_fsmap));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+              src[_i0].fmr_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].fmr_owner = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = xfs_fsmap_owner_to_rmap(dest,src);
+          printf("%d\n", benchRet); 
+          free(dest);
+          free(src);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_dest0 = 1;
           struct xfs_rmap_irec * dest = (struct xfs_rmap_irec *) malloc(_len_dest0*sizeof(struct xfs_rmap_irec));
           for(int _i0 = 0; _i0 < _len_dest0; _i0++) {
-            dest[_i0].rm_owner = ((-2 * (next_i()%2)) + 1) * next_i();
+              dest[_i0].rm_owner = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_src0 = 1;
           struct xfs_fsmap * src = (struct xfs_fsmap *) malloc(_len_src0*sizeof(struct xfs_fsmap));
           for(int _i0 = 0; _i0 < _len_src0; _i0++) {
-            src[_i0].fmr_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].fmr_owner = ((-2 * (next_i()%2)) + 1) * next_i();
+              src[_i0].fmr_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].fmr_owner = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = xfs_fsmap_owner_to_rmap(dest,src);
           printf("%d\n", benchRet); 
           free(dest);

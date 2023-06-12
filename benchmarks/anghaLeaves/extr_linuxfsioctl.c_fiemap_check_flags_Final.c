@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ int fiemap_check_flags(struct fiemap_extent_info *fieinfo, u32 fs_flags)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,11 +89,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int fs_flags = 100;
+        
           int _len_fieinfo0 = 1;
           struct fiemap_extent_info * fieinfo = (struct fiemap_extent_info *) malloc(_len_fieinfo0*sizeof(struct fiemap_extent_info));
           for(int _i0 = 0; _i0 < _len_fieinfo0; _i0++) {
-            fieinfo[_i0].fi_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              fieinfo[_i0].fi_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = fiemap_check_flags(fieinfo,fs_flags);
+          printf("%d\n", benchRet); 
+          free(fieinfo);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int fs_flags = 255;
+        
+          int _len_fieinfo0 = 65025;
+          struct fiemap_extent_info * fieinfo = (struct fiemap_extent_info *) malloc(_len_fieinfo0*sizeof(struct fiemap_extent_info));
+          for(int _i0 = 0; _i0 < _len_fieinfo0; _i0++) {
+              fieinfo[_i0].fi_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = fiemap_check_flags(fieinfo,fs_flags);
           printf("%d\n", benchRet); 
           free(fieinfo);
@@ -105,21 +122,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int fs_flags = 10;
+        
           int _len_fieinfo0 = 100;
           struct fiemap_extent_info * fieinfo = (struct fiemap_extent_info *) malloc(_len_fieinfo0*sizeof(struct fiemap_extent_info));
           for(int _i0 = 0; _i0 < _len_fieinfo0; _i0++) {
-            fieinfo[_i0].fi_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              fieinfo[_i0].fi_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = fiemap_check_flags(fieinfo,fs_flags);
           printf("%d\n", benchRet); 
           free(fieinfo);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int fs_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fieinfo0 = 1;
+          struct fiemap_extent_info * fieinfo = (struct fiemap_extent_info *) malloc(_len_fieinfo0*sizeof(struct fiemap_extent_info));
+          for(int _i0 = 0; _i0 < _len_fieinfo0; _i0++) {
+              fieinfo[_i0].fi_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fiemap_check_flags(fieinfo,fs_flags);
+          printf("%d\n", benchRet); 
+          free(fieinfo);
+        
+        break;
+    }
     default:
         usage();
         break;

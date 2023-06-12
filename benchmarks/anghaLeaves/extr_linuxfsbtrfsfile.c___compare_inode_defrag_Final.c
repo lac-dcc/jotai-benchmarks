@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static int __compare_inode_defrag(struct inode_defrag *def
 		return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,21 +84,148 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_defrag10 = 65025;
+          struct inode_defrag * defrag1 = (struct inode_defrag *) malloc(_len_defrag10*sizeof(struct inode_defrag));
+          for(int _i0 = 0; _i0 < _len_defrag10; _i0++) {
+              defrag1[_i0].root = ((-2 * (next_i()%2)) + 1) * next_i();
+          defrag1[_i0].ino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_defrag20 = 65025;
+          struct inode_defrag * defrag2 = (struct inode_defrag *) malloc(_len_defrag20*sizeof(struct inode_defrag));
+          for(int _i0 = 0; _i0 < _len_defrag20; _i0++) {
+              defrag2[_i0].root = ((-2 * (next_i()%2)) + 1) * next_i();
+          defrag2[_i0].ino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = __compare_inode_defrag(defrag1,defrag2);
+          printf("%d\n", benchRet); 
+          free(defrag1);
+          free(defrag2);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_defrag10 = 100;
+          struct inode_defrag * defrag1 = (struct inode_defrag *) malloc(_len_defrag10*sizeof(struct inode_defrag));
+          for(int _i0 = 0; _i0 < _len_defrag10; _i0++) {
+              defrag1[_i0].root = ((-2 * (next_i()%2)) + 1) * next_i();
+          defrag1[_i0].ino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_defrag20 = 100;
+          struct inode_defrag * defrag2 = (struct inode_defrag *) malloc(_len_defrag20*sizeof(struct inode_defrag));
+          for(int _i0 = 0; _i0 < _len_defrag20; _i0++) {
+              defrag2[_i0].root = ((-2 * (next_i()%2)) + 1) * next_i();
+          defrag2[_i0].ino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = __compare_inode_defrag(defrag1,defrag2);
+          printf("%d\n", benchRet); 
+          free(defrag1);
+          free(defrag2);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int _len_defrag10 = 1;
           struct inode_defrag * defrag1 = (struct inode_defrag *) malloc(_len_defrag10*sizeof(struct inode_defrag));
           for(int _i0 = 0; _i0 < _len_defrag10; _i0++) {
-            defrag1[_i0].root = ((-2 * (next_i()%2)) + 1) * next_i();
-        defrag1[_i0].ino = ((-2 * (next_i()%2)) + 1) * next_i();
+              defrag1[_i0].root = ((-2 * (next_i()%2)) + 1) * next_i();
+          defrag1[_i0].ino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_defrag20 = 1;
           struct inode_defrag * defrag2 = (struct inode_defrag *) malloc(_len_defrag20*sizeof(struct inode_defrag));
           for(int _i0 = 0; _i0 < _len_defrag20; _i0++) {
-            defrag2[_i0].root = ((-2 * (next_i()%2)) + 1) * next_i();
-        defrag2[_i0].ino = ((-2 * (next_i()%2)) + 1) * next_i();
+              defrag2[_i0].root = ((-2 * (next_i()%2)) + 1) * next_i();
+          defrag2[_i0].ino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = __compare_inode_defrag(defrag1,defrag2);
           printf("%d\n", benchRet); 
           free(defrag1);

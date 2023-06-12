@@ -31,6 +31,7 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            big-arr-10x\n\
+       1            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static u32 sumo_power_of_4(u32 unit)
 	return ret;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,10 +79,68 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // big-arr-10x
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 111
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 38
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 37
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 60
+          // ------------------------------- 
+
           long unit = 10;
+        
+          long benchRet = sumo_power_of_4(unit);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          long unit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           long benchRet = sumo_power_of_4(unit);
           printf("%ld\n", benchRet); 
         

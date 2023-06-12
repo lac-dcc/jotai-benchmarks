@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline void clear_vsie_icpt(struct vsie_page *vsie_
 	vsie_page->scb_s.icptcode = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_vsie_page0 = 1;
+          int _len_vsie_page0 = 65025;
           struct vsie_page * vsie_page = (struct vsie_page *) malloc(_len_vsie_page0*sizeof(struct vsie_page));
           for(int _i0 = 0; _i0 < _len_vsie_page0; _i0++) {
-            vsie_page[_i0].scb_s.icptcode = ((-2 * (next_i()%2)) + 1) * next_i();
+              vsie_page[_i0].scb_s.icptcode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           clear_vsie_icpt(vsie_page);
           free(vsie_page);
         
@@ -100,14 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_vsie_page0 = 100;
           struct vsie_page * vsie_page = (struct vsie_page *) malloc(_len_vsie_page0*sizeof(struct vsie_page));
           for(int _i0 = 0; _i0 < _len_vsie_page0; _i0++) {
-            vsie_page[_i0].scb_s.icptcode = ((-2 * (next_i()%2)) + 1) * next_i();
+              vsie_page[_i0].scb_s.icptcode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           clear_vsie_icpt(vsie_page);
           free(vsie_page);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_vsie_page0 = 1;
+          struct vsie_page * vsie_page = (struct vsie_page *) malloc(_len_vsie_page0*sizeof(struct vsie_page));
+          for(int _i0 = 0; _i0 < _len_vsie_page0; _i0++) {
+              vsie_page[_i0].scb_s.icptcode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          clear_vsie_icpt(vsie_page);
+          free(vsie_page);
+        
+        break;
+    }
     default:
         usage();
         break;

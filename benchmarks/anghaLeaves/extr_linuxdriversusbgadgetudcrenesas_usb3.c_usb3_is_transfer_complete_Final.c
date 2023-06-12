@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static bool usb3_is_transfer_complete(struct renesas_usb3_
 		return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,21 +85,154 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_usb3_ep0 = 65025;
+          struct renesas_usb3_ep * usb3_ep = (struct renesas_usb3_ep *) malloc(_len_usb3_ep0*sizeof(struct renesas_usb3_ep));
+          for(int _i0 = 0; _i0 < _len_usb3_ep0; _i0++) {
+              usb3_ep[_i0].ep.maxpacket = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_usb3_req0 = 65025;
+          struct renesas_usb3_request * usb3_req = (struct renesas_usb3_request *) malloc(_len_usb3_req0*sizeof(struct renesas_usb3_request));
+          for(int _i0 = 0; _i0 < _len_usb3_req0; _i0++) {
+              usb3_req[_i0].req.actual = ((-2 * (next_i()%2)) + 1) * next_i();
+          usb3_req[_i0].req.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          usb3_req[_i0].req.zero = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = usb3_is_transfer_complete(usb3_ep,usb3_req);
+          printf("%d\n", benchRet); 
+          free(usb3_ep);
+          free(usb3_req);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_usb3_ep0 = 100;
+          struct renesas_usb3_ep * usb3_ep = (struct renesas_usb3_ep *) malloc(_len_usb3_ep0*sizeof(struct renesas_usb3_ep));
+          for(int _i0 = 0; _i0 < _len_usb3_ep0; _i0++) {
+              usb3_ep[_i0].ep.maxpacket = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_usb3_req0 = 100;
+          struct renesas_usb3_request * usb3_req = (struct renesas_usb3_request *) malloc(_len_usb3_req0*sizeof(struct renesas_usb3_request));
+          for(int _i0 = 0; _i0 < _len_usb3_req0; _i0++) {
+              usb3_req[_i0].req.actual = ((-2 * (next_i()%2)) + 1) * next_i();
+          usb3_req[_i0].req.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          usb3_req[_i0].req.zero = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = usb3_is_transfer_complete(usb3_ep,usb3_req);
+          printf("%d\n", benchRet); 
+          free(usb3_ep);
+          free(usb3_req);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int _len_usb3_ep0 = 1;
           struct renesas_usb3_ep * usb3_ep = (struct renesas_usb3_ep *) malloc(_len_usb3_ep0*sizeof(struct renesas_usb3_ep));
           for(int _i0 = 0; _i0 < _len_usb3_ep0; _i0++) {
-            usb3_ep[_i0].ep.maxpacket = ((-2 * (next_i()%2)) + 1) * next_i();
+              usb3_ep[_i0].ep.maxpacket = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_usb3_req0 = 1;
           struct renesas_usb3_request * usb3_req = (struct renesas_usb3_request *) malloc(_len_usb3_req0*sizeof(struct renesas_usb3_request));
           for(int _i0 = 0; _i0 < _len_usb3_req0; _i0++) {
-            usb3_req[_i0].req.actual = ((-2 * (next_i()%2)) + 1) * next_i();
-        usb3_req[_i0].req.length = ((-2 * (next_i()%2)) + 1) * next_i();
-        usb3_req[_i0].req.zero = ((-2 * (next_i()%2)) + 1) * next_i();
+              usb3_req[_i0].req.actual = ((-2 * (next_i()%2)) + 1) * next_i();
+          usb3_req[_i0].req.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          usb3_req[_i0].req.zero = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = usb3_is_transfer_complete(usb3_ep,usb3_req);
           printf("%d\n", benchRet); 
           free(usb3_ep);

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -110,12 +113,6 @@ __attribute__((used)) static unsigned char serial8250_compute_lcr(struct uart_82
 	return cval;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -128,16 +125,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
           int c_cflag = 100;
+        
           int _len_up0 = 1;
           struct uart_8250_port * up = (struct uart_8250_port *) malloc(_len_up0*sizeof(struct uart_8250_port));
           for(int _i0 = 0; _i0 < _len_up0; _i0++) {
-            up[_i0].bugs = ((-2 * (next_i()%2)) + 1) * next_i();
-        up[_i0].fifo_bug = ((-2 * (next_i()%2)) + 1) * next_i();
+              up[_i0].bugs = ((-2 * (next_i()%2)) + 1) * next_i();
+          up[_i0].fifo_bug = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          unsigned char benchRet = serial8250_compute_lcr(up,c_cflag);
+          printf("%c\n", (benchRet %26) + 'a'); 
+          free(up);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int c_cflag = 255;
+        
+          int _len_up0 = 65025;
+          struct uart_8250_port * up = (struct uart_8250_port *) malloc(_len_up0*sizeof(struct uart_8250_port));
+          for(int _i0 = 0; _i0 < _len_up0; _i0++) {
+              up[_i0].bugs = ((-2 * (next_i()%2)) + 1) * next_i();
+          up[_i0].fifo_bug = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned char benchRet = serial8250_compute_lcr(up,c_cflag);
+          printf("%c\n", (benchRet %26) + 'a'); 
+          free(up);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int c_cflag = 10;
+        
+          int _len_up0 = 100;
+          struct uart_8250_port * up = (struct uart_8250_port *) malloc(_len_up0*sizeof(struct uart_8250_port));
+          for(int _i0 = 0; _i0 < _len_up0; _i0++) {
+              up[_i0].bugs = ((-2 * (next_i()%2)) + 1) * next_i();
+          up[_i0].fifo_bug = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned char benchRet = serial8250_compute_lcr(up,c_cflag);
+          printf("%c\n", (benchRet %26) + 'a'); 
+          free(up);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int c_cflag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_up0 = 1;
+          struct uart_8250_port * up = (struct uart_8250_port *) malloc(_len_up0*sizeof(struct uart_8250_port));
+          for(int _i0 = 0; _i0 < _len_up0; _i0++) {
+              up[_i0].bugs = ((-2 * (next_i()%2)) + 1) * next_i();
+          up[_i0].fifo_bug = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           unsigned char benchRet = serial8250_compute_lcr(up,c_cflag);
           printf("%c\n", (benchRet %26) + 'a'); 
           free(up);

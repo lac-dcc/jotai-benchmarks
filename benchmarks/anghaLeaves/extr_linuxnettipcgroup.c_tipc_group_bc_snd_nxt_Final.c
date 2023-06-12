@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ u16 tipc_group_bc_snd_nxt(struct tipc_group *grp)
 	return grp->bc_snd_nxt;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_grp0 = 1;
+          int _len_grp0 = 65025;
           struct tipc_group * grp = (struct tipc_group *) malloc(_len_grp0*sizeof(struct tipc_group));
           for(int _i0 = 0; _i0 < _len_grp0; _i0++) {
-            grp[_i0].bc_snd_nxt = ((-2 * (next_i()%2)) + 1) * next_i();
+              grp[_i0].bc_snd_nxt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = tipc_group_bc_snd_nxt(grp);
           printf("%d\n", benchRet); 
           free(grp);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_grp0 = 100;
           struct tipc_group * grp = (struct tipc_group *) malloc(_len_grp0*sizeof(struct tipc_group));
           for(int _i0 = 0; _i0 < _len_grp0; _i0++) {
-            grp[_i0].bc_snd_nxt = ((-2 * (next_i()%2)) + 1) * next_i();
+              grp[_i0].bc_snd_nxt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = tipc_group_bc_snd_nxt(grp);
           printf("%d\n", benchRet); 
           free(grp);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_grp0 = 1;
+          struct tipc_group * grp = (struct tipc_group *) malloc(_len_grp0*sizeof(struct tipc_group));
+          for(int _i0 = 0; _i0 < _len_grp0; _i0++) {
+              grp[_i0].bc_snd_nxt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = tipc_group_bc_snd_nxt(grp);
+          printf("%d\n", benchRet); 
+          free(grp);
+        
+        break;
+    }
     default:
         usage();
         break;

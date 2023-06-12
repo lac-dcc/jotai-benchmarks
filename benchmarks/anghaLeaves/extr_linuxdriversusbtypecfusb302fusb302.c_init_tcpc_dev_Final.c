@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -83,12 +85,6 @@ __attribute__((used)) static void init_tcpc_dev(struct tcpc_dev *fusb302_tcpc_de
 	fusb302_tcpc_dev->pd_transmit = tcpm_pd_transmit;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,31 +97,84 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_fusb302_tcpc_dev0 = 1;
+          int _len_fusb302_tcpc_dev0 = 65025;
           struct tcpc_dev * fusb302_tcpc_dev = (struct tcpc_dev *) malloc(_len_fusb302_tcpc_dev0*sizeof(struct tcpc_dev));
           for(int _i0 = 0; _i0 < _len_fusb302_tcpc_dev0; _i0++) {
-            fusb302_tcpc_dev[_i0].pd_transmit = ((-2 * (next_i()%2)) + 1) * next_i();
-        fusb302_tcpc_dev[_i0].start_drp_toggling = ((-2 * (next_i()%2)) + 1) * next_i();
-        fusb302_tcpc_dev[_i0].set_roles = ((-2 * (next_i()%2)) + 1) * next_i();
-        fusb302_tcpc_dev[_i0].set_pd_rx = ((-2 * (next_i()%2)) + 1) * next_i();
-        fusb302_tcpc_dev[_i0].set_vbus = ((-2 * (next_i()%2)) + 1) * next_i();
-        fusb302_tcpc_dev[_i0].set_vconn = ((-2 * (next_i()%2)) + 1) * next_i();
-        fusb302_tcpc_dev[_i0].set_polarity = ((-2 * (next_i()%2)) + 1) * next_i();
-        fusb302_tcpc_dev[_i0].get_cc = ((-2 * (next_i()%2)) + 1) * next_i();
-        fusb302_tcpc_dev[_i0].set_cc = ((-2 * (next_i()%2)) + 1) * next_i();
-        fusb302_tcpc_dev[_i0].get_current_limit = ((-2 * (next_i()%2)) + 1) * next_i();
-        fusb302_tcpc_dev[_i0].get_vbus = ((-2 * (next_i()%2)) + 1) * next_i();
-        fusb302_tcpc_dev[_i0].init = ((-2 * (next_i()%2)) + 1) * next_i();
+              fusb302_tcpc_dev[_i0].pd_transmit = ((-2 * (next_i()%2)) + 1) * next_i();
+          fusb302_tcpc_dev[_i0].start_drp_toggling = ((-2 * (next_i()%2)) + 1) * next_i();
+          fusb302_tcpc_dev[_i0].set_roles = ((-2 * (next_i()%2)) + 1) * next_i();
+          fusb302_tcpc_dev[_i0].set_pd_rx = ((-2 * (next_i()%2)) + 1) * next_i();
+          fusb302_tcpc_dev[_i0].set_vbus = ((-2 * (next_i()%2)) + 1) * next_i();
+          fusb302_tcpc_dev[_i0].set_vconn = ((-2 * (next_i()%2)) + 1) * next_i();
+          fusb302_tcpc_dev[_i0].set_polarity = ((-2 * (next_i()%2)) + 1) * next_i();
+          fusb302_tcpc_dev[_i0].get_cc = ((-2 * (next_i()%2)) + 1) * next_i();
+          fusb302_tcpc_dev[_i0].set_cc = ((-2 * (next_i()%2)) + 1) * next_i();
+          fusb302_tcpc_dev[_i0].get_current_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          fusb302_tcpc_dev[_i0].get_vbus = ((-2 * (next_i()%2)) + 1) * next_i();
+          fusb302_tcpc_dev[_i0].init = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           init_tcpc_dev(fusb302_tcpc_dev);
           free(fusb302_tcpc_dev);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_fusb302_tcpc_dev0 = 100;
+          struct tcpc_dev * fusb302_tcpc_dev = (struct tcpc_dev *) malloc(_len_fusb302_tcpc_dev0*sizeof(struct tcpc_dev));
+          for(int _i0 = 0; _i0 < _len_fusb302_tcpc_dev0; _i0++) {
+              fusb302_tcpc_dev[_i0].pd_transmit = ((-2 * (next_i()%2)) + 1) * next_i();
+          fusb302_tcpc_dev[_i0].start_drp_toggling = ((-2 * (next_i()%2)) + 1) * next_i();
+          fusb302_tcpc_dev[_i0].set_roles = ((-2 * (next_i()%2)) + 1) * next_i();
+          fusb302_tcpc_dev[_i0].set_pd_rx = ((-2 * (next_i()%2)) + 1) * next_i();
+          fusb302_tcpc_dev[_i0].set_vbus = ((-2 * (next_i()%2)) + 1) * next_i();
+          fusb302_tcpc_dev[_i0].set_vconn = ((-2 * (next_i()%2)) + 1) * next_i();
+          fusb302_tcpc_dev[_i0].set_polarity = ((-2 * (next_i()%2)) + 1) * next_i();
+          fusb302_tcpc_dev[_i0].get_cc = ((-2 * (next_i()%2)) + 1) * next_i();
+          fusb302_tcpc_dev[_i0].set_cc = ((-2 * (next_i()%2)) + 1) * next_i();
+          fusb302_tcpc_dev[_i0].get_current_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          fusb302_tcpc_dev[_i0].get_vbus = ((-2 * (next_i()%2)) + 1) * next_i();
+          fusb302_tcpc_dev[_i0].init = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          init_tcpc_dev(fusb302_tcpc_dev);
+          free(fusb302_tcpc_dev);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_fusb302_tcpc_dev0 = 1;
+          struct tcpc_dev * fusb302_tcpc_dev = (struct tcpc_dev *) malloc(_len_fusb302_tcpc_dev0*sizeof(struct tcpc_dev));
+          for(int _i0 = 0; _i0 < _len_fusb302_tcpc_dev0; _i0++) {
+              fusb302_tcpc_dev[_i0].pd_transmit = ((-2 * (next_i()%2)) + 1) * next_i();
+          fusb302_tcpc_dev[_i0].start_drp_toggling = ((-2 * (next_i()%2)) + 1) * next_i();
+          fusb302_tcpc_dev[_i0].set_roles = ((-2 * (next_i()%2)) + 1) * next_i();
+          fusb302_tcpc_dev[_i0].set_pd_rx = ((-2 * (next_i()%2)) + 1) * next_i();
+          fusb302_tcpc_dev[_i0].set_vbus = ((-2 * (next_i()%2)) + 1) * next_i();
+          fusb302_tcpc_dev[_i0].set_vconn = ((-2 * (next_i()%2)) + 1) * next_i();
+          fusb302_tcpc_dev[_i0].set_polarity = ((-2 * (next_i()%2)) + 1) * next_i();
+          fusb302_tcpc_dev[_i0].get_cc = ((-2 * (next_i()%2)) + 1) * next_i();
+          fusb302_tcpc_dev[_i0].set_cc = ((-2 * (next_i()%2)) + 1) * next_i();
+          fusb302_tcpc_dev[_i0].get_current_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          fusb302_tcpc_dev[_i0].get_vbus = ((-2 * (next_i()%2)) + 1) * next_i();
+          fusb302_tcpc_dev[_i0].init = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          init_tcpc_dev(fusb302_tcpc_dev);
+          free(fusb302_tcpc_dev);
+        
+        break;
+    }
     default:
         usage();
         break;

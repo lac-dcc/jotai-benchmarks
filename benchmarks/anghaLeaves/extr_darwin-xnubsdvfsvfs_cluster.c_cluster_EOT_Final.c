@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ cluster_EOT(buf_t cbp_head, buf_t cbp_tail, int zero_offset)
         cbp_tail->b_flags |= B_EOT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,22 +80,203 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int zero_offset = 100;
+        
           int _len_cbp_head0 = 1;
           struct TYPE_4__ * cbp_head = (struct TYPE_4__ *) malloc(_len_cbp_head0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_cbp_head0; _i0++) {
-            cbp_head[_i0].b_validend = ((-2 * (next_i()%2)) + 1) * next_i();
-        cbp_head[_i0].b_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              cbp_head[_i0].b_validend = ((-2 * (next_i()%2)) + 1) * next_i();
+          cbp_head[_i0].b_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_cbp_tail0 = 1;
           struct TYPE_4__ * cbp_tail = (struct TYPE_4__ *) malloc(_len_cbp_tail0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_cbp_tail0; _i0++) {
-            cbp_tail[_i0].b_validend = ((-2 * (next_i()%2)) + 1) * next_i();
-        cbp_tail[_i0].b_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              cbp_tail[_i0].b_validend = ((-2 * (next_i()%2)) + 1) * next_i();
+          cbp_tail[_i0].b_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          cluster_EOT(cbp_head,cbp_tail,zero_offset);
+          free(cbp_head);
+          free(cbp_tail);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int zero_offset = 255;
+        
+          int _len_cbp_head0 = 65025;
+          struct TYPE_4__ * cbp_head = (struct TYPE_4__ *) malloc(_len_cbp_head0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_cbp_head0; _i0++) {
+              cbp_head[_i0].b_validend = ((-2 * (next_i()%2)) + 1) * next_i();
+          cbp_head[_i0].b_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cbp_tail0 = 65025;
+          struct TYPE_4__ * cbp_tail = (struct TYPE_4__ *) malloc(_len_cbp_tail0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_cbp_tail0; _i0++) {
+              cbp_tail[_i0].b_validend = ((-2 * (next_i()%2)) + 1) * next_i();
+          cbp_tail[_i0].b_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cluster_EOT(cbp_head,cbp_tail,zero_offset);
+          free(cbp_head);
+          free(cbp_tail);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int zero_offset = 10;
+        
+          int _len_cbp_head0 = 100;
+          struct TYPE_4__ * cbp_head = (struct TYPE_4__ *) malloc(_len_cbp_head0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_cbp_head0; _i0++) {
+              cbp_head[_i0].b_validend = ((-2 * (next_i()%2)) + 1) * next_i();
+          cbp_head[_i0].b_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cbp_tail0 = 100;
+          struct TYPE_4__ * cbp_tail = (struct TYPE_4__ *) malloc(_len_cbp_tail0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_cbp_tail0; _i0++) {
+              cbp_tail[_i0].b_validend = ((-2 * (next_i()%2)) + 1) * next_i();
+          cbp_tail[_i0].b_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cluster_EOT(cbp_head,cbp_tail,zero_offset);
+          free(cbp_head);
+          free(cbp_tail);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int zero_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cbp_head0 = 1;
+          struct TYPE_4__ * cbp_head = (struct TYPE_4__ *) malloc(_len_cbp_head0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_cbp_head0; _i0++) {
+              cbp_head[_i0].b_validend = ((-2 * (next_i()%2)) + 1) * next_i();
+          cbp_head[_i0].b_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cbp_tail0 = 1;
+          struct TYPE_4__ * cbp_tail = (struct TYPE_4__ *) malloc(_len_cbp_tail0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_cbp_tail0; _i0++) {
+              cbp_tail[_i0].b_validend = ((-2 * (next_i()%2)) + 1) * next_i();
+          cbp_tail[_i0].b_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           cluster_EOT(cbp_head,cbp_tail,zero_offset);
           free(cbp_head);
           free(cbp_tail);

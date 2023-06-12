@@ -62,12 +62,6 @@ __attribute__((used)) static inline u32 sr(u64 v, u_char n)
 	return v >> n;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,13 +78,14 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int v = 10;
+        
           int n = 10;
+        
           int benchRet = sr(v,n);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

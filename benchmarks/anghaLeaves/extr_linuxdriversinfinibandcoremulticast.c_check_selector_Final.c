@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -89,12 +90,6 @@ __attribute__((used)) static int check_selector(ib_sa_comp_mask comp_mask,
 	return err;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -111,11 +106,17 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int comp_mask = 100;
+        
           int selector_mask = 100;
+        
           int value_mask = 100;
+        
           int selector = 100;
+        
           int src_value = 100;
+        
           int dst_value = 100;
+        
           int benchRet = check_selector(comp_mask,selector_mask,value_mask,selector,src_value,dst_value);
           printf("%d\n", benchRet); 
         
@@ -125,11 +126,17 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int comp_mask = 255;
+        
           int selector_mask = 255;
+        
           int value_mask = 255;
+        
           int selector = 255;
+        
           int src_value = 255;
+        
           int dst_value = 255;
+        
           int benchRet = check_selector(comp_mask,selector_mask,value_mask,selector,src_value,dst_value);
           printf("%d\n", benchRet); 
         
@@ -139,17 +146,42 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int comp_mask = 10;
+        
           int selector_mask = 10;
+        
           int value_mask = 10;
+        
           int selector = 10;
+        
           int src_value = 10;
+        
           int dst_value = 10;
+        
           int benchRet = check_selector(comp_mask,selector_mask,value_mask,selector,src_value,dst_value);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int comp_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int selector_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int value_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int selector = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int src_value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int dst_value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = check_selector(comp_mask,selector_mask,value_mask,selector,src_value,dst_value);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

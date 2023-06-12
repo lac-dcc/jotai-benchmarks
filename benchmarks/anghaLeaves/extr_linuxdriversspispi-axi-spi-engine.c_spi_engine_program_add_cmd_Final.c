@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ __attribute__((used)) static void spi_engine_program_add_cmd(struct spi_engine_p
 	p->length++;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,17 +83,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int dry = 100;
+        
           int cmd = 100;
+        
           int _len_p0 = 1;
           struct spi_engine_program * p = (struct spi_engine_program *) malloc(_len_p0*sizeof(struct spi_engine_program));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_p__i0__instructions0 = 1;
           p[_i0].instructions = (int *) malloc(_len_p__i0__instructions0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_p__i0__instructions0; _j0++) {
             p[_i0].instructions[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           spi_engine_program_add_cmd(p,dry,cmd);
           for(int _aux = 0; _aux < _len_p0; _aux++) {
           free(p[_aux].instructions);
@@ -105,7 +106,87 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int dry = 255;
+        
+          int cmd = 255;
+        
+          int _len_p0 = 65025;
+          struct spi_engine_program * p = (struct spi_engine_program *) malloc(_len_p0*sizeof(struct spi_engine_program));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_p__i0__instructions0 = 1;
+          p[_i0].instructions = (int *) malloc(_len_p__i0__instructions0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_p__i0__instructions0; _j0++) {
+            p[_i0].instructions[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          spi_engine_program_add_cmd(p,dry,cmd);
+          for(int _aux = 0; _aux < _len_p0; _aux++) {
+          free(p[_aux].instructions);
+          }
+          free(p);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int dry = 10;
+        
+          int cmd = 10;
+        
+          int _len_p0 = 100;
+          struct spi_engine_program * p = (struct spi_engine_program *) malloc(_len_p0*sizeof(struct spi_engine_program));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_p__i0__instructions0 = 1;
+          p[_i0].instructions = (int *) malloc(_len_p__i0__instructions0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_p__i0__instructions0; _j0++) {
+            p[_i0].instructions[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          spi_engine_program_add_cmd(p,dry,cmd);
+          for(int _aux = 0; _aux < _len_p0; _aux++) {
+          free(p[_aux].instructions);
+          }
+          free(p);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int dry = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_p0 = 1;
+          struct spi_engine_program * p = (struct spi_engine_program *) malloc(_len_p0*sizeof(struct spi_engine_program));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_p__i0__instructions0 = 1;
+          p[_i0].instructions = (int *) malloc(_len_p__i0__instructions0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_p__i0__instructions0; _j0++) {
+            p[_i0].instructions[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          spi_engine_program_add_cmd(p,dry,cmd);
+          for(int _aux = 0; _aux < _len_p0; _aux++) {
+          free(p[_aux].instructions);
+          }
+          free(p);
+        
+        break;
+    }
     default:
         usage();
         break;

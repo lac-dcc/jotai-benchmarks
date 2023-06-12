@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ clear_interrupt_counters (struct zoran *zr)
 	zr->JPEG_min_missed = 0x7fffffff;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,34 +89,93 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_zr0 = 1;
+          int _len_zr0 = 65025;
           struct zoran * zr = (struct zoran *) malloc(_len_zr0*sizeof(struct zoran));
           for(int _i0 = 0; _i0 < _len_zr0; _i0++) {
-            zr[_i0].JPEG_min_missed = ((-2 * (next_i()%2)) + 1) * next_i();
-        zr[_i0].JPEG_max_missed = ((-2 * (next_i()%2)) + 1) * next_i();
-        zr[_i0].JPEG_missed = ((-2 * (next_i()%2)) + 1) * next_i();
-        zr[_i0].END_event_missed = ((-2 * (next_i()%2)) + 1) * next_i();
-        zr[_i0].JPEG_1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        zr[_i0].JPEG_0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        zr[_i0].JPEG_out = ((-2 * (next_i()%2)) + 1) * next_i();
-        zr[_i0].JPEG_in = ((-2 * (next_i()%2)) + 1) * next_i();
-        zr[_i0].IRQ1_out = ((-2 * (next_i()%2)) + 1) * next_i();
-        zr[_i0].IRQ1_in = ((-2 * (next_i()%2)) + 1) * next_i();
-        zr[_i0].field_counter = ((-2 * (next_i()%2)) + 1) * next_i();
-        zr[_i0].intr_counter_JPEGRepIRQ = ((-2 * (next_i()%2)) + 1) * next_i();
-        zr[_i0].intr_counter_CodRepIRQ = ((-2 * (next_i()%2)) + 1) * next_i();
-        zr[_i0].intr_counter_GIRQ0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        zr[_i0].intr_counter_GIRQ1 = ((-2 * (next_i()%2)) + 1) * next_i();
+              zr[_i0].JPEG_min_missed = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].JPEG_max_missed = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].JPEG_missed = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].END_event_missed = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].JPEG_1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].JPEG_0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].JPEG_out = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].JPEG_in = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].IRQ1_out = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].IRQ1_in = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].field_counter = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].intr_counter_JPEGRepIRQ = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].intr_counter_CodRepIRQ = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].intr_counter_GIRQ0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].intr_counter_GIRQ1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           clear_interrupt_counters(zr);
           free(zr);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_zr0 = 100;
+          struct zoran * zr = (struct zoran *) malloc(_len_zr0*sizeof(struct zoran));
+          for(int _i0 = 0; _i0 < _len_zr0; _i0++) {
+              zr[_i0].JPEG_min_missed = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].JPEG_max_missed = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].JPEG_missed = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].END_event_missed = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].JPEG_1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].JPEG_0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].JPEG_out = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].JPEG_in = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].IRQ1_out = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].IRQ1_in = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].field_counter = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].intr_counter_JPEGRepIRQ = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].intr_counter_CodRepIRQ = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].intr_counter_GIRQ0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].intr_counter_GIRQ1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          clear_interrupt_counters(zr);
+          free(zr);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_zr0 = 1;
+          struct zoran * zr = (struct zoran *) malloc(_len_zr0*sizeof(struct zoran));
+          for(int _i0 = 0; _i0 < _len_zr0; _i0++) {
+              zr[_i0].JPEG_min_missed = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].JPEG_max_missed = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].JPEG_missed = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].END_event_missed = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].JPEG_1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].JPEG_0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].JPEG_out = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].JPEG_in = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].IRQ1_out = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].IRQ1_in = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].field_counter = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].intr_counter_JPEGRepIRQ = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].intr_counter_CodRepIRQ = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].intr_counter_GIRQ0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          zr[_i0].intr_counter_GIRQ1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          clear_interrupt_counters(zr);
+          free(zr);
+        
+        break;
+    }
     default:
         usage();
         break;

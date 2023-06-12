@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +74,6 @@ __attribute__((used)) static int wmt_pctl_find_group_by_pin(struct wmt_pinctrl_d
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,16 +90,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long pin = 100;
+        
           int _len_data0 = 1;
           struct wmt_pinctrl_data * data = (struct wmt_pinctrl_data *) malloc(_len_data0*sizeof(struct wmt_pinctrl_data));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
-            data[_i0].npins = ((-2 * (next_i()%2)) + 1) * next_i();
+              data[_i0].npins = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_data__i0__pins0 = 1;
           data[_i0].pins = (struct TYPE_2__ *) malloc(_len_data__i0__pins0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_data__i0__pins0; _j0++) {
-            data[_i0].pins->number = ((-2 * (next_i()%2)) + 1) * next_i();
+              data[_i0].pins->number = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = wmt_pctl_find_group_by_pin(data,pin);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_data0; _aux++) {
@@ -112,7 +113,87 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long pin = 255;
+        
+          int _len_data0 = 65025;
+          struct wmt_pinctrl_data * data = (struct wmt_pinctrl_data *) malloc(_len_data0*sizeof(struct wmt_pinctrl_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].npins = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_data__i0__pins0 = 1;
+          data[_i0].pins = (struct TYPE_2__ *) malloc(_len_data__i0__pins0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_data__i0__pins0; _j0++) {
+              data[_i0].pins->number = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = wmt_pctl_find_group_by_pin(data,pin);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_data0; _aux++) {
+          free(data[_aux].pins);
+          }
+          free(data);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long pin = 10;
+        
+          int _len_data0 = 100;
+          struct wmt_pinctrl_data * data = (struct wmt_pinctrl_data *) malloc(_len_data0*sizeof(struct wmt_pinctrl_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].npins = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_data__i0__pins0 = 1;
+          data[_i0].pins = (struct TYPE_2__ *) malloc(_len_data__i0__pins0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_data__i0__pins0; _j0++) {
+              data[_i0].pins->number = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = wmt_pctl_find_group_by_pin(data,pin);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_data0; _aux++) {
+          free(data[_aux].pins);
+          }
+          free(data);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long pin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_data0 = 1;
+          struct wmt_pinctrl_data * data = (struct wmt_pinctrl_data *) malloc(_len_data0*sizeof(struct wmt_pinctrl_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].npins = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_data__i0__pins0 = 1;
+          data[_i0].pins = (struct TYPE_2__ *) malloc(_len_data__i0__pins0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_data__i0__pins0; _j0++) {
+              data[_i0].pins->number = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = wmt_pctl_find_group_by_pin(data,pin);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_data0; _aux++) {
+          free(data[_aux].pins);
+          }
+          free(data);
+        
+        break;
+    }
     default:
         usage();
         break;

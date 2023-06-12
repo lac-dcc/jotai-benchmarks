@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static void flip(AVCodecContext *avctx, AVFrame *frame)
     frame->linesize[0] *= -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,14 +80,163 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_avctx0 = 65025;
+          struct TYPE_6__ * avctx = (struct TYPE_6__ *) malloc(_len_avctx0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_avctx0; _i0++) {
+              avctx[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_frame0 = 65025;
+          struct TYPE_5__ * frame = (struct TYPE_5__ *) malloc(_len_frame0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_frame0; _i0++) {
+              int _len_frame__i0__data0 = 1;
+          frame[_i0].data = (int *) malloc(_len_frame__i0__data0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_frame__i0__data0; _j0++) {
+            frame[_i0].data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_frame__i0__linesize0 = 1;
+          frame[_i0].linesize = (int *) malloc(_len_frame__i0__linesize0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_frame__i0__linesize0; _j0++) {
+            frame[_i0].linesize[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          flip(avctx,frame);
+          free(avctx);
+          for(int _aux = 0; _aux < _len_frame0; _aux++) {
+          free(frame[_aux].data);
+          }
+          for(int _aux = 0; _aux < _len_frame0; _aux++) {
+          free(frame[_aux].linesize);
+          }
+          free(frame);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_avctx0 = 100;
+          struct TYPE_6__ * avctx = (struct TYPE_6__ *) malloc(_len_avctx0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_avctx0; _i0++) {
+              avctx[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_frame0 = 100;
+          struct TYPE_5__ * frame = (struct TYPE_5__ *) malloc(_len_frame0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_frame0; _i0++) {
+              int _len_frame__i0__data0 = 1;
+          frame[_i0].data = (int *) malloc(_len_frame__i0__data0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_frame__i0__data0; _j0++) {
+            frame[_i0].data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_frame__i0__linesize0 = 1;
+          frame[_i0].linesize = (int *) malloc(_len_frame__i0__linesize0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_frame__i0__linesize0; _j0++) {
+            frame[_i0].linesize[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          flip(avctx,frame);
+          free(avctx);
+          for(int _aux = 0; _aux < _len_frame0; _aux++) {
+          free(frame[_aux].data);
+          }
+          for(int _aux = 0; _aux < _len_frame0; _aux++) {
+          free(frame[_aux].linesize);
+          }
+          free(frame);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_avctx0 = 1;
           struct TYPE_6__ * avctx = (struct TYPE_6__ *) malloc(_len_avctx0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_avctx0; _i0++) {
-            avctx[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+              avctx[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_frame0 = 1;
           struct TYPE_5__ * frame = (struct TYPE_5__ *) malloc(_len_frame0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_frame0; _i0++) {
@@ -105,7 +250,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_frame__i0__linesize0; _j0++) {
             frame[_i0].linesize[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           flip(avctx,frame);
           free(avctx);
           for(int _aux = 0; _aux < _len_frame0; _aux++) {

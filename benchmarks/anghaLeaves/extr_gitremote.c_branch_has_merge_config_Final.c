@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ int branch_has_merge_config(struct branch *branch)
 	return branch && !!branch->merge;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_branch0 = 1;
+          int _len_branch0 = 65025;
           struct branch * branch = (struct branch *) malloc(_len_branch0*sizeof(struct branch));
           for(int _i0 = 0; _i0 < _len_branch0; _i0++) {
-            branch[_i0].merge = ((-2 * (next_i()%2)) + 1) * next_i();
+              branch[_i0].merge = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = branch_has_merge_config(branch);
           printf("%d\n", benchRet); 
           free(branch);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_branch0 = 100;
           struct branch * branch = (struct branch *) malloc(_len_branch0*sizeof(struct branch));
           for(int _i0 = 0; _i0 < _len_branch0; _i0++) {
-            branch[_i0].merge = ((-2 * (next_i()%2)) + 1) * next_i();
+              branch[_i0].merge = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = branch_has_merge_config(branch);
           printf("%d\n", benchRet); 
           free(branch);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_branch0 = 1;
+          struct branch * branch = (struct branch *) malloc(_len_branch0*sizeof(struct branch));
+          for(int _i0 = 0; _i0 < _len_branch0; _i0++) {
+              branch[_i0].merge = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = branch_has_merge_config(branch);
+          printf("%d\n", benchRet); 
+          free(branch);
+        
+        break;
+    }
     default:
         usage();
         break;

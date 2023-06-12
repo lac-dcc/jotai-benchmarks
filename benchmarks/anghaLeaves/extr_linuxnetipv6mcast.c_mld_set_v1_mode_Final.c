@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static void mld_set_v1_mode(struct inet6_dev *idev)
 	idev->mc_v1_seen = jiffies + switchback;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,17 +85,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_idev0 = 65025;
+          struct inet6_dev * idev = (struct inet6_dev *) malloc(_len_idev0*sizeof(struct inet6_dev));
+          for(int _i0 = 0; _i0 < _len_idev0; _i0++) {
+              idev[_i0].mc_qrv = ((-2 * (next_i()%2)) + 1) * next_i();
+          idev[_i0].mc_qi = ((-2 * (next_i()%2)) + 1) * next_i();
+          idev[_i0].mc_qri = ((-2 * (next_i()%2)) + 1) * next_i();
+          idev[_i0].mc_v1_seen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mld_set_v1_mode(idev);
+          free(idev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_idev0 = 100;
+          struct inet6_dev * idev = (struct inet6_dev *) malloc(_len_idev0*sizeof(struct inet6_dev));
+          for(int _i0 = 0; _i0 < _len_idev0; _i0++) {
+              idev[_i0].mc_qrv = ((-2 * (next_i()%2)) + 1) * next_i();
+          idev[_i0].mc_qi = ((-2 * (next_i()%2)) + 1) * next_i();
+          idev[_i0].mc_qri = ((-2 * (next_i()%2)) + 1) * next_i();
+          idev[_i0].mc_v1_seen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mld_set_v1_mode(idev);
+          free(idev);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_idev0 = 1;
           struct inet6_dev * idev = (struct inet6_dev *) malloc(_len_idev0*sizeof(struct inet6_dev));
           for(int _i0 = 0; _i0 < _len_idev0; _i0++) {
-            idev[_i0].mc_qrv = ((-2 * (next_i()%2)) + 1) * next_i();
-        idev[_i0].mc_qi = ((-2 * (next_i()%2)) + 1) * next_i();
-        idev[_i0].mc_qri = ((-2 * (next_i()%2)) + 1) * next_i();
-        idev[_i0].mc_v1_seen = ((-2 * (next_i()%2)) + 1) * next_i();
+              idev[_i0].mc_qrv = ((-2 * (next_i()%2)) + 1) * next_i();
+          idev[_i0].mc_qi = ((-2 * (next_i()%2)) + 1) * next_i();
+          idev[_i0].mc_qri = ((-2 * (next_i()%2)) + 1) * next_i();
+          idev[_i0].mc_v1_seen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           mld_set_v1_mode(idev);
           free(idev);
         

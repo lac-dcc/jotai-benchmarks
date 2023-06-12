@@ -61,12 +61,6 @@ __attribute__((used)) static int mlp_peak_bitrate(int peak_bitrate, int sample_r
     return ((peak_bitrate << 4) - 8) / sample_rate;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,7 +77,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int peak_bitrate = 100;
+        
           int sample_rate = 100;
+        
           int benchRet = mlp_peak_bitrate(peak_bitrate,sample_rate);
           printf("%d\n", benchRet); 
         
@@ -93,7 +89,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int peak_bitrate = 255;
+        
           int sample_rate = 255;
+        
           int benchRet = mlp_peak_bitrate(peak_bitrate,sample_rate);
           printf("%d\n", benchRet); 
         
@@ -103,13 +101,14 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int peak_bitrate = 10;
+        
           int sample_rate = 10;
+        
           int benchRet = mlp_peak_bitrate(peak_bitrate,sample_rate);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ int efx_ef10_sriov_set_vf_spoofchk(struct efx_nic *efx, int vf_i,
 	return spoofchk ? -EOPNOTSUPP : 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,12 +81,36 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int vf_i = 100;
+        
           int spoofchk = 100;
+        
           int _len_efx0 = 1;
           struct efx_nic * efx = (struct efx_nic *) malloc(_len_efx0*sizeof(struct efx_nic));
           for(int _i0 = 0; _i0 < _len_efx0; _i0++) {
-            efx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              efx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = efx_ef10_sriov_set_vf_spoofchk(efx,vf_i,spoofchk);
+          printf("%d\n", benchRet); 
+          free(efx);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int vf_i = 255;
+        
+          int spoofchk = 255;
+        
+          int _len_efx0 = 65025;
+          struct efx_nic * efx = (struct efx_nic *) malloc(_len_efx0*sizeof(struct efx_nic));
+          for(int _i0 = 0; _i0 < _len_efx0; _i0++) {
+              efx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = efx_ef10_sriov_set_vf_spoofchk(efx,vf_i,spoofchk);
           printf("%d\n", benchRet); 
           free(efx);
@@ -98,22 +118,45 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int vf_i = 10;
+        
           int spoofchk = 10;
+        
           int _len_efx0 = 100;
           struct efx_nic * efx = (struct efx_nic *) malloc(_len_efx0*sizeof(struct efx_nic));
           for(int _i0 = 0; _i0 < _len_efx0; _i0++) {
-            efx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              efx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = efx_ef10_sriov_set_vf_spoofchk(efx,vf_i,spoofchk);
           printf("%d\n", benchRet); 
           free(efx);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int vf_i = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int spoofchk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_efx0 = 1;
+          struct efx_nic * efx = (struct efx_nic *) malloc(_len_efx0*sizeof(struct efx_nic));
+          for(int _i0 = 0; _i0 < _len_efx0; _i0++) {
+              efx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = efx_ef10_sriov_set_vf_spoofchk(efx,vf_i,spoofchk);
+          printf("%d\n", benchRet); 
+          free(efx);
+        
+        break;
+    }
     default:
         usage();
         break;

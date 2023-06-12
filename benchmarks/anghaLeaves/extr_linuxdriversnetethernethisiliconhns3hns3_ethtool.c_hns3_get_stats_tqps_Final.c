@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -99,12 +101,6 @@ __attribute__((used)) static u64 *hns3_get_stats_tqps(struct hnae3_handle *handl
 	return data;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -117,23 +113,147 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int _len_handle0 = 65025;
+          struct hnae3_handle * handle = (struct hnae3_handle *) malloc(_len_handle0*sizeof(struct hnae3_handle));
+          for(int _i0 = 0; _i0 < _len_handle0; _i0++) {
+              handle[_i0].kinfo.num_tqps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          handle[_i0].priv = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_data0 = 65025;
+          void ** data = (void **) malloc(_len_data0*sizeof(void *));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+          }
+        
+          void ** benchRet = hns3_get_stats_tqps(handle,data);
+          free(handle);
+          for(int i1 = 0; i1 < _len_data0; i1++) {
+              }
+          free(data);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int _len_handle0 = 100;
+          struct hnae3_handle * handle = (struct hnae3_handle *) malloc(_len_handle0*sizeof(struct hnae3_handle));
+          for(int _i0 = 0; _i0 < _len_handle0; _i0++) {
+              handle[_i0].kinfo.num_tqps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          handle[_i0].priv = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_data0 = 100;
+          void ** data = (void **) malloc(_len_data0*sizeof(void *));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+          }
+        
+          void ** benchRet = hns3_get_stats_tqps(handle,data);
+          free(handle);
+          for(int i1 = 0; i1 < _len_data0; i1++) {
+              }
+          free(data);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
           int _len_handle0 = 1;
           struct hnae3_handle * handle = (struct hnae3_handle *) malloc(_len_handle0*sizeof(struct hnae3_handle));
           for(int _i0 = 0; _i0 < _len_handle0; _i0++) {
-            handle[_i0].kinfo.num_tqps = ((-2 * (next_i()%2)) + 1) * next_i();
-        handle[_i0].priv = ((-2 * (next_i()%2)) + 1) * next_i();
+              handle[_i0].kinfo.num_tqps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          handle[_i0].priv = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_data0 = 1;
           void ** data = (void **) malloc(_len_data0*sizeof(void *));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
           }
+        
           void ** benchRet = hns3_get_stats_tqps(handle,data);
           free(handle);
           for(int i1 = 0; i1 < _len_data0; i1++) {
-            int _len_data1 = 1;
               }
           free(data);
         

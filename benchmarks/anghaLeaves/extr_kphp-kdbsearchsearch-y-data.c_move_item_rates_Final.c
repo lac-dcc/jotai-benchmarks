@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static void move_item_rates (item_t *dst, struct index_ite
   src->mask = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,23 +82,152 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_dst0 = 65025;
+          struct TYPE_3__ * dst = (struct TYPE_3__ *) malloc(_len_dst0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+              dst[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].rates_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].rates = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_src0 = 65025;
+          struct index_item * src = (struct index_item *) malloc(_len_src0*sizeof(struct index_item));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+              src[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].rates_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].rates = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          move_item_rates(dst,src);
+          free(dst);
+          free(src);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_dst0 = 100;
+          struct TYPE_3__ * dst = (struct TYPE_3__ *) malloc(_len_dst0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+              dst[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].rates_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].rates = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_src0 = 100;
+          struct index_item * src = (struct index_item *) malloc(_len_src0*sizeof(struct index_item));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+              src[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].rates_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].rates = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          move_item_rates(dst,src);
+          free(dst);
+          free(src);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_dst0 = 1;
           struct TYPE_3__ * dst = (struct TYPE_3__ *) malloc(_len_dst0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
-            dst[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].rates_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].rates = ((-2 * (next_i()%2)) + 1) * next_i();
+              dst[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].rates_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].rates = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_src0 = 1;
           struct index_item * src = (struct index_item *) malloc(_len_src0*sizeof(struct index_item));
           for(int _i0 = 0; _i0 < _len_src0; _i0++) {
-            src[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].rates_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].rates = ((-2 * (next_i()%2)) + 1) * next_i();
+              src[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].rates_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].rates = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           move_item_rates(dst,src);
           free(dst);
           free(src);

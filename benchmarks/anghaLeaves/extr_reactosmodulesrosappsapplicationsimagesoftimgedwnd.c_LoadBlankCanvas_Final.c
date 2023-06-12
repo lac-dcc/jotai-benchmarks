@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ LoadBlankCanvas(PEDIT_WND_INFO Info)
     return TRUE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,21 +88,25 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_Info0 = 1;
+          int _len_Info0 = 65025;
           struct TYPE_7__ * Info = (struct TYPE_7__ *) malloc(_len_Info0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_Info0; _i0++) {
               int _len_Info__i0__OpenInfo0 = 1;
           Info[_i0].OpenInfo = (struct TYPE_6__ *) malloc(_len_Info__i0__OpenInfo0*sizeof(struct TYPE_6__));
           for(int _j0 = 0; _j0 < _len_Info__i0__OpenInfo0; _j0++) {
-            Info[_i0].OpenInfo->New.Height = ((-2 * (next_i()%2)) + 1) * next_i();
-        Info[_i0].OpenInfo->New.Width = ((-2 * (next_i()%2)) + 1) * next_i();
+              Info[_i0].OpenInfo->New.Height = ((-2 * (next_i()%2)) + 1) * next_i();
+          Info[_i0].OpenInfo->New.Width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-        Info[_i0].Height = ((-2 * (next_i()%2)) + 1) * next_i();
-        Info[_i0].Width = ((-2 * (next_i()%2)) + 1) * next_i();
+          Info[_i0].Height = ((-2 * (next_i()%2)) + 1) * next_i();
+          Info[_i0].Width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = LoadBlankCanvas(Info);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_Info0; _aux++) {
@@ -116,7 +116,62 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_Info0 = 100;
+          struct TYPE_7__ * Info = (struct TYPE_7__ *) malloc(_len_Info0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_Info0; _i0++) {
+              int _len_Info__i0__OpenInfo0 = 1;
+          Info[_i0].OpenInfo = (struct TYPE_6__ *) malloc(_len_Info__i0__OpenInfo0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_Info__i0__OpenInfo0; _j0++) {
+              Info[_i0].OpenInfo->New.Height = ((-2 * (next_i()%2)) + 1) * next_i();
+          Info[_i0].OpenInfo->New.Width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+          Info[_i0].Height = ((-2 * (next_i()%2)) + 1) * next_i();
+          Info[_i0].Width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = LoadBlankCanvas(Info);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_Info0; _aux++) {
+          free(Info[_aux].OpenInfo);
+          }
+          free(Info);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_Info0 = 1;
+          struct TYPE_7__ * Info = (struct TYPE_7__ *) malloc(_len_Info0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_Info0; _i0++) {
+              int _len_Info__i0__OpenInfo0 = 1;
+          Info[_i0].OpenInfo = (struct TYPE_6__ *) malloc(_len_Info__i0__OpenInfo0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_Info__i0__OpenInfo0; _j0++) {
+              Info[_i0].OpenInfo->New.Height = ((-2 * (next_i()%2)) + 1) * next_i();
+          Info[_i0].OpenInfo->New.Width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+          Info[_i0].Height = ((-2 * (next_i()%2)) + 1) * next_i();
+          Info[_i0].Width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = LoadBlankCanvas(Info);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_Info0; _aux++) {
+          free(Info[_aux].OpenInfo);
+          }
+          free(Info);
+        
+        break;
+    }
     default:
         usage();
         break;

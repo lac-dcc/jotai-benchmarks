@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static inline unsigned int file_hash(struct nfs_fh *f)
 	return tmp & (FILE_NRHASH - 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,9 +80,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_f0 = 65025;
+          struct nfs_fh * f = (struct nfs_fh *) malloc(_len_f0*sizeof(struct nfs_fh));
+          for(int _i0 = 0; _i0 < _len_f0; _i0++) {
+              int _len_f__i0__data0 = 1;
+          f[_i0].data = (long *) malloc(_len_f__i0__data0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_f__i0__data0; _j0++) {
+            f[_i0].data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          unsigned int benchRet = file_hash(f);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_f0; _aux++) {
+          free(f[_aux].data);
+          }
+          free(f);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_f0 = 100;
+          struct nfs_fh * f = (struct nfs_fh *) malloc(_len_f0*sizeof(struct nfs_fh));
+          for(int _i0 = 0; _i0 < _len_f0; _i0++) {
+              int _len_f__i0__data0 = 1;
+          f[_i0].data = (long *) malloc(_len_f__i0__data0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_f__i0__data0; _j0++) {
+            f[_i0].data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          unsigned int benchRet = file_hash(f);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_f0; _aux++) {
+          free(f[_aux].data);
+          }
+          free(f);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int _len_f0 = 1;
           struct nfs_fh * f = (struct nfs_fh *) malloc(_len_f0*sizeof(struct nfs_fh));
           for(int _i0 = 0; _i0 < _len_f0; _i0++) {
@@ -95,7 +208,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_f__i0__data0; _j0++) {
             f[_i0].data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           unsigned int benchRet = file_hash(f);
           printf("%u\n", benchRet); 
           for(int _aux = 0; _aux < _len_f0; _aux++) {

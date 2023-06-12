@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline bool __l2cap_efs_supported(struct l2cap_conn
 		(conn->feat_mask & L2CAP_FEAT_EXT_FLOW));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,15 +77,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_conn0 = 65025;
+          struct l2cap_conn * conn = (struct l2cap_conn *) malloc(_len_conn0*sizeof(struct l2cap_conn));
+          for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
+              conn[_i0].local_fixed_chan = ((-2 * (next_i()%2)) + 1) * next_i();
+          conn[_i0].feat_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = __l2cap_efs_supported(conn);
+          printf("%d\n", benchRet); 
+          free(conn);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_conn0 = 100;
+          struct l2cap_conn * conn = (struct l2cap_conn *) malloc(_len_conn0*sizeof(struct l2cap_conn));
+          for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
+              conn[_i0].local_fixed_chan = ((-2 * (next_i()%2)) + 1) * next_i();
+          conn[_i0].feat_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = __l2cap_efs_supported(conn);
+          printf("%d\n", benchRet); 
+          free(conn);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_conn0 = 1;
           struct l2cap_conn * conn = (struct l2cap_conn *) malloc(_len_conn0*sizeof(struct l2cap_conn));
           for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
-            conn[_i0].local_fixed_chan = ((-2 * (next_i()%2)) + 1) * next_i();
-        conn[_i0].feat_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              conn[_i0].local_fixed_chan = ((-2 * (next_i()%2)) + 1) * next_i();
+          conn[_i0].feat_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = __l2cap_efs_supported(conn);
           printf("%d\n", benchRet); 
           free(conn);

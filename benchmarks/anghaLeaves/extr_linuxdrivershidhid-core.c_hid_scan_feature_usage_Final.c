@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ __attribute__((used)) static void hid_scan_feature_usage(struct hid_parser *pars
 		parser->scan_flags |= HID_SCAN_FLAG_MT_WIN_8;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,19 +85,82 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int usage = 100;
+        
           int _len_parser0 = 1;
           struct hid_parser * parser = (struct hid_parser *) malloc(_len_parser0*sizeof(struct hid_parser));
           for(int _i0 = 0; _i0 < _len_parser0; _i0++) {
-            parser[_i0].scan_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        parser[_i0].global.report_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        parser[_i0].global.report_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              parser[_i0].scan_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          parser[_i0].global.report_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          parser[_i0].global.report_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           hid_scan_feature_usage(parser,usage);
           free(parser);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int usage = 255;
+        
+          int _len_parser0 = 65025;
+          struct hid_parser * parser = (struct hid_parser *) malloc(_len_parser0*sizeof(struct hid_parser));
+          for(int _i0 = 0; _i0 < _len_parser0; _i0++) {
+              parser[_i0].scan_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          parser[_i0].global.report_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          parser[_i0].global.report_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          hid_scan_feature_usage(parser,usage);
+          free(parser);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int usage = 10;
+        
+          int _len_parser0 = 100;
+          struct hid_parser * parser = (struct hid_parser *) malloc(_len_parser0*sizeof(struct hid_parser));
+          for(int _i0 = 0; _i0 < _len_parser0; _i0++) {
+              parser[_i0].scan_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          parser[_i0].global.report_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          parser[_i0].global.report_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          hid_scan_feature_usage(parser,usage);
+          free(parser);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int usage = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_parser0 = 1;
+          struct hid_parser * parser = (struct hid_parser *) malloc(_len_parser0*sizeof(struct hid_parser));
+          for(int _i0 = 0; _i0 < _len_parser0; _i0++) {
+              parser[_i0].scan_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          parser[_i0].global.report_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          parser[_i0].global.report_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          hid_scan_feature_usage(parser,usage);
+          free(parser);
+        
+        break;
+    }
     default:
         usage();
         break;

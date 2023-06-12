@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static inline size_t read_cnt(struct n_tty_data *ldata)
 	return ldata->read_head - ldata->read_tail;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,15 +74,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_ldata0 = 65025;
+          struct n_tty_data * ldata = (struct n_tty_data *) malloc(_len_ldata0*sizeof(struct n_tty_data));
+          for(int _i0 = 0; _i0 < _len_ldata0; _i0++) {
+              ldata[_i0].read_head = ((-2 * (next_i()%2)) + 1) * next_i();
+          ldata[_i0].read_tail = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = read_cnt(ldata);
+          printf("%lu\n", benchRet); 
+          free(ldata);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_ldata0 = 100;
+          struct n_tty_data * ldata = (struct n_tty_data *) malloc(_len_ldata0*sizeof(struct n_tty_data));
+          for(int _i0 = 0; _i0 < _len_ldata0; _i0++) {
+              ldata[_i0].read_head = ((-2 * (next_i()%2)) + 1) * next_i();
+          ldata[_i0].read_tail = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = read_cnt(ldata);
+          printf("%lu\n", benchRet); 
+          free(ldata);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_ldata0 = 1;
           struct n_tty_data * ldata = (struct n_tty_data *) malloc(_len_ldata0*sizeof(struct n_tty_data));
           for(int _i0 = 0; _i0 < _len_ldata0; _i0++) {
-            ldata[_i0].read_head = ((-2 * (next_i()%2)) + 1) * next_i();
-        ldata[_i0].read_tail = ((-2 * (next_i()%2)) + 1) * next_i();
+              ldata[_i0].read_head = ((-2 * (next_i()%2)) + 1) * next_i();
+          ldata[_i0].read_tail = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = read_cnt(ldata);
           printf("%lu\n", benchRet); 
           free(ldata);

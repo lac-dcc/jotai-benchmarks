@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ void thread_enable_send_importance(thread_t thread, boolean_t enable)
 		thread->options &= ~TH_OPT_SEND_IMPORTANCE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,31 +87,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long enable = 100;
+        
           int _len_thread0 = 1;
           struct TYPE_3__ * thread = (struct TYPE_3__ *) malloc(_len_thread0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_thread0; _i0++) {
-            thread[_i0].options = ((-2 * (next_i()%2)) + 1) * next_i();
+              thread[_i0].options = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          thread_enable_send_importance(thread,enable);
+          free(thread);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long enable = 255;
+        
+          int _len_thread0 = 65025;
+          struct TYPE_3__ * thread = (struct TYPE_3__ *) malloc(_len_thread0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_thread0; _i0++) {
+              thread[_i0].options = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           thread_enable_send_importance(thread,enable);
           free(thread);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long enable = 10;
+        
           int _len_thread0 = 100;
           struct TYPE_3__ * thread = (struct TYPE_3__ *) malloc(_len_thread0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_thread0; _i0++) {
-            thread[_i0].options = ((-2 * (next_i()%2)) + 1) * next_i();
+              thread[_i0].options = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           thread_enable_send_importance(thread,enable);
           free(thread);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_thread0 = 1;
+          struct TYPE_3__ * thread = (struct TYPE_3__ *) malloc(_len_thread0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_thread0; _i0++) {
+              thread[_i0].options = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          thread_enable_send_importance(thread,enable);
+          free(thread);
+        
+        break;
+    }
     default:
         usage();
         break;

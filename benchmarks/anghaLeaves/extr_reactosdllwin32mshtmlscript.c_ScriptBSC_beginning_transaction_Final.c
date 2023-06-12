@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static HRESULT ScriptBSC_beginning_transaction(BSCallback 
     return S_FALSE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +77,144 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_bsc0 = 65025;
+          int * bsc = (int *) malloc(_len_bsc0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_bsc0; _i0++) {
+            bsc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_additional_headers0 = 65025;
+          int ** additional_headers = (int **) malloc(_len_additional_headers0*sizeof(int *));
+          for(int _i0 = 0; _i0 < _len_additional_headers0; _i0++) {
+            int _len_additional_headers1 = 1;
+            additional_headers[_i0] = (int *) malloc(_len_additional_headers1*sizeof(int));
+            for(int _i1 = 0; _i1 < _len_additional_headers1; _i1++) {
+              additional_headers[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int benchRet = ScriptBSC_beginning_transaction(bsc,additional_headers);
+          printf("%d\n", benchRet); 
+          free(bsc);
+          for(int i1 = 0; i1 < _len_additional_headers0; i1++) {
+              free(additional_headers[i1]);
+          }
+          free(additional_headers);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_bsc0 = 100;
+          int * bsc = (int *) malloc(_len_bsc0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_bsc0; _i0++) {
+            bsc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_additional_headers0 = 100;
+          int ** additional_headers = (int **) malloc(_len_additional_headers0*sizeof(int *));
+          for(int _i0 = 0; _i0 < _len_additional_headers0; _i0++) {
+            int _len_additional_headers1 = 1;
+            additional_headers[_i0] = (int *) malloc(_len_additional_headers1*sizeof(int));
+            for(int _i1 = 0; _i1 < _len_additional_headers1; _i1++) {
+              additional_headers[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int benchRet = ScriptBSC_beginning_transaction(bsc,additional_headers);
+          printf("%d\n", benchRet); 
+          free(bsc);
+          for(int i1 = 0; i1 < _len_additional_headers0; i1++) {
+              free(additional_headers[i1]);
+          }
+          free(additional_headers);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_bsc0 = 1;
           int * bsc = (int *) malloc(_len_bsc0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_bsc0; _i0++) {
             bsc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_additional_headers0 = 1;
           int ** additional_headers = (int **) malloc(_len_additional_headers0*sizeof(int *));
           for(int _i0 = 0; _i0 < _len_additional_headers0; _i0++) {
@@ -98,11 +224,11 @@ int main(int argc, char *argv[]) {
               additional_headers[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           int benchRet = ScriptBSC_beginning_transaction(bsc,additional_headers);
           printf("%d\n", benchRet); 
           free(bsc);
           for(int i1 = 0; i1 < _len_additional_headers0; i1++) {
-            int _len_additional_headers1 = 1;
               free(additional_headers[i1]);
           }
           free(additional_headers);

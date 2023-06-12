@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ __attribute__((used)) static inline TLBFuncDesc *TLB_get_funcdesc_by_memberid(TL
     return NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,16 +87,132 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 3326
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 1284
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 1284
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 1284
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 1284
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 1283
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 1793
+          // ------------------------------- 
+
+          long n = 255;
+        
+          long memid = 255;
+        
+          int _len_funcdescs0 = 65025;
+          struct TYPE_6__ * funcdescs = (struct TYPE_6__ *) malloc(_len_funcdescs0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_funcdescs0; _i0++) {
+              funcdescs[_i0].funcdesc.memid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          struct TYPE_6__ * benchRet = TLB_get_funcdesc_by_memberid(funcdescs,n,memid);
+          free(funcdescs);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 141
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 59
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 59
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 59
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 59
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 58
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 78
+          // ------------------------------- 
+
           long n = 10;
+        
           long memid = 10;
+        
           int _len_funcdescs0 = 100;
           struct TYPE_6__ * funcdescs = (struct TYPE_6__ *) malloc(_len_funcdescs0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_funcdescs0; _i0++) {
-            funcdescs[_i0].funcdesc.memid = ((-2 * (next_i()%2)) + 1) * next_i();
+              funcdescs[_i0].funcdesc.memid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          struct TYPE_6__ * benchRet = TLB_get_funcdesc_by_memberid(funcdescs,n,memid);
+          free(funcdescs);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          long n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long memid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_funcdescs0 = 1;
+          struct TYPE_6__ * funcdescs = (struct TYPE_6__ *) malloc(_len_funcdescs0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_funcdescs0; _i0++) {
+              funcdescs[_i0].funcdesc.memid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           struct TYPE_6__ * benchRet = TLB_get_funcdesc_by_memberid(funcdescs,n,memid);
           free(funcdescs);
         

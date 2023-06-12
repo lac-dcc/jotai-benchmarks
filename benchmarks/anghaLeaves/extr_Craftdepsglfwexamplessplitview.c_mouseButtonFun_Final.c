@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -84,12 +86,6 @@ __attribute__((used)) static void mouseButtonFun(GLFWwindow* window, int button,
     do_redraw = 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,35 +102,82 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int button = 100;
+        
           int action = 100;
+        
           int mods = 100;
+        
           int _len_window0 = 1;
           int * window = (int *) malloc(_len_window0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_window0; _i0++) {
             window[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          mouseButtonFun(window,button,action,mods);
+          free(window);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int button = 255;
+        
+          int action = 255;
+        
+          int mods = 255;
+        
+          int _len_window0 = 65025;
+          int * window = (int *) malloc(_len_window0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_window0; _i0++) {
+            window[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           mouseButtonFun(window,button,action,mods);
           free(window);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int button = 10;
+        
           int action = 10;
+        
           int mods = 10;
+        
           int _len_window0 = 100;
           int * window = (int *) malloc(_len_window0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_window0; _i0++) {
             window[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           mouseButtonFun(window,button,action,mods);
           free(window);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int button = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int action = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int mods = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_window0 = 1;
+          int * window = (int *) malloc(_len_window0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_window0; _i0++) {
+            window[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          mouseButtonFun(window,button,action,mods);
+          free(window);
+        
+        break;
+    }
     default:
         usage();
         break;

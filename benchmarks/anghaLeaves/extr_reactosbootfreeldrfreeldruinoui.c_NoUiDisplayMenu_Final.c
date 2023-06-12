@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ BOOLEAN NoUiDisplayMenu(PCSTR MenuHeader, PCSTR MenuFooter, BOOLEAN ShowBootOpti
     return TRUE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,23 +85,33 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int MenuHeader = 100;
+        
           int MenuFooter = 100;
+        
           int ShowBootOptions = 100;
+        
           int MenuItemCount = 100;
+        
           int DefaultMenuItem = 100;
+        
           int MenuTimeOut = 100;
+        
           int CanEscape = 100;
+        
           int KeyPressFilter = 100;
+        
           int _len_MenuItemList0 = 1;
           int * MenuItemList = (int *) malloc(_len_MenuItemList0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_MenuItemList0; _i0++) {
             MenuItemList[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_SelectedMenuItem0 = 1;
           int * SelectedMenuItem = (int *) malloc(_len_SelectedMenuItem0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_SelectedMenuItem0; _i0++) {
             SelectedMenuItem[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = NoUiDisplayMenu(MenuHeader,MenuFooter,ShowBootOptions,MenuItemList,MenuItemCount,DefaultMenuItem,MenuTimeOut,SelectedMenuItem,CanEscape,KeyPressFilter);
           printf("%d\n", benchRet); 
           free(MenuItemList);
@@ -112,7 +119,120 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int MenuHeader = 255;
+        
+          int MenuFooter = 255;
+        
+          int ShowBootOptions = 255;
+        
+          int MenuItemCount = 255;
+        
+          int DefaultMenuItem = 255;
+        
+          int MenuTimeOut = 255;
+        
+          int CanEscape = 255;
+        
+          int KeyPressFilter = 255;
+        
+          int _len_MenuItemList0 = 65025;
+          int * MenuItemList = (int *) malloc(_len_MenuItemList0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_MenuItemList0; _i0++) {
+            MenuItemList[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_SelectedMenuItem0 = 65025;
+          int * SelectedMenuItem = (int *) malloc(_len_SelectedMenuItem0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_SelectedMenuItem0; _i0++) {
+            SelectedMenuItem[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = NoUiDisplayMenu(MenuHeader,MenuFooter,ShowBootOptions,MenuItemList,MenuItemCount,DefaultMenuItem,MenuTimeOut,SelectedMenuItem,CanEscape,KeyPressFilter);
+          printf("%d\n", benchRet); 
+          free(MenuItemList);
+          free(SelectedMenuItem);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int MenuHeader = 10;
+        
+          int MenuFooter = 10;
+        
+          int ShowBootOptions = 10;
+        
+          int MenuItemCount = 10;
+        
+          int DefaultMenuItem = 10;
+        
+          int MenuTimeOut = 10;
+        
+          int CanEscape = 10;
+        
+          int KeyPressFilter = 10;
+        
+          int _len_MenuItemList0 = 100;
+          int * MenuItemList = (int *) malloc(_len_MenuItemList0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_MenuItemList0; _i0++) {
+            MenuItemList[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_SelectedMenuItem0 = 100;
+          int * SelectedMenuItem = (int *) malloc(_len_SelectedMenuItem0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_SelectedMenuItem0; _i0++) {
+            SelectedMenuItem[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = NoUiDisplayMenu(MenuHeader,MenuFooter,ShowBootOptions,MenuItemList,MenuItemCount,DefaultMenuItem,MenuTimeOut,SelectedMenuItem,CanEscape,KeyPressFilter);
+          printf("%d\n", benchRet); 
+          free(MenuItemList);
+          free(SelectedMenuItem);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int MenuHeader = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int MenuFooter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int ShowBootOptions = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int MenuItemCount = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int DefaultMenuItem = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int MenuTimeOut = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int CanEscape = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int KeyPressFilter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_MenuItemList0 = 1;
+          int * MenuItemList = (int *) malloc(_len_MenuItemList0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_MenuItemList0; _i0++) {
+            MenuItemList[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_SelectedMenuItem0 = 1;
+          int * SelectedMenuItem = (int *) malloc(_len_SelectedMenuItem0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_SelectedMenuItem0; _i0++) {
+            SelectedMenuItem[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = NoUiDisplayMenu(MenuHeader,MenuFooter,ShowBootOptions,MenuItemList,MenuItemCount,DefaultMenuItem,MenuTimeOut,SelectedMenuItem,CanEscape,KeyPressFilter);
+          printf("%d\n", benchRet); 
+          free(MenuItemList);
+          free(SelectedMenuItem);
+        
+        break;
+    }
     default:
         usage();
         break;

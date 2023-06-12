@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ __attribute__((used)) static int ipipe_validate_gic_params(struct vpfe_ipipe_gic
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,27 +89,75 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_gic0 = 1;
+          int _len_gic0 = 65025;
           struct vpfe_ipipe_gic * gic = (struct vpfe_ipipe_gic *) malloc(_len_gic0*sizeof(struct vpfe_ipipe_gic));
           for(int _i0 = 0; _i0 < _len_gic0; _i0++) {
-            gic[_i0].en = ((-2 * (next_i()%2)) + 1) * next_i();
-        gic[_i0].gain = ((-2 * (next_i()%2)) + 1) * next_i();
-        gic[_i0].thr = ((-2 * (next_i()%2)) + 1) * next_i();
-        gic[_i0].slope = ((-2 * (next_i()%2)) + 1) * next_i();
-        gic[_i0].apply_lsc_gain = ((-2 * (next_i()%2)) + 1) * next_i();
-        gic[_i0].nf2_thr_gain.integer = ((-2 * (next_i()%2)) + 1) * next_i();
-        gic[_i0].nf2_thr_gain.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
+              gic[_i0].en = ((-2 * (next_i()%2)) + 1) * next_i();
+          gic[_i0].gain = ((-2 * (next_i()%2)) + 1) * next_i();
+          gic[_i0].thr = ((-2 * (next_i()%2)) + 1) * next_i();
+          gic[_i0].slope = ((-2 * (next_i()%2)) + 1) * next_i();
+          gic[_i0].apply_lsc_gain = ((-2 * (next_i()%2)) + 1) * next_i();
+          gic[_i0].nf2_thr_gain.integer = ((-2 * (next_i()%2)) + 1) * next_i();
+          gic[_i0].nf2_thr_gain.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = ipipe_validate_gic_params(gic);
           printf("%d\n", benchRet); 
           free(gic);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_gic0 = 100;
+          struct vpfe_ipipe_gic * gic = (struct vpfe_ipipe_gic *) malloc(_len_gic0*sizeof(struct vpfe_ipipe_gic));
+          for(int _i0 = 0; _i0 < _len_gic0; _i0++) {
+              gic[_i0].en = ((-2 * (next_i()%2)) + 1) * next_i();
+          gic[_i0].gain = ((-2 * (next_i()%2)) + 1) * next_i();
+          gic[_i0].thr = ((-2 * (next_i()%2)) + 1) * next_i();
+          gic[_i0].slope = ((-2 * (next_i()%2)) + 1) * next_i();
+          gic[_i0].apply_lsc_gain = ((-2 * (next_i()%2)) + 1) * next_i();
+          gic[_i0].nf2_thr_gain.integer = ((-2 * (next_i()%2)) + 1) * next_i();
+          gic[_i0].nf2_thr_gain.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = ipipe_validate_gic_params(gic);
+          printf("%d\n", benchRet); 
+          free(gic);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_gic0 = 1;
+          struct vpfe_ipipe_gic * gic = (struct vpfe_ipipe_gic *) malloc(_len_gic0*sizeof(struct vpfe_ipipe_gic));
+          for(int _i0 = 0; _i0 < _len_gic0; _i0++) {
+              gic[_i0].en = ((-2 * (next_i()%2)) + 1) * next_i();
+          gic[_i0].gain = ((-2 * (next_i()%2)) + 1) * next_i();
+          gic[_i0].thr = ((-2 * (next_i()%2)) + 1) * next_i();
+          gic[_i0].slope = ((-2 * (next_i()%2)) + 1) * next_i();
+          gic[_i0].apply_lsc_gain = ((-2 * (next_i()%2)) + 1) * next_i();
+          gic[_i0].nf2_thr_gain.integer = ((-2 * (next_i()%2)) + 1) * next_i();
+          gic[_i0].nf2_thr_gain.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = ipipe_validate_gic_params(gic);
+          printf("%d\n", benchRet); 
+          free(gic);
+        
+        break;
+    }
     default:
         usage();
         break;

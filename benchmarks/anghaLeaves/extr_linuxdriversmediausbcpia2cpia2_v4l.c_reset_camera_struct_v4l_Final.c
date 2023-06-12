@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -85,12 +87,6 @@ __attribute__((used)) static void reset_camera_struct_v4l(struct camera_data *ca
 	cam->pixelformat = V4L2_PIX_FMT_JPEG;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,22 +99,153 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_cam0 = 65025;
+          struct camera_data * cam = (struct camera_data *) malloc(_len_cam0*sizeof(struct camera_data));
+          for(int _i0 = 0; _i0 < _len_cam0; _i0++) {
+              cam[_i0].pixelformat = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].params.camera_state.stream_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cam[_i0].params.flicker_control.flicker_mode_req = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cam[_i0].params.roi.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].params.roi.width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          cam[_i0].num_frames = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].frame_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          reset_camera_struct_v4l(cam);
+          free(cam);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_cam0 = 100;
+          struct camera_data * cam = (struct camera_data *) malloc(_len_cam0*sizeof(struct camera_data));
+          for(int _i0 = 0; _i0 < _len_cam0; _i0++) {
+              cam[_i0].pixelformat = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].params.camera_state.stream_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cam[_i0].params.flicker_control.flicker_mode_req = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cam[_i0].params.roi.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].params.roi.width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          cam[_i0].num_frames = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].frame_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          reset_camera_struct_v4l(cam);
+          free(cam);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int _len_cam0 = 1;
           struct camera_data * cam = (struct camera_data *) malloc(_len_cam0*sizeof(struct camera_data));
           for(int _i0 = 0; _i0 < _len_cam0; _i0++) {
-            cam[_i0].pixelformat = ((-2 * (next_i()%2)) + 1) * next_i();
-        cam[_i0].params.camera_state.stream_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        cam[_i0].params.flicker_control.flicker_mode_req = ((-2 * (next_i()%2)) + 1) * next_i();
-        cam[_i0].params.roi.height = ((-2 * (next_i()%2)) + 1) * next_i();
-        cam[_i0].params.roi.width = ((-2 * (next_i()%2)) + 1) * next_i();
-        cam[_i0].num_frames = ((-2 * (next_i()%2)) + 1) * next_i();
-        cam[_i0].frame_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        cam[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
-        cam[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+              cam[_i0].pixelformat = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].params.camera_state.stream_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cam[_i0].params.flicker_control.flicker_mode_req = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cam[_i0].params.roi.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].params.roi.width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          cam[_i0].num_frames = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].frame_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           reset_camera_struct_v4l(cam);
           free(cam);
         

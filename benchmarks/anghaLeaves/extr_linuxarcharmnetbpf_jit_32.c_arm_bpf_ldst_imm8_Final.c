@@ -70,12 +70,6 @@ __attribute__((used)) static u32 arm_bpf_ldst_imm8(u32 op, u8 rt, u8 rn, s16 imm
 	return op | (imm8 & 0xf0) << 4 | (imm8 & 0x0f);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,9 +86,13 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int op = 100;
+        
           int rt = 100;
+        
           int rn = 100;
+        
           int imm8 = 100;
+        
           int benchRet = arm_bpf_ldst_imm8(op,rt,rn,imm8);
           printf("%d\n", benchRet); 
         
@@ -104,9 +102,13 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int op = 255;
+        
           int rt = 255;
+        
           int rn = 255;
+        
           int imm8 = 255;
+        
           int benchRet = arm_bpf_ldst_imm8(op,rt,rn,imm8);
           printf("%d\n", benchRet); 
         
@@ -116,15 +118,18 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int op = 10;
+        
           int rt = 10;
+        
           int rn = 10;
+        
           int imm8 = 10;
+        
           int benchRet = arm_bpf_ldst_imm8(op,rt,rn,imm8);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

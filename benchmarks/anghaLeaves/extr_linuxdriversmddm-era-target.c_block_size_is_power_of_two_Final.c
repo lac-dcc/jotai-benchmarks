@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static bool block_size_is_power_of_two(struct era *era)
 	return era->sectors_per_block_shift >= 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_era0 = 1;
+          int _len_era0 = 65025;
           struct era * era = (struct era *) malloc(_len_era0*sizeof(struct era));
           for(int _i0 = 0; _i0 < _len_era0; _i0++) {
-            era[_i0].sectors_per_block_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+              era[_i0].sectors_per_block_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = block_size_is_power_of_two(era);
           printf("%d\n", benchRet); 
           free(era);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_era0 = 100;
           struct era * era = (struct era *) malloc(_len_era0*sizeof(struct era));
           for(int _i0 = 0; _i0 < _len_era0; _i0++) {
-            era[_i0].sectors_per_block_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+              era[_i0].sectors_per_block_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = block_size_is_power_of_two(era);
           printf("%d\n", benchRet); 
           free(era);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_era0 = 1;
+          struct era * era = (struct era *) malloc(_len_era0*sizeof(struct era));
+          for(int _i0 = 0; _i0 < _len_era0; _i0++) {
+              era[_i0].sectors_per_block_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = block_size_is_power_of_two(era);
+          printf("%d\n", benchRet); 
+          free(era);
+        
+        break;
+    }
     default:
         usage();
         break;

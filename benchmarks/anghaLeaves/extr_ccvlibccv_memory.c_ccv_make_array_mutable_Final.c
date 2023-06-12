@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ void ccv_make_array_mutable(ccv_array_t* array)
 	array->type &= ~CCV_REUSABLE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,21 +78,54 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_array0 = 1;
+          int _len_array0 = 65025;
           struct TYPE_3__ * array = (struct TYPE_3__ *) malloc(_len_array0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_array0; _i0++) {
-            array[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        array[_i0].sig = ((-2 * (next_i()%2)) + 1) * next_i();
+              array[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          array[_i0].sig = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ccv_make_array_mutable(array);
           free(array);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_array0 = 100;
+          struct TYPE_3__ * array = (struct TYPE_3__ *) malloc(_len_array0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_array0; _i0++) {
+              array[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          array[_i0].sig = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ccv_make_array_mutable(array);
+          free(array);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_array0 = 1;
+          struct TYPE_3__ * array = (struct TYPE_3__ *) malloc(_len_array0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_array0; _i0++) {
+              array[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          array[_i0].sig = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ccv_make_array_mutable(array);
+          free(array);
+        
+        break;
+    }
     default:
         usage();
         break;

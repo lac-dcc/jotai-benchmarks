@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -77,12 +79,6 @@ __attribute__((used)) static u32 get_sensor_hwmon_index(struct sensor_data *sdat
 	return ++sensor_groups[sdata->type].hwmon_index;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,20 +95,25 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int count = 100;
+        
           int _len_sdata0 = 1;
           struct sensor_data * sdata = (struct sensor_data *) malloc(_len_sdata0*sizeof(struct sensor_data));
           for(int _i0 = 0; _i0 < _len_sdata0; _i0++) {
-            sdata[_i0].opal_index = ((-2 * (next_i()%2)) + 1) * next_i();
-        sdata[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        sdata[_i0].hwmon_index = ((-2 * (next_i()%2)) + 1) * next_i();
+              sdata[_i0].opal_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          sdata[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          sdata[_i0].hwmon_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_sdata_table0 = 1;
           struct sensor_data * sdata_table = (struct sensor_data *) malloc(_len_sdata_table0*sizeof(struct sensor_data));
           for(int _i0 = 0; _i0 < _len_sdata_table0; _i0++) {
-            sdata_table[_i0].opal_index = ((-2 * (next_i()%2)) + 1) * next_i();
-        sdata_table[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        sdata_table[_i0].hwmon_index = ((-2 * (next_i()%2)) + 1) * next_i();
+              sdata_table[_i0].opal_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          sdata_table[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          sdata_table[_i0].hwmon_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = get_sensor_hwmon_index(sdata,sdata_table,count);
           printf("%d\n", benchRet); 
           free(sdata);
@@ -120,7 +121,66 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int count = 255;
+        
+          int _len_sdata0 = 65025;
+          struct sensor_data * sdata = (struct sensor_data *) malloc(_len_sdata0*sizeof(struct sensor_data));
+          for(int _i0 = 0; _i0 < _len_sdata0; _i0++) {
+              sdata[_i0].opal_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          sdata[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          sdata[_i0].hwmon_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_sdata_table0 = 65025;
+          struct sensor_data * sdata_table = (struct sensor_data *) malloc(_len_sdata_table0*sizeof(struct sensor_data));
+          for(int _i0 = 0; _i0 < _len_sdata_table0; _i0++) {
+              sdata_table[_i0].opal_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          sdata_table[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          sdata_table[_i0].hwmon_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = get_sensor_hwmon_index(sdata,sdata_table,count);
+          printf("%d\n", benchRet); 
+          free(sdata);
+          free(sdata_table);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int count = 10;
+        
+          int _len_sdata0 = 100;
+          struct sensor_data * sdata = (struct sensor_data *) malloc(_len_sdata0*sizeof(struct sensor_data));
+          for(int _i0 = 0; _i0 < _len_sdata0; _i0++) {
+              sdata[_i0].opal_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          sdata[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          sdata[_i0].hwmon_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_sdata_table0 = 100;
+          struct sensor_data * sdata_table = (struct sensor_data *) malloc(_len_sdata_table0*sizeof(struct sensor_data));
+          for(int _i0 = 0; _i0 < _len_sdata_table0; _i0++) {
+              sdata_table[_i0].opal_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          sdata_table[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          sdata_table[_i0].hwmon_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = get_sensor_hwmon_index(sdata,sdata_table,count);
+          printf("%d\n", benchRet); 
+          free(sdata);
+          free(sdata_table);
+        
+        break;
+    }
     default:
         usage();
         break;

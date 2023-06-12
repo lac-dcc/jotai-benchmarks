@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ snd_hda_codec_load_dsp_prepare(struct hda_codec *codec, unsigned int format,
 	return -ENOSYS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,21 +80,206 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           unsigned int format = 100;
+        
           unsigned int size = 100;
+        
           int _len_codec0 = 1;
           struct hda_codec * codec = (struct hda_codec *) malloc(_len_codec0*sizeof(struct hda_codec));
           for(int _i0 = 0; _i0 < _len_codec0; _i0++) {
-            codec[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              codec[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_bufp0 = 1;
           struct snd_dma_buffer * bufp = (struct snd_dma_buffer *) malloc(_len_bufp0*sizeof(struct snd_dma_buffer));
           for(int _i0 = 0; _i0 < _len_bufp0; _i0++) {
-            bufp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              bufp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = snd_hda_codec_load_dsp_prepare(codec,format,size,bufp);
+          printf("%d\n", benchRet); 
+          free(codec);
+          free(bufp);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int format = 255;
+        
+          unsigned int size = 255;
+        
+          int _len_codec0 = 65025;
+          struct hda_codec * codec = (struct hda_codec *) malloc(_len_codec0*sizeof(struct hda_codec));
+          for(int _i0 = 0; _i0 < _len_codec0; _i0++) {
+              codec[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_bufp0 = 65025;
+          struct snd_dma_buffer * bufp = (struct snd_dma_buffer *) malloc(_len_bufp0*sizeof(struct snd_dma_buffer));
+          for(int _i0 = 0; _i0 < _len_bufp0; _i0++) {
+              bufp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = snd_hda_codec_load_dsp_prepare(codec,format,size,bufp);
+          printf("%d\n", benchRet); 
+          free(codec);
+          free(bufp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int format = 10;
+        
+          unsigned int size = 10;
+        
+          int _len_codec0 = 100;
+          struct hda_codec * codec = (struct hda_codec *) malloc(_len_codec0*sizeof(struct hda_codec));
+          for(int _i0 = 0; _i0 < _len_codec0; _i0++) {
+              codec[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_bufp0 = 100;
+          struct snd_dma_buffer * bufp = (struct snd_dma_buffer *) malloc(_len_bufp0*sizeof(struct snd_dma_buffer));
+          for(int _i0 = 0; _i0 < _len_bufp0; _i0++) {
+              bufp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = snd_hda_codec_load_dsp_prepare(codec,format,size,bufp);
+          printf("%d\n", benchRet); 
+          free(codec);
+          free(bufp);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_codec0 = 1;
+          struct hda_codec * codec = (struct hda_codec *) malloc(_len_codec0*sizeof(struct hda_codec));
+          for(int _i0 = 0; _i0 < _len_codec0; _i0++) {
+              codec[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_bufp0 = 1;
+          struct snd_dma_buffer * bufp = (struct snd_dma_buffer *) malloc(_len_bufp0*sizeof(struct snd_dma_buffer));
+          for(int _i0 = 0; _i0 < _len_bufp0; _i0++) {
+              bufp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = snd_hda_codec_load_dsp_prepare(codec,format,size,bufp);
           printf("%d\n", benchRet); 
           free(codec);

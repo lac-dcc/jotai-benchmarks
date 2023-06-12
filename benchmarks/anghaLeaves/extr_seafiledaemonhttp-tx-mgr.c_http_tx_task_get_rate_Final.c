@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ http_tx_task_get_rate (HttpTxTask *task)
     return task->last_tx_bytes;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_task0 = 1;
+          int _len_task0 = 65025;
           struct TYPE_3__ * task = (struct TYPE_3__ *) malloc(_len_task0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_task0; _i0++) {
-            task[_i0].last_tx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+              task[_i0].last_tx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = http_tx_task_get_rate(task);
           printf("%d\n", benchRet); 
           free(task);
@@ -102,15 +99,32 @@ int main(int argc, char *argv[]) {
           int _len_task0 = 100;
           struct TYPE_3__ * task = (struct TYPE_3__ *) malloc(_len_task0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_task0; _i0++) {
-            task[_i0].last_tx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+              task[_i0].last_tx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = http_tx_task_get_rate(task);
           printf("%d\n", benchRet); 
           free(task);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_task0 = 1;
+          struct TYPE_3__ * task = (struct TYPE_3__ *) malloc(_len_task0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_task0; _i0++) {
+              task[_i0].last_tx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = http_tx_task_get_rate(task);
+          printf("%d\n", benchRet); 
+          free(task);
+        
+        break;
+    }
     default:
         usage();
         break;

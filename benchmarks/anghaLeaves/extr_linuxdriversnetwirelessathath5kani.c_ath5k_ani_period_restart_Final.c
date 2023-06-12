@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ ath5k_ani_period_restart(struct ath5k_ani_state *as)
 	as->listen_time = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,25 +82,66 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_as0 = 1;
+          int _len_as0 = 65025;
           struct ath5k_ani_state * as = (struct ath5k_ani_state *) malloc(_len_as0*sizeof(struct ath5k_ani_state));
           for(int _i0 = 0; _i0 < _len_as0; _i0++) {
-            as[_i0].listen_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        as[_i0].cck_errors = ((-2 * (next_i()%2)) + 1) * next_i();
-        as[_i0].ofdm_errors = ((-2 * (next_i()%2)) + 1) * next_i();
-        as[_i0].last_listen = ((-2 * (next_i()%2)) + 1) * next_i();
-        as[_i0].last_cck_errors = ((-2 * (next_i()%2)) + 1) * next_i();
-        as[_i0].last_ofdm_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+              as[_i0].listen_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          as[_i0].cck_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          as[_i0].ofdm_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          as[_i0].last_listen = ((-2 * (next_i()%2)) + 1) * next_i();
+          as[_i0].last_cck_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          as[_i0].last_ofdm_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ath5k_ani_period_restart(as);
           free(as);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_as0 = 100;
+          struct ath5k_ani_state * as = (struct ath5k_ani_state *) malloc(_len_as0*sizeof(struct ath5k_ani_state));
+          for(int _i0 = 0; _i0 < _len_as0; _i0++) {
+              as[_i0].listen_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          as[_i0].cck_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          as[_i0].ofdm_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          as[_i0].last_listen = ((-2 * (next_i()%2)) + 1) * next_i();
+          as[_i0].last_cck_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          as[_i0].last_ofdm_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ath5k_ani_period_restart(as);
+          free(as);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_as0 = 1;
+          struct ath5k_ani_state * as = (struct ath5k_ani_state *) malloc(_len_as0*sizeof(struct ath5k_ani_state));
+          for(int _i0 = 0; _i0 < _len_as0; _i0++) {
+              as[_i0].listen_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          as[_i0].cck_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          as[_i0].ofdm_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          as[_i0].last_listen = ((-2 * (next_i()%2)) + 1) * next_i();
+          as[_i0].last_cck_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          as[_i0].last_ofdm_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ath5k_ani_period_restart(as);
+          free(as);
+        
+        break;
+    }
     default:
         usage();
         break;

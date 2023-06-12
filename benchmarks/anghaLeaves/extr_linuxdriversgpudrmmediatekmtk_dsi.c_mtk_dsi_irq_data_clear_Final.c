@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static void mtk_dsi_irq_data_clear(struct mtk_dsi *dsi, u3
 	dsi->irq_data &= ~irq_bit;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,31 +80,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int irq_bit = 100;
+        
           int _len_dsi0 = 1;
           struct mtk_dsi * dsi = (struct mtk_dsi *) malloc(_len_dsi0*sizeof(struct mtk_dsi));
           for(int _i0 = 0; _i0 < _len_dsi0; _i0++) {
-            dsi[_i0].irq_data = ((-2 * (next_i()%2)) + 1) * next_i();
+              dsi[_i0].irq_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          mtk_dsi_irq_data_clear(dsi,irq_bit);
+          free(dsi);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int irq_bit = 255;
+        
+          int _len_dsi0 = 65025;
+          struct mtk_dsi * dsi = (struct mtk_dsi *) malloc(_len_dsi0*sizeof(struct mtk_dsi));
+          for(int _i0 = 0; _i0 < _len_dsi0; _i0++) {
+              dsi[_i0].irq_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           mtk_dsi_irq_data_clear(dsi,irq_bit);
           free(dsi);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int irq_bit = 10;
+        
           int _len_dsi0 = 100;
           struct mtk_dsi * dsi = (struct mtk_dsi *) malloc(_len_dsi0*sizeof(struct mtk_dsi));
           for(int _i0 = 0; _i0 < _len_dsi0; _i0++) {
-            dsi[_i0].irq_data = ((-2 * (next_i()%2)) + 1) * next_i();
+              dsi[_i0].irq_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           mtk_dsi_irq_data_clear(dsi,irq_bit);
           free(dsi);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int irq_bit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dsi0 = 1;
+          struct mtk_dsi * dsi = (struct mtk_dsi *) malloc(_len_dsi0*sizeof(struct mtk_dsi));
+          for(int _i0 = 0; _i0 < _len_dsi0; _i0++) {
+              dsi[_i0].irq_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mtk_dsi_irq_data_clear(dsi,irq_bit);
+          free(dsi);
+        
+        break;
+    }
     default:
         usage();
         break;

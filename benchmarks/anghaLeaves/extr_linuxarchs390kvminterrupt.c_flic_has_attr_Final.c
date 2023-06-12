@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -88,12 +90,6 @@ __attribute__((used)) static int flic_has_attr(struct kvm_device *dev,
 	return -ENXIO;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,19 +102,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dev0 = 1;
+          int _len_dev0 = 65025;
           struct kvm_device * dev = (struct kvm_device *) malloc(_len_dev0*sizeof(struct kvm_device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_attr0 = 1;
+        
+          int _len_attr0 = 65025;
           struct kvm_device_attr * attr = (struct kvm_device_attr *) malloc(_len_attr0*sizeof(struct kvm_device_attr));
           for(int _i0 = 0; _i0 < _len_attr0; _i0++) {
-            attr[_i0].group = ((-2 * (next_i()%2)) + 1) * next_i();
+              attr[_i0].group = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = flic_has_attr(dev,attr);
           printf("%d\n", benchRet); 
           free(dev);
@@ -126,7 +126,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dev0 = 100;
+          struct kvm_device * dev = (struct kvm_device *) malloc(_len_dev0*sizeof(struct kvm_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_attr0 = 100;
+          struct kvm_device_attr * attr = (struct kvm_device_attr *) malloc(_len_attr0*sizeof(struct kvm_device_attr));
+          for(int _i0 = 0; _i0 < _len_attr0; _i0++) {
+              attr[_i0].group = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = flic_has_attr(dev,attr);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(attr);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dev0 = 1;
+          struct kvm_device * dev = (struct kvm_device *) malloc(_len_dev0*sizeof(struct kvm_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_attr0 = 1;
+          struct kvm_device_attr * attr = (struct kvm_device_attr *) malloc(_len_attr0*sizeof(struct kvm_device_attr));
+          for(int _i0 = 0; _i0 < _len_attr0; _i0++) {
+              attr[_i0].group = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = flic_has_attr(dev,attr);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(attr);
+        
+        break;
+    }
     default:
         usage();
         break;

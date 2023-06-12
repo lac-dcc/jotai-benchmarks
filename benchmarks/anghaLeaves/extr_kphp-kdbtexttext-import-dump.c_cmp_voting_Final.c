@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ __attribute__((used)) static inline int cmp_voting (voting_t *x, voting_t *y) {
   }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,23 +89,154 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 38
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          int _len_x0 = 65025;
+          struct TYPE_4__ * x = (struct TYPE_4__ *) malloc(_len_x0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_x0; _i0++) {
+              x[_i0].owner_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].topic_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].voting_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_y0 = 65025;
+          struct TYPE_4__ * y = (struct TYPE_4__ *) malloc(_len_y0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_y0; _i0++) {
+              y[_i0].owner_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          y[_i0].topic_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          y[_i0].voting_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cmp_voting(x,y);
+          printf("%d\n", benchRet); 
+          free(x);
+          free(y);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 38
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          int _len_x0 = 100;
+          struct TYPE_4__ * x = (struct TYPE_4__ *) malloc(_len_x0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_x0; _i0++) {
+              x[_i0].owner_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].topic_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].voting_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_y0 = 100;
+          struct TYPE_4__ * y = (struct TYPE_4__ *) malloc(_len_y0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_y0; _i0++) {
+              y[_i0].owner_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          y[_i0].topic_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          y[_i0].voting_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cmp_voting(x,y);
+          printf("%d\n", benchRet); 
+          free(x);
+          free(y);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 38
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
           int _len_x0 = 1;
           struct TYPE_4__ * x = (struct TYPE_4__ *) malloc(_len_x0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_x0; _i0++) {
-            x[_i0].owner_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        x[_i0].topic_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        x[_i0].voting_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              x[_i0].owner_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].topic_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].voting_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_y0 = 1;
           struct TYPE_4__ * y = (struct TYPE_4__ *) malloc(_len_y0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_y0; _i0++) {
-            y[_i0].owner_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        y[_i0].topic_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        y[_i0].voting_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              y[_i0].owner_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          y[_i0].topic_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          y[_i0].voting_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cmp_voting(x,y);
           printf("%d\n", benchRet); 
           free(x);

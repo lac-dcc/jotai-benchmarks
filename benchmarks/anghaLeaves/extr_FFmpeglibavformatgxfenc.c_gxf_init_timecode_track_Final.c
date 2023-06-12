@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ __attribute__((used)) static void gxf_init_timecode_track(GXFStreamContext *sc, 
     sc->fields = vsc->fields;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,40 +86,117 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_sc0 = 1;
+          int _len_sc0 = 65025;
           struct TYPE_4__ * sc = (struct TYPE_4__ *) malloc(_len_sc0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
-            sc[_i0].media_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].sample_rate = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].media_info = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].track_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].sample_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].fields = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].lines_index = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].frame_rate_index = ((-2 * (next_i()%2)) + 1) * next_i();
+              sc[_i0].media_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].sample_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].media_info = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].track_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].sample_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].fields = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].lines_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].frame_rate_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_vsc0 = 1;
+        
+          int _len_vsc0 = 65025;
           struct TYPE_4__ * vsc = (struct TYPE_4__ *) malloc(_len_vsc0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_vsc0; _i0++) {
-            vsc[_i0].media_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        vsc[_i0].sample_rate = ((-2 * (next_i()%2)) + 1) * next_i();
-        vsc[_i0].media_info = ((-2 * (next_i()%2)) + 1) * next_i();
-        vsc[_i0].track_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        vsc[_i0].sample_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        vsc[_i0].fields = ((-2 * (next_i()%2)) + 1) * next_i();
-        vsc[_i0].lines_index = ((-2 * (next_i()%2)) + 1) * next_i();
-        vsc[_i0].frame_rate_index = ((-2 * (next_i()%2)) + 1) * next_i();
+              vsc[_i0].media_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          vsc[_i0].sample_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          vsc[_i0].media_info = ((-2 * (next_i()%2)) + 1) * next_i();
+          vsc[_i0].track_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          vsc[_i0].sample_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          vsc[_i0].fields = ((-2 * (next_i()%2)) + 1) * next_i();
+          vsc[_i0].lines_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          vsc[_i0].frame_rate_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           gxf_init_timecode_track(sc,vsc);
           free(sc);
           free(vsc);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_sc0 = 100;
+          struct TYPE_4__ * sc = (struct TYPE_4__ *) malloc(_len_sc0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
+              sc[_i0].media_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].sample_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].media_info = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].track_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].sample_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].fields = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].lines_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].frame_rate_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_vsc0 = 100;
+          struct TYPE_4__ * vsc = (struct TYPE_4__ *) malloc(_len_vsc0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_vsc0; _i0++) {
+              vsc[_i0].media_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          vsc[_i0].sample_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          vsc[_i0].media_info = ((-2 * (next_i()%2)) + 1) * next_i();
+          vsc[_i0].track_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          vsc[_i0].sample_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          vsc[_i0].fields = ((-2 * (next_i()%2)) + 1) * next_i();
+          vsc[_i0].lines_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          vsc[_i0].frame_rate_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          gxf_init_timecode_track(sc,vsc);
+          free(sc);
+          free(vsc);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_sc0 = 1;
+          struct TYPE_4__ * sc = (struct TYPE_4__ *) malloc(_len_sc0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
+              sc[_i0].media_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].sample_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].media_info = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].track_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].sample_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].fields = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].lines_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].frame_rate_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_vsc0 = 1;
+          struct TYPE_4__ * vsc = (struct TYPE_4__ *) malloc(_len_vsc0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_vsc0; _i0++) {
+              vsc[_i0].media_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          vsc[_i0].sample_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          vsc[_i0].media_info = ((-2 * (next_i()%2)) + 1) * next_i();
+          vsc[_i0].track_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          vsc[_i0].sample_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          vsc[_i0].fields = ((-2 * (next_i()%2)) + 1) * next_i();
+          vsc[_i0].lines_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          vsc[_i0].frame_rate_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          gxf_init_timecode_track(sc,vsc);
+          free(sc);
+          free(vsc);
+        
+        break;
+    }
     default:
         usage();
         break;

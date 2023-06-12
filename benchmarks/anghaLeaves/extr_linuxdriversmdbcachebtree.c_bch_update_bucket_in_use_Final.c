@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ void bch_update_bucket_in_use(struct cache_set *c, struct gc_stat *stats)
 	stats->in_use = (c->nbuckets - c->avail_nbuckets) * 100 / c->nbuckets;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,20 +75,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_c0 = 65025;
+          struct cache_set * c = (struct cache_set *) malloc(_len_c0*sizeof(struct cache_set));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].nbuckets = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].avail_nbuckets = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_stats0 = 65025;
+          struct gc_stat * stats = (struct gc_stat *) malloc(_len_stats0*sizeof(struct gc_stat));
+          for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
+              stats[_i0].in_use = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          bch_update_bucket_in_use(c,stats);
+          free(c);
+          free(stats);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_c0 = 100;
+          struct cache_set * c = (struct cache_set *) malloc(_len_c0*sizeof(struct cache_set));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].nbuckets = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].avail_nbuckets = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_stats0 = 100;
+          struct gc_stat * stats = (struct gc_stat *) malloc(_len_stats0*sizeof(struct gc_stat));
+          for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
+              stats[_i0].in_use = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          bch_update_bucket_in_use(c,stats);
+          free(c);
+          free(stats);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_c0 = 1;
           struct cache_set * c = (struct cache_set *) malloc(_len_c0*sizeof(struct cache_set));
           for(int _i0 = 0; _i0 < _len_c0; _i0++) {
-            c[_i0].nbuckets = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].avail_nbuckets = ((-2 * (next_i()%2)) + 1) * next_i();
+              c[_i0].nbuckets = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].avail_nbuckets = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_stats0 = 1;
           struct gc_stat * stats = (struct gc_stat *) malloc(_len_stats0*sizeof(struct gc_stat));
           for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
-            stats[_i0].in_use = ((-2 * (next_i()%2)) + 1) * next_i();
+              stats[_i0].in_use = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           bch_update_bucket_in_use(c,stats);
           free(c);
           free(stats);

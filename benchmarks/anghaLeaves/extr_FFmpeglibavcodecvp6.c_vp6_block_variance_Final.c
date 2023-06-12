@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -71,12 +72,6 @@ __attribute__((used)) static int vp6_block_variance(uint8_t *src, ptrdiff_t stri
     return (16*square_sum - sum*sum) >> 8;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,22 +84,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int stride = 10;
-          int _len_src0 = 100;
+          int stride = 255;
+        
+          int _len_src0 = 65025;
           int * src = (int *) malloc(_len_src0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_src0; _i0++) {
             src[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = vp6_block_variance(src,stride);
           printf("%d\n", benchRet); 
           free(src);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int stride = 10;
+        
+          int _len_src0 = 100;
+          int * src = (int *) malloc(_len_src0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+            src[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = vp6_block_variance(src,stride);
+          printf("%d\n", benchRet); 
+          free(src);
+        
+        break;
+    }
     default:
         usage();
         break;

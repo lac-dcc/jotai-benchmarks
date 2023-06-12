@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ __attribute__((used)) static inline int desc_inline_query(unsigned int sd_base_l
 	return (rem_bytes >= 0) ? 0 : -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,22 +92,154 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           unsigned int sd_base_len = 100;
+        
           unsigned int jd_len = 100;
+        
           unsigned int count = 100;
+        
           int _len_data_len0 = 1;
           unsigned int * data_len = (unsigned int *) malloc(_len_data_len0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_data_len0; _i0++) {
             data_len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_inl_mask0 = 1;
           int * inl_mask = (int *) malloc(_len_inl_mask0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_inl_mask0; _i0++) {
             inl_mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = desc_inline_query(sd_base_len,jd_len,data_len,inl_mask,count);
+          printf("%d\n", benchRet); 
+          free(data_len);
+          free(inl_mask);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          unsigned int sd_base_len = 255;
+        
+          unsigned int jd_len = 255;
+        
+          unsigned int count = 255;
+        
+          int _len_data_len0 = 65025;
+          unsigned int * data_len = (unsigned int *) malloc(_len_data_len0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_data_len0; _i0++) {
+            data_len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_inl_mask0 = 65025;
+          int * inl_mask = (int *) malloc(_len_inl_mask0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_inl_mask0; _i0++) {
+            inl_mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = desc_inline_query(sd_base_len,jd_len,data_len,inl_mask,count);
+          printf("%d\n", benchRet); 
+          free(data_len);
+          free(inl_mask);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          unsigned int sd_base_len = 10;
+        
+          unsigned int jd_len = 10;
+        
+          unsigned int count = 10;
+        
+          int _len_data_len0 = 100;
+          unsigned int * data_len = (unsigned int *) malloc(_len_data_len0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_data_len0; _i0++) {
+            data_len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_inl_mask0 = 100;
+          int * inl_mask = (int *) malloc(_len_inl_mask0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_inl_mask0; _i0++) {
+            inl_mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = desc_inline_query(sd_base_len,jd_len,data_len,inl_mask,count);
           printf("%d\n", benchRet); 
           free(data_len);

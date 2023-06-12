@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline void vnic_rq_return_descs(struct vnic_rq *rq
 	rq->ring.desc_avail += count;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,29 +77,168 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           unsigned int count = 100;
+        
           int _len_rq0 = 1;
           struct vnic_rq * rq = (struct vnic_rq *) malloc(_len_rq0*sizeof(struct vnic_rq));
           for(int _i0 = 0; _i0 < _len_rq0; _i0++) {
-            rq[_i0].ring.desc_avail = ((-2 * (next_i()%2)) + 1) * next_i();
+              rq[_i0].ring.desc_avail = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           vnic_rq_return_descs(rq,count);
           free(rq);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          unsigned int count = 255;
+        
+          int _len_rq0 = 65025;
+          struct vnic_rq * rq = (struct vnic_rq *) malloc(_len_rq0*sizeof(struct vnic_rq));
+          for(int _i0 = 0; _i0 < _len_rq0; _i0++) {
+              rq[_i0].ring.desc_avail = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          vnic_rq_return_descs(rq,count);
+          free(rq);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           unsigned int count = 10;
+        
           int _len_rq0 = 100;
           struct vnic_rq * rq = (struct vnic_rq *) malloc(_len_rq0*sizeof(struct vnic_rq));
           for(int _i0 = 0; _i0 < _len_rq0; _i0++) {
-            rq[_i0].ring.desc_avail = ((-2 * (next_i()%2)) + 1) * next_i();
+              rq[_i0].ring.desc_avail = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          vnic_rq_return_descs(rq,count);
+          free(rq);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          unsigned int count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rq0 = 1;
+          struct vnic_rq * rq = (struct vnic_rq *) malloc(_len_rq0*sizeof(struct vnic_rq));
+          for(int _i0 = 0; _i0 < _len_rq0; _i0++) {
+              rq[_i0].ring.desc_avail = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           vnic_rq_return_descs(rq,count);
           free(rq);
         

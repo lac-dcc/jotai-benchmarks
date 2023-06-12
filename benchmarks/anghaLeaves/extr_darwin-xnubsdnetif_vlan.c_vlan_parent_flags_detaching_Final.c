@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ vlan_parent_flags_detaching(struct vlan_parent * vlp)
     return ((vlp->vlp_flags & VLPF_DETACHING) != 0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,28 +76,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_vlp0 = 1;
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_vlp0 = 65025;
           struct vlan_parent * vlp = (struct vlan_parent *) malloc(_len_vlp0*sizeof(struct vlan_parent));
           for(int _i0 = 0; _i0 < _len_vlp0; _i0++) {
-            vlp[_i0].vlp_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              vlp[_i0].vlp_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = vlan_parent_flags_detaching(vlp);
           printf("%d\n", benchRet); 
           free(vlp);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_vlp0 = 100;
           struct vlan_parent * vlp = (struct vlan_parent *) malloc(_len_vlp0*sizeof(struct vlan_parent));
           for(int _i0 = 0; _i0 < _len_vlp0; _i0++) {
-            vlp[_i0].vlp_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              vlp[_i0].vlp_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = vlan_parent_flags_detaching(vlp);
+          printf("%d\n", benchRet); 
+          free(vlp);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_vlp0 = 1;
+          struct vlan_parent * vlp = (struct vlan_parent *) malloc(_len_vlp0*sizeof(struct vlan_parent));
+          for(int _i0 = 0; _i0 < _len_vlp0; _i0++) {
+              vlp[_i0].vlp_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = vlan_parent_flags_detaching(vlp);
           printf("%d\n", benchRet); 
           free(vlp);

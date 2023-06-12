@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static u8 bq27xxx_battery_checksum_dm_block(struct bq27xxx
 	return 0xff - sum;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,10 +84,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_buf0 = 1;
+          int _len_buf0 = 65025;
           struct bq27xxx_dm_buf * buf = (struct bq27xxx_dm_buf *) malloc(_len_buf0*sizeof(struct bq27xxx_dm_buf));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
               int _len_buf__i0__data0 = 1;
@@ -99,7 +95,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_buf__i0__data0; _j0++) {
             buf[_i0].data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = bq27xxx_battery_checksum_dm_block(buf);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_buf0; _aux++) {
@@ -109,7 +107,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_buf0 = 100;
+          struct bq27xxx_dm_buf * buf = (struct bq27xxx_dm_buf *) malloc(_len_buf0*sizeof(struct bq27xxx_dm_buf));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+              int _len_buf__i0__data0 = 1;
+          buf[_i0].data = (long *) malloc(_len_buf__i0__data0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_buf__i0__data0; _j0++) {
+            buf[_i0].data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = bq27xxx_battery_checksum_dm_block(buf);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_buf0; _aux++) {
+          free(buf[_aux].data);
+          }
+          free(buf);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_buf0 = 1;
+          struct bq27xxx_dm_buf * buf = (struct bq27xxx_dm_buf *) malloc(_len_buf0*sizeof(struct bq27xxx_dm_buf));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+              int _len_buf__i0__data0 = 1;
+          buf[_i0].data = (long *) malloc(_len_buf__i0__data0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_buf__i0__data0; _j0++) {
+            buf[_i0].data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = bq27xxx_battery_checksum_dm_block(buf);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_buf0; _aux++) {
+          free(buf[_aux].data);
+          }
+          free(buf);
+        
+        break;
+    }
     default:
         usage();
         break;

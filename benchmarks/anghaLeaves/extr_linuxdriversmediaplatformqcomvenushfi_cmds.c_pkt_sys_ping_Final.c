@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ void pkt_sys_ping(struct hfi_sys_ping_pkt *pkt, u32 cookie)
 	pkt->client_data = cookie;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,17 +81,176 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int cookie = 100;
+        
           int _len_pkt0 = 1;
           struct hfi_sys_ping_pkt * pkt = (struct hfi_sys_ping_pkt *) malloc(_len_pkt0*sizeof(struct hfi_sys_ping_pkt));
           for(int _i0 = 0; _i0 < _len_pkt0; _i0++) {
-            pkt[_i0].client_data = ((-2 * (next_i()%2)) + 1) * next_i();
-        pkt[_i0].hdr.size = ((-2 * (next_i()%2)) + 1) * next_i();
-        pkt[_i0].hdr.pkt_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              pkt[_i0].client_data = ((-2 * (next_i()%2)) + 1) * next_i();
+          pkt[_i0].hdr.size = ((-2 * (next_i()%2)) + 1) * next_i();
+          pkt[_i0].hdr.pkt_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          pkt_sys_ping(pkt,cookie);
+          free(pkt);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int cookie = 255;
+        
+          int _len_pkt0 = 65025;
+          struct hfi_sys_ping_pkt * pkt = (struct hfi_sys_ping_pkt *) malloc(_len_pkt0*sizeof(struct hfi_sys_ping_pkt));
+          for(int _i0 = 0; _i0 < _len_pkt0; _i0++) {
+              pkt[_i0].client_data = ((-2 * (next_i()%2)) + 1) * next_i();
+          pkt[_i0].hdr.size = ((-2 * (next_i()%2)) + 1) * next_i();
+          pkt[_i0].hdr.pkt_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          pkt_sys_ping(pkt,cookie);
+          free(pkt);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int cookie = 10;
+        
+          int _len_pkt0 = 100;
+          struct hfi_sys_ping_pkt * pkt = (struct hfi_sys_ping_pkt *) malloc(_len_pkt0*sizeof(struct hfi_sys_ping_pkt));
+          for(int _i0 = 0; _i0 < _len_pkt0; _i0++) {
+              pkt[_i0].client_data = ((-2 * (next_i()%2)) + 1) * next_i();
+          pkt[_i0].hdr.size = ((-2 * (next_i()%2)) + 1) * next_i();
+          pkt[_i0].hdr.pkt_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          pkt_sys_ping(pkt,cookie);
+          free(pkt);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int cookie = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pkt0 = 1;
+          struct hfi_sys_ping_pkt * pkt = (struct hfi_sys_ping_pkt *) malloc(_len_pkt0*sizeof(struct hfi_sys_ping_pkt));
+          for(int _i0 = 0; _i0 < _len_pkt0; _i0++) {
+              pkt[_i0].client_data = ((-2 * (next_i()%2)) + 1) * next_i();
+          pkt[_i0].hdr.size = ((-2 * (next_i()%2)) + 1) * next_i();
+          pkt[_i0].hdr.pkt_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           pkt_sys_ping(pkt,cookie);
           free(pkt);
         

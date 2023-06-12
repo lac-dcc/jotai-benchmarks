@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -80,12 +82,6 @@ __attribute__((used)) static void cs_etm_decoder__gen_etmv4_config(struct cs_etm
 	config->core_prof = profile_CortexA;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,36 +94,194 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 46
+          // dynamic_instructions_O0 : 46
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_params0 = 65025;
+          struct cs_etm_trace_params * params = (struct cs_etm_trace_params *) malloc(_len_params0*sizeof(struct cs_etm_trace_params));
+          for(int _i0 = 0; _i0 < _len_params0; _i0++) {
+              params[_i0].etmv4.reg_idr8 = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].etmv4.reg_idr2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].etmv4.reg_idr1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].etmv4.reg_idr0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].etmv4.reg_traceidr = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].etmv4.reg_configr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_config0 = 65025;
+          struct TYPE_5__ * config = (struct TYPE_5__ *) malloc(_len_config0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_config0; _i0++) {
+              config[_i0].core_prof = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].arch_ver = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].reg_idr13 = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].reg_idr12 = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].reg_idr11 = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].reg_idr10 = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].reg_idr9 = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].reg_idr8 = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].reg_idr2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].reg_idr1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].reg_idr0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].reg_traceidr = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].reg_configr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cs_etm_decoder__gen_etmv4_config(params,config);
+          free(params);
+          free(config);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 46
+          // dynamic_instructions_O0 : 46
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_params0 = 100;
+          struct cs_etm_trace_params * params = (struct cs_etm_trace_params *) malloc(_len_params0*sizeof(struct cs_etm_trace_params));
+          for(int _i0 = 0; _i0 < _len_params0; _i0++) {
+              params[_i0].etmv4.reg_idr8 = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].etmv4.reg_idr2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].etmv4.reg_idr1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].etmv4.reg_idr0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].etmv4.reg_traceidr = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].etmv4.reg_configr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_config0 = 100;
+          struct TYPE_5__ * config = (struct TYPE_5__ *) malloc(_len_config0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_config0; _i0++) {
+              config[_i0].core_prof = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].arch_ver = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].reg_idr13 = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].reg_idr12 = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].reg_idr11 = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].reg_idr10 = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].reg_idr9 = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].reg_idr8 = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].reg_idr2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].reg_idr1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].reg_idr0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].reg_traceidr = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].reg_configr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cs_etm_decoder__gen_etmv4_config(params,config);
+          free(params);
+          free(config);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 46
+          // dynamic_instructions_O0 : 46
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int _len_params0 = 1;
           struct cs_etm_trace_params * params = (struct cs_etm_trace_params *) malloc(_len_params0*sizeof(struct cs_etm_trace_params));
           for(int _i0 = 0; _i0 < _len_params0; _i0++) {
-            params[_i0].etmv4.reg_idr8 = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].etmv4.reg_idr2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].etmv4.reg_idr1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].etmv4.reg_idr0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].etmv4.reg_traceidr = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].etmv4.reg_configr = ((-2 * (next_i()%2)) + 1) * next_i();
+              params[_i0].etmv4.reg_idr8 = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].etmv4.reg_idr2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].etmv4.reg_idr1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].etmv4.reg_idr0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].etmv4.reg_traceidr = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].etmv4.reg_configr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_config0 = 1;
           struct TYPE_5__ * config = (struct TYPE_5__ *) malloc(_len_config0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_config0; _i0++) {
-            config[_i0].core_prof = ((-2 * (next_i()%2)) + 1) * next_i();
-        config[_i0].arch_ver = ((-2 * (next_i()%2)) + 1) * next_i();
-        config[_i0].reg_idr13 = ((-2 * (next_i()%2)) + 1) * next_i();
-        config[_i0].reg_idr12 = ((-2 * (next_i()%2)) + 1) * next_i();
-        config[_i0].reg_idr11 = ((-2 * (next_i()%2)) + 1) * next_i();
-        config[_i0].reg_idr10 = ((-2 * (next_i()%2)) + 1) * next_i();
-        config[_i0].reg_idr9 = ((-2 * (next_i()%2)) + 1) * next_i();
-        config[_i0].reg_idr8 = ((-2 * (next_i()%2)) + 1) * next_i();
-        config[_i0].reg_idr2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        config[_i0].reg_idr1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        config[_i0].reg_idr0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        config[_i0].reg_traceidr = ((-2 * (next_i()%2)) + 1) * next_i();
-        config[_i0].reg_configr = ((-2 * (next_i()%2)) + 1) * next_i();
+              config[_i0].core_prof = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].arch_ver = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].reg_idr13 = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].reg_idr12 = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].reg_idr11 = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].reg_idr10 = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].reg_idr9 = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].reg_idr8 = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].reg_idr2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].reg_idr1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].reg_idr0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].reg_traceidr = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].reg_configr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           cs_etm_decoder__gen_etmv4_config(params,config);
           free(params);
           free(config);

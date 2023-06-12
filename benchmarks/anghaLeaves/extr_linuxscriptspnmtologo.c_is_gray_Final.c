@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -60,12 +60,6 @@ __attribute__((used)) static inline int is_gray(struct color c)
     return c.red == c.green && c.red == c.blue;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,13 +72,37 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // empty
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           struct color c;
-        c.red = ((-2 * (next_i()%2)) + 1) * next_i();
-        c.green = ((-2 * (next_i()%2)) + 1) * next_i();
-        c.blue = ((-2 * (next_i()%2)) + 1) * next_i();
+          c.red = ((-2 * (next_i()%2)) + 1) * next_i();
+          c.green = ((-2 * (next_i()%2)) + 1) * next_i();
+          c.blue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = is_gray(c);
           printf("%d\n", benchRet); 
         

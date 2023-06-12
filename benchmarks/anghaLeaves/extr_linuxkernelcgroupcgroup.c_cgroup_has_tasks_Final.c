@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static bool cgroup_has_tasks(struct cgroup *cgrp)
 	return cgrp->nr_populated_csets;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cgrp0 = 1;
+          int _len_cgrp0 = 65025;
           struct cgroup * cgrp = (struct cgroup *) malloc(_len_cgrp0*sizeof(struct cgroup));
           for(int _i0 = 0; _i0 < _len_cgrp0; _i0++) {
-            cgrp[_i0].nr_populated_csets = ((-2 * (next_i()%2)) + 1) * next_i();
+              cgrp[_i0].nr_populated_csets = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cgroup_has_tasks(cgrp);
           printf("%d\n", benchRet); 
           free(cgrp);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_cgrp0 = 100;
           struct cgroup * cgrp = (struct cgroup *) malloc(_len_cgrp0*sizeof(struct cgroup));
           for(int _i0 = 0; _i0 < _len_cgrp0; _i0++) {
-            cgrp[_i0].nr_populated_csets = ((-2 * (next_i()%2)) + 1) * next_i();
+              cgrp[_i0].nr_populated_csets = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cgroup_has_tasks(cgrp);
           printf("%d\n", benchRet); 
           free(cgrp);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_cgrp0 = 1;
+          struct cgroup * cgrp = (struct cgroup *) malloc(_len_cgrp0*sizeof(struct cgroup));
+          for(int _i0 = 0; _i0 < _len_cgrp0; _i0++) {
+              cgrp[_i0].nr_populated_csets = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cgroup_has_tasks(cgrp);
+          printf("%d\n", benchRet); 
+          free(cgrp);
+        
+        break;
+    }
     default:
         usage();
         break;

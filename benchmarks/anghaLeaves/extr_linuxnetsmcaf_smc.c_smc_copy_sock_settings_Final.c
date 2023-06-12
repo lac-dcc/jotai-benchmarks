@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +77,6 @@ __attribute__((used)) static void smc_copy_sock_settings(struct sock *nsk, struc
 	nsk->sk_flags |= osk->sk_flags & mask;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,43 +93,182 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long mask = 100;
+        
           int _len_nsk0 = 1;
           struct sock * nsk = (struct sock *) malloc(_len_nsk0*sizeof(struct sock));
           for(int _i0 = 0; _i0 < _len_nsk0; _i0++) {
-            nsk[_i0].sk_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        nsk[_i0].sk_err = ((-2 * (next_i()%2)) + 1) * next_i();
-        nsk[_i0].sk_bound_dev_if = ((-2 * (next_i()%2)) + 1) * next_i();
-        nsk[_i0].sk_rcvlowat = ((-2 * (next_i()%2)) + 1) * next_i();
-        nsk[_i0].sk_priority = ((-2 * (next_i()%2)) + 1) * next_i();
-        nsk[_i0].sk_mark = ((-2 * (next_i()%2)) + 1) * next_i();
-        nsk[_i0].sk_rcvtimeo = ((-2 * (next_i()%2)) + 1) * next_i();
-        nsk[_i0].sk_sndtimeo = ((-2 * (next_i()%2)) + 1) * next_i();
-        nsk[_i0].sk_rcvbuf = ((-2 * (next_i()%2)) + 1) * next_i();
-        nsk[_i0].sk_sndbuf = ((-2 * (next_i()%2)) + 1) * next_i();
-        nsk[_i0].sk_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              nsk[_i0].sk_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_bound_dev_if = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_rcvlowat = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_priority = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_mark = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_rcvtimeo = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_sndtimeo = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_rcvbuf = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_sndbuf = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_osk0 = 1;
           struct sock * osk = (struct sock *) malloc(_len_osk0*sizeof(struct sock));
           for(int _i0 = 0; _i0 < _len_osk0; _i0++) {
-            osk[_i0].sk_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        osk[_i0].sk_err = ((-2 * (next_i()%2)) + 1) * next_i();
-        osk[_i0].sk_bound_dev_if = ((-2 * (next_i()%2)) + 1) * next_i();
-        osk[_i0].sk_rcvlowat = ((-2 * (next_i()%2)) + 1) * next_i();
-        osk[_i0].sk_priority = ((-2 * (next_i()%2)) + 1) * next_i();
-        osk[_i0].sk_mark = ((-2 * (next_i()%2)) + 1) * next_i();
-        osk[_i0].sk_rcvtimeo = ((-2 * (next_i()%2)) + 1) * next_i();
-        osk[_i0].sk_sndtimeo = ((-2 * (next_i()%2)) + 1) * next_i();
-        osk[_i0].sk_rcvbuf = ((-2 * (next_i()%2)) + 1) * next_i();
-        osk[_i0].sk_sndbuf = ((-2 * (next_i()%2)) + 1) * next_i();
-        osk[_i0].sk_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              osk[_i0].sk_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_bound_dev_if = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_rcvlowat = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_priority = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_mark = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_rcvtimeo = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_sndtimeo = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_rcvbuf = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_sndbuf = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           smc_copy_sock_settings(nsk,osk,mask);
           free(nsk);
           free(osk);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long mask = 255;
+        
+          int _len_nsk0 = 65025;
+          struct sock * nsk = (struct sock *) malloc(_len_nsk0*sizeof(struct sock));
+          for(int _i0 = 0; _i0 < _len_nsk0; _i0++) {
+              nsk[_i0].sk_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_bound_dev_if = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_rcvlowat = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_priority = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_mark = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_rcvtimeo = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_sndtimeo = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_rcvbuf = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_sndbuf = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_osk0 = 65025;
+          struct sock * osk = (struct sock *) malloc(_len_osk0*sizeof(struct sock));
+          for(int _i0 = 0; _i0 < _len_osk0; _i0++) {
+              osk[_i0].sk_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_bound_dev_if = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_rcvlowat = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_priority = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_mark = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_rcvtimeo = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_sndtimeo = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_rcvbuf = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_sndbuf = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          smc_copy_sock_settings(nsk,osk,mask);
+          free(nsk);
+          free(osk);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long mask = 10;
+        
+          int _len_nsk0 = 100;
+          struct sock * nsk = (struct sock *) malloc(_len_nsk0*sizeof(struct sock));
+          for(int _i0 = 0; _i0 < _len_nsk0; _i0++) {
+              nsk[_i0].sk_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_bound_dev_if = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_rcvlowat = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_priority = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_mark = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_rcvtimeo = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_sndtimeo = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_rcvbuf = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_sndbuf = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_osk0 = 100;
+          struct sock * osk = (struct sock *) malloc(_len_osk0*sizeof(struct sock));
+          for(int _i0 = 0; _i0 < _len_osk0; _i0++) {
+              osk[_i0].sk_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_bound_dev_if = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_rcvlowat = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_priority = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_mark = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_rcvtimeo = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_sndtimeo = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_rcvbuf = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_sndbuf = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          smc_copy_sock_settings(nsk,osk,mask);
+          free(nsk);
+          free(osk);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_nsk0 = 1;
+          struct sock * nsk = (struct sock *) malloc(_len_nsk0*sizeof(struct sock));
+          for(int _i0 = 0; _i0 < _len_nsk0; _i0++) {
+              nsk[_i0].sk_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_bound_dev_if = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_rcvlowat = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_priority = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_mark = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_rcvtimeo = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_sndtimeo = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_rcvbuf = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_sndbuf = ((-2 * (next_i()%2)) + 1) * next_i();
+          nsk[_i0].sk_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_osk0 = 1;
+          struct sock * osk = (struct sock *) malloc(_len_osk0*sizeof(struct sock));
+          for(int _i0 = 0; _i0 < _len_osk0; _i0++) {
+              osk[_i0].sk_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_bound_dev_if = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_rcvlowat = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_priority = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_mark = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_rcvtimeo = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_sndtimeo = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_rcvbuf = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_sndbuf = ((-2 * (next_i()%2)) + 1) * next_i();
+          osk[_i0].sk_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          smc_copy_sock_settings(nsk,osk,mask);
+          free(nsk);
+          free(osk);
+        
+        break;
+    }
     default:
         usage();
         break;

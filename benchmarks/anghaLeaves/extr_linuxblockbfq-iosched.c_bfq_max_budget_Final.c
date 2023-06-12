@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static int bfq_max_budget(struct bfq_data *bfqd)
 		return bfqd->bfq_max_budget;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,15 +79,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_bfqd0 = 65025;
+          struct bfq_data * bfqd = (struct bfq_data *) malloc(_len_bfqd0*sizeof(struct bfq_data));
+          for(int _i0 = 0; _i0 < _len_bfqd0; _i0++) {
+              bfqd[_i0].budgets_assigned = ((-2 * (next_i()%2)) + 1) * next_i();
+          bfqd[_i0].bfq_max_budget = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = bfq_max_budget(bfqd);
+          printf("%d\n", benchRet); 
+          free(bfqd);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_bfqd0 = 100;
+          struct bfq_data * bfqd = (struct bfq_data *) malloc(_len_bfqd0*sizeof(struct bfq_data));
+          for(int _i0 = 0; _i0 < _len_bfqd0; _i0++) {
+              bfqd[_i0].budgets_assigned = ((-2 * (next_i()%2)) + 1) * next_i();
+          bfqd[_i0].bfq_max_budget = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = bfq_max_budget(bfqd);
+          printf("%d\n", benchRet); 
+          free(bfqd);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_bfqd0 = 1;
           struct bfq_data * bfqd = (struct bfq_data *) malloc(_len_bfqd0*sizeof(struct bfq_data));
           for(int _i0 = 0; _i0 < _len_bfqd0; _i0++) {
-            bfqd[_i0].budgets_assigned = ((-2 * (next_i()%2)) + 1) * next_i();
-        bfqd[_i0].bfq_max_budget = ((-2 * (next_i()%2)) + 1) * next_i();
+              bfqd[_i0].budgets_assigned = ((-2 * (next_i()%2)) + 1) * next_i();
+          bfqd[_i0].bfq_max_budget = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = bfq_max_budget(bfqd);
           printf("%d\n", benchRet); 
           free(bfqd);

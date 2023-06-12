@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -139,12 +140,6 @@ __attribute__((used)) static uint16_t get_fw_version(struct kgd_dev *kgd, enum k
 	return hdr->common.ucode_version;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -157,15 +152,18 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           enum kgd_engine_type type = 0;
-          int _len_kgd0 = 1;
+        
+          int _len_kgd0 = 65025;
           struct kgd_dev * kgd = (struct kgd_dev *) malloc(_len_kgd0*sizeof(struct kgd_dev));
           for(int _i0 = 0; _i0 < _len_kgd0; _i0++) {
-            kgd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              kgd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = get_fw_version(kgd,type);
           printf("%d\n", benchRet); 
           free(kgd);
@@ -176,18 +174,38 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           enum kgd_engine_type type = 0;
+        
           int _len_kgd0 = 100;
           struct kgd_dev * kgd = (struct kgd_dev *) malloc(_len_kgd0*sizeof(struct kgd_dev));
           for(int _i0 = 0; _i0 < _len_kgd0; _i0++) {
-            kgd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              kgd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = get_fw_version(kgd,type);
           printf("%d\n", benchRet); 
           free(kgd);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          enum kgd_engine_type type = 0;
+        
+          int _len_kgd0 = 1;
+          struct kgd_dev * kgd = (struct kgd_dev *) malloc(_len_kgd0*sizeof(struct kgd_dev));
+          for(int _i0 = 0; _i0 < _len_kgd0; _i0++) {
+              kgd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = get_fw_version(kgd,type);
+          printf("%d\n", benchRet); 
+          free(kgd);
+        
+        break;
+    }
     default:
         usage();
         break;

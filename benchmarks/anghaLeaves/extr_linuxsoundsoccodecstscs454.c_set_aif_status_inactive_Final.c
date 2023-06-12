@@ -64,12 +64,6 @@ __attribute__((used)) static inline void set_aif_status_inactive(struct aifs_sta
 	status->streams &= mask;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,16 +76,43 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // big-arr-10x
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int aif_id = 10;
+        
           int playback = 10;
+        
           int _len_status0 = 100;
           struct aifs_status * status = (struct aifs_status *) malloc(_len_status0*sizeof(struct aifs_status));
           for(int _i0 = 0; _i0 < _len_status0; _i0++) {
-            status[_i0].streams = ((-2 * (next_i()%2)) + 1) * next_i();
+              status[_i0].streams = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           set_aif_status_inactive(status,aif_id,playback);
           free(status);
         

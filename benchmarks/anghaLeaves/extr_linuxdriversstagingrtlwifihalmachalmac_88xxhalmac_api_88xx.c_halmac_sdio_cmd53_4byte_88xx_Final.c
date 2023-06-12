@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ halmac_sdio_cmd53_4byte_88xx(struct halmac_adapter *halmac_adapter,
 	return HALMAC_RET_SUCCESS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,29 +81,123 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           enum halmac_sdio_cmd53_4byte_mode cmd53_4byte_mode = 0;
-          int _len_halmac_adapter0 = 1;
+        
+          int _len_halmac_adapter0 = 65025;
           struct halmac_adapter * halmac_adapter = (struct halmac_adapter *) malloc(_len_halmac_adapter0*sizeof(struct halmac_adapter));
           for(int _i0 = 0; _i0 < _len_halmac_adapter0; _i0++) {
-            halmac_adapter[_i0].sdio_cmd53_4byte = ((-2 * (next_i()%2)) + 1) * next_i();
+              halmac_adapter[_i0].sdio_cmd53_4byte = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           enum halmac_ret_status benchRet = halmac_sdio_cmd53_4byte_88xx(halmac_adapter,cmd53_4byte_mode);
           free(halmac_adapter);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           enum halmac_sdio_cmd53_4byte_mode cmd53_4byte_mode = 0;
+        
           int _len_halmac_adapter0 = 100;
           struct halmac_adapter * halmac_adapter = (struct halmac_adapter *) malloc(_len_halmac_adapter0*sizeof(struct halmac_adapter));
           for(int _i0 = 0; _i0 < _len_halmac_adapter0; _i0++) {
-            halmac_adapter[_i0].sdio_cmd53_4byte = ((-2 * (next_i()%2)) + 1) * next_i();
+              halmac_adapter[_i0].sdio_cmd53_4byte = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          enum halmac_ret_status benchRet = halmac_sdio_cmd53_4byte_88xx(halmac_adapter,cmd53_4byte_mode);
+          free(halmac_adapter);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          enum halmac_sdio_cmd53_4byte_mode cmd53_4byte_mode = 0;
+        
+          int _len_halmac_adapter0 = 1;
+          struct halmac_adapter * halmac_adapter = (struct halmac_adapter *) malloc(_len_halmac_adapter0*sizeof(struct halmac_adapter));
+          for(int _i0 = 0; _i0 < _len_halmac_adapter0; _i0++) {
+              halmac_adapter[_i0].sdio_cmd53_4byte = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           enum halmac_ret_status benchRet = halmac_sdio_cmd53_4byte_88xx(halmac_adapter,cmd53_4byte_mode);
           free(halmac_adapter);
         

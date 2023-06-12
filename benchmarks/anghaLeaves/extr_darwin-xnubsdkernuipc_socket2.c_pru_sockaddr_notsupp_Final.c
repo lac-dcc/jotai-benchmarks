@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ pru_sockaddr_notsupp(struct socket *so, struct sockaddr **nam)
 	return (EOPNOTSUPP);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,35 +78,99 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_so0 = 1;
+          int _len_so0 = 65025;
           struct socket * so = (struct socket *) malloc(_len_so0*sizeof(struct socket));
           for(int _i0 = 0; _i0 < _len_so0; _i0++) {
-            so[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              so[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_nam0 = 1;
+        
+          int _len_nam0 = 65025;
           struct sockaddr ** nam = (struct sockaddr **) malloc(_len_nam0*sizeof(struct sockaddr *));
           for(int _i0 = 0; _i0 < _len_nam0; _i0++) {
             int _len_nam1 = 1;
             nam[_i0] = (struct sockaddr *) malloc(_len_nam1*sizeof(struct sockaddr));
             for(int _i1 = 0; _i1 < _len_nam1; _i1++) {
-              nam[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+                nam[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           int benchRet = pru_sockaddr_notsupp(so,nam);
           printf("%d\n", benchRet); 
           free(so);
           for(int i1 = 0; i1 < _len_nam0; i1++) {
-            int _len_nam1 = 1;
               free(nam[i1]);
           }
           free(nam);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_so0 = 100;
+          struct socket * so = (struct socket *) malloc(_len_so0*sizeof(struct socket));
+          for(int _i0 = 0; _i0 < _len_so0; _i0++) {
+              so[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_nam0 = 100;
+          struct sockaddr ** nam = (struct sockaddr **) malloc(_len_nam0*sizeof(struct sockaddr *));
+          for(int _i0 = 0; _i0 < _len_nam0; _i0++) {
+            int _len_nam1 = 1;
+            nam[_i0] = (struct sockaddr *) malloc(_len_nam1*sizeof(struct sockaddr));
+            for(int _i1 = 0; _i1 < _len_nam1; _i1++) {
+                nam[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int benchRet = pru_sockaddr_notsupp(so,nam);
+          printf("%d\n", benchRet); 
+          free(so);
+          for(int i1 = 0; i1 < _len_nam0; i1++) {
+              free(nam[i1]);
+          }
+          free(nam);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_so0 = 1;
+          struct socket * so = (struct socket *) malloc(_len_so0*sizeof(struct socket));
+          for(int _i0 = 0; _i0 < _len_so0; _i0++) {
+              so[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_nam0 = 1;
+          struct sockaddr ** nam = (struct sockaddr **) malloc(_len_nam0*sizeof(struct sockaddr *));
+          for(int _i0 = 0; _i0 < _len_nam0; _i0++) {
+            int _len_nam1 = 1;
+            nam[_i0] = (struct sockaddr *) malloc(_len_nam1*sizeof(struct sockaddr));
+            for(int _i1 = 0; _i1 < _len_nam1; _i1++) {
+                nam[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int benchRet = pru_sockaddr_notsupp(so,nam);
+          printf("%d\n", benchRet); 
+          free(so);
+          for(int i1 = 0; i1 < _len_nam0; i1++) {
+              free(nam[i1]);
+          }
+          free(nam);
+        
+        break;
+    }
     default:
         usage();
         break;

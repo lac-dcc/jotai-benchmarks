@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static size_t nilfs_segctor_buffer_rest(struct nilfs_sc_in
 		(sci->sc_nblk_this_inc + sci->sc_curseg->sb_sum.nblocks);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,20 +80,149 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_sci0 = 1;
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_sci0 = 65025;
           struct nilfs_sc_info * sci = (struct nilfs_sc_info *) malloc(_len_sci0*sizeof(struct nilfs_sc_info));
           for(int _i0 = 0; _i0 < _len_sci0; _i0++) {
-            sci[_i0].sc_segbuf_nblocks = ((-2 * (next_i()%2)) + 1) * next_i();
-        sci[_i0].sc_nblk_this_inc = ((-2 * (next_i()%2)) + 1) * next_i();
+              sci[_i0].sc_segbuf_nblocks = ((-2 * (next_i()%2)) + 1) * next_i();
+          sci[_i0].sc_nblk_this_inc = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_sci__i0__sc_curseg0 = 1;
           sci[_i0].sc_curseg = (struct TYPE_4__ *) malloc(_len_sci__i0__sc_curseg0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_sci__i0__sc_curseg0; _j0++) {
-            sci[_i0].sc_curseg->sb_sum.nblocks = ((-2 * (next_i()%2)) + 1) * next_i();
+              sci[_i0].sc_curseg->sb_sum.nblocks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
+          unsigned long benchRet = nilfs_segctor_buffer_rest(sci);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_sci0; _aux++) {
+          free(sci[_aux].sc_curseg);
+          }
+          free(sci);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_sci0 = 100;
+          struct nilfs_sc_info * sci = (struct nilfs_sc_info *) malloc(_len_sci0*sizeof(struct nilfs_sc_info));
+          for(int _i0 = 0; _i0 < _len_sci0; _i0++) {
+              sci[_i0].sc_segbuf_nblocks = ((-2 * (next_i()%2)) + 1) * next_i();
+          sci[_i0].sc_nblk_this_inc = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_sci__i0__sc_curseg0 = 1;
+          sci[_i0].sc_curseg = (struct TYPE_4__ *) malloc(_len_sci__i0__sc_curseg0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_sci__i0__sc_curseg0; _j0++) {
+              sci[_i0].sc_curseg->sb_sum.nblocks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          unsigned long benchRet = nilfs_segctor_buffer_rest(sci);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_sci0; _aux++) {
+          free(sci[_aux].sc_curseg);
+          }
+          free(sci);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_sci0 = 1;
+          struct nilfs_sc_info * sci = (struct nilfs_sc_info *) malloc(_len_sci0*sizeof(struct nilfs_sc_info));
+          for(int _i0 = 0; _i0 < _len_sci0; _i0++) {
+              sci[_i0].sc_segbuf_nblocks = ((-2 * (next_i()%2)) + 1) * next_i();
+          sci[_i0].sc_nblk_this_inc = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_sci__i0__sc_curseg0 = 1;
+          sci[_i0].sc_curseg = (struct TYPE_4__ *) malloc(_len_sci__i0__sc_curseg0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_sci__i0__sc_curseg0; _j0++) {
+              sci[_i0].sc_curseg->sb_sum.nblocks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
           unsigned long benchRet = nilfs_segctor_buffer_rest(sci);
           printf("%lu\n", benchRet); 
           for(int _aux = 0; _aux < _len_sci0; _aux++) {

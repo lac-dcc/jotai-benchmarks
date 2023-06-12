@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -90,12 +92,6 @@ __attribute__((used)) static void iscsit_set_default_tpg_attribs(struct iscsi_po
 	a->login_keys_workaround = TA_DEFAULT_LOGIN_KEYS_WORKAROUND;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -108,27 +104,159 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 49
+          // dynamic_instructions_O0 : 49
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
+          int _len_tpg0 = 65025;
+          struct iscsi_portal_group * tpg = (struct iscsi_portal_group *) malloc(_len_tpg0*sizeof(struct iscsi_portal_group));
+          for(int _i0 = 0; _i0 < _len_tpg0; _i0++) {
+              tpg[_i0].tpg_attrib.login_keys_workaround = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].tpg_attrib.tpg_enabled_sendtargets = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].tpg_attrib.fabric_prot_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].tpg_attrib.t10_pi = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].tpg_attrib.default_erl = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].tpg_attrib.demo_mode_discovery = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].tpg_attrib.prod_mode_write_protect = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].tpg_attrib.demo_mode_write_protect = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].tpg_attrib.cache_dynamic_acls = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].tpg_attrib.generate_node_acls = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].tpg_attrib.default_cmdsn_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].tpg_attrib.netif_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].tpg_attrib.login_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].tpg_attrib.authentication = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          iscsit_set_default_tpg_attribs(tpg);
+          free(tpg);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 49
+          // dynamic_instructions_O0 : 49
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
+          int _len_tpg0 = 100;
+          struct iscsi_portal_group * tpg = (struct iscsi_portal_group *) malloc(_len_tpg0*sizeof(struct iscsi_portal_group));
+          for(int _i0 = 0; _i0 < _len_tpg0; _i0++) {
+              tpg[_i0].tpg_attrib.login_keys_workaround = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].tpg_attrib.tpg_enabled_sendtargets = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].tpg_attrib.fabric_prot_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].tpg_attrib.t10_pi = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].tpg_attrib.default_erl = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].tpg_attrib.demo_mode_discovery = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].tpg_attrib.prod_mode_write_protect = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].tpg_attrib.demo_mode_write_protect = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].tpg_attrib.cache_dynamic_acls = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].tpg_attrib.generate_node_acls = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].tpg_attrib.default_cmdsn_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].tpg_attrib.netif_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].tpg_attrib.login_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].tpg_attrib.authentication = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          iscsit_set_default_tpg_attribs(tpg);
+          free(tpg);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 49
+          // dynamic_instructions_O0 : 49
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
           int _len_tpg0 = 1;
           struct iscsi_portal_group * tpg = (struct iscsi_portal_group *) malloc(_len_tpg0*sizeof(struct iscsi_portal_group));
           for(int _i0 = 0; _i0 < _len_tpg0; _i0++) {
-            tpg[_i0].tpg_attrib.login_keys_workaround = ((-2 * (next_i()%2)) + 1) * next_i();
-        tpg[_i0].tpg_attrib.tpg_enabled_sendtargets = ((-2 * (next_i()%2)) + 1) * next_i();
-        tpg[_i0].tpg_attrib.fabric_prot_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        tpg[_i0].tpg_attrib.t10_pi = ((-2 * (next_i()%2)) + 1) * next_i();
-        tpg[_i0].tpg_attrib.default_erl = ((-2 * (next_i()%2)) + 1) * next_i();
-        tpg[_i0].tpg_attrib.demo_mode_discovery = ((-2 * (next_i()%2)) + 1) * next_i();
-        tpg[_i0].tpg_attrib.prod_mode_write_protect = ((-2 * (next_i()%2)) + 1) * next_i();
-        tpg[_i0].tpg_attrib.demo_mode_write_protect = ((-2 * (next_i()%2)) + 1) * next_i();
-        tpg[_i0].tpg_attrib.cache_dynamic_acls = ((-2 * (next_i()%2)) + 1) * next_i();
-        tpg[_i0].tpg_attrib.generate_node_acls = ((-2 * (next_i()%2)) + 1) * next_i();
-        tpg[_i0].tpg_attrib.default_cmdsn_depth = ((-2 * (next_i()%2)) + 1) * next_i();
-        tpg[_i0].tpg_attrib.netif_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
-        tpg[_i0].tpg_attrib.login_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
-        tpg[_i0].tpg_attrib.authentication = ((-2 * (next_i()%2)) + 1) * next_i();
+              tpg[_i0].tpg_attrib.login_keys_workaround = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].tpg_attrib.tpg_enabled_sendtargets = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].tpg_attrib.fabric_prot_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].tpg_attrib.t10_pi = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].tpg_attrib.default_erl = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].tpg_attrib.demo_mode_discovery = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].tpg_attrib.prod_mode_write_protect = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].tpg_attrib.demo_mode_write_protect = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].tpg_attrib.cache_dynamic_acls = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].tpg_attrib.generate_node_acls = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].tpg_attrib.default_cmdsn_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].tpg_attrib.netif_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].tpg_attrib.login_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].tpg_attrib.authentication = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           iscsit_set_default_tpg_attribs(tpg);
           free(tpg);
         

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +77,6 @@ __attribute__((used)) static inline BOOL IsDWmMsg(UINT msg)
     return FALSE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,6 +93,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int msg = 100;
+        
           int benchRet = IsDWmMsg(msg);
           printf("%d\n", benchRet); 
         
@@ -107,6 +103,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int msg = 255;
+        
           int benchRet = IsDWmMsg(msg);
           printf("%d\n", benchRet); 
         
@@ -116,12 +113,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int msg = 10;
+        
           int benchRet = IsDWmMsg(msg);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int msg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = IsDWmMsg(msg);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

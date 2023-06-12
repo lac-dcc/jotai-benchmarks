@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ __attribute__((used)) static inline BOOL is_class(jsdisp_t *jsdisp, jsclass_t cl
     return jsdisp->builtin_info->class == class;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,15 +85,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long class = 100;
+        
           int _len_jsdisp0 = 1;
           struct TYPE_5__ * jsdisp = (struct TYPE_5__ *) malloc(_len_jsdisp0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_jsdisp0; _i0++) {
               int _len_jsdisp__i0__builtin_info0 = 1;
           jsdisp[_i0].builtin_info = (struct TYPE_4__ *) malloc(_len_jsdisp__i0__builtin_info0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_jsdisp__i0__builtin_info0; _j0++) {
-            jsdisp[_i0].builtin_info->class = ((-2 * (next_i()%2)) + 1) * next_i();
+              jsdisp[_i0].builtin_info->class = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = is_class(jsdisp,class);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_jsdisp0; _aux++) {
@@ -106,7 +107,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long class = 255;
+        
+          int _len_jsdisp0 = 65025;
+          struct TYPE_5__ * jsdisp = (struct TYPE_5__ *) malloc(_len_jsdisp0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_jsdisp0; _i0++) {
+              int _len_jsdisp__i0__builtin_info0 = 1;
+          jsdisp[_i0].builtin_info = (struct TYPE_4__ *) malloc(_len_jsdisp__i0__builtin_info0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_jsdisp__i0__builtin_info0; _j0++) {
+              jsdisp[_i0].builtin_info->class = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = is_class(jsdisp,class);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_jsdisp0; _aux++) {
+          free(jsdisp[_aux].builtin_info);
+          }
+          free(jsdisp);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long class = 10;
+        
+          int _len_jsdisp0 = 100;
+          struct TYPE_5__ * jsdisp = (struct TYPE_5__ *) malloc(_len_jsdisp0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_jsdisp0; _i0++) {
+              int _len_jsdisp__i0__builtin_info0 = 1;
+          jsdisp[_i0].builtin_info = (struct TYPE_4__ *) malloc(_len_jsdisp__i0__builtin_info0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_jsdisp__i0__builtin_info0; _j0++) {
+              jsdisp[_i0].builtin_info->class = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = is_class(jsdisp,class);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_jsdisp0; _aux++) {
+          free(jsdisp[_aux].builtin_info);
+          }
+          free(jsdisp);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long class = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_jsdisp0 = 1;
+          struct TYPE_5__ * jsdisp = (struct TYPE_5__ *) malloc(_len_jsdisp0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_jsdisp0; _i0++) {
+              int _len_jsdisp__i0__builtin_info0 = 1;
+          jsdisp[_i0].builtin_info = (struct TYPE_4__ *) malloc(_len_jsdisp__i0__builtin_info0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_jsdisp__i0__builtin_info0; _j0++) {
+              jsdisp[_i0].builtin_info->class = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = is_class(jsdisp,class);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_jsdisp0; _aux++) {
+          free(jsdisp[_aux].builtin_info);
+          }
+          free(jsdisp);
+        
+        break;
+    }
     default:
         usage();
         break;

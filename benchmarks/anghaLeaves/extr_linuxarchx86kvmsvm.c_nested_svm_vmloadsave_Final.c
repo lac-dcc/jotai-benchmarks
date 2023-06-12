@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ __attribute__((used)) static void nested_svm_vmloadsave(struct vmcb *from_vmcb, 
 	to_vmcb->save.sysenter_eip = from_vmcb->save.sysenter_eip;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,48 +87,147 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_from_vmcb0 = 1;
+          int _len_from_vmcb0 = 65025;
           struct vmcb * from_vmcb = (struct vmcb *) malloc(_len_from_vmcb0*sizeof(struct vmcb));
           for(int _i0 = 0; _i0 < _len_from_vmcb0; _i0++) {
-            from_vmcb[_i0].save.sysenter_eip = ((-2 * (next_i()%2)) + 1) * next_i();
-        from_vmcb[_i0].save.sysenter_esp = ((-2 * (next_i()%2)) + 1) * next_i();
-        from_vmcb[_i0].save.sysenter_cs = ((-2 * (next_i()%2)) + 1) * next_i();
-        from_vmcb[_i0].save.sfmask = ((-2 * (next_i()%2)) + 1) * next_i();
-        from_vmcb[_i0].save.cstar = ((-2 * (next_i()%2)) + 1) * next_i();
-        from_vmcb[_i0].save.lstar = ((-2 * (next_i()%2)) + 1) * next_i();
-        from_vmcb[_i0].save.star = ((-2 * (next_i()%2)) + 1) * next_i();
-        from_vmcb[_i0].save.kernel_gs_base = ((-2 * (next_i()%2)) + 1) * next_i();
-        from_vmcb[_i0].save.ldtr = ((-2 * (next_i()%2)) + 1) * next_i();
-        from_vmcb[_i0].save.tr = ((-2 * (next_i()%2)) + 1) * next_i();
-        from_vmcb[_i0].save.gs = ((-2 * (next_i()%2)) + 1) * next_i();
-        from_vmcb[_i0].save.fs = ((-2 * (next_i()%2)) + 1) * next_i();
+              from_vmcb[_i0].save.sysenter_eip = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].save.sysenter_esp = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].save.sysenter_cs = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].save.sfmask = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].save.cstar = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].save.lstar = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].save.star = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].save.kernel_gs_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].save.ldtr = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].save.tr = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].save.gs = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].save.fs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-          int _len_to_vmcb0 = 1;
+        
+          int _len_to_vmcb0 = 65025;
           struct vmcb * to_vmcb = (struct vmcb *) malloc(_len_to_vmcb0*sizeof(struct vmcb));
           for(int _i0 = 0; _i0 < _len_to_vmcb0; _i0++) {
-            to_vmcb[_i0].save.sysenter_eip = ((-2 * (next_i()%2)) + 1) * next_i();
-        to_vmcb[_i0].save.sysenter_esp = ((-2 * (next_i()%2)) + 1) * next_i();
-        to_vmcb[_i0].save.sysenter_cs = ((-2 * (next_i()%2)) + 1) * next_i();
-        to_vmcb[_i0].save.sfmask = ((-2 * (next_i()%2)) + 1) * next_i();
-        to_vmcb[_i0].save.cstar = ((-2 * (next_i()%2)) + 1) * next_i();
-        to_vmcb[_i0].save.lstar = ((-2 * (next_i()%2)) + 1) * next_i();
-        to_vmcb[_i0].save.star = ((-2 * (next_i()%2)) + 1) * next_i();
-        to_vmcb[_i0].save.kernel_gs_base = ((-2 * (next_i()%2)) + 1) * next_i();
-        to_vmcb[_i0].save.ldtr = ((-2 * (next_i()%2)) + 1) * next_i();
-        to_vmcb[_i0].save.tr = ((-2 * (next_i()%2)) + 1) * next_i();
-        to_vmcb[_i0].save.gs = ((-2 * (next_i()%2)) + 1) * next_i();
-        to_vmcb[_i0].save.fs = ((-2 * (next_i()%2)) + 1) * next_i();
+              to_vmcb[_i0].save.sysenter_eip = ((-2 * (next_i()%2)) + 1) * next_i();
+          to_vmcb[_i0].save.sysenter_esp = ((-2 * (next_i()%2)) + 1) * next_i();
+          to_vmcb[_i0].save.sysenter_cs = ((-2 * (next_i()%2)) + 1) * next_i();
+          to_vmcb[_i0].save.sfmask = ((-2 * (next_i()%2)) + 1) * next_i();
+          to_vmcb[_i0].save.cstar = ((-2 * (next_i()%2)) + 1) * next_i();
+          to_vmcb[_i0].save.lstar = ((-2 * (next_i()%2)) + 1) * next_i();
+          to_vmcb[_i0].save.star = ((-2 * (next_i()%2)) + 1) * next_i();
+          to_vmcb[_i0].save.kernel_gs_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          to_vmcb[_i0].save.ldtr = ((-2 * (next_i()%2)) + 1) * next_i();
+          to_vmcb[_i0].save.tr = ((-2 * (next_i()%2)) + 1) * next_i();
+          to_vmcb[_i0].save.gs = ((-2 * (next_i()%2)) + 1) * next_i();
+          to_vmcb[_i0].save.fs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           nested_svm_vmloadsave(from_vmcb,to_vmcb);
           free(from_vmcb);
           free(to_vmcb);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_from_vmcb0 = 100;
+          struct vmcb * from_vmcb = (struct vmcb *) malloc(_len_from_vmcb0*sizeof(struct vmcb));
+          for(int _i0 = 0; _i0 < _len_from_vmcb0; _i0++) {
+              from_vmcb[_i0].save.sysenter_eip = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].save.sysenter_esp = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].save.sysenter_cs = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].save.sfmask = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].save.cstar = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].save.lstar = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].save.star = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].save.kernel_gs_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].save.ldtr = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].save.tr = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].save.gs = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].save.fs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_to_vmcb0 = 100;
+          struct vmcb * to_vmcb = (struct vmcb *) malloc(_len_to_vmcb0*sizeof(struct vmcb));
+          for(int _i0 = 0; _i0 < _len_to_vmcb0; _i0++) {
+              to_vmcb[_i0].save.sysenter_eip = ((-2 * (next_i()%2)) + 1) * next_i();
+          to_vmcb[_i0].save.sysenter_esp = ((-2 * (next_i()%2)) + 1) * next_i();
+          to_vmcb[_i0].save.sysenter_cs = ((-2 * (next_i()%2)) + 1) * next_i();
+          to_vmcb[_i0].save.sfmask = ((-2 * (next_i()%2)) + 1) * next_i();
+          to_vmcb[_i0].save.cstar = ((-2 * (next_i()%2)) + 1) * next_i();
+          to_vmcb[_i0].save.lstar = ((-2 * (next_i()%2)) + 1) * next_i();
+          to_vmcb[_i0].save.star = ((-2 * (next_i()%2)) + 1) * next_i();
+          to_vmcb[_i0].save.kernel_gs_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          to_vmcb[_i0].save.ldtr = ((-2 * (next_i()%2)) + 1) * next_i();
+          to_vmcb[_i0].save.tr = ((-2 * (next_i()%2)) + 1) * next_i();
+          to_vmcb[_i0].save.gs = ((-2 * (next_i()%2)) + 1) * next_i();
+          to_vmcb[_i0].save.fs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          nested_svm_vmloadsave(from_vmcb,to_vmcb);
+          free(from_vmcb);
+          free(to_vmcb);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_from_vmcb0 = 1;
+          struct vmcb * from_vmcb = (struct vmcb *) malloc(_len_from_vmcb0*sizeof(struct vmcb));
+          for(int _i0 = 0; _i0 < _len_from_vmcb0; _i0++) {
+              from_vmcb[_i0].save.sysenter_eip = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].save.sysenter_esp = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].save.sysenter_cs = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].save.sfmask = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].save.cstar = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].save.lstar = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].save.star = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].save.kernel_gs_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].save.ldtr = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].save.tr = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].save.gs = ((-2 * (next_i()%2)) + 1) * next_i();
+          from_vmcb[_i0].save.fs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_to_vmcb0 = 1;
+          struct vmcb * to_vmcb = (struct vmcb *) malloc(_len_to_vmcb0*sizeof(struct vmcb));
+          for(int _i0 = 0; _i0 < _len_to_vmcb0; _i0++) {
+              to_vmcb[_i0].save.sysenter_eip = ((-2 * (next_i()%2)) + 1) * next_i();
+          to_vmcb[_i0].save.sysenter_esp = ((-2 * (next_i()%2)) + 1) * next_i();
+          to_vmcb[_i0].save.sysenter_cs = ((-2 * (next_i()%2)) + 1) * next_i();
+          to_vmcb[_i0].save.sfmask = ((-2 * (next_i()%2)) + 1) * next_i();
+          to_vmcb[_i0].save.cstar = ((-2 * (next_i()%2)) + 1) * next_i();
+          to_vmcb[_i0].save.lstar = ((-2 * (next_i()%2)) + 1) * next_i();
+          to_vmcb[_i0].save.star = ((-2 * (next_i()%2)) + 1) * next_i();
+          to_vmcb[_i0].save.kernel_gs_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          to_vmcb[_i0].save.ldtr = ((-2 * (next_i()%2)) + 1) * next_i();
+          to_vmcb[_i0].save.tr = ((-2 * (next_i()%2)) + 1) * next_i();
+          to_vmcb[_i0].save.gs = ((-2 * (next_i()%2)) + 1) * next_i();
+          to_vmcb[_i0].save.fs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          nested_svm_vmloadsave(from_vmcb,to_vmcb);
+          free(from_vmcb);
+          free(to_vmcb);
+        
+        break;
+    }
     default:
         usage();
         break;

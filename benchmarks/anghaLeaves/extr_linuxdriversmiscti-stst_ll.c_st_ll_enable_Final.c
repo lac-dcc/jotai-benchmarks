@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ void st_ll_enable(struct st_data_s *ll)
 	ll->ll_state = ST_LL_AWAKE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,27 +75,117 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_ll0 = 1;
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_ll0 = 65025;
           struct st_data_s * ll = (struct st_data_s *) malloc(_len_ll0*sizeof(struct st_data_s));
           for(int _i0 = 0; _i0 < _len_ll0; _i0++) {
-            ll[_i0].ll_state = ((-2 * (next_i()%2)) + 1) * next_i();
+              ll[_i0].ll_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           st_ll_enable(ll);
           free(ll);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_ll0 = 100;
           struct st_data_s * ll = (struct st_data_s *) malloc(_len_ll0*sizeof(struct st_data_s));
           for(int _i0 = 0; _i0 < _len_ll0; _i0++) {
-            ll[_i0].ll_state = ((-2 * (next_i()%2)) + 1) * next_i();
+              ll[_i0].ll_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          st_ll_enable(ll);
+          free(ll);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_ll0 = 1;
+          struct st_data_s * ll = (struct st_data_s *) malloc(_len_ll0*sizeof(struct st_data_s));
+          for(int _i0 = 0; _i0 < _len_ll0; _i0++) {
+              ll[_i0].ll_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           st_ll_enable(ll);
           free(ll);
         

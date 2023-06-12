@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ update_rusage_info_child(struct rusage_info_child *ri, rusage_info_current *ri_c
 		ri_current->ri_proc_start_abstime) + ri_current->ri_child_elapsed_abstime);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,36 +89,191 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 56
+          // dynamic_instructions_O0 : 56
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          int _len_ri0 = 65025;
+          struct rusage_info_child * ri = (struct rusage_info_child *) malloc(_len_ri0*sizeof(struct rusage_info_child));
+          for(int _i0 = 0; _i0 < _len_ri0; _i0++) {
+              ri[_i0].ri_child_elapsed_abstime = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri[_i0].ri_child_pageins = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri[_i0].ri_child_interrupt_wkups = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri[_i0].ri_child_pkg_idle_wkups = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri[_i0].ri_child_system_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri[_i0].ri_child_user_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ri_current0 = 65025;
+          struct TYPE_3__ * ri_current = (struct TYPE_3__ *) malloc(_len_ri_current0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ri_current0; _i0++) {
+              ri_current[_i0].ri_child_elapsed_abstime = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri_current[_i0].ri_proc_start_abstime = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri_current[_i0].ri_proc_exit_abstime = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri_current[_i0].ri_child_pageins = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri_current[_i0].ri_pageins = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri_current[_i0].ri_child_interrupt_wkups = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri_current[_i0].ri_interrupt_wkups = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri_current[_i0].ri_child_pkg_idle_wkups = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri_current[_i0].ri_pkg_idle_wkups = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri_current[_i0].ri_child_system_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri_current[_i0].ri_system_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri_current[_i0].ri_child_user_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri_current[_i0].ri_user_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          update_rusage_info_child(ri,ri_current);
+          free(ri);
+          free(ri_current);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 56
+          // dynamic_instructions_O0 : 56
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          int _len_ri0 = 100;
+          struct rusage_info_child * ri = (struct rusage_info_child *) malloc(_len_ri0*sizeof(struct rusage_info_child));
+          for(int _i0 = 0; _i0 < _len_ri0; _i0++) {
+              ri[_i0].ri_child_elapsed_abstime = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri[_i0].ri_child_pageins = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri[_i0].ri_child_interrupt_wkups = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri[_i0].ri_child_pkg_idle_wkups = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri[_i0].ri_child_system_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri[_i0].ri_child_user_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ri_current0 = 100;
+          struct TYPE_3__ * ri_current = (struct TYPE_3__ *) malloc(_len_ri_current0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ri_current0; _i0++) {
+              ri_current[_i0].ri_child_elapsed_abstime = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri_current[_i0].ri_proc_start_abstime = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri_current[_i0].ri_proc_exit_abstime = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri_current[_i0].ri_child_pageins = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri_current[_i0].ri_pageins = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri_current[_i0].ri_child_interrupt_wkups = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri_current[_i0].ri_interrupt_wkups = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri_current[_i0].ri_child_pkg_idle_wkups = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri_current[_i0].ri_pkg_idle_wkups = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri_current[_i0].ri_child_system_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri_current[_i0].ri_system_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri_current[_i0].ri_child_user_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri_current[_i0].ri_user_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          update_rusage_info_child(ri,ri_current);
+          free(ri);
+          free(ri_current);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 56
+          // dynamic_instructions_O0 : 56
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
           int _len_ri0 = 1;
           struct rusage_info_child * ri = (struct rusage_info_child *) malloc(_len_ri0*sizeof(struct rusage_info_child));
           for(int _i0 = 0; _i0 < _len_ri0; _i0++) {
-            ri[_i0].ri_child_elapsed_abstime = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri[_i0].ri_child_pageins = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri[_i0].ri_child_interrupt_wkups = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri[_i0].ri_child_pkg_idle_wkups = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri[_i0].ri_child_system_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri[_i0].ri_child_user_time = ((-2 * (next_i()%2)) + 1) * next_i();
+              ri[_i0].ri_child_elapsed_abstime = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri[_i0].ri_child_pageins = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri[_i0].ri_child_interrupt_wkups = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri[_i0].ri_child_pkg_idle_wkups = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri[_i0].ri_child_system_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri[_i0].ri_child_user_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_ri_current0 = 1;
           struct TYPE_3__ * ri_current = (struct TYPE_3__ *) malloc(_len_ri_current0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_ri_current0; _i0++) {
-            ri_current[_i0].ri_child_elapsed_abstime = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri_current[_i0].ri_proc_start_abstime = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri_current[_i0].ri_proc_exit_abstime = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri_current[_i0].ri_child_pageins = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri_current[_i0].ri_pageins = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri_current[_i0].ri_child_interrupt_wkups = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri_current[_i0].ri_interrupt_wkups = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri_current[_i0].ri_child_pkg_idle_wkups = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri_current[_i0].ri_pkg_idle_wkups = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri_current[_i0].ri_child_system_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri_current[_i0].ri_system_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri_current[_i0].ri_child_user_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri_current[_i0].ri_user_time = ((-2 * (next_i()%2)) + 1) * next_i();
+              ri_current[_i0].ri_child_elapsed_abstime = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri_current[_i0].ri_proc_start_abstime = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri_current[_i0].ri_proc_exit_abstime = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri_current[_i0].ri_child_pageins = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri_current[_i0].ri_pageins = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri_current[_i0].ri_child_interrupt_wkups = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri_current[_i0].ri_interrupt_wkups = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri_current[_i0].ri_child_pkg_idle_wkups = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri_current[_i0].ri_pkg_idle_wkups = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri_current[_i0].ri_child_system_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri_current[_i0].ri_system_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri_current[_i0].ri_child_user_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri_current[_i0].ri_user_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           update_rusage_info_child(ri,ri_current);
           free(ri);
           free(ri_current);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -88,12 +90,6 @@ __attribute__((used)) static int sh_veu_stream_init(struct sh_veu_dev *veu, stru
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,29 +102,193 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           enum v4l2_buf_type type = 0;
+        
+          int _len_veu0 = 65025;
+          struct sh_veu_dev * veu = (struct sh_veu_dev *) malloc(_len_veu0*sizeof(struct sh_veu_dev));
+          for(int _i0 = 0; _i0 < _len_veu0; _i0++) {
+              int _len_veu__i0__output0 = 1;
+          veu[_i0].output = (struct sh_veu_file *) malloc(_len_veu__i0__output0*sizeof(struct sh_veu_file));
+          for(int _j0 = 0; _j0 < _len_veu__i0__output0; _j0++) {
+              veu[_i0].output->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_veu__i0__capture0 = 1;
+          veu[_i0].capture = (struct sh_veu_file *) malloc(_len_veu__i0__capture0*sizeof(struct sh_veu_file));
+          for(int _j0 = 0; _j0 < _len_veu__i0__capture0; _j0++) {
+              veu[_i0].capture->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_veu_file0 = 65025;
+          struct sh_veu_file * veu_file = (struct sh_veu_file *) malloc(_len_veu_file0*sizeof(struct sh_veu_file));
+          for(int _i0 = 0; _i0 < _len_veu_file0; _i0++) {
+              veu_file[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sh_veu_stream_init(veu,veu_file,type);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_veu0; _aux++) {
+          free(veu[_aux].output);
+          }
+          for(int _aux = 0; _aux < _len_veu0; _aux++) {
+          free(veu[_aux].capture);
+          }
+          free(veu);
+          free(veu_file);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          enum v4l2_buf_type type = 0;
+        
+          int _len_veu0 = 100;
+          struct sh_veu_dev * veu = (struct sh_veu_dev *) malloc(_len_veu0*sizeof(struct sh_veu_dev));
+          for(int _i0 = 0; _i0 < _len_veu0; _i0++) {
+              int _len_veu__i0__output0 = 1;
+          veu[_i0].output = (struct sh_veu_file *) malloc(_len_veu__i0__output0*sizeof(struct sh_veu_file));
+          for(int _j0 = 0; _j0 < _len_veu__i0__output0; _j0++) {
+              veu[_i0].output->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_veu__i0__capture0 = 1;
+          veu[_i0].capture = (struct sh_veu_file *) malloc(_len_veu__i0__capture0*sizeof(struct sh_veu_file));
+          for(int _j0 = 0; _j0 < _len_veu__i0__capture0; _j0++) {
+              veu[_i0].capture->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_veu_file0 = 100;
+          struct sh_veu_file * veu_file = (struct sh_veu_file *) malloc(_len_veu_file0*sizeof(struct sh_veu_file));
+          for(int _i0 = 0; _i0 < _len_veu_file0; _i0++) {
+              veu_file[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sh_veu_stream_init(veu,veu_file,type);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_veu0; _aux++) {
+          free(veu[_aux].output);
+          }
+          for(int _aux = 0; _aux < _len_veu0; _aux++) {
+          free(veu[_aux].capture);
+          }
+          free(veu);
+          free(veu_file);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          enum v4l2_buf_type type = 0;
+        
           int _len_veu0 = 1;
           struct sh_veu_dev * veu = (struct sh_veu_dev *) malloc(_len_veu0*sizeof(struct sh_veu_dev));
           for(int _i0 = 0; _i0 < _len_veu0; _i0++) {
               int _len_veu__i0__output0 = 1;
           veu[_i0].output = (struct sh_veu_file *) malloc(_len_veu__i0__output0*sizeof(struct sh_veu_file));
           for(int _j0 = 0; _j0 < _len_veu__i0__output0; _j0++) {
-            veu[_i0].output->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              veu[_i0].output->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_veu__i0__capture0 = 1;
           veu[_i0].capture = (struct sh_veu_file *) malloc(_len_veu__i0__capture0*sizeof(struct sh_veu_file));
           for(int _j0 = 0; _j0 < _len_veu__i0__capture0; _j0++) {
-            veu[_i0].capture->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              veu[_i0].capture->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_veu_file0 = 1;
           struct sh_veu_file * veu_file = (struct sh_veu_file *) malloc(_len_veu_file0*sizeof(struct sh_veu_file));
           for(int _i0 = 0; _i0 < _len_veu_file0; _i0++) {
-            veu_file[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              veu_file[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = sh_veu_stream_init(veu,veu_file,type);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_veu0; _aux++) {

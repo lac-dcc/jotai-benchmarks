@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ unsigned int sqlite3_value_subtype(sqlite3_value *pVal){
   return ((pMem->flags & MEM_Subtype) ? pMem->eSubtype : 0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,14 +78,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pVal0 = 1;
+          int _len_pVal0 = 65025;
           int * pVal = (int *) malloc(_len_pVal0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pVal0; _i0++) {
             pVal[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned int benchRet = sqlite3_value_subtype(pVal);
           printf("%u\n", benchRet); 
           free(pVal);
@@ -105,13 +101,28 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_pVal0; _i0++) {
             pVal[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned int benchRet = sqlite3_value_subtype(pVal);
           printf("%u\n", benchRet); 
           free(pVal);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_pVal0 = 1;
+          int * pVal = (int *) malloc(_len_pVal0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pVal0; _i0++) {
+            pVal[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned int benchRet = sqlite3_value_subtype(pVal);
+          printf("%u\n", benchRet); 
+          free(pVal);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -80,12 +82,6 @@ void SiSetDefaultHubOption(HUB_OPTION *o)
 	o->FloodingSendQueueBufferQuota = DEFAULT_FLOODING_QUEUE_LENGTH;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,29 +94,78 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_o0 = 1;
+          int _len_o0 = 65025;
           struct TYPE_3__ * o = (struct TYPE_3__ *) malloc(_len_o0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_o0; _i0++) {
-            o[_i0].NoIPv6DefaultRouterInRAWhenIPv6 = ((-2 * (next_i()%2)) + 1) * next_i();
-        o[_i0].ManageOnlyPrivateIP = ((-2 * (next_i()%2)) + 1) * next_i();
-        o[_i0].ManageOnlyLocalUnicastIPv6 = ((-2 * (next_i()%2)) + 1) * next_i();
-        o[_i0].NoMacAddressLog = ((-2 * (next_i()%2)) + 1) * next_i();
-        o[_i0].NoDhcpPacketLogOutsideHub = ((-2 * (next_i()%2)) + 1) * next_i();
-        o[_i0].RemoveDefGwOnDhcpForLocalhost = ((-2 * (next_i()%2)) + 1) * next_i();
-        o[_i0].FloodingSendQueueBufferQuota = ((-2 * (next_i()%2)) + 1) * next_i();
-        o[_i0].AccessListIncludeFileCacheLifetime = ((-2 * (next_i()%2)) + 1) * next_i();
-        o[_i0].VlanTypeId = ((-2 * (next_i()%2)) + 1) * next_i();
-        o[_i0].MaxSession = ((-2 * (next_i()%2)) + 1) * next_i();
+              o[_i0].NoIPv6DefaultRouterInRAWhenIPv6 = ((-2 * (next_i()%2)) + 1) * next_i();
+          o[_i0].ManageOnlyPrivateIP = ((-2 * (next_i()%2)) + 1) * next_i();
+          o[_i0].ManageOnlyLocalUnicastIPv6 = ((-2 * (next_i()%2)) + 1) * next_i();
+          o[_i0].NoMacAddressLog = ((-2 * (next_i()%2)) + 1) * next_i();
+          o[_i0].NoDhcpPacketLogOutsideHub = ((-2 * (next_i()%2)) + 1) * next_i();
+          o[_i0].RemoveDefGwOnDhcpForLocalhost = ((-2 * (next_i()%2)) + 1) * next_i();
+          o[_i0].FloodingSendQueueBufferQuota = ((-2 * (next_i()%2)) + 1) * next_i();
+          o[_i0].AccessListIncludeFileCacheLifetime = ((-2 * (next_i()%2)) + 1) * next_i();
+          o[_i0].VlanTypeId = ((-2 * (next_i()%2)) + 1) * next_i();
+          o[_i0].MaxSession = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           SiSetDefaultHubOption(o);
           free(o);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_o0 = 100;
+          struct TYPE_3__ * o = (struct TYPE_3__ *) malloc(_len_o0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_o0; _i0++) {
+              o[_i0].NoIPv6DefaultRouterInRAWhenIPv6 = ((-2 * (next_i()%2)) + 1) * next_i();
+          o[_i0].ManageOnlyPrivateIP = ((-2 * (next_i()%2)) + 1) * next_i();
+          o[_i0].ManageOnlyLocalUnicastIPv6 = ((-2 * (next_i()%2)) + 1) * next_i();
+          o[_i0].NoMacAddressLog = ((-2 * (next_i()%2)) + 1) * next_i();
+          o[_i0].NoDhcpPacketLogOutsideHub = ((-2 * (next_i()%2)) + 1) * next_i();
+          o[_i0].RemoveDefGwOnDhcpForLocalhost = ((-2 * (next_i()%2)) + 1) * next_i();
+          o[_i0].FloodingSendQueueBufferQuota = ((-2 * (next_i()%2)) + 1) * next_i();
+          o[_i0].AccessListIncludeFileCacheLifetime = ((-2 * (next_i()%2)) + 1) * next_i();
+          o[_i0].VlanTypeId = ((-2 * (next_i()%2)) + 1) * next_i();
+          o[_i0].MaxSession = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          SiSetDefaultHubOption(o);
+          free(o);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_o0 = 1;
+          struct TYPE_3__ * o = (struct TYPE_3__ *) malloc(_len_o0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_o0; _i0++) {
+              o[_i0].NoIPv6DefaultRouterInRAWhenIPv6 = ((-2 * (next_i()%2)) + 1) * next_i();
+          o[_i0].ManageOnlyPrivateIP = ((-2 * (next_i()%2)) + 1) * next_i();
+          o[_i0].ManageOnlyLocalUnicastIPv6 = ((-2 * (next_i()%2)) + 1) * next_i();
+          o[_i0].NoMacAddressLog = ((-2 * (next_i()%2)) + 1) * next_i();
+          o[_i0].NoDhcpPacketLogOutsideHub = ((-2 * (next_i()%2)) + 1) * next_i();
+          o[_i0].RemoveDefGwOnDhcpForLocalhost = ((-2 * (next_i()%2)) + 1) * next_i();
+          o[_i0].FloodingSendQueueBufferQuota = ((-2 * (next_i()%2)) + 1) * next_i();
+          o[_i0].AccessListIncludeFileCacheLifetime = ((-2 * (next_i()%2)) + 1) * next_i();
+          o[_i0].VlanTypeId = ((-2 * (next_i()%2)) + 1) * next_i();
+          o[_i0].MaxSession = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          SiSetDefaultHubOption(o);
+          free(o);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static int xgene_phy_get_avg(int accum, int samples)
 	return (accum + (samples / 2)) / samples;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,7 +78,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int accum = 100;
+        
           int samples = 100;
+        
           int benchRet = xgene_phy_get_avg(accum,samples);
           printf("%d\n", benchRet); 
         
@@ -93,7 +90,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int accum = 255;
+        
           int samples = 255;
+        
           int benchRet = xgene_phy_get_avg(accum,samples);
           printf("%d\n", benchRet); 
         
@@ -103,13 +102,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int accum = 10;
+        
           int samples = 10;
+        
           int benchRet = xgene_phy_get_avg(accum,samples);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int accum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int samples = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = xgene_phy_get_avg(accum,samples);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

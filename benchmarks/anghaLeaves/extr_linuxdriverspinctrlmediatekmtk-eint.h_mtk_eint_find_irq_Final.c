@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ int mtk_eint_find_irq(struct mtk_eint *eint, unsigned long eint_n)
 	return -EOPNOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,11 +80,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long eint_n = 100;
+        
           int _len_eint0 = 1;
           struct mtk_eint * eint = (struct mtk_eint *) malloc(_len_eint0*sizeof(struct mtk_eint));
           for(int _i0 = 0; _i0 < _len_eint0; _i0++) {
-            eint[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              eint[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = mtk_eint_find_irq(eint,eint_n);
+          printf("%d\n", benchRet); 
+          free(eint);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned long eint_n = 255;
+        
+          int _len_eint0 = 65025;
+          struct mtk_eint * eint = (struct mtk_eint *) malloc(_len_eint0*sizeof(struct mtk_eint));
+          for(int _i0 = 0; _i0 < _len_eint0; _i0++) {
+              eint[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = mtk_eint_find_irq(eint,eint_n);
           printf("%d\n", benchRet); 
           free(eint);
@@ -96,21 +113,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned long eint_n = 10;
+        
           int _len_eint0 = 100;
           struct mtk_eint * eint = (struct mtk_eint *) malloc(_len_eint0*sizeof(struct mtk_eint));
           for(int _i0 = 0; _i0 < _len_eint0; _i0++) {
-            eint[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              eint[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mtk_eint_find_irq(eint,eint_n);
           printf("%d\n", benchRet); 
           free(eint);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long eint_n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_eint0 = 1;
+          struct mtk_eint * eint = (struct mtk_eint *) malloc(_len_eint0*sizeof(struct mtk_eint));
+          for(int _i0 = 0; _i0 < _len_eint0; _i0++) {
+              eint[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mtk_eint_find_irq(eint,eint_n);
+          printf("%d\n", benchRet); 
+          free(eint);
+        
+        break;
+    }
     default:
         usage();
         break;

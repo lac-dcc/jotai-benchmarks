@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ __attribute__((used)) inline static void ffp_reset_demux_cache_control(FFDemuxCa
     dcc->current_high_water_mark_in_ms  = DEFAULT_FIRST_HIGH_WATER_MARK_IN_MS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,18 +89,129 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_dcc0 = 65025;
+          struct TYPE_3__ * dcc = (struct TYPE_3__ *) malloc(_len_dcc0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_dcc0; _i0++) {
+              dcc[_i0].last_high_water_mark_in_ms = ((-2 * (next_i()%2)) + 1) * next_i();
+          dcc[_i0].next_high_water_mark_in_ms = ((-2 * (next_i()%2)) + 1) * next_i();
+          dcc[_i0].high_water_mark_in_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          dcc[_i0].max_buffer_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          dcc[_i0].min_frames = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ffp_reset_demux_cache_control(dcc);
+          free(dcc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_dcc0 = 100;
+          struct TYPE_3__ * dcc = (struct TYPE_3__ *) malloc(_len_dcc0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_dcc0; _i0++) {
+              dcc[_i0].last_high_water_mark_in_ms = ((-2 * (next_i()%2)) + 1) * next_i();
+          dcc[_i0].next_high_water_mark_in_ms = ((-2 * (next_i()%2)) + 1) * next_i();
+          dcc[_i0].high_water_mark_in_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          dcc[_i0].max_buffer_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          dcc[_i0].min_frames = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ffp_reset_demux_cache_control(dcc);
+          free(dcc);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int _len_dcc0 = 1;
           struct TYPE_3__ * dcc = (struct TYPE_3__ *) malloc(_len_dcc0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_dcc0; _i0++) {
-            dcc[_i0].last_high_water_mark_in_ms = ((-2 * (next_i()%2)) + 1) * next_i();
-        dcc[_i0].next_high_water_mark_in_ms = ((-2 * (next_i()%2)) + 1) * next_i();
-        dcc[_i0].high_water_mark_in_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        dcc[_i0].max_buffer_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        dcc[_i0].min_frames = ((-2 * (next_i()%2)) + 1) * next_i();
+              dcc[_i0].last_high_water_mark_in_ms = ((-2 * (next_i()%2)) + 1) * next_i();
+          dcc[_i0].next_high_water_mark_in_ms = ((-2 * (next_i()%2)) + 1) * next_i();
+          dcc[_i0].high_water_mark_in_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          dcc[_i0].max_buffer_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          dcc[_i0].min_frames = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ffp_reset_demux_cache_control(dcc);
           free(dcc);
         

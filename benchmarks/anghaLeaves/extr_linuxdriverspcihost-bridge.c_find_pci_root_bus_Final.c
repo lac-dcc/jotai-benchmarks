@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -63,7 +64,6 @@ __attribute__((used)) static struct pci_bus *find_pci_root_bus(struct pci_bus *b
 	return bus;
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct pci_bus *_allocate_bus(int length, struct pci_bus *aux_bus[]) {
@@ -91,7 +91,6 @@ void _delete_bus(struct pci_bus *aux_bus[], int aux_bus_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,17 +103,28 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // linked
     case 0:
+    {
+          struct pci_bus * aux_bus[10000];
+          struct pci_bus * bus = _allocate_bus(10000, aux_bus);
+        
+          struct pci_bus * benchRet = find_pci_root_bus(bus);
+          _delete_bus(aux_bus, 10000);
+        
+        break;
+    }
+    // empty
+    case 1:
     {
           struct pci_bus * aux_bus[1];
           struct pci_bus * bus = _allocate_bus(1, aux_bus);
+        
           struct pci_bus * benchRet = find_pci_root_bus(bus);
           _delete_bus(aux_bus, 1);
         
         break;
     }
-
     default:
         usage();
         break;

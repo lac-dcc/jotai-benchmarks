@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static void viper_pcmcia_socket_state(struct soc_pcmcia_so
 	state->vs_Xv  = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,20 +77,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_skt0 = 65025;
+          struct soc_pcmcia_socket * skt = (struct soc_pcmcia_socket *) malloc(_len_skt0*sizeof(struct soc_pcmcia_socket));
+          for(int _i0 = 0; _i0 < _len_skt0; _i0++) {
+              skt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_state0 = 65025;
+          struct pcmcia_state * state = (struct pcmcia_state *) malloc(_len_state0*sizeof(struct pcmcia_state));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].vs_3v = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].vs_Xv = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          viper_pcmcia_socket_state(skt,state);
+          free(skt);
+          free(state);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_skt0 = 100;
+          struct soc_pcmcia_socket * skt = (struct soc_pcmcia_socket *) malloc(_len_skt0*sizeof(struct soc_pcmcia_socket));
+          for(int _i0 = 0; _i0 < _len_skt0; _i0++) {
+              skt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_state0 = 100;
+          struct pcmcia_state * state = (struct pcmcia_state *) malloc(_len_state0*sizeof(struct pcmcia_state));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].vs_3v = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].vs_Xv = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          viper_pcmcia_socket_state(skt,state);
+          free(skt);
+          free(state);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_skt0 = 1;
           struct soc_pcmcia_socket * skt = (struct soc_pcmcia_socket *) malloc(_len_skt0*sizeof(struct soc_pcmcia_socket));
           for(int _i0 = 0; _i0 < _len_skt0; _i0++) {
-            skt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              skt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_state0 = 1;
           struct pcmcia_state * state = (struct pcmcia_state *) malloc(_len_state0*sizeof(struct pcmcia_state));
           for(int _i0 = 0; _i0 < _len_state0; _i0++) {
-            state[_i0].vs_3v = ((-2 * (next_i()%2)) + 1) * next_i();
-        state[_i0].vs_Xv = ((-2 * (next_i()%2)) + 1) * next_i();
+              state[_i0].vs_3v = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].vs_Xv = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           viper_pcmcia_socket_state(skt,state);
           free(skt);
           free(state);

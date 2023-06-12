@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline void EDIT_EM_EmptyUndoBuffer(EDITSTATE *es)
 	*es->undo_text = '\0';
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,8 +77,54 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
+    {
+          int _len_es0 = 65025;
+          struct TYPE_3__ * es = (struct TYPE_3__ *) malloc(_len_es0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_es0; _i0++) {
+              int _len_es__i0__undo_text0 = 1;
+          es[_i0].undo_text = (char *) malloc(_len_es__i0__undo_text0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_es__i0__undo_text0; _j0++) {
+            es[_i0].undo_text[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          es[_i0].undo_insert_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          EDIT_EM_EmptyUndoBuffer(es);
+          for(int _aux = 0; _aux < _len_es0; _aux++) {
+          free(es[_aux].undo_text);
+          }
+          free(es);
+        
+        break;
+    }
+    // big-arr-10x
+    case 1:
+    {
+          int _len_es0 = 100;
+          struct TYPE_3__ * es = (struct TYPE_3__ *) malloc(_len_es0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_es0; _i0++) {
+              int _len_es__i0__undo_text0 = 1;
+          es[_i0].undo_text = (char *) malloc(_len_es__i0__undo_text0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_es__i0__undo_text0; _j0++) {
+            es[_i0].undo_text[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          es[_i0].undo_insert_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          EDIT_EM_EmptyUndoBuffer(es);
+          for(int _aux = 0; _aux < _len_es0; _aux++) {
+          free(es[_aux].undo_text);
+          }
+          free(es);
+        
+        break;
+    }
+    // empty
+    case 2:
     {
           int _len_es0 = 1;
           struct TYPE_3__ * es = (struct TYPE_3__ *) malloc(_len_es0*sizeof(struct TYPE_3__));
@@ -92,8 +134,10 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_es__i0__undo_text0; _j0++) {
             es[_i0].undo_text[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        es[_i0].undo_insert_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          es[_i0].undo_insert_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           EDIT_EM_EmptyUndoBuffer(es);
           for(int _aux = 0; _aux < _len_es0; _aux++) {
           free(es[_aux].undo_text);
@@ -102,7 +146,6 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
     default:
         usage();
         break;

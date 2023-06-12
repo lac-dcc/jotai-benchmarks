@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -84,12 +87,6 @@ __attribute__((used)) static u8 current_global_enables(struct smi_info *smi_info
 	return enables;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,24 +99,214 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 42
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
           int base = 100;
+        
           int _len_smi_info0 = 1;
           struct smi_info * smi_info = (struct smi_info *) malloc(_len_smi_info0*sizeof(struct smi_info));
           for(int _i0 = 0; _i0 < _len_smi_info0; _i0++) {
-            smi_info[_i0].irq_enable_broken = ((-2 * (next_i()%2)) + 1) * next_i();
-        smi_info[_i0].interrupt_disabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        smi_info[_i0].io.irq = ((-2 * (next_i()%2)) + 1) * next_i();
-        smi_info[_i0].supports_event_msg_buff = ((-2 * (next_i()%2)) + 1) * next_i();
-        smi_info[_i0].cannot_disable_irq = ((-2 * (next_i()%2)) + 1) * next_i();
+              smi_info[_i0].irq_enable_broken = ((-2 * (next_i()%2)) + 1) * next_i();
+          smi_info[_i0].interrupt_disabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          smi_info[_i0].io.irq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          smi_info[_i0].supports_event_msg_buff = ((-2 * (next_i()%2)) + 1) * next_i();
+          smi_info[_i0].cannot_disable_irq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_irq_on0 = 1;
           int * irq_on = (int *) malloc(_len_irq_on0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_irq_on0; _i0++) {
             irq_on[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = current_global_enables(smi_info,base,irq_on);
+          printf("%d\n", benchRet); 
+          free(smi_info);
+          free(irq_on);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 42
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
+          int base = 255;
+        
+          int _len_smi_info0 = 65025;
+          struct smi_info * smi_info = (struct smi_info *) malloc(_len_smi_info0*sizeof(struct smi_info));
+          for(int _i0 = 0; _i0 < _len_smi_info0; _i0++) {
+              smi_info[_i0].irq_enable_broken = ((-2 * (next_i()%2)) + 1) * next_i();
+          smi_info[_i0].interrupt_disabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          smi_info[_i0].io.irq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          smi_info[_i0].supports_event_msg_buff = ((-2 * (next_i()%2)) + 1) * next_i();
+          smi_info[_i0].cannot_disable_irq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_irq_on0 = 65025;
+          int * irq_on = (int *) malloc(_len_irq_on0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_irq_on0; _i0++) {
+            irq_on[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = current_global_enables(smi_info,base,irq_on);
+          printf("%d\n", benchRet); 
+          free(smi_info);
+          free(irq_on);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 42
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
+          int base = 10;
+        
+          int _len_smi_info0 = 100;
+          struct smi_info * smi_info = (struct smi_info *) malloc(_len_smi_info0*sizeof(struct smi_info));
+          for(int _i0 = 0; _i0 < _len_smi_info0; _i0++) {
+              smi_info[_i0].irq_enable_broken = ((-2 * (next_i()%2)) + 1) * next_i();
+          smi_info[_i0].interrupt_disabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          smi_info[_i0].io.irq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          smi_info[_i0].supports_event_msg_buff = ((-2 * (next_i()%2)) + 1) * next_i();
+          smi_info[_i0].cannot_disable_irq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_irq_on0 = 100;
+          int * irq_on = (int *) malloc(_len_irq_on0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_irq_on0; _i0++) {
+            irq_on[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = current_global_enables(smi_info,base,irq_on);
+          printf("%d\n", benchRet); 
+          free(smi_info);
+          free(irq_on);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 42
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
+          int base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_smi_info0 = 1;
+          struct smi_info * smi_info = (struct smi_info *) malloc(_len_smi_info0*sizeof(struct smi_info));
+          for(int _i0 = 0; _i0 < _len_smi_info0; _i0++) {
+              smi_info[_i0].irq_enable_broken = ((-2 * (next_i()%2)) + 1) * next_i();
+          smi_info[_i0].interrupt_disabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          smi_info[_i0].io.irq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          smi_info[_i0].supports_event_msg_buff = ((-2 * (next_i()%2)) + 1) * next_i();
+          smi_info[_i0].cannot_disable_irq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_irq_on0 = 1;
+          int * irq_on = (int *) malloc(_len_irq_on0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_irq_on0; _i0++) {
+            irq_on[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = current_global_enables(smi_info,base,irq_on);
           printf("%d\n", benchRet); 
           free(smi_info);

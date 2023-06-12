@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -60,12 +61,6 @@ __attribute__((used)) static inline int fft_max_index(u8 *bins)
 	return (bins[2] & 0xfc) >> 2;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,21 +73,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int _len_bins0 = 100;
+          int _len_bins0 = 65025;
           int * bins = (int *) malloc(_len_bins0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_bins0; _i0++) {
             bins[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = fft_max_index(bins);
           printf("%d\n", benchRet); 
           free(bins);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_bins0 = 100;
+          int * bins = (int *) malloc(_len_bins0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_bins0; _i0++) {
+            bins[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = fft_max_index(bins);
+          printf("%d\n", benchRet); 
+          free(bins);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -79,12 +81,6 @@ __attribute__((used)) static void log_setup_revisions_tweak(struct rev_info *rev
 		rev->ignore_merges = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,31 +93,99 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rev0 = 1;
+          int _len_rev0 = 65025;
           struct rev_info * rev = (struct rev_info *) malloc(_len_rev0*sizeof(struct rev_info));
           for(int _i0 = 0; _i0 < _len_rev0; _i0++) {
-            rev[_i0].ignore_merges = ((-2 * (next_i()%2)) + 1) * next_i();
-        rev[_i0].combine_merges = ((-2 * (next_i()%2)) + 1) * next_i();
-        rev[_i0].diffopt.output_format = ((-2 * (next_i()%2)) + 1) * next_i();
-        rev[_i0].diffopt.flags.follow_renames = ((-2 * (next_i()%2)) + 1) * next_i();
-        rev[_i0].diffopt.flags.default_follow_renames = ((-2 * (next_i()%2)) + 1) * next_i();
-        rev[_i0].prune_data.nr = ((-2 * (next_i()%2)) + 1) * next_i();
+              rev[_i0].ignore_merges = ((-2 * (next_i()%2)) + 1) * next_i();
+          rev[_i0].combine_merges = ((-2 * (next_i()%2)) + 1) * next_i();
+          rev[_i0].diffopt.output_format = ((-2 * (next_i()%2)) + 1) * next_i();
+          rev[_i0].diffopt.flags.follow_renames = ((-2 * (next_i()%2)) + 1) * next_i();
+          rev[_i0].diffopt.flags.default_follow_renames = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          rev[_i0].prune_data.nr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-          int _len_opt0 = 1;
+        
+          int _len_opt0 = 65025;
           struct setup_revision_opt * opt = (struct setup_revision_opt *) malloc(_len_opt0*sizeof(struct setup_revision_opt));
           for(int _i0 = 0; _i0 < _len_opt0; _i0++) {
-            opt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              opt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           log_setup_revisions_tweak(rev,opt);
           free(rev);
           free(opt);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_rev0 = 100;
+          struct rev_info * rev = (struct rev_info *) malloc(_len_rev0*sizeof(struct rev_info));
+          for(int _i0 = 0; _i0 < _len_rev0; _i0++) {
+              rev[_i0].ignore_merges = ((-2 * (next_i()%2)) + 1) * next_i();
+          rev[_i0].combine_merges = ((-2 * (next_i()%2)) + 1) * next_i();
+          rev[_i0].diffopt.output_format = ((-2 * (next_i()%2)) + 1) * next_i();
+          rev[_i0].diffopt.flags.follow_renames = ((-2 * (next_i()%2)) + 1) * next_i();
+          rev[_i0].diffopt.flags.default_follow_renames = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          rev[_i0].prune_data.nr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_opt0 = 100;
+          struct setup_revision_opt * opt = (struct setup_revision_opt *) malloc(_len_opt0*sizeof(struct setup_revision_opt));
+          for(int _i0 = 0; _i0 < _len_opt0; _i0++) {
+              opt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          log_setup_revisions_tweak(rev,opt);
+          free(rev);
+          free(opt);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_rev0 = 1;
+          struct rev_info * rev = (struct rev_info *) malloc(_len_rev0*sizeof(struct rev_info));
+          for(int _i0 = 0; _i0 < _len_rev0; _i0++) {
+              rev[_i0].ignore_merges = ((-2 * (next_i()%2)) + 1) * next_i();
+          rev[_i0].combine_merges = ((-2 * (next_i()%2)) + 1) * next_i();
+          rev[_i0].diffopt.output_format = ((-2 * (next_i()%2)) + 1) * next_i();
+          rev[_i0].diffopt.flags.follow_renames = ((-2 * (next_i()%2)) + 1) * next_i();
+          rev[_i0].diffopt.flags.default_follow_renames = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          rev[_i0].prune_data.nr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_opt0 = 1;
+          struct setup_revision_opt * opt = (struct setup_revision_opt *) malloc(_len_opt0*sizeof(struct setup_revision_opt));
+          for(int _i0 = 0; _i0 < _len_opt0; _i0++) {
+              opt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          log_setup_revisions_tweak(rev,opt);
+          free(rev);
+          free(opt);
+        
+        break;
+    }
     default:
         usage();
         break;

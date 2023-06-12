@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ void gl_update_hitflag( GLcontext *ctx, GLfloat z )
    }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,19 +91,82 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long z = 100;
+        
           int _len_ctx0 = 1;
           struct TYPE_5__ * ctx = (struct TYPE_5__ *) malloc(_len_ctx0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
-            ctx[_i0].Select.HitMinZ = ((-2 * (next_i()%2)) + 1) * next_i();
-        ctx[_i0].Select.HitMaxZ = ((-2 * (next_i()%2)) + 1) * next_i();
-        ctx[_i0].Select.HitFlag = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctx[_i0].Select.HitMinZ = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].Select.HitMaxZ = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].Select.HitFlag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           gl_update_hitflag(ctx,z);
           free(ctx);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long z = 255;
+        
+          int _len_ctx0 = 65025;
+          struct TYPE_5__ * ctx = (struct TYPE_5__ *) malloc(_len_ctx0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].Select.HitMinZ = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].Select.HitMaxZ = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].Select.HitFlag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          gl_update_hitflag(ctx,z);
+          free(ctx);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long z = 10;
+        
+          int _len_ctx0 = 100;
+          struct TYPE_5__ * ctx = (struct TYPE_5__ *) malloc(_len_ctx0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].Select.HitMinZ = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].Select.HitMaxZ = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].Select.HitFlag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          gl_update_hitflag(ctx,z);
+          free(ctx);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long z = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ctx0 = 1;
+          struct TYPE_5__ * ctx = (struct TYPE_5__ *) malloc(_len_ctx0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].Select.HitMinZ = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].Select.HitMaxZ = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].Select.HitFlag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          gl_update_hitflag(ctx,z);
+          free(ctx);
+        
+        break;
+    }
     default:
         usage();
         break;

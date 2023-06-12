@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +73,6 @@ __attribute__((used)) static inline long in_from_reg(u16 reg, u8 src)
 	return reg * scale;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,7 +89,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int reg = 100;
+        
           long src = 100;
+        
           long benchRet = in_from_reg(reg,src);
           printf("%ld\n", benchRet); 
         
@@ -104,7 +101,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int reg = 255;
+        
           long src = 255;
+        
           long benchRet = in_from_reg(reg,src);
           printf("%ld\n", benchRet); 
         
@@ -114,13 +113,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int reg = 10;
+        
           long src = 10;
+        
           long benchRet = in_from_reg(reg,src);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long src = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long benchRet = in_from_reg(reg,src);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

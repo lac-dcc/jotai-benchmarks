@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -79,12 +82,6 @@ __attribute__((used)) static int getcut(Jpeg2000Cblk *cblk, int64_t lambda, int 
     return res;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,22 +94,212 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int lambda = 100;
+        
           int dwt_norm = 100;
+        
           int _len_cblk0 = 1;
           struct TYPE_5__ * cblk = (struct TYPE_5__ *) malloc(_len_cblk0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_cblk0; _i0++) {
-            cblk[_i0].npasses = ((-2 * (next_i()%2)) + 1) * next_i();
+              cblk[_i0].npasses = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_cblk__i0__passes0 = 1;
           cblk[_i0].passes = (struct TYPE_4__ *) malloc(_len_cblk__i0__passes0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_cblk__i0__passes0; _j0++) {
-            cblk[_i0].passes->rate = ((-2 * (next_i()%2)) + 1) * next_i();
-        cblk[_i0].passes->disto = ((-2 * (next_i()%2)) + 1) * next_i();
+              cblk[_i0].passes->rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          cblk[_i0].passes->disto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = getcut(cblk,lambda,dwt_norm);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cblk0; _aux++) {
+          free(cblk[_aux].passes);
+          }
+          free(cblk);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int lambda = 255;
+        
+          int dwt_norm = 255;
+        
+          int _len_cblk0 = 65025;
+          struct TYPE_5__ * cblk = (struct TYPE_5__ *) malloc(_len_cblk0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_cblk0; _i0++) {
+              cblk[_i0].npasses = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cblk__i0__passes0 = 1;
+          cblk[_i0].passes = (struct TYPE_4__ *) malloc(_len_cblk__i0__passes0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_cblk__i0__passes0; _j0++) {
+              cblk[_i0].passes->rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          cblk[_i0].passes->disto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = getcut(cblk,lambda,dwt_norm);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cblk0; _aux++) {
+          free(cblk[_aux].passes);
+          }
+          free(cblk);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int lambda = 10;
+        
+          int dwt_norm = 10;
+        
+          int _len_cblk0 = 100;
+          struct TYPE_5__ * cblk = (struct TYPE_5__ *) malloc(_len_cblk0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_cblk0; _i0++) {
+              cblk[_i0].npasses = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cblk__i0__passes0 = 1;
+          cblk[_i0].passes = (struct TYPE_4__ *) malloc(_len_cblk__i0__passes0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_cblk__i0__passes0; _j0++) {
+              cblk[_i0].passes->rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          cblk[_i0].passes->disto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = getcut(cblk,lambda,dwt_norm);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cblk0; _aux++) {
+          free(cblk[_aux].passes);
+          }
+          free(cblk);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int lambda = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int dwt_norm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cblk0 = 1;
+          struct TYPE_5__ * cblk = (struct TYPE_5__ *) malloc(_len_cblk0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_cblk0; _i0++) {
+              cblk[_i0].npasses = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cblk__i0__passes0 = 1;
+          cblk[_i0].passes = (struct TYPE_4__ *) malloc(_len_cblk__i0__passes0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_cblk__i0__passes0; _j0++) {
+              cblk[_i0].passes->rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          cblk[_i0].passes->disto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = getcut(cblk,lambda,dwt_norm);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_cblk0; _aux++) {

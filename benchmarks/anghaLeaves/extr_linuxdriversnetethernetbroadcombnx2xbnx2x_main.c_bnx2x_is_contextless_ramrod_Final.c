@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +78,6 @@ __attribute__((used)) static bool bnx2x_is_contextless_ramrod(int cmd, int cmd_t
 		return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,31 +90,144 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 26
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 26
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 26
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
           int cmd = 100;
+        
           int cmd_type = 100;
+        
           int benchRet = bnx2x_is_contextless_ramrod(cmd,cmd_type);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 26
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 26
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 26
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
           int cmd = 255;
+        
           int cmd_type = 255;
+        
           int benchRet = bnx2x_is_contextless_ramrod(cmd,cmd_type);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 26
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 26
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 26
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
           int cmd = 10;
+        
           int cmd_type = 10;
+        
+          int benchRet = bnx2x_is_contextless_ramrod(cmd,cmd_type);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 26
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 26
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 26
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
+          int cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int cmd_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = bnx2x_is_contextless_ramrod(cmd,cmd_type);
           printf("%d\n", benchRet); 
         

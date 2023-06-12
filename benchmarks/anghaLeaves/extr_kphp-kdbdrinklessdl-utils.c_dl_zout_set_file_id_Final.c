@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +65,6 @@ void dl_zout_set_file_id (dl_zout *f, int fid) {
   f->written = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,18 +81,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int fid = 100;
+        
           int _len_f0 = 1;
           struct TYPE_3__ * f = (struct TYPE_3__ *) malloc(_len_f0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_f0; _i0++) {
-            f[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].written = ((-2 * (next_i()%2)) + 1) * next_i();
+              f[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].written = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           dl_zout_set_file_id(f,fid);
           free(f);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int fid = 255;
+        
+          int _len_f0 = 65025;
+          struct TYPE_3__ * f = (struct TYPE_3__ *) malloc(_len_f0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_f0; _i0++) {
+              f[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].written = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          dl_zout_set_file_id(f,fid);
+          free(f);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int fid = 10;
+        
+          int _len_f0 = 100;
+          struct TYPE_3__ * f = (struct TYPE_3__ *) malloc(_len_f0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_f0; _i0++) {
+              f[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].written = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          dl_zout_set_file_id(f,fid);
+          free(f);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int fid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_f0 = 1;
+          struct TYPE_3__ * f = (struct TYPE_3__ *) malloc(_len_f0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_f0; _i0++) {
+              f[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].written = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          dl_zout_set_file_id(f,fid);
+          free(f);
+        
+        break;
+    }
     default:
         usage();
         break;

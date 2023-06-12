@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ __attribute__((used)) static int island_bitmap_is_subset(struct island_bitmap *s
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,10 +87,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_self0 = 1;
+          int _len_self0 = 65025;
           struct island_bitmap * self = (struct island_bitmap *) malloc(_len_self0*sizeof(struct island_bitmap));
           for(int _i0 = 0; _i0 < _len_self0; _i0++) {
               int _len_self__i0__bits0 = 1;
@@ -102,8 +98,10 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_self__i0__bits0; _j0++) {
             self[_i0].bits[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
-          int _len_super0 = 1;
+        
+          int _len_super0 = 65025;
           struct island_bitmap * super = (struct island_bitmap *) malloc(_len_super0*sizeof(struct island_bitmap));
           for(int _i0 = 0; _i0 < _len_super0; _i0++) {
               int _len_super__i0__bits0 = 1;
@@ -111,7 +109,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_super__i0__bits0; _j0++) {
             super[_i0].bits[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = island_bitmap_is_subset(self,super);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_self0; _aux++) {
@@ -125,7 +125,82 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_self0 = 100;
+          struct island_bitmap * self = (struct island_bitmap *) malloc(_len_self0*sizeof(struct island_bitmap));
+          for(int _i0 = 0; _i0 < _len_self0; _i0++) {
+              int _len_self__i0__bits0 = 1;
+          self[_i0].bits = (int *) malloc(_len_self__i0__bits0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_self__i0__bits0; _j0++) {
+            self[_i0].bits[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_super0 = 100;
+          struct island_bitmap * super = (struct island_bitmap *) malloc(_len_super0*sizeof(struct island_bitmap));
+          for(int _i0 = 0; _i0 < _len_super0; _i0++) {
+              int _len_super__i0__bits0 = 1;
+          super[_i0].bits = (int *) malloc(_len_super__i0__bits0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_super__i0__bits0; _j0++) {
+            super[_i0].bits[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = island_bitmap_is_subset(self,super);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_self0; _aux++) {
+          free(self[_aux].bits);
+          }
+          free(self);
+          for(int _aux = 0; _aux < _len_super0; _aux++) {
+          free(super[_aux].bits);
+          }
+          free(super);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_self0 = 1;
+          struct island_bitmap * self = (struct island_bitmap *) malloc(_len_self0*sizeof(struct island_bitmap));
+          for(int _i0 = 0; _i0 < _len_self0; _i0++) {
+              int _len_self__i0__bits0 = 1;
+          self[_i0].bits = (int *) malloc(_len_self__i0__bits0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_self__i0__bits0; _j0++) {
+            self[_i0].bits[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_super0 = 1;
+          struct island_bitmap * super = (struct island_bitmap *) malloc(_len_super0*sizeof(struct island_bitmap));
+          for(int _i0 = 0; _i0 < _len_super0; _i0++) {
+              int _len_super__i0__bits0 = 1;
+          super[_i0].bits = (int *) malloc(_len_super__i0__bits0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_super__i0__bits0; _j0++) {
+            super[_i0].bits[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = island_bitmap_is_subset(self,super);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_self0; _aux++) {
+          free(self[_aux].bits);
+          }
+          free(self);
+          for(int _aux = 0; _aux < _len_super0; _aux++) {
+          free(super[_aux].bits);
+          }
+          free(super);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static void graph_update_state(struct git_graph *graph, en
 	graph->state = s;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,22 +76,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           enum graph_state s = 0;
-          int _len_graph0 = 1;
+        
+          int _len_graph0 = 65025;
           struct git_graph * graph = (struct git_graph *) malloc(_len_graph0*sizeof(struct git_graph));
           for(int _i0 = 0; _i0 < _len_graph0; _i0++) {
-            graph[_i0].prev_state = ((-2 * (next_i()%2)) + 1) * next_i();
-        graph[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+              graph[_i0].prev_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          graph[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           graph_update_state(graph,s);
           free(graph);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          enum graph_state s = 0;
+        
+          int _len_graph0 = 100;
+          struct git_graph * graph = (struct git_graph *) malloc(_len_graph0*sizeof(struct git_graph));
+          for(int _i0 = 0; _i0 < _len_graph0; _i0++) {
+              graph[_i0].prev_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          graph[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          graph_update_state(graph,s);
+          free(graph);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          enum graph_state s = 0;
+        
+          int _len_graph0 = 1;
+          struct git_graph * graph = (struct git_graph *) malloc(_len_graph0*sizeof(struct git_graph));
+          for(int _i0 = 0; _i0 < _len_graph0; _i0++) {
+              graph[_i0].prev_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          graph[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          graph_update_state(graph,s);
+          free(graph);
+        
+        break;
+    }
     default:
         usage();
         break;

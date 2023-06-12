@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ u8 rtl_query_rxpwrpercentage(s8 antpower)
 		return 100 + antpower;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,6 +85,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int antpower = 100;
+        
           int benchRet = rtl_query_rxpwrpercentage(antpower);
           printf("%d\n", benchRet); 
         
@@ -99,6 +95,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int antpower = 255;
+        
           int benchRet = rtl_query_rxpwrpercentage(antpower);
           printf("%d\n", benchRet); 
         
@@ -108,12 +105,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int antpower = 10;
+        
           int benchRet = rtl_query_rxpwrpercentage(antpower);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int antpower = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = rtl_query_rxpwrpercentage(antpower);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

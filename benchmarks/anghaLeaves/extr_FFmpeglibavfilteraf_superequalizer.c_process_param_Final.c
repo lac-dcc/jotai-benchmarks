@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static void process_param(float *bc, EqParameter *param, f
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,29 +84,84 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           float fs = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-          int _len_bc0 = 1;
+        
+          int _len_bc0 = 65025;
           float * bc = (float *) malloc(_len_bc0*sizeof(float));
           for(int _i0 = 0; _i0 < _len_bc0; _i0++) {
             bc[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
-          int _len_param0 = 1;
+        
+          int _len_param0 = 65025;
           struct TYPE_3__ * param = (struct TYPE_3__ *) malloc(_len_param0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_param0; _i0++) {
-            param[_i0].lower = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        param[_i0].upper = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        param[_i0].gain = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+              param[_i0].lower = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          param[_i0].upper = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          param[_i0].gain = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           }
+        
           process_param(bc,param,fs);
           free(bc);
           free(param);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          float fs = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          int _len_bc0 = 100;
+          float * bc = (float *) malloc(_len_bc0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_bc0; _i0++) {
+            bc[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          int _len_param0 = 100;
+          struct TYPE_3__ * param = (struct TYPE_3__ *) malloc(_len_param0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_param0; _i0++) {
+              param[_i0].lower = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          param[_i0].upper = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          param[_i0].gain = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          }
+        
+          process_param(bc,param,fs);
+          free(bc);
+          free(param);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          float fs = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          int _len_bc0 = 1;
+          float * bc = (float *) malloc(_len_bc0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_bc0; _i0++) {
+            bc[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          int _len_param0 = 1;
+          struct TYPE_3__ * param = (struct TYPE_3__ *) malloc(_len_param0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_param0; _i0++) {
+              param[_i0].lower = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          param[_i0].upper = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          param[_i0].gain = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          }
+        
+          process_param(bc,param,fs);
+          free(bc);
+          free(param);
+        
+        break;
+    }
     default:
         usage();
         break;

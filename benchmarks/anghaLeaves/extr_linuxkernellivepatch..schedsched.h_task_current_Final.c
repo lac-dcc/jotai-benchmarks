@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static inline int task_current(struct rq *rq, struct task_
 	return rq->curr == p;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,23 +75,163 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_rq0 = 65025;
+          struct rq * rq = (struct rq *) malloc(_len_rq0*sizeof(struct rq));
+          for(int _i0 = 0; _i0 < _len_rq0; _i0++) {
+              int _len_rq__i0__curr0 = 1;
+          rq[_i0].curr = (struct task_struct *) malloc(_len_rq__i0__curr0*sizeof(struct task_struct));
+          for(int _j0 = 0; _j0 < _len_rq__i0__curr0; _j0++) {
+              rq[_i0].curr->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_p0 = 65025;
+          struct task_struct * p = (struct task_struct *) malloc(_len_p0*sizeof(struct task_struct));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = task_current(rq,p);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_rq0; _aux++) {
+          free(rq[_aux].curr);
+          }
+          free(rq);
+          free(p);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_rq0 = 100;
+          struct rq * rq = (struct rq *) malloc(_len_rq0*sizeof(struct rq));
+          for(int _i0 = 0; _i0 < _len_rq0; _i0++) {
+              int _len_rq__i0__curr0 = 1;
+          rq[_i0].curr = (struct task_struct *) malloc(_len_rq__i0__curr0*sizeof(struct task_struct));
+          for(int _j0 = 0; _j0 < _len_rq__i0__curr0; _j0++) {
+              rq[_i0].curr->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_p0 = 100;
+          struct task_struct * p = (struct task_struct *) malloc(_len_p0*sizeof(struct task_struct));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = task_current(rq,p);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_rq0; _aux++) {
+          free(rq[_aux].curr);
+          }
+          free(rq);
+          free(p);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_rq0 = 1;
           struct rq * rq = (struct rq *) malloc(_len_rq0*sizeof(struct rq));
           for(int _i0 = 0; _i0 < _len_rq0; _i0++) {
               int _len_rq__i0__curr0 = 1;
           rq[_i0].curr = (struct task_struct *) malloc(_len_rq__i0__curr0*sizeof(struct task_struct));
           for(int _j0 = 0; _j0 < _len_rq__i0__curr0; _j0++) {
-            rq[_i0].curr->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rq[_i0].curr->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_p0 = 1;
           struct task_struct * p = (struct task_struct *) malloc(_len_p0*sizeof(struct task_struct));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = task_current(rq,p);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_rq0; _aux++) {

@@ -68,12 +68,6 @@ __attribute__((used)) static void intel_pt_fixup_last_mtc(uint32_t mtc, int mtc_
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,16 +80,42 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // big-arr-10x
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int mtc = 10;
+        
           int mtc_shift = 10;
+        
           int _len_last_mtc0 = 100;
           int * last_mtc = (int *) malloc(_len_last_mtc0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_last_mtc0; _i0++) {
             last_mtc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           intel_pt_fixup_last_mtc(mtc,mtc_shift,last_mtc);
           free(last_mtc);
         

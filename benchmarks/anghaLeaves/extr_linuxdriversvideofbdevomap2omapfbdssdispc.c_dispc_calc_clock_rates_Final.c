@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ int dispc_calc_clock_rates(unsigned long dispc_fclk_rate,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,18 +85,179 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           unsigned long dispc_fclk_rate = 100;
+        
           int _len_cinfo0 = 1;
           struct dispc_clock_info * cinfo = (struct dispc_clock_info *) malloc(_len_cinfo0*sizeof(struct dispc_clock_info));
           for(int _i0 = 0; _i0 < _len_cinfo0; _i0++) {
-            cinfo[_i0].lck_div = ((-2 * (next_i()%2)) + 1) * next_i();
-        cinfo[_i0].pck_div = ((-2 * (next_i()%2)) + 1) * next_i();
-        cinfo[_i0].lck = ((-2 * (next_i()%2)) + 1) * next_i();
-        cinfo[_i0].pck = ((-2 * (next_i()%2)) + 1) * next_i();
+              cinfo[_i0].lck_div = ((-2 * (next_i()%2)) + 1) * next_i();
+          cinfo[_i0].pck_div = ((-2 * (next_i()%2)) + 1) * next_i();
+          cinfo[_i0].lck = ((-2 * (next_i()%2)) + 1) * next_i();
+          cinfo[_i0].pck = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = dispc_calc_clock_rates(dispc_fclk_rate,cinfo);
+          printf("%d\n", benchRet); 
+          free(cinfo);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          unsigned long dispc_fclk_rate = 255;
+        
+          int _len_cinfo0 = 65025;
+          struct dispc_clock_info * cinfo = (struct dispc_clock_info *) malloc(_len_cinfo0*sizeof(struct dispc_clock_info));
+          for(int _i0 = 0; _i0 < _len_cinfo0; _i0++) {
+              cinfo[_i0].lck_div = ((-2 * (next_i()%2)) + 1) * next_i();
+          cinfo[_i0].pck_div = ((-2 * (next_i()%2)) + 1) * next_i();
+          cinfo[_i0].lck = ((-2 * (next_i()%2)) + 1) * next_i();
+          cinfo[_i0].pck = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dispc_calc_clock_rates(dispc_fclk_rate,cinfo);
+          printf("%d\n", benchRet); 
+          free(cinfo);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          unsigned long dispc_fclk_rate = 10;
+        
+          int _len_cinfo0 = 100;
+          struct dispc_clock_info * cinfo = (struct dispc_clock_info *) malloc(_len_cinfo0*sizeof(struct dispc_clock_info));
+          for(int _i0 = 0; _i0 < _len_cinfo0; _i0++) {
+              cinfo[_i0].lck_div = ((-2 * (next_i()%2)) + 1) * next_i();
+          cinfo[_i0].pck_div = ((-2 * (next_i()%2)) + 1) * next_i();
+          cinfo[_i0].lck = ((-2 * (next_i()%2)) + 1) * next_i();
+          cinfo[_i0].pck = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dispc_calc_clock_rates(dispc_fclk_rate,cinfo);
+          printf("%d\n", benchRet); 
+          free(cinfo);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          unsigned long dispc_fclk_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cinfo0 = 1;
+          struct dispc_clock_info * cinfo = (struct dispc_clock_info *) malloc(_len_cinfo0*sizeof(struct dispc_clock_info));
+          for(int _i0 = 0; _i0 < _len_cinfo0; _i0++) {
+              cinfo[_i0].lck_div = ((-2 * (next_i()%2)) + 1) * next_i();
+          cinfo[_i0].pck_div = ((-2 * (next_i()%2)) + 1) * next_i();
+          cinfo[_i0].lck = ((-2 * (next_i()%2)) + 1) * next_i();
+          cinfo[_i0].pck = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = dispc_calc_clock_rates(dispc_fclk_rate,cinfo);
           printf("%d\n", benchRet); 
           free(cinfo);

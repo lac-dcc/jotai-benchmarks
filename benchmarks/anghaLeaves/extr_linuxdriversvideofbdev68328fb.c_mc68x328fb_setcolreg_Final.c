@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -154,12 +157,6 @@ __attribute__((used)) static int mc68x328fb_setcolreg(u_int regno, u_int red, u_
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -176,33 +173,174 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int regno = 100;
+        
           int red = 100;
+        
           int green = 100;
+        
           int blue = 100;
+        
           int transp = 100;
+        
           int _len_info0 = 1;
           struct fb_info * info = (struct fb_info *) malloc(_len_info0*sizeof(struct fb_info));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].pseudo_palette = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].var.bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].var.transp.length = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].var.transp.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].var.blue.length = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].var.blue.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].var.green.length = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].var.green.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].var.red.length = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].var.red.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].var.grayscale = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].fix.visual = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].pseudo_palette = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.transp.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.transp.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].var.blue.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.blue.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].var.green.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.green.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].var.red.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.red.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].var.grayscale = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].fix.visual = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = mc68x328fb_setcolreg(regno,red,green,blue,transp,info);
           printf("%d\n", benchRet); 
           free(info);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int regno = 255;
+        
+          int red = 255;
+        
+          int green = 255;
+        
+          int blue = 255;
+        
+          int transp = 255;
+        
+          int _len_info0 = 65025;
+          struct fb_info * info = (struct fb_info *) malloc(_len_info0*sizeof(struct fb_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].pseudo_palette = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.transp.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.transp.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].var.blue.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.blue.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].var.green.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.green.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].var.red.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.red.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].var.grayscale = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].fix.visual = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = mc68x328fb_setcolreg(regno,red,green,blue,transp,info);
+          printf("%d\n", benchRet); 
+          free(info);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int regno = 10;
+        
+          int red = 10;
+        
+          int green = 10;
+        
+          int blue = 10;
+        
+          int transp = 10;
+        
+          int _len_info0 = 100;
+          struct fb_info * info = (struct fb_info *) malloc(_len_info0*sizeof(struct fb_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].pseudo_palette = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.transp.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.transp.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].var.blue.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.blue.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].var.green.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.green.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].var.red.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.red.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].var.grayscale = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].fix.visual = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = mc68x328fb_setcolreg(regno,red,green,blue,transp,info);
+          printf("%d\n", benchRet); 
+          free(info);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int regno = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int red = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int green = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int blue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int transp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_info0 = 1;
+          struct fb_info * info = (struct fb_info *) malloc(_len_info0*sizeof(struct fb_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].pseudo_palette = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.transp.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.transp.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].var.blue.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.blue.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].var.green.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.green.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].var.red.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.red.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].var.grayscale = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].fix.visual = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = mc68x328fb_setcolreg(regno,red,green,blue,transp,info);
+          printf("%d\n", benchRet); 
+          free(info);
+        
+        break;
+    }
     default:
         usage();
         break;

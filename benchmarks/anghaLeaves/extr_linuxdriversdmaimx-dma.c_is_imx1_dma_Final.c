@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline int is_imx1_dma(struct imxdma_engine *imxdma
 	return imxdma->devtype == IMX1_DMA;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_imxdma0 = 1;
+          int _len_imxdma0 = 65025;
           struct imxdma_engine * imxdma = (struct imxdma_engine *) malloc(_len_imxdma0*sizeof(struct imxdma_engine));
           for(int _i0 = 0; _i0 < _len_imxdma0; _i0++) {
-            imxdma[_i0].devtype = ((-2 * (next_i()%2)) + 1) * next_i();
+              imxdma[_i0].devtype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_imx1_dma(imxdma);
           printf("%d\n", benchRet); 
           free(imxdma);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_imxdma0 = 100;
           struct imxdma_engine * imxdma = (struct imxdma_engine *) malloc(_len_imxdma0*sizeof(struct imxdma_engine));
           for(int _i0 = 0; _i0 < _len_imxdma0; _i0++) {
-            imxdma[_i0].devtype = ((-2 * (next_i()%2)) + 1) * next_i();
+              imxdma[_i0].devtype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_imx1_dma(imxdma);
           printf("%d\n", benchRet); 
           free(imxdma);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_imxdma0 = 1;
+          struct imxdma_engine * imxdma = (struct imxdma_engine *) malloc(_len_imxdma0*sizeof(struct imxdma_engine));
+          for(int _i0 = 0; _i0 < _len_imxdma0; _i0++) {
+              imxdma[_i0].devtype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_imx1_dma(imxdma);
+          printf("%d\n", benchRet); 
+          free(imxdma);
+        
+        break;
+    }
     default:
         usage();
         break;

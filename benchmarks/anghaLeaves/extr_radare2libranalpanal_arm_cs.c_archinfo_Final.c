@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -84,12 +86,6 @@ __attribute__((used)) static int archinfo(RAnal *anal, int q) {
 	return 4; // XXX
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,30 +98,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int q = 100;
+        
           int _len_anal0 = 1;
           struct TYPE_3__ * anal = (struct TYPE_3__ *) malloc(_len_anal0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_anal0; _i0++) {
-            anal[_i0].bits = ((-2 * (next_i()%2)) + 1) * next_i();
+              anal[_i0].bits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = archinfo(anal,q);
           printf("%d\n", benchRet); 
           free(anal);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int q = 255;
+        
+          int _len_anal0 = 65025;
+          struct TYPE_3__ * anal = (struct TYPE_3__ *) malloc(_len_anal0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_anal0; _i0++) {
+              anal[_i0].bits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = archinfo(anal,q);
+          printf("%d\n", benchRet); 
+          free(anal);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int q = 10;
+        
           int _len_anal0 = 100;
           struct TYPE_3__ * anal = (struct TYPE_3__ *) malloc(_len_anal0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_anal0; _i0++) {
-            anal[_i0].bits = ((-2 * (next_i()%2)) + 1) * next_i();
+              anal[_i0].bits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = archinfo(anal,q);
+          printf("%d\n", benchRet); 
+          free(anal);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int q = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_anal0 = 1;
+          struct TYPE_3__ * anal = (struct TYPE_3__ *) malloc(_len_anal0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_anal0; _i0++) {
+              anal[_i0].bits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = archinfo(anal,q);
           printf("%d\n", benchRet); 
           free(anal);

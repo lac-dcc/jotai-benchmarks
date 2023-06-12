@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ __attribute__((used)) static inline void jsstr_init(jsstr_t *str, unsigned len, 
     str->ref = 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,19 +84,82 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int len = 100;
+        
           unsigned int tag = 100;
+        
           int _len_str0 = 1;
           struct TYPE_3__ * str = (struct TYPE_3__ *) malloc(_len_str0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_str0; _i0++) {
-            str[_i0].length_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        str[_i0].ref = ((-2 * (next_i()%2)) + 1) * next_i();
+              str[_i0].length_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          str[_i0].ref = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           jsstr_init(str,len,tag);
           free(str);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int len = 255;
+        
+          unsigned int tag = 255;
+        
+          int _len_str0 = 65025;
+          struct TYPE_3__ * str = (struct TYPE_3__ *) malloc(_len_str0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_str0; _i0++) {
+              str[_i0].length_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          str[_i0].ref = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          jsstr_init(str,len,tag);
+          free(str);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int len = 10;
+        
+          unsigned int tag = 10;
+        
+          int _len_str0 = 100;
+          struct TYPE_3__ * str = (struct TYPE_3__ *) malloc(_len_str0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_str0; _i0++) {
+              str[_i0].length_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          str[_i0].ref = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          jsstr_init(str,len,tag);
+          free(str);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int tag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_str0 = 1;
+          struct TYPE_3__ * str = (struct TYPE_3__ *) malloc(_len_str0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_str0; _i0++) {
+              str[_i0].length_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          str[_i0].ref = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          jsstr_init(str,len,tag);
+          free(str);
+        
+        break;
+    }
     default:
         usage();
         break;

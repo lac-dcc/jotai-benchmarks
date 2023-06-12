@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ __attribute__((used)) static u32 gold2root(u32 gold)
 	return x;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,28 +81,136 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 1715
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 911
+          // ------------------------------- 
+          // static_instructions_O2 : 36
+          // dynamic_instructions_O2 : 820
+          // ------------------------------- 
+          // static_instructions_O3 : 36
+          // dynamic_instructions_O3 : 820
+          // ------------------------------- 
+          // static_instructions_Ofast : 36
+          // dynamic_instructions_Ofast : 820
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 910
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 1112
+          // ------------------------------- 
+
           int gold = 100;
+        
           int benchRet = gold2root(gold);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 4350
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 2306
+          // ------------------------------- 
+          // static_instructions_O2 : 43
+          // dynamic_instructions_O2 : 2059
+          // ------------------------------- 
+          // static_instructions_O3 : 43
+          // dynamic_instructions_O3 : 2059
+          // ------------------------------- 
+          // static_instructions_Ofast : 43
+          // dynamic_instructions_Ofast : 2059
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 2305
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 2817
+          // ------------------------------- 
+
           int gold = 255;
+        
           int benchRet = gold2root(gold);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 185
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 101
+          // ------------------------------- 
+          // static_instructions_O2 : 36
+          // dynamic_instructions_O2 : 100
+          // ------------------------------- 
+          // static_instructions_O3 : 36
+          // dynamic_instructions_O3 : 100
+          // ------------------------------- 
+          // static_instructions_Ofast : 36
+          // dynamic_instructions_Ofast : 100
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 100
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 122
+          // ------------------------------- 
+
           int gold = 10;
+        
+          int benchRet = gold2root(gold);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int gold = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = gold2root(gold);
           printf("%d\n", benchRet); 
         

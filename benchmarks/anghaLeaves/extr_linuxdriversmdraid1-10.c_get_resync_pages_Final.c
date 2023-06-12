@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static inline struct resync_pages *get_resync_pages(struct
 	return bio->bi_private;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,18 +75,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_bio0 = 1;
+          int _len_bio0 = 65025;
           struct bio * bio = (struct bio *) malloc(_len_bio0*sizeof(struct bio));
           for(int _i0 = 0; _i0 < _len_bio0; _i0++) {
               int _len_bio__i0__bi_private0 = 1;
           bio[_i0].bi_private = (struct resync_pages *) malloc(_len_bio__i0__bi_private0*sizeof(struct resync_pages));
           for(int _j0 = 0; _j0 < _len_bio__i0__bi_private0; _j0++) {
-            bio[_i0].bi_private->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              bio[_i0].bi_private->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct resync_pages * benchRet = get_resync_pages(bio);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_bio0; _aux++) {
@@ -100,7 +99,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_bio0 = 100;
+          struct bio * bio = (struct bio *) malloc(_len_bio0*sizeof(struct bio));
+          for(int _i0 = 0; _i0 < _len_bio0; _i0++) {
+              int _len_bio__i0__bi_private0 = 1;
+          bio[_i0].bi_private = (struct resync_pages *) malloc(_len_bio__i0__bi_private0*sizeof(struct resync_pages));
+          for(int _j0 = 0; _j0 < _len_bio__i0__bi_private0; _j0++) {
+              bio[_i0].bi_private->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct resync_pages * benchRet = get_resync_pages(bio);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_bio0; _aux++) {
+          free(bio[_aux].bi_private);
+          }
+          free(bio);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_bio0 = 1;
+          struct bio * bio = (struct bio *) malloc(_len_bio0*sizeof(struct bio));
+          for(int _i0 = 0; _i0 < _len_bio0; _i0++) {
+              int _len_bio__i0__bi_private0 = 1;
+          bio[_i0].bi_private = (struct resync_pages *) malloc(_len_bio__i0__bi_private0*sizeof(struct resync_pages));
+          for(int _j0 = 0; _j0 < _len_bio__i0__bi_private0; _j0++) {
+              bio[_i0].bi_private->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct resync_pages * benchRet = get_resync_pages(bio);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_bio0; _aux++) {
+          free(bio[_aux].bi_private);
+          }
+          free(bio);
+        
+        break;
+    }
     default:
         usage();
         break;

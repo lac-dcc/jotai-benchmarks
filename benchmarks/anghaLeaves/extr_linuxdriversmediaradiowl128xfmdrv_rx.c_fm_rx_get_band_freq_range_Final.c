@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ int fm_rx_get_band_freq_range(struct fmdev *fmdev, u32 *bot_freq, u32 *top_freq)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,25 +85,168 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_fmdev0 = 65025;
+          struct fmdev * fmdev = (struct fmdev *) malloc(_len_fmdev0*sizeof(struct fmdev));
+          for(int _i0 = 0; _i0 < _len_fmdev0; _i0++) {
+              fmdev[_i0].rx.region.top_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmdev[_i0].rx.region.bot_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_bot_freq0 = 65025;
+          int * bot_freq = (int *) malloc(_len_bot_freq0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_bot_freq0; _i0++) {
+            bot_freq[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_top_freq0 = 65025;
+          int * top_freq = (int *) malloc(_len_top_freq0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_top_freq0; _i0++) {
+            top_freq[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = fm_rx_get_band_freq_range(fmdev,bot_freq,top_freq);
+          printf("%d\n", benchRet); 
+          free(fmdev);
+          free(bot_freq);
+          free(top_freq);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_fmdev0 = 100;
+          struct fmdev * fmdev = (struct fmdev *) malloc(_len_fmdev0*sizeof(struct fmdev));
+          for(int _i0 = 0; _i0 < _len_fmdev0; _i0++) {
+              fmdev[_i0].rx.region.top_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmdev[_i0].rx.region.bot_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_bot_freq0 = 100;
+          int * bot_freq = (int *) malloc(_len_bot_freq0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_bot_freq0; _i0++) {
+            bot_freq[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_top_freq0 = 100;
+          int * top_freq = (int *) malloc(_len_top_freq0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_top_freq0; _i0++) {
+            top_freq[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = fm_rx_get_band_freq_range(fmdev,bot_freq,top_freq);
+          printf("%d\n", benchRet); 
+          free(fmdev);
+          free(bot_freq);
+          free(top_freq);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int _len_fmdev0 = 1;
           struct fmdev * fmdev = (struct fmdev *) malloc(_len_fmdev0*sizeof(struct fmdev));
           for(int _i0 = 0; _i0 < _len_fmdev0; _i0++) {
-            fmdev[_i0].rx.region.top_freq = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmdev[_i0].rx.region.bot_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+              fmdev[_i0].rx.region.top_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmdev[_i0].rx.region.bot_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int _len_bot_freq0 = 1;
           int * bot_freq = (int *) malloc(_len_bot_freq0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_bot_freq0; _i0++) {
             bot_freq[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_top_freq0 = 1;
           int * top_freq = (int *) malloc(_len_top_freq0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_top_freq0; _i0++) {
             top_freq[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = fm_rx_get_band_freq_range(fmdev,bot_freq,top_freq);
           printf("%d\n", benchRet); 
           free(fmdev);

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +65,6 @@ __attribute__((used)) static inline void bitstream_cursor_advance(struct bitstre
 	cur->bit = bits & 7;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,18 +81,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int bits = 100;
+        
           int _len_cur0 = 1;
           struct bitstream_cursor * cur = (struct bitstream_cursor *) malloc(_len_cur0*sizeof(struct bitstream_cursor));
           for(int _i0 = 0; _i0 < _len_cur0; _i0++) {
-            cur[_i0].bit = ((-2 * (next_i()%2)) + 1) * next_i();
-        cur[_i0].b = ((-2 * (next_i()%2)) + 1) * next_i();
+              cur[_i0].bit = ((-2 * (next_i()%2)) + 1) * next_i();
+          cur[_i0].b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           bitstream_cursor_advance(cur,bits);
           free(cur);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int bits = 255;
+        
+          int _len_cur0 = 65025;
+          struct bitstream_cursor * cur = (struct bitstream_cursor *) malloc(_len_cur0*sizeof(struct bitstream_cursor));
+          for(int _i0 = 0; _i0 < _len_cur0; _i0++) {
+              cur[_i0].bit = ((-2 * (next_i()%2)) + 1) * next_i();
+          cur[_i0].b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          bitstream_cursor_advance(cur,bits);
+          free(cur);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int bits = 10;
+        
+          int _len_cur0 = 100;
+          struct bitstream_cursor * cur = (struct bitstream_cursor *) malloc(_len_cur0*sizeof(struct bitstream_cursor));
+          for(int _i0 = 0; _i0 < _len_cur0; _i0++) {
+              cur[_i0].bit = ((-2 * (next_i()%2)) + 1) * next_i();
+          cur[_i0].b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          bitstream_cursor_advance(cur,bits);
+          free(cur);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int bits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cur0 = 1;
+          struct bitstream_cursor * cur = (struct bitstream_cursor *) malloc(_len_cur0*sizeof(struct bitstream_cursor));
+          for(int _i0 = 0; _i0 < _len_cur0; _i0++) {
+              cur[_i0].bit = ((-2 * (next_i()%2)) + 1) * next_i();
+          cur[_i0].b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          bitstream_cursor_advance(cur,bits);
+          free(cur);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -60,12 +60,6 @@ void active_control_set(int key)
    controls |= 1 << key;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,11 +76,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int key = 10;
+        
           active_control_set(key);
         
         break;
     }
-
     default:
         usage();
         break;

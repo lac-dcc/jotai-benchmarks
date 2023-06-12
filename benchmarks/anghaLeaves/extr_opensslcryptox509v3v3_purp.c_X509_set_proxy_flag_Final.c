@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ void X509_set_proxy_flag(X509 *x)
     x->ex_flags |= EXFLAG_PROXY;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_x0 = 1;
+          int _len_x0 = 65025;
           struct TYPE_3__ * x = (struct TYPE_3__ *) malloc(_len_x0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_x0; _i0++) {
-            x[_i0].ex_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              x[_i0].ex_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           X509_set_proxy_flag(x);
           free(x);
         
@@ -101,14 +98,30 @@ int main(int argc, char *argv[]) {
           int _len_x0 = 100;
           struct TYPE_3__ * x = (struct TYPE_3__ *) malloc(_len_x0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_x0; _i0++) {
-            x[_i0].ex_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              x[_i0].ex_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           X509_set_proxy_flag(x);
           free(x);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_x0 = 1;
+          struct TYPE_3__ * x = (struct TYPE_3__ *) malloc(_len_x0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_x0; _i0++) {
+              x[_i0].ex_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          X509_set_proxy_flag(x);
+          free(x);
+        
+        break;
+    }
     default:
         usage();
         break;

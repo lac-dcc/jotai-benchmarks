@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ __attribute__((used)) static int dwc2_hcd_endpoint_reset(struct dwc2_hsotg *hsot
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,23 +86,163 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_hsotg0 = 65025;
+          struct dwc2_hsotg * hsotg = (struct dwc2_hsotg *) malloc(_len_hsotg0*sizeof(struct dwc2_hsotg));
+          for(int _i0 = 0; _i0 < _len_hsotg0; _i0++) {
+              hsotg[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ep0 = 65025;
+          struct usb_host_endpoint * ep = (struct usb_host_endpoint *) malloc(_len_ep0*sizeof(struct usb_host_endpoint));
+          for(int _i0 = 0; _i0 < _len_ep0; _i0++) {
+              int _len_ep__i0__hcpriv0 = 1;
+          ep[_i0].hcpriv = (struct dwc2_qh *) malloc(_len_ep__i0__hcpriv0*sizeof(struct dwc2_qh));
+          for(int _j0 = 0; _j0 < _len_ep__i0__hcpriv0; _j0++) {
+              ep[_i0].hcpriv->data_toggle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = dwc2_hcd_endpoint_reset(hsotg,ep);
+          printf("%d\n", benchRet); 
+          free(hsotg);
+          for(int _aux = 0; _aux < _len_ep0; _aux++) {
+          free(ep[_aux].hcpriv);
+          }
+          free(ep);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_hsotg0 = 100;
+          struct dwc2_hsotg * hsotg = (struct dwc2_hsotg *) malloc(_len_hsotg0*sizeof(struct dwc2_hsotg));
+          for(int _i0 = 0; _i0 < _len_hsotg0; _i0++) {
+              hsotg[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ep0 = 100;
+          struct usb_host_endpoint * ep = (struct usb_host_endpoint *) malloc(_len_ep0*sizeof(struct usb_host_endpoint));
+          for(int _i0 = 0; _i0 < _len_ep0; _i0++) {
+              int _len_ep__i0__hcpriv0 = 1;
+          ep[_i0].hcpriv = (struct dwc2_qh *) malloc(_len_ep__i0__hcpriv0*sizeof(struct dwc2_qh));
+          for(int _j0 = 0; _j0 < _len_ep__i0__hcpriv0; _j0++) {
+              ep[_i0].hcpriv->data_toggle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = dwc2_hcd_endpoint_reset(hsotg,ep);
+          printf("%d\n", benchRet); 
+          free(hsotg);
+          for(int _aux = 0; _aux < _len_ep0; _aux++) {
+          free(ep[_aux].hcpriv);
+          }
+          free(ep);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_hsotg0 = 1;
           struct dwc2_hsotg * hsotg = (struct dwc2_hsotg *) malloc(_len_hsotg0*sizeof(struct dwc2_hsotg));
           for(int _i0 = 0; _i0 < _len_hsotg0; _i0++) {
-            hsotg[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              hsotg[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_ep0 = 1;
           struct usb_host_endpoint * ep = (struct usb_host_endpoint *) malloc(_len_ep0*sizeof(struct usb_host_endpoint));
           for(int _i0 = 0; _i0 < _len_ep0; _i0++) {
               int _len_ep__i0__hcpriv0 = 1;
           ep[_i0].hcpriv = (struct dwc2_qh *) malloc(_len_ep__i0__hcpriv0*sizeof(struct dwc2_qh));
           for(int _j0 = 0; _j0 < _len_ep__i0__hcpriv0; _j0++) {
-            ep[_i0].hcpriv->data_toggle = ((-2 * (next_i()%2)) + 1) * next_i();
+              ep[_i0].hcpriv->data_toggle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = dwc2_hcd_endpoint_reset(hsotg,ep);
           printf("%d\n", benchRet); 
           free(hsotg);

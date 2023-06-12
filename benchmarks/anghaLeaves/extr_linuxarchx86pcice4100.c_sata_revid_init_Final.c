@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ void sata_revid_init(struct sim_dev_reg *reg)
 	reg->sim_reg.mask = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,15 +77,123 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_reg0 = 65025;
+          struct sim_dev_reg * reg = (struct sim_dev_reg *) malloc(_len_reg0*sizeof(struct sim_dev_reg));
+          for(int _i0 = 0; _i0 < _len_reg0; _i0++) {
+              reg[_i0].sim_reg.value = ((-2 * (next_i()%2)) + 1) * next_i();
+          reg[_i0].sim_reg.mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          sata_revid_init(reg);
+          free(reg);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_reg0 = 100;
+          struct sim_dev_reg * reg = (struct sim_dev_reg *) malloc(_len_reg0*sizeof(struct sim_dev_reg));
+          for(int _i0 = 0; _i0 < _len_reg0; _i0++) {
+              reg[_i0].sim_reg.value = ((-2 * (next_i()%2)) + 1) * next_i();
+          reg[_i0].sim_reg.mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          sata_revid_init(reg);
+          free(reg);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_reg0 = 1;
           struct sim_dev_reg * reg = (struct sim_dev_reg *) malloc(_len_reg0*sizeof(struct sim_dev_reg));
           for(int _i0 = 0; _i0 < _len_reg0; _i0++) {
-            reg[_i0].sim_reg.value = ((-2 * (next_i()%2)) + 1) * next_i();
-        reg[_i0].sim_reg.mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              reg[_i0].sim_reg.value = ((-2 * (next_i()%2)) + 1) * next_i();
+          reg[_i0].sim_reg.mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           sata_revid_init(reg);
           free(reg);
         

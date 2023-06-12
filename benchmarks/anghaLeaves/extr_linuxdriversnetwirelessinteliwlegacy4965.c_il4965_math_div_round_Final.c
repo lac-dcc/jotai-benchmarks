@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ il4965_math_div_round(s32 num, s32 denom, s32 * res)
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,32 +89,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 27
+          // dynamic_instructions_O1 : 27
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 27
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
           int num = 100;
+        
           int denom = 100;
+        
           int _len_res0 = 1;
           int * res = (int *) malloc(_len_res0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_res0; _i0++) {
             res[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = il4965_math_div_round(num,denom,res);
           printf("%d\n", benchRet); 
           free(res);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 27
+          // dynamic_instructions_O1 : 27
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 27
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
+          int num = 255;
+        
+          int denom = 255;
+        
+          int _len_res0 = 65025;
+          int * res = (int *) malloc(_len_res0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_res0; _i0++) {
+            res[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = il4965_math_div_round(num,denom,res);
+          printf("%d\n", benchRet); 
+          free(res);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 27
+          // dynamic_instructions_O1 : 27
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 27
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
           int num = 10;
+        
           int denom = 10;
+        
           int _len_res0 = 100;
           int * res = (int *) malloc(_len_res0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_res0; _i0++) {
             res[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = il4965_math_div_round(num,denom,res);
+          printf("%d\n", benchRet); 
+          free(res);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 38
+          // ------------------------------- 
+          // static_instructions_O1 : 27
+          // dynamic_instructions_O1 : 27
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 27
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
+          int num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int denom = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_res0 = 1;
+          int * res = (int *) malloc(_len_res0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_res0; _i0++) {
+            res[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = il4965_math_div_round(num,denom,res);
           printf("%d\n", benchRet); 
           free(res);

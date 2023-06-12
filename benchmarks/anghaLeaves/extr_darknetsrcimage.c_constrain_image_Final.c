@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -66,12 +66,6 @@ void constrain_image(image im)
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,24 +78,24 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           struct TYPE_3__ im;
-        im.w = ((-2 * (next_i()%2)) + 1) * next_i();
-        im.h = ((-2 * (next_i()%2)) + 1) * next_i();
-        im.c = ((-2 * (next_i()%2)) + 1) * next_i();
+          im.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          im.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          im.c = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_im_data0 = 1;
           im.data = (int *) malloc(_len_im_data0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_im_data0; _j0++) {
             im.data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           constrain_image(im);
           free(im.data);
         
         break;
     }
-
     default:
         usage();
         break;

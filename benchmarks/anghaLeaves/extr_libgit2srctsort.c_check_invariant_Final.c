@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ __attribute__((used)) static int check_invariant(struct tsort_run *stack, ssize_
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,15 +87,125 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 45
+          // dynamic_instructions_O0 : 45
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int stack_curr = 255;
+        
+          int _len_stack0 = 65025;
+          struct tsort_run * stack = (struct tsort_run *) malloc(_len_stack0*sizeof(struct tsort_run));
+          for(int _i0 = 0; _i0 < _len_stack0; _i0++) {
+              stack[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = check_invariant(stack,stack_curr);
+          printf("%d\n", benchRet); 
+          free(stack);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 45
+          // dynamic_instructions_O0 : 45
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           int stack_curr = 10;
+        
           int _len_stack0 = 100;
           struct tsort_run * stack = (struct tsort_run *) malloc(_len_stack0*sizeof(struct tsort_run));
           for(int _i0 = 0; _i0 < _len_stack0; _i0++) {
-            stack[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+              stack[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = check_invariant(stack,stack_curr);
+          printf("%d\n", benchRet); 
+          free(stack);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int stack_curr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_stack0 = 1;
+          struct tsort_run * stack = (struct tsort_run *) malloc(_len_stack0*sizeof(struct tsort_run));
+          for(int _i0 = 0; _i0 < _len_stack0; _i0++) {
+              stack[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = check_invariant(stack,stack_curr);
           printf("%d\n", benchRet); 
           free(stack);

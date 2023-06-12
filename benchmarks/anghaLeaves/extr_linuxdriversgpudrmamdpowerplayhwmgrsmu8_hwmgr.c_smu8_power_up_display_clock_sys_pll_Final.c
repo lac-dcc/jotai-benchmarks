@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static void smu8_power_up_display_clock_sys_pll(struct pp_
 	hw_data->disp_clk_bypass = false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,19 +78,141 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_hwmgr0 = 65025;
+          struct pp_hwmgr * hwmgr = (struct pp_hwmgr *) malloc(_len_hwmgr0*sizeof(struct pp_hwmgr));
+          for(int _i0 = 0; _i0 < _len_hwmgr0; _i0++) {
+              int _len_hwmgr__i0__backend0 = 1;
+          hwmgr[_i0].backend = (struct smu8_hwmgr *) malloc(_len_hwmgr__i0__backend0*sizeof(struct smu8_hwmgr));
+          for(int _j0 = 0; _j0 < _len_hwmgr__i0__backend0; _j0++) {
+              hwmgr[_i0].backend->disp_clk_bypass_pending = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->disp_clk_bypass = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          smu8_power_up_display_clock_sys_pll(hwmgr);
+          for(int _aux = 0; _aux < _len_hwmgr0; _aux++) {
+          free(hwmgr[_aux].backend);
+          }
+          free(hwmgr);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_hwmgr0 = 100;
+          struct pp_hwmgr * hwmgr = (struct pp_hwmgr *) malloc(_len_hwmgr0*sizeof(struct pp_hwmgr));
+          for(int _i0 = 0; _i0 < _len_hwmgr0; _i0++) {
+              int _len_hwmgr__i0__backend0 = 1;
+          hwmgr[_i0].backend = (struct smu8_hwmgr *) malloc(_len_hwmgr__i0__backend0*sizeof(struct smu8_hwmgr));
+          for(int _j0 = 0; _j0 < _len_hwmgr__i0__backend0; _j0++) {
+              hwmgr[_i0].backend->disp_clk_bypass_pending = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->disp_clk_bypass = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          smu8_power_up_display_clock_sys_pll(hwmgr);
+          for(int _aux = 0; _aux < _len_hwmgr0; _aux++) {
+          free(hwmgr[_aux].backend);
+          }
+          free(hwmgr);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_hwmgr0 = 1;
           struct pp_hwmgr * hwmgr = (struct pp_hwmgr *) malloc(_len_hwmgr0*sizeof(struct pp_hwmgr));
           for(int _i0 = 0; _i0 < _len_hwmgr0; _i0++) {
               int _len_hwmgr__i0__backend0 = 1;
           hwmgr[_i0].backend = (struct smu8_hwmgr *) malloc(_len_hwmgr__i0__backend0*sizeof(struct smu8_hwmgr));
           for(int _j0 = 0; _j0 < _len_hwmgr__i0__backend0; _j0++) {
-            hwmgr[_i0].backend->disp_clk_bypass_pending = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->disp_clk_bypass = ((-2 * (next_i()%2)) + 1) * next_i();
+              hwmgr[_i0].backend->disp_clk_bypass_pending = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->disp_clk_bypass = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           smu8_power_up_display_clock_sys_pll(hwmgr);
           for(int _aux = 0; _aux < _len_hwmgr0; _aux++) {
           free(hwmgr[_aux].backend);

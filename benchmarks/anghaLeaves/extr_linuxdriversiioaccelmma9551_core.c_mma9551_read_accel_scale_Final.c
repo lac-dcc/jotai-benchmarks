@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ int mma9551_read_accel_scale(int *val, int *val2)
 	return IIO_VAL_INT_PLUS_MICRO;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,19 +77,136 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_val0 = 65025;
+          int * val = (int *) malloc(_len_val0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_val0; _i0++) {
+            val[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_val20 = 65025;
+          int * val2 = (int *) malloc(_len_val20*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_val20; _i0++) {
+            val2[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = mma9551_read_accel_scale(val,val2);
+          printf("%d\n", benchRet); 
+          free(val);
+          free(val2);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_val0 = 100;
+          int * val = (int *) malloc(_len_val0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_val0; _i0++) {
+            val[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_val20 = 100;
+          int * val2 = (int *) malloc(_len_val20*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_val20; _i0++) {
+            val2[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = mma9551_read_accel_scale(val,val2);
+          printf("%d\n", benchRet); 
+          free(val);
+          free(val2);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_val0 = 1;
           int * val = (int *) malloc(_len_val0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_val0; _i0++) {
             val[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_val20 = 1;
           int * val2 = (int *) malloc(_len_val20*sizeof(int));
           for(int _i0 = 0; _i0 < _len_val20; _i0++) {
             val2[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = mma9551_read_accel_scale(val,val2);
           printf("%d\n", benchRet); 
           free(val);

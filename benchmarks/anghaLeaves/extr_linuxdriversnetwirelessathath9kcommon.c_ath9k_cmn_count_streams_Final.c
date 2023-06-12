@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ int ath9k_cmn_count_streams(unsigned int chainmask, int max)
 	return streams;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,7 +85,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int chainmask = 100;
+        
           int max = 100;
+        
           int benchRet = ath9k_cmn_count_streams(chainmask,max);
           printf("%d\n", benchRet); 
         
@@ -100,7 +97,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int chainmask = 255;
+        
           int max = 255;
+        
           int benchRet = ath9k_cmn_count_streams(chainmask,max);
           printf("%d\n", benchRet); 
         
@@ -110,13 +109,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int chainmask = 10;
+        
           int max = 10;
+        
           int benchRet = ath9k_cmn_count_streams(chainmask,max);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int chainmask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = ath9k_cmn_count_streams(chainmask,max);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

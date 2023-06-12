@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static void iwl_mvm_fill_scan_dwell(struct iwl_mvm *mvm,
 	dwell->extended = IWL_SCAN_DWELL_EXTENDED;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,29 +83,84 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_mvm0 = 1;
+          int _len_mvm0 = 65025;
           struct iwl_mvm * mvm = (struct iwl_mvm *) malloc(_len_mvm0*sizeof(struct iwl_mvm));
           for(int _i0 = 0; _i0 < _len_mvm0; _i0++) {
-            mvm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              mvm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_dwell0 = 1;
+        
+          int _len_dwell0 = 65025;
           struct iwl_scan_dwell * dwell = (struct iwl_scan_dwell *) malloc(_len_dwell0*sizeof(struct iwl_scan_dwell));
           for(int _i0 = 0; _i0 < _len_dwell0; _i0++) {
-            dwell[_i0].extended = ((-2 * (next_i()%2)) + 1) * next_i();
-        dwell[_i0].fragmented = ((-2 * (next_i()%2)) + 1) * next_i();
-        dwell[_i0].passive = ((-2 * (next_i()%2)) + 1) * next_i();
-        dwell[_i0].active = ((-2 * (next_i()%2)) + 1) * next_i();
+              dwell[_i0].extended = ((-2 * (next_i()%2)) + 1) * next_i();
+          dwell[_i0].fragmented = ((-2 * (next_i()%2)) + 1) * next_i();
+          dwell[_i0].passive = ((-2 * (next_i()%2)) + 1) * next_i();
+          dwell[_i0].active = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           iwl_mvm_fill_scan_dwell(mvm,dwell);
           free(mvm);
           free(dwell);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_mvm0 = 100;
+          struct iwl_mvm * mvm = (struct iwl_mvm *) malloc(_len_mvm0*sizeof(struct iwl_mvm));
+          for(int _i0 = 0; _i0 < _len_mvm0; _i0++) {
+              mvm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dwell0 = 100;
+          struct iwl_scan_dwell * dwell = (struct iwl_scan_dwell *) malloc(_len_dwell0*sizeof(struct iwl_scan_dwell));
+          for(int _i0 = 0; _i0 < _len_dwell0; _i0++) {
+              dwell[_i0].extended = ((-2 * (next_i()%2)) + 1) * next_i();
+          dwell[_i0].fragmented = ((-2 * (next_i()%2)) + 1) * next_i();
+          dwell[_i0].passive = ((-2 * (next_i()%2)) + 1) * next_i();
+          dwell[_i0].active = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          iwl_mvm_fill_scan_dwell(mvm,dwell);
+          free(mvm);
+          free(dwell);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_mvm0 = 1;
+          struct iwl_mvm * mvm = (struct iwl_mvm *) malloc(_len_mvm0*sizeof(struct iwl_mvm));
+          for(int _i0 = 0; _i0 < _len_mvm0; _i0++) {
+              mvm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dwell0 = 1;
+          struct iwl_scan_dwell * dwell = (struct iwl_scan_dwell *) malloc(_len_dwell0*sizeof(struct iwl_scan_dwell));
+          for(int _i0 = 0; _i0 < _len_dwell0; _i0++) {
+              dwell[_i0].extended = ((-2 * (next_i()%2)) + 1) * next_i();
+          dwell[_i0].fragmented = ((-2 * (next_i()%2)) + 1) * next_i();
+          dwell[_i0].passive = ((-2 * (next_i()%2)) + 1) * next_i();
+          dwell[_i0].active = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          iwl_mvm_fill_scan_dwell(mvm,dwell);
+          free(mvm);
+          free(dwell);
+        
+        break;
+    }
     default:
         usage();
         break;

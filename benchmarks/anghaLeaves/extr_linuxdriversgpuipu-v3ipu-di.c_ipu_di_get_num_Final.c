@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ int ipu_di_get_num(struct ipu_di *di)
 	return di->id;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_di0 = 1;
+          int _len_di0 = 65025;
           struct ipu_di * di = (struct ipu_di *) malloc(_len_di0*sizeof(struct ipu_di));
           for(int _i0 = 0; _i0 < _len_di0; _i0++) {
-            di[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+              di[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ipu_di_get_num(di);
           printf("%d\n", benchRet); 
           free(di);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_di0 = 100;
           struct ipu_di * di = (struct ipu_di *) malloc(_len_di0*sizeof(struct ipu_di));
           for(int _i0 = 0; _i0 < _len_di0; _i0++) {
-            di[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+              di[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ipu_di_get_num(di);
           printf("%d\n", benchRet); 
           free(di);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_di0 = 1;
+          struct ipu_di * di = (struct ipu_di *) malloc(_len_di0*sizeof(struct ipu_di));
+          for(int _i0 = 0; _i0 < _len_di0; _i0++) {
+              di[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ipu_di_get_num(di);
+          printf("%d\n", benchRet); 
+          free(di);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static void start_transaction(struct acpi_ec *ec)
 	ec->curr->flags = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,21 +77,147 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_ec0 = 65025;
+          struct acpi_ec * ec = (struct acpi_ec *) malloc(_len_ec0*sizeof(struct acpi_ec));
+          for(int _i0 = 0; _i0 < _len_ec0; _i0++) {
+              int _len_ec__i0__curr0 = 1;
+          ec[_i0].curr = (struct TYPE_2__ *) malloc(_len_ec__i0__curr0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ec__i0__curr0; _j0++) {
+              ec[_i0].curr->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          ec[_i0].curr->ri = ((-2 * (next_i()%2)) + 1) * next_i();
+          ec[_i0].curr->wi = ((-2 * (next_i()%2)) + 1) * next_i();
+          ec[_i0].curr->irq_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          start_transaction(ec);
+          for(int _aux = 0; _aux < _len_ec0; _aux++) {
+          free(ec[_aux].curr);
+          }
+          free(ec);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_ec0 = 100;
+          struct acpi_ec * ec = (struct acpi_ec *) malloc(_len_ec0*sizeof(struct acpi_ec));
+          for(int _i0 = 0; _i0 < _len_ec0; _i0++) {
+              int _len_ec__i0__curr0 = 1;
+          ec[_i0].curr = (struct TYPE_2__ *) malloc(_len_ec__i0__curr0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ec__i0__curr0; _j0++) {
+              ec[_i0].curr->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          ec[_i0].curr->ri = ((-2 * (next_i()%2)) + 1) * next_i();
+          ec[_i0].curr->wi = ((-2 * (next_i()%2)) + 1) * next_i();
+          ec[_i0].curr->irq_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          start_transaction(ec);
+          for(int _aux = 0; _aux < _len_ec0; _aux++) {
+          free(ec[_aux].curr);
+          }
+          free(ec);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_ec0 = 1;
           struct acpi_ec * ec = (struct acpi_ec *) malloc(_len_ec0*sizeof(struct acpi_ec));
           for(int _i0 = 0; _i0 < _len_ec0; _i0++) {
               int _len_ec__i0__curr0 = 1;
           ec[_i0].curr = (struct TYPE_2__ *) malloc(_len_ec__i0__curr0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_ec__i0__curr0; _j0++) {
-            ec[_i0].curr->flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        ec[_i0].curr->ri = ((-2 * (next_i()%2)) + 1) * next_i();
-        ec[_i0].curr->wi = ((-2 * (next_i()%2)) + 1) * next_i();
-        ec[_i0].curr->irq_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              ec[_i0].curr->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          ec[_i0].curr->ri = ((-2 * (next_i()%2)) + 1) * next_i();
+          ec[_i0].curr->wi = ((-2 * (next_i()%2)) + 1) * next_i();
+          ec[_i0].curr->irq_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           start_transaction(ec);
           for(int _aux = 0; _aux < _len_ec0; _aux++) {
           free(ec[_aux].curr);

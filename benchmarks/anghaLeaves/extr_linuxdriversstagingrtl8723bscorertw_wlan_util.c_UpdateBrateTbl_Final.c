@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -87,12 +89,6 @@ void UpdateBrateTbl(struct adapter *Adapter, u8 *mBratesOS)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,19 +101,137 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
+          int _len_Adapter0 = 65025;
+          struct adapter * Adapter = (struct adapter *) malloc(_len_Adapter0*sizeof(struct adapter));
+          for(int _i0 = 0; _i0 < _len_Adapter0; _i0++) {
+              Adapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_mBratesOS0 = 65025;
+          unsigned long * mBratesOS = (unsigned long *) malloc(_len_mBratesOS0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_mBratesOS0; _i0++) {
+            mBratesOS[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          UpdateBrateTbl(Adapter,mBratesOS);
+          free(Adapter);
+          free(mBratesOS);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
+          int _len_Adapter0 = 100;
+          struct adapter * Adapter = (struct adapter *) malloc(_len_Adapter0*sizeof(struct adapter));
+          for(int _i0 = 0; _i0 < _len_Adapter0; _i0++) {
+              Adapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_mBratesOS0 = 100;
+          unsigned long * mBratesOS = (unsigned long *) malloc(_len_mBratesOS0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_mBratesOS0; _i0++) {
+            mBratesOS[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          UpdateBrateTbl(Adapter,mBratesOS);
+          free(Adapter);
+          free(mBratesOS);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
           int _len_Adapter0 = 1;
           struct adapter * Adapter = (struct adapter *) malloc(_len_Adapter0*sizeof(struct adapter));
           for(int _i0 = 0; _i0 < _len_Adapter0; _i0++) {
-            Adapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              Adapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_mBratesOS0 = 1;
           unsigned long * mBratesOS = (unsigned long *) malloc(_len_mBratesOS0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_mBratesOS0; _i0++) {
             mBratesOS[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           UpdateBrateTbl(Adapter,mBratesOS);
           free(Adapter);
           free(mBratesOS);

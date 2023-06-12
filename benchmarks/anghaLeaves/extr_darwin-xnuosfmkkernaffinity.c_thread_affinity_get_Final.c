@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ thread_affinity_get(thread_t thread)
 	return tag;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,18 +88,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_thread0 = 65025;
+          struct TYPE_5__ * thread = (struct TYPE_5__ *) malloc(_len_thread0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_thread0; _i0++) {
+              int _len_thread__i0__affinity_set0 = 1;
+          thread[_i0].affinity_set = (struct TYPE_4__ *) malloc(_len_thread__i0__affinity_set0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_thread__i0__affinity_set0; _j0++) {
+              thread[_i0].affinity_set->aset_tag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = thread_affinity_get(thread);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_thread0; _aux++) {
+          free(thread[_aux].affinity_set);
+          }
+          free(thread);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_thread0 = 100;
+          struct TYPE_5__ * thread = (struct TYPE_5__ *) malloc(_len_thread0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_thread0; _i0++) {
+              int _len_thread__i0__affinity_set0 = 1;
+          thread[_i0].affinity_set = (struct TYPE_4__ *) malloc(_len_thread__i0__affinity_set0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_thread__i0__affinity_set0; _j0++) {
+              thread[_i0].affinity_set->aset_tag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = thread_affinity_get(thread);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_thread0; _aux++) {
+          free(thread[_aux].affinity_set);
+          }
+          free(thread);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_thread0 = 1;
           struct TYPE_5__ * thread = (struct TYPE_5__ *) malloc(_len_thread0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_thread0; _i0++) {
               int _len_thread__i0__affinity_set0 = 1;
           thread[_i0].affinity_set = (struct TYPE_4__ *) malloc(_len_thread__i0__affinity_set0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_thread__i0__affinity_set0; _j0++) {
-            thread[_i0].affinity_set->aset_tag = ((-2 * (next_i()%2)) + 1) * next_i();
+              thread[_i0].affinity_set->aset_tag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = thread_affinity_get(thread);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_thread0; _aux++) {

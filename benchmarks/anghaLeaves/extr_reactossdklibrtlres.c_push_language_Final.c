@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ int push_language( USHORT *list, ULONG pos, WORD lang )
     return pos;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,16 +79,128 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 3336
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 1286
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 1286
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 1286
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 1286
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 1285
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 1540
+          // ------------------------------- 
+
+          unsigned long pos = 255;
+        
+          long lang = 255;
+        
+          int _len_list0 = 65025;
+          long * list = (long *) malloc(_len_list0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_list0; _i0++) {
+            list[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = push_language(list,pos,lang);
+          printf("%d\n", benchRet); 
+          free(list);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 151
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 61
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 61
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 61
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 61
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 60
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 70
+          // ------------------------------- 
+
           unsigned long pos = 10;
+        
           long lang = 10;
+        
           int _len_list0 = 100;
           long * list = (long *) malloc(_len_list0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_list0; _i0++) {
             list[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = push_language(list,pos,lang);
+          printf("%d\n", benchRet); 
+          free(list);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          unsigned long pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long lang = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_list0 = 1;
+          long * list = (long *) malloc(_len_list0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_list0; _i0++) {
+            list[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = push_language(list,pos,lang);
           printf("%d\n", benchRet); 
           free(list);

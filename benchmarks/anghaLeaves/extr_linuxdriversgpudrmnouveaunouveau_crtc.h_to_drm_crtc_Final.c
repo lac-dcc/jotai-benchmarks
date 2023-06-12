@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline struct drm_crtc *to_drm_crtc(struct nouveau_
 	return &crtc->base;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_crtc0 = 1;
+          int _len_crtc0 = 65025;
           struct nouveau_crtc * crtc = (struct nouveau_crtc *) malloc(_len_crtc0*sizeof(struct nouveau_crtc));
           for(int _i0 = 0; _i0 < _len_crtc0; _i0++) {
-            crtc[_i0].base.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              crtc[_i0].base.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           struct drm_crtc * benchRet = to_drm_crtc(crtc);
           printf("%d\n", (*benchRet).dummy);
           free(crtc);
@@ -100,15 +98,34 @@ int main(int argc, char *argv[]) {
           int _len_crtc0 = 100;
           struct nouveau_crtc * crtc = (struct nouveau_crtc *) malloc(_len_crtc0*sizeof(struct nouveau_crtc));
           for(int _i0 = 0; _i0 < _len_crtc0; _i0++) {
-            crtc[_i0].base.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              crtc[_i0].base.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           struct drm_crtc * benchRet = to_drm_crtc(crtc);
           printf("%d\n", (*benchRet).dummy);
           free(crtc);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_crtc0 = 1;
+          struct nouveau_crtc * crtc = (struct nouveau_crtc *) malloc(_len_crtc0*sizeof(struct nouveau_crtc));
+          for(int _i0 = 0; _i0 < _len_crtc0; _i0++) {
+              crtc[_i0].base.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          struct drm_crtc * benchRet = to_drm_crtc(crtc);
+          printf("%d\n", (*benchRet).dummy);
+          free(crtc);
+        
+        break;
+    }
     default:
         usage();
         break;

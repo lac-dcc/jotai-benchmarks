@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -87,12 +89,6 @@ tcp6flg_match(struct tcphdr *tcp6, struct ip6_fw *f)
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,21 +101,148 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_tcp60 = 65025;
+          struct tcphdr * tcp6 = (struct tcphdr *) malloc(_len_tcp60*sizeof(struct tcphdr));
+          for(int _i0 = 0; _i0 < _len_tcp60; _i0++) {
+              tcp6[_i0].th_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_f0 = 65025;
+          struct ip6_fw * f = (struct ip6_fw *) malloc(_len_f0*sizeof(struct ip6_fw));
+          for(int _i0 = 0; _i0 < _len_f0; _i0++) {
+              f[_i0].fw_ipflg = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].fw_tcpf = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].fw_tcpnf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = tcp6flg_match(tcp6,f);
+          printf("%d\n", benchRet); 
+          free(tcp6);
+          free(f);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_tcp60 = 100;
+          struct tcphdr * tcp6 = (struct tcphdr *) malloc(_len_tcp60*sizeof(struct tcphdr));
+          for(int _i0 = 0; _i0 < _len_tcp60; _i0++) {
+              tcp6[_i0].th_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_f0 = 100;
+          struct ip6_fw * f = (struct ip6_fw *) malloc(_len_f0*sizeof(struct ip6_fw));
+          for(int _i0 = 0; _i0 < _len_f0; _i0++) {
+              f[_i0].fw_ipflg = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].fw_tcpf = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].fw_tcpnf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = tcp6flg_match(tcp6,f);
+          printf("%d\n", benchRet); 
+          free(tcp6);
+          free(f);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int _len_tcp60 = 1;
           struct tcphdr * tcp6 = (struct tcphdr *) malloc(_len_tcp60*sizeof(struct tcphdr));
           for(int _i0 = 0; _i0 < _len_tcp60; _i0++) {
-            tcp6[_i0].th_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              tcp6[_i0].th_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_f0 = 1;
           struct ip6_fw * f = (struct ip6_fw *) malloc(_len_f0*sizeof(struct ip6_fw));
           for(int _i0 = 0; _i0 < _len_f0; _i0++) {
-            f[_i0].fw_ipflg = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].fw_tcpf = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].fw_tcpnf = ((-2 * (next_i()%2)) + 1) * next_i();
+              f[_i0].fw_ipflg = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].fw_tcpf = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].fw_tcpnf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = tcp6flg_match(tcp6,f);
           printf("%d\n", benchRet); 
           free(tcp6);

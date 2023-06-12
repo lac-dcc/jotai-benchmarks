@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -114,12 +116,6 @@ void zend_ffi_align_as_val(zend_ffi_dcl *dcl, zend_ffi_val *align_val) /* {{{ */
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -132,19 +128,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_dcl0 = 65025;
+          struct TYPE_11__ * dcl = (struct TYPE_11__ *) malloc(_len_dcl0*sizeof(struct TYPE_11__));
+          for(int _i0 = 0; _i0 < _len_dcl0; _i0++) {
+              dcl[_i0].align = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_align_val0 = 65025;
+          struct TYPE_10__ * align_val = (struct TYPE_10__ *) malloc(_len_align_val0*sizeof(struct TYPE_10__));
+          for(int _i0 = 0; _i0 < _len_align_val0; _i0++) {
+              align_val[_i0].kind = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          zend_ffi_align_as_val(dcl,align_val);
+          free(dcl);
+          free(align_val);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_dcl0 = 100;
+          struct TYPE_11__ * dcl = (struct TYPE_11__ *) malloc(_len_dcl0*sizeof(struct TYPE_11__));
+          for(int _i0 = 0; _i0 < _len_dcl0; _i0++) {
+              dcl[_i0].align = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_align_val0 = 100;
+          struct TYPE_10__ * align_val = (struct TYPE_10__ *) malloc(_len_align_val0*sizeof(struct TYPE_10__));
+          for(int _i0 = 0; _i0 < _len_align_val0; _i0++) {
+              align_val[_i0].kind = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          zend_ffi_align_as_val(dcl,align_val);
+          free(dcl);
+          free(align_val);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_dcl0 = 1;
           struct TYPE_11__ * dcl = (struct TYPE_11__ *) malloc(_len_dcl0*sizeof(struct TYPE_11__));
           for(int _i0 = 0; _i0 < _len_dcl0; _i0++) {
-            dcl[_i0].align = ((-2 * (next_i()%2)) + 1) * next_i();
+              dcl[_i0].align = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_align_val0 = 1;
           struct TYPE_10__ * align_val = (struct TYPE_10__ *) malloc(_len_align_val0*sizeof(struct TYPE_10__));
           for(int _i0 = 0; _i0 < _len_align_val0; _i0++) {
-            align_val[_i0].kind = ((-2 * (next_i()%2)) + 1) * next_i();
+              align_val[_i0].kind = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           zend_ffi_align_as_val(dcl,align_val);
           free(dcl);
           free(align_val);

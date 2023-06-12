@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline int tag_compare(unsigned long tag, unsigned 
 	return (tag == (vaddr >> 22));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,7 +78,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long tag = 100;
+        
           unsigned long vaddr = 100;
+        
           int benchRet = tag_compare(tag,vaddr);
           printf("%d\n", benchRet); 
         
@@ -93,7 +90,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long tag = 255;
+        
           unsigned long vaddr = 255;
+        
           int benchRet = tag_compare(tag,vaddr);
           printf("%d\n", benchRet); 
         
@@ -103,13 +102,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long tag = 10;
+        
           unsigned long vaddr = 10;
+        
           int benchRet = tag_compare(tag,vaddr);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long tag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long vaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = tag_compare(tag,vaddr);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

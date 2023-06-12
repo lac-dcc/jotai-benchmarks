@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -90,12 +93,6 @@ __attribute__((used)) static void win32_translate_open_mode(int mode,
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -112,26 +109,31 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int mode = 100;
+        
           int _len_lpdwDesiredAccess0 = 1;
           int * lpdwDesiredAccess = (int *) malloc(_len_lpdwDesiredAccess0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_lpdwDesiredAccess0; _i0++) {
             lpdwDesiredAccess[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_lpdwCreationDisposition0 = 1;
           int * lpdwCreationDisposition = (int *) malloc(_len_lpdwCreationDisposition0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_lpdwCreationDisposition0; _i0++) {
             lpdwCreationDisposition[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_lpdwShareMode0 = 1;
           int * lpdwShareMode = (int *) malloc(_len_lpdwShareMode0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_lpdwShareMode0; _i0++) {
             lpdwShareMode[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_lpdwFlagsAndAttributes0 = 1;
           int * lpdwFlagsAndAttributes = (int *) malloc(_len_lpdwFlagsAndAttributes0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_lpdwFlagsAndAttributes0; _i0++) {
             lpdwFlagsAndAttributes[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           win32_translate_open_mode(mode,lpdwDesiredAccess,lpdwCreationDisposition,lpdwShareMode,lpdwFlagsAndAttributes);
           free(lpdwDesiredAccess);
           free(lpdwCreationDisposition);
@@ -140,7 +142,117 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int mode = 255;
+        
+          int _len_lpdwDesiredAccess0 = 65025;
+          int * lpdwDesiredAccess = (int *) malloc(_len_lpdwDesiredAccess0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_lpdwDesiredAccess0; _i0++) {
+            lpdwDesiredAccess[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_lpdwCreationDisposition0 = 65025;
+          int * lpdwCreationDisposition = (int *) malloc(_len_lpdwCreationDisposition0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_lpdwCreationDisposition0; _i0++) {
+            lpdwCreationDisposition[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_lpdwShareMode0 = 65025;
+          int * lpdwShareMode = (int *) malloc(_len_lpdwShareMode0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_lpdwShareMode0; _i0++) {
+            lpdwShareMode[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_lpdwFlagsAndAttributes0 = 65025;
+          int * lpdwFlagsAndAttributes = (int *) malloc(_len_lpdwFlagsAndAttributes0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_lpdwFlagsAndAttributes0; _i0++) {
+            lpdwFlagsAndAttributes[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          win32_translate_open_mode(mode,lpdwDesiredAccess,lpdwCreationDisposition,lpdwShareMode,lpdwFlagsAndAttributes);
+          free(lpdwDesiredAccess);
+          free(lpdwCreationDisposition);
+          free(lpdwShareMode);
+          free(lpdwFlagsAndAttributes);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int mode = 10;
+        
+          int _len_lpdwDesiredAccess0 = 100;
+          int * lpdwDesiredAccess = (int *) malloc(_len_lpdwDesiredAccess0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_lpdwDesiredAccess0; _i0++) {
+            lpdwDesiredAccess[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_lpdwCreationDisposition0 = 100;
+          int * lpdwCreationDisposition = (int *) malloc(_len_lpdwCreationDisposition0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_lpdwCreationDisposition0; _i0++) {
+            lpdwCreationDisposition[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_lpdwShareMode0 = 100;
+          int * lpdwShareMode = (int *) malloc(_len_lpdwShareMode0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_lpdwShareMode0; _i0++) {
+            lpdwShareMode[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_lpdwFlagsAndAttributes0 = 100;
+          int * lpdwFlagsAndAttributes = (int *) malloc(_len_lpdwFlagsAndAttributes0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_lpdwFlagsAndAttributes0; _i0++) {
+            lpdwFlagsAndAttributes[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          win32_translate_open_mode(mode,lpdwDesiredAccess,lpdwCreationDisposition,lpdwShareMode,lpdwFlagsAndAttributes);
+          free(lpdwDesiredAccess);
+          free(lpdwCreationDisposition);
+          free(lpdwShareMode);
+          free(lpdwFlagsAndAttributes);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_lpdwDesiredAccess0 = 1;
+          int * lpdwDesiredAccess = (int *) malloc(_len_lpdwDesiredAccess0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_lpdwDesiredAccess0; _i0++) {
+            lpdwDesiredAccess[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_lpdwCreationDisposition0 = 1;
+          int * lpdwCreationDisposition = (int *) malloc(_len_lpdwCreationDisposition0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_lpdwCreationDisposition0; _i0++) {
+            lpdwCreationDisposition[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_lpdwShareMode0 = 1;
+          int * lpdwShareMode = (int *) malloc(_len_lpdwShareMode0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_lpdwShareMode0; _i0++) {
+            lpdwShareMode[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_lpdwFlagsAndAttributes0 = 1;
+          int * lpdwFlagsAndAttributes = (int *) malloc(_len_lpdwFlagsAndAttributes0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_lpdwFlagsAndAttributes0; _i0++) {
+            lpdwFlagsAndAttributes[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          win32_translate_open_mode(mode,lpdwDesiredAccess,lpdwCreationDisposition,lpdwShareMode,lpdwFlagsAndAttributes);
+          free(lpdwDesiredAccess);
+          free(lpdwCreationDisposition);
+          free(lpdwShareMode);
+          free(lpdwFlagsAndAttributes);
+        
+        break;
+    }
     default:
         usage();
         break;

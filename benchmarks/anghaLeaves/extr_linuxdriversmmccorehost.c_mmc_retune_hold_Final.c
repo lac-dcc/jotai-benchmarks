@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ void mmc_retune_hold(struct mmc_host *host)
 	host->hold_retune += 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,15 +76,120 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_host0 = 65025;
+          struct mmc_host * host = (struct mmc_host *) malloc(_len_host0*sizeof(struct mmc_host));
+          for(int _i0 = 0; _i0 < _len_host0; _i0++) {
+              host[_i0].retune_now = ((-2 * (next_i()%2)) + 1) * next_i();
+          host[_i0].hold_retune = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mmc_retune_hold(host);
+          free(host);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_host0 = 100;
+          struct mmc_host * host = (struct mmc_host *) malloc(_len_host0*sizeof(struct mmc_host));
+          for(int _i0 = 0; _i0 < _len_host0; _i0++) {
+              host[_i0].retune_now = ((-2 * (next_i()%2)) + 1) * next_i();
+          host[_i0].hold_retune = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mmc_retune_hold(host);
+          free(host);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_host0 = 1;
           struct mmc_host * host = (struct mmc_host *) malloc(_len_host0*sizeof(struct mmc_host));
           for(int _i0 = 0; _i0 < _len_host0; _i0++) {
-            host[_i0].retune_now = ((-2 * (next_i()%2)) + 1) * next_i();
-        host[_i0].hold_retune = ((-2 * (next_i()%2)) + 1) * next_i();
+              host[_i0].retune_now = ((-2 * (next_i()%2)) + 1) * next_i();
+          host[_i0].hold_retune = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           mmc_retune_hold(host);
           free(host);
         

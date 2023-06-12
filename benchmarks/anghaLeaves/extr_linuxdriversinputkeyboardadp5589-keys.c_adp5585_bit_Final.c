@@ -62,12 +62,6 @@ __attribute__((used)) static unsigned char adp5585_bit(unsigned char offset)
 		1u << (offset - ADP5585_COL_SHIFT) : 1u << offset;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,12 +78,12 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned char offset = 10;
+        
           unsigned char benchRet = adp5585_bit(offset);
           printf("%c\n", (benchRet %26) + 'a'); 
         
         break;
     }
-
     default:
         usage();
         break;

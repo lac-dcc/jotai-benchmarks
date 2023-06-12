@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ int bled_init(printf_t print_function, progress_t progress_function, unsigned lo
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,32 +86,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int print_function = 100;
+        
           int progress_function = 100;
+        
           int _len_cancel_request0 = 1;
           unsigned long * cancel_request = (unsigned long *) malloc(_len_cancel_request0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_cancel_request0; _i0++) {
             cancel_request[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = bled_init(print_function,progress_function,cancel_request);
           printf("%d\n", benchRet); 
           free(cancel_request);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int print_function = 255;
+        
+          int progress_function = 255;
+        
+          int _len_cancel_request0 = 65025;
+          unsigned long * cancel_request = (unsigned long *) malloc(_len_cancel_request0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_cancel_request0; _i0++) {
+            cancel_request[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = bled_init(print_function,progress_function,cancel_request);
+          printf("%d\n", benchRet); 
+          free(cancel_request);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int print_function = 10;
+        
           int progress_function = 10;
+        
           int _len_cancel_request0 = 100;
           unsigned long * cancel_request = (unsigned long *) malloc(_len_cancel_request0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_cancel_request0; _i0++) {
             cancel_request[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = bled_init(print_function,progress_function,cancel_request);
+          printf("%d\n", benchRet); 
+          free(cancel_request);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int print_function = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int progress_function = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cancel_request0 = 1;
+          unsigned long * cancel_request = (unsigned long *) malloc(_len_cancel_request0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_cancel_request0; _i0++) {
+            cancel_request[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = bled_init(print_function,progress_function,cancel_request);
           printf("%d\n", benchRet); 
           free(cancel_request);

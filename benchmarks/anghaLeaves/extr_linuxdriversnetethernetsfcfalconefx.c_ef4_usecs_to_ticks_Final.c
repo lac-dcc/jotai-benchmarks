@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ unsigned int ef4_usecs_to_ticks(struct ef4_nic *efx, unsigned int usecs)
 	return usecs * 1000 / efx->timer_quantum_ns;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,11 +83,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int usecs = 100;
+        
           int _len_efx0 = 1;
           struct ef4_nic * efx = (struct ef4_nic *) malloc(_len_efx0*sizeof(struct ef4_nic));
           for(int _i0 = 0; _i0 < _len_efx0; _i0++) {
-            efx[_i0].timer_quantum_ns = ((-2 * (next_i()%2)) + 1) * next_i();
+              efx[_i0].timer_quantum_ns = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          unsigned int benchRet = ef4_usecs_to_ticks(efx,usecs);
+          printf("%u\n", benchRet); 
+          free(efx);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned int usecs = 255;
+        
+          int _len_efx0 = 65025;
+          struct ef4_nic * efx = (struct ef4_nic *) malloc(_len_efx0*sizeof(struct ef4_nic));
+          for(int _i0 = 0; _i0 < _len_efx0; _i0++) {
+              efx[_i0].timer_quantum_ns = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           unsigned int benchRet = ef4_usecs_to_ticks(efx,usecs);
           printf("%u\n", benchRet); 
           free(efx);
@@ -99,21 +116,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned int usecs = 10;
+        
           int _len_efx0 = 100;
           struct ef4_nic * efx = (struct ef4_nic *) malloc(_len_efx0*sizeof(struct ef4_nic));
           for(int _i0 = 0; _i0 < _len_efx0; _i0++) {
-            efx[_i0].timer_quantum_ns = ((-2 * (next_i()%2)) + 1) * next_i();
+              efx[_i0].timer_quantum_ns = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = ef4_usecs_to_ticks(efx,usecs);
           printf("%u\n", benchRet); 
           free(efx);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int usecs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_efx0 = 1;
+          struct ef4_nic * efx = (struct ef4_nic *) malloc(_len_efx0*sizeof(struct ef4_nic));
+          for(int _i0 = 0; _i0 < _len_efx0; _i0++) {
+              efx[_i0].timer_quantum_ns = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = ef4_usecs_to_ticks(efx,usecs);
+          printf("%u\n", benchRet); 
+          free(efx);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static u32 rk_mk_pte_invalid(u32 pte)
 	return pte & ~RK_PTE_PAGE_VALID;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int pte = 100;
+        
           int benchRet = rk_mk_pte_invalid(pte);
           printf("%d\n", benchRet); 
         
@@ -94,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int pte = 255;
+        
           int benchRet = rk_mk_pte_invalid(pte);
           printf("%d\n", benchRet); 
         
@@ -103,12 +100,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int pte = 10;
+        
           int benchRet = rk_mk_pte_invalid(pte);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int pte = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = rk_mk_pte_invalid(pte);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

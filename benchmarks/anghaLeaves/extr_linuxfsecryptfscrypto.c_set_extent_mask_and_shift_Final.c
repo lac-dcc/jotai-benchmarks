@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static void set_extent_mask_and_shift(struct ecryptfs_cryp
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,16 +85,123 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_crypt_stat0 = 65025;
+          struct ecryptfs_crypt_stat * crypt_stat = (struct ecryptfs_crypt_stat *) malloc(_len_crypt_stat0*sizeof(struct ecryptfs_crypt_stat));
+          for(int _i0 = 0; _i0 < _len_crypt_stat0; _i0++) {
+              crypt_stat[_i0].extent_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          crypt_stat[_i0].extent_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          crypt_stat[_i0].extent_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_extent_mask_and_shift(crypt_stat);
+          free(crypt_stat);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_crypt_stat0 = 100;
+          struct ecryptfs_crypt_stat * crypt_stat = (struct ecryptfs_crypt_stat *) malloc(_len_crypt_stat0*sizeof(struct ecryptfs_crypt_stat));
+          for(int _i0 = 0; _i0 < _len_crypt_stat0; _i0++) {
+              crypt_stat[_i0].extent_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          crypt_stat[_i0].extent_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          crypt_stat[_i0].extent_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_extent_mask_and_shift(crypt_stat);
+          free(crypt_stat);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int _len_crypt_stat0 = 1;
           struct ecryptfs_crypt_stat * crypt_stat = (struct ecryptfs_crypt_stat *) malloc(_len_crypt_stat0*sizeof(struct ecryptfs_crypt_stat));
           for(int _i0 = 0; _i0 < _len_crypt_stat0; _i0++) {
-            crypt_stat[_i0].extent_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        crypt_stat[_i0].extent_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        crypt_stat[_i0].extent_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+              crypt_stat[_i0].extent_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          crypt_stat[_i0].extent_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          crypt_stat[_i0].extent_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           set_extent_mask_and_shift(crypt_stat);
           free(crypt_stat);
         

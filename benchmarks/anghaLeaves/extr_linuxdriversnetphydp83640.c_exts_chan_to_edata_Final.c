@@ -61,12 +61,6 @@ __attribute__((used)) static inline u16 exts_chan_to_edata(int ch)
 	return 1 << ((ch + EXT_EVENT) * 2);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,12 +77,12 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int ch = 10;
+        
           int benchRet = exts_chan_to_edata(ch);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ int brcms_c_get_curband(struct brcms_c_info *wlc)
 	return wlc->band->bandunit;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,18 +76,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_wlc0 = 1;
+          int _len_wlc0 = 65025;
           struct brcms_c_info * wlc = (struct brcms_c_info *) malloc(_len_wlc0*sizeof(struct brcms_c_info));
           for(int _i0 = 0; _i0 < _len_wlc0; _i0++) {
               int _len_wlc__i0__band0 = 1;
           wlc[_i0].band = (struct TYPE_2__ *) malloc(_len_wlc__i0__band0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_wlc__i0__band0; _j0++) {
-            wlc[_i0].band->bandunit = ((-2 * (next_i()%2)) + 1) * next_i();
+              wlc[_i0].band->bandunit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = brcms_c_get_curband(wlc);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_wlc0; _aux++) {
@@ -101,7 +100,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_wlc0 = 100;
+          struct brcms_c_info * wlc = (struct brcms_c_info *) malloc(_len_wlc0*sizeof(struct brcms_c_info));
+          for(int _i0 = 0; _i0 < _len_wlc0; _i0++) {
+              int _len_wlc__i0__band0 = 1;
+          wlc[_i0].band = (struct TYPE_2__ *) malloc(_len_wlc__i0__band0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_wlc__i0__band0; _j0++) {
+              wlc[_i0].band->bandunit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = brcms_c_get_curband(wlc);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_wlc0; _aux++) {
+          free(wlc[_aux].band);
+          }
+          free(wlc);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_wlc0 = 1;
+          struct brcms_c_info * wlc = (struct brcms_c_info *) malloc(_len_wlc0*sizeof(struct brcms_c_info));
+          for(int _i0 = 0; _i0 < _len_wlc0; _i0++) {
+              int _len_wlc__i0__band0 = 1;
+          wlc[_i0].band = (struct TYPE_2__ *) malloc(_len_wlc__i0__band0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_wlc__i0__band0; _j0++) {
+              wlc[_i0].band->bandunit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = brcms_c_get_curband(wlc);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_wlc0; _aux++) {
+          free(wlc[_aux].band);
+          }
+          free(wlc);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +73,6 @@ __attribute__((used)) static unsigned int mnt_get_writers(struct mount *mnt)
 #endif
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,14 +85,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_mnt0 = 1;
+          int _len_mnt0 = 65025;
           struct mount * mnt = (struct mount *) malloc(_len_mnt0*sizeof(struct mount));
           for(int _i0 = 0; _i0 < _len_mnt0; _i0++) {
-            mnt[_i0].mnt_writers = ((-2 * (next_i()%2)) + 1) * next_i();
+              mnt[_i0].mnt_writers = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = mnt_get_writers(mnt);
           printf("%u\n", benchRet); 
           free(mnt);
@@ -110,15 +107,32 @@ int main(int argc, char *argv[]) {
           int _len_mnt0 = 100;
           struct mount * mnt = (struct mount *) malloc(_len_mnt0*sizeof(struct mount));
           for(int _i0 = 0; _i0 < _len_mnt0; _i0++) {
-            mnt[_i0].mnt_writers = ((-2 * (next_i()%2)) + 1) * next_i();
+              mnt[_i0].mnt_writers = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = mnt_get_writers(mnt);
           printf("%u\n", benchRet); 
           free(mnt);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_mnt0 = 1;
+          struct mount * mnt = (struct mount *) malloc(_len_mnt0*sizeof(struct mount));
+          for(int _i0 = 0; _i0 < _len_mnt0; _i0++) {
+              mnt[_i0].mnt_writers = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = mnt_get_writers(mnt);
+          printf("%u\n", benchRet); 
+          free(mnt);
+        
+        break;
+    }
     default:
         usage();
         break;

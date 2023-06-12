@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ xfs_efd_item_sizeof(
 	       (efdp->efd_format.efd_nextents - 1) * sizeof(xfs_extent_t);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,14 +81,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_efdp0 = 1;
+          int _len_efdp0 = 65025;
           struct xfs_efd_log_item * efdp = (struct xfs_efd_log_item *) malloc(_len_efdp0*sizeof(struct xfs_efd_log_item));
           for(int _i0 = 0; _i0 < _len_efdp0; _i0++) {
-            efdp[_i0].efd_format.efd_nextents = ((-2 * (next_i()%2)) + 1) * next_i();
+              efdp[_i0].efd_format.efd_nextents = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = xfs_efd_item_sizeof(efdp);
           printf("%d\n", benchRet); 
           free(efdp);
@@ -106,15 +104,34 @@ int main(int argc, char *argv[]) {
           int _len_efdp0 = 100;
           struct xfs_efd_log_item * efdp = (struct xfs_efd_log_item *) malloc(_len_efdp0*sizeof(struct xfs_efd_log_item));
           for(int _i0 = 0; _i0 < _len_efdp0; _i0++) {
-            efdp[_i0].efd_format.efd_nextents = ((-2 * (next_i()%2)) + 1) * next_i();
+              efdp[_i0].efd_format.efd_nextents = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = xfs_efd_item_sizeof(efdp);
           printf("%d\n", benchRet); 
           free(efdp);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_efdp0 = 1;
+          struct xfs_efd_log_item * efdp = (struct xfs_efd_log_item *) malloc(_len_efdp0*sizeof(struct xfs_efd_log_item));
+          for(int _i0 = 0; _i0 < _len_efdp0; _i0++) {
+              efdp[_i0].efd_format.efd_nextents = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = xfs_efd_item_sizeof(efdp);
+          printf("%d\n", benchRet); 
+          free(efdp);
+        
+        break;
+    }
     default:
         usage();
         break;

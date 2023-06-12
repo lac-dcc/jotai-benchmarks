@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ d_add_substitution (struct d_info *di, struct demangle_component *dc)
   return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,29 +82,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_di0 = 1;
+          int _len_di0 = 65025;
           struct d_info * di = (struct d_info *) malloc(_len_di0*sizeof(struct d_info));
           for(int _i0 = 0; _i0 < _len_di0; _i0++) {
-            di[_i0].next_sub = ((-2 * (next_i()%2)) + 1) * next_i();
-        di[_i0].num_subs = ((-2 * (next_i()%2)) + 1) * next_i();
+              di[_i0].next_sub = ((-2 * (next_i()%2)) + 1) * next_i();
+          di[_i0].num_subs = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_di__i0__subs0 = 1;
           di[_i0].subs = (struct demangle_component **) malloc(_len_di__i0__subs0*sizeof(struct demangle_component *));
           for(int _j0 = 0; _j0 < _len_di__i0__subs0; _j0++) {
             int _len_di__i0__subs1 = 1;
             di[_i0].subs[_j0] = (struct demangle_component *) malloc(_len_di__i0__subs1*sizeof(struct demangle_component));
             for(int _j1 = 0; _j1 < _len_di__i0__subs1; _j1++) {
-              di[_i0].subs[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+                di[_i0].subs[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           }
-          int _len_dc0 = 1;
+        
+          int _len_dc0 = 65025;
           struct demangle_component * dc = (struct demangle_component *) malloc(_len_dc0*sizeof(struct demangle_component));
           for(int _i0 = 0; _i0 < _len_dc0; _i0++) {
-            dc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = d_add_substitution(di,dc);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_di0; _aux++) {
@@ -120,7 +121,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_di0 = 100;
+          struct d_info * di = (struct d_info *) malloc(_len_di0*sizeof(struct d_info));
+          for(int _i0 = 0; _i0 < _len_di0; _i0++) {
+              di[_i0].next_sub = ((-2 * (next_i()%2)) + 1) * next_i();
+          di[_i0].num_subs = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_di__i0__subs0 = 1;
+          di[_i0].subs = (struct demangle_component **) malloc(_len_di__i0__subs0*sizeof(struct demangle_component *));
+          for(int _j0 = 0; _j0 < _len_di__i0__subs0; _j0++) {
+            int _len_di__i0__subs1 = 1;
+            di[_i0].subs[_j0] = (struct demangle_component *) malloc(_len_di__i0__subs1*sizeof(struct demangle_component));
+            for(int _j1 = 0; _j1 < _len_di__i0__subs1; _j1++) {
+                di[_i0].subs[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int _len_dc0 = 100;
+          struct demangle_component * dc = (struct demangle_component *) malloc(_len_dc0*sizeof(struct demangle_component));
+          for(int _i0 = 0; _i0 < _len_dc0; _i0++) {
+              dc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = d_add_substitution(di,dc);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_di0; _aux++) {
+          free(*(di[_aux].subs));
+        free(di[_aux].subs);
+          }
+          free(di);
+          free(dc);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_di0 = 1;
+          struct d_info * di = (struct d_info *) malloc(_len_di0*sizeof(struct d_info));
+          for(int _i0 = 0; _i0 < _len_di0; _i0++) {
+              di[_i0].next_sub = ((-2 * (next_i()%2)) + 1) * next_i();
+          di[_i0].num_subs = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_di__i0__subs0 = 1;
+          di[_i0].subs = (struct demangle_component **) malloc(_len_di__i0__subs0*sizeof(struct demangle_component *));
+          for(int _j0 = 0; _j0 < _len_di__i0__subs0; _j0++) {
+            int _len_di__i0__subs1 = 1;
+            di[_i0].subs[_j0] = (struct demangle_component *) malloc(_len_di__i0__subs1*sizeof(struct demangle_component));
+            for(int _j1 = 0; _j1 < _len_di__i0__subs1; _j1++) {
+                di[_i0].subs[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int _len_dc0 = 1;
+          struct demangle_component * dc = (struct demangle_component *) malloc(_len_dc0*sizeof(struct demangle_component));
+          for(int _i0 = 0; _i0 < _len_dc0; _i0++) {
+              dc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = d_add_substitution(di,dc);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_di0; _aux++) {
+          free(*(di[_aux].subs));
+        free(di[_aux].subs);
+          }
+          free(di);
+          free(dc);
+        
+        break;
+    }
     default:
         usage();
         break;

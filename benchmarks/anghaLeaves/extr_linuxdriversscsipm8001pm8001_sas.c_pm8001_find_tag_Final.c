@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static int pm8001_find_tag(struct sas_task *task, u32 *tag
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,23 +82,27 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_task0 = 1;
+          int _len_task0 = 65025;
           struct sas_task * task = (struct sas_task *) malloc(_len_task0*sizeof(struct sas_task));
           for(int _i0 = 0; _i0 < _len_task0; _i0++) {
               int _len_task__i0__lldd_task0 = 1;
           task[_i0].lldd_task = (struct pm8001_ccb_info *) malloc(_len_task__i0__lldd_task0*sizeof(struct pm8001_ccb_info));
           for(int _j0 = 0; _j0 < _len_task__i0__lldd_task0; _j0++) {
-            task[_i0].lldd_task->ccb_tag = ((-2 * (next_i()%2)) + 1) * next_i();
+              task[_i0].lldd_task->ccb_tag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
-          int _len_tag0 = 1;
+        
+          int _len_tag0 = 65025;
           int * tag = (int *) malloc(_len_tag0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_tag0; _i0++) {
             tag[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = pm8001_find_tag(task,tag);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_task0; _aux++) {
@@ -113,7 +113,68 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_task0 = 100;
+          struct sas_task * task = (struct sas_task *) malloc(_len_task0*sizeof(struct sas_task));
+          for(int _i0 = 0; _i0 < _len_task0; _i0++) {
+              int _len_task__i0__lldd_task0 = 1;
+          task[_i0].lldd_task = (struct pm8001_ccb_info *) malloc(_len_task__i0__lldd_task0*sizeof(struct pm8001_ccb_info));
+          for(int _j0 = 0; _j0 < _len_task__i0__lldd_task0; _j0++) {
+              task[_i0].lldd_task->ccb_tag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_tag0 = 100;
+          int * tag = (int *) malloc(_len_tag0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_tag0; _i0++) {
+            tag[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = pm8001_find_tag(task,tag);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_task0; _aux++) {
+          free(task[_aux].lldd_task);
+          }
+          free(task);
+          free(tag);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_task0 = 1;
+          struct sas_task * task = (struct sas_task *) malloc(_len_task0*sizeof(struct sas_task));
+          for(int _i0 = 0; _i0 < _len_task0; _i0++) {
+              int _len_task__i0__lldd_task0 = 1;
+          task[_i0].lldd_task = (struct pm8001_ccb_info *) malloc(_len_task__i0__lldd_task0*sizeof(struct pm8001_ccb_info));
+          for(int _j0 = 0; _j0 < _len_task__i0__lldd_task0; _j0++) {
+              task[_i0].lldd_task->ccb_tag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_tag0 = 1;
+          int * tag = (int *) malloc(_len_tag0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_tag0; _i0++) {
+            tag[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = pm8001_find_tag(task,tag);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_task0; _aux++) {
+          free(task[_aux].lldd_task);
+          }
+          free(task);
+          free(tag);
+        
+        break;
+    }
     default:
         usage();
         break;

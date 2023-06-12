@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -61,12 +61,6 @@ int ptid_equal (ptid_t ptid1, ptid_t ptid2) {
 	return ptid1.pid == ptid2.pid && ptid1.tid == ptid2.tid;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,15 +73,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // empty
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           struct TYPE_4__ ptid1;
-        ptid1.pid = ((-2 * (next_i()%2)) + 1) * next_i();
-        ptid1.tid = ((-2 * (next_i()%2)) + 1) * next_i();
+          ptid1.pid = ((-2 * (next_i()%2)) + 1) * next_i();
+          ptid1.tid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           struct TYPE_4__ ptid2;
-        ptid2.pid = ((-2 * (next_i()%2)) + 1) * next_i();
-        ptid2.tid = ((-2 * (next_i()%2)) + 1) * next_i();
+          ptid2.pid = ((-2 * (next_i()%2)) + 1) * next_i();
+          ptid2.tid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = ptid_equal(ptid1,ptid2);
           printf("%d\n", benchRet); 
         

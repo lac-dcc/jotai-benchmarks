@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static void _set_recover_status(struct dlm_ls *ls, uint32_
 	ls->ls_recover_status |= status;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,31 +80,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int status = 100;
+        
           int _len_ls0 = 1;
           struct dlm_ls * ls = (struct dlm_ls *) malloc(_len_ls0*sizeof(struct dlm_ls));
           for(int _i0 = 0; _i0 < _len_ls0; _i0++) {
-            ls[_i0].ls_recover_status = ((-2 * (next_i()%2)) + 1) * next_i();
+              ls[_i0].ls_recover_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          _set_recover_status(ls,status);
+          free(ls);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int status = 255;
+        
+          int _len_ls0 = 65025;
+          struct dlm_ls * ls = (struct dlm_ls *) malloc(_len_ls0*sizeof(struct dlm_ls));
+          for(int _i0 = 0; _i0 < _len_ls0; _i0++) {
+              ls[_i0].ls_recover_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           _set_recover_status(ls,status);
           free(ls);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int status = 10;
+        
           int _len_ls0 = 100;
           struct dlm_ls * ls = (struct dlm_ls *) malloc(_len_ls0*sizeof(struct dlm_ls));
           for(int _i0 = 0; _i0 < _len_ls0; _i0++) {
-            ls[_i0].ls_recover_status = ((-2 * (next_i()%2)) + 1) * next_i();
+              ls[_i0].ls_recover_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           _set_recover_status(ls,status);
           free(ls);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ls0 = 1;
+          struct dlm_ls * ls = (struct dlm_ls *) malloc(_len_ls0*sizeof(struct dlm_ls));
+          for(int _i0 = 0; _i0 < _len_ls0; _i0++) {
+              ls[_i0].ls_recover_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          _set_recover_status(ls,status);
+          free(ls);
+        
+        break;
+    }
     default:
         usage();
         break;

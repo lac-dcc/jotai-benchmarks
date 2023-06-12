@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ ts_bgw_job_set_unknown_job_type_hook(unknown_job_type_hook_type hook)
 	unknown_job_type_hook = hook;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +81,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int hook = 100;
+        
           ts_bgw_job_set_unknown_job_type_hook(hook);
         
         break;
@@ -94,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int hook = 255;
+        
           ts_bgw_job_set_unknown_job_type_hook(hook);
         
         break;
@@ -102,11 +99,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int hook = 10;
+        
           ts_bgw_job_set_unknown_job_type_hook(hook);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int hook = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ts_bgw_job_set_unknown_job_type_hook(hook);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -87,12 +88,6 @@ __attribute__((used)) static unsigned char volume_to_hw(int volume_percent)
 	return ret;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -109,6 +104,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int volume_percent = 100;
+        
           unsigned char benchRet = volume_to_hw(volume_percent);
           printf("%c\n", (benchRet %26) + 'a'); 
         
@@ -118,6 +114,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int volume_percent = 255;
+        
           unsigned char benchRet = volume_to_hw(volume_percent);
           printf("%c\n", (benchRet %26) + 'a'); 
         
@@ -127,12 +124,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int volume_percent = 10;
+        
           unsigned char benchRet = volume_to_hw(volume_percent);
           printf("%c\n", (benchRet %26) + 'a'); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int volume_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned char benchRet = volume_to_hw(volume_percent);
+          printf("%c\n", (benchRet %26) + 'a'); 
+        
+        break;
+    }
     default:
         usage();
         break;

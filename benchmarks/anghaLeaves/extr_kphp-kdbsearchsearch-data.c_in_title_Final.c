@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -60,12 +61,6 @@ __attribute__((used)) static inline int in_title (unsigned freqs) {
   return (freqs >= 0x10000);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,6 +77,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int freqs = 100;
+        
           int benchRet = in_title(freqs);
           printf("%d\n", benchRet); 
         
@@ -91,6 +87,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int freqs = 255;
+        
           int benchRet = in_title(freqs);
           printf("%d\n", benchRet); 
         
@@ -100,12 +97,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int freqs = 10;
+        
           int benchRet = in_title(freqs);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int freqs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = in_title(freqs);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

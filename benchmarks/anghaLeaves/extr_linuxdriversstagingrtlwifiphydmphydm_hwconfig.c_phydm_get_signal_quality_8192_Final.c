@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ phydm_get_signal_quality_8192(struct dm_phy_status_info *phy_info,
 		return ((64 - sq_rpt) * 100) / 44;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,24 +92,30 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_phy_info0 = 1;
+          int _len_phy_info0 = 65025;
           struct dm_phy_status_info * phy_info = (struct dm_phy_status_info *) malloc(_len_phy_info0*sizeof(struct dm_phy_status_info));
           for(int _i0 = 0; _i0 < _len_phy_info0; _i0++) {
-            phy_info[_i0].rx_pwdb_all = ((-2 * (next_i()%2)) + 1) * next_i();
+              phy_info[_i0].rx_pwdb_all = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_dm0 = 1;
+        
+          int _len_dm0 = 65025;
           struct phy_dm_struct * dm = (struct phy_dm_struct *) malloc(_len_dm0*sizeof(struct phy_dm_struct));
           for(int _i0 = 0; _i0 < _len_dm0; _i0++) {
-            dm[_i0].is_in_hct_test = ((-2 * (next_i()%2)) + 1) * next_i();
+              dm[_i0].is_in_hct_test = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_phy_sta_rpt0 = 1;
+        
+          int _len_phy_sta_rpt0 = 65025;
           struct phy_status_rpt_8192cd * phy_sta_rpt = (struct phy_status_rpt_8192cd *) malloc(_len_phy_sta_rpt0*sizeof(struct phy_status_rpt_8192cd));
           for(int _i0 = 0; _i0 < _len_phy_sta_rpt0; _i0++) {
-            phy_sta_rpt[_i0].cck_sig_qual_ofdm_pwdb_all = ((-2 * (next_i()%2)) + 1) * next_i();
+              phy_sta_rpt[_i0].cck_sig_qual_ofdm_pwdb_all = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = phydm_get_signal_quality_8192(phy_info,dm,phy_sta_rpt);
           printf("%d\n", benchRet); 
           free(phy_info);
@@ -122,7 +124,70 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_phy_info0 = 100;
+          struct dm_phy_status_info * phy_info = (struct dm_phy_status_info *) malloc(_len_phy_info0*sizeof(struct dm_phy_status_info));
+          for(int _i0 = 0; _i0 < _len_phy_info0; _i0++) {
+              phy_info[_i0].rx_pwdb_all = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dm0 = 100;
+          struct phy_dm_struct * dm = (struct phy_dm_struct *) malloc(_len_dm0*sizeof(struct phy_dm_struct));
+          for(int _i0 = 0; _i0 < _len_dm0; _i0++) {
+              dm[_i0].is_in_hct_test = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_phy_sta_rpt0 = 100;
+          struct phy_status_rpt_8192cd * phy_sta_rpt = (struct phy_status_rpt_8192cd *) malloc(_len_phy_sta_rpt0*sizeof(struct phy_status_rpt_8192cd));
+          for(int _i0 = 0; _i0 < _len_phy_sta_rpt0; _i0++) {
+              phy_sta_rpt[_i0].cck_sig_qual_ofdm_pwdb_all = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = phydm_get_signal_quality_8192(phy_info,dm,phy_sta_rpt);
+          printf("%d\n", benchRet); 
+          free(phy_info);
+          free(dm);
+          free(phy_sta_rpt);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_phy_info0 = 1;
+          struct dm_phy_status_info * phy_info = (struct dm_phy_status_info *) malloc(_len_phy_info0*sizeof(struct dm_phy_status_info));
+          for(int _i0 = 0; _i0 < _len_phy_info0; _i0++) {
+              phy_info[_i0].rx_pwdb_all = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dm0 = 1;
+          struct phy_dm_struct * dm = (struct phy_dm_struct *) malloc(_len_dm0*sizeof(struct phy_dm_struct));
+          for(int _i0 = 0; _i0 < _len_dm0; _i0++) {
+              dm[_i0].is_in_hct_test = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_phy_sta_rpt0 = 1;
+          struct phy_status_rpt_8192cd * phy_sta_rpt = (struct phy_status_rpt_8192cd *) malloc(_len_phy_sta_rpt0*sizeof(struct phy_status_rpt_8192cd));
+          for(int _i0 = 0; _i0 < _len_phy_sta_rpt0; _i0++) {
+              phy_sta_rpt[_i0].cck_sig_qual_ofdm_pwdb_all = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = phydm_get_signal_quality_8192(phy_info,dm,phy_sta_rpt);
+          printf("%d\n", benchRet); 
+          free(phy_info);
+          free(dm);
+          free(phy_sta_rpt);
+        
+        break;
+    }
     default:
         usage();
         break;

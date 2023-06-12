@@ -71,12 +71,6 @@ __attribute__((used)) static inline u8 cip2si1(u16 cipval)
 	return si[cipval];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,6 +87,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int cipval = 100;
+        
           int benchRet = cip2si1(cipval);
           printf("%d\n", benchRet); 
         
@@ -102,6 +97,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int cipval = 255;
+        
           int benchRet = cip2si1(cipval);
           printf("%d\n", benchRet); 
         
@@ -111,12 +107,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int cipval = 10;
+        
           int benchRet = cip2si1(cipval);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

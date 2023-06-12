@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static int sun4i_tv_comp_mode_valid(struct drm_connector *
 	return MODE_OK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,19 +78,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_connector0 = 1;
+          int _len_connector0 = 65025;
           struct drm_connector * connector = (struct drm_connector *) malloc(_len_connector0*sizeof(struct drm_connector));
           for(int _i0 = 0; _i0 < _len_connector0; _i0++) {
-            connector[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              connector[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_mode0 = 1;
+        
+          int _len_mode0 = 65025;
           struct drm_display_mode * mode = (struct drm_display_mode *) malloc(_len_mode0*sizeof(struct drm_display_mode));
           for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
-            mode[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              mode[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = sun4i_tv_comp_mode_valid(connector,mode);
           printf("%d\n", benchRet); 
           free(connector);
@@ -102,7 +102,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_connector0 = 100;
+          struct drm_connector * connector = (struct drm_connector *) malloc(_len_connector0*sizeof(struct drm_connector));
+          for(int _i0 = 0; _i0 < _len_connector0; _i0++) {
+              connector[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_mode0 = 100;
+          struct drm_display_mode * mode = (struct drm_display_mode *) malloc(_len_mode0*sizeof(struct drm_display_mode));
+          for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
+              mode[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sun4i_tv_comp_mode_valid(connector,mode);
+          printf("%d\n", benchRet); 
+          free(connector);
+          free(mode);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_connector0 = 1;
+          struct drm_connector * connector = (struct drm_connector *) malloc(_len_connector0*sizeof(struct drm_connector));
+          for(int _i0 = 0; _i0 < _len_connector0; _i0++) {
+              connector[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_mode0 = 1;
+          struct drm_display_mode * mode = (struct drm_display_mode *) malloc(_len_mode0*sizeof(struct drm_display_mode));
+          for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
+              mode[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sun4i_tv_comp_mode_valid(connector,mode);
+          printf("%d\n", benchRet); 
+          free(connector);
+          free(mode);
+        
+        break;
+    }
     default:
         usage();
         break;

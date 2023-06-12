@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline void complete_dock(struct dock_station *ds)
 	ds->last_dock_time = jiffies;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,21 +77,54 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ds0 = 1;
+          int _len_ds0 = 65025;
           struct dock_station * ds = (struct dock_station *) malloc(_len_ds0*sizeof(struct dock_station));
           for(int _i0 = 0; _i0 < _len_ds0; _i0++) {
-            ds[_i0].last_dock_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        ds[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              ds[_i0].last_dock_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          ds[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           complete_dock(ds);
           free(ds);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ds0 = 100;
+          struct dock_station * ds = (struct dock_station *) malloc(_len_ds0*sizeof(struct dock_station));
+          for(int _i0 = 0; _i0 < _len_ds0; _i0++) {
+              ds[_i0].last_dock_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          ds[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          complete_dock(ds);
+          free(ds);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ds0 = 1;
+          struct dock_station * ds = (struct dock_station *) malloc(_len_ds0*sizeof(struct dock_station));
+          for(int _i0 = 0; _i0 < _len_ds0; _i0++) {
+              ds[_i0].last_dock_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          ds[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          complete_dock(ds);
+          free(ds);
+        
+        break;
+    }
     default:
         usage();
         break;

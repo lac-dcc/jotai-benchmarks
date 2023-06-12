@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -322,12 +323,6 @@ unsigned int convert_prep (unsigned int x) {
   }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -344,6 +339,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int x = 100;
+        
           unsigned int benchRet = convert_prep(x);
           printf("%u\n", benchRet); 
         
@@ -353,6 +349,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int x = 255;
+        
           unsigned int benchRet = convert_prep(x);
           printf("%u\n", benchRet); 
         
@@ -362,12 +359,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int x = 10;
+        
           unsigned int benchRet = convert_prep(x);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = convert_prep(x);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

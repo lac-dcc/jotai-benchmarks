@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +79,6 @@ __attribute__((used)) static int snd_pcm_oss_set_fragment1(struct snd_pcm_substr
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,22 +91,212 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           unsigned int val = 100;
+        
           int _len_substream0 = 1;
           struct snd_pcm_substream * substream = (struct snd_pcm_substream *) malloc(_len_substream0*sizeof(struct snd_pcm_substream));
           for(int _i0 = 0; _i0 < _len_substream0; _i0++) {
               int _len_substream__i0__runtime0 = 1;
           substream[_i0].runtime = (struct snd_pcm_runtime *) malloc(_len_substream__i0__runtime0*sizeof(struct snd_pcm_runtime));
           for(int _j0 = 0; _j0 < _len_substream__i0__runtime0; _j0++) {
-            substream[_i0].runtime->oss.fragshift = ((-2 * (next_i()%2)) + 1) * next_i();
-        substream[_i0].runtime->oss.maxfrags = ((-2 * (next_i()%2)) + 1) * next_i();
-        substream[_i0].runtime->oss.params = ((-2 * (next_i()%2)) + 1) * next_i();
-        substream[_i0].runtime->oss.subdivision = ((-2 * (next_i()%2)) + 1) * next_i();
+              substream[_i0].runtime->oss.fragshift = ((-2 * (next_i()%2)) + 1) * next_i();
+          substream[_i0].runtime->oss.maxfrags = ((-2 * (next_i()%2)) + 1) * next_i();
+          substream[_i0].runtime->oss.params = ((-2 * (next_i()%2)) + 1) * next_i();
+          substream[_i0].runtime->oss.subdivision = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
+          int benchRet = snd_pcm_oss_set_fragment1(substream,val);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_substream0; _aux++) {
+          free(substream[_aux].runtime);
+          }
+          free(substream);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          unsigned int val = 255;
+        
+          int _len_substream0 = 65025;
+          struct snd_pcm_substream * substream = (struct snd_pcm_substream *) malloc(_len_substream0*sizeof(struct snd_pcm_substream));
+          for(int _i0 = 0; _i0 < _len_substream0; _i0++) {
+              int _len_substream__i0__runtime0 = 1;
+          substream[_i0].runtime = (struct snd_pcm_runtime *) malloc(_len_substream__i0__runtime0*sizeof(struct snd_pcm_runtime));
+          for(int _j0 = 0; _j0 < _len_substream__i0__runtime0; _j0++) {
+              substream[_i0].runtime->oss.fragshift = ((-2 * (next_i()%2)) + 1) * next_i();
+          substream[_i0].runtime->oss.maxfrags = ((-2 * (next_i()%2)) + 1) * next_i();
+          substream[_i0].runtime->oss.params = ((-2 * (next_i()%2)) + 1) * next_i();
+          substream[_i0].runtime->oss.subdivision = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = snd_pcm_oss_set_fragment1(substream,val);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_substream0; _aux++) {
+          free(substream[_aux].runtime);
+          }
+          free(substream);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          unsigned int val = 10;
+        
+          int _len_substream0 = 100;
+          struct snd_pcm_substream * substream = (struct snd_pcm_substream *) malloc(_len_substream0*sizeof(struct snd_pcm_substream));
+          for(int _i0 = 0; _i0 < _len_substream0; _i0++) {
+              int _len_substream__i0__runtime0 = 1;
+          substream[_i0].runtime = (struct snd_pcm_runtime *) malloc(_len_substream__i0__runtime0*sizeof(struct snd_pcm_runtime));
+          for(int _j0 = 0; _j0 < _len_substream__i0__runtime0; _j0++) {
+              substream[_i0].runtime->oss.fragshift = ((-2 * (next_i()%2)) + 1) * next_i();
+          substream[_i0].runtime->oss.maxfrags = ((-2 * (next_i()%2)) + 1) * next_i();
+          substream[_i0].runtime->oss.params = ((-2 * (next_i()%2)) + 1) * next_i();
+          substream[_i0].runtime->oss.subdivision = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = snd_pcm_oss_set_fragment1(substream,val);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_substream0; _aux++) {
+          free(substream[_aux].runtime);
+          }
+          free(substream);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          unsigned int val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_substream0 = 1;
+          struct snd_pcm_substream * substream = (struct snd_pcm_substream *) malloc(_len_substream0*sizeof(struct snd_pcm_substream));
+          for(int _i0 = 0; _i0 < _len_substream0; _i0++) {
+              int _len_substream__i0__runtime0 = 1;
+          substream[_i0].runtime = (struct snd_pcm_runtime *) malloc(_len_substream__i0__runtime0*sizeof(struct snd_pcm_runtime));
+          for(int _j0 = 0; _j0 < _len_substream__i0__runtime0; _j0++) {
+              substream[_i0].runtime->oss.fragshift = ((-2 * (next_i()%2)) + 1) * next_i();
+          substream[_i0].runtime->oss.maxfrags = ((-2 * (next_i()%2)) + 1) * next_i();
+          substream[_i0].runtime->oss.params = ((-2 * (next_i()%2)) + 1) * next_i();
+          substream[_i0].runtime->oss.subdivision = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
           int benchRet = snd_pcm_oss_set_fragment1(substream,val);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_substream0; _aux++) {

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ void ide_stall_queue (ide_drive_t *drive, unsigned long timeout)
 	drive->dev_flags |= IDE_DFLAG_SLEEPING;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,18 +87,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long timeout = 100;
+        
           int _len_drive0 = 1;
           struct TYPE_3__ * drive = (struct TYPE_3__ *) malloc(_len_drive0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_drive0; _i0++) {
-            drive[_i0].dev_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        drive[_i0].sleep = ((-2 * (next_i()%2)) + 1) * next_i();
+              drive[_i0].dev_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          drive[_i0].sleep = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ide_stall_queue(drive,timeout);
           free(drive);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long timeout = 255;
+        
+          int _len_drive0 = 65025;
+          struct TYPE_3__ * drive = (struct TYPE_3__ *) malloc(_len_drive0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_drive0; _i0++) {
+              drive[_i0].dev_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          drive[_i0].sleep = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ide_stall_queue(drive,timeout);
+          free(drive);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long timeout = 10;
+        
+          int _len_drive0 = 100;
+          struct TYPE_3__ * drive = (struct TYPE_3__ *) malloc(_len_drive0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_drive0; _i0++) {
+              drive[_i0].dev_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          drive[_i0].sleep = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ide_stall_queue(drive,timeout);
+          free(drive);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_drive0 = 1;
+          struct TYPE_3__ * drive = (struct TYPE_3__ *) malloc(_len_drive0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_drive0; _i0++) {
+              drive[_i0].dev_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          drive[_i0].sleep = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ide_stall_queue(drive,timeout);
+          free(drive);
+        
+        break;
+    }
     default:
         usage();
         break;

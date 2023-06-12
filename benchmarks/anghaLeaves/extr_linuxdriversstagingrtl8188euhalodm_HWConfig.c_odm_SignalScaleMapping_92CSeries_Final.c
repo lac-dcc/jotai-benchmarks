@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +82,6 @@ __attribute__((used)) static s32 odm_SignalScaleMapping_92CSeries(struct odm_dm_
 	return RetSig;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,30 +94,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int CurrSig = 100;
+        
           int _len_dm_odm0 = 1;
           struct odm_dm_struct * dm_odm = (struct odm_dm_struct *) malloc(_len_dm_odm0*sizeof(struct odm_dm_struct));
           for(int _i0 = 0; _i0 < _len_dm_odm0; _i0++) {
-            dm_odm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dm_odm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = odm_SignalScaleMapping_92CSeries(dm_odm,CurrSig);
           printf("%d\n", benchRet); 
           free(dm_odm);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 44
+          // dynamic_instructions_O0 : 44
+          // ------------------------------- 
+          // static_instructions_O1 : 27
+          // dynamic_instructions_O1 : 27
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 27
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
+          int CurrSig = 255;
+        
+          int _len_dm_odm0 = 65025;
+          struct odm_dm_struct * dm_odm = (struct odm_dm_struct *) malloc(_len_dm_odm0*sizeof(struct odm_dm_struct));
+          for(int _i0 = 0; _i0 < _len_dm_odm0; _i0++) {
+              dm_odm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = odm_SignalScaleMapping_92CSeries(dm_odm,CurrSig);
+          printf("%d\n", benchRet); 
+          free(dm_odm);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 29
+          // dynamic_instructions_O1 : 29
+          // ------------------------------- 
+          // static_instructions_O2 : 31
+          // dynamic_instructions_O2 : 31
+          // ------------------------------- 
+          // static_instructions_O3 : 31
+          // dynamic_instructions_O3 : 31
+          // ------------------------------- 
+          // static_instructions_Ofast : 31
+          // dynamic_instructions_Ofast : 31
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
           int CurrSig = 10;
+        
           int _len_dm_odm0 = 100;
           struct odm_dm_struct * dm_odm = (struct odm_dm_struct *) malloc(_len_dm_odm0*sizeof(struct odm_dm_struct));
           for(int _i0 = 0; _i0 < _len_dm_odm0; _i0++) {
-            dm_odm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dm_odm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = odm_SignalScaleMapping_92CSeries(dm_odm,CurrSig);
+          printf("%d\n", benchRet); 
+          free(dm_odm);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 27
+          // dynamic_instructions_O1 : 27
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 27
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
+          int CurrSig = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dm_odm0 = 1;
+          struct odm_dm_struct * dm_odm = (struct odm_dm_struct *) malloc(_len_dm_odm0*sizeof(struct odm_dm_struct));
+          for(int _i0 = 0; _i0 < _len_dm_odm0; _i0++) {
+              dm_odm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = odm_SignalScaleMapping_92CSeries(dm_odm,CurrSig);
           printf("%d\n", benchRet); 
           free(dm_odm);

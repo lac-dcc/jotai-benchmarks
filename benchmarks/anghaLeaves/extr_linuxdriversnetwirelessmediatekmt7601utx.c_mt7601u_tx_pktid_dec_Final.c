@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -77,12 +79,6 @@ mt7601u_tx_pktid_dec(struct mt7601u_dev *dev, struct mt76_tx_status *stat)
 	stat->retry = req_rate - eff_rate;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,22 +91,149 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_dev0 = 65025;
+          struct mt7601u_dev * dev = (struct mt7601u_dev *) malloc(_len_dev0*sizeof(struct mt7601u_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_stat0 = 65025;
+          struct mt76_tx_status * stat = (struct mt76_tx_status *) malloc(_len_stat0*sizeof(struct mt76_tx_status));
+          for(int _i0 = 0; _i0 < _len_stat0; _i0++) {
+              stat[_i0].pktid = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].is_probe = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].retry = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mt7601u_tx_pktid_dec(dev,stat);
+          free(dev);
+          free(stat);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_dev0 = 100;
+          struct mt7601u_dev * dev = (struct mt7601u_dev *) malloc(_len_dev0*sizeof(struct mt7601u_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_stat0 = 100;
+          struct mt76_tx_status * stat = (struct mt76_tx_status *) malloc(_len_stat0*sizeof(struct mt76_tx_status));
+          for(int _i0 = 0; _i0 < _len_stat0; _i0++) {
+              stat[_i0].pktid = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].is_probe = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].retry = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mt7601u_tx_pktid_dec(dev,stat);
+          free(dev);
+          free(stat);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_dev0 = 1;
           struct mt7601u_dev * dev = (struct mt7601u_dev *) malloc(_len_dev0*sizeof(struct mt7601u_dev));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_stat0 = 1;
           struct mt76_tx_status * stat = (struct mt76_tx_status *) malloc(_len_stat0*sizeof(struct mt76_tx_status));
           for(int _i0 = 0; _i0 < _len_stat0; _i0++) {
-            stat[_i0].pktid = ((-2 * (next_i()%2)) + 1) * next_i();
-        stat[_i0].rate = ((-2 * (next_i()%2)) + 1) * next_i();
-        stat[_i0].is_probe = ((-2 * (next_i()%2)) + 1) * next_i();
-        stat[_i0].retry = ((-2 * (next_i()%2)) + 1) * next_i();
+              stat[_i0].pktid = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].is_probe = ((-2 * (next_i()%2)) + 1) * next_i();
+          stat[_i0].retry = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           mt7601u_tx_pktid_dec(dev,stat);
           free(dev);
           free(stat);

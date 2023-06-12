@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static inline bool hdr_is_hbm(struct mei_msg_hdr *mei_hdr)
 	return mei_hdr->host_addr == 0 && mei_hdr->me_addr == 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,22 +74,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_mei_hdr0 = 1;
+          int _len_mei_hdr0 = 65025;
           struct mei_msg_hdr * mei_hdr = (struct mei_msg_hdr *) malloc(_len_mei_hdr0*sizeof(struct mei_msg_hdr));
           for(int _i0 = 0; _i0 < _len_mei_hdr0; _i0++) {
-            mei_hdr[_i0].host_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        mei_hdr[_i0].me_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+              mei_hdr[_i0].host_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          mei_hdr[_i0].me_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = hdr_is_hbm(mei_hdr);
           printf("%d\n", benchRet); 
           free(mei_hdr);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_mei_hdr0 = 100;
+          struct mei_msg_hdr * mei_hdr = (struct mei_msg_hdr *) malloc(_len_mei_hdr0*sizeof(struct mei_msg_hdr));
+          for(int _i0 = 0; _i0 < _len_mei_hdr0; _i0++) {
+              mei_hdr[_i0].host_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          mei_hdr[_i0].me_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hdr_is_hbm(mei_hdr);
+          printf("%d\n", benchRet); 
+          free(mei_hdr);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_mei_hdr0 = 1;
+          struct mei_msg_hdr * mei_hdr = (struct mei_msg_hdr *) malloc(_len_mei_hdr0*sizeof(struct mei_msg_hdr));
+          for(int _i0 = 0; _i0 < _len_mei_hdr0; _i0++) {
+              mei_hdr[_i0].host_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          mei_hdr[_i0].me_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hdr_is_hbm(mei_hdr);
+          printf("%d\n", benchRet); 
+          free(mei_hdr);
+        
+        break;
+    }
     default:
         usage();
         break;

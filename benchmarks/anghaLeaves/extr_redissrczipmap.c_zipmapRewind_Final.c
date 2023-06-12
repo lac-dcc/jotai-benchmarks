@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -58,12 +59,6 @@ unsigned char *zipmapRewind(unsigned char *zm) {
     return zm+1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -76,21 +71,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int _len_zm0 = 100;
+          int _len_zm0 = 65025;
           unsigned char * zm = (unsigned char *) malloc(_len_zm0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_zm0; _i0++) {
             zm[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned char * benchRet = zipmapRewind(zm);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(zm);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_zm0 = 100;
+          unsigned char * zm = (unsigned char *) malloc(_len_zm0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_zm0; _i0++) {
+            zm[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned char * benchRet = zipmapRewind(zm);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          free(zm);
+        
+        break;
+    }
     default:
         usage();
         break;

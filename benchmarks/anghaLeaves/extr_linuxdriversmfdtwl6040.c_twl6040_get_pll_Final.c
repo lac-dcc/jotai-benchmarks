@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ int twl6040_get_pll(struct twl6040 *twl6040)
 		return -ENODEV;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,22 +78,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_twl60400 = 1;
+          int _len_twl60400 = 65025;
           struct twl6040 * twl6040 = (struct twl6040 *) malloc(_len_twl60400*sizeof(struct twl6040));
           for(int _i0 = 0; _i0 < _len_twl60400; _i0++) {
-            twl6040[_i0].pll = ((-2 * (next_i()%2)) + 1) * next_i();
-        twl6040[_i0].power_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              twl6040[_i0].pll = ((-2 * (next_i()%2)) + 1) * next_i();
+          twl6040[_i0].power_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = twl6040_get_pll(twl6040);
           printf("%d\n", benchRet); 
           free(twl6040);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_twl60400 = 100;
+          struct twl6040 * twl6040 = (struct twl6040 *) malloc(_len_twl60400*sizeof(struct twl6040));
+          for(int _i0 = 0; _i0 < _len_twl60400; _i0++) {
+              twl6040[_i0].pll = ((-2 * (next_i()%2)) + 1) * next_i();
+          twl6040[_i0].power_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = twl6040_get_pll(twl6040);
+          printf("%d\n", benchRet); 
+          free(twl6040);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_twl60400 = 1;
+          struct twl6040 * twl6040 = (struct twl6040 *) malloc(_len_twl60400*sizeof(struct twl6040));
+          for(int _i0 = 0; _i0 < _len_twl60400; _i0++) {
+              twl6040[_i0].pll = ((-2 * (next_i()%2)) + 1) * next_i();
+          twl6040[_i0].power_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = twl6040_get_pll(twl6040);
+          printf("%d\n", benchRet); 
+          free(twl6040);
+        
+        break;
+    }
     default:
         usage();
         break;

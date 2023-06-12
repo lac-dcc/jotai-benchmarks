@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +74,6 @@ __attribute__((used)) static char *si_code_str(int si_code)
 	return "UNKNOWN";
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int si_code = 100;
+        
           char * benchRet = si_code_str(si_code);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
@@ -104,6 +100,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int si_code = 255;
+        
           char * benchRet = si_code_str(si_code);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
@@ -113,12 +110,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int si_code = 10;
+        
           char * benchRet = si_code_str(si_code);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int si_code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          char * benchRet = si_code_str(si_code);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+        
+        break;
+    }
     default:
         usage();
         break;

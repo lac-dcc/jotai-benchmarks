@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -91,12 +94,6 @@ __attribute__((used)) static void imx_ldb_ch_set_bus_format(struct imx_ldb_chann
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -113,16 +110,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int bus_format = 100;
+        
           int _len_imx_ldb_ch0 = 1;
           struct imx_ldb_channel * imx_ldb_ch = (struct imx_ldb_channel *) malloc(_len_imx_ldb_ch0*sizeof(struct imx_ldb_channel));
           for(int _i0 = 0; _i0 < _len_imx_ldb_ch0; _i0++) {
-            imx_ldb_ch[_i0].chno = ((-2 * (next_i()%2)) + 1) * next_i();
+              imx_ldb_ch[_i0].chno = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_imx_ldb_ch__i0__ldb0 = 1;
           imx_ldb_ch[_i0].ldb = (struct imx_ldb *) malloc(_len_imx_ldb_ch__i0__ldb0*sizeof(struct imx_ldb));
           for(int _j0 = 0; _j0 < _len_imx_ldb_ch__i0__ldb0; _j0++) {
-            imx_ldb_ch[_i0].ldb->ldb_ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+              imx_ldb_ch[_i0].ldb->ldb_ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           imx_ldb_ch_set_bus_format(imx_ldb_ch,bus_format);
           for(int _aux = 0; _aux < _len_imx_ldb_ch0; _aux++) {
           free(imx_ldb_ch[_aux].ldb);
@@ -131,7 +132,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int bus_format = 255;
+        
+          int _len_imx_ldb_ch0 = 65025;
+          struct imx_ldb_channel * imx_ldb_ch = (struct imx_ldb_channel *) malloc(_len_imx_ldb_ch0*sizeof(struct imx_ldb_channel));
+          for(int _i0 = 0; _i0 < _len_imx_ldb_ch0; _i0++) {
+              imx_ldb_ch[_i0].chno = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_imx_ldb_ch__i0__ldb0 = 1;
+          imx_ldb_ch[_i0].ldb = (struct imx_ldb *) malloc(_len_imx_ldb_ch__i0__ldb0*sizeof(struct imx_ldb));
+          for(int _j0 = 0; _j0 < _len_imx_ldb_ch__i0__ldb0; _j0++) {
+              imx_ldb_ch[_i0].ldb->ldb_ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          imx_ldb_ch_set_bus_format(imx_ldb_ch,bus_format);
+          for(int _aux = 0; _aux < _len_imx_ldb_ch0; _aux++) {
+          free(imx_ldb_ch[_aux].ldb);
+          }
+          free(imx_ldb_ch);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int bus_format = 10;
+        
+          int _len_imx_ldb_ch0 = 100;
+          struct imx_ldb_channel * imx_ldb_ch = (struct imx_ldb_channel *) malloc(_len_imx_ldb_ch0*sizeof(struct imx_ldb_channel));
+          for(int _i0 = 0; _i0 < _len_imx_ldb_ch0; _i0++) {
+              imx_ldb_ch[_i0].chno = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_imx_ldb_ch__i0__ldb0 = 1;
+          imx_ldb_ch[_i0].ldb = (struct imx_ldb *) malloc(_len_imx_ldb_ch__i0__ldb0*sizeof(struct imx_ldb));
+          for(int _j0 = 0; _j0 < _len_imx_ldb_ch__i0__ldb0; _j0++) {
+              imx_ldb_ch[_i0].ldb->ldb_ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          imx_ldb_ch_set_bus_format(imx_ldb_ch,bus_format);
+          for(int _aux = 0; _aux < _len_imx_ldb_ch0; _aux++) {
+          free(imx_ldb_ch[_aux].ldb);
+          }
+          free(imx_ldb_ch);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int bus_format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_imx_ldb_ch0 = 1;
+          struct imx_ldb_channel * imx_ldb_ch = (struct imx_ldb_channel *) malloc(_len_imx_ldb_ch0*sizeof(struct imx_ldb_channel));
+          for(int _i0 = 0; _i0 < _len_imx_ldb_ch0; _i0++) {
+              imx_ldb_ch[_i0].chno = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_imx_ldb_ch__i0__ldb0 = 1;
+          imx_ldb_ch[_i0].ldb = (struct imx_ldb *) malloc(_len_imx_ldb_ch__i0__ldb0*sizeof(struct imx_ldb));
+          for(int _j0 = 0; _j0 < _len_imx_ldb_ch__i0__ldb0; _j0++) {
+              imx_ldb_ch[_i0].ldb->ldb_ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          imx_ldb_ch_set_bus_format(imx_ldb_ch,bus_format);
+          for(int _aux = 0; _aux < _len_imx_ldb_ch0; _aux++) {
+          free(imx_ldb_ch[_aux].ldb);
+          }
+          free(imx_ldb_ch);
+        
+        break;
+    }
     default:
         usage();
         break;

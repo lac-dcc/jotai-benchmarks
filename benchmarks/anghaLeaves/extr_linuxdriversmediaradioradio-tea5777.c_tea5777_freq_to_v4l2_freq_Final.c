@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ __attribute__((used)) static u32 tea5777_freq_to_v4l2_freq(struct radio_tea5777 
 	return 0; /* Never reached */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,11 +92,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int freq = 100;
+        
           int _len_tea0 = 1;
           struct radio_tea5777 * tea = (struct radio_tea5777 *) malloc(_len_tea0*sizeof(struct radio_tea5777));
           for(int _i0 = 0; _i0 < _len_tea0; _i0++) {
-            tea[_i0].band = ((-2 * (next_i()%2)) + 1) * next_i();
+              tea[_i0].band = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = tea5777_freq_to_v4l2_freq(tea,freq);
+          printf("%d\n", benchRet); 
+          free(tea);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int freq = 255;
+        
+          int _len_tea0 = 65025;
+          struct radio_tea5777 * tea = (struct radio_tea5777 *) malloc(_len_tea0*sizeof(struct radio_tea5777));
+          for(int _i0 = 0; _i0 < _len_tea0; _i0++) {
+              tea[_i0].band = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = tea5777_freq_to_v4l2_freq(tea,freq);
           printf("%d\n", benchRet); 
           free(tea);
@@ -108,21 +125,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int freq = 10;
+        
           int _len_tea0 = 100;
           struct radio_tea5777 * tea = (struct radio_tea5777 *) malloc(_len_tea0*sizeof(struct radio_tea5777));
           for(int _i0 = 0; _i0 < _len_tea0; _i0++) {
-            tea[_i0].band = ((-2 * (next_i()%2)) + 1) * next_i();
+              tea[_i0].band = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = tea5777_freq_to_v4l2_freq(tea,freq);
           printf("%d\n", benchRet); 
           free(tea);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int freq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_tea0 = 1;
+          struct radio_tea5777 * tea = (struct radio_tea5777 *) malloc(_len_tea0*sizeof(struct radio_tea5777));
+          for(int _i0 = 0; _i0 < _len_tea0; _i0++) {
+              tea[_i0].band = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = tea5777_freq_to_v4l2_freq(tea,freq);
+          printf("%d\n", benchRet); 
+          free(tea);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ HRESULT Direct3DSwapChain9_Reset(Direct3DSwapChain9_INT* pThisSwapChain, D3DPRES
     return D3D_OK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,19 +78,136 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_pThisSwapChain0 = 65025;
+          int * pThisSwapChain = (int *) malloc(_len_pThisSwapChain0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pThisSwapChain0; _i0++) {
+            pThisSwapChain[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pPresentationParameters0 = 65025;
+          int * pPresentationParameters = (int *) malloc(_len_pPresentationParameters0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pPresentationParameters0; _i0++) {
+            pPresentationParameters[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = Direct3DSwapChain9_Reset(pThisSwapChain,pPresentationParameters);
+          printf("%d\n", benchRet); 
+          free(pThisSwapChain);
+          free(pPresentationParameters);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_pThisSwapChain0 = 100;
+          int * pThisSwapChain = (int *) malloc(_len_pThisSwapChain0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pThisSwapChain0; _i0++) {
+            pThisSwapChain[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pPresentationParameters0 = 100;
+          int * pPresentationParameters = (int *) malloc(_len_pPresentationParameters0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pPresentationParameters0; _i0++) {
+            pPresentationParameters[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = Direct3DSwapChain9_Reset(pThisSwapChain,pPresentationParameters);
+          printf("%d\n", benchRet); 
+          free(pThisSwapChain);
+          free(pPresentationParameters);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_pThisSwapChain0 = 1;
           int * pThisSwapChain = (int *) malloc(_len_pThisSwapChain0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pThisSwapChain0; _i0++) {
             pThisSwapChain[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_pPresentationParameters0 = 1;
           int * pPresentationParameters = (int *) malloc(_len_pPresentationParameters0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pPresentationParameters0; _i0++) {
             pPresentationParameters[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = Direct3DSwapChain9_Reset(pThisSwapChain,pPresentationParameters);
           printf("%d\n", benchRet); 
           free(pThisSwapChain);

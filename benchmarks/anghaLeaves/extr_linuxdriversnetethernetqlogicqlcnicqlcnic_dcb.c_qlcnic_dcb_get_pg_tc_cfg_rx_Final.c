@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ qlcnic_dcb_get_pg_tc_cfg_rx(struct net_device *netdev, int prio, u8 *prio_type,
 	*prio_type = *pgid = *bw_pct = *up_map = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,35 +78,272 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int prio = 100;
+        
           int _len_netdev0 = 1;
           struct net_device * netdev = (struct net_device *) malloc(_len_netdev0*sizeof(struct net_device));
           for(int _i0 = 0; _i0 < _len_netdev0; _i0++) {
-            netdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              netdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_prio_type0 = 1;
           long * prio_type = (long *) malloc(_len_prio_type0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_prio_type0; _i0++) {
             prio_type[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_pgid0 = 1;
           long * pgid = (long *) malloc(_len_pgid0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_pgid0; _i0++) {
             pgid[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_bw_pct0 = 1;
           long * bw_pct = (long *) malloc(_len_bw_pct0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_bw_pct0; _i0++) {
             bw_pct[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_up_map0 = 1;
           long * up_map = (long *) malloc(_len_up_map0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_up_map0; _i0++) {
             up_map[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          qlcnic_dcb_get_pg_tc_cfg_rx(netdev,prio,prio_type,pgid,bw_pct,up_map);
+          free(netdev);
+          free(prio_type);
+          free(pgid);
+          free(bw_pct);
+          free(up_map);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int prio = 255;
+        
+          int _len_netdev0 = 65025;
+          struct net_device * netdev = (struct net_device *) malloc(_len_netdev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_netdev0; _i0++) {
+              netdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_prio_type0 = 65025;
+          long * prio_type = (long *) malloc(_len_prio_type0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_prio_type0; _i0++) {
+            prio_type[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pgid0 = 65025;
+          long * pgid = (long *) malloc(_len_pgid0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_pgid0; _i0++) {
+            pgid[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_bw_pct0 = 65025;
+          long * bw_pct = (long *) malloc(_len_bw_pct0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_bw_pct0; _i0++) {
+            bw_pct[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_up_map0 = 65025;
+          long * up_map = (long *) malloc(_len_up_map0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_up_map0; _i0++) {
+            up_map[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          qlcnic_dcb_get_pg_tc_cfg_rx(netdev,prio,prio_type,pgid,bw_pct,up_map);
+          free(netdev);
+          free(prio_type);
+          free(pgid);
+          free(bw_pct);
+          free(up_map);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int prio = 10;
+        
+          int _len_netdev0 = 100;
+          struct net_device * netdev = (struct net_device *) malloc(_len_netdev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_netdev0; _i0++) {
+              netdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_prio_type0 = 100;
+          long * prio_type = (long *) malloc(_len_prio_type0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_prio_type0; _i0++) {
+            prio_type[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pgid0 = 100;
+          long * pgid = (long *) malloc(_len_pgid0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_pgid0; _i0++) {
+            pgid[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_bw_pct0 = 100;
+          long * bw_pct = (long *) malloc(_len_bw_pct0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_bw_pct0; _i0++) {
+            bw_pct[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_up_map0 = 100;
+          long * up_map = (long *) malloc(_len_up_map0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_up_map0; _i0++) {
+            up_map[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          qlcnic_dcb_get_pg_tc_cfg_rx(netdev,prio,prio_type,pgid,bw_pct,up_map);
+          free(netdev);
+          free(prio_type);
+          free(pgid);
+          free(bw_pct);
+          free(up_map);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int prio = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_netdev0 = 1;
+          struct net_device * netdev = (struct net_device *) malloc(_len_netdev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_netdev0; _i0++) {
+              netdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_prio_type0 = 1;
+          long * prio_type = (long *) malloc(_len_prio_type0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_prio_type0; _i0++) {
+            prio_type[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pgid0 = 1;
+          long * pgid = (long *) malloc(_len_pgid0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_pgid0; _i0++) {
+            pgid[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_bw_pct0 = 1;
+          long * bw_pct = (long *) malloc(_len_bw_pct0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_bw_pct0; _i0++) {
+            bw_pct[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_up_map0 = 1;
+          long * up_map = (long *) malloc(_len_up_map0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_up_map0; _i0++) {
+            up_map[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           qlcnic_dcb_get_pg_tc_cfg_rx(netdev,prio,prio_type,pgid,bw_pct,up_map);
           free(netdev);
           free(prio_type);

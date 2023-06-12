@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static unsigned long db_bar_size(struct nvme_dev *dev, uns
 	return NVME_REG_DBS + ((nr_io_queues + 1) * 8 * dev->db_stride);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,11 +80,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int nr_io_queues = 100;
+        
           int _len_dev0 = 1;
           struct nvme_dev * dev = (struct nvme_dev *) malloc(_len_dev0*sizeof(struct nvme_dev));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].db_stride = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].db_stride = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          unsigned long benchRet = db_bar_size(dev,nr_io_queues);
+          printf("%lu\n", benchRet); 
+          free(dev);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned int nr_io_queues = 255;
+        
+          int _len_dev0 = 65025;
+          struct nvme_dev * dev = (struct nvme_dev *) malloc(_len_dev0*sizeof(struct nvme_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].db_stride = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           unsigned long benchRet = db_bar_size(dev,nr_io_queues);
           printf("%lu\n", benchRet); 
           free(dev);
@@ -96,21 +113,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned int nr_io_queues = 10;
+        
           int _len_dev0 = 100;
           struct nvme_dev * dev = (struct nvme_dev *) malloc(_len_dev0*sizeof(struct nvme_dev));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].db_stride = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].db_stride = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = db_bar_size(dev,nr_io_queues);
           printf("%lu\n", benchRet); 
           free(dev);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int nr_io_queues = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dev0 = 1;
+          struct nvme_dev * dev = (struct nvme_dev *) malloc(_len_dev0*sizeof(struct nvme_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].db_stride = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = db_bar_size(dev,nr_io_queues);
+          printf("%lu\n", benchRet); 
+          free(dev);
+        
+        break;
+    }
     default:
         usage();
         break;

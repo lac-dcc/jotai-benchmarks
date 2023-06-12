@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static void crc8_byte(unsigned int *crc, unsigned char db)
 	*crc &= 0xff;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,29 +83,160 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 202
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 105
+          // ------------------------------- 
+          // static_instructions_O2 : 77
+          // dynamic_instructions_O2 : 77
+          // ------------------------------- 
+          // static_instructions_O3 : 77
+          // dynamic_instructions_O3 : 77
+          // ------------------------------- 
+          // static_instructions_Ofast : 77
+          // dynamic_instructions_Ofast : 77
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 104
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 114
+          // ------------------------------- 
+
           unsigned char db = 100;
+        
           int _len_crc0 = 1;
           unsigned int * crc = (unsigned int *) malloc(_len_crc0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_crc0; _i0++) {
             crc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           crc8_byte(crc,db);
           free(crc);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 210
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 105
+          // ------------------------------- 
+          // static_instructions_O2 : 77
+          // dynamic_instructions_O2 : 77
+          // ------------------------------- 
+          // static_instructions_O3 : 77
+          // dynamic_instructions_O3 : 77
+          // ------------------------------- 
+          // static_instructions_Ofast : 77
+          // dynamic_instructions_Ofast : 77
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 104
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 114
+          // ------------------------------- 
+
+          unsigned char db = 255;
+        
+          int _len_crc0 = 65025;
+          unsigned int * crc = (unsigned int *) malloc(_len_crc0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_crc0; _i0++) {
+            crc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          crc8_byte(crc,db);
+          free(crc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 218
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 105
+          // ------------------------------- 
+          // static_instructions_O2 : 77
+          // dynamic_instructions_O2 : 77
+          // ------------------------------- 
+          // static_instructions_O3 : 77
+          // dynamic_instructions_O3 : 77
+          // ------------------------------- 
+          // static_instructions_Ofast : 77
+          // dynamic_instructions_Ofast : 77
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 104
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 114
+          // ------------------------------- 
+
           unsigned char db = 10;
+        
           int _len_crc0 = 100;
           unsigned int * crc = (unsigned int *) malloc(_len_crc0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_crc0; _i0++) {
             crc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          crc8_byte(crc,db);
+          free(crc);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 190
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 105
+          // ------------------------------- 
+          // static_instructions_O2 : 77
+          // dynamic_instructions_O2 : 77
+          // ------------------------------- 
+          // static_instructions_O3 : 77
+          // dynamic_instructions_O3 : 77
+          // ------------------------------- 
+          // static_instructions_Ofast : 77
+          // dynamic_instructions_Ofast : 77
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 104
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 114
+          // ------------------------------- 
+
+          unsigned char db = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_crc0 = 1;
+          unsigned int * crc = (unsigned int *) malloc(_len_crc0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_crc0; _i0++) {
+            crc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           crc8_byte(crc,db);
           free(crc);
         

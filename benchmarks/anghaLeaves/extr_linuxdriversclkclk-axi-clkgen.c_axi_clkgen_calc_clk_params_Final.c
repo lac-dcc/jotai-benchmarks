@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ __attribute__((used)) static void axi_clkgen_calc_clk_params(unsigned int divide
 	*low = divider - *high;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,26 +86,31 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int divider = 100;
+        
           int _len_low0 = 1;
           unsigned int * low = (unsigned int *) malloc(_len_low0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_low0; _i0++) {
             low[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_high0 = 1;
           unsigned int * high = (unsigned int *) malloc(_len_high0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_high0; _i0++) {
             high[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_edge0 = 1;
           unsigned int * edge = (unsigned int *) malloc(_len_edge0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_edge0; _i0++) {
             edge[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_nocount0 = 1;
           unsigned int * nocount = (unsigned int *) malloc(_len_nocount0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_nocount0; _i0++) {
             nocount[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           axi_clkgen_calc_clk_params(divider,low,high,edge,nocount);
           free(low);
           free(high);
@@ -117,7 +119,117 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int divider = 255;
+        
+          int _len_low0 = 65025;
+          unsigned int * low = (unsigned int *) malloc(_len_low0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_low0; _i0++) {
+            low[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_high0 = 65025;
+          unsigned int * high = (unsigned int *) malloc(_len_high0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_high0; _i0++) {
+            high[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_edge0 = 65025;
+          unsigned int * edge = (unsigned int *) malloc(_len_edge0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_edge0; _i0++) {
+            edge[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_nocount0 = 65025;
+          unsigned int * nocount = (unsigned int *) malloc(_len_nocount0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_nocount0; _i0++) {
+            nocount[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          axi_clkgen_calc_clk_params(divider,low,high,edge,nocount);
+          free(low);
+          free(high);
+          free(edge);
+          free(nocount);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int divider = 10;
+        
+          int _len_low0 = 100;
+          unsigned int * low = (unsigned int *) malloc(_len_low0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_low0; _i0++) {
+            low[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_high0 = 100;
+          unsigned int * high = (unsigned int *) malloc(_len_high0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_high0; _i0++) {
+            high[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_edge0 = 100;
+          unsigned int * edge = (unsigned int *) malloc(_len_edge0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_edge0; _i0++) {
+            edge[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_nocount0 = 100;
+          unsigned int * nocount = (unsigned int *) malloc(_len_nocount0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_nocount0; _i0++) {
+            nocount[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          axi_clkgen_calc_clk_params(divider,low,high,edge,nocount);
+          free(low);
+          free(high);
+          free(edge);
+          free(nocount);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int divider = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_low0 = 1;
+          unsigned int * low = (unsigned int *) malloc(_len_low0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_low0; _i0++) {
+            low[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_high0 = 1;
+          unsigned int * high = (unsigned int *) malloc(_len_high0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_high0; _i0++) {
+            high[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_edge0 = 1;
+          unsigned int * edge = (unsigned int *) malloc(_len_edge0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_edge0; _i0++) {
+            edge[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_nocount0 = 1;
+          unsigned int * nocount = (unsigned int *) malloc(_len_nocount0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_nocount0; _i0++) {
+            nocount[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          axi_clkgen_calc_clk_params(divider,low,high,edge,nocount);
+          free(low);
+          free(high);
+          free(edge);
+          free(nocount);
+        
+        break;
+    }
     default:
         usage();
         break;

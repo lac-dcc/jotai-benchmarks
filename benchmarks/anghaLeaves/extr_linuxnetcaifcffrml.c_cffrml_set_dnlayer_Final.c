@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -59,7 +60,6 @@ void cffrml_set_dnlayer(struct cflayer *this, struct cflayer *dn)
 {
 	this->dn = dn;
 }
-
 
 // ------------------------------------------------------------------------- //
 
@@ -111,7 +111,6 @@ void _delete_dn(struct cflayer *aux_dn[], int aux_dn_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -124,20 +123,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // linked
     case 0:
+    {
+          struct cflayer * aux_this[10000];
+          struct cflayer * this = _allocate_this(10000, aux_this);
+        
+          struct cflayer * aux_dn[10000];
+          struct cflayer * dn = _allocate_dn(10000, aux_dn);
+        
+          cffrml_set_dnlayer(this,dn);
+          _delete_this(aux_this, 10000);
+          _delete_dn(aux_dn, 10000);
+        
+        break;
+    }
+    // empty
+    case 1:
     {
           struct cflayer * aux_this[1];
           struct cflayer * this = _allocate_this(1, aux_this);
+        
           struct cflayer * aux_dn[1];
           struct cflayer * dn = _allocate_dn(1, aux_dn);
+        
           cffrml_set_dnlayer(this,dn);
           _delete_this(aux_this, 1);
           _delete_dn(aux_dn, 1);
         
         break;
     }
-
     default:
         usage();
         break;

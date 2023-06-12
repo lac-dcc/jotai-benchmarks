@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ __attribute__((used)) static int uwb_radio_select_channel(struct uwb_rc *rc)
 	return 9;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,15 +82,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rc0 = 1;
+          int _len_rc0 = 65025;
           struct uwb_rc * rc = (struct uwb_rc *) malloc(_len_rc0*sizeof(struct uwb_rc));
           for(int _i0 = 0; _i0 < _len_rc0; _i0++) {
-            rc[_i0].active_pals = ((-2 * (next_i()%2)) + 1) * next_i();
-        rc[_i0].beaconing_forced = ((-2 * (next_i()%2)) + 1) * next_i();
+              rc[_i0].active_pals = ((-2 * (next_i()%2)) + 1) * next_i();
+          rc[_i0].beaconing_forced = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = uwb_radio_select_channel(rc);
           printf("%d\n", benchRet); 
           free(rc);
@@ -108,16 +105,34 @@ int main(int argc, char *argv[]) {
           int _len_rc0 = 100;
           struct uwb_rc * rc = (struct uwb_rc *) malloc(_len_rc0*sizeof(struct uwb_rc));
           for(int _i0 = 0; _i0 < _len_rc0; _i0++) {
-            rc[_i0].active_pals = ((-2 * (next_i()%2)) + 1) * next_i();
-        rc[_i0].beaconing_forced = ((-2 * (next_i()%2)) + 1) * next_i();
+              rc[_i0].active_pals = ((-2 * (next_i()%2)) + 1) * next_i();
+          rc[_i0].beaconing_forced = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = uwb_radio_select_channel(rc);
           printf("%d\n", benchRet); 
           free(rc);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_rc0 = 1;
+          struct uwb_rc * rc = (struct uwb_rc *) malloc(_len_rc0*sizeof(struct uwb_rc));
+          for(int _i0 = 0; _i0 < _len_rc0; _i0++) {
+              rc[_i0].active_pals = ((-2 * (next_i()%2)) + 1) * next_i();
+          rc[_i0].beaconing_forced = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = uwb_radio_select_channel(rc);
+          printf("%d\n", benchRet); 
+          free(rc);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +81,6 @@ input_csi_dispatch_sgr_256_do(struct input_ctx *ictx, int fgbg, int c)
 	return (1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,17 +93,187 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int fgbg = 100;
+        
           int c = 100;
+        
           int _len_ictx0 = 1;
           struct input_ctx * ictx = (struct input_ctx *) malloc(_len_ictx0*sizeof(struct input_ctx));
           for(int _i0 = 0; _i0 < _len_ictx0; _i0++) {
-            ictx[_i0].cell.cell.fg = ((-2 * (next_i()%2)) + 1) * next_i();
-        ictx[_i0].cell.cell.bg = ((-2 * (next_i()%2)) + 1) * next_i();
+              ictx[_i0].cell.cell.fg = ((-2 * (next_i()%2)) + 1) * next_i();
+          ictx[_i0].cell.cell.bg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
+          int benchRet = input_csi_dispatch_sgr_256_do(ictx,fgbg,c);
+          printf("%d\n", benchRet); 
+          free(ictx);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int fgbg = 255;
+        
+          int c = 255;
+        
+          int _len_ictx0 = 65025;
+          struct input_ctx * ictx = (struct input_ctx *) malloc(_len_ictx0*sizeof(struct input_ctx));
+          for(int _i0 = 0; _i0 < _len_ictx0; _i0++) {
+              ictx[_i0].cell.cell.fg = ((-2 * (next_i()%2)) + 1) * next_i();
+          ictx[_i0].cell.cell.bg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = input_csi_dispatch_sgr_256_do(ictx,fgbg,c);
+          printf("%d\n", benchRet); 
+          free(ictx);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int fgbg = 10;
+        
+          int c = 10;
+        
+          int _len_ictx0 = 100;
+          struct input_ctx * ictx = (struct input_ctx *) malloc(_len_ictx0*sizeof(struct input_ctx));
+          for(int _i0 = 0; _i0 < _len_ictx0; _i0++) {
+              ictx[_i0].cell.cell.fg = ((-2 * (next_i()%2)) + 1) * next_i();
+          ictx[_i0].cell.cell.bg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = input_csi_dispatch_sgr_256_do(ictx,fgbg,c);
+          printf("%d\n", benchRet); 
+          free(ictx);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int fgbg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int c = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ictx0 = 1;
+          struct input_ctx * ictx = (struct input_ctx *) malloc(_len_ictx0*sizeof(struct input_ctx));
+          for(int _i0 = 0; _i0 < _len_ictx0; _i0++) {
+              ictx[_i0].cell.cell.fg = ((-2 * (next_i()%2)) + 1) * next_i();
+          ictx[_i0].cell.cell.bg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
           int benchRet = input_csi_dispatch_sgr_256_do(ictx,fgbg,c);
           printf("%d\n", benchRet); 
           free(ictx);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ void iwl_mvm_accu_radio_stats(struct iwl_mvm *mvm)
 	mvm->accu_radio_stats.on_time_scan += mvm->radio_stats.on_time_scan;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,21 +81,144 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_mvm0 = 65025;
+          struct iwl_mvm * mvm = (struct iwl_mvm *) malloc(_len_mvm0*sizeof(struct iwl_mvm));
+          for(int _i0 = 0; _i0 < _len_mvm0; _i0++) {
+              mvm[_i0].radio_stats.on_time_scan = ((-2 * (next_i()%2)) + 1) * next_i();
+          mvm[_i0].radio_stats.on_time_rf = ((-2 * (next_i()%2)) + 1) * next_i();
+          mvm[_i0].radio_stats.tx_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          mvm[_i0].radio_stats.rx_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          mvm[_i0].accu_radio_stats.on_time_scan = ((-2 * (next_i()%2)) + 1) * next_i();
+          mvm[_i0].accu_radio_stats.on_time_rf = ((-2 * (next_i()%2)) + 1) * next_i();
+          mvm[_i0].accu_radio_stats.tx_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          mvm[_i0].accu_radio_stats.rx_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          iwl_mvm_accu_radio_stats(mvm);
+          free(mvm);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_mvm0 = 100;
+          struct iwl_mvm * mvm = (struct iwl_mvm *) malloc(_len_mvm0*sizeof(struct iwl_mvm));
+          for(int _i0 = 0; _i0 < _len_mvm0; _i0++) {
+              mvm[_i0].radio_stats.on_time_scan = ((-2 * (next_i()%2)) + 1) * next_i();
+          mvm[_i0].radio_stats.on_time_rf = ((-2 * (next_i()%2)) + 1) * next_i();
+          mvm[_i0].radio_stats.tx_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          mvm[_i0].radio_stats.rx_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          mvm[_i0].accu_radio_stats.on_time_scan = ((-2 * (next_i()%2)) + 1) * next_i();
+          mvm[_i0].accu_radio_stats.on_time_rf = ((-2 * (next_i()%2)) + 1) * next_i();
+          mvm[_i0].accu_radio_stats.tx_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          mvm[_i0].accu_radio_stats.rx_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          iwl_mvm_accu_radio_stats(mvm);
+          free(mvm);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_mvm0 = 1;
           struct iwl_mvm * mvm = (struct iwl_mvm *) malloc(_len_mvm0*sizeof(struct iwl_mvm));
           for(int _i0 = 0; _i0 < _len_mvm0; _i0++) {
-            mvm[_i0].radio_stats.on_time_scan = ((-2 * (next_i()%2)) + 1) * next_i();
-        mvm[_i0].radio_stats.on_time_rf = ((-2 * (next_i()%2)) + 1) * next_i();
-        mvm[_i0].radio_stats.tx_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        mvm[_i0].radio_stats.rx_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        mvm[_i0].accu_radio_stats.on_time_scan = ((-2 * (next_i()%2)) + 1) * next_i();
-        mvm[_i0].accu_radio_stats.on_time_rf = ((-2 * (next_i()%2)) + 1) * next_i();
-        mvm[_i0].accu_radio_stats.tx_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        mvm[_i0].accu_radio_stats.rx_time = ((-2 * (next_i()%2)) + 1) * next_i();
+              mvm[_i0].radio_stats.on_time_scan = ((-2 * (next_i()%2)) + 1) * next_i();
+          mvm[_i0].radio_stats.on_time_rf = ((-2 * (next_i()%2)) + 1) * next_i();
+          mvm[_i0].radio_stats.tx_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          mvm[_i0].radio_stats.rx_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          mvm[_i0].accu_radio_stats.on_time_scan = ((-2 * (next_i()%2)) + 1) * next_i();
+          mvm[_i0].accu_radio_stats.on_time_rf = ((-2 * (next_i()%2)) + 1) * next_i();
+          mvm[_i0].accu_radio_stats.tx_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          mvm[_i0].accu_radio_stats.rx_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           iwl_mvm_accu_radio_stats(mvm);
           free(mvm);
         

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -90,12 +92,6 @@ __attribute__((used)) static inline u32 active_egress_rate(struct hfi1_pportdata
 	return egress_rate;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -108,22 +104,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ppd0 = 1;
+          int _len_ppd0 = 65025;
           struct hfi1_pportdata * ppd = (struct hfi1_pportdata *) malloc(_len_ppd0*sizeof(struct hfi1_pportdata));
           for(int _i0 = 0; _i0 < _len_ppd0; _i0++) {
-            ppd[_i0].link_speed_active = ((-2 * (next_i()%2)) + 1) * next_i();
-        ppd[_i0].link_width_active = ((-2 * (next_i()%2)) + 1) * next_i();
+              ppd[_i0].link_speed_active = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppd[_i0].link_width_active = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = active_egress_rate(ppd);
           printf("%d\n", benchRet); 
           free(ppd);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ppd0 = 100;
+          struct hfi1_pportdata * ppd = (struct hfi1_pportdata *) malloc(_len_ppd0*sizeof(struct hfi1_pportdata));
+          for(int _i0 = 0; _i0 < _len_ppd0; _i0++) {
+              ppd[_i0].link_speed_active = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppd[_i0].link_width_active = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = active_egress_rate(ppd);
+          printf("%d\n", benchRet); 
+          free(ppd);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ppd0 = 1;
+          struct hfi1_pportdata * ppd = (struct hfi1_pportdata *) malloc(_len_ppd0*sizeof(struct hfi1_pportdata));
+          for(int _i0 = 0; _i0 < _len_ppd0; _i0++) {
+              ppd[_i0].link_speed_active = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppd[_i0].link_width_active = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = active_egress_rate(ppd);
+          printf("%d\n", benchRet); 
+          free(ppd);
+        
+        break;
+    }
     default:
         usage();
         break;

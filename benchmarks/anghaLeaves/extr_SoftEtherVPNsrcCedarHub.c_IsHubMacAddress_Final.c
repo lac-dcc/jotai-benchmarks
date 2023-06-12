@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +74,6 @@ bool IsHubMacAddress(UCHAR *mac)
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,14 +86,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_mac0 = 1;
+          int _len_mac0 = 65025;
           int * mac = (int *) malloc(_len_mac0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_mac0; _i0++) {
             mac[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = IsHubMacAddress(mac);
           printf("%d\n", benchRet); 
           free(mac);
@@ -113,13 +109,28 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_mac0; _i0++) {
             mac[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = IsHubMacAddress(mac);
           printf("%d\n", benchRet); 
           free(mac);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_mac0 = 1;
+          int * mac = (int *) malloc(_len_mac0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mac0; _i0++) {
+            mac[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = IsHubMacAddress(mac);
+          printf("%d\n", benchRet); 
+          free(mac);
+        
+        break;
+    }
     default:
         usage();
         break;

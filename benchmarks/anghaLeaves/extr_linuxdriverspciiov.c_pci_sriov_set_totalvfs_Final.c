@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +81,6 @@ int pci_sriov_set_totalvfs(struct pci_dev *dev, u16 numvfs)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,22 +93,208 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           long numvfs = 100;
+        
           int _len_dev0 = 1;
           struct pci_dev * dev = (struct pci_dev *) malloc(_len_dev0*sizeof(struct pci_dev));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
               int _len_dev__i0__sriov0 = 1;
           dev[_i0].sriov = (struct TYPE_2__ *) malloc(_len_dev__i0__sriov0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_dev__i0__sriov0; _j0++) {
-            dev[_i0].sriov->total_VFs = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].sriov->ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].sriov->driver_max_VFs = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].sriov->total_VFs = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].sriov->ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].sriov->driver_max_VFs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        dev[_i0].is_physfn = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].is_physfn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = pci_sriov_set_totalvfs(dev,numvfs);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(dev[_aux].sriov);
+          }
+          free(dev);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long numvfs = 255;
+        
+          int _len_dev0 = 65025;
+          struct pci_dev * dev = (struct pci_dev *) malloc(_len_dev0*sizeof(struct pci_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              int _len_dev__i0__sriov0 = 1;
+          dev[_i0].sriov = (struct TYPE_2__ *) malloc(_len_dev__i0__sriov0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_dev__i0__sriov0; _j0++) {
+              dev[_i0].sriov->total_VFs = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].sriov->ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].sriov->driver_max_VFs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          dev[_i0].is_physfn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pci_sriov_set_totalvfs(dev,numvfs);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(dev[_aux].sriov);
+          }
+          free(dev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long numvfs = 10;
+        
+          int _len_dev0 = 100;
+          struct pci_dev * dev = (struct pci_dev *) malloc(_len_dev0*sizeof(struct pci_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              int _len_dev__i0__sriov0 = 1;
+          dev[_i0].sriov = (struct TYPE_2__ *) malloc(_len_dev__i0__sriov0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_dev__i0__sriov0; _j0++) {
+              dev[_i0].sriov->total_VFs = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].sriov->ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].sriov->driver_max_VFs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          dev[_i0].is_physfn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pci_sriov_set_totalvfs(dev,numvfs);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(dev[_aux].sriov);
+          }
+          free(dev);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          long numvfs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dev0 = 1;
+          struct pci_dev * dev = (struct pci_dev *) malloc(_len_dev0*sizeof(struct pci_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              int _len_dev__i0__sriov0 = 1;
+          dev[_i0].sriov = (struct TYPE_2__ *) malloc(_len_dev__i0__sriov0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_dev__i0__sriov0; _j0++) {
+              dev[_i0].sriov->total_VFs = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].sriov->ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].sriov->driver_max_VFs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          dev[_i0].is_physfn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = pci_sriov_set_totalvfs(dev,numvfs);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_dev0; _aux++) {

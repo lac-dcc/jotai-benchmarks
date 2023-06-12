@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -82,12 +84,6 @@ __attribute__((used)) static int bnx2x_eee_nvram_to_time(u32 nvram_mode, u32 *id
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,11 +100,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int nvram_mode = 100;
+        
           int _len_idle_timer0 = 1;
           int * idle_timer = (int *) malloc(_len_idle_timer0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_idle_timer0; _i0++) {
             idle_timer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = bnx2x_eee_nvram_to_time(nvram_mode,idle_timer);
+          printf("%d\n", benchRet); 
+          free(idle_timer);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int nvram_mode = 255;
+        
+          int _len_idle_timer0 = 65025;
+          int * idle_timer = (int *) malloc(_len_idle_timer0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_idle_timer0; _i0++) {
+            idle_timer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = bnx2x_eee_nvram_to_time(nvram_mode,idle_timer);
           printf("%d\n", benchRet); 
           free(idle_timer);
@@ -116,21 +131,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int nvram_mode = 10;
+        
           int _len_idle_timer0 = 100;
           int * idle_timer = (int *) malloc(_len_idle_timer0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_idle_timer0; _i0++) {
             idle_timer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = bnx2x_eee_nvram_to_time(nvram_mode,idle_timer);
           printf("%d\n", benchRet); 
           free(idle_timer);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int nvram_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_idle_timer0 = 1;
+          int * idle_timer = (int *) malloc(_len_idle_timer0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_idle_timer0; _i0++) {
+            idle_timer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = bnx2x_eee_nvram_to_time(nvram_mode,idle_timer);
+          printf("%d\n", benchRet); 
+          free(idle_timer);
+        
+        break;
+    }
     default:
         usage();
         break;

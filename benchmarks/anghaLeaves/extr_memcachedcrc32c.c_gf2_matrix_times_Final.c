@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ __attribute__((used)) static inline uint32_t gf2_matrix_times(uint32_t *mat, uin
     return sum;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,22 +82,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int vec = 10;
-          int _len_mat0 = 100;
+          int vec = 255;
+        
+          int _len_mat0 = 65025;
           int * mat = (int *) malloc(_len_mat0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_mat0; _i0++) {
             mat[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = gf2_matrix_times(mat,vec);
           printf("%d\n", benchRet); 
           free(mat);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int vec = 10;
+        
+          int _len_mat0 = 100;
+          int * mat = (int *) malloc(_len_mat0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mat0; _i0++) {
+            mat[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = gf2_matrix_times(mat,vec);
+          printf("%d\n", benchRet); 
+          free(mat);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +64,6 @@ __attribute__((used)) static void host1x_pushbuffer_pop(struct push_buffer *pb, 
 	pb->fence = (pb->fence + slots * 8) & (pb->size - 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,18 +80,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int slots = 100;
+        
           int _len_pb0 = 1;
           struct push_buffer * pb = (struct push_buffer *) malloc(_len_pb0*sizeof(struct push_buffer));
           for(int _i0 = 0; _i0 < _len_pb0; _i0++) {
-            pb[_i0].fence = ((-2 * (next_i()%2)) + 1) * next_i();
-        pb[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              pb[_i0].fence = ((-2 * (next_i()%2)) + 1) * next_i();
+          pb[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           host1x_pushbuffer_pop(pb,slots);
           free(pb);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int slots = 255;
+        
+          int _len_pb0 = 65025;
+          struct push_buffer * pb = (struct push_buffer *) malloc(_len_pb0*sizeof(struct push_buffer));
+          for(int _i0 = 0; _i0 < _len_pb0; _i0++) {
+              pb[_i0].fence = ((-2 * (next_i()%2)) + 1) * next_i();
+          pb[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          host1x_pushbuffer_pop(pb,slots);
+          free(pb);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int slots = 10;
+        
+          int _len_pb0 = 100;
+          struct push_buffer * pb = (struct push_buffer *) malloc(_len_pb0*sizeof(struct push_buffer));
+          for(int _i0 = 0; _i0 < _len_pb0; _i0++) {
+              pb[_i0].fence = ((-2 * (next_i()%2)) + 1) * next_i();
+          pb[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          host1x_pushbuffer_pop(pb,slots);
+          free(pb);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int slots = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pb0 = 1;
+          struct push_buffer * pb = (struct push_buffer *) malloc(_len_pb0*sizeof(struct push_buffer));
+          for(int _i0 = 0; _i0 < _len_pb0; _i0++) {
+              pb[_i0].fence = ((-2 * (next_i()%2)) + 1) * next_i();
+          pb[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          host1x_pushbuffer_pop(pb,slots);
+          free(pb);
+        
+        break;
+    }
     default:
         usage();
         break;

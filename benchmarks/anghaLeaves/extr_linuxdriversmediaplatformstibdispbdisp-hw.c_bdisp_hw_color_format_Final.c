@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -102,12 +103,6 @@ __attribute__((used)) static u32 bdisp_hw_color_format(u32 pixelformat)
 	return ret;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -124,6 +119,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int pixelformat = 100;
+        
           int benchRet = bdisp_hw_color_format(pixelformat);
           printf("%d\n", benchRet); 
         
@@ -133,6 +129,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int pixelformat = 255;
+        
           int benchRet = bdisp_hw_color_format(pixelformat);
           printf("%d\n", benchRet); 
         
@@ -142,12 +139,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int pixelformat = 10;
+        
           int benchRet = bdisp_hw_color_format(pixelformat);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int pixelformat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = bdisp_hw_color_format(pixelformat);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

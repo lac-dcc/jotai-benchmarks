@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline int new_phy_power_ctrl(u8 chip_main_rev)
 	return chip_main_rev >= 5;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int chip_main_rev = 100;
+        
           int benchRet = new_phy_power_ctrl(chip_main_rev);
           printf("%d\n", benchRet); 
         
@@ -93,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int chip_main_rev = 255;
+        
           int benchRet = new_phy_power_ctrl(chip_main_rev);
           printf("%d\n", benchRet); 
         
@@ -102,12 +99,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int chip_main_rev = 10;
+        
           int benchRet = new_phy_power_ctrl(chip_main_rev);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int chip_main_rev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = new_phy_power_ctrl(chip_main_rev);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

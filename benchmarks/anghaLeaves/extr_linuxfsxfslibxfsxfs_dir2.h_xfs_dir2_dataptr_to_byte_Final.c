@@ -65,12 +65,6 @@ xfs_dir2_dataptr_to_byte(xfs_dir2_dataptr_t dp)
 	return (xfs_dir2_off_t)dp << XFS_DIR2_DATA_ALIGN_LOG;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,6 +81,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long dp = 100;
+        
           int benchRet = xfs_dir2_dataptr_to_byte(dp);
           printf("%d\n", benchRet); 
         
@@ -96,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long dp = 255;
+        
           int benchRet = xfs_dir2_dataptr_to_byte(dp);
           printf("%d\n", benchRet); 
         
@@ -105,12 +101,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long dp = 10;
+        
           int benchRet = xfs_dir2_dataptr_to_byte(dp);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

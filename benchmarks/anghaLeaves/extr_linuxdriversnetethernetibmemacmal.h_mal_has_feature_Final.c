@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static inline int mal_has_feature(struct mal_instance *dev
 		(MAL_FTRS_POSSIBLE & dev->features & feature);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,11 +83,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long feature = 100;
+        
           int _len_dev0 = 1;
           struct mal_instance * dev = (struct mal_instance *) malloc(_len_dev0*sizeof(struct mal_instance));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].features = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].features = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = mal_has_feature(dev,feature);
+          printf("%d\n", benchRet); 
+          free(dev);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned long feature = 255;
+        
+          int _len_dev0 = 65025;
+          struct mal_instance * dev = (struct mal_instance *) malloc(_len_dev0*sizeof(struct mal_instance));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].features = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = mal_has_feature(dev,feature);
           printf("%d\n", benchRet); 
           free(dev);
@@ -99,21 +116,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned long feature = 10;
+        
           int _len_dev0 = 100;
           struct mal_instance * dev = (struct mal_instance *) malloc(_len_dev0*sizeof(struct mal_instance));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].features = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].features = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mal_has_feature(dev,feature);
           printf("%d\n", benchRet); 
           free(dev);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long feature = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dev0 = 1;
+          struct mal_instance * dev = (struct mal_instance *) malloc(_len_dev0*sizeof(struct mal_instance));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].features = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mal_has_feature(dev,feature);
+          printf("%d\n", benchRet); 
+          free(dev);
+        
+        break;
+    }
     default:
         usage();
         break;

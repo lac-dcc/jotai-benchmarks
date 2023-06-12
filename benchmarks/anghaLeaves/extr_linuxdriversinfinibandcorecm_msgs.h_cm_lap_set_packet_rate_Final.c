@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline void cm_lap_set_packet_rate(struct cm_lap_ms
 	lap_msg->offset61 = (packet_rate & 0x3F) | (lap_msg->offset61 & 0xC0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,31 +81,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int packet_rate = 100;
+        
           int _len_lap_msg0 = 1;
           struct cm_lap_msg * lap_msg = (struct cm_lap_msg *) malloc(_len_lap_msg0*sizeof(struct cm_lap_msg));
           for(int _i0 = 0; _i0 < _len_lap_msg0; _i0++) {
-            lap_msg[_i0].offset61 = ((-2 * (next_i()%2)) + 1) * next_i();
+              lap_msg[_i0].offset61 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          cm_lap_set_packet_rate(lap_msg,packet_rate);
+          free(lap_msg);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int packet_rate = 255;
+        
+          int _len_lap_msg0 = 65025;
+          struct cm_lap_msg * lap_msg = (struct cm_lap_msg *) malloc(_len_lap_msg0*sizeof(struct cm_lap_msg));
+          for(int _i0 = 0; _i0 < _len_lap_msg0; _i0++) {
+              lap_msg[_i0].offset61 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           cm_lap_set_packet_rate(lap_msg,packet_rate);
           free(lap_msg);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int packet_rate = 10;
+        
           int _len_lap_msg0 = 100;
           struct cm_lap_msg * lap_msg = (struct cm_lap_msg *) malloc(_len_lap_msg0*sizeof(struct cm_lap_msg));
           for(int _i0 = 0; _i0 < _len_lap_msg0; _i0++) {
-            lap_msg[_i0].offset61 = ((-2 * (next_i()%2)) + 1) * next_i();
+              lap_msg[_i0].offset61 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           cm_lap_set_packet_rate(lap_msg,packet_rate);
           free(lap_msg);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int packet_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_lap_msg0 = 1;
+          struct cm_lap_msg * lap_msg = (struct cm_lap_msg *) malloc(_len_lap_msg0*sizeof(struct cm_lap_msg));
+          for(int _i0 = 0; _i0 < _len_lap_msg0; _i0++) {
+              lap_msg[_i0].offset61 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cm_lap_set_packet_rate(lap_msg,packet_rate);
+          free(lap_msg);
+        
+        break;
+    }
     default:
         usage();
         break;

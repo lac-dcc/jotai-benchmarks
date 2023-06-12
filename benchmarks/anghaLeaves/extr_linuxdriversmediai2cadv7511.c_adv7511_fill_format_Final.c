@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static void adv7511_fill_format(struct adv7511_state *stat
 	format->field = V4L2_FIELD_NONE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,29 +83,90 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_state0 = 1;
+          int _len_state0 = 65025;
           struct adv7511_state * state = (struct adv7511_state *) malloc(_len_state0*sizeof(struct adv7511_state));
           for(int _i0 = 0; _i0 < _len_state0; _i0++) {
-            state[_i0].dv_timings.bt.height = ((-2 * (next_i()%2)) + 1) * next_i();
-        state[_i0].dv_timings.bt.width = ((-2 * (next_i()%2)) + 1) * next_i();
+              state[_i0].dv_timings.bt.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].dv_timings.bt.width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
-          int _len_format0 = 1;
+        
+          int _len_format0 = 65025;
           struct v4l2_mbus_framefmt * format = (struct v4l2_mbus_framefmt *) malloc(_len_format0*sizeof(struct v4l2_mbus_framefmt));
           for(int _i0 = 0; _i0 < _len_format0; _i0++) {
-            format[_i0].field = ((-2 * (next_i()%2)) + 1) * next_i();
-        format[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
-        format[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+              format[_i0].field = ((-2 * (next_i()%2)) + 1) * next_i();
+          format[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          format[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           adv7511_fill_format(state,format);
           free(state);
           free(format);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_state0 = 100;
+          struct adv7511_state * state = (struct adv7511_state *) malloc(_len_state0*sizeof(struct adv7511_state));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].dv_timings.bt.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].dv_timings.bt.width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_format0 = 100;
+          struct v4l2_mbus_framefmt * format = (struct v4l2_mbus_framefmt *) malloc(_len_format0*sizeof(struct v4l2_mbus_framefmt));
+          for(int _i0 = 0; _i0 < _len_format0; _i0++) {
+              format[_i0].field = ((-2 * (next_i()%2)) + 1) * next_i();
+          format[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          format[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          adv7511_fill_format(state,format);
+          free(state);
+          free(format);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_state0 = 1;
+          struct adv7511_state * state = (struct adv7511_state *) malloc(_len_state0*sizeof(struct adv7511_state));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].dv_timings.bt.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].dv_timings.bt.width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_format0 = 1;
+          struct v4l2_mbus_framefmt * format = (struct v4l2_mbus_framefmt *) malloc(_len_format0*sizeof(struct v4l2_mbus_framefmt));
+          for(int _i0 = 0; _i0 < _len_format0; _i0++) {
+              format[_i0].field = ((-2 * (next_i()%2)) + 1) * next_i();
+          format[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          format[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          adv7511_fill_format(state,format);
+          free(state);
+          free(format);
+        
+        break;
+    }
     default:
         usage();
         break;

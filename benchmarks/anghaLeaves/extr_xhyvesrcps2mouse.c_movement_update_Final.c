@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ movement_update(struct ps2mouse_softc *sc, int x, int y)
 	sc->cur_y = y;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,19 +79,184 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int x = 100;
+        
           int y = 100;
+        
           int _len_sc0 = 1;
           struct ps2mouse_softc * sc = (struct ps2mouse_softc *) malloc(_len_sc0*sizeof(struct ps2mouse_softc));
           for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
-            sc[_i0].cur_x = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].cur_y = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].delta_y = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].delta_x = ((-2 * (next_i()%2)) + 1) * next_i();
+              sc[_i0].cur_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].cur_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].delta_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].delta_x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          movement_update(sc,x,y);
+          free(sc);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int x = 255;
+        
+          int y = 255;
+        
+          int _len_sc0 = 65025;
+          struct ps2mouse_softc * sc = (struct ps2mouse_softc *) malloc(_len_sc0*sizeof(struct ps2mouse_softc));
+          for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
+              sc[_i0].cur_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].cur_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].delta_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].delta_x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          movement_update(sc,x,y);
+          free(sc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int x = 10;
+        
+          int y = 10;
+        
+          int _len_sc0 = 100;
+          struct ps2mouse_softc * sc = (struct ps2mouse_softc *) malloc(_len_sc0*sizeof(struct ps2mouse_softc));
+          for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
+              sc[_i0].cur_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].cur_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].delta_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].delta_x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          movement_update(sc,x,y);
+          free(sc);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sc0 = 1;
+          struct ps2mouse_softc * sc = (struct ps2mouse_softc *) malloc(_len_sc0*sizeof(struct ps2mouse_softc));
+          for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
+              sc[_i0].cur_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].cur_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].delta_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].delta_x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           movement_update(sc,x,y);
           free(sc);
         

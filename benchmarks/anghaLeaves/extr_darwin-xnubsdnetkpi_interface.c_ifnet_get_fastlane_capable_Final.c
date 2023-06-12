@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ ifnet_get_fastlane_capable(ifnet_t interface, boolean_t *capable)
 	return (0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,19 +87,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_interface0 = 1;
+          int _len_interface0 = 65025;
           struct TYPE_3__ * interface = (struct TYPE_3__ *) malloc(_len_interface0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_interface0; _i0++) {
-            interface[_i0].if_eflags = ((-2 * (next_i()%2)) + 1) * next_i();
+              interface[_i0].if_eflags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_capable0 = 1;
+        
+          int _len_capable0 = 65025;
           int * capable = (int *) malloc(_len_capable0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_capable0; _i0++) {
             capable[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = ifnet_get_fastlane_capable(interface,capable);
           printf("%d\n", benchRet); 
           free(interface);
@@ -111,7 +110,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_interface0 = 100;
+          struct TYPE_3__ * interface = (struct TYPE_3__ *) malloc(_len_interface0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_interface0; _i0++) {
+              interface[_i0].if_eflags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_capable0 = 100;
+          int * capable = (int *) malloc(_len_capable0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_capable0; _i0++) {
+            capable[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ifnet_get_fastlane_capable(interface,capable);
+          printf("%d\n", benchRet); 
+          free(interface);
+          free(capable);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_interface0 = 1;
+          struct TYPE_3__ * interface = (struct TYPE_3__ *) malloc(_len_interface0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_interface0; _i0++) {
+              interface[_i0].if_eflags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_capable0 = 1;
+          int * capable = (int *) malloc(_len_capable0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_capable0; _i0++) {
+            capable[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ifnet_get_fastlane_capable(interface,capable);
+          printf("%d\n", benchRet); 
+          free(interface);
+          free(capable);
+        
+        break;
+    }
     default:
         usage();
         break;

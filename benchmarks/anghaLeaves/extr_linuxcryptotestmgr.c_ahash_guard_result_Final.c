@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static int ahash_guard_result(char *result, char c, int si
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,12 +86,34 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           char c = 100;
+        
           int size = 100;
+        
           int _len_result0 = 1;
           char * result = (char *) malloc(_len_result0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_result0; _i0++) {
             result[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = ahash_guard_result(result,c,size);
+          printf("%d\n", benchRet); 
+          free(result);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          char c = 255;
+        
+          int size = 255;
+        
+          int _len_result0 = 65025;
+          char * result = (char *) malloc(_len_result0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_result0; _i0++) {
+            result[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = ahash_guard_result(result,c,size);
           printf("%d\n", benchRet); 
           free(result);
@@ -103,22 +121,43 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           char c = 10;
+        
           int size = 10;
+        
           int _len_result0 = 100;
           char * result = (char *) malloc(_len_result0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_result0; _i0++) {
             result[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = ahash_guard_result(result,c,size);
           printf("%d\n", benchRet); 
           free(result);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          char c = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_result0 = 1;
+          char * result = (char *) malloc(_len_result0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_result0; _i0++) {
+            result[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ahash_guard_result(result,c,size);
+          printf("%d\n", benchRet); 
+          free(result);
+        
+        break;
+    }
     default:
         usage();
         break;

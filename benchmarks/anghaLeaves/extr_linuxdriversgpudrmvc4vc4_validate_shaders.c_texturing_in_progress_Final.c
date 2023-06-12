@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ texturing_in_progress(struct vc4_shader_validation_state *validation_state)
 		validation_state->tmu_write_count[1] != 0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,10 +76,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_validation_state0 = 1;
+          int _len_validation_state0 = 65025;
           struct vc4_shader_validation_state * validation_state = (struct vc4_shader_validation_state *) malloc(_len_validation_state0*sizeof(struct vc4_shader_validation_state));
           for(int _i0 = 0; _i0 < _len_validation_state0; _i0++) {
               int _len_validation_state__i0__tmu_write_count0 = 1;
@@ -91,7 +87,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_validation_state__i0__tmu_write_count0; _j0++) {
             validation_state[_i0].tmu_write_count[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = texturing_in_progress(validation_state);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_validation_state0; _aux++) {
@@ -101,7 +99,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_validation_state0 = 100;
+          struct vc4_shader_validation_state * validation_state = (struct vc4_shader_validation_state *) malloc(_len_validation_state0*sizeof(struct vc4_shader_validation_state));
+          for(int _i0 = 0; _i0 < _len_validation_state0; _i0++) {
+              int _len_validation_state__i0__tmu_write_count0 = 1;
+          validation_state[_i0].tmu_write_count = (long *) malloc(_len_validation_state__i0__tmu_write_count0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_validation_state__i0__tmu_write_count0; _j0++) {
+            validation_state[_i0].tmu_write_count[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = texturing_in_progress(validation_state);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_validation_state0; _aux++) {
+          free(validation_state[_aux].tmu_write_count);
+          }
+          free(validation_state);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_validation_state0 = 1;
+          struct vc4_shader_validation_state * validation_state = (struct vc4_shader_validation_state *) malloc(_len_validation_state0*sizeof(struct vc4_shader_validation_state));
+          for(int _i0 = 0; _i0 < _len_validation_state0; _i0++) {
+              int _len_validation_state__i0__tmu_write_count0 = 1;
+          validation_state[_i0].tmu_write_count = (long *) malloc(_len_validation_state__i0__tmu_write_count0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_validation_state__i0__tmu_write_count0; _j0++) {
+            validation_state[_i0].tmu_write_count[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = texturing_in_progress(validation_state);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_validation_state0; _aux++) {
+          free(validation_state[_aux].tmu_write_count);
+          }
+          free(validation_state);
+        
+        break;
+    }
     default:
         usage();
         break;

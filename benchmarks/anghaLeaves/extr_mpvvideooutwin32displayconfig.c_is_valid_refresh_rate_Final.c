@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -63,12 +63,6 @@ __attribute__((used)) static bool is_valid_refresh_rate(DISPLAYCONFIG_RATIONAL r
     return rr.Denominator != 0 && rr.Numerator / rr.Denominator > 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,12 +75,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // empty
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           struct TYPE_3__ rr;
-        rr.Denominator = ((-2 * (next_i()%2)) + 1) * next_i();
-        rr.Numerator = ((-2 * (next_i()%2)) + 1) * next_i();
+          rr.Denominator = ((-2 * (next_i()%2)) + 1) * next_i();
+          rr.Numerator = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = is_valid_refresh_rate(rr);
           printf("%d\n", benchRet); 
         

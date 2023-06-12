@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static void do_write(struct mmc_request *req)
 	req->data->error = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,21 +77,147 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_req0 = 65025;
+          struct mmc_request * req = (struct mmc_request *) malloc(_len_req0*sizeof(struct mmc_request));
+          for(int _i0 = 0; _i0 < _len_req0; _i0++) {
+              int _len_req__i0__data0 = 1;
+          req[_i0].data = (struct TYPE_2__ *) malloc(_len_req__i0__data0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_req__i0__data0; _j0++) {
+              req[_i0].data->bytes_xfered = ((-2 * (next_i()%2)) + 1) * next_i();
+          req[_i0].data->blocks = ((-2 * (next_i()%2)) + 1) * next_i();
+          req[_i0].data->blksz = ((-2 * (next_i()%2)) + 1) * next_i();
+          req[_i0].data->error = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          do_write(req);
+          for(int _aux = 0; _aux < _len_req0; _aux++) {
+          free(req[_aux].data);
+          }
+          free(req);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_req0 = 100;
+          struct mmc_request * req = (struct mmc_request *) malloc(_len_req0*sizeof(struct mmc_request));
+          for(int _i0 = 0; _i0 < _len_req0; _i0++) {
+              int _len_req__i0__data0 = 1;
+          req[_i0].data = (struct TYPE_2__ *) malloc(_len_req__i0__data0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_req__i0__data0; _j0++) {
+              req[_i0].data->bytes_xfered = ((-2 * (next_i()%2)) + 1) * next_i();
+          req[_i0].data->blocks = ((-2 * (next_i()%2)) + 1) * next_i();
+          req[_i0].data->blksz = ((-2 * (next_i()%2)) + 1) * next_i();
+          req[_i0].data->error = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          do_write(req);
+          for(int _aux = 0; _aux < _len_req0; _aux++) {
+          free(req[_aux].data);
+          }
+          free(req);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_req0 = 1;
           struct mmc_request * req = (struct mmc_request *) malloc(_len_req0*sizeof(struct mmc_request));
           for(int _i0 = 0; _i0 < _len_req0; _i0++) {
               int _len_req__i0__data0 = 1;
           req[_i0].data = (struct TYPE_2__ *) malloc(_len_req__i0__data0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_req__i0__data0; _j0++) {
-            req[_i0].data->bytes_xfered = ((-2 * (next_i()%2)) + 1) * next_i();
-        req[_i0].data->blocks = ((-2 * (next_i()%2)) + 1) * next_i();
-        req[_i0].data->blksz = ((-2 * (next_i()%2)) + 1) * next_i();
-        req[_i0].data->error = ((-2 * (next_i()%2)) + 1) * next_i();
+              req[_i0].data->bytes_xfered = ((-2 * (next_i()%2)) + 1) * next_i();
+          req[_i0].data->blocks = ((-2 * (next_i()%2)) + 1) * next_i();
+          req[_i0].data->blksz = ((-2 * (next_i()%2)) + 1) * next_i();
+          req[_i0].data->error = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           do_write(req);
           for(int _aux = 0; _aux < _len_req0; _aux++) {
           free(req[_aux].data);

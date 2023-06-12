@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static void amdgpu_uvd_force_into_uvd_segment(struct amdgp
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,20 +83,24 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_abo0 = 1;
+          int _len_abo0 = 65025;
           struct amdgpu_bo * abo = (struct amdgpu_bo *) malloc(_len_abo0*sizeof(struct amdgpu_bo));
           for(int _i0 = 0; _i0 < _len_abo0; _i0++) {
               int _len_abo__i0__placements0 = 1;
           abo[_i0].placements = (struct TYPE_4__ *) malloc(_len_abo__i0__placements0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_abo__i0__placements0; _j0++) {
-            abo[_i0].placements->fpfn = ((-2 * (next_i()%2)) + 1) * next_i();
-        abo[_i0].placements->lpfn = ((-2 * (next_i()%2)) + 1) * next_i();
+              abo[_i0].placements->fpfn = ((-2 * (next_i()%2)) + 1) * next_i();
+          abo[_i0].placements->lpfn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        abo[_i0].placement.num_placement = ((-2 * (next_i()%2)) + 1) * next_i();
+          abo[_i0].placement.num_placement = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           amdgpu_uvd_force_into_uvd_segment(abo);
           for(int _aux = 0; _aux < _len_abo0; _aux++) {
           free(abo[_aux].placements);
@@ -109,7 +109,58 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_abo0 = 100;
+          struct amdgpu_bo * abo = (struct amdgpu_bo *) malloc(_len_abo0*sizeof(struct amdgpu_bo));
+          for(int _i0 = 0; _i0 < _len_abo0; _i0++) {
+              int _len_abo__i0__placements0 = 1;
+          abo[_i0].placements = (struct TYPE_4__ *) malloc(_len_abo__i0__placements0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_abo__i0__placements0; _j0++) {
+              abo[_i0].placements->fpfn = ((-2 * (next_i()%2)) + 1) * next_i();
+          abo[_i0].placements->lpfn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          abo[_i0].placement.num_placement = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          amdgpu_uvd_force_into_uvd_segment(abo);
+          for(int _aux = 0; _aux < _len_abo0; _aux++) {
+          free(abo[_aux].placements);
+          }
+          free(abo);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_abo0 = 1;
+          struct amdgpu_bo * abo = (struct amdgpu_bo *) malloc(_len_abo0*sizeof(struct amdgpu_bo));
+          for(int _i0 = 0; _i0 < _len_abo0; _i0++) {
+              int _len_abo__i0__placements0 = 1;
+          abo[_i0].placements = (struct TYPE_4__ *) malloc(_len_abo__i0__placements0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_abo__i0__placements0; _j0++) {
+              abo[_i0].placements->fpfn = ((-2 * (next_i()%2)) + 1) * next_i();
+          abo[_i0].placements->lpfn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          abo[_i0].placement.num_placement = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          amdgpu_uvd_force_into_uvd_segment(abo);
+          for(int _aux = 0; _aux < _len_abo0; _aux++) {
+          free(abo[_aux].placements);
+          }
+          free(abo);
+        
+        break;
+    }
     default:
         usage();
         break;

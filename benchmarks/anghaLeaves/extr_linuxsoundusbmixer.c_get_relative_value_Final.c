@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ __attribute__((used)) static int get_relative_value(struct usb_mixer_elem_info *
 		return (val - cval->min) / cval->res;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,17 +82,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
           int val = 100;
+        
           int _len_cval0 = 1;
           struct usb_mixer_elem_info * cval = (struct usb_mixer_elem_info *) malloc(_len_cval0*sizeof(struct usb_mixer_elem_info));
           for(int _i0 = 0; _i0 < _len_cval0; _i0++) {
-            cval[_i0].res = ((-2 * (next_i()%2)) + 1) * next_i();
-        cval[_i0].min = ((-2 * (next_i()%2)) + 1) * next_i();
-        cval[_i0].max = ((-2 * (next_i()%2)) + 1) * next_i();
+              cval[_i0].res = ((-2 * (next_i()%2)) + 1) * next_i();
+          cval[_i0].min = ((-2 * (next_i()%2)) + 1) * next_i();
+          cval[_i0].max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = get_relative_value(cval,val);
+          printf("%d\n", benchRet); 
+          free(cval);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          int val = 255;
+        
+          int _len_cval0 = 65025;
+          struct usb_mixer_elem_info * cval = (struct usb_mixer_elem_info *) malloc(_len_cval0*sizeof(struct usb_mixer_elem_info));
+          for(int _i0 = 0; _i0 < _len_cval0; _i0++) {
+              cval[_i0].res = ((-2 * (next_i()%2)) + 1) * next_i();
+          cval[_i0].min = ((-2 * (next_i()%2)) + 1) * next_i();
+          cval[_i0].max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = get_relative_value(cval,val);
+          printf("%d\n", benchRet); 
+          free(cval);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          int val = 10;
+        
+          int _len_cval0 = 100;
+          struct usb_mixer_elem_info * cval = (struct usb_mixer_elem_info *) malloc(_len_cval0*sizeof(struct usb_mixer_elem_info));
+          for(int _i0 = 0; _i0 < _len_cval0; _i0++) {
+              cval[_i0].res = ((-2 * (next_i()%2)) + 1) * next_i();
+          cval[_i0].min = ((-2 * (next_i()%2)) + 1) * next_i();
+          cval[_i0].max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = get_relative_value(cval,val);
+          printf("%d\n", benchRet); 
+          free(cval);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          int val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cval0 = 1;
+          struct usb_mixer_elem_info * cval = (struct usb_mixer_elem_info *) malloc(_len_cval0*sizeof(struct usb_mixer_elem_info));
+          for(int _i0 = 0; _i0 < _len_cval0; _i0++) {
+              cval[_i0].res = ((-2 * (next_i()%2)) + 1) * next_i();
+          cval[_i0].min = ((-2 * (next_i()%2)) + 1) * next_i();
+          cval[_i0].max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = get_relative_value(cval,val);
           printf("%d\n", benchRet); 
           free(cval);

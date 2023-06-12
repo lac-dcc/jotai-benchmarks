@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +83,6 @@ __attribute__((used)) static void set_dynamic_sa_command_0(struct dynamic_sa_ctl
 	sa->sa_command_0.bf.dir = dir;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,37 +95,300 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 56
+          // dynamic_instructions_O0 : 56
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
           int save_h = 100;
+        
           int save_iv = 100;
+        
           int ld_h = 100;
+        
           int ld_iv = 100;
+        
           int hdr_proc = 100;
+        
           int h = 100;
+        
           int c = 100;
+        
           int pad_type = 100;
+        
           int op_grp = 100;
+        
           int op = 100;
+        
           int dir = 100;
+        
           int _len_sa0 = 1;
           struct dynamic_sa_ctl * sa = (struct dynamic_sa_ctl *) malloc(_len_sa0*sizeof(struct dynamic_sa_ctl));
           for(int _i0 = 0; _i0 < _len_sa0; _i0++) {
-            sa[_i0].sa_command_0.bf.save_hash_state = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_0.bf.save_iv = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_0.bf.load_hash_state = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_0.bf.load_iv = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_0.bf.hdr_proc = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_0.bf.hash_alg = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_0.bf.cipher_alg = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_0.bf.pad_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_0.bf.extend_pad = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_0.bf.op_group = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_0.bf.opcode = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_0.bf.dir = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_0.w = ((-2 * (next_i()%2)) + 1) * next_i();
+              sa[_i0].sa_command_0.bf.save_hash_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.save_iv = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.load_hash_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.load_iv = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.hdr_proc = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.hash_alg = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.cipher_alg = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.pad_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.extend_pad = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.op_group = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.dir = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          sa[_i0].sa_command_0.w = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          set_dynamic_sa_command_0(sa,save_h,save_iv,ld_h,ld_iv,hdr_proc,h,c,pad_type,op_grp,op,dir);
+          free(sa);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 56
+          // dynamic_instructions_O0 : 56
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
+          int save_h = 255;
+        
+          int save_iv = 255;
+        
+          int ld_h = 255;
+        
+          int ld_iv = 255;
+        
+          int hdr_proc = 255;
+        
+          int h = 255;
+        
+          int c = 255;
+        
+          int pad_type = 255;
+        
+          int op_grp = 255;
+        
+          int op = 255;
+        
+          int dir = 255;
+        
+          int _len_sa0 = 65025;
+          struct dynamic_sa_ctl * sa = (struct dynamic_sa_ctl *) malloc(_len_sa0*sizeof(struct dynamic_sa_ctl));
+          for(int _i0 = 0; _i0 < _len_sa0; _i0++) {
+              sa[_i0].sa_command_0.bf.save_hash_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.save_iv = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.load_hash_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.load_iv = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.hdr_proc = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.hash_alg = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.cipher_alg = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.pad_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.extend_pad = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.op_group = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.dir = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          sa[_i0].sa_command_0.w = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          set_dynamic_sa_command_0(sa,save_h,save_iv,ld_h,ld_iv,hdr_proc,h,c,pad_type,op_grp,op,dir);
+          free(sa);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 56
+          // dynamic_instructions_O0 : 56
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
+          int save_h = 10;
+        
+          int save_iv = 10;
+        
+          int ld_h = 10;
+        
+          int ld_iv = 10;
+        
+          int hdr_proc = 10;
+        
+          int h = 10;
+        
+          int c = 10;
+        
+          int pad_type = 10;
+        
+          int op_grp = 10;
+        
+          int op = 10;
+        
+          int dir = 10;
+        
+          int _len_sa0 = 100;
+          struct dynamic_sa_ctl * sa = (struct dynamic_sa_ctl *) malloc(_len_sa0*sizeof(struct dynamic_sa_ctl));
+          for(int _i0 = 0; _i0 < _len_sa0; _i0++) {
+              sa[_i0].sa_command_0.bf.save_hash_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.save_iv = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.load_hash_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.load_iv = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.hdr_proc = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.hash_alg = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.cipher_alg = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.pad_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.extend_pad = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.op_group = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.dir = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          sa[_i0].sa_command_0.w = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          set_dynamic_sa_command_0(sa,save_h,save_iv,ld_h,ld_iv,hdr_proc,h,c,pad_type,op_grp,op,dir);
+          free(sa);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 56
+          // dynamic_instructions_O0 : 56
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
+          int save_h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int save_iv = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int ld_h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int ld_iv = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int hdr_proc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int c = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int pad_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int op_grp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int op = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int dir = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sa0 = 1;
+          struct dynamic_sa_ctl * sa = (struct dynamic_sa_ctl *) malloc(_len_sa0*sizeof(struct dynamic_sa_ctl));
+          for(int _i0 = 0; _i0 < _len_sa0; _i0++) {
+              sa[_i0].sa_command_0.bf.save_hash_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.save_iv = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.load_hash_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.load_iv = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.hdr_proc = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.hash_alg = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.cipher_alg = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.pad_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.extend_pad = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.op_group = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_0.bf.dir = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          sa[_i0].sa_command_0.w = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           set_dynamic_sa_command_0(sa,save_h,save_iv,ld_h,ld_iv,hdr_proc,h,c,pad_type,op_grp,op,dir);
           free(sa);
         

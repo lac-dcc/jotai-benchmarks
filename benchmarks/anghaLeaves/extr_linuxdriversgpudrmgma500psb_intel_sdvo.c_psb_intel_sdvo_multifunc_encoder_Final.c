@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ psb_intel_sdvo_multifunc_encoder(struct psb_intel_sdvo *psb_intel_sdvo)
 	return caps & -caps;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,28 +79,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_psb_intel_sdvo0 = 1;
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_psb_intel_sdvo0 = 65025;
           struct psb_intel_sdvo * psb_intel_sdvo = (struct psb_intel_sdvo *) malloc(_len_psb_intel_sdvo0*sizeof(struct psb_intel_sdvo));
           for(int _i0 = 0; _i0 < _len_psb_intel_sdvo0; _i0++) {
-            psb_intel_sdvo[_i0].caps.output_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              psb_intel_sdvo[_i0].caps.output_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = psb_intel_sdvo_multifunc_encoder(psb_intel_sdvo);
           printf("%d\n", benchRet); 
           free(psb_intel_sdvo);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_psb_intel_sdvo0 = 100;
           struct psb_intel_sdvo * psb_intel_sdvo = (struct psb_intel_sdvo *) malloc(_len_psb_intel_sdvo0*sizeof(struct psb_intel_sdvo));
           for(int _i0 = 0; _i0 < _len_psb_intel_sdvo0; _i0++) {
-            psb_intel_sdvo[_i0].caps.output_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              psb_intel_sdvo[_i0].caps.output_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = psb_intel_sdvo_multifunc_encoder(psb_intel_sdvo);
+          printf("%d\n", benchRet); 
+          free(psb_intel_sdvo);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_psb_intel_sdvo0 = 1;
+          struct psb_intel_sdvo * psb_intel_sdvo = (struct psb_intel_sdvo *) malloc(_len_psb_intel_sdvo0*sizeof(struct psb_intel_sdvo));
+          for(int _i0 = 0; _i0 < _len_psb_intel_sdvo0; _i0++) {
+              psb_intel_sdvo[_i0].caps.output_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = psb_intel_sdvo_multifunc_encoder(psb_intel_sdvo);
           printf("%d\n", benchRet); 
           free(psb_intel_sdvo);

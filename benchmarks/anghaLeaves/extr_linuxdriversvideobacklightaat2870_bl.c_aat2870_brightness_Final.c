@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ __attribute__((used)) static inline int aat2870_brightness(struct aat2870_bl_dri
 	return val;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,16 +89,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int brightness = 100;
+        
           int _len_aat2870_bl0 = 1;
           struct aat2870_bl_driver_data * aat2870_bl = (struct aat2870_bl_driver_data *) malloc(_len_aat2870_bl0*sizeof(struct aat2870_bl_driver_data));
           for(int _i0 = 0; _i0 < _len_aat2870_bl0; _i0++) {
-            aat2870_bl[_i0].max_current = ((-2 * (next_i()%2)) + 1) * next_i();
+              aat2870_bl[_i0].max_current = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_aat2870_bl__i0__bd0 = 1;
           aat2870_bl[_i0].bd = (struct backlight_device *) malloc(_len_aat2870_bl__i0__bd0*sizeof(struct backlight_device));
           for(int _j0 = 0; _j0 < _len_aat2870_bl__i0__bd0; _j0++) {
-            aat2870_bl[_i0].bd->props.max_brightness = ((-2 * (next_i()%2)) + 1) * next_i();
+              aat2870_bl[_i0].bd->props.max_brightness = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           int benchRet = aat2870_brightness(aat2870_bl,brightness);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_aat2870_bl0; _aux++) {
@@ -111,7 +113,90 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int brightness = 255;
+        
+          int _len_aat2870_bl0 = 65025;
+          struct aat2870_bl_driver_data * aat2870_bl = (struct aat2870_bl_driver_data *) malloc(_len_aat2870_bl0*sizeof(struct aat2870_bl_driver_data));
+          for(int _i0 = 0; _i0 < _len_aat2870_bl0; _i0++) {
+              aat2870_bl[_i0].max_current = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_aat2870_bl__i0__bd0 = 1;
+          aat2870_bl[_i0].bd = (struct backlight_device *) malloc(_len_aat2870_bl__i0__bd0*sizeof(struct backlight_device));
+          for(int _j0 = 0; _j0 < _len_aat2870_bl__i0__bd0; _j0++) {
+              aat2870_bl[_i0].bd->props.max_brightness = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = aat2870_brightness(aat2870_bl,brightness);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_aat2870_bl0; _aux++) {
+          free(aat2870_bl[_aux].bd);
+          }
+          free(aat2870_bl);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int brightness = 10;
+        
+          int _len_aat2870_bl0 = 100;
+          struct aat2870_bl_driver_data * aat2870_bl = (struct aat2870_bl_driver_data *) malloc(_len_aat2870_bl0*sizeof(struct aat2870_bl_driver_data));
+          for(int _i0 = 0; _i0 < _len_aat2870_bl0; _i0++) {
+              aat2870_bl[_i0].max_current = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_aat2870_bl__i0__bd0 = 1;
+          aat2870_bl[_i0].bd = (struct backlight_device *) malloc(_len_aat2870_bl__i0__bd0*sizeof(struct backlight_device));
+          for(int _j0 = 0; _j0 < _len_aat2870_bl__i0__bd0; _j0++) {
+              aat2870_bl[_i0].bd->props.max_brightness = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = aat2870_brightness(aat2870_bl,brightness);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_aat2870_bl0; _aux++) {
+          free(aat2870_bl[_aux].bd);
+          }
+          free(aat2870_bl);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int brightness = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_aat2870_bl0 = 1;
+          struct aat2870_bl_driver_data * aat2870_bl = (struct aat2870_bl_driver_data *) malloc(_len_aat2870_bl0*sizeof(struct aat2870_bl_driver_data));
+          for(int _i0 = 0; _i0 < _len_aat2870_bl0; _i0++) {
+              aat2870_bl[_i0].max_current = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_aat2870_bl__i0__bd0 = 1;
+          aat2870_bl[_i0].bd = (struct backlight_device *) malloc(_len_aat2870_bl__i0__bd0*sizeof(struct backlight_device));
+          for(int _j0 = 0; _j0 < _len_aat2870_bl__i0__bd0; _j0++) {
+              aat2870_bl[_i0].bd->props.max_brightness = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = aat2870_brightness(aat2870_bl,brightness);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_aat2870_bl0; _aux++) {
+          free(aat2870_bl[_aux].bd);
+          }
+          free(aat2870_bl);
+        
+        break;
+    }
     default:
         usage();
         break;

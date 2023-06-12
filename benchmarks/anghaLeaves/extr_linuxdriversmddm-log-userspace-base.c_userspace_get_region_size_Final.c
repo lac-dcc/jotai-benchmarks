@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static uint32_t userspace_get_region_size(struct dm_dirty_
 	return lc->region_size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,18 +78,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_log0 = 65025;
+          struct dm_dirty_log * log = (struct dm_dirty_log *) malloc(_len_log0*sizeof(struct dm_dirty_log));
+          for(int _i0 = 0; _i0 < _len_log0; _i0++) {
+              int _len_log__i0__context0 = 1;
+          log[_i0].context = (struct log_c *) malloc(_len_log__i0__context0*sizeof(struct log_c));
+          for(int _j0 = 0; _j0 < _len_log__i0__context0; _j0++) {
+              log[_i0].context->region_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = userspace_get_region_size(log);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_log0; _aux++) {
+          free(log[_aux].context);
+          }
+          free(log);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_log0 = 100;
+          struct dm_dirty_log * log = (struct dm_dirty_log *) malloc(_len_log0*sizeof(struct dm_dirty_log));
+          for(int _i0 = 0; _i0 < _len_log0; _i0++) {
+              int _len_log__i0__context0 = 1;
+          log[_i0].context = (struct log_c *) malloc(_len_log__i0__context0*sizeof(struct log_c));
+          for(int _j0 = 0; _j0 < _len_log__i0__context0; _j0++) {
+              log[_i0].context->region_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = userspace_get_region_size(log);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_log0; _aux++) {
+          free(log[_aux].context);
+          }
+          free(log);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_log0 = 1;
           struct dm_dirty_log * log = (struct dm_dirty_log *) malloc(_len_log0*sizeof(struct dm_dirty_log));
           for(int _i0 = 0; _i0 < _len_log0; _i0++) {
               int _len_log__i0__context0 = 1;
           log[_i0].context = (struct log_c *) malloc(_len_log__i0__context0*sizeof(struct log_c));
           for(int _j0 = 0; _j0 < _len_log__i0__context0; _j0++) {
-            log[_i0].context->region_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              log[_i0].context->region_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = userspace_get_region_size(log);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_log0; _aux++) {

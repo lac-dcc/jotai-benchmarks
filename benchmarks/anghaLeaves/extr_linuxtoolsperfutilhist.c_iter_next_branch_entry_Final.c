@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -77,12 +79,6 @@ iter_next_branch_entry(struct hist_entry_iter *iter, struct addr_location *al)
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,29 +91,35 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_iter0 = 1;
+          int _len_iter0 = 65025;
           struct hist_entry_iter * iter = (struct hist_entry_iter *) malloc(_len_iter0*sizeof(struct hist_entry_iter));
           for(int _i0 = 0; _i0 < _len_iter0; _i0++) {
-            iter[_i0].curr = ((-2 * (next_i()%2)) + 1) * next_i();
-        iter[_i0].total = ((-2 * (next_i()%2)) + 1) * next_i();
+              iter[_i0].curr = ((-2 * (next_i()%2)) + 1) * next_i();
+          iter[_i0].total = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_iter__i0__priv0 = 1;
           iter[_i0].priv = (struct branch_info *) malloc(_len_iter__i0__priv0*sizeof(struct branch_info));
           for(int _j0 = 0; _j0 < _len_iter__i0__priv0; _j0++) {
-            iter[_i0].priv->to.addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        iter[_i0].priv->to.sym = ((-2 * (next_i()%2)) + 1) * next_i();
-        iter[_i0].priv->to.map = ((-2 * (next_i()%2)) + 1) * next_i();
+              iter[_i0].priv->to.addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          iter[_i0].priv->to.sym = ((-2 * (next_i()%2)) + 1) * next_i();
+          iter[_i0].priv->to.map = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
-          int _len_al0 = 1;
+        
+          int _len_al0 = 65025;
           struct addr_location * al = (struct addr_location *) malloc(_len_al0*sizeof(struct addr_location));
           for(int _i0 = 0; _i0 < _len_al0; _i0++) {
-            al[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        al[_i0].sym = ((-2 * (next_i()%2)) + 1) * next_i();
-        al[_i0].map = ((-2 * (next_i()%2)) + 1) * next_i();
+              al[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          al[_i0].sym = ((-2 * (next_i()%2)) + 1) * next_i();
+          al[_i0].map = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = iter_next_branch_entry(iter,al);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_iter0; _aux++) {
@@ -128,7 +130,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_iter0 = 100;
+          struct hist_entry_iter * iter = (struct hist_entry_iter *) malloc(_len_iter0*sizeof(struct hist_entry_iter));
+          for(int _i0 = 0; _i0 < _len_iter0; _i0++) {
+              iter[_i0].curr = ((-2 * (next_i()%2)) + 1) * next_i();
+          iter[_i0].total = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_iter__i0__priv0 = 1;
+          iter[_i0].priv = (struct branch_info *) malloc(_len_iter__i0__priv0*sizeof(struct branch_info));
+          for(int _j0 = 0; _j0 < _len_iter__i0__priv0; _j0++) {
+              iter[_i0].priv->to.addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          iter[_i0].priv->to.sym = ((-2 * (next_i()%2)) + 1) * next_i();
+          iter[_i0].priv->to.map = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int _len_al0 = 100;
+          struct addr_location * al = (struct addr_location *) malloc(_len_al0*sizeof(struct addr_location));
+          for(int _i0 = 0; _i0 < _len_al0; _i0++) {
+              al[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          al[_i0].sym = ((-2 * (next_i()%2)) + 1) * next_i();
+          al[_i0].map = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = iter_next_branch_entry(iter,al);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_iter0; _aux++) {
+          free(iter[_aux].priv);
+          }
+          free(iter);
+          free(al);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_iter0 = 1;
+          struct hist_entry_iter * iter = (struct hist_entry_iter *) malloc(_len_iter0*sizeof(struct hist_entry_iter));
+          for(int _i0 = 0; _i0 < _len_iter0; _i0++) {
+              iter[_i0].curr = ((-2 * (next_i()%2)) + 1) * next_i();
+          iter[_i0].total = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_iter__i0__priv0 = 1;
+          iter[_i0].priv = (struct branch_info *) malloc(_len_iter__i0__priv0*sizeof(struct branch_info));
+          for(int _j0 = 0; _j0 < _len_iter__i0__priv0; _j0++) {
+              iter[_i0].priv->to.addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          iter[_i0].priv->to.sym = ((-2 * (next_i()%2)) + 1) * next_i();
+          iter[_i0].priv->to.map = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int _len_al0 = 1;
+          struct addr_location * al = (struct addr_location *) malloc(_len_al0*sizeof(struct addr_location));
+          for(int _i0 = 0; _i0 < _len_al0; _i0++) {
+              al[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          al[_i0].sym = ((-2 * (next_i()%2)) + 1) * next_i();
+          al[_i0].map = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = iter_next_branch_entry(iter,al);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_iter0; _aux++) {
+          free(iter[_aux].priv);
+          }
+          free(iter);
+          free(al);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -74,12 +74,6 @@ __attribute__((used)) static int sprd_dma_get_step(enum dma_slave_buswidth buswi
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,16 +86,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum dma_slave_buswidth buswidth = 0;
+        
           int benchRet = sprd_dma_get_step(buswidth);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

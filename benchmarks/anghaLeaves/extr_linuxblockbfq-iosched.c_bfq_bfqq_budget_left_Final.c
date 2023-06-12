@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static int bfq_bfqq_budget_left(struct bfq_queue *bfqq)
 	return entity->budget - entity->service;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,15 +77,125 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_bfqq0 = 65025;
+          struct bfq_queue * bfqq = (struct bfq_queue *) malloc(_len_bfqq0*sizeof(struct bfq_queue));
+          for(int _i0 = 0; _i0 < _len_bfqq0; _i0++) {
+              bfqq[_i0].entity.budget = ((-2 * (next_i()%2)) + 1) * next_i();
+          bfqq[_i0].entity.service = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = bfq_bfqq_budget_left(bfqq);
+          printf("%d\n", benchRet); 
+          free(bfqq);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_bfqq0 = 100;
+          struct bfq_queue * bfqq = (struct bfq_queue *) malloc(_len_bfqq0*sizeof(struct bfq_queue));
+          for(int _i0 = 0; _i0 < _len_bfqq0; _i0++) {
+              bfqq[_i0].entity.budget = ((-2 * (next_i()%2)) + 1) * next_i();
+          bfqq[_i0].entity.service = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = bfq_bfqq_budget_left(bfqq);
+          printf("%d\n", benchRet); 
+          free(bfqq);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_bfqq0 = 1;
           struct bfq_queue * bfqq = (struct bfq_queue *) malloc(_len_bfqq0*sizeof(struct bfq_queue));
           for(int _i0 = 0; _i0 < _len_bfqq0; _i0++) {
-            bfqq[_i0].entity.budget = ((-2 * (next_i()%2)) + 1) * next_i();
-        bfqq[_i0].entity.service = ((-2 * (next_i()%2)) + 1) * next_i();
+              bfqq[_i0].entity.budget = ((-2 * (next_i()%2)) + 1) * next_i();
+          bfqq[_i0].entity.service = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = bfq_bfqq_budget_left(bfqq);
           printf("%d\n", benchRet); 
           free(bfqq);

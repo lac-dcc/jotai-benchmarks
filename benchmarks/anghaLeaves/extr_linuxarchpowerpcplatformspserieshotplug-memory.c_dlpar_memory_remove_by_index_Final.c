@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static int dlpar_memory_remove_by_index(u32 drc_index)
 	return -EOPNOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int drc_index = 100;
+        
           int benchRet = dlpar_memory_remove_by_index(drc_index);
           printf("%d\n", benchRet); 
         
@@ -94,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int drc_index = 255;
+        
           int benchRet = dlpar_memory_remove_by_index(drc_index);
           printf("%d\n", benchRet); 
         
@@ -103,12 +100,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int drc_index = 10;
+        
           int benchRet = dlpar_memory_remove_by_index(drc_index);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int drc_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = dlpar_memory_remove_by_index(drc_index);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

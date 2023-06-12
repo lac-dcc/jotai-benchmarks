@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static void index_entry_adjust_namemask(
 		entry->flags |= GIT_INDEX_ENTRY_NAMEMASK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,31 +89,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long path_length = 100;
+        
           int _len_entry0 = 1;
           struct TYPE_3__ * entry = (struct TYPE_3__ *) malloc(_len_entry0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
-            entry[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              entry[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          index_entry_adjust_namemask(entry,path_length);
+          free(entry);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned long path_length = 255;
+        
+          int _len_entry0 = 65025;
+          struct TYPE_3__ * entry = (struct TYPE_3__ *) malloc(_len_entry0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
+              entry[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           index_entry_adjust_namemask(entry,path_length);
           free(entry);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned long path_length = 10;
+        
           int _len_entry0 = 100;
           struct TYPE_3__ * entry = (struct TYPE_3__ *) malloc(_len_entry0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
-            entry[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              entry[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           index_entry_adjust_namemask(entry,path_length);
           free(entry);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long path_length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_entry0 = 1;
+          struct TYPE_3__ * entry = (struct TYPE_3__ *) malloc(_len_entry0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
+              entry[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          index_entry_adjust_namemask(entry,path_length);
+          free(entry);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            linked\n\
+       2            empty\n\
 \n\
 ");
 
@@ -84,7 +86,6 @@ IntGetConsoleAliasesExesLength(PALIAS_HEADER RootHeader,
     return Length;
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct TYPE_5__ *_allocate_RootHeader(int length, struct TYPE_5__ *aux_RootHeader[]) {
@@ -92,7 +93,8 @@ struct TYPE_5__ *_allocate_RootHeader(int length, struct TYPE_5__ *aux_RootHeade
 
   aux_RootHeader[0] = walker;
   walker->Next = NULL;
-walker->ExeName.Length = ((-2 * (next_i()%2)) + 1) * next_i();
+  walker->ExeName.Length = ((-2 * (next_i()%2)) + 1) * next_i();
+
 
   struct TYPE_5__ *head = walker;
   for(int i = 1; i < length; i++) {
@@ -100,7 +102,8 @@ walker->ExeName.Length = ((-2 * (next_i()%2)) + 1) * next_i();
     walker = walker->Next;
     aux_RootHeader[i] = walker;
     walker->Next = NULL;
-walker->ExeName.Length = ((-2 * (next_i()%2)) + 1) * next_i();
+  walker->ExeName.Length = ((-2 * (next_i()%2)) + 1) * next_i();
+
   }
 
   return head;
@@ -111,7 +114,6 @@ void _delete_RootHeader(struct TYPE_5__ *aux_RootHeader[], int aux_RootHeader_si
     if(aux_RootHeader[i])
       free(aux_RootHeader[i]);
 }
-
 
 
 
@@ -131,15 +133,44 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int IsUnicode = 100;
+        
           struct TYPE_5__ * aux_RootHeader[1];
           struct TYPE_5__ * RootHeader = _allocate_RootHeader(1, aux_RootHeader);
+        
           int benchRet = IntGetConsoleAliasesExesLength(RootHeader,IsUnicode);
           printf("%d\n", benchRet); 
           _delete_RootHeader(aux_RootHeader, 1);
         
         break;
     }
-
+    // linked
+    case 1:
+    {
+          int IsUnicode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          struct TYPE_5__ * aux_RootHeader[10000];
+          struct TYPE_5__ * RootHeader = _allocate_RootHeader(10000, aux_RootHeader);
+        
+          int benchRet = IntGetConsoleAliasesExesLength(RootHeader,IsUnicode);
+          printf("%d\n", benchRet); 
+          _delete_RootHeader(aux_RootHeader, 10000);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int IsUnicode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          struct TYPE_5__ * aux_RootHeader[1];
+          struct TYPE_5__ * RootHeader = _allocate_RootHeader(1, aux_RootHeader);
+        
+          int benchRet = IntGetConsoleAliasesExesLength(RootHeader,IsUnicode);
+          printf("%d\n", benchRet); 
+          _delete_RootHeader(aux_RootHeader, 1);
+        
+        break;
+    }
     default:
         usage();
         break;

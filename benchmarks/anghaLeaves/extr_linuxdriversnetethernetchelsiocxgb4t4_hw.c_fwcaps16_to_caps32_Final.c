@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -122,12 +123,6 @@ __attribute__((used)) static fw_port_cap32_t fwcaps16_to_caps32(fw_port_cap16_t 
 	return caps32;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -144,6 +139,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int caps16 = 100;
+        
           int benchRet = fwcaps16_to_caps32(caps16);
           printf("%d\n", benchRet); 
         
@@ -153,6 +149,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int caps16 = 255;
+        
           int benchRet = fwcaps16_to_caps32(caps16);
           printf("%d\n", benchRet); 
         
@@ -162,12 +159,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int caps16 = 10;
+        
           int benchRet = fwcaps16_to_caps32(caps16);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int caps16 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = fwcaps16_to_caps32(caps16);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

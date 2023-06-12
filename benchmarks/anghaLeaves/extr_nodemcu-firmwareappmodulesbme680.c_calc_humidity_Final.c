@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -96,12 +97,6 @@ __attribute__((used)) static uint32_t calc_humidity(uint16_t hum_adc)
 	return (uint32_t) calc_hum;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -118,6 +113,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int hum_adc = 100;
+        
           int benchRet = calc_humidity(hum_adc);
           printf("%d\n", benchRet); 
         
@@ -127,6 +123,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int hum_adc = 255;
+        
           int benchRet = calc_humidity(hum_adc);
           printf("%d\n", benchRet); 
         
@@ -136,12 +133,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int hum_adc = 10;
+        
           int benchRet = calc_humidity(hum_adc);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int hum_adc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = calc_humidity(hum_adc);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

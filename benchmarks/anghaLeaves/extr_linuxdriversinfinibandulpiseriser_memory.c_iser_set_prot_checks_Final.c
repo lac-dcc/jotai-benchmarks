@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ iser_set_prot_checks(struct scsi_cmnd *sc, u8 *mask)
 		*mask |= IB_SIG_CHECK_GUARD;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,19 +84,137 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_sc0 = 65025;
+          struct scsi_cmnd * sc = (struct scsi_cmnd *) malloc(_len_sc0*sizeof(struct scsi_cmnd));
+          for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
+              sc[_i0].prot_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_mask0 = 65025;
+          int * mask = (int *) malloc(_len_mask0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mask0; _i0++) {
+            mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          iser_set_prot_checks(sc,mask);
+          free(sc);
+          free(mask);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_sc0 = 100;
+          struct scsi_cmnd * sc = (struct scsi_cmnd *) malloc(_len_sc0*sizeof(struct scsi_cmnd));
+          for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
+              sc[_i0].prot_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_mask0 = 100;
+          int * mask = (int *) malloc(_len_mask0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mask0; _i0++) {
+            mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          iser_set_prot_checks(sc,mask);
+          free(sc);
+          free(mask);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_sc0 = 1;
           struct scsi_cmnd * sc = (struct scsi_cmnd *) malloc(_len_sc0*sizeof(struct scsi_cmnd));
           for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
-            sc[_i0].prot_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              sc[_i0].prot_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_mask0 = 1;
           int * mask = (int *) malloc(_len_mask0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_mask0; _i0++) {
             mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           iser_set_prot_checks(sc,mask);
           free(sc);
           free(mask);

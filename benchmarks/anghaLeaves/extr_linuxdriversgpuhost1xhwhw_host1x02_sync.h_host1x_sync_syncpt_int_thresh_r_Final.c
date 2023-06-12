@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline u32 host1x_sync_syncpt_int_thresh_r(unsigned
 	return 0x500 + id * REGISTER_STRIDE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int id = 100;
+        
           int benchRet = host1x_sync_syncpt_int_thresh_r(id);
           printf("%d\n", benchRet); 
         
@@ -94,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int id = 255;
+        
           int benchRet = host1x_sync_syncpt_int_thresh_r(id);
           printf("%d\n", benchRet); 
         
@@ -103,12 +100,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int id = 10;
+        
           int benchRet = host1x_sync_syncpt_int_thresh_r(id);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = host1x_sync_syncpt_int_thresh_r(id);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

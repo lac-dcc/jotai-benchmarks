@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static void enc_list_mtf(iconv_t _enc_list[3],iconv_t _enc
   }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,31 +84,66 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long _enc = 100;
+        
           int _len__enc_list0 = 3;
           long * _enc_list = (long *) malloc(_len__enc_list0*sizeof(long));
           for(int _i0 = 0; _i0 < _len__enc_list0; _i0++) {
             _enc_list[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          enc_list_mtf(_enc_list,_enc);
+          free(_enc_list);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long _enc = 255;
+        
+          int _len__enc_list0 = 65025;
+          long * _enc_list = (long *) malloc(_len__enc_list0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len__enc_list0; _i0++) {
+            _enc_list[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           enc_list_mtf(_enc_list,_enc);
           free(_enc_list);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long _enc = 10;
+        
           int _len__enc_list0 = 100;
           long * _enc_list = (long *) malloc(_len__enc_list0*sizeof(long));
           for(int _i0 = 0; _i0 < _len__enc_list0; _i0++) {
             _enc_list[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           enc_list_mtf(_enc_list,_enc);
           free(_enc_list);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long _enc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len__enc_list0 = 3;
+          long * _enc_list = (long *) malloc(_len__enc_list0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len__enc_list0; _i0++) {
+            _enc_list[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          enc_list_mtf(_enc_list,_enc);
+          free(_enc_list);
+        
+        break;
+    }
     default:
         usage();
         break;

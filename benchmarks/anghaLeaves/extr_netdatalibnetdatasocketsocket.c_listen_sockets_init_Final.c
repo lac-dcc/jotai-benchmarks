@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static inline void listen_sockets_init(LISTEN_SOCKETS *soc
     sockets->failed = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,10 +84,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_sockets0 = 1;
+          int _len_sockets0 = 65025;
           struct TYPE_3__ * sockets = (struct TYPE_3__ *) malloc(_len_sockets0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_sockets0; _i0++) {
               int _len_sockets__i0__fds0 = 1;
@@ -104,8 +100,8 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_sockets__i0__fds_types0; _j0++) {
             sockets[_i0].fds_types[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        sockets[_i0].failed = ((-2 * (next_i()%2)) + 1) * next_i();
-        sockets[_i0].opened = ((-2 * (next_i()%2)) + 1) * next_i();
+          sockets[_i0].failed = ((-2 * (next_i()%2)) + 1) * next_i();
+          sockets[_i0].opened = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_sockets__i0__fds_names0 = 1;
           sockets[_i0].fds_names = (int **) malloc(_len_sockets__i0__fds_names0*sizeof(int *));
           for(int _j0 = 0; _j0 < _len_sockets__i0__fds_names0; _j0++) {
@@ -115,7 +111,9 @@ int main(int argc, char *argv[]) {
               sockets[_i0].fds_names[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           }
+        
           listen_sockets_init(sockets);
           for(int _aux = 0; _aux < _len_sockets0; _aux++) {
           free(sockets[_aux].fds);
@@ -131,7 +129,96 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_sockets0 = 100;
+          struct TYPE_3__ * sockets = (struct TYPE_3__ *) malloc(_len_sockets0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_sockets0; _i0++) {
+              int _len_sockets__i0__fds0 = 1;
+          sockets[_i0].fds = (int *) malloc(_len_sockets__i0__fds0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_sockets__i0__fds0; _j0++) {
+            sockets[_i0].fds[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_sockets__i0__fds_types0 = 1;
+          sockets[_i0].fds_types = (int *) malloc(_len_sockets__i0__fds_types0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_sockets__i0__fds_types0; _j0++) {
+            sockets[_i0].fds_types[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          sockets[_i0].failed = ((-2 * (next_i()%2)) + 1) * next_i();
+          sockets[_i0].opened = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_sockets__i0__fds_names0 = 1;
+          sockets[_i0].fds_names = (int **) malloc(_len_sockets__i0__fds_names0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_sockets__i0__fds_names0; _j0++) {
+            int _len_sockets__i0__fds_names1 = 1;
+            sockets[_i0].fds_names[_j0] = (int *) malloc(_len_sockets__i0__fds_names1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_sockets__i0__fds_names1; _j1++) {
+              sockets[_i0].fds_names[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          }
+        
+          listen_sockets_init(sockets);
+          for(int _aux = 0; _aux < _len_sockets0; _aux++) {
+          free(sockets[_aux].fds);
+          }
+          for(int _aux = 0; _aux < _len_sockets0; _aux++) {
+          free(sockets[_aux].fds_types);
+          }
+          for(int _aux = 0; _aux < _len_sockets0; _aux++) {
+          free(*(sockets[_aux].fds_names));
+        free(sockets[_aux].fds_names);
+          }
+          free(sockets);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_sockets0 = 1;
+          struct TYPE_3__ * sockets = (struct TYPE_3__ *) malloc(_len_sockets0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_sockets0; _i0++) {
+              int _len_sockets__i0__fds0 = 1;
+          sockets[_i0].fds = (int *) malloc(_len_sockets__i0__fds0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_sockets__i0__fds0; _j0++) {
+            sockets[_i0].fds[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_sockets__i0__fds_types0 = 1;
+          sockets[_i0].fds_types = (int *) malloc(_len_sockets__i0__fds_types0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_sockets__i0__fds_types0; _j0++) {
+            sockets[_i0].fds_types[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          sockets[_i0].failed = ((-2 * (next_i()%2)) + 1) * next_i();
+          sockets[_i0].opened = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_sockets__i0__fds_names0 = 1;
+          sockets[_i0].fds_names = (int **) malloc(_len_sockets__i0__fds_names0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_sockets__i0__fds_names0; _j0++) {
+            int _len_sockets__i0__fds_names1 = 1;
+            sockets[_i0].fds_names[_j0] = (int *) malloc(_len_sockets__i0__fds_names1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_sockets__i0__fds_names1; _j1++) {
+              sockets[_i0].fds_names[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          }
+        
+          listen_sockets_init(sockets);
+          for(int _aux = 0; _aux < _len_sockets0; _aux++) {
+          free(sockets[_aux].fds);
+          }
+          for(int _aux = 0; _aux < _len_sockets0; _aux++) {
+          free(sockets[_aux].fds_types);
+          }
+          for(int _aux = 0; _aux < _len_sockets0; _aux++) {
+          free(*(sockets[_aux].fds_names));
+        free(sockets[_aux].fds_names);
+          }
+          free(sockets);
+        
+        break;
+    }
     default:
         usage();
         break;

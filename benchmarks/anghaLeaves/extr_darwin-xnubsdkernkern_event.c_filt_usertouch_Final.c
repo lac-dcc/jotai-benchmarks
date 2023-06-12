@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -94,12 +96,6 @@ filt_usertouch(struct knote *kn, struct kevent_internal_s *kev)
 	return (int)kn->kn_hookid;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -112,22 +108,151 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_kn0 = 65025;
+          struct knote * kn = (struct knote *) malloc(_len_kn0*sizeof(struct knote));
+          for(int _i0 = 0; _i0 < _len_kn0; _i0++) {
+              kn[_i0].kn_sfflags = ((-2 * (next_i()%2)) + 1) * next_i();
+          kn[_i0].kn_hookid = ((-2 * (next_i()%2)) + 1) * next_i();
+          kn[_i0].kn_sdata = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_kev0 = 65025;
+          struct kevent_internal_s * kev = (struct kevent_internal_s *) malloc(_len_kev0*sizeof(struct kevent_internal_s));
+          for(int _i0 = 0; _i0 < _len_kev0; _i0++) {
+              kev[_i0].fflags = ((-2 * (next_i()%2)) + 1) * next_i();
+          kev[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = filt_usertouch(kn,kev);
+          printf("%d\n", benchRet); 
+          free(kn);
+          free(kev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_kn0 = 100;
+          struct knote * kn = (struct knote *) malloc(_len_kn0*sizeof(struct knote));
+          for(int _i0 = 0; _i0 < _len_kn0; _i0++) {
+              kn[_i0].kn_sfflags = ((-2 * (next_i()%2)) + 1) * next_i();
+          kn[_i0].kn_hookid = ((-2 * (next_i()%2)) + 1) * next_i();
+          kn[_i0].kn_sdata = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_kev0 = 100;
+          struct kevent_internal_s * kev = (struct kevent_internal_s *) malloc(_len_kev0*sizeof(struct kevent_internal_s));
+          for(int _i0 = 0; _i0 < _len_kev0; _i0++) {
+              kev[_i0].fflags = ((-2 * (next_i()%2)) + 1) * next_i();
+          kev[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = filt_usertouch(kn,kev);
+          printf("%d\n", benchRet); 
+          free(kn);
+          free(kev);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           int _len_kn0 = 1;
           struct knote * kn = (struct knote *) malloc(_len_kn0*sizeof(struct knote));
           for(int _i0 = 0; _i0 < _len_kn0; _i0++) {
-            kn[_i0].kn_sfflags = ((-2 * (next_i()%2)) + 1) * next_i();
-        kn[_i0].kn_hookid = ((-2 * (next_i()%2)) + 1) * next_i();
-        kn[_i0].kn_sdata = ((-2 * (next_i()%2)) + 1) * next_i();
+              kn[_i0].kn_sfflags = ((-2 * (next_i()%2)) + 1) * next_i();
+          kn[_i0].kn_hookid = ((-2 * (next_i()%2)) + 1) * next_i();
+          kn[_i0].kn_sdata = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_kev0 = 1;
           struct kevent_internal_s * kev = (struct kevent_internal_s *) malloc(_len_kev0*sizeof(struct kevent_internal_s));
           for(int _i0 = 0; _i0 < _len_kev0; _i0++) {
-            kev[_i0].fflags = ((-2 * (next_i()%2)) + 1) * next_i();
-        kev[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+              kev[_i0].fflags = ((-2 * (next_i()%2)) + 1) * next_i();
+          kev[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = filt_usertouch(kn,kev);
           printf("%d\n", benchRet); 
           free(kn);

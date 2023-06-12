@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static inline int qtnf_is_frame_meta_magic_valid(struct qt
 	return m->magic_s == 0xAB && m->magic_e == 0xBA;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,15 +74,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_m0 = 65025;
+          struct qtnf_frame_meta_info * m = (struct qtnf_frame_meta_info *) malloc(_len_m0*sizeof(struct qtnf_frame_meta_info));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].magic_s = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].magic_e = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = qtnf_is_frame_meta_magic_valid(m);
+          printf("%d\n", benchRet); 
+          free(m);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_m0 = 100;
+          struct qtnf_frame_meta_info * m = (struct qtnf_frame_meta_info *) malloc(_len_m0*sizeof(struct qtnf_frame_meta_info));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].magic_s = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].magic_e = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = qtnf_is_frame_meta_magic_valid(m);
+          printf("%d\n", benchRet); 
+          free(m);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_m0 = 1;
           struct qtnf_frame_meta_info * m = (struct qtnf_frame_meta_info *) malloc(_len_m0*sizeof(struct qtnf_frame_meta_info));
           for(int _i0 = 0; _i0 < _len_m0; _i0++) {
-            m[_i0].magic_s = ((-2 * (next_i()%2)) + 1) * next_i();
-        m[_i0].magic_e = ((-2 * (next_i()%2)) + 1) * next_i();
+              m[_i0].magic_s = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].magic_e = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = qtnf_is_frame_meta_magic_valid(m);
           printf("%d\n", benchRet); 
           free(m);

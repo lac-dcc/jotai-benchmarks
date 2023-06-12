@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ __attribute__((used)) static inline void i40iw_clr_sd_entry(u32 idx, enum i40iw_
 	entry->cmd = (idx | (1 << I40E_PFHMC_SDCMD_PMSDWR_SHIFT) | (1 << 15));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,19 +91,82 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int idx = 100;
+        
           enum i40iw_sd_entry_type type = 0;
+        
           int _len_entry0 = 1;
           struct update_sd_entry * entry = (struct update_sd_entry *) malloc(_len_entry0*sizeof(struct update_sd_entry));
           for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
-            entry[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
-        entry[_i0].cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+              entry[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+          entry[_i0].cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           i40iw_clr_sd_entry(idx,type,entry);
           free(entry);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int idx = 255;
+        
+          enum i40iw_sd_entry_type type = 0;
+        
+          int _len_entry0 = 65025;
+          struct update_sd_entry * entry = (struct update_sd_entry *) malloc(_len_entry0*sizeof(struct update_sd_entry));
+          for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
+              entry[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+          entry[_i0].cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          i40iw_clr_sd_entry(idx,type,entry);
+          free(entry);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int idx = 10;
+        
+          enum i40iw_sd_entry_type type = 0;
+        
+          int _len_entry0 = 100;
+          struct update_sd_entry * entry = (struct update_sd_entry *) malloc(_len_entry0*sizeof(struct update_sd_entry));
+          for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
+              entry[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+          entry[_i0].cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          i40iw_clr_sd_entry(idx,type,entry);
+          free(entry);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          enum i40iw_sd_entry_type type = 0;
+        
+          int _len_entry0 = 1;
+          struct update_sd_entry * entry = (struct update_sd_entry *) malloc(_len_entry0*sizeof(struct update_sd_entry));
+          for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
+              entry[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+          entry[_i0].cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          i40iw_clr_sd_entry(idx,type,entry);
+          free(entry);
+        
+        break;
+    }
     default:
         usage();
         break;

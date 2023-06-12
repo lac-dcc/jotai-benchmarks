@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ u8 rtw_get_mgntframe_raid(struct adapter *adapter, unsigned char network_type)
 	return raid;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,11 +86,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned char network_type = 100;
+        
           int _len_adapter0 = 1;
           struct adapter * adapter = (struct adapter *) malloc(_len_adapter0*sizeof(struct adapter));
           for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
-            adapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              adapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = rtw_get_mgntframe_raid(adapter,network_type);
+          printf("%d\n", benchRet); 
+          free(adapter);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned char network_type = 255;
+        
+          int _len_adapter0 = 65025;
+          struct adapter * adapter = (struct adapter *) malloc(_len_adapter0*sizeof(struct adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = rtw_get_mgntframe_raid(adapter,network_type);
           printf("%d\n", benchRet); 
           free(adapter);
@@ -102,21 +119,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned char network_type = 10;
+        
           int _len_adapter0 = 100;
           struct adapter * adapter = (struct adapter *) malloc(_len_adapter0*sizeof(struct adapter));
           for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
-            adapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              adapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = rtw_get_mgntframe_raid(adapter,network_type);
           printf("%d\n", benchRet); 
           free(adapter);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned char network_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_adapter0 = 1;
+          struct adapter * adapter = (struct adapter *) malloc(_len_adapter0*sizeof(struct adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rtw_get_mgntframe_raid(adapter,network_type);
+          printf("%d\n", benchRet); 
+          free(adapter);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -60,12 +60,6 @@ __attribute__((used)) static size_t order_to_size(unsigned int order)
 	return (size_t)PAGE_SIZE << order;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,12 +76,12 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int order = 10;
+        
           unsigned long benchRet = order_to_size(order);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ nanotime_to_absolutetime(
 	*result = ((uint64_t)secs * NSEC_PER_SEC) + nanosecs;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,33 +86,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long secs = 100;
+        
           int nanosecs = 100;
+        
           int _len_result0 = 1;
           int * result = (int *) malloc(_len_result0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_result0; _i0++) {
             result[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          nanotime_to_absolutetime(secs,nanosecs,result);
+          free(result);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long secs = 255;
+        
+          int nanosecs = 255;
+        
+          int _len_result0 = 65025;
+          int * result = (int *) malloc(_len_result0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_result0; _i0++) {
+            result[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           nanotime_to_absolutetime(secs,nanosecs,result);
           free(result);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long secs = 10;
+        
           int nanosecs = 10;
+        
           int _len_result0 = 100;
           int * result = (int *) malloc(_len_result0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_result0; _i0++) {
             result[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           nanotime_to_absolutetime(secs,nanosecs,result);
           free(result);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long secs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int nanosecs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_result0 = 1;
+          int * result = (int *) malloc(_len_result0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_result0; _i0++) {
+            result[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          nanotime_to_absolutetime(secs,nanosecs,result);
+          free(result);
+        
+        break;
+    }
     default:
         usage();
         break;

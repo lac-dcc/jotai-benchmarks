@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static HRESULT stgmed_file_get_result(stgmed_obj_t *obj, D
     return bindf & BINDF_ASYNCHRONOUS ? MK_S_ASYNCHRONOUS : S_OK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,47 +80,196 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int bindf = 100;
+        
           int _len_obj0 = 1;
           int * obj = (int *) malloc(_len_obj0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_obj0; _i0++) {
             obj[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_result0 = 1;
           void ** result = (void **) malloc(_len_result0*sizeof(void *));
           for(int _i0 = 0; _i0 < _len_result0; _i0++) {
           }
+        
           int benchRet = stgmed_file_get_result(obj,bindf,result);
           printf("%d\n", benchRet); 
           free(obj);
           for(int i1 = 0; i1 < _len_result0; i1++) {
-            int _len_result1 = 1;
               }
           free(result);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int bindf = 255;
+        
+          int _len_obj0 = 65025;
+          int * obj = (int *) malloc(_len_obj0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_obj0; _i0++) {
+            obj[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_result0 = 65025;
+          void ** result = (void **) malloc(_len_result0*sizeof(void *));
+          for(int _i0 = 0; _i0 < _len_result0; _i0++) {
+          }
+        
+          int benchRet = stgmed_file_get_result(obj,bindf,result);
+          printf("%d\n", benchRet); 
+          free(obj);
+          for(int i1 = 0; i1 < _len_result0; i1++) {
+              }
+          free(result);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int bindf = 10;
+        
           int _len_obj0 = 100;
           int * obj = (int *) malloc(_len_obj0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_obj0; _i0++) {
             obj[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_result0 = 100;
           void ** result = (void **) malloc(_len_result0*sizeof(void *));
           for(int _i0 = 0; _i0 < _len_result0; _i0++) {
           }
+        
           int benchRet = stgmed_file_get_result(obj,bindf,result);
           printf("%d\n", benchRet); 
           free(obj);
           for(int i1 = 0; i1 < _len_result0; i1++) {
-            int _len_result1 = 1;
+              }
+          free(result);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int bindf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_obj0 = 1;
+          int * obj = (int *) malloc(_len_obj0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_obj0; _i0++) {
+            obj[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_result0 = 1;
+          void ** result = (void **) malloc(_len_result0*sizeof(void *));
+          for(int _i0 = 0; _i0 < _len_result0; _i0++) {
+          }
+        
+          int benchRet = stgmed_file_get_result(obj,bindf,result);
+          printf("%d\n", benchRet); 
+          free(obj);
+          for(int i1 = 0; i1 < _len_result0; i1++) {
               }
           free(result);
         

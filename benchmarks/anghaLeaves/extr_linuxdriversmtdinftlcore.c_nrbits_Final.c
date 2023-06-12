@@ -31,6 +31,7 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            big-arr-10x\n\
+       1            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static int nrbits(unsigned int val, int bitcount)
 	return total;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,13 +80,26 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int val = 10;
+        
           int bitcount = 10;
+        
           int benchRet = nrbits(val,bitcount);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 1:
+    {
+          unsigned int val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int bitcount = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = nrbits(val,bitcount);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

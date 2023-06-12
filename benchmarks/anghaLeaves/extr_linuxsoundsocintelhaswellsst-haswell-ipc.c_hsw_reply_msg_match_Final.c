@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static u64 hsw_reply_msg_match(u64 header, u64 *mask)
 	return header;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,11 +85,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int header = 100;
+        
           int _len_mask0 = 1;
           int * mask = (int *) malloc(_len_mask0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_mask0; _i0++) {
             mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = hsw_reply_msg_match(header,mask);
+          printf("%d\n", benchRet); 
+          free(mask);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int header = 255;
+        
+          int _len_mask0 = 65025;
+          int * mask = (int *) malloc(_len_mask0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mask0; _i0++) {
+            mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = hsw_reply_msg_match(header,mask);
           printf("%d\n", benchRet); 
           free(mask);
@@ -101,21 +116,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int header = 10;
+        
           int _len_mask0 = 100;
           int * mask = (int *) malloc(_len_mask0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_mask0; _i0++) {
             mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = hsw_reply_msg_match(header,mask);
           printf("%d\n", benchRet); 
           free(mask);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int header = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_mask0 = 1;
+          int * mask = (int *) malloc(_len_mask0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mask0; _i0++) {
+            mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = hsw_reply_msg_match(header,mask);
+          printf("%d\n", benchRet); 
+          free(mask);
+        
+        break;
+    }
     default:
         usage();
         break;

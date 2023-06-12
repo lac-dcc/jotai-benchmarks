@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ qos_latency_policy_package(uint32_t qv) {
 	return (qv == LATENCY_QOS_TIER_UNSPECIFIED) ? LATENCY_QOS_TIER_UNSPECIFIED : ((0xFF << 16) | qv);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int qv = 100;
+        
           int benchRet = qos_latency_policy_package(qv);
           printf("%d\n", benchRet); 
         
@@ -94,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int qv = 255;
+        
           int benchRet = qos_latency_policy_package(qv);
           printf("%d\n", benchRet); 
         
@@ -103,12 +100,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int qv = 10;
+        
           int benchRet = qos_latency_policy_package(qv);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int qv = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = qos_latency_policy_package(qv);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

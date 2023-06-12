@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ ut64 r_bin_te_get_stripped_delta(struct r_bin_te_obj_t *bin) {
 	return 0LL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,18 +80,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_bin0 = 65025;
+          struct r_bin_te_obj_t * bin = (struct r_bin_te_obj_t *) malloc(_len_bin0*sizeof(struct r_bin_te_obj_t));
+          for(int _i0 = 0; _i0 < _len_bin0; _i0++) {
+              int _len_bin__i0__header0 = 1;
+          bin[_i0].header = (struct TYPE_2__ *) malloc(_len_bin__i0__header0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_bin__i0__header0; _j0++) {
+              bin[_i0].header->StrippedSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          long long benchRet = r_bin_te_get_stripped_delta(bin);
+          printf("%lld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_bin0; _aux++) {
+          free(bin[_aux].header);
+          }
+          free(bin);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_bin0 = 100;
+          struct r_bin_te_obj_t * bin = (struct r_bin_te_obj_t *) malloc(_len_bin0*sizeof(struct r_bin_te_obj_t));
+          for(int _i0 = 0; _i0 < _len_bin0; _i0++) {
+              int _len_bin__i0__header0 = 1;
+          bin[_i0].header = (struct TYPE_2__ *) malloc(_len_bin__i0__header0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_bin__i0__header0; _j0++) {
+              bin[_i0].header->StrippedSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          long long benchRet = r_bin_te_get_stripped_delta(bin);
+          printf("%lld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_bin0; _aux++) {
+          free(bin[_aux].header);
+          }
+          free(bin);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_bin0 = 1;
           struct r_bin_te_obj_t * bin = (struct r_bin_te_obj_t *) malloc(_len_bin0*sizeof(struct r_bin_te_obj_t));
           for(int _i0 = 0; _i0 < _len_bin0; _i0++) {
               int _len_bin__i0__header0 = 1;
           bin[_i0].header = (struct TYPE_2__ *) malloc(_len_bin__i0__header0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_bin__i0__header0; _j0++) {
-            bin[_i0].header->StrippedSize = ((-2 * (next_i()%2)) + 1) * next_i();
+              bin[_i0].header->StrippedSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           long long benchRet = r_bin_te_get_stripped_delta(bin);
           printf("%lld\n", benchRet); 
           for(int _aux = 0; _aux < _len_bin0; _aux++) {

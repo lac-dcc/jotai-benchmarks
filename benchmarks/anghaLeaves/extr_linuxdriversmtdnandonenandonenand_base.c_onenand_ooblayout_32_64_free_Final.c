@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +79,6 @@ __attribute__((used)) static int onenand_ooblayout_32_64_free(struct mtd_info *m
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,21 +91,202 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int section = 100;
+        
           int _len_mtd0 = 1;
           struct mtd_info * mtd = (struct mtd_info *) malloc(_len_mtd0*sizeof(struct mtd_info));
           for(int _i0 = 0; _i0 < _len_mtd0; _i0++) {
-            mtd[_i0].oobsize = ((-2 * (next_i()%2)) + 1) * next_i();
+              mtd[_i0].oobsize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_oobregion0 = 1;
           struct mtd_oob_region * oobregion = (struct mtd_oob_region *) malloc(_len_oobregion0*sizeof(struct mtd_oob_region));
           for(int _i0 = 0; _i0 < _len_oobregion0; _i0++) {
-            oobregion[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        oobregion[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+              oobregion[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          oobregion[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = onenand_ooblayout_32_64_free(mtd,section,oobregion);
+          printf("%d\n", benchRet); 
+          free(mtd);
+          free(oobregion);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int section = 255;
+        
+          int _len_mtd0 = 65025;
+          struct mtd_info * mtd = (struct mtd_info *) malloc(_len_mtd0*sizeof(struct mtd_info));
+          for(int _i0 = 0; _i0 < _len_mtd0; _i0++) {
+              mtd[_i0].oobsize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_oobregion0 = 65025;
+          struct mtd_oob_region * oobregion = (struct mtd_oob_region *) malloc(_len_oobregion0*sizeof(struct mtd_oob_region));
+          for(int _i0 = 0; _i0 < _len_oobregion0; _i0++) {
+              oobregion[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          oobregion[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = onenand_ooblayout_32_64_free(mtd,section,oobregion);
+          printf("%d\n", benchRet); 
+          free(mtd);
+          free(oobregion);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int section = 10;
+        
+          int _len_mtd0 = 100;
+          struct mtd_info * mtd = (struct mtd_info *) malloc(_len_mtd0*sizeof(struct mtd_info));
+          for(int _i0 = 0; _i0 < _len_mtd0; _i0++) {
+              mtd[_i0].oobsize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_oobregion0 = 100;
+          struct mtd_oob_region * oobregion = (struct mtd_oob_region *) malloc(_len_oobregion0*sizeof(struct mtd_oob_region));
+          for(int _i0 = 0; _i0 < _len_oobregion0; _i0++) {
+              oobregion[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          oobregion[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = onenand_ooblayout_32_64_free(mtd,section,oobregion);
+          printf("%d\n", benchRet); 
+          free(mtd);
+          free(oobregion);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int section = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_mtd0 = 1;
+          struct mtd_info * mtd = (struct mtd_info *) malloc(_len_mtd0*sizeof(struct mtd_info));
+          for(int _i0 = 0; _i0 < _len_mtd0; _i0++) {
+              mtd[_i0].oobsize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_oobregion0 = 1;
+          struct mtd_oob_region * oobregion = (struct mtd_oob_region *) malloc(_len_oobregion0*sizeof(struct mtd_oob_region));
+          for(int _i0 = 0; _i0 < _len_oobregion0; _i0++) {
+              oobregion[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          oobregion[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = onenand_ooblayout_32_64_free(mtd,section,oobregion);
           printf("%d\n", benchRet); 
           free(mtd);

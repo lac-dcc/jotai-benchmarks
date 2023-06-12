@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static void dwc_otg_set_uninitialized(int32_t * p, int siz
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,21 +77,54 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int size = 10;
-          int _len_p0 = 100;
+          int size = 255;
+        
+          int _len_p0 = 65025;
           int * p = (int *) malloc(_len_p0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
             p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           dwc_otg_set_uninitialized(p,size);
           free(p);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int size = 10;
+        
+          int _len_p0 = 100;
+          int * p = (int *) malloc(_len_p0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+            p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          dwc_otg_set_uninitialized(p,size);
+          free(p);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_p0 = 1;
+          int * p = (int *) malloc(_len_p0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+            p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          dwc_otg_set_uninitialized(p,size);
+          free(p);
+        
+        break;
+    }
     default:
         usage();
         break;

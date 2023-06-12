@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +79,6 @@ TIFFInitDumpMode(TIFF* tif, int scheme)
 	return (1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,16 +91,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int scheme = 100;
+        
           int _len_tif0 = 1;
           struct TYPE_3__ * tif = (struct TYPE_3__ *) malloc(_len_tif0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_tif0; _i0++) {
-            tif[_i0].tif_seek = ((-2 * (next_i()%2)) + 1) * next_i();
-        tif[_i0].tif_fixuptags = ((-2 * (next_i()%2)) + 1) * next_i();
+              tif[_i0].tif_seek = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_fixuptags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = TIFFInitDumpMode(tif,scheme);
+          printf("%d\n", benchRet); 
+          free(tif);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int scheme = 255;
+        
+          int _len_tif0 = 65025;
+          struct TYPE_3__ * tif = (struct TYPE_3__ *) malloc(_len_tif0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_tif0; _i0++) {
+              tif[_i0].tif_seek = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_fixuptags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = TIFFInitDumpMode(tif,scheme);
+          printf("%d\n", benchRet); 
+          free(tif);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int scheme = 10;
+        
+          int _len_tif0 = 100;
+          struct TYPE_3__ * tif = (struct TYPE_3__ *) malloc(_len_tif0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_tif0; _i0++) {
+              tif[_i0].tif_seek = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_fixuptags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = TIFFInitDumpMode(tif,scheme);
+          printf("%d\n", benchRet); 
+          free(tif);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int scheme = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_tif0 = 1;
+          struct TYPE_3__ * tif = (struct TYPE_3__ *) malloc(_len_tif0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_tif0; _i0++) {
+              tif[_i0].tif_seek = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_fixuptags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = TIFFInitDumpMode(tif,scheme);
           printf("%d\n", benchRet); 
           free(tif);

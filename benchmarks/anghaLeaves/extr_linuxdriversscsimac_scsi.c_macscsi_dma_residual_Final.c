@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static int macscsi_dma_residual(struct NCR5380_hostdata *h
 	return hostdata->pdma_residual;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_hostdata0 = 1;
+          int _len_hostdata0 = 65025;
           struct NCR5380_hostdata * hostdata = (struct NCR5380_hostdata *) malloc(_len_hostdata0*sizeof(struct NCR5380_hostdata));
           for(int _i0 = 0; _i0 < _len_hostdata0; _i0++) {
-            hostdata[_i0].pdma_residual = ((-2 * (next_i()%2)) + 1) * next_i();
+              hostdata[_i0].pdma_residual = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = macscsi_dma_residual(hostdata);
           printf("%d\n", benchRet); 
           free(hostdata);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_hostdata0 = 100;
           struct NCR5380_hostdata * hostdata = (struct NCR5380_hostdata *) malloc(_len_hostdata0*sizeof(struct NCR5380_hostdata));
           for(int _i0 = 0; _i0 < _len_hostdata0; _i0++) {
-            hostdata[_i0].pdma_residual = ((-2 * (next_i()%2)) + 1) * next_i();
+              hostdata[_i0].pdma_residual = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = macscsi_dma_residual(hostdata);
           printf("%d\n", benchRet); 
           free(hostdata);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_hostdata0 = 1;
+          struct NCR5380_hostdata * hostdata = (struct NCR5380_hostdata *) malloc(_len_hostdata0*sizeof(struct NCR5380_hostdata));
+          for(int _i0 = 0; _i0 < _len_hostdata0; _i0++) {
+              hostdata[_i0].pdma_residual = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = macscsi_dma_residual(hostdata);
+          printf("%d\n", benchRet); 
+          free(hostdata);
+        
+        break;
+    }
     default:
         usage();
         break;

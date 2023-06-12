@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -88,12 +89,6 @@ void fbtft_expand_debug_value(unsigned long *debug)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,14 +101,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_debug0 = 1;
+          int _len_debug0 = 65025;
           unsigned long * debug = (unsigned long *) malloc(_len_debug0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_debug0; _i0++) {
             debug[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           fbtft_expand_debug_value(debug);
           free(debug);
         
@@ -127,12 +123,26 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_debug0; _i0++) {
             debug[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           fbtft_expand_debug_value(debug);
           free(debug);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_debug0 = 1;
+          unsigned long * debug = (unsigned long *) malloc(_len_debug0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_debug0; _i0++) {
+            debug[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          fbtft_expand_debug_value(debug);
+          free(debug);
+        
+        break;
+    }
     default:
         usage();
         break;

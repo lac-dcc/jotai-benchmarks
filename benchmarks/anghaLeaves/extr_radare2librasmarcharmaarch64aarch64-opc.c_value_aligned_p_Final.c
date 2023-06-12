@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ value_aligned_p (int64_t value, int align)
   return (value % align) == 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,7 +80,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int value = 100;
+        
           int align = 100;
+        
           int benchRet = value_aligned_p(value,align);
           printf("%d\n", benchRet); 
         
@@ -95,7 +92,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int value = 255;
+        
           int align = 255;
+        
           int benchRet = value_aligned_p(value,align);
           printf("%d\n", benchRet); 
         
@@ -105,13 +104,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int value = 10;
+        
           int align = 10;
+        
           int benchRet = value_aligned_p(value,align);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int align = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = value_aligned_p(value,align);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

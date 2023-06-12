@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static void ar9003_hw_set_radar_conf(struct ath_hw *ah)
 	conf->radar_inband = 8;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,21 +84,141 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_ah0 = 65025;
+          struct ath_hw * ah = (struct ath_hw *) malloc(_len_ah0*sizeof(struct ath_hw));
+          for(int _i0 = 0; _i0 < _len_ah0; _i0++) {
+              ah[_i0].radar_conf.fir_power = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].radar_conf.pulse_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].radar_conf.pulse_rssi = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].radar_conf.pulse_inband = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].radar_conf.pulse_maxlen = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].radar_conf.pulse_inband_step = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].radar_conf.radar_inband = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].radar_conf.radar_rssi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          ar9003_hw_set_radar_conf(ah);
+          free(ah);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_ah0 = 100;
+          struct ath_hw * ah = (struct ath_hw *) malloc(_len_ah0*sizeof(struct ath_hw));
+          for(int _i0 = 0; _i0 < _len_ah0; _i0++) {
+              ah[_i0].radar_conf.fir_power = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].radar_conf.pulse_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].radar_conf.pulse_rssi = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].radar_conf.pulse_inband = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].radar_conf.pulse_maxlen = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].radar_conf.pulse_inband_step = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].radar_conf.radar_inband = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].radar_conf.radar_rssi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          ar9003_hw_set_radar_conf(ah);
+          free(ah);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_ah0 = 1;
           struct ath_hw * ah = (struct ath_hw *) malloc(_len_ah0*sizeof(struct ath_hw));
           for(int _i0 = 0; _i0 < _len_ah0; _i0++) {
-            ah[_i0].radar_conf.fir_power = ((-2 * (next_i()%2)) + 1) * next_i();
-        ah[_i0].radar_conf.pulse_height = ((-2 * (next_i()%2)) + 1) * next_i();
-        ah[_i0].radar_conf.pulse_rssi = ((-2 * (next_i()%2)) + 1) * next_i();
-        ah[_i0].radar_conf.pulse_inband = ((-2 * (next_i()%2)) + 1) * next_i();
-        ah[_i0].radar_conf.pulse_maxlen = ((-2 * (next_i()%2)) + 1) * next_i();
-        ah[_i0].radar_conf.pulse_inband_step = ((-2 * (next_i()%2)) + 1) * next_i();
-        ah[_i0].radar_conf.radar_inband = ((-2 * (next_i()%2)) + 1) * next_i();
-        ah[_i0].radar_conf.radar_rssi = ((-2 * (next_i()%2)) + 1) * next_i();
+              ah[_i0].radar_conf.fir_power = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].radar_conf.pulse_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].radar_conf.pulse_rssi = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].radar_conf.pulse_inband = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].radar_conf.pulse_maxlen = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].radar_conf.pulse_inband_step = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].radar_conf.radar_inband = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].radar_conf.radar_rssi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           ar9003_hw_set_radar_conf(ah);
           free(ah);
         

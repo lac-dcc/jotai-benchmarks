@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -82,12 +83,6 @@ __attribute__((used)) static void check_status(adns_status st) {
   if (rcode < minrcode) rcode= minrcode;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,26 +95,133 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 93
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 51
+          // ------------------------------- 
+          // static_instructions_O2 : 29
+          // dynamic_instructions_O2 : 29
+          // ------------------------------- 
+          // static_instructions_O3 : 29
+          // dynamic_instructions_O3 : 29
+          // ------------------------------- 
+          // static_instructions_Ofast : 29
+          // dynamic_instructions_Ofast : 29
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 50
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 58
+          // ------------------------------- 
+
           const long st = 100;
+        
           check_status(st);
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 113
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 52
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 30
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 30
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 51
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 59
+          // ------------------------------- 
+
           const long st = 255;
+        
           check_status(st);
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 93
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 51
+          // ------------------------------- 
+          // static_instructions_O2 : 29
+          // dynamic_instructions_O2 : 29
+          // ------------------------------- 
+          // static_instructions_O3 : 29
+          // dynamic_instructions_O3 : 29
+          // ------------------------------- 
+          // static_instructions_Ofast : 29
+          // dynamic_instructions_Ofast : 29
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 50
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 58
+          // ------------------------------- 
+
           const long st = 10;
+        
+          check_status(st);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 93
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 51
+          // ------------------------------- 
+          // static_instructions_O2 : 29
+          // dynamic_instructions_O2 : 29
+          // ------------------------------- 
+          // static_instructions_O3 : 29
+          // dynamic_instructions_O3 : 29
+          // ------------------------------- 
+          // static_instructions_Ofast : 29
+          // dynamic_instructions_Ofast : 29
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 50
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 58
+          // ------------------------------- 
+
+          const long st = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           check_status(st);
         
         break;

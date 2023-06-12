@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static int siox_match(struct device *dev, struct device_dr
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,10 +80,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dev0 = 1;
+          int _len_dev0 = 65025;
           struct device * dev = (struct device *) malloc(_len_dev0*sizeof(struct device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
               int _len_dev__i0__type0 = 1;
@@ -95,12 +91,16 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_dev__i0__type0; _j0++) {
             dev[_i0].type[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
-          int _len_drv0 = 1;
+        
+          int _len_drv0 = 65025;
           struct device_driver * drv = (struct device_driver *) malloc(_len_drv0*sizeof(struct device_driver));
           for(int _i0 = 0; _i0 < _len_drv0; _i0++) {
-            drv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              drv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = siox_match(dev,drv);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_dev0; _aux++) {
@@ -111,7 +111,68 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dev0 = 100;
+          struct device * dev = (struct device *) malloc(_len_dev0*sizeof(struct device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              int _len_dev__i0__type0 = 1;
+          dev[_i0].type = (int *) malloc(_len_dev__i0__type0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_dev__i0__type0; _j0++) {
+            dev[_i0].type[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_drv0 = 100;
+          struct device_driver * drv = (struct device_driver *) malloc(_len_drv0*sizeof(struct device_driver));
+          for(int _i0 = 0; _i0 < _len_drv0; _i0++) {
+              drv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = siox_match(dev,drv);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(dev[_aux].type);
+          }
+          free(dev);
+          free(drv);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dev0 = 1;
+          struct device * dev = (struct device *) malloc(_len_dev0*sizeof(struct device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              int _len_dev__i0__type0 = 1;
+          dev[_i0].type = (int *) malloc(_len_dev__i0__type0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_dev__i0__type0; _j0++) {
+            dev[_i0].type[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_drv0 = 1;
+          struct device_driver * drv = (struct device_driver *) malloc(_len_drv0*sizeof(struct device_driver));
+          for(int _i0 = 0; _i0 < _len_drv0; _i0++) {
+              drv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = siox_match(dev,drv);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(dev[_aux].type);
+          }
+          free(dev);
+          free(drv);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ wl18xx_set_tx_desc_blocks(struct wl1271 *wl, struct wl1271_tx_hw_descr *desc,
 	desc->wl18xx_mem.total_mem_blocks = blks;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,24 +85,114 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int blks = 100;
+        
           int spare_blks = 100;
+        
           int _len_wl0 = 1;
           struct wl1271 * wl = (struct wl1271 *) malloc(_len_wl0*sizeof(struct wl1271));
           for(int _i0 = 0; _i0 < _len_wl0; _i0++) {
-            wl[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              wl[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_desc0 = 1;
           struct wl1271_tx_hw_descr * desc = (struct wl1271_tx_hw_descr *) malloc(_len_desc0*sizeof(struct wl1271_tx_hw_descr));
           for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
-            desc[_i0].wl18xx_mem.total_mem_blocks = ((-2 * (next_i()%2)) + 1) * next_i();
+              desc[_i0].wl18xx_mem.total_mem_blocks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           wl18xx_set_tx_desc_blocks(wl,desc,blks,spare_blks);
           free(wl);
           free(desc);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int blks = 255;
+        
+          int spare_blks = 255;
+        
+          int _len_wl0 = 65025;
+          struct wl1271 * wl = (struct wl1271 *) malloc(_len_wl0*sizeof(struct wl1271));
+          for(int _i0 = 0; _i0 < _len_wl0; _i0++) {
+              wl[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_desc0 = 65025;
+          struct wl1271_tx_hw_descr * desc = (struct wl1271_tx_hw_descr *) malloc(_len_desc0*sizeof(struct wl1271_tx_hw_descr));
+          for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
+              desc[_i0].wl18xx_mem.total_mem_blocks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          wl18xx_set_tx_desc_blocks(wl,desc,blks,spare_blks);
+          free(wl);
+          free(desc);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int blks = 10;
+        
+          int spare_blks = 10;
+        
+          int _len_wl0 = 100;
+          struct wl1271 * wl = (struct wl1271 *) malloc(_len_wl0*sizeof(struct wl1271));
+          for(int _i0 = 0; _i0 < _len_wl0; _i0++) {
+              wl[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_desc0 = 100;
+          struct wl1271_tx_hw_descr * desc = (struct wl1271_tx_hw_descr *) malloc(_len_desc0*sizeof(struct wl1271_tx_hw_descr));
+          for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
+              desc[_i0].wl18xx_mem.total_mem_blocks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          wl18xx_set_tx_desc_blocks(wl,desc,blks,spare_blks);
+          free(wl);
+          free(desc);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int blks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int spare_blks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_wl0 = 1;
+          struct wl1271 * wl = (struct wl1271 *) malloc(_len_wl0*sizeof(struct wl1271));
+          for(int _i0 = 0; _i0 < _len_wl0; _i0++) {
+              wl[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_desc0 = 1;
+          struct wl1271_tx_hw_descr * desc = (struct wl1271_tx_hw_descr *) malloc(_len_desc0*sizeof(struct wl1271_tx_hw_descr));
+          for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
+              desc[_i0].wl18xx_mem.total_mem_blocks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          wl18xx_set_tx_desc_blocks(wl,desc,blks,spare_blks);
+          free(wl);
+          free(desc);
+        
+        break;
+    }
     default:
         usage();
         break;

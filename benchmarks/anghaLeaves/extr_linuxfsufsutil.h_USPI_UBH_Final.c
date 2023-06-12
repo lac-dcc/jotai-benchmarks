@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline struct ufs_buffer_head *USPI_UBH(struct ufs_
 	return &spi->s_ubh;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_spi0 = 1;
+          int _len_spi0 = 65025;
           struct ufs_sb_private_info * spi = (struct ufs_sb_private_info *) malloc(_len_spi0*sizeof(struct ufs_sb_private_info));
           for(int _i0 = 0; _i0 < _len_spi0; _i0++) {
-            spi[_i0].s_ubh.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              spi[_i0].s_ubh.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           struct ufs_buffer_head * benchRet = USPI_UBH(spi);
           printf("%d\n", (*benchRet).dummy);
           free(spi);
@@ -100,15 +98,34 @@ int main(int argc, char *argv[]) {
           int _len_spi0 = 100;
           struct ufs_sb_private_info * spi = (struct ufs_sb_private_info *) malloc(_len_spi0*sizeof(struct ufs_sb_private_info));
           for(int _i0 = 0; _i0 < _len_spi0; _i0++) {
-            spi[_i0].s_ubh.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              spi[_i0].s_ubh.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           struct ufs_buffer_head * benchRet = USPI_UBH(spi);
           printf("%d\n", (*benchRet).dummy);
           free(spi);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_spi0 = 1;
+          struct ufs_sb_private_info * spi = (struct ufs_sb_private_info *) malloc(_len_spi0*sizeof(struct ufs_sb_private_info));
+          for(int _i0 = 0; _i0 < _len_spi0; _i0++) {
+              spi[_i0].s_ubh.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          struct ufs_buffer_head * benchRet = USPI_UBH(spi);
+          printf("%d\n", (*benchRet).dummy);
+          free(spi);
+        
+        break;
+    }
     default:
         usage();
         break;

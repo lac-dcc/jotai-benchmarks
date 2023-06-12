@@ -30,8 +30,10 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
-       1            linked\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            linked\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ xfs_dir2_leaf_ents_p(struct xfs_dir2_leaf *lp)
 	return lp->__ents;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,18 +77,45 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_lp0 = 1;
+          int _len_lp0 = 65025;
           struct xfs_dir2_leaf * lp = (struct xfs_dir2_leaf *) malloc(_len_lp0*sizeof(struct xfs_dir2_leaf));
           for(int _i0 = 0; _i0 < _len_lp0; _i0++) {
               int _len_lp__i0____ents0 = 1;
           lp[_i0].__ents = (struct xfs_dir2_leaf_entry *) malloc(_len_lp__i0____ents0*sizeof(struct xfs_dir2_leaf_entry));
           for(int _j0 = 0; _j0 < _len_lp__i0____ents0; _j0++) {
-            lp[_i0].__ents->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              lp[_i0].__ents->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          struct xfs_dir2_leaf_entry * benchRet = xfs_dir2_leaf_ents_p(lp);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_lp0; _aux++) {
+          free(lp[_aux].__ents);
+          }
+          free(lp);
+        
+        break;
+    }
+    // big-arr-10x
+    case 1:
+    {
+          int _len_lp0 = 100;
+          struct xfs_dir2_leaf * lp = (struct xfs_dir2_leaf *) malloc(_len_lp0*sizeof(struct xfs_dir2_leaf));
+          for(int _i0 = 0; _i0 < _len_lp0; _i0++) {
+              int _len_lp__i0____ents0 = 1;
+          lp[_i0].__ents = (struct xfs_dir2_leaf_entry *) malloc(_len_lp__i0____ents0*sizeof(struct xfs_dir2_leaf_entry));
+          for(int _j0 = 0; _j0 < _len_lp__i0____ents0; _j0++) {
+              lp[_i0].__ents->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           struct xfs_dir2_leaf_entry * benchRet = xfs_dir2_leaf_ents_p(lp);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_lp0; _aux++) {
@@ -103,7 +126,7 @@ int main(int argc, char *argv[]) {
         break;
     }
     // linked
-    case 1:
+    case 2:
     {
           int _len_lp0 = 1;
           struct xfs_dir2_leaf * lp = (struct xfs_dir2_leaf *) malloc(_len_lp0*sizeof(struct xfs_dir2_leaf));
@@ -111,9 +134,12 @@ int main(int argc, char *argv[]) {
               int _len_lp__i0____ents0 = 1;
           lp[_i0].__ents = (struct xfs_dir2_leaf_entry *) malloc(_len_lp__i0____ents0*sizeof(struct xfs_dir2_leaf_entry));
           for(int _j0 = 0; _j0 < _len_lp__i0____ents0; _j0++) {
-            lp[_i0].__ents->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              lp[_i0].__ents->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct xfs_dir2_leaf_entry * benchRet = xfs_dir2_leaf_ents_p(lp);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_lp0; _aux++) {
@@ -123,7 +149,30 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int _len_lp0 = 1;
+          struct xfs_dir2_leaf * lp = (struct xfs_dir2_leaf *) malloc(_len_lp0*sizeof(struct xfs_dir2_leaf));
+          for(int _i0 = 0; _i0 < _len_lp0; _i0++) {
+              int _len_lp__i0____ents0 = 1;
+          lp[_i0].__ents = (struct xfs_dir2_leaf_entry *) malloc(_len_lp__i0____ents0*sizeof(struct xfs_dir2_leaf_entry));
+          for(int _j0 = 0; _j0 < _len_lp__i0____ents0; _j0++) {
+              lp[_i0].__ents->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct xfs_dir2_leaf_entry * benchRet = xfs_dir2_leaf_ents_p(lp);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_lp0; _aux++) {
+          free(lp[_aux].__ents);
+          }
+          free(lp);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +77,6 @@ __attribute__((used)) static u32 qeth_l3_get_setdelip_flags(struct qeth_ipaddr *
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,16 +89,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int set = 100;
+        
           int _len_addr0 = 1;
           struct qeth_ipaddr * addr = (struct qeth_ipaddr *) malloc(_len_addr0*sizeof(struct qeth_ipaddr));
           for(int _i0 = 0; _i0 < _len_addr0; _i0++) {
-            addr[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        addr[_i0].ipato = ((-2 * (next_i()%2)) + 1) * next_i();
+              addr[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          addr[_i0].ipato = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = qeth_l3_get_setdelip_flags(addr,set);
+          printf("%d\n", benchRet); 
+          free(addr);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int set = 255;
+        
+          int _len_addr0 = 65025;
+          struct qeth_ipaddr * addr = (struct qeth_ipaddr *) malloc(_len_addr0*sizeof(struct qeth_ipaddr));
+          for(int _i0 = 0; _i0 < _len_addr0; _i0++) {
+              addr[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          addr[_i0].ipato = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = qeth_l3_get_setdelip_flags(addr,set);
+          printf("%d\n", benchRet); 
+          free(addr);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int set = 10;
+        
+          int _len_addr0 = 100;
+          struct qeth_ipaddr * addr = (struct qeth_ipaddr *) malloc(_len_addr0*sizeof(struct qeth_ipaddr));
+          for(int _i0 = 0; _i0 < _len_addr0; _i0++) {
+              addr[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          addr[_i0].ipato = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = qeth_l3_get_setdelip_flags(addr,set);
+          printf("%d\n", benchRet); 
+          free(addr);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int set = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_addr0 = 1;
+          struct qeth_ipaddr * addr = (struct qeth_ipaddr *) malloc(_len_addr0*sizeof(struct qeth_ipaddr));
+          for(int _i0 = 0; _i0 < _len_addr0; _i0++) {
+              addr[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          addr[_i0].ipato = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = qeth_l3_get_setdelip_flags(addr,set);
           printf("%d\n", benchRet); 
           free(addr);

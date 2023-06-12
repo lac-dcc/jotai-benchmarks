@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ calc_speed(unsigned short *spds, int num, unsigned short dflt)
 	return speed;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,16 +83,128 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 3591
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 1543
+          // ------------------------------- 
+          // static_instructions_O2 : 73
+          // dynamic_instructions_O2 : 259
+          // ------------------------------- 
+          // static_instructions_O3 : 73
+          // dynamic_instructions_O3 : 259
+          // ------------------------------- 
+          // static_instructions_Ofast : 73
+          // dynamic_instructions_Ofast : 259
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 1541
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 1797
+          // ------------------------------- 
+
+          int num = 255;
+        
+          unsigned short dflt = 255;
+        
+          int _len_spds0 = 65025;
+          unsigned short * spds = (unsigned short *) malloc(_len_spds0*sizeof(unsigned short));
+          for(int _i0 = 0; _i0 < _len_spds0; _i0++) {
+            spds[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned short benchRet = calc_speed(spds,num,dflt);
+          printf("%hu\n", benchRet); 
+          free(spds);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 161
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 73
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 74
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 74
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 74
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 71
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 82
+          // ------------------------------- 
+
           int num = 10;
+        
           unsigned short dflt = 10;
+        
           int _len_spds0 = 100;
           unsigned short * spds = (unsigned short *) malloc(_len_spds0*sizeof(unsigned short));
           for(int _i0 = 0; _i0 < _len_spds0; _i0++) {
             spds[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          unsigned short benchRet = calc_speed(spds,num,dflt);
+          printf("%hu\n", benchRet); 
+          free(spds);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned short dflt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_spds0 = 1;
+          unsigned short * spds = (unsigned short *) malloc(_len_spds0*sizeof(unsigned short));
+          for(int _i0 = 0; _i0 < _len_spds0; _i0++) {
+            spds[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           unsigned short benchRet = calc_speed(spds,num,dflt);
           printf("%hu\n", benchRet); 
           free(spds);

@@ -31,7 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ __attribute__((used)) static inline void combine_ltree_x (list_id_t list_id, obj
 #endif
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,31 +83,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           long list_id = 100;
+        
           long object_id = 100;
+        
           int _len_ltx0 = 1;
           unsigned int * ltx = (unsigned int *) malloc(_len_ltx0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_ltx0; _i0++) {
             ltx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           combine_ltree_x(list_id,object_id,ltx);
           free(ltx);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          long list_id = 255;
+        
+          long object_id = 255;
+        
+          int _len_ltx0 = 65025;
+          unsigned int * ltx = (unsigned int *) malloc(_len_ltx0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_ltx0; _i0++) {
+            ltx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          combine_ltree_x(list_id,object_id,ltx);
+          free(ltx);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           long list_id = 10;
+        
           long object_id = 10;
+        
           int _len_ltx0 = 100;
           unsigned int * ltx = (unsigned int *) malloc(_len_ltx0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_ltx0; _i0++) {
             ltx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           combine_ltree_x(list_id,object_id,ltx);
           free(ltx);
         

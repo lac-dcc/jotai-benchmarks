@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static uint32_t phar_tar_checksum(char *buf, size_t len) /
 	return sum;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,15 +80,81 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 3074
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 1029
+          // ------------------------------- 
+          // static_instructions_O2 : 70
+          // dynamic_instructions_O2 : 204
+          // ------------------------------- 
+          // static_instructions_O3 : 71
+          // dynamic_instructions_O3 : 205
+          // ------------------------------- 
+          // static_instructions_Ofast : 71
+          // dynamic_instructions_Ofast : 205
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 1029
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 1283
+          // ------------------------------- 
+
+          unsigned long len = 255;
+        
+          int _len_buf0 = 65025;
+          char * buf = (char *) malloc(_len_buf0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned char benchRet = phar_tar_checksum(buf,len);
+          printf("%c\n", (benchRet %26) + 'a'); 
+          free(buf);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 134
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 49
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 52
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 52
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 52
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 49
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 58
+          // ------------------------------- 
+
           unsigned long len = 10;
+        
           int _len_buf0 = 100;
           char * buf = (char *) malloc(_len_buf0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
             buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned char benchRet = phar_tar_checksum(buf,len);
           printf("%c\n", (benchRet %26) + 'a'); 
           free(buf);

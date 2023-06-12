@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -86,12 +89,6 @@ __attribute__((used)) static void agraph_set_zoom(RAGraph *g, int v) {
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,24 +101,213 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 41
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
           int v = 100;
+        
           int _len_g0 = 1;
           struct TYPE_5__ * g = (struct TYPE_5__ *) malloc(_len_g0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_g0; _i0++) {
-            g[_i0].is_tiny = ((-2 * (next_i()%2)) + 1) * next_i();
-        g[_i0].zoom = ((-2 * (next_i()%2)) + 1) * next_i();
-        g[_i0].need_update_dim = ((-2 * (next_i()%2)) + 1) * next_i();
-        g[_i0].need_set_layout = ((-2 * (next_i()%2)) + 1) * next_i();
+              g[_i0].is_tiny = ((-2 * (next_i()%2)) + 1) * next_i();
+          g[_i0].zoom = ((-2 * (next_i()%2)) + 1) * next_i();
+          g[_i0].need_update_dim = ((-2 * (next_i()%2)) + 1) * next_i();
+          g[_i0].need_set_layout = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_g__i0__can0 = 1;
           g[_i0].can = (struct TYPE_4__ *) malloc(_len_g__i0__can0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_g__i0__can0; _j0++) {
-            g[_i0].can->sy = ((-2 * (next_i()%2)) + 1) * next_i();
+              g[_i0].can->sy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        g[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          g[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          agraph_set_zoom(g,v);
+          for(int _aux = 0; _aux < _len_g0; _aux++) {
+          free(g[_aux].can);
+          }
+          free(g);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 41
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
+          int v = 255;
+        
+          int _len_g0 = 65025;
+          struct TYPE_5__ * g = (struct TYPE_5__ *) malloc(_len_g0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_g0; _i0++) {
+              g[_i0].is_tiny = ((-2 * (next_i()%2)) + 1) * next_i();
+          g[_i0].zoom = ((-2 * (next_i()%2)) + 1) * next_i();
+          g[_i0].need_update_dim = ((-2 * (next_i()%2)) + 1) * next_i();
+          g[_i0].need_set_layout = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_g__i0__can0 = 1;
+          g[_i0].can = (struct TYPE_4__ *) malloc(_len_g__i0__can0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_g__i0__can0; _j0++) {
+              g[_i0].can->sy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          g[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          agraph_set_zoom(g,v);
+          for(int _aux = 0; _aux < _len_g0; _aux++) {
+          free(g[_aux].can);
+          }
+          free(g);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 41
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
+          int v = 10;
+        
+          int _len_g0 = 100;
+          struct TYPE_5__ * g = (struct TYPE_5__ *) malloc(_len_g0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_g0; _i0++) {
+              g[_i0].is_tiny = ((-2 * (next_i()%2)) + 1) * next_i();
+          g[_i0].zoom = ((-2 * (next_i()%2)) + 1) * next_i();
+          g[_i0].need_update_dim = ((-2 * (next_i()%2)) + 1) * next_i();
+          g[_i0].need_set_layout = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_g__i0__can0 = 1;
+          g[_i0].can = (struct TYPE_4__ *) malloc(_len_g__i0__can0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_g__i0__can0; _j0++) {
+              g[_i0].can->sy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          g[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          agraph_set_zoom(g,v);
+          for(int _aux = 0; _aux < _len_g0; _aux++) {
+          free(g[_aux].can);
+          }
+          free(g);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 3
+          // dynamic_instructions_O1 : 3
+          // ------------------------------- 
+          // static_instructions_O2 : 3
+          // dynamic_instructions_O2 : 3
+          // ------------------------------- 
+          // static_instructions_O3 : 3
+          // dynamic_instructions_O3 : 3
+          // ------------------------------- 
+          // static_instructions_Ofast : 3
+          // dynamic_instructions_Ofast : 3
+          // ------------------------------- 
+          // static_instructions_Os : 3
+          // dynamic_instructions_Os : 3
+          // ------------------------------- 
+          // static_instructions_Oz : 3
+          // dynamic_instructions_Oz : 3
+          // ------------------------------- 
+
+          int v = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_g0 = 1;
+          struct TYPE_5__ * g = (struct TYPE_5__ *) malloc(_len_g0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_g0; _i0++) {
+              g[_i0].is_tiny = ((-2 * (next_i()%2)) + 1) * next_i();
+          g[_i0].zoom = ((-2 * (next_i()%2)) + 1) * next_i();
+          g[_i0].need_update_dim = ((-2 * (next_i()%2)) + 1) * next_i();
+          g[_i0].need_set_layout = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_g__i0__can0 = 1;
+          g[_i0].can = (struct TYPE_4__ *) malloc(_len_g__i0__can0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_g__i0__can0; _j0++) {
+              g[_i0].can->sy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          g[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           agraph_set_zoom(g,v);
           for(int _aux = 0; _aux < _len_g0; _aux++) {
           free(g[_aux].can);

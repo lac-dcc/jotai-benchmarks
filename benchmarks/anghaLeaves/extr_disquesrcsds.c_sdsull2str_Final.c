@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -82,12 +83,6 @@ int sdsull2str(char *s, unsigned long long v) {
     return l;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,15 +95,81 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 56
+          // dynamic_instructions_O0 : 95
+          // ------------------------------- 
+          // static_instructions_O1 : 39
+          // dynamic_instructions_O1 : 69
+          // ------------------------------- 
+          // static_instructions_O2 : 29
+          // dynamic_instructions_O2 : 55
+          // ------------------------------- 
+          // static_instructions_O3 : 29
+          // dynamic_instructions_O3 : 55
+          // ------------------------------- 
+          // static_instructions_Ofast : 29
+          // dynamic_instructions_Ofast : 55
+          // ------------------------------- 
+          // static_instructions_Os : 29
+          // dynamic_instructions_Os : 55
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 50
+          // ------------------------------- 
+
+          unsigned long long v = 255;
+        
+          int _len_s0 = 65025;
+          char * s = (char *) malloc(_len_s0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+            s[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = sdsull2str(s,v);
+          printf("%d\n", benchRet); 
+          free(s);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 56
+          // dynamic_instructions_O0 : 77
+          // ------------------------------- 
+          // static_instructions_O1 : 39
+          // dynamic_instructions_O1 : 54
+          // ------------------------------- 
+          // static_instructions_O2 : 29
+          // dynamic_instructions_O2 : 42
+          // ------------------------------- 
+          // static_instructions_O3 : 29
+          // dynamic_instructions_O3 : 42
+          // ------------------------------- 
+          // static_instructions_Ofast : 29
+          // dynamic_instructions_Ofast : 42
+          // ------------------------------- 
+          // static_instructions_Os : 29
+          // dynamic_instructions_Os : 42
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 40
+          // ------------------------------- 
+
           unsigned long long v = 10;
+        
           int _len_s0 = 100;
           char * s = (char *) malloc(_len_s0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
             s[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = sdsull2str(s,v);
           printf("%d\n", benchRet); 
           free(s);

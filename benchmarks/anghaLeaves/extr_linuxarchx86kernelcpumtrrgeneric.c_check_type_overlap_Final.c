@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -81,12 +83,6 @@ __attribute__((used)) static int check_type_overlap(u8 *prev, u8 *curr)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,19 +95,136 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_prev0 = 65025;
+          long * prev = (long *) malloc(_len_prev0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_prev0; _i0++) {
+            prev[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_curr0 = 65025;
+          long * curr = (long *) malloc(_len_curr0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_curr0; _i0++) {
+            curr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = check_type_overlap(prev,curr);
+          printf("%d\n", benchRet); 
+          free(prev);
+          free(curr);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_prev0 = 100;
+          long * prev = (long *) malloc(_len_prev0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_prev0; _i0++) {
+            prev[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_curr0 = 100;
+          long * curr = (long *) malloc(_len_curr0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_curr0; _i0++) {
+            curr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = check_type_overlap(prev,curr);
+          printf("%d\n", benchRet); 
+          free(prev);
+          free(curr);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           int _len_prev0 = 1;
           long * prev = (long *) malloc(_len_prev0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_prev0; _i0++) {
             prev[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_curr0 = 1;
           long * curr = (long *) malloc(_len_curr0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_curr0; _i0++) {
             curr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = check_type_overlap(prev,curr);
           printf("%d\n", benchRet); 
           free(prev);

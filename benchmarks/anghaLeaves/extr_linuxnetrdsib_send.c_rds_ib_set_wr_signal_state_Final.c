@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +80,6 @@ __attribute__((used)) static inline int rds_ib_set_wr_signal_state(struct rds_ib
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,20 +92,202 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int notify = 100;
+        
           int _len_ic0 = 1;
           struct rds_ib_connection * ic = (struct rds_ib_connection *) malloc(_len_ic0*sizeof(struct rds_ib_connection));
           for(int _i0 = 0; _i0 < _len_ic0; _i0++) {
-            ic[_i0].i_unsignaled_wrs = ((-2 * (next_i()%2)) + 1) * next_i();
+              ic[_i0].i_unsignaled_wrs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_send0 = 1;
           struct rds_ib_send_work * send = (struct rds_ib_send_work *) malloc(_len_send0*sizeof(struct rds_ib_send_work));
           for(int _i0 = 0; _i0 < _len_send0; _i0++) {
-            send[_i0].s_wr.send_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              send[_i0].s_wr.send_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = rds_ib_set_wr_signal_state(ic,send,notify);
+          printf("%d\n", benchRet); 
+          free(ic);
+          free(send);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int notify = 255;
+        
+          int _len_ic0 = 65025;
+          struct rds_ib_connection * ic = (struct rds_ib_connection *) malloc(_len_ic0*sizeof(struct rds_ib_connection));
+          for(int _i0 = 0; _i0 < _len_ic0; _i0++) {
+              ic[_i0].i_unsignaled_wrs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_send0 = 65025;
+          struct rds_ib_send_work * send = (struct rds_ib_send_work *) malloc(_len_send0*sizeof(struct rds_ib_send_work));
+          for(int _i0 = 0; _i0 < _len_send0; _i0++) {
+              send[_i0].s_wr.send_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = rds_ib_set_wr_signal_state(ic,send,notify);
+          printf("%d\n", benchRet); 
+          free(ic);
+          free(send);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int notify = 10;
+        
+          int _len_ic0 = 100;
+          struct rds_ib_connection * ic = (struct rds_ib_connection *) malloc(_len_ic0*sizeof(struct rds_ib_connection));
+          for(int _i0 = 0; _i0 < _len_ic0; _i0++) {
+              ic[_i0].i_unsignaled_wrs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_send0 = 100;
+          struct rds_ib_send_work * send = (struct rds_ib_send_work *) malloc(_len_send0*sizeof(struct rds_ib_send_work));
+          for(int _i0 = 0; _i0 < _len_send0; _i0++) {
+              send[_i0].s_wr.send_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = rds_ib_set_wr_signal_state(ic,send,notify);
+          printf("%d\n", benchRet); 
+          free(ic);
+          free(send);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int notify = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ic0 = 1;
+          struct rds_ib_connection * ic = (struct rds_ib_connection *) malloc(_len_ic0*sizeof(struct rds_ib_connection));
+          for(int _i0 = 0; _i0 < _len_ic0; _i0++) {
+              ic[_i0].i_unsignaled_wrs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_send0 = 1;
+          struct rds_ib_send_work * send = (struct rds_ib_send_work *) malloc(_len_send0*sizeof(struct rds_ib_send_work));
+          for(int _i0 = 0; _i0 < _len_send0; _i0++) {
+              send[_i0].s_wr.send_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = rds_ib_set_wr_signal_state(ic,send,notify);
           printf("%d\n", benchRet); 
           free(ic);

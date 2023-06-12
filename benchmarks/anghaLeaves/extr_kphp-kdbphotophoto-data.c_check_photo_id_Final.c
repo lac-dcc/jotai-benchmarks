@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -60,12 +61,6 @@ int check_photo_id (int photo_id) {
   return photo_id > 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,6 +77,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int photo_id = 100;
+        
           int benchRet = check_photo_id(photo_id);
           printf("%d\n", benchRet); 
         
@@ -91,6 +87,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int photo_id = 255;
+        
           int benchRet = check_photo_id(photo_id);
           printf("%d\n", benchRet); 
         
@@ -100,12 +97,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int photo_id = 10;
+        
           int benchRet = check_photo_id(photo_id);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int photo_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = check_photo_id(photo_id);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

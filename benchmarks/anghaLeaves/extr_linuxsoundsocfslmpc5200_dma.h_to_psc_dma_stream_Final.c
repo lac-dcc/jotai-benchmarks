@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ to_psc_dma_stream(struct snd_pcm_substream *substream, struct psc_dma *psc_dma)
 	return &psc_dma->playback;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,24 +82,172 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_substream0 = 65025;
+          struct snd_pcm_substream * substream = (struct snd_pcm_substream *) malloc(_len_substream0*sizeof(struct snd_pcm_substream));
+          for(int _i0 = 0; _i0 < _len_substream0; _i0++) {
+              int _len_substream__i0__pstr0 = 1;
+          substream[_i0].pstr = (struct TYPE_2__ *) malloc(_len_substream__i0__pstr0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_substream__i0__pstr0; _j0++) {
+              substream[_i0].pstr->stream = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_psc_dma0 = 65025;
+          struct psc_dma * psc_dma = (struct psc_dma *) malloc(_len_psc_dma0*sizeof(struct psc_dma));
+          for(int _i0 = 0; _i0 < _len_psc_dma0; _i0++) {
+              psc_dma[_i0].playback.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          psc_dma[_i0].capture.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          struct psc_dma_stream * benchRet = to_psc_dma_stream(substream,psc_dma);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_substream0; _aux++) {
+          free(substream[_aux].pstr);
+          }
+          free(substream);
+          free(psc_dma);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_substream0 = 100;
+          struct snd_pcm_substream * substream = (struct snd_pcm_substream *) malloc(_len_substream0*sizeof(struct snd_pcm_substream));
+          for(int _i0 = 0; _i0 < _len_substream0; _i0++) {
+              int _len_substream__i0__pstr0 = 1;
+          substream[_i0].pstr = (struct TYPE_2__ *) malloc(_len_substream__i0__pstr0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_substream__i0__pstr0; _j0++) {
+              substream[_i0].pstr->stream = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_psc_dma0 = 100;
+          struct psc_dma * psc_dma = (struct psc_dma *) malloc(_len_psc_dma0*sizeof(struct psc_dma));
+          for(int _i0 = 0; _i0 < _len_psc_dma0; _i0++) {
+              psc_dma[_i0].playback.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          psc_dma[_i0].capture.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          struct psc_dma_stream * benchRet = to_psc_dma_stream(substream,psc_dma);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_substream0; _aux++) {
+          free(substream[_aux].pstr);
+          }
+          free(substream);
+          free(psc_dma);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_substream0 = 1;
           struct snd_pcm_substream * substream = (struct snd_pcm_substream *) malloc(_len_substream0*sizeof(struct snd_pcm_substream));
           for(int _i0 = 0; _i0 < _len_substream0; _i0++) {
               int _len_substream__i0__pstr0 = 1;
           substream[_i0].pstr = (struct TYPE_2__ *) malloc(_len_substream__i0__pstr0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_substream__i0__pstr0; _j0++) {
-            substream[_i0].pstr->stream = ((-2 * (next_i()%2)) + 1) * next_i();
+              substream[_i0].pstr->stream = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_psc_dma0 = 1;
           struct psc_dma * psc_dma = (struct psc_dma *) malloc(_len_psc_dma0*sizeof(struct psc_dma));
           for(int _i0 = 0; _i0 < _len_psc_dma0; _i0++) {
-            psc_dma[_i0].playback.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-        psc_dma[_i0].capture.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              psc_dma[_i0].playback.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          psc_dma[_i0].capture.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           struct psc_dma_stream * benchRet = to_psc_dma_stream(substream,psc_dma);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_substream0; _aux++) {

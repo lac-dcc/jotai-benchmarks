@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static inline int exit_shift(LPSTR out, int c)
     return 3;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,22 +79,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int c = 10;
-          int _len_out0 = 100;
+          int c = 255;
+        
+          int _len_out0 = 65025;
           char * out = (char *) malloc(_len_out0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_out0; _i0++) {
             out[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = exit_shift(out,c);
           printf("%d\n", benchRet); 
           free(out);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int c = 10;
+        
+          int _len_out0 = 100;
+          char * out = (char *) malloc(_len_out0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_out0; _i0++) {
+            out[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = exit_shift(out,c);
+          printf("%d\n", benchRet); 
+          free(out);
+        
+        break;
+    }
     default:
         usage();
         break;

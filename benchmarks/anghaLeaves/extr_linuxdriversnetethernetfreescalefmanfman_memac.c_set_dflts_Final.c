@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static void set_dflts(struct memac_cfg *cfg)
 	cfg->pause_quanta = DEFAULT_PAUSE_QUANTA;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,25 +82,66 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cfg0 = 1;
+          int _len_cfg0 = 65025;
           struct memac_cfg * cfg = (struct memac_cfg *) malloc(_len_cfg0*sizeof(struct memac_cfg));
           for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
-            cfg[_i0].reset_on_init = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].promiscuous_mode_enable = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].pause_ignore = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].pause_quanta = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].max_frame_length = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].tx_ipg_length = ((-2 * (next_i()%2)) + 1) * next_i();
+              cfg[_i0].reset_on_init = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].promiscuous_mode_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].pause_ignore = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].pause_quanta = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].max_frame_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].tx_ipg_length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           set_dflts(cfg);
           free(cfg);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_cfg0 = 100;
+          struct memac_cfg * cfg = (struct memac_cfg *) malloc(_len_cfg0*sizeof(struct memac_cfg));
+          for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
+              cfg[_i0].reset_on_init = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].promiscuous_mode_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].pause_ignore = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].pause_quanta = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].max_frame_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].tx_ipg_length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_dflts(cfg);
+          free(cfg);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_cfg0 = 1;
+          struct memac_cfg * cfg = (struct memac_cfg *) malloc(_len_cfg0*sizeof(struct memac_cfg));
+          for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
+              cfg[_i0].reset_on_init = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].promiscuous_mode_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].pause_ignore = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].pause_quanta = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].max_frame_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].tx_ipg_length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_dflts(cfg);
+          free(cfg);
+        
+        break;
+    }
     default:
         usage();
         break;

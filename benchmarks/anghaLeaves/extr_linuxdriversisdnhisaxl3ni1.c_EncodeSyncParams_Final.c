@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -101,12 +102,6 @@ EncodeSyncParams(u_char si2, u_char ai)
 	return ai;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -123,7 +118,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int si2 = 100;
+        
           int ai = 100;
+        
           int benchRet = EncodeSyncParams(si2,ai);
           printf("%d\n", benchRet); 
         
@@ -133,7 +130,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int si2 = 255;
+        
           int ai = 255;
+        
           int benchRet = EncodeSyncParams(si2,ai);
           printf("%d\n", benchRet); 
         
@@ -143,13 +142,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int si2 = 10;
+        
           int ai = 10;
+        
           int benchRet = EncodeSyncParams(si2,ai);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int si2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int ai = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = EncodeSyncParams(si2,ai);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

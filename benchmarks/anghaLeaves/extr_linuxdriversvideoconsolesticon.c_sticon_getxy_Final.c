@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -97,12 +100,6 @@ __attribute__((used)) static unsigned long sticon_getxy(struct vc_data *conp, un
     return ret;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -115,28 +112,233 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
           unsigned long pos = 100;
+        
           int _len_conp0 = 1;
           struct vc_data * conp = (struct vc_data *) malloc(_len_conp0*sizeof(struct vc_data));
           for(int _i0 = 0; _i0 < _len_conp0; _i0++) {
-            conp[_i0].vc_origin = ((-2 * (next_i()%2)) + 1) * next_i();
-        conp[_i0].vc_scr_end = ((-2 * (next_i()%2)) + 1) * next_i();
-        conp[_i0].vc_cols = ((-2 * (next_i()%2)) + 1) * next_i();
-        conp[_i0].vc_num = ((-2 * (next_i()%2)) + 1) * next_i();
+              conp[_i0].vc_origin = ((-2 * (next_i()%2)) + 1) * next_i();
+          conp[_i0].vc_scr_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          conp[_i0].vc_cols = ((-2 * (next_i()%2)) + 1) * next_i();
+          conp[_i0].vc_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_px0 = 1;
           int * px = (int *) malloc(_len_px0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_px0; _i0++) {
             px[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_py0 = 1;
           int * py = (int *) malloc(_len_py0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_py0; _i0++) {
             py[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          unsigned long benchRet = sticon_getxy(conp,pos,px,py);
+          printf("%lu\n", benchRet); 
+          free(conp);
+          free(px);
+          free(py);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          unsigned long pos = 255;
+        
+          int _len_conp0 = 65025;
+          struct vc_data * conp = (struct vc_data *) malloc(_len_conp0*sizeof(struct vc_data));
+          for(int _i0 = 0; _i0 < _len_conp0; _i0++) {
+              conp[_i0].vc_origin = ((-2 * (next_i()%2)) + 1) * next_i();
+          conp[_i0].vc_scr_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          conp[_i0].vc_cols = ((-2 * (next_i()%2)) + 1) * next_i();
+          conp[_i0].vc_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_px0 = 65025;
+          int * px = (int *) malloc(_len_px0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_px0; _i0++) {
+            px[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_py0 = 65025;
+          int * py = (int *) malloc(_len_py0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_py0; _i0++) {
+            py[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned long benchRet = sticon_getxy(conp,pos,px,py);
+          printf("%lu\n", benchRet); 
+          free(conp);
+          free(px);
+          free(py);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          unsigned long pos = 10;
+        
+          int _len_conp0 = 100;
+          struct vc_data * conp = (struct vc_data *) malloc(_len_conp0*sizeof(struct vc_data));
+          for(int _i0 = 0; _i0 < _len_conp0; _i0++) {
+              conp[_i0].vc_origin = ((-2 * (next_i()%2)) + 1) * next_i();
+          conp[_i0].vc_scr_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          conp[_i0].vc_cols = ((-2 * (next_i()%2)) + 1) * next_i();
+          conp[_i0].vc_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_px0 = 100;
+          int * px = (int *) malloc(_len_px0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_px0; _i0++) {
+            px[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_py0 = 100;
+          int * py = (int *) malloc(_len_py0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_py0; _i0++) {
+            py[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned long benchRet = sticon_getxy(conp,pos,px,py);
+          printf("%lu\n", benchRet); 
+          free(conp);
+          free(px);
+          free(py);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 37
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
+          unsigned long pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_conp0 = 1;
+          struct vc_data * conp = (struct vc_data *) malloc(_len_conp0*sizeof(struct vc_data));
+          for(int _i0 = 0; _i0 < _len_conp0; _i0++) {
+              conp[_i0].vc_origin = ((-2 * (next_i()%2)) + 1) * next_i();
+          conp[_i0].vc_scr_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          conp[_i0].vc_cols = ((-2 * (next_i()%2)) + 1) * next_i();
+          conp[_i0].vc_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_px0 = 1;
+          int * px = (int *) malloc(_len_px0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_px0; _i0++) {
+            px[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_py0 = 1;
+          int * py = (int *) malloc(_len_py0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_py0; _i0++) {
+            py[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           unsigned long benchRet = sticon_getxy(conp,pos,px,py);
           printf("%lu\n", benchRet); 
           free(conp);

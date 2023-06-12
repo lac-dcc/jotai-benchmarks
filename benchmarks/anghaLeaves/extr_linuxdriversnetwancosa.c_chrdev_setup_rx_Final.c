@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +65,6 @@ __attribute__((used)) static char *chrdev_setup_rx(struct channel_data *chan, in
 	return chan->rxdata;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,20 +77,196 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int size = 100;
+        
           int _len_chan0 = 1;
           struct channel_data * chan = (struct channel_data *) malloc(_len_chan0*sizeof(struct channel_data));
           for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
-            chan[_i0].rxsize = ((-2 * (next_i()%2)) + 1) * next_i();
+              chan[_i0].rxsize = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_chan__i0__rxdata0 = 1;
           chan[_i0].rxdata = (char *) malloc(_len_chan__i0__rxdata0*sizeof(char));
           for(int _j0 = 0; _j0 < _len_chan__i0__rxdata0; _j0++) {
             chan[_i0].rxdata[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          char * benchRet = chrdev_setup_rx(chan,size);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          for(int _aux = 0; _aux < _len_chan0; _aux++) {
+          free(chan[_aux].rxdata);
+          }
+          free(chan);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int size = 255;
+        
+          int _len_chan0 = 65025;
+          struct channel_data * chan = (struct channel_data *) malloc(_len_chan0*sizeof(struct channel_data));
+          for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
+              chan[_i0].rxsize = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_chan__i0__rxdata0 = 1;
+          chan[_i0].rxdata = (char *) malloc(_len_chan__i0__rxdata0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_chan__i0__rxdata0; _j0++) {
+            chan[_i0].rxdata[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          char * benchRet = chrdev_setup_rx(chan,size);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          for(int _aux = 0; _aux < _len_chan0; _aux++) {
+          free(chan[_aux].rxdata);
+          }
+          free(chan);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int size = 10;
+        
+          int _len_chan0 = 100;
+          struct channel_data * chan = (struct channel_data *) malloc(_len_chan0*sizeof(struct channel_data));
+          for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
+              chan[_i0].rxsize = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_chan__i0__rxdata0 = 1;
+          chan[_i0].rxdata = (char *) malloc(_len_chan__i0__rxdata0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_chan__i0__rxdata0; _j0++) {
+            chan[_i0].rxdata[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          char * benchRet = chrdev_setup_rx(chan,size);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          for(int _aux = 0; _aux < _len_chan0; _aux++) {
+          free(chan[_aux].rxdata);
+          }
+          free(chan);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_chan0 = 1;
+          struct channel_data * chan = (struct channel_data *) malloc(_len_chan0*sizeof(struct channel_data));
+          for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
+              chan[_i0].rxsize = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_chan__i0__rxdata0 = 1;
+          chan[_i0].rxdata = (char *) malloc(_len_chan__i0__rxdata0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_chan__i0__rxdata0; _j0++) {
+            chan[_i0].rxdata[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           char * benchRet = chrdev_setup_rx(chan,size);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           for(int _aux = 0; _aux < _len_chan0; _aux++) {

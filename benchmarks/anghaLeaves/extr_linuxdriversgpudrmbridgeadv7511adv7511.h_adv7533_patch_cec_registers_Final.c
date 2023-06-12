@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline int adv7533_patch_cec_registers(struct adv75
 	return -ENODEV;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_adv0 = 1;
+          int _len_adv0 = 65025;
           struct adv7511 * adv = (struct adv7511 *) malloc(_len_adv0*sizeof(struct adv7511));
           for(int _i0 = 0; _i0 < _len_adv0; _i0++) {
-            adv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              adv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = adv7533_patch_cec_registers(adv);
           printf("%d\n", benchRet); 
           free(adv);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_adv0 = 100;
           struct adv7511 * adv = (struct adv7511 *) malloc(_len_adv0*sizeof(struct adv7511));
           for(int _i0 = 0; _i0 < _len_adv0; _i0++) {
-            adv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              adv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = adv7533_patch_cec_registers(adv);
           printf("%d\n", benchRet); 
           free(adv);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_adv0 = 1;
+          struct adv7511 * adv = (struct adv7511 *) malloc(_len_adv0*sizeof(struct adv7511));
+          for(int _i0 = 0; _i0 < _len_adv0; _i0++) {
+              adv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = adv7533_patch_cec_registers(adv);
+          printf("%d\n", benchRet); 
+          free(adv);
+        
+        break;
+    }
     default:
         usage();
         break;

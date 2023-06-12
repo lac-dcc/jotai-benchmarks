@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static void find_coreWGL(HDC hdc) {
 	GLADWGLhdc = hdc;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +81,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int hdc = 100;
+        
           find_coreWGL(hdc);
         
         break;
@@ -94,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int hdc = 255;
+        
           find_coreWGL(hdc);
         
         break;
@@ -102,11 +99,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int hdc = 10;
+        
           find_coreWGL(hdc);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int hdc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          find_coreWGL(hdc);
+        
+        break;
+    }
     default:
         usage();
         break;

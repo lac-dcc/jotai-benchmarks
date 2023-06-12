@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -62,12 +62,6 @@ __attribute__((used)) inline static int ccv_size_is_zero(ccv_size_t size)
 	return size.width == 0 && size.height == 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,18 +74,18 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           struct TYPE_3__ size;
-        size.width = ((-2 * (next_i()%2)) + 1) * next_i();
-        size.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          size.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          size.height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = ccv_size_is_zero(size);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

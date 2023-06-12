@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ processor_state_update_explicit(processor_t processor, int pri, sfi_class_id_t s
     processor->current_perfctl_class = perfctl_class;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,21 +85,200 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int pri = 100;
+        
           int sfi_class = 100;
+        
           int pset_type = 100;
+        
           int perfctl_class = 100;
+        
           int _len_processor0 = 1;
           struct TYPE_3__ * processor = (struct TYPE_3__ *) malloc(_len_processor0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_processor0; _i0++) {
-            processor[_i0].current_pri = ((-2 * (next_i()%2)) + 1) * next_i();
-        processor[_i0].current_perfctl_class = ((-2 * (next_i()%2)) + 1) * next_i();
-        processor[_i0].current_recommended_pset_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        processor[_i0].current_sfi_class = ((-2 * (next_i()%2)) + 1) * next_i();
+              processor[_i0].current_pri = ((-2 * (next_i()%2)) + 1) * next_i();
+          processor[_i0].current_perfctl_class = ((-2 * (next_i()%2)) + 1) * next_i();
+          processor[_i0].current_recommended_pset_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          processor[_i0].current_sfi_class = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          processor_state_update_explicit(processor,pri,sfi_class,pset_type,perfctl_class);
+          free(processor);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int pri = 255;
+        
+          int sfi_class = 255;
+        
+          int pset_type = 255;
+        
+          int perfctl_class = 255;
+        
+          int _len_processor0 = 65025;
+          struct TYPE_3__ * processor = (struct TYPE_3__ *) malloc(_len_processor0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_processor0; _i0++) {
+              processor[_i0].current_pri = ((-2 * (next_i()%2)) + 1) * next_i();
+          processor[_i0].current_perfctl_class = ((-2 * (next_i()%2)) + 1) * next_i();
+          processor[_i0].current_recommended_pset_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          processor[_i0].current_sfi_class = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          processor_state_update_explicit(processor,pri,sfi_class,pset_type,perfctl_class);
+          free(processor);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int pri = 10;
+        
+          int sfi_class = 10;
+        
+          int pset_type = 10;
+        
+          int perfctl_class = 10;
+        
+          int _len_processor0 = 100;
+          struct TYPE_3__ * processor = (struct TYPE_3__ *) malloc(_len_processor0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_processor0; _i0++) {
+              processor[_i0].current_pri = ((-2 * (next_i()%2)) + 1) * next_i();
+          processor[_i0].current_perfctl_class = ((-2 * (next_i()%2)) + 1) * next_i();
+          processor[_i0].current_recommended_pset_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          processor[_i0].current_sfi_class = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          processor_state_update_explicit(processor,pri,sfi_class,pset_type,perfctl_class);
+          free(processor);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int pri = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int sfi_class = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int pset_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int perfctl_class = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_processor0 = 1;
+          struct TYPE_3__ * processor = (struct TYPE_3__ *) malloc(_len_processor0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_processor0; _i0++) {
+              processor[_i0].current_pri = ((-2 * (next_i()%2)) + 1) * next_i();
+          processor[_i0].current_perfctl_class = ((-2 * (next_i()%2)) + 1) * next_i();
+          processor[_i0].current_recommended_pset_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          processor[_i0].current_sfi_class = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           processor_state_update_explicit(processor,pri,sfi_class,pset_type,perfctl_class);
           free(processor);
         

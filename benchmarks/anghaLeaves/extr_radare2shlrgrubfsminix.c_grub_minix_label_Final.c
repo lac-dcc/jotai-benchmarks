@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ grub_minix_label (grub_device_t device ,
   return GRUB_ERR_NONE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +83,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int device = 100;
+        
           int _len_label0 = 1;
           char ** label = (char **) malloc(_len_label0*sizeof(char *));
           for(int _i0 = 0; _i0 < _len_label0; _i0++) {
@@ -95,17 +93,88 @@ int main(int argc, char *argv[]) {
               label[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           int benchRet = grub_minix_label(device,label);
           printf("%d\n", benchRet); 
           for(int i1 = 0; i1 < _len_label0; i1++) {
-            int _len_label1 = 1;
               free(label[i1]);
           }
           free(label);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int device = 255;
+        
+          int _len_label0 = 65025;
+          char ** label = (char **) malloc(_len_label0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_label0; _i0++) {
+            int _len_label1 = 1;
+            label[_i0] = (char *) malloc(_len_label1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_label1; _i1++) {
+              label[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int benchRet = grub_minix_label(device,label);
+          printf("%d\n", benchRet); 
+          for(int i1 = 0; i1 < _len_label0; i1++) {
+              free(label[i1]);
+          }
+          free(label);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int device = 10;
+        
+          int _len_label0 = 100;
+          char ** label = (char **) malloc(_len_label0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_label0; _i0++) {
+            int _len_label1 = 1;
+            label[_i0] = (char *) malloc(_len_label1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_label1; _i1++) {
+              label[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int benchRet = grub_minix_label(device,label);
+          printf("%d\n", benchRet); 
+          for(int i1 = 0; i1 < _len_label0; i1++) {
+              free(label[i1]);
+          }
+          free(label);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_label0 = 1;
+          char ** label = (char **) malloc(_len_label0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_label0; _i0++) {
+            int _len_label1 = 1;
+            label[_i0] = (char *) malloc(_len_label1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_label1; _i1++) {
+              label[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int benchRet = grub_minix_label(device,label);
+          printf("%d\n", benchRet); 
+          for(int i1 = 0; i1 < _len_label0; i1++) {
+              free(label[i1]);
+          }
+          free(label);
+        
+        break;
+    }
     default:
         usage();
         break;

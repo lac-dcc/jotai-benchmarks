@@ -85,12 +85,6 @@ __attribute__((used)) static inline uint64_t interleave64(uint32_t xlo, uint32_t
     return x | (y << 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,31 +97,108 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 94
+          // dynamic_instructions_O0 : 94
+          // ------------------------------- 
+          // static_instructions_O1 : 36
+          // dynamic_instructions_O1 : 36
+          // ------------------------------- 
+          // static_instructions_O2 : 36
+          // dynamic_instructions_O2 : 36
+          // ------------------------------- 
+          // static_instructions_O3 : 36
+          // dynamic_instructions_O3 : 36
+          // ------------------------------- 
+          // static_instructions_Ofast : 36
+          // dynamic_instructions_Ofast : 36
+          // ------------------------------- 
+          // static_instructions_Os : 40
+          // dynamic_instructions_Os : 40
+          // ------------------------------- 
+          // static_instructions_Oz : 40
+          // dynamic_instructions_Oz : 40
+          // ------------------------------- 
+
           int xlo = 100;
+        
           int ylo = 100;
+        
           int benchRet = interleave64(xlo,ylo);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 94
+          // dynamic_instructions_O0 : 94
+          // ------------------------------- 
+          // static_instructions_O1 : 36
+          // dynamic_instructions_O1 : 36
+          // ------------------------------- 
+          // static_instructions_O2 : 36
+          // dynamic_instructions_O2 : 36
+          // ------------------------------- 
+          // static_instructions_O3 : 36
+          // dynamic_instructions_O3 : 36
+          // ------------------------------- 
+          // static_instructions_Ofast : 36
+          // dynamic_instructions_Ofast : 36
+          // ------------------------------- 
+          // static_instructions_Os : 40
+          // dynamic_instructions_Os : 40
+          // ------------------------------- 
+          // static_instructions_Oz : 40
+          // dynamic_instructions_Oz : 40
+          // ------------------------------- 
+
           int xlo = 255;
+        
           int ylo = 255;
+        
           int benchRet = interleave64(xlo,ylo);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 94
+          // dynamic_instructions_O0 : 94
+          // ------------------------------- 
+          // static_instructions_O1 : 36
+          // dynamic_instructions_O1 : 36
+          // ------------------------------- 
+          // static_instructions_O2 : 36
+          // dynamic_instructions_O2 : 36
+          // ------------------------------- 
+          // static_instructions_O3 : 36
+          // dynamic_instructions_O3 : 36
+          // ------------------------------- 
+          // static_instructions_Ofast : 36
+          // dynamic_instructions_Ofast : 36
+          // ------------------------------- 
+          // static_instructions_Os : 40
+          // dynamic_instructions_Os : 40
+          // ------------------------------- 
+          // static_instructions_Oz : 40
+          // dynamic_instructions_Oz : 40
+          // ------------------------------- 
+
           int xlo = 10;
+        
           int ylo = 10;
+        
           int benchRet = interleave64(xlo,ylo);
           printf("%d\n", benchRet); 
         

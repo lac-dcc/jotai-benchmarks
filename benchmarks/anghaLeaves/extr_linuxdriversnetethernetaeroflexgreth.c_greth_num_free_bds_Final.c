@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static inline u16 greth_num_free_bds(u16 tx_last, u16 tx_n
 		return GRETH_TXBD_NUM - (tx_next - tx_last) - 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,7 +83,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long tx_last = 100;
+        
           long tx_next = 100;
+        
           long benchRet = greth_num_free_bds(tx_last,tx_next);
           printf("%ld\n", benchRet); 
         
@@ -98,7 +95,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long tx_last = 255;
+        
           long tx_next = 255;
+        
           long benchRet = greth_num_free_bds(tx_last,tx_next);
           printf("%ld\n", benchRet); 
         
@@ -108,13 +107,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long tx_last = 10;
+        
           long tx_next = 10;
+        
           long benchRet = greth_num_free_bds(tx_last,tx_next);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long tx_last = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long tx_next = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long benchRet = greth_num_free_bds(tx_last,tx_next);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

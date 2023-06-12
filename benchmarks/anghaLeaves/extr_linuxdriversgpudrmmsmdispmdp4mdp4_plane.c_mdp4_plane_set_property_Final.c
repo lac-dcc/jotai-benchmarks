@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ __attribute__((used)) static int mdp4_plane_set_property(struct drm_plane *plane
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,16 +84,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int val = 100;
+        
           int _len_plane0 = 1;
           struct drm_plane * plane = (struct drm_plane *) malloc(_len_plane0*sizeof(struct drm_plane));
           for(int _i0 = 0; _i0 < _len_plane0; _i0++) {
-            plane[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              plane[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_property0 = 1;
           struct drm_property * property = (struct drm_property *) malloc(_len_property0*sizeof(struct drm_property));
           for(int _i0 = 0; _i0 < _len_property0; _i0++) {
-            property[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              property[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mdp4_plane_set_property(plane,property,val);
           printf("%d\n", benchRet); 
           free(plane);
@@ -104,7 +106,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int val = 255;
+        
+          int _len_plane0 = 65025;
+          struct drm_plane * plane = (struct drm_plane *) malloc(_len_plane0*sizeof(struct drm_plane));
+          for(int _i0 = 0; _i0 < _len_plane0; _i0++) {
+              plane[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_property0 = 65025;
+          struct drm_property * property = (struct drm_property *) malloc(_len_property0*sizeof(struct drm_property));
+          for(int _i0 = 0; _i0 < _len_property0; _i0++) {
+              property[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mdp4_plane_set_property(plane,property,val);
+          printf("%d\n", benchRet); 
+          free(plane);
+          free(property);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int val = 10;
+        
+          int _len_plane0 = 100;
+          struct drm_plane * plane = (struct drm_plane *) malloc(_len_plane0*sizeof(struct drm_plane));
+          for(int _i0 = 0; _i0 < _len_plane0; _i0++) {
+              plane[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_property0 = 100;
+          struct drm_property * property = (struct drm_property *) malloc(_len_property0*sizeof(struct drm_property));
+          for(int _i0 = 0; _i0 < _len_property0; _i0++) {
+              property[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mdp4_plane_set_property(plane,property,val);
+          printf("%d\n", benchRet); 
+          free(plane);
+          free(property);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_plane0 = 1;
+          struct drm_plane * plane = (struct drm_plane *) malloc(_len_plane0*sizeof(struct drm_plane));
+          for(int _i0 = 0; _i0 < _len_plane0; _i0++) {
+              plane[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_property0 = 1;
+          struct drm_property * property = (struct drm_property *) malloc(_len_property0*sizeof(struct drm_property));
+          for(int _i0 = 0; _i0 < _len_property0; _i0++) {
+              property[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mdp4_plane_set_property(plane,property,val);
+          printf("%d\n", benchRet); 
+          free(plane);
+          free(property);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +65,6 @@ void rds_ib_ring_unalloc(struct rds_ib_work_ring *ring, u32 val)
 	ring->w_alloc_ctr -= val;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,17 +77,172 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int val = 100;
+        
           int _len_ring0 = 1;
           struct rds_ib_work_ring * ring = (struct rds_ib_work_ring *) malloc(_len_ring0*sizeof(struct rds_ib_work_ring));
           for(int _i0 = 0; _i0 < _len_ring0; _i0++) {
-            ring[_i0].w_alloc_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
-        ring[_i0].w_nr = ((-2 * (next_i()%2)) + 1) * next_i();
-        ring[_i0].w_alloc_ctr = ((-2 * (next_i()%2)) + 1) * next_i();
+              ring[_i0].w_alloc_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ring[_i0].w_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ring[_i0].w_alloc_ctr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          rds_ib_ring_unalloc(ring,val);
+          free(ring);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int val = 255;
+        
+          int _len_ring0 = 65025;
+          struct rds_ib_work_ring * ring = (struct rds_ib_work_ring *) malloc(_len_ring0*sizeof(struct rds_ib_work_ring));
+          for(int _i0 = 0; _i0 < _len_ring0; _i0++) {
+              ring[_i0].w_alloc_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ring[_i0].w_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ring[_i0].w_alloc_ctr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          rds_ib_ring_unalloc(ring,val);
+          free(ring);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int val = 10;
+        
+          int _len_ring0 = 100;
+          struct rds_ib_work_ring * ring = (struct rds_ib_work_ring *) malloc(_len_ring0*sizeof(struct rds_ib_work_ring));
+          for(int _i0 = 0; _i0 < _len_ring0; _i0++) {
+              ring[_i0].w_alloc_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ring[_i0].w_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ring[_i0].w_alloc_ctr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          rds_ib_ring_unalloc(ring,val);
+          free(ring);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ring0 = 1;
+          struct rds_ib_work_ring * ring = (struct rds_ib_work_ring *) malloc(_len_ring0*sizeof(struct rds_ib_work_ring));
+          for(int _i0 = 0; _i0 < _len_ring0; _i0++) {
+              ring[_i0].w_alloc_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ring[_i0].w_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ring[_i0].w_alloc_ctr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           rds_ib_ring_unalloc(ring,val);
           free(ring);
         

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ void _glfwPlatformGetWindowSize(_GLFWwindow* window, int* width, int* height)
         *height = window->mir.height;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,25 +81,30 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_window0 = 1;
+          int _len_window0 = 65025;
           struct TYPE_5__ * window = (struct TYPE_5__ *) malloc(_len_window0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_window0; _i0++) {
-            window[_i0].mir.width = ((-2 * (next_i()%2)) + 1) * next_i();
-        window[_i0].mir.height = ((-2 * (next_i()%2)) + 1) * next_i();
+              window[_i0].mir.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          window[_i0].mir.height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-          int _len_width0 = 1;
+        
+          int _len_width0 = 65025;
           int * width = (int *) malloc(_len_width0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_width0; _i0++) {
             width[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_height0 = 1;
+        
+          int _len_height0 = 65025;
           int * height = (int *) malloc(_len_height0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_height0; _i0++) {
             height[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           _glfwPlatformGetWindowSize(window,width,height);
           free(window);
           free(width);
@@ -111,7 +112,68 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_window0 = 100;
+          struct TYPE_5__ * window = (struct TYPE_5__ *) malloc(_len_window0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_window0; _i0++) {
+              window[_i0].mir.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          window[_i0].mir.height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_width0 = 100;
+          int * width = (int *) malloc(_len_width0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_width0; _i0++) {
+            width[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_height0 = 100;
+          int * height = (int *) malloc(_len_height0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_height0; _i0++) {
+            height[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          _glfwPlatformGetWindowSize(window,width,height);
+          free(window);
+          free(width);
+          free(height);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_window0 = 1;
+          struct TYPE_5__ * window = (struct TYPE_5__ *) malloc(_len_window0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_window0; _i0++) {
+              window[_i0].mir.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          window[_i0].mir.height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_width0 = 1;
+          int * width = (int *) malloc(_len_width0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_width0; _i0++) {
+            width[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_height0 = 1;
+          int * height = (int *) malloc(_len_height0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_height0; _i0++) {
+            height[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          _glfwPlatformGetWindowSize(window,width,height);
+          free(window);
+          free(width);
+          free(height);
+        
+        break;
+    }
     default:
         usage();
         break;

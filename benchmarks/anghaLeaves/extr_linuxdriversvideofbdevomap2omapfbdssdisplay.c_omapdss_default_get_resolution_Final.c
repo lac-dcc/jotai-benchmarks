@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ void omapdss_default_get_resolution(struct omap_dss_device *dssdev,
 	*yres = dssdev->panel.timings.y_res;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,25 +81,166 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_dssdev0 = 65025;
+          struct omap_dss_device * dssdev = (struct omap_dss_device *) malloc(_len_dssdev0*sizeof(struct omap_dss_device));
+          for(int _i0 = 0; _i0 < _len_dssdev0; _i0++) {
+              dssdev[_i0].panel.timings.y_res = ((-2 * (next_i()%2)) + 1) * next_i();
+          dssdev[_i0].panel.timings.x_res = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_xres0 = 65025;
+          int * xres = (int *) malloc(_len_xres0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_xres0; _i0++) {
+            xres[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_yres0 = 65025;
+          int * yres = (int *) malloc(_len_yres0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_yres0; _i0++) {
+            yres[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          omapdss_default_get_resolution(dssdev,xres,yres);
+          free(dssdev);
+          free(xres);
+          free(yres);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_dssdev0 = 100;
+          struct omap_dss_device * dssdev = (struct omap_dss_device *) malloc(_len_dssdev0*sizeof(struct omap_dss_device));
+          for(int _i0 = 0; _i0 < _len_dssdev0; _i0++) {
+              dssdev[_i0].panel.timings.y_res = ((-2 * (next_i()%2)) + 1) * next_i();
+          dssdev[_i0].panel.timings.x_res = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_xres0 = 100;
+          int * xres = (int *) malloc(_len_xres0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_xres0; _i0++) {
+            xres[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_yres0 = 100;
+          int * yres = (int *) malloc(_len_yres0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_yres0; _i0++) {
+            yres[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          omapdss_default_get_resolution(dssdev,xres,yres);
+          free(dssdev);
+          free(xres);
+          free(yres);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_dssdev0 = 1;
           struct omap_dss_device * dssdev = (struct omap_dss_device *) malloc(_len_dssdev0*sizeof(struct omap_dss_device));
           for(int _i0 = 0; _i0 < _len_dssdev0; _i0++) {
-            dssdev[_i0].panel.timings.y_res = ((-2 * (next_i()%2)) + 1) * next_i();
-        dssdev[_i0].panel.timings.x_res = ((-2 * (next_i()%2)) + 1) * next_i();
+              dssdev[_i0].panel.timings.y_res = ((-2 * (next_i()%2)) + 1) * next_i();
+          dssdev[_i0].panel.timings.x_res = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int _len_xres0 = 1;
           int * xres = (int *) malloc(_len_xres0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_xres0; _i0++) {
             xres[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_yres0 = 1;
           int * yres = (int *) malloc(_len_yres0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_yres0; _i0++) {
             yres[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           omapdss_default_get_resolution(dssdev,xres,yres);
           free(dssdev);
           free(xres);

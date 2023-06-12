@@ -60,12 +60,6 @@ __attribute__((used)) static inline uint32_t ttm_bo_type_flags(unsigned type)
 	return 1 << (type);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,12 +76,12 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int type = 10;
+        
           int benchRet = ttm_bo_type_flags(type);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

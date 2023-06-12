@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +65,6 @@ void hci_uart_set_speeds(struct hci_uart *hu, unsigned int init_speed,
 	hu->oper_speed = oper_speed;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,17 +77,176 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           unsigned int init_speed = 100;
+        
           unsigned int oper_speed = 100;
+        
           int _len_hu0 = 1;
           struct hci_uart * hu = (struct hci_uart *) malloc(_len_hu0*sizeof(struct hci_uart));
           for(int _i0 = 0; _i0 < _len_hu0; _i0++) {
-            hu[_i0].init_speed = ((-2 * (next_i()%2)) + 1) * next_i();
-        hu[_i0].oper_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+              hu[_i0].init_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          hu[_i0].oper_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          hci_uart_set_speeds(hu,init_speed,oper_speed);
+          free(hu);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int init_speed = 255;
+        
+          unsigned int oper_speed = 255;
+        
+          int _len_hu0 = 65025;
+          struct hci_uart * hu = (struct hci_uart *) malloc(_len_hu0*sizeof(struct hci_uart));
+          for(int _i0 = 0; _i0 < _len_hu0; _i0++) {
+              hu[_i0].init_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          hu[_i0].oper_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          hci_uart_set_speeds(hu,init_speed,oper_speed);
+          free(hu);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int init_speed = 10;
+        
+          unsigned int oper_speed = 10;
+        
+          int _len_hu0 = 100;
+          struct hci_uart * hu = (struct hci_uart *) malloc(_len_hu0*sizeof(struct hci_uart));
+          for(int _i0 = 0; _i0 < _len_hu0; _i0++) {
+              hu[_i0].init_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          hu[_i0].oper_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          hci_uart_set_speeds(hu,init_speed,oper_speed);
+          free(hu);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int init_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int oper_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hu0 = 1;
+          struct hci_uart * hu = (struct hci_uart *) malloc(_len_hu0*sizeof(struct hci_uart));
+          for(int _i0 = 0; _i0 < _len_hu0; _i0++) {
+              hu[_i0].init_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          hu[_i0].oper_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           hci_uart_set_speeds(hu,init_speed,oper_speed);
           free(hu);
         

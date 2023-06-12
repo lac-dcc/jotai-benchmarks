@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -101,12 +104,6 @@ __attribute__((used)) static bool twl4030_can_write_to_chip(struct twl4030_priv 
 	return write_to_reg;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -123,24 +120,98 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int reg = 100;
+        
           int _len_twl40300 = 1;
           struct twl4030_priv * twl4030 = (struct twl4030_priv *) malloc(_len_twl40300*sizeof(struct twl4030_priv));
           for(int _i0 = 0; _i0 < _len_twl40300; _i0++) {
-            twl4030[_i0].hsr_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        twl4030[_i0].hsl_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        twl4030[_i0].carkitr_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        twl4030[_i0].carkitl_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        twl4030[_i0].predriver_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        twl4030[_i0].predrivel_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        twl4030[_i0].earpiece_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+              twl4030[_i0].hsr_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          twl4030[_i0].hsl_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          twl4030[_i0].carkitr_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          twl4030[_i0].carkitl_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          twl4030[_i0].predriver_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          twl4030[_i0].predrivel_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          twl4030[_i0].earpiece_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = twl4030_can_write_to_chip(twl4030,reg);
           printf("%d\n", benchRet); 
           free(twl4030);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int reg = 255;
+        
+          int _len_twl40300 = 65025;
+          struct twl4030_priv * twl4030 = (struct twl4030_priv *) malloc(_len_twl40300*sizeof(struct twl4030_priv));
+          for(int _i0 = 0; _i0 < _len_twl40300; _i0++) {
+              twl4030[_i0].hsr_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          twl4030[_i0].hsl_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          twl4030[_i0].carkitr_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          twl4030[_i0].carkitl_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          twl4030[_i0].predriver_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          twl4030[_i0].predrivel_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          twl4030[_i0].earpiece_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = twl4030_can_write_to_chip(twl4030,reg);
+          printf("%d\n", benchRet); 
+          free(twl4030);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int reg = 10;
+        
+          int _len_twl40300 = 100;
+          struct twl4030_priv * twl4030 = (struct twl4030_priv *) malloc(_len_twl40300*sizeof(struct twl4030_priv));
+          for(int _i0 = 0; _i0 < _len_twl40300; _i0++) {
+              twl4030[_i0].hsr_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          twl4030[_i0].hsl_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          twl4030[_i0].carkitr_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          twl4030[_i0].carkitl_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          twl4030[_i0].predriver_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          twl4030[_i0].predrivel_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          twl4030[_i0].earpiece_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = twl4030_can_write_to_chip(twl4030,reg);
+          printf("%d\n", benchRet); 
+          free(twl4030);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_twl40300 = 1;
+          struct twl4030_priv * twl4030 = (struct twl4030_priv *) malloc(_len_twl40300*sizeof(struct twl4030_priv));
+          for(int _i0 = 0; _i0 < _len_twl40300; _i0++) {
+              twl4030[_i0].hsr_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          twl4030[_i0].hsl_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          twl4030[_i0].carkitr_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          twl4030[_i0].carkitl_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          twl4030[_i0].predriver_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          twl4030[_i0].predrivel_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          twl4030[_i0].earpiece_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = twl4030_can_write_to_chip(twl4030,reg);
+          printf("%d\n", benchRet); 
+          free(twl4030);
+        
+        break;
+    }
     default:
         usage();
         break;

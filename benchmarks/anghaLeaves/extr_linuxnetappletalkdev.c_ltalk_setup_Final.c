@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -77,12 +79,6 @@ __attribute__((used)) static void ltalk_setup(struct net_device *dev)
 	dev->flags		= IFF_BROADCAST|IFF_MULTICAST|IFF_NOARP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,24 +91,26 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dev0 = 1;
+          int _len_dev0 = 65025;
           struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].tx_queue_len = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].tx_queue_len = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_dev__i0__broadcast0 = 1;
           dev[_i0].broadcast = (int *) malloc(_len_dev__i0__broadcast0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_dev__i0__broadcast0; _j0++) {
             dev[_i0].broadcast[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        dev[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].addr_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].mtu = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].hard_header_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].addr_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].hard_header_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ltalk_setup(dev);
           for(int _aux = 0; _aux < _len_dev0; _aux++) {
           free(dev[_aux].broadcast);
@@ -121,7 +119,62 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dev0 = 100;
+          struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].tx_queue_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_dev__i0__broadcast0 = 1;
+          dev[_i0].broadcast = (int *) malloc(_len_dev__i0__broadcast0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_dev__i0__broadcast0; _j0++) {
+            dev[_i0].broadcast[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          dev[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].addr_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].hard_header_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ltalk_setup(dev);
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(dev[_aux].broadcast);
+          }
+          free(dev);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dev0 = 1;
+          struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].tx_queue_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_dev__i0__broadcast0 = 1;
+          dev[_i0].broadcast = (int *) malloc(_len_dev__i0__broadcast0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_dev__i0__broadcast0; _j0++) {
+            dev[_i0].broadcast[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          dev[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].addr_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].hard_header_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ltalk_setup(dev);
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(dev[_aux].broadcast);
+          }
+          free(dev);
+        
+        break;
+    }
     default:
         usage();
         break;

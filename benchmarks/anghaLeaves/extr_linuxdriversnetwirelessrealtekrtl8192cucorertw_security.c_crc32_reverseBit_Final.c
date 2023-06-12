@@ -62,12 +62,6 @@ __attribute__((used)) static u8 crc32_reverseBit( u8 data)
 	return( (u8)((data<<7)&0x80) | ((data<<5)&0x40) | ((data<<3)&0x20) | ((data<<1)&0x10) | ((data>>1)&0x08) | ((data>>3)&0x04) | ((data>>5)&0x02) | ((data>>7)&0x01) );
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +78,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int data = 100;
+        
           int benchRet = crc32_reverseBit(data);
           printf("%d\n", benchRet); 
         
@@ -93,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int data = 255;
+        
           int benchRet = crc32_reverseBit(data);
           printf("%d\n", benchRet); 
         
@@ -102,12 +98,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int data = 10;
+        
           int benchRet = crc32_reverseBit(data);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

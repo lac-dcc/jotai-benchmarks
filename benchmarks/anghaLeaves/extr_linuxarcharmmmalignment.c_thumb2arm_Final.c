@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -156,12 +157,6 @@ thumb2arm(u16 tinstr)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -178,6 +173,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int tinstr = 100;
+        
           unsigned long benchRet = thumb2arm(tinstr);
           printf("%lu\n", benchRet); 
         
@@ -187,6 +183,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int tinstr = 255;
+        
           unsigned long benchRet = thumb2arm(tinstr);
           printf("%lu\n", benchRet); 
         
@@ -196,12 +193,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int tinstr = 10;
+        
           unsigned long benchRet = thumb2arm(tinstr);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int tinstr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = thumb2arm(tinstr);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

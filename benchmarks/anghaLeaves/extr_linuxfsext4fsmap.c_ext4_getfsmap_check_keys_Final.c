@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ __attribute__((used)) static bool ext4_getfsmap_check_keys(struct ext4_fsmap *lo
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,23 +90,154 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 38
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_low_key0 = 65025;
+          struct ext4_fsmap * low_key = (struct ext4_fsmap *) malloc(_len_low_key0*sizeof(struct ext4_fsmap));
+          for(int _i0 = 0; _i0 < _len_low_key0; _i0++) {
+              low_key[_i0].fmr_device = ((-2 * (next_i()%2)) + 1) * next_i();
+          low_key[_i0].fmr_physical = ((-2 * (next_i()%2)) + 1) * next_i();
+          low_key[_i0].fmr_owner = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_high_key0 = 65025;
+          struct ext4_fsmap * high_key = (struct ext4_fsmap *) malloc(_len_high_key0*sizeof(struct ext4_fsmap));
+          for(int _i0 = 0; _i0 < _len_high_key0; _i0++) {
+              high_key[_i0].fmr_device = ((-2 * (next_i()%2)) + 1) * next_i();
+          high_key[_i0].fmr_physical = ((-2 * (next_i()%2)) + 1) * next_i();
+          high_key[_i0].fmr_owner = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ext4_getfsmap_check_keys(low_key,high_key);
+          printf("%d\n", benchRet); 
+          free(low_key);
+          free(high_key);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 38
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_low_key0 = 100;
+          struct ext4_fsmap * low_key = (struct ext4_fsmap *) malloc(_len_low_key0*sizeof(struct ext4_fsmap));
+          for(int _i0 = 0; _i0 < _len_low_key0; _i0++) {
+              low_key[_i0].fmr_device = ((-2 * (next_i()%2)) + 1) * next_i();
+          low_key[_i0].fmr_physical = ((-2 * (next_i()%2)) + 1) * next_i();
+          low_key[_i0].fmr_owner = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_high_key0 = 100;
+          struct ext4_fsmap * high_key = (struct ext4_fsmap *) malloc(_len_high_key0*sizeof(struct ext4_fsmap));
+          for(int _i0 = 0; _i0 < _len_high_key0; _i0++) {
+              high_key[_i0].fmr_device = ((-2 * (next_i()%2)) + 1) * next_i();
+          high_key[_i0].fmr_physical = ((-2 * (next_i()%2)) + 1) * next_i();
+          high_key[_i0].fmr_owner = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ext4_getfsmap_check_keys(low_key,high_key);
+          printf("%d\n", benchRet); 
+          free(low_key);
+          free(high_key);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 38
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           int _len_low_key0 = 1;
           struct ext4_fsmap * low_key = (struct ext4_fsmap *) malloc(_len_low_key0*sizeof(struct ext4_fsmap));
           for(int _i0 = 0; _i0 < _len_low_key0; _i0++) {
-            low_key[_i0].fmr_device = ((-2 * (next_i()%2)) + 1) * next_i();
-        low_key[_i0].fmr_physical = ((-2 * (next_i()%2)) + 1) * next_i();
-        low_key[_i0].fmr_owner = ((-2 * (next_i()%2)) + 1) * next_i();
+              low_key[_i0].fmr_device = ((-2 * (next_i()%2)) + 1) * next_i();
+          low_key[_i0].fmr_physical = ((-2 * (next_i()%2)) + 1) * next_i();
+          low_key[_i0].fmr_owner = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_high_key0 = 1;
           struct ext4_fsmap * high_key = (struct ext4_fsmap *) malloc(_len_high_key0*sizeof(struct ext4_fsmap));
           for(int _i0 = 0; _i0 < _len_high_key0; _i0++) {
-            high_key[_i0].fmr_device = ((-2 * (next_i()%2)) + 1) * next_i();
-        high_key[_i0].fmr_physical = ((-2 * (next_i()%2)) + 1) * next_i();
-        high_key[_i0].fmr_owner = ((-2 * (next_i()%2)) + 1) * next_i();
+              high_key[_i0].fmr_device = ((-2 * (next_i()%2)) + 1) * next_i();
+          high_key[_i0].fmr_physical = ((-2 * (next_i()%2)) + 1) * next_i();
+          high_key[_i0].fmr_owner = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ext4_getfsmap_check_keys(low_key,high_key);
           printf("%d\n", benchRet); 
           free(low_key);

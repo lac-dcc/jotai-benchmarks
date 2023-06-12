@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ ahc_set_unit(struct ahc_softc *ahc, int unit)
 	ahc->unit = unit;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,31 +80,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int unit = 100;
+        
           int _len_ahc0 = 1;
           struct ahc_softc * ahc = (struct ahc_softc *) malloc(_len_ahc0*sizeof(struct ahc_softc));
           for(int _i0 = 0; _i0 < _len_ahc0; _i0++) {
-            ahc[_i0].unit = ((-2 * (next_i()%2)) + 1) * next_i();
+              ahc[_i0].unit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          ahc_set_unit(ahc,unit);
+          free(ahc);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int unit = 255;
+        
+          int _len_ahc0 = 65025;
+          struct ahc_softc * ahc = (struct ahc_softc *) malloc(_len_ahc0*sizeof(struct ahc_softc));
+          for(int _i0 = 0; _i0 < _len_ahc0; _i0++) {
+              ahc[_i0].unit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           ahc_set_unit(ahc,unit);
           free(ahc);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int unit = 10;
+        
           int _len_ahc0 = 100;
           struct ahc_softc * ahc = (struct ahc_softc *) malloc(_len_ahc0*sizeof(struct ahc_softc));
           for(int _i0 = 0; _i0 < _len_ahc0; _i0++) {
-            ahc[_i0].unit = ((-2 * (next_i()%2)) + 1) * next_i();
+              ahc[_i0].unit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ahc_set_unit(ahc,unit);
           free(ahc);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int unit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ahc0 = 1;
+          struct ahc_softc * ahc = (struct ahc_softc *) malloc(_len_ahc0*sizeof(struct ahc_softc));
+          for(int _i0 = 0; _i0 < _len_ahc0; _i0++) {
+              ahc[_i0].unit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ahc_set_unit(ahc,unit);
+          free(ahc);
+        
+        break;
+    }
     default:
         usage();
         break;

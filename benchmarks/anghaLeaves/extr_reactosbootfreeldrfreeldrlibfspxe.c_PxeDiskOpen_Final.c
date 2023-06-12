@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ __attribute__((used)) static ARC_STATUS PxeDiskOpen(CHAR* Path, OPENMODE OpenMod
     return ESUCCESS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,20 +80,190 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int OpenMode = 100;
+        
           int _len_Path0 = 1;
           int * Path = (int *) malloc(_len_Path0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_Path0; _i0++) {
             Path[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_FileId0 = 1;
           int * FileId = (int *) malloc(_len_FileId0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_FileId0; _i0++) {
             FileId[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = PxeDiskOpen(Path,OpenMode,FileId);
+          printf("%d\n", benchRet); 
+          free(Path);
+          free(FileId);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int OpenMode = 255;
+        
+          int _len_Path0 = 65025;
+          int * Path = (int *) malloc(_len_Path0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_Path0; _i0++) {
+            Path[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_FileId0 = 65025;
+          int * FileId = (int *) malloc(_len_FileId0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_FileId0; _i0++) {
+            FileId[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = PxeDiskOpen(Path,OpenMode,FileId);
+          printf("%d\n", benchRet); 
+          free(Path);
+          free(FileId);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int OpenMode = 10;
+        
+          int _len_Path0 = 100;
+          int * Path = (int *) malloc(_len_Path0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_Path0; _i0++) {
+            Path[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_FileId0 = 100;
+          int * FileId = (int *) malloc(_len_FileId0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_FileId0; _i0++) {
+            FileId[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = PxeDiskOpen(Path,OpenMode,FileId);
+          printf("%d\n", benchRet); 
+          free(Path);
+          free(FileId);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int OpenMode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_Path0 = 1;
+          int * Path = (int *) malloc(_len_Path0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_Path0; _i0++) {
+            Path[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_FileId0 = 1;
+          int * FileId = (int *) malloc(_len_FileId0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_FileId0; _i0++) {
+            FileId[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = PxeDiskOpen(Path,OpenMode,FileId);
           printf("%d\n", benchRet); 
           free(Path);

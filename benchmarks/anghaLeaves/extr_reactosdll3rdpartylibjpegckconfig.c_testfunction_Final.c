@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -59,12 +60,6 @@ int testfunction (int arg1, int * arg2) /* check definitions */
   return arg2[arg1];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -77,22 +72,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int arg1 = 10;
-          int _len_arg20 = 100;
+          int arg1 = 255;
+        
+          int _len_arg20 = 65025;
           int * arg2 = (int *) malloc(_len_arg20*sizeof(int));
           for(int _i0 = 0; _i0 < _len_arg20; _i0++) {
             arg2[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = testfunction(arg1,arg2);
           printf("%d\n", benchRet); 
           free(arg2);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int arg1 = 10;
+        
+          int _len_arg20 = 100;
+          int * arg2 = (int *) malloc(_len_arg20*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_arg20; _i0++) {
+            arg2[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = testfunction(arg1,arg2);
+          printf("%d\n", benchRet); 
+          free(arg2);
+        
+        break;
+    }
     default:
         usage();
         break;

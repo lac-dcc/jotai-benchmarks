@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline uint64_t amdgpu_sa_bo_gpu_addr(struct amdgpu
 	return sa_bo->manager->gpu_addr + sa_bo->soffset;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,19 +77,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_sa_bo0 = 1;
+          int _len_sa_bo0 = 65025;
           struct amdgpu_sa_bo * sa_bo = (struct amdgpu_sa_bo *) malloc(_len_sa_bo0*sizeof(struct amdgpu_sa_bo));
           for(int _i0 = 0; _i0 < _len_sa_bo0; _i0++) {
-            sa_bo[_i0].soffset = ((-2 * (next_i()%2)) + 1) * next_i();
+              sa_bo[_i0].soffset = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_sa_bo__i0__manager0 = 1;
           sa_bo[_i0].manager = (struct TYPE_2__ *) malloc(_len_sa_bo__i0__manager0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_sa_bo__i0__manager0; _j0++) {
-            sa_bo[_i0].manager->gpu_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+              sa_bo[_i0].manager->gpu_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           long benchRet = amdgpu_sa_bo_gpu_addr(sa_bo);
           printf("%ld\n", benchRet); 
           for(int _aux = 0; _aux < _len_sa_bo0; _aux++) {
@@ -103,7 +102,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_sa_bo0 = 100;
+          struct amdgpu_sa_bo * sa_bo = (struct amdgpu_sa_bo *) malloc(_len_sa_bo0*sizeof(struct amdgpu_sa_bo));
+          for(int _i0 = 0; _i0 < _len_sa_bo0; _i0++) {
+              sa_bo[_i0].soffset = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_sa_bo__i0__manager0 = 1;
+          sa_bo[_i0].manager = (struct TYPE_2__ *) malloc(_len_sa_bo__i0__manager0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_sa_bo__i0__manager0; _j0++) {
+              sa_bo[_i0].manager->gpu_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          long benchRet = amdgpu_sa_bo_gpu_addr(sa_bo);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_sa_bo0; _aux++) {
+          free(sa_bo[_aux].manager);
+          }
+          free(sa_bo);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_sa_bo0 = 1;
+          struct amdgpu_sa_bo * sa_bo = (struct amdgpu_sa_bo *) malloc(_len_sa_bo0*sizeof(struct amdgpu_sa_bo));
+          for(int _i0 = 0; _i0 < _len_sa_bo0; _i0++) {
+              sa_bo[_i0].soffset = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_sa_bo__i0__manager0 = 1;
+          sa_bo[_i0].manager = (struct TYPE_2__ *) malloc(_len_sa_bo__i0__manager0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_sa_bo__i0__manager0; _j0++) {
+              sa_bo[_i0].manager->gpu_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          long benchRet = amdgpu_sa_bo_gpu_addr(sa_bo);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_sa_bo0; _aux++) {
+          free(sa_bo[_aux].manager);
+          }
+          free(sa_bo);
+        
+        break;
+    }
     default:
         usage();
         break;

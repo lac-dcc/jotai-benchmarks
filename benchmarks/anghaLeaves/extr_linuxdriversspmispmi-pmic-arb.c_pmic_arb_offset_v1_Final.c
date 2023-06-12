@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static int pmic_arb_offset_v1(struct spmi_pmic_arb *pmic_a
 	return 0x800 + 0x80 * pmic_arb->channel;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,34 +79,183 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int sid = 100;
+        
           int addr = 100;
+        
           enum pmic_arb_channel ch_type = 0;
+        
           int _len_pmic_arb0 = 1;
           struct spmi_pmic_arb * pmic_arb = (struct spmi_pmic_arb *) malloc(_len_pmic_arb0*sizeof(struct spmi_pmic_arb));
           for(int _i0 = 0; _i0 < _len_pmic_arb0; _i0++) {
-            pmic_arb[_i0].channel = ((-2 * (next_i()%2)) + 1) * next_i();
+              pmic_arb[_i0].channel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = pmic_arb_offset_v1(pmic_arb,sid,addr,ch_type);
           printf("%d\n", benchRet); 
           free(pmic_arb);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
-          int sid = 10;
-          int addr = 10;
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int sid = 255;
+        
+          int addr = 255;
+        
           enum pmic_arb_channel ch_type = 0;
+        
+          int _len_pmic_arb0 = 65025;
+          struct spmi_pmic_arb * pmic_arb = (struct spmi_pmic_arb *) malloc(_len_pmic_arb0*sizeof(struct spmi_pmic_arb));
+          for(int _i0 = 0; _i0 < _len_pmic_arb0; _i0++) {
+              pmic_arb[_i0].channel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pmic_arb_offset_v1(pmic_arb,sid,addr,ch_type);
+          printf("%d\n", benchRet); 
+          free(pmic_arb);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int sid = 10;
+        
+          int addr = 10;
+        
+          enum pmic_arb_channel ch_type = 0;
+        
           int _len_pmic_arb0 = 100;
           struct spmi_pmic_arb * pmic_arb = (struct spmi_pmic_arb *) malloc(_len_pmic_arb0*sizeof(struct spmi_pmic_arb));
           for(int _i0 = 0; _i0 < _len_pmic_arb0; _i0++) {
-            pmic_arb[_i0].channel = ((-2 * (next_i()%2)) + 1) * next_i();
+              pmic_arb[_i0].channel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = pmic_arb_offset_v1(pmic_arb,sid,addr,ch_type);
+          printf("%d\n", benchRet); 
+          free(pmic_arb);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int sid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          enum pmic_arb_channel ch_type = 0;
+        
+          int _len_pmic_arb0 = 1;
+          struct spmi_pmic_arb * pmic_arb = (struct spmi_pmic_arb *) malloc(_len_pmic_arb0*sizeof(struct spmi_pmic_arb));
+          for(int _i0 = 0; _i0 < _len_pmic_arb0; _i0++) {
+              pmic_arb[_i0].channel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = pmic_arb_offset_v1(pmic_arb,sid,addr,ch_type);
           printf("%d\n", benchRet); 
           free(pmic_arb);

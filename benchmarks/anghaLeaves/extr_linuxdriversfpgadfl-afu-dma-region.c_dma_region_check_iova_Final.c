@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ __attribute__((used)) static bool dma_region_check_iova(struct dfl_afu_dma_regio
 		(region->length + region->iova >= iova + size);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,17 +81,179 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           long iova = 100;
+        
           long size = 100;
+        
           int _len_region0 = 1;
           struct dfl_afu_dma_region * region = (struct dfl_afu_dma_region *) malloc(_len_region0*sizeof(struct dfl_afu_dma_region));
           for(int _i0 = 0; _i0 < _len_region0; _i0++) {
-            region[_i0].iova = ((-2 * (next_i()%2)) + 1) * next_i();
-        region[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+              region[_i0].iova = ((-2 * (next_i()%2)) + 1) * next_i();
+          region[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = dma_region_check_iova(region,iova,size);
+          printf("%d\n", benchRet); 
+          free(region);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          long iova = 255;
+        
+          long size = 255;
+        
+          int _len_region0 = 65025;
+          struct dfl_afu_dma_region * region = (struct dfl_afu_dma_region *) malloc(_len_region0*sizeof(struct dfl_afu_dma_region));
+          for(int _i0 = 0; _i0 < _len_region0; _i0++) {
+              region[_i0].iova = ((-2 * (next_i()%2)) + 1) * next_i();
+          region[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dma_region_check_iova(region,iova,size);
+          printf("%d\n", benchRet); 
+          free(region);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          long iova = 10;
+        
+          long size = 10;
+        
+          int _len_region0 = 100;
+          struct dfl_afu_dma_region * region = (struct dfl_afu_dma_region *) malloc(_len_region0*sizeof(struct dfl_afu_dma_region));
+          for(int _i0 = 0; _i0 < _len_region0; _i0++) {
+              region[_i0].iova = ((-2 * (next_i()%2)) + 1) * next_i();
+          region[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dma_region_check_iova(region,iova,size);
+          printf("%d\n", benchRet); 
+          free(region);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          long iova = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_region0 = 1;
+          struct dfl_afu_dma_region * region = (struct dfl_afu_dma_region *) malloc(_len_region0*sizeof(struct dfl_afu_dma_region));
+          for(int _i0 = 0; _i0 < _len_region0; _i0++) {
+              region[_i0].iova = ((-2 * (next_i()%2)) + 1) * next_i();
+          region[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = dma_region_check_iova(region,iova,size);
           printf("%d\n", benchRet); 
           free(region);

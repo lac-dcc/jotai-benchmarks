@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ invalid:
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,15 +92,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int _len_kekl0 = 65025;
+          struct tape390_kekl * kekl = (struct tape390_kekl *) malloc(_len_kekl0*sizeof(struct tape390_kekl));
+          for(int _i0 = 0; _i0 < _len_kekl0; _i0++) {
+              kekl[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          kekl[_i0].type_on_tape = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = check_ext_kekl(kekl);
+          printf("%d\n", benchRet); 
+          free(kekl);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int _len_kekl0 = 100;
+          struct tape390_kekl * kekl = (struct tape390_kekl *) malloc(_len_kekl0*sizeof(struct tape390_kekl));
+          for(int _i0 = 0; _i0 < _len_kekl0; _i0++) {
+              kekl[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          kekl[_i0].type_on_tape = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = check_ext_kekl(kekl);
+          printf("%d\n", benchRet); 
+          free(kekl);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
           int _len_kekl0 = 1;
           struct tape390_kekl * kekl = (struct tape390_kekl *) malloc(_len_kekl0*sizeof(struct tape390_kekl));
           for(int _i0 = 0; _i0 < _len_kekl0; _i0++) {
-            kekl[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        kekl[_i0].type_on_tape = ((-2 * (next_i()%2)) + 1) * next_i();
+              kekl[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          kekl[_i0].type_on_tape = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = check_ext_kekl(kekl);
           printf("%d\n", benchRet); 
           free(kekl);

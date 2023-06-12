@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static bool lease_breaking(struct file_lock *fl)
 	return fl->fl_flags & (FL_UNLOCK_PENDING | FL_DOWNGRADE_PENDING);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_fl0 = 1;
+          int _len_fl0 = 65025;
           struct file_lock * fl = (struct file_lock *) malloc(_len_fl0*sizeof(struct file_lock));
           for(int _i0 = 0; _i0 < _len_fl0; _i0++) {
-            fl[_i0].fl_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              fl[_i0].fl_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = lease_breaking(fl);
           printf("%d\n", benchRet); 
           free(fl);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_fl0 = 100;
           struct file_lock * fl = (struct file_lock *) malloc(_len_fl0*sizeof(struct file_lock));
           for(int _i0 = 0; _i0 < _len_fl0; _i0++) {
-            fl[_i0].fl_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              fl[_i0].fl_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = lease_breaking(fl);
           printf("%d\n", benchRet); 
           free(fl);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_fl0 = 1;
+          struct file_lock * fl = (struct file_lock *) malloc(_len_fl0*sizeof(struct file_lock));
+          for(int _i0 = 0; _i0 < _len_fl0; _i0++) {
+              fl[_i0].fl_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = lease_breaking(fl);
+          printf("%d\n", benchRet); 
+          free(fl);
+        
+        break;
+    }
     default:
         usage();
         break;

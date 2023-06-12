@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ fwhdr_is_ga(struct bfi_ioc_image_hdr *fwhdr)
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,22 +81,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_fwhdr0 = 1;
+          int _len_fwhdr0 = 65025;
           struct bfi_ioc_image_hdr * fwhdr = (struct bfi_ioc_image_hdr *) malloc(_len_fwhdr0*sizeof(struct bfi_ioc_image_hdr));
           for(int _i0 = 0; _i0 < _len_fwhdr0; _i0++) {
-            fwhdr[_i0].fwver.phase = ((-2 * (next_i()%2)) + 1) * next_i();
-        fwhdr[_i0].fwver.build = ((-2 * (next_i()%2)) + 1) * next_i();
+              fwhdr[_i0].fwver.phase = ((-2 * (next_i()%2)) + 1) * next_i();
+          fwhdr[_i0].fwver.build = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = fwhdr_is_ga(fwhdr);
           printf("%d\n", benchRet); 
           free(fwhdr);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_fwhdr0 = 100;
+          struct bfi_ioc_image_hdr * fwhdr = (struct bfi_ioc_image_hdr *) malloc(_len_fwhdr0*sizeof(struct bfi_ioc_image_hdr));
+          for(int _i0 = 0; _i0 < _len_fwhdr0; _i0++) {
+              fwhdr[_i0].fwver.phase = ((-2 * (next_i()%2)) + 1) * next_i();
+          fwhdr[_i0].fwver.build = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = fwhdr_is_ga(fwhdr);
+          printf("%d\n", benchRet); 
+          free(fwhdr);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_fwhdr0 = 1;
+          struct bfi_ioc_image_hdr * fwhdr = (struct bfi_ioc_image_hdr *) malloc(_len_fwhdr0*sizeof(struct bfi_ioc_image_hdr));
+          for(int _i0 = 0; _i0 < _len_fwhdr0; _i0++) {
+              fwhdr[_i0].fwver.phase = ((-2 * (next_i()%2)) + 1) * next_i();
+          fwhdr[_i0].fwver.build = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = fwhdr_is_ga(fwhdr);
+          printf("%d\n", benchRet); 
+          free(fwhdr);
+        
+        break;
+    }
     default:
         usage();
         break;

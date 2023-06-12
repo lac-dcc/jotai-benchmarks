@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline bool cdns_is_holdquirk(struct cdns_i2c *id, 
 		(id->curr_recv_count == CDNS_I2C_FIFO_DEPTH + 1));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,30 +77,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int hold_wrkaround = 100;
+        
           int _len_id0 = 1;
           struct cdns_i2c * id = (struct cdns_i2c *) malloc(_len_id0*sizeof(struct cdns_i2c));
           for(int _i0 = 0; _i0 < _len_id0; _i0++) {
-            id[_i0].curr_recv_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              id[_i0].curr_recv_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cdns_is_holdquirk(id,hold_wrkaround);
           printf("%d\n", benchRet); 
           free(id);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int hold_wrkaround = 255;
+        
+          int _len_id0 = 65025;
+          struct cdns_i2c * id = (struct cdns_i2c *) malloc(_len_id0*sizeof(struct cdns_i2c));
+          for(int _i0 = 0; _i0 < _len_id0; _i0++) {
+              id[_i0].curr_recv_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cdns_is_holdquirk(id,hold_wrkaround);
+          printf("%d\n", benchRet); 
+          free(id);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int hold_wrkaround = 10;
+        
           int _len_id0 = 100;
           struct cdns_i2c * id = (struct cdns_i2c *) malloc(_len_id0*sizeof(struct cdns_i2c));
           for(int _i0 = 0; _i0 < _len_id0; _i0++) {
-            id[_i0].curr_recv_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              id[_i0].curr_recv_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = cdns_is_holdquirk(id,hold_wrkaround);
+          printf("%d\n", benchRet); 
+          free(id);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int hold_wrkaround = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_id0 = 1;
+          struct cdns_i2c * id = (struct cdns_i2c *) malloc(_len_id0*sizeof(struct cdns_i2c));
+          for(int _i0 = 0; _i0 < _len_id0; _i0++) {
+              id[_i0].curr_recv_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = cdns_is_holdquirk(id,hold_wrkaround);
           printf("%d\n", benchRet); 
           free(id);

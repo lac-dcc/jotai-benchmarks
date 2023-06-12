@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +74,6 @@ __attribute__((used)) static int mpeg4_get_intra_dc_vlc_thr(Mpeg4DecContext *s)
     return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,14 +86,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_s0 = 1;
+          int _len_s0 = 65025;
           struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].intra_dc_threshold = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].intra_dc_threshold = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mpeg4_get_intra_dc_vlc_thr(s);
           printf("%d\n", benchRet); 
           free(s);
@@ -111,15 +108,32 @@ int main(int argc, char *argv[]) {
           int _len_s0 = 100;
           struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].intra_dc_threshold = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].intra_dc_threshold = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mpeg4_get_intra_dc_vlc_thr(s);
           printf("%d\n", benchRet); 
           free(s);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_s0 = 1;
+          struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].intra_dc_threshold = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mpeg4_get_intra_dc_vlc_thr(s);
+          printf("%d\n", benchRet); 
+          free(s);
+        
+        break;
+    }
     default:
         usage();
         break;

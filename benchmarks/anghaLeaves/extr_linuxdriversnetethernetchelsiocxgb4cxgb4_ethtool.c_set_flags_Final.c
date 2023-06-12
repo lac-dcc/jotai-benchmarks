@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static inline void set_flags(u32 *cur_flags, u32 new_flags
 	*cur_flags = (*cur_flags & ~flags) | (new_flags & flags);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,31 +75,168 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int new_flags = 100;
+        
           int flags = 100;
+        
           int _len_cur_flags0 = 1;
           int * cur_flags = (int *) malloc(_len_cur_flags0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_cur_flags0; _i0++) {
             cur_flags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           set_flags(cur_flags,new_flags,flags);
           free(cur_flags);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int new_flags = 255;
+        
+          int flags = 255;
+        
+          int _len_cur_flags0 = 65025;
+          int * cur_flags = (int *) malloc(_len_cur_flags0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_cur_flags0; _i0++) {
+            cur_flags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          set_flags(cur_flags,new_flags,flags);
+          free(cur_flags);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int new_flags = 10;
+        
           int flags = 10;
+        
           int _len_cur_flags0 = 100;
           int * cur_flags = (int *) malloc(_len_cur_flags0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_cur_flags0; _i0++) {
             cur_flags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          set_flags(cur_flags,new_flags,flags);
+          free(cur_flags);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int new_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cur_flags0 = 1;
+          int * cur_flags = (int *) malloc(_len_cur_flags0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_cur_flags0; _i0++) {
+            cur_flags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           set_flags(cur_flags,new_flags,flags);
           free(cur_flags);
         

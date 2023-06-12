@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -123,12 +125,6 @@ void get_regs_from_mc(struct uml_pt_regs *regs, mcontext_t *mc)
 #endif
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -141,9 +137,154 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 191
+          // dynamic_instructions_O0 : 191
+          // ------------------------------- 
+          // static_instructions_O1 : 108
+          // dynamic_instructions_O1 : 108
+          // ------------------------------- 
+          // static_instructions_O2 : 108
+          // dynamic_instructions_O2 : 108
+          // ------------------------------- 
+          // static_instructions_O3 : 108
+          // dynamic_instructions_O3 : 108
+          // ------------------------------- 
+          // static_instructions_Ofast : 108
+          // dynamic_instructions_Ofast : 108
+          // ------------------------------- 
+          // static_instructions_Os : 108
+          // dynamic_instructions_Os : 108
+          // ------------------------------- 
+          // static_instructions_Oz : 108
+          // dynamic_instructions_Oz : 108
+          // ------------------------------- 
+
+          int _len_regs0 = 65025;
+          struct uml_pt_regs * regs = (struct uml_pt_regs *) malloc(_len_regs0*sizeof(struct uml_pt_regs));
+          for(int _i0 = 0; _i0 < _len_regs0; _i0++) {
+              int _len_regs__i0__gp0 = 1;
+          regs[_i0].gp = (int *) malloc(_len_regs__i0__gp0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_regs__i0__gp0; _j0++) {
+            regs[_i0].gp[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_mc0 = 65025;
+          struct TYPE_3__ * mc = (struct TYPE_3__ *) malloc(_len_mc0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_mc0; _i0++) {
+              int _len_mc__i0__gregs0 = 1;
+          mc[_i0].gregs = (int *) malloc(_len_mc__i0__gregs0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_mc__i0__gregs0; _j0++) {
+            mc[_i0].gregs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          get_regs_from_mc(regs,mc);
+          for(int _aux = 0; _aux < _len_regs0; _aux++) {
+          free(regs[_aux].gp);
+          }
+          free(regs);
+          for(int _aux = 0; _aux < _len_mc0; _aux++) {
+          free(mc[_aux].gregs);
+          }
+          free(mc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 191
+          // dynamic_instructions_O0 : 191
+          // ------------------------------- 
+          // static_instructions_O1 : 108
+          // dynamic_instructions_O1 : 108
+          // ------------------------------- 
+          // static_instructions_O2 : 108
+          // dynamic_instructions_O2 : 108
+          // ------------------------------- 
+          // static_instructions_O3 : 108
+          // dynamic_instructions_O3 : 108
+          // ------------------------------- 
+          // static_instructions_Ofast : 108
+          // dynamic_instructions_Ofast : 108
+          // ------------------------------- 
+          // static_instructions_Os : 108
+          // dynamic_instructions_Os : 108
+          // ------------------------------- 
+          // static_instructions_Oz : 108
+          // dynamic_instructions_Oz : 108
+          // ------------------------------- 
+
+          int _len_regs0 = 100;
+          struct uml_pt_regs * regs = (struct uml_pt_regs *) malloc(_len_regs0*sizeof(struct uml_pt_regs));
+          for(int _i0 = 0; _i0 < _len_regs0; _i0++) {
+              int _len_regs__i0__gp0 = 1;
+          regs[_i0].gp = (int *) malloc(_len_regs__i0__gp0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_regs__i0__gp0; _j0++) {
+            regs[_i0].gp[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_mc0 = 100;
+          struct TYPE_3__ * mc = (struct TYPE_3__ *) malloc(_len_mc0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_mc0; _i0++) {
+              int _len_mc__i0__gregs0 = 1;
+          mc[_i0].gregs = (int *) malloc(_len_mc__i0__gregs0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_mc__i0__gregs0; _j0++) {
+            mc[_i0].gregs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          get_regs_from_mc(regs,mc);
+          for(int _aux = 0; _aux < _len_regs0; _aux++) {
+          free(regs[_aux].gp);
+          }
+          free(regs);
+          for(int _aux = 0; _aux < _len_mc0; _aux++) {
+          free(mc[_aux].gregs);
+          }
+          free(mc);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 191
+          // dynamic_instructions_O0 : 191
+          // ------------------------------- 
+          // static_instructions_O1 : 108
+          // dynamic_instructions_O1 : 108
+          // ------------------------------- 
+          // static_instructions_O2 : 108
+          // dynamic_instructions_O2 : 108
+          // ------------------------------- 
+          // static_instructions_O3 : 108
+          // dynamic_instructions_O3 : 108
+          // ------------------------------- 
+          // static_instructions_Ofast : 108
+          // dynamic_instructions_Ofast : 108
+          // ------------------------------- 
+          // static_instructions_Os : 108
+          // dynamic_instructions_Os : 108
+          // ------------------------------- 
+          // static_instructions_Oz : 108
+          // dynamic_instructions_Oz : 108
+          // ------------------------------- 
+
           int _len_regs0 = 1;
           struct uml_pt_regs * regs = (struct uml_pt_regs *) malloc(_len_regs0*sizeof(struct uml_pt_regs));
           for(int _i0 = 0; _i0 < _len_regs0; _i0++) {
@@ -152,7 +293,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_regs__i0__gp0; _j0++) {
             regs[_i0].gp[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int _len_mc0 = 1;
           struct TYPE_3__ * mc = (struct TYPE_3__ *) malloc(_len_mc0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_mc0; _i0++) {
@@ -161,7 +304,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_mc__i0__gregs0; _j0++) {
             mc[_i0].gregs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           get_regs_from_mc(regs,mc);
           for(int _aux = 0; _aux < _len_regs0; _aux++) {
           free(regs[_aux].gp);

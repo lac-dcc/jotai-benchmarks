@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ X509_VERIFY_PARAM *SSL_get0_param(SSL *ssl)
     return ssl->param;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,10 +77,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ssl0 = 1;
+          int _len_ssl0 = 65025;
           struct TYPE_3__ * ssl = (struct TYPE_3__ *) malloc(_len_ssl0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_ssl0; _i0++) {
               int _len_ssl__i0__param0 = 1;
@@ -92,7 +88,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_ssl__i0__param0; _j0++) {
             ssl[_i0].param[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int * benchRet = SSL_get0_param(ssl);
           printf("%d\n", (*benchRet)); 
           for(int _aux = 0; _aux < _len_ssl0; _aux++) {
@@ -102,7 +100,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ssl0 = 100;
+          struct TYPE_3__ * ssl = (struct TYPE_3__ *) malloc(_len_ssl0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ssl0; _i0++) {
+              int _len_ssl__i0__param0 = 1;
+          ssl[_i0].param = (int *) malloc(_len_ssl__i0__param0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ssl__i0__param0; _j0++) {
+            ssl[_i0].param[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int * benchRet = SSL_get0_param(ssl);
+          printf("%d\n", (*benchRet)); 
+          for(int _aux = 0; _aux < _len_ssl0; _aux++) {
+          free(ssl[_aux].param);
+          }
+          free(ssl);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ssl0 = 1;
+          struct TYPE_3__ * ssl = (struct TYPE_3__ *) malloc(_len_ssl0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ssl0; _i0++) {
+              int _len_ssl__i0__param0 = 1;
+          ssl[_i0].param = (int *) malloc(_len_ssl__i0__param0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ssl__i0__param0; _j0++) {
+            ssl[_i0].param[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int * benchRet = SSL_get0_param(ssl);
+          printf("%d\n", (*benchRet)); 
+          for(int _aux = 0; _aux < _len_ssl0; _aux++) {
+          free(ssl[_aux].param);
+          }
+          free(ssl);
+        
+        break;
+    }
     default:
         usage();
         break;

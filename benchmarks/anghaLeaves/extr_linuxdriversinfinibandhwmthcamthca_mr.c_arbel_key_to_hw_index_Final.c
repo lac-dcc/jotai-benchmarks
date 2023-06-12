@@ -61,12 +61,6 @@ __attribute__((used)) static inline u32 arbel_key_to_hw_index(u32 key)
 	return (key << 24) | (key >> 8);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,6 +77,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int key = 100;
+        
           int benchRet = arbel_key_to_hw_index(key);
           printf("%d\n", benchRet); 
         
@@ -92,12 +87,12 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int key = 10;
+        
           int benchRet = arbel_key_to_hw_index(key);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

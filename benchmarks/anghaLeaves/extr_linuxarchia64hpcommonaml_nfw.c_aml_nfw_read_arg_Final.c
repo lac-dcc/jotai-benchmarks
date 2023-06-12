@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +79,6 @@ __attribute__((used)) static void aml_nfw_read_arg(u8 *offset, u32 bit_width, u6
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,23 +95,94 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int bit_width = 100;
+        
           int _len_offset0 = 1;
           int * offset = (int *) malloc(_len_offset0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_offset0; _i0++) {
             offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_value0 = 1;
           int * value = (int *) malloc(_len_value0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_value0; _i0++) {
             value[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           aml_nfw_read_arg(offset,bit_width,value);
           free(offset);
           free(value);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int bit_width = 255;
+        
+          int _len_offset0 = 65025;
+          int * offset = (int *) malloc(_len_offset0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_offset0; _i0++) {
+            offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_value0 = 65025;
+          int * value = (int *) malloc(_len_value0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_value0; _i0++) {
+            value[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          aml_nfw_read_arg(offset,bit_width,value);
+          free(offset);
+          free(value);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int bit_width = 10;
+        
+          int _len_offset0 = 100;
+          int * offset = (int *) malloc(_len_offset0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_offset0; _i0++) {
+            offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_value0 = 100;
+          int * value = (int *) malloc(_len_value0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_value0; _i0++) {
+            value[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          aml_nfw_read_arg(offset,bit_width,value);
+          free(offset);
+          free(value);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int bit_width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_offset0 = 1;
+          int * offset = (int *) malloc(_len_offset0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_offset0; _i0++) {
+            offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_value0 = 1;
+          int * value = (int *) malloc(_len_value0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_value0; _i0++) {
+            value[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          aml_nfw_read_arg(offset,bit_width,value);
+          free(offset);
+          free(value);
+        
+        break;
+    }
     default:
         usage();
         break;

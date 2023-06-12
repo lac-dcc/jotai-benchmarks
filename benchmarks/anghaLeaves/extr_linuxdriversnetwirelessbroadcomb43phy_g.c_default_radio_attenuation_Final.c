@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -158,12 +160,6 @@ __attribute__((used)) static void default_radio_attenuation(struct b43_wldev *de
 	rf->att = 5;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -176,30 +172,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dev0 = 1;
+          int _len_dev0 = 65025;
           struct b43_wldev * dev = (struct b43_wldev *) malloc(_len_dev0*sizeof(struct b43_wldev));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
               int _len_dev__i0__dev0 = 1;
           dev[_i0].dev = (struct b43_bus_dev *) malloc(_len_dev__i0__dev0*sizeof(struct b43_bus_dev));
           for(int _j0 = 0; _j0 < _len_dev__i0__dev0; _j0++) {
-            dev[_i0].dev->board_vendor = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].dev->board_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].dev->board_rev = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].dev->chip_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].dev->board_vendor = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].dev->board_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].dev->board_rev = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].dev->chip_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        dev[_i0].phy.radio_ver = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].phy.type = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].phy.radio_rev = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].phy.radio_ver = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].phy.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].phy.radio_rev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-          int _len_rf0 = 1;
+        
+          int _len_rf0 = 65025;
           struct b43_rfatt * rf = (struct b43_rfatt *) malloc(_len_rf0*sizeof(struct b43_rfatt));
           for(int _i0 = 0; _i0 < _len_rf0; _i0++) {
-            rf[_i0].with_padmix = ((-2 * (next_i()%2)) + 1) * next_i();
-        rf[_i0].att = ((-2 * (next_i()%2)) + 1) * next_i();
+              rf[_i0].with_padmix = ((-2 * (next_i()%2)) + 1) * next_i();
+          rf[_i0].att = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           default_radio_attenuation(dev,rf);
           for(int _aux = 0; _aux < _len_dev0; _aux++) {
           free(dev[_aux].dev);
@@ -209,7 +211,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dev0 = 100;
+          struct b43_wldev * dev = (struct b43_wldev *) malloc(_len_dev0*sizeof(struct b43_wldev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              int _len_dev__i0__dev0 = 1;
+          dev[_i0].dev = (struct b43_bus_dev *) malloc(_len_dev__i0__dev0*sizeof(struct b43_bus_dev));
+          for(int _j0 = 0; _j0 < _len_dev__i0__dev0; _j0++) {
+              dev[_i0].dev->board_vendor = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].dev->board_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].dev->board_rev = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].dev->chip_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          dev[_i0].phy.radio_ver = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].phy.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].phy.radio_rev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_rf0 = 100;
+          struct b43_rfatt * rf = (struct b43_rfatt *) malloc(_len_rf0*sizeof(struct b43_rfatt));
+          for(int _i0 = 0; _i0 < _len_rf0; _i0++) {
+              rf[_i0].with_padmix = ((-2 * (next_i()%2)) + 1) * next_i();
+          rf[_i0].att = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          default_radio_attenuation(dev,rf);
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(dev[_aux].dev);
+          }
+          free(dev);
+          free(rf);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dev0 = 1;
+          struct b43_wldev * dev = (struct b43_wldev *) malloc(_len_dev0*sizeof(struct b43_wldev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              int _len_dev__i0__dev0 = 1;
+          dev[_i0].dev = (struct b43_bus_dev *) malloc(_len_dev__i0__dev0*sizeof(struct b43_bus_dev));
+          for(int _j0 = 0; _j0 < _len_dev__i0__dev0; _j0++) {
+              dev[_i0].dev->board_vendor = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].dev->board_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].dev->board_rev = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].dev->chip_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          dev[_i0].phy.radio_ver = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].phy.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].phy.radio_rev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_rf0 = 1;
+          struct b43_rfatt * rf = (struct b43_rfatt *) malloc(_len_rf0*sizeof(struct b43_rfatt));
+          for(int _i0 = 0; _i0 < _len_rf0; _i0++) {
+              rf[_i0].with_padmix = ((-2 * (next_i()%2)) + 1) * next_i();
+          rf[_i0].att = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          default_radio_attenuation(dev,rf);
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(dev[_aux].dev);
+          }
+          free(dev);
+          free(rf);
+        
+        break;
+    }
     default:
         usage();
         break;

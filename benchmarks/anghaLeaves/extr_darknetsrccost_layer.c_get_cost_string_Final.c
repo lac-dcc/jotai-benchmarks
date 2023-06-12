@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -82,12 +83,6 @@ char *get_cost_string(COST_TYPE a)
     return "sse";
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,6 +99,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int a = 100;
+        
           char * benchRet = get_cost_string(a);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
@@ -113,6 +109,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int a = 255;
+        
           char * benchRet = get_cost_string(a);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
@@ -122,12 +119,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int a = 10;
+        
           char * benchRet = get_cost_string(a);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int a = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          char * benchRet = get_cost_string(a);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+        
+        break;
+    }
     default:
         usage();
         break;

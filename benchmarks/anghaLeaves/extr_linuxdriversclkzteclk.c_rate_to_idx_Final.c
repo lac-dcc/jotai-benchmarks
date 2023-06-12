@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ __attribute__((used)) static int rate_to_idx(struct clk_zx_pll *zx_pll, unsigned
 	return i - 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,16 +91,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long rate = 100;
+        
           int _len_zx_pll0 = 1;
           struct clk_zx_pll * zx_pll = (struct clk_zx_pll *) malloc(_len_zx_pll0*sizeof(struct clk_zx_pll));
           for(int _i0 = 0; _i0 < _len_zx_pll0; _i0++) {
-            zx_pll[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+              zx_pll[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_zx_pll__i0__lookup_table0 = 1;
           zx_pll[_i0].lookup_table = (struct zx_pll_config *) malloc(_len_zx_pll__i0__lookup_table0*sizeof(struct zx_pll_config));
           for(int _j0 = 0; _j0 < _len_zx_pll__i0__lookup_table0; _j0++) {
-            zx_pll[_i0].lookup_table->rate = ((-2 * (next_i()%2)) + 1) * next_i();
+              zx_pll[_i0].lookup_table->rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = rate_to_idx(zx_pll,rate);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_zx_pll0; _aux++) {
@@ -113,7 +114,87 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long rate = 255;
+        
+          int _len_zx_pll0 = 65025;
+          struct clk_zx_pll * zx_pll = (struct clk_zx_pll *) malloc(_len_zx_pll0*sizeof(struct clk_zx_pll));
+          for(int _i0 = 0; _i0 < _len_zx_pll0; _i0++) {
+              zx_pll[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_zx_pll__i0__lookup_table0 = 1;
+          zx_pll[_i0].lookup_table = (struct zx_pll_config *) malloc(_len_zx_pll__i0__lookup_table0*sizeof(struct zx_pll_config));
+          for(int _j0 = 0; _j0 < _len_zx_pll__i0__lookup_table0; _j0++) {
+              zx_pll[_i0].lookup_table->rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = rate_to_idx(zx_pll,rate);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_zx_pll0; _aux++) {
+          free(zx_pll[_aux].lookup_table);
+          }
+          free(zx_pll);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long rate = 10;
+        
+          int _len_zx_pll0 = 100;
+          struct clk_zx_pll * zx_pll = (struct clk_zx_pll *) malloc(_len_zx_pll0*sizeof(struct clk_zx_pll));
+          for(int _i0 = 0; _i0 < _len_zx_pll0; _i0++) {
+              zx_pll[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_zx_pll__i0__lookup_table0 = 1;
+          zx_pll[_i0].lookup_table = (struct zx_pll_config *) malloc(_len_zx_pll__i0__lookup_table0*sizeof(struct zx_pll_config));
+          for(int _j0 = 0; _j0 < _len_zx_pll__i0__lookup_table0; _j0++) {
+              zx_pll[_i0].lookup_table->rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = rate_to_idx(zx_pll,rate);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_zx_pll0; _aux++) {
+          free(zx_pll[_aux].lookup_table);
+          }
+          free(zx_pll);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_zx_pll0 = 1;
+          struct clk_zx_pll * zx_pll = (struct clk_zx_pll *) malloc(_len_zx_pll0*sizeof(struct clk_zx_pll));
+          for(int _i0 = 0; _i0 < _len_zx_pll0; _i0++) {
+              zx_pll[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_zx_pll__i0__lookup_table0 = 1;
+          zx_pll[_i0].lookup_table = (struct zx_pll_config *) malloc(_len_zx_pll__i0__lookup_table0*sizeof(struct zx_pll_config));
+          for(int _j0 = 0; _j0 < _len_zx_pll__i0__lookup_table0; _j0++) {
+              zx_pll[_i0].lookup_table->rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = rate_to_idx(zx_pll,rate);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_zx_pll0; _aux++) {
+          free(zx_pll[_aux].lookup_table);
+          }
+          free(zx_pll);
+        
+        break;
+    }
     default:
         usage();
         break;

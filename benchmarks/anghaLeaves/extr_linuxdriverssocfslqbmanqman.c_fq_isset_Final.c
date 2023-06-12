@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static inline int fq_isset(struct qman_fq *fq, u32 mask)
 	return fq->flags & mask;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,11 +80,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int mask = 100;
+        
           int _len_fq0 = 1;
           struct qman_fq * fq = (struct qman_fq *) malloc(_len_fq0*sizeof(struct qman_fq));
           for(int _i0 = 0; _i0 < _len_fq0; _i0++) {
-            fq[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              fq[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = fq_isset(fq,mask);
+          printf("%d\n", benchRet); 
+          free(fq);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int mask = 255;
+        
+          int _len_fq0 = 65025;
+          struct qman_fq * fq = (struct qman_fq *) malloc(_len_fq0*sizeof(struct qman_fq));
+          for(int _i0 = 0; _i0 < _len_fq0; _i0++) {
+              fq[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = fq_isset(fq,mask);
           printf("%d\n", benchRet); 
           free(fq);
@@ -96,21 +113,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int mask = 10;
+        
           int _len_fq0 = 100;
           struct qman_fq * fq = (struct qman_fq *) malloc(_len_fq0*sizeof(struct qman_fq));
           for(int _i0 = 0; _i0 < _len_fq0; _i0++) {
-            fq[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              fq[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = fq_isset(fq,mask);
           printf("%d\n", benchRet); 
           free(fq);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fq0 = 1;
+          struct qman_fq * fq = (struct qman_fq *) malloc(_len_fq0*sizeof(struct qman_fq));
+          for(int _i0 = 0; _i0 < _len_fq0; _i0++) {
+              fq[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fq_isset(fq,mask);
+          printf("%d\n", benchRet); 
+          free(fq);
+        
+        break;
+    }
     default:
         usage();
         break;

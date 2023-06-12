@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ int cmp_value_desc_global_asc (struct heap_entry *p, value_t value, global_id_t 
   }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,20 +86,86 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long value = 100;
+        
           int global_id = 100;
+        
           int _len_p0 = 1;
           struct heap_entry * p = (struct heap_entry *) malloc(_len_p0*sizeof(struct heap_entry));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].value = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].global_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].value = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].global_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cmp_value_desc_global_asc(p,value,global_id);
           printf("%d\n", benchRet); 
           free(p);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long value = 255;
+        
+          int global_id = 255;
+        
+          int _len_p0 = 65025;
+          struct heap_entry * p = (struct heap_entry *) malloc(_len_p0*sizeof(struct heap_entry));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].value = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].global_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cmp_value_desc_global_asc(p,value,global_id);
+          printf("%d\n", benchRet); 
+          free(p);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long value = 10;
+        
+          int global_id = 10;
+        
+          int _len_p0 = 100;
+          struct heap_entry * p = (struct heap_entry *) malloc(_len_p0*sizeof(struct heap_entry));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].value = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].global_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cmp_value_desc_global_asc(p,value,global_id);
+          printf("%d\n", benchRet); 
+          free(p);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int global_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_p0 = 1;
+          struct heap_entry * p = (struct heap_entry *) malloc(_len_p0*sizeof(struct heap_entry));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].value = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].global_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cmp_value_desc_global_asc(p,value,global_id);
+          printf("%d\n", benchRet); 
+          free(p);
+        
+        break;
+    }
     default:
         usage();
         break;

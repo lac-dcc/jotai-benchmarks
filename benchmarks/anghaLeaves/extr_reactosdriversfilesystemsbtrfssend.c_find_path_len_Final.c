@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            linked\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,7 +71,6 @@ __attribute__((used)) static __inline UINT16 find_path_len(send_dir* parent, UIN
     return len;
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct TYPE_3__ *_allocate_parent(int length, struct TYPE_3__ *aux_parent[]) {
@@ -99,7 +100,6 @@ void _delete_parent(struct TYPE_3__ *aux_parent[], int aux_parent_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -112,12 +112,113 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int namelen = 100;
+        
           struct TYPE_3__ * aux_parent[1];
           struct TYPE_3__ * parent = _allocate_parent(1, aux_parent);
+        
+          int benchRet = find_path_len(parent,namelen);
+          printf("%d\n", benchRet); 
+          _delete_parent(aux_parent, 1);
+        
+        break;
+    }
+
+
+    // linked
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int namelen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          struct TYPE_3__ * aux_parent[10000];
+          struct TYPE_3__ * parent = _allocate_parent(10000, aux_parent);
+        
+          int benchRet = find_path_len(parent,namelen);
+          printf("%d\n", benchRet); 
+          _delete_parent(aux_parent, 10000);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int namelen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          struct TYPE_3__ * aux_parent[1];
+          struct TYPE_3__ * parent = _allocate_parent(1, aux_parent);
+        
           int benchRet = find_path_len(parent,namelen);
           printf("%d\n", benchRet); 
           _delete_parent(aux_parent, 1);

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ __attribute__((used)) static bool is_surface_pixel_format_supported(struct pipe_
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,16 +88,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int underlay_idx = 100;
+        
           int _len_pipe_ctx0 = 1;
           struct pipe_ctx * pipe_ctx = (struct pipe_ctx *) malloc(_len_pipe_ctx0*sizeof(struct pipe_ctx));
           for(int _i0 = 0; _i0 < _len_pipe_ctx0; _i0++) {
-            pipe_ctx[_i0].pipe_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+              pipe_ctx[_i0].pipe_idx = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_pipe_ctx__i0__plane_state0 = 1;
           pipe_ctx[_i0].plane_state = (struct TYPE_2__ *) malloc(_len_pipe_ctx__i0__plane_state0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_pipe_ctx__i0__plane_state0; _j0++) {
-            pipe_ctx[_i0].plane_state->format = ((-2 * (next_i()%2)) + 1) * next_i();
+              pipe_ctx[_i0].plane_state->format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = is_surface_pixel_format_supported(pipe_ctx,underlay_idx);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_pipe_ctx0; _aux++) {
@@ -110,7 +111,87 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int underlay_idx = 255;
+        
+          int _len_pipe_ctx0 = 65025;
+          struct pipe_ctx * pipe_ctx = (struct pipe_ctx *) malloc(_len_pipe_ctx0*sizeof(struct pipe_ctx));
+          for(int _i0 = 0; _i0 < _len_pipe_ctx0; _i0++) {
+              pipe_ctx[_i0].pipe_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pipe_ctx__i0__plane_state0 = 1;
+          pipe_ctx[_i0].plane_state = (struct TYPE_2__ *) malloc(_len_pipe_ctx__i0__plane_state0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_pipe_ctx__i0__plane_state0; _j0++) {
+              pipe_ctx[_i0].plane_state->format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = is_surface_pixel_format_supported(pipe_ctx,underlay_idx);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pipe_ctx0; _aux++) {
+          free(pipe_ctx[_aux].plane_state);
+          }
+          free(pipe_ctx);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int underlay_idx = 10;
+        
+          int _len_pipe_ctx0 = 100;
+          struct pipe_ctx * pipe_ctx = (struct pipe_ctx *) malloc(_len_pipe_ctx0*sizeof(struct pipe_ctx));
+          for(int _i0 = 0; _i0 < _len_pipe_ctx0; _i0++) {
+              pipe_ctx[_i0].pipe_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pipe_ctx__i0__plane_state0 = 1;
+          pipe_ctx[_i0].plane_state = (struct TYPE_2__ *) malloc(_len_pipe_ctx__i0__plane_state0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_pipe_ctx__i0__plane_state0; _j0++) {
+              pipe_ctx[_i0].plane_state->format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = is_surface_pixel_format_supported(pipe_ctx,underlay_idx);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pipe_ctx0; _aux++) {
+          free(pipe_ctx[_aux].plane_state);
+          }
+          free(pipe_ctx);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int underlay_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pipe_ctx0 = 1;
+          struct pipe_ctx * pipe_ctx = (struct pipe_ctx *) malloc(_len_pipe_ctx0*sizeof(struct pipe_ctx));
+          for(int _i0 = 0; _i0 < _len_pipe_ctx0; _i0++) {
+              pipe_ctx[_i0].pipe_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pipe_ctx__i0__plane_state0 = 1;
+          pipe_ctx[_i0].plane_state = (struct TYPE_2__ *) malloc(_len_pipe_ctx__i0__plane_state0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_pipe_ctx__i0__plane_state0; _j0++) {
+              pipe_ctx[_i0].plane_state->format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = is_surface_pixel_format_supported(pipe_ctx,underlay_idx);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pipe_ctx0; _aux++) {
+          free(pipe_ctx[_aux].plane_state);
+          }
+          free(pipe_ctx);
+        
+        break;
+    }
     default:
         usage();
         break;

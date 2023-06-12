@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static void init_lcb_access(struct hfi1_devdata *dd)
 	dd->lcb_access_count = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dd0 = 1;
+          int _len_dd0 = 65025;
           struct hfi1_devdata * dd = (struct hfi1_devdata *) malloc(_len_dd0*sizeof(struct hfi1_devdata));
           for(int _i0 = 0; _i0 < _len_dd0; _i0++) {
-            dd[_i0].lcb_access_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              dd[_i0].lcb_access_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           init_lcb_access(dd);
           free(dd);
         
@@ -98,14 +95,30 @@ int main(int argc, char *argv[]) {
           int _len_dd0 = 100;
           struct hfi1_devdata * dd = (struct hfi1_devdata *) malloc(_len_dd0*sizeof(struct hfi1_devdata));
           for(int _i0 = 0; _i0 < _len_dd0; _i0++) {
-            dd[_i0].lcb_access_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              dd[_i0].lcb_access_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           init_lcb_access(dd);
           free(dd);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_dd0 = 1;
+          struct hfi1_devdata * dd = (struct hfi1_devdata *) malloc(_len_dd0*sizeof(struct hfi1_devdata));
+          for(int _i0 = 0; _i0 < _len_dd0; _i0++) {
+              dd[_i0].lcb_access_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          init_lcb_access(dd);
+          free(dd);
+        
+        break;
+    }
     default:
         usage();
         break;

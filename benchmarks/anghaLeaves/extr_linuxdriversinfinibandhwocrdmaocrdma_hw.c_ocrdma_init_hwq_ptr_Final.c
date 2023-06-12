@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static void ocrdma_init_hwq_ptr(struct ocrdma_qp *qp)
 	qp->rq.tail = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,17 +81,132 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_qp0 = 65025;
+          struct ocrdma_qp * qp = (struct ocrdma_qp *) malloc(_len_qp0*sizeof(struct ocrdma_qp));
+          for(int _i0 = 0; _i0 < _len_qp0; _i0++) {
+              qp[_i0].rq.tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].rq.head = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          qp[_i0].sq.tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].sq.head = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          ocrdma_init_hwq_ptr(qp);
+          free(qp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_qp0 = 100;
+          struct ocrdma_qp * qp = (struct ocrdma_qp *) malloc(_len_qp0*sizeof(struct ocrdma_qp));
+          for(int _i0 = 0; _i0 < _len_qp0; _i0++) {
+              qp[_i0].rq.tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].rq.head = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          qp[_i0].sq.tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].sq.head = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          ocrdma_init_hwq_ptr(qp);
+          free(qp);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_qp0 = 1;
           struct ocrdma_qp * qp = (struct ocrdma_qp *) malloc(_len_qp0*sizeof(struct ocrdma_qp));
           for(int _i0 = 0; _i0 < _len_qp0; _i0++) {
-            qp[_i0].rq.tail = ((-2 * (next_i()%2)) + 1) * next_i();
-        qp[_i0].rq.head = ((-2 * (next_i()%2)) + 1) * next_i();
-        qp[_i0].sq.tail = ((-2 * (next_i()%2)) + 1) * next_i();
-        qp[_i0].sq.head = ((-2 * (next_i()%2)) + 1) * next_i();
+              qp[_i0].rq.tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].rq.head = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          qp[_i0].sq.tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].sq.head = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           ocrdma_init_hwq_ptr(qp);
           free(qp);
         

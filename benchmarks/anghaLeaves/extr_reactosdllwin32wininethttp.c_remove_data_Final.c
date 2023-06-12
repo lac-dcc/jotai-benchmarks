@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ __attribute__((used)) static void remove_data( http_request_t *req, int count )
     else req->read_pos += count;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,16 +78,168 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int count = 100;
+        
           int _len_req0 = 1;
           struct TYPE_3__ * req = (struct TYPE_3__ *) malloc(_len_req0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_req0; _i0++) {
-            req[_i0].read_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        req[_i0].read_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+              req[_i0].read_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          req[_i0].read_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          remove_data(req,count);
+          free(req);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int count = 255;
+        
+          int _len_req0 = 65025;
+          struct TYPE_3__ * req = (struct TYPE_3__ *) malloc(_len_req0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_req0; _i0++) {
+              req[_i0].read_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          req[_i0].read_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          remove_data(req,count);
+          free(req);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int count = 10;
+        
+          int _len_req0 = 100;
+          struct TYPE_3__ * req = (struct TYPE_3__ *) malloc(_len_req0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_req0; _i0++) {
+              req[_i0].read_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          req[_i0].read_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          remove_data(req,count);
+          free(req);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_req0 = 1;
+          struct TYPE_3__ * req = (struct TYPE_3__ *) malloc(_len_req0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_req0; _i0++) {
+              req[_i0].read_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          req[_i0].read_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           remove_data(req,count);
           free(req);
         

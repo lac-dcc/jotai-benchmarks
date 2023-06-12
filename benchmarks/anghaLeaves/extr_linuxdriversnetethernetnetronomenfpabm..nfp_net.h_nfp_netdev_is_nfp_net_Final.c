@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static inline bool nfp_netdev_is_nfp_net(struct net_device
 	return netdev->netdev_ops == &nfp_net_netdev_ops;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,9 +75,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_netdev0 = 65025;
+          struct net_device * netdev = (struct net_device *) malloc(_len_netdev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_netdev0; _i0++) {
+              int _len_netdev__i0__netdev_ops0 = 1;
+          netdev[_i0].netdev_ops = (int *) malloc(_len_netdev__i0__netdev_ops0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_netdev__i0__netdev_ops0; _j0++) {
+            netdev[_i0].netdev_ops[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = nfp_netdev_is_nfp_net(netdev);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_netdev0; _aux++) {
+          free(netdev[_aux].netdev_ops);
+          }
+          free(netdev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_netdev0 = 100;
+          struct net_device * netdev = (struct net_device *) malloc(_len_netdev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_netdev0; _i0++) {
+              int _len_netdev__i0__netdev_ops0 = 1;
+          netdev[_i0].netdev_ops = (int *) malloc(_len_netdev__i0__netdev_ops0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_netdev__i0__netdev_ops0; _j0++) {
+            netdev[_i0].netdev_ops[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = nfp_netdev_is_nfp_net(netdev);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_netdev0; _aux++) {
+          free(netdev[_aux].netdev_ops);
+          }
+          free(netdev);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_netdev0 = 1;
           struct net_device * netdev = (struct net_device *) malloc(_len_netdev0*sizeof(struct net_device));
           for(int _i0 = 0; _i0 < _len_netdev0; _i0++) {
@@ -90,7 +203,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_netdev__i0__netdev_ops0; _j0++) {
             netdev[_i0].netdev_ops[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = nfp_netdev_is_nfp_net(netdev);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_netdev0; _aux++) {

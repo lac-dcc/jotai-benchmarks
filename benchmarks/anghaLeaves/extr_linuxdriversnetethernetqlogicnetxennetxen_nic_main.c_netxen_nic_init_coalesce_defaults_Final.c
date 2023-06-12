@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -80,12 +82,6 @@ netxen_nic_init_coalesce_defaults(struct netxen_adapter *adapter)
 		NETXEN_DEFAULT_INTR_COALESCE_TX_PACKETS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,18 +94,138 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_adapter0 = 65025;
+          struct netxen_adapter * adapter = (struct netxen_adapter *) malloc(_len_adapter0*sizeof(struct netxen_adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].coal.normal.data.tx_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].coal.normal.data.tx_time_us = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].coal.normal.data.rx_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].coal.normal.data.rx_time_us = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          adapter[_i0].coal.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          netxen_nic_init_coalesce_defaults(adapter);
+          free(adapter);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_adapter0 = 100;
+          struct netxen_adapter * adapter = (struct netxen_adapter *) malloc(_len_adapter0*sizeof(struct netxen_adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].coal.normal.data.tx_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].coal.normal.data.tx_time_us = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].coal.normal.data.rx_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].coal.normal.data.rx_time_us = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          adapter[_i0].coal.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          netxen_nic_init_coalesce_defaults(adapter);
+          free(adapter);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int _len_adapter0 = 1;
           struct netxen_adapter * adapter = (struct netxen_adapter *) malloc(_len_adapter0*sizeof(struct netxen_adapter));
           for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
-            adapter[_i0].coal.normal.data.tx_packets = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].coal.normal.data.tx_time_us = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].coal.normal.data.rx_packets = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].coal.normal.data.rx_time_us = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].coal.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              adapter[_i0].coal.normal.data.tx_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].coal.normal.data.tx_time_us = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].coal.normal.data.rx_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].coal.normal.data.rx_time_us = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          adapter[_i0].coal.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           netxen_nic_init_coalesce_defaults(adapter);
           free(adapter);
         

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ int t3_mac_set_num_ucast(struct cmac *mac, int n)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,11 +84,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int n = 100;
+        
           int _len_mac0 = 1;
           struct cmac * mac = (struct cmac *) malloc(_len_mac0*sizeof(struct cmac));
           for(int _i0 = 0; _i0 < _len_mac0; _i0++) {
-            mac[_i0].nucast = ((-2 * (next_i()%2)) + 1) * next_i();
+              mac[_i0].nucast = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = t3_mac_set_num_ucast(mac,n);
+          printf("%d\n", benchRet); 
+          free(mac);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int n = 255;
+        
+          int _len_mac0 = 65025;
+          struct cmac * mac = (struct cmac *) malloc(_len_mac0*sizeof(struct cmac));
+          for(int _i0 = 0; _i0 < _len_mac0; _i0++) {
+              mac[_i0].nucast = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = t3_mac_set_num_ucast(mac,n);
           printf("%d\n", benchRet); 
           free(mac);
@@ -100,21 +117,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int n = 10;
+        
           int _len_mac0 = 100;
           struct cmac * mac = (struct cmac *) malloc(_len_mac0*sizeof(struct cmac));
           for(int _i0 = 0; _i0 < _len_mac0; _i0++) {
-            mac[_i0].nucast = ((-2 * (next_i()%2)) + 1) * next_i();
+              mac[_i0].nucast = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = t3_mac_set_num_ucast(mac,n);
           printf("%d\n", benchRet); 
           free(mac);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_mac0 = 1;
+          struct cmac * mac = (struct cmac *) malloc(_len_mac0*sizeof(struct cmac));
+          for(int _i0 = 0; _i0 < _len_mac0; _i0++) {
+              mac[_i0].nucast = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = t3_mac_set_num_ucast(mac,n);
+          printf("%d\n", benchRet); 
+          free(mac);
+        
+        break;
+    }
     default:
         usage();
         break;

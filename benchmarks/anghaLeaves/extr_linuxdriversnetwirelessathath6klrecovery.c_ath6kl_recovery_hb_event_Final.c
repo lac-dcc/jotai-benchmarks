@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ void ath6kl_recovery_hb_event(struct ath6kl *ar, u32 cookie)
 		ar->fw_recovery.hb_pending = false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,18 +83,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long cookie = 100;
+        
           int _len_ar0 = 1;
           struct ath6kl * ar = (struct ath6kl *) malloc(_len_ar0*sizeof(struct ath6kl));
           for(int _i0 = 0; _i0 < _len_ar0; _i0++) {
-            ar[_i0].fw_recovery.seq_num = ((-2 * (next_i()%2)) + 1) * next_i();
-        ar[_i0].fw_recovery.hb_pending = ((-2 * (next_i()%2)) + 1) * next_i();
+              ar[_i0].fw_recovery.seq_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          ar[_i0].fw_recovery.hb_pending = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           ath6kl_recovery_hb_event(ar,cookie);
           free(ar);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long cookie = 255;
+        
+          int _len_ar0 = 65025;
+          struct ath6kl * ar = (struct ath6kl *) malloc(_len_ar0*sizeof(struct ath6kl));
+          for(int _i0 = 0; _i0 < _len_ar0; _i0++) {
+              ar[_i0].fw_recovery.seq_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          ar[_i0].fw_recovery.hb_pending = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          ath6kl_recovery_hb_event(ar,cookie);
+          free(ar);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long cookie = 10;
+        
+          int _len_ar0 = 100;
+          struct ath6kl * ar = (struct ath6kl *) malloc(_len_ar0*sizeof(struct ath6kl));
+          for(int _i0 = 0; _i0 < _len_ar0; _i0++) {
+              ar[_i0].fw_recovery.seq_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          ar[_i0].fw_recovery.hb_pending = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          ath6kl_recovery_hb_event(ar,cookie);
+          free(ar);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long cookie = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ar0 = 1;
+          struct ath6kl * ar = (struct ath6kl *) malloc(_len_ar0*sizeof(struct ath6kl));
+          for(int _i0 = 0; _i0 < _len_ar0; _i0++) {
+              ar[_i0].fw_recovery.seq_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          ar[_i0].fw_recovery.hb_pending = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          ath6kl_recovery_hb_event(ar,cookie);
+          free(ar);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -71,12 +72,6 @@ void MatchFinder_Normalize3(UInt32 subValue, CLzRef *items, size_t numItems)
   }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,16 +84,84 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 5366
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 2303
+          // ------------------------------- 
+          // static_instructions_O2 : 33
+          // dynamic_instructions_O2 : 1797
+          // ------------------------------- 
+          // static_instructions_O3 : 33
+          // dynamic_instructions_O3 : 1797
+          // ------------------------------- 
+          // static_instructions_Ofast : 33
+          // dynamic_instructions_Ofast : 1797
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 2047
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 2302
+          // ------------------------------- 
+
+          long subValue = 255;
+        
+          unsigned long numItems = 255;
+        
+          int _len_items0 = 65025;
+          long * items = (long *) malloc(_len_items0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_items0; _i0++) {
+            items[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          MatchFinder_Normalize3(subValue,items,numItems);
+          free(items);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 221
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 98
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 84
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 84
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 84
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 87
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 97
+          // ------------------------------- 
+
           long subValue = 10;
+        
           unsigned long numItems = 10;
+        
           int _len_items0 = 100;
           long * items = (long *) malloc(_len_items0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_items0; _i0++) {
             items[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           MatchFinder_Normalize3(subValue,items,numItems);
           free(items);
         

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline bool is_fcp_request(struct fw_request *reque
 	return request == NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_request0 = 1;
+          int _len_request0 = 65025;
           struct fw_request * request = (struct fw_request *) malloc(_len_request0*sizeof(struct fw_request));
           for(int _i0 = 0; _i0 < _len_request0; _i0++) {
-            request[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              request[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_fcp_request(request);
           printf("%d\n", benchRet); 
           free(request);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_request0 = 100;
           struct fw_request * request = (struct fw_request *) malloc(_len_request0*sizeof(struct fw_request));
           for(int _i0 = 0; _i0 < _len_request0; _i0++) {
-            request[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              request[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_fcp_request(request);
           printf("%d\n", benchRet); 
           free(request);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_request0 = 1;
+          struct fw_request * request = (struct fw_request *) malloc(_len_request0*sizeof(struct fw_request));
+          for(int _i0 = 0; _i0 < _len_request0; _i0++) {
+              request[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_fcp_request(request);
+          printf("%d\n", benchRet); 
+          free(request);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ ashmem_shrink_count(struct shrinker *shrink, struct shrink_control *sc)
 	return lru_count;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,19 +82,142 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_shrink0 = 65025;
+          struct shrinker * shrink = (struct shrinker *) malloc(_len_shrink0*sizeof(struct shrinker));
+          for(int _i0 = 0; _i0 < _len_shrink0; _i0++) {
+              shrink[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_sc0 = 65025;
+          struct shrink_control * sc = (struct shrink_control *) malloc(_len_sc0*sizeof(struct shrink_control));
+          for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
+              sc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = ashmem_shrink_count(shrink,sc);
+          printf("%lu\n", benchRet); 
+          free(shrink);
+          free(sc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_shrink0 = 100;
+          struct shrinker * shrink = (struct shrinker *) malloc(_len_shrink0*sizeof(struct shrinker));
+          for(int _i0 = 0; _i0 < _len_shrink0; _i0++) {
+              shrink[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_sc0 = 100;
+          struct shrink_control * sc = (struct shrink_control *) malloc(_len_sc0*sizeof(struct shrink_control));
+          for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
+              sc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = ashmem_shrink_count(shrink,sc);
+          printf("%lu\n", benchRet); 
+          free(shrink);
+          free(sc);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_shrink0 = 1;
           struct shrinker * shrink = (struct shrinker *) malloc(_len_shrink0*sizeof(struct shrinker));
           for(int _i0 = 0; _i0 < _len_shrink0; _i0++) {
-            shrink[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              shrink[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_sc0 = 1;
           struct shrink_control * sc = (struct shrink_control *) malloc(_len_sc0*sizeof(struct shrink_control));
           for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
-            sc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              sc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = ashmem_shrink_count(shrink,sc);
           printf("%lu\n", benchRet); 
           free(shrink);

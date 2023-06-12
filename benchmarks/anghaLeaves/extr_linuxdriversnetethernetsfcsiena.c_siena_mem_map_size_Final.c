@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static unsigned int siena_mem_map_size(struct efx_nic *efx
 		FR_CZ_MC_TREG_SMEM_STEP * FR_CZ_MC_TREG_SMEM_ROWS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,14 +78,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_efx0 = 1;
+          int _len_efx0 = 65025;
           struct efx_nic * efx = (struct efx_nic *) malloc(_len_efx0*sizeof(struct efx_nic));
           for(int _i0 = 0; _i0 < _len_efx0; _i0++) {
-            efx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              efx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = siena_mem_map_size(efx);
           printf("%u\n", benchRet); 
           free(efx);
@@ -103,15 +100,32 @@ int main(int argc, char *argv[]) {
           int _len_efx0 = 100;
           struct efx_nic * efx = (struct efx_nic *) malloc(_len_efx0*sizeof(struct efx_nic));
           for(int _i0 = 0; _i0 < _len_efx0; _i0++) {
-            efx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              efx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = siena_mem_map_size(efx);
           printf("%u\n", benchRet); 
           free(efx);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_efx0 = 1;
+          struct efx_nic * efx = (struct efx_nic *) malloc(_len_efx0*sizeof(struct efx_nic));
+          for(int _i0 = 0; _i0 < _len_efx0; _i0++) {
+              efx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = siena_mem_map_size(efx);
+          printf("%u\n", benchRet); 
+          free(efx);
+        
+        break;
+    }
     default:
         usage();
         break;

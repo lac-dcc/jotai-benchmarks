@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ __attribute__((used)) static inline uint64_t calc_min_ts(obs_source_t *sources[2
 	return min_ts;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,23 +86,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 42
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
+          int _len_sources0 = 65025;
+          struct TYPE_3__ ** sources = (struct TYPE_3__ **) malloc(_len_sources0*sizeof(struct TYPE_3__ *));
+          for(int _i0 = 0; _i0 < _len_sources0; _i0++) {
+            int _len_sources1 = 1;
+            sources[_i0] = (struct TYPE_3__ *) malloc(_len_sources1*sizeof(struct TYPE_3__));
+            for(int _i1 = 0; _i1 < _len_sources1; _i1++) {
+                sources[_i0][_i1].audio_ts = ((-2 * (next_i()%2)) + 1) * next_i();
+          sources[_i0][_i1].audio_pending = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          long benchRet = calc_min_ts(sources);
+          printf("%ld\n", benchRet); 
+          for(int i1 = 0; i1 < _len_sources0; i1++) {
+              free(sources[i1]);
+          }
+          free(sources);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 42
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
+          int _len_sources0 = 100;
+          struct TYPE_3__ ** sources = (struct TYPE_3__ **) malloc(_len_sources0*sizeof(struct TYPE_3__ *));
+          for(int _i0 = 0; _i0 < _len_sources0; _i0++) {
+            int _len_sources1 = 1;
+            sources[_i0] = (struct TYPE_3__ *) malloc(_len_sources1*sizeof(struct TYPE_3__));
+            for(int _i1 = 0; _i1 < _len_sources1; _i1++) {
+                sources[_i0][_i1].audio_ts = ((-2 * (next_i()%2)) + 1) * next_i();
+          sources[_i0][_i1].audio_pending = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          long benchRet = calc_min_ts(sources);
+          printf("%ld\n", benchRet); 
+          for(int i1 = 0; i1 < _len_sources0; i1++) {
+              free(sources[i1]);
+          }
+          free(sources);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 42
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
           int _len_sources0 = 2;
           struct TYPE_3__ ** sources = (struct TYPE_3__ **) malloc(_len_sources0*sizeof(struct TYPE_3__ *));
           for(int _i0 = 0; _i0 < _len_sources0; _i0++) {
             int _len_sources1 = 1;
             sources[_i0] = (struct TYPE_3__ *) malloc(_len_sources1*sizeof(struct TYPE_3__));
             for(int _i1 = 0; _i1 < _len_sources1; _i1++) {
-              sources[_i0][_i1].audio_ts = ((-2 * (next_i()%2)) + 1) * next_i();
-        sources[_i0][_i1].audio_pending = ((-2 * (next_i()%2)) + 1) * next_i();
+                sources[_i0][_i1].audio_ts = ((-2 * (next_i()%2)) + 1) * next_i();
+          sources[_i0][_i1].audio_pending = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           long benchRet = calc_min_ts(sources);
           printf("%ld\n", benchRet); 
           for(int i1 = 0; i1 < _len_sources0; i1++) {
-            int _len_sources1 = 1;
               free(sources[i1]);
           }
           free(sources);

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ __attribute__((used)) static inline uint32_t ovlp2flush(int ovlp)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,6 +85,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int ovlp = 100;
+        
           int benchRet = ovlp2flush(ovlp);
           printf("%d\n", benchRet); 
         
@@ -99,6 +95,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int ovlp = 255;
+        
           int benchRet = ovlp2flush(ovlp);
           printf("%d\n", benchRet); 
         
@@ -108,12 +105,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int ovlp = 10;
+        
           int benchRet = ovlp2flush(ovlp);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int ovlp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = ovlp2flush(ovlp);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

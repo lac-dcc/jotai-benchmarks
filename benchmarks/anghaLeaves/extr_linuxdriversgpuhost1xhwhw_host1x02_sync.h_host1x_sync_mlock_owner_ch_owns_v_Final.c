@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline u32 host1x_sync_mlock_owner_ch_owns_v(u32 r)
 	return (r >> 0) & 0x1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int r = 100;
+        
           int benchRet = host1x_sync_mlock_owner_ch_owns_v(r);
           printf("%d\n", benchRet); 
         
@@ -93,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int r = 255;
+        
           int benchRet = host1x_sync_mlock_owner_ch_owns_v(r);
           printf("%d\n", benchRet); 
         
@@ -102,12 +99,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int r = 10;
+        
           int benchRet = host1x_sync_mlock_owner_ch_owns_v(r);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int r = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = host1x_sync_mlock_owner_ch_owns_v(r);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

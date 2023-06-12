@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline int is_qla8032(struct scsi_qla_host *ha)
 	return ha->pdev->device == PCI_DEVICE_ID_QLOGIC_ISP8324;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,18 +77,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ha0 = 1;
+          int _len_ha0 = 65025;
           struct scsi_qla_host * ha = (struct scsi_qla_host *) malloc(_len_ha0*sizeof(struct scsi_qla_host));
           for(int _i0 = 0; _i0 < _len_ha0; _i0++) {
               int _len_ha__i0__pdev0 = 1;
           ha[_i0].pdev = (struct TYPE_2__ *) malloc(_len_ha__i0__pdev0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_ha__i0__pdev0; _j0++) {
-            ha[_i0].pdev->device = ((-2 * (next_i()%2)) + 1) * next_i();
+              ha[_i0].pdev->device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = is_qla8032(ha);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_ha0; _aux++) {
@@ -102,7 +101,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ha0 = 100;
+          struct scsi_qla_host * ha = (struct scsi_qla_host *) malloc(_len_ha0*sizeof(struct scsi_qla_host));
+          for(int _i0 = 0; _i0 < _len_ha0; _i0++) {
+              int _len_ha__i0__pdev0 = 1;
+          ha[_i0].pdev = (struct TYPE_2__ *) malloc(_len_ha__i0__pdev0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ha__i0__pdev0; _j0++) {
+              ha[_i0].pdev->device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = is_qla8032(ha);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ha0; _aux++) {
+          free(ha[_aux].pdev);
+          }
+          free(ha);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ha0 = 1;
+          struct scsi_qla_host * ha = (struct scsi_qla_host *) malloc(_len_ha0*sizeof(struct scsi_qla_host));
+          for(int _i0 = 0; _i0 < _len_ha0; _i0++) {
+              int _len_ha__i0__pdev0 = 1;
+          ha[_i0].pdev = (struct TYPE_2__ *) malloc(_len_ha__i0__pdev0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ha__i0__pdev0; _j0++) {
+              ha[_i0].pdev->device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = is_qla8032(ha);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ha0; _aux++) {
+          free(ha[_aux].pdev);
+          }
+          free(ha);
+        
+        break;
+    }
     default:
         usage();
         break;

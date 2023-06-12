@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static int special_clk_get(struct snd_bebob *bebob, unsign
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,23 +77,160 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_bebob0 = 65025;
+          struct snd_bebob * bebob = (struct snd_bebob *) malloc(_len_bebob0*sizeof(struct snd_bebob));
+          for(int _i0 = 0; _i0 < _len_bebob0; _i0++) {
+              int _len_bebob__i0__maudio_special_quirk0 = 1;
+          bebob[_i0].maudio_special_quirk = (struct special_params *) malloc(_len_bebob__i0__maudio_special_quirk0*sizeof(struct special_params));
+          for(int _j0 = 0; _j0 < _len_bebob__i0__maudio_special_quirk0; _j0++) {
+              bebob[_i0].maudio_special_quirk->clk_src = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_id0 = 65025;
+          unsigned int * id = (unsigned int *) malloc(_len_id0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_id0; _i0++) {
+            id[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = special_clk_get(bebob,id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_bebob0; _aux++) {
+          free(bebob[_aux].maudio_special_quirk);
+          }
+          free(bebob);
+          free(id);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_bebob0 = 100;
+          struct snd_bebob * bebob = (struct snd_bebob *) malloc(_len_bebob0*sizeof(struct snd_bebob));
+          for(int _i0 = 0; _i0 < _len_bebob0; _i0++) {
+              int _len_bebob__i0__maudio_special_quirk0 = 1;
+          bebob[_i0].maudio_special_quirk = (struct special_params *) malloc(_len_bebob__i0__maudio_special_quirk0*sizeof(struct special_params));
+          for(int _j0 = 0; _j0 < _len_bebob__i0__maudio_special_quirk0; _j0++) {
+              bebob[_i0].maudio_special_quirk->clk_src = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_id0 = 100;
+          unsigned int * id = (unsigned int *) malloc(_len_id0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_id0; _i0++) {
+            id[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = special_clk_get(bebob,id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_bebob0; _aux++) {
+          free(bebob[_aux].maudio_special_quirk);
+          }
+          free(bebob);
+          free(id);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_bebob0 = 1;
           struct snd_bebob * bebob = (struct snd_bebob *) malloc(_len_bebob0*sizeof(struct snd_bebob));
           for(int _i0 = 0; _i0 < _len_bebob0; _i0++) {
               int _len_bebob__i0__maudio_special_quirk0 = 1;
           bebob[_i0].maudio_special_quirk = (struct special_params *) malloc(_len_bebob__i0__maudio_special_quirk0*sizeof(struct special_params));
           for(int _j0 = 0; _j0 < _len_bebob__i0__maudio_special_quirk0; _j0++) {
-            bebob[_i0].maudio_special_quirk->clk_src = ((-2 * (next_i()%2)) + 1) * next_i();
+              bebob[_i0].maudio_special_quirk->clk_src = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_id0 = 1;
           unsigned int * id = (unsigned int *) malloc(_len_id0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_id0; _i0++) {
             id[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = special_clk_get(bebob,id);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_bebob0; _aux++) {

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ int sock_no_socketpair(struct socket *sock1, struct socket *sock2)
 	return -EOPNOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,19 +75,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_sock10 = 1;
+          int _len_sock10 = 65025;
           struct socket * sock1 = (struct socket *) malloc(_len_sock10*sizeof(struct socket));
           for(int _i0 = 0; _i0 < _len_sock10; _i0++) {
-            sock1[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              sock1[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_sock20 = 1;
+        
+          int _len_sock20 = 65025;
           struct socket * sock2 = (struct socket *) malloc(_len_sock20*sizeof(struct socket));
           for(int _i0 = 0; _i0 < _len_sock20; _i0++) {
-            sock2[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              sock2[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = sock_no_socketpair(sock1,sock2);
           printf("%d\n", benchRet); 
           free(sock1);
@@ -99,7 +99,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_sock10 = 100;
+          struct socket * sock1 = (struct socket *) malloc(_len_sock10*sizeof(struct socket));
+          for(int _i0 = 0; _i0 < _len_sock10; _i0++) {
+              sock1[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_sock20 = 100;
+          struct socket * sock2 = (struct socket *) malloc(_len_sock20*sizeof(struct socket));
+          for(int _i0 = 0; _i0 < _len_sock20; _i0++) {
+              sock2[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sock_no_socketpair(sock1,sock2);
+          printf("%d\n", benchRet); 
+          free(sock1);
+          free(sock2);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_sock10 = 1;
+          struct socket * sock1 = (struct socket *) malloc(_len_sock10*sizeof(struct socket));
+          for(int _i0 = 0; _i0 < _len_sock10; _i0++) {
+              sock1[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_sock20 = 1;
+          struct socket * sock2 = (struct socket *) malloc(_len_sock20*sizeof(struct socket));
+          for(int _i0 = 0; _i0 < _len_sock20; _i0++) {
+              sock2[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sock_no_socketpair(sock1,sock2);
+          printf("%d\n", benchRet); 
+          free(sock1);
+          free(sock2);
+        
+        break;
+    }
     default:
         usage();
         break;

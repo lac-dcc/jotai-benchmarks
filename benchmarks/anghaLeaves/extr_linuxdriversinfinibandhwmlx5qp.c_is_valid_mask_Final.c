@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static inline bool is_valid_mask(int mask, int req, int op
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,8 +84,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int mask = 100;
+        
           int req = 100;
+        
           int opt = 100;
+        
           int benchRet = is_valid_mask(mask,req,opt);
           printf("%d\n", benchRet); 
         
@@ -100,8 +98,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int mask = 255;
+        
           int req = 255;
+        
           int opt = 255;
+        
           int benchRet = is_valid_mask(mask,req,opt);
           printf("%d\n", benchRet); 
         
@@ -111,14 +112,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int mask = 10;
+        
           int req = 10;
+        
           int opt = 10;
+        
           int benchRet = is_valid_mask(mask,req,opt);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int req = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int opt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = is_valid_mask(mask,req,opt);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

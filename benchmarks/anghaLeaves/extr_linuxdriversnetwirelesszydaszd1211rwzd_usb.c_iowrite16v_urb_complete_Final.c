@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static void iowrite16v_urb_complete(struct urb *urb)
 		usb->cmd_error = -EIO;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,21 +83,147 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_urb0 = 1;
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_urb0 = 65025;
           struct urb * urb = (struct urb *) malloc(_len_urb0*sizeof(struct urb));
           for(int _i0 = 0; _i0 < _len_urb0; _i0++) {
-            urb[_i0].actual_length = ((-2 * (next_i()%2)) + 1) * next_i();
-        urb[_i0].transfer_buffer_length = ((-2 * (next_i()%2)) + 1) * next_i();
-        urb[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+              urb[_i0].actual_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          urb[_i0].transfer_buffer_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          urb[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_urb__i0__context0 = 1;
           urb[_i0].context = (struct zd_usb *) malloc(_len_urb__i0__context0*sizeof(struct zd_usb));
           for(int _j0 = 0; _j0 < _len_urb__i0__context0; _j0++) {
-            urb[_i0].context->cmd_error = ((-2 * (next_i()%2)) + 1) * next_i();
+              urb[_i0].context->cmd_error = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          iowrite16v_urb_complete(urb);
+          for(int _aux = 0; _aux < _len_urb0; _aux++) {
+          free(urb[_aux].context);
+          }
+          free(urb);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_urb0 = 100;
+          struct urb * urb = (struct urb *) malloc(_len_urb0*sizeof(struct urb));
+          for(int _i0 = 0; _i0 < _len_urb0; _i0++) {
+              urb[_i0].actual_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          urb[_i0].transfer_buffer_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          urb[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_urb__i0__context0 = 1;
+          urb[_i0].context = (struct zd_usb *) malloc(_len_urb__i0__context0*sizeof(struct zd_usb));
+          for(int _j0 = 0; _j0 < _len_urb__i0__context0; _j0++) {
+              urb[_i0].context->cmd_error = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          iowrite16v_urb_complete(urb);
+          for(int _aux = 0; _aux < _len_urb0; _aux++) {
+          free(urb[_aux].context);
+          }
+          free(urb);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_urb0 = 1;
+          struct urb * urb = (struct urb *) malloc(_len_urb0*sizeof(struct urb));
+          for(int _i0 = 0; _i0 < _len_urb0; _i0++) {
+              urb[_i0].actual_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          urb[_i0].transfer_buffer_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          urb[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_urb__i0__context0 = 1;
+          urb[_i0].context = (struct zd_usb *) malloc(_len_urb__i0__context0*sizeof(struct zd_usb));
+          for(int _j0 = 0; _j0 < _len_urb__i0__context0; _j0++) {
+              urb[_i0].context->cmd_error = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           iowrite16v_urb_complete(urb);
           for(int _aux = 0; _aux < _len_urb0; _aux++) {
           free(urb[_aux].context);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static bool omap2_mcspi_can_dma(struct spi_master *master,
 	return (xfer->len >= DMA_MIN_BYTES);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,24 +79,165 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_master0 = 65025;
+          struct spi_master * master = (struct spi_master *) malloc(_len_master0*sizeof(struct spi_master));
+          for(int _i0 = 0; _i0 < _len_master0; _i0++) {
+              master[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_spi0 = 65025;
+          struct spi_device * spi = (struct spi_device *) malloc(_len_spi0*sizeof(struct spi_device));
+          for(int _i0 = 0; _i0 < _len_spi0; _i0++) {
+              spi[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_xfer0 = 65025;
+          struct spi_transfer * xfer = (struct spi_transfer *) malloc(_len_xfer0*sizeof(struct spi_transfer));
+          for(int _i0 = 0; _i0 < _len_xfer0; _i0++) {
+              xfer[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = omap2_mcspi_can_dma(master,spi,xfer);
+          printf("%d\n", benchRet); 
+          free(master);
+          free(spi);
+          free(xfer);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_master0 = 100;
+          struct spi_master * master = (struct spi_master *) malloc(_len_master0*sizeof(struct spi_master));
+          for(int _i0 = 0; _i0 < _len_master0; _i0++) {
+              master[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_spi0 = 100;
+          struct spi_device * spi = (struct spi_device *) malloc(_len_spi0*sizeof(struct spi_device));
+          for(int _i0 = 0; _i0 < _len_spi0; _i0++) {
+              spi[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_xfer0 = 100;
+          struct spi_transfer * xfer = (struct spi_transfer *) malloc(_len_xfer0*sizeof(struct spi_transfer));
+          for(int _i0 = 0; _i0 < _len_xfer0; _i0++) {
+              xfer[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = omap2_mcspi_can_dma(master,spi,xfer);
+          printf("%d\n", benchRet); 
+          free(master);
+          free(spi);
+          free(xfer);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_master0 = 1;
           struct spi_master * master = (struct spi_master *) malloc(_len_master0*sizeof(struct spi_master));
           for(int _i0 = 0; _i0 < _len_master0; _i0++) {
-            master[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              master[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_spi0 = 1;
           struct spi_device * spi = (struct spi_device *) malloc(_len_spi0*sizeof(struct spi_device));
           for(int _i0 = 0; _i0 < _len_spi0; _i0++) {
-            spi[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              spi[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_xfer0 = 1;
           struct spi_transfer * xfer = (struct spi_transfer *) malloc(_len_xfer0*sizeof(struct spi_transfer));
           for(int _i0 = 0; _i0 < _len_xfer0; _i0++) {
-            xfer[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+              xfer[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = omap2_mcspi_can_dma(master,spi,xfer);
           printf("%d\n", benchRet); 
           free(master);

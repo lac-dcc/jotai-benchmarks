@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -93,12 +96,6 @@ __attribute__((used)) static void cnl_wrpll_get_multipliers(int bestdiv, int *pd
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -111,25 +108,214 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           int bestdiv = 100;
+        
           int _len_pdiv0 = 1;
           int * pdiv = (int *) malloc(_len_pdiv0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pdiv0; _i0++) {
             pdiv[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_qdiv0 = 1;
           int * qdiv = (int *) malloc(_len_qdiv0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_qdiv0; _i0++) {
             qdiv[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_kdiv0 = 1;
           int * kdiv = (int *) malloc(_len_kdiv0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_kdiv0; _i0++) {
             kdiv[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          cnl_wrpll_get_multipliers(bestdiv,pdiv,qdiv,kdiv);
+          free(pdiv);
+          free(qdiv);
+          free(kdiv);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int bestdiv = 255;
+        
+          int _len_pdiv0 = 65025;
+          int * pdiv = (int *) malloc(_len_pdiv0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pdiv0; _i0++) {
+            pdiv[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_qdiv0 = 65025;
+          int * qdiv = (int *) malloc(_len_qdiv0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_qdiv0; _i0++) {
+            qdiv[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_kdiv0 = 65025;
+          int * kdiv = (int *) malloc(_len_kdiv0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_kdiv0; _i0++) {
+            kdiv[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          cnl_wrpll_get_multipliers(bestdiv,pdiv,qdiv,kdiv);
+          free(pdiv);
+          free(qdiv);
+          free(kdiv);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 50
+          // dynamic_instructions_O0 : 50
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 30
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 30
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 30
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 31
+          // dynamic_instructions_Oz : 31
+          // ------------------------------- 
+
+          int bestdiv = 10;
+        
+          int _len_pdiv0 = 100;
+          int * pdiv = (int *) malloc(_len_pdiv0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pdiv0; _i0++) {
+            pdiv[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_qdiv0 = 100;
+          int * qdiv = (int *) malloc(_len_qdiv0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_qdiv0; _i0++) {
+            qdiv[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_kdiv0 = 100;
+          int * kdiv = (int *) malloc(_len_kdiv0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_kdiv0; _i0++) {
+            kdiv[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          cnl_wrpll_get_multipliers(bestdiv,pdiv,qdiv,kdiv);
+          free(pdiv);
+          free(qdiv);
+          free(kdiv);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int bestdiv = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pdiv0 = 1;
+          int * pdiv = (int *) malloc(_len_pdiv0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pdiv0; _i0++) {
+            pdiv[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_qdiv0 = 1;
+          int * qdiv = (int *) malloc(_len_qdiv0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_qdiv0; _i0++) {
+            qdiv[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_kdiv0 = 1;
+          int * kdiv = (int *) malloc(_len_kdiv0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_kdiv0; _i0++) {
+            kdiv[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           cnl_wrpll_get_multipliers(bestdiv,pdiv,qdiv,kdiv);
           free(pdiv);
           free(qdiv);

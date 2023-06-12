@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -83,12 +84,6 @@ __attribute__((used)) static bool is_string_attr(enum hwmon_sensor_types type, u
 	       (type == hwmon_fan && attr == hwmon_fan_label);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,31 +96,144 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 68
+          // dynamic_instructions_O0 : 68
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 35
+          // dynamic_instructions_O3 : 35
+          // ------------------------------- 
+          // static_instructions_Ofast : 35
+          // dynamic_instructions_Ofast : 35
+          // ------------------------------- 
+          // static_instructions_Os : 35
+          // dynamic_instructions_Os : 35
+          // ------------------------------- 
+          // static_instructions_Oz : 35
+          // dynamic_instructions_Oz : 35
+          // ------------------------------- 
+
           enum hwmon_sensor_types type = 0;
+        
           long attr = 100;
+        
           int benchRet = is_string_attr(type,attr);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 68
+          // dynamic_instructions_O0 : 68
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 35
+          // dynamic_instructions_O3 : 35
+          // ------------------------------- 
+          // static_instructions_Ofast : 35
+          // dynamic_instructions_Ofast : 35
+          // ------------------------------- 
+          // static_instructions_Os : 35
+          // dynamic_instructions_Os : 35
+          // ------------------------------- 
+          // static_instructions_Oz : 35
+          // dynamic_instructions_Oz : 35
+          // ------------------------------- 
+
           enum hwmon_sensor_types type = 0;
+        
           long attr = 255;
+        
           int benchRet = is_string_attr(type,attr);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 68
+          // dynamic_instructions_O0 : 68
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 35
+          // dynamic_instructions_O3 : 35
+          // ------------------------------- 
+          // static_instructions_Ofast : 35
+          // dynamic_instructions_Ofast : 35
+          // ------------------------------- 
+          // static_instructions_Os : 35
+          // dynamic_instructions_Os : 35
+          // ------------------------------- 
+          // static_instructions_Oz : 35
+          // dynamic_instructions_Oz : 35
+          // ------------------------------- 
+
           enum hwmon_sensor_types type = 0;
+        
           long attr = 10;
+        
+          int benchRet = is_string_attr(type,attr);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 68
+          // dynamic_instructions_O0 : 68
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 35
+          // dynamic_instructions_O3 : 35
+          // ------------------------------- 
+          // static_instructions_Ofast : 35
+          // dynamic_instructions_Ofast : 35
+          // ------------------------------- 
+          // static_instructions_Os : 35
+          // dynamic_instructions_Os : 35
+          // ------------------------------- 
+          // static_instructions_Oz : 35
+          // dynamic_instructions_Oz : 35
+          // ------------------------------- 
+
+          enum hwmon_sensor_types type = 0;
+        
+          long attr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = is_string_attr(type,attr);
           printf("%d\n", benchRet); 
         

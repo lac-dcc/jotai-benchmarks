@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ int hash_algo_by_length(int len)
 	return GIT_HASH_UNKNOWN;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,6 +87,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int len = 100;
+        
           int benchRet = hash_algo_by_length(len);
           printf("%d\n", benchRet); 
         
@@ -101,6 +97,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int len = 255;
+        
           int benchRet = hash_algo_by_length(len);
           printf("%d\n", benchRet); 
         
@@ -110,12 +107,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int len = 10;
+        
           int benchRet = hash_algo_by_length(len);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = hash_algo_by_length(len);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

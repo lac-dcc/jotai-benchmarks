@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ __attribute__((used)) static void adv7511_calc_cts_n(unsigned int f_tmds, unsign
 	*cts = ((f_tmds * *n) / (128 * fs)) * 1000;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,24 +91,102 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int f_tmds = 100;
+        
           unsigned int fs = 100;
+        
           int _len_cts0 = 1;
           unsigned int * cts = (unsigned int *) malloc(_len_cts0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_cts0; _i0++) {
             cts[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_n0 = 1;
           unsigned int * n = (unsigned int *) malloc(_len_n0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_n0; _i0++) {
             n[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           adv7511_calc_cts_n(f_tmds,fs,cts,n);
           free(cts);
           free(n);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int f_tmds = 255;
+        
+          unsigned int fs = 255;
+        
+          int _len_cts0 = 65025;
+          unsigned int * cts = (unsigned int *) malloc(_len_cts0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_cts0; _i0++) {
+            cts[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_n0 = 65025;
+          unsigned int * n = (unsigned int *) malloc(_len_n0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_n0; _i0++) {
+            n[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          adv7511_calc_cts_n(f_tmds,fs,cts,n);
+          free(cts);
+          free(n);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int f_tmds = 10;
+        
+          unsigned int fs = 10;
+        
+          int _len_cts0 = 100;
+          unsigned int * cts = (unsigned int *) malloc(_len_cts0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_cts0; _i0++) {
+            cts[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_n0 = 100;
+          unsigned int * n = (unsigned int *) malloc(_len_n0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_n0; _i0++) {
+            n[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          adv7511_calc_cts_n(f_tmds,fs,cts,n);
+          free(cts);
+          free(n);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int f_tmds = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int fs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cts0 = 1;
+          unsigned int * cts = (unsigned int *) malloc(_len_cts0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_cts0; _i0++) {
+            cts[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_n0 = 1;
+          unsigned int * n = (unsigned int *) malloc(_len_n0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_n0; _i0++) {
+            n[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          adv7511_calc_cts_n(f_tmds,fs,cts,n);
+          free(cts);
+          free(n);
+        
+        break;
+    }
     default:
         usage();
         break;

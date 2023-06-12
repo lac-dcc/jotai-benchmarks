@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ struct b43legacy_wl *hw_to_b43legacy_wl(struct ieee80211_hw *hw)
 	return hw->priv;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,18 +76,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_hw0 = 1;
+          int _len_hw0 = 65025;
           struct ieee80211_hw * hw = (struct ieee80211_hw *) malloc(_len_hw0*sizeof(struct ieee80211_hw));
           for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
               int _len_hw__i0__priv0 = 1;
           hw[_i0].priv = (struct b43legacy_wl *) malloc(_len_hw__i0__priv0*sizeof(struct b43legacy_wl));
           for(int _j0 = 0; _j0 < _len_hw__i0__priv0; _j0++) {
-            hw[_i0].priv->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              hw[_i0].priv->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct b43legacy_wl * benchRet = hw_to_b43legacy_wl(hw);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_hw0; _aux++) {
@@ -101,7 +100,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_hw0 = 100;
+          struct ieee80211_hw * hw = (struct ieee80211_hw *) malloc(_len_hw0*sizeof(struct ieee80211_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              int _len_hw__i0__priv0 = 1;
+          hw[_i0].priv = (struct b43legacy_wl *) malloc(_len_hw__i0__priv0*sizeof(struct b43legacy_wl));
+          for(int _j0 = 0; _j0 < _len_hw__i0__priv0; _j0++) {
+              hw[_i0].priv->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct b43legacy_wl * benchRet = hw_to_b43legacy_wl(hw);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_hw0; _aux++) {
+          free(hw[_aux].priv);
+          }
+          free(hw);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_hw0 = 1;
+          struct ieee80211_hw * hw = (struct ieee80211_hw *) malloc(_len_hw0*sizeof(struct ieee80211_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              int _len_hw__i0__priv0 = 1;
+          hw[_i0].priv = (struct b43legacy_wl *) malloc(_len_hw__i0__priv0*sizeof(struct b43legacy_wl));
+          for(int _j0 = 0; _j0 < _len_hw__i0__priv0; _j0++) {
+              hw[_i0].priv->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct b43legacy_wl * benchRet = hw_to_b43legacy_wl(hw);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_hw0; _aux++) {
+          free(hw[_aux].priv);
+          }
+          free(hw);
+        
+        break;
+    }
     default:
         usage();
         break;

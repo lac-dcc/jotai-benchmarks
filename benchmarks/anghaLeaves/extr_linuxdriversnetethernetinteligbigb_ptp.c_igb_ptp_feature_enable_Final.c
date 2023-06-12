@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ __attribute__((used)) static int igb_ptp_feature_enable(struct ptp_clock_info *p
 	return -EOPNOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,16 +82,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int on = 100;
+        
           int _len_ptp0 = 1;
           struct ptp_clock_info * ptp = (struct ptp_clock_info *) malloc(_len_ptp0*sizeof(struct ptp_clock_info));
           for(int _i0 = 0; _i0 < _len_ptp0; _i0++) {
-            ptp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ptp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_rq0 = 1;
           struct ptp_clock_request * rq = (struct ptp_clock_request *) malloc(_len_rq0*sizeof(struct ptp_clock_request));
           for(int _i0 = 0; _i0 < _len_rq0; _i0++) {
-            rq[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rq[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = igb_ptp_feature_enable(ptp,rq,on);
           printf("%d\n", benchRet); 
           free(ptp);
@@ -102,7 +104,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int on = 255;
+        
+          int _len_ptp0 = 65025;
+          struct ptp_clock_info * ptp = (struct ptp_clock_info *) malloc(_len_ptp0*sizeof(struct ptp_clock_info));
+          for(int _i0 = 0; _i0 < _len_ptp0; _i0++) {
+              ptp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rq0 = 65025;
+          struct ptp_clock_request * rq = (struct ptp_clock_request *) malloc(_len_rq0*sizeof(struct ptp_clock_request));
+          for(int _i0 = 0; _i0 < _len_rq0; _i0++) {
+              rq[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = igb_ptp_feature_enable(ptp,rq,on);
+          printf("%d\n", benchRet); 
+          free(ptp);
+          free(rq);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int on = 10;
+        
+          int _len_ptp0 = 100;
+          struct ptp_clock_info * ptp = (struct ptp_clock_info *) malloc(_len_ptp0*sizeof(struct ptp_clock_info));
+          for(int _i0 = 0; _i0 < _len_ptp0; _i0++) {
+              ptp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rq0 = 100;
+          struct ptp_clock_request * rq = (struct ptp_clock_request *) malloc(_len_rq0*sizeof(struct ptp_clock_request));
+          for(int _i0 = 0; _i0 < _len_rq0; _i0++) {
+              rq[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = igb_ptp_feature_enable(ptp,rq,on);
+          printf("%d\n", benchRet); 
+          free(ptp);
+          free(rq);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int on = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ptp0 = 1;
+          struct ptp_clock_info * ptp = (struct ptp_clock_info *) malloc(_len_ptp0*sizeof(struct ptp_clock_info));
+          for(int _i0 = 0; _i0 < _len_ptp0; _i0++) {
+              ptp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rq0 = 1;
+          struct ptp_clock_request * rq = (struct ptp_clock_request *) malloc(_len_rq0*sizeof(struct ptp_clock_request));
+          for(int _i0 = 0; _i0 < _len_rq0; _i0++) {
+              rq[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = igb_ptp_feature_enable(ptp,rq,on);
+          printf("%d\n", benchRet); 
+          free(ptp);
+          free(rq);
+        
+        break;
+    }
     default:
         usage();
         break;

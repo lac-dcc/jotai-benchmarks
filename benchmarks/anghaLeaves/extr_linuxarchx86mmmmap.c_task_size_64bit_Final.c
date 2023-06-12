@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ unsigned long task_size_64bit(int full_addr_space)
 	return full_addr_space ? TASK_SIZE_MAX : DEFAULT_MAP_WINDOW;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int full_addr_space = 100;
+        
           unsigned long benchRet = task_size_64bit(full_addr_space);
           printf("%lu\n", benchRet); 
         
@@ -94,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int full_addr_space = 255;
+        
           unsigned long benchRet = task_size_64bit(full_addr_space);
           printf("%lu\n", benchRet); 
         
@@ -103,12 +100,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int full_addr_space = 10;
+        
           unsigned long benchRet = task_size_64bit(full_addr_space);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int full_addr_space = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = task_size_64bit(full_addr_space);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

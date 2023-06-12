@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ necp_kernel_socket_result_is_trigger_service_type(struct necp_kernel_socket_poli
 	return (kernel_policy->result >= NECP_KERNEL_POLICY_RESULT_TRIGGER && kernel_policy->result <= NECP_KERNEL_POLICY_RESULT_NO_TRIGGER_SCOPED);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_kernel_policy0 = 1;
+          int _len_kernel_policy0 = 65025;
           struct necp_kernel_socket_policy * kernel_policy = (struct necp_kernel_socket_policy *) malloc(_len_kernel_policy0*sizeof(struct necp_kernel_socket_policy));
           for(int _i0 = 0; _i0 < _len_kernel_policy0; _i0++) {
-            kernel_policy[_i0].result = ((-2 * (next_i()%2)) + 1) * next_i();
+              kernel_policy[_i0].result = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = necp_kernel_socket_result_is_trigger_service_type(kernel_policy);
           printf("%d\n", benchRet); 
           free(kernel_policy);
@@ -102,15 +99,32 @@ int main(int argc, char *argv[]) {
           int _len_kernel_policy0 = 100;
           struct necp_kernel_socket_policy * kernel_policy = (struct necp_kernel_socket_policy *) malloc(_len_kernel_policy0*sizeof(struct necp_kernel_socket_policy));
           for(int _i0 = 0; _i0 < _len_kernel_policy0; _i0++) {
-            kernel_policy[_i0].result = ((-2 * (next_i()%2)) + 1) * next_i();
+              kernel_policy[_i0].result = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = necp_kernel_socket_result_is_trigger_service_type(kernel_policy);
           printf("%d\n", benchRet); 
           free(kernel_policy);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_kernel_policy0 = 1;
+          struct necp_kernel_socket_policy * kernel_policy = (struct necp_kernel_socket_policy *) malloc(_len_kernel_policy0*sizeof(struct necp_kernel_socket_policy));
+          for(int _i0 = 0; _i0 < _len_kernel_policy0; _i0++) {
+              kernel_policy[_i0].result = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = necp_kernel_socket_result_is_trigger_service_type(kernel_policy);
+          printf("%d\n", benchRet); 
+          free(kernel_policy);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -61,12 +61,6 @@ __attribute__((used)) static int news_id_compare (struct news_id id1, struct new
   return id1.place - id2.place;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,23 +73,24 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           struct news_id id1;
-        id1.type = ((-2 * (next_i()%2)) + 1) * next_i();
-        id1.owner = ((-2 * (next_i()%2)) + 1) * next_i();
-        id1.place = ((-2 * (next_i()%2)) + 1) * next_i();
+          id1.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          id1.owner = ((-2 * (next_i()%2)) + 1) * next_i();
+          id1.place = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           struct news_id id2;
-        id2.type = ((-2 * (next_i()%2)) + 1) * next_i();
-        id2.owner = ((-2 * (next_i()%2)) + 1) * next_i();
-        id2.place = ((-2 * (next_i()%2)) + 1) * next_i();
+          id2.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          id2.owner = ((-2 * (next_i()%2)) + 1) * next_i();
+          id2.place = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = news_id_compare(id1,id2);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

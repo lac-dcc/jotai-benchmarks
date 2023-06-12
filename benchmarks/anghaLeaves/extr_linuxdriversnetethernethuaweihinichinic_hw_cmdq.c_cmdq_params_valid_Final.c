@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static int cmdq_params_valid(struct hinic_cmdq_buf *buf_in
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,28 +79,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_buf_in0 = 1;
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_buf_in0 = 65025;
           struct hinic_cmdq_buf * buf_in = (struct hinic_cmdq_buf *) malloc(_len_buf_in0*sizeof(struct hinic_cmdq_buf));
           for(int _i0 = 0; _i0 < _len_buf_in0; _i0++) {
-            buf_in[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              buf_in[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cmdq_params_valid(buf_in);
           printf("%d\n", benchRet); 
           free(buf_in);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_buf_in0 = 100;
           struct hinic_cmdq_buf * buf_in = (struct hinic_cmdq_buf *) malloc(_len_buf_in0*sizeof(struct hinic_cmdq_buf));
           for(int _i0 = 0; _i0 < _len_buf_in0; _i0++) {
-            buf_in[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              buf_in[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = cmdq_params_valid(buf_in);
+          printf("%d\n", benchRet); 
+          free(buf_in);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_buf_in0 = 1;
+          struct hinic_cmdq_buf * buf_in = (struct hinic_cmdq_buf *) malloc(_len_buf_in0*sizeof(struct hinic_cmdq_buf));
+          for(int _i0 = 0; _i0 < _len_buf_in0; _i0++) {
+              buf_in[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = cmdq_params_valid(buf_in);
           printf("%d\n", benchRet); 
           free(buf_in);

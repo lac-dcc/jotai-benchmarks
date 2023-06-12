@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -131,12 +134,6 @@ bool venus_helper_check_codec(struct venus_inst *inst, u32 v4l2_pixfmt)
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -153,17 +150,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int v4l2_pixfmt = 100;
+        
           int _len_inst0 = 1;
           struct venus_inst * inst = (struct venus_inst *) malloc(_len_inst0*sizeof(struct venus_inst));
           for(int _i0 = 0; _i0 < _len_inst0; _i0++) {
-            inst[_i0].session_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              inst[_i0].session_type = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_inst__i0__core0 = 1;
           inst[_i0].core = (struct venus_core *) malloc(_len_inst__i0__core0*sizeof(struct venus_core));
           for(int _j0 = 0; _j0 < _len_inst__i0__core0; _j0++) {
-            inst[_i0].core->enc_codecs = ((-2 * (next_i()%2)) + 1) * next_i();
-        inst[_i0].core->dec_codecs = ((-2 * (next_i()%2)) + 1) * next_i();
+              inst[_i0].core->enc_codecs = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].core->dec_codecs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = venus_helper_check_codec(inst,v4l2_pixfmt);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_inst0; _aux++) {
@@ -173,7 +174,90 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int v4l2_pixfmt = 255;
+        
+          int _len_inst0 = 65025;
+          struct venus_inst * inst = (struct venus_inst *) malloc(_len_inst0*sizeof(struct venus_inst));
+          for(int _i0 = 0; _i0 < _len_inst0; _i0++) {
+              inst[_i0].session_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_inst__i0__core0 = 1;
+          inst[_i0].core = (struct venus_core *) malloc(_len_inst__i0__core0*sizeof(struct venus_core));
+          for(int _j0 = 0; _j0 < _len_inst__i0__core0; _j0++) {
+              inst[_i0].core->enc_codecs = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].core->dec_codecs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = venus_helper_check_codec(inst,v4l2_pixfmt);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_inst0; _aux++) {
+          free(inst[_aux].core);
+          }
+          free(inst);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int v4l2_pixfmt = 10;
+        
+          int _len_inst0 = 100;
+          struct venus_inst * inst = (struct venus_inst *) malloc(_len_inst0*sizeof(struct venus_inst));
+          for(int _i0 = 0; _i0 < _len_inst0; _i0++) {
+              inst[_i0].session_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_inst__i0__core0 = 1;
+          inst[_i0].core = (struct venus_core *) malloc(_len_inst__i0__core0*sizeof(struct venus_core));
+          for(int _j0 = 0; _j0 < _len_inst__i0__core0; _j0++) {
+              inst[_i0].core->enc_codecs = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].core->dec_codecs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = venus_helper_check_codec(inst,v4l2_pixfmt);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_inst0; _aux++) {
+          free(inst[_aux].core);
+          }
+          free(inst);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int v4l2_pixfmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_inst0 = 1;
+          struct venus_inst * inst = (struct venus_inst *) malloc(_len_inst0*sizeof(struct venus_inst));
+          for(int _i0 = 0; _i0 < _len_inst0; _i0++) {
+              inst[_i0].session_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_inst__i0__core0 = 1;
+          inst[_i0].core = (struct venus_core *) malloc(_len_inst__i0__core0*sizeof(struct venus_core));
+          for(int _j0 = 0; _j0 < _len_inst__i0__core0; _j0++) {
+              inst[_i0].core->enc_codecs = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].core->dec_codecs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = venus_helper_check_codec(inst,v4l2_pixfmt);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_inst0; _aux++) {
+          free(inst[_aux].core);
+          }
+          free(inst);
+        
+        break;
+    }
     default:
         usage();
         break;

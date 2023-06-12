@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -92,12 +94,6 @@ AcpiUtStrtoulAdd64 (
     return (AE_OK);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -110,32 +106,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           long Addend1 = 100;
+        
           long Digit = 100;
+        
           int _len_OutSum0 = 1;
           long * OutSum = (long *) malloc(_len_OutSum0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_OutSum0; _i0++) {
             OutSum[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = AcpiUtStrtoulAdd64(Addend1,Digit,OutSum);
           printf("%d\n", benchRet); 
           free(OutSum);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long Addend1 = 255;
+        
+          long Digit = 255;
+        
+          int _len_OutSum0 = 65025;
+          long * OutSum = (long *) malloc(_len_OutSum0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_OutSum0; _i0++) {
+            OutSum[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = AcpiUtStrtoulAdd64(Addend1,Digit,OutSum);
+          printf("%d\n", benchRet); 
+          free(OutSum);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           long Addend1 = 10;
+        
           long Digit = 10;
+        
           int _len_OutSum0 = 100;
           long * OutSum = (long *) malloc(_len_OutSum0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_OutSum0; _i0++) {
             OutSum[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = AcpiUtStrtoulAdd64(Addend1,Digit,OutSum);
+          printf("%d\n", benchRet); 
+          free(OutSum);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long Addend1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long Digit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_OutSum0 = 1;
+          long * OutSum = (long *) malloc(_len_OutSum0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_OutSum0; _i0++) {
+            OutSum[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = AcpiUtStrtoulAdd64(Addend1,Digit,OutSum);
           printf("%d\n", benchRet); 
           free(OutSum);

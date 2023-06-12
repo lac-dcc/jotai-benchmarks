@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -63,7 +64,6 @@ __attribute__((used)) static void filesys_update_modification_time (struct files
   }
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct filesys_directory_node *_allocate_T(int length, struct filesys_directory_node *aux_T[]) {
@@ -93,7 +93,6 @@ void _delete_T(struct filesys_directory_node *aux_T[], int aux_T_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,17 +105,28 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // linked
     case 0:
+    {
+          struct filesys_directory_node * aux_T[10000];
+          struct filesys_directory_node * T = _allocate_T(10000, aux_T);
+        
+          filesys_update_modification_time(T);
+          _delete_T(aux_T, 10000);
+        
+        break;
+    }
+    // empty
+    case 1:
     {
           struct filesys_directory_node * aux_T[1];
           struct filesys_directory_node * T = _allocate_T(1, aux_T);
+        
           filesys_update_modification_time(T);
           _delete_T(aux_T, 1);
         
         break;
     }
-
     default:
         usage();
         break;

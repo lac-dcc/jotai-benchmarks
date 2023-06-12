@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline int ib_sa_query_cancelled(struct ib_sa_query
 	return (query->flags & IB_SA_CANCEL);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_query0 = 1;
+          int _len_query0 = 65025;
           struct ib_sa_query * query = (struct ib_sa_query *) malloc(_len_query0*sizeof(struct ib_sa_query));
           for(int _i0 = 0; _i0 < _len_query0; _i0++) {
-            query[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              query[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ib_sa_query_cancelled(query);
           printf("%d\n", benchRet); 
           free(query);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_query0 = 100;
           struct ib_sa_query * query = (struct ib_sa_query *) malloc(_len_query0*sizeof(struct ib_sa_query));
           for(int _i0 = 0; _i0 < _len_query0; _i0++) {
-            query[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              query[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ib_sa_query_cancelled(query);
           printf("%d\n", benchRet); 
           free(query);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_query0 = 1;
+          struct ib_sa_query * query = (struct ib_sa_query *) malloc(_len_query0*sizeof(struct ib_sa_query));
+          for(int _i0 = 0; _i0 < _len_query0; _i0++) {
+              query[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ib_sa_query_cancelled(query);
+          printf("%d\n", benchRet); 
+          free(query);
+        
+        break;
+    }
     default:
         usage();
         break;

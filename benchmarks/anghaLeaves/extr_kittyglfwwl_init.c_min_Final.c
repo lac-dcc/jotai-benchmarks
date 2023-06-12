@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline int min(int n1, int n2)
     return n1 < n2 ? n1 : n2;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,7 +78,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int n1 = 100;
+        
           int n2 = 100;
+        
           int benchRet = min(n1,n2);
           printf("%d\n", benchRet); 
         
@@ -93,7 +90,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int n1 = 255;
+        
           int n2 = 255;
+        
           int benchRet = min(n1,n2);
           printf("%d\n", benchRet); 
         
@@ -103,13 +102,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int n1 = 10;
+        
           int n2 = 10;
+        
           int benchRet = min(n1,n2);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int n1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int n2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = min(n1,n2);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

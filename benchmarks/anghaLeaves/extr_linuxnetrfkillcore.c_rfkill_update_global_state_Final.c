@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +76,6 @@ __attribute__((used)) static void rfkill_update_global_state(enum rfkill_type ty
 		rfkill_global_states[i].cur = blocked;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,7 +92,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           enum rfkill_type type = 0;
+        
           int blocked = 100;
+        
           rfkill_update_global_state(type,blocked);
         
         break;
@@ -106,7 +103,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           enum rfkill_type type = 0;
+        
           int blocked = 255;
+        
           rfkill_update_global_state(type,blocked);
         
         break;
@@ -115,12 +114,24 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           enum rfkill_type type = 0;
+        
           int blocked = 10;
+        
           rfkill_update_global_state(type,blocked);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          enum rfkill_type type = 0;
+        
+          int blocked = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          rfkill_update_global_state(type,blocked);
+        
+        break;
+    }
     default:
         usage();
         break;

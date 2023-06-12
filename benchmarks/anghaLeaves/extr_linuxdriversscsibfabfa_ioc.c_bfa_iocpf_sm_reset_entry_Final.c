@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ bfa_iocpf_sm_reset_entry(struct bfa_iocpf_s *iocpf)
 	iocpf->auto_recover = bfa_auto_recover;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,21 +78,54 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_iocpf0 = 1;
+          int _len_iocpf0 = 65025;
           struct bfa_iocpf_s * iocpf = (struct bfa_iocpf_s *) malloc(_len_iocpf0*sizeof(struct bfa_iocpf_s));
           for(int _i0 = 0; _i0 < _len_iocpf0; _i0++) {
-            iocpf[_i0].auto_recover = ((-2 * (next_i()%2)) + 1) * next_i();
-        iocpf[_i0].fw_mismatch_notified = ((-2 * (next_i()%2)) + 1) * next_i();
+              iocpf[_i0].auto_recover = ((-2 * (next_i()%2)) + 1) * next_i();
+          iocpf[_i0].fw_mismatch_notified = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           bfa_iocpf_sm_reset_entry(iocpf);
           free(iocpf);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_iocpf0 = 100;
+          struct bfa_iocpf_s * iocpf = (struct bfa_iocpf_s *) malloc(_len_iocpf0*sizeof(struct bfa_iocpf_s));
+          for(int _i0 = 0; _i0 < _len_iocpf0; _i0++) {
+              iocpf[_i0].auto_recover = ((-2 * (next_i()%2)) + 1) * next_i();
+          iocpf[_i0].fw_mismatch_notified = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          bfa_iocpf_sm_reset_entry(iocpf);
+          free(iocpf);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_iocpf0 = 1;
+          struct bfa_iocpf_s * iocpf = (struct bfa_iocpf_s *) malloc(_len_iocpf0*sizeof(struct bfa_iocpf_s));
+          for(int _i0 = 0; _i0 < _len_iocpf0; _i0++) {
+              iocpf[_i0].auto_recover = ((-2 * (next_i()%2)) + 1) * next_i();
+          iocpf[_i0].fw_mismatch_notified = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          bfa_iocpf_sm_reset_entry(iocpf);
+          free(iocpf);
+        
+        break;
+    }
     default:
         usage();
         break;

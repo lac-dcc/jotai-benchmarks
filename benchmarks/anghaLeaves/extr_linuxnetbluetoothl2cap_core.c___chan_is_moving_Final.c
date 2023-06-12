@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static bool __chan_is_moving(struct l2cap_chan *chan)
 	       chan->move_state != L2CAP_MOVE_WAIT_PREPARE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,28 +77,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_chan0 = 1;
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_chan0 = 65025;
           struct l2cap_chan * chan = (struct l2cap_chan *) malloc(_len_chan0*sizeof(struct l2cap_chan));
           for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
-            chan[_i0].move_state = ((-2 * (next_i()%2)) + 1) * next_i();
+              chan[_i0].move_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = __chan_is_moving(chan);
           printf("%d\n", benchRet); 
           free(chan);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_chan0 = 100;
           struct l2cap_chan * chan = (struct l2cap_chan *) malloc(_len_chan0*sizeof(struct l2cap_chan));
           for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
-            chan[_i0].move_state = ((-2 * (next_i()%2)) + 1) * next_i();
+              chan[_i0].move_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = __chan_is_moving(chan);
+          printf("%d\n", benchRet); 
+          free(chan);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_chan0 = 1;
+          struct l2cap_chan * chan = (struct l2cap_chan *) malloc(_len_chan0*sizeof(struct l2cap_chan));
+          for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
+              chan[_i0].move_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = __chan_is_moving(chan);
           printf("%d\n", benchRet); 
           free(chan);

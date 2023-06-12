@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ int nfp_cpp_explicit_set_data(struct nfp_cpp_explicit *expl,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,17 +83,183 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int data_master = 100;
+        
           int data_ref = 100;
+        
           int _len_expl0 = 1;
           struct nfp_cpp_explicit * expl = (struct nfp_cpp_explicit *) malloc(_len_expl0*sizeof(struct nfp_cpp_explicit));
           for(int _i0 = 0; _i0 < _len_expl0; _i0++) {
-            expl[_i0].cmd.data_ref = ((-2 * (next_i()%2)) + 1) * next_i();
-        expl[_i0].cmd.data_master = ((-2 * (next_i()%2)) + 1) * next_i();
+              expl[_i0].cmd.data_ref = ((-2 * (next_i()%2)) + 1) * next_i();
+          expl[_i0].cmd.data_master = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = nfp_cpp_explicit_set_data(expl,data_master,data_ref);
+          printf("%d\n", benchRet); 
+          free(expl);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int data_master = 255;
+        
+          int data_ref = 255;
+        
+          int _len_expl0 = 65025;
+          struct nfp_cpp_explicit * expl = (struct nfp_cpp_explicit *) malloc(_len_expl0*sizeof(struct nfp_cpp_explicit));
+          for(int _i0 = 0; _i0 < _len_expl0; _i0++) {
+              expl[_i0].cmd.data_ref = ((-2 * (next_i()%2)) + 1) * next_i();
+          expl[_i0].cmd.data_master = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = nfp_cpp_explicit_set_data(expl,data_master,data_ref);
+          printf("%d\n", benchRet); 
+          free(expl);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int data_master = 10;
+        
+          int data_ref = 10;
+        
+          int _len_expl0 = 100;
+          struct nfp_cpp_explicit * expl = (struct nfp_cpp_explicit *) malloc(_len_expl0*sizeof(struct nfp_cpp_explicit));
+          for(int _i0 = 0; _i0 < _len_expl0; _i0++) {
+              expl[_i0].cmd.data_ref = ((-2 * (next_i()%2)) + 1) * next_i();
+          expl[_i0].cmd.data_master = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = nfp_cpp_explicit_set_data(expl,data_master,data_ref);
+          printf("%d\n", benchRet); 
+          free(expl);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int data_master = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int data_ref = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_expl0 = 1;
+          struct nfp_cpp_explicit * expl = (struct nfp_cpp_explicit *) malloc(_len_expl0*sizeof(struct nfp_cpp_explicit));
+          for(int _i0 = 0; _i0 < _len_expl0; _i0++) {
+              expl[_i0].cmd.data_ref = ((-2 * (next_i()%2)) + 1) * next_i();
+          expl[_i0].cmd.data_master = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = nfp_cpp_explicit_set_data(expl,data_master,data_ref);
           printf("%d\n", benchRet); 
           free(expl);

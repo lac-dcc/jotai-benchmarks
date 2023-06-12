@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ __attribute__((used)) static unsigned int mvpp2_txdesc_offset_get(struct mvpp2_p
 		return tx_desc->pp22.packet_offset;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,24 +86,172 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_port0 = 65025;
+          struct mvpp2_port * port = (struct mvpp2_port *) malloc(_len_port0*sizeof(struct mvpp2_port));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              int _len_port__i0__priv0 = 1;
+          port[_i0].priv = (struct TYPE_4__ *) malloc(_len_port__i0__priv0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_port__i0__priv0; _j0++) {
+              port[_i0].priv->hw_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_tx_desc0 = 65025;
+          struct mvpp2_tx_desc * tx_desc = (struct mvpp2_tx_desc *) malloc(_len_tx_desc0*sizeof(struct mvpp2_tx_desc));
+          for(int _i0 = 0; _i0 < _len_tx_desc0; _i0++) {
+              tx_desc[_i0].pp22.packet_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          tx_desc[_i0].pp21.packet_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          unsigned int benchRet = mvpp2_txdesc_offset_get(port,tx_desc);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_port0; _aux++) {
+          free(port[_aux].priv);
+          }
+          free(port);
+          free(tx_desc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_port0 = 100;
+          struct mvpp2_port * port = (struct mvpp2_port *) malloc(_len_port0*sizeof(struct mvpp2_port));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              int _len_port__i0__priv0 = 1;
+          port[_i0].priv = (struct TYPE_4__ *) malloc(_len_port__i0__priv0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_port__i0__priv0; _j0++) {
+              port[_i0].priv->hw_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_tx_desc0 = 100;
+          struct mvpp2_tx_desc * tx_desc = (struct mvpp2_tx_desc *) malloc(_len_tx_desc0*sizeof(struct mvpp2_tx_desc));
+          for(int _i0 = 0; _i0 < _len_tx_desc0; _i0++) {
+              tx_desc[_i0].pp22.packet_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          tx_desc[_i0].pp21.packet_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          unsigned int benchRet = mvpp2_txdesc_offset_get(port,tx_desc);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_port0; _aux++) {
+          free(port[_aux].priv);
+          }
+          free(port);
+          free(tx_desc);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_port0 = 1;
           struct mvpp2_port * port = (struct mvpp2_port *) malloc(_len_port0*sizeof(struct mvpp2_port));
           for(int _i0 = 0; _i0 < _len_port0; _i0++) {
               int _len_port__i0__priv0 = 1;
           port[_i0].priv = (struct TYPE_4__ *) malloc(_len_port__i0__priv0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_port__i0__priv0; _j0++) {
-            port[_i0].priv->hw_version = ((-2 * (next_i()%2)) + 1) * next_i();
+              port[_i0].priv->hw_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_tx_desc0 = 1;
           struct mvpp2_tx_desc * tx_desc = (struct mvpp2_tx_desc *) malloc(_len_tx_desc0*sizeof(struct mvpp2_tx_desc));
           for(int _i0 = 0; _i0 < _len_tx_desc0; _i0++) {
-            tx_desc[_i0].pp22.packet_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        tx_desc[_i0].pp21.packet_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              tx_desc[_i0].pp22.packet_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          tx_desc[_i0].pp21.packet_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           unsigned int benchRet = mvpp2_txdesc_offset_get(port,tx_desc);
           printf("%u\n", benchRet); 
           for(int _aux = 0; _aux < _len_port0; _aux++) {

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -79,12 +81,6 @@ __attribute__((used)) static int hil_mlc_find_free_di(hil_mlc *mlc)
 	return idx; /* Note: It is guaranteed at least one above will match */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,9 +93,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_mlc0 = 65025;
+          struct TYPE_3__ * mlc = (struct TYPE_3__ *) malloc(_len_mlc0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_mlc0; _i0++) {
+              int _len_mlc__i0__di_map0 = 1;
+          mlc[_i0].di_map = (int *) malloc(_len_mlc__i0__di_map0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_mlc__i0__di_map0; _j0++) {
+            mlc[_i0].di_map[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = hil_mlc_find_free_di(mlc);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mlc0; _aux++) {
+          free(mlc[_aux].di_map);
+          }
+          free(mlc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_mlc0 = 100;
+          struct TYPE_3__ * mlc = (struct TYPE_3__ *) malloc(_len_mlc0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_mlc0; _i0++) {
+              int _len_mlc__i0__di_map0 = 1;
+          mlc[_i0].di_map = (int *) malloc(_len_mlc__i0__di_map0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_mlc__i0__di_map0; _j0++) {
+            mlc[_i0].di_map[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = hil_mlc_find_free_di(mlc);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mlc0; _aux++) {
+          free(mlc[_aux].di_map);
+          }
+          free(mlc);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_mlc0 = 1;
           struct TYPE_3__ * mlc = (struct TYPE_3__ *) malloc(_len_mlc0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_mlc0; _i0++) {
@@ -108,7 +221,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_mlc__i0__di_map0; _j0++) {
             mlc[_i0].di_map[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = hil_mlc_find_free_di(mlc);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_mlc0; _aux++) {

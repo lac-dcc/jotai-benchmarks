@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static int mlx5e_grp_2819_get_num_stats(struct mlx5e_priv 
 	return NUM_PPORT_2819_COUNTERS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_priv0 = 1;
+          int _len_priv0 = 65025;
           struct mlx5e_priv * priv = (struct mlx5e_priv *) malloc(_len_priv0*sizeof(struct mlx5e_priv));
           for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
-            priv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mlx5e_grp_2819_get_num_stats(priv);
           printf("%d\n", benchRet); 
           free(priv);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_priv0 = 100;
           struct mlx5e_priv * priv = (struct mlx5e_priv *) malloc(_len_priv0*sizeof(struct mlx5e_priv));
           for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
-            priv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mlx5e_grp_2819_get_num_stats(priv);
           printf("%d\n", benchRet); 
           free(priv);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_priv0 = 1;
+          struct mlx5e_priv * priv = (struct mlx5e_priv *) malloc(_len_priv0*sizeof(struct mlx5e_priv));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mlx5e_grp_2819_get_num_stats(priv);
+          printf("%d\n", benchRet); 
+          free(priv);
+        
+        break;
+    }
     default:
         usage();
         break;

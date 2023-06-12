@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -109,12 +112,6 @@ qboolean R_GetModeInfo( int *width, int *height,  int *buff_width, int *buff_hei
 	return qtrue;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -131,31 +128,37 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int mode = 100;
+        
           int _len_width0 = 1;
           int * width = (int *) malloc(_len_width0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_width0; _i0++) {
             width[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_height0 = 1;
           int * height = (int *) malloc(_len_height0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_height0; _i0++) {
             height[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_buff_width0 = 1;
           int * buff_width = (int *) malloc(_len_buff_width0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_buff_width0; _i0++) {
             buff_width[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_buff_height0 = 1;
           int * buff_height = (int *) malloc(_len_buff_height0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_buff_height0; _i0++) {
             buff_height[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_windowAspect0 = 1;
           float * windowAspect = (float *) malloc(_len_windowAspect0*sizeof(float));
           for(int _i0 = 0; _i0 < _len_windowAspect0; _i0++) {
             windowAspect[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
+        
           int benchRet = R_GetModeInfo(width,height,buff_width,buff_height,windowAspect,mode);
           printf("%d\n", benchRet); 
           free(width);
@@ -166,7 +169,141 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int mode = 255;
+        
+          int _len_width0 = 65025;
+          int * width = (int *) malloc(_len_width0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_width0; _i0++) {
+            width[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_height0 = 65025;
+          int * height = (int *) malloc(_len_height0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_height0; _i0++) {
+            height[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_buff_width0 = 65025;
+          int * buff_width = (int *) malloc(_len_buff_width0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_buff_width0; _i0++) {
+            buff_width[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_buff_height0 = 65025;
+          int * buff_height = (int *) malloc(_len_buff_height0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_buff_height0; _i0++) {
+            buff_height[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_windowAspect0 = 65025;
+          float * windowAspect = (float *) malloc(_len_windowAspect0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_windowAspect0; _i0++) {
+            windowAspect[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          int benchRet = R_GetModeInfo(width,height,buff_width,buff_height,windowAspect,mode);
+          printf("%d\n", benchRet); 
+          free(width);
+          free(height);
+          free(buff_width);
+          free(buff_height);
+          free(windowAspect);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int mode = 10;
+        
+          int _len_width0 = 100;
+          int * width = (int *) malloc(_len_width0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_width0; _i0++) {
+            width[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_height0 = 100;
+          int * height = (int *) malloc(_len_height0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_height0; _i0++) {
+            height[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_buff_width0 = 100;
+          int * buff_width = (int *) malloc(_len_buff_width0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_buff_width0; _i0++) {
+            buff_width[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_buff_height0 = 100;
+          int * buff_height = (int *) malloc(_len_buff_height0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_buff_height0; _i0++) {
+            buff_height[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_windowAspect0 = 100;
+          float * windowAspect = (float *) malloc(_len_windowAspect0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_windowAspect0; _i0++) {
+            windowAspect[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          int benchRet = R_GetModeInfo(width,height,buff_width,buff_height,windowAspect,mode);
+          printf("%d\n", benchRet); 
+          free(width);
+          free(height);
+          free(buff_width);
+          free(buff_height);
+          free(windowAspect);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_width0 = 1;
+          int * width = (int *) malloc(_len_width0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_width0; _i0++) {
+            width[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_height0 = 1;
+          int * height = (int *) malloc(_len_height0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_height0; _i0++) {
+            height[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_buff_width0 = 1;
+          int * buff_width = (int *) malloc(_len_buff_width0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_buff_width0; _i0++) {
+            buff_width[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_buff_height0 = 1;
+          int * buff_height = (int *) malloc(_len_buff_height0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_buff_height0; _i0++) {
+            buff_height[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_windowAspect0 = 1;
+          float * windowAspect = (float *) malloc(_len_windowAspect0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_windowAspect0; _i0++) {
+            windowAspect[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          int benchRet = R_GetModeInfo(width,height,buff_width,buff_height,windowAspect,mode);
+          printf("%d\n", benchRet); 
+          free(width);
+          free(height);
+          free(buff_width);
+          free(buff_height);
+          free(windowAspect);
+        
+        break;
+    }
     default:
         usage();
         break;

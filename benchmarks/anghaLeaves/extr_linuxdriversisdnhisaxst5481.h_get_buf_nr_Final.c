@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static inline int get_buf_nr(struct urb *urbs[], struct ur
 	return (urbs[0] == urb ? 0 : 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,27 +74,163 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_urbs0 = 65025;
+          struct urb ** urbs = (struct urb **) malloc(_len_urbs0*sizeof(struct urb *));
+          for(int _i0 = 0; _i0 < _len_urbs0; _i0++) {
+            int _len_urbs1 = 1;
+            urbs[_i0] = (struct urb *) malloc(_len_urbs1*sizeof(struct urb));
+            for(int _i1 = 0; _i1 < _len_urbs1; _i1++) {
+                urbs[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int _len_urb0 = 65025;
+          struct urb * urb = (struct urb *) malloc(_len_urb0*sizeof(struct urb));
+          for(int _i0 = 0; _i0 < _len_urb0; _i0++) {
+              urb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = get_buf_nr(urbs,urb);
+          printf("%d\n", benchRet); 
+          for(int i1 = 0; i1 < _len_urbs0; i1++) {
+              free(urbs[i1]);
+          }
+          free(urbs);
+          free(urb);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_urbs0 = 100;
+          struct urb ** urbs = (struct urb **) malloc(_len_urbs0*sizeof(struct urb *));
+          for(int _i0 = 0; _i0 < _len_urbs0; _i0++) {
+            int _len_urbs1 = 1;
+            urbs[_i0] = (struct urb *) malloc(_len_urbs1*sizeof(struct urb));
+            for(int _i1 = 0; _i1 < _len_urbs1; _i1++) {
+                urbs[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int _len_urb0 = 100;
+          struct urb * urb = (struct urb *) malloc(_len_urb0*sizeof(struct urb));
+          for(int _i0 = 0; _i0 < _len_urb0; _i0++) {
+              urb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = get_buf_nr(urbs,urb);
+          printf("%d\n", benchRet); 
+          for(int i1 = 0; i1 < _len_urbs0; i1++) {
+              free(urbs[i1]);
+          }
+          free(urbs);
+          free(urb);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_urbs0 = 1;
           struct urb ** urbs = (struct urb **) malloc(_len_urbs0*sizeof(struct urb *));
           for(int _i0 = 0; _i0 < _len_urbs0; _i0++) {
             int _len_urbs1 = 1;
             urbs[_i0] = (struct urb *) malloc(_len_urbs1*sizeof(struct urb));
             for(int _i1 = 0; _i1 < _len_urbs1; _i1++) {
-              urbs[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+                urbs[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           int _len_urb0 = 1;
           struct urb * urb = (struct urb *) malloc(_len_urb0*sizeof(struct urb));
           for(int _i0 = 0; _i0 < _len_urb0; _i0++) {
-            urb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              urb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = get_buf_nr(urbs,urb);
           printf("%d\n", benchRet); 
           for(int i1 = 0; i1 < _len_urbs0; i1++) {
-            int _len_urbs1 = 1;
               free(urbs[i1]);
           }
           free(urbs);

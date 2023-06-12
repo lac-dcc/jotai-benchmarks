@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline int mxcmci_use_dma(struct mxcmci_host *host)
 	return host->do_dma;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,28 +74,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_host0 = 1;
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_host0 = 65025;
           struct mxcmci_host * host = (struct mxcmci_host *) malloc(_len_host0*sizeof(struct mxcmci_host));
           for(int _i0 = 0; _i0 < _len_host0; _i0++) {
-            host[_i0].do_dma = ((-2 * (next_i()%2)) + 1) * next_i();
+              host[_i0].do_dma = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mxcmci_use_dma(host);
           printf("%d\n", benchRet); 
           free(host);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_host0 = 100;
           struct mxcmci_host * host = (struct mxcmci_host *) malloc(_len_host0*sizeof(struct mxcmci_host));
           for(int _i0 = 0; _i0 < _len_host0; _i0++) {
-            host[_i0].do_dma = ((-2 * (next_i()%2)) + 1) * next_i();
+              host[_i0].do_dma = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = mxcmci_use_dma(host);
+          printf("%d\n", benchRet); 
+          free(host);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_host0 = 1;
+          struct mxcmci_host * host = (struct mxcmci_host *) malloc(_len_host0*sizeof(struct mxcmci_host));
+          for(int _i0 = 0; _i0 < _len_host0; _i0++) {
+              host[_i0].do_dma = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = mxcmci_use_dma(host);
           printf("%d\n", benchRet); 
           free(host);

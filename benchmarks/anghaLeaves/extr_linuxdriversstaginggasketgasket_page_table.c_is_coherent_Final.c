@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +77,6 @@ __attribute__((used)) static int is_coherent(struct gasket_page_table *pg_tbl, u
 	return min <= host_addr && host_addr < max;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,20 +89,200 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
           long host_addr = 100;
+        
           int _len_pg_tbl0 = 1;
           struct gasket_page_table * pg_tbl = (struct gasket_page_table *) malloc(_len_pg_tbl0*sizeof(struct gasket_page_table));
           for(int _i0 = 0; _i0 < _len_pg_tbl0; _i0++) {
-            pg_tbl[_i0].num_coherent_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+              pg_tbl[_i0].num_coherent_pages = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_pg_tbl__i0__coherent_pages0 = 1;
           pg_tbl[_i0].coherent_pages = (struct TYPE_2__ *) malloc(_len_pg_tbl__i0__coherent_pages0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_pg_tbl__i0__coherent_pages0; _j0++) {
-            pg_tbl[_i0].coherent_pages->user_virt = ((-2 * (next_i()%2)) + 1) * next_i();
+              pg_tbl[_i0].coherent_pages->user_virt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = is_coherent(pg_tbl,host_addr);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pg_tbl0; _aux++) {
+          free(pg_tbl[_aux].coherent_pages);
+          }
+          free(pg_tbl);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          long host_addr = 255;
+        
+          int _len_pg_tbl0 = 65025;
+          struct gasket_page_table * pg_tbl = (struct gasket_page_table *) malloc(_len_pg_tbl0*sizeof(struct gasket_page_table));
+          for(int _i0 = 0; _i0 < _len_pg_tbl0; _i0++) {
+              pg_tbl[_i0].num_coherent_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pg_tbl__i0__coherent_pages0 = 1;
+          pg_tbl[_i0].coherent_pages = (struct TYPE_2__ *) malloc(_len_pg_tbl__i0__coherent_pages0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_pg_tbl__i0__coherent_pages0; _j0++) {
+              pg_tbl[_i0].coherent_pages->user_virt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = is_coherent(pg_tbl,host_addr);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pg_tbl0; _aux++) {
+          free(pg_tbl[_aux].coherent_pages);
+          }
+          free(pg_tbl);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          long host_addr = 10;
+        
+          int _len_pg_tbl0 = 100;
+          struct gasket_page_table * pg_tbl = (struct gasket_page_table *) malloc(_len_pg_tbl0*sizeof(struct gasket_page_table));
+          for(int _i0 = 0; _i0 < _len_pg_tbl0; _i0++) {
+              pg_tbl[_i0].num_coherent_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pg_tbl__i0__coherent_pages0 = 1;
+          pg_tbl[_i0].coherent_pages = (struct TYPE_2__ *) malloc(_len_pg_tbl__i0__coherent_pages0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_pg_tbl__i0__coherent_pages0; _j0++) {
+              pg_tbl[_i0].coherent_pages->user_virt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = is_coherent(pg_tbl,host_addr);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pg_tbl0; _aux++) {
+          free(pg_tbl[_aux].coherent_pages);
+          }
+          free(pg_tbl);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          long host_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pg_tbl0 = 1;
+          struct gasket_page_table * pg_tbl = (struct gasket_page_table *) malloc(_len_pg_tbl0*sizeof(struct gasket_page_table));
+          for(int _i0 = 0; _i0 < _len_pg_tbl0; _i0++) {
+              pg_tbl[_i0].num_coherent_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pg_tbl__i0__coherent_pages0 = 1;
+          pg_tbl[_i0].coherent_pages = (struct TYPE_2__ *) malloc(_len_pg_tbl__i0__coherent_pages0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_pg_tbl__i0__coherent_pages0; _j0++) {
+              pg_tbl[_i0].coherent_pages->user_virt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = is_coherent(pg_tbl,host_addr);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_pg_tbl0; _aux++) {

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -93,12 +94,6 @@ __attribute__((used)) static int spu2_hash_mode_xlate(enum hash_mode hash_mode,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -111,15 +106,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           enum hash_mode hash_mode = 0;
-          int _len_spu2_mode0 = 1;
+        
+          int _len_spu2_mode0 = 65025;
           enum spu2_hash_mode * spu2_mode = (enum spu2_hash_mode *) malloc(_len_spu2_mode0*sizeof(enum spu2_hash_mode));
           for(int _i0 = 0; _i0 < _len_spu2_mode0; _i0++) {
             spu2_mode[_i0] = 0;
           }
+        
           int benchRet = spu2_hash_mode_xlate(hash_mode,spu2_mode);
           printf("%d\n", benchRet); 
           free(spu2_mode);
@@ -130,18 +127,36 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           enum hash_mode hash_mode = 0;
+        
           int _len_spu2_mode0 = 100;
           enum spu2_hash_mode * spu2_mode = (enum spu2_hash_mode *) malloc(_len_spu2_mode0*sizeof(enum spu2_hash_mode));
           for(int _i0 = 0; _i0 < _len_spu2_mode0; _i0++) {
             spu2_mode[_i0] = 0;
           }
+        
           int benchRet = spu2_hash_mode_xlate(hash_mode,spu2_mode);
           printf("%d\n", benchRet); 
           free(spu2_mode);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          enum hash_mode hash_mode = 0;
+        
+          int _len_spu2_mode0 = 1;
+          enum spu2_hash_mode * spu2_mode = (enum spu2_hash_mode *) malloc(_len_spu2_mode0*sizeof(enum spu2_hash_mode));
+          for(int _i0 = 0; _i0 < _len_spu2_mode0; _i0++) {
+            spu2_mode[_i0] = 0;
+          }
+        
+          int benchRet = spu2_hash_mode_xlate(hash_mode,spu2_mode);
+          printf("%d\n", benchRet); 
+          free(spu2_mode);
+        
+        break;
+    }
     default:
         usage();
         break;

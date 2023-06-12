@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ typedef  int /*<<< orphan*/  BOOL ;
 
 __attribute__((used)) static BOOL  NULL_SetWindowExtEx(PHYSDEV dev, INT cx, INT cy, SIZE *size) { return TRUE; }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,34 +76,179 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int dev = 100;
+        
           int cx = 100;
+        
           int cy = 100;
+        
           int _len_size0 = 1;
           int * size = (int *) malloc(_len_size0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_size0; _i0++) {
             size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = NULL_SetWindowExtEx(dev,cx,cy,size);
           printf("%d\n", benchRet); 
           free(size);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int dev = 255;
+        
+          int cx = 255;
+        
+          int cy = 255;
+        
+          int _len_size0 = 65025;
+          int * size = (int *) malloc(_len_size0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_size0; _i0++) {
+            size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = NULL_SetWindowExtEx(dev,cx,cy,size);
+          printf("%d\n", benchRet); 
+          free(size);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int dev = 10;
+        
           int cx = 10;
+        
           int cy = 10;
+        
           int _len_size0 = 100;
           int * size = (int *) malloc(_len_size0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_size0; _i0++) {
             size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = NULL_SetWindowExtEx(dev,cx,cy,size);
+          printf("%d\n", benchRet); 
+          free(size);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int dev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int cx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int cy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_size0 = 1;
+          int * size = (int *) malloc(_len_size0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_size0; _i0++) {
+            size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = NULL_SetWindowExtEx(dev,cx,cy,size);
           printf("%d\n", benchRet); 
           free(size);

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ void litespeed_cleanup(int signal)
     s_stop = signal;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int signal = 100;
+        
           litespeed_cleanup(signal);
         
         break;
@@ -92,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int signal = 255;
+        
           litespeed_cleanup(signal);
         
         break;
@@ -100,11 +97,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int signal = 10;
+        
           litespeed_cleanup(signal);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int signal = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          litespeed_cleanup(signal);
+        
+        break;
+    }
     default:
         usage();
         break;

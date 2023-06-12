@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ bool mp_rect_equals(struct mp_rect *rc1, struct mp_rect *rc2)
            rc1->x1 == rc2->x1 && rc1->y1 == rc2->y1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,25 +75,160 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_rc10 = 65025;
+          struct mp_rect * rc1 = (struct mp_rect *) malloc(_len_rc10*sizeof(struct mp_rect));
+          for(int _i0 = 0; _i0 < _len_rc10; _i0++) {
+              rc1[_i0].x0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rc1[_i0].y0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rc1[_i0].x1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rc1[_i0].y1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rc20 = 65025;
+          struct mp_rect * rc2 = (struct mp_rect *) malloc(_len_rc20*sizeof(struct mp_rect));
+          for(int _i0 = 0; _i0 < _len_rc20; _i0++) {
+              rc2[_i0].x0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rc2[_i0].y0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rc2[_i0].x1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rc2[_i0].y1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mp_rect_equals(rc1,rc2);
+          printf("%d\n", benchRet); 
+          free(rc1);
+          free(rc2);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_rc10 = 100;
+          struct mp_rect * rc1 = (struct mp_rect *) malloc(_len_rc10*sizeof(struct mp_rect));
+          for(int _i0 = 0; _i0 < _len_rc10; _i0++) {
+              rc1[_i0].x0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rc1[_i0].y0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rc1[_i0].x1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rc1[_i0].y1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rc20 = 100;
+          struct mp_rect * rc2 = (struct mp_rect *) malloc(_len_rc20*sizeof(struct mp_rect));
+          for(int _i0 = 0; _i0 < _len_rc20; _i0++) {
+              rc2[_i0].x0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rc2[_i0].y0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rc2[_i0].x1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rc2[_i0].y1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mp_rect_equals(rc1,rc2);
+          printf("%d\n", benchRet); 
+          free(rc1);
+          free(rc2);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int _len_rc10 = 1;
           struct mp_rect * rc1 = (struct mp_rect *) malloc(_len_rc10*sizeof(struct mp_rect));
           for(int _i0 = 0; _i0 < _len_rc10; _i0++) {
-            rc1[_i0].x0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        rc1[_i0].y0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        rc1[_i0].x1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        rc1[_i0].y1 = ((-2 * (next_i()%2)) + 1) * next_i();
+              rc1[_i0].x0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rc1[_i0].y0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rc1[_i0].x1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rc1[_i0].y1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_rc20 = 1;
           struct mp_rect * rc2 = (struct mp_rect *) malloc(_len_rc20*sizeof(struct mp_rect));
           for(int _i0 = 0; _i0 < _len_rc20; _i0++) {
-            rc2[_i0].x0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        rc2[_i0].y0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        rc2[_i0].x1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        rc2[_i0].y1 = ((-2 * (next_i()%2)) + 1) * next_i();
+              rc2[_i0].x0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rc2[_i0].y0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rc2[_i0].x1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rc2[_i0].y1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mp_rect_equals(rc1,rc2);
           printf("%d\n", benchRet); 
           free(rc1);

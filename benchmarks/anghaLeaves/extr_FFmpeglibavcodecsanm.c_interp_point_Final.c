@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static void interp_point(int8_t *points, int x0, int y0, i
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,20 +80,100 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 44
+          // dynamic_instructions_O0 : 44
+          // ------------------------------- 
+          // static_instructions_O1 : 34
+          // dynamic_instructions_O1 : 34
+          // ------------------------------- 
+          // static_instructions_O2 : 34
+          // dynamic_instructions_O2 : 34
+          // ------------------------------- 
+          // static_instructions_O3 : 34
+          // dynamic_instructions_O3 : 34
+          // ------------------------------- 
+          // static_instructions_Ofast : 34
+          // dynamic_instructions_Ofast : 34
+          // ------------------------------- 
+          // static_instructions_Os : 34
+          // dynamic_instructions_Os : 34
+          // ------------------------------- 
+          // static_instructions_Oz : 34
+          // dynamic_instructions_Oz : 34
+          // ------------------------------- 
+
+          int x0 = 255;
+        
+          int y0 = 255;
+        
+          int x1 = 255;
+        
+          int y1 = 255;
+        
+          int pos = 255;
+        
+          int npoints = 255;
+        
+          int _len_points0 = 65025;
+          int * points = (int *) malloc(_len_points0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_points0; _i0++) {
+            points[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          interp_point(points,x0,y0,x1,y1,pos,npoints);
+          free(points);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 44
+          // dynamic_instructions_O0 : 44
+          // ------------------------------- 
+          // static_instructions_O1 : 34
+          // dynamic_instructions_O1 : 34
+          // ------------------------------- 
+          // static_instructions_O2 : 34
+          // dynamic_instructions_O2 : 34
+          // ------------------------------- 
+          // static_instructions_O3 : 34
+          // dynamic_instructions_O3 : 34
+          // ------------------------------- 
+          // static_instructions_Ofast : 34
+          // dynamic_instructions_Ofast : 34
+          // ------------------------------- 
+          // static_instructions_Os : 34
+          // dynamic_instructions_Os : 34
+          // ------------------------------- 
+          // static_instructions_Oz : 34
+          // dynamic_instructions_Oz : 34
+          // ------------------------------- 
+
           int x0 = 10;
+        
           int y0 = 10;
+        
           int x1 = 10;
+        
           int y1 = 10;
+        
           int pos = 10;
+        
           int npoints = 10;
+        
           int _len_points0 = 100;
           int * points = (int *) malloc(_len_points0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_points0; _i0++) {
             points[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           interp_point(points,x0,y0,x1,y1,pos,npoints);
           free(points);
         

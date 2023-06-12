@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -101,12 +104,6 @@ __attribute__((used)) static inline void do_kiss_params(struct hdlcdrv_state *s,
 #undef PKP
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -119,24 +116,211 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           unsigned long len = 100;
+        
           int _len_s0 = 1;
           struct hdlcdrv_state * s = (struct hdlcdrv_state *) malloc(_len_s0*sizeof(struct hdlcdrv_state));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].ch_params.tx_delay = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].ch_params.ppersist = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].ch_params.slottime = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].ch_params.tx_tail = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].ch_params.fulldup = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].ch_params.tx_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].ch_params.ppersist = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].ch_params.slottime = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].ch_params.tx_tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].ch_params.fulldup = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_data0 = 1;
           unsigned char * data = (unsigned char *) malloc(_len_data0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
             data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          do_kiss_params(s,data,len);
+          free(s);
+          free(data);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          unsigned long len = 255;
+        
+          int _len_s0 = 65025;
+          struct hdlcdrv_state * s = (struct hdlcdrv_state *) malloc(_len_s0*sizeof(struct hdlcdrv_state));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].ch_params.tx_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].ch_params.ppersist = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].ch_params.slottime = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].ch_params.tx_tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].ch_params.fulldup = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_data0 = 65025;
+          unsigned char * data = (unsigned char *) malloc(_len_data0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+            data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          do_kiss_params(s,data,len);
+          free(s);
+          free(data);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          unsigned long len = 10;
+        
+          int _len_s0 = 100;
+          struct hdlcdrv_state * s = (struct hdlcdrv_state *) malloc(_len_s0*sizeof(struct hdlcdrv_state));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].ch_params.tx_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].ch_params.ppersist = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].ch_params.slottime = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].ch_params.tx_tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].ch_params.fulldup = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_data0 = 100;
+          unsigned char * data = (unsigned char *) malloc(_len_data0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+            data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          do_kiss_params(s,data,len);
+          free(s);
+          free(data);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          unsigned long len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_s0 = 1;
+          struct hdlcdrv_state * s = (struct hdlcdrv_state *) malloc(_len_s0*sizeof(struct hdlcdrv_state));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].ch_params.tx_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].ch_params.ppersist = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].ch_params.slottime = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].ch_params.tx_tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].ch_params.fulldup = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_data0 = 1;
+          unsigned char * data = (unsigned char *) malloc(_len_data0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+            data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           do_kiss_params(s,data,len);
           free(s);
           free(data);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -86,12 +88,6 @@ __attribute__((used)) static ut32 cmp(ArmOp *op) {
 	return data;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,21 +100,149 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_op0 = 65025;
+          struct TYPE_5__ * op = (struct TYPE_5__ *) malloc(_len_op0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_op0; _i0++) {
+              int _len_op__i0__operands0 = 1;
+          op[_i0].operands = (struct TYPE_4__ *) malloc(_len_op__i0__operands0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_op__i0__operands0; _j0++) {
+              op[_i0].operands->reg_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          op[_i0].operands->shift_amount = ((-2 * (next_i()%2)) + 1) * next_i();
+          op[_i0].operands->reg = ((-2 * (next_i()%2)) + 1) * next_i();
+          op[_i0].operands->shift = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = cmp(op);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_op0; _aux++) {
+          free(op[_aux].operands);
+          }
+          free(op);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_op0 = 100;
+          struct TYPE_5__ * op = (struct TYPE_5__ *) malloc(_len_op0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_op0; _i0++) {
+              int _len_op__i0__operands0 = 1;
+          op[_i0].operands = (struct TYPE_4__ *) malloc(_len_op__i0__operands0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_op__i0__operands0; _j0++) {
+              op[_i0].operands->reg_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          op[_i0].operands->shift_amount = ((-2 * (next_i()%2)) + 1) * next_i();
+          op[_i0].operands->reg = ((-2 * (next_i()%2)) + 1) * next_i();
+          op[_i0].operands->shift = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = cmp(op);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_op0; _aux++) {
+          free(op[_aux].operands);
+          }
+          free(op);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int _len_op0 = 1;
           struct TYPE_5__ * op = (struct TYPE_5__ *) malloc(_len_op0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_op0; _i0++) {
               int _len_op__i0__operands0 = 1;
           op[_i0].operands = (struct TYPE_4__ *) malloc(_len_op__i0__operands0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_op__i0__operands0; _j0++) {
-            op[_i0].operands->reg_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].operands->shift_amount = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].operands->reg = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].operands->shift = ((-2 * (next_i()%2)) + 1) * next_i();
+              op[_i0].operands->reg_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          op[_i0].operands->shift_amount = ((-2 * (next_i()%2)) + 1) * next_i();
+          op[_i0].operands->reg = ((-2 * (next_i()%2)) + 1) * next_i();
+          op[_i0].operands->shift = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = cmp(op);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_op0; _aux++) {

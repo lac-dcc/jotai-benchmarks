@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static int decode_surrogate_pair(wchar_t lead, wchar_t tra
     return 0x10000 + (((lead & 0x3ff) << 10) | (trail & 0x3ff));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,7 +79,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int lead = 100;
+        
           int trail = 100;
+        
           int benchRet = decode_surrogate_pair(lead,trail);
           printf("%d\n", benchRet); 
         
@@ -94,7 +91,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int lead = 255;
+        
           int trail = 255;
+        
           int benchRet = decode_surrogate_pair(lead,trail);
           printf("%d\n", benchRet); 
         
@@ -104,13 +103,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int lead = 10;
+        
           int trail = 10;
+        
           int benchRet = decode_surrogate_pair(lead,trail);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int lead = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int trail = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = decode_surrogate_pair(lead,trail);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

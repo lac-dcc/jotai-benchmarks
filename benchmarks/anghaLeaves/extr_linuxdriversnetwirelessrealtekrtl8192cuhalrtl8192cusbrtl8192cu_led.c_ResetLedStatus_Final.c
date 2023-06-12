@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ ResetLedStatus(PLED_871x	pLed) {
 	pLed->BlinkingLedState = LED_UNKNOWN; // Next state for blinking, either RTW_LED_ON or RTW_LED_OFF are.
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,22 +89,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pLed0 = 1;
+          int _len_pLed0 = 65025;
           struct TYPE_3__ * pLed = (struct TYPE_3__ *) malloc(_len_pLed0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_pLed0; _i0++) {
-            pLed[_i0].BlinkingLedState = ((-2 * (next_i()%2)) + 1) * next_i();
-        pLed[_i0].BlinkTimes = ((-2 * (next_i()%2)) + 1) * next_i();
-        pLed[_i0].CurrLedState = ((-2 * (next_i()%2)) + 1) * next_i();
+              pLed[_i0].BlinkingLedState = ((-2 * (next_i()%2)) + 1) * next_i();
+          pLed[_i0].BlinkTimes = ((-2 * (next_i()%2)) + 1) * next_i();
+          pLed[_i0].CurrLedState = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ResetLedStatus(pLed);
           free(pLed);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_pLed0 = 100;
+          struct TYPE_3__ * pLed = (struct TYPE_3__ *) malloc(_len_pLed0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_pLed0; _i0++) {
+              pLed[_i0].BlinkingLedState = ((-2 * (next_i()%2)) + 1) * next_i();
+          pLed[_i0].BlinkTimes = ((-2 * (next_i()%2)) + 1) * next_i();
+          pLed[_i0].CurrLedState = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ResetLedStatus(pLed);
+          free(pLed);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_pLed0 = 1;
+          struct TYPE_3__ * pLed = (struct TYPE_3__ *) malloc(_len_pLed0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_pLed0; _i0++) {
+              pLed[_i0].BlinkingLedState = ((-2 * (next_i()%2)) + 1) * next_i();
+          pLed[_i0].BlinkTimes = ((-2 * (next_i()%2)) + 1) * next_i();
+          pLed[_i0].CurrLedState = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ResetLedStatus(pLed);
+          free(pLed);
+        
+        break;
+    }
     default:
         usage();
         break;

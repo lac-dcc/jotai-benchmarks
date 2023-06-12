@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -69,7 +70,6 @@ node_len(node *tree)
   return n;
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct TYPE_3__ *_allocate_tree(int length, struct TYPE_3__ *aux_tree[]) {
@@ -97,7 +97,6 @@ void _delete_tree(struct TYPE_3__ *aux_tree[], int aux_tree_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -110,18 +109,30 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // linked
     case 0:
+    {
+          struct TYPE_3__ * aux_tree[10000];
+          struct TYPE_3__ * tree = _allocate_tree(10000, aux_tree);
+        
+          int benchRet = node_len(tree);
+          printf("%d\n", benchRet); 
+          _delete_tree(aux_tree, 10000);
+        
+        break;
+    }
+    // empty
+    case 1:
     {
           struct TYPE_3__ * aux_tree[1];
           struct TYPE_3__ * tree = _allocate_tree(1, aux_tree);
+        
           int benchRet = node_len(tree);
           printf("%d\n", benchRet); 
           _delete_tree(aux_tree, 1);
         
         break;
     }
-
     default:
         usage();
         break;

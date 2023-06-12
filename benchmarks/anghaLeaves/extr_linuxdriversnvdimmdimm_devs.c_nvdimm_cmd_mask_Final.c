@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ unsigned long nvdimm_cmd_mask(struct nvdimm *nvdimm)
 	return nvdimm->cmd_mask;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_nvdimm0 = 1;
+          int _len_nvdimm0 = 65025;
           struct nvdimm * nvdimm = (struct nvdimm *) malloc(_len_nvdimm0*sizeof(struct nvdimm));
           for(int _i0 = 0; _i0 < _len_nvdimm0; _i0++) {
-            nvdimm[_i0].cmd_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              nvdimm[_i0].cmd_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = nvdimm_cmd_mask(nvdimm);
           printf("%lu\n", benchRet); 
           free(nvdimm);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_nvdimm0 = 100;
           struct nvdimm * nvdimm = (struct nvdimm *) malloc(_len_nvdimm0*sizeof(struct nvdimm));
           for(int _i0 = 0; _i0 < _len_nvdimm0; _i0++) {
-            nvdimm[_i0].cmd_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              nvdimm[_i0].cmd_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = nvdimm_cmd_mask(nvdimm);
           printf("%lu\n", benchRet); 
           free(nvdimm);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_nvdimm0 = 1;
+          struct nvdimm * nvdimm = (struct nvdimm *) malloc(_len_nvdimm0*sizeof(struct nvdimm));
+          for(int _i0 = 0; _i0 < _len_nvdimm0; _i0++) {
+              nvdimm[_i0].cmd_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = nvdimm_cmd_mask(nvdimm);
+          printf("%lu\n", benchRet); 
+          free(nvdimm);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ void dsp_dtmf_goertzel_init(struct dsp *dsp)
 	dsp->dtmf.count = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,23 +79,63 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dsp0 = 1;
+          int _len_dsp0 = 65025;
           struct dsp * dsp = (struct dsp *) malloc(_len_dsp0*sizeof(struct dsp));
           for(int _i0 = 0; _i0 < _len_dsp0; _i0++) {
-            dsp[_i0].dtmf.lastwhat = ((-2 * (next_i()%2)) + 1) * next_i();
-        dsp[_i0].dtmf.lastdigit = ((-2 * (next_i()%2)) + 1) * next_i();
-        dsp[_i0].dtmf.count = ((-2 * (next_i()%2)) + 1) * next_i();
-        dsp[_i0].dtmf.size = ((-2 * (next_i()%2)) + 1) * next_i();
+              dsp[_i0].dtmf.lastwhat = ((-2 * (next_i()%2)) + 1) * next_i();
+          dsp[_i0].dtmf.lastdigit = ((-2 * (next_i()%2)) + 1) * next_i();
+          dsp[_i0].dtmf.count = ((-2 * (next_i()%2)) + 1) * next_i();
+          dsp[_i0].dtmf.size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           dsp_dtmf_goertzel_init(dsp);
           free(dsp);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dsp0 = 100;
+          struct dsp * dsp = (struct dsp *) malloc(_len_dsp0*sizeof(struct dsp));
+          for(int _i0 = 0; _i0 < _len_dsp0; _i0++) {
+              dsp[_i0].dtmf.lastwhat = ((-2 * (next_i()%2)) + 1) * next_i();
+          dsp[_i0].dtmf.lastdigit = ((-2 * (next_i()%2)) + 1) * next_i();
+          dsp[_i0].dtmf.count = ((-2 * (next_i()%2)) + 1) * next_i();
+          dsp[_i0].dtmf.size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          dsp_dtmf_goertzel_init(dsp);
+          free(dsp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dsp0 = 1;
+          struct dsp * dsp = (struct dsp *) malloc(_len_dsp0*sizeof(struct dsp));
+          for(int _i0 = 0; _i0 < _len_dsp0; _i0++) {
+              dsp[_i0].dtmf.lastwhat = ((-2 * (next_i()%2)) + 1) * next_i();
+          dsp[_i0].dtmf.lastdigit = ((-2 * (next_i()%2)) + 1) * next_i();
+          dsp[_i0].dtmf.count = ((-2 * (next_i()%2)) + 1) * next_i();
+          dsp[_i0].dtmf.size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          dsp_dtmf_goertzel_init(dsp);
+          free(dsp);
+        
+        break;
+    }
     default:
         usage();
         break;

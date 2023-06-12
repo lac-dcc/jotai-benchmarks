@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static int ioapic_alloc_attr_node(struct irq_alloc_info *i
 	return (info && info->ioapic_valid) ? info->ioapic_node : NUMA_NO_NODE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,15 +75,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_info0 = 65025;
+          struct irq_alloc_info * info = (struct irq_alloc_info *) malloc(_len_info0*sizeof(struct irq_alloc_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].ioapic_node = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].ioapic_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ioapic_alloc_attr_node(info);
+          printf("%d\n", benchRet); 
+          free(info);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_info0 = 100;
+          struct irq_alloc_info * info = (struct irq_alloc_info *) malloc(_len_info0*sizeof(struct irq_alloc_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].ioapic_node = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].ioapic_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ioapic_alloc_attr_node(info);
+          printf("%d\n", benchRet); 
+          free(info);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_info0 = 1;
           struct irq_alloc_info * info = (struct irq_alloc_info *) malloc(_len_info0*sizeof(struct irq_alloc_info));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].ioapic_node = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].ioapic_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].ioapic_node = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].ioapic_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ioapic_alloc_attr_node(info);
           printf("%d\n", benchRet); 
           free(info);

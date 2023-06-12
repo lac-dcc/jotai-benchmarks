@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +79,6 @@ void zbar_image_set_crop (zbar_image_t *img,
     img->crop_h = h;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,25 +95,114 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int x = 100;
+        
           unsigned int y = 100;
+        
           unsigned int w = 100;
+        
           unsigned int h = 100;
+        
           int _len_img0 = 1;
           struct TYPE_3__ * img = (struct TYPE_3__ *) malloc(_len_img0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_img0; _i0++) {
-            img[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
-        img[_i0].crop_x = ((-2 * (next_i()%2)) + 1) * next_i();
-        img[_i0].crop_w = ((-2 * (next_i()%2)) + 1) * next_i();
-        img[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
-        img[_i0].crop_y = ((-2 * (next_i()%2)) + 1) * next_i();
-        img[_i0].crop_h = ((-2 * (next_i()%2)) + 1) * next_i();
+              img[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          img[_i0].crop_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          img[_i0].crop_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          img[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          img[_i0].crop_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          img[_i0].crop_h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           zbar_image_set_crop(img,x,y,w,h);
           free(img);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int x = 255;
+        
+          unsigned int y = 255;
+        
+          unsigned int w = 255;
+        
+          unsigned int h = 255;
+        
+          int _len_img0 = 65025;
+          struct TYPE_3__ * img = (struct TYPE_3__ *) malloc(_len_img0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_img0; _i0++) {
+              img[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          img[_i0].crop_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          img[_i0].crop_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          img[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          img[_i0].crop_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          img[_i0].crop_h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          zbar_image_set_crop(img,x,y,w,h);
+          free(img);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int x = 10;
+        
+          unsigned int y = 10;
+        
+          unsigned int w = 10;
+        
+          unsigned int h = 10;
+        
+          int _len_img0 = 100;
+          struct TYPE_3__ * img = (struct TYPE_3__ *) malloc(_len_img0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_img0; _i0++) {
+              img[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          img[_i0].crop_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          img[_i0].crop_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          img[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          img[_i0].crop_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          img[_i0].crop_h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          zbar_image_set_crop(img,x,y,w,h);
+          free(img);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int w = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_img0 = 1;
+          struct TYPE_3__ * img = (struct TYPE_3__ *) malloc(_len_img0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_img0; _i0++) {
+              img[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          img[_i0].crop_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          img[_i0].crop_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          img[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          img[_i0].crop_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          img[_i0].crop_h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          zbar_image_set_crop(img,x,y,w,h);
+          free(img);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -85,12 +87,6 @@ ngx_http_lua_ffi_get_resp_status(ngx_http_request_t *r)
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,21 +99,152 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_r0 = 1;
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_r0 = 65025;
           struct TYPE_7__ * r = (struct TYPE_7__ *) malloc(_len_r0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_r0; _i0++) {
-            r[_i0].err_status = ((-2 * (next_i()%2)) + 1) * next_i();
-        r[_i0].http_version = ((-2 * (next_i()%2)) + 1) * next_i();
-        r[_i0].headers_out.status = ((-2 * (next_i()%2)) + 1) * next_i();
+              r[_i0].err_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].http_version = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].headers_out.status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int _len_r__i0__connection0 = 1;
           r[_i0].connection = (struct TYPE_5__ *) malloc(_len_r__i0__connection0*sizeof(struct TYPE_5__));
           for(int _j0 = 0; _j0 < _len_r__i0__connection0; _j0++) {
-            r[_i0].connection->fd = ((-2 * (next_i()%2)) + 1) * next_i();
+              r[_i0].connection->fd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = ngx_http_lua_ffi_get_resp_status(r);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_r0; _aux++) {
+          free(r[_aux].connection);
+          }
+          free(r);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_r0 = 100;
+          struct TYPE_7__ * r = (struct TYPE_7__ *) malloc(_len_r0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+              r[_i0].err_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].http_version = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].headers_out.status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_r__i0__connection0 = 1;
+          r[_i0].connection = (struct TYPE_5__ *) malloc(_len_r__i0__connection0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_r__i0__connection0; _j0++) {
+              r[_i0].connection->fd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ngx_http_lua_ffi_get_resp_status(r);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_r0; _aux++) {
+          free(r[_aux].connection);
+          }
+          free(r);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_r0 = 1;
+          struct TYPE_7__ * r = (struct TYPE_7__ *) malloc(_len_r0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+              r[_i0].err_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].http_version = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].headers_out.status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_r__i0__connection0 = 1;
+          r[_i0].connection = (struct TYPE_5__ *) malloc(_len_r__i0__connection0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_r__i0__connection0; _j0++) {
+              r[_i0].connection->fd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = ngx_http_lua_ffi_get_resp_status(r);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_r0; _aux++) {

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static bool ixgbe_is_sfp_probe(struct ixgbe_hw *hw, u8 off
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,12 +89,38 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long offset = 100;
+        
           long addr = 100;
+        
           int _len_hw0 = 1;
           struct ixgbe_hw * hw = (struct ixgbe_hw *) malloc(_len_hw0*sizeof(struct ixgbe_hw));
           for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
-            hw[_i0].phy.sfp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              hw[_i0].phy.sfp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = ixgbe_is_sfp_probe(hw,offset,addr);
+          printf("%d\n", benchRet); 
+          free(hw);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long offset = 255;
+        
+          long addr = 255;
+        
+          int _len_hw0 = 65025;
+          struct ixgbe_hw * hw = (struct ixgbe_hw *) malloc(_len_hw0*sizeof(struct ixgbe_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].phy.sfp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = ixgbe_is_sfp_probe(hw,offset,addr);
           printf("%d\n", benchRet); 
           free(hw);
@@ -106,22 +128,47 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long offset = 10;
+        
           long addr = 10;
+        
           int _len_hw0 = 100;
           struct ixgbe_hw * hw = (struct ixgbe_hw *) malloc(_len_hw0*sizeof(struct ixgbe_hw));
           for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
-            hw[_i0].phy.sfp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              hw[_i0].phy.sfp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = ixgbe_is_sfp_probe(hw,offset,addr);
           printf("%d\n", benchRet); 
           free(hw);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hw0 = 1;
+          struct ixgbe_hw * hw = (struct ixgbe_hw *) malloc(_len_hw0*sizeof(struct ixgbe_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].phy.sfp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = ixgbe_is_sfp_probe(hw,offset,addr);
+          printf("%d\n", benchRet); 
+          free(hw);
+        
+        break;
+    }
     default:
         usage();
         break;

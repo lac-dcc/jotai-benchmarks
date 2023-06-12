@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +77,6 @@ __attribute__((used)) static bool rtw_sctx_chk_waring_status(int status)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,6 +93,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int status = 100;
+        
           int benchRet = rtw_sctx_chk_waring_status(status);
           printf("%d\n", benchRet); 
         
@@ -107,6 +103,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int status = 255;
+        
           int benchRet = rtw_sctx_chk_waring_status(status);
           printf("%d\n", benchRet); 
         
@@ -116,12 +113,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int status = 10;
+        
           int benchRet = rtw_sctx_chk_waring_status(status);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = rtw_sctx_chk_waring_status(status);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

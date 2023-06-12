@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static void pktgen_clear_counters(struct pktgen_dev *pkt_d
 	pkt_dev->errors = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,18 +78,129 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_pkt_dev0 = 65025;
+          struct pktgen_dev * pkt_dev = (struct pktgen_dev *) malloc(_len_pkt_dev0*sizeof(struct pktgen_dev));
+          for(int _i0 = 0; _i0 < _len_pkt_dev0; _i0++) {
+              pkt_dev[_i0].seq_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          pkt_dev[_i0].errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          pkt_dev[_i0].tx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          pkt_dev[_i0].sofar = ((-2 * (next_i()%2)) + 1) * next_i();
+          pkt_dev[_i0].idle_acc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          pktgen_clear_counters(pkt_dev);
+          free(pkt_dev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_pkt_dev0 = 100;
+          struct pktgen_dev * pkt_dev = (struct pktgen_dev *) malloc(_len_pkt_dev0*sizeof(struct pktgen_dev));
+          for(int _i0 = 0; _i0 < _len_pkt_dev0; _i0++) {
+              pkt_dev[_i0].seq_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          pkt_dev[_i0].errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          pkt_dev[_i0].tx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          pkt_dev[_i0].sofar = ((-2 * (next_i()%2)) + 1) * next_i();
+          pkt_dev[_i0].idle_acc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          pktgen_clear_counters(pkt_dev);
+          free(pkt_dev);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_pkt_dev0 = 1;
           struct pktgen_dev * pkt_dev = (struct pktgen_dev *) malloc(_len_pkt_dev0*sizeof(struct pktgen_dev));
           for(int _i0 = 0; _i0 < _len_pkt_dev0; _i0++) {
-            pkt_dev[_i0].seq_num = ((-2 * (next_i()%2)) + 1) * next_i();
-        pkt_dev[_i0].errors = ((-2 * (next_i()%2)) + 1) * next_i();
-        pkt_dev[_i0].tx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        pkt_dev[_i0].sofar = ((-2 * (next_i()%2)) + 1) * next_i();
-        pkt_dev[_i0].idle_acc = ((-2 * (next_i()%2)) + 1) * next_i();
+              pkt_dev[_i0].seq_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          pkt_dev[_i0].errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          pkt_dev[_i0].tx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          pkt_dev[_i0].sofar = ((-2 * (next_i()%2)) + 1) * next_i();
+          pkt_dev[_i0].idle_acc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           pktgen_clear_counters(pkt_dev);
           free(pkt_dev);
         

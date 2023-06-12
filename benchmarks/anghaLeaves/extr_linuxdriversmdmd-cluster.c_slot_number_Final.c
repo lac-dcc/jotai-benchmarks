@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static int slot_number(struct mddev *mddev)
 	return cinfo->slot_number - 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,18 +77,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_mddev0 = 65025;
+          struct mddev * mddev = (struct mddev *) malloc(_len_mddev0*sizeof(struct mddev));
+          for(int _i0 = 0; _i0 < _len_mddev0; _i0++) {
+              int _len_mddev__i0__cluster_info0 = 1;
+          mddev[_i0].cluster_info = (struct md_cluster_info *) malloc(_len_mddev__i0__cluster_info0*sizeof(struct md_cluster_info));
+          for(int _j0 = 0; _j0 < _len_mddev__i0__cluster_info0; _j0++) {
+              mddev[_i0].cluster_info->slot_number = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = slot_number(mddev);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mddev0; _aux++) {
+          free(mddev[_aux].cluster_info);
+          }
+          free(mddev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_mddev0 = 100;
+          struct mddev * mddev = (struct mddev *) malloc(_len_mddev0*sizeof(struct mddev));
+          for(int _i0 = 0; _i0 < _len_mddev0; _i0++) {
+              int _len_mddev__i0__cluster_info0 = 1;
+          mddev[_i0].cluster_info = (struct md_cluster_info *) malloc(_len_mddev__i0__cluster_info0*sizeof(struct md_cluster_info));
+          for(int _j0 = 0; _j0 < _len_mddev__i0__cluster_info0; _j0++) {
+              mddev[_i0].cluster_info->slot_number = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = slot_number(mddev);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mddev0; _aux++) {
+          free(mddev[_aux].cluster_info);
+          }
+          free(mddev);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_mddev0 = 1;
           struct mddev * mddev = (struct mddev *) malloc(_len_mddev0*sizeof(struct mddev));
           for(int _i0 = 0; _i0 < _len_mddev0; _i0++) {
               int _len_mddev__i0__cluster_info0 = 1;
           mddev[_i0].cluster_info = (struct md_cluster_info *) malloc(_len_mddev__i0__cluster_info0*sizeof(struct md_cluster_info));
           for(int _j0 = 0; _j0 < _len_mddev__i0__cluster_info0; _j0++) {
-            mddev[_i0].cluster_info->slot_number = ((-2 * (next_i()%2)) + 1) * next_i();
+              mddev[_i0].cluster_info->slot_number = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = slot_number(mddev);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_mddev0; _aux++) {

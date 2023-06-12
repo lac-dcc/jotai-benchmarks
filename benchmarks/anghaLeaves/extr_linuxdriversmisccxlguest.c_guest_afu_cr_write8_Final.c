@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static int guest_afu_cr_write8(struct cxl_afu *afu, int cr
 	return -EPERM;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,13 +83,40 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int cr = 100;
+        
           int off = 100;
+        
           int in = 100;
+        
           int _len_afu0 = 1;
           struct cxl_afu * afu = (struct cxl_afu *) malloc(_len_afu0*sizeof(struct cxl_afu));
           for(int _i0 = 0; _i0 < _len_afu0; _i0++) {
-            afu[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              afu[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = guest_afu_cr_write8(afu,cr,off,in);
+          printf("%d\n", benchRet); 
+          free(afu);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int cr = 255;
+        
+          int off = 255;
+        
+          int in = 255;
+        
+          int _len_afu0 = 65025;
+          struct cxl_afu * afu = (struct cxl_afu *) malloc(_len_afu0*sizeof(struct cxl_afu));
+          for(int _i0 = 0; _i0 < _len_afu0; _i0++) {
+              afu[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = guest_afu_cr_write8(afu,cr,off,in);
           printf("%d\n", benchRet); 
           free(afu);
@@ -101,23 +124,49 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int cr = 10;
+        
           int off = 10;
+        
           int in = 10;
+        
           int _len_afu0 = 100;
           struct cxl_afu * afu = (struct cxl_afu *) malloc(_len_afu0*sizeof(struct cxl_afu));
           for(int _i0 = 0; _i0 < _len_afu0; _i0++) {
-            afu[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              afu[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = guest_afu_cr_write8(afu,cr,off,in);
           printf("%d\n", benchRet); 
           free(afu);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int cr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int in = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_afu0 = 1;
+          struct cxl_afu * afu = (struct cxl_afu *) malloc(_len_afu0*sizeof(struct cxl_afu));
+          for(int _i0 = 0; _i0 < _len_afu0; _i0++) {
+              afu[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = guest_afu_cr_write8(afu,cr,off,in);
+          printf("%d\n", benchRet); 
+          free(afu);
+        
+        break;
+    }
     default:
         usage();
         break;

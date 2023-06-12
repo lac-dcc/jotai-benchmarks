@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static int bad_inode_unlink(struct inode *dir, struct dent
 	return -EIO;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,19 +76,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dir0 = 1;
+          int _len_dir0 = 65025;
           struct inode * dir = (struct inode *) malloc(_len_dir0*sizeof(struct inode));
           for(int _i0 = 0; _i0 < _len_dir0; _i0++) {
-            dir[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dir[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_dentry0 = 1;
+        
+          int _len_dentry0 = 65025;
           struct dentry * dentry = (struct dentry *) malloc(_len_dentry0*sizeof(struct dentry));
           for(int _i0 = 0; _i0 < _len_dentry0; _i0++) {
-            dentry[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dentry[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = bad_inode_unlink(dir,dentry);
           printf("%d\n", benchRet); 
           free(dir);
@@ -100,7 +100,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dir0 = 100;
+          struct inode * dir = (struct inode *) malloc(_len_dir0*sizeof(struct inode));
+          for(int _i0 = 0; _i0 < _len_dir0; _i0++) {
+              dir[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dentry0 = 100;
+          struct dentry * dentry = (struct dentry *) malloc(_len_dentry0*sizeof(struct dentry));
+          for(int _i0 = 0; _i0 < _len_dentry0; _i0++) {
+              dentry[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = bad_inode_unlink(dir,dentry);
+          printf("%d\n", benchRet); 
+          free(dir);
+          free(dentry);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dir0 = 1;
+          struct inode * dir = (struct inode *) malloc(_len_dir0*sizeof(struct inode));
+          for(int _i0 = 0; _i0 < _len_dir0; _i0++) {
+              dir[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dentry0 = 1;
+          struct dentry * dentry = (struct dentry *) malloc(_len_dentry0*sizeof(struct dentry));
+          for(int _i0 = 0; _i0 < _len_dentry0; _i0++) {
+              dentry[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = bad_inode_unlink(dir,dentry);
+          printf("%d\n", benchRet); 
+          free(dir);
+          free(dentry);
+        
+        break;
+    }
     default:
         usage();
         break;

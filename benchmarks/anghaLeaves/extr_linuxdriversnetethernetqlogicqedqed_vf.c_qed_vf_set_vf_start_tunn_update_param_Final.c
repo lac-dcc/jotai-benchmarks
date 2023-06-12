@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -82,12 +84,6 @@ void qed_vf_set_vf_start_tunn_update_param(struct qed_tunnel_info *p_tun)
 	p_tun->b_update_tx_cls = true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,25 +96,165 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          int _len_p_tun0 = 65025;
+          struct qed_tunnel_info * p_tun = (struct qed_tunnel_info *) malloc(_len_p_tun0*sizeof(struct qed_tunnel_info));
+          for(int _i0 = 0; _i0 < _len_p_tun0; _i0++) {
+              p_tun[_i0].b_update_rx_cls = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].b_update_tx_cls = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].ip_gre.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].ip_gre.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_tun[_i0].l2_gre.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].l2_gre.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_tun[_i0].ip_geneve.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].ip_geneve.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_tun[_i0].l2_geneve.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].l2_geneve.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_tun[_i0].vxlan.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].vxlan.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          qed_vf_set_vf_start_tunn_update_param(p_tun);
+          free(p_tun);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          int _len_p_tun0 = 100;
+          struct qed_tunnel_info * p_tun = (struct qed_tunnel_info *) malloc(_len_p_tun0*sizeof(struct qed_tunnel_info));
+          for(int _i0 = 0; _i0 < _len_p_tun0; _i0++) {
+              p_tun[_i0].b_update_rx_cls = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].b_update_tx_cls = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].ip_gre.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].ip_gre.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_tun[_i0].l2_gre.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].l2_gre.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_tun[_i0].ip_geneve.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].ip_geneve.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_tun[_i0].l2_geneve.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].l2_geneve.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_tun[_i0].vxlan.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].vxlan.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          qed_vf_set_vf_start_tunn_update_param(p_tun);
+          free(p_tun);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
           int _len_p_tun0 = 1;
           struct qed_tunnel_info * p_tun = (struct qed_tunnel_info *) malloc(_len_p_tun0*sizeof(struct qed_tunnel_info));
           for(int _i0 = 0; _i0 < _len_p_tun0; _i0++) {
-            p_tun[_i0].b_update_rx_cls = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].b_update_tx_cls = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].ip_gre.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].ip_gre.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].l2_gre.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].l2_gre.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].ip_geneve.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].ip_geneve.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].l2_geneve.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].l2_geneve.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].vxlan.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].vxlan.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+              p_tun[_i0].b_update_rx_cls = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].b_update_tx_cls = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].ip_gre.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].ip_gre.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_tun[_i0].l2_gre.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].l2_gre.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_tun[_i0].ip_geneve.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].ip_geneve.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_tun[_i0].l2_geneve.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].l2_geneve.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_tun[_i0].vxlan.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].vxlan.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           qed_vf_set_vf_start_tunn_update_param(p_tun);
           free(p_tun);
         

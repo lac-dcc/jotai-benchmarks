@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static inline void cifs_set_time(struct dentry *dentry, un
 	dentry->d_fsdata = (void *) time;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,29 +79,66 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long time = 100;
+        
           int _len_dentry0 = 1;
           struct dentry * dentry = (struct dentry *) malloc(_len_dentry0*sizeof(struct dentry));
           for(int _i0 = 0; _i0 < _len_dentry0; _i0++) {
-              }
+            
+          }
+        
+          cifs_set_time(dentry,time);
+          free(dentry);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned long time = 255;
+        
+          int _len_dentry0 = 65025;
+          struct dentry * dentry = (struct dentry *) malloc(_len_dentry0*sizeof(struct dentry));
+          for(int _i0 = 0; _i0 < _len_dentry0; _i0++) {
+            
+          }
+        
           cifs_set_time(dentry,time);
           free(dentry);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned long time = 10;
+        
           int _len_dentry0 = 100;
           struct dentry * dentry = (struct dentry *) malloc(_len_dentry0*sizeof(struct dentry));
           for(int _i0 = 0; _i0 < _len_dentry0; _i0++) {
-              }
+            
+          }
+        
           cifs_set_time(dentry,time);
           free(dentry);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dentry0 = 1;
+          struct dentry * dentry = (struct dentry *) malloc(_len_dentry0*sizeof(struct dentry));
+          for(int _i0 = 0; _i0 < _len_dentry0; _i0++) {
+            
+          }
+        
+          cifs_set_time(dentry,time);
+          free(dentry);
+        
+        break;
+    }
     default:
         usage();
         break;

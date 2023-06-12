@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ __attribute__((used)) static int crypto4xx_aes_gcm_validate_keylen(unsigned int 
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,6 +86,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int keylen = 100;
+        
           int benchRet = crypto4xx_aes_gcm_validate_keylen(keylen);
           printf("%d\n", benchRet); 
         
@@ -100,6 +96,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int keylen = 255;
+        
           int benchRet = crypto4xx_aes_gcm_validate_keylen(keylen);
           printf("%d\n", benchRet); 
         
@@ -109,12 +106,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int keylen = 10;
+        
           int benchRet = crypto4xx_aes_gcm_validate_keylen(keylen);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int keylen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = crypto4xx_aes_gcm_validate_keylen(keylen);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ unsigned long THRandom_initialSeed(THGenerator *_generator)
   return _generator->the_initial_seed;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len__generator0 = 1;
+          int _len__generator0 = 65025;
           struct TYPE_3__ * _generator = (struct TYPE_3__ *) malloc(_len__generator0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len__generator0; _i0++) {
-            _generator[_i0].the_initial_seed = ((-2 * (next_i()%2)) + 1) * next_i();
+              _generator[_i0].the_initial_seed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = THRandom_initialSeed(_generator);
           printf("%lu\n", benchRet); 
           free(_generator);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len__generator0 = 100;
           struct TYPE_3__ * _generator = (struct TYPE_3__ *) malloc(_len__generator0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len__generator0; _i0++) {
-            _generator[_i0].the_initial_seed = ((-2 * (next_i()%2)) + 1) * next_i();
+              _generator[_i0].the_initial_seed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = THRandom_initialSeed(_generator);
           printf("%lu\n", benchRet); 
           free(_generator);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len__generator0 = 1;
+          struct TYPE_3__ * _generator = (struct TYPE_3__ *) malloc(_len__generator0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len__generator0; _i0++) {
+              _generator[_i0].the_initial_seed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = THRandom_initialSeed(_generator);
+          printf("%lu\n", benchRet); 
+          free(_generator);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ __attribute__((used)) static inline int brcmnand_sector_1k_shift(struct brcmnand
 		return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,28 +81,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_ctrl0 = 1;
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_ctrl0 = 65025;
           struct brcmnand_controller * ctrl = (struct brcmnand_controller *) malloc(_len_ctrl0*sizeof(struct brcmnand_controller));
           for(int _i0 = 0; _i0 < _len_ctrl0; _i0++) {
-            ctrl[_i0].nand_version = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctrl[_i0].nand_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = brcmnand_sector_1k_shift(ctrl);
           printf("%d\n", benchRet); 
           free(ctrl);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int _len_ctrl0 = 100;
           struct brcmnand_controller * ctrl = (struct brcmnand_controller *) malloc(_len_ctrl0*sizeof(struct brcmnand_controller));
           for(int _i0 = 0; _i0 < _len_ctrl0; _i0++) {
-            ctrl[_i0].nand_version = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctrl[_i0].nand_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = brcmnand_sector_1k_shift(ctrl);
+          printf("%d\n", benchRet); 
+          free(ctrl);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_ctrl0 = 1;
+          struct brcmnand_controller * ctrl = (struct brcmnand_controller *) malloc(_len_ctrl0*sizeof(struct brcmnand_controller));
+          for(int _i0 = 0; _i0 < _len_ctrl0; _i0++) {
+              ctrl[_i0].nand_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = brcmnand_sector_1k_shift(ctrl);
           printf("%d\n", benchRet); 
           free(ctrl);

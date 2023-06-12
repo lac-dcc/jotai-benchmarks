@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static inline int ep_to_bit(struct ci_hdrc *ci, int n)
 	return n;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,11 +84,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int n = 100;
+        
           int _len_ci0 = 1;
           struct ci_hdrc * ci = (struct ci_hdrc *) malloc(_len_ci0*sizeof(struct ci_hdrc));
           for(int _i0 = 0; _i0 < _len_ci0; _i0++) {
-            ci[_i0].hw_ep_max = ((-2 * (next_i()%2)) + 1) * next_i();
+              ci[_i0].hw_ep_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = ep_to_bit(ci,n);
+          printf("%d\n", benchRet); 
+          free(ci);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int n = 255;
+        
+          int _len_ci0 = 65025;
+          struct ci_hdrc * ci = (struct ci_hdrc *) malloc(_len_ci0*sizeof(struct ci_hdrc));
+          for(int _i0 = 0; _i0 < _len_ci0; _i0++) {
+              ci[_i0].hw_ep_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = ep_to_bit(ci,n);
           printf("%d\n", benchRet); 
           free(ci);
@@ -100,21 +117,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int n = 10;
+        
           int _len_ci0 = 100;
           struct ci_hdrc * ci = (struct ci_hdrc *) malloc(_len_ci0*sizeof(struct ci_hdrc));
           for(int _i0 = 0; _i0 < _len_ci0; _i0++) {
-            ci[_i0].hw_ep_max = ((-2 * (next_i()%2)) + 1) * next_i();
+              ci[_i0].hw_ep_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ep_to_bit(ci,n);
           printf("%d\n", benchRet); 
           free(ci);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ci0 = 1;
+          struct ci_hdrc * ci = (struct ci_hdrc *) malloc(_len_ci0*sizeof(struct ci_hdrc));
+          for(int _i0 = 0; _i0 < _len_ci0; _i0++) {
+              ci[_i0].hw_ep_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ep_to_bit(ci,n);
+          printf("%d\n", benchRet); 
+          free(ci);
+        
+        break;
+    }
     default:
         usage();
         break;

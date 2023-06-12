@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +74,6 @@ __attribute__((used)) static int hdspm_clock_source(struct hdspm * hdspm)
 	return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,28 +86,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_hdspm0 = 1;
+          // static_instructions_O0 : 45
+          // dynamic_instructions_O0 : 45
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
+          int _len_hdspm0 = 65025;
           struct hdspm * hdspm = (struct hdspm *) malloc(_len_hdspm0*sizeof(struct hdspm));
           for(int _i0 = 0; _i0 < _len_hdspm0; _i0++) {
-            hdspm[_i0].system_sample_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+              hdspm[_i0].system_sample_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = hdspm_clock_source(hdspm);
           printf("%d\n", benchRet); 
           free(hdspm);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 45
+          // dynamic_instructions_O0 : 45
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
           int _len_hdspm0 = 100;
           struct hdspm * hdspm = (struct hdspm *) malloc(_len_hdspm0*sizeof(struct hdspm));
           for(int _i0 = 0; _i0 < _len_hdspm0; _i0++) {
-            hdspm[_i0].system_sample_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+              hdspm[_i0].system_sample_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = hdspm_clock_source(hdspm);
+          printf("%d\n", benchRet); 
+          free(hdspm);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 45
+          // dynamic_instructions_O0 : 45
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
+          int _len_hdspm0 = 1;
+          struct hdspm * hdspm = (struct hdspm *) malloc(_len_hdspm0*sizeof(struct hdspm));
+          for(int _i0 = 0; _i0 < _len_hdspm0; _i0++) {
+              hdspm[_i0].system_sample_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = hdspm_clock_source(hdspm);
           printf("%d\n", benchRet); 
           free(hdspm);

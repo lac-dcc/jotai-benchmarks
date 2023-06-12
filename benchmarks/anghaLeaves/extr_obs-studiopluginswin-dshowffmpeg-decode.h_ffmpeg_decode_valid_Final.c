@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static inline bool ffmpeg_decode_valid(struct ffmpeg_decod
 	return decode->decoder != NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,9 +74,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_decode0 = 65025;
+          struct ffmpeg_decode * decode = (struct ffmpeg_decode *) malloc(_len_decode0*sizeof(struct ffmpeg_decode));
+          for(int _i0 = 0; _i0 < _len_decode0; _i0++) {
+              int _len_decode__i0__decoder0 = 1;
+          decode[_i0].decoder = (int *) malloc(_len_decode__i0__decoder0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_decode__i0__decoder0; _j0++) {
+            decode[_i0].decoder[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = ffmpeg_decode_valid(decode);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_decode0; _aux++) {
+          free(decode[_aux].decoder);
+          }
+          free(decode);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_decode0 = 100;
+          struct ffmpeg_decode * decode = (struct ffmpeg_decode *) malloc(_len_decode0*sizeof(struct ffmpeg_decode));
+          for(int _i0 = 0; _i0 < _len_decode0; _i0++) {
+              int _len_decode__i0__decoder0 = 1;
+          decode[_i0].decoder = (int *) malloc(_len_decode__i0__decoder0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_decode__i0__decoder0; _j0++) {
+            decode[_i0].decoder[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = ffmpeg_decode_valid(decode);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_decode0; _aux++) {
+          free(decode[_aux].decoder);
+          }
+          free(decode);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_decode0 = 1;
           struct ffmpeg_decode * decode = (struct ffmpeg_decode *) malloc(_len_decode0*sizeof(struct ffmpeg_decode));
           for(int _i0 = 0; _i0 < _len_decode0; _i0++) {
@@ -89,7 +202,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_decode__i0__decoder0; _j0++) {
             decode[_i0].decoder[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = ffmpeg_decode_valid(decode);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_decode0; _aux++) {

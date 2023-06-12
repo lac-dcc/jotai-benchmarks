@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +64,6 @@ __attribute__((used)) static char *op_str(unsigned int op, char *name_array[], i
 	return name_array[op];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,7 +80,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int op = 100;
+        
           int array_len = 100;
+        
           int _len_name_array0 = 1;
           char ** name_array = (char **) malloc(_len_name_array0*sizeof(char *));
           for(int _i0 = 0; _i0 < _len_name_array0; _i0++) {
@@ -93,17 +92,94 @@ int main(int argc, char *argv[]) {
               name_array[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           char * benchRet = op_str(op,name_array,array_len);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           for(int i1 = 0; i1 < _len_name_array0; i1++) {
-            int _len_name_array1 = 1;
               free(name_array[i1]);
           }
           free(name_array);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int op = 255;
+        
+          int array_len = 255;
+        
+          int _len_name_array0 = 65025;
+          char ** name_array = (char **) malloc(_len_name_array0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_name_array0; _i0++) {
+            int _len_name_array1 = 1;
+            name_array[_i0] = (char *) malloc(_len_name_array1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_name_array1; _i1++) {
+              name_array[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          char * benchRet = op_str(op,name_array,array_len);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          for(int i1 = 0; i1 < _len_name_array0; i1++) {
+              free(name_array[i1]);
+          }
+          free(name_array);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int op = 10;
+        
+          int array_len = 10;
+        
+          int _len_name_array0 = 100;
+          char ** name_array = (char **) malloc(_len_name_array0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_name_array0; _i0++) {
+            int _len_name_array1 = 1;
+            name_array[_i0] = (char *) malloc(_len_name_array1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_name_array1; _i1++) {
+              name_array[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          char * benchRet = op_str(op,name_array,array_len);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          for(int i1 = 0; i1 < _len_name_array0; i1++) {
+              free(name_array[i1]);
+          }
+          free(name_array);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int op = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int array_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_name_array0 = 1;
+          char ** name_array = (char **) malloc(_len_name_array0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_name_array0; _i0++) {
+            int _len_name_array1 = 1;
+            name_array[_i0] = (char *) malloc(_len_name_array1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_name_array1; _i1++) {
+              name_array[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          char * benchRet = op_str(op,name_array,array_len);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          for(int i1 = 0; i1 < _len_name_array0; i1++) {
+              free(name_array[i1]);
+          }
+          free(name_array);
+        
+        break;
+    }
     default:
         usage();
         break;

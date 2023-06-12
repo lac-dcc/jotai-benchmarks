@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline int ssb_gpio_init(struct ssb_bus *bus)
 	return -ENOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_bus0 = 1;
+          int _len_bus0 = 65025;
           struct ssb_bus * bus = (struct ssb_bus *) malloc(_len_bus0*sizeof(struct ssb_bus));
           for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
-            bus[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              bus[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ssb_gpio_init(bus);
           printf("%d\n", benchRet); 
           free(bus);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_bus0 = 100;
           struct ssb_bus * bus = (struct ssb_bus *) malloc(_len_bus0*sizeof(struct ssb_bus));
           for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
-            bus[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              bus[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ssb_gpio_init(bus);
           printf("%d\n", benchRet); 
           free(bus);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_bus0 = 1;
+          struct ssb_bus * bus = (struct ssb_bus *) malloc(_len_bus0*sizeof(struct ssb_bus));
+          for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
+              bus[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ssb_gpio_init(bus);
+          printf("%d\n", benchRet); 
+          free(bus);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static u8 ata66_svwks_svwks(ide_hwif_t *hwif)
 	return ATA_CBL_PATA80;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_hwif0 = 1;
+          int _len_hwif0 = 65025;
           int * hwif = (int *) malloc(_len_hwif0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_hwif0; _i0++) {
             hwif[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = ata66_svwks_svwks(hwif);
           printf("%d\n", benchRet); 
           free(hwif);
@@ -103,13 +99,28 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_hwif0; _i0++) {
             hwif[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = ata66_svwks_svwks(hwif);
           printf("%d\n", benchRet); 
           free(hwif);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_hwif0 = 1;
+          int * hwif = (int *) malloc(_len_hwif0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_hwif0; _i0++) {
+            hwif[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ata66_svwks_svwks(hwif);
+          printf("%d\n", benchRet); 
+          free(hwif);
+        
+        break;
+    }
     default:
         usage();
         break;

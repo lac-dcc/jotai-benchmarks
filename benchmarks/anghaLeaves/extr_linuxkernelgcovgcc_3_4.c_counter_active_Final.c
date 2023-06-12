@@ -60,12 +60,6 @@ __attribute__((used)) static int counter_active(struct gcov_info *info, unsigned
 	return (1 << type) & info->ctr_mask;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,18 +76,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int type = 10;
+        
           int _len_info0 = 100;
           struct gcov_info * info = (struct gcov_info *) malloc(_len_info0*sizeof(struct gcov_info));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].ctr_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].ctr_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = counter_active(info,type);
           printf("%d\n", benchRet); 
           free(info);
         
         break;
     }
-
     default:
         usage();
         break;

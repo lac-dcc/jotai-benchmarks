@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -157,12 +160,6 @@ s_vCalculateOFDMRParameter(
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -179,24 +176,102 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned char byRate = 100;
+        
           int bb_type = 100;
+        
           int _len_pbyTxRate0 = 1;
           unsigned char * pbyTxRate = (unsigned char *) malloc(_len_pbyTxRate0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_pbyTxRate0; _i0++) {
             pbyTxRate[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_pbyRsvTime0 = 1;
           unsigned char * pbyRsvTime = (unsigned char *) malloc(_len_pbyRsvTime0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_pbyRsvTime0; _i0++) {
             pbyRsvTime[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           s_vCalculateOFDMRParameter(byRate,bb_type,pbyTxRate,pbyRsvTime);
           free(pbyTxRate);
           free(pbyRsvTime);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned char byRate = 255;
+        
+          int bb_type = 255;
+        
+          int _len_pbyTxRate0 = 65025;
+          unsigned char * pbyTxRate = (unsigned char *) malloc(_len_pbyTxRate0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_pbyTxRate0; _i0++) {
+            pbyTxRate[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pbyRsvTime0 = 65025;
+          unsigned char * pbyRsvTime = (unsigned char *) malloc(_len_pbyRsvTime0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_pbyRsvTime0; _i0++) {
+            pbyRsvTime[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          s_vCalculateOFDMRParameter(byRate,bb_type,pbyTxRate,pbyRsvTime);
+          free(pbyTxRate);
+          free(pbyRsvTime);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned char byRate = 10;
+        
+          int bb_type = 10;
+        
+          int _len_pbyTxRate0 = 100;
+          unsigned char * pbyTxRate = (unsigned char *) malloc(_len_pbyTxRate0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_pbyTxRate0; _i0++) {
+            pbyTxRate[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pbyRsvTime0 = 100;
+          unsigned char * pbyRsvTime = (unsigned char *) malloc(_len_pbyRsvTime0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_pbyRsvTime0; _i0++) {
+            pbyRsvTime[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          s_vCalculateOFDMRParameter(byRate,bb_type,pbyTxRate,pbyRsvTime);
+          free(pbyTxRate);
+          free(pbyRsvTime);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned char byRate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int bb_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pbyTxRate0 = 1;
+          unsigned char * pbyTxRate = (unsigned char *) malloc(_len_pbyTxRate0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_pbyTxRate0; _i0++) {
+            pbyTxRate[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pbyRsvTime0 = 1;
+          unsigned char * pbyRsvTime = (unsigned char *) malloc(_len_pbyRsvTime0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_pbyRsvTime0; _i0++) {
+            pbyRsvTime[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          s_vCalculateOFDMRParameter(byRate,bb_type,pbyTxRate,pbyRsvTime);
+          free(pbyTxRate);
+          free(pbyRsvTime);
+        
+        break;
+    }
     default:
         usage();
         break;

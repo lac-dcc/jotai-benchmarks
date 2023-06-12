@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static void ipoctal_reset_stats(struct ipoctal_stats *stat
 	stats->parity_err = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,19 +79,132 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_stats0 = 65025;
+          struct ipoctal_stats * stats = (struct ipoctal_stats *) malloc(_len_stats0*sizeof(struct ipoctal_stats));
+          for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
+              stats[_i0].parity_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].overrun_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].framing_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rcv_break = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rx = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].tx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ipoctal_reset_stats(stats);
+          free(stats);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_stats0 = 100;
+          struct ipoctal_stats * stats = (struct ipoctal_stats *) malloc(_len_stats0*sizeof(struct ipoctal_stats));
+          for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
+              stats[_i0].parity_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].overrun_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].framing_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rcv_break = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rx = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].tx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ipoctal_reset_stats(stats);
+          free(stats);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_stats0 = 1;
           struct ipoctal_stats * stats = (struct ipoctal_stats *) malloc(_len_stats0*sizeof(struct ipoctal_stats));
           for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
-            stats[_i0].parity_err = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].overrun_err = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].framing_err = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].rcv_break = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].rx = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].tx = ((-2 * (next_i()%2)) + 1) * next_i();
+              stats[_i0].parity_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].overrun_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].framing_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rcv_break = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rx = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].tx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ipoctal_reset_stats(stats);
           free(stats);
         

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -93,12 +95,6 @@ __attribute__((used)) static int rtw_cmd_filter(struct cmd_priv *pcmdpriv, struc
 	return _SUCCESS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -111,27 +107,181 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_pcmdpriv0 = 1;
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int _len_pcmdpriv0 = 65025;
           struct cmd_priv * pcmdpriv = (struct cmd_priv *) malloc(_len_pcmdpriv0*sizeof(struct cmd_priv));
           for(int _i0 = 0; _i0 < _len_pcmdpriv0; _i0++) {
-            pcmdpriv[_i0].cmdthd_running = ((-2 * (next_i()%2)) + 1) * next_i();
+              pcmdpriv[_i0].cmdthd_running = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_pcmdpriv__i0__padapter0 = 1;
           pcmdpriv[_i0].padapter = (struct TYPE_6__ *) malloc(_len_pcmdpriv__i0__padapter0*sizeof(struct TYPE_6__));
           for(int _j0 = 0; _j0 < _len_pcmdpriv__i0__padapter0; _j0++) {
-            pcmdpriv[_i0].padapter->hw_init_completed = ((-2 * (next_i()%2)) + 1) * next_i();
-        pcmdpriv[_i0].padapter->registrypriv.usbss_enable = ((-2 * (next_i()%2)) + 1) * next_i();
-        pcmdpriv[_i0].padapter->pwrctrlpriv.bHWPwrPindetect = ((-2 * (next_i()%2)) + 1) * next_i();
+              pcmdpriv[_i0].padapter->hw_init_completed = ((-2 * (next_i()%2)) + 1) * next_i();
+          pcmdpriv[_i0].padapter->registrypriv.usbss_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          pcmdpriv[_i0].padapter->pwrctrlpriv.bHWPwrPindetect = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
+          int _len_cmd_obj0 = 65025;
+          struct cmd_obj * cmd_obj = (struct cmd_obj *) malloc(_len_cmd_obj0*sizeof(struct cmd_obj));
+          for(int _i0 = 0; _i0 < _len_cmd_obj0; _i0++) {
+              cmd_obj[_i0].cmdcode = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd_obj[_i0].parmbuf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rtw_cmd_filter(pcmdpriv,cmd_obj);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pcmdpriv0; _aux++) {
+          free(pcmdpriv[_aux].padapter);
+          }
+          free(pcmdpriv);
+          free(cmd_obj);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int _len_pcmdpriv0 = 100;
+          struct cmd_priv * pcmdpriv = (struct cmd_priv *) malloc(_len_pcmdpriv0*sizeof(struct cmd_priv));
+          for(int _i0 = 0; _i0 < _len_pcmdpriv0; _i0++) {
+              pcmdpriv[_i0].cmdthd_running = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pcmdpriv__i0__padapter0 = 1;
+          pcmdpriv[_i0].padapter = (struct TYPE_6__ *) malloc(_len_pcmdpriv__i0__padapter0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_pcmdpriv__i0__padapter0; _j0++) {
+              pcmdpriv[_i0].padapter->hw_init_completed = ((-2 * (next_i()%2)) + 1) * next_i();
+          pcmdpriv[_i0].padapter->registrypriv.usbss_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          pcmdpriv[_i0].padapter->pwrctrlpriv.bHWPwrPindetect = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int _len_cmd_obj0 = 100;
+          struct cmd_obj * cmd_obj = (struct cmd_obj *) malloc(_len_cmd_obj0*sizeof(struct cmd_obj));
+          for(int _i0 = 0; _i0 < _len_cmd_obj0; _i0++) {
+              cmd_obj[_i0].cmdcode = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd_obj[_i0].parmbuf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rtw_cmd_filter(pcmdpriv,cmd_obj);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pcmdpriv0; _aux++) {
+          free(pcmdpriv[_aux].padapter);
+          }
+          free(pcmdpriv);
+          free(cmd_obj);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int _len_pcmdpriv0 = 1;
+          struct cmd_priv * pcmdpriv = (struct cmd_priv *) malloc(_len_pcmdpriv0*sizeof(struct cmd_priv));
+          for(int _i0 = 0; _i0 < _len_pcmdpriv0; _i0++) {
+              pcmdpriv[_i0].cmdthd_running = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pcmdpriv__i0__padapter0 = 1;
+          pcmdpriv[_i0].padapter = (struct TYPE_6__ *) malloc(_len_pcmdpriv__i0__padapter0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_pcmdpriv__i0__padapter0; _j0++) {
+              pcmdpriv[_i0].padapter->hw_init_completed = ((-2 * (next_i()%2)) + 1) * next_i();
+          pcmdpriv[_i0].padapter->registrypriv.usbss_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          pcmdpriv[_i0].padapter->pwrctrlpriv.bHWPwrPindetect = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
           int _len_cmd_obj0 = 1;
           struct cmd_obj * cmd_obj = (struct cmd_obj *) malloc(_len_cmd_obj0*sizeof(struct cmd_obj));
           for(int _i0 = 0; _i0 < _len_cmd_obj0; _i0++) {
-            cmd_obj[_i0].cmdcode = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd_obj[_i0].parmbuf = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmd_obj[_i0].cmdcode = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd_obj[_i0].parmbuf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = rtw_cmd_filter(pcmdpriv,cmd_obj);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_pcmdpriv0; _aux++) {

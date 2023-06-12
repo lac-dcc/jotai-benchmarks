@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ long long get_index_header_size (index_header *header) {
   return sizeof (index_header) + sizeof (user_index_data) * (header->user_cnt + 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_header0 = 1;
+          int _len_header0 = 65025;
           struct TYPE_3__ * header = (struct TYPE_3__ *) malloc(_len_header0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_header0; _i0++) {
-            header[_i0].user_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+              header[_i0].user_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long long benchRet = get_index_header_size(header);
           printf("%lld\n", benchRet); 
           free(header);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_header0 = 100;
           struct TYPE_3__ * header = (struct TYPE_3__ *) malloc(_len_header0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_header0; _i0++) {
-            header[_i0].user_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+              header[_i0].user_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long long benchRet = get_index_header_size(header);
           printf("%lld\n", benchRet); 
           free(header);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_header0 = 1;
+          struct TYPE_3__ * header = (struct TYPE_3__ *) malloc(_len_header0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_header0; _i0++) {
+              header[_i0].user_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long long benchRet = get_index_header_size(header);
+          printf("%lld\n", benchRet); 
+          free(header);
+        
+        break;
+    }
     default:
         usage();
         break;

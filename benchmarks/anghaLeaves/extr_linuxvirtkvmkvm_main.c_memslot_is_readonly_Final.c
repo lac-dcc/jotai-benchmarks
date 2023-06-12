@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static bool memslot_is_readonly(struct kvm_memory_slot *sl
 	return slot->flags & KVM_MEM_READONLY;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_slot0 = 1;
+          int _len_slot0 = 65025;
           struct kvm_memory_slot * slot = (struct kvm_memory_slot *) malloc(_len_slot0*sizeof(struct kvm_memory_slot));
           for(int _i0 = 0; _i0 < _len_slot0; _i0++) {
-            slot[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              slot[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = memslot_is_readonly(slot);
           printf("%d\n", benchRet); 
           free(slot);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_slot0 = 100;
           struct kvm_memory_slot * slot = (struct kvm_memory_slot *) malloc(_len_slot0*sizeof(struct kvm_memory_slot));
           for(int _i0 = 0; _i0 < _len_slot0; _i0++) {
-            slot[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              slot[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = memslot_is_readonly(slot);
           printf("%d\n", benchRet); 
           free(slot);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_slot0 = 1;
+          struct kvm_memory_slot * slot = (struct kvm_memory_slot *) malloc(_len_slot0*sizeof(struct kvm_memory_slot));
+          for(int _i0 = 0; _i0 < _len_slot0; _i0++) {
+              slot[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = memslot_is_readonly(slot);
+          printf("%d\n", benchRet); 
+          free(slot);
+        
+        break;
+    }
     default:
         usage();
         break;

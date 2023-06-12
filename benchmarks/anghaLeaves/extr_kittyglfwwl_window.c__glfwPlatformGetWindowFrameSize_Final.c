@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -80,12 +82,6 @@ void _glfwPlatformGetWindowFrameSize(_GLFWwindow* window,
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,36 +94,209 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_window0 = 65025;
+          struct TYPE_7__ * window = (struct TYPE_7__ *) malloc(_len_window0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_window0; _i0++) {
+              window[_i0].wl.decorations.serverSide = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          window[_i0].monitor = ((-2 * (next_i()%2)) + 1) * next_i();
+          window[_i0].decorated = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_left0 = 65025;
+          int * left = (int *) malloc(_len_left0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_left0; _i0++) {
+            left[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_top0 = 65025;
+          int * top = (int *) malloc(_len_top0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_top0; _i0++) {
+            top[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_right0 = 65025;
+          int * right = (int *) malloc(_len_right0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_right0; _i0++) {
+            right[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_bottom0 = 65025;
+          int * bottom = (int *) malloc(_len_bottom0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_bottom0; _i0++) {
+            bottom[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          _glfwPlatformGetWindowFrameSize(window,left,top,right,bottom);
+          free(window);
+          free(left);
+          free(top);
+          free(right);
+          free(bottom);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_window0 = 100;
+          struct TYPE_7__ * window = (struct TYPE_7__ *) malloc(_len_window0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_window0; _i0++) {
+              window[_i0].wl.decorations.serverSide = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          window[_i0].monitor = ((-2 * (next_i()%2)) + 1) * next_i();
+          window[_i0].decorated = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_left0 = 100;
+          int * left = (int *) malloc(_len_left0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_left0; _i0++) {
+            left[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_top0 = 100;
+          int * top = (int *) malloc(_len_top0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_top0; _i0++) {
+            top[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_right0 = 100;
+          int * right = (int *) malloc(_len_right0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_right0; _i0++) {
+            right[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_bottom0 = 100;
+          int * bottom = (int *) malloc(_len_bottom0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_bottom0; _i0++) {
+            bottom[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          _glfwPlatformGetWindowFrameSize(window,left,top,right,bottom);
+          free(window);
+          free(left);
+          free(top);
+          free(right);
+          free(bottom);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_window0 = 1;
           struct TYPE_7__ * window = (struct TYPE_7__ *) malloc(_len_window0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_window0; _i0++) {
-            window[_i0].wl.decorations.serverSide = ((-2 * (next_i()%2)) + 1) * next_i();
-        window[_i0].monitor = ((-2 * (next_i()%2)) + 1) * next_i();
-        window[_i0].decorated = ((-2 * (next_i()%2)) + 1) * next_i();
+              window[_i0].wl.decorations.serverSide = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          window[_i0].monitor = ((-2 * (next_i()%2)) + 1) * next_i();
+          window[_i0].decorated = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_left0 = 1;
           int * left = (int *) malloc(_len_left0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_left0; _i0++) {
             left[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_top0 = 1;
           int * top = (int *) malloc(_len_top0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_top0; _i0++) {
             top[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_right0 = 1;
           int * right = (int *) malloc(_len_right0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_right0; _i0++) {
             right[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_bottom0 = 1;
           int * bottom = (int *) malloc(_len_bottom0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_bottom0; _i0++) {
             bottom[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           _glfwPlatformGetWindowFrameSize(window,left,top,right,bottom);
           free(window);
           free(left);

@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -69,12 +69,6 @@ u8 hisi_sas_get_prog_phy_linkrate_mask(enum sas_linkrate max)
 	return rate;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,16 +81,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum sas_linkrate max = 0;
+        
           int benchRet = hisi_sas_get_prog_phy_linkrate_mask(max);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

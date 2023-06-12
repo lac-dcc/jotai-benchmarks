@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ get_thread_atime_policy(struct uthread *ut)
 	return (ut->uu_flag & UT_ATIME_UPDATE)? IOPOL_ATIME_UPDATES_OFF: IOPOL_ATIME_UPDATES_DEFAULT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,14 +78,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ut0 = 1;
+          int _len_ut0 = 65025;
           struct uthread * ut = (struct uthread *) malloc(_len_ut0*sizeof(struct uthread));
           for(int _i0 = 0; _i0 < _len_ut0; _i0++) {
-            ut[_i0].uu_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+              ut[_i0].uu_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = get_thread_atime_policy(ut);
           printf("%d\n", benchRet); 
           free(ut);
@@ -103,15 +100,32 @@ int main(int argc, char *argv[]) {
           int _len_ut0 = 100;
           struct uthread * ut = (struct uthread *) malloc(_len_ut0*sizeof(struct uthread));
           for(int _i0 = 0; _i0 < _len_ut0; _i0++) {
-            ut[_i0].uu_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+              ut[_i0].uu_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = get_thread_atime_policy(ut);
           printf("%d\n", benchRet); 
           free(ut);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ut0 = 1;
+          struct uthread * ut = (struct uthread *) malloc(_len_ut0*sizeof(struct uthread));
+          for(int _i0 = 0; _i0 < _len_ut0; _i0++) {
+              ut[_i0].uu_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = get_thread_atime_policy(ut);
+          printf("%d\n", benchRet); 
+          free(ut);
+        
+        break;
+    }
     default:
         usage();
         break;

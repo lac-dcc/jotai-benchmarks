@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +81,6 @@ size_t EC_get_builtin_curves(EC_builtin_curve *r, size_t nitems)
     return curve_list_length;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,16 +93,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           unsigned long nitems = 100;
+        
           int _len_r0 = 1;
           struct TYPE_4__ * r = (struct TYPE_4__ *) malloc(_len_r0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_r0; _i0++) {
-            r[_i0].comment = ((-2 * (next_i()%2)) + 1) * next_i();
-        r[_i0].nid = ((-2 * (next_i()%2)) + 1) * next_i();
+              r[_i0].comment = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].nid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          unsigned long benchRet = EC_get_builtin_curves(r,nitems);
+          printf("%lu\n", benchRet); 
+          free(r);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          unsigned long nitems = 255;
+        
+          int _len_r0 = 65025;
+          struct TYPE_4__ * r = (struct TYPE_4__ *) malloc(_len_r0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+              r[_i0].comment = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].nid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = EC_get_builtin_curves(r,nitems);
+          printf("%lu\n", benchRet); 
+          free(r);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          unsigned long nitems = 10;
+        
+          int _len_r0 = 100;
+          struct TYPE_4__ * r = (struct TYPE_4__ *) malloc(_len_r0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+              r[_i0].comment = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].nid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = EC_get_builtin_curves(r,nitems);
+          printf("%lu\n", benchRet); 
+          free(r);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          unsigned long nitems = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_r0 = 1;
+          struct TYPE_4__ * r = (struct TYPE_4__ *) malloc(_len_r0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+              r[_i0].comment = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].nid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           unsigned long benchRet = EC_get_builtin_curves(r,nitems);
           printf("%lu\n", benchRet); 
           free(r);

@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -63,12 +63,6 @@ __attribute__((used)) static inline bool obs_key_combination_is_empty(obs_key_co
 	return !combo.modifiers && combo.key == OBS_KEY_NONE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,12 +75,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // empty
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           struct TYPE_3__ combo;
-        combo.key = ((-2 * (next_i()%2)) + 1) * next_i();
-        combo.modifiers = ((-2 * (next_i()%2)) + 1) * next_i();
+          combo.key = ((-2 * (next_i()%2)) + 1) * next_i();
+          combo.modifiers = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = obs_key_combination_is_empty(combo);
           printf("%d\n", benchRet); 
         

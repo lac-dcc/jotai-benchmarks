@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ port_match(u_int16_t min, u_int16_t max, u_int16_t port, bool invert)
 	return (port >= min && port <= max) ^ invert;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,9 +80,13 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long min = 100;
+        
           long max = 100;
+        
           long port = 100;
+        
           int invert = 100;
+        
           int benchRet = port_match(min,max,port,invert);
           printf("%d\n", benchRet); 
         
@@ -97,9 +96,13 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long min = 255;
+        
           long max = 255;
+        
           long port = 255;
+        
           int invert = 255;
+        
           int benchRet = port_match(min,max,port,invert);
           printf("%d\n", benchRet); 
         
@@ -109,15 +112,34 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long min = 10;
+        
           long max = 10;
+        
           long port = 10;
+        
           int invert = 10;
+        
           int benchRet = port_match(min,max,port,invert);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long port = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int invert = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = port_match(min,max,port,invert);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

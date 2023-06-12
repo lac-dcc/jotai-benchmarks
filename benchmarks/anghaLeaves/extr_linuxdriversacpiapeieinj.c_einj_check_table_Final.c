@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ __attribute__((used)) static int einj_check_table(struct acpi_table_einj *einj_t
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,23 +89,63 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_einj_tab0 = 1;
+          int _len_einj_tab0 = 65025;
           struct acpi_table_einj * einj_tab = (struct acpi_table_einj *) malloc(_len_einj_tab0*sizeof(struct acpi_table_einj));
           for(int _i0 = 0; _i0 < _len_einj_tab0; _i0++) {
-            einj_tab[_i0].header_length = ((-2 * (next_i()%2)) + 1) * next_i();
-        einj_tab[_i0].entries = ((-2 * (next_i()%2)) + 1) * next_i();
-        einj_tab[_i0].header.length = ((-2 * (next_i()%2)) + 1) * next_i();
+              einj_tab[_i0].header_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          einj_tab[_i0].entries = ((-2 * (next_i()%2)) + 1) * next_i();
+          einj_tab[_i0].header.length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = einj_check_table(einj_tab);
           printf("%d\n", benchRet); 
           free(einj_tab);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_einj_tab0 = 100;
+          struct acpi_table_einj * einj_tab = (struct acpi_table_einj *) malloc(_len_einj_tab0*sizeof(struct acpi_table_einj));
+          for(int _i0 = 0; _i0 < _len_einj_tab0; _i0++) {
+              einj_tab[_i0].header_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          einj_tab[_i0].entries = ((-2 * (next_i()%2)) + 1) * next_i();
+          einj_tab[_i0].header.length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = einj_check_table(einj_tab);
+          printf("%d\n", benchRet); 
+          free(einj_tab);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_einj_tab0 = 1;
+          struct acpi_table_einj * einj_tab = (struct acpi_table_einj *) malloc(_len_einj_tab0*sizeof(struct acpi_table_einj));
+          for(int _i0 = 0; _i0 < _len_einj_tab0; _i0++) {
+              einj_tab[_i0].header_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          einj_tab[_i0].entries = ((-2 * (next_i()%2)) + 1) * next_i();
+          einj_tab[_i0].header.length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = einj_check_table(einj_tab);
+          printf("%d\n", benchRet); 
+          free(einj_tab);
+        
+        break;
+    }
     default:
         usage();
         break;

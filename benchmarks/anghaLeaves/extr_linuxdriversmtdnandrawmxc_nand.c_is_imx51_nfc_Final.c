@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static inline int is_imx51_nfc(struct mxc_nand_host *host)
 	return host->devtype_data == &imx51_nand_devtype_data;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,9 +75,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_host0 = 65025;
+          struct mxc_nand_host * host = (struct mxc_nand_host *) malloc(_len_host0*sizeof(struct mxc_nand_host));
+          for(int _i0 = 0; _i0 < _len_host0; _i0++) {
+              int _len_host__i0__devtype_data0 = 1;
+          host[_i0].devtype_data = (int *) malloc(_len_host__i0__devtype_data0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_host__i0__devtype_data0; _j0++) {
+            host[_i0].devtype_data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = is_imx51_nfc(host);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_host0; _aux++) {
+          free(host[_aux].devtype_data);
+          }
+          free(host);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_host0 = 100;
+          struct mxc_nand_host * host = (struct mxc_nand_host *) malloc(_len_host0*sizeof(struct mxc_nand_host));
+          for(int _i0 = 0; _i0 < _len_host0; _i0++) {
+              int _len_host__i0__devtype_data0 = 1;
+          host[_i0].devtype_data = (int *) malloc(_len_host__i0__devtype_data0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_host__i0__devtype_data0; _j0++) {
+            host[_i0].devtype_data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = is_imx51_nfc(host);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_host0; _aux++) {
+          free(host[_aux].devtype_data);
+          }
+          free(host);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_host0 = 1;
           struct mxc_nand_host * host = (struct mxc_nand_host *) malloc(_len_host0*sizeof(struct mxc_nand_host));
           for(int _i0 = 0; _i0 < _len_host0; _i0++) {
@@ -90,7 +203,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_host__i0__devtype_data0; _j0++) {
             host[_i0].devtype_data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = is_imx51_nfc(host);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_host0; _aux++) {

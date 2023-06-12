@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -137,12 +139,6 @@ mptsas_parse_device_info(struct sas_identify *identify,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -155,25 +151,158 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 67
+          // dynamic_instructions_O0 : 67
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 39
+          // dynamic_instructions_O2 : 39
+          // ------------------------------- 
+          // static_instructions_O3 : 39
+          // dynamic_instructions_O3 : 39
+          // ------------------------------- 
+          // static_instructions_Ofast : 39
+          // dynamic_instructions_Ofast : 39
+          // ------------------------------- 
+          // static_instructions_Os : 37
+          // dynamic_instructions_Os : 37
+          // ------------------------------- 
+          // static_instructions_Oz : 37
+          // dynamic_instructions_Oz : 37
+          // ------------------------------- 
+
+          int _len_identify0 = 65025;
+          struct sas_identify * identify = (struct sas_identify *) malloc(_len_identify0*sizeof(struct sas_identify));
+          for(int _i0 = 0; _i0 < _len_identify0; _i0++) {
+              identify[_i0].device_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          identify[_i0].target_port_protocols = ((-2 * (next_i()%2)) + 1) * next_i();
+          identify[_i0].initiator_port_protocols = ((-2 * (next_i()%2)) + 1) * next_i();
+          identify[_i0].phy_identifier = ((-2 * (next_i()%2)) + 1) * next_i();
+          identify[_i0].sas_address = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_device_info0 = 65025;
+          struct mptsas_devinfo * device_info = (struct mptsas_devinfo *) malloc(_len_device_info0*sizeof(struct mptsas_devinfo));
+          for(int _i0 = 0; _i0 < _len_device_info0; _i0++) {
+              device_info[_i0].device_info = ((-2 * (next_i()%2)) + 1) * next_i();
+          device_info[_i0].phy_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          device_info[_i0].sas_address = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mptsas_parse_device_info(identify,device_info);
+          free(identify);
+          free(device_info);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 67
+          // dynamic_instructions_O0 : 67
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 39
+          // dynamic_instructions_O2 : 39
+          // ------------------------------- 
+          // static_instructions_O3 : 39
+          // dynamic_instructions_O3 : 39
+          // ------------------------------- 
+          // static_instructions_Ofast : 39
+          // dynamic_instructions_Ofast : 39
+          // ------------------------------- 
+          // static_instructions_Os : 37
+          // dynamic_instructions_Os : 37
+          // ------------------------------- 
+          // static_instructions_Oz : 37
+          // dynamic_instructions_Oz : 37
+          // ------------------------------- 
+
+          int _len_identify0 = 100;
+          struct sas_identify * identify = (struct sas_identify *) malloc(_len_identify0*sizeof(struct sas_identify));
+          for(int _i0 = 0; _i0 < _len_identify0; _i0++) {
+              identify[_i0].device_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          identify[_i0].target_port_protocols = ((-2 * (next_i()%2)) + 1) * next_i();
+          identify[_i0].initiator_port_protocols = ((-2 * (next_i()%2)) + 1) * next_i();
+          identify[_i0].phy_identifier = ((-2 * (next_i()%2)) + 1) * next_i();
+          identify[_i0].sas_address = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_device_info0 = 100;
+          struct mptsas_devinfo * device_info = (struct mptsas_devinfo *) malloc(_len_device_info0*sizeof(struct mptsas_devinfo));
+          for(int _i0 = 0; _i0 < _len_device_info0; _i0++) {
+              device_info[_i0].device_info = ((-2 * (next_i()%2)) + 1) * next_i();
+          device_info[_i0].phy_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          device_info[_i0].sas_address = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mptsas_parse_device_info(identify,device_info);
+          free(identify);
+          free(device_info);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 67
+          // dynamic_instructions_O0 : 67
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 39
+          // dynamic_instructions_O2 : 39
+          // ------------------------------- 
+          // static_instructions_O3 : 39
+          // dynamic_instructions_O3 : 39
+          // ------------------------------- 
+          // static_instructions_Ofast : 39
+          // dynamic_instructions_Ofast : 39
+          // ------------------------------- 
+          // static_instructions_Os : 37
+          // dynamic_instructions_Os : 37
+          // ------------------------------- 
+          // static_instructions_Oz : 37
+          // dynamic_instructions_Oz : 37
+          // ------------------------------- 
+
           int _len_identify0 = 1;
           struct sas_identify * identify = (struct sas_identify *) malloc(_len_identify0*sizeof(struct sas_identify));
           for(int _i0 = 0; _i0 < _len_identify0; _i0++) {
-            identify[_i0].device_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        identify[_i0].target_port_protocols = ((-2 * (next_i()%2)) + 1) * next_i();
-        identify[_i0].initiator_port_protocols = ((-2 * (next_i()%2)) + 1) * next_i();
-        identify[_i0].phy_identifier = ((-2 * (next_i()%2)) + 1) * next_i();
-        identify[_i0].sas_address = ((-2 * (next_i()%2)) + 1) * next_i();
+              identify[_i0].device_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          identify[_i0].target_port_protocols = ((-2 * (next_i()%2)) + 1) * next_i();
+          identify[_i0].initiator_port_protocols = ((-2 * (next_i()%2)) + 1) * next_i();
+          identify[_i0].phy_identifier = ((-2 * (next_i()%2)) + 1) * next_i();
+          identify[_i0].sas_address = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_device_info0 = 1;
           struct mptsas_devinfo * device_info = (struct mptsas_devinfo *) malloc(_len_device_info0*sizeof(struct mptsas_devinfo));
           for(int _i0 = 0; _i0 < _len_device_info0; _i0++) {
-            device_info[_i0].device_info = ((-2 * (next_i()%2)) + 1) * next_i();
-        device_info[_i0].phy_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        device_info[_i0].sas_address = ((-2 * (next_i()%2)) + 1) * next_i();
+              device_info[_i0].device_info = ((-2 * (next_i()%2)) + 1) * next_i();
+          device_info[_i0].phy_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          device_info[_i0].sas_address = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           mptsas_parse_device_info(identify,device_info);
           free(identify);
           free(device_info);

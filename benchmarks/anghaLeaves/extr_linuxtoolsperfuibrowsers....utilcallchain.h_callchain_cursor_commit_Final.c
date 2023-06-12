@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static inline void callchain_cursor_commit(struct callchai
 	cursor->pos = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,22 +75,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cursor0 = 1;
+          int _len_cursor0 = 65025;
           struct callchain_cursor * cursor = (struct callchain_cursor *) malloc(_len_cursor0*sizeof(struct callchain_cursor));
           for(int _i0 = 0; _i0 < _len_cursor0; _i0++) {
-            cursor[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
-        cursor[_i0].first = ((-2 * (next_i()%2)) + 1) * next_i();
-        cursor[_i0].curr = ((-2 * (next_i()%2)) + 1) * next_i();
+              cursor[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          cursor[_i0].first = ((-2 * (next_i()%2)) + 1) * next_i();
+          cursor[_i0].curr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           callchain_cursor_commit(cursor);
           free(cursor);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_cursor0 = 100;
+          struct callchain_cursor * cursor = (struct callchain_cursor *) malloc(_len_cursor0*sizeof(struct callchain_cursor));
+          for(int _i0 = 0; _i0 < _len_cursor0; _i0++) {
+              cursor[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          cursor[_i0].first = ((-2 * (next_i()%2)) + 1) * next_i();
+          cursor[_i0].curr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          callchain_cursor_commit(cursor);
+          free(cursor);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_cursor0 = 1;
+          struct callchain_cursor * cursor = (struct callchain_cursor *) malloc(_len_cursor0*sizeof(struct callchain_cursor));
+          for(int _i0 = 0; _i0 < _len_cursor0; _i0++) {
+              cursor[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          cursor[_i0].first = ((-2 * (next_i()%2)) + 1) * next_i();
+          cursor[_i0].curr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          callchain_cursor_commit(cursor);
+          free(cursor);
+        
+        break;
+    }
     default:
         usage();
         break;

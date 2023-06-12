@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ __attribute__((used)) static inline int frame_stride(u32 w, u32 fmt)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,7 +87,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int w = 100;
+        
           int fmt = 100;
+        
           int benchRet = frame_stride(w,fmt);
           printf("%d\n", benchRet); 
         
@@ -102,7 +99,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int w = 255;
+        
           int fmt = 255;
+        
           int benchRet = frame_stride(w,fmt);
           printf("%d\n", benchRet); 
         
@@ -112,13 +111,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int w = 10;
+        
           int fmt = 10;
+        
           int benchRet = frame_stride(w,fmt);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int w = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = frame_stride(w,fmt);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

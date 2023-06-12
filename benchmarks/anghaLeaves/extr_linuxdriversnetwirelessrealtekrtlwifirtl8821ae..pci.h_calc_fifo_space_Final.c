@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static inline u16 calc_fifo_space(u16 rp, u16 wp, u16 size
 	return rp - wp - 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,8 +81,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long rp = 100;
+        
           long wp = 100;
+        
           long size = 100;
+        
           long benchRet = calc_fifo_space(rp,wp,size);
           printf("%ld\n", benchRet); 
         
@@ -97,8 +95,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long rp = 255;
+        
           long wp = 255;
+        
           long size = 255;
+        
           long benchRet = calc_fifo_space(rp,wp,size);
           printf("%ld\n", benchRet); 
         
@@ -108,14 +109,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long rp = 10;
+        
           long wp = 10;
+        
           long size = 10;
+        
           long benchRet = calc_fifo_space(rp,wp,size);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long rp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long wp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long benchRet = calc_fifo_space(rp,wp,size);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

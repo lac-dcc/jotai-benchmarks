@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -79,12 +82,6 @@ nfs_direct_select_verf(struct nfs_direct_req *dreq,
 	return verfp;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,20 +94,202 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int commit_idx = 100;
+        
           int _len_dreq0 = 1;
           struct nfs_direct_req * dreq = (struct nfs_direct_req *) malloc(_len_dreq0*sizeof(struct nfs_direct_req));
           for(int _i0 = 0; _i0 < _len_dreq0; _i0++) {
-            dreq[_i0].verf.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dreq[_i0].verf.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_ds_clp0 = 1;
           struct nfs_client * ds_clp = (struct nfs_client *) malloc(_len_ds_clp0*sizeof(struct nfs_client));
           for(int _i0 = 0; _i0 < _len_ds_clp0; _i0++) {
-            ds_clp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ds_clp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          struct nfs_writeverf * benchRet = nfs_direct_select_verf(dreq,ds_clp,commit_idx);
+          printf("%d\n", (*benchRet).dummy);
+          free(dreq);
+          free(ds_clp);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int commit_idx = 255;
+        
+          int _len_dreq0 = 65025;
+          struct nfs_direct_req * dreq = (struct nfs_direct_req *) malloc(_len_dreq0*sizeof(struct nfs_direct_req));
+          for(int _i0 = 0; _i0 < _len_dreq0; _i0++) {
+              dreq[_i0].verf.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_ds_clp0 = 65025;
+          struct nfs_client * ds_clp = (struct nfs_client *) malloc(_len_ds_clp0*sizeof(struct nfs_client));
+          for(int _i0 = 0; _i0 < _len_ds_clp0; _i0++) {
+              ds_clp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct nfs_writeverf * benchRet = nfs_direct_select_verf(dreq,ds_clp,commit_idx);
+          printf("%d\n", (*benchRet).dummy);
+          free(dreq);
+          free(ds_clp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int commit_idx = 10;
+        
+          int _len_dreq0 = 100;
+          struct nfs_direct_req * dreq = (struct nfs_direct_req *) malloc(_len_dreq0*sizeof(struct nfs_direct_req));
+          for(int _i0 = 0; _i0 < _len_dreq0; _i0++) {
+              dreq[_i0].verf.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_ds_clp0 = 100;
+          struct nfs_client * ds_clp = (struct nfs_client *) malloc(_len_ds_clp0*sizeof(struct nfs_client));
+          for(int _i0 = 0; _i0 < _len_ds_clp0; _i0++) {
+              ds_clp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct nfs_writeverf * benchRet = nfs_direct_select_verf(dreq,ds_clp,commit_idx);
+          printf("%d\n", (*benchRet).dummy);
+          free(dreq);
+          free(ds_clp);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int commit_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dreq0 = 1;
+          struct nfs_direct_req * dreq = (struct nfs_direct_req *) malloc(_len_dreq0*sizeof(struct nfs_direct_req));
+          for(int _i0 = 0; _i0 < _len_dreq0; _i0++) {
+              dreq[_i0].verf.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_ds_clp0 = 1;
+          struct nfs_client * ds_clp = (struct nfs_client *) malloc(_len_ds_clp0*sizeof(struct nfs_client));
+          for(int _i0 = 0; _i0 < _len_ds_clp0; _i0++) {
+              ds_clp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           struct nfs_writeverf * benchRet = nfs_direct_select_verf(dreq,ds_clp,commit_idx);
           printf("%d\n", (*benchRet).dummy);
           free(dreq);

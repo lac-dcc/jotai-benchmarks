@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -114,12 +116,6 @@ __attribute__((used)) static void mei_hbm_config_features(struct mei_device *dev
 		dev->hbm_f_dr_supported = 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -132,23 +128,147 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 61
+          // dynamic_instructions_O0 : 61
+          // ------------------------------- 
+          // static_instructions_O1 : 46
+          // dynamic_instructions_O1 : 46
+          // ------------------------------- 
+          // static_instructions_O2 : 39
+          // dynamic_instructions_O2 : 39
+          // ------------------------------- 
+          // static_instructions_O3 : 39
+          // dynamic_instructions_O3 : 39
+          // ------------------------------- 
+          // static_instructions_Ofast : 39
+          // dynamic_instructions_Ofast : 39
+          // ------------------------------- 
+          // static_instructions_Os : 39
+          // dynamic_instructions_Os : 39
+          // ------------------------------- 
+          // static_instructions_Oz : 39
+          // dynamic_instructions_Oz : 39
+          // ------------------------------- 
+
+          int _len_dev0 = 65025;
+          struct mei_device * dev = (struct mei_device *) malloc(_len_dev0*sizeof(struct mei_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].hbm_f_pg_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].hbm_f_dc_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].hbm_f_ie_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].hbm_f_dot_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].hbm_f_ev_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].hbm_f_fa_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].hbm_f_os_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].hbm_f_dr_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].version.major_version = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].version.minor_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          mei_hbm_config_features(dev);
+          free(dev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 61
+          // dynamic_instructions_O0 : 61
+          // ------------------------------- 
+          // static_instructions_O1 : 46
+          // dynamic_instructions_O1 : 46
+          // ------------------------------- 
+          // static_instructions_O2 : 39
+          // dynamic_instructions_O2 : 39
+          // ------------------------------- 
+          // static_instructions_O3 : 39
+          // dynamic_instructions_O3 : 39
+          // ------------------------------- 
+          // static_instructions_Ofast : 39
+          // dynamic_instructions_Ofast : 39
+          // ------------------------------- 
+          // static_instructions_Os : 39
+          // dynamic_instructions_Os : 39
+          // ------------------------------- 
+          // static_instructions_Oz : 39
+          // dynamic_instructions_Oz : 39
+          // ------------------------------- 
+
+          int _len_dev0 = 100;
+          struct mei_device * dev = (struct mei_device *) malloc(_len_dev0*sizeof(struct mei_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].hbm_f_pg_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].hbm_f_dc_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].hbm_f_ie_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].hbm_f_dot_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].hbm_f_ev_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].hbm_f_fa_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].hbm_f_os_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].hbm_f_dr_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].version.major_version = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].version.minor_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          mei_hbm_config_features(dev);
+          free(dev);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 61
+          // dynamic_instructions_O0 : 61
+          // ------------------------------- 
+          // static_instructions_O1 : 46
+          // dynamic_instructions_O1 : 46
+          // ------------------------------- 
+          // static_instructions_O2 : 39
+          // dynamic_instructions_O2 : 39
+          // ------------------------------- 
+          // static_instructions_O3 : 39
+          // dynamic_instructions_O3 : 39
+          // ------------------------------- 
+          // static_instructions_Ofast : 39
+          // dynamic_instructions_Ofast : 39
+          // ------------------------------- 
+          // static_instructions_Os : 39
+          // dynamic_instructions_Os : 39
+          // ------------------------------- 
+          // static_instructions_Oz : 39
+          // dynamic_instructions_Oz : 39
+          // ------------------------------- 
+
           int _len_dev0 = 1;
           struct mei_device * dev = (struct mei_device *) malloc(_len_dev0*sizeof(struct mei_device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].hbm_f_pg_supported = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].hbm_f_dc_supported = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].hbm_f_ie_supported = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].hbm_f_dot_supported = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].hbm_f_ev_supported = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].hbm_f_fa_supported = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].hbm_f_os_supported = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].hbm_f_dr_supported = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].version.major_version = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].version.minor_version = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].hbm_f_pg_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].hbm_f_dc_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].hbm_f_ie_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].hbm_f_dot_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].hbm_f_ev_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].hbm_f_fa_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].hbm_f_os_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].hbm_f_dr_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].version.major_version = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].version.minor_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           mei_hbm_config_features(dev);
           free(dev);
         

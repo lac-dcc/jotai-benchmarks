@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -114,12 +117,6 @@ __attribute__((used)) static void ipw_add_ofdm_scan_rates(struct ipw_supported_r
 		    LIBIPW_OFDM_RATE_54MB;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -132,21 +129,201 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 47
+          // dynamic_instructions_O0 : 47
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
           long modulation = 100;
+        
           int rate_mask = 100;
+        
           int _len_rates0 = 1;
           struct ipw_supported_rates * rates = (struct ipw_supported_rates *) malloc(_len_rates0*sizeof(struct ipw_supported_rates));
           for(int _i0 = 0; _i0 < _len_rates0; _i0++) {
-            rates[_i0].num_rates = ((-2 * (next_i()%2)) + 1) * next_i();
+              rates[_i0].num_rates = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_rates__i0__supported_rates0 = 1;
           rates[_i0].supported_rates = (long *) malloc(_len_rates__i0__supported_rates0*sizeof(long));
           for(int _j0 = 0; _j0 < _len_rates__i0__supported_rates0; _j0++) {
             rates[_i0].supported_rates[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          ipw_add_ofdm_scan_rates(rates,modulation,rate_mask);
+          for(int _aux = 0; _aux < _len_rates0; _aux++) {
+          free(rates[_aux].supported_rates);
+          }
+          free(rates);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 47
+          // dynamic_instructions_O0 : 47
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          long modulation = 255;
+        
+          int rate_mask = 255;
+        
+          int _len_rates0 = 65025;
+          struct ipw_supported_rates * rates = (struct ipw_supported_rates *) malloc(_len_rates0*sizeof(struct ipw_supported_rates));
+          for(int _i0 = 0; _i0 < _len_rates0; _i0++) {
+              rates[_i0].num_rates = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_rates__i0__supported_rates0 = 1;
+          rates[_i0].supported_rates = (long *) malloc(_len_rates__i0__supported_rates0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_rates__i0__supported_rates0; _j0++) {
+            rates[_i0].supported_rates[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          ipw_add_ofdm_scan_rates(rates,modulation,rate_mask);
+          for(int _aux = 0; _aux < _len_rates0; _aux++) {
+          free(rates[_aux].supported_rates);
+          }
+          free(rates);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 47
+          // dynamic_instructions_O0 : 47
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          long modulation = 10;
+        
+          int rate_mask = 10;
+        
+          int _len_rates0 = 100;
+          struct ipw_supported_rates * rates = (struct ipw_supported_rates *) malloc(_len_rates0*sizeof(struct ipw_supported_rates));
+          for(int _i0 = 0; _i0 < _len_rates0; _i0++) {
+              rates[_i0].num_rates = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_rates__i0__supported_rates0 = 1;
+          rates[_i0].supported_rates = (long *) malloc(_len_rates__i0__supported_rates0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_rates__i0__supported_rates0; _j0++) {
+            rates[_i0].supported_rates[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          ipw_add_ofdm_scan_rates(rates,modulation,rate_mask);
+          for(int _aux = 0; _aux < _len_rates0; _aux++) {
+          free(rates[_aux].supported_rates);
+          }
+          free(rates);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 47
+          // dynamic_instructions_O0 : 47
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          long modulation = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int rate_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rates0 = 1;
+          struct ipw_supported_rates * rates = (struct ipw_supported_rates *) malloc(_len_rates0*sizeof(struct ipw_supported_rates));
+          for(int _i0 = 0; _i0 < _len_rates0; _i0++) {
+              rates[_i0].num_rates = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_rates__i0__supported_rates0 = 1;
+          rates[_i0].supported_rates = (long *) malloc(_len_rates__i0__supported_rates0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_rates__i0__supported_rates0; _j0++) {
+            rates[_i0].supported_rates[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           ipw_add_ofdm_scan_rates(rates,modulation,rate_mask);
           for(int _aux = 0; _aux < _len_rates0; _aux++) {
           free(rates[_aux].supported_rates);

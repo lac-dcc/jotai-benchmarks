@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static int sun4v_wdt_set_timeout(struct watchdog_device *w
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,30 +78,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           unsigned int timeout = 100;
+        
           int _len_wdd0 = 1;
           struct watchdog_device * wdd = (struct watchdog_device *) malloc(_len_wdd0*sizeof(struct watchdog_device));
           for(int _i0 = 0; _i0 < _len_wdd0; _i0++) {
-            wdd[_i0].timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+              wdd[_i0].timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = sun4v_wdt_set_timeout(wdd,timeout);
           printf("%d\n", benchRet); 
           free(wdd);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int timeout = 255;
+        
+          int _len_wdd0 = 65025;
+          struct watchdog_device * wdd = (struct watchdog_device *) malloc(_len_wdd0*sizeof(struct watchdog_device));
+          for(int _i0 = 0; _i0 < _len_wdd0; _i0++) {
+              wdd[_i0].timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sun4v_wdt_set_timeout(wdd,timeout);
+          printf("%d\n", benchRet); 
+          free(wdd);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           unsigned int timeout = 10;
+        
           int _len_wdd0 = 100;
           struct watchdog_device * wdd = (struct watchdog_device *) malloc(_len_wdd0*sizeof(struct watchdog_device));
           for(int _i0 = 0; _i0 < _len_wdd0; _i0++) {
-            wdd[_i0].timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+              wdd[_i0].timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = sun4v_wdt_set_timeout(wdd,timeout);
+          printf("%d\n", benchRet); 
+          free(wdd);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_wdd0 = 1;
+          struct watchdog_device * wdd = (struct watchdog_device *) malloc(_len_wdd0*sizeof(struct watchdog_device));
+          for(int _i0 = 0; _i0 < _len_wdd0; _i0++) {
+              wdd[_i0].timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = sun4v_wdt_set_timeout(wdd,timeout);
           printf("%d\n", benchRet); 
           free(wdd);

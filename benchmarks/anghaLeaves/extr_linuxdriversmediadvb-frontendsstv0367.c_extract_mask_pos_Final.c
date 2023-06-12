@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ __attribute__((used)) static void extract_mask_pos(u32 label, u8 *mask, u8 *pos)
 	(*pos) = (i - 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,20 +85,187 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 85
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 41
+          // ------------------------------- 
+
           int label = 100;
+        
           int _len_mask0 = 1;
           int * mask = (int *) malloc(_len_mask0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_mask0; _i0++) {
             mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_pos0 = 1;
           int * pos = (int *) malloc(_len_pos0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pos0; _i0++) {
             pos[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          extract_mask_pos(label,mask,pos);
+          free(mask);
+          free(pos);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 45
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          int label = 255;
+        
+          int _len_mask0 = 65025;
+          int * mask = (int *) malloc(_len_mask0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mask0; _i0++) {
+            mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pos0 = 65025;
+          int * pos = (int *) malloc(_len_pos0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pos0; _i0++) {
+            pos[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          extract_mask_pos(label,mask,pos);
+          free(mask);
+          free(pos);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 65
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 31
+          // ------------------------------- 
+
+          int label = 10;
+        
+          int _len_mask0 = 100;
+          int * mask = (int *) malloc(_len_mask0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mask0; _i0++) {
+            mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pos0 = 100;
+          int * pos = (int *) malloc(_len_pos0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pos0; _i0++) {
+            pos[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          extract_mask_pos(label,mask,pos);
+          free(mask);
+          free(pos);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 45
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          int label = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_mask0 = 1;
+          int * mask = (int *) malloc(_len_mask0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mask0; _i0++) {
+            mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pos0 = 1;
+          int * pos = (int *) malloc(_len_pos0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pos0; _i0++) {
+            pos[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           extract_mask_pos(label,mask,pos);
           free(mask);
           free(pos);

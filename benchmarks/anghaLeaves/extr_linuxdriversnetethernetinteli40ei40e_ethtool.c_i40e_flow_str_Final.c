@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -77,12 +78,6 @@ __attribute__((used)) static const char *i40e_flow_str(struct ethtool_rx_flow_sp
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,14 +90,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_fsp0 = 1;
+          int _len_fsp0 = 65025;
           struct ethtool_rx_flow_spec * fsp = (struct ethtool_rx_flow_spec *) malloc(_len_fsp0*sizeof(struct ethtool_rx_flow_spec));
           for(int _i0 = 0; _i0 < _len_fsp0; _i0++) {
-            fsp[_i0].flow_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              fsp[_i0].flow_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           const char * benchRet = i40e_flow_str(fsp);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(fsp);
@@ -115,15 +112,32 @@ int main(int argc, char *argv[]) {
           int _len_fsp0 = 100;
           struct ethtool_rx_flow_spec * fsp = (struct ethtool_rx_flow_spec *) malloc(_len_fsp0*sizeof(struct ethtool_rx_flow_spec));
           for(int _i0 = 0; _i0 < _len_fsp0; _i0++) {
-            fsp[_i0].flow_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              fsp[_i0].flow_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           const char * benchRet = i40e_flow_str(fsp);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(fsp);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_fsp0 = 1;
+          struct ethtool_rx_flow_spec * fsp = (struct ethtool_rx_flow_spec *) malloc(_len_fsp0*sizeof(struct ethtool_rx_flow_spec));
+          for(int _i0 = 0; _i0 < _len_fsp0; _i0++) {
+              fsp[_i0].flow_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          const char * benchRet = i40e_flow_str(fsp);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          free(fsp);
+        
+        break;
+    }
     default:
         usage();
         break;

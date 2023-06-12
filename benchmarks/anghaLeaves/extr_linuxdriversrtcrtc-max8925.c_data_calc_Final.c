@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -105,12 +108,6 @@ __attribute__((used)) static int data_calc(unsigned char *buf, struct rtc_time *
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -123,26 +120,218 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 189
+          // dynamic_instructions_O0 : 189
+          // ------------------------------- 
+          // static_instructions_O1 : 101
+          // dynamic_instructions_O1 : 101
+          // ------------------------------- 
+          // static_instructions_O2 : 100
+          // dynamic_instructions_O2 : 100
+          // ------------------------------- 
+          // static_instructions_O3 : 100
+          // dynamic_instructions_O3 : 100
+          // ------------------------------- 
+          // static_instructions_Ofast : 100
+          // dynamic_instructions_Ofast : 100
+          // ------------------------------- 
+          // static_instructions_Os : 101
+          // dynamic_instructions_Os : 101
+          // ------------------------------- 
+          // static_instructions_Oz : 83
+          // dynamic_instructions_Oz : 83
+          // ------------------------------- 
+
           int len = 100;
+        
           int _len_buf0 = 1;
           unsigned char * buf = (unsigned char *) malloc(_len_buf0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
             buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_tm0 = 1;
           struct rtc_time * tm = (struct rtc_time *) malloc(_len_tm0*sizeof(struct rtc_time));
           for(int _i0 = 0; _i0 < _len_tm0; _i0++) {
-            tm[_i0].tm_year = ((-2 * (next_i()%2)) + 1) * next_i();
-        tm[_i0].tm_mon = ((-2 * (next_i()%2)) + 1) * next_i();
-        tm[_i0].tm_mday = ((-2 * (next_i()%2)) + 1) * next_i();
-        tm[_i0].tm_wday = ((-2 * (next_i()%2)) + 1) * next_i();
-        tm[_i0].tm_hour = ((-2 * (next_i()%2)) + 1) * next_i();
-        tm[_i0].tm_min = ((-2 * (next_i()%2)) + 1) * next_i();
-        tm[_i0].tm_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+              tm[_i0].tm_year = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_mon = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_mday = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_wday = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_hour = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = data_calc(buf,tm,len);
+          printf("%d\n", benchRet); 
+          free(buf);
+          free(tm);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 189
+          // dynamic_instructions_O0 : 189
+          // ------------------------------- 
+          // static_instructions_O1 : 101
+          // dynamic_instructions_O1 : 101
+          // ------------------------------- 
+          // static_instructions_O2 : 100
+          // dynamic_instructions_O2 : 100
+          // ------------------------------- 
+          // static_instructions_O3 : 100
+          // dynamic_instructions_O3 : 100
+          // ------------------------------- 
+          // static_instructions_Ofast : 100
+          // dynamic_instructions_Ofast : 100
+          // ------------------------------- 
+          // static_instructions_Os : 101
+          // dynamic_instructions_Os : 101
+          // ------------------------------- 
+          // static_instructions_Oz : 83
+          // dynamic_instructions_Oz : 83
+          // ------------------------------- 
+
+          int len = 255;
+        
+          int _len_buf0 = 65025;
+          unsigned char * buf = (unsigned char *) malloc(_len_buf0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_tm0 = 65025;
+          struct rtc_time * tm = (struct rtc_time *) malloc(_len_tm0*sizeof(struct rtc_time));
+          for(int _i0 = 0; _i0 < _len_tm0; _i0++) {
+              tm[_i0].tm_year = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_mon = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_mday = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_wday = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_hour = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = data_calc(buf,tm,len);
+          printf("%d\n", benchRet); 
+          free(buf);
+          free(tm);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 189
+          // dynamic_instructions_O0 : 189
+          // ------------------------------- 
+          // static_instructions_O1 : 101
+          // dynamic_instructions_O1 : 101
+          // ------------------------------- 
+          // static_instructions_O2 : 100
+          // dynamic_instructions_O2 : 100
+          // ------------------------------- 
+          // static_instructions_O3 : 100
+          // dynamic_instructions_O3 : 100
+          // ------------------------------- 
+          // static_instructions_Ofast : 100
+          // dynamic_instructions_Ofast : 100
+          // ------------------------------- 
+          // static_instructions_Os : 101
+          // dynamic_instructions_Os : 101
+          // ------------------------------- 
+          // static_instructions_Oz : 83
+          // dynamic_instructions_Oz : 83
+          // ------------------------------- 
+
+          int len = 10;
+        
+          int _len_buf0 = 100;
+          unsigned char * buf = (unsigned char *) malloc(_len_buf0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_tm0 = 100;
+          struct rtc_time * tm = (struct rtc_time *) malloc(_len_tm0*sizeof(struct rtc_time));
+          for(int _i0 = 0; _i0 < _len_tm0; _i0++) {
+              tm[_i0].tm_year = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_mon = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_mday = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_wday = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_hour = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = data_calc(buf,tm,len);
+          printf("%d\n", benchRet); 
+          free(buf);
+          free(tm);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_buf0 = 1;
+          unsigned char * buf = (unsigned char *) malloc(_len_buf0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_tm0 = 1;
+          struct rtc_time * tm = (struct rtc_time *) malloc(_len_tm0*sizeof(struct rtc_time));
+          for(int _i0 = 0; _i0 < _len_tm0; _i0++) {
+              tm[_i0].tm_year = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_mon = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_mday = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_wday = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_hour = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          tm[_i0].tm_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = data_calc(buf,tm,len);
           printf("%d\n", benchRet); 
           free(buf);

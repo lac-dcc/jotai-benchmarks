@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -82,12 +84,6 @@ der_read_length(unsigned char **buf, int *bufsize)
 	return ret;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,9 +96,138 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_buf0 = 65025;
+          unsigned char ** buf = (unsigned char **) malloc(_len_buf0*sizeof(unsigned char *));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            int _len_buf1 = 1;
+            buf[_i0] = (unsigned char *) malloc(_len_buf1*sizeof(unsigned char));
+            for(int _i1 = 0; _i1 < _len_buf1; _i1++) {
+              buf[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int _len_bufsize0 = 65025;
+          int * bufsize = (int *) malloc(_len_bufsize0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_bufsize0; _i0++) {
+            bufsize[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = der_read_length(buf,bufsize);
+          printf("%d\n", benchRet); 
+          for(int i1 = 0; i1 < _len_buf0; i1++) {
+              free(buf[i1]);
+          }
+          free(buf);
+          free(bufsize);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_buf0 = 100;
+          unsigned char ** buf = (unsigned char **) malloc(_len_buf0*sizeof(unsigned char *));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            int _len_buf1 = 1;
+            buf[_i0] = (unsigned char *) malloc(_len_buf1*sizeof(unsigned char));
+            for(int _i1 = 0; _i1 < _len_buf1; _i1++) {
+              buf[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int _len_bufsize0 = 100;
+          int * bufsize = (int *) malloc(_len_bufsize0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_bufsize0; _i0++) {
+            bufsize[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = der_read_length(buf,bufsize);
+          printf("%d\n", benchRet); 
+          for(int i1 = 0; i1 < _len_buf0; i1++) {
+              free(buf[i1]);
+          }
+          free(buf);
+          free(bufsize);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_buf0 = 1;
           unsigned char ** buf = (unsigned char **) malloc(_len_buf0*sizeof(unsigned char *));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
@@ -112,15 +237,16 @@ int main(int argc, char *argv[]) {
               buf[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           int _len_bufsize0 = 1;
           int * bufsize = (int *) malloc(_len_bufsize0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_bufsize0; _i0++) {
             bufsize[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = der_read_length(buf,bufsize);
           printf("%d\n", benchRet); 
           for(int i1 = 0; i1 < _len_buf0; i1++) {
-            int _len_buf1 = 1;
               free(buf[i1]);
           }
           free(buf);

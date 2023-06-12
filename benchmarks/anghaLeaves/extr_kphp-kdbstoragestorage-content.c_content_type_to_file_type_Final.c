@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -93,12 +93,6 @@ int content_type_to_file_type (enum ContentType content_type) {
   return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -111,16 +105,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum ContentType content_type = 0;
+        
           int benchRet = content_type_to_file_type(content_type);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -85,12 +88,6 @@ __attribute__((used)) static int64_t guess_correct_pts(AVCodecContext *ctx,
     return pts;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,19 +100,187 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 55
+          // dynamic_instructions_O0 : 55
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 27
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
           long reordered_pts = 100;
+        
           long dts = 100;
+        
           int _len_ctx0 = 1;
           struct TYPE_3__ * ctx = (struct TYPE_3__ *) malloc(_len_ctx0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
-            ctx[_i0].pts_correction_num_faulty_dts = ((-2 * (next_i()%2)) + 1) * next_i();
-        ctx[_i0].pts_correction_last_dts = ((-2 * (next_i()%2)) + 1) * next_i();
-        ctx[_i0].pts_correction_num_faulty_pts = ((-2 * (next_i()%2)) + 1) * next_i();
-        ctx[_i0].pts_correction_last_pts = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctx[_i0].pts_correction_num_faulty_dts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].pts_correction_last_dts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].pts_correction_num_faulty_pts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].pts_correction_last_pts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          long benchRet = guess_correct_pts(ctx,reordered_pts,dts);
+          printf("%ld\n", benchRet); 
+          free(ctx);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 55
+          // dynamic_instructions_O0 : 55
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 27
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
+          long reordered_pts = 255;
+        
+          long dts = 255;
+        
+          int _len_ctx0 = 65025;
+          struct TYPE_3__ * ctx = (struct TYPE_3__ *) malloc(_len_ctx0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].pts_correction_num_faulty_dts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].pts_correction_last_dts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].pts_correction_num_faulty_pts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].pts_correction_last_pts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = guess_correct_pts(ctx,reordered_pts,dts);
+          printf("%ld\n", benchRet); 
+          free(ctx);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 55
+          // dynamic_instructions_O0 : 55
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 27
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
+          long reordered_pts = 10;
+        
+          long dts = 10;
+        
+          int _len_ctx0 = 100;
+          struct TYPE_3__ * ctx = (struct TYPE_3__ *) malloc(_len_ctx0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].pts_correction_num_faulty_dts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].pts_correction_last_dts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].pts_correction_num_faulty_pts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].pts_correction_last_pts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = guess_correct_pts(ctx,reordered_pts,dts);
+          printf("%ld\n", benchRet); 
+          free(ctx);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 55
+          // dynamic_instructions_O0 : 55
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 27
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
+          long reordered_pts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long dts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ctx0 = 1;
+          struct TYPE_3__ * ctx = (struct TYPE_3__ *) malloc(_len_ctx0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].pts_correction_num_faulty_dts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].pts_correction_last_dts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].pts_correction_num_faulty_pts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].pts_correction_last_pts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           long benchRet = guess_correct_pts(ctx,reordered_pts,dts);
           printf("%ld\n", benchRet); 
           free(ctx);

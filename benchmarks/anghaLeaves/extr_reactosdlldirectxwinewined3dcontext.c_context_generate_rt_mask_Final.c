@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static inline DWORD context_generate_rt_mask(GLenum buffer
     return buffer ? (1u << 31) | buffer : 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +81,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int buffer = 100;
+        
           unsigned int benchRet = context_generate_rt_mask(buffer);
           printf("%u\n", benchRet); 
         
@@ -95,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int buffer = 255;
+        
           unsigned int benchRet = context_generate_rt_mask(buffer);
           printf("%u\n", benchRet); 
         
@@ -104,12 +101,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int buffer = 10;
+        
           unsigned int benchRet = context_generate_rt_mask(buffer);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = context_generate_rt_mask(buffer);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

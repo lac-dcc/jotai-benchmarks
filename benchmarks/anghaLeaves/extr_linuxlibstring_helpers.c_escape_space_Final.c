@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            empty\n\
 \n\
 ");
 
@@ -90,12 +92,6 @@ __attribute__((used)) static bool escape_space(unsigned char c, char **dst, char
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -108,10 +104,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           unsigned char c = 100;
+        
           int _len_dst0 = 1;
           char ** dst = (char **) malloc(_len_dst0*sizeof(char *));
           for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
@@ -121,15 +141,126 @@ int main(int argc, char *argv[]) {
               dst[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           int _len_end0 = 1;
           char * end = (char *) malloc(_len_end0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_end0; _i0++) {
             end[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = escape_space(c,dst,end);
           printf("%d\n", benchRet); 
           for(int i1 = 0; i1 < _len_dst0; i1++) {
+              free(dst[i1]);
+          }
+          free(dst);
+          free(end);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          unsigned char c = 255;
+        
+          int _len_dst0 = 65025;
+          char ** dst = (char **) malloc(_len_dst0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
             int _len_dst1 = 1;
+            dst[_i0] = (char *) malloc(_len_dst1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_dst1; _i1++) {
+              dst[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int _len_end0 = 65025;
+          char * end = (char *) malloc(_len_end0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_end0; _i0++) {
+            end[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = escape_space(c,dst,end);
+          printf("%d\n", benchRet); 
+          for(int i1 = 0; i1 < _len_dst0; i1++) {
+              free(dst[i1]);
+          }
+          free(dst);
+          free(end);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          unsigned char c = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dst0 = 1;
+          char ** dst = (char **) malloc(_len_dst0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+            int _len_dst1 = 1;
+            dst[_i0] = (char *) malloc(_len_dst1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_dst1; _i1++) {
+              dst[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int _len_end0 = 1;
+          char * end = (char *) malloc(_len_end0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_end0; _i0++) {
+            end[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = escape_space(c,dst,end);
+          printf("%d\n", benchRet); 
+          for(int i1 = 0; i1 < _len_dst0; i1++) {
               free(dst[i1]);
           }
           free(dst);

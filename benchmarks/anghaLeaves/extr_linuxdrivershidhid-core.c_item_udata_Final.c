@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static u32 item_udata(struct hid_item *item)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,17 +82,131 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_item0 = 65025;
+          struct hid_item * item = (struct hid_item *) malloc(_len_item0*sizeof(struct hid_item));
+          for(int _i0 = 0; _i0 < _len_item0; _i0++) {
+              item[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          item[_i0].data.u32 = ((-2 * (next_i()%2)) + 1) * next_i();
+          item[_i0].data.u16 = ((-2 * (next_i()%2)) + 1) * next_i();
+          item[_i0].data.u8 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = item_udata(item);
+          printf("%d\n", benchRet); 
+          free(item);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_item0 = 100;
+          struct hid_item * item = (struct hid_item *) malloc(_len_item0*sizeof(struct hid_item));
+          for(int _i0 = 0; _i0 < _len_item0; _i0++) {
+              item[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          item[_i0].data.u32 = ((-2 * (next_i()%2)) + 1) * next_i();
+          item[_i0].data.u16 = ((-2 * (next_i()%2)) + 1) * next_i();
+          item[_i0].data.u8 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = item_udata(item);
+          printf("%d\n", benchRet); 
+          free(item);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_item0 = 1;
           struct hid_item * item = (struct hid_item *) malloc(_len_item0*sizeof(struct hid_item));
           for(int _i0 = 0; _i0 < _len_item0; _i0++) {
-            item[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
-        item[_i0].data.u32 = ((-2 * (next_i()%2)) + 1) * next_i();
-        item[_i0].data.u16 = ((-2 * (next_i()%2)) + 1) * next_i();
-        item[_i0].data.u8 = ((-2 * (next_i()%2)) + 1) * next_i();
+              item[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          item[_i0].data.u32 = ((-2 * (next_i()%2)) + 1) * next_i();
+          item[_i0].data.u16 = ((-2 * (next_i()%2)) + 1) * next_i();
+          item[_i0].data.u8 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = item_udata(item);
           printf("%d\n", benchRet); 
           free(item);

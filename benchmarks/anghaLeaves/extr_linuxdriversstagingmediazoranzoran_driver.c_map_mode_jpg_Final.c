@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ __attribute__((used)) static void map_mode_jpg(struct zoran_fh *fh, int play)
 	fh->buffers.num_buffers = jpg_nbufs;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,19 +87,82 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int play = 100;
+        
           int _len_fh0 = 1;
           struct zoran_fh * fh = (struct zoran_fh *) malloc(_len_fh0*sizeof(struct zoran_fh));
           for(int _i0 = 0; _i0 < _len_fh0; _i0++) {
-            fh[_i0].buffers.num_buffers = ((-2 * (next_i()%2)) + 1) * next_i();
-        fh[_i0].buffers.buffer_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        fh[_i0].map_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              fh[_i0].buffers.num_buffers = ((-2 * (next_i()%2)) + 1) * next_i();
+          fh[_i0].buffers.buffer_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          fh[_i0].map_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           map_mode_jpg(fh,play);
           free(fh);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int play = 255;
+        
+          int _len_fh0 = 65025;
+          struct zoran_fh * fh = (struct zoran_fh *) malloc(_len_fh0*sizeof(struct zoran_fh));
+          for(int _i0 = 0; _i0 < _len_fh0; _i0++) {
+              fh[_i0].buffers.num_buffers = ((-2 * (next_i()%2)) + 1) * next_i();
+          fh[_i0].buffers.buffer_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          fh[_i0].map_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          map_mode_jpg(fh,play);
+          free(fh);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int play = 10;
+        
+          int _len_fh0 = 100;
+          struct zoran_fh * fh = (struct zoran_fh *) malloc(_len_fh0*sizeof(struct zoran_fh));
+          for(int _i0 = 0; _i0 < _len_fh0; _i0++) {
+              fh[_i0].buffers.num_buffers = ((-2 * (next_i()%2)) + 1) * next_i();
+          fh[_i0].buffers.buffer_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          fh[_i0].map_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          map_mode_jpg(fh,play);
+          free(fh);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int play = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fh0 = 1;
+          struct zoran_fh * fh = (struct zoran_fh *) malloc(_len_fh0*sizeof(struct zoran_fh));
+          for(int _i0 = 0; _i0 < _len_fh0; _i0++) {
+              fh[_i0].buffers.num_buffers = ((-2 * (next_i()%2)) + 1) * next_i();
+          fh[_i0].buffers.buffer_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          fh[_i0].map_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          map_mode_jpg(fh,play);
+          free(fh);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static inline int pcxhr_stream_scheduled_get_pipe(struct p
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,28 +81,33 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_stream0 = 1;
+          int _len_stream0 = 65025;
           struct pcxhr_stream * stream = (struct pcxhr_stream *) malloc(_len_stream0*sizeof(struct pcxhr_stream));
           for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
-            stream[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+              stream[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_stream__i0__pipe0 = 1;
           stream[_i0].pipe = (struct pcxhr_pipe *) malloc(_len_stream__i0__pipe0*sizeof(struct pcxhr_pipe));
           for(int _j0 = 0; _j0 < _len_stream__i0__pipe0; _j0++) {
-            stream[_i0].pipe->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              stream[_i0].pipe->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
-          int _len_pipe0 = 1;
+        
+          int _len_pipe0 = 65025;
           struct pcxhr_pipe ** pipe = (struct pcxhr_pipe **) malloc(_len_pipe0*sizeof(struct pcxhr_pipe *));
           for(int _i0 = 0; _i0 < _len_pipe0; _i0++) {
             int _len_pipe1 = 1;
             pipe[_i0] = (struct pcxhr_pipe *) malloc(_len_pipe1*sizeof(struct pcxhr_pipe));
             for(int _i1 = 0; _i1 < _len_pipe1; _i1++) {
-              pipe[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+                pipe[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           int benchRet = pcxhr_stream_scheduled_get_pipe(stream,pipe);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_stream0; _aux++) {
@@ -114,14 +115,92 @@ int main(int argc, char *argv[]) {
           }
           free(stream);
           for(int i1 = 0; i1 < _len_pipe0; i1++) {
-            int _len_pipe1 = 1;
               free(pipe[i1]);
           }
           free(pipe);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_stream0 = 100;
+          struct pcxhr_stream * stream = (struct pcxhr_stream *) malloc(_len_stream0*sizeof(struct pcxhr_stream));
+          for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
+              stream[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_stream__i0__pipe0 = 1;
+          stream[_i0].pipe = (struct pcxhr_pipe *) malloc(_len_stream__i0__pipe0*sizeof(struct pcxhr_pipe));
+          for(int _j0 = 0; _j0 < _len_stream__i0__pipe0; _j0++) {
+              stream[_i0].pipe->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_pipe0 = 100;
+          struct pcxhr_pipe ** pipe = (struct pcxhr_pipe **) malloc(_len_pipe0*sizeof(struct pcxhr_pipe *));
+          for(int _i0 = 0; _i0 < _len_pipe0; _i0++) {
+            int _len_pipe1 = 1;
+            pipe[_i0] = (struct pcxhr_pipe *) malloc(_len_pipe1*sizeof(struct pcxhr_pipe));
+            for(int _i1 = 0; _i1 < _len_pipe1; _i1++) {
+                pipe[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int benchRet = pcxhr_stream_scheduled_get_pipe(stream,pipe);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_stream0; _aux++) {
+          free(stream[_aux].pipe);
+          }
+          free(stream);
+          for(int i1 = 0; i1 < _len_pipe0; i1++) {
+              free(pipe[i1]);
+          }
+          free(pipe);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_stream0 = 1;
+          struct pcxhr_stream * stream = (struct pcxhr_stream *) malloc(_len_stream0*sizeof(struct pcxhr_stream));
+          for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
+              stream[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_stream__i0__pipe0 = 1;
+          stream[_i0].pipe = (struct pcxhr_pipe *) malloc(_len_stream__i0__pipe0*sizeof(struct pcxhr_pipe));
+          for(int _j0 = 0; _j0 < _len_stream__i0__pipe0; _j0++) {
+              stream[_i0].pipe->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_pipe0 = 1;
+          struct pcxhr_pipe ** pipe = (struct pcxhr_pipe **) malloc(_len_pipe0*sizeof(struct pcxhr_pipe *));
+          for(int _i0 = 0; _i0 < _len_pipe0; _i0++) {
+            int _len_pipe1 = 1;
+            pipe[_i0] = (struct pcxhr_pipe *) malloc(_len_pipe1*sizeof(struct pcxhr_pipe));
+            for(int _i1 = 0; _i1 < _len_pipe1; _i1++) {
+                pipe[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int benchRet = pcxhr_stream_scheduled_get_pipe(stream,pipe);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_stream0; _aux++) {
+          free(stream[_aux].pipe);
+          }
+          free(stream);
+          for(int i1 = 0; i1 < _len_pipe0; i1++) {
+              free(pipe[i1]);
+          }
+          free(pipe);
+        
+        break;
+    }
     default:
         usage();
         break;

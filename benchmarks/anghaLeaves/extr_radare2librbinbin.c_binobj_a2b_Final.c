@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static ut64 binobj_a2b(RBinObject *o, ut64 addr) {
 	return o ? addr + o->baddr_shift : addr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,11 +81,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long addr = 100;
+        
           int _len_o0 = 1;
           struct TYPE_3__ * o = (struct TYPE_3__ *) malloc(_len_o0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_o0; _i0++) {
-            o[_i0].baddr_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+              o[_i0].baddr_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          long benchRet = binobj_a2b(o,addr);
+          printf("%ld\n", benchRet); 
+          free(o);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long addr = 255;
+        
+          int _len_o0 = 65025;
+          struct TYPE_3__ * o = (struct TYPE_3__ *) malloc(_len_o0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_o0; _i0++) {
+              o[_i0].baddr_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           long benchRet = binobj_a2b(o,addr);
           printf("%ld\n", benchRet); 
           free(o);
@@ -97,21 +114,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long addr = 10;
+        
           int _len_o0 = 100;
           struct TYPE_3__ * o = (struct TYPE_3__ *) malloc(_len_o0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_o0; _i0++) {
-            o[_i0].baddr_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+              o[_i0].baddr_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = binobj_a2b(o,addr);
           printf("%ld\n", benchRet); 
           free(o);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_o0 = 1;
+          struct TYPE_3__ * o = (struct TYPE_3__ *) malloc(_len_o0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_o0; _i0++) {
+              o[_i0].baddr_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = binobj_a2b(o,addr);
+          printf("%ld\n", benchRet); 
+          free(o);
+        
+        break;
+    }
     default:
         usage();
         break;

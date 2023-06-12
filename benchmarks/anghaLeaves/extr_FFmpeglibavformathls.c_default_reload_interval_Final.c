@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static int64_t default_reload_interval(struct playlist *pl
                           pls->target_duration;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,24 +79,160 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_pls0 = 1;
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_pls0 = 65025;
           struct playlist * pls = (struct playlist *) malloc(_len_pls0*sizeof(struct playlist));
           for(int _i0 = 0; _i0 < _len_pls0; _i0++) {
-            pls[_i0].n_segments = ((-2 * (next_i()%2)) + 1) * next_i();
-        pls[_i0].target_duration = ((-2 * (next_i()%2)) + 1) * next_i();
+              pls[_i0].n_segments = ((-2 * (next_i()%2)) + 1) * next_i();
+          pls[_i0].target_duration = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_pls__i0__segments0 = 1;
           pls[_i0].segments = (struct TYPE_2__ **) malloc(_len_pls__i0__segments0*sizeof(struct TYPE_2__ *));
           for(int _j0 = 0; _j0 < _len_pls__i0__segments0; _j0++) {
             int _len_pls__i0__segments1 = 1;
             pls[_i0].segments[_j0] = (struct TYPE_2__ *) malloc(_len_pls__i0__segments1*sizeof(struct TYPE_2__));
             for(int _j1 = 0; _j1 < _len_pls__i0__segments1; _j1++) {
-              pls[_i0].segments[_j0]->duration = ((-2 * (next_i()%2)) + 1) * next_i();
+                pls[_i0].segments[_j0]->duration = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           }
+        
+          int benchRet = default_reload_interval(pls);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pls0; _aux++) {
+          free(*(pls[_aux].segments));
+        free(pls[_aux].segments);
+          }
+          free(pls);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_pls0 = 100;
+          struct playlist * pls = (struct playlist *) malloc(_len_pls0*sizeof(struct playlist));
+          for(int _i0 = 0; _i0 < _len_pls0; _i0++) {
+              pls[_i0].n_segments = ((-2 * (next_i()%2)) + 1) * next_i();
+          pls[_i0].target_duration = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pls__i0__segments0 = 1;
+          pls[_i0].segments = (struct TYPE_2__ **) malloc(_len_pls__i0__segments0*sizeof(struct TYPE_2__ *));
+          for(int _j0 = 0; _j0 < _len_pls__i0__segments0; _j0++) {
+            int _len_pls__i0__segments1 = 1;
+            pls[_i0].segments[_j0] = (struct TYPE_2__ *) malloc(_len_pls__i0__segments1*sizeof(struct TYPE_2__));
+            for(int _j1 = 0; _j1 < _len_pls__i0__segments1; _j1++) {
+                pls[_i0].segments[_j0]->duration = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int benchRet = default_reload_interval(pls);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pls0; _aux++) {
+          free(*(pls[_aux].segments));
+        free(pls[_aux].segments);
+          }
+          free(pls);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_pls0 = 1;
+          struct playlist * pls = (struct playlist *) malloc(_len_pls0*sizeof(struct playlist));
+          for(int _i0 = 0; _i0 < _len_pls0; _i0++) {
+              pls[_i0].n_segments = ((-2 * (next_i()%2)) + 1) * next_i();
+          pls[_i0].target_duration = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pls__i0__segments0 = 1;
+          pls[_i0].segments = (struct TYPE_2__ **) malloc(_len_pls__i0__segments0*sizeof(struct TYPE_2__ *));
+          for(int _j0 = 0; _j0 < _len_pls__i0__segments0; _j0++) {
+            int _len_pls__i0__segments1 = 1;
+            pls[_i0].segments[_j0] = (struct TYPE_2__ *) malloc(_len_pls__i0__segments1*sizeof(struct TYPE_2__));
+            for(int _j1 = 0; _j1 < _len_pls__i0__segments1; _j1++) {
+                pls[_i0].segments[_j0]->duration = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
           int benchRet = default_reload_interval(pls);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_pls0; _aux++) {

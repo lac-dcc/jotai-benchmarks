@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -85,12 +88,6 @@ __attribute__((used)) static int setsize(unsigned long capacity, unsigned int *c
 	return (rv);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,21 +104,25 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long capacity = 100;
+        
           int _len_cyls0 = 1;
           unsigned int * cyls = (unsigned int *) malloc(_len_cyls0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_cyls0; _i0++) {
             cyls[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_hds0 = 1;
           unsigned int * hds = (unsigned int *) malloc(_len_hds0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_hds0; _i0++) {
             hds[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_secs0 = 1;
           unsigned int * secs = (unsigned int *) malloc(_len_secs0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_secs0; _i0++) {
             secs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = setsize(capacity,cyls,hds,secs);
           printf("%d\n", benchRet); 
           free(cyls);
@@ -130,7 +131,99 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long capacity = 255;
+        
+          int _len_cyls0 = 65025;
+          unsigned int * cyls = (unsigned int *) malloc(_len_cyls0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_cyls0; _i0++) {
+            cyls[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_hds0 = 65025;
+          unsigned int * hds = (unsigned int *) malloc(_len_hds0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_hds0; _i0++) {
+            hds[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_secs0 = 65025;
+          unsigned int * secs = (unsigned int *) malloc(_len_secs0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_secs0; _i0++) {
+            secs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = setsize(capacity,cyls,hds,secs);
+          printf("%d\n", benchRet); 
+          free(cyls);
+          free(hds);
+          free(secs);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long capacity = 10;
+        
+          int _len_cyls0 = 100;
+          unsigned int * cyls = (unsigned int *) malloc(_len_cyls0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_cyls0; _i0++) {
+            cyls[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_hds0 = 100;
+          unsigned int * hds = (unsigned int *) malloc(_len_hds0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_hds0; _i0++) {
+            hds[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_secs0 = 100;
+          unsigned int * secs = (unsigned int *) malloc(_len_secs0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_secs0; _i0++) {
+            secs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = setsize(capacity,cyls,hds,secs);
+          printf("%d\n", benchRet); 
+          free(cyls);
+          free(hds);
+          free(secs);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long capacity = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cyls0 = 1;
+          unsigned int * cyls = (unsigned int *) malloc(_len_cyls0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_cyls0; _i0++) {
+            cyls[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_hds0 = 1;
+          unsigned int * hds = (unsigned int *) malloc(_len_hds0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_hds0; _i0++) {
+            hds[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_secs0 = 1;
+          unsigned int * secs = (unsigned int *) malloc(_len_secs0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_secs0; _i0++) {
+            secs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = setsize(capacity,cyls,hds,secs);
+          printf("%d\n", benchRet); 
+          free(cyls);
+          free(hds);
+          free(secs);
+        
+        break;
+    }
     default:
         usage();
         break;

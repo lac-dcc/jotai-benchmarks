@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ int32_t dwc_otg_get_param_host_ls_low_power_phy_clk(dwc_otg_core_if_t * core_if)
 	return core_if->core_params->host_ls_low_power_phy_clk;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,18 +79,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_core_if0 = 1;
+          int _len_core_if0 = 65025;
           struct TYPE_5__ * core_if = (struct TYPE_5__ *) malloc(_len_core_if0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_core_if0; _i0++) {
               int _len_core_if__i0__core_params0 = 1;
           core_if[_i0].core_params = (struct TYPE_4__ *) malloc(_len_core_if__i0__core_params0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_core_if__i0__core_params0; _j0++) {
-            core_if[_i0].core_params->host_ls_low_power_phy_clk = ((-2 * (next_i()%2)) + 1) * next_i();
+              core_if[_i0].core_params->host_ls_low_power_phy_clk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = dwc_otg_get_param_host_ls_low_power_phy_clk(core_if);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_core_if0; _aux++) {
@@ -104,7 +103,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_core_if0 = 100;
+          struct TYPE_5__ * core_if = (struct TYPE_5__ *) malloc(_len_core_if0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_core_if0; _i0++) {
+              int _len_core_if__i0__core_params0 = 1;
+          core_if[_i0].core_params = (struct TYPE_4__ *) malloc(_len_core_if__i0__core_params0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_core_if__i0__core_params0; _j0++) {
+              core_if[_i0].core_params->host_ls_low_power_phy_clk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = dwc_otg_get_param_host_ls_low_power_phy_clk(core_if);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_core_if0; _aux++) {
+          free(core_if[_aux].core_params);
+          }
+          free(core_if);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_core_if0 = 1;
+          struct TYPE_5__ * core_if = (struct TYPE_5__ *) malloc(_len_core_if0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_core_if0; _i0++) {
+              int _len_core_if__i0__core_params0 = 1;
+          core_if[_i0].core_params = (struct TYPE_4__ *) malloc(_len_core_if__i0__core_params0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_core_if__i0__core_params0; _j0++) {
+              core_if[_i0].core_params->host_ls_low_power_phy_clk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = dwc_otg_get_param_host_ls_low_power_phy_clk(core_if);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_core_if0; _aux++) {
+          free(core_if[_aux].core_params);
+          }
+          free(core_if);
+        
+        break;
+    }
     default:
         usage();
         break;

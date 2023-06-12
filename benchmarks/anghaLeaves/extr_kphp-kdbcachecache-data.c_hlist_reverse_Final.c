@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -65,7 +66,6 @@ __attribute__((used)) static struct cache_uri *hlist_reverse (struct cache_uri *
   return A;
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct cache_uri *_allocate_L(int length, struct cache_uri *aux_L[]) {
@@ -93,7 +93,6 @@ void _delete_L(struct cache_uri *aux_L[], int aux_L_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,11 +105,70 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // linked
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 130011
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 60008
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 60008
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 60008
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 60008
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 60008
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 70007
+          // ------------------------------- 
+
+          struct cache_uri * aux_L[10000];
+          struct cache_uri * L = _allocate_L(10000, aux_L);
+        
+          struct cache_uri * benchRet = hlist_reverse(L);
+          _delete_L(aux_L, 10000);
+        
+        break;
+    }
+
+
+    // empty
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           struct cache_uri * aux_L[1];
           struct cache_uri * L = _allocate_L(1, aux_L);
+        
           struct cache_uri * benchRet = hlist_reverse(L);
           _delete_L(aux_L, 1);
         

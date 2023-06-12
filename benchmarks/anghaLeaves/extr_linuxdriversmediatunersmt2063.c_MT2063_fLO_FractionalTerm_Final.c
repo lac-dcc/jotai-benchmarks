@@ -67,12 +67,6 @@ __attribute__((used)) static u32 MT2063_fLO_FractionalTerm(u32 f_ref, u32 num, u
 	return (term1 << 14) + term2;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,8 +83,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int f_ref = 100;
+        
           int num = 100;
+        
           int denom = 100;
+        
           int benchRet = MT2063_fLO_FractionalTerm(f_ref,num,denom);
           printf("%d\n", benchRet); 
         
@@ -100,8 +97,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int f_ref = 255;
+        
           int num = 255;
+        
           int denom = 255;
+        
           int benchRet = MT2063_fLO_FractionalTerm(f_ref,num,denom);
           printf("%d\n", benchRet); 
         
@@ -111,14 +111,16 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int f_ref = 10;
+        
           int num = 10;
+        
           int denom = 10;
+        
           int benchRet = MT2063_fLO_FractionalTerm(f_ref,num,denom);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ catalog_is_valid(Catalog *catalog)
 	return catalog != NULL && catalog->initialized;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,28 +77,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_catalog0 = 1;
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_catalog0 = 65025;
           struct TYPE_3__ * catalog = (struct TYPE_3__ *) malloc(_len_catalog0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_catalog0; _i0++) {
-            catalog[_i0].initialized = ((-2 * (next_i()%2)) + 1) * next_i();
+              catalog[_i0].initialized = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = catalog_is_valid(catalog);
           printf("%d\n", benchRet); 
           free(catalog);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_catalog0 = 100;
           struct TYPE_3__ * catalog = (struct TYPE_3__ *) malloc(_len_catalog0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_catalog0; _i0++) {
-            catalog[_i0].initialized = ((-2 * (next_i()%2)) + 1) * next_i();
+              catalog[_i0].initialized = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = catalog_is_valid(catalog);
+          printf("%d\n", benchRet); 
+          free(catalog);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_catalog0 = 1;
+          struct TYPE_3__ * catalog = (struct TYPE_3__ *) malloc(_len_catalog0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_catalog0; _i0++) {
+              catalog[_i0].initialized = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = catalog_is_valid(catalog);
           printf("%d\n", benchRet); 
           free(catalog);

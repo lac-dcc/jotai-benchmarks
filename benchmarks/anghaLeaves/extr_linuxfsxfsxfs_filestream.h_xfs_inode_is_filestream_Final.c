@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ xfs_inode_is_filestream(
 		(ip->i_d.di_flags & XFS_DIFLAG_FILESTREAM);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,19 +83,146 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_ip0 = 1;
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_ip0 = 65025;
           struct xfs_inode * ip = (struct xfs_inode *) malloc(_len_ip0*sizeof(struct xfs_inode));
           for(int _i0 = 0; _i0 < _len_ip0; _i0++) {
-            ip[_i0].i_d.di_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              ip[_i0].i_d.di_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int _len_ip__i0__i_mount0 = 1;
           ip[_i0].i_mount = (struct TYPE_3__ *) malloc(_len_ip__i0__i_mount0*sizeof(struct TYPE_3__));
           for(int _j0 = 0; _j0 < _len_ip__i0__i_mount0; _j0++) {
-            ip[_i0].i_mount->m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              ip[_i0].i_mount->m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = xfs_inode_is_filestream(ip);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ip0; _aux++) {
+          free(ip[_aux].i_mount);
+          }
+          free(ip);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_ip0 = 100;
+          struct xfs_inode * ip = (struct xfs_inode *) malloc(_len_ip0*sizeof(struct xfs_inode));
+          for(int _i0 = 0; _i0 < _len_ip0; _i0++) {
+              ip[_i0].i_d.di_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ip__i0__i_mount0 = 1;
+          ip[_i0].i_mount = (struct TYPE_3__ *) malloc(_len_ip__i0__i_mount0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_ip__i0__i_mount0; _j0++) {
+              ip[_i0].i_mount->m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = xfs_inode_is_filestream(ip);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ip0; _aux++) {
+          free(ip[_aux].i_mount);
+          }
+          free(ip);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_ip0 = 1;
+          struct xfs_inode * ip = (struct xfs_inode *) malloc(_len_ip0*sizeof(struct xfs_inode));
+          for(int _i0 = 0; _i0 < _len_ip0; _i0++) {
+              ip[_i0].i_d.di_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ip__i0__i_mount0 = 1;
+          ip[_i0].i_mount = (struct TYPE_3__ *) malloc(_len_ip__i0__i_mount0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_ip__i0__i_mount0; _j0++) {
+              ip[_i0].i_mount->m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = xfs_inode_is_filestream(ip);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_ip0; _aux++) {

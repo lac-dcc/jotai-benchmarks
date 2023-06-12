@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ hdac_get_device_id(struct hdac_device *hdev, struct hdac_driver *drv)
 	return NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,25 +88,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_hdev0 = 65025;
+          struct hdac_device * hdev = (struct hdac_device *) malloc(_len_hdev0*sizeof(struct hdac_device));
+          for(int _i0 = 0; _i0 < _len_hdev0; _i0++) {
+              hdev[_i0].vendor_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].revision_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_drv0 = 65025;
+          struct hdac_driver * drv = (struct hdac_driver *) malloc(_len_drv0*sizeof(struct hdac_driver));
+          for(int _i0 = 0; _i0 < _len_drv0; _i0++) {
+              int _len_drv__i0__id_table0 = 1;
+          drv[_i0].id_table = (struct hda_device_id *) malloc(_len_drv__i0__id_table0*sizeof(struct hda_device_id));
+          for(int _j0 = 0; _j0 < _len_drv__i0__id_table0; _j0++) {
+              drv[_i0].id_table->vendor_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          drv[_i0].id_table->rev_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          const struct hda_device_id * benchRet = hdac_get_device_id(hdev,drv);
+          free(hdev);
+          for(int _aux = 0; _aux < _len_drv0; _aux++) {
+          free(drv[_aux].id_table);
+          }
+          free(drv);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_hdev0 = 100;
+          struct hdac_device * hdev = (struct hdac_device *) malloc(_len_hdev0*sizeof(struct hdac_device));
+          for(int _i0 = 0; _i0 < _len_hdev0; _i0++) {
+              hdev[_i0].vendor_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].revision_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_drv0 = 100;
+          struct hdac_driver * drv = (struct hdac_driver *) malloc(_len_drv0*sizeof(struct hdac_driver));
+          for(int _i0 = 0; _i0 < _len_drv0; _i0++) {
+              int _len_drv__i0__id_table0 = 1;
+          drv[_i0].id_table = (struct hda_device_id *) malloc(_len_drv__i0__id_table0*sizeof(struct hda_device_id));
+          for(int _j0 = 0; _j0 < _len_drv__i0__id_table0; _j0++) {
+              drv[_i0].id_table->vendor_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          drv[_i0].id_table->rev_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          const struct hda_device_id * benchRet = hdac_get_device_id(hdev,drv);
+          free(hdev);
+          for(int _aux = 0; _aux < _len_drv0; _aux++) {
+          free(drv[_aux].id_table);
+          }
+          free(drv);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int _len_hdev0 = 1;
           struct hdac_device * hdev = (struct hdac_device *) malloc(_len_hdev0*sizeof(struct hdac_device));
           for(int _i0 = 0; _i0 < _len_hdev0; _i0++) {
-            hdev[_i0].vendor_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdev[_i0].revision_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              hdev[_i0].vendor_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].revision_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_drv0 = 1;
           struct hdac_driver * drv = (struct hdac_driver *) malloc(_len_drv0*sizeof(struct hdac_driver));
           for(int _i0 = 0; _i0 < _len_drv0; _i0++) {
               int _len_drv__i0__id_table0 = 1;
           drv[_i0].id_table = (struct hda_device_id *) malloc(_len_drv__i0__id_table0*sizeof(struct hda_device_id));
           for(int _j0 = 0; _j0 < _len_drv__i0__id_table0; _j0++) {
-            drv[_i0].id_table->vendor_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        drv[_i0].id_table->rev_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              drv[_i0].id_table->vendor_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          drv[_i0].id_table->rev_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           const struct hda_device_id * benchRet = hdac_get_device_id(hdev,drv);
           free(hdev);
           for(int _aux = 0; _aux < _len_drv0; _aux++) {

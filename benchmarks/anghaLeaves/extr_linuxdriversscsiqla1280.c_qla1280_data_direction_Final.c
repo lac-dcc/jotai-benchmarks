@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -84,12 +85,6 @@ qla1280_data_direction(struct scsi_cmnd *cmnd)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,28 +97,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_cmnd0 = 1;
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_cmnd0 = 65025;
           struct scsi_cmnd * cmnd = (struct scsi_cmnd *) malloc(_len_cmnd0*sizeof(struct scsi_cmnd));
           for(int _i0 = 0; _i0 < _len_cmnd0; _i0++) {
-            cmnd[_i0].sc_data_direction = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmnd[_i0].sc_data_direction = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = qla1280_data_direction(cmnd);
           printf("%d\n", benchRet); 
           free(cmnd);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_cmnd0 = 100;
           struct scsi_cmnd * cmnd = (struct scsi_cmnd *) malloc(_len_cmnd0*sizeof(struct scsi_cmnd));
           for(int _i0 = 0; _i0 < _len_cmnd0; _i0++) {
-            cmnd[_i0].sc_data_direction = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmnd[_i0].sc_data_direction = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = qla1280_data_direction(cmnd);
+          printf("%d\n", benchRet); 
+          free(cmnd);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_cmnd0 = 1;
+          struct scsi_cmnd * cmnd = (struct scsi_cmnd *) malloc(_len_cmnd0*sizeof(struct scsi_cmnd));
+          for(int _i0 = 0; _i0 < _len_cmnd0; _i0++) {
+              cmnd[_i0].sc_data_direction = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = qla1280_data_direction(cmnd);
           printf("%d\n", benchRet); 
           free(cmnd);

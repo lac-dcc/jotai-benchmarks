@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline unsigned long get_line_length(int x, int bpp
 	return (unsigned long)((((x*bpp)+31)&~31) >> 3);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,7 +78,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int x = 100;
+        
           int bpp = 100;
+        
           unsigned long benchRet = get_line_length(x,bpp);
           printf("%lu\n", benchRet); 
         
@@ -93,7 +90,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int x = 255;
+        
           int bpp = 255;
+        
           unsigned long benchRet = get_line_length(x,bpp);
           printf("%lu\n", benchRet); 
         
@@ -103,13 +102,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int x = 10;
+        
           int bpp = 10;
+        
           unsigned long benchRet = get_line_length(x,bpp);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int bpp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = get_line_length(x,bpp);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

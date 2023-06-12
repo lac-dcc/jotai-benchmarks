@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static int intel_pt_get_exstop_ip(struct intel_pt_pkt *pac
 	return 2;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_packet0 = 1;
+          int _len_packet0 = 65025;
           struct intel_pt_pkt * packet = (struct intel_pt_pkt *) malloc(_len_packet0*sizeof(struct intel_pt_pkt));
           for(int _i0 = 0; _i0 < _len_packet0; _i0++) {
-            packet[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+              packet[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = intel_pt_get_exstop_ip(packet);
           printf("%d\n", benchRet); 
           free(packet);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_packet0 = 100;
           struct intel_pt_pkt * packet = (struct intel_pt_pkt *) malloc(_len_packet0*sizeof(struct intel_pt_pkt));
           for(int _i0 = 0; _i0 < _len_packet0; _i0++) {
-            packet[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+              packet[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = intel_pt_get_exstop_ip(packet);
           printf("%d\n", benchRet); 
           free(packet);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_packet0 = 1;
+          struct intel_pt_pkt * packet = (struct intel_pt_pkt *) malloc(_len_packet0*sizeof(struct intel_pt_pkt));
+          for(int _i0 = 0; _i0 < _len_packet0; _i0++) {
+              packet[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = intel_pt_get_exstop_ip(packet);
+          printf("%d\n", benchRet); 
+          free(packet);
+        
+        break;
+    }
     default:
         usage();
         break;

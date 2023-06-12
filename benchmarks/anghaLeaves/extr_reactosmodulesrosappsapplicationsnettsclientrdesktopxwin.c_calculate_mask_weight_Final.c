@@ -69,12 +69,6 @@ calculate_mask_weight(uint32 mask)
 	return weight;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,6 +85,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int mask = 100;
+        
           unsigned int benchRet = calculate_mask_weight(mask);
           printf("%u\n", benchRet); 
         
@@ -100,6 +95,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int mask = 255;
+        
           unsigned int benchRet = calculate_mask_weight(mask);
           printf("%u\n", benchRet); 
         
@@ -109,12 +105,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int mask = 10;
+        
           unsigned int benchRet = calculate_mask_weight(mask);
           printf("%u\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

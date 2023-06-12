@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -77,12 +79,6 @@ __attribute__((used)) static inline bool __tcm_is_in(struct tcm_pt *p, struct tc
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,29 +91,187 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 42
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_p0 = 65025;
+          struct tcm_pt * p = (struct tcm_pt *) malloc(_len_p0*sizeof(struct tcm_pt));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_a0 = 65025;
+          struct tcm_area * a = (struct tcm_area *) malloc(_len_a0*sizeof(struct tcm_area));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              int _len_a__i0__tcm0 = 1;
+          a[_i0].tcm = (struct TYPE_6__ *) malloc(_len_a__i0__tcm0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_a__i0__tcm0; _j0++) {
+              a[_i0].tcm->width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          a[_i0].p1.x = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].p1.y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          a[_i0].p0.x = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].p0.y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          a[_i0].is2d = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = __tcm_is_in(p,a);
+          printf("%d\n", benchRet); 
+          free(p);
+          for(int _aux = 0; _aux < _len_a0; _aux++) {
+          free(a[_aux].tcm);
+          }
+          free(a);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 42
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_p0 = 100;
+          struct tcm_pt * p = (struct tcm_pt *) malloc(_len_p0*sizeof(struct tcm_pt));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_a0 = 100;
+          struct tcm_area * a = (struct tcm_area *) malloc(_len_a0*sizeof(struct tcm_area));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              int _len_a__i0__tcm0 = 1;
+          a[_i0].tcm = (struct TYPE_6__ *) malloc(_len_a__i0__tcm0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_a__i0__tcm0; _j0++) {
+              a[_i0].tcm->width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          a[_i0].p1.x = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].p1.y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          a[_i0].p0.x = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].p0.y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          a[_i0].is2d = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = __tcm_is_in(p,a);
+          printf("%d\n", benchRet); 
+          free(p);
+          for(int _aux = 0; _aux < _len_a0; _aux++) {
+          free(a[_aux].tcm);
+          }
+          free(a);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 42
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int _len_p0 = 1;
           struct tcm_pt * p = (struct tcm_pt *) malloc(_len_p0*sizeof(struct tcm_pt));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_a0 = 1;
           struct tcm_area * a = (struct tcm_area *) malloc(_len_a0*sizeof(struct tcm_area));
           for(int _i0 = 0; _i0 < _len_a0; _i0++) {
               int _len_a__i0__tcm0 = 1;
           a[_i0].tcm = (struct TYPE_6__ *) malloc(_len_a__i0__tcm0*sizeof(struct TYPE_6__));
           for(int _j0 = 0; _j0 < _len_a__i0__tcm0; _j0++) {
-            a[_i0].tcm->width = ((-2 * (next_i()%2)) + 1) * next_i();
+              a[_i0].tcm->width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        a[_i0].p1.x = ((-2 * (next_i()%2)) + 1) * next_i();
-        a[_i0].p1.y = ((-2 * (next_i()%2)) + 1) * next_i();
-        a[_i0].p0.x = ((-2 * (next_i()%2)) + 1) * next_i();
-        a[_i0].p0.y = ((-2 * (next_i()%2)) + 1) * next_i();
-        a[_i0].is2d = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].p1.x = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].p1.y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          a[_i0].p0.x = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].p0.y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          a[_i0].is2d = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = __tcm_is_in(p,a);
           printf("%d\n", benchRet); 
           free(p);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static void sm_cache_init(struct sm_ftl *ftl)
 	/*memset(ftl->cache_data, 0xAA, ftl->block_size);*/
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,23 +78,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ftl0 = 1;
+          int _len_ftl0 = 65025;
           struct sm_ftl * ftl = (struct sm_ftl *) malloc(_len_ftl0*sizeof(struct sm_ftl));
           for(int _i0 = 0; _i0 < _len_ftl0; _i0++) {
-            ftl[_i0].cache_data_invalid_bitmap = ((-2 * (next_i()%2)) + 1) * next_i();
-        ftl[_i0].cache_clean = ((-2 * (next_i()%2)) + 1) * next_i();
-        ftl[_i0].cache_zone = ((-2 * (next_i()%2)) + 1) * next_i();
-        ftl[_i0].cache_block = ((-2 * (next_i()%2)) + 1) * next_i();
+              ftl[_i0].cache_data_invalid_bitmap = ((-2 * (next_i()%2)) + 1) * next_i();
+          ftl[_i0].cache_clean = ((-2 * (next_i()%2)) + 1) * next_i();
+          ftl[_i0].cache_zone = ((-2 * (next_i()%2)) + 1) * next_i();
+          ftl[_i0].cache_block = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           sm_cache_init(ftl);
           free(ftl);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ftl0 = 100;
+          struct sm_ftl * ftl = (struct sm_ftl *) malloc(_len_ftl0*sizeof(struct sm_ftl));
+          for(int _i0 = 0; _i0 < _len_ftl0; _i0++) {
+              ftl[_i0].cache_data_invalid_bitmap = ((-2 * (next_i()%2)) + 1) * next_i();
+          ftl[_i0].cache_clean = ((-2 * (next_i()%2)) + 1) * next_i();
+          ftl[_i0].cache_zone = ((-2 * (next_i()%2)) + 1) * next_i();
+          ftl[_i0].cache_block = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          sm_cache_init(ftl);
+          free(ftl);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ftl0 = 1;
+          struct sm_ftl * ftl = (struct sm_ftl *) malloc(_len_ftl0*sizeof(struct sm_ftl));
+          for(int _i0 = 0; _i0 < _len_ftl0; _i0++) {
+              ftl[_i0].cache_data_invalid_bitmap = ((-2 * (next_i()%2)) + 1) * next_i();
+          ftl[_i0].cache_clean = ((-2 * (next_i()%2)) + 1) * next_i();
+          ftl[_i0].cache_zone = ((-2 * (next_i()%2)) + 1) * next_i();
+          ftl[_i0].cache_block = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          sm_cache_init(ftl);
+          free(ftl);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static HRESULT TransactedSharedImpl_Flush(StorageBaseImpl*
   return S_OK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_iface0 = 1;
+          int _len_iface0 = 65025;
           int * iface = (int *) malloc(_len_iface0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_iface0; _i0++) {
             iface[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = TransactedSharedImpl_Flush(iface);
           printf("%d\n", benchRet); 
           free(iface);
@@ -104,13 +100,28 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_iface0; _i0++) {
             iface[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = TransactedSharedImpl_Flush(iface);
           printf("%d\n", benchRet); 
           free(iface);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_iface0 = 1;
+          int * iface = (int *) malloc(_len_iface0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_iface0; _i0++) {
+            iface[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = TransactedSharedImpl_Flush(iface);
+          printf("%d\n", benchRet); 
+          free(iface);
+        
+        break;
+    }
     default:
         usage();
         break;

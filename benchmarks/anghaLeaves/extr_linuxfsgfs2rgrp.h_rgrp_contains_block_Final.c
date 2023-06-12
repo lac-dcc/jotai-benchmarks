@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ __attribute__((used)) static inline int rgrp_contains_block(struct gfs2_rgrpd *r
 	return first <= block && block < last;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,19 +82,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long block = 100;
+        
           int _len_rgd0 = 1;
           struct gfs2_rgrpd * rgd = (struct gfs2_rgrpd *) malloc(_len_rgd0*sizeof(struct gfs2_rgrpd));
           for(int _i0 = 0; _i0 < _len_rgd0; _i0++) {
-            rgd[_i0].rd_data0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        rgd[_i0].rd_data = ((-2 * (next_i()%2)) + 1) * next_i();
+              rgd[_i0].rd_data0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgd[_i0].rd_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = rgrp_contains_block(rgd,block);
           printf("%d\n", benchRet); 
           free(rgd);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long block = 255;
+        
+          int _len_rgd0 = 65025;
+          struct gfs2_rgrpd * rgd = (struct gfs2_rgrpd *) malloc(_len_rgd0*sizeof(struct gfs2_rgrpd));
+          for(int _i0 = 0; _i0 < _len_rgd0; _i0++) {
+              rgd[_i0].rd_data0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgd[_i0].rd_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rgrp_contains_block(rgd,block);
+          printf("%d\n", benchRet); 
+          free(rgd);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long block = 10;
+        
+          int _len_rgd0 = 100;
+          struct gfs2_rgrpd * rgd = (struct gfs2_rgrpd *) malloc(_len_rgd0*sizeof(struct gfs2_rgrpd));
+          for(int _i0 = 0; _i0 < _len_rgd0; _i0++) {
+              rgd[_i0].rd_data0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgd[_i0].rd_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rgrp_contains_block(rgd,block);
+          printf("%d\n", benchRet); 
+          free(rgd);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long block = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rgd0 = 1;
+          struct gfs2_rgrpd * rgd = (struct gfs2_rgrpd *) malloc(_len_rgd0*sizeof(struct gfs2_rgrpd));
+          for(int _i0 = 0; _i0 < _len_rgd0; _i0++) {
+              rgd[_i0].rd_data0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgd[_i0].rd_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rgrp_contains_block(rgd,block);
+          printf("%d\n", benchRet); 
+          free(rgd);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +72,6 @@ unsigned long ata_pack_xfermask(unsigned long pio_mask,
 		((udma_mask << ATA_SHIFT_UDMA) & ATA_MASK_UDMA);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,8 +88,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long pio_mask = 100;
+        
           unsigned long mwdma_mask = 100;
+        
           unsigned long udma_mask = 100;
+        
           unsigned long benchRet = ata_pack_xfermask(pio_mask,mwdma_mask,udma_mask);
           printf("%lu\n", benchRet); 
         
@@ -104,8 +102,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long pio_mask = 255;
+        
           unsigned long mwdma_mask = 255;
+        
           unsigned long udma_mask = 255;
+        
           unsigned long benchRet = ata_pack_xfermask(pio_mask,mwdma_mask,udma_mask);
           printf("%lu\n", benchRet); 
         
@@ -115,14 +116,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long pio_mask = 10;
+        
           unsigned long mwdma_mask = 10;
+        
           unsigned long udma_mask = 10;
+        
           unsigned long benchRet = ata_pack_xfermask(pio_mask,mwdma_mask,udma_mask);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long pio_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long mwdma_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long udma_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = ata_pack_xfermask(pio_mask,mwdma_mask,udma_mask);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

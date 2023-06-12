@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ int3406_thermal_get_max_state(struct thermal_cooling_device *cooling_dev,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,24 +80,163 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_cooling_dev0 = 65025;
+          struct thermal_cooling_device * cooling_dev = (struct thermal_cooling_device *) malloc(_len_cooling_dev0*sizeof(struct thermal_cooling_device));
+          for(int _i0 = 0; _i0 < _len_cooling_dev0; _i0++) {
+              int _len_cooling_dev__i0__devdata0 = 1;
+          cooling_dev[_i0].devdata = (struct int3406_thermal_data *) malloc(_len_cooling_dev__i0__devdata0*sizeof(struct int3406_thermal_data));
+          for(int _j0 = 0; _j0 < _len_cooling_dev__i0__devdata0; _j0++) {
+              cooling_dev[_i0].devdata->upper_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          cooling_dev[_i0].devdata->lower_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_state0 = 65025;
+          unsigned long * state = (unsigned long *) malloc(_len_state0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+            state[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = int3406_thermal_get_max_state(cooling_dev,state);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cooling_dev0; _aux++) {
+          free(cooling_dev[_aux].devdata);
+          }
+          free(cooling_dev);
+          free(state);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_cooling_dev0 = 100;
+          struct thermal_cooling_device * cooling_dev = (struct thermal_cooling_device *) malloc(_len_cooling_dev0*sizeof(struct thermal_cooling_device));
+          for(int _i0 = 0; _i0 < _len_cooling_dev0; _i0++) {
+              int _len_cooling_dev__i0__devdata0 = 1;
+          cooling_dev[_i0].devdata = (struct int3406_thermal_data *) malloc(_len_cooling_dev__i0__devdata0*sizeof(struct int3406_thermal_data));
+          for(int _j0 = 0; _j0 < _len_cooling_dev__i0__devdata0; _j0++) {
+              cooling_dev[_i0].devdata->upper_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          cooling_dev[_i0].devdata->lower_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_state0 = 100;
+          unsigned long * state = (unsigned long *) malloc(_len_state0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+            state[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = int3406_thermal_get_max_state(cooling_dev,state);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cooling_dev0; _aux++) {
+          free(cooling_dev[_aux].devdata);
+          }
+          free(cooling_dev);
+          free(state);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_cooling_dev0 = 1;
           struct thermal_cooling_device * cooling_dev = (struct thermal_cooling_device *) malloc(_len_cooling_dev0*sizeof(struct thermal_cooling_device));
           for(int _i0 = 0; _i0 < _len_cooling_dev0; _i0++) {
               int _len_cooling_dev__i0__devdata0 = 1;
           cooling_dev[_i0].devdata = (struct int3406_thermal_data *) malloc(_len_cooling_dev__i0__devdata0*sizeof(struct int3406_thermal_data));
           for(int _j0 = 0; _j0 < _len_cooling_dev__i0__devdata0; _j0++) {
-            cooling_dev[_i0].devdata->upper_limit = ((-2 * (next_i()%2)) + 1) * next_i();
-        cooling_dev[_i0].devdata->lower_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+              cooling_dev[_i0].devdata->upper_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          cooling_dev[_i0].devdata->lower_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_state0 = 1;
           unsigned long * state = (unsigned long *) malloc(_len_state0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_state0; _i0++) {
             state[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = int3406_thermal_get_max_state(cooling_dev,state);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_cooling_dev0; _aux++) {

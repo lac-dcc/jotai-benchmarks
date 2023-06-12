@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static void fixed_133mhz_get_cdclk(struct drm_i915_private
 	cdclk_state->cdclk = 133333;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,26 +76,75 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dev_priv0 = 1;
+          int _len_dev_priv0 = 65025;
           struct drm_i915_private * dev_priv = (struct drm_i915_private *) malloc(_len_dev_priv0*sizeof(struct drm_i915_private));
           for(int _i0 = 0; _i0 < _len_dev_priv0; _i0++) {
-            dev_priv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev_priv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_cdclk_state0 = 1;
+        
+          int _len_cdclk_state0 = 65025;
           struct intel_cdclk_state * cdclk_state = (struct intel_cdclk_state *) malloc(_len_cdclk_state0*sizeof(struct intel_cdclk_state));
           for(int _i0 = 0; _i0 < _len_cdclk_state0; _i0++) {
-            cdclk_state[_i0].cdclk = ((-2 * (next_i()%2)) + 1) * next_i();
+              cdclk_state[_i0].cdclk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           fixed_133mhz_get_cdclk(dev_priv,cdclk_state);
           free(dev_priv);
           free(cdclk_state);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dev_priv0 = 100;
+          struct drm_i915_private * dev_priv = (struct drm_i915_private *) malloc(_len_dev_priv0*sizeof(struct drm_i915_private));
+          for(int _i0 = 0; _i0 < _len_dev_priv0; _i0++) {
+              dev_priv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cdclk_state0 = 100;
+          struct intel_cdclk_state * cdclk_state = (struct intel_cdclk_state *) malloc(_len_cdclk_state0*sizeof(struct intel_cdclk_state));
+          for(int _i0 = 0; _i0 < _len_cdclk_state0; _i0++) {
+              cdclk_state[_i0].cdclk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          fixed_133mhz_get_cdclk(dev_priv,cdclk_state);
+          free(dev_priv);
+          free(cdclk_state);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dev_priv0 = 1;
+          struct drm_i915_private * dev_priv = (struct drm_i915_private *) malloc(_len_dev_priv0*sizeof(struct drm_i915_private));
+          for(int _i0 = 0; _i0 < _len_dev_priv0; _i0++) {
+              dev_priv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cdclk_state0 = 1;
+          struct intel_cdclk_state * cdclk_state = (struct intel_cdclk_state *) malloc(_len_cdclk_state0*sizeof(struct intel_cdclk_state));
+          for(int _i0 = 0; _i0 < _len_cdclk_state0; _i0++) {
+              cdclk_state[_i0].cdclk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          fixed_133mhz_get_cdclk(dev_priv,cdclk_state);
+          free(dev_priv);
+          free(cdclk_state);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static void agraph_toggle_callgraph(RAGraph *g) {
 	g->force_update_seek = true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,16 +77,123 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_g0 = 65025;
+          struct TYPE_3__ * g = (struct TYPE_3__ *) malloc(_len_g0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_g0; _i0++) {
+              g[_i0].is_callgraph = ((-2 * (next_i()%2)) + 1) * next_i();
+          g[_i0].need_reload_nodes = ((-2 * (next_i()%2)) + 1) * next_i();
+          g[_i0].force_update_seek = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          agraph_toggle_callgraph(g);
+          free(g);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_g0 = 100;
+          struct TYPE_3__ * g = (struct TYPE_3__ *) malloc(_len_g0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_g0; _i0++) {
+              g[_i0].is_callgraph = ((-2 * (next_i()%2)) + 1) * next_i();
+          g[_i0].need_reload_nodes = ((-2 * (next_i()%2)) + 1) * next_i();
+          g[_i0].force_update_seek = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          agraph_toggle_callgraph(g);
+          free(g);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_g0 = 1;
           struct TYPE_3__ * g = (struct TYPE_3__ *) malloc(_len_g0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_g0; _i0++) {
-            g[_i0].is_callgraph = ((-2 * (next_i()%2)) + 1) * next_i();
-        g[_i0].need_reload_nodes = ((-2 * (next_i()%2)) + 1) * next_i();
-        g[_i0].force_update_seek = ((-2 * (next_i()%2)) + 1) * next_i();
+              g[_i0].is_callgraph = ((-2 * (next_i()%2)) + 1) * next_i();
+          g[_i0].need_reload_nodes = ((-2 * (next_i()%2)) + 1) * next_i();
+          g[_i0].force_update_seek = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           agraph_toggle_callgraph(g);
           free(g);
         

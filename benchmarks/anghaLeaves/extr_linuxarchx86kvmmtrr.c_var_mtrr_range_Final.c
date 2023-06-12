@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static void var_mtrr_range(struct kvm_mtrr_range *range, u
 	*end = (*start | ~mask) + 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,25 +85,160 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_range0 = 65025;
+          struct kvm_mtrr_range * range = (struct kvm_mtrr_range *) malloc(_len_range0*sizeof(struct kvm_mtrr_range));
+          for(int _i0 = 0; _i0 < _len_range0; _i0++) {
+              range[_i0].base = ((-2 * (next_i()%2)) + 1) * next_i();
+          range[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_start0 = 65025;
+          int * start = (int *) malloc(_len_start0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_start0; _i0++) {
+            start[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_end0 = 65025;
+          int * end = (int *) malloc(_len_end0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_end0; _i0++) {
+            end[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          var_mtrr_range(range,start,end);
+          free(range);
+          free(start);
+          free(end);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_range0 = 100;
+          struct kvm_mtrr_range * range = (struct kvm_mtrr_range *) malloc(_len_range0*sizeof(struct kvm_mtrr_range));
+          for(int _i0 = 0; _i0 < _len_range0; _i0++) {
+              range[_i0].base = ((-2 * (next_i()%2)) + 1) * next_i();
+          range[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_start0 = 100;
+          int * start = (int *) malloc(_len_start0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_start0; _i0++) {
+            start[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_end0 = 100;
+          int * end = (int *) malloc(_len_end0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_end0; _i0++) {
+            end[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          var_mtrr_range(range,start,end);
+          free(range);
+          free(start);
+          free(end);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int _len_range0 = 1;
           struct kvm_mtrr_range * range = (struct kvm_mtrr_range *) malloc(_len_range0*sizeof(struct kvm_mtrr_range));
           for(int _i0 = 0; _i0 < _len_range0; _i0++) {
-            range[_i0].base = ((-2 * (next_i()%2)) + 1) * next_i();
-        range[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              range[_i0].base = ((-2 * (next_i()%2)) + 1) * next_i();
+          range[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_start0 = 1;
           int * start = (int *) malloc(_len_start0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_start0; _i0++) {
             start[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_end0 = 1;
           int * end = (int *) malloc(_len_end0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_end0; _i0++) {
             end[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           var_mtrr_range(range,start,end);
           free(range);
           free(start);

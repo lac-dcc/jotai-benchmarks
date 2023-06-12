@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -104,12 +106,6 @@ __attribute__((used)) static void XGI_GetTVPtrIndex2(unsigned short *tempbx,
 		(*tempch)++;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -122,31 +118,183 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 54
+          // dynamic_instructions_O0 : 54
+          // ------------------------------- 
+          // static_instructions_O1 : 31
+          // dynamic_instructions_O1 : 31
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          int _len_tempbx0 = 65025;
+          unsigned short * tempbx = (unsigned short *) malloc(_len_tempbx0*sizeof(unsigned short));
+          for(int _i0 = 0; _i0 < _len_tempbx0; _i0++) {
+            tempbx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_tempcl0 = 65025;
+          unsigned char * tempcl = (unsigned char *) malloc(_len_tempcl0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_tempcl0; _i0++) {
+            tempcl[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_tempch0 = 65025;
+          unsigned char * tempch = (unsigned char *) malloc(_len_tempch0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_tempch0; _i0++) {
+            tempch[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pVBInfo0 = 65025;
+          struct vb_device_info * pVBInfo = (struct vb_device_info *) malloc(_len_pVBInfo0*sizeof(struct vb_device_info));
+          for(int _i0 = 0; _i0 < _len_pVBInfo0; _i0++) {
+              pVBInfo[_i0].TVInfo = ((-2 * (next_i()%2)) + 1) * next_i();
+          pVBInfo[_i0].VBType = ((-2 * (next_i()%2)) + 1) * next_i();
+          pVBInfo[_i0].VBInfo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          XGI_GetTVPtrIndex2(tempbx,tempcl,tempch,pVBInfo);
+          free(tempbx);
+          free(tempcl);
+          free(tempch);
+          free(pVBInfo);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 54
+          // dynamic_instructions_O0 : 54
+          // ------------------------------- 
+          // static_instructions_O1 : 31
+          // dynamic_instructions_O1 : 31
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          int _len_tempbx0 = 100;
+          unsigned short * tempbx = (unsigned short *) malloc(_len_tempbx0*sizeof(unsigned short));
+          for(int _i0 = 0; _i0 < _len_tempbx0; _i0++) {
+            tempbx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_tempcl0 = 100;
+          unsigned char * tempcl = (unsigned char *) malloc(_len_tempcl0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_tempcl0; _i0++) {
+            tempcl[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_tempch0 = 100;
+          unsigned char * tempch = (unsigned char *) malloc(_len_tempch0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_tempch0; _i0++) {
+            tempch[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pVBInfo0 = 100;
+          struct vb_device_info * pVBInfo = (struct vb_device_info *) malloc(_len_pVBInfo0*sizeof(struct vb_device_info));
+          for(int _i0 = 0; _i0 < _len_pVBInfo0; _i0++) {
+              pVBInfo[_i0].TVInfo = ((-2 * (next_i()%2)) + 1) * next_i();
+          pVBInfo[_i0].VBType = ((-2 * (next_i()%2)) + 1) * next_i();
+          pVBInfo[_i0].VBInfo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          XGI_GetTVPtrIndex2(tempbx,tempcl,tempch,pVBInfo);
+          free(tempbx);
+          free(tempcl);
+          free(tempch);
+          free(pVBInfo);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 54
+          // dynamic_instructions_O0 : 54
+          // ------------------------------- 
+          // static_instructions_O1 : 31
+          // dynamic_instructions_O1 : 31
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
           int _len_tempbx0 = 1;
           unsigned short * tempbx = (unsigned short *) malloc(_len_tempbx0*sizeof(unsigned short));
           for(int _i0 = 0; _i0 < _len_tempbx0; _i0++) {
             tempbx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_tempcl0 = 1;
           unsigned char * tempcl = (unsigned char *) malloc(_len_tempcl0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_tempcl0; _i0++) {
             tempcl[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_tempch0 = 1;
           unsigned char * tempch = (unsigned char *) malloc(_len_tempch0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_tempch0; _i0++) {
             tempch[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_pVBInfo0 = 1;
           struct vb_device_info * pVBInfo = (struct vb_device_info *) malloc(_len_pVBInfo0*sizeof(struct vb_device_info));
           for(int _i0 = 0; _i0 < _len_pVBInfo0; _i0++) {
-            pVBInfo[_i0].TVInfo = ((-2 * (next_i()%2)) + 1) * next_i();
-        pVBInfo[_i0].VBType = ((-2 * (next_i()%2)) + 1) * next_i();
-        pVBInfo[_i0].VBInfo = ((-2 * (next_i()%2)) + 1) * next_i();
+              pVBInfo[_i0].TVInfo = ((-2 * (next_i()%2)) + 1) * next_i();
+          pVBInfo[_i0].VBType = ((-2 * (next_i()%2)) + 1) * next_i();
+          pVBInfo[_i0].VBInfo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           XGI_GetTVPtrIndex2(tempbx,tempcl,tempch,pVBInfo);
           free(tempbx);
           free(tempcl);

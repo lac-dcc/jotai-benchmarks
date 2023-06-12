@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ pfi_kif_match(struct pfi_kif *rule_kif, struct pfi_kif *packet_kif)
 	return (0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,19 +79,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rule_kif0 = 1;
+          int _len_rule_kif0 = 65025;
           struct pfi_kif * rule_kif = (struct pfi_kif *) malloc(_len_rule_kif0*sizeof(struct pfi_kif));
           for(int _i0 = 0; _i0 < _len_rule_kif0; _i0++) {
-            rule_kif[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rule_kif[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_packet_kif0 = 1;
+        
+          int _len_packet_kif0 = 65025;
           struct pfi_kif * packet_kif = (struct pfi_kif *) malloc(_len_packet_kif0*sizeof(struct pfi_kif));
           for(int _i0 = 0; _i0 < _len_packet_kif0; _i0++) {
-            packet_kif[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              packet_kif[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = pfi_kif_match(rule_kif,packet_kif);
           printf("%d\n", benchRet); 
           free(rule_kif);
@@ -103,7 +103,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_rule_kif0 = 100;
+          struct pfi_kif * rule_kif = (struct pfi_kif *) malloc(_len_rule_kif0*sizeof(struct pfi_kif));
+          for(int _i0 = 0; _i0 < _len_rule_kif0; _i0++) {
+              rule_kif[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_packet_kif0 = 100;
+          struct pfi_kif * packet_kif = (struct pfi_kif *) malloc(_len_packet_kif0*sizeof(struct pfi_kif));
+          for(int _i0 = 0; _i0 < _len_packet_kif0; _i0++) {
+              packet_kif[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pfi_kif_match(rule_kif,packet_kif);
+          printf("%d\n", benchRet); 
+          free(rule_kif);
+          free(packet_kif);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_rule_kif0 = 1;
+          struct pfi_kif * rule_kif = (struct pfi_kif *) malloc(_len_rule_kif0*sizeof(struct pfi_kif));
+          for(int _i0 = 0; _i0 < _len_rule_kif0; _i0++) {
+              rule_kif[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_packet_kif0 = 1;
+          struct pfi_kif * packet_kif = (struct pfi_kif *) malloc(_len_packet_kif0*sizeof(struct pfi_kif));
+          for(int _i0 = 0; _i0 < _len_packet_kif0; _i0++) {
+              packet_kif[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pfi_kif_match(rule_kif,packet_kif);
+          printf("%d\n", benchRet); 
+          free(rule_kif);
+          free(packet_kif);
+        
+        break;
+    }
     default:
         usage();
         break;

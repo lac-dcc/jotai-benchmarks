@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ continuoustime_to_absolutetime(uint64_t conttime) {
 		return conttime - mach_absolutetime_asleep;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,6 +83,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long conttime = 100;
+        
           long benchRet = continuoustime_to_absolutetime(conttime);
           printf("%ld\n", benchRet); 
         
@@ -97,6 +93,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long conttime = 255;
+        
           long benchRet = continuoustime_to_absolutetime(conttime);
           printf("%ld\n", benchRet); 
         
@@ -106,12 +103,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long conttime = 10;
+        
           long benchRet = continuoustime_to_absolutetime(conttime);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long conttime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long benchRet = continuoustime_to_absolutetime(conttime);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

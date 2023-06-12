@@ -66,12 +66,6 @@ __attribute__((used)) static int printbinary(char *buf, unsigned long x, int nbi
 	return nbits;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,16 +78,42 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // big-arr-10x
     case 0:
     {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 199
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 101
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 101
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 101
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 101
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 99
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 121
+          // ------------------------------- 
+
           unsigned long x = 10;
+        
           int nbits = 10;
+        
           int _len_buf0 = 100;
           char * buf = (char *) malloc(_len_buf0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
             buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = printbinary(buf,x,nbits);
           printf("%d\n", benchRet); 
           free(buf);

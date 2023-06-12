@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ void rqst_page_get_length(struct smb_rqst *rqst, unsigned int page,
 		*len = rqst->rq_pagesz - rqst->rq_offset;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,28 +82,230 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           unsigned int page = 100;
+        
           int _len_rqst0 = 1;
           struct smb_rqst * rqst = (struct smb_rqst *) malloc(_len_rqst0*sizeof(struct smb_rqst));
           for(int _i0 = 0; _i0 < _len_rqst0; _i0++) {
-            rqst[_i0].rq_pagesz = ((-2 * (next_i()%2)) + 1) * next_i();
-        rqst[_i0].rq_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        rqst[_i0].rq_npages = ((-2 * (next_i()%2)) + 1) * next_i();
-        rqst[_i0].rq_tailsz = ((-2 * (next_i()%2)) + 1) * next_i();
+              rqst[_i0].rq_pagesz = ((-2 * (next_i()%2)) + 1) * next_i();
+          rqst[_i0].rq_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          rqst[_i0].rq_npages = ((-2 * (next_i()%2)) + 1) * next_i();
+          rqst[_i0].rq_tailsz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_len0 = 1;
           unsigned int * len = (unsigned int *) malloc(_len_len0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_len0; _i0++) {
             len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_offset0 = 1;
           unsigned int * offset = (unsigned int *) malloc(_len_offset0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_offset0; _i0++) {
             offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          rqst_page_get_length(rqst,page,len,offset);
+          free(rqst);
+          free(len);
+          free(offset);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          unsigned int page = 255;
+        
+          int _len_rqst0 = 65025;
+          struct smb_rqst * rqst = (struct smb_rqst *) malloc(_len_rqst0*sizeof(struct smb_rqst));
+          for(int _i0 = 0; _i0 < _len_rqst0; _i0++) {
+              rqst[_i0].rq_pagesz = ((-2 * (next_i()%2)) + 1) * next_i();
+          rqst[_i0].rq_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          rqst[_i0].rq_npages = ((-2 * (next_i()%2)) + 1) * next_i();
+          rqst[_i0].rq_tailsz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_len0 = 65025;
+          unsigned int * len = (unsigned int *) malloc(_len_len0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_len0; _i0++) {
+            len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_offset0 = 65025;
+          unsigned int * offset = (unsigned int *) malloc(_len_offset0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_offset0; _i0++) {
+            offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          rqst_page_get_length(rqst,page,len,offset);
+          free(rqst);
+          free(len);
+          free(offset);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          unsigned int page = 10;
+        
+          int _len_rqst0 = 100;
+          struct smb_rqst * rqst = (struct smb_rqst *) malloc(_len_rqst0*sizeof(struct smb_rqst));
+          for(int _i0 = 0; _i0 < _len_rqst0; _i0++) {
+              rqst[_i0].rq_pagesz = ((-2 * (next_i()%2)) + 1) * next_i();
+          rqst[_i0].rq_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          rqst[_i0].rq_npages = ((-2 * (next_i()%2)) + 1) * next_i();
+          rqst[_i0].rq_tailsz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_len0 = 100;
+          unsigned int * len = (unsigned int *) malloc(_len_len0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_len0; _i0++) {
+            len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_offset0 = 100;
+          unsigned int * offset = (unsigned int *) malloc(_len_offset0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_offset0; _i0++) {
+            offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          rqst_page_get_length(rqst,page,len,offset);
+          free(rqst);
+          free(len);
+          free(offset);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          unsigned int page = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rqst0 = 1;
+          struct smb_rqst * rqst = (struct smb_rqst *) malloc(_len_rqst0*sizeof(struct smb_rqst));
+          for(int _i0 = 0; _i0 < _len_rqst0; _i0++) {
+              rqst[_i0].rq_pagesz = ((-2 * (next_i()%2)) + 1) * next_i();
+          rqst[_i0].rq_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          rqst[_i0].rq_npages = ((-2 * (next_i()%2)) + 1) * next_i();
+          rqst[_i0].rq_tailsz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_len0 = 1;
+          unsigned int * len = (unsigned int *) malloc(_len_len0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_len0; _i0++) {
+            len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_offset0 = 1;
+          unsigned int * offset = (unsigned int *) malloc(_len_offset0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_offset0; _i0++) {
+            offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           rqst_page_get_length(rqst,page,len,offset);
           free(rqst);
           free(len);

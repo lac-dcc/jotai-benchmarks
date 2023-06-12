@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ __attribute__((used)) static inline int rbsp_write_bit(struct rbsp *rbsp, int bi
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,21 +85,200 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int bit = 100;
+        
           int _len_rbsp0 = 1;
           struct rbsp * rbsp = (struct rbsp *) malloc(_len_rbsp0*sizeof(struct rbsp));
           for(int _i0 = 0; _i0 < _len_rbsp0; _i0++) {
-            rbsp[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
-        rbsp[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              rbsp[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          rbsp[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_rbsp__i0__buf0 = 1;
           rbsp[_i0].buf = (int *) malloc(_len_rbsp__i0__buf0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_rbsp__i0__buf0; _j0++) {
             rbsp[_i0].buf[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int benchRet = rbsp_write_bit(rbsp,bit);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_rbsp0; _aux++) {
+          free(rbsp[_aux].buf);
+          }
+          free(rbsp);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int bit = 255;
+        
+          int _len_rbsp0 = 65025;
+          struct rbsp * rbsp = (struct rbsp *) malloc(_len_rbsp0*sizeof(struct rbsp));
+          for(int _i0 = 0; _i0 < _len_rbsp0; _i0++) {
+              rbsp[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          rbsp[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_rbsp__i0__buf0 = 1;
+          rbsp[_i0].buf = (int *) malloc(_len_rbsp__i0__buf0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_rbsp__i0__buf0; _j0++) {
+            rbsp[_i0].buf[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = rbsp_write_bit(rbsp,bit);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_rbsp0; _aux++) {
+          free(rbsp[_aux].buf);
+          }
+          free(rbsp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int bit = 10;
+        
+          int _len_rbsp0 = 100;
+          struct rbsp * rbsp = (struct rbsp *) malloc(_len_rbsp0*sizeof(struct rbsp));
+          for(int _i0 = 0; _i0 < _len_rbsp0; _i0++) {
+              rbsp[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          rbsp[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_rbsp__i0__buf0 = 1;
+          rbsp[_i0].buf = (int *) malloc(_len_rbsp__i0__buf0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_rbsp__i0__buf0; _j0++) {
+            rbsp[_i0].buf[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = rbsp_write_bit(rbsp,bit);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_rbsp0; _aux++) {
+          free(rbsp[_aux].buf);
+          }
+          free(rbsp);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int bit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rbsp0 = 1;
+          struct rbsp * rbsp = (struct rbsp *) malloc(_len_rbsp0*sizeof(struct rbsp));
+          for(int _i0 = 0; _i0 < _len_rbsp0; _i0++) {
+              rbsp[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          rbsp[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_rbsp__i0__buf0 = 1;
+          rbsp[_i0].buf = (int *) malloc(_len_rbsp__i0__buf0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_rbsp__i0__buf0; _j0++) {
+            rbsp[_i0].buf[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int benchRet = rbsp_write_bit(rbsp,bit);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_rbsp0; _aux++) {

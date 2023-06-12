@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static void init_vaapi_pic(VAPictureH264 *va_pic)
     va_pic->BottomFieldOrderCnt = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,17 +81,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_va_pic0 = 65025;
+          struct TYPE_3__ * va_pic = (struct TYPE_3__ *) malloc(_len_va_pic0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_va_pic0; _i0++) {
+              va_pic[_i0].BottomFieldOrderCnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          va_pic[_i0].TopFieldOrderCnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          va_pic[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          va_pic[_i0].picture_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          init_vaapi_pic(va_pic);
+          free(va_pic);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_va_pic0 = 100;
+          struct TYPE_3__ * va_pic = (struct TYPE_3__ *) malloc(_len_va_pic0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_va_pic0; _i0++) {
+              va_pic[_i0].BottomFieldOrderCnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          va_pic[_i0].TopFieldOrderCnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          va_pic[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          va_pic[_i0].picture_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          init_vaapi_pic(va_pic);
+          free(va_pic);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_va_pic0 = 1;
           struct TYPE_3__ * va_pic = (struct TYPE_3__ *) malloc(_len_va_pic0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_va_pic0; _i0++) {
-            va_pic[_i0].BottomFieldOrderCnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        va_pic[_i0].TopFieldOrderCnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        va_pic[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        va_pic[_i0].picture_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              va_pic[_i0].BottomFieldOrderCnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          va_pic[_i0].TopFieldOrderCnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          va_pic[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          va_pic[_i0].picture_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           init_vaapi_pic(va_pic);
           free(va_pic);
         

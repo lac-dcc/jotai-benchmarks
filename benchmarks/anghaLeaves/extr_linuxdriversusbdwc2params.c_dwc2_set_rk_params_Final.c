@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static void dwc2_set_rk_params(struct dwc2_hsotg *hsotg)
 		GAHBCFG_HBSTLEN_SHIFT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,18 +85,132 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_hsotg0 = 65025;
+          struct dwc2_hsotg * hsotg = (struct dwc2_hsotg *) malloc(_len_hsotg0*sizeof(struct dwc2_hsotg));
+          for(int _i0 = 0; _i0 < _len_hsotg0; _i0++) {
+              hsotg[_i0].params.host_rx_fifo_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          hsotg[_i0].params.host_nperio_tx_fifo_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          hsotg[_i0].params.host_perio_tx_fifo_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          hsotg[_i0].params.ahbcfg = ((-2 * (next_i()%2)) + 1) * next_i();
+          hsotg[_i0].params.otg_cap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          dwc2_set_rk_params(hsotg);
+          free(hsotg);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_hsotg0 = 100;
+          struct dwc2_hsotg * hsotg = (struct dwc2_hsotg *) malloc(_len_hsotg0*sizeof(struct dwc2_hsotg));
+          for(int _i0 = 0; _i0 < _len_hsotg0; _i0++) {
+              hsotg[_i0].params.host_rx_fifo_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          hsotg[_i0].params.host_nperio_tx_fifo_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          hsotg[_i0].params.host_perio_tx_fifo_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          hsotg[_i0].params.ahbcfg = ((-2 * (next_i()%2)) + 1) * next_i();
+          hsotg[_i0].params.otg_cap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          dwc2_set_rk_params(hsotg);
+          free(hsotg);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int _len_hsotg0 = 1;
           struct dwc2_hsotg * hsotg = (struct dwc2_hsotg *) malloc(_len_hsotg0*sizeof(struct dwc2_hsotg));
           for(int _i0 = 0; _i0 < _len_hsotg0; _i0++) {
-            hsotg[_i0].params.host_rx_fifo_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        hsotg[_i0].params.host_nperio_tx_fifo_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        hsotg[_i0].params.host_perio_tx_fifo_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        hsotg[_i0].params.ahbcfg = ((-2 * (next_i()%2)) + 1) * next_i();
-        hsotg[_i0].params.otg_cap = ((-2 * (next_i()%2)) + 1) * next_i();
+              hsotg[_i0].params.host_rx_fifo_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          hsotg[_i0].params.host_nperio_tx_fifo_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          hsotg[_i0].params.host_perio_tx_fifo_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          hsotg[_i0].params.ahbcfg = ((-2 * (next_i()%2)) + 1) * next_i();
+          hsotg[_i0].params.otg_cap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           dwc2_set_rk_params(hsotg);
           free(hsotg);
         

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ int tsk_fork_get_node(struct task_struct *tsk)
 	return NUMA_NO_NODE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,14 +79,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_tsk0 = 1;
+          int _len_tsk0 = 65025;
           struct task_struct * tsk = (struct task_struct *) malloc(_len_tsk0*sizeof(struct task_struct));
           for(int _i0 = 0; _i0 < _len_tsk0; _i0++) {
-            tsk[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              tsk[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = tsk_fork_get_node(tsk);
           printf("%d\n", benchRet); 
           free(tsk);
@@ -104,15 +101,32 @@ int main(int argc, char *argv[]) {
           int _len_tsk0 = 100;
           struct task_struct * tsk = (struct task_struct *) malloc(_len_tsk0*sizeof(struct task_struct));
           for(int _i0 = 0; _i0 < _len_tsk0; _i0++) {
-            tsk[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              tsk[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = tsk_fork_get_node(tsk);
           printf("%d\n", benchRet); 
           free(tsk);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_tsk0 = 1;
+          struct task_struct * tsk = (struct task_struct *) malloc(_len_tsk0*sizeof(struct task_struct));
+          for(int _i0 = 0; _i0 < _len_tsk0; _i0++) {
+              tsk[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = tsk_fork_get_node(tsk);
+          printf("%d\n", benchRet); 
+          free(tsk);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -144,12 +145,6 @@ calc_value4 (unsigned sig,
     return(v);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -162,37 +157,160 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 67
+          // dynamic_instructions_O0 : 67
+          // ------------------------------- 
+          // static_instructions_O1 : 64
+          // dynamic_instructions_O1 : 64
+          // ------------------------------- 
+          // static_instructions_O2 : 64
+          // dynamic_instructions_O2 : 64
+          // ------------------------------- 
+          // static_instructions_O3 : 64
+          // dynamic_instructions_O3 : 64
+          // ------------------------------- 
+          // static_instructions_Ofast : 64
+          // dynamic_instructions_Ofast : 64
+          // ------------------------------- 
+          // static_instructions_Os : 64
+          // dynamic_instructions_Os : 64
+          // ------------------------------- 
+          // static_instructions_Oz : 67
+          // dynamic_instructions_Oz : 67
+          // ------------------------------- 
+
           unsigned int sig = 100;
+        
           unsigned int n = 100;
+        
           unsigned int wmax = 100;
+        
           unsigned int nonarrow = 100;
+        
           int benchRet = calc_value4(sig,n,wmax,nonarrow);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 67
+          // dynamic_instructions_O0 : 67
+          // ------------------------------- 
+          // static_instructions_O1 : 64
+          // dynamic_instructions_O1 : 64
+          // ------------------------------- 
+          // static_instructions_O2 : 64
+          // dynamic_instructions_O2 : 64
+          // ------------------------------- 
+          // static_instructions_O3 : 64
+          // dynamic_instructions_O3 : 64
+          // ------------------------------- 
+          // static_instructions_Ofast : 64
+          // dynamic_instructions_Ofast : 64
+          // ------------------------------- 
+          // static_instructions_Os : 64
+          // dynamic_instructions_Os : 64
+          // ------------------------------- 
+          // static_instructions_Oz : 67
+          // dynamic_instructions_Oz : 67
+          // ------------------------------- 
+
           unsigned int sig = 255;
+        
           unsigned int n = 255;
+        
           unsigned int wmax = 255;
+        
           unsigned int nonarrow = 255;
+        
           int benchRet = calc_value4(sig,n,wmax,nonarrow);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 55
+          // dynamic_instructions_O0 : 55
+          // ------------------------------- 
+          // static_instructions_O1 : 47
+          // dynamic_instructions_O1 : 47
+          // ------------------------------- 
+          // static_instructions_O2 : 46
+          // dynamic_instructions_O2 : 46
+          // ------------------------------- 
+          // static_instructions_O3 : 46
+          // dynamic_instructions_O3 : 46
+          // ------------------------------- 
+          // static_instructions_Ofast : 46
+          // dynamic_instructions_Ofast : 46
+          // ------------------------------- 
+          // static_instructions_Os : 46
+          // dynamic_instructions_Os : 46
+          // ------------------------------- 
+          // static_instructions_Oz : 50
+          // dynamic_instructions_Oz : 50
+          // ------------------------------- 
+
           unsigned int sig = 10;
+        
           unsigned int n = 10;
+        
           unsigned int wmax = 10;
+        
           unsigned int nonarrow = 10;
+        
+          int benchRet = calc_value4(sig,n,wmax,nonarrow);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 130
+          // dynamic_instructions_O0 : 130
+          // ------------------------------- 
+          // static_instructions_O1 : 122
+          // dynamic_instructions_O1 : 122
+          // ------------------------------- 
+          // static_instructions_O2 : 121
+          // dynamic_instructions_O2 : 121
+          // ------------------------------- 
+          // static_instructions_O3 : 121
+          // dynamic_instructions_O3 : 121
+          // ------------------------------- 
+          // static_instructions_Ofast : 121
+          // dynamic_instructions_Ofast : 121
+          // ------------------------------- 
+          // static_instructions_Os : 121
+          // dynamic_instructions_Os : 121
+          // ------------------------------- 
+          // static_instructions_Oz : 123
+          // dynamic_instructions_Oz : 123
+          // ------------------------------- 
+
+          unsigned int sig = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int wmax = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int nonarrow = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = calc_value4(sig,n,wmax,nonarrow);
           printf("%d\n", benchRet); 
         

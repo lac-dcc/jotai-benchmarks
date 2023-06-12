@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -61,12 +61,6 @@ __attribute__((used)) static inline bool is_migrate_highatomic(enum migratetype 
 	return migratetype == MIGRATE_HIGHATOMIC;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,16 +73,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum migratetype migratetype = 0;
+        
           int benchRet = is_migrate_highatomic(migratetype);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

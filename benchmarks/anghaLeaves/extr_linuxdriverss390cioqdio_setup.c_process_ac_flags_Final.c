@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +79,6 @@ __attribute__((used)) static void process_ac_flags(struct qdio_irq *irq_ptr, uns
 		irq_ptr->siga_flag.sync_out_after_pci = 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,19 +91,184 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           unsigned char qdioac = 100;
+        
           int _len_irq_ptr0 = 1;
           struct qdio_irq * irq_ptr = (struct qdio_irq *) malloc(_len_irq_ptr0*sizeof(struct qdio_irq));
           for(int _i0 = 0; _i0 < _len_irq_ptr0; _i0++) {
-            irq_ptr[_i0].siga_flag.input = ((-2 * (next_i()%2)) + 1) * next_i();
-        irq_ptr[_i0].siga_flag.output = ((-2 * (next_i()%2)) + 1) * next_i();
-        irq_ptr[_i0].siga_flag.sync = ((-2 * (next_i()%2)) + 1) * next_i();
-        irq_ptr[_i0].siga_flag.sync_after_ai = ((-2 * (next_i()%2)) + 1) * next_i();
-        irq_ptr[_i0].siga_flag.sync_out_after_pci = ((-2 * (next_i()%2)) + 1) * next_i();
+              irq_ptr[_i0].siga_flag.input = ((-2 * (next_i()%2)) + 1) * next_i();
+          irq_ptr[_i0].siga_flag.output = ((-2 * (next_i()%2)) + 1) * next_i();
+          irq_ptr[_i0].siga_flag.sync = ((-2 * (next_i()%2)) + 1) * next_i();
+          irq_ptr[_i0].siga_flag.sync_after_ai = ((-2 * (next_i()%2)) + 1) * next_i();
+          irq_ptr[_i0].siga_flag.sync_out_after_pci = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          process_ac_flags(irq_ptr,qdioac);
+          free(irq_ptr);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          unsigned char qdioac = 255;
+        
+          int _len_irq_ptr0 = 65025;
+          struct qdio_irq * irq_ptr = (struct qdio_irq *) malloc(_len_irq_ptr0*sizeof(struct qdio_irq));
+          for(int _i0 = 0; _i0 < _len_irq_ptr0; _i0++) {
+              irq_ptr[_i0].siga_flag.input = ((-2 * (next_i()%2)) + 1) * next_i();
+          irq_ptr[_i0].siga_flag.output = ((-2 * (next_i()%2)) + 1) * next_i();
+          irq_ptr[_i0].siga_flag.sync = ((-2 * (next_i()%2)) + 1) * next_i();
+          irq_ptr[_i0].siga_flag.sync_after_ai = ((-2 * (next_i()%2)) + 1) * next_i();
+          irq_ptr[_i0].siga_flag.sync_out_after_pci = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          process_ac_flags(irq_ptr,qdioac);
+          free(irq_ptr);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          unsigned char qdioac = 10;
+        
+          int _len_irq_ptr0 = 100;
+          struct qdio_irq * irq_ptr = (struct qdio_irq *) malloc(_len_irq_ptr0*sizeof(struct qdio_irq));
+          for(int _i0 = 0; _i0 < _len_irq_ptr0; _i0++) {
+              irq_ptr[_i0].siga_flag.input = ((-2 * (next_i()%2)) + 1) * next_i();
+          irq_ptr[_i0].siga_flag.output = ((-2 * (next_i()%2)) + 1) * next_i();
+          irq_ptr[_i0].siga_flag.sync = ((-2 * (next_i()%2)) + 1) * next_i();
+          irq_ptr[_i0].siga_flag.sync_after_ai = ((-2 * (next_i()%2)) + 1) * next_i();
+          irq_ptr[_i0].siga_flag.sync_out_after_pci = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          process_ac_flags(irq_ptr,qdioac);
+          free(irq_ptr);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          unsigned char qdioac = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_irq_ptr0 = 1;
+          struct qdio_irq * irq_ptr = (struct qdio_irq *) malloc(_len_irq_ptr0*sizeof(struct qdio_irq));
+          for(int _i0 = 0; _i0 < _len_irq_ptr0; _i0++) {
+              irq_ptr[_i0].siga_flag.input = ((-2 * (next_i()%2)) + 1) * next_i();
+          irq_ptr[_i0].siga_flag.output = ((-2 * (next_i()%2)) + 1) * next_i();
+          irq_ptr[_i0].siga_flag.sync = ((-2 * (next_i()%2)) + 1) * next_i();
+          irq_ptr[_i0].siga_flag.sync_after_ai = ((-2 * (next_i()%2)) + 1) * next_i();
+          irq_ptr[_i0].siga_flag.sync_out_after_pci = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           process_ac_flags(irq_ptr,qdioac);
           free(irq_ptr);
         

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -93,12 +95,6 @@ __attribute__((used)) static int find_single_uframe(dwc_otg_hcd_t * _hcd, dwc_ot
 	return ret;
  }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -111,9 +107,158 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 48
+          // dynamic_instructions_O0 : 48
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len__hcd0 = 65025;
+          struct TYPE_6__ * _hcd = (struct TYPE_6__ *) malloc(_len__hcd0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len__hcd0; _i0++) {
+              int _len__hcd__i0__frame_usecs0 = 1;
+          _hcd[_i0].frame_usecs = (unsigned short *) malloc(_len__hcd__i0__frame_usecs0*sizeof(unsigned short));
+          for(int _j0 = 0; _j0 < _len__hcd__i0__frame_usecs0; _j0++) {
+            _hcd[_i0].frame_usecs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len__qh0 = 65025;
+          struct TYPE_5__ * _qh = (struct TYPE_5__ *) malloc(_len__qh0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len__qh0; _i0++) {
+              _qh[_i0].usecs = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len__qh__i0__frame_usecs0 = 1;
+          _qh[_i0].frame_usecs = (unsigned short *) malloc(_len__qh__i0__frame_usecs0*sizeof(unsigned short));
+          for(int _j0 = 0; _j0 < _len__qh__i0__frame_usecs0; _j0++) {
+            _qh[_i0].frame_usecs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = find_single_uframe(_hcd,_qh);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len__hcd0; _aux++) {
+          free(_hcd[_aux].frame_usecs);
+          }
+          free(_hcd);
+          for(int _aux = 0; _aux < _len__qh0; _aux++) {
+          free(_qh[_aux].frame_usecs);
+          }
+          free(_qh);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 48
+          // dynamic_instructions_O0 : 48
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len__hcd0 = 100;
+          struct TYPE_6__ * _hcd = (struct TYPE_6__ *) malloc(_len__hcd0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len__hcd0; _i0++) {
+              int _len__hcd__i0__frame_usecs0 = 1;
+          _hcd[_i0].frame_usecs = (unsigned short *) malloc(_len__hcd__i0__frame_usecs0*sizeof(unsigned short));
+          for(int _j0 = 0; _j0 < _len__hcd__i0__frame_usecs0; _j0++) {
+            _hcd[_i0].frame_usecs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len__qh0 = 100;
+          struct TYPE_5__ * _qh = (struct TYPE_5__ *) malloc(_len__qh0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len__qh0; _i0++) {
+              _qh[_i0].usecs = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len__qh__i0__frame_usecs0 = 1;
+          _qh[_i0].frame_usecs = (unsigned short *) malloc(_len__qh__i0__frame_usecs0*sizeof(unsigned short));
+          for(int _j0 = 0; _j0 < _len__qh__i0__frame_usecs0; _j0++) {
+            _qh[_i0].frame_usecs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = find_single_uframe(_hcd,_qh);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len__hcd0; _aux++) {
+          free(_hcd[_aux].frame_usecs);
+          }
+          free(_hcd);
+          for(int _aux = 0; _aux < _len__qh0; _aux++) {
+          free(_qh[_aux].frame_usecs);
+          }
+          free(_qh);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 48
+          // dynamic_instructions_O0 : 48
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int _len__hcd0 = 1;
           struct TYPE_6__ * _hcd = (struct TYPE_6__ *) malloc(_len__hcd0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len__hcd0; _i0++) {
@@ -122,17 +267,21 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len__hcd__i0__frame_usecs0; _j0++) {
             _hcd[_i0].frame_usecs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int _len__qh0 = 1;
           struct TYPE_5__ * _qh = (struct TYPE_5__ *) malloc(_len__qh0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len__qh0; _i0++) {
-            _qh[_i0].usecs = ((-2 * (next_i()%2)) + 1) * next_i();
+              _qh[_i0].usecs = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len__qh__i0__frame_usecs0 = 1;
           _qh[_i0].frame_usecs = (unsigned short *) malloc(_len__qh__i0__frame_usecs0*sizeof(unsigned short));
           for(int _j0 = 0; _j0 < _len__qh__i0__frame_usecs0; _j0++) {
             _qh[_i0].frame_usecs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = find_single_uframe(_hcd,_qh);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len__hcd0; _aux++) {

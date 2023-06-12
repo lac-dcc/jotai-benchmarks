@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -81,12 +84,6 @@ __attribute__((used)) static void pathspec_match_context_init(
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,18 +96,180 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int disable_fnmatch = 100;
+        
           int casefold = 100;
+        
           int _len_ctxt0 = 1;
           struct pathspec_match_context * ctxt = (struct pathspec_match_context *) malloc(_len_ctxt0*sizeof(struct pathspec_match_context));
           for(int _i0 = 0; _i0 < _len_ctxt0; _i0++) {
-            ctxt[_i0].fnmatch_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        ctxt[_i0].strncomp = ((-2 * (next_i()%2)) + 1) * next_i();
-        ctxt[_i0].strcomp = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctxt[_i0].fnmatch_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctxt[_i0].strncomp = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctxt[_i0].strcomp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          pathspec_match_context_init(ctxt,disable_fnmatch,casefold);
+          free(ctxt);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int disable_fnmatch = 255;
+        
+          int casefold = 255;
+        
+          int _len_ctxt0 = 65025;
+          struct pathspec_match_context * ctxt = (struct pathspec_match_context *) malloc(_len_ctxt0*sizeof(struct pathspec_match_context));
+          for(int _i0 = 0; _i0 < _len_ctxt0; _i0++) {
+              ctxt[_i0].fnmatch_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctxt[_i0].strncomp = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctxt[_i0].strcomp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          pathspec_match_context_init(ctxt,disable_fnmatch,casefold);
+          free(ctxt);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int disable_fnmatch = 10;
+        
+          int casefold = 10;
+        
+          int _len_ctxt0 = 100;
+          struct pathspec_match_context * ctxt = (struct pathspec_match_context *) malloc(_len_ctxt0*sizeof(struct pathspec_match_context));
+          for(int _i0 = 0; _i0 < _len_ctxt0; _i0++) {
+              ctxt[_i0].fnmatch_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctxt[_i0].strncomp = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctxt[_i0].strcomp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          pathspec_match_context_init(ctxt,disable_fnmatch,casefold);
+          free(ctxt);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int disable_fnmatch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int casefold = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ctxt0 = 1;
+          struct pathspec_match_context * ctxt = (struct pathspec_match_context *) malloc(_len_ctxt0*sizeof(struct pathspec_match_context));
+          for(int _i0 = 0; _i0 < _len_ctxt0; _i0++) {
+              ctxt[_i0].fnmatch_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctxt[_i0].strncomp = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctxt[_i0].strcomp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           pathspec_match_context_init(ctxt,disable_fnmatch,casefold);
           free(ctxt);
         

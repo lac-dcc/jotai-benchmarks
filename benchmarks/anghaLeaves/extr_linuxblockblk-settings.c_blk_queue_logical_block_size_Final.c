@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ void blk_queue_logical_block_size(struct request_queue *q, unsigned short size)
 		q->limits.io_min = q->limits.physical_block_size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,17 +83,176 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           unsigned short size = 100;
+        
           int _len_q0 = 1;
           struct request_queue * q = (struct request_queue *) malloc(_len_q0*sizeof(struct request_queue));
           for(int _i0 = 0; _i0 < _len_q0; _i0++) {
-            q[_i0].limits.logical_block_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].limits.physical_block_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].limits.io_min = ((-2 * (next_i()%2)) + 1) * next_i();
+              q[_i0].limits.logical_block_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].limits.physical_block_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].limits.io_min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          blk_queue_logical_block_size(q,size);
+          free(q);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          unsigned short size = 255;
+        
+          int _len_q0 = 65025;
+          struct request_queue * q = (struct request_queue *) malloc(_len_q0*sizeof(struct request_queue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].limits.logical_block_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].limits.physical_block_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].limits.io_min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          blk_queue_logical_block_size(q,size);
+          free(q);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          unsigned short size = 10;
+        
+          int _len_q0 = 100;
+          struct request_queue * q = (struct request_queue *) malloc(_len_q0*sizeof(struct request_queue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].limits.logical_block_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].limits.physical_block_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].limits.io_min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          blk_queue_logical_block_size(q,size);
+          free(q);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          unsigned short size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_q0 = 1;
+          struct request_queue * q = (struct request_queue *) malloc(_len_q0*sizeof(struct request_queue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].limits.logical_block_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].limits.physical_block_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].limits.io_min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           blk_queue_logical_block_size(q,size);
           free(q);
         

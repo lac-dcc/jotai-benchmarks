@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +72,6 @@ __attribute__((used)) static u32 psb_accel_2d_copy_direction(int xdir, int ydir)
 						PSB_2D_COPYORDER_TL2BR;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,7 +88,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int xdir = 100;
+        
           int ydir = 100;
+        
           int benchRet = psb_accel_2d_copy_direction(xdir,ydir);
           printf("%d\n", benchRet); 
         
@@ -103,7 +100,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int xdir = 255;
+        
           int ydir = 255;
+        
           int benchRet = psb_accel_2d_copy_direction(xdir,ydir);
           printf("%d\n", benchRet); 
         
@@ -113,13 +112,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int xdir = 10;
+        
           int ydir = 10;
+        
           int benchRet = psb_accel_2d_copy_direction(xdir,ydir);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int xdir = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int ydir = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = psb_accel_2d_copy_direction(xdir,ydir);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

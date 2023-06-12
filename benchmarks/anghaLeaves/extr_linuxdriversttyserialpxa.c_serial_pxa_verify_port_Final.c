@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ serial_pxa_verify_port(struct uart_port *port, struct serial_struct *ser)
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,19 +78,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_port0 = 1;
+          int _len_port0 = 65025;
           struct uart_port * port = (struct uart_port *) malloc(_len_port0*sizeof(struct uart_port));
           for(int _i0 = 0; _i0 < _len_port0; _i0++) {
-            port[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              port[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_ser0 = 1;
+        
+          int _len_ser0 = 65025;
           struct serial_struct * ser = (struct serial_struct *) malloc(_len_ser0*sizeof(struct serial_struct));
           for(int _i0 = 0; _i0 < _len_ser0; _i0++) {
-            ser[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ser[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = serial_pxa_verify_port(port,ser);
           printf("%d\n", benchRet); 
           free(port);
@@ -102,7 +102,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_port0 = 100;
+          struct uart_port * port = (struct uart_port *) malloc(_len_port0*sizeof(struct uart_port));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              port[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ser0 = 100;
+          struct serial_struct * ser = (struct serial_struct *) malloc(_len_ser0*sizeof(struct serial_struct));
+          for(int _i0 = 0; _i0 < _len_ser0; _i0++) {
+              ser[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = serial_pxa_verify_port(port,ser);
+          printf("%d\n", benchRet); 
+          free(port);
+          free(ser);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_port0 = 1;
+          struct uart_port * port = (struct uart_port *) malloc(_len_port0*sizeof(struct uart_port));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              port[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ser0 = 1;
+          struct serial_struct * ser = (struct serial_struct *) malloc(_len_ser0*sizeof(struct serial_struct));
+          for(int _i0 = 0; _i0 < _len_ser0; _i0++) {
+              ser[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = serial_pxa_verify_port(port,ser);
+          printf("%d\n", benchRet); 
+          free(port);
+          free(ser);
+        
+        break;
+    }
     default:
         usage();
         break;

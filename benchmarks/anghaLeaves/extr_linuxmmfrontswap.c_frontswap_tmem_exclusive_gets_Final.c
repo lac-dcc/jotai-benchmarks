@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ void frontswap_tmem_exclusive_gets(bool enable)
 	frontswap_tmem_exclusive_gets_enabled = enable;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int enable = 100;
+        
           frontswap_tmem_exclusive_gets(enable);
         
         break;
@@ -92,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int enable = 255;
+        
           frontswap_tmem_exclusive_gets(enable);
         
         break;
@@ -100,11 +97,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int enable = 10;
+        
           frontswap_tmem_exclusive_gets(enable);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          frontswap_tmem_exclusive_gets(enable);
+        
+        break;
+    }
     default:
         usage();
         break;

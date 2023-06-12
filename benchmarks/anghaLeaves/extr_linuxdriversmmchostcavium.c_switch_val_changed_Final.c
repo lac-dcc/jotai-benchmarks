@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static bool switch_val_changed(struct cvm_mmc_slot *slot, 
 	return (slot->cached_switch & match) != (new_val & match);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,11 +83,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int new_val = 100;
+        
           int _len_slot0 = 1;
           struct cvm_mmc_slot * slot = (struct cvm_mmc_slot *) malloc(_len_slot0*sizeof(struct cvm_mmc_slot));
           for(int _i0 = 0; _i0 < _len_slot0; _i0++) {
-            slot[_i0].cached_switch = ((-2 * (next_i()%2)) + 1) * next_i();
+              slot[_i0].cached_switch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = switch_val_changed(slot,new_val);
+          printf("%d\n", benchRet); 
+          free(slot);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int new_val = 255;
+        
+          int _len_slot0 = 65025;
+          struct cvm_mmc_slot * slot = (struct cvm_mmc_slot *) malloc(_len_slot0*sizeof(struct cvm_mmc_slot));
+          for(int _i0 = 0; _i0 < _len_slot0; _i0++) {
+              slot[_i0].cached_switch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = switch_val_changed(slot,new_val);
           printf("%d\n", benchRet); 
           free(slot);
@@ -99,21 +116,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int new_val = 10;
+        
           int _len_slot0 = 100;
           struct cvm_mmc_slot * slot = (struct cvm_mmc_slot *) malloc(_len_slot0*sizeof(struct cvm_mmc_slot));
           for(int _i0 = 0; _i0 < _len_slot0; _i0++) {
-            slot[_i0].cached_switch = ((-2 * (next_i()%2)) + 1) * next_i();
+              slot[_i0].cached_switch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = switch_val_changed(slot,new_val);
           printf("%d\n", benchRet); 
           free(slot);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int new_val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_slot0 = 1;
+          struct cvm_mmc_slot * slot = (struct cvm_mmc_slot *) malloc(_len_slot0*sizeof(struct cvm_mmc_slot));
+          for(int _i0 = 0; _i0 < _len_slot0; _i0++) {
+              slot[_i0].cached_switch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = switch_val_changed(slot,new_val);
+          printf("%d\n", benchRet); 
+          free(slot);
+        
+        break;
+    }
     default:
         usage();
         break;

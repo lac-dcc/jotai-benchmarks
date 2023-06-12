@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ __attribute__((used)) static void ktd2692_init_flash_timeout(struct led_classdev
 	setting->val = cfg->flash_max_timeout;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,22 +86,152 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_fled_cdev0 = 65025;
+          struct led_classdev_flash * fled_cdev = (struct led_classdev_flash *) malloc(_len_fled_cdev0*sizeof(struct led_classdev_flash));
+          for(int _i0 = 0; _i0 < _len_fled_cdev0; _i0++) {
+              fled_cdev[_i0].timeout.max = ((-2 * (next_i()%2)) + 1) * next_i();
+          fled_cdev[_i0].timeout.step = ((-2 * (next_i()%2)) + 1) * next_i();
+          fled_cdev[_i0].timeout.val = ((-2 * (next_i()%2)) + 1) * next_i();
+          fled_cdev[_i0].timeout.min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_cfg0 = 65025;
+          struct ktd2692_led_config_data * cfg = (struct ktd2692_led_config_data *) malloc(_len_cfg0*sizeof(struct ktd2692_led_config_data));
+          for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
+              cfg[_i0].flash_max_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ktd2692_init_flash_timeout(fled_cdev,cfg);
+          free(fled_cdev);
+          free(cfg);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_fled_cdev0 = 100;
+          struct led_classdev_flash * fled_cdev = (struct led_classdev_flash *) malloc(_len_fled_cdev0*sizeof(struct led_classdev_flash));
+          for(int _i0 = 0; _i0 < _len_fled_cdev0; _i0++) {
+              fled_cdev[_i0].timeout.max = ((-2 * (next_i()%2)) + 1) * next_i();
+          fled_cdev[_i0].timeout.step = ((-2 * (next_i()%2)) + 1) * next_i();
+          fled_cdev[_i0].timeout.val = ((-2 * (next_i()%2)) + 1) * next_i();
+          fled_cdev[_i0].timeout.min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_cfg0 = 100;
+          struct ktd2692_led_config_data * cfg = (struct ktd2692_led_config_data *) malloc(_len_cfg0*sizeof(struct ktd2692_led_config_data));
+          for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
+              cfg[_i0].flash_max_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ktd2692_init_flash_timeout(fled_cdev,cfg);
+          free(fled_cdev);
+          free(cfg);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int _len_fled_cdev0 = 1;
           struct led_classdev_flash * fled_cdev = (struct led_classdev_flash *) malloc(_len_fled_cdev0*sizeof(struct led_classdev_flash));
           for(int _i0 = 0; _i0 < _len_fled_cdev0; _i0++) {
-            fled_cdev[_i0].timeout.max = ((-2 * (next_i()%2)) + 1) * next_i();
-        fled_cdev[_i0].timeout.step = ((-2 * (next_i()%2)) + 1) * next_i();
-        fled_cdev[_i0].timeout.val = ((-2 * (next_i()%2)) + 1) * next_i();
-        fled_cdev[_i0].timeout.min = ((-2 * (next_i()%2)) + 1) * next_i();
+              fled_cdev[_i0].timeout.max = ((-2 * (next_i()%2)) + 1) * next_i();
+          fled_cdev[_i0].timeout.step = ((-2 * (next_i()%2)) + 1) * next_i();
+          fled_cdev[_i0].timeout.val = ((-2 * (next_i()%2)) + 1) * next_i();
+          fled_cdev[_i0].timeout.min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_cfg0 = 1;
           struct ktd2692_led_config_data * cfg = (struct ktd2692_led_config_data *) malloc(_len_cfg0*sizeof(struct ktd2692_led_config_data));
           for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
-            cfg[_i0].flash_max_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+              cfg[_i0].flash_max_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ktd2692_init_flash_timeout(fled_cdev,cfg);
           free(fled_cdev);
           free(cfg);

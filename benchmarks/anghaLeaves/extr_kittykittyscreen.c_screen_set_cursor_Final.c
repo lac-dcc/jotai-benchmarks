@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -85,12 +88,6 @@ screen_set_cursor(Screen *self, unsigned int mode, uint8_t secondary) {
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,21 +100,205 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           unsigned int mode = 100;
+        
           int secondary = 100;
+        
           int _len_self0 = 1;
           struct TYPE_5__ * self = (struct TYPE_5__ *) malloc(_len_self0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_self0; _i0++) {
               int _len_self__i0__cursor0 = 1;
           self[_i0].cursor = (struct TYPE_4__ *) malloc(_len_self__i0__cursor0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_self__i0__cursor0; _j0++) {
-            self[_i0].cursor->shape = ((-2 * (next_i()%2)) + 1) * next_i();
-        self[_i0].cursor->blink = ((-2 * (next_i()%2)) + 1) * next_i();
+              self[_i0].cursor->shape = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].cursor->blink = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          screen_set_cursor(self,mode,secondary);
+          for(int _aux = 0; _aux < _len_self0; _aux++) {
+          free(self[_aux].cursor);
+          }
+          free(self);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int mode = 255;
+        
+          int secondary = 255;
+        
+          int _len_self0 = 65025;
+          struct TYPE_5__ * self = (struct TYPE_5__ *) malloc(_len_self0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_self0; _i0++) {
+              int _len_self__i0__cursor0 = 1;
+          self[_i0].cursor = (struct TYPE_4__ *) malloc(_len_self__i0__cursor0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_self__i0__cursor0; _j0++) {
+              self[_i0].cursor->shape = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].cursor->blink = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          screen_set_cursor(self,mode,secondary);
+          for(int _aux = 0; _aux < _len_self0; _aux++) {
+          free(self[_aux].cursor);
+          }
+          free(self);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int mode = 10;
+        
+          int secondary = 10;
+        
+          int _len_self0 = 100;
+          struct TYPE_5__ * self = (struct TYPE_5__ *) malloc(_len_self0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_self0; _i0++) {
+              int _len_self__i0__cursor0 = 1;
+          self[_i0].cursor = (struct TYPE_4__ *) malloc(_len_self__i0__cursor0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_self__i0__cursor0; _j0++) {
+              self[_i0].cursor->shape = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].cursor->blink = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          screen_set_cursor(self,mode,secondary);
+          for(int _aux = 0; _aux < _len_self0; _aux++) {
+          free(self[_aux].cursor);
+          }
+          free(self);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int secondary = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_self0 = 1;
+          struct TYPE_5__ * self = (struct TYPE_5__ *) malloc(_len_self0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_self0; _i0++) {
+              int _len_self__i0__cursor0 = 1;
+          self[_i0].cursor = (struct TYPE_4__ *) malloc(_len_self__i0__cursor0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_self__i0__cursor0; _j0++) {
+              self[_i0].cursor->shape = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].cursor->blink = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           screen_set_cursor(self,mode,secondary);
           for(int _aux = 0; _aux < _len_self0; _aux++) {
           free(self[_aux].cursor);

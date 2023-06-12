@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline void irq_settings_set_per_cpu(struct irq_des
 	desc->status_use_accessors |= _IRQ_PER_CPU;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_desc0 = 1;
+          int _len_desc0 = 65025;
           struct irq_desc * desc = (struct irq_desc *) malloc(_len_desc0*sizeof(struct irq_desc));
           for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
-            desc[_i0].status_use_accessors = ((-2 * (next_i()%2)) + 1) * next_i();
+              desc[_i0].status_use_accessors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           irq_settings_set_per_cpu(desc);
           free(desc);
         
@@ -99,14 +96,30 @@ int main(int argc, char *argv[]) {
           int _len_desc0 = 100;
           struct irq_desc * desc = (struct irq_desc *) malloc(_len_desc0*sizeof(struct irq_desc));
           for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
-            desc[_i0].status_use_accessors = ((-2 * (next_i()%2)) + 1) * next_i();
+              desc[_i0].status_use_accessors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           irq_settings_set_per_cpu(desc);
           free(desc);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_desc0 = 1;
+          struct irq_desc * desc = (struct irq_desc *) malloc(_len_desc0*sizeof(struct irq_desc));
+          for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
+              desc[_i0].status_use_accessors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          irq_settings_set_per_cpu(desc);
+          free(desc);
+        
+        break;
+    }
     default:
         usage();
         break;

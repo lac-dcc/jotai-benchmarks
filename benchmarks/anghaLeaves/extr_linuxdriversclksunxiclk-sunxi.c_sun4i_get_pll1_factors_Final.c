@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -97,12 +99,6 @@ __attribute__((used)) static void sun4i_get_pll1_factors(struct factors_request 
 	req->n = div / 4;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -115,18 +111,129 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 51
+          // dynamic_instructions_O0 : 51
+          // ------------------------------- 
+          // static_instructions_O1 : 39
+          // dynamic_instructions_O1 : 39
+          // ------------------------------- 
+          // static_instructions_O2 : 38
+          // dynamic_instructions_O2 : 38
+          // ------------------------------- 
+          // static_instructions_O3 : 38
+          // dynamic_instructions_O3 : 38
+          // ------------------------------- 
+          // static_instructions_Ofast : 38
+          // dynamic_instructions_Ofast : 38
+          // ------------------------------- 
+          // static_instructions_Os : 39
+          // dynamic_instructions_Os : 39
+          // ------------------------------- 
+          // static_instructions_Oz : 37
+          // dynamic_instructions_Oz : 37
+          // ------------------------------- 
+
+          int _len_req0 = 65025;
+          struct factors_request * req = (struct factors_request *) malloc(_len_req0*sizeof(struct factors_request));
+          for(int _i0 = 0; _i0 < _len_req0; _i0++) {
+              req[_i0].rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          req[_i0].k = ((-2 * (next_i()%2)) + 1) * next_i();
+          req[_i0].p = ((-2 * (next_i()%2)) + 1) * next_i();
+          req[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
+          req[_i0].m = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          sun4i_get_pll1_factors(req);
+          free(req);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 51
+          // dynamic_instructions_O0 : 51
+          // ------------------------------- 
+          // static_instructions_O1 : 39
+          // dynamic_instructions_O1 : 39
+          // ------------------------------- 
+          // static_instructions_O2 : 38
+          // dynamic_instructions_O2 : 38
+          // ------------------------------- 
+          // static_instructions_O3 : 38
+          // dynamic_instructions_O3 : 38
+          // ------------------------------- 
+          // static_instructions_Ofast : 38
+          // dynamic_instructions_Ofast : 38
+          // ------------------------------- 
+          // static_instructions_Os : 39
+          // dynamic_instructions_Os : 39
+          // ------------------------------- 
+          // static_instructions_Oz : 37
+          // dynamic_instructions_Oz : 37
+          // ------------------------------- 
+
+          int _len_req0 = 100;
+          struct factors_request * req = (struct factors_request *) malloc(_len_req0*sizeof(struct factors_request));
+          for(int _i0 = 0; _i0 < _len_req0; _i0++) {
+              req[_i0].rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          req[_i0].k = ((-2 * (next_i()%2)) + 1) * next_i();
+          req[_i0].p = ((-2 * (next_i()%2)) + 1) * next_i();
+          req[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
+          req[_i0].m = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          sun4i_get_pll1_factors(req);
+          free(req);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 51
+          // dynamic_instructions_O0 : 51
+          // ------------------------------- 
+          // static_instructions_O1 : 39
+          // dynamic_instructions_O1 : 39
+          // ------------------------------- 
+          // static_instructions_O2 : 38
+          // dynamic_instructions_O2 : 38
+          // ------------------------------- 
+          // static_instructions_O3 : 38
+          // dynamic_instructions_O3 : 38
+          // ------------------------------- 
+          // static_instructions_Ofast : 38
+          // dynamic_instructions_Ofast : 38
+          // ------------------------------- 
+          // static_instructions_Os : 39
+          // dynamic_instructions_Os : 39
+          // ------------------------------- 
+          // static_instructions_Oz : 37
+          // dynamic_instructions_Oz : 37
+          // ------------------------------- 
+
           int _len_req0 = 1;
           struct factors_request * req = (struct factors_request *) malloc(_len_req0*sizeof(struct factors_request));
           for(int _i0 = 0; _i0 < _len_req0; _i0++) {
-            req[_i0].rate = ((-2 * (next_i()%2)) + 1) * next_i();
-        req[_i0].k = ((-2 * (next_i()%2)) + 1) * next_i();
-        req[_i0].p = ((-2 * (next_i()%2)) + 1) * next_i();
-        req[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
-        req[_i0].m = ((-2 * (next_i()%2)) + 1) * next_i();
+              req[_i0].rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          req[_i0].k = ((-2 * (next_i()%2)) + 1) * next_i();
+          req[_i0].p = ((-2 * (next_i()%2)) + 1) * next_i();
+          req[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
+          req[_i0].m = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           sun4i_get_pll1_factors(req);
           free(req);
         

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static struct device *to_dev(struct arena_info *arena)
 	return &arena->nd_btt->dev;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,18 +77,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_arena0 = 1;
+          int _len_arena0 = 65025;
           struct arena_info * arena = (struct arena_info *) malloc(_len_arena0*sizeof(struct arena_info));
           for(int _i0 = 0; _i0 < _len_arena0; _i0++) {
               int _len_arena__i0__nd_btt0 = 1;
           arena[_i0].nd_btt = (struct TYPE_2__ *) malloc(_len_arena__i0__nd_btt0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_arena__i0__nd_btt0; _j0++) {
-            arena[_i0].nd_btt->dev.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              arena[_i0].nd_btt->dev.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           struct device * benchRet = to_dev(arena);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_arena0; _aux++) {
@@ -102,7 +102,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_arena0 = 100;
+          struct arena_info * arena = (struct arena_info *) malloc(_len_arena0*sizeof(struct arena_info));
+          for(int _i0 = 0; _i0 < _len_arena0; _i0++) {
+              int _len_arena__i0__nd_btt0 = 1;
+          arena[_i0].nd_btt = (struct TYPE_2__ *) malloc(_len_arena__i0__nd_btt0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_arena__i0__nd_btt0; _j0++) {
+              arena[_i0].nd_btt->dev.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          struct device * benchRet = to_dev(arena);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_arena0; _aux++) {
+          free(arena[_aux].nd_btt);
+          }
+          free(arena);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_arena0 = 1;
+          struct arena_info * arena = (struct arena_info *) malloc(_len_arena0*sizeof(struct arena_info));
+          for(int _i0 = 0; _i0 < _len_arena0; _i0++) {
+              int _len_arena__i0__nd_btt0 = 1;
+          arena[_i0].nd_btt = (struct TYPE_2__ *) malloc(_len_arena__i0__nd_btt0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_arena__i0__nd_btt0; _j0++) {
+              arena[_i0].nd_btt->dev.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          struct device * benchRet = to_dev(arena);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_arena0; _aux++) {
+          free(arena[_aux].nd_btt);
+          }
+          free(arena);
+        
+        break;
+    }
     default:
         usage();
         break;

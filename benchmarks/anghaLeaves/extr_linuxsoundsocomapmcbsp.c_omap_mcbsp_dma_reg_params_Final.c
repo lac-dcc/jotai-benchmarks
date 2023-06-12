@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -81,12 +84,6 @@ __attribute__((used)) static int omap_mcbsp_dma_reg_params(struct omap_mcbsp *mc
 	return mcbsp->phys_dma_base + data_reg * mcbsp->pdata->reg_step;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,21 +96,204 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           unsigned int stream = 100;
+        
           int _len_mcbsp0 = 1;
           struct omap_mcbsp * mcbsp = (struct omap_mcbsp *) malloc(_len_mcbsp0*sizeof(struct omap_mcbsp));
           for(int _i0 = 0; _i0 < _len_mcbsp0; _i0++) {
-            mcbsp[_i0].phys_dma_base = ((-2 * (next_i()%2)) + 1) * next_i();
+              mcbsp[_i0].phys_dma_base = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_mcbsp__i0__pdata0 = 1;
           mcbsp[_i0].pdata = (struct TYPE_2__ *) malloc(_len_mcbsp__i0__pdata0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_mcbsp__i0__pdata0; _j0++) {
-            mcbsp[_i0].pdata->reg_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        mcbsp[_i0].pdata->reg_step = ((-2 * (next_i()%2)) + 1) * next_i();
+              mcbsp[_i0].pdata->reg_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          mcbsp[_i0].pdata->reg_step = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = omap_mcbsp_dma_reg_params(mcbsp,stream);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mcbsp0; _aux++) {
+          free(mcbsp[_aux].pdata);
+          }
+          free(mcbsp);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          unsigned int stream = 255;
+        
+          int _len_mcbsp0 = 65025;
+          struct omap_mcbsp * mcbsp = (struct omap_mcbsp *) malloc(_len_mcbsp0*sizeof(struct omap_mcbsp));
+          for(int _i0 = 0; _i0 < _len_mcbsp0; _i0++) {
+              mcbsp[_i0].phys_dma_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_mcbsp__i0__pdata0 = 1;
+          mcbsp[_i0].pdata = (struct TYPE_2__ *) malloc(_len_mcbsp__i0__pdata0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_mcbsp__i0__pdata0; _j0++) {
+              mcbsp[_i0].pdata->reg_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          mcbsp[_i0].pdata->reg_step = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = omap_mcbsp_dma_reg_params(mcbsp,stream);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mcbsp0; _aux++) {
+          free(mcbsp[_aux].pdata);
+          }
+          free(mcbsp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          unsigned int stream = 10;
+        
+          int _len_mcbsp0 = 100;
+          struct omap_mcbsp * mcbsp = (struct omap_mcbsp *) malloc(_len_mcbsp0*sizeof(struct omap_mcbsp));
+          for(int _i0 = 0; _i0 < _len_mcbsp0; _i0++) {
+              mcbsp[_i0].phys_dma_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_mcbsp__i0__pdata0 = 1;
+          mcbsp[_i0].pdata = (struct TYPE_2__ *) malloc(_len_mcbsp__i0__pdata0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_mcbsp__i0__pdata0; _j0++) {
+              mcbsp[_i0].pdata->reg_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          mcbsp[_i0].pdata->reg_step = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = omap_mcbsp_dma_reg_params(mcbsp,stream);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mcbsp0; _aux++) {
+          free(mcbsp[_aux].pdata);
+          }
+          free(mcbsp);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          unsigned int stream = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_mcbsp0 = 1;
+          struct omap_mcbsp * mcbsp = (struct omap_mcbsp *) malloc(_len_mcbsp0*sizeof(struct omap_mcbsp));
+          for(int _i0 = 0; _i0 < _len_mcbsp0; _i0++) {
+              mcbsp[_i0].phys_dma_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_mcbsp__i0__pdata0 = 1;
+          mcbsp[_i0].pdata = (struct TYPE_2__ *) malloc(_len_mcbsp__i0__pdata0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_mcbsp__i0__pdata0; _j0++) {
+              mcbsp[_i0].pdata->reg_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          mcbsp[_i0].pdata->reg_step = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = omap_mcbsp_dma_reg_params(mcbsp,stream);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_mcbsp0; _aux++) {

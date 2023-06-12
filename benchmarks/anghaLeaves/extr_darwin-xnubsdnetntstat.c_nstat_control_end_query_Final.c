@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -91,12 +94,6 @@ nstat_control_end_query(
 	return flags;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -113,16 +110,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int partial = 100;
+        
           int _len_state0 = 1;
           struct TYPE_3__ * state = (struct TYPE_3__ *) malloc(_len_state0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_state0; _i0++) {
-            state[_i0].ncs_context = ((-2 * (next_i()%2)) + 1) * next_i();
+              state[_i0].ncs_context = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_last_src0 = 1;
           int * last_src = (int *) malloc(_len_last_src0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_last_src0; _i0++) {
             last_src[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = nstat_control_end_query(state,last_src,partial);
           printf("%d\n", benchRet); 
           free(state);
@@ -130,7 +131,81 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int partial = 255;
+        
+          int _len_state0 = 65025;
+          struct TYPE_3__ * state = (struct TYPE_3__ *) malloc(_len_state0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].ncs_context = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_last_src0 = 65025;
+          int * last_src = (int *) malloc(_len_last_src0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_last_src0; _i0++) {
+            last_src[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = nstat_control_end_query(state,last_src,partial);
+          printf("%d\n", benchRet); 
+          free(state);
+          free(last_src);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int partial = 10;
+        
+          int _len_state0 = 100;
+          struct TYPE_3__ * state = (struct TYPE_3__ *) malloc(_len_state0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].ncs_context = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_last_src0 = 100;
+          int * last_src = (int *) malloc(_len_last_src0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_last_src0; _i0++) {
+            last_src[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = nstat_control_end_query(state,last_src,partial);
+          printf("%d\n", benchRet); 
+          free(state);
+          free(last_src);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int partial = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_state0 = 1;
+          struct TYPE_3__ * state = (struct TYPE_3__ *) malloc(_len_state0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].ncs_context = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_last_src0 = 1;
+          int * last_src = (int *) malloc(_len_last_src0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_last_src0; _i0++) {
+            last_src[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = nstat_control_end_query(state,last_src,partial);
+          printf("%d\n", benchRet); 
+          free(state);
+          free(last_src);
+        
+        break;
+    }
     default:
         usage();
         break;

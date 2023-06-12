@@ -63,12 +63,6 @@ __attribute__((used)) static dma_addr_t smmu_pde_to_dma(u32 pde)
 	return pde << 12;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int pde = 100;
+        
           int benchRet = smmu_pde_to_dma(pde);
           printf("%d\n", benchRet); 
         
@@ -94,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int pde = 255;
+        
           int benchRet = smmu_pde_to_dma(pde);
           printf("%d\n", benchRet); 
         
@@ -103,12 +99,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int pde = 10;
+        
           int benchRet = smmu_pde_to_dma(pde);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

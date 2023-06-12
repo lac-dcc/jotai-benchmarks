@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -83,12 +85,6 @@ __attribute__((used)) static int fixpt_div32(u32 dividend, u32 divisor, u32 *quo
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,21 +97,148 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 45
+          // dynamic_instructions_O0 : 497
+          // ------------------------------- 
+          // static_instructions_O1 : 31
+          // dynamic_instructions_O1 : 361
+          // ------------------------------- 
+          // static_instructions_O2 : 43
+          // dynamic_instructions_O2 : 387
+          // ------------------------------- 
+          // static_instructions_O3 : 273
+          // dynamic_instructions_O3 : 273
+          // ------------------------------- 
+          // static_instructions_Ofast : 273
+          // dynamic_instructions_Ofast : 273
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 360
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 424
+          // ------------------------------- 
+
           int dividend = 100;
+        
           int divisor = 100;
+        
           int _len_quotient0 = 1;
           int * quotient = (int *) malloc(_len_quotient0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_quotient0; _i0++) {
             quotient[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_fraction0 = 1;
           int * fraction = (int *) malloc(_len_fraction0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_fraction0; _i0++) {
             fraction[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = fixpt_div32(dividend,divisor,quotient,fraction);
+          printf("%d\n", benchRet); 
+          free(quotient);
+          free(fraction);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 45
+          // dynamic_instructions_O0 : 497
+          // ------------------------------- 
+          // static_instructions_O1 : 31
+          // dynamic_instructions_O1 : 361
+          // ------------------------------- 
+          // static_instructions_O2 : 43
+          // dynamic_instructions_O2 : 387
+          // ------------------------------- 
+          // static_instructions_O3 : 273
+          // dynamic_instructions_O3 : 273
+          // ------------------------------- 
+          // static_instructions_Ofast : 273
+          // dynamic_instructions_Ofast : 273
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 360
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 424
+          // ------------------------------- 
+
+          int dividend = 255;
+        
+          int divisor = 255;
+        
+          int _len_quotient0 = 65025;
+          int * quotient = (int *) malloc(_len_quotient0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_quotient0; _i0++) {
+            quotient[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_fraction0 = 65025;
+          int * fraction = (int *) malloc(_len_fraction0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_fraction0; _i0++) {
+            fraction[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = fixpt_div32(dividend,divisor,quotient,fraction);
+          printf("%d\n", benchRet); 
+          free(quotient);
+          free(fraction);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 45
+          // dynamic_instructions_O0 : 497
+          // ------------------------------- 
+          // static_instructions_O1 : 31
+          // dynamic_instructions_O1 : 361
+          // ------------------------------- 
+          // static_instructions_O2 : 43
+          // dynamic_instructions_O2 : 387
+          // ------------------------------- 
+          // static_instructions_O3 : 273
+          // dynamic_instructions_O3 : 273
+          // ------------------------------- 
+          // static_instructions_Ofast : 273
+          // dynamic_instructions_Ofast : 273
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 360
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 424
+          // ------------------------------- 
+
+          int dividend = 10;
+        
+          int divisor = 10;
+        
+          int _len_quotient0 = 100;
+          int * quotient = (int *) malloc(_len_quotient0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_quotient0; _i0++) {
+            quotient[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_fraction0 = 100;
+          int * fraction = (int *) malloc(_len_fraction0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_fraction0; _i0++) {
+            fraction[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = fixpt_div32(dividend,divisor,quotient,fraction);
           printf("%d\n", benchRet); 
           free(quotient);

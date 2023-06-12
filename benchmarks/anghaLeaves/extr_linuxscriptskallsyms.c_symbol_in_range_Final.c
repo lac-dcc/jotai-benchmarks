@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ __attribute__((used)) static int symbol_in_range(struct sym_entry *s, struct add
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,17 +91,22 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int entries = 100;
+        
           int _len_s0 = 1;
           struct sym_entry * s = (struct sym_entry *) malloc(_len_s0*sizeof(struct sym_entry));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_ranges0 = 1;
           struct addr_range * ranges = (struct addr_range *) malloc(_len_ranges0*sizeof(struct addr_range));
           for(int _i0 = 0; _i0 < _len_ranges0; _i0++) {
-            ranges[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
-        ranges[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+              ranges[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          ranges[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = symbol_in_range(s,ranges,entries);
           printf("%d\n", benchRet); 
           free(s);
@@ -112,7 +114,87 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int entries = 255;
+        
+          int _len_s0 = 65025;
+          struct sym_entry * s = (struct sym_entry *) malloc(_len_s0*sizeof(struct sym_entry));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ranges0 = 65025;
+          struct addr_range * ranges = (struct addr_range *) malloc(_len_ranges0*sizeof(struct addr_range));
+          for(int _i0 = 0; _i0 < _len_ranges0; _i0++) {
+              ranges[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          ranges[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = symbol_in_range(s,ranges,entries);
+          printf("%d\n", benchRet); 
+          free(s);
+          free(ranges);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int entries = 10;
+        
+          int _len_s0 = 100;
+          struct sym_entry * s = (struct sym_entry *) malloc(_len_s0*sizeof(struct sym_entry));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ranges0 = 100;
+          struct addr_range * ranges = (struct addr_range *) malloc(_len_ranges0*sizeof(struct addr_range));
+          for(int _i0 = 0; _i0 < _len_ranges0; _i0++) {
+              ranges[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          ranges[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = symbol_in_range(s,ranges,entries);
+          printf("%d\n", benchRet); 
+          free(s);
+          free(ranges);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int entries = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_s0 = 1;
+          struct sym_entry * s = (struct sym_entry *) malloc(_len_s0*sizeof(struct sym_entry));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ranges0 = 1;
+          struct addr_range * ranges = (struct addr_range *) malloc(_len_ranges0*sizeof(struct addr_range));
+          for(int _i0 = 0; _i0 < _len_ranges0; _i0++) {
+              ranges[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          ranges[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = symbol_in_range(s,ranges,entries);
+          printf("%d\n", benchRet); 
+          free(s);
+          free(ranges);
+        
+        break;
+    }
     default:
         usage();
         break;

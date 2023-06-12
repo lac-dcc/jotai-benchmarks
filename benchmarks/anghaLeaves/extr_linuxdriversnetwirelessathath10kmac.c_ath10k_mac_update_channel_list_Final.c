@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ __attribute__((used)) static void ath10k_mac_update_channel_list(struct ath10k *
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,26 +88,170 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_ar0 = 1;
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_ar0 = 65025;
           struct ath10k * ar = (struct ath10k *) malloc(_len_ar0*sizeof(struct ath10k));
           for(int _i0 = 0; _i0 < _len_ar0; _i0++) {
-            ar[_i0].low_5ghz_chan = ((-2 * (next_i()%2)) + 1) * next_i();
-        ar[_i0].high_5ghz_chan = ((-2 * (next_i()%2)) + 1) * next_i();
+              ar[_i0].low_5ghz_chan = ((-2 * (next_i()%2)) + 1) * next_i();
+          ar[_i0].high_5ghz_chan = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_band0 = 1;
+        
+          int _len_band0 = 65025;
           struct ieee80211_supported_band * band = (struct ieee80211_supported_band *) malloc(_len_band0*sizeof(struct ieee80211_supported_band));
           for(int _i0 = 0; _i0 < _len_band0; _i0++) {
-            band[_i0].n_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+              band[_i0].n_channels = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_band__i0__channels0 = 1;
           band[_i0].channels = (struct TYPE_2__ *) malloc(_len_band__i0__channels0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_band__i0__channels0; _j0++) {
-            band[_i0].channels->center_freq = ((-2 * (next_i()%2)) + 1) * next_i();
-        band[_i0].channels->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              band[_i0].channels->center_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+          band[_i0].channels->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          ath10k_mac_update_channel_list(ar,band);
+          free(ar);
+          for(int _aux = 0; _aux < _len_band0; _aux++) {
+          free(band[_aux].channels);
+          }
+          free(band);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_ar0 = 100;
+          struct ath10k * ar = (struct ath10k *) malloc(_len_ar0*sizeof(struct ath10k));
+          for(int _i0 = 0; _i0 < _len_ar0; _i0++) {
+              ar[_i0].low_5ghz_chan = ((-2 * (next_i()%2)) + 1) * next_i();
+          ar[_i0].high_5ghz_chan = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_band0 = 100;
+          struct ieee80211_supported_band * band = (struct ieee80211_supported_band *) malloc(_len_band0*sizeof(struct ieee80211_supported_band));
+          for(int _i0 = 0; _i0 < _len_band0; _i0++) {
+              band[_i0].n_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_band__i0__channels0 = 1;
+          band[_i0].channels = (struct TYPE_2__ *) malloc(_len_band__i0__channels0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_band__i0__channels0; _j0++) {
+              band[_i0].channels->center_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+          band[_i0].channels->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          ath10k_mac_update_channel_list(ar,band);
+          free(ar);
+          for(int _aux = 0; _aux < _len_band0; _aux++) {
+          free(band[_aux].channels);
+          }
+          free(band);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_ar0 = 1;
+          struct ath10k * ar = (struct ath10k *) malloc(_len_ar0*sizeof(struct ath10k));
+          for(int _i0 = 0; _i0 < _len_ar0; _i0++) {
+              ar[_i0].low_5ghz_chan = ((-2 * (next_i()%2)) + 1) * next_i();
+          ar[_i0].high_5ghz_chan = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_band0 = 1;
+          struct ieee80211_supported_band * band = (struct ieee80211_supported_band *) malloc(_len_band0*sizeof(struct ieee80211_supported_band));
+          for(int _i0 = 0; _i0 < _len_band0; _i0++) {
+              band[_i0].n_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_band__i0__channels0 = 1;
+          band[_i0].channels = (struct TYPE_2__ *) malloc(_len_band__i0__channels0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_band__i0__channels0; _j0++) {
+              band[_i0].channels->center_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+          band[_i0].channels->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           ath10k_mac_update_channel_list(ar,band);
           free(ar);
           for(int _aux = 0; _aux < _len_band0; _aux++) {

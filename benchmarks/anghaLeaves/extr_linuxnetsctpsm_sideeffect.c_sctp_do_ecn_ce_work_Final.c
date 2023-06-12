@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ __attribute__((used)) static void sctp_do_ecn_ce_work(struct sctp_association *a
 	asoc->need_ecne = 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,16 +80,168 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int lowest_tsn = 100;
+        
           int _len_asoc0 = 1;
           struct sctp_association * asoc = (struct sctp_association *) malloc(_len_asoc0*sizeof(struct sctp_association));
           for(int _i0 = 0; _i0 < _len_asoc0; _i0++) {
-            asoc[_i0].need_ecne = ((-2 * (next_i()%2)) + 1) * next_i();
-        asoc[_i0].last_ecne_tsn = ((-2 * (next_i()%2)) + 1) * next_i();
+              asoc[_i0].need_ecne = ((-2 * (next_i()%2)) + 1) * next_i();
+          asoc[_i0].last_ecne_tsn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          sctp_do_ecn_ce_work(asoc,lowest_tsn);
+          free(asoc);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int lowest_tsn = 255;
+        
+          int _len_asoc0 = 65025;
+          struct sctp_association * asoc = (struct sctp_association *) malloc(_len_asoc0*sizeof(struct sctp_association));
+          for(int _i0 = 0; _i0 < _len_asoc0; _i0++) {
+              asoc[_i0].need_ecne = ((-2 * (next_i()%2)) + 1) * next_i();
+          asoc[_i0].last_ecne_tsn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          sctp_do_ecn_ce_work(asoc,lowest_tsn);
+          free(asoc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int lowest_tsn = 10;
+        
+          int _len_asoc0 = 100;
+          struct sctp_association * asoc = (struct sctp_association *) malloc(_len_asoc0*sizeof(struct sctp_association));
+          for(int _i0 = 0; _i0 < _len_asoc0; _i0++) {
+              asoc[_i0].need_ecne = ((-2 * (next_i()%2)) + 1) * next_i();
+          asoc[_i0].last_ecne_tsn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          sctp_do_ecn_ce_work(asoc,lowest_tsn);
+          free(asoc);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int lowest_tsn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_asoc0 = 1;
+          struct sctp_association * asoc = (struct sctp_association *) malloc(_len_asoc0*sizeof(struct sctp_association));
+          for(int _i0 = 0; _i0 < _len_asoc0; _i0++) {
+              asoc[_i0].need_ecne = ((-2 * (next_i()%2)) + 1) * next_i();
+          asoc[_i0].last_ecne_tsn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           sctp_do_ecn_ce_work(asoc,lowest_tsn);
           free(asoc);
         

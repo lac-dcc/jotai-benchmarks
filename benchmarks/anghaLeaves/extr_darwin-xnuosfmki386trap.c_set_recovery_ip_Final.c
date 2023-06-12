@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ set_recovery_ip(x86_saved_state64_t  *saved_state, vm_offset_t ip)
         saved_state->isf.rip = ip;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,31 +85,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int ip = 100;
+        
           int _len_saved_state0 = 1;
           struct TYPE_5__ * saved_state = (struct TYPE_5__ *) malloc(_len_saved_state0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_saved_state0; _i0++) {
-            saved_state[_i0].isf.rip = ((-2 * (next_i()%2)) + 1) * next_i();
+              saved_state[_i0].isf.rip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          set_recovery_ip(saved_state,ip);
+          free(saved_state);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int ip = 255;
+        
+          int _len_saved_state0 = 65025;
+          struct TYPE_5__ * saved_state = (struct TYPE_5__ *) malloc(_len_saved_state0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_saved_state0; _i0++) {
+              saved_state[_i0].isf.rip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           set_recovery_ip(saved_state,ip);
           free(saved_state);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int ip = 10;
+        
           int _len_saved_state0 = 100;
           struct TYPE_5__ * saved_state = (struct TYPE_5__ *) malloc(_len_saved_state0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_saved_state0; _i0++) {
-            saved_state[_i0].isf.rip = ((-2 * (next_i()%2)) + 1) * next_i();
+              saved_state[_i0].isf.rip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           set_recovery_ip(saved_state,ip);
           free(saved_state);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int ip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_saved_state0 = 1;
+          struct TYPE_5__ * saved_state = (struct TYPE_5__ *) malloc(_len_saved_state0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_saved_state0; _i0++) {
+              saved_state[_i0].isf.rip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          set_recovery_ip(saved_state,ip);
+          free(saved_state);
+        
+        break;
+    }
     default:
         usage();
         break;

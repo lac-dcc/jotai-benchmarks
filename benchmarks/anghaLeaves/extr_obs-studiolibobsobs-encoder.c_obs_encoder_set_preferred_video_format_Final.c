@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ void obs_encoder_set_preferred_video_format(obs_encoder_t *encoder,
 	encoder->preferred_format = format;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,22 +84,63 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           enum video_format format = 0;
-          int _len_encoder0 = 1;
+        
+          int _len_encoder0 = 65025;
           struct TYPE_5__ * encoder = (struct TYPE_5__ *) malloc(_len_encoder0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_encoder0; _i0++) {
-            encoder[_i0].preferred_format = ((-2 * (next_i()%2)) + 1) * next_i();
-        encoder[_i0].info.type = ((-2 * (next_i()%2)) + 1) * next_i();
+              encoder[_i0].preferred_format = ((-2 * (next_i()%2)) + 1) * next_i();
+          encoder[_i0].info.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           obs_encoder_set_preferred_video_format(encoder,format);
           free(encoder);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          enum video_format format = 0;
+        
+          int _len_encoder0 = 100;
+          struct TYPE_5__ * encoder = (struct TYPE_5__ *) malloc(_len_encoder0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_encoder0; _i0++) {
+              encoder[_i0].preferred_format = ((-2 * (next_i()%2)) + 1) * next_i();
+          encoder[_i0].info.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          obs_encoder_set_preferred_video_format(encoder,format);
+          free(encoder);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          enum video_format format = 0;
+        
+          int _len_encoder0 = 1;
+          struct TYPE_5__ * encoder = (struct TYPE_5__ *) malloc(_len_encoder0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_encoder0; _i0++) {
+              encoder[_i0].preferred_format = ((-2 * (next_i()%2)) + 1) * next_i();
+          encoder[_i0].info.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          obs_encoder_set_preferred_video_format(encoder,format);
+          free(encoder);
+        
+        break;
+    }
     default:
         usage();
         break;

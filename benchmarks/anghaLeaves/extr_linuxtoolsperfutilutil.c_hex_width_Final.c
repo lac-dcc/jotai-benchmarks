@@ -67,12 +67,6 @@ size_t hex_width(u64 v)
 	return n;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,6 +83,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int v = 100;
+        
           unsigned long benchRet = hex_width(v);
           printf("%lu\n", benchRet); 
         
@@ -98,6 +93,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int v = 255;
+        
           unsigned long benchRet = hex_width(v);
           printf("%lu\n", benchRet); 
         
@@ -107,12 +103,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int v = 10;
+        
           unsigned long benchRet = hex_width(v);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

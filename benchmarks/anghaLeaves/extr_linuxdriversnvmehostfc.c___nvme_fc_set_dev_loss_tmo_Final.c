@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __nvme_fc_set_dev_loss_tmo(struct nvme_fc_rport *rport,
 		rport->remoteport.dev_loss_tmo = NVME_FC_DEFAULT_DEV_LOSS_TMO;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,26 +83,78 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rport0 = 1;
+          int _len_rport0 = 65025;
           struct nvme_fc_rport * rport = (struct nvme_fc_rport *) malloc(_len_rport0*sizeof(struct nvme_fc_rport));
           for(int _i0 = 0; _i0 < _len_rport0; _i0++) {
-            rport[_i0].remoteport.dev_loss_tmo = ((-2 * (next_i()%2)) + 1) * next_i();
+              rport[_i0].remoteport.dev_loss_tmo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-          int _len_pinfo0 = 1;
+        
+          int _len_pinfo0 = 65025;
           struct nvme_fc_port_info * pinfo = (struct nvme_fc_port_info *) malloc(_len_pinfo0*sizeof(struct nvme_fc_port_info));
           for(int _i0 = 0; _i0 < _len_pinfo0; _i0++) {
-            pinfo[_i0].dev_loss_tmo = ((-2 * (next_i()%2)) + 1) * next_i();
+              pinfo[_i0].dev_loss_tmo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           __nvme_fc_set_dev_loss_tmo(rport,pinfo);
           free(rport);
           free(pinfo);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_rport0 = 100;
+          struct nvme_fc_rport * rport = (struct nvme_fc_rport *) malloc(_len_rport0*sizeof(struct nvme_fc_rport));
+          for(int _i0 = 0; _i0 < _len_rport0; _i0++) {
+              rport[_i0].remoteport.dev_loss_tmo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_pinfo0 = 100;
+          struct nvme_fc_port_info * pinfo = (struct nvme_fc_port_info *) malloc(_len_pinfo0*sizeof(struct nvme_fc_port_info));
+          for(int _i0 = 0; _i0 < _len_pinfo0; _i0++) {
+              pinfo[_i0].dev_loss_tmo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          __nvme_fc_set_dev_loss_tmo(rport,pinfo);
+          free(rport);
+          free(pinfo);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_rport0 = 1;
+          struct nvme_fc_rport * rport = (struct nvme_fc_rport *) malloc(_len_rport0*sizeof(struct nvme_fc_rport));
+          for(int _i0 = 0; _i0 < _len_rport0; _i0++) {
+              rport[_i0].remoteport.dev_loss_tmo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_pinfo0 = 1;
+          struct nvme_fc_port_info * pinfo = (struct nvme_fc_port_info *) malloc(_len_pinfo0*sizeof(struct nvme_fc_port_info));
+          for(int _i0 = 0; _i0 < _len_pinfo0; _i0++) {
+              pinfo[_i0].dev_loss_tmo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          __nvme_fc_set_dev_loss_tmo(rport,pinfo);
+          free(rport);
+          free(pinfo);
+        
+        break;
+    }
     default:
         usage();
         break;

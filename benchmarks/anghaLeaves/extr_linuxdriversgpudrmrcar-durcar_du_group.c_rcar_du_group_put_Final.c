@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ void rcar_du_group_put(struct rcar_du_group *rgrp)
 	--rgrp->use_count;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rgrp0 = 1;
+          int _len_rgrp0 = 65025;
           struct rcar_du_group * rgrp = (struct rcar_du_group *) malloc(_len_rgrp0*sizeof(struct rcar_du_group));
           for(int _i0 = 0; _i0 < _len_rgrp0; _i0++) {
-            rgrp[_i0].use_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              rgrp[_i0].use_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           rcar_du_group_put(rgrp);
           free(rgrp);
         
@@ -98,14 +95,30 @@ int main(int argc, char *argv[]) {
           int _len_rgrp0 = 100;
           struct rcar_du_group * rgrp = (struct rcar_du_group *) malloc(_len_rgrp0*sizeof(struct rcar_du_group));
           for(int _i0 = 0; _i0 < _len_rgrp0; _i0++) {
-            rgrp[_i0].use_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              rgrp[_i0].use_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           rcar_du_group_put(rgrp);
           free(rgrp);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_rgrp0 = 1;
+          struct rcar_du_group * rgrp = (struct rcar_du_group *) malloc(_len_rgrp0*sizeof(struct rcar_du_group));
+          for(int _i0 = 0; _i0 < _len_rgrp0; _i0++) {
+              rgrp[_i0].use_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          rcar_du_group_put(rgrp);
+          free(rgrp);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -62,12 +62,6 @@ __attribute__((used)) static inline struct bucket *__select_bucket(struct bpf_ht
 	return &htab->buckets[hash & (htab->n_buckets - 1)];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,20 +74,47 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int hash = 100;
+        
           int _len_htab0 = 1;
           struct bpf_htab * htab = (struct bpf_htab *) malloc(_len_htab0*sizeof(struct bpf_htab));
           for(int _i0 = 0; _i0 < _len_htab0; _i0++) {
-            htab[_i0].n_buckets = ((-2 * (next_i()%2)) + 1) * next_i();
+              htab[_i0].n_buckets = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_htab__i0__buckets0 = 1;
           htab[_i0].buckets = (struct bucket *) malloc(_len_htab__i0__buckets0*sizeof(struct bucket));
           for(int _j0 = 0; _j0 < _len_htab__i0__buckets0; _j0++) {
-            htab[_i0].buckets->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              htab[_i0].buckets->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct bucket * benchRet = __select_bucket(htab,hash);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_htab0; _aux++) {

@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ int i;
 
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,15 +80,80 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 269
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 187
+          // ------------------------------- 
+          // static_instructions_O2 : 172
+          // dynamic_instructions_O2 : 172
+          // ------------------------------- 
+          // static_instructions_O3 : 172
+          // dynamic_instructions_O3 : 172
+          // ------------------------------- 
+          // static_instructions_Ofast : 172
+          // dynamic_instructions_Ofast : 172
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 186
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 110
+          // ------------------------------- 
+
+          int n = 255;
+        
+          int _len_buf0 = 65025;
+          int * buf = (int *) malloc(_len_buf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          PacketItoa(n,buf);
+          free(buf);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 269
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 187
+          // ------------------------------- 
+          // static_instructions_O2 : 172
+          // dynamic_instructions_O2 : 172
+          // ------------------------------- 
+          // static_instructions_O3 : 172
+          // dynamic_instructions_O3 : 172
+          // ------------------------------- 
+          // static_instructions_Ofast : 172
+          // dynamic_instructions_Ofast : 172
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 186
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 110
+          // ------------------------------- 
+
           int n = 10;
+        
           int _len_buf0 = 100;
           int * buf = (int *) malloc(_len_buf0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
             buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           PacketItoa(n,buf);
           free(buf);
         

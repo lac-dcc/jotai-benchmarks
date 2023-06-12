@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static int pipe_to_null(struct pipe_inode_info *info, stru
 	return sd->len;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,24 +77,30 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_info0 = 1;
+          int _len_info0 = 65025;
           struct pipe_inode_info * info = (struct pipe_inode_info *) malloc(_len_info0*sizeof(struct pipe_inode_info));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_buf0 = 1;
+        
+          int _len_buf0 = 65025;
           struct pipe_buffer * buf = (struct pipe_buffer *) malloc(_len_buf0*sizeof(struct pipe_buffer));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
-            buf[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              buf[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_sd0 = 1;
+        
+          int _len_sd0 = 65025;
           struct splice_desc * sd = (struct splice_desc *) malloc(_len_sd0*sizeof(struct splice_desc));
           for(int _i0 = 0; _i0 < _len_sd0; _i0++) {
-            sd[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+              sd[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = pipe_to_null(info,buf,sd);
           printf("%d\n", benchRet); 
           free(info);
@@ -107,7 +109,70 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_info0 = 100;
+          struct pipe_inode_info * info = (struct pipe_inode_info *) malloc(_len_info0*sizeof(struct pipe_inode_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_buf0 = 100;
+          struct pipe_buffer * buf = (struct pipe_buffer *) malloc(_len_buf0*sizeof(struct pipe_buffer));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+              buf[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_sd0 = 100;
+          struct splice_desc * sd = (struct splice_desc *) malloc(_len_sd0*sizeof(struct splice_desc));
+          for(int _i0 = 0; _i0 < _len_sd0; _i0++) {
+              sd[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pipe_to_null(info,buf,sd);
+          printf("%d\n", benchRet); 
+          free(info);
+          free(buf);
+          free(sd);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_info0 = 1;
+          struct pipe_inode_info * info = (struct pipe_inode_info *) malloc(_len_info0*sizeof(struct pipe_inode_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_buf0 = 1;
+          struct pipe_buffer * buf = (struct pipe_buffer *) malloc(_len_buf0*sizeof(struct pipe_buffer));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+              buf[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_sd0 = 1;
+          struct splice_desc * sd = (struct splice_desc *) malloc(_len_sd0*sizeof(struct splice_desc));
+          for(int _i0 = 0; _i0 < _len_sd0; _i0++) {
+              sd[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pipe_to_null(info,buf,sd);
+          printf("%d\n", benchRet); 
+          free(info);
+          free(buf);
+          free(sd);
+        
+        break;
+    }
     default:
         usage();
         break;

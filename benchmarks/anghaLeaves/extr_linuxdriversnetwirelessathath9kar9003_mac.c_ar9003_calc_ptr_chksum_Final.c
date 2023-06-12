@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static u16 ar9003_calc_ptr_chksum(struct ar9003_txc *ads)
 	return ((checksum & 0xffff) + (checksum >> 16)) & AR_TxPtrChkSum;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,30 +84,81 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ads0 = 1;
+          int _len_ads0 = 65025;
           struct ar9003_txc * ads = (struct ar9003_txc *) malloc(_len_ads0*sizeof(struct ar9003_txc));
           for(int _i0 = 0; _i0 < _len_ads0; _i0++) {
-            ads[_i0].info = ((-2 * (next_i()%2)) + 1) * next_i();
-        ads[_i0].link = ((-2 * (next_i()%2)) + 1) * next_i();
-        ads[_i0].data0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        ads[_i0].ctl3 = ((-2 * (next_i()%2)) + 1) * next_i();
-        ads[_i0].data1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        ads[_i0].ctl5 = ((-2 * (next_i()%2)) + 1) * next_i();
-        ads[_i0].data2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        ads[_i0].ctl7 = ((-2 * (next_i()%2)) + 1) * next_i();
-        ads[_i0].data3 = ((-2 * (next_i()%2)) + 1) * next_i();
-        ads[_i0].ctl9 = ((-2 * (next_i()%2)) + 1) * next_i();
+              ads[_i0].info = ((-2 * (next_i()%2)) + 1) * next_i();
+          ads[_i0].link = ((-2 * (next_i()%2)) + 1) * next_i();
+          ads[_i0].data0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ads[_i0].ctl3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ads[_i0].data1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ads[_i0].ctl5 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ads[_i0].data2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ads[_i0].ctl7 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ads[_i0].data3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ads[_i0].ctl9 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ar9003_calc_ptr_chksum(ads);
           printf("%d\n", benchRet); 
           free(ads);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ads0 = 100;
+          struct ar9003_txc * ads = (struct ar9003_txc *) malloc(_len_ads0*sizeof(struct ar9003_txc));
+          for(int _i0 = 0; _i0 < _len_ads0; _i0++) {
+              ads[_i0].info = ((-2 * (next_i()%2)) + 1) * next_i();
+          ads[_i0].link = ((-2 * (next_i()%2)) + 1) * next_i();
+          ads[_i0].data0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ads[_i0].ctl3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ads[_i0].data1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ads[_i0].ctl5 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ads[_i0].data2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ads[_i0].ctl7 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ads[_i0].data3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ads[_i0].ctl9 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ar9003_calc_ptr_chksum(ads);
+          printf("%d\n", benchRet); 
+          free(ads);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ads0 = 1;
+          struct ar9003_txc * ads = (struct ar9003_txc *) malloc(_len_ads0*sizeof(struct ar9003_txc));
+          for(int _i0 = 0; _i0 < _len_ads0; _i0++) {
+              ads[_i0].info = ((-2 * (next_i()%2)) + 1) * next_i();
+          ads[_i0].link = ((-2 * (next_i()%2)) + 1) * next_i();
+          ads[_i0].data0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ads[_i0].ctl3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ads[_i0].data1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ads[_i0].ctl5 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ads[_i0].data2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ads[_i0].ctl7 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ads[_i0].data3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ads[_i0].ctl9 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ar9003_calc_ptr_chksum(ads);
+          printf("%d\n", benchRet); 
+          free(ads);
+        
+        break;
+    }
     default:
         usage();
         break;

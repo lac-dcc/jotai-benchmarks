@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -130,12 +132,6 @@ __attribute__((used)) static void set_link_hw_format(struct snd_soc_dai_link *li
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -148,31 +144,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_link0 = 1;
+          int _len_link0 = 65025;
           struct snd_soc_dai_link * link = (struct snd_soc_dai_link *) malloc(_len_link0*sizeof(struct snd_soc_dai_link));
           for(int _i0 = 0; _i0 < _len_link0; _i0++) {
-            link[_i0].dai_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+              link[_i0].dai_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_cfg0 = 1;
+        
+          int _len_cfg0 = 65025;
           struct snd_soc_tplg_link_config * cfg = (struct snd_soc_tplg_link_config *) malloc(_len_cfg0*sizeof(struct snd_soc_tplg_link_config));
           for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
-            cfg[_i0].num_hw_configs = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].default_hw_config_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              cfg[_i0].num_hw_configs = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].default_hw_config_id = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_cfg__i0__hw_config0 = 1;
           cfg[_i0].hw_config = (struct snd_soc_tplg_hw_config *) malloc(_len_cfg__i0__hw_config0*sizeof(struct snd_soc_tplg_hw_config));
           for(int _j0 = 0; _j0 < _len_cfg__i0__hw_config0; _j0++) {
-            cfg[_i0].hw_config->id = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].hw_config->fmt = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].hw_config->clock_gated = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].hw_config->invert_bclk = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].hw_config->invert_fsync = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].hw_config->bclk_master = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].hw_config->fsync_master = ((-2 * (next_i()%2)) + 1) * next_i();
+              cfg[_i0].hw_config->id = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].hw_config->fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].hw_config->clock_gated = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].hw_config->invert_bclk = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].hw_config->invert_fsync = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].hw_config->bclk_master = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].hw_config->fsync_master = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           set_link_hw_format(link,cfg);
           free(link);
           for(int _aux = 0; _aux < _len_cfg0; _aux++) {
@@ -182,7 +183,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_link0 = 100;
+          struct snd_soc_dai_link * link = (struct snd_soc_dai_link *) malloc(_len_link0*sizeof(struct snd_soc_dai_link));
+          for(int _i0 = 0; _i0 < _len_link0; _i0++) {
+              link[_i0].dai_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cfg0 = 100;
+          struct snd_soc_tplg_link_config * cfg = (struct snd_soc_tplg_link_config *) malloc(_len_cfg0*sizeof(struct snd_soc_tplg_link_config));
+          for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
+              cfg[_i0].num_hw_configs = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].default_hw_config_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cfg__i0__hw_config0 = 1;
+          cfg[_i0].hw_config = (struct snd_soc_tplg_hw_config *) malloc(_len_cfg__i0__hw_config0*sizeof(struct snd_soc_tplg_hw_config));
+          for(int _j0 = 0; _j0 < _len_cfg__i0__hw_config0; _j0++) {
+              cfg[_i0].hw_config->id = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].hw_config->fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].hw_config->clock_gated = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].hw_config->invert_bclk = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].hw_config->invert_fsync = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].hw_config->bclk_master = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].hw_config->fsync_master = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          set_link_hw_format(link,cfg);
+          free(link);
+          for(int _aux = 0; _aux < _len_cfg0; _aux++) {
+          free(cfg[_aux].hw_config);
+          }
+          free(cfg);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_link0 = 1;
+          struct snd_soc_dai_link * link = (struct snd_soc_dai_link *) malloc(_len_link0*sizeof(struct snd_soc_dai_link));
+          for(int _i0 = 0; _i0 < _len_link0; _i0++) {
+              link[_i0].dai_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cfg0 = 1;
+          struct snd_soc_tplg_link_config * cfg = (struct snd_soc_tplg_link_config *) malloc(_len_cfg0*sizeof(struct snd_soc_tplg_link_config));
+          for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
+              cfg[_i0].num_hw_configs = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].default_hw_config_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cfg__i0__hw_config0 = 1;
+          cfg[_i0].hw_config = (struct snd_soc_tplg_hw_config *) malloc(_len_cfg__i0__hw_config0*sizeof(struct snd_soc_tplg_hw_config));
+          for(int _j0 = 0; _j0 < _len_cfg__i0__hw_config0; _j0++) {
+              cfg[_i0].hw_config->id = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].hw_config->fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].hw_config->clock_gated = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].hw_config->invert_bclk = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].hw_config->invert_fsync = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].hw_config->bclk_master = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].hw_config->fsync_master = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          set_link_hw_format(link,cfg);
+          free(link);
+          for(int _aux = 0; _aux < _len_cfg0; _aux++) {
+          free(cfg[_aux].hw_config);
+          }
+          free(cfg);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ int r8712_init_recvbuf(struct _adapter *padapter, struct recv_buf *precvbuf)
 	return _SUCCESS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,26 +86,163 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_padapter0 = 65025;
+          struct _adapter * padapter = (struct _adapter *) malloc(_len_padapter0*sizeof(struct _adapter));
+          for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
+              padapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_precvbuf0 = 65025;
+          struct recv_buf * precvbuf = (struct recv_buf *) malloc(_len_precvbuf0*sizeof(struct recv_buf));
+          for(int _i0 = 0; _i0 < _len_precvbuf0; _i0++) {
+              precvbuf[_i0].pdata = ((-2 * (next_i()%2)) + 1) * next_i();
+          precvbuf[_i0].pend = ((-2 * (next_i()%2)) + 1) * next_i();
+          precvbuf[_i0].pbuf = ((-2 * (next_i()%2)) + 1) * next_i();
+          precvbuf[_i0].ptail = ((-2 * (next_i()%2)) + 1) * next_i();
+          precvbuf[_i0].phead = ((-2 * (next_i()%2)) + 1) * next_i();
+          precvbuf[_i0].ref_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          precvbuf[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          precvbuf[_i0].transfer_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = r8712_init_recvbuf(padapter,precvbuf);
+          printf("%d\n", benchRet); 
+          free(padapter);
+          free(precvbuf);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_padapter0 = 100;
+          struct _adapter * padapter = (struct _adapter *) malloc(_len_padapter0*sizeof(struct _adapter));
+          for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
+              padapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_precvbuf0 = 100;
+          struct recv_buf * precvbuf = (struct recv_buf *) malloc(_len_precvbuf0*sizeof(struct recv_buf));
+          for(int _i0 = 0; _i0 < _len_precvbuf0; _i0++) {
+              precvbuf[_i0].pdata = ((-2 * (next_i()%2)) + 1) * next_i();
+          precvbuf[_i0].pend = ((-2 * (next_i()%2)) + 1) * next_i();
+          precvbuf[_i0].pbuf = ((-2 * (next_i()%2)) + 1) * next_i();
+          precvbuf[_i0].ptail = ((-2 * (next_i()%2)) + 1) * next_i();
+          precvbuf[_i0].phead = ((-2 * (next_i()%2)) + 1) * next_i();
+          precvbuf[_i0].ref_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          precvbuf[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          precvbuf[_i0].transfer_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = r8712_init_recvbuf(padapter,precvbuf);
+          printf("%d\n", benchRet); 
+          free(padapter);
+          free(precvbuf);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int _len_padapter0 = 1;
           struct _adapter * padapter = (struct _adapter *) malloc(_len_padapter0*sizeof(struct _adapter));
           for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
-            padapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              padapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_precvbuf0 = 1;
           struct recv_buf * precvbuf = (struct recv_buf *) malloc(_len_precvbuf0*sizeof(struct recv_buf));
           for(int _i0 = 0; _i0 < _len_precvbuf0; _i0++) {
-            precvbuf[_i0].pdata = ((-2 * (next_i()%2)) + 1) * next_i();
-        precvbuf[_i0].pend = ((-2 * (next_i()%2)) + 1) * next_i();
-        precvbuf[_i0].pbuf = ((-2 * (next_i()%2)) + 1) * next_i();
-        precvbuf[_i0].ptail = ((-2 * (next_i()%2)) + 1) * next_i();
-        precvbuf[_i0].phead = ((-2 * (next_i()%2)) + 1) * next_i();
-        precvbuf[_i0].ref_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        precvbuf[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
-        precvbuf[_i0].transfer_len = ((-2 * (next_i()%2)) + 1) * next_i();
+              precvbuf[_i0].pdata = ((-2 * (next_i()%2)) + 1) * next_i();
+          precvbuf[_i0].pend = ((-2 * (next_i()%2)) + 1) * next_i();
+          precvbuf[_i0].pbuf = ((-2 * (next_i()%2)) + 1) * next_i();
+          precvbuf[_i0].ptail = ((-2 * (next_i()%2)) + 1) * next_i();
+          precvbuf[_i0].phead = ((-2 * (next_i()%2)) + 1) * next_i();
+          precvbuf[_i0].ref_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          precvbuf[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          precvbuf[_i0].transfer_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = r8712_init_recvbuf(padapter,precvbuf);
           printf("%d\n", benchRet); 
           free(padapter);

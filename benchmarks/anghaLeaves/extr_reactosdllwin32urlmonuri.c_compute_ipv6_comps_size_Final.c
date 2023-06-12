@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ __attribute__((used)) static void compute_ipv6_comps_size(ipv6_address *address)
         address->elision_size = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,24 +89,63 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_address0 = 1;
+          int _len_address0 = 65025;
           struct TYPE_3__ * address = (struct TYPE_3__ *) malloc(_len_address0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_address0; _i0++) {
-            address[_i0].components_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        address[_i0].h16_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        address[_i0].elision_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        address[_i0].elision = ((-2 * (next_i()%2)) + 1) * next_i();
-        address[_i0].ipv4 = ((-2 * (next_i()%2)) + 1) * next_i();
+              address[_i0].components_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          address[_i0].h16_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          address[_i0].elision_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          address[_i0].elision = ((-2 * (next_i()%2)) + 1) * next_i();
+          address[_i0].ipv4 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           compute_ipv6_comps_size(address);
           free(address);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_address0 = 100;
+          struct TYPE_3__ * address = (struct TYPE_3__ *) malloc(_len_address0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_address0; _i0++) {
+              address[_i0].components_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          address[_i0].h16_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          address[_i0].elision_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          address[_i0].elision = ((-2 * (next_i()%2)) + 1) * next_i();
+          address[_i0].ipv4 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          compute_ipv6_comps_size(address);
+          free(address);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_address0 = 1;
+          struct TYPE_3__ * address = (struct TYPE_3__ *) malloc(_len_address0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_address0; _i0++) {
+              address[_i0].components_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          address[_i0].h16_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          address[_i0].elision_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          address[_i0].elision = ((-2 * (next_i()%2)) + 1) * next_i();
+          address[_i0].ipv4 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          compute_ipv6_comps_size(address);
+          free(address);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ __attribute__((used)) static u16 calc_dynamic_bfregs(int uars_per_sys_page)
 	return MLX5_MAX_DYN_BFREGS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,6 +86,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int uars_per_sys_page = 100;
+        
           int benchRet = calc_dynamic_bfregs(uars_per_sys_page);
           printf("%d\n", benchRet); 
         
@@ -100,6 +96,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int uars_per_sys_page = 255;
+        
           int benchRet = calc_dynamic_bfregs(uars_per_sys_page);
           printf("%d\n", benchRet); 
         
@@ -109,12 +106,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int uars_per_sys_page = 10;
+        
           int benchRet = calc_dynamic_bfregs(uars_per_sys_page);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int uars_per_sys_page = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = calc_dynamic_bfregs(uars_per_sys_page);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

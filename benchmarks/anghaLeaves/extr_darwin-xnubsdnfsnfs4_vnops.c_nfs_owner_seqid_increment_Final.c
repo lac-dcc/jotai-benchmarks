@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -85,12 +88,6 @@ nfs_owner_seqid_increment(struct nfs_open_owner *noop, struct nfs_lock_owner *nl
 		nlop->nlo_seqid++;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,20 +100,195 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int error = 100;
+        
           int _len_noop0 = 1;
           struct nfs_open_owner * noop = (struct nfs_open_owner *) malloc(_len_noop0*sizeof(struct nfs_open_owner));
           for(int _i0 = 0; _i0 < _len_noop0; _i0++) {
-            noop[_i0].noo_seqid = ((-2 * (next_i()%2)) + 1) * next_i();
+              noop[_i0].noo_seqid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_nlop0 = 1;
           struct nfs_lock_owner * nlop = (struct nfs_lock_owner *) malloc(_len_nlop0*sizeof(struct nfs_lock_owner));
           for(int _i0 = 0; _i0 < _len_nlop0; _i0++) {
-            nlop[_i0].nlo_seqid = ((-2 * (next_i()%2)) + 1) * next_i();
+              nlop[_i0].nlo_seqid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          nfs_owner_seqid_increment(noop,nlop,error);
+          free(noop);
+          free(nlop);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int error = 255;
+        
+          int _len_noop0 = 65025;
+          struct nfs_open_owner * noop = (struct nfs_open_owner *) malloc(_len_noop0*sizeof(struct nfs_open_owner));
+          for(int _i0 = 0; _i0 < _len_noop0; _i0++) {
+              noop[_i0].noo_seqid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_nlop0 = 65025;
+          struct nfs_lock_owner * nlop = (struct nfs_lock_owner *) malloc(_len_nlop0*sizeof(struct nfs_lock_owner));
+          for(int _i0 = 0; _i0 < _len_nlop0; _i0++) {
+              nlop[_i0].nlo_seqid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          nfs_owner_seqid_increment(noop,nlop,error);
+          free(noop);
+          free(nlop);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int error = 10;
+        
+          int _len_noop0 = 100;
+          struct nfs_open_owner * noop = (struct nfs_open_owner *) malloc(_len_noop0*sizeof(struct nfs_open_owner));
+          for(int _i0 = 0; _i0 < _len_noop0; _i0++) {
+              noop[_i0].noo_seqid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_nlop0 = 100;
+          struct nfs_lock_owner * nlop = (struct nfs_lock_owner *) malloc(_len_nlop0*sizeof(struct nfs_lock_owner));
+          for(int _i0 = 0; _i0 < _len_nlop0; _i0++) {
+              nlop[_i0].nlo_seqid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          nfs_owner_seqid_increment(noop,nlop,error);
+          free(noop);
+          free(nlop);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int error = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_noop0 = 1;
+          struct nfs_open_owner * noop = (struct nfs_open_owner *) malloc(_len_noop0*sizeof(struct nfs_open_owner));
+          for(int _i0 = 0; _i0 < _len_noop0; _i0++) {
+              noop[_i0].noo_seqid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_nlop0 = 1;
+          struct nfs_lock_owner * nlop = (struct nfs_lock_owner *) malloc(_len_nlop0*sizeof(struct nfs_lock_owner));
+          for(int _i0 = 0; _i0 < _len_nlop0; _i0++) {
+              nlop[_i0].nlo_seqid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           nfs_owner_seqid_increment(noop,nlop,error);
           free(noop);
           free(nlop);

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -122,12 +123,6 @@ fw_port_cap16_t fwcaps32_to_caps16(fw_port_cap32_t caps32)
 	return caps16;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -140,28 +135,136 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 102
+          // dynamic_instructions_O0 : 102
+          // ------------------------------- 
+          // static_instructions_O1 : 74
+          // dynamic_instructions_O1 : 74
+          // ------------------------------- 
+          // static_instructions_O2 : 74
+          // dynamic_instructions_O2 : 74
+          // ------------------------------- 
+          // static_instructions_O3 : 74
+          // dynamic_instructions_O3 : 74
+          // ------------------------------- 
+          // static_instructions_Ofast : 74
+          // dynamic_instructions_Ofast : 74
+          // ------------------------------- 
+          // static_instructions_Os : 74
+          // dynamic_instructions_Os : 74
+          // ------------------------------- 
+          // static_instructions_Oz : 74
+          // dynamic_instructions_Oz : 74
+          // ------------------------------- 
+
           int caps32 = 100;
+        
           int benchRet = fwcaps32_to_caps16(caps32);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 102
+          // dynamic_instructions_O0 : 102
+          // ------------------------------- 
+          // static_instructions_O1 : 74
+          // dynamic_instructions_O1 : 74
+          // ------------------------------- 
+          // static_instructions_O2 : 74
+          // dynamic_instructions_O2 : 74
+          // ------------------------------- 
+          // static_instructions_O3 : 74
+          // dynamic_instructions_O3 : 74
+          // ------------------------------- 
+          // static_instructions_Ofast : 74
+          // dynamic_instructions_Ofast : 74
+          // ------------------------------- 
+          // static_instructions_Os : 74
+          // dynamic_instructions_Os : 74
+          // ------------------------------- 
+          // static_instructions_Oz : 74
+          // dynamic_instructions_Oz : 74
+          // ------------------------------- 
+
           int caps32 = 255;
+        
           int benchRet = fwcaps32_to_caps16(caps32);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 102
+          // dynamic_instructions_O0 : 102
+          // ------------------------------- 
+          // static_instructions_O1 : 74
+          // dynamic_instructions_O1 : 74
+          // ------------------------------- 
+          // static_instructions_O2 : 74
+          // dynamic_instructions_O2 : 74
+          // ------------------------------- 
+          // static_instructions_O3 : 74
+          // dynamic_instructions_O3 : 74
+          // ------------------------------- 
+          // static_instructions_Ofast : 74
+          // dynamic_instructions_Ofast : 74
+          // ------------------------------- 
+          // static_instructions_Os : 74
+          // dynamic_instructions_Os : 74
+          // ------------------------------- 
+          // static_instructions_Oz : 74
+          // dynamic_instructions_Oz : 74
+          // ------------------------------- 
+
           int caps32 = 10;
+        
+          int benchRet = fwcaps32_to_caps16(caps32);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 102
+          // dynamic_instructions_O0 : 102
+          // ------------------------------- 
+          // static_instructions_O1 : 74
+          // dynamic_instructions_O1 : 74
+          // ------------------------------- 
+          // static_instructions_O2 : 74
+          // dynamic_instructions_O2 : 74
+          // ------------------------------- 
+          // static_instructions_O3 : 74
+          // dynamic_instructions_O3 : 74
+          // ------------------------------- 
+          // static_instructions_Ofast : 74
+          // dynamic_instructions_Ofast : 74
+          // ------------------------------- 
+          // static_instructions_Os : 74
+          // dynamic_instructions_Os : 74
+          // ------------------------------- 
+          // static_instructions_Oz : 74
+          // dynamic_instructions_Oz : 74
+          // ------------------------------- 
+
+          int caps32 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = fwcaps32_to_caps16(caps32);
           printf("%d\n", benchRet); 
         

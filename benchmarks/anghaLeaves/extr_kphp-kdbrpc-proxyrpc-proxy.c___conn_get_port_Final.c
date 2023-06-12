@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ int __conn_get_port (struct rpc_cluster_bucket *B) {
   return B->T->port;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,18 +75,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_B0 = 1;
+          int _len_B0 = 65025;
           struct rpc_cluster_bucket * B = (struct rpc_cluster_bucket *) malloc(_len_B0*sizeof(struct rpc_cluster_bucket));
           for(int _i0 = 0; _i0 < _len_B0; _i0++) {
               int _len_B__i0__T0 = 1;
           B[_i0].T = (struct TYPE_2__ *) malloc(_len_B__i0__T0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_B__i0__T0; _j0++) {
-            B[_i0].T->port = ((-2 * (next_i()%2)) + 1) * next_i();
+              B[_i0].T->port = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = __conn_get_port(B);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_B0; _aux++) {
@@ -100,7 +99,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_B0 = 100;
+          struct rpc_cluster_bucket * B = (struct rpc_cluster_bucket *) malloc(_len_B0*sizeof(struct rpc_cluster_bucket));
+          for(int _i0 = 0; _i0 < _len_B0; _i0++) {
+              int _len_B__i0__T0 = 1;
+          B[_i0].T = (struct TYPE_2__ *) malloc(_len_B__i0__T0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_B__i0__T0; _j0++) {
+              B[_i0].T->port = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = __conn_get_port(B);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_B0; _aux++) {
+          free(B[_aux].T);
+          }
+          free(B);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_B0 = 1;
+          struct rpc_cluster_bucket * B = (struct rpc_cluster_bucket *) malloc(_len_B0*sizeof(struct rpc_cluster_bucket));
+          for(int _i0 = 0; _i0 < _len_B0; _i0++) {
+              int _len_B__i0__T0 = 1;
+          B[_i0].T = (struct TYPE_2__ *) malloc(_len_B__i0__T0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_B__i0__T0; _j0++) {
+              B[_i0].T->port = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = __conn_get_port(B);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_B0; _aux++) {
+          free(B[_aux].T);
+          }
+          free(B);
+        
+        break;
+    }
     default:
         usage();
         break;

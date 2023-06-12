@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline void nau8825_sema_reset(struct nau8825 *nau8
 	nau8825->xtalk_sem.count = 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,27 +76,120 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_nau88250 = 1;
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_nau88250 = 65025;
           struct nau8825 * nau8825 = (struct nau8825 *) malloc(_len_nau88250*sizeof(struct nau8825));
           for(int _i0 = 0; _i0 < _len_nau88250; _i0++) {
-            nau8825[_i0].xtalk_sem.count = ((-2 * (next_i()%2)) + 1) * next_i();
+              nau8825[_i0].xtalk_sem.count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           nau8825_sema_reset(nau8825);
           free(nau8825);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_nau88250 = 100;
           struct nau8825 * nau8825 = (struct nau8825 *) malloc(_len_nau88250*sizeof(struct nau8825));
           for(int _i0 = 0; _i0 < _len_nau88250; _i0++) {
-            nau8825[_i0].xtalk_sem.count = ((-2 * (next_i()%2)) + 1) * next_i();
+              nau8825[_i0].xtalk_sem.count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          nau8825_sema_reset(nau8825);
+          free(nau8825);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_nau88250 = 1;
+          struct nau8825 * nau8825 = (struct nau8825 *) malloc(_len_nau88250*sizeof(struct nau8825));
+          for(int _i0 = 0; _i0 < _len_nau88250; _i0++) {
+              nau8825[_i0].xtalk_sem.count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           nau8825_sema_reset(nau8825);
           free(nau8825);
         

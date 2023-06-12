@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -79,12 +80,6 @@ __attribute__((used)) static u64 pci_size(u64 base, u64 maxbase, u64 mask)
 	return size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,8 +96,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int base = 100;
+        
           int maxbase = 100;
+        
           int mask = 100;
+        
           int benchRet = pci_size(base,maxbase,mask);
           printf("%d\n", benchRet); 
         
@@ -112,8 +110,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int base = 255;
+        
           int maxbase = 255;
+        
           int mask = 255;
+        
           int benchRet = pci_size(base,maxbase,mask);
           printf("%d\n", benchRet); 
         
@@ -123,14 +124,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int base = 10;
+        
           int maxbase = 10;
+        
           int mask = 10;
+        
           int benchRet = pci_size(base,maxbase,mask);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int maxbase = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = pci_size(base,maxbase,mask);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

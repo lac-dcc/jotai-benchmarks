@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +80,6 @@ copy_debug_state32(
 	target->dr7 = src->dr7;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,37 +96,158 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long all = 100;
+        
           int _len_src0 = 1;
           struct TYPE_4__ * src = (struct TYPE_4__ *) malloc(_len_src0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_src0; _i0++) {
-            src[_i0].dr7 = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].dr6 = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].dr3 = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].dr2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].dr1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].dr0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].dr5 = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].dr4 = ((-2 * (next_i()%2)) + 1) * next_i();
+              src[_i0].dr7 = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].dr6 = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].dr3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].dr2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].dr1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].dr0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].dr5 = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].dr4 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_target0 = 1;
           struct TYPE_4__ * target = (struct TYPE_4__ *) malloc(_len_target0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_target0; _i0++) {
-            target[_i0].dr7 = ((-2 * (next_i()%2)) + 1) * next_i();
-        target[_i0].dr6 = ((-2 * (next_i()%2)) + 1) * next_i();
-        target[_i0].dr3 = ((-2 * (next_i()%2)) + 1) * next_i();
-        target[_i0].dr2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        target[_i0].dr1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        target[_i0].dr0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        target[_i0].dr5 = ((-2 * (next_i()%2)) + 1) * next_i();
-        target[_i0].dr4 = ((-2 * (next_i()%2)) + 1) * next_i();
+              target[_i0].dr7 = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].dr6 = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].dr3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].dr2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].dr1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].dr0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].dr5 = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].dr4 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           copy_debug_state32(src,target,all);
           free(src);
           free(target);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long all = 255;
+        
+          int _len_src0 = 65025;
+          struct TYPE_4__ * src = (struct TYPE_4__ *) malloc(_len_src0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+              src[_i0].dr7 = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].dr6 = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].dr3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].dr2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].dr1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].dr0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].dr5 = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].dr4 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_target0 = 65025;
+          struct TYPE_4__ * target = (struct TYPE_4__ *) malloc(_len_target0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_target0; _i0++) {
+              target[_i0].dr7 = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].dr6 = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].dr3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].dr2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].dr1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].dr0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].dr5 = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].dr4 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          copy_debug_state32(src,target,all);
+          free(src);
+          free(target);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long all = 10;
+        
+          int _len_src0 = 100;
+          struct TYPE_4__ * src = (struct TYPE_4__ *) malloc(_len_src0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+              src[_i0].dr7 = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].dr6 = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].dr3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].dr2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].dr1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].dr0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].dr5 = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].dr4 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_target0 = 100;
+          struct TYPE_4__ * target = (struct TYPE_4__ *) malloc(_len_target0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_target0; _i0++) {
+              target[_i0].dr7 = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].dr6 = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].dr3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].dr2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].dr1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].dr0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].dr5 = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].dr4 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          copy_debug_state32(src,target,all);
+          free(src);
+          free(target);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long all = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_src0 = 1;
+          struct TYPE_4__ * src = (struct TYPE_4__ *) malloc(_len_src0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+              src[_i0].dr7 = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].dr6 = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].dr3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].dr2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].dr1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].dr0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].dr5 = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].dr4 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_target0 = 1;
+          struct TYPE_4__ * target = (struct TYPE_4__ *) malloc(_len_target0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_target0; _i0++) {
+              target[_i0].dr7 = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].dr6 = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].dr3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].dr2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].dr1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].dr0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].dr5 = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].dr4 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          copy_debug_state32(src,target,all);
+          free(src);
+          free(target);
+        
+        break;
+    }
     default:
         usage();
         break;

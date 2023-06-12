@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +81,6 @@ void qede_config_debug(uint debug, u32 *p_dp_module, u8 *p_dp_level)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,23 +97,94 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int debug = 100;
+        
           int _len_p_dp_module0 = 1;
           int * p_dp_module = (int *) malloc(_len_p_dp_module0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_p_dp_module0; _i0++) {
             p_dp_module[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_p_dp_level0 = 1;
           int * p_dp_level = (int *) malloc(_len_p_dp_level0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_p_dp_level0; _i0++) {
             p_dp_level[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           qede_config_debug(debug,p_dp_module,p_dp_level);
           free(p_dp_module);
           free(p_dp_level);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int debug = 255;
+        
+          int _len_p_dp_module0 = 65025;
+          int * p_dp_module = (int *) malloc(_len_p_dp_module0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p_dp_module0; _i0++) {
+            p_dp_module[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_p_dp_level0 = 65025;
+          int * p_dp_level = (int *) malloc(_len_p_dp_level0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p_dp_level0; _i0++) {
+            p_dp_level[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          qede_config_debug(debug,p_dp_module,p_dp_level);
+          free(p_dp_module);
+          free(p_dp_level);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int debug = 10;
+        
+          int _len_p_dp_module0 = 100;
+          int * p_dp_module = (int *) malloc(_len_p_dp_module0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p_dp_module0; _i0++) {
+            p_dp_module[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_p_dp_level0 = 100;
+          int * p_dp_level = (int *) malloc(_len_p_dp_level0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p_dp_level0; _i0++) {
+            p_dp_level[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          qede_config_debug(debug,p_dp_module,p_dp_level);
+          free(p_dp_module);
+          free(p_dp_level);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int debug = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_p_dp_module0 = 1;
+          int * p_dp_module = (int *) malloc(_len_p_dp_module0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p_dp_module0; _i0++) {
+            p_dp_module[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_p_dp_level0 = 1;
+          int * p_dp_level = (int *) malloc(_len_p_dp_level0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p_dp_level0; _i0++) {
+            p_dp_level[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          qede_config_debug(debug,p_dp_module,p_dp_level);
+          free(p_dp_module);
+          free(p_dp_level);
+        
+        break;
+    }
     default:
         usage();
         break;

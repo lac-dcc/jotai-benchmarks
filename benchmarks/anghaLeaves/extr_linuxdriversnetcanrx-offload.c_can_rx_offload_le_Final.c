@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static inline bool can_rx_offload_le(struct can_rx_offload
 		return a >= b;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,32 +78,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           unsigned int a = 100;
+        
           unsigned int b = 100;
+        
           int _len_offload0 = 1;
           struct can_rx_offload * offload = (struct can_rx_offload *) malloc(_len_offload0*sizeof(struct can_rx_offload));
           for(int _i0 = 0; _i0 < _len_offload0; _i0++) {
-            offload[_i0].inc = ((-2 * (next_i()%2)) + 1) * next_i();
+              offload[_i0].inc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = can_rx_offload_le(offload,a,b);
           printf("%d\n", benchRet); 
           free(offload);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          unsigned int a = 255;
+        
+          unsigned int b = 255;
+        
+          int _len_offload0 = 65025;
+          struct can_rx_offload * offload = (struct can_rx_offload *) malloc(_len_offload0*sizeof(struct can_rx_offload));
+          for(int _i0 = 0; _i0 < _len_offload0; _i0++) {
+              offload[_i0].inc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = can_rx_offload_le(offload,a,b);
+          printf("%d\n", benchRet); 
+          free(offload);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           unsigned int a = 10;
+        
           unsigned int b = 10;
+        
           int _len_offload0 = 100;
           struct can_rx_offload * offload = (struct can_rx_offload *) malloc(_len_offload0*sizeof(struct can_rx_offload));
           for(int _i0 = 0; _i0 < _len_offload0; _i0++) {
-            offload[_i0].inc = ((-2 * (next_i()%2)) + 1) * next_i();
+              offload[_i0].inc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = can_rx_offload_le(offload,a,b);
+          printf("%d\n", benchRet); 
+          free(offload);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          unsigned int a = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_offload0 = 1;
+          struct can_rx_offload * offload = (struct can_rx_offload *) malloc(_len_offload0*sizeof(struct can_rx_offload));
+          for(int _i0 = 0; _i0 < _len_offload0; _i0++) {
+              offload[_i0].inc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = can_rx_offload_le(offload,a,b);
           printf("%d\n", benchRet); 
           free(offload);

@@ -62,12 +62,6 @@ __attribute__((used)) static u32 pmic_arb_fmt_cmd_v2(u8 opc, u8 sid, u16 addr, u
 	return (opc << 27) | ((addr & 0xff) << 4) | (bc & 0x7);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,13 +74,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // big-arr-10x
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int opc = 10;
+        
           int sid = 10;
+        
           int addr = 10;
+        
           int bc = 10;
+        
           int benchRet = pmic_arb_fmt_cmd_v2(opc,sid,addr,bc);
           printf("%d\n", benchRet); 
         

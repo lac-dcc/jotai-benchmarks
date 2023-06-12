@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ void atari_microwire_cmd (int cmd)
 		;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,6 +87,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int cmd = 100;
+        
           atari_microwire_cmd(cmd);
         
         break;
@@ -100,6 +96,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int cmd = 255;
+        
           atari_microwire_cmd(cmd);
         
         break;
@@ -108,11 +105,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int cmd = 10;
+        
           atari_microwire_cmd(cmd);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          atari_microwire_cmd(cmd);
+        
+        break;
+    }
     default:
         usage();
         break;

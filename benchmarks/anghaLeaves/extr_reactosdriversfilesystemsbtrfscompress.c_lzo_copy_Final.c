@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -77,12 +79,6 @@ __attribute__((used)) static void lzo_copy(lzo_stream* stream, int len) {
     } while (len > 0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,17 +91,41 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int len = 100;
+        
           int _len_stream0 = 1;
           struct TYPE_3__ * stream = (struct TYPE_3__ *) malloc(_len_stream0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
-            stream[_i0].inpos = ((-2 * (next_i()%2)) + 1) * next_i();
-        stream[_i0].inlen = ((-2 * (next_i()%2)) + 1) * next_i();
-        stream[_i0].outpos = ((-2 * (next_i()%2)) + 1) * next_i();
-        stream[_i0].outlen = ((-2 * (next_i()%2)) + 1) * next_i();
+              stream[_i0].inpos = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].inlen = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].outpos = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].outlen = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_stream__i0__in0 = 1;
           stream[_i0].in = (int *) malloc(_len_stream__i0__in0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_stream__i0__in0; _j0++) {
@@ -116,7 +136,129 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_stream__i0__out0; _j0++) {
             stream[_i0].out[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          lzo_copy(stream,len);
+          for(int _aux = 0; _aux < _len_stream0; _aux++) {
+          free(stream[_aux].in);
+          }
+          for(int _aux = 0; _aux < _len_stream0; _aux++) {
+          free(stream[_aux].out);
+          }
+          free(stream);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int len = 255;
+        
+          int _len_stream0 = 65025;
+          struct TYPE_3__ * stream = (struct TYPE_3__ *) malloc(_len_stream0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
+              stream[_i0].inpos = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].inlen = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].outpos = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].outlen = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_stream__i0__in0 = 1;
+          stream[_i0].in = (int *) malloc(_len_stream__i0__in0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_stream__i0__in0; _j0++) {
+            stream[_i0].in[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_stream__i0__out0 = 1;
+          stream[_i0].out = (int *) malloc(_len_stream__i0__out0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_stream__i0__out0; _j0++) {
+            stream[_i0].out[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          lzo_copy(stream,len);
+          for(int _aux = 0; _aux < _len_stream0; _aux++) {
+          free(stream[_aux].in);
+          }
+          for(int _aux = 0; _aux < _len_stream0; _aux++) {
+          free(stream[_aux].out);
+          }
+          free(stream);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int len = 10;
+        
+          int _len_stream0 = 100;
+          struct TYPE_3__ * stream = (struct TYPE_3__ *) malloc(_len_stream0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
+              stream[_i0].inpos = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].inlen = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].outpos = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].outlen = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_stream__i0__in0 = 1;
+          stream[_i0].in = (int *) malloc(_len_stream__i0__in0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_stream__i0__in0; _j0++) {
+            stream[_i0].in[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_stream__i0__out0 = 1;
+          stream[_i0].out = (int *) malloc(_len_stream__i0__out0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_stream__i0__out0; _j0++) {
+            stream[_i0].out[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           lzo_copy(stream,len);
           for(int _aux = 0; _aux < _len_stream0; _aux++) {
           free(stream[_aux].in);

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +75,6 @@ __attribute__((used)) static inline u8 siox_status_clean(u8 status_read, u8 stat
 	return status_read ^ (~status_written & 0xe);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,7 +91,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int status_read = 100;
+        
           int status_written = 100;
+        
           int benchRet = siox_status_clean(status_read,status_written);
           printf("%d\n", benchRet); 
         
@@ -106,7 +103,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int status_read = 255;
+        
           int status_written = 255;
+        
           int benchRet = siox_status_clean(status_read,status_written);
           printf("%d\n", benchRet); 
         
@@ -116,13 +115,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int status_read = 10;
+        
           int status_written = 10;
+        
           int benchRet = siox_status_clean(status_read,status_written);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int status_read = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int status_written = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = siox_status_clean(status_read,status_written);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

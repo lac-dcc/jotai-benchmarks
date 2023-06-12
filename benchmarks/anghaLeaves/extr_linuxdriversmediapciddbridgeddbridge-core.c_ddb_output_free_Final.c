@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -79,12 +81,6 @@ __attribute__((used)) static u32 ddb_output_free(struct ddb_output *output)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,22 +93,152 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_output0 = 65025;
+          struct ddb_output * output = (struct ddb_output *) malloc(_len_output0*sizeof(struct ddb_output));
+          for(int _i0 = 0; _i0 < _len_output0; _i0++) {
+              int _len_output__i0__dma0 = 1;
+          output[_i0].dma = (struct TYPE_2__ *) malloc(_len_output__i0__dma0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_output__i0__dma0; _j0++) {
+              output[_i0].dma->stat = ((-2 * (next_i()%2)) + 1) * next_i();
+          output[_i0].dma->cbuf = ((-2 * (next_i()%2)) + 1) * next_i();
+          output[_i0].dma->num = ((-2 * (next_i()%2)) + 1) * next_i();
+          output[_i0].dma->size = ((-2 * (next_i()%2)) + 1) * next_i();
+          output[_i0].dma->coff = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ddb_output_free(output);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_output0; _aux++) {
+          free(output[_aux].dma);
+          }
+          free(output);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_output0 = 100;
+          struct ddb_output * output = (struct ddb_output *) malloc(_len_output0*sizeof(struct ddb_output));
+          for(int _i0 = 0; _i0 < _len_output0; _i0++) {
+              int _len_output__i0__dma0 = 1;
+          output[_i0].dma = (struct TYPE_2__ *) malloc(_len_output__i0__dma0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_output__i0__dma0; _j0++) {
+              output[_i0].dma->stat = ((-2 * (next_i()%2)) + 1) * next_i();
+          output[_i0].dma->cbuf = ((-2 * (next_i()%2)) + 1) * next_i();
+          output[_i0].dma->num = ((-2 * (next_i()%2)) + 1) * next_i();
+          output[_i0].dma->size = ((-2 * (next_i()%2)) + 1) * next_i();
+          output[_i0].dma->coff = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ddb_output_free(output);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_output0; _aux++) {
+          free(output[_aux].dma);
+          }
+          free(output);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int _len_output0 = 1;
           struct ddb_output * output = (struct ddb_output *) malloc(_len_output0*sizeof(struct ddb_output));
           for(int _i0 = 0; _i0 < _len_output0; _i0++) {
               int _len_output__i0__dma0 = 1;
           output[_i0].dma = (struct TYPE_2__ *) malloc(_len_output__i0__dma0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_output__i0__dma0; _j0++) {
-            output[_i0].dma->stat = ((-2 * (next_i()%2)) + 1) * next_i();
-        output[_i0].dma->cbuf = ((-2 * (next_i()%2)) + 1) * next_i();
-        output[_i0].dma->num = ((-2 * (next_i()%2)) + 1) * next_i();
-        output[_i0].dma->size = ((-2 * (next_i()%2)) + 1) * next_i();
-        output[_i0].dma->coff = ((-2 * (next_i()%2)) + 1) * next_i();
+              output[_i0].dma->stat = ((-2 * (next_i()%2)) + 1) * next_i();
+          output[_i0].dma->cbuf = ((-2 * (next_i()%2)) + 1) * next_i();
+          output[_i0].dma->num = ((-2 * (next_i()%2)) + 1) * next_i();
+          output[_i0].dma->size = ((-2 * (next_i()%2)) + 1) * next_i();
+          output[_i0].dma->coff = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = ddb_output_free(output);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_output0; _aux++) {

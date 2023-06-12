@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static int spl_ptr_heap_count(spl_ptr_heap *heap) { /* {{{
 	return heap->count;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_heap0 = 1;
+          int _len_heap0 = 65025;
           struct TYPE_3__ * heap = (struct TYPE_3__ *) malloc(_len_heap0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_heap0; _i0++) {
-            heap[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+              heap[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = spl_ptr_heap_count(heap);
           printf("%d\n", benchRet); 
           free(heap);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_heap0 = 100;
           struct TYPE_3__ * heap = (struct TYPE_3__ *) malloc(_len_heap0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_heap0; _i0++) {
-            heap[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+              heap[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = spl_ptr_heap_count(heap);
           printf("%d\n", benchRet); 
           free(heap);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_heap0 = 1;
+          struct TYPE_3__ * heap = (struct TYPE_3__ *) malloc(_len_heap0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_heap0; _i0++) {
+              heap[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = spl_ptr_heap_count(heap);
+          printf("%d\n", benchRet); 
+          free(heap);
+        
+        break;
+    }
     default:
         usage();
         break;

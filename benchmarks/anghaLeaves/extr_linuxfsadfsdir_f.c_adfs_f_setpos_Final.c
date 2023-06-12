@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ adfs_f_setpos(struct adfs_dir *dir, unsigned int fpos)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,30 +82,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           unsigned int fpos = 100;
+        
           int _len_dir0 = 1;
           struct adfs_dir * dir = (struct adfs_dir *) malloc(_len_dir0*sizeof(struct adfs_dir));
           for(int _i0 = 0; _i0 < _len_dir0; _i0++) {
-            dir[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+              dir[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = adfs_f_setpos(dir,fpos);
           printf("%d\n", benchRet); 
           free(dir);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          unsigned int fpos = 255;
+        
+          int _len_dir0 = 65025;
+          struct adfs_dir * dir = (struct adfs_dir *) malloc(_len_dir0*sizeof(struct adfs_dir));
+          for(int _i0 = 0; _i0 < _len_dir0; _i0++) {
+              dir[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = adfs_f_setpos(dir,fpos);
+          printf("%d\n", benchRet); 
+          free(dir);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           unsigned int fpos = 10;
+        
           int _len_dir0 = 100;
           struct adfs_dir * dir = (struct adfs_dir *) malloc(_len_dir0*sizeof(struct adfs_dir));
           for(int _i0 = 0; _i0 < _len_dir0; _i0++) {
-            dir[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+              dir[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = adfs_f_setpos(dir,fpos);
+          printf("%d\n", benchRet); 
+          free(dir);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          unsigned int fpos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dir0 = 1;
+          struct adfs_dir * dir = (struct adfs_dir *) malloc(_len_dir0*sizeof(struct adfs_dir));
+          for(int _i0 = 0; _i0 < _len_dir0; _i0++) {
+              dir[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = adfs_f_setpos(dir,fpos);
           printf("%d\n", benchRet); 
           free(dir);

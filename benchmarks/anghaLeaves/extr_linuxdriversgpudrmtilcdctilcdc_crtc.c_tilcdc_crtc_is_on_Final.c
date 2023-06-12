@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static bool tilcdc_crtc_is_on(struct drm_crtc *crtc)
 	return crtc->state && crtc->state->enable && crtc->state->active;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,19 +76,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_crtc0 = 65025;
+          struct drm_crtc * crtc = (struct drm_crtc *) malloc(_len_crtc0*sizeof(struct drm_crtc));
+          for(int _i0 = 0; _i0 < _len_crtc0; _i0++) {
+              int _len_crtc__i0__state0 = 1;
+          crtc[_i0].state = (struct TYPE_2__ *) malloc(_len_crtc__i0__state0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_crtc__i0__state0; _j0++) {
+              crtc[_i0].state->active = ((-2 * (next_i()%2)) + 1) * next_i();
+          crtc[_i0].state->enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = tilcdc_crtc_is_on(crtc);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_crtc0; _aux++) {
+          free(crtc[_aux].state);
+          }
+          free(crtc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_crtc0 = 100;
+          struct drm_crtc * crtc = (struct drm_crtc *) malloc(_len_crtc0*sizeof(struct drm_crtc));
+          for(int _i0 = 0; _i0 < _len_crtc0; _i0++) {
+              int _len_crtc__i0__state0 = 1;
+          crtc[_i0].state = (struct TYPE_2__ *) malloc(_len_crtc__i0__state0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_crtc__i0__state0; _j0++) {
+              crtc[_i0].state->active = ((-2 * (next_i()%2)) + 1) * next_i();
+          crtc[_i0].state->enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = tilcdc_crtc_is_on(crtc);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_crtc0; _aux++) {
+          free(crtc[_aux].state);
+          }
+          free(crtc);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int _len_crtc0 = 1;
           struct drm_crtc * crtc = (struct drm_crtc *) malloc(_len_crtc0*sizeof(struct drm_crtc));
           for(int _i0 = 0; _i0 < _len_crtc0; _i0++) {
               int _len_crtc__i0__state0 = 1;
           crtc[_i0].state = (struct TYPE_2__ *) malloc(_len_crtc__i0__state0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_crtc__i0__state0; _j0++) {
-            crtc[_i0].state->active = ((-2 * (next_i()%2)) + 1) * next_i();
-        crtc[_i0].state->enable = ((-2 * (next_i()%2)) + 1) * next_i();
+              crtc[_i0].state->active = ((-2 * (next_i()%2)) + 1) * next_i();
+          crtc[_i0].state->enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = tilcdc_crtc_is_on(crtc);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_crtc0; _aux++) {

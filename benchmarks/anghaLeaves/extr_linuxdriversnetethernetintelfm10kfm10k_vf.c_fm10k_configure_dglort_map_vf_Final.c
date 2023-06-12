@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static s32 fm10k_configure_dglort_map_vf(struct fm10k_hw *
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,19 +84,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_hw0 = 1;
+          int _len_hw0 = 65025;
           struct fm10k_hw * hw = (struct fm10k_hw *) malloc(_len_hw0*sizeof(struct fm10k_hw));
           for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
-            hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_dglort0 = 1;
+        
+          int _len_dglort0 = 65025;
           struct fm10k_dglort_cfg * dglort = (struct fm10k_dglort_cfg *) malloc(_len_dglort0*sizeof(struct fm10k_dglort_cfg));
           for(int _i0 = 0; _i0 < _len_dglort0; _i0++) {
-            dglort[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dglort[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = fm10k_configure_dglort_map_vf(hw,dglort);
           printf("%d\n", benchRet); 
           free(hw);
@@ -108,7 +108,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_hw0 = 100;
+          struct fm10k_hw * hw = (struct fm10k_hw *) malloc(_len_hw0*sizeof(struct fm10k_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dglort0 = 100;
+          struct fm10k_dglort_cfg * dglort = (struct fm10k_dglort_cfg *) malloc(_len_dglort0*sizeof(struct fm10k_dglort_cfg));
+          for(int _i0 = 0; _i0 < _len_dglort0; _i0++) {
+              dglort[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fm10k_configure_dglort_map_vf(hw,dglort);
+          printf("%d\n", benchRet); 
+          free(hw);
+          free(dglort);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_hw0 = 1;
+          struct fm10k_hw * hw = (struct fm10k_hw *) malloc(_len_hw0*sizeof(struct fm10k_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dglort0 = 1;
+          struct fm10k_dglort_cfg * dglort = (struct fm10k_dglort_cfg *) malloc(_len_dglort0*sizeof(struct fm10k_dglort_cfg));
+          for(int _i0 = 0; _i0 < _len_dglort0; _i0++) {
+              dglort[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fm10k_configure_dglort_map_vf(hw,dglort);
+          printf("%d\n", benchRet); 
+          free(hw);
+          free(dglort);
+        
+        break;
+    }
     default:
         usage();
         break;

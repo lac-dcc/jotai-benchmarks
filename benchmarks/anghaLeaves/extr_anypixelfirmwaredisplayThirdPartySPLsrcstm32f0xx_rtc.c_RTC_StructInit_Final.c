@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +73,6 @@ void RTC_StructInit(RTC_InitTypeDef* RTC_InitStruct)
   RTC_InitStruct->RTC_SynchPrediv = (uint32_t)0xFF; 
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,14 +85,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_RTC_InitStruct0 = 1;
+          int _len_RTC_InitStruct0 = 65025;
           struct TYPE_3__ * RTC_InitStruct = (struct TYPE_3__ *) malloc(_len_RTC_InitStruct0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_RTC_InitStruct0; _i0++) {
-            RTC_InitStruct[_i0].RTC_HourFormat = ((-2 * (next_i()%2)) + 1) * next_i();
+              RTC_InitStruct[_i0].RTC_HourFormat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           RTC_StructInit(RTC_InitStruct);
           free(RTC_InitStruct);
         
@@ -109,14 +106,30 @@ int main(int argc, char *argv[]) {
           int _len_RTC_InitStruct0 = 100;
           struct TYPE_3__ * RTC_InitStruct = (struct TYPE_3__ *) malloc(_len_RTC_InitStruct0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_RTC_InitStruct0; _i0++) {
-            RTC_InitStruct[_i0].RTC_HourFormat = ((-2 * (next_i()%2)) + 1) * next_i();
+              RTC_InitStruct[_i0].RTC_HourFormat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           RTC_StructInit(RTC_InitStruct);
           free(RTC_InitStruct);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_RTC_InitStruct0 = 1;
+          struct TYPE_3__ * RTC_InitStruct = (struct TYPE_3__ *) malloc(_len_RTC_InitStruct0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_RTC_InitStruct0; _i0++) {
+              RTC_InitStruct[_i0].RTC_HourFormat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          RTC_StructInit(RTC_InitStruct);
+          free(RTC_InitStruct);
+        
+        break;
+    }
     default:
         usage();
         break;

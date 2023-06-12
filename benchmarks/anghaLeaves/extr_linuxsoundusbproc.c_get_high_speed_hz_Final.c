@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline unsigned get_high_speed_hz(unsigned int usb_
 	return (usb_rate * 125 + (1 << 9)) >> 10;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,6 +78,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int usb_rate = 100;
+        
           unsigned int benchRet = get_high_speed_hz(usb_rate);
           printf("%u\n", benchRet); 
         
@@ -92,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int usb_rate = 255;
+        
           unsigned int benchRet = get_high_speed_hz(usb_rate);
           printf("%u\n", benchRet); 
         
@@ -101,12 +98,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int usb_rate = 10;
+        
           unsigned int benchRet = get_high_speed_hz(usb_rate);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int usb_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = get_high_speed_hz(usb_rate);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

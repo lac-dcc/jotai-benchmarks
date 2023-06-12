@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -82,12 +85,6 @@ RtlpWorkSpaceSizeLZNT1(USHORT Engine,
    return(STATUS_NOT_SUPPORTED);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,20 +97,190 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           long Engine = 100;
+        
           int _len_BufferAndWorkSpaceSize0 = 1;
           int * BufferAndWorkSpaceSize = (int *) malloc(_len_BufferAndWorkSpaceSize0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_BufferAndWorkSpaceSize0; _i0++) {
             BufferAndWorkSpaceSize[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_FragmentWorkSpaceSize0 = 1;
           int * FragmentWorkSpaceSize = (int *) malloc(_len_FragmentWorkSpaceSize0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_FragmentWorkSpaceSize0; _i0++) {
             FragmentWorkSpaceSize[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = RtlpWorkSpaceSizeLZNT1(Engine,BufferAndWorkSpaceSize,FragmentWorkSpaceSize);
+          printf("%d\n", benchRet); 
+          free(BufferAndWorkSpaceSize);
+          free(FragmentWorkSpaceSize);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          long Engine = 255;
+        
+          int _len_BufferAndWorkSpaceSize0 = 65025;
+          int * BufferAndWorkSpaceSize = (int *) malloc(_len_BufferAndWorkSpaceSize0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_BufferAndWorkSpaceSize0; _i0++) {
+            BufferAndWorkSpaceSize[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_FragmentWorkSpaceSize0 = 65025;
+          int * FragmentWorkSpaceSize = (int *) malloc(_len_FragmentWorkSpaceSize0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_FragmentWorkSpaceSize0; _i0++) {
+            FragmentWorkSpaceSize[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = RtlpWorkSpaceSizeLZNT1(Engine,BufferAndWorkSpaceSize,FragmentWorkSpaceSize);
+          printf("%d\n", benchRet); 
+          free(BufferAndWorkSpaceSize);
+          free(FragmentWorkSpaceSize);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          long Engine = 10;
+        
+          int _len_BufferAndWorkSpaceSize0 = 100;
+          int * BufferAndWorkSpaceSize = (int *) malloc(_len_BufferAndWorkSpaceSize0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_BufferAndWorkSpaceSize0; _i0++) {
+            BufferAndWorkSpaceSize[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_FragmentWorkSpaceSize0 = 100;
+          int * FragmentWorkSpaceSize = (int *) malloc(_len_FragmentWorkSpaceSize0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_FragmentWorkSpaceSize0; _i0++) {
+            FragmentWorkSpaceSize[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = RtlpWorkSpaceSizeLZNT1(Engine,BufferAndWorkSpaceSize,FragmentWorkSpaceSize);
+          printf("%d\n", benchRet); 
+          free(BufferAndWorkSpaceSize);
+          free(FragmentWorkSpaceSize);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          long Engine = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_BufferAndWorkSpaceSize0 = 1;
+          int * BufferAndWorkSpaceSize = (int *) malloc(_len_BufferAndWorkSpaceSize0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_BufferAndWorkSpaceSize0; _i0++) {
+            BufferAndWorkSpaceSize[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_FragmentWorkSpaceSize0 = 1;
+          int * FragmentWorkSpaceSize = (int *) malloc(_len_FragmentWorkSpaceSize0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_FragmentWorkSpaceSize0; _i0++) {
+            FragmentWorkSpaceSize[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = RtlpWorkSpaceSizeLZNT1(Engine,BufferAndWorkSpaceSize,FragmentWorkSpaceSize);
           printf("%d\n", benchRet); 
           free(BufferAndWorkSpaceSize);

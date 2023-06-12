@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ void CL_InitServerInfo( serverInfo_t *server, netadr_t *address ) {
 	server->g_needpass = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,10 +89,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_server0 = 1;
+          int _len_server0 = 65025;
           struct TYPE_3__ * server = (struct TYPE_3__ *) malloc(_len_server0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_server0; _i0++) {
               int _len_server__i0__hostName0 = 1;
@@ -109,28 +105,31 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_server__i0__mapName0; _j0++) {
             server[_i0].mapName[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        server[_i0].ping = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].ping = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_server__i0__game0 = 1;
           server[_i0].game = (char *) malloc(_len_server__i0__game0*sizeof(char));
           for(int _j0 = 0; _j0 < _len_server__i0__game0; _j0++) {
             server[_i0].game[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        server[_i0].g_needpass = ((-2 * (next_i()%2)) + 1) * next_i();
-        server[_i0].g_humanplayers = ((-2 * (next_i()%2)) + 1) * next_i();
-        server[_i0].punkbuster = ((-2 * (next_i()%2)) + 1) * next_i();
-        server[_i0].netType = ((-2 * (next_i()%2)) + 1) * next_i();
-        server[_i0].gameType = ((-2 * (next_i()%2)) + 1) * next_i();
-        server[_i0].minPing = ((-2 * (next_i()%2)) + 1) * next_i();
-        server[_i0].maxPing = ((-2 * (next_i()%2)) + 1) * next_i();
-        server[_i0].maxClients = ((-2 * (next_i()%2)) + 1) * next_i();
-        server[_i0].clients = ((-2 * (next_i()%2)) + 1) * next_i();
-        server[_i0].adr = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].g_needpass = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].g_humanplayers = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].punkbuster = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].netType = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].gameType = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].minPing = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].maxPing = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].maxClients = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].clients = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].adr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_address0 = 1;
+        
+          int _len_address0 = 65025;
           int * address = (int *) malloc(_len_address0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_address0; _i0++) {
             address[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           CL_InitServerInfo(server,address);
           for(int _aux = 0; _aux < _len_server0; _aux++) {
           free(server[_aux].hostName);
@@ -146,7 +145,118 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_server0 = 100;
+          struct TYPE_3__ * server = (struct TYPE_3__ *) malloc(_len_server0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_server0; _i0++) {
+              int _len_server__i0__hostName0 = 1;
+          server[_i0].hostName = (char *) malloc(_len_server__i0__hostName0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_server__i0__hostName0; _j0++) {
+            server[_i0].hostName[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_server__i0__mapName0 = 1;
+          server[_i0].mapName = (char *) malloc(_len_server__i0__mapName0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_server__i0__mapName0; _j0++) {
+            server[_i0].mapName[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          server[_i0].ping = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_server__i0__game0 = 1;
+          server[_i0].game = (char *) malloc(_len_server__i0__game0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_server__i0__game0; _j0++) {
+            server[_i0].game[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          server[_i0].g_needpass = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].g_humanplayers = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].punkbuster = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].netType = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].gameType = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].minPing = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].maxPing = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].maxClients = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].clients = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].adr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_address0 = 100;
+          int * address = (int *) malloc(_len_address0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_address0; _i0++) {
+            address[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          CL_InitServerInfo(server,address);
+          for(int _aux = 0; _aux < _len_server0; _aux++) {
+          free(server[_aux].hostName);
+          }
+          for(int _aux = 0; _aux < _len_server0; _aux++) {
+          free(server[_aux].mapName);
+          }
+          for(int _aux = 0; _aux < _len_server0; _aux++) {
+          free(server[_aux].game);
+          }
+          free(server);
+          free(address);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_server0 = 1;
+          struct TYPE_3__ * server = (struct TYPE_3__ *) malloc(_len_server0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_server0; _i0++) {
+              int _len_server__i0__hostName0 = 1;
+          server[_i0].hostName = (char *) malloc(_len_server__i0__hostName0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_server__i0__hostName0; _j0++) {
+            server[_i0].hostName[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_server__i0__mapName0 = 1;
+          server[_i0].mapName = (char *) malloc(_len_server__i0__mapName0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_server__i0__mapName0; _j0++) {
+            server[_i0].mapName[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          server[_i0].ping = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_server__i0__game0 = 1;
+          server[_i0].game = (char *) malloc(_len_server__i0__game0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_server__i0__game0; _j0++) {
+            server[_i0].game[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          server[_i0].g_needpass = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].g_humanplayers = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].punkbuster = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].netType = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].gameType = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].minPing = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].maxPing = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].maxClients = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].clients = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].adr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_address0 = 1;
+          int * address = (int *) malloc(_len_address0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_address0; _i0++) {
+            address[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          CL_InitServerInfo(server,address);
+          for(int _aux = 0; _aux < _len_server0; _aux++) {
+          free(server[_aux].hostName);
+          }
+          for(int _aux = 0; _aux < _len_server0; _aux++) {
+          free(server[_aux].mapName);
+          }
+          for(int _aux = 0; _aux < _len_server0; _aux++) {
+          free(server[_aux].game);
+          }
+          free(server);
+          free(address);
+        
+        break;
+    }
     default:
         usage();
         break;

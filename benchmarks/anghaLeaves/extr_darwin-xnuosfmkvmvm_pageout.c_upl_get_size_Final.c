@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ upl_size_t upl_get_size(
         return upl->size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,28 +78,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_upl0 = 1;
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_upl0 = 65025;
           struct TYPE_3__ * upl = (struct TYPE_3__ *) malloc(_len_upl0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_upl0; _i0++) {
-            upl[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              upl[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = upl_get_size(upl);
           printf("%d\n", benchRet); 
           free(upl);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_upl0 = 100;
           struct TYPE_3__ * upl = (struct TYPE_3__ *) malloc(_len_upl0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_upl0; _i0++) {
-            upl[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              upl[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = upl_get_size(upl);
+          printf("%d\n", benchRet); 
+          free(upl);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_upl0 = 1;
+          struct TYPE_3__ * upl = (struct TYPE_3__ *) malloc(_len_upl0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_upl0; _i0++) {
+              upl[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = upl_get_size(upl);
           printf("%d\n", benchRet); 
           free(upl);

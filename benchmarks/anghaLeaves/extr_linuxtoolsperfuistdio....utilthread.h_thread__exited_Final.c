@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline void thread__exited(struct thread *thread)
 	thread->dead = true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_thread0 = 1;
+          int _len_thread0 = 65025;
           struct thread * thread = (struct thread *) malloc(_len_thread0*sizeof(struct thread));
           for(int _i0 = 0; _i0 < _len_thread0; _i0++) {
-            thread[_i0].dead = ((-2 * (next_i()%2)) + 1) * next_i();
+              thread[_i0].dead = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           thread__exited(thread);
           free(thread);
         
@@ -98,14 +95,30 @@ int main(int argc, char *argv[]) {
           int _len_thread0 = 100;
           struct thread * thread = (struct thread *) malloc(_len_thread0*sizeof(struct thread));
           for(int _i0 = 0; _i0 < _len_thread0; _i0++) {
-            thread[_i0].dead = ((-2 * (next_i()%2)) + 1) * next_i();
+              thread[_i0].dead = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           thread__exited(thread);
           free(thread);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_thread0 = 1;
+          struct thread * thread = (struct thread *) malloc(_len_thread0*sizeof(struct thread));
+          for(int _i0 = 0; _i0 < _len_thread0; _i0++) {
+              thread[_i0].dead = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          thread__exited(thread);
+          free(thread);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -66,12 +66,6 @@ __attribute__((used)) static u64 make_cookie(u64 index, u64 pgsz_code, u64 page_
 		page_offset);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,8 +82,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int index = 100;
+        
           int pgsz_code = 100;
+        
           int page_offset = 100;
+        
           int benchRet = make_cookie(index,pgsz_code,page_offset);
           printf("%d\n", benchRet); 
         
@@ -99,8 +96,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int index = 255;
+        
           int pgsz_code = 255;
+        
           int page_offset = 255;
+        
           int benchRet = make_cookie(index,pgsz_code,page_offset);
           printf("%d\n", benchRet); 
         
@@ -110,14 +110,16 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int index = 10;
+        
           int pgsz_code = 10;
+        
           int page_offset = 10;
+        
           int benchRet = make_cookie(index,pgsz_code,page_offset);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

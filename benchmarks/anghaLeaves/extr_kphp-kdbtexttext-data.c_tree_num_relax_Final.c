@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static inline void tree_num_relax (tree_num_t *T) {
   T->N = T->left->N + T->right->N + 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,24 +79,28 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_T0 = 1;
+          int _len_T0 = 65025;
           struct TYPE_7__ * T = (struct TYPE_7__ *) malloc(_len_T0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_T0; _i0++) {
               int _len_T__i0__right0 = 1;
           T[_i0].right = (struct TYPE_6__ *) malloc(_len_T__i0__right0*sizeof(struct TYPE_6__));
           for(int _j0 = 0; _j0 < _len_T__i0__right0; _j0++) {
-            T[_i0].right->N = ((-2 * (next_i()%2)) + 1) * next_i();
+              T[_i0].right->N = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_T__i0__left0 = 1;
           T[_i0].left = (struct TYPE_5__ *) malloc(_len_T__i0__left0*sizeof(struct TYPE_5__));
           for(int _j0 = 0; _j0 < _len_T__i0__left0; _j0++) {
-            T[_i0].left->N = ((-2 * (next_i()%2)) + 1) * next_i();
+              T[_i0].left->N = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        T[_i0].N = ((-2 * (next_i()%2)) + 1) * next_i();
+          T[_i0].N = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           tree_num_relax(T);
           for(int _aux = 0; _aux < _len_T0; _aux++) {
           free(T[_aux].right);
@@ -112,7 +112,72 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_T0 = 100;
+          struct TYPE_7__ * T = (struct TYPE_7__ *) malloc(_len_T0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_T0; _i0++) {
+              int _len_T__i0__right0 = 1;
+          T[_i0].right = (struct TYPE_6__ *) malloc(_len_T__i0__right0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_T__i0__right0; _j0++) {
+              T[_i0].right->N = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_T__i0__left0 = 1;
+          T[_i0].left = (struct TYPE_5__ *) malloc(_len_T__i0__left0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_T__i0__left0; _j0++) {
+              T[_i0].left->N = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          T[_i0].N = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          tree_num_relax(T);
+          for(int _aux = 0; _aux < _len_T0; _aux++) {
+          free(T[_aux].right);
+          }
+          for(int _aux = 0; _aux < _len_T0; _aux++) {
+          free(T[_aux].left);
+          }
+          free(T);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_T0 = 1;
+          struct TYPE_7__ * T = (struct TYPE_7__ *) malloc(_len_T0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_T0; _i0++) {
+              int _len_T__i0__right0 = 1;
+          T[_i0].right = (struct TYPE_6__ *) malloc(_len_T__i0__right0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_T__i0__right0; _j0++) {
+              T[_i0].right->N = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_T__i0__left0 = 1;
+          T[_i0].left = (struct TYPE_5__ *) malloc(_len_T__i0__left0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_T__i0__left0; _j0++) {
+              T[_i0].left->N = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          T[_i0].N = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          tree_num_relax(T);
+          for(int _aux = 0; _aux < _len_T0; _aux++) {
+          free(T[_aux].right);
+          }
+          for(int _aux = 0; _aux < _len_T0; _aux++) {
+          free(T[_aux].left);
+          }
+          free(T);
+        
+        break;
+    }
     default:
         usage();
         break;

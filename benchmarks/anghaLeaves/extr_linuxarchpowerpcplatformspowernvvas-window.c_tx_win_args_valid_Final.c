@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -79,12 +81,6 @@ __attribute__((used)) static bool tx_win_args_valid(enum vas_cop_type cop,
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,18 +93,134 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           enum vas_cop_type cop = 0;
+        
+          int _len_attr0 = 65025;
+          struct vas_tx_win_attr * attr = (struct vas_tx_win_attr *) malloc(_len_attr0*sizeof(struct vas_tx_win_attr));
+          for(int _i0 = 0; _i0 < _len_attr0; _i0++) {
+              attr[_i0].tc_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          attr[_i0].wcreds_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          attr[_i0].rsvd_txbuf_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          attr[_i0].user_win = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = tx_win_args_valid(cop,attr);
+          printf("%d\n", benchRet); 
+          free(attr);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          enum vas_cop_type cop = 0;
+        
+          int _len_attr0 = 100;
+          struct vas_tx_win_attr * attr = (struct vas_tx_win_attr *) malloc(_len_attr0*sizeof(struct vas_tx_win_attr));
+          for(int _i0 = 0; _i0 < _len_attr0; _i0++) {
+              attr[_i0].tc_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          attr[_i0].wcreds_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          attr[_i0].rsvd_txbuf_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          attr[_i0].user_win = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = tx_win_args_valid(cop,attr);
+          printf("%d\n", benchRet); 
+          free(attr);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          enum vas_cop_type cop = 0;
+        
           int _len_attr0 = 1;
           struct vas_tx_win_attr * attr = (struct vas_tx_win_attr *) malloc(_len_attr0*sizeof(struct vas_tx_win_attr));
           for(int _i0 = 0; _i0 < _len_attr0; _i0++) {
-            attr[_i0].tc_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        attr[_i0].wcreds_max = ((-2 * (next_i()%2)) + 1) * next_i();
-        attr[_i0].rsvd_txbuf_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        attr[_i0].user_win = ((-2 * (next_i()%2)) + 1) * next_i();
+              attr[_i0].tc_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          attr[_i0].wcreds_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          attr[_i0].rsvd_txbuf_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          attr[_i0].user_win = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = tx_win_args_valid(cop,attr);
           printf("%d\n", benchRet); 
           free(attr);

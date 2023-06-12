@@ -62,12 +62,6 @@ __attribute__((used)) static inline u32 xswap(u32 val)
 	return ((val & 0x00ff00ff) << 8) | ((val & 0xff00ff00) >> 8);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +78,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int val = 100;
+        
           int benchRet = xswap(val);
           printf("%d\n", benchRet); 
         
@@ -93,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int val = 255;
+        
           int benchRet = xswap(val);
           printf("%d\n", benchRet); 
         
@@ -102,12 +98,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int val = 10;
+        
           int benchRet = xswap(val);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -83,12 +85,6 @@ __attribute__((used)) static int fix_unmerged_status(struct diff_filepair *p,
 		return DIFF_STATUS_MODIFIED;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,24 +97,166 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_p0 = 1;
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_p0 = 65025;
           struct diff_filepair * p = (struct diff_filepair *) malloc(_len_p0*sizeof(struct diff_filepair));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_p__i0__two0 = 1;
           p[_i0].two = (struct TYPE_2__ *) malloc(_len_p__i0__two0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_p__i0__two0; _j0++) {
-            p[_i0].two->mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].two->mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int _len_data0 = 65025;
+          struct update_callback_data * data = (struct update_callback_data *) malloc(_len_data0*sizeof(struct update_callback_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fix_unmerged_status(p,data);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_p0; _aux++) {
+          free(p[_aux].two);
+          }
+          free(p);
+          free(data);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_p0 = 100;
+          struct diff_filepair * p = (struct diff_filepair *) malloc(_len_p0*sizeof(struct diff_filepair));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_p__i0__two0 = 1;
+          p[_i0].two = (struct TYPE_2__ *) malloc(_len_p__i0__two0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_p__i0__two0; _j0++) {
+              p[_i0].two->mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_data0 = 100;
+          struct update_callback_data * data = (struct update_callback_data *) malloc(_len_data0*sizeof(struct update_callback_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fix_unmerged_status(p,data);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_p0; _aux++) {
+          free(p[_aux].two);
+          }
+          free(p);
+          free(data);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_p0 = 1;
+          struct diff_filepair * p = (struct diff_filepair *) malloc(_len_p0*sizeof(struct diff_filepair));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_p__i0__two0 = 1;
+          p[_i0].two = (struct TYPE_2__ *) malloc(_len_p__i0__two0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_p__i0__two0; _j0++) {
+              p[_i0].two->mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int _len_data0 = 1;
           struct update_callback_data * data = (struct update_callback_data *) malloc(_len_data0*sizeof(struct update_callback_data));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
-            data[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              data[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = fix_unmerged_status(p,data);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_p0; _aux++) {

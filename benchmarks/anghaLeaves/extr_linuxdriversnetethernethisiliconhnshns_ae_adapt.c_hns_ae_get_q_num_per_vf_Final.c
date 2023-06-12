@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ __attribute__((used)) static int hns_ae_get_q_num_per_vf(
 	return dsaf_dev->rcb_common[0]->max_q_per_vf;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,10 +78,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int port = 100;
+        
           int _len_dsaf_dev0 = 1;
           struct dsaf_device * dsaf_dev = (struct dsaf_device *) malloc(_len_dsaf_dev0*sizeof(struct dsaf_device));
           for(int _i0 = 0; _i0 < _len_dsaf_dev0; _i0++) {
@@ -94,10 +115,178 @@ int main(int argc, char *argv[]) {
             int _len_dsaf_dev__i0__rcb_common1 = 1;
             dsaf_dev[_i0].rcb_common[_j0] = (struct TYPE_2__ *) malloc(_len_dsaf_dev__i0__rcb_common1*sizeof(struct TYPE_2__));
             for(int _j1 = 0; _j1 < _len_dsaf_dev__i0__rcb_common1; _j1++) {
-              dsaf_dev[_i0].rcb_common[_j0]->max_q_per_vf = ((-2 * (next_i()%2)) + 1) * next_i();
+                dsaf_dev[_i0].rcb_common[_j0]->max_q_per_vf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           }
+        
+          int benchRet = hns_ae_get_q_num_per_vf(dsaf_dev,port);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dsaf_dev0; _aux++) {
+          free(*(dsaf_dev[_aux].rcb_common));
+        free(dsaf_dev[_aux].rcb_common);
+          }
+          free(dsaf_dev);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int port = 255;
+        
+          int _len_dsaf_dev0 = 65025;
+          struct dsaf_device * dsaf_dev = (struct dsaf_device *) malloc(_len_dsaf_dev0*sizeof(struct dsaf_device));
+          for(int _i0 = 0; _i0 < _len_dsaf_dev0; _i0++) {
+              int _len_dsaf_dev__i0__rcb_common0 = 1;
+          dsaf_dev[_i0].rcb_common = (struct TYPE_2__ **) malloc(_len_dsaf_dev__i0__rcb_common0*sizeof(struct TYPE_2__ *));
+          for(int _j0 = 0; _j0 < _len_dsaf_dev__i0__rcb_common0; _j0++) {
+            int _len_dsaf_dev__i0__rcb_common1 = 1;
+            dsaf_dev[_i0].rcb_common[_j0] = (struct TYPE_2__ *) malloc(_len_dsaf_dev__i0__rcb_common1*sizeof(struct TYPE_2__));
+            for(int _j1 = 0; _j1 < _len_dsaf_dev__i0__rcb_common1; _j1++) {
+                dsaf_dev[_i0].rcb_common[_j0]->max_q_per_vf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int benchRet = hns_ae_get_q_num_per_vf(dsaf_dev,port);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dsaf_dev0; _aux++) {
+          free(*(dsaf_dev[_aux].rcb_common));
+        free(dsaf_dev[_aux].rcb_common);
+          }
+          free(dsaf_dev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int port = 10;
+        
+          int _len_dsaf_dev0 = 100;
+          struct dsaf_device * dsaf_dev = (struct dsaf_device *) malloc(_len_dsaf_dev0*sizeof(struct dsaf_device));
+          for(int _i0 = 0; _i0 < _len_dsaf_dev0; _i0++) {
+              int _len_dsaf_dev__i0__rcb_common0 = 1;
+          dsaf_dev[_i0].rcb_common = (struct TYPE_2__ **) malloc(_len_dsaf_dev__i0__rcb_common0*sizeof(struct TYPE_2__ *));
+          for(int _j0 = 0; _j0 < _len_dsaf_dev__i0__rcb_common0; _j0++) {
+            int _len_dsaf_dev__i0__rcb_common1 = 1;
+            dsaf_dev[_i0].rcb_common[_j0] = (struct TYPE_2__ *) malloc(_len_dsaf_dev__i0__rcb_common1*sizeof(struct TYPE_2__));
+            for(int _j1 = 0; _j1 < _len_dsaf_dev__i0__rcb_common1; _j1++) {
+                dsaf_dev[_i0].rcb_common[_j0]->max_q_per_vf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int benchRet = hns_ae_get_q_num_per_vf(dsaf_dev,port);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dsaf_dev0; _aux++) {
+          free(*(dsaf_dev[_aux].rcb_common));
+        free(dsaf_dev[_aux].rcb_common);
+          }
+          free(dsaf_dev);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int port = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dsaf_dev0 = 1;
+          struct dsaf_device * dsaf_dev = (struct dsaf_device *) malloc(_len_dsaf_dev0*sizeof(struct dsaf_device));
+          for(int _i0 = 0; _i0 < _len_dsaf_dev0; _i0++) {
+              int _len_dsaf_dev__i0__rcb_common0 = 1;
+          dsaf_dev[_i0].rcb_common = (struct TYPE_2__ **) malloc(_len_dsaf_dev__i0__rcb_common0*sizeof(struct TYPE_2__ *));
+          for(int _j0 = 0; _j0 < _len_dsaf_dev__i0__rcb_common0; _j0++) {
+            int _len_dsaf_dev__i0__rcb_common1 = 1;
+            dsaf_dev[_i0].rcb_common[_j0] = (struct TYPE_2__ *) malloc(_len_dsaf_dev__i0__rcb_common1*sizeof(struct TYPE_2__));
+            for(int _j1 = 0; _j1 < _len_dsaf_dev__i0__rcb_common1; _j1++) {
+                dsaf_dev[_i0].rcb_common[_j0]->max_q_per_vf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
           int benchRet = hns_ae_get_q_num_per_vf(dsaf_dev,port);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_dsaf_dev0; _aux++) {

@@ -62,12 +62,6 @@ __attribute__((used)) static void wss_insert(u8 *wss, u32 val, unsigned size)
 		*wss++ = (val & (1 << size)) ? 0xc0 : 0x10;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,18 +78,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int val = 10;
+        
           unsigned int size = 10;
+        
           int _len_wss0 = 100;
           int * wss = (int *) malloc(_len_wss0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_wss0; _i0++) {
             wss[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           wss_insert(wss,val,size);
           free(wss);
         
         break;
     }
-
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ __attribute__((used)) static inline int vaddr_in_range(unsigned long vaddr, stru
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,19 +83,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long vaddr = 100;
+        
           int _len_r0 = 1;
           struct vaddr_range * r = (struct vaddr_range *) malloc(_len_r0*sizeof(struct vaddr_range));
           for(int _i0 = 0; _i0 < _len_r0; _i0++) {
-            r[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
-        r[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+              r[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = vaddr_in_range(vaddr,r);
           printf("%d\n", benchRet); 
           free(r);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long vaddr = 255;
+        
+          int _len_r0 = 65025;
+          struct vaddr_range * r = (struct vaddr_range *) malloc(_len_r0*sizeof(struct vaddr_range));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+              r[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vaddr_in_range(vaddr,r);
+          printf("%d\n", benchRet); 
+          free(r);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long vaddr = 10;
+        
+          int _len_r0 = 100;
+          struct vaddr_range * r = (struct vaddr_range *) malloc(_len_r0*sizeof(struct vaddr_range));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+              r[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vaddr_in_range(vaddr,r);
+          printf("%d\n", benchRet); 
+          free(r);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long vaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_r0 = 1;
+          struct vaddr_range * r = (struct vaddr_range *) malloc(_len_r0*sizeof(struct vaddr_range));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+              r[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vaddr_in_range(vaddr,r);
+          printf("%d\n", benchRet); 
+          free(r);
+        
+        break;
+    }
     default:
         usage();
         break;

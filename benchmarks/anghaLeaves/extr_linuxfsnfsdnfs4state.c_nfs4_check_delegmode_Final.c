@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ nfs4_check_delegmode(struct nfs4_delegation *dp, int flags)
 		return nfs_ok;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,11 +88,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int flags = 100;
+        
           int _len_dp0 = 1;
           struct nfs4_delegation * dp = (struct nfs4_delegation *) malloc(_len_dp0*sizeof(struct nfs4_delegation));
           for(int _i0 = 0; _i0 < _len_dp0; _i0++) {
-            dp[_i0].dl_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              dp[_i0].dl_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = nfs4_check_delegmode(dp,flags);
+          printf("%d\n", benchRet); 
+          free(dp);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int flags = 255;
+        
+          int _len_dp0 = 65025;
+          struct nfs4_delegation * dp = (struct nfs4_delegation *) malloc(_len_dp0*sizeof(struct nfs4_delegation));
+          for(int _i0 = 0; _i0 < _len_dp0; _i0++) {
+              dp[_i0].dl_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = nfs4_check_delegmode(dp,flags);
           printf("%d\n", benchRet); 
           free(dp);
@@ -104,21 +121,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int flags = 10;
+        
           int _len_dp0 = 100;
           struct nfs4_delegation * dp = (struct nfs4_delegation *) malloc(_len_dp0*sizeof(struct nfs4_delegation));
           for(int _i0 = 0; _i0 < _len_dp0; _i0++) {
-            dp[_i0].dl_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              dp[_i0].dl_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = nfs4_check_delegmode(dp,flags);
           printf("%d\n", benchRet); 
           free(dp);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dp0 = 1;
+          struct nfs4_delegation * dp = (struct nfs4_delegation *) malloc(_len_dp0*sizeof(struct nfs4_delegation));
+          for(int _i0 = 0; _i0 < _len_dp0; _i0++) {
+              dp[_i0].dl_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nfs4_check_delegmode(dp,flags);
+          printf("%d\n", benchRet); 
+          free(dp);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline int __v3_tx_kernel_ready(struct tpacket3_hdr
 	return !(hdr->tp_status & (TP_STATUS_SEND_REQUEST | TP_STATUS_SENDING));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,28 +76,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_hdr0 = 1;
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_hdr0 = 65025;
           struct tpacket3_hdr * hdr = (struct tpacket3_hdr *) malloc(_len_hdr0*sizeof(struct tpacket3_hdr));
           for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
-            hdr[_i0].tp_status = ((-2 * (next_i()%2)) + 1) * next_i();
+              hdr[_i0].tp_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = __v3_tx_kernel_ready(hdr);
           printf("%d\n", benchRet); 
           free(hdr);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_hdr0 = 100;
           struct tpacket3_hdr * hdr = (struct tpacket3_hdr *) malloc(_len_hdr0*sizeof(struct tpacket3_hdr));
           for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
-            hdr[_i0].tp_status = ((-2 * (next_i()%2)) + 1) * next_i();
+              hdr[_i0].tp_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = __v3_tx_kernel_ready(hdr);
+          printf("%d\n", benchRet); 
+          free(hdr);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_hdr0 = 1;
+          struct tpacket3_hdr * hdr = (struct tpacket3_hdr *) malloc(_len_hdr0*sizeof(struct tpacket3_hdr));
+          for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
+              hdr[_i0].tp_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = __v3_tx_kernel_ready(hdr);
           printf("%d\n", benchRet); 
           free(hdr);

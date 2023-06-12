@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline int slic_next_queue_idx(unsigned int idx, un
 	return (idx + 1) & (qlen - 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,7 +78,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int idx = 100;
+        
           unsigned int qlen = 100;
+        
           int benchRet = slic_next_queue_idx(idx,qlen);
           printf("%d\n", benchRet); 
         
@@ -93,7 +90,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int idx = 255;
+        
           unsigned int qlen = 255;
+        
           int benchRet = slic_next_queue_idx(idx,qlen);
           printf("%d\n", benchRet); 
         
@@ -103,13 +102,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int idx = 10;
+        
           unsigned int qlen = 10;
+        
           int benchRet = slic_next_queue_idx(idx,qlen);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int qlen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = slic_next_queue_idx(idx,qlen);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

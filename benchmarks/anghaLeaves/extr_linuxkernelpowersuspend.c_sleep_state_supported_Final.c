@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static bool sleep_state_supported(suspend_state_t state)
 	return state == PM_SUSPEND_TO_IDLE || (suspend_ops && suspend_ops->enter);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,6 +83,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long state = 100;
+        
           int benchRet = sleep_state_supported(state);
           printf("%d\n", benchRet); 
         
@@ -97,6 +93,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long state = 255;
+        
           int benchRet = sleep_state_supported(state);
           printf("%d\n", benchRet); 
         
@@ -106,12 +103,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long state = 10;
+        
           int benchRet = sleep_state_supported(state);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = sleep_state_supported(state);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

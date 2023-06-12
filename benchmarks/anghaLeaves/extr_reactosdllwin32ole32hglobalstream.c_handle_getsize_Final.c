@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static ULONG handle_getsize(struct handle_wrapper *handle)
     return handle->size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_handle0 = 1;
+          int _len_handle0 = 65025;
           struct handle_wrapper * handle = (struct handle_wrapper *) malloc(_len_handle0*sizeof(struct handle_wrapper));
           for(int _i0 = 0; _i0 < _len_handle0; _i0++) {
-            handle[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              handle[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = handle_getsize(handle);
           printf("%d\n", benchRet); 
           free(handle);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_handle0 = 100;
           struct handle_wrapper * handle = (struct handle_wrapper *) malloc(_len_handle0*sizeof(struct handle_wrapper));
           for(int _i0 = 0; _i0 < _len_handle0; _i0++) {
-            handle[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              handle[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = handle_getsize(handle);
           printf("%d\n", benchRet); 
           free(handle);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_handle0 = 1;
+          struct handle_wrapper * handle = (struct handle_wrapper *) malloc(_len_handle0*sizeof(struct handle_wrapper));
+          for(int _i0 = 0; _i0 < _len_handle0; _i0++) {
+              handle[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = handle_getsize(handle);
+          printf("%d\n", benchRet); 
+          free(handle);
+        
+        break;
+    }
     default:
         usage();
         break;

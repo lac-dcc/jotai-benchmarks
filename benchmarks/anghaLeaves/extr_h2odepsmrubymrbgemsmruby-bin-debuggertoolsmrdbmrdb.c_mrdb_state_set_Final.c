@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ mrdb_state_set(mrdb_state *mrdb)
   _mrdb_state = mrdb;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_mrdb0 = 1;
+          int _len_mrdb0 = 65025;
           int * mrdb = (int *) malloc(_len_mrdb0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_mrdb0; _i0++) {
             mrdb[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           mrdb_state_set(mrdb);
           free(mrdb);
         
@@ -102,12 +98,26 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_mrdb0; _i0++) {
             mrdb[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           mrdb_state_set(mrdb);
           free(mrdb);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_mrdb0 = 1;
+          int * mrdb = (int *) malloc(_len_mrdb0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mrdb0; _i0++) {
+            mrdb[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          mrdb_state_set(mrdb);
+          free(mrdb);
+        
+        break;
+    }
     default:
         usage();
         break;

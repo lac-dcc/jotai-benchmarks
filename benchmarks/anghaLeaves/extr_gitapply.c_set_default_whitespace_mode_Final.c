@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static void set_default_whitespace_mode(struct apply_state
 		state->ws_error_action = (state->apply ? warn_on_ws_error : nowarn_ws_error);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,16 +78,123 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_state0 = 65025;
+          struct apply_state * state = (struct apply_state *) malloc(_len_state0*sizeof(struct apply_state));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].apply = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].ws_error_action = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].whitespace_option = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_default_whitespace_mode(state);
+          free(state);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_state0 = 100;
+          struct apply_state * state = (struct apply_state *) malloc(_len_state0*sizeof(struct apply_state));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].apply = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].ws_error_action = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].whitespace_option = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_default_whitespace_mode(state);
+          free(state);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_state0 = 1;
           struct apply_state * state = (struct apply_state *) malloc(_len_state0*sizeof(struct apply_state));
           for(int _i0 = 0; _i0 < _len_state0; _i0++) {
-            state[_i0].apply = ((-2 * (next_i()%2)) + 1) * next_i();
-        state[_i0].ws_error_action = ((-2 * (next_i()%2)) + 1) * next_i();
-        state[_i0].whitespace_option = ((-2 * (next_i()%2)) + 1) * next_i();
+              state[_i0].apply = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].ws_error_action = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].whitespace_option = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           set_default_whitespace_mode(state);
           free(state);
         

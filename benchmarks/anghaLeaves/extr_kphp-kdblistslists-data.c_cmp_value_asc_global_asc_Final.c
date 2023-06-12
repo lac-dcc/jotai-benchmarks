@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ int cmp_value_asc_global_asc (struct heap_entry *p, value_t value, global_id_t g
   }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,17 +82,179 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           long value = 100;
+        
           int global_id = 100;
+        
           int _len_p0 = 1;
           struct heap_entry * p = (struct heap_entry *) malloc(_len_p0*sizeof(struct heap_entry));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].value = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].global_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].value = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].global_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = cmp_value_asc_global_asc(p,value,global_id);
+          printf("%d\n", benchRet); 
+          free(p);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          long value = 255;
+        
+          int global_id = 255;
+        
+          int _len_p0 = 65025;
+          struct heap_entry * p = (struct heap_entry *) malloc(_len_p0*sizeof(struct heap_entry));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].value = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].global_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cmp_value_asc_global_asc(p,value,global_id);
+          printf("%d\n", benchRet); 
+          free(p);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          long value = 10;
+        
+          int global_id = 10;
+        
+          int _len_p0 = 100;
+          struct heap_entry * p = (struct heap_entry *) malloc(_len_p0*sizeof(struct heap_entry));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].value = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].global_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cmp_value_asc_global_asc(p,value,global_id);
+          printf("%d\n", benchRet); 
+          free(p);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          long value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int global_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_p0 = 1;
+          struct heap_entry * p = (struct heap_entry *) malloc(_len_p0*sizeof(struct heap_entry));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].value = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].global_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = cmp_value_asc_global_asc(p,value,global_id);
           printf("%d\n", benchRet); 
           free(p);

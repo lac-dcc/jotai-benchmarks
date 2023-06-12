@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -93,12 +94,6 @@ __attribute__((used)) static inline unsigned int CDT2DT(unsigned char cdt)
 	return dt;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -115,6 +110,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned char cdt = 100;
+        
           unsigned int benchRet = CDT2DT(cdt);
           printf("%u\n", benchRet); 
         
@@ -124,6 +120,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned char cdt = 255;
+        
           unsigned int benchRet = CDT2DT(cdt);
           printf("%u\n", benchRet); 
         
@@ -133,12 +130,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned char cdt = 10;
+        
           unsigned int benchRet = CDT2DT(cdt);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned char cdt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = CDT2DT(cdt);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

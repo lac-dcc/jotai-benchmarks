@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static int find_free_scb_index (struct dsp_spos_instance *
 	return index;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,20 +85,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ins0 = 1;
+          int _len_ins0 = 65025;
           struct dsp_spos_instance * ins = (struct dsp_spos_instance *) malloc(_len_ins0*sizeof(struct dsp_spos_instance));
           for(int _i0 = 0; _i0 < _len_ins0; _i0++) {
-            ins[_i0].nscb = ((-2 * (next_i()%2)) + 1) * next_i();
-        ins[_i0].scb_highest_frag_index = ((-2 * (next_i()%2)) + 1) * next_i();
+              ins[_i0].nscb = ((-2 * (next_i()%2)) + 1) * next_i();
+          ins[_i0].scb_highest_frag_index = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_ins__i0__scbs0 = 1;
           ins[_i0].scbs = (struct TYPE_2__ *) malloc(_len_ins__i0__scbs0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_ins__i0__scbs0; _j0++) {
-            ins[_i0].scbs->deleted = ((-2 * (next_i()%2)) + 1) * next_i();
+              ins[_i0].scbs->deleted = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = find_free_scb_index(ins);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_ins0; _aux++) {
@@ -112,7 +111,58 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ins0 = 100;
+          struct dsp_spos_instance * ins = (struct dsp_spos_instance *) malloc(_len_ins0*sizeof(struct dsp_spos_instance));
+          for(int _i0 = 0; _i0 < _len_ins0; _i0++) {
+              ins[_i0].nscb = ((-2 * (next_i()%2)) + 1) * next_i();
+          ins[_i0].scb_highest_frag_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ins__i0__scbs0 = 1;
+          ins[_i0].scbs = (struct TYPE_2__ *) malloc(_len_ins__i0__scbs0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ins__i0__scbs0; _j0++) {
+              ins[_i0].scbs->deleted = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = find_free_scb_index(ins);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ins0; _aux++) {
+          free(ins[_aux].scbs);
+          }
+          free(ins);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ins0 = 1;
+          struct dsp_spos_instance * ins = (struct dsp_spos_instance *) malloc(_len_ins0*sizeof(struct dsp_spos_instance));
+          for(int _i0 = 0; _i0 < _len_ins0; _i0++) {
+              ins[_i0].nscb = ((-2 * (next_i()%2)) + 1) * next_i();
+          ins[_i0].scb_highest_frag_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ins__i0__scbs0 = 1;
+          ins[_i0].scbs = (struct TYPE_2__ *) malloc(_len_ins__i0__scbs0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ins__i0__scbs0; _j0++) {
+              ins[_i0].scbs->deleted = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = find_free_scb_index(ins);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ins0; _aux++) {
+          free(ins[_aux].scbs);
+          }
+          free(ins);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static int apic_mmio_in_range(struct kvm_lapic *apic, gpa_
 		addr < apic->base_address + LAPIC_MMIO_LENGTH;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,30 +78,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           long addr = 100;
+        
           int _len_apic0 = 1;
           struct kvm_lapic * apic = (struct kvm_lapic *) malloc(_len_apic0*sizeof(struct kvm_lapic));
           for(int _i0 = 0; _i0 < _len_apic0; _i0++) {
-            apic[_i0].base_address = ((-2 * (next_i()%2)) + 1) * next_i();
+              apic[_i0].base_address = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = apic_mmio_in_range(apic,addr);
           printf("%d\n", benchRet); 
           free(apic);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long addr = 255;
+        
+          int _len_apic0 = 65025;
+          struct kvm_lapic * apic = (struct kvm_lapic *) malloc(_len_apic0*sizeof(struct kvm_lapic));
+          for(int _i0 = 0; _i0 < _len_apic0; _i0++) {
+              apic[_i0].base_address = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = apic_mmio_in_range(apic,addr);
+          printf("%d\n", benchRet); 
+          free(apic);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           long addr = 10;
+        
           int _len_apic0 = 100;
           struct kvm_lapic * apic = (struct kvm_lapic *) malloc(_len_apic0*sizeof(struct kvm_lapic));
           for(int _i0 = 0; _i0 < _len_apic0; _i0++) {
-            apic[_i0].base_address = ((-2 * (next_i()%2)) + 1) * next_i();
+              apic[_i0].base_address = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = apic_mmio_in_range(apic,addr);
+          printf("%d\n", benchRet); 
+          free(apic);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_apic0 = 1;
+          struct kvm_lapic * apic = (struct kvm_lapic *) malloc(_len_apic0*sizeof(struct kvm_lapic));
+          for(int _i0 = 0; _i0 < _len_apic0; _i0++) {
+              apic[_i0].base_address = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = apic_mmio_in_range(apic,addr);
           printf("%d\n", benchRet); 
           free(apic);

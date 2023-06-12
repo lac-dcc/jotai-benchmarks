@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ nfsd4_set_ex_flags(struct nfs4_client *new, struct nfsd4_exchange_id *clid)
 	clid->flags = new->cl_exchange_flags;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,19 +88,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_new0 = 65025;
+          struct nfs4_client * new = (struct nfs4_client *) malloc(_len_new0*sizeof(struct nfs4_client));
+          for(int _i0 = 0; _i0 < _len_new0; _i0++) {
+              new[_i0].cl_exchange_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_clid0 = 65025;
+          struct nfsd4_exchange_id * clid = (struct nfsd4_exchange_id *) malloc(_len_clid0*sizeof(struct nfsd4_exchange_id));
+          for(int _i0 = 0; _i0 < _len_clid0; _i0++) {
+              clid[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          nfsd4_set_ex_flags(new,clid);
+          free(new);
+          free(clid);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_new0 = 100;
+          struct nfs4_client * new = (struct nfs4_client *) malloc(_len_new0*sizeof(struct nfs4_client));
+          for(int _i0 = 0; _i0 < _len_new0; _i0++) {
+              new[_i0].cl_exchange_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_clid0 = 100;
+          struct nfsd4_exchange_id * clid = (struct nfsd4_exchange_id *) malloc(_len_clid0*sizeof(struct nfsd4_exchange_id));
+          for(int _i0 = 0; _i0 < _len_clid0; _i0++) {
+              clid[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          nfsd4_set_ex_flags(new,clid);
+          free(new);
+          free(clid);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_new0 = 1;
           struct nfs4_client * new = (struct nfs4_client *) malloc(_len_new0*sizeof(struct nfs4_client));
           for(int _i0 = 0; _i0 < _len_new0; _i0++) {
-            new[_i0].cl_exchange_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              new[_i0].cl_exchange_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_clid0 = 1;
           struct nfsd4_exchange_id * clid = (struct nfsd4_exchange_id *) malloc(_len_clid0*sizeof(struct nfsd4_exchange_id));
           for(int _i0 = 0; _i0 < _len_clid0; _i0++) {
-            clid[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              clid[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           nfsd4_set_ex_flags(new,clid);
           free(new);
           free(clid);

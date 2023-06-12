@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static u16 rtl8168_get_ocp_reg(struct rtl8169_private *tp)
 	return (tp->mac_version == RTL_GIGA_MAC_VER_31) ? 0xb8 : 0x10;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,28 +76,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_tp0 = 1;
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_tp0 = 65025;
           struct rtl8169_private * tp = (struct rtl8169_private *) malloc(_len_tp0*sizeof(struct rtl8169_private));
           for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
-            tp[_i0].mac_version = ((-2 * (next_i()%2)) + 1) * next_i();
+              tp[_i0].mac_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = rtl8168_get_ocp_reg(tp);
           printf("%d\n", benchRet); 
           free(tp);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_tp0 = 100;
           struct rtl8169_private * tp = (struct rtl8169_private *) malloc(_len_tp0*sizeof(struct rtl8169_private));
           for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
-            tp[_i0].mac_version = ((-2 * (next_i()%2)) + 1) * next_i();
+              tp[_i0].mac_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = rtl8168_get_ocp_reg(tp);
+          printf("%d\n", benchRet); 
+          free(tp);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_tp0 = 1;
+          struct rtl8169_private * tp = (struct rtl8169_private *) malloc(_len_tp0*sizeof(struct rtl8169_private));
+          for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
+              tp[_i0].mac_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = rtl8168_get_ocp_reg(tp);
           printf("%d\n", benchRet); 
           free(tp);

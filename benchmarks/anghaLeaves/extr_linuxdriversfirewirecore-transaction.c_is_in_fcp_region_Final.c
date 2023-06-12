@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static bool is_in_fcp_region(u64 offset, size_t length)
 		offset + length <= (CSR_REGISTER_BASE | CSR_FCP_END);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,7 +83,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long offset = 100;
+        
           unsigned long length = 100;
+        
           int benchRet = is_in_fcp_region(offset,length);
           printf("%d\n", benchRet); 
         
@@ -98,7 +95,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long offset = 255;
+        
           unsigned long length = 255;
+        
           int benchRet = is_in_fcp_region(offset,length);
           printf("%d\n", benchRet); 
         
@@ -108,13 +107,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long offset = 10;
+        
           unsigned long length = 10;
+        
           int benchRet = is_in_fcp_region(offset,length);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = is_in_fcp_region(offset,length);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ cpld_pic_host_match(struct irq_domain *h, struct device_node *node,
 	return cpld_pic_node == node;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,20 +79,148 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           enum irq_domain_bus_token bus_token = 0;
+        
+          int _len_h0 = 65025;
+          struct irq_domain * h = (struct irq_domain *) malloc(_len_h0*sizeof(struct irq_domain));
+          for(int _i0 = 0; _i0 < _len_h0; _i0++) {
+              h[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_node0 = 65025;
+          struct device_node * node = (struct device_node *) malloc(_len_node0*sizeof(struct device_node));
+          for(int _i0 = 0; _i0 < _len_node0; _i0++) {
+              node[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cpld_pic_host_match(h,node,bus_token);
+          printf("%d\n", benchRet); 
+          free(h);
+          free(node);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          enum irq_domain_bus_token bus_token = 0;
+        
+          int _len_h0 = 100;
+          struct irq_domain * h = (struct irq_domain *) malloc(_len_h0*sizeof(struct irq_domain));
+          for(int _i0 = 0; _i0 < _len_h0; _i0++) {
+              h[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_node0 = 100;
+          struct device_node * node = (struct device_node *) malloc(_len_node0*sizeof(struct device_node));
+          for(int _i0 = 0; _i0 < _len_node0; _i0++) {
+              node[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cpld_pic_host_match(h,node,bus_token);
+          printf("%d\n", benchRet); 
+          free(h);
+          free(node);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          enum irq_domain_bus_token bus_token = 0;
+        
           int _len_h0 = 1;
           struct irq_domain * h = (struct irq_domain *) malloc(_len_h0*sizeof(struct irq_domain));
           for(int _i0 = 0; _i0 < _len_h0; _i0++) {
-            h[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              h[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_node0 = 1;
           struct device_node * node = (struct device_node *) malloc(_len_node0*sizeof(struct device_node));
           for(int _i0 = 0; _i0 < _len_node0; _i0++) {
-            node[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              node[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cpld_pic_host_match(h,node,bus_token);
           printf("%d\n", benchRet); 
           free(h);

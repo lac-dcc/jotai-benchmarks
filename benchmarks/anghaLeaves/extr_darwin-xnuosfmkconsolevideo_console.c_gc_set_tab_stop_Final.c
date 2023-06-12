@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ gc_set_tab_stop(unsigned int column, boolean_t enabled)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,7 +86,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int column = 100;
+        
           int enabled = 100;
+        
           gc_set_tab_stop(column,enabled);
         
         break;
@@ -100,7 +97,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int column = 255;
+        
           int enabled = 255;
+        
           gc_set_tab_stop(column,enabled);
         
         break;
@@ -109,12 +108,24 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int column = 10;
+        
           int enabled = 10;
+        
           gc_set_tab_stop(column,enabled);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int column = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          gc_set_tab_stop(column,enabled);
+        
+        break;
+    }
     default:
         usage();
         break;

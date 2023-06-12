@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ __attribute__((used)) static int stbi__tga_get_comp(int bits_per_pixel, int is_g
    }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,12 +92,34 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int bits_per_pixel = 100;
+        
           int is_grey = 100;
+        
           int _len_is_rgb160 = 1;
           int * is_rgb16 = (int *) malloc(_len_is_rgb160*sizeof(int));
           for(int _i0 = 0; _i0 < _len_is_rgb160; _i0++) {
             is_rgb16[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = stbi__tga_get_comp(bits_per_pixel,is_grey,is_rgb16);
+          printf("%d\n", benchRet); 
+          free(is_rgb16);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int bits_per_pixel = 255;
+        
+          int is_grey = 255;
+        
+          int _len_is_rgb160 = 65025;
+          int * is_rgb16 = (int *) malloc(_len_is_rgb160*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_is_rgb160; _i0++) {
+            is_rgb16[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = stbi__tga_get_comp(bits_per_pixel,is_grey,is_rgb16);
           printf("%d\n", benchRet); 
           free(is_rgb16);
@@ -109,22 +127,43 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int bits_per_pixel = 10;
+        
           int is_grey = 10;
+        
           int _len_is_rgb160 = 100;
           int * is_rgb16 = (int *) malloc(_len_is_rgb160*sizeof(int));
           for(int _i0 = 0; _i0 < _len_is_rgb160; _i0++) {
             is_rgb16[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = stbi__tga_get_comp(bits_per_pixel,is_grey,is_rgb16);
           printf("%d\n", benchRet); 
           free(is_rgb16);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int is_grey = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_is_rgb160 = 1;
+          int * is_rgb16 = (int *) malloc(_len_is_rgb160*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_is_rgb160; _i0++) {
+            is_rgb16[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = stbi__tga_get_comp(bits_per_pixel,is_grey,is_rgb16);
+          printf("%d\n", benchRet); 
+          free(is_rgb16);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -95,12 +97,6 @@ cross_mem_access(struct bpf_insn *ld, struct nfp_insn_meta *head_ld_meta,
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -113,30 +109,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ld0 = 1;
+          int _len_ld0 = 65025;
           struct bpf_insn * ld = (struct bpf_insn *) malloc(_len_ld0*sizeof(struct bpf_insn));
           for(int _i0 = 0; _i0 < _len_ld0; _i0++) {
-            ld[_i0].off = ((-2 * (next_i()%2)) + 1) * next_i();
+              ld[_i0].off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_head_ld_meta0 = 1;
+        
+          int _len_head_ld_meta0 = 65025;
           struct nfp_insn_meta * head_ld_meta = (struct nfp_insn_meta *) malloc(_len_head_ld_meta0*sizeof(struct nfp_insn_meta));
           for(int _i0 = 0; _i0 < _len_head_ld_meta0; _i0++) {
-            head_ld_meta[_i0].ptr.type = ((-2 * (next_i()%2)) + 1) * next_i();
-        head_ld_meta[_i0].ptr.id = ((-2 * (next_i()%2)) + 1) * next_i();
-        head_ld_meta[_i0].ptr.off = ((-2 * (next_i()%2)) + 1) * next_i();
-        head_ld_meta[_i0].insn.off = ((-2 * (next_i()%2)) + 1) * next_i();
+              head_ld_meta[_i0].ptr.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          head_ld_meta[_i0].ptr.id = ((-2 * (next_i()%2)) + 1) * next_i();
+          head_ld_meta[_i0].ptr.off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          head_ld_meta[_i0].insn.off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-          int _len_head_st_meta0 = 1;
+        
+          int _len_head_st_meta0 = 65025;
           struct nfp_insn_meta * head_st_meta = (struct nfp_insn_meta *) malloc(_len_head_st_meta0*sizeof(struct nfp_insn_meta));
           for(int _i0 = 0; _i0 < _len_head_st_meta0; _i0++) {
-            head_st_meta[_i0].ptr.type = ((-2 * (next_i()%2)) + 1) * next_i();
-        head_st_meta[_i0].ptr.id = ((-2 * (next_i()%2)) + 1) * next_i();
-        head_st_meta[_i0].ptr.off = ((-2 * (next_i()%2)) + 1) * next_i();
-        head_st_meta[_i0].insn.off = ((-2 * (next_i()%2)) + 1) * next_i();
+              head_st_meta[_i0].ptr.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          head_st_meta[_i0].ptr.id = ((-2 * (next_i()%2)) + 1) * next_i();
+          head_st_meta[_i0].ptr.off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          head_st_meta[_i0].insn.off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = cross_mem_access(ld,head_ld_meta,head_st_meta);
           printf("%d\n", benchRet); 
           free(ld);
@@ -145,7 +151,90 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ld0 = 100;
+          struct bpf_insn * ld = (struct bpf_insn *) malloc(_len_ld0*sizeof(struct bpf_insn));
+          for(int _i0 = 0; _i0 < _len_ld0; _i0++) {
+              ld[_i0].off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_head_ld_meta0 = 100;
+          struct nfp_insn_meta * head_ld_meta = (struct nfp_insn_meta *) malloc(_len_head_ld_meta0*sizeof(struct nfp_insn_meta));
+          for(int _i0 = 0; _i0 < _len_head_ld_meta0; _i0++) {
+              head_ld_meta[_i0].ptr.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          head_ld_meta[_i0].ptr.id = ((-2 * (next_i()%2)) + 1) * next_i();
+          head_ld_meta[_i0].ptr.off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          head_ld_meta[_i0].insn.off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_head_st_meta0 = 100;
+          struct nfp_insn_meta * head_st_meta = (struct nfp_insn_meta *) malloc(_len_head_st_meta0*sizeof(struct nfp_insn_meta));
+          for(int _i0 = 0; _i0 < _len_head_st_meta0; _i0++) {
+              head_st_meta[_i0].ptr.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          head_st_meta[_i0].ptr.id = ((-2 * (next_i()%2)) + 1) * next_i();
+          head_st_meta[_i0].ptr.off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          head_st_meta[_i0].insn.off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = cross_mem_access(ld,head_ld_meta,head_st_meta);
+          printf("%d\n", benchRet); 
+          free(ld);
+          free(head_ld_meta);
+          free(head_st_meta);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ld0 = 1;
+          struct bpf_insn * ld = (struct bpf_insn *) malloc(_len_ld0*sizeof(struct bpf_insn));
+          for(int _i0 = 0; _i0 < _len_ld0; _i0++) {
+              ld[_i0].off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_head_ld_meta0 = 1;
+          struct nfp_insn_meta * head_ld_meta = (struct nfp_insn_meta *) malloc(_len_head_ld_meta0*sizeof(struct nfp_insn_meta));
+          for(int _i0 = 0; _i0 < _len_head_ld_meta0; _i0++) {
+              head_ld_meta[_i0].ptr.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          head_ld_meta[_i0].ptr.id = ((-2 * (next_i()%2)) + 1) * next_i();
+          head_ld_meta[_i0].ptr.off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          head_ld_meta[_i0].insn.off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_head_st_meta0 = 1;
+          struct nfp_insn_meta * head_st_meta = (struct nfp_insn_meta *) malloc(_len_head_st_meta0*sizeof(struct nfp_insn_meta));
+          for(int _i0 = 0; _i0 < _len_head_st_meta0; _i0++) {
+              head_st_meta[_i0].ptr.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          head_st_meta[_i0].ptr.id = ((-2 * (next_i()%2)) + 1) * next_i();
+          head_st_meta[_i0].ptr.off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          head_st_meta[_i0].insn.off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = cross_mem_access(ld,head_ld_meta,head_st_meta);
+          printf("%d\n", benchRet); 
+          free(ld);
+          free(head_ld_meta);
+          free(head_st_meta);
+        
+        break;
+    }
     default:
         usage();
         break;

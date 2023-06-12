@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -79,12 +82,6 @@ __attribute__((used)) static int friend_in_close(Group_c *g, int friendcon_id)
     return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,16 +98,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int friendcon_id = 100;
+        
           int _len_g0 = 1;
           struct TYPE_5__ * g = (struct TYPE_5__ *) malloc(_len_g0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_g0; _i0++) {
               int _len_g__i0__close0 = 1;
           g[_i0].close = (struct TYPE_4__ *) malloc(_len_g__i0__close0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_g__i0__close0; _j0++) {
-            g[_i0].close->type = ((-2 * (next_i()%2)) + 1) * next_i();
-        g[_i0].close->number = ((-2 * (next_i()%2)) + 1) * next_i();
+              g[_i0].close->type = ((-2 * (next_i()%2)) + 1) * next_i();
+          g[_i0].close->number = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = friend_in_close(g,friendcon_id);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_g0; _aux++) {
@@ -120,7 +121,87 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int friendcon_id = 255;
+        
+          int _len_g0 = 65025;
+          struct TYPE_5__ * g = (struct TYPE_5__ *) malloc(_len_g0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_g0; _i0++) {
+              int _len_g__i0__close0 = 1;
+          g[_i0].close = (struct TYPE_4__ *) malloc(_len_g__i0__close0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_g__i0__close0; _j0++) {
+              g[_i0].close->type = ((-2 * (next_i()%2)) + 1) * next_i();
+          g[_i0].close->number = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = friend_in_close(g,friendcon_id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_g0; _aux++) {
+          free(g[_aux].close);
+          }
+          free(g);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int friendcon_id = 10;
+        
+          int _len_g0 = 100;
+          struct TYPE_5__ * g = (struct TYPE_5__ *) malloc(_len_g0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_g0; _i0++) {
+              int _len_g__i0__close0 = 1;
+          g[_i0].close = (struct TYPE_4__ *) malloc(_len_g__i0__close0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_g__i0__close0; _j0++) {
+              g[_i0].close->type = ((-2 * (next_i()%2)) + 1) * next_i();
+          g[_i0].close->number = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = friend_in_close(g,friendcon_id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_g0; _aux++) {
+          free(g[_aux].close);
+          }
+          free(g);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int friendcon_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_g0 = 1;
+          struct TYPE_5__ * g = (struct TYPE_5__ *) malloc(_len_g0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_g0; _i0++) {
+              int _len_g__i0__close0 = 1;
+          g[_i0].close = (struct TYPE_4__ *) malloc(_len_g__i0__close0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_g__i0__close0; _j0++) {
+              g[_i0].close->type = ((-2 * (next_i()%2)) + 1) * next_i();
+          g[_i0].close->number = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = friend_in_close(g,friendcon_id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_g0; _aux++) {
+          free(g[_aux].close);
+          }
+          free(g);
+        
+        break;
+    }
     default:
         usage();
         break;

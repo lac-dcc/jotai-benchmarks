@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline int mt76_decr(int val, int size)
 	return (val - 1) & (size - 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,7 +78,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int val = 100;
+        
           int size = 100;
+        
           int benchRet = mt76_decr(val,size);
           printf("%d\n", benchRet); 
         
@@ -93,7 +90,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int val = 255;
+        
           int size = 255;
+        
           int benchRet = mt76_decr(val,size);
           printf("%d\n", benchRet); 
         
@@ -103,13 +102,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int val = 10;
+        
           int size = 10;
+        
           int benchRet = mt76_decr(val,size);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = mt76_decr(val,size);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

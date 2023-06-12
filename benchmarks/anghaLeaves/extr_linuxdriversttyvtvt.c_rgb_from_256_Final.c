@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +76,6 @@ __attribute__((used)) static void rgb_from_256(int i, struct rgb *c)
 		c->r = c->g = c->b = i * 10 - 2312;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,17 +88,172 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 54
+          // dynamic_instructions_O0 : 54
+          // ------------------------------- 
+          // static_instructions_O1 : 54
+          // dynamic_instructions_O1 : 54
+          // ------------------------------- 
+          // static_instructions_O2 : 62
+          // dynamic_instructions_O2 : 62
+          // ------------------------------- 
+          // static_instructions_O3 : 62
+          // dynamic_instructions_O3 : 62
+          // ------------------------------- 
+          // static_instructions_Ofast : 62
+          // dynamic_instructions_Ofast : 62
+          // ------------------------------- 
+          // static_instructions_Os : 64
+          // dynamic_instructions_Os : 64
+          // ------------------------------- 
+          // static_instructions_Oz : 41
+          // dynamic_instructions_Oz : 41
+          // ------------------------------- 
+
           int i = 100;
+        
           int _len_c0 = 1;
           struct rgb * c = (struct rgb *) malloc(_len_c0*sizeof(struct rgb));
           for(int _i0 = 0; _i0 < _len_c0; _i0++) {
-            c[_i0].r = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].g = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].b = ((-2 * (next_i()%2)) + 1) * next_i();
+              c[_i0].r = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].g = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          rgb_from_256(i,c);
+          free(c);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int i = 255;
+        
+          int _len_c0 = 65025;
+          struct rgb * c = (struct rgb *) malloc(_len_c0*sizeof(struct rgb));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].r = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].g = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          rgb_from_256(i,c);
+          free(c);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int i = 10;
+        
+          int _len_c0 = 100;
+          struct rgb * c = (struct rgb *) malloc(_len_c0*sizeof(struct rgb));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].r = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].g = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          rgb_from_256(i,c);
+          free(c);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int i = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_c0 = 1;
+          struct rgb * c = (struct rgb *) malloc(_len_c0*sizeof(struct rgb));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].r = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].g = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           rgb_from_256(i,c);
           free(c);
         

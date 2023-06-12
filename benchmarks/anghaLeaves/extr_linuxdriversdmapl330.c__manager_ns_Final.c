@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static inline bool _manager_ns(struct pl330_thread *thrd)
 	return (thrd->dmac->pcfg.mode & DMAC_MODE_NS) ? true : false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,18 +79,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_thrd0 = 1;
+          int _len_thrd0 = 65025;
           struct pl330_thread * thrd = (struct pl330_thread *) malloc(_len_thrd0*sizeof(struct pl330_thread));
           for(int _i0 = 0; _i0 < _len_thrd0; _i0++) {
               int _len_thrd__i0__dmac0 = 1;
           thrd[_i0].dmac = (struct TYPE_4__ *) malloc(_len_thrd__i0__dmac0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_thrd__i0__dmac0; _j0++) {
-            thrd[_i0].dmac->pcfg.mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              thrd[_i0].dmac->pcfg.mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           int benchRet = _manager_ns(thrd);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_thrd0; _aux++) {
@@ -104,7 +104,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_thrd0 = 100;
+          struct pl330_thread * thrd = (struct pl330_thread *) malloc(_len_thrd0*sizeof(struct pl330_thread));
+          for(int _i0 = 0; _i0 < _len_thrd0; _i0++) {
+              int _len_thrd__i0__dmac0 = 1;
+          thrd[_i0].dmac = (struct TYPE_4__ *) malloc(_len_thrd__i0__dmac0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_thrd__i0__dmac0; _j0++) {
+              thrd[_i0].dmac->pcfg.mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = _manager_ns(thrd);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_thrd0; _aux++) {
+          free(thrd[_aux].dmac);
+          }
+          free(thrd);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_thrd0 = 1;
+          struct pl330_thread * thrd = (struct pl330_thread *) malloc(_len_thrd0*sizeof(struct pl330_thread));
+          for(int _i0 = 0; _i0 < _len_thrd0; _i0++) {
+              int _len_thrd__i0__dmac0 = 1;
+          thrd[_i0].dmac = (struct TYPE_4__ *) malloc(_len_thrd__i0__dmac0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_thrd__i0__dmac0; _j0++) {
+              thrd[_i0].dmac->pcfg.mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = _manager_ns(thrd);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_thrd0; _aux++) {
+          free(thrd[_aux].dmac);
+          }
+          free(thrd);
+        
+        break;
+    }
     default:
         usage();
         break;

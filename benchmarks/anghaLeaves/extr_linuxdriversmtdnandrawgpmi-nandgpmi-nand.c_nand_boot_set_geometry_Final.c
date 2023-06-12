@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -82,12 +84,6 @@ __attribute__((used)) static int nand_boot_set_geometry(struct gpmi_nand_data *t
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,22 +96,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_this0 = 1;
+          int _len_this0 = 65025;
           struct gpmi_nand_data * this = (struct gpmi_nand_data *) malloc(_len_this0*sizeof(struct gpmi_nand_data));
           for(int _i0 = 0; _i0 < _len_this0; _i0++) {
-            this[_i0].rom_geometry.stride_size_in_pages = ((-2 * (next_i()%2)) + 1) * next_i();
-        this[_i0].rom_geometry.search_area_stride_exponent = ((-2 * (next_i()%2)) + 1) * next_i();
+              this[_i0].rom_geometry.stride_size_in_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+          this[_i0].rom_geometry.search_area_stride_exponent = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = nand_boot_set_geometry(this);
           printf("%d\n", benchRet); 
           free(this);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_this0 = 100;
+          struct gpmi_nand_data * this = (struct gpmi_nand_data *) malloc(_len_this0*sizeof(struct gpmi_nand_data));
+          for(int _i0 = 0; _i0 < _len_this0; _i0++) {
+              this[_i0].rom_geometry.stride_size_in_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+          this[_i0].rom_geometry.search_area_stride_exponent = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = nand_boot_set_geometry(this);
+          printf("%d\n", benchRet); 
+          free(this);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_this0 = 1;
+          struct gpmi_nand_data * this = (struct gpmi_nand_data *) malloc(_len_this0*sizeof(struct gpmi_nand_data));
+          for(int _i0 = 0; _i0 < _len_this0; _i0++) {
+              this[_i0].rom_geometry.stride_size_in_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+          this[_i0].rom_geometry.search_area_stride_exponent = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = nand_boot_set_geometry(this);
+          printf("%d\n", benchRet); 
+          free(this);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static char short_submodule_status(struct wt_status_change
 	return d->worktree_status;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,23 +82,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_d0 = 1;
+          int _len_d0 = 65025;
           struct wt_status_change_data * d = (struct wt_status_change_data *) malloc(_len_d0*sizeof(struct wt_status_change_data));
           for(int _i0 = 0; _i0 < _len_d0; _i0++) {
-            d[_i0].dirty_submodule = ((-2 * (next_i()%2)) + 1) * next_i();
-        d[_i0].worktree_status = ((-2 * (next_i()%2)) + 1) * next_i();
-        d[_i0].new_submodule_commits = ((-2 * (next_i()%2)) + 1) * next_i();
+              d[_i0].dirty_submodule = ((-2 * (next_i()%2)) + 1) * next_i();
+          d[_i0].worktree_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          d[_i0].new_submodule_commits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           char benchRet = short_submodule_status(d);
           printf("%c\n", (benchRet %26) + 'a'); 
           free(d);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_d0 = 100;
+          struct wt_status_change_data * d = (struct wt_status_change_data *) malloc(_len_d0*sizeof(struct wt_status_change_data));
+          for(int _i0 = 0; _i0 < _len_d0; _i0++) {
+              d[_i0].dirty_submodule = ((-2 * (next_i()%2)) + 1) * next_i();
+          d[_i0].worktree_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          d[_i0].new_submodule_commits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          char benchRet = short_submodule_status(d);
+          printf("%c\n", (benchRet %26) + 'a'); 
+          free(d);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_d0 = 1;
+          struct wt_status_change_data * d = (struct wt_status_change_data *) malloc(_len_d0*sizeof(struct wt_status_change_data));
+          for(int _i0 = 0; _i0 < _len_d0; _i0++) {
+              d[_i0].dirty_submodule = ((-2 * (next_i()%2)) + 1) * next_i();
+          d[_i0].worktree_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          d[_i0].new_submodule_commits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          char benchRet = short_submodule_status(d);
+          printf("%c\n", (benchRet %26) + 'a'); 
+          free(d);
+        
+        break;
+    }
     default:
         usage();
         break;

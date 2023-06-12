@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -93,12 +96,6 @@ xilinx_fb_setcolreg(unsigned int regno, unsigned int red, unsigned int green,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -111,14 +108,42 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           unsigned int regno = 100;
+        
           unsigned int red = 100;
+        
           unsigned int green = 100;
+        
           unsigned int blue = 100;
+        
           unsigned int transp = 100;
+        
           int _len_fbi0 = 1;
           struct fb_info * fbi = (struct fb_info *) malloc(_len_fbi0*sizeof(struct fb_info));
           for(int _i0 = 0; _i0 < _len_fbi0; _i0++) {
@@ -127,8 +152,188 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_fbi__i0__pseudo_palette0; _j0++) {
             fbi[_i0].pseudo_palette[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        fbi[_i0].var.grayscale = ((-2 * (next_i()%2)) + 1) * next_i();
+          fbi[_i0].var.grayscale = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = xilinx_fb_setcolreg(regno,red,green,blue,transp,fbi);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_fbi0; _aux++) {
+          free(fbi[_aux].pseudo_palette);
+          }
+          free(fbi);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          unsigned int regno = 255;
+        
+          unsigned int red = 255;
+        
+          unsigned int green = 255;
+        
+          unsigned int blue = 255;
+        
+          unsigned int transp = 255;
+        
+          int _len_fbi0 = 65025;
+          struct fb_info * fbi = (struct fb_info *) malloc(_len_fbi0*sizeof(struct fb_info));
+          for(int _i0 = 0; _i0 < _len_fbi0; _i0++) {
+              int _len_fbi__i0__pseudo_palette0 = 1;
+          fbi[_i0].pseudo_palette = (unsigned int *) malloc(_len_fbi__i0__pseudo_palette0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len_fbi__i0__pseudo_palette0; _j0++) {
+            fbi[_i0].pseudo_palette[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          fbi[_i0].var.grayscale = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = xilinx_fb_setcolreg(regno,red,green,blue,transp,fbi);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_fbi0; _aux++) {
+          free(fbi[_aux].pseudo_palette);
+          }
+          free(fbi);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          unsigned int regno = 10;
+        
+          unsigned int red = 10;
+        
+          unsigned int green = 10;
+        
+          unsigned int blue = 10;
+        
+          unsigned int transp = 10;
+        
+          int _len_fbi0 = 100;
+          struct fb_info * fbi = (struct fb_info *) malloc(_len_fbi0*sizeof(struct fb_info));
+          for(int _i0 = 0; _i0 < _len_fbi0; _i0++) {
+              int _len_fbi__i0__pseudo_palette0 = 1;
+          fbi[_i0].pseudo_palette = (unsigned int *) malloc(_len_fbi__i0__pseudo_palette0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len_fbi__i0__pseudo_palette0; _j0++) {
+            fbi[_i0].pseudo_palette[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          fbi[_i0].var.grayscale = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = xilinx_fb_setcolreg(regno,red,green,blue,transp,fbi);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_fbi0; _aux++) {
+          free(fbi[_aux].pseudo_palette);
+          }
+          free(fbi);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          unsigned int regno = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int red = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int green = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int blue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int transp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fbi0 = 1;
+          struct fb_info * fbi = (struct fb_info *) malloc(_len_fbi0*sizeof(struct fb_info));
+          for(int _i0 = 0; _i0 < _len_fbi0; _i0++) {
+              int _len_fbi__i0__pseudo_palette0 = 1;
+          fbi[_i0].pseudo_palette = (unsigned int *) malloc(_len_fbi__i0__pseudo_palette0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len_fbi__i0__pseudo_palette0; _j0++) {
+            fbi[_i0].pseudo_palette[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          fbi[_i0].var.grayscale = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = xilinx_fb_setcolreg(regno,red,green,blue,transp,fbi);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_fbi0; _aux++) {

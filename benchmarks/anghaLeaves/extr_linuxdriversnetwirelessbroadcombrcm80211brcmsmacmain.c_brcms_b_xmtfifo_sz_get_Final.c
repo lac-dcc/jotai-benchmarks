@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ int brcms_b_xmtfifo_sz_get(struct brcms_hardware *wlc_hw, uint fifo,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long fifo = 100;
+        
           int _len_wlc_hw0 = 1;
           struct brcms_hardware * wlc_hw = (struct brcms_hardware *) malloc(_len_wlc_hw0*sizeof(struct brcms_hardware));
           for(int _i0 = 0; _i0 < _len_wlc_hw0; _i0++) {
@@ -99,12 +97,15 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_wlc_hw__i0__xmtfifo_sz0; _j0++) {
             wlc_hw[_i0].xmtfifo_sz[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int _len_blocks0 = 1;
           unsigned long * blocks = (unsigned long *) malloc(_len_blocks0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_blocks0; _i0++) {
             blocks[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = brcms_b_xmtfifo_sz_get(wlc_hw,fifo,blocks);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_wlc_hw0; _aux++) {
@@ -115,7 +116,102 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long fifo = 255;
+        
+          int _len_wlc_hw0 = 65025;
+          struct brcms_hardware * wlc_hw = (struct brcms_hardware *) malloc(_len_wlc_hw0*sizeof(struct brcms_hardware));
+          for(int _i0 = 0; _i0 < _len_wlc_hw0; _i0++) {
+              int _len_wlc_hw__i0__xmtfifo_sz0 = 1;
+          wlc_hw[_i0].xmtfifo_sz = (unsigned long *) malloc(_len_wlc_hw__i0__xmtfifo_sz0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_wlc_hw__i0__xmtfifo_sz0; _j0++) {
+            wlc_hw[_i0].xmtfifo_sz[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_blocks0 = 65025;
+          unsigned long * blocks = (unsigned long *) malloc(_len_blocks0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_blocks0; _i0++) {
+            blocks[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = brcms_b_xmtfifo_sz_get(wlc_hw,fifo,blocks);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_wlc_hw0; _aux++) {
+          free(wlc_hw[_aux].xmtfifo_sz);
+          }
+          free(wlc_hw);
+          free(blocks);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long fifo = 10;
+        
+          int _len_wlc_hw0 = 100;
+          struct brcms_hardware * wlc_hw = (struct brcms_hardware *) malloc(_len_wlc_hw0*sizeof(struct brcms_hardware));
+          for(int _i0 = 0; _i0 < _len_wlc_hw0; _i0++) {
+              int _len_wlc_hw__i0__xmtfifo_sz0 = 1;
+          wlc_hw[_i0].xmtfifo_sz = (unsigned long *) malloc(_len_wlc_hw__i0__xmtfifo_sz0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_wlc_hw__i0__xmtfifo_sz0; _j0++) {
+            wlc_hw[_i0].xmtfifo_sz[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_blocks0 = 100;
+          unsigned long * blocks = (unsigned long *) malloc(_len_blocks0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_blocks0; _i0++) {
+            blocks[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = brcms_b_xmtfifo_sz_get(wlc_hw,fifo,blocks);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_wlc_hw0; _aux++) {
+          free(wlc_hw[_aux].xmtfifo_sz);
+          }
+          free(wlc_hw);
+          free(blocks);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long fifo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_wlc_hw0 = 1;
+          struct brcms_hardware * wlc_hw = (struct brcms_hardware *) malloc(_len_wlc_hw0*sizeof(struct brcms_hardware));
+          for(int _i0 = 0; _i0 < _len_wlc_hw0; _i0++) {
+              int _len_wlc_hw__i0__xmtfifo_sz0 = 1;
+          wlc_hw[_i0].xmtfifo_sz = (unsigned long *) malloc(_len_wlc_hw__i0__xmtfifo_sz0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_wlc_hw__i0__xmtfifo_sz0; _j0++) {
+            wlc_hw[_i0].xmtfifo_sz[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_blocks0 = 1;
+          unsigned long * blocks = (unsigned long *) malloc(_len_blocks0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_blocks0; _i0++) {
+            blocks[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = brcms_b_xmtfifo_sz_get(wlc_hw,fifo,blocks);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_wlc_hw0; _aux++) {
+          free(wlc_hw[_aux].xmtfifo_sz);
+          }
+          free(wlc_hw);
+          free(blocks);
+        
+        break;
+    }
     default:
         usage();
         break;

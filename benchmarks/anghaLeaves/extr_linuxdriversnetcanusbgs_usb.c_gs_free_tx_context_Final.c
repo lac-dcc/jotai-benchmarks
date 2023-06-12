@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static void gs_free_tx_context(struct gs_tx_context *txc)
 	txc->echo_id = GS_MAX_TX_URBS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_txc0 = 1;
+          int _len_txc0 = 65025;
           struct gs_tx_context * txc = (struct gs_tx_context *) malloc(_len_txc0*sizeof(struct gs_tx_context));
           for(int _i0 = 0; _i0 < _len_txc0; _i0++) {
-            txc[_i0].echo_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              txc[_i0].echo_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           gs_free_tx_context(txc);
           free(txc);
         
@@ -99,14 +96,30 @@ int main(int argc, char *argv[]) {
           int _len_txc0 = 100;
           struct gs_tx_context * txc = (struct gs_tx_context *) malloc(_len_txc0*sizeof(struct gs_tx_context));
           for(int _i0 = 0; _i0 < _len_txc0; _i0++) {
-            txc[_i0].echo_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              txc[_i0].echo_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           gs_free_tx_context(txc);
           free(txc);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_txc0 = 1;
+          struct gs_tx_context * txc = (struct gs_tx_context *) malloc(_len_txc0*sizeof(struct gs_tx_context));
+          for(int _i0 = 0; _i0 < _len_txc0; _i0++) {
+              txc[_i0].echo_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          gs_free_tx_context(txc);
+          free(txc);
+        
+        break;
+    }
     default:
         usage();
         break;

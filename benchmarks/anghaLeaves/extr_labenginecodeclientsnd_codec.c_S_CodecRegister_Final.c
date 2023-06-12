@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -64,7 +65,6 @@ void S_CodecRegister(snd_codec_t *codec)
 	codecs = codec;
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct TYPE_4__ *_allocate_codec(int length, struct TYPE_4__ *aux_codec[]) {
@@ -92,7 +92,6 @@ void _delete_codec(struct TYPE_4__ *aux_codec[], int aux_codec_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,17 +104,28 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // linked
     case 0:
+    {
+          struct TYPE_4__ * aux_codec[10000];
+          struct TYPE_4__ * codec = _allocate_codec(10000, aux_codec);
+        
+          S_CodecRegister(codec);
+          _delete_codec(aux_codec, 10000);
+        
+        break;
+    }
+    // empty
+    case 1:
     {
           struct TYPE_4__ * aux_codec[1];
           struct TYPE_4__ * codec = _allocate_codec(1, aux_codec);
+        
           S_CodecRegister(codec);
           _delete_codec(aux_codec, 1);
         
         break;
     }
-
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static inline int bd2802_is_led_off(struct bd2802_led *led
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,21 +80,25 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           enum led_ids id = 0;
-          int _len_led0 = 1;
+        
+          int _len_led0 = 65025;
           struct bd2802_led * led = (struct bd2802_led *) malloc(_len_led0*sizeof(struct bd2802_led));
           for(int _i0 = 0; _i0 < _len_led0; _i0++) {
               int _len_led__i0__led0 = 1;
           led[_i0].led = (struct TYPE_2__ *) malloc(_len_led__i0__led0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_led__i0__led0; _j0++) {
-            led[_i0].led->b = ((-2 * (next_i()%2)) + 1) * next_i();
-        led[_i0].led->g = ((-2 * (next_i()%2)) + 1) * next_i();
-        led[_i0].led->r = ((-2 * (next_i()%2)) + 1) * next_i();
+              led[_i0].led->b = ((-2 * (next_i()%2)) + 1) * next_i();
+          led[_i0].led->g = ((-2 * (next_i()%2)) + 1) * next_i();
+          led[_i0].led->r = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = bd2802_is_led_off(led,id);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_led0; _aux++) {
@@ -108,7 +108,62 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          enum led_ids id = 0;
+        
+          int _len_led0 = 100;
+          struct bd2802_led * led = (struct bd2802_led *) malloc(_len_led0*sizeof(struct bd2802_led));
+          for(int _i0 = 0; _i0 < _len_led0; _i0++) {
+              int _len_led__i0__led0 = 1;
+          led[_i0].led = (struct TYPE_2__ *) malloc(_len_led__i0__led0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_led__i0__led0; _j0++) {
+              led[_i0].led->b = ((-2 * (next_i()%2)) + 1) * next_i();
+          led[_i0].led->g = ((-2 * (next_i()%2)) + 1) * next_i();
+          led[_i0].led->r = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = bd2802_is_led_off(led,id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_led0; _aux++) {
+          free(led[_aux].led);
+          }
+          free(led);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          enum led_ids id = 0;
+        
+          int _len_led0 = 1;
+          struct bd2802_led * led = (struct bd2802_led *) malloc(_len_led0*sizeof(struct bd2802_led));
+          for(int _i0 = 0; _i0 < _len_led0; _i0++) {
+              int _len_led__i0__led0 = 1;
+          led[_i0].led = (struct TYPE_2__ *) malloc(_len_led__i0__led0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_led__i0__led0; _j0++) {
+              led[_i0].led->b = ((-2 * (next_i()%2)) + 1) * next_i();
+          led[_i0].led->g = ((-2 * (next_i()%2)) + 1) * next_i();
+          led[_i0].led->r = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = bd2802_is_led_off(led,id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_led0; _aux++) {
+          free(led[_aux].led);
+          }
+          free(led);
+        
+        break;
+    }
     default:
         usage();
         break;

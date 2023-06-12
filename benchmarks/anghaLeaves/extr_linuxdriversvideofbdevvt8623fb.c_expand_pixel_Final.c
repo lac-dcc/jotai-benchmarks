@@ -31,6 +31,7 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline u32 expand_pixel(u32 c)
 		((c & 16) <<  4) | ((c & 32) <<  7) | ((c & 64) >>  6) | ((c & 128) >>  3)) * 0xF;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,10 +74,68 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 37
+          // ------------------------------- 
+          // static_instructions_O1 : 36
+          // dynamic_instructions_O1 : 36
+          // ------------------------------- 
+          // static_instructions_O2 : 36
+          // dynamic_instructions_O2 : 36
+          // ------------------------------- 
+          // static_instructions_O3 : 36
+          // dynamic_instructions_O3 : 36
+          // ------------------------------- 
+          // static_instructions_Ofast : 36
+          // dynamic_instructions_Ofast : 36
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 36
+          // ------------------------------- 
+          // static_instructions_Oz : 35
+          // dynamic_instructions_Oz : 35
+          // ------------------------------- 
+
           int c = 100;
+        
+          int benchRet = expand_pixel(c);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 1:
+    {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 37
+          // ------------------------------- 
+          // static_instructions_O1 : 36
+          // dynamic_instructions_O1 : 36
+          // ------------------------------- 
+          // static_instructions_O2 : 36
+          // dynamic_instructions_O2 : 36
+          // ------------------------------- 
+          // static_instructions_O3 : 36
+          // dynamic_instructions_O3 : 36
+          // ------------------------------- 
+          // static_instructions_Ofast : 36
+          // dynamic_instructions_Ofast : 36
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 36
+          // ------------------------------- 
+          // static_instructions_Oz : 35
+          // dynamic_instructions_Oz : 35
+          // ------------------------------- 
+
+          int c = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = expand_pixel(c);
           printf("%d\n", benchRet); 
         

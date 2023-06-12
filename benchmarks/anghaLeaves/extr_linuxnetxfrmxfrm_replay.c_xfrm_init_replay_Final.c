@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -87,12 +89,6 @@ int xfrm_init_replay(struct xfrm_state *x)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,10 +101,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_x0 = 1;
+          int _len_x0 = 65025;
           struct xfrm_state * x = (struct xfrm_state *) malloc(_len_x0*sizeof(struct xfrm_state));
           for(int _i0 = 0; _i0 < _len_x0; _i0++) {
               int _len_x__i0__repl0 = 1;
@@ -116,14 +112,18 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_x__i0__repl0; _j0++) {
             x[_i0].repl[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        x[_i0].props.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].props.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int _len_x__i0__replay_esn0 = 1;
           x[_i0].replay_esn = (struct xfrm_replay_state_esn *) malloc(_len_x__i0__replay_esn0*sizeof(struct xfrm_replay_state_esn));
           for(int _j0 = 0; _j0 < _len_x__i0__replay_esn0; _j0++) {
-            x[_i0].replay_esn->replay_window = ((-2 * (next_i()%2)) + 1) * next_i();
-        x[_i0].replay_esn->bmp_len = ((-2 * (next_i()%2)) + 1) * next_i();
+              x[_i0].replay_esn->replay_window = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].replay_esn->bmp_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = xfrm_init_replay(x);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_x0; _aux++) {
@@ -136,7 +136,76 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_x0 = 100;
+          struct xfrm_state * x = (struct xfrm_state *) malloc(_len_x0*sizeof(struct xfrm_state));
+          for(int _i0 = 0; _i0 < _len_x0; _i0++) {
+              int _len_x__i0__repl0 = 1;
+          x[_i0].repl = (int *) malloc(_len_x__i0__repl0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_x__i0__repl0; _j0++) {
+            x[_i0].repl[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          x[_i0].props.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_x__i0__replay_esn0 = 1;
+          x[_i0].replay_esn = (struct xfrm_replay_state_esn *) malloc(_len_x__i0__replay_esn0*sizeof(struct xfrm_replay_state_esn));
+          for(int _j0 = 0; _j0 < _len_x__i0__replay_esn0; _j0++) {
+              x[_i0].replay_esn->replay_window = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].replay_esn->bmp_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = xfrm_init_replay(x);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_x0; _aux++) {
+          free(x[_aux].repl);
+          }
+          for(int _aux = 0; _aux < _len_x0; _aux++) {
+          free(x[_aux].replay_esn);
+          }
+          free(x);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_x0 = 1;
+          struct xfrm_state * x = (struct xfrm_state *) malloc(_len_x0*sizeof(struct xfrm_state));
+          for(int _i0 = 0; _i0 < _len_x0; _i0++) {
+              int _len_x__i0__repl0 = 1;
+          x[_i0].repl = (int *) malloc(_len_x__i0__repl0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_x__i0__repl0; _j0++) {
+            x[_i0].repl[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          x[_i0].props.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_x__i0__replay_esn0 = 1;
+          x[_i0].replay_esn = (struct xfrm_replay_state_esn *) malloc(_len_x__i0__replay_esn0*sizeof(struct xfrm_replay_state_esn));
+          for(int _j0 = 0; _j0 < _len_x__i0__replay_esn0; _j0++) {
+              x[_i0].replay_esn->replay_window = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].replay_esn->bmp_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = xfrm_init_replay(x);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_x0; _aux++) {
+          free(x[_aux].repl);
+          }
+          for(int _aux = 0; _aux < _len_x0; _aux++) {
+          free(x[_aux].replay_esn);
+          }
+          free(x);
+        
+        break;
+    }
     default:
         usage();
         break;

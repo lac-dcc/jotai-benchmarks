@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ void mrb_random_init_genrand(mt_state *t, unsigned long s)
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,10 +82,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           unsigned long s = 100;
+        
           int _len_t0 = 1;
           struct TYPE_3__ * t = (struct TYPE_3__ *) malloc(_len_t0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_t0; _i0++) {
@@ -97,8 +118,157 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_t__i0__mt0; _j0++) {
             t[_i0].mt[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        t[_i0].mti = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].mti = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          mrb_random_init_genrand(t,s);
+          for(int _aux = 0; _aux < _len_t0; _aux++) {
+          free(t[_aux].mt);
+          }
+          free(t);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          unsigned long s = 255;
+        
+          int _len_t0 = 65025;
+          struct TYPE_3__ * t = (struct TYPE_3__ *) malloc(_len_t0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_t0; _i0++) {
+              int _len_t__i0__mt0 = 1;
+          t[_i0].mt = (unsigned long *) malloc(_len_t__i0__mt0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_t__i0__mt0; _j0++) {
+            t[_i0].mt[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          t[_i0].mti = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mrb_random_init_genrand(t,s);
+          for(int _aux = 0; _aux < _len_t0; _aux++) {
+          free(t[_aux].mt);
+          }
+          free(t);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          unsigned long s = 10;
+        
+          int _len_t0 = 100;
+          struct TYPE_3__ * t = (struct TYPE_3__ *) malloc(_len_t0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_t0; _i0++) {
+              int _len_t__i0__mt0 = 1;
+          t[_i0].mt = (unsigned long *) malloc(_len_t__i0__mt0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_t__i0__mt0; _j0++) {
+            t[_i0].mt[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          t[_i0].mti = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mrb_random_init_genrand(t,s);
+          for(int _aux = 0; _aux < _len_t0; _aux++) {
+          free(t[_aux].mt);
+          }
+          free(t);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          unsigned long s = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_t0 = 1;
+          struct TYPE_3__ * t = (struct TYPE_3__ *) malloc(_len_t0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_t0; _i0++) {
+              int _len_t__i0__mt0 = 1;
+          t[_i0].mt = (unsigned long *) malloc(_len_t__i0__mt0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_t__i0__mt0; _j0++) {
+            t[_i0].mt[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          t[_i0].mti = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           mrb_random_init_genrand(t,s);
           for(int _aux = 0; _aux < _len_t0; _aux++) {
           free(t[_aux].mt);

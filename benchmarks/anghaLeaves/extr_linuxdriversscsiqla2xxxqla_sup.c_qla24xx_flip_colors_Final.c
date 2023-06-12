@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ qla24xx_flip_colors(struct qla_hw_data *ha, uint16_t *pflags)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,19 +88,137 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_ha0 = 65025;
+          struct qla_hw_data * ha = (struct qla_hw_data *) malloc(_len_ha0*sizeof(struct qla_hw_data));
+          for(int _i0 = 0; _i0 < _len_ha0; _i0++) {
+              ha[_i0].beacon_color_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pflags0 = 65025;
+          int * pflags = (int *) malloc(_len_pflags0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pflags0; _i0++) {
+            pflags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          qla24xx_flip_colors(ha,pflags);
+          free(ha);
+          free(pflags);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_ha0 = 100;
+          struct qla_hw_data * ha = (struct qla_hw_data *) malloc(_len_ha0*sizeof(struct qla_hw_data));
+          for(int _i0 = 0; _i0 < _len_ha0; _i0++) {
+              ha[_i0].beacon_color_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pflags0 = 100;
+          int * pflags = (int *) malloc(_len_pflags0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pflags0; _i0++) {
+            pflags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          qla24xx_flip_colors(ha,pflags);
+          free(ha);
+          free(pflags);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_ha0 = 1;
           struct qla_hw_data * ha = (struct qla_hw_data *) malloc(_len_ha0*sizeof(struct qla_hw_data));
           for(int _i0 = 0; _i0 < _len_ha0; _i0++) {
-            ha[_i0].beacon_color_state = ((-2 * (next_i()%2)) + 1) * next_i();
+              ha[_i0].beacon_color_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_pflags0 = 1;
           int * pflags = (int *) malloc(_len_pflags0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pflags0; _i0++) {
             pflags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           qla24xx_flip_colors(ha,pflags);
           free(ha);
           free(pflags);

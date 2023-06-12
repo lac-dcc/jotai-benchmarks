@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static int bpf_map_msg_verdict(int _rc, struct sk_msg_buff
 	       __SK_DROP);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,30 +81,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _rc = 100;
+        
           int _len_md0 = 1;
           struct sk_msg_buff * md = (struct sk_msg_buff *) malloc(_len_md0*sizeof(struct sk_msg_buff));
           for(int _i0 = 0; _i0 < _len_md0; _i0++) {
-            md[_i0].sk_redir = ((-2 * (next_i()%2)) + 1) * next_i();
+              md[_i0].sk_redir = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = bpf_map_msg_verdict(_rc,md);
           printf("%d\n", benchRet); 
           free(md);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _rc = 255;
+        
+          int _len_md0 = 65025;
+          struct sk_msg_buff * md = (struct sk_msg_buff *) malloc(_len_md0*sizeof(struct sk_msg_buff));
+          for(int _i0 = 0; _i0 < _len_md0; _i0++) {
+              md[_i0].sk_redir = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = bpf_map_msg_verdict(_rc,md);
+          printf("%d\n", benchRet); 
+          free(md);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _rc = 10;
+        
           int _len_md0 = 100;
           struct sk_msg_buff * md = (struct sk_msg_buff *) malloc(_len_md0*sizeof(struct sk_msg_buff));
           for(int _i0 = 0; _i0 < _len_md0; _i0++) {
-            md[_i0].sk_redir = ((-2 * (next_i()%2)) + 1) * next_i();
+              md[_i0].sk_redir = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = bpf_map_msg_verdict(_rc,md);
+          printf("%d\n", benchRet); 
+          free(md);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _rc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_md0 = 1;
+          struct sk_msg_buff * md = (struct sk_msg_buff *) malloc(_len_md0*sizeof(struct sk_msg_buff));
+          for(int _i0 = 0; _i0 < _len_md0; _i0++) {
+              md[_i0].sk_redir = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = bpf_map_msg_verdict(_rc,md);
           printf("%d\n", benchRet); 
           free(md);

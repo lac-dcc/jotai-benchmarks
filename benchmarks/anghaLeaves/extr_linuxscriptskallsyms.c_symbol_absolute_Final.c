@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static int symbol_absolute(struct sym_entry *s)
 	return s->percpu_absolute;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_s0 = 1;
+          int _len_s0 = 65025;
           struct sym_entry * s = (struct sym_entry *) malloc(_len_s0*sizeof(struct sym_entry));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].percpu_absolute = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].percpu_absolute = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = symbol_absolute(s);
           printf("%d\n", benchRet); 
           free(s);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_s0 = 100;
           struct sym_entry * s = (struct sym_entry *) malloc(_len_s0*sizeof(struct sym_entry));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].percpu_absolute = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].percpu_absolute = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = symbol_absolute(s);
           printf("%d\n", benchRet); 
           free(s);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_s0 = 1;
+          struct sym_entry * s = (struct sym_entry *) malloc(_len_s0*sizeof(struct sym_entry));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].percpu_absolute = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = symbol_absolute(s);
+          printf("%d\n", benchRet); 
+          free(s);
+        
+        break;
+    }
     default:
         usage();
         break;

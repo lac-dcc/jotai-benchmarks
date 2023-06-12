@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ struct dm_md_mempools *dm_table_get_md_mempools(struct dm_table *t)
 	return t->mempools;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,18 +75,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_t0 = 65025;
+          struct dm_table * t = (struct dm_table *) malloc(_len_t0*sizeof(struct dm_table));
+          for(int _i0 = 0; _i0 < _len_t0; _i0++) {
+              int _len_t__i0__mempools0 = 1;
+          t[_i0].mempools = (struct dm_md_mempools *) malloc(_len_t__i0__mempools0*sizeof(struct dm_md_mempools));
+          for(int _j0 = 0; _j0 < _len_t__i0__mempools0; _j0++) {
+              t[_i0].mempools->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct dm_md_mempools * benchRet = dm_table_get_md_mempools(t);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_t0; _aux++) {
+          free(t[_aux].mempools);
+          }
+          free(t);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_t0 = 100;
+          struct dm_table * t = (struct dm_table *) malloc(_len_t0*sizeof(struct dm_table));
+          for(int _i0 = 0; _i0 < _len_t0; _i0++) {
+              int _len_t__i0__mempools0 = 1;
+          t[_i0].mempools = (struct dm_md_mempools *) malloc(_len_t__i0__mempools0*sizeof(struct dm_md_mempools));
+          for(int _j0 = 0; _j0 < _len_t__i0__mempools0; _j0++) {
+              t[_i0].mempools->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct dm_md_mempools * benchRet = dm_table_get_md_mempools(t);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_t0; _aux++) {
+          free(t[_aux].mempools);
+          }
+          free(t);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_t0 = 1;
           struct dm_table * t = (struct dm_table *) malloc(_len_t0*sizeof(struct dm_table));
           for(int _i0 = 0; _i0 < _len_t0; _i0++) {
               int _len_t__i0__mempools0 = 1;
           t[_i0].mempools = (struct dm_md_mempools *) malloc(_len_t__i0__mempools0*sizeof(struct dm_md_mempools));
           for(int _j0 = 0; _j0 < _len_t__i0__mempools0; _j0++) {
-            t[_i0].mempools->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              t[_i0].mempools->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct dm_md_mempools * benchRet = dm_table_get_md_mempools(t);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_t0; _aux++) {

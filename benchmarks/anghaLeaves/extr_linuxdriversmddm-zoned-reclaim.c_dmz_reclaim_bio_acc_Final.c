@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ void dmz_reclaim_bio_acc(struct dmz_reclaim *zrc)
 	zrc->atime = jiffies;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_zrc0 = 1;
+          int _len_zrc0 = 65025;
           struct dmz_reclaim * zrc = (struct dmz_reclaim *) malloc(_len_zrc0*sizeof(struct dmz_reclaim));
           for(int _i0 = 0; _i0 < _len_zrc0; _i0++) {
-            zrc[_i0].atime = ((-2 * (next_i()%2)) + 1) * next_i();
+              zrc[_i0].atime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           dmz_reclaim_bio_acc(zrc);
           free(zrc);
         
@@ -99,14 +96,30 @@ int main(int argc, char *argv[]) {
           int _len_zrc0 = 100;
           struct dmz_reclaim * zrc = (struct dmz_reclaim *) malloc(_len_zrc0*sizeof(struct dmz_reclaim));
           for(int _i0 = 0; _i0 < _len_zrc0; _i0++) {
-            zrc[_i0].atime = ((-2 * (next_i()%2)) + 1) * next_i();
+              zrc[_i0].atime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           dmz_reclaim_bio_acc(zrc);
           free(zrc);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_zrc0 = 1;
+          struct dmz_reclaim * zrc = (struct dmz_reclaim *) malloc(_len_zrc0*sizeof(struct dmz_reclaim));
+          for(int _i0 = 0; _i0 < _len_zrc0; _i0++) {
+              zrc[_i0].atime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          dmz_reclaim_bio_acc(zrc);
+          free(zrc);
+        
+        break;
+    }
     default:
         usage();
         break;

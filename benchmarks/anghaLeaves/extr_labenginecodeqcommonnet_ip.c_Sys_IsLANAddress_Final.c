@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -148,12 +148,6 @@ qboolean Sys_IsLANAddress( netadr_t adr ) {
 	return qfalse;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -166,11 +160,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // empty
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 37
+          // dynamic_instructions_Oz : 37
+          // ------------------------------- 
+
           struct TYPE_6__ adr;
-        adr.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          adr.type = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_adr_ip0 = 1;
           adr.ip = (int *) malloc(_len_adr_ip0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_adr_ip0; _j0++) {
@@ -181,6 +198,7 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_adr_ip60; _j0++) {
             adr.ip6[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = Sys_IsLANAddress(adr);
           printf("%d\n", benchRet); 
           free(adr.ip);

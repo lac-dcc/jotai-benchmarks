@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ __attribute__((used)) static inline int64_t mp_media_get_next_min_pts(mp_media_t
 	return min_next_ns;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,19 +92,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_m0 = 65025;
+          struct TYPE_7__ * m = (struct TYPE_7__ *) malloc(_len_m0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].a.frame_pts = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].a.frame_ready = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          m[_i0].has_audio = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].v.frame_pts = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].v.frame_ready = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          m[_i0].has_video = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = mp_media_get_next_min_pts(m);
+          printf("%ld\n", benchRet); 
+          free(m);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_m0 = 100;
+          struct TYPE_7__ * m = (struct TYPE_7__ *) malloc(_len_m0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].a.frame_pts = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].a.frame_ready = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          m[_i0].has_audio = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].v.frame_pts = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].v.frame_ready = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          m[_i0].has_video = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = mp_media_get_next_min_pts(m);
+          printf("%ld\n", benchRet); 
+          free(m);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int _len_m0 = 1;
           struct TYPE_7__ * m = (struct TYPE_7__ *) malloc(_len_m0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_m0; _i0++) {
-            m[_i0].a.frame_pts = ((-2 * (next_i()%2)) + 1) * next_i();
-        m[_i0].a.frame_ready = ((-2 * (next_i()%2)) + 1) * next_i();
-        m[_i0].has_audio = ((-2 * (next_i()%2)) + 1) * next_i();
-        m[_i0].v.frame_pts = ((-2 * (next_i()%2)) + 1) * next_i();
-        m[_i0].v.frame_ready = ((-2 * (next_i()%2)) + 1) * next_i();
-        m[_i0].has_video = ((-2 * (next_i()%2)) + 1) * next_i();
+              m[_i0].a.frame_pts = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].a.frame_ready = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          m[_i0].has_audio = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].v.frame_pts = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].v.frame_ready = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          m[_i0].has_video = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = mp_media_get_next_min_pts(m);
           printf("%ld\n", benchRet); 
           free(m);

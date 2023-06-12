@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ __attribute__((used)) static int cmp_points (mc_point_t *A, mc_point_t *B) {
   }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,31 +89,39 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_A0 = 1;
+          int _len_A0 = 65025;
           struct TYPE_8__ * A = (struct TYPE_8__ *) malloc(_len_A0*sizeof(struct TYPE_8__));
           for(int _i0 = 0; _i0 < _len_A0; _i0++) {
-            A[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+              A[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_A__i0__target0 = 1;
           A[_i0].target = (struct TYPE_6__ *) malloc(_len_A__i0__target0*sizeof(struct TYPE_6__));
           for(int _j0 = 0; _j0 < _len_A__i0__target0; _j0++) {
-            A[_i0].target->port = ((-2 * (next_i()%2)) + 1) * next_i();
-        A[_i0].target->target.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+              A[_i0].target->port = ((-2 * (next_i()%2)) + 1) * next_i();
+          A[_i0].target->target.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
-          int _len_B0 = 1;
+        
+          int _len_B0 = 65025;
           struct TYPE_8__ * B = (struct TYPE_8__ *) malloc(_len_B0*sizeof(struct TYPE_8__));
           for(int _i0 = 0; _i0 < _len_B0; _i0++) {
-            B[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+              B[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_B__i0__target0 = 1;
           B[_i0].target = (struct TYPE_6__ *) malloc(_len_B__i0__target0*sizeof(struct TYPE_6__));
           for(int _j0 = 0; _j0 < _len_B__i0__target0; _j0++) {
-            B[_i0].target->port = ((-2 * (next_i()%2)) + 1) * next_i();
-        B[_i0].target->target.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+              B[_i0].target->port = ((-2 * (next_i()%2)) + 1) * next_i();
+          B[_i0].target->target.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           int benchRet = cmp_points(A,B);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_A0; _aux++) {
@@ -131,7 +135,98 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_A0 = 100;
+          struct TYPE_8__ * A = (struct TYPE_8__ *) malloc(_len_A0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_A0; _i0++) {
+              A[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_A__i0__target0 = 1;
+          A[_i0].target = (struct TYPE_6__ *) malloc(_len_A__i0__target0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_A__i0__target0; _j0++) {
+              A[_i0].target->port = ((-2 * (next_i()%2)) + 1) * next_i();
+          A[_i0].target->target.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int _len_B0 = 100;
+          struct TYPE_8__ * B = (struct TYPE_8__ *) malloc(_len_B0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_B0; _i0++) {
+              B[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_B__i0__target0 = 1;
+          B[_i0].target = (struct TYPE_6__ *) malloc(_len_B__i0__target0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_B__i0__target0; _j0++) {
+              B[_i0].target->port = ((-2 * (next_i()%2)) + 1) * next_i();
+          B[_i0].target->target.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = cmp_points(A,B);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_A0; _aux++) {
+          free(A[_aux].target);
+          }
+          free(A);
+          for(int _aux = 0; _aux < _len_B0; _aux++) {
+          free(B[_aux].target);
+          }
+          free(B);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_A0 = 1;
+          struct TYPE_8__ * A = (struct TYPE_8__ *) malloc(_len_A0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_A0; _i0++) {
+              A[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_A__i0__target0 = 1;
+          A[_i0].target = (struct TYPE_6__ *) malloc(_len_A__i0__target0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_A__i0__target0; _j0++) {
+              A[_i0].target->port = ((-2 * (next_i()%2)) + 1) * next_i();
+          A[_i0].target->target.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int _len_B0 = 1;
+          struct TYPE_8__ * B = (struct TYPE_8__ *) malloc(_len_B0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_B0; _i0++) {
+              B[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_B__i0__target0 = 1;
+          B[_i0].target = (struct TYPE_6__ *) malloc(_len_B__i0__target0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_B__i0__target0; _j0++) {
+              B[_i0].target->port = ((-2 * (next_i()%2)) + 1) * next_i();
+          B[_i0].target->target.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = cmp_points(A,B);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_A0; _aux++) {
+          free(A[_aux].target);
+          }
+          free(A);
+          for(int _aux = 0; _aux < _len_B0; _aux++) {
+          free(B[_aux].target);
+          }
+          free(B);
+        
+        break;
+    }
     default:
         usage();
         break;

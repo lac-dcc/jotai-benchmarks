@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ __attribute__((used)) static inline u32 slot_bytes(struct nfsd4_channel_attrs *c
 	return size + sizeof(struct nfsd4_slot);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,14 +83,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ca0 = 1;
+          int _len_ca0 = 65025;
           struct nfsd4_channel_attrs * ca = (struct nfsd4_channel_attrs *) malloc(_len_ca0*sizeof(struct nfsd4_channel_attrs));
           for(int _i0 = 0; _i0 < _len_ca0; _i0++) {
-            ca[_i0].maxresp_cached = ((-2 * (next_i()%2)) + 1) * next_i();
+              ca[_i0].maxresp_cached = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = slot_bytes(ca);
           printf("%ld\n", benchRet); 
           free(ca);
@@ -108,15 +105,32 @@ int main(int argc, char *argv[]) {
           int _len_ca0 = 100;
           struct nfsd4_channel_attrs * ca = (struct nfsd4_channel_attrs *) malloc(_len_ca0*sizeof(struct nfsd4_channel_attrs));
           for(int _i0 = 0; _i0 < _len_ca0; _i0++) {
-            ca[_i0].maxresp_cached = ((-2 * (next_i()%2)) + 1) * next_i();
+              ca[_i0].maxresp_cached = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = slot_bytes(ca);
           printf("%ld\n", benchRet); 
           free(ca);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ca0 = 1;
+          struct nfsd4_channel_attrs * ca = (struct nfsd4_channel_attrs *) malloc(_len_ca0*sizeof(struct nfsd4_channel_attrs));
+          for(int _i0 = 0; _i0 < _len_ca0; _i0++) {
+              ca[_i0].maxresp_cached = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = slot_bytes(ca);
+          printf("%ld\n", benchRet); 
+          free(ca);
+        
+        break;
+    }
     default:
         usage();
         break;

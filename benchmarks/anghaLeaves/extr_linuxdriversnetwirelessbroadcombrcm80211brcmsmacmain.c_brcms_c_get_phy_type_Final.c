@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ u16 brcms_c_get_phy_type(struct brcms_c_info *wlc, int phyidx)
 	return wlc->band->phytype;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,19 +78,196 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int phyidx = 100;
+        
           int _len_wlc0 = 1;
           struct brcms_c_info * wlc = (struct brcms_c_info *) malloc(_len_wlc0*sizeof(struct brcms_c_info));
           for(int _i0 = 0; _i0 < _len_wlc0; _i0++) {
               int _len_wlc__i0__band0 = 1;
           wlc[_i0].band = (struct TYPE_2__ *) malloc(_len_wlc__i0__band0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_wlc__i0__band0; _j0++) {
-            wlc[_i0].band->phytype = ((-2 * (next_i()%2)) + 1) * next_i();
+              wlc[_i0].band->phytype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = brcms_c_get_phy_type(wlc,phyidx);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_wlc0; _aux++) {
+          free(wlc[_aux].band);
+          }
+          free(wlc);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int phyidx = 255;
+        
+          int _len_wlc0 = 65025;
+          struct brcms_c_info * wlc = (struct brcms_c_info *) malloc(_len_wlc0*sizeof(struct brcms_c_info));
+          for(int _i0 = 0; _i0 < _len_wlc0; _i0++) {
+              int _len_wlc__i0__band0 = 1;
+          wlc[_i0].band = (struct TYPE_2__ *) malloc(_len_wlc__i0__band0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_wlc__i0__band0; _j0++) {
+              wlc[_i0].band->phytype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = brcms_c_get_phy_type(wlc,phyidx);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_wlc0; _aux++) {
+          free(wlc[_aux].band);
+          }
+          free(wlc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int phyidx = 10;
+        
+          int _len_wlc0 = 100;
+          struct brcms_c_info * wlc = (struct brcms_c_info *) malloc(_len_wlc0*sizeof(struct brcms_c_info));
+          for(int _i0 = 0; _i0 < _len_wlc0; _i0++) {
+              int _len_wlc__i0__band0 = 1;
+          wlc[_i0].band = (struct TYPE_2__ *) malloc(_len_wlc__i0__band0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_wlc__i0__band0; _j0++) {
+              wlc[_i0].band->phytype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = brcms_c_get_phy_type(wlc,phyidx);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_wlc0; _aux++) {
+          free(wlc[_aux].band);
+          }
+          free(wlc);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int phyidx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_wlc0 = 1;
+          struct brcms_c_info * wlc = (struct brcms_c_info *) malloc(_len_wlc0*sizeof(struct brcms_c_info));
+          for(int _i0 = 0; _i0 < _len_wlc0; _i0++) {
+              int _len_wlc__i0__band0 = 1;
+          wlc[_i0].band = (struct TYPE_2__ *) malloc(_len_wlc__i0__band0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_wlc__i0__band0; _j0++) {
+              wlc[_i0].band->phytype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = brcms_c_get_phy_type(wlc,phyidx);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_wlc0; _aux++) {

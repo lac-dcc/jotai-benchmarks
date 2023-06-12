@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +78,6 @@ char *edac_op_state_to_string(int opstate)
 	return "UNKNOWN";
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,6 +94,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int opstate = 100;
+        
           char * benchRet = edac_op_state_to_string(opstate);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
@@ -108,6 +104,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int opstate = 255;
+        
           char * benchRet = edac_op_state_to_string(opstate);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
@@ -117,12 +114,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int opstate = 10;
+        
           char * benchRet = edac_op_state_to_string(opstate);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int opstate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          char * benchRet = edac_op_state_to_string(opstate);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+        
+        break;
+    }
     default:
         usage();
         break;

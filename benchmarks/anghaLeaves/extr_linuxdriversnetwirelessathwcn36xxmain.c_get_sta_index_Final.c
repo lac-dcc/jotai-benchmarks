@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static inline u8 get_sta_index(struct ieee80211_vif *vif,
 	       sta_priv->sta_index;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,20 +80,145 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_vif0 = 65025;
+          struct ieee80211_vif * vif = (struct ieee80211_vif *) malloc(_len_vif0*sizeof(struct ieee80211_vif));
+          for(int _i0 = 0; _i0 < _len_vif0; _i0++) {
+              vif[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_sta_priv0 = 65025;
+          struct wcn36xx_sta * sta_priv = (struct wcn36xx_sta *) malloc(_len_sta_priv0*sizeof(struct wcn36xx_sta));
+          for(int _i0 = 0; _i0 < _len_sta_priv0; _i0++) {
+              sta_priv[_i0].sta_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          sta_priv[_i0].bss_sta_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = get_sta_index(vif,sta_priv);
+          printf("%d\n", benchRet); 
+          free(vif);
+          free(sta_priv);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_vif0 = 100;
+          struct ieee80211_vif * vif = (struct ieee80211_vif *) malloc(_len_vif0*sizeof(struct ieee80211_vif));
+          for(int _i0 = 0; _i0 < _len_vif0; _i0++) {
+              vif[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_sta_priv0 = 100;
+          struct wcn36xx_sta * sta_priv = (struct wcn36xx_sta *) malloc(_len_sta_priv0*sizeof(struct wcn36xx_sta));
+          for(int _i0 = 0; _i0 < _len_sta_priv0; _i0++) {
+              sta_priv[_i0].sta_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          sta_priv[_i0].bss_sta_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = get_sta_index(vif,sta_priv);
+          printf("%d\n", benchRet); 
+          free(vif);
+          free(sta_priv);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_vif0 = 1;
           struct ieee80211_vif * vif = (struct ieee80211_vif *) malloc(_len_vif0*sizeof(struct ieee80211_vif));
           for(int _i0 = 0; _i0 < _len_vif0; _i0++) {
-            vif[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+              vif[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_sta_priv0 = 1;
           struct wcn36xx_sta * sta_priv = (struct wcn36xx_sta *) malloc(_len_sta_priv0*sizeof(struct wcn36xx_sta));
           for(int _i0 = 0; _i0 < _len_sta_priv0; _i0++) {
-            sta_priv[_i0].sta_index = ((-2 * (next_i()%2)) + 1) * next_i();
-        sta_priv[_i0].bss_sta_index = ((-2 * (next_i()%2)) + 1) * next_i();
+              sta_priv[_i0].sta_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          sta_priv[_i0].bss_sta_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = get_sta_index(vif,sta_priv);
           printf("%d\n", benchRet); 
           free(vif);

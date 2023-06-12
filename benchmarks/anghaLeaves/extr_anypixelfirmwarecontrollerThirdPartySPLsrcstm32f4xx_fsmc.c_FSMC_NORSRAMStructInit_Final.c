@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -107,12 +109,6 @@ void FSMC_NORSRAMStructInit(FSMC_NORSRAMInitTypeDef* FSMC_NORSRAMInitStruct)
   FSMC_NORSRAMInitStruct->FSMC_WriteTimingStruct->FSMC_AccessMode = FSMC_AccessMode_A;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -125,46 +121,231 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 88
+          // dynamic_instructions_O0 : 88
+          // ------------------------------- 
+          // static_instructions_O1 : 41
+          // dynamic_instructions_O1 : 41
+          // ------------------------------- 
+          // static_instructions_O2 : 41
+          // dynamic_instructions_O2 : 41
+          // ------------------------------- 
+          // static_instructions_O3 : 41
+          // dynamic_instructions_O3 : 41
+          // ------------------------------- 
+          // static_instructions_Ofast : 41
+          // dynamic_instructions_Ofast : 41
+          // ------------------------------- 
+          // static_instructions_Os : 41
+          // dynamic_instructions_Os : 41
+          // ------------------------------- 
+          // static_instructions_Oz : 41
+          // dynamic_instructions_Oz : 41
+          // ------------------------------- 
+
+          int _len_FSMC_NORSRAMInitStruct0 = 65025;
+          struct TYPE_7__ * FSMC_NORSRAMInitStruct = (struct TYPE_7__ *) malloc(_len_FSMC_NORSRAMInitStruct0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_FSMC_NORSRAMInitStruct0; _i0++) {
+              int _len_FSMC_NORSRAMInitStruct__i0__FSMC_WriteTimingStruct0 = 1;
+          FSMC_NORSRAMInitStruct[_i0].FSMC_WriteTimingStruct = (struct TYPE_6__ *) malloc(_len_FSMC_NORSRAMInitStruct__i0__FSMC_WriteTimingStruct0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_FSMC_NORSRAMInitStruct__i0__FSMC_WriteTimingStruct0; _j0++) {
+              FSMC_NORSRAMInitStruct[_i0].FSMC_WriteTimingStruct->FSMC_AddressSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_WriteTimingStruct->FSMC_AddressHoldTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_WriteTimingStruct->FSMC_DataSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_WriteTimingStruct->FSMC_BusTurnAroundDuration = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_WriteTimingStruct->FSMC_CLKDivision = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_WriteTimingStruct->FSMC_DataLatency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_FSMC_NORSRAMInitStruct__i0__FSMC_ReadWriteTimingStruct0 = 1;
+          FSMC_NORSRAMInitStruct[_i0].FSMC_ReadWriteTimingStruct = (struct TYPE_5__ *) malloc(_len_FSMC_NORSRAMInitStruct__i0__FSMC_ReadWriteTimingStruct0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_FSMC_NORSRAMInitStruct__i0__FSMC_ReadWriteTimingStruct0; _j0++) {
+              FSMC_NORSRAMInitStruct[_i0].FSMC_ReadWriteTimingStruct->FSMC_AddressSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_ReadWriteTimingStruct->FSMC_AddressHoldTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_ReadWriteTimingStruct->FSMC_DataSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_ReadWriteTimingStruct->FSMC_BusTurnAroundDuration = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_ReadWriteTimingStruct->FSMC_CLKDivision = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_ReadWriteTimingStruct->FSMC_DataLatency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          FSMC_NORSRAMInitStruct[_i0].FSMC_WriteBurst = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_ExtendedMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_WaitSignal = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_WriteOperation = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_WaitSignalActive = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_WrapMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_WaitSignalPolarity = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_AsynchronousWait = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_BurstAccessMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_MemoryDataWidth = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_MemoryType = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_DataAddressMux = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_Bank = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          FSMC_NORSRAMStructInit(FSMC_NORSRAMInitStruct);
+          for(int _aux = 0; _aux < _len_FSMC_NORSRAMInitStruct0; _aux++) {
+          free(FSMC_NORSRAMInitStruct[_aux].FSMC_WriteTimingStruct);
+          }
+          for(int _aux = 0; _aux < _len_FSMC_NORSRAMInitStruct0; _aux++) {
+          free(FSMC_NORSRAMInitStruct[_aux].FSMC_ReadWriteTimingStruct);
+          }
+          free(FSMC_NORSRAMInitStruct);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 88
+          // dynamic_instructions_O0 : 88
+          // ------------------------------- 
+          // static_instructions_O1 : 41
+          // dynamic_instructions_O1 : 41
+          // ------------------------------- 
+          // static_instructions_O2 : 41
+          // dynamic_instructions_O2 : 41
+          // ------------------------------- 
+          // static_instructions_O3 : 41
+          // dynamic_instructions_O3 : 41
+          // ------------------------------- 
+          // static_instructions_Ofast : 41
+          // dynamic_instructions_Ofast : 41
+          // ------------------------------- 
+          // static_instructions_Os : 41
+          // dynamic_instructions_Os : 41
+          // ------------------------------- 
+          // static_instructions_Oz : 41
+          // dynamic_instructions_Oz : 41
+          // ------------------------------- 
+
+          int _len_FSMC_NORSRAMInitStruct0 = 100;
+          struct TYPE_7__ * FSMC_NORSRAMInitStruct = (struct TYPE_7__ *) malloc(_len_FSMC_NORSRAMInitStruct0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_FSMC_NORSRAMInitStruct0; _i0++) {
+              int _len_FSMC_NORSRAMInitStruct__i0__FSMC_WriteTimingStruct0 = 1;
+          FSMC_NORSRAMInitStruct[_i0].FSMC_WriteTimingStruct = (struct TYPE_6__ *) malloc(_len_FSMC_NORSRAMInitStruct__i0__FSMC_WriteTimingStruct0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_FSMC_NORSRAMInitStruct__i0__FSMC_WriteTimingStruct0; _j0++) {
+              FSMC_NORSRAMInitStruct[_i0].FSMC_WriteTimingStruct->FSMC_AddressSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_WriteTimingStruct->FSMC_AddressHoldTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_WriteTimingStruct->FSMC_DataSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_WriteTimingStruct->FSMC_BusTurnAroundDuration = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_WriteTimingStruct->FSMC_CLKDivision = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_WriteTimingStruct->FSMC_DataLatency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_FSMC_NORSRAMInitStruct__i0__FSMC_ReadWriteTimingStruct0 = 1;
+          FSMC_NORSRAMInitStruct[_i0].FSMC_ReadWriteTimingStruct = (struct TYPE_5__ *) malloc(_len_FSMC_NORSRAMInitStruct__i0__FSMC_ReadWriteTimingStruct0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_FSMC_NORSRAMInitStruct__i0__FSMC_ReadWriteTimingStruct0; _j0++) {
+              FSMC_NORSRAMInitStruct[_i0].FSMC_ReadWriteTimingStruct->FSMC_AddressSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_ReadWriteTimingStruct->FSMC_AddressHoldTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_ReadWriteTimingStruct->FSMC_DataSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_ReadWriteTimingStruct->FSMC_BusTurnAroundDuration = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_ReadWriteTimingStruct->FSMC_CLKDivision = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_ReadWriteTimingStruct->FSMC_DataLatency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          FSMC_NORSRAMInitStruct[_i0].FSMC_WriteBurst = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_ExtendedMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_WaitSignal = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_WriteOperation = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_WaitSignalActive = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_WrapMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_WaitSignalPolarity = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_AsynchronousWait = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_BurstAccessMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_MemoryDataWidth = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_MemoryType = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_DataAddressMux = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_Bank = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          FSMC_NORSRAMStructInit(FSMC_NORSRAMInitStruct);
+          for(int _aux = 0; _aux < _len_FSMC_NORSRAMInitStruct0; _aux++) {
+          free(FSMC_NORSRAMInitStruct[_aux].FSMC_WriteTimingStruct);
+          }
+          for(int _aux = 0; _aux < _len_FSMC_NORSRAMInitStruct0; _aux++) {
+          free(FSMC_NORSRAMInitStruct[_aux].FSMC_ReadWriteTimingStruct);
+          }
+          free(FSMC_NORSRAMInitStruct);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 88
+          // dynamic_instructions_O0 : 88
+          // ------------------------------- 
+          // static_instructions_O1 : 41
+          // dynamic_instructions_O1 : 41
+          // ------------------------------- 
+          // static_instructions_O2 : 41
+          // dynamic_instructions_O2 : 41
+          // ------------------------------- 
+          // static_instructions_O3 : 41
+          // dynamic_instructions_O3 : 41
+          // ------------------------------- 
+          // static_instructions_Ofast : 41
+          // dynamic_instructions_Ofast : 41
+          // ------------------------------- 
+          // static_instructions_Os : 41
+          // dynamic_instructions_Os : 41
+          // ------------------------------- 
+          // static_instructions_Oz : 41
+          // dynamic_instructions_Oz : 41
+          // ------------------------------- 
+
           int _len_FSMC_NORSRAMInitStruct0 = 1;
           struct TYPE_7__ * FSMC_NORSRAMInitStruct = (struct TYPE_7__ *) malloc(_len_FSMC_NORSRAMInitStruct0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_FSMC_NORSRAMInitStruct0; _i0++) {
               int _len_FSMC_NORSRAMInitStruct__i0__FSMC_WriteTimingStruct0 = 1;
           FSMC_NORSRAMInitStruct[_i0].FSMC_WriteTimingStruct = (struct TYPE_6__ *) malloc(_len_FSMC_NORSRAMInitStruct__i0__FSMC_WriteTimingStruct0*sizeof(struct TYPE_6__));
           for(int _j0 = 0; _j0 < _len_FSMC_NORSRAMInitStruct__i0__FSMC_WriteTimingStruct0; _j0++) {
-            FSMC_NORSRAMInitStruct[_i0].FSMC_WriteTimingStruct->FSMC_AddressSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_NORSRAMInitStruct[_i0].FSMC_WriteTimingStruct->FSMC_AddressHoldTime = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_NORSRAMInitStruct[_i0].FSMC_WriteTimingStruct->FSMC_DataSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_NORSRAMInitStruct[_i0].FSMC_WriteTimingStruct->FSMC_BusTurnAroundDuration = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_NORSRAMInitStruct[_i0].FSMC_WriteTimingStruct->FSMC_CLKDivision = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_NORSRAMInitStruct[_i0].FSMC_WriteTimingStruct->FSMC_DataLatency = ((-2 * (next_i()%2)) + 1) * next_i();
+              FSMC_NORSRAMInitStruct[_i0].FSMC_WriteTimingStruct->FSMC_AddressSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_WriteTimingStruct->FSMC_AddressHoldTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_WriteTimingStruct->FSMC_DataSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_WriteTimingStruct->FSMC_BusTurnAroundDuration = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_WriteTimingStruct->FSMC_CLKDivision = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_WriteTimingStruct->FSMC_DataLatency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_FSMC_NORSRAMInitStruct__i0__FSMC_ReadWriteTimingStruct0 = 1;
           FSMC_NORSRAMInitStruct[_i0].FSMC_ReadWriteTimingStruct = (struct TYPE_5__ *) malloc(_len_FSMC_NORSRAMInitStruct__i0__FSMC_ReadWriteTimingStruct0*sizeof(struct TYPE_5__));
           for(int _j0 = 0; _j0 < _len_FSMC_NORSRAMInitStruct__i0__FSMC_ReadWriteTimingStruct0; _j0++) {
-            FSMC_NORSRAMInitStruct[_i0].FSMC_ReadWriteTimingStruct->FSMC_AddressSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_NORSRAMInitStruct[_i0].FSMC_ReadWriteTimingStruct->FSMC_AddressHoldTime = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_NORSRAMInitStruct[_i0].FSMC_ReadWriteTimingStruct->FSMC_DataSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_NORSRAMInitStruct[_i0].FSMC_ReadWriteTimingStruct->FSMC_BusTurnAroundDuration = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_NORSRAMInitStruct[_i0].FSMC_ReadWriteTimingStruct->FSMC_CLKDivision = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_NORSRAMInitStruct[_i0].FSMC_ReadWriteTimingStruct->FSMC_DataLatency = ((-2 * (next_i()%2)) + 1) * next_i();
+              FSMC_NORSRAMInitStruct[_i0].FSMC_ReadWriteTimingStruct->FSMC_AddressSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_ReadWriteTimingStruct->FSMC_AddressHoldTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_ReadWriteTimingStruct->FSMC_DataSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_ReadWriteTimingStruct->FSMC_BusTurnAroundDuration = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_ReadWriteTimingStruct->FSMC_CLKDivision = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_ReadWriteTimingStruct->FSMC_DataLatency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        FSMC_NORSRAMInitStruct[_i0].FSMC_WriteBurst = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_NORSRAMInitStruct[_i0].FSMC_ExtendedMode = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_NORSRAMInitStruct[_i0].FSMC_WaitSignal = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_NORSRAMInitStruct[_i0].FSMC_WriteOperation = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_NORSRAMInitStruct[_i0].FSMC_WaitSignalActive = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_NORSRAMInitStruct[_i0].FSMC_WrapMode = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_NORSRAMInitStruct[_i0].FSMC_WaitSignalPolarity = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_NORSRAMInitStruct[_i0].FSMC_AsynchronousWait = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_NORSRAMInitStruct[_i0].FSMC_BurstAccessMode = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_NORSRAMInitStruct[_i0].FSMC_MemoryDataWidth = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_NORSRAMInitStruct[_i0].FSMC_MemoryType = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_NORSRAMInitStruct[_i0].FSMC_DataAddressMux = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_NORSRAMInitStruct[_i0].FSMC_Bank = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_WriteBurst = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_ExtendedMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_WaitSignal = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_WriteOperation = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_WaitSignalActive = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_WrapMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_WaitSignalPolarity = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_AsynchronousWait = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_BurstAccessMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_MemoryDataWidth = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_MemoryType = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_DataAddressMux = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NORSRAMInitStruct[_i0].FSMC_Bank = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           FSMC_NORSRAMStructInit(FSMC_NORSRAMInitStruct);
           for(int _aux = 0; _aux < _len_FSMC_NORSRAMInitStruct0; _aux++) {
           free(FSMC_NORSRAMInitStruct[_aux].FSMC_WriteTimingStruct);

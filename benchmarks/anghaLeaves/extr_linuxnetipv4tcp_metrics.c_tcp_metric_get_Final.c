@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static u32 tcp_metric_get(struct tcp_metrics_block *tm,
 	return tm->tcpm_vals[idx];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,11 +77,12 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           enum tcp_metric_index idx = 0;
-          int _len_tm0 = 1;
+        
+          int _len_tm0 = 65025;
           struct tcp_metrics_block * tm = (struct tcp_metrics_block *) malloc(_len_tm0*sizeof(struct tcp_metrics_block));
           for(int _i0 = 0; _i0 < _len_tm0; _i0++) {
               int _len_tm__i0__tcpm_vals0 = 1;
@@ -93,7 +90,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_tm__i0__tcpm_vals0; _j0++) {
             tm[_i0].tcpm_vals[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = tcp_metric_get(tm,idx);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_tm0; _aux++) {
@@ -103,7 +102,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          enum tcp_metric_index idx = 0;
+        
+          int _len_tm0 = 100;
+          struct tcp_metrics_block * tm = (struct tcp_metrics_block *) malloc(_len_tm0*sizeof(struct tcp_metrics_block));
+          for(int _i0 = 0; _i0 < _len_tm0; _i0++) {
+              int _len_tm__i0__tcpm_vals0 = 1;
+          tm[_i0].tcpm_vals = (int *) malloc(_len_tm__i0__tcpm_vals0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_tm__i0__tcpm_vals0; _j0++) {
+            tm[_i0].tcpm_vals[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = tcp_metric_get(tm,idx);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_tm0; _aux++) {
+          free(tm[_aux].tcpm_vals);
+          }
+          free(tm);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          enum tcp_metric_index idx = 0;
+        
+          int _len_tm0 = 1;
+          struct tcp_metrics_block * tm = (struct tcp_metrics_block *) malloc(_len_tm0*sizeof(struct tcp_metrics_block));
+          for(int _i0 = 0; _i0 < _len_tm0; _i0++) {
+              int _len_tm__i0__tcpm_vals0 = 1;
+          tm[_i0].tcpm_vals = (int *) malloc(_len_tm__i0__tcpm_vals0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_tm__i0__tcpm_vals0; _j0++) {
+            tm[_i0].tcpm_vals[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = tcp_metric_get(tm,idx);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_tm0; _aux++) {
+          free(tm[_aux].tcpm_vals);
+          }
+          free(tm);
+        
+        break;
+    }
     default:
         usage();
         break;

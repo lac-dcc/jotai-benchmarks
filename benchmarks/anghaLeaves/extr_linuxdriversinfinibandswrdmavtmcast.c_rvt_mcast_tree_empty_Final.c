@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ int rvt_mcast_tree_empty(struct rvt_dev_info *rdi)
 	return in_use;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,10 +86,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rdi0 = 1;
+          int _len_rdi0 = 65025;
           struct rvt_dev_info * rdi = (struct rvt_dev_info *) malloc(_len_rdi0*sizeof(struct rvt_dev_info));
           for(int _i0 = 0; _i0 < _len_rdi0; _i0++) {
               int _len_rdi__i0__ports0 = 1;
@@ -102,11 +98,16 @@ int main(int argc, char *argv[]) {
             int _len_rdi__i0__ports1 = 1;
             rdi[_i0].ports[_j0] = (struct TYPE_6__ *) malloc(_len_rdi__i0__ports1*sizeof(struct TYPE_6__));
             for(int _j1 = 0; _j1 < _len_rdi__i0__ports1; _j1++) {
-              rdi[_i0].ports[_j0]->mcast_tree.rb_node = ((-2 * (next_i()%2)) + 1) * next_i();
+                rdi[_i0].ports[_j0]->mcast_tree.rb_node = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
             }
           }
-        rdi[_i0].dparms.nports = ((-2 * (next_i()%2)) + 1) * next_i();
+          rdi[_i0].dparms.nports = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = rvt_mcast_tree_empty(rdi);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_rdi0; _aux++) {
@@ -117,7 +118,70 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_rdi0 = 100;
+          struct rvt_dev_info * rdi = (struct rvt_dev_info *) malloc(_len_rdi0*sizeof(struct rvt_dev_info));
+          for(int _i0 = 0; _i0 < _len_rdi0; _i0++) {
+              int _len_rdi__i0__ports0 = 1;
+          rdi[_i0].ports = (struct TYPE_6__ **) malloc(_len_rdi__i0__ports0*sizeof(struct TYPE_6__ *));
+          for(int _j0 = 0; _j0 < _len_rdi__i0__ports0; _j0++) {
+            int _len_rdi__i0__ports1 = 1;
+            rdi[_i0].ports[_j0] = (struct TYPE_6__ *) malloc(_len_rdi__i0__ports1*sizeof(struct TYPE_6__));
+            for(int _j1 = 0; _j1 < _len_rdi__i0__ports1; _j1++) {
+                rdi[_i0].ports[_j0]->mcast_tree.rb_node = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+            }
+          }
+          rdi[_i0].dparms.nports = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = rvt_mcast_tree_empty(rdi);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_rdi0; _aux++) {
+          free(*(rdi[_aux].ports));
+        free(rdi[_aux].ports);
+          }
+          free(rdi);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_rdi0 = 1;
+          struct rvt_dev_info * rdi = (struct rvt_dev_info *) malloc(_len_rdi0*sizeof(struct rvt_dev_info));
+          for(int _i0 = 0; _i0 < _len_rdi0; _i0++) {
+              int _len_rdi__i0__ports0 = 1;
+          rdi[_i0].ports = (struct TYPE_6__ **) malloc(_len_rdi__i0__ports0*sizeof(struct TYPE_6__ *));
+          for(int _j0 = 0; _j0 < _len_rdi__i0__ports0; _j0++) {
+            int _len_rdi__i0__ports1 = 1;
+            rdi[_i0].ports[_j0] = (struct TYPE_6__ *) malloc(_len_rdi__i0__ports1*sizeof(struct TYPE_6__));
+            for(int _j1 = 0; _j1 < _len_rdi__i0__ports1; _j1++) {
+                rdi[_i0].ports[_j0]->mcast_tree.rb_node = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+            }
+          }
+          rdi[_i0].dparms.nports = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = rvt_mcast_tree_empty(rdi);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_rdi0; _aux++) {
+          free(*(rdi[_aux].ports));
+        free(rdi[_aux].ports);
+          }
+          free(rdi);
+        
+        break;
+    }
     default:
         usage();
         break;

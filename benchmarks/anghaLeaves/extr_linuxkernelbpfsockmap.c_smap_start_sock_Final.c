@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static void smap_start_sock(struct smap_psock *psock, stru
 	psock->strp_enabled = true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,22 +83,149 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_psock0 = 65025;
+          struct smap_psock * psock = (struct smap_psock *) malloc(_len_psock0*sizeof(struct smap_psock));
+          for(int _i0 = 0; _i0 < _len_psock0; _i0++) {
+              psock[_i0].save_data_ready = ((-2 * (next_i()%2)) + 1) * next_i();
+          psock[_i0].strp_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          psock[_i0].save_write_space = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_sk0 = 65025;
+          struct sock * sk = (struct sock *) malloc(_len_sk0*sizeof(struct sock));
+          for(int _i0 = 0; _i0 < _len_sk0; _i0++) {
+              sk[_i0].sk_data_ready = ((-2 * (next_i()%2)) + 1) * next_i();
+          sk[_i0].sk_write_space = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          smap_start_sock(psock,sk);
+          free(psock);
+          free(sk);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_psock0 = 100;
+          struct smap_psock * psock = (struct smap_psock *) malloc(_len_psock0*sizeof(struct smap_psock));
+          for(int _i0 = 0; _i0 < _len_psock0; _i0++) {
+              psock[_i0].save_data_ready = ((-2 * (next_i()%2)) + 1) * next_i();
+          psock[_i0].strp_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          psock[_i0].save_write_space = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_sk0 = 100;
+          struct sock * sk = (struct sock *) malloc(_len_sk0*sizeof(struct sock));
+          for(int _i0 = 0; _i0 < _len_sk0; _i0++) {
+              sk[_i0].sk_data_ready = ((-2 * (next_i()%2)) + 1) * next_i();
+          sk[_i0].sk_write_space = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          smap_start_sock(psock,sk);
+          free(psock);
+          free(sk);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int _len_psock0 = 1;
           struct smap_psock * psock = (struct smap_psock *) malloc(_len_psock0*sizeof(struct smap_psock));
           for(int _i0 = 0; _i0 < _len_psock0; _i0++) {
-            psock[_i0].save_data_ready = ((-2 * (next_i()%2)) + 1) * next_i();
-        psock[_i0].strp_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        psock[_i0].save_write_space = ((-2 * (next_i()%2)) + 1) * next_i();
+              psock[_i0].save_data_ready = ((-2 * (next_i()%2)) + 1) * next_i();
+          psock[_i0].strp_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          psock[_i0].save_write_space = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_sk0 = 1;
           struct sock * sk = (struct sock *) malloc(_len_sk0*sizeof(struct sock));
           for(int _i0 = 0; _i0 < _len_sk0; _i0++) {
-            sk[_i0].sk_data_ready = ((-2 * (next_i()%2)) + 1) * next_i();
-        sk[_i0].sk_write_space = ((-2 * (next_i()%2)) + 1) * next_i();
+              sk[_i0].sk_data_ready = ((-2 * (next_i()%2)) + 1) * next_i();
+          sk[_i0].sk_write_space = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           smap_start_sock(psock,sk);
           free(psock);
           free(sk);

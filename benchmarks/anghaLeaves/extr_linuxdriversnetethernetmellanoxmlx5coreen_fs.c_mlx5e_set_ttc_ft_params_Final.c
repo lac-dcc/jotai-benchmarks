@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ void mlx5e_set_ttc_ft_params(struct ttc_params *ttc_params)
 	ft_attr->prio = MLX5E_NIC_PRIO;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,16 +83,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_ttc_params0 = 65025;
+          struct ttc_params * ttc_params = (struct ttc_params *) malloc(_len_ttc_params0*sizeof(struct ttc_params));
+          for(int _i0 = 0; _i0 < _len_ttc_params0; _i0++) {
+              ttc_params[_i0].ft_attr.prio = ((-2 * (next_i()%2)) + 1) * next_i();
+          ttc_params[_i0].ft_attr.level = ((-2 * (next_i()%2)) + 1) * next_i();
+          ttc_params[_i0].ft_attr.max_fte = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          mlx5e_set_ttc_ft_params(ttc_params);
+          free(ttc_params);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_ttc_params0 = 100;
+          struct ttc_params * ttc_params = (struct ttc_params *) malloc(_len_ttc_params0*sizeof(struct ttc_params));
+          for(int _i0 = 0; _i0 < _len_ttc_params0; _i0++) {
+              ttc_params[_i0].ft_attr.prio = ((-2 * (next_i()%2)) + 1) * next_i();
+          ttc_params[_i0].ft_attr.level = ((-2 * (next_i()%2)) + 1) * next_i();
+          ttc_params[_i0].ft_attr.max_fte = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          mlx5e_set_ttc_ft_params(ttc_params);
+          free(ttc_params);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_ttc_params0 = 1;
           struct ttc_params * ttc_params = (struct ttc_params *) malloc(_len_ttc_params0*sizeof(struct ttc_params));
           for(int _i0 = 0; _i0 < _len_ttc_params0; _i0++) {
-            ttc_params[_i0].ft_attr.prio = ((-2 * (next_i()%2)) + 1) * next_i();
-        ttc_params[_i0].ft_attr.level = ((-2 * (next_i()%2)) + 1) * next_i();
-        ttc_params[_i0].ft_attr.max_fte = ((-2 * (next_i()%2)) + 1) * next_i();
+              ttc_params[_i0].ft_attr.prio = ((-2 * (next_i()%2)) + 1) * next_i();
+          ttc_params[_i0].ft_attr.level = ((-2 * (next_i()%2)) + 1) * next_i();
+          ttc_params[_i0].ft_attr.max_fte = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           mlx5e_set_ttc_ft_params(ttc_params);
           free(ttc_params);
         

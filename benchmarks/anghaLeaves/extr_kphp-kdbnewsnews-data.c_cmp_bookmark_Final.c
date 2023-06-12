@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ __attribute__((used)) static inline int cmp_bookmark (struct bookmark *x, struct
   }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,23 +87,27 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_x0 = 1;
+          int _len_x0 = 65025;
           struct bookmark * x = (struct bookmark *) malloc(_len_x0*sizeof(struct bookmark));
           for(int _i0 = 0; _i0 < _len_x0; _i0++) {
-            x[_i0].next = ((-2 * (next_i()%2)) + 1) * next_i();
-        x[_i0].value = ((-2 * (next_i()%2)) + 1) * next_i();
-        x[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+              x[_i0].next = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].value = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_y0 = 1;
+        
+          int _len_y0 = 65025;
           struct bookmark * y = (struct bookmark *) malloc(_len_y0*sizeof(struct bookmark));
           for(int _i0 = 0; _i0 < _len_y0; _i0++) {
-            y[_i0].next = ((-2 * (next_i()%2)) + 1) * next_i();
-        y[_i0].value = ((-2 * (next_i()%2)) + 1) * next_i();
-        y[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+              y[_i0].next = ((-2 * (next_i()%2)) + 1) * next_i();
+          y[_i0].value = ((-2 * (next_i()%2)) + 1) * next_i();
+          y[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cmp_bookmark(x,y);
           printf("%d\n", benchRet); 
           free(x);
@@ -115,7 +115,62 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_x0 = 100;
+          struct bookmark * x = (struct bookmark *) malloc(_len_x0*sizeof(struct bookmark));
+          for(int _i0 = 0; _i0 < _len_x0; _i0++) {
+              x[_i0].next = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].value = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_y0 = 100;
+          struct bookmark * y = (struct bookmark *) malloc(_len_y0*sizeof(struct bookmark));
+          for(int _i0 = 0; _i0 < _len_y0; _i0++) {
+              y[_i0].next = ((-2 * (next_i()%2)) + 1) * next_i();
+          y[_i0].value = ((-2 * (next_i()%2)) + 1) * next_i();
+          y[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cmp_bookmark(x,y);
+          printf("%d\n", benchRet); 
+          free(x);
+          free(y);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_x0 = 1;
+          struct bookmark * x = (struct bookmark *) malloc(_len_x0*sizeof(struct bookmark));
+          for(int _i0 = 0; _i0 < _len_x0; _i0++) {
+              x[_i0].next = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].value = ((-2 * (next_i()%2)) + 1) * next_i();
+          x[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_y0 = 1;
+          struct bookmark * y = (struct bookmark *) malloc(_len_y0*sizeof(struct bookmark));
+          for(int _i0 = 0; _i0 < _len_y0; _i0++) {
+              y[_i0].next = ((-2 * (next_i()%2)) + 1) * next_i();
+          y[_i0].value = ((-2 * (next_i()%2)) + 1) * next_i();
+          y[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cmp_bookmark(x,y);
+          printf("%d\n", benchRet); 
+          free(x);
+          free(y);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -103,12 +106,6 @@ isdn_tty_check_ats(int mreg, int mval, modem_info *info, atemu *m)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -121,16 +118,43 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int mreg = 100;
+        
           int mval = 100;
+        
           int _len_info0 = 1;
           struct TYPE_5__ * info = (struct TYPE_5__ *) malloc(_len_info0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].xmit_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].xmit_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_m0 = 1;
           struct TYPE_6__ * m = (struct TYPE_6__ *) malloc(_len_m0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_m0; _i0++) {
@@ -139,7 +163,186 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_m__i0__mdmreg0; _j0++) {
             m[_i0].mdmreg[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int benchRet = isdn_tty_check_ats(mreg,mval,info,m);
+          printf("%d\n", benchRet); 
+          free(info);
+          for(int _aux = 0; _aux < _len_m0; _aux++) {
+          free(m[_aux].mdmreg);
+          }
+          free(m);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int mreg = 255;
+        
+          int mval = 255;
+        
+          int _len_info0 = 65025;
+          struct TYPE_5__ * info = (struct TYPE_5__ *) malloc(_len_info0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].xmit_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_m0 = 65025;
+          struct TYPE_6__ * m = (struct TYPE_6__ *) malloc(_len_m0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              int _len_m__i0__mdmreg0 = 1;
+          m[_i0].mdmreg = (int *) malloc(_len_m__i0__mdmreg0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_m__i0__mdmreg0; _j0++) {
+            m[_i0].mdmreg[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = isdn_tty_check_ats(mreg,mval,info,m);
+          printf("%d\n", benchRet); 
+          free(info);
+          for(int _aux = 0; _aux < _len_m0; _aux++) {
+          free(m[_aux].mdmreg);
+          }
+          free(m);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int mreg = 10;
+        
+          int mval = 10;
+        
+          int _len_info0 = 100;
+          struct TYPE_5__ * info = (struct TYPE_5__ *) malloc(_len_info0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].xmit_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_m0 = 100;
+          struct TYPE_6__ * m = (struct TYPE_6__ *) malloc(_len_m0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              int _len_m__i0__mdmreg0 = 1;
+          m[_i0].mdmreg = (int *) malloc(_len_m__i0__mdmreg0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_m__i0__mdmreg0; _j0++) {
+            m[_i0].mdmreg[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = isdn_tty_check_ats(mreg,mval,info,m);
+          printf("%d\n", benchRet); 
+          free(info);
+          for(int _aux = 0; _aux < _len_m0; _aux++) {
+          free(m[_aux].mdmreg);
+          }
+          free(m);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int mreg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int mval = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_info0 = 1;
+          struct TYPE_5__ * info = (struct TYPE_5__ *) malloc(_len_info0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].xmit_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_m0 = 1;
+          struct TYPE_6__ * m = (struct TYPE_6__ *) malloc(_len_m0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              int _len_m__i0__mdmreg0 = 1;
+          m[_i0].mdmreg = (int *) malloc(_len_m__i0__mdmreg0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_m__i0__mdmreg0; _j0++) {
+            m[_i0].mdmreg[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int benchRet = isdn_tty_check_ats(mreg,mval,info,m);
           printf("%d\n", benchRet); 
           free(info);

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static inline pgprotval_t effective_prot(pgprotval_t prot1
 	       ((prot1 | prot2) & _PAGE_NX);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,7 +83,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int prot1 = 100;
+        
           int prot2 = 100;
+        
           int benchRet = effective_prot(prot1,prot2);
           printf("%d\n", benchRet); 
         
@@ -98,7 +95,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int prot1 = 255;
+        
           int prot2 = 255;
+        
           int benchRet = effective_prot(prot1,prot2);
           printf("%d\n", benchRet); 
         
@@ -108,13 +107,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int prot1 = 10;
+        
           int prot2 = 10;
+        
           int benchRet = effective_prot(prot1,prot2);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int prot1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int prot2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = effective_prot(prot1,prot2);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

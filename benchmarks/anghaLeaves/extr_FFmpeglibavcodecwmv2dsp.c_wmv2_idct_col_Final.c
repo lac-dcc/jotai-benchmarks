@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -92,12 +93,6 @@ __attribute__((used)) static void wmv2_idct_col(short * b)
     b[8 * 7] = (a0 + a2 - a1 - a5 + (1 << 13)) >> 14;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -110,14 +105,76 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 183
+          // dynamic_instructions_O0 : 183
+          // ------------------------------- 
+          // static_instructions_O1 : 124
+          // dynamic_instructions_O1 : 124
+          // ------------------------------- 
+          // static_instructions_O2 : 124
+          // dynamic_instructions_O2 : 124
+          // ------------------------------- 
+          // static_instructions_O3 : 124
+          // dynamic_instructions_O3 : 124
+          // ------------------------------- 
+          // static_instructions_Ofast : 124
+          // dynamic_instructions_Ofast : 124
+          // ------------------------------- 
+          // static_instructions_Os : 126
+          // dynamic_instructions_Os : 126
+          // ------------------------------- 
+          // static_instructions_Oz : 126
+          // dynamic_instructions_Oz : 126
+          // ------------------------------- 
+
+          int _len_b0 = 65025;
+          short * b = (short *) malloc(_len_b0*sizeof(short));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+            b[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          wmv2_idct_col(b);
+          free(b);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 183
+          // dynamic_instructions_O0 : 183
+          // ------------------------------- 
+          // static_instructions_O1 : 124
+          // dynamic_instructions_O1 : 124
+          // ------------------------------- 
+          // static_instructions_O2 : 124
+          // dynamic_instructions_O2 : 124
+          // ------------------------------- 
+          // static_instructions_O3 : 124
+          // dynamic_instructions_O3 : 124
+          // ------------------------------- 
+          // static_instructions_Ofast : 124
+          // dynamic_instructions_Ofast : 124
+          // ------------------------------- 
+          // static_instructions_Os : 126
+          // dynamic_instructions_Os : 126
+          // ------------------------------- 
+          // static_instructions_Oz : 126
+          // dynamic_instructions_Oz : 126
+          // ------------------------------- 
+
           int _len_b0 = 100;
           short * b = (short *) malloc(_len_b0*sizeof(short));
           for(int _i0 = 0; _i0 < _len_b0; _i0++) {
             b[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           wmv2_idct_col(b);
           free(b);
         

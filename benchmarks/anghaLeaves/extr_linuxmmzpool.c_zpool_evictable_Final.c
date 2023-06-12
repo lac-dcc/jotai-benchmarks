@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ bool zpool_evictable(struct zpool *zpool)
 	return zpool->evictable;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_zpool0 = 1;
+          int _len_zpool0 = 65025;
           struct zpool * zpool = (struct zpool *) malloc(_len_zpool0*sizeof(struct zpool));
           for(int _i0 = 0; _i0 < _len_zpool0; _i0++) {
-            zpool[_i0].evictable = ((-2 * (next_i()%2)) + 1) * next_i();
+              zpool[_i0].evictable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = zpool_evictable(zpool);
           printf("%d\n", benchRet); 
           free(zpool);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_zpool0 = 100;
           struct zpool * zpool = (struct zpool *) malloc(_len_zpool0*sizeof(struct zpool));
           for(int _i0 = 0; _i0 < _len_zpool0; _i0++) {
-            zpool[_i0].evictable = ((-2 * (next_i()%2)) + 1) * next_i();
+              zpool[_i0].evictable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = zpool_evictable(zpool);
           printf("%d\n", benchRet); 
           free(zpool);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_zpool0 = 1;
+          struct zpool * zpool = (struct zpool *) malloc(_len_zpool0*sizeof(struct zpool));
+          for(int _i0 = 0; _i0 < _len_zpool0; _i0++) {
+              zpool[_i0].evictable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = zpool_evictable(zpool);
+          printf("%d\n", benchRet); 
+          free(zpool);
+        
+        break;
+    }
     default:
         usage();
         break;

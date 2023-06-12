@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -65,12 +65,6 @@ __attribute__((used)) static inline BOOL get_ccbool(ccval_t v)
     return v.is_num ? v.u.n != 0 : v.u.b;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,19 +77,20 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           struct TYPE_5__ v;
-        v.u.n = ((-2 * (next_i()%2)) + 1) * next_i();
-        v.u.b = ((-2 * (next_i()%2)) + 1) * next_i();
-        v.is_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          v.u.n = ((-2 * (next_i()%2)) + 1) * next_i();
+          v.u.b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          v.is_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = get_ccbool(v);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static void clear_stream_buffers(MMSContext *mms)
     mms->read_in_ptr      = mms->in_buffer;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,22 +77,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_mms0 = 1;
+          int _len_mms0 = 65025;
           struct TYPE_3__ * mms = (struct TYPE_3__ *) malloc(_len_mms0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_mms0; _i0++) {
-            mms[_i0].in_buffer = ((-2 * (next_i()%2)) + 1) * next_i();
-        mms[_i0].read_in_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
-        mms[_i0].remaining_in_len = ((-2 * (next_i()%2)) + 1) * next_i();
+              mms[_i0].in_buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+          mms[_i0].read_in_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          mms[_i0].remaining_in_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           clear_stream_buffers(mms);
           free(mms);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_mms0 = 100;
+          struct TYPE_3__ * mms = (struct TYPE_3__ *) malloc(_len_mms0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_mms0; _i0++) {
+              mms[_i0].in_buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+          mms[_i0].read_in_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          mms[_i0].remaining_in_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          clear_stream_buffers(mms);
+          free(mms);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_mms0 = 1;
+          struct TYPE_3__ * mms = (struct TYPE_3__ *) malloc(_len_mms0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_mms0; _i0++) {
+              mms[_i0].in_buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+          mms[_i0].read_in_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          mms[_i0].remaining_in_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          clear_stream_buffers(mms);
+          free(mms);
+        
+        break;
+    }
     default:
         usage();
         break;

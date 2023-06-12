@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static unsigned long bcm6328_pin2shift(unsigned long pin)
 		return pin - 8; /* LEDs 8-23 (bits 31:0) */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +81,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long pin = 100;
+        
           unsigned long benchRet = bcm6328_pin2shift(pin);
           printf("%lu\n", benchRet); 
         
@@ -95,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long pin = 255;
+        
           unsigned long benchRet = bcm6328_pin2shift(pin);
           printf("%lu\n", benchRet); 
         
@@ -104,12 +101,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long pin = 10;
+        
           unsigned long benchRet = bcm6328_pin2shift(pin);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long pin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = bcm6328_pin2shift(pin);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

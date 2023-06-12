@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ __attribute__((used)) static int find_comp(struct ra_imgfmt_desc *desc, int comp
     return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,10 +89,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int component = 100;
+        
           int _len_desc0 = 1;
           struct ra_imgfmt_desc * desc = (struct ra_imgfmt_desc *) malloc(_len_desc0*sizeof(struct ra_imgfmt_desc));
           for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
-            desc[_i0].num_planes = ((-2 * (next_i()%2)) + 1) * next_i();
+              desc[_i0].num_planes = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_desc__i0__components0 = 1;
           desc[_i0].components = (int **) malloc(_len_desc__i0__components0*sizeof(int *));
           for(int _j0 = 0; _j0 < _len_desc__i0__components0; _j0++) {
@@ -105,7 +103,9 @@ int main(int argc, char *argv[]) {
               desc[_i0].components[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           }
+        
           int benchRet = find_comp(desc,component);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_desc0; _aux++) {
@@ -116,7 +116,99 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int component = 255;
+        
+          int _len_desc0 = 65025;
+          struct ra_imgfmt_desc * desc = (struct ra_imgfmt_desc *) malloc(_len_desc0*sizeof(struct ra_imgfmt_desc));
+          for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
+              desc[_i0].num_planes = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_desc__i0__components0 = 1;
+          desc[_i0].components = (int **) malloc(_len_desc__i0__components0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_desc__i0__components0; _j0++) {
+            int _len_desc__i0__components1 = 1;
+            desc[_i0].components[_j0] = (int *) malloc(_len_desc__i0__components1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_desc__i0__components1; _j1++) {
+              desc[_i0].components[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          }
+        
+          int benchRet = find_comp(desc,component);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_desc0; _aux++) {
+          free(*(desc[_aux].components));
+        free(desc[_aux].components);
+          }
+          free(desc);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int component = 10;
+        
+          int _len_desc0 = 100;
+          struct ra_imgfmt_desc * desc = (struct ra_imgfmt_desc *) malloc(_len_desc0*sizeof(struct ra_imgfmt_desc));
+          for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
+              desc[_i0].num_planes = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_desc__i0__components0 = 1;
+          desc[_i0].components = (int **) malloc(_len_desc__i0__components0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_desc__i0__components0; _j0++) {
+            int _len_desc__i0__components1 = 1;
+            desc[_i0].components[_j0] = (int *) malloc(_len_desc__i0__components1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_desc__i0__components1; _j1++) {
+              desc[_i0].components[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          }
+        
+          int benchRet = find_comp(desc,component);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_desc0; _aux++) {
+          free(*(desc[_aux].components));
+        free(desc[_aux].components);
+          }
+          free(desc);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int component = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_desc0 = 1;
+          struct ra_imgfmt_desc * desc = (struct ra_imgfmt_desc *) malloc(_len_desc0*sizeof(struct ra_imgfmt_desc));
+          for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
+              desc[_i0].num_planes = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_desc__i0__components0 = 1;
+          desc[_i0].components = (int **) malloc(_len_desc__i0__components0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_desc__i0__components0; _j0++) {
+            int _len_desc__i0__components1 = 1;
+            desc[_i0].components[_j0] = (int *) malloc(_len_desc__i0__components1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_desc__i0__components1; _j1++) {
+              desc[_i0].components[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          }
+        
+          int benchRet = find_comp(desc,component);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_desc0; _aux++) {
+          free(*(desc[_aux].components));
+        free(desc[_aux].components);
+          }
+          free(desc);
+        
+        break;
+    }
     default:
         usage();
         break;

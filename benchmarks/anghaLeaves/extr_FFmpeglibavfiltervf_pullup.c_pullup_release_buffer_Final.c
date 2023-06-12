@@ -31,6 +31,7 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ __attribute__((used)) static void pullup_release_buffer(PullupBuffer *b, int par
         b->lock[1]--;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,6 +85,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int parity = 100;
+        
           int _len_b0 = 1;
           struct TYPE_3__ * b = (struct TYPE_3__ *) malloc(_len_b0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_b0; _i0++) {
@@ -98,7 +94,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_b__i0__lock0; _j0++) {
             b[_i0].lock[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           pullup_release_buffer(b,parity);
           for(int _aux = 0; _aux < _len_b0; _aux++) {
           free(b[_aux].lock);
@@ -107,7 +105,30 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int parity = 255;
+        
+          int _len_b0 = 65025;
+          struct TYPE_3__ * b = (struct TYPE_3__ *) malloc(_len_b0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              int _len_b__i0__lock0 = 1;
+          b[_i0].lock = (int *) malloc(_len_b__i0__lock0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_b__i0__lock0; _j0++) {
+            b[_i0].lock[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          pullup_release_buffer(b,parity);
+          for(int _aux = 0; _aux < _len_b0; _aux++) {
+          free(b[_aux].lock);
+          }
+          free(b);
+        
+        break;
+    }
     default:
         usage();
         break;

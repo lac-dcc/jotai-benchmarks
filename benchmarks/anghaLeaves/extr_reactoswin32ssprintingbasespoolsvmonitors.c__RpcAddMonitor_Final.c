@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ _RpcAddMonitor(WINSPOOL_HANDLE pName, WINSPOOL_MONITOR_CONTAINER* pMonitorContai
     return ERROR_INVALID_FUNCTION;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,11 +85,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int pName = 100;
+        
           int _len_pMonitorContainer0 = 1;
           int * pMonitorContainer = (int *) malloc(_len_pMonitorContainer0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pMonitorContainer0; _i0++) {
             pMonitorContainer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = _RpcAddMonitor(pName,pMonitorContainer);
+          printf("%d\n", benchRet); 
+          free(pMonitorContainer);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int pName = 255;
+        
+          int _len_pMonitorContainer0 = 65025;
+          int * pMonitorContainer = (int *) malloc(_len_pMonitorContainer0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pMonitorContainer0; _i0++) {
+            pMonitorContainer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = _RpcAddMonitor(pName,pMonitorContainer);
           printf("%d\n", benchRet); 
           free(pMonitorContainer);
@@ -101,21 +116,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int pName = 10;
+        
           int _len_pMonitorContainer0 = 100;
           int * pMonitorContainer = (int *) malloc(_len_pMonitorContainer0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pMonitorContainer0; _i0++) {
             pMonitorContainer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = _RpcAddMonitor(pName,pMonitorContainer);
           printf("%d\n", benchRet); 
           free(pMonitorContainer);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int pName = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pMonitorContainer0 = 1;
+          int * pMonitorContainer = (int *) malloc(_len_pMonitorContainer0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pMonitorContainer0; _i0++) {
+            pMonitorContainer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _RpcAddMonitor(pName,pMonitorContainer);
+          printf("%d\n", benchRet); 
+          free(pMonitorContainer);
+        
+        break;
+    }
     default:
         usage();
         break;

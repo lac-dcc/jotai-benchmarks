@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ typedef  int /*<<< orphan*/  BOOL ;
 
 __attribute__((used)) static BOOL  NULL_SetWindowOrgEx(PHYSDEV dev, INT x, INT y, POINT *pt) { return TRUE; }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,13 +80,38 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int dev = 100;
+        
           int x = 100;
+        
           int y = 100;
+        
           int _len_pt0 = 1;
           int * pt = (int *) malloc(_len_pt0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pt0; _i0++) {
             pt[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = NULL_SetWindowOrgEx(dev,x,y,pt);
+          printf("%d\n", benchRet); 
+          free(pt);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int dev = 255;
+        
+          int x = 255;
+        
+          int y = 255;
+        
+          int _len_pt0 = 65025;
+          int * pt = (int *) malloc(_len_pt0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pt0; _i0++) {
+            pt[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = NULL_SetWindowOrgEx(dev,x,y,pt);
           printf("%d\n", benchRet); 
           free(pt);
@@ -98,23 +119,47 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int dev = 10;
+        
           int x = 10;
+        
           int y = 10;
+        
           int _len_pt0 = 100;
           int * pt = (int *) malloc(_len_pt0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pt0; _i0++) {
             pt[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = NULL_SetWindowOrgEx(dev,x,y,pt);
           printf("%d\n", benchRet); 
           free(pt);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int dev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pt0 = 1;
+          int * pt = (int *) malloc(_len_pt0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pt0; _i0++) {
+            pt[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = NULL_SetWindowOrgEx(dev,x,y,pt);
+          printf("%d\n", benchRet); 
+          free(pt);
+        
+        break;
+    }
     default:
         usage();
         break;

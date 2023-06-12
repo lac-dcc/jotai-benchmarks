@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ xfs_da2_node_tree_p(struct xfs_da_intnode *dap)
 	return dap->__btree;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,18 +76,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_dap0 = 65025;
+          struct xfs_da_intnode * dap = (struct xfs_da_intnode *) malloc(_len_dap0*sizeof(struct xfs_da_intnode));
+          for(int _i0 = 0; _i0 < _len_dap0; _i0++) {
+              int _len_dap__i0____btree0 = 1;
+          dap[_i0].__btree = (struct xfs_da_node_entry *) malloc(_len_dap__i0____btree0*sizeof(struct xfs_da_node_entry));
+          for(int _j0 = 0; _j0 < _len_dap__i0____btree0; _j0++) {
+              dap[_i0].__btree->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct xfs_da_node_entry * benchRet = xfs_da2_node_tree_p(dap);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_dap0; _aux++) {
+          free(dap[_aux].__btree);
+          }
+          free(dap);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_dap0 = 100;
+          struct xfs_da_intnode * dap = (struct xfs_da_intnode *) malloc(_len_dap0*sizeof(struct xfs_da_intnode));
+          for(int _i0 = 0; _i0 < _len_dap0; _i0++) {
+              int _len_dap__i0____btree0 = 1;
+          dap[_i0].__btree = (struct xfs_da_node_entry *) malloc(_len_dap__i0____btree0*sizeof(struct xfs_da_node_entry));
+          for(int _j0 = 0; _j0 < _len_dap__i0____btree0; _j0++) {
+              dap[_i0].__btree->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct xfs_da_node_entry * benchRet = xfs_da2_node_tree_p(dap);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_dap0; _aux++) {
+          free(dap[_aux].__btree);
+          }
+          free(dap);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_dap0 = 1;
           struct xfs_da_intnode * dap = (struct xfs_da_intnode *) malloc(_len_dap0*sizeof(struct xfs_da_intnode));
           for(int _i0 = 0; _i0 < _len_dap0; _i0++) {
               int _len_dap__i0____btree0 = 1;
           dap[_i0].__btree = (struct xfs_da_node_entry *) malloc(_len_dap__i0____btree0*sizeof(struct xfs_da_node_entry));
           for(int _j0 = 0; _j0 < _len_dap__i0____btree0; _j0++) {
-            dap[_i0].__btree->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dap[_i0].__btree->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct xfs_da_node_entry * benchRet = xfs_da2_node_tree_p(dap);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_dap0; _aux++) {

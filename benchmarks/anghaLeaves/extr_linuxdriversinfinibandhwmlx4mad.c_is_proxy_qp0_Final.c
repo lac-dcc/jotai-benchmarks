@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ __attribute__((used)) static int is_proxy_qp0(struct mlx4_ib_dev *dev, int qpn, 
 	return (qpn >= proxy_start && qpn <= proxy_start + 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,20 +81,208 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int qpn = 100;
+        
           int slave = 100;
+        
           int _len_dev0 = 1;
           struct mlx4_ib_dev * dev = (struct mlx4_ib_dev *) malloc(_len_dev0*sizeof(struct mlx4_ib_dev));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
               int _len_dev__i0__dev0 = 1;
           dev[_i0].dev = (struct TYPE_4__ *) malloc(_len_dev__i0__dev0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_dev__i0__dev0; _j0++) {
-            dev[_i0].dev->phys_caps.base_proxy_sqpn = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].dev->phys_caps.base_proxy_sqpn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
+          int benchRet = is_proxy_qp0(dev,qpn,slave);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(dev[_aux].dev);
+          }
+          free(dev);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int qpn = 255;
+        
+          int slave = 255;
+        
+          int _len_dev0 = 65025;
+          struct mlx4_ib_dev * dev = (struct mlx4_ib_dev *) malloc(_len_dev0*sizeof(struct mlx4_ib_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              int _len_dev__i0__dev0 = 1;
+          dev[_i0].dev = (struct TYPE_4__ *) malloc(_len_dev__i0__dev0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_dev__i0__dev0; _j0++) {
+              dev[_i0].dev->phys_caps.base_proxy_sqpn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = is_proxy_qp0(dev,qpn,slave);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(dev[_aux].dev);
+          }
+          free(dev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int qpn = 10;
+        
+          int slave = 10;
+        
+          int _len_dev0 = 100;
+          struct mlx4_ib_dev * dev = (struct mlx4_ib_dev *) malloc(_len_dev0*sizeof(struct mlx4_ib_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              int _len_dev__i0__dev0 = 1;
+          dev[_i0].dev = (struct TYPE_4__ *) malloc(_len_dev__i0__dev0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_dev__i0__dev0; _j0++) {
+              dev[_i0].dev->phys_caps.base_proxy_sqpn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = is_proxy_qp0(dev,qpn,slave);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(dev[_aux].dev);
+          }
+          free(dev);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int qpn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int slave = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dev0 = 1;
+          struct mlx4_ib_dev * dev = (struct mlx4_ib_dev *) malloc(_len_dev0*sizeof(struct mlx4_ib_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              int _len_dev__i0__dev0 = 1;
+          dev[_i0].dev = (struct TYPE_4__ *) malloc(_len_dev__i0__dev0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_dev__i0__dev0; _j0++) {
+              dev[_i0].dev->phys_caps.base_proxy_sqpn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
           int benchRet = is_proxy_qp0(dev,qpn,slave);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_dev0; _aux++) {

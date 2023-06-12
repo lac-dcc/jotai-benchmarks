@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static int dom_size(int peers)
 	return i < MAX_MON_DOMAIN ? i : MAX_MON_DOMAIN;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,6 +83,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int peers = 100;
+        
           int benchRet = dom_size(peers);
           printf("%d\n", benchRet); 
         
@@ -97,6 +93,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int peers = 255;
+        
           int benchRet = dom_size(peers);
           printf("%d\n", benchRet); 
         
@@ -106,12 +103,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int peers = 10;
+        
           int benchRet = dom_size(peers);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int peers = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = dom_size(peers);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

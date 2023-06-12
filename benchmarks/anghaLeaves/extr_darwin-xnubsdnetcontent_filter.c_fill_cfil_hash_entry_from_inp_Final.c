@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -109,12 +112,6 @@ fill_cfil_hash_entry_from_inp(struct cfil_hash_entry *entry, bool isLocal, struc
     return FALSE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -127,32 +124,278 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int isLocal = 100;
+        
           int _len_entry0 = 1;
           struct cfil_hash_entry * entry = (struct cfil_hash_entry *) malloc(_len_entry0*sizeof(struct cfil_hash_entry));
           for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
-            entry[_i0].cfentry_family = ((-2 * (next_i()%2)) + 1) * next_i();
-        entry[_i0].cfentry_faddr.addr6 = ((-2 * (next_i()%2)) + 1) * next_i();
-        entry[_i0].cfentry_faddr.addr46.ia46_addr4.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        entry[_i0].cfentry_fport = ((-2 * (next_i()%2)) + 1) * next_i();
-        entry[_i0].cfentry_laddr.addr6 = ((-2 * (next_i()%2)) + 1) * next_i();
-        entry[_i0].cfentry_laddr.addr46.ia46_addr4.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        entry[_i0].cfentry_lport = ((-2 * (next_i()%2)) + 1) * next_i();
+              entry[_i0].cfentry_family = ((-2 * (next_i()%2)) + 1) * next_i();
+          entry[_i0].cfentry_faddr.addr6 = ((-2 * (next_i()%2)) + 1) * next_i();
+          entry[_i0].cfentry_faddr.addr46.ia46_addr4.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          entry[_i0].cfentry_fport = ((-2 * (next_i()%2)) + 1) * next_i();
+          entry[_i0].cfentry_laddr.addr6 = ((-2 * (next_i()%2)) + 1) * next_i();
+          entry[_i0].cfentry_laddr.addr46.ia46_addr4.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          entry[_i0].cfentry_lport = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_inp0 = 1;
           struct inpcb * inp = (struct inpcb *) malloc(_len_inp0*sizeof(struct inpcb));
           for(int _i0 = 0; _i0 < _len_inp0; _i0++) {
-            inp[_i0].inp_vflag = ((-2 * (next_i()%2)) + 1) * next_i();
-        inp[_i0].in6p_faddr = ((-2 * (next_i()%2)) + 1) * next_i();
-        inp[_i0].inp_fport = ((-2 * (next_i()%2)) + 1) * next_i();
-        inp[_i0].in6p_laddr = ((-2 * (next_i()%2)) + 1) * next_i();
-        inp[_i0].inp_lport = ((-2 * (next_i()%2)) + 1) * next_i();
-        inp[_i0].inp_faddr.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        inp[_i0].inp_laddr.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+              inp[_i0].inp_vflag = ((-2 * (next_i()%2)) + 1) * next_i();
+          inp[_i0].in6p_faddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          inp[_i0].inp_fport = ((-2 * (next_i()%2)) + 1) * next_i();
+          inp[_i0].in6p_laddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          inp[_i0].inp_lport = ((-2 * (next_i()%2)) + 1) * next_i();
+          inp[_i0].inp_faddr.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          inp[_i0].inp_laddr.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = fill_cfil_hash_entry_from_inp(entry,isLocal,inp);
+          printf("%d\n", benchRet); 
+          free(entry);
+          free(inp);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int isLocal = 255;
+        
+          int _len_entry0 = 65025;
+          struct cfil_hash_entry * entry = (struct cfil_hash_entry *) malloc(_len_entry0*sizeof(struct cfil_hash_entry));
+          for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
+              entry[_i0].cfentry_family = ((-2 * (next_i()%2)) + 1) * next_i();
+          entry[_i0].cfentry_faddr.addr6 = ((-2 * (next_i()%2)) + 1) * next_i();
+          entry[_i0].cfentry_faddr.addr46.ia46_addr4.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          entry[_i0].cfentry_fport = ((-2 * (next_i()%2)) + 1) * next_i();
+          entry[_i0].cfentry_laddr.addr6 = ((-2 * (next_i()%2)) + 1) * next_i();
+          entry[_i0].cfentry_laddr.addr46.ia46_addr4.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          entry[_i0].cfentry_lport = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_inp0 = 65025;
+          struct inpcb * inp = (struct inpcb *) malloc(_len_inp0*sizeof(struct inpcb));
+          for(int _i0 = 0; _i0 < _len_inp0; _i0++) {
+              inp[_i0].inp_vflag = ((-2 * (next_i()%2)) + 1) * next_i();
+          inp[_i0].in6p_faddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          inp[_i0].inp_fport = ((-2 * (next_i()%2)) + 1) * next_i();
+          inp[_i0].in6p_laddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          inp[_i0].inp_lport = ((-2 * (next_i()%2)) + 1) * next_i();
+          inp[_i0].inp_faddr.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          inp[_i0].inp_laddr.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = fill_cfil_hash_entry_from_inp(entry,isLocal,inp);
+          printf("%d\n", benchRet); 
+          free(entry);
+          free(inp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int isLocal = 10;
+        
+          int _len_entry0 = 100;
+          struct cfil_hash_entry * entry = (struct cfil_hash_entry *) malloc(_len_entry0*sizeof(struct cfil_hash_entry));
+          for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
+              entry[_i0].cfentry_family = ((-2 * (next_i()%2)) + 1) * next_i();
+          entry[_i0].cfentry_faddr.addr6 = ((-2 * (next_i()%2)) + 1) * next_i();
+          entry[_i0].cfentry_faddr.addr46.ia46_addr4.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          entry[_i0].cfentry_fport = ((-2 * (next_i()%2)) + 1) * next_i();
+          entry[_i0].cfentry_laddr.addr6 = ((-2 * (next_i()%2)) + 1) * next_i();
+          entry[_i0].cfentry_laddr.addr46.ia46_addr4.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          entry[_i0].cfentry_lport = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_inp0 = 100;
+          struct inpcb * inp = (struct inpcb *) malloc(_len_inp0*sizeof(struct inpcb));
+          for(int _i0 = 0; _i0 < _len_inp0; _i0++) {
+              inp[_i0].inp_vflag = ((-2 * (next_i()%2)) + 1) * next_i();
+          inp[_i0].in6p_faddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          inp[_i0].inp_fport = ((-2 * (next_i()%2)) + 1) * next_i();
+          inp[_i0].in6p_laddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          inp[_i0].inp_lport = ((-2 * (next_i()%2)) + 1) * next_i();
+          inp[_i0].inp_faddr.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          inp[_i0].inp_laddr.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = fill_cfil_hash_entry_from_inp(entry,isLocal,inp);
+          printf("%d\n", benchRet); 
+          free(entry);
+          free(inp);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int isLocal = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_entry0 = 1;
+          struct cfil_hash_entry * entry = (struct cfil_hash_entry *) malloc(_len_entry0*sizeof(struct cfil_hash_entry));
+          for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
+              entry[_i0].cfentry_family = ((-2 * (next_i()%2)) + 1) * next_i();
+          entry[_i0].cfentry_faddr.addr6 = ((-2 * (next_i()%2)) + 1) * next_i();
+          entry[_i0].cfentry_faddr.addr46.ia46_addr4.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          entry[_i0].cfentry_fport = ((-2 * (next_i()%2)) + 1) * next_i();
+          entry[_i0].cfentry_laddr.addr6 = ((-2 * (next_i()%2)) + 1) * next_i();
+          entry[_i0].cfentry_laddr.addr46.ia46_addr4.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          entry[_i0].cfentry_lport = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_inp0 = 1;
+          struct inpcb * inp = (struct inpcb *) malloc(_len_inp0*sizeof(struct inpcb));
+          for(int _i0 = 0; _i0 < _len_inp0; _i0++) {
+              inp[_i0].inp_vflag = ((-2 * (next_i()%2)) + 1) * next_i();
+          inp[_i0].in6p_faddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          inp[_i0].inp_fport = ((-2 * (next_i()%2)) + 1) * next_i();
+          inp[_i0].in6p_laddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          inp[_i0].inp_lport = ((-2 * (next_i()%2)) + 1) * next_i();
+          inp[_i0].inp_faddr.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          inp[_i0].inp_laddr.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = fill_cfil_hash_entry_from_inp(entry,isLocal,inp);
           printf("%d\n", benchRet); 
           free(entry);

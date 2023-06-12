@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static inline BOOLEAN ValidateHandle(PEMS_HANDLE HandleEnt
     return (HandleEntry != NULL && HandleEntry->Allocated);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_HandleEntry0 = 1;
+          int _len_HandleEntry0 = 65025;
           struct TYPE_3__ * HandleEntry = (struct TYPE_3__ *) malloc(_len_HandleEntry0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_HandleEntry0; _i0++) {
-            HandleEntry[_i0].Allocated = ((-2 * (next_i()%2)) + 1) * next_i();
+              HandleEntry[_i0].Allocated = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ValidateHandle(HandleEntry);
           printf("%d\n", benchRet); 
           free(HandleEntry);
@@ -102,15 +99,32 @@ int main(int argc, char *argv[]) {
           int _len_HandleEntry0 = 100;
           struct TYPE_3__ * HandleEntry = (struct TYPE_3__ *) malloc(_len_HandleEntry0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_HandleEntry0; _i0++) {
-            HandleEntry[_i0].Allocated = ((-2 * (next_i()%2)) + 1) * next_i();
+              HandleEntry[_i0].Allocated = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ValidateHandle(HandleEntry);
           printf("%d\n", benchRet); 
           free(HandleEntry);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_HandleEntry0 = 1;
+          struct TYPE_3__ * HandleEntry = (struct TYPE_3__ *) malloc(_len_HandleEntry0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_HandleEntry0; _i0++) {
+              HandleEntry[_i0].Allocated = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ValidateHandle(HandleEntry);
+          printf("%d\n", benchRet); 
+          free(HandleEntry);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline int tg3_irq_sync(struct tg3 *tp)
 	return tp->irq_sync;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_tp0 = 1;
+          int _len_tp0 = 65025;
           struct tg3 * tp = (struct tg3 *) malloc(_len_tp0*sizeof(struct tg3));
           for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
-            tp[_i0].irq_sync = ((-2 * (next_i()%2)) + 1) * next_i();
+              tp[_i0].irq_sync = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = tg3_irq_sync(tp);
           printf("%d\n", benchRet); 
           free(tp);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_tp0 = 100;
           struct tg3 * tp = (struct tg3 *) malloc(_len_tp0*sizeof(struct tg3));
           for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
-            tp[_i0].irq_sync = ((-2 * (next_i()%2)) + 1) * next_i();
+              tp[_i0].irq_sync = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = tg3_irq_sync(tp);
           printf("%d\n", benchRet); 
           free(tp);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_tp0 = 1;
+          struct tg3 * tp = (struct tg3 *) malloc(_len_tp0*sizeof(struct tg3));
+          for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
+              tp[_i0].irq_sync = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = tg3_irq_sync(tp);
+          printf("%d\n", benchRet); 
+          free(tp);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +74,6 @@ __attribute__((used)) static u8 ata_scsi_trusted_op(u32 len, bool send, bool dma
 		return dma ? ATA_CMD_TRUSTED_RCV_DMA : ATA_CMD_TRUSTED_RCV;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,8 +90,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long len = 100;
+        
           int send = 100;
+        
           int dma = 100;
+        
           int benchRet = ata_scsi_trusted_op(len,send,dma);
           printf("%d\n", benchRet); 
         
@@ -106,8 +104,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long len = 255;
+        
           int send = 255;
+        
           int dma = 255;
+        
           int benchRet = ata_scsi_trusted_op(len,send,dma);
           printf("%d\n", benchRet); 
         
@@ -117,14 +118,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long len = 10;
+        
           int send = 10;
+        
           int dma = 10;
+        
           int benchRet = ata_scsi_trusted_op(len,send,dma);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int send = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int dma = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = ata_scsi_trusted_op(len,send,dma);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

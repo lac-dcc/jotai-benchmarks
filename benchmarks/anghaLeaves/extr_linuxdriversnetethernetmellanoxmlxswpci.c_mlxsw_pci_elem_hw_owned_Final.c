@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -60,12 +63,6 @@ __attribute__((used)) static bool mlxsw_pci_elem_hw_owned(struct mlxsw_pci_queue
 	return owner_bit != !!(q->consumer_counter & q->count);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,16 +75,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int owner_bit = 100;
+        
           int _len_q0 = 1;
           struct mlxsw_pci_queue * q = (struct mlxsw_pci_queue *) malloc(_len_q0*sizeof(struct mlxsw_pci_queue));
           for(int _i0 = 0; _i0 < _len_q0; _i0++) {
-            q[_i0].consumer_counter = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+              q[_i0].consumer_counter = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = mlxsw_pci_elem_hw_owned(q,owner_bit);
+          printf("%d\n", benchRet); 
+          free(q);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int owner_bit = 255;
+        
+          int _len_q0 = 65025;
+          struct mlxsw_pci_queue * q = (struct mlxsw_pci_queue *) malloc(_len_q0*sizeof(struct mlxsw_pci_queue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].consumer_counter = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mlxsw_pci_elem_hw_owned(q,owner_bit);
+          printf("%d\n", benchRet); 
+          free(q);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int owner_bit = 10;
+        
+          int _len_q0 = 100;
+          struct mlxsw_pci_queue * q = (struct mlxsw_pci_queue *) malloc(_len_q0*sizeof(struct mlxsw_pci_queue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].consumer_counter = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mlxsw_pci_elem_hw_owned(q,owner_bit);
+          printf("%d\n", benchRet); 
+          free(q);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int owner_bit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_q0 = 1;
+          struct mlxsw_pci_queue * q = (struct mlxsw_pci_queue *) malloc(_len_q0*sizeof(struct mlxsw_pci_queue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].consumer_counter = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = mlxsw_pci_elem_hw_owned(q,owner_bit);
           printf("%d\n", benchRet); 
           free(q);

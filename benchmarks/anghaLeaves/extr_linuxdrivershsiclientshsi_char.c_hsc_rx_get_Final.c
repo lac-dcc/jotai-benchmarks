@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static inline void hsc_rx_get(struct hsi_client *cl, struc
 	rxc->flow = cl->rx_cfg.flow;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,30 +79,90 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cl0 = 1;
+          int _len_cl0 = 65025;
           struct hsi_client * cl = (struct hsi_client *) malloc(_len_cl0*sizeof(struct hsi_client));
           for(int _i0 = 0; _i0 < _len_cl0; _i0++) {
-            cl[_i0].rx_cfg.flow = ((-2 * (next_i()%2)) + 1) * next_i();
-        cl[_i0].rx_cfg.num_hw_channels = ((-2 * (next_i()%2)) + 1) * next_i();
-        cl[_i0].rx_cfg.mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              cl[_i0].rx_cfg.flow = ((-2 * (next_i()%2)) + 1) * next_i();
+          cl[_i0].rx_cfg.num_hw_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          cl[_i0].rx_cfg.mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-          int _len_rxc0 = 1;
+        
+          int _len_rxc0 = 65025;
           struct hsc_rx_config * rxc = (struct hsc_rx_config *) malloc(_len_rxc0*sizeof(struct hsc_rx_config));
           for(int _i0 = 0; _i0 < _len_rxc0; _i0++) {
-            rxc[_i0].flow = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxc[_i0].channels = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxc[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              rxc[_i0].flow = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxc[_i0].channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxc[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           hsc_rx_get(cl,rxc);
           free(cl);
           free(rxc);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_cl0 = 100;
+          struct hsi_client * cl = (struct hsi_client *) malloc(_len_cl0*sizeof(struct hsi_client));
+          for(int _i0 = 0; _i0 < _len_cl0; _i0++) {
+              cl[_i0].rx_cfg.flow = ((-2 * (next_i()%2)) + 1) * next_i();
+          cl[_i0].rx_cfg.num_hw_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          cl[_i0].rx_cfg.mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_rxc0 = 100;
+          struct hsc_rx_config * rxc = (struct hsc_rx_config *) malloc(_len_rxc0*sizeof(struct hsc_rx_config));
+          for(int _i0 = 0; _i0 < _len_rxc0; _i0++) {
+              rxc[_i0].flow = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxc[_i0].channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxc[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          hsc_rx_get(cl,rxc);
+          free(cl);
+          free(rxc);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_cl0 = 1;
+          struct hsi_client * cl = (struct hsi_client *) malloc(_len_cl0*sizeof(struct hsi_client));
+          for(int _i0 = 0; _i0 < _len_cl0; _i0++) {
+              cl[_i0].rx_cfg.flow = ((-2 * (next_i()%2)) + 1) * next_i();
+          cl[_i0].rx_cfg.num_hw_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          cl[_i0].rx_cfg.mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_rxc0 = 1;
+          struct hsc_rx_config * rxc = (struct hsc_rx_config *) malloc(_len_rxc0*sizeof(struct hsc_rx_config));
+          for(int _i0 = 0; _i0 < _len_rxc0; _i0++) {
+              rxc[_i0].flow = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxc[_i0].channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxc[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          hsc_rx_get(cl,rxc);
+          free(cl);
+          free(rxc);
+        
+        break;
+    }
     default:
         usage();
         break;

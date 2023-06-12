@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -77,12 +79,6 @@ void cp_queue_to_64_user( struct dn_flow_queue *q, struct dn_flow_queue_64 *qp)
 	qp->F = q->F;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,56 +91,165 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_q0 = 1;
+          int _len_q0 = 65025;
           struct dn_flow_queue * q = (struct dn_flow_queue *) malloc(_len_q0*sizeof(struct dn_flow_queue));
           for(int _i0 = 0; _i0 < _len_q0; _i0++) {
-            q[_i0].F = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].S = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].sched_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].heap_pos = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].q_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].random = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].avg = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].hash_slot = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].drops = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].tot_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].tot_pkts = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].numbytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].len_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+              q[_i0].F = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].S = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].sched_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].heap_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].q_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].random = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].avg = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].hash_slot = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].drops = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].tot_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].tot_pkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].numbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].len_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_qp0 = 1;
+        
+          int _len_qp0 = 65025;
           struct dn_flow_queue_64 * qp = (struct dn_flow_queue_64 *) malloc(_len_qp0*sizeof(struct dn_flow_queue_64));
           for(int _i0 = 0; _i0 < _len_qp0; _i0++) {
-            qp[_i0].F = ((-2 * (next_i()%2)) + 1) * next_i();
-        qp[_i0].S = ((-2 * (next_i()%2)) + 1) * next_i();
-        qp[_i0].sched_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        qp[_i0].heap_pos = ((-2 * (next_i()%2)) + 1) * next_i();
-        qp[_i0].q_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        qp[_i0].random = ((-2 * (next_i()%2)) + 1) * next_i();
-        qp[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
-        qp[_i0].avg = ((-2 * (next_i()%2)) + 1) * next_i();
-        qp[_i0].hash_slot = ((-2 * (next_i()%2)) + 1) * next_i();
-        qp[_i0].drops = ((-2 * (next_i()%2)) + 1) * next_i();
-        qp[_i0].tot_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        qp[_i0].tot_pkts = ((-2 * (next_i()%2)) + 1) * next_i();
-        qp[_i0].numbytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        qp[_i0].len_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        qp[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
-        qp[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+              qp[_i0].F = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].S = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].sched_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].heap_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].q_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].random = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].avg = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].hash_slot = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].drops = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].tot_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].tot_pkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].numbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].len_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           cp_queue_to_64_user(q,qp);
           free(q);
           free(qp);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_q0 = 100;
+          struct dn_flow_queue * q = (struct dn_flow_queue *) malloc(_len_q0*sizeof(struct dn_flow_queue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].F = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].S = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].sched_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].heap_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].q_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].random = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].avg = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].hash_slot = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].drops = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].tot_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].tot_pkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].numbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].len_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_qp0 = 100;
+          struct dn_flow_queue_64 * qp = (struct dn_flow_queue_64 *) malloc(_len_qp0*sizeof(struct dn_flow_queue_64));
+          for(int _i0 = 0; _i0 < _len_qp0; _i0++) {
+              qp[_i0].F = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].S = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].sched_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].heap_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].q_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].random = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].avg = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].hash_slot = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].drops = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].tot_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].tot_pkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].numbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].len_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cp_queue_to_64_user(q,qp);
+          free(q);
+          free(qp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_q0 = 1;
+          struct dn_flow_queue * q = (struct dn_flow_queue *) malloc(_len_q0*sizeof(struct dn_flow_queue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].F = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].S = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].sched_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].heap_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].q_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].random = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].avg = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].hash_slot = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].drops = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].tot_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].tot_pkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].numbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].len_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_qp0 = 1;
+          struct dn_flow_queue_64 * qp = (struct dn_flow_queue_64 *) malloc(_len_qp0*sizeof(struct dn_flow_queue_64));
+          for(int _i0 = 0; _i0 < _len_qp0; _i0++) {
+              qp[_i0].F = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].S = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].sched_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].heap_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].q_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].random = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].avg = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].hash_slot = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].drops = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].tot_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].tot_pkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].numbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].len_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cp_queue_to_64_user(q,qp);
+          free(q);
+          free(qp);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -95,12 +96,6 @@ __attribute__((used)) static u16 __ad_timer_to_ticks(u16 timer_type, u16 par)
 	return retval;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -117,7 +112,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int timer_type = 100;
+        
           int par = 100;
+        
           int benchRet = __ad_timer_to_ticks(timer_type,par);
           printf("%d\n", benchRet); 
         
@@ -127,7 +124,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int timer_type = 255;
+        
           int par = 255;
+        
           int benchRet = __ad_timer_to_ticks(timer_type,par);
           printf("%d\n", benchRet); 
         
@@ -137,13 +136,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int timer_type = 10;
+        
           int par = 10;
+        
           int benchRet = __ad_timer_to_ticks(timer_type,par);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int timer_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int par = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = __ad_timer_to_ticks(timer_type,par);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

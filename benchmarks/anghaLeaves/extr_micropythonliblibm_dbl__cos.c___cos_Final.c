@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -73,12 +73,6 @@ double __cos(double x, double y)
 	return w + (((1.0-w)-hz) + (z*r-x*y));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,11 +85,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // empty
     case 0:
     {
+          // static_instructions_O0 : 52
+          // dynamic_instructions_O0 : 52
+          // ------------------------------- 
+          // static_instructions_O1 : 34
+          // dynamic_instructions_O1 : 34
+          // ------------------------------- 
+          // static_instructions_O2 : 39
+          // dynamic_instructions_O2 : 39
+          // ------------------------------- 
+          // static_instructions_O3 : 39
+          // dynamic_instructions_O3 : 39
+          // ------------------------------- 
+          // static_instructions_Ofast : 31
+          // dynamic_instructions_Ofast : 31
+          // ------------------------------- 
+          // static_instructions_Os : 39
+          // dynamic_instructions_Os : 39
+          // ------------------------------- 
+          // static_instructions_Oz : 39
+          // dynamic_instructions_Oz : 39
+          // ------------------------------- 
+
           double x = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           double y = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           double benchRet = __cos(x,y);
           printf("%lf\n", benchRet); 
         

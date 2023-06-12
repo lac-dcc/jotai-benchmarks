@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -100,12 +102,6 @@ const char *esas2r_get_model_name_short(struct esas2r_adapter *a)
 	return "unknown";
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -118,18 +114,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_a0 = 65025;
+          struct esas2r_adapter * a = (struct esas2r_adapter *) malloc(_len_a0*sizeof(struct esas2r_adapter));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              int _len_a__i0__pcid0 = 1;
+          a[_i0].pcid = (struct TYPE_2__ *) malloc(_len_a__i0__pcid0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_a__i0__pcid0; _j0++) {
+              a[_i0].pcid->subsystem_device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          const char * benchRet = esas2r_get_model_name_short(a);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          for(int _aux = 0; _aux < _len_a0; _aux++) {
+          free(a[_aux].pcid);
+          }
+          free(a);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_a0 = 100;
+          struct esas2r_adapter * a = (struct esas2r_adapter *) malloc(_len_a0*sizeof(struct esas2r_adapter));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              int _len_a__i0__pcid0 = 1;
+          a[_i0].pcid = (struct TYPE_2__ *) malloc(_len_a__i0__pcid0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_a__i0__pcid0; _j0++) {
+              a[_i0].pcid->subsystem_device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          const char * benchRet = esas2r_get_model_name_short(a);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          for(int _aux = 0; _aux < _len_a0; _aux++) {
+          free(a[_aux].pcid);
+          }
+          free(a);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_a0 = 1;
           struct esas2r_adapter * a = (struct esas2r_adapter *) malloc(_len_a0*sizeof(struct esas2r_adapter));
           for(int _i0 = 0; _i0 < _len_a0; _i0++) {
               int _len_a__i0__pcid0 = 1;
           a[_i0].pcid = (struct TYPE_2__ *) malloc(_len_a__i0__pcid0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_a__i0__pcid0; _j0++) {
-            a[_i0].pcid->subsystem_device = ((-2 * (next_i()%2)) + 1) * next_i();
+              a[_i0].pcid->subsystem_device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           const char * benchRet = esas2r_get_model_name_short(a);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           for(int _aux = 0; _aux < _len_a0; _aux++) {

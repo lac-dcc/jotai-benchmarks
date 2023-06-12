@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ int h2o_socketpool_can_keepalive(h2o_socketpool_t *pool)
     return pool->timeout > 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,28 +76,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_pool0 = 1;
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_pool0 = 65025;
           struct TYPE_3__ * pool = (struct TYPE_3__ *) malloc(_len_pool0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_pool0; _i0++) {
-            pool[_i0].timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+              pool[_i0].timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = h2o_socketpool_can_keepalive(pool);
           printf("%d\n", benchRet); 
           free(pool);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_pool0 = 100;
           struct TYPE_3__ * pool = (struct TYPE_3__ *) malloc(_len_pool0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_pool0; _i0++) {
-            pool[_i0].timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+              pool[_i0].timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = h2o_socketpool_can_keepalive(pool);
+          printf("%d\n", benchRet); 
+          free(pool);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_pool0 = 1;
+          struct TYPE_3__ * pool = (struct TYPE_3__ *) malloc(_len_pool0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_pool0; _i0++) {
+              pool[_i0].timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = h2o_socketpool_can_keepalive(pool);
           printf("%d\n", benchRet); 
           free(pool);

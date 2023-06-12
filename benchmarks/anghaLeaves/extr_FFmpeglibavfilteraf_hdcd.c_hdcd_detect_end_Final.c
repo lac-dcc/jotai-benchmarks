@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ __attribute__((used)) static void hdcd_detect_end(hdcd_detection_data *detect, i
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,20 +89,82 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int channels = 100;
+        
           int _len_detect0 = 1;
           struct TYPE_3__ * detect = (struct TYPE_3__ *) malloc(_len_detect0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_detect0; _i0++) {
-            detect[_i0]._active_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        detect[_i0].hdcd_detected = ((-2 * (next_i()%2)) + 1) * next_i();
-        detect[_i0].peak_extend = ((-2 * (next_i()%2)) + 1) * next_i();
-        detect[_i0].max_gain_adjustment = ((-2 * (next_i()%2)) + 1) * next_i();
+              detect[_i0]._active_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          detect[_i0].hdcd_detected = ((-2 * (next_i()%2)) + 1) * next_i();
+          detect[_i0].peak_extend = ((-2 * (next_i()%2)) + 1) * next_i();
+          detect[_i0].max_gain_adjustment = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           hdcd_detect_end(detect,channels);
           free(detect);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int channels = 255;
+        
+          int _len_detect0 = 65025;
+          struct TYPE_3__ * detect = (struct TYPE_3__ *) malloc(_len_detect0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_detect0; _i0++) {
+              detect[_i0]._active_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          detect[_i0].hdcd_detected = ((-2 * (next_i()%2)) + 1) * next_i();
+          detect[_i0].peak_extend = ((-2 * (next_i()%2)) + 1) * next_i();
+          detect[_i0].max_gain_adjustment = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          hdcd_detect_end(detect,channels);
+          free(detect);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int channels = 10;
+        
+          int _len_detect0 = 100;
+          struct TYPE_3__ * detect = (struct TYPE_3__ *) malloc(_len_detect0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_detect0; _i0++) {
+              detect[_i0]._active_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          detect[_i0].hdcd_detected = ((-2 * (next_i()%2)) + 1) * next_i();
+          detect[_i0].peak_extend = ((-2 * (next_i()%2)) + 1) * next_i();
+          detect[_i0].max_gain_adjustment = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          hdcd_detect_end(detect,channels);
+          free(detect);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int channels = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_detect0 = 1;
+          struct TYPE_3__ * detect = (struct TYPE_3__ *) malloc(_len_detect0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_detect0; _i0++) {
+              detect[_i0]._active_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          detect[_i0].hdcd_detected = ((-2 * (next_i()%2)) + 1) * next_i();
+          detect[_i0].peak_extend = ((-2 * (next_i()%2)) + 1) * next_i();
+          detect[_i0].max_gain_adjustment = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          hdcd_detect_end(detect,channels);
+          free(detect);
+        
+        break;
+    }
     default:
         usage();
         break;

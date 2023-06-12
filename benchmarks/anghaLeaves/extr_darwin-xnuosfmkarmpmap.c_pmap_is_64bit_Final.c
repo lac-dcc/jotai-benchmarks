@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ pmap_is_64bit(
 	return (pmap->is_64bit);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,14 +79,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pmap0 = 1;
+          int _len_pmap0 = 65025;
           struct TYPE_3__ * pmap = (struct TYPE_3__ *) malloc(_len_pmap0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_pmap0; _i0++) {
-            pmap[_i0].is_64bit = ((-2 * (next_i()%2)) + 1) * next_i();
+              pmap[_i0].is_64bit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = pmap_is_64bit(pmap);
           printf("%d\n", benchRet); 
           free(pmap);
@@ -104,15 +101,32 @@ int main(int argc, char *argv[]) {
           int _len_pmap0 = 100;
           struct TYPE_3__ * pmap = (struct TYPE_3__ *) malloc(_len_pmap0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_pmap0; _i0++) {
-            pmap[_i0].is_64bit = ((-2 * (next_i()%2)) + 1) * next_i();
+              pmap[_i0].is_64bit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = pmap_is_64bit(pmap);
           printf("%d\n", benchRet); 
           free(pmap);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_pmap0 = 1;
+          struct TYPE_3__ * pmap = (struct TYPE_3__ *) malloc(_len_pmap0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_pmap0; _i0++) {
+              pmap[_i0].is_64bit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pmap_is_64bit(pmap);
+          printf("%d\n", benchRet); 
+          free(pmap);
+        
+        break;
+    }
     default:
         usage();
         break;

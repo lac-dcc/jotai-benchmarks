@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -87,12 +90,6 @@ __attribute__((used)) static int tas571x_register_size(struct tas571x_private *p
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -109,15 +106,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int reg = 100;
+        
           int _len_priv0 = 1;
           struct tas571x_private * priv = (struct tas571x_private *) malloc(_len_priv0*sizeof(struct tas571x_private));
           for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
               int _len_priv__i0__chip0 = 1;
           priv[_i0].chip = (struct TYPE_2__ *) malloc(_len_priv__i0__chip0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_priv__i0__chip0; _j0++) {
-            priv[_i0].chip->vol_reg_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].chip->vol_reg_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = tas571x_register_size(priv,reg);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_priv0; _aux++) {
@@ -127,7 +128,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int reg = 255;
+        
+          int _len_priv0 = 65025;
+          struct tas571x_private * priv = (struct tas571x_private *) malloc(_len_priv0*sizeof(struct tas571x_private));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              int _len_priv__i0__chip0 = 1;
+          priv[_i0].chip = (struct TYPE_2__ *) malloc(_len_priv__i0__chip0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_priv__i0__chip0; _j0++) {
+              priv[_i0].chip->vol_reg_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = tas571x_register_size(priv,reg);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_priv0; _aux++) {
+          free(priv[_aux].chip);
+          }
+          free(priv);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int reg = 10;
+        
+          int _len_priv0 = 100;
+          struct tas571x_private * priv = (struct tas571x_private *) malloc(_len_priv0*sizeof(struct tas571x_private));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              int _len_priv__i0__chip0 = 1;
+          priv[_i0].chip = (struct TYPE_2__ *) malloc(_len_priv__i0__chip0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_priv__i0__chip0; _j0++) {
+              priv[_i0].chip->vol_reg_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = tas571x_register_size(priv,reg);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_priv0; _aux++) {
+          free(priv[_aux].chip);
+          }
+          free(priv);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_priv0 = 1;
+          struct tas571x_private * priv = (struct tas571x_private *) malloc(_len_priv0*sizeof(struct tas571x_private));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              int _len_priv__i0__chip0 = 1;
+          priv[_i0].chip = (struct TYPE_2__ *) malloc(_len_priv__i0__chip0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_priv__i0__chip0; _j0++) {
+              priv[_i0].chip->vol_reg_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = tas571x_register_size(priv,reg);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_priv0; _aux++) {
+          free(priv[_aux].chip);
+          }
+          free(priv);
+        
+        break;
+    }
     default:
         usage();
         break;

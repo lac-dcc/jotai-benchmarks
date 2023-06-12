@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ __attribute__((used)) static inline int _wakeupgen_get_irq_info(u32 irq, u32 *bi
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,20 +83,190 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int irq = 100;
+        
           int _len_bit_posn0 = 1;
           int * bit_posn = (int *) malloc(_len_bit_posn0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_bit_posn0; _i0++) {
             bit_posn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_reg_index0 = 1;
           int * reg_index = (int *) malloc(_len_reg_index0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_reg_index0; _i0++) {
             reg_index[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = _wakeupgen_get_irq_info(irq,bit_posn,reg_index);
+          printf("%d\n", benchRet); 
+          free(bit_posn);
+          free(reg_index);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int irq = 255;
+        
+          int _len_bit_posn0 = 65025;
+          int * bit_posn = (int *) malloc(_len_bit_posn0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_bit_posn0; _i0++) {
+            bit_posn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_reg_index0 = 65025;
+          int * reg_index = (int *) malloc(_len_reg_index0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_reg_index0; _i0++) {
+            reg_index[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _wakeupgen_get_irq_info(irq,bit_posn,reg_index);
+          printf("%d\n", benchRet); 
+          free(bit_posn);
+          free(reg_index);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int irq = 10;
+        
+          int _len_bit_posn0 = 100;
+          int * bit_posn = (int *) malloc(_len_bit_posn0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_bit_posn0; _i0++) {
+            bit_posn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_reg_index0 = 100;
+          int * reg_index = (int *) malloc(_len_reg_index0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_reg_index0; _i0++) {
+            reg_index[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _wakeupgen_get_irq_info(irq,bit_posn,reg_index);
+          printf("%d\n", benchRet); 
+          free(bit_posn);
+          free(reg_index);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int irq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_bit_posn0 = 1;
+          int * bit_posn = (int *) malloc(_len_bit_posn0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_bit_posn0; _i0++) {
+            bit_posn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_reg_index0 = 1;
+          int * reg_index = (int *) malloc(_len_reg_index0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_reg_index0; _i0++) {
+            reg_index[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = _wakeupgen_get_irq_info(irq,bit_posn,reg_index);
           printf("%d\n", benchRet); 
           free(bit_posn);

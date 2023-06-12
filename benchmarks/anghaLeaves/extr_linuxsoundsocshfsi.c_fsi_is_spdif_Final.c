@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static int fsi_is_spdif(struct fsi_priv *fsi)
 	return fsi->spdif;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_fsi0 = 1;
+          int _len_fsi0 = 65025;
           struct fsi_priv * fsi = (struct fsi_priv *) malloc(_len_fsi0*sizeof(struct fsi_priv));
           for(int _i0 = 0; _i0 < _len_fsi0; _i0++) {
-            fsi[_i0].spdif = ((-2 * (next_i()%2)) + 1) * next_i();
+              fsi[_i0].spdif = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = fsi_is_spdif(fsi);
           printf("%d\n", benchRet); 
           free(fsi);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_fsi0 = 100;
           struct fsi_priv * fsi = (struct fsi_priv *) malloc(_len_fsi0*sizeof(struct fsi_priv));
           for(int _i0 = 0; _i0 < _len_fsi0; _i0++) {
-            fsi[_i0].spdif = ((-2 * (next_i()%2)) + 1) * next_i();
+              fsi[_i0].spdif = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = fsi_is_spdif(fsi);
           printf("%d\n", benchRet); 
           free(fsi);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_fsi0 = 1;
+          struct fsi_priv * fsi = (struct fsi_priv *) malloc(_len_fsi0*sizeof(struct fsi_priv));
+          for(int _i0 = 0; _i0 < _len_fsi0; _i0++) {
+              fsi[_i0].spdif = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fsi_is_spdif(fsi);
+          printf("%d\n", benchRet); 
+          free(fsi);
+        
+        break;
+    }
     default:
         usage();
         break;

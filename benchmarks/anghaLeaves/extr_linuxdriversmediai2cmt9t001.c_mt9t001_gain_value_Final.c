@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -85,12 +86,6 @@ __attribute__((used)) static u16 mt9t001_gain_value(s32 *gain)
 	return ((*gain - 64) << 5) | (1 << 6) | 32;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,14 +98,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_gain0 = 1;
+          int _len_gain0 = 65025;
           int * gain = (int *) malloc(_len_gain0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_gain0; _i0++) {
             gain[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = mt9t001_gain_value(gain);
           printf("%d\n", benchRet); 
           free(gain);
@@ -125,13 +121,28 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_gain0; _i0++) {
             gain[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = mt9t001_gain_value(gain);
           printf("%d\n", benchRet); 
           free(gain);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_gain0 = 1;
+          int * gain = (int *) malloc(_len_gain0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_gain0; _i0++) {
+            gain[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = mt9t001_gain_value(gain);
+          printf("%d\n", benchRet); 
+          free(gain);
+        
+        break;
+    }
     default:
         usage();
         break;

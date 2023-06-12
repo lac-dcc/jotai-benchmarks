@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -62,7 +63,6 @@ int usb_hcd_is_primary_hcd(struct usb_hcd *hcd)
 	return hcd == hcd->primary_hcd;
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct usb_hcd *_allocate_hcd(int length, struct usb_hcd *aux_hcd[]) {
@@ -90,7 +90,6 @@ void _delete_hcd(struct usb_hcd *aux_hcd[], int aux_hcd_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,18 +102,30 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // linked
     case 0:
+    {
+          struct usb_hcd * aux_hcd[10000];
+          struct usb_hcd * hcd = _allocate_hcd(10000, aux_hcd);
+        
+          int benchRet = usb_hcd_is_primary_hcd(hcd);
+          printf("%d\n", benchRet); 
+          _delete_hcd(aux_hcd, 10000);
+        
+        break;
+    }
+    // empty
+    case 1:
     {
           struct usb_hcd * aux_hcd[1];
           struct usb_hcd * hcd = _allocate_hcd(1, aux_hcd);
+        
           int benchRet = usb_hcd_is_primary_hcd(hcd);
           printf("%d\n", benchRet); 
           _delete_hcd(aux_hcd, 1);
         
         break;
     }
-
     default:
         usage();
         break;

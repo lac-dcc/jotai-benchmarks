@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static struct qed_ilt_cli_blk *qed_cxt_set_blk(struct qed_
 	return p_blk;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_p_blk0 = 1;
+          int _len_p_blk0 = 65025;
           struct qed_ilt_cli_blk * p_blk = (struct qed_ilt_cli_blk *) malloc(_len_p_blk0*sizeof(struct qed_ilt_cli_blk));
           for(int _i0 = 0; _i0 < _len_p_blk0; _i0++) {
-            p_blk[_i0].total_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              p_blk[_i0].total_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           struct qed_ilt_cli_blk * benchRet = qed_cxt_set_blk(p_blk);
           printf("%ld\n", (*benchRet).total_size);
           free(p_blk);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_p_blk0 = 100;
           struct qed_ilt_cli_blk * p_blk = (struct qed_ilt_cli_blk *) malloc(_len_p_blk0*sizeof(struct qed_ilt_cli_blk));
           for(int _i0 = 0; _i0 < _len_p_blk0; _i0++) {
-            p_blk[_i0].total_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              p_blk[_i0].total_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           struct qed_ilt_cli_blk * benchRet = qed_cxt_set_blk(p_blk);
           printf("%ld\n", (*benchRet).total_size);
           free(p_blk);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_p_blk0 = 1;
+          struct qed_ilt_cli_blk * p_blk = (struct qed_ilt_cli_blk *) malloc(_len_p_blk0*sizeof(struct qed_ilt_cli_blk));
+          for(int _i0 = 0; _i0 < _len_p_blk0; _i0++) {
+              p_blk[_i0].total_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct qed_ilt_cli_blk * benchRet = qed_cxt_set_blk(p_blk);
+          printf("%ld\n", (*benchRet).total_size);
+          free(p_blk);
+        
+        break;
+    }
     default:
         usage();
         break;

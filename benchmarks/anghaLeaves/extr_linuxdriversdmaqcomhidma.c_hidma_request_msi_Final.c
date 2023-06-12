@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -106,12 +108,6 @@ __attribute__((used)) static int hidma_request_msi(struct hidma_dev *dmadev,
 #endif
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -124,19 +120,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dmadev0 = 1;
+          int _len_dmadev0 = 65025;
           struct hidma_dev * dmadev = (struct hidma_dev *) malloc(_len_dmadev0*sizeof(struct hidma_dev));
           for(int _i0 = 0; _i0 < _len_dmadev0; _i0++) {
-            dmadev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dmadev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_pdev0 = 1;
+        
+          int _len_pdev0 = 65025;
           struct platform_device * pdev = (struct platform_device *) malloc(_len_pdev0*sizeof(struct platform_device));
           for(int _i0 = 0; _i0 < _len_pdev0; _i0++) {
-            pdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              pdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = hidma_request_msi(dmadev,pdev);
           printf("%d\n", benchRet); 
           free(dmadev);
@@ -144,7 +144,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dmadev0 = 100;
+          struct hidma_dev * dmadev = (struct hidma_dev *) malloc(_len_dmadev0*sizeof(struct hidma_dev));
+          for(int _i0 = 0; _i0 < _len_dmadev0; _i0++) {
+              dmadev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pdev0 = 100;
+          struct platform_device * pdev = (struct platform_device *) malloc(_len_pdev0*sizeof(struct platform_device));
+          for(int _i0 = 0; _i0 < _len_pdev0; _i0++) {
+              pdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hidma_request_msi(dmadev,pdev);
+          printf("%d\n", benchRet); 
+          free(dmadev);
+          free(pdev);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dmadev0 = 1;
+          struct hidma_dev * dmadev = (struct hidma_dev *) malloc(_len_dmadev0*sizeof(struct hidma_dev));
+          for(int _i0 = 0; _i0 < _len_dmadev0; _i0++) {
+              dmadev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pdev0 = 1;
+          struct platform_device * pdev = (struct platform_device *) malloc(_len_pdev0*sizeof(struct platform_device));
+          for(int _i0 = 0; _i0 < _len_pdev0; _i0++) {
+              pdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hidma_request_msi(dmadev,pdev);
+          printf("%d\n", benchRet); 
+          free(dmadev);
+          free(pdev);
+        
+        break;
+    }
     default:
         usage();
         break;

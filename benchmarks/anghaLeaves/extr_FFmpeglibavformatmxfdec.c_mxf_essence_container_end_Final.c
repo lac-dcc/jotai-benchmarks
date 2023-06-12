@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +81,6 @@ __attribute__((used)) static int64_t mxf_essence_container_end(MXFContext *mxf, 
     return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,18 +97,22 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int body_sid = 100;
+        
           int _len_mxf0 = 1;
           struct TYPE_5__ * mxf = (struct TYPE_5__ *) malloc(_len_mxf0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_mxf0; _i0++) {
-            mxf[_i0].partitions_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              mxf[_i0].partitions_count = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_mxf__i0__partitions0 = 1;
           mxf[_i0].partitions = (struct TYPE_4__ *) malloc(_len_mxf__i0__partitions0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_mxf__i0__partitions0; _j0++) {
-            mxf[_i0].partitions->body_sid = ((-2 * (next_i()%2)) + 1) * next_i();
-        mxf[_i0].partitions->essence_length = ((-2 * (next_i()%2)) + 1) * next_i();
-        mxf[_i0].partitions->essence_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              mxf[_i0].partitions->body_sid = ((-2 * (next_i()%2)) + 1) * next_i();
+          mxf[_i0].partitions->essence_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          mxf[_i0].partitions->essence_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           long benchRet = mxf_essence_container_end(mxf,body_sid);
           printf("%ld\n", benchRet); 
           for(int _aux = 0; _aux < _len_mxf0; _aux++) {
@@ -121,7 +122,93 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int body_sid = 255;
+        
+          int _len_mxf0 = 65025;
+          struct TYPE_5__ * mxf = (struct TYPE_5__ *) malloc(_len_mxf0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_mxf0; _i0++) {
+              mxf[_i0].partitions_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_mxf__i0__partitions0 = 1;
+          mxf[_i0].partitions = (struct TYPE_4__ *) malloc(_len_mxf__i0__partitions0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_mxf__i0__partitions0; _j0++) {
+              mxf[_i0].partitions->body_sid = ((-2 * (next_i()%2)) + 1) * next_i();
+          mxf[_i0].partitions->essence_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          mxf[_i0].partitions->essence_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          long benchRet = mxf_essence_container_end(mxf,body_sid);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mxf0; _aux++) {
+          free(mxf[_aux].partitions);
+          }
+          free(mxf);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int body_sid = 10;
+        
+          int _len_mxf0 = 100;
+          struct TYPE_5__ * mxf = (struct TYPE_5__ *) malloc(_len_mxf0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_mxf0; _i0++) {
+              mxf[_i0].partitions_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_mxf__i0__partitions0 = 1;
+          mxf[_i0].partitions = (struct TYPE_4__ *) malloc(_len_mxf__i0__partitions0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_mxf__i0__partitions0; _j0++) {
+              mxf[_i0].partitions->body_sid = ((-2 * (next_i()%2)) + 1) * next_i();
+          mxf[_i0].partitions->essence_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          mxf[_i0].partitions->essence_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          long benchRet = mxf_essence_container_end(mxf,body_sid);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mxf0; _aux++) {
+          free(mxf[_aux].partitions);
+          }
+          free(mxf);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int body_sid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_mxf0 = 1;
+          struct TYPE_5__ * mxf = (struct TYPE_5__ *) malloc(_len_mxf0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_mxf0; _i0++) {
+              mxf[_i0].partitions_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_mxf__i0__partitions0 = 1;
+          mxf[_i0].partitions = (struct TYPE_4__ *) malloc(_len_mxf__i0__partitions0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_mxf__i0__partitions0; _j0++) {
+              mxf[_i0].partitions->body_sid = ((-2 * (next_i()%2)) + 1) * next_i();
+          mxf[_i0].partitions->essence_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          mxf[_i0].partitions->essence_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          long benchRet = mxf_essence_container_end(mxf,body_sid);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mxf0; _aux++) {
+          free(mxf[_aux].partitions);
+          }
+          free(mxf);
+        
+        break;
+    }
     default:
         usage();
         break;

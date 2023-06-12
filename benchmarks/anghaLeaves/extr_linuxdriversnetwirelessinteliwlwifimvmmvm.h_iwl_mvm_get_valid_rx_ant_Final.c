@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static inline u8 iwl_mvm_get_valid_rx_ant(struct iwl_mvm *
 	       mvm->fw->valid_rx_ant;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,23 +81,27 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_mvm0 = 1;
+          int _len_mvm0 = 65025;
           struct iwl_mvm * mvm = (struct iwl_mvm *) malloc(_len_mvm0*sizeof(struct iwl_mvm));
           for(int _i0 = 0; _i0 < _len_mvm0; _i0++) {
               int _len_mvm__i0__fw0 = 1;
           mvm[_i0].fw = (struct TYPE_4__ *) malloc(_len_mvm__i0__fw0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_mvm__i0__fw0; _j0++) {
-            mvm[_i0].fw->valid_rx_ant = ((-2 * (next_i()%2)) + 1) * next_i();
+              mvm[_i0].fw->valid_rx_ant = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_mvm__i0__nvm_data0 = 1;
           mvm[_i0].nvm_data = (struct TYPE_3__ *) malloc(_len_mvm__i0__nvm_data0*sizeof(struct TYPE_3__));
           for(int _j0 = 0; _j0 < _len_mvm__i0__nvm_data0; _j0++) {
-            mvm[_i0].nvm_data->valid_rx_ant = ((-2 * (next_i()%2)) + 1) * next_i();
+              mvm[_i0].nvm_data->valid_rx_ant = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = iwl_mvm_get_valid_rx_ant(mvm);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_mvm0; _aux++) {
@@ -114,7 +114,72 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_mvm0 = 100;
+          struct iwl_mvm * mvm = (struct iwl_mvm *) malloc(_len_mvm0*sizeof(struct iwl_mvm));
+          for(int _i0 = 0; _i0 < _len_mvm0; _i0++) {
+              int _len_mvm__i0__fw0 = 1;
+          mvm[_i0].fw = (struct TYPE_4__ *) malloc(_len_mvm__i0__fw0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_mvm__i0__fw0; _j0++) {
+              mvm[_i0].fw->valid_rx_ant = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_mvm__i0__nvm_data0 = 1;
+          mvm[_i0].nvm_data = (struct TYPE_3__ *) malloc(_len_mvm__i0__nvm_data0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_mvm__i0__nvm_data0; _j0++) {
+              mvm[_i0].nvm_data->valid_rx_ant = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = iwl_mvm_get_valid_rx_ant(mvm);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mvm0; _aux++) {
+          free(mvm[_aux].fw);
+          }
+          for(int _aux = 0; _aux < _len_mvm0; _aux++) {
+          free(mvm[_aux].nvm_data);
+          }
+          free(mvm);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_mvm0 = 1;
+          struct iwl_mvm * mvm = (struct iwl_mvm *) malloc(_len_mvm0*sizeof(struct iwl_mvm));
+          for(int _i0 = 0; _i0 < _len_mvm0; _i0++) {
+              int _len_mvm__i0__fw0 = 1;
+          mvm[_i0].fw = (struct TYPE_4__ *) malloc(_len_mvm__i0__fw0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_mvm__i0__fw0; _j0++) {
+              mvm[_i0].fw->valid_rx_ant = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_mvm__i0__nvm_data0 = 1;
+          mvm[_i0].nvm_data = (struct TYPE_3__ *) malloc(_len_mvm__i0__nvm_data0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_mvm__i0__nvm_data0; _j0++) {
+              mvm[_i0].nvm_data->valid_rx_ant = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = iwl_mvm_get_valid_rx_ant(mvm);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mvm0; _aux++) {
+          free(mvm[_aux].fw);
+          }
+          for(int _aux = 0; _aux < _len_mvm0; _aux++) {
+          free(mvm[_aux].nvm_data);
+          }
+          free(mvm);
+        
+        break;
+    }
     default:
         usage();
         break;

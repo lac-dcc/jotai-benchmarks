@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -82,12 +83,6 @@ int qr_ilog(unsigned _v){
 #endif
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,28 +95,136 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 90
+          // dynamic_instructions_O0 : 90
+          // ------------------------------- 
+          // static_instructions_O1 : 34
+          // dynamic_instructions_O1 : 34
+          // ------------------------------- 
+          // static_instructions_O2 : 34
+          // dynamic_instructions_O2 : 34
+          // ------------------------------- 
+          // static_instructions_O3 : 34
+          // dynamic_instructions_O3 : 34
+          // ------------------------------- 
+          // static_instructions_Ofast : 34
+          // dynamic_instructions_Ofast : 34
+          // ------------------------------- 
+          // static_instructions_Os : 34
+          // dynamic_instructions_Os : 34
+          // ------------------------------- 
+          // static_instructions_Oz : 34
+          // dynamic_instructions_Oz : 34
+          // ------------------------------- 
+
           unsigned int _v = 100;
+        
           int benchRet = qr_ilog(_v);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 90
+          // dynamic_instructions_O0 : 90
+          // ------------------------------- 
+          // static_instructions_O1 : 34
+          // dynamic_instructions_O1 : 34
+          // ------------------------------- 
+          // static_instructions_O2 : 34
+          // dynamic_instructions_O2 : 34
+          // ------------------------------- 
+          // static_instructions_O3 : 34
+          // dynamic_instructions_O3 : 34
+          // ------------------------------- 
+          // static_instructions_Ofast : 34
+          // dynamic_instructions_Ofast : 34
+          // ------------------------------- 
+          // static_instructions_Os : 34
+          // dynamic_instructions_Os : 34
+          // ------------------------------- 
+          // static_instructions_Oz : 34
+          // dynamic_instructions_Oz : 34
+          // ------------------------------- 
+
           unsigned int _v = 255;
+        
           int benchRet = qr_ilog(_v);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 90
+          // dynamic_instructions_O0 : 90
+          // ------------------------------- 
+          // static_instructions_O1 : 34
+          // dynamic_instructions_O1 : 34
+          // ------------------------------- 
+          // static_instructions_O2 : 34
+          // dynamic_instructions_O2 : 34
+          // ------------------------------- 
+          // static_instructions_O3 : 34
+          // dynamic_instructions_O3 : 34
+          // ------------------------------- 
+          // static_instructions_Ofast : 34
+          // dynamic_instructions_Ofast : 34
+          // ------------------------------- 
+          // static_instructions_Os : 34
+          // dynamic_instructions_Os : 34
+          // ------------------------------- 
+          // static_instructions_Oz : 34
+          // dynamic_instructions_Oz : 34
+          // ------------------------------- 
+
           unsigned int _v = 10;
+        
+          int benchRet = qr_ilog(_v);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 90
+          // dynamic_instructions_O0 : 90
+          // ------------------------------- 
+          // static_instructions_O1 : 34
+          // dynamic_instructions_O1 : 34
+          // ------------------------------- 
+          // static_instructions_O2 : 34
+          // dynamic_instructions_O2 : 34
+          // ------------------------------- 
+          // static_instructions_O3 : 34
+          // dynamic_instructions_O3 : 34
+          // ------------------------------- 
+          // static_instructions_Ofast : 34
+          // dynamic_instructions_Ofast : 34
+          // ------------------------------- 
+          // static_instructions_Os : 34
+          // dynamic_instructions_Os : 34
+          // ------------------------------- 
+          // static_instructions_Oz : 34
+          // dynamic_instructions_Oz : 34
+          // ------------------------------- 
+
+          unsigned int _v = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = qr_ilog(_v);
           printf("%d\n", benchRet); 
         

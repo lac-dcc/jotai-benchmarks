@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -94,12 +95,6 @@ ULONG IniGetSettingNameSize(PCHAR SettingNameLine, ULONG LineLength)
     return NameSize;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -112,22 +107,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          unsigned long LineLength = 10;
-          int _len_SettingNameLine0 = 100;
+          unsigned long LineLength = 255;
+        
+          int _len_SettingNameLine0 = 65025;
           char * SettingNameLine = (char *) malloc(_len_SettingNameLine0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_SettingNameLine0; _i0++) {
             SettingNameLine[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned long benchRet = IniGetSettingNameSize(SettingNameLine,LineLength);
           printf("%lu\n", benchRet); 
           free(SettingNameLine);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          unsigned long LineLength = 10;
+        
+          int _len_SettingNameLine0 = 100;
+          char * SettingNameLine = (char *) malloc(_len_SettingNameLine0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_SettingNameLine0; _i0++) {
+            SettingNameLine[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned long benchRet = IniGetSettingNameSize(SettingNameLine,LineLength);
+          printf("%lu\n", benchRet); 
+          free(SettingNameLine);
+        
+        break;
+    }
     default:
         usage();
         break;

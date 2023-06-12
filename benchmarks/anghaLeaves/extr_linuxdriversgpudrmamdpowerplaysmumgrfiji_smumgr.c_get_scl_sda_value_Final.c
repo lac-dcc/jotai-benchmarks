@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -121,12 +124,6 @@ __attribute__((used)) static void get_scl_sda_value(uint8_t line, uint8_t *scl, 
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -139,20 +136,187 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int line = 100;
+        
           int _len_scl0 = 1;
           int * scl = (int *) malloc(_len_scl0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_scl0; _i0++) {
             scl[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_sda0 = 1;
           int * sda = (int *) malloc(_len_sda0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_sda0; _i0++) {
             sda[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          get_scl_sda_value(line,scl,sda);
+          free(scl);
+          free(sda);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int line = 255;
+        
+          int _len_scl0 = 65025;
+          int * scl = (int *) malloc(_len_scl0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_scl0; _i0++) {
+            scl[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_sda0 = 65025;
+          int * sda = (int *) malloc(_len_sda0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_sda0; _i0++) {
+            sda[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          get_scl_sda_value(line,scl,sda);
+          free(scl);
+          free(sda);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int line = 10;
+        
+          int _len_scl0 = 100;
+          int * scl = (int *) malloc(_len_scl0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_scl0; _i0++) {
+            scl[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_sda0 = 100;
+          int * sda = (int *) malloc(_len_sda0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_sda0; _i0++) {
+            sda[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          get_scl_sda_value(line,scl,sda);
+          free(scl);
+          free(sda);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int line = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_scl0 = 1;
+          int * scl = (int *) malloc(_len_scl0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_scl0; _i0++) {
+            scl[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_sda0 = 1;
+          int * sda = (int *) malloc(_len_sda0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_sda0; _i0++) {
+            sda[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           get_scl_sda_value(line,scl,sda);
           free(scl);
           free(sda);

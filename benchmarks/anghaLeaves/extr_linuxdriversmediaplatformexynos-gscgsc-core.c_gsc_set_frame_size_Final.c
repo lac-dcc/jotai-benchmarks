@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ void gsc_set_frame_size(struct gsc_frame *frame, int width, int height)
 	frame->crop.top = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,21 +82,196 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int width = 100;
+        
           int height = 100;
+        
           int _len_frame0 = 1;
           struct gsc_frame * frame = (struct gsc_frame *) malloc(_len_frame0*sizeof(struct gsc_frame));
           for(int _i0 = 0; _i0 < _len_frame0; _i0++) {
-            frame[_i0].f_width = ((-2 * (next_i()%2)) + 1) * next_i();
-        frame[_i0].f_height = ((-2 * (next_i()%2)) + 1) * next_i();
-        frame[_i0].crop.width = ((-2 * (next_i()%2)) + 1) * next_i();
-        frame[_i0].crop.height = ((-2 * (next_i()%2)) + 1) * next_i();
-        frame[_i0].crop.top = ((-2 * (next_i()%2)) + 1) * next_i();
-        frame[_i0].crop.left = ((-2 * (next_i()%2)) + 1) * next_i();
+              frame[_i0].f_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          frame[_i0].f_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          frame[_i0].crop.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          frame[_i0].crop.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          frame[_i0].crop.top = ((-2 * (next_i()%2)) + 1) * next_i();
+          frame[_i0].crop.left = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          gsc_set_frame_size(frame,width,height);
+          free(frame);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int width = 255;
+        
+          int height = 255;
+        
+          int _len_frame0 = 65025;
+          struct gsc_frame * frame = (struct gsc_frame *) malloc(_len_frame0*sizeof(struct gsc_frame));
+          for(int _i0 = 0; _i0 < _len_frame0; _i0++) {
+              frame[_i0].f_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          frame[_i0].f_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          frame[_i0].crop.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          frame[_i0].crop.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          frame[_i0].crop.top = ((-2 * (next_i()%2)) + 1) * next_i();
+          frame[_i0].crop.left = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          gsc_set_frame_size(frame,width,height);
+          free(frame);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int width = 10;
+        
+          int height = 10;
+        
+          int _len_frame0 = 100;
+          struct gsc_frame * frame = (struct gsc_frame *) malloc(_len_frame0*sizeof(struct gsc_frame));
+          for(int _i0 = 0; _i0 < _len_frame0; _i0++) {
+              frame[_i0].f_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          frame[_i0].f_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          frame[_i0].crop.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          frame[_i0].crop.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          frame[_i0].crop.top = ((-2 * (next_i()%2)) + 1) * next_i();
+          frame[_i0].crop.left = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          gsc_set_frame_size(frame,width,height);
+          free(frame);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_frame0 = 1;
+          struct gsc_frame * frame = (struct gsc_frame *) malloc(_len_frame0*sizeof(struct gsc_frame));
+          for(int _i0 = 0; _i0 < _len_frame0; _i0++) {
+              frame[_i0].f_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          frame[_i0].f_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          frame[_i0].crop.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          frame[_i0].crop.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          frame[_i0].crop.top = ((-2 * (next_i()%2)) + 1) * next_i();
+          frame[_i0].crop.left = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           gsc_set_frame_size(frame,width,height);
           free(frame);
         

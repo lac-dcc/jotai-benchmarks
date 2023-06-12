@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ __attribute__((used)) static void set_bulk_out_req_length(struct fsg_common *com
 	bh->outreq->length = length;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,25 +85,228 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           unsigned int length = 100;
+        
           int _len_common0 = 1;
           struct fsg_common * common = (struct fsg_common *) malloc(_len_common0*sizeof(struct fsg_common));
           for(int _i0 = 0; _i0 < _len_common0; _i0++) {
-            common[_i0].bulk_out_maxpacket = ((-2 * (next_i()%2)) + 1) * next_i();
+              common[_i0].bulk_out_maxpacket = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_bh0 = 1;
           struct fsg_buffhd * bh = (struct fsg_buffhd *) malloc(_len_bh0*sizeof(struct fsg_buffhd));
           for(int _i0 = 0; _i0 < _len_bh0; _i0++) {
-            bh[_i0].bulk_out_intended_length = ((-2 * (next_i()%2)) + 1) * next_i();
+              bh[_i0].bulk_out_intended_length = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_bh__i0__outreq0 = 1;
           bh[_i0].outreq = (struct TYPE_2__ *) malloc(_len_bh__i0__outreq0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_bh__i0__outreq0; _j0++) {
-            bh[_i0].outreq->length = ((-2 * (next_i()%2)) + 1) * next_i();
+              bh[_i0].outreq->length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          set_bulk_out_req_length(common,bh,length);
+          free(common);
+          for(int _aux = 0; _aux < _len_bh0; _aux++) {
+          free(bh[_aux].outreq);
+          }
+          free(bh);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          unsigned int length = 255;
+        
+          int _len_common0 = 65025;
+          struct fsg_common * common = (struct fsg_common *) malloc(_len_common0*sizeof(struct fsg_common));
+          for(int _i0 = 0; _i0 < _len_common0; _i0++) {
+              common[_i0].bulk_out_maxpacket = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_bh0 = 65025;
+          struct fsg_buffhd * bh = (struct fsg_buffhd *) malloc(_len_bh0*sizeof(struct fsg_buffhd));
+          for(int _i0 = 0; _i0 < _len_bh0; _i0++) {
+              bh[_i0].bulk_out_intended_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_bh__i0__outreq0 = 1;
+          bh[_i0].outreq = (struct TYPE_2__ *) malloc(_len_bh__i0__outreq0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_bh__i0__outreq0; _j0++) {
+              bh[_i0].outreq->length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          set_bulk_out_req_length(common,bh,length);
+          free(common);
+          for(int _aux = 0; _aux < _len_bh0; _aux++) {
+          free(bh[_aux].outreq);
+          }
+          free(bh);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          unsigned int length = 10;
+        
+          int _len_common0 = 100;
+          struct fsg_common * common = (struct fsg_common *) malloc(_len_common0*sizeof(struct fsg_common));
+          for(int _i0 = 0; _i0 < _len_common0; _i0++) {
+              common[_i0].bulk_out_maxpacket = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_bh0 = 100;
+          struct fsg_buffhd * bh = (struct fsg_buffhd *) malloc(_len_bh0*sizeof(struct fsg_buffhd));
+          for(int _i0 = 0; _i0 < _len_bh0; _i0++) {
+              bh[_i0].bulk_out_intended_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_bh__i0__outreq0 = 1;
+          bh[_i0].outreq = (struct TYPE_2__ *) malloc(_len_bh__i0__outreq0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_bh__i0__outreq0; _j0++) {
+              bh[_i0].outreq->length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          set_bulk_out_req_length(common,bh,length);
+          free(common);
+          for(int _aux = 0; _aux < _len_bh0; _aux++) {
+          free(bh[_aux].outreq);
+          }
+          free(bh);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          unsigned int length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_common0 = 1;
+          struct fsg_common * common = (struct fsg_common *) malloc(_len_common0*sizeof(struct fsg_common));
+          for(int _i0 = 0; _i0 < _len_common0; _i0++) {
+              common[_i0].bulk_out_maxpacket = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_bh0 = 1;
+          struct fsg_buffhd * bh = (struct fsg_buffhd *) malloc(_len_bh0*sizeof(struct fsg_buffhd));
+          for(int _i0 = 0; _i0 < _len_bh0; _i0++) {
+              bh[_i0].bulk_out_intended_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_bh__i0__outreq0 = 1;
+          bh[_i0].outreq = (struct TYPE_2__ *) malloc(_len_bh__i0__outreq0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_bh__i0__outreq0; _j0++) {
+              bh[_i0].outreq->length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           set_bulk_out_req_length(common,bh,length);
           free(common);
           for(int _aux = 0; _aux < _len_bh0; _aux++) {

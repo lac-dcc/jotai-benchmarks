@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline int is_promisc(u16 cdc_filter)
 	return cdc_filter & USB_CDC_PACKET_TYPE_PROMISCUOUS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int cdc_filter = 100;
+        
           int benchRet = is_promisc(cdc_filter);
           printf("%d\n", benchRet); 
         
@@ -94,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int cdc_filter = 255;
+        
           int benchRet = is_promisc(cdc_filter);
           printf("%d\n", benchRet); 
         
@@ -103,12 +100,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int cdc_filter = 10;
+        
           int benchRet = is_promisc(cdc_filter);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int cdc_filter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = is_promisc(cdc_filter);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

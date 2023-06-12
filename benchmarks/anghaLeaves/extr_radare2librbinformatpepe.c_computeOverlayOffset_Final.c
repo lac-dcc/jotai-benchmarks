@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +65,6 @@ __attribute__((used)) static void computeOverlayOffset(ut64 offset, ut64 size, u
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,22 +77,203 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           long offset = 100;
+        
           long size = 100;
+        
           long file_size = 100;
+        
           int _len_largest_offset0 = 1;
           long * largest_offset = (long *) malloc(_len_largest_offset0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_largest_offset0; _i0++) {
             largest_offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_largest_size0 = 1;
           long * largest_size = (long *) malloc(_len_largest_size0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_largest_size0; _i0++) {
             largest_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          computeOverlayOffset(offset,size,file_size,largest_offset,largest_size);
+          free(largest_offset);
+          free(largest_size);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          long offset = 255;
+        
+          long size = 255;
+        
+          long file_size = 255;
+        
+          int _len_largest_offset0 = 65025;
+          long * largest_offset = (long *) malloc(_len_largest_offset0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_largest_offset0; _i0++) {
+            largest_offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_largest_size0 = 65025;
+          long * largest_size = (long *) malloc(_len_largest_size0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_largest_size0; _i0++) {
+            largest_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          computeOverlayOffset(offset,size,file_size,largest_offset,largest_size);
+          free(largest_offset);
+          free(largest_size);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          long offset = 10;
+        
+          long size = 10;
+        
+          long file_size = 10;
+        
+          int _len_largest_offset0 = 100;
+          long * largest_offset = (long *) malloc(_len_largest_offset0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_largest_offset0; _i0++) {
+            largest_offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_largest_size0 = 100;
+          long * largest_size = (long *) malloc(_len_largest_size0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_largest_size0; _i0++) {
+            largest_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          computeOverlayOffset(offset,size,file_size,largest_offset,largest_size);
+          free(largest_offset);
+          free(largest_size);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          long offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long file_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_largest_offset0 = 1;
+          long * largest_offset = (long *) malloc(_len_largest_offset0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_largest_offset0; _i0++) {
+            largest_offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_largest_size0 = 1;
+          long * largest_size = (long *) malloc(_len_largest_size0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_largest_size0; _i0++) {
+            largest_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           computeOverlayOffset(offset,size,file_size,largest_offset,largest_size);
           free(largest_offset);
           free(largest_size);

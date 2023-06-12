@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static inline void htcp_reset(struct htcp *ca)
 	ca->last_cong = jiffies;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,19 +79,132 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_ca0 = 65025;
+          struct htcp * ca = (struct htcp *) malloc(_len_ca0*sizeof(struct htcp));
+          for(int _i0 = 0; _i0 < _len_ca0; _i0++) {
+              ca[_i0].last_cong = ((-2 * (next_i()%2)) + 1) * next_i();
+          ca[_i0].old_maxB = ((-2 * (next_i()%2)) + 1) * next_i();
+          ca[_i0].undo_old_maxB = ((-2 * (next_i()%2)) + 1) * next_i();
+          ca[_i0].maxRTT = ((-2 * (next_i()%2)) + 1) * next_i();
+          ca[_i0].undo_maxRTT = ((-2 * (next_i()%2)) + 1) * next_i();
+          ca[_i0].undo_last_cong = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          htcp_reset(ca);
+          free(ca);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_ca0 = 100;
+          struct htcp * ca = (struct htcp *) malloc(_len_ca0*sizeof(struct htcp));
+          for(int _i0 = 0; _i0 < _len_ca0; _i0++) {
+              ca[_i0].last_cong = ((-2 * (next_i()%2)) + 1) * next_i();
+          ca[_i0].old_maxB = ((-2 * (next_i()%2)) + 1) * next_i();
+          ca[_i0].undo_old_maxB = ((-2 * (next_i()%2)) + 1) * next_i();
+          ca[_i0].maxRTT = ((-2 * (next_i()%2)) + 1) * next_i();
+          ca[_i0].undo_maxRTT = ((-2 * (next_i()%2)) + 1) * next_i();
+          ca[_i0].undo_last_cong = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          htcp_reset(ca);
+          free(ca);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_ca0 = 1;
           struct htcp * ca = (struct htcp *) malloc(_len_ca0*sizeof(struct htcp));
           for(int _i0 = 0; _i0 < _len_ca0; _i0++) {
-            ca[_i0].last_cong = ((-2 * (next_i()%2)) + 1) * next_i();
-        ca[_i0].old_maxB = ((-2 * (next_i()%2)) + 1) * next_i();
-        ca[_i0].undo_old_maxB = ((-2 * (next_i()%2)) + 1) * next_i();
-        ca[_i0].maxRTT = ((-2 * (next_i()%2)) + 1) * next_i();
-        ca[_i0].undo_maxRTT = ((-2 * (next_i()%2)) + 1) * next_i();
-        ca[_i0].undo_last_cong = ((-2 * (next_i()%2)) + 1) * next_i();
+              ca[_i0].last_cong = ((-2 * (next_i()%2)) + 1) * next_i();
+          ca[_i0].old_maxB = ((-2 * (next_i()%2)) + 1) * next_i();
+          ca[_i0].undo_old_maxB = ((-2 * (next_i()%2)) + 1) * next_i();
+          ca[_i0].maxRTT = ((-2 * (next_i()%2)) + 1) * next_i();
+          ca[_i0].undo_maxRTT = ((-2 * (next_i()%2)) + 1) * next_i();
+          ca[_i0].undo_last_cong = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           htcp_reset(ca);
           free(ca);
         

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -88,12 +91,6 @@ __attribute__((used)) static inline void scrub_stripe_index_and_offset(u64 logic
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,29 +103,246 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int logical = 100;
+        
           int map_type = 100;
+        
           int mapped_length = 100;
+        
           int nstripes = 100;
+        
           int mirror = 100;
+        
           int _len_raid_map0 = 1;
           int * raid_map = (int *) malloc(_len_raid_map0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_raid_map0; _i0++) {
             raid_map[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_stripe_index0 = 1;
           int * stripe_index = (int *) malloc(_len_stripe_index0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_stripe_index0; _i0++) {
             stripe_index[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_stripe_offset0 = 1;
           int * stripe_offset = (int *) malloc(_len_stripe_offset0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_stripe_offset0; _i0++) {
             stripe_offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          scrub_stripe_index_and_offset(logical,map_type,raid_map,mapped_length,nstripes,mirror,stripe_index,stripe_offset);
+          free(raid_map);
+          free(stripe_index);
+          free(stripe_offset);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int logical = 255;
+        
+          int map_type = 255;
+        
+          int mapped_length = 255;
+        
+          int nstripes = 255;
+        
+          int mirror = 255;
+        
+          int _len_raid_map0 = 65025;
+          int * raid_map = (int *) malloc(_len_raid_map0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_raid_map0; _i0++) {
+            raid_map[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_stripe_index0 = 65025;
+          int * stripe_index = (int *) malloc(_len_stripe_index0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_stripe_index0; _i0++) {
+            stripe_index[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_stripe_offset0 = 65025;
+          int * stripe_offset = (int *) malloc(_len_stripe_offset0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_stripe_offset0; _i0++) {
+            stripe_offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          scrub_stripe_index_and_offset(logical,map_type,raid_map,mapped_length,nstripes,mirror,stripe_index,stripe_offset);
+          free(raid_map);
+          free(stripe_index);
+          free(stripe_offset);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int logical = 10;
+        
+          int map_type = 10;
+        
+          int mapped_length = 10;
+        
+          int nstripes = 10;
+        
+          int mirror = 10;
+        
+          int _len_raid_map0 = 100;
+          int * raid_map = (int *) malloc(_len_raid_map0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_raid_map0; _i0++) {
+            raid_map[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_stripe_index0 = 100;
+          int * stripe_index = (int *) malloc(_len_stripe_index0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_stripe_index0; _i0++) {
+            stripe_index[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_stripe_offset0 = 100;
+          int * stripe_offset = (int *) malloc(_len_stripe_offset0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_stripe_offset0; _i0++) {
+            stripe_offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          scrub_stripe_index_and_offset(logical,map_type,raid_map,mapped_length,nstripes,mirror,stripe_index,stripe_offset);
+          free(raid_map);
+          free(stripe_index);
+          free(stripe_offset);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int logical = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int map_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int mapped_length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int nstripes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int mirror = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_raid_map0 = 1;
+          int * raid_map = (int *) malloc(_len_raid_map0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_raid_map0; _i0++) {
+            raid_map[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_stripe_index0 = 1;
+          int * stripe_index = (int *) malloc(_len_stripe_index0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_stripe_index0; _i0++) {
+            stripe_index[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_stripe_offset0 = 1;
+          int * stripe_offset = (int *) malloc(_len_stripe_offset0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_stripe_offset0; _i0++) {
+            stripe_offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           scrub_stripe_index_and_offset(logical,map_type,raid_map,mapped_length,nstripes,mirror,stripe_index,stripe_offset);
           free(raid_map);
           free(stripe_index);

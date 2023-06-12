@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static snd_pcm_uframes_t pcm_pointer(struct snd_pcm_substr
 	return channel->buffer_pos;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,18 +78,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_substream0 = 65025;
+          struct snd_pcm_substream * substream = (struct snd_pcm_substream *) malloc(_len_substream0*sizeof(struct snd_pcm_substream));
+          for(int _i0 = 0; _i0 < _len_substream0; _i0++) {
+              int _len_substream__i0__private_data0 = 1;
+          substream[_i0].private_data = (struct channel *) malloc(_len_substream__i0__private_data0*sizeof(struct channel));
+          for(int _j0 = 0; _j0 < _len_substream__i0__private_data0; _j0++) {
+              substream[_i0].private_data->buffer_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = pcm_pointer(substream);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_substream0; _aux++) {
+          free(substream[_aux].private_data);
+          }
+          free(substream);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_substream0 = 100;
+          struct snd_pcm_substream * substream = (struct snd_pcm_substream *) malloc(_len_substream0*sizeof(struct snd_pcm_substream));
+          for(int _i0 = 0; _i0 < _len_substream0; _i0++) {
+              int _len_substream__i0__private_data0 = 1;
+          substream[_i0].private_data = (struct channel *) malloc(_len_substream__i0__private_data0*sizeof(struct channel));
+          for(int _j0 = 0; _j0 < _len_substream__i0__private_data0; _j0++) {
+              substream[_i0].private_data->buffer_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = pcm_pointer(substream);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_substream0; _aux++) {
+          free(substream[_aux].private_data);
+          }
+          free(substream);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_substream0 = 1;
           struct snd_pcm_substream * substream = (struct snd_pcm_substream *) malloc(_len_substream0*sizeof(struct snd_pcm_substream));
           for(int _i0 = 0; _i0 < _len_substream0; _i0++) {
               int _len_substream__i0__private_data0 = 1;
           substream[_i0].private_data = (struct channel *) malloc(_len_substream__i0__private_data0*sizeof(struct channel));
           for(int _j0 = 0; _j0 < _len_substream__i0__private_data0; _j0++) {
-            substream[_i0].private_data->buffer_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+              substream[_i0].private_data->buffer_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = pcm_pointer(substream);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_substream0; _aux++) {

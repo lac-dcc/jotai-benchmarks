@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +76,6 @@ __attribute__((used)) static bool getrange_iov(struct vringh *vrh, u64 addr, str
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,18 +92,23 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long addr = 100;
+        
           int _len_vrh0 = 1;
           struct vringh * vrh = (struct vringh *) malloc(_len_vrh0*sizeof(struct vringh));
           for(int _i0 = 0; _i0 < _len_vrh0; _i0++) {
-            vrh[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              vrh[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_r0 = 1;
           struct vringh_range * r = (struct vringh_range *) malloc(_len_r0*sizeof(struct vringh_range));
           for(int _i0 = 0; _i0 < _len_r0; _i0++) {
-            r[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        r[_i0].end_incl = ((-2 * (next_i()%2)) + 1) * next_i();
-        r[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+              r[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].end_incl = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = getrange_iov(vrh,addr,r);
           printf("%d\n", benchRet); 
           free(vrh);
@@ -114,7 +116,90 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long addr = 255;
+        
+          int _len_vrh0 = 65025;
+          struct vringh * vrh = (struct vringh *) malloc(_len_vrh0*sizeof(struct vringh));
+          for(int _i0 = 0; _i0 < _len_vrh0; _i0++) {
+              vrh[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_r0 = 65025;
+          struct vringh_range * r = (struct vringh_range *) malloc(_len_r0*sizeof(struct vringh_range));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+              r[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].end_incl = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = getrange_iov(vrh,addr,r);
+          printf("%d\n", benchRet); 
+          free(vrh);
+          free(r);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long addr = 10;
+        
+          int _len_vrh0 = 100;
+          struct vringh * vrh = (struct vringh *) malloc(_len_vrh0*sizeof(struct vringh));
+          for(int _i0 = 0; _i0 < _len_vrh0; _i0++) {
+              vrh[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_r0 = 100;
+          struct vringh_range * r = (struct vringh_range *) malloc(_len_r0*sizeof(struct vringh_range));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+              r[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].end_incl = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = getrange_iov(vrh,addr,r);
+          printf("%d\n", benchRet); 
+          free(vrh);
+          free(r);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_vrh0 = 1;
+          struct vringh * vrh = (struct vringh *) malloc(_len_vrh0*sizeof(struct vringh));
+          for(int _i0 = 0; _i0 < _len_vrh0; _i0++) {
+              vrh[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_r0 = 1;
+          struct vringh_range * r = (struct vringh_range *) malloc(_len_r0*sizeof(struct vringh_range));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+              r[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].end_incl = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = getrange_iov(vrh,addr,r);
+          printf("%d\n", benchRet); 
+          free(vrh);
+          free(r);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static inline void gred_store_wred_set(struct gred_sched *
 	table->wred_set.qidlestart = q->vars.qidlestart;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,21 +81,152 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_table0 = 65025;
+          struct gred_sched * table = (struct gred_sched *) malloc(_len_table0*sizeof(struct gred_sched));
+          for(int _i0 = 0; _i0 < _len_table0; _i0++) {
+              table[_i0].wred_set.qidlestart = ((-2 * (next_i()%2)) + 1) * next_i();
+          table[_i0].wred_set.qavg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_q0 = 65025;
+          struct gred_sched_data * q = (struct gred_sched_data *) malloc(_len_q0*sizeof(struct gred_sched_data));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].vars.qidlestart = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].vars.qavg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          gred_store_wred_set(table,q);
+          free(table);
+          free(q);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_table0 = 100;
+          struct gred_sched * table = (struct gred_sched *) malloc(_len_table0*sizeof(struct gred_sched));
+          for(int _i0 = 0; _i0 < _len_table0; _i0++) {
+              table[_i0].wred_set.qidlestart = ((-2 * (next_i()%2)) + 1) * next_i();
+          table[_i0].wred_set.qavg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_q0 = 100;
+          struct gred_sched_data * q = (struct gred_sched_data *) malloc(_len_q0*sizeof(struct gred_sched_data));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].vars.qidlestart = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].vars.qavg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          gred_store_wred_set(table,q);
+          free(table);
+          free(q);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_table0 = 1;
           struct gred_sched * table = (struct gred_sched *) malloc(_len_table0*sizeof(struct gred_sched));
           for(int _i0 = 0; _i0 < _len_table0; _i0++) {
-            table[_i0].wred_set.qidlestart = ((-2 * (next_i()%2)) + 1) * next_i();
-        table[_i0].wred_set.qavg = ((-2 * (next_i()%2)) + 1) * next_i();
+              table[_i0].wred_set.qidlestart = ((-2 * (next_i()%2)) + 1) * next_i();
+          table[_i0].wred_set.qavg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_q0 = 1;
           struct gred_sched_data * q = (struct gred_sched_data *) malloc(_len_q0*sizeof(struct gred_sched_data));
           for(int _i0 = 0; _i0 < _len_q0; _i0++) {
-            q[_i0].vars.qidlestart = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].vars.qavg = ((-2 * (next_i()%2)) + 1) * next_i();
+              q[_i0].vars.qidlestart = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].vars.qavg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           gred_store_wred_set(table,q);
           free(table);
           free(q);

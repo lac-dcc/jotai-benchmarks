@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -92,12 +94,6 @@ __attribute__((used)) static void vnt_set_options(struct vnt_private *priv)
 	priv->exist_sw_net_addr = false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -110,29 +106,78 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_priv0 = 1;
+          int _len_priv0 = 65025;
           struct vnt_private * priv = (struct vnt_private *) malloc(_len_priv0*sizeof(struct vnt_private));
           for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
-            priv[_i0].exist_sw_net_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].preamble_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].auto_fb_ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].bb_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].packet_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].op_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].long_retry_limit = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].short_retry_limit = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].num_rcb = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].num_tx_context = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].exist_sw_net_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].preamble_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].auto_fb_ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].bb_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].packet_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].op_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].long_retry_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].short_retry_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].num_rcb = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].num_tx_context = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           vnt_set_options(priv);
           free(priv);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_priv0 = 100;
+          struct vnt_private * priv = (struct vnt_private *) malloc(_len_priv0*sizeof(struct vnt_private));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].exist_sw_net_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].preamble_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].auto_fb_ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].bb_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].packet_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].op_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].long_retry_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].short_retry_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].num_rcb = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].num_tx_context = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          vnt_set_options(priv);
+          free(priv);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_priv0 = 1;
+          struct vnt_private * priv = (struct vnt_private *) malloc(_len_priv0*sizeof(struct vnt_private));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].exist_sw_net_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].preamble_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].auto_fb_ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].bb_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].packet_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].op_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].long_retry_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].short_retry_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].num_rcb = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].num_tx_context = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          vnt_set_options(priv);
+          free(priv);
+        
+        break;
+    }
     default:
         usage();
         break;

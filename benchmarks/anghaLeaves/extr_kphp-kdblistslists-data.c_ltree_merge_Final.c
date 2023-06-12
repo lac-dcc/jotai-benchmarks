@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            dlinked\n\
+       1            bintree\n\
+       2            empty\n\
 \n\
 ");
 
@@ -77,8 +79,99 @@ __attribute__((used)) static ltree_t *ltree_merge (ltree_t *L, ltree_t *R) {
   return Root;
 }
 
-
 // ------------------------------------------------------------------------- //
+
+struct TYPE_5__ *_allocate_Dlinked_L(int length, struct TYPE_5__ *aux_dlinked_L[] ) {
+  struct TYPE_5__ *walker = (struct TYPE_5__ *)malloc(sizeof(struct TYPE_5__));
+
+  aux_dlinked_L[0] = walker;
+  walker->y = ((-2 * (next_i()%2)) + 1) * next_i();
+  walker->left = NULL;
+  walker->right = NULL;
+
+  struct TYPE_5__ *head = walker;
+  for(int i = 1; i < length; i++) {
+    walker->right = (struct TYPE_5__ *)malloc(sizeof(struct TYPE_5__));
+    walker->right->left = walker;
+    walker = walker->right;
+    aux_dlinked_L[i] = walker;
+    if (i == (length - 1)) 
+      walker->right = NULL;    walker->y = ((-2 * (next_i()%2)) + 1) * next_i();
+  }
+
+  return head;
+}
+
+void _delete_Dlinked_L(struct TYPE_5__ *aux_dlinked_L[], int aux_dlinked_L_size) {
+  for(int i = 0; i < aux_dlinked_L_size; i++) 
+    if(aux_dlinked_L[i])
+      free(aux_dlinked_L[i]);
+}
+
+struct TYPE_5__ *_allocate_Dlinked_R(int length, struct TYPE_5__ *aux_dlinked_R[] ) {
+  struct TYPE_5__ *walker = (struct TYPE_5__ *)malloc(sizeof(struct TYPE_5__));
+
+  aux_dlinked_R[0] = walker;
+  walker->y = ((-2 * (next_i()%2)) + 1) * next_i();
+  walker->left = NULL;
+  walker->right = NULL;
+
+  struct TYPE_5__ *head = walker;
+  for(int i = 1; i < length; i++) {
+    walker->right = (struct TYPE_5__ *)malloc(sizeof(struct TYPE_5__));
+    walker->right->left = walker;
+    walker = walker->right;
+    aux_dlinked_R[i] = walker;
+    if (i == (length - 1)) 
+      walker->right = NULL;    walker->y = ((-2 * (next_i()%2)) + 1) * next_i();
+  }
+
+  return head;
+}
+
+void _delete_Dlinked_R(struct TYPE_5__ *aux_dlinked_R[], int aux_dlinked_R_size) {
+  for(int i = 0; i < aux_dlinked_R_size; i++) 
+    if(aux_dlinked_R[i])
+      free(aux_dlinked_R[i]);
+}
+
+struct TYPE_5__ *_allocateBinTree_L(int length, struct TYPE_5__ *aux_tree_L[], int *counter_L) {
+  if(length == 0)
+    return NULL;
+  struct TYPE_5__ *walker = (struct TYPE_5__ *)malloc(sizeof(struct TYPE_5__));
+
+  aux_tree_L[*counter_L] = walker;
+  (*counter_L)++;
+  walker->y = ((-2 * (next_i()%2)) + 1) * next_i();
+  walker->left = _allocateBinTree_L(length - 1, aux_tree_L, counter_L);
+  walker->right = _allocateBinTree_L(length - 1, aux_tree_L, counter_L);
+  return walker;
+}
+
+void _deleteBinTree_L(struct TYPE_5__ *aux_tree_L[]) {
+  for(int i = 0; i < 1023; i++) 
+    if(aux_tree_L[i])
+      free(aux_tree_L[i]);
+}
+
+struct TYPE_5__ *_allocateBinTree_R(int length, struct TYPE_5__ *aux_tree_R[], int *counter_R) {
+  if(length == 0)
+    return NULL;
+  struct TYPE_5__ *walker = (struct TYPE_5__ *)malloc(sizeof(struct TYPE_5__));
+
+  aux_tree_R[*counter_R] = walker;
+  (*counter_R)++;
+  walker->y = ((-2 * (next_i()%2)) + 1) * next_i();
+  walker->left = _allocateBinTree_R(length - 1, aux_tree_R, counter_R);
+  walker->right = _allocateBinTree_R(length - 1, aux_tree_R, counter_R);
+  return walker;
+}
+
+void _deleteBinTree_R(struct TYPE_5__ *aux_tree_R[]) {
+  for(int i = 0; i < 1023; i++) 
+    if(aux_tree_R[i])
+      free(aux_tree_R[i]);
+}
 
 struct TYPE_5__ *_allocate_L(int length, struct TYPE_5__ *aux_L[]) {
   struct TYPE_5__ *walker = (struct TYPE_5__ *)malloc(sizeof(struct TYPE_5__));
@@ -142,7 +235,6 @@ void _delete_R(struct TYPE_5__ *aux_R[], int aux_R_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -155,13 +247,120 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // dlinked
     case 0:
     {
+          // static_instructions_O0 : 43
+          // dynamic_instructions_O0 : 53
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          struct TYPE_5__ * aux_dlinked_L[10000];
+          struct TYPE_5__ * L = _allocate_Dlinked_L(10000, aux_dlinked_L);
+        
+          struct TYPE_5__ * aux_dlinked_R[10000];
+          struct TYPE_5__ * R = _allocate_Dlinked_R(10000, aux_dlinked_R);
+        
+          struct TYPE_5__ * benchRet = ltree_merge(L,R);
+          printf("%ld\n", (*benchRet).y);
+          _delete_Dlinked_L(aux_dlinked_L, 10000);
+          _delete_Dlinked_R(aux_dlinked_R, 10000);
+        
+        break;
+    }
+
+
+    // bintree
+    case 1:
+    {
+          // static_instructions_O0 : 43
+          // dynamic_instructions_O0 : 278
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 136
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 136
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 136
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 136
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 135
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 133
+          // ------------------------------- 
+
+          int counter_L= 0;
+          struct TYPE_5__ *  aux_tree_L[1023];
+          struct TYPE_5__ * L = _allocateBinTree_L(10, aux_tree_L, &counter_L);
+        
+          int counter_R= 0;
+          struct TYPE_5__ *  aux_tree_R[1023];
+          struct TYPE_5__ * R = _allocateBinTree_R(10, aux_tree_R, &counter_R);
+        
+          struct TYPE_5__ * benchRet = ltree_merge(L,R);
+          printf("%ld\n", (*benchRet).y);
+          _deleteBinTree_L(aux_tree_L);
+          _deleteBinTree_R(aux_tree_R);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 43
+          // dynamic_instructions_O0 : 53
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
           struct TYPE_5__ * aux_L[1];
           struct TYPE_5__ * L = _allocate_L(1, aux_L);
+        
           struct TYPE_5__ * aux_R[1];
           struct TYPE_5__ * R = _allocate_R(1, aux_R);
+        
           struct TYPE_5__ * benchRet = ltree_merge(L,R);
           printf("%ld\n", (*benchRet).y);
           _delete_L(aux_L, 1);

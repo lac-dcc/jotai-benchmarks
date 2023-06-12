@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static bool hwsim_chans_compat(struct ieee80211_channel *c
 	return c1->center_freq == c2->center_freq;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,19 +78,142 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_c10 = 65025;
+          struct ieee80211_channel * c1 = (struct ieee80211_channel *) malloc(_len_c10*sizeof(struct ieee80211_channel));
+          for(int _i0 = 0; _i0 < _len_c10; _i0++) {
+              c1[_i0].center_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_c20 = 65025;
+          struct ieee80211_channel * c2 = (struct ieee80211_channel *) malloc(_len_c20*sizeof(struct ieee80211_channel));
+          for(int _i0 = 0; _i0 < _len_c20; _i0++) {
+              c2[_i0].center_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hwsim_chans_compat(c1,c2);
+          printf("%d\n", benchRet); 
+          free(c1);
+          free(c2);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_c10 = 100;
+          struct ieee80211_channel * c1 = (struct ieee80211_channel *) malloc(_len_c10*sizeof(struct ieee80211_channel));
+          for(int _i0 = 0; _i0 < _len_c10; _i0++) {
+              c1[_i0].center_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_c20 = 100;
+          struct ieee80211_channel * c2 = (struct ieee80211_channel *) malloc(_len_c20*sizeof(struct ieee80211_channel));
+          for(int _i0 = 0; _i0 < _len_c20; _i0++) {
+              c2[_i0].center_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hwsim_chans_compat(c1,c2);
+          printf("%d\n", benchRet); 
+          free(c1);
+          free(c2);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int _len_c10 = 1;
           struct ieee80211_channel * c1 = (struct ieee80211_channel *) malloc(_len_c10*sizeof(struct ieee80211_channel));
           for(int _i0 = 0; _i0 < _len_c10; _i0++) {
-            c1[_i0].center_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+              c1[_i0].center_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_c20 = 1;
           struct ieee80211_channel * c2 = (struct ieee80211_channel *) malloc(_len_c20*sizeof(struct ieee80211_channel));
           for(int _i0 = 0; _i0 < _len_c20; _i0++) {
-            c2[_i0].center_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+              c2[_i0].center_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = hwsim_chans_compat(c1,c2);
           printf("%d\n", benchRet); 
           free(c1);

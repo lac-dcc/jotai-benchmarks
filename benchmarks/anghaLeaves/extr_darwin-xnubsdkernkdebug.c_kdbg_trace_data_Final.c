@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ kdbg_trace_data(struct proc *proc, long *arg_pid, long *arg_uniqueid)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,25 +85,160 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_proc0 = 65025;
+          struct proc * proc = (struct proc *) malloc(_len_proc0*sizeof(struct proc));
+          for(int _i0 = 0; _i0 < _len_proc0; _i0++) {
+              proc[_i0].p_pid = ((-2 * (next_i()%2)) + 1) * next_i();
+          proc[_i0].p_uniqueid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_arg_pid0 = 65025;
+          long * arg_pid = (long *) malloc(_len_arg_pid0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_arg_pid0; _i0++) {
+            arg_pid[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_arg_uniqueid0 = 65025;
+          long * arg_uniqueid = (long *) malloc(_len_arg_uniqueid0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_arg_uniqueid0; _i0++) {
+            arg_uniqueid[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          kdbg_trace_data(proc,arg_pid,arg_uniqueid);
+          free(proc);
+          free(arg_pid);
+          free(arg_uniqueid);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_proc0 = 100;
+          struct proc * proc = (struct proc *) malloc(_len_proc0*sizeof(struct proc));
+          for(int _i0 = 0; _i0 < _len_proc0; _i0++) {
+              proc[_i0].p_pid = ((-2 * (next_i()%2)) + 1) * next_i();
+          proc[_i0].p_uniqueid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_arg_pid0 = 100;
+          long * arg_pid = (long *) malloc(_len_arg_pid0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_arg_pid0; _i0++) {
+            arg_pid[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_arg_uniqueid0 = 100;
+          long * arg_uniqueid = (long *) malloc(_len_arg_uniqueid0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_arg_uniqueid0; _i0++) {
+            arg_uniqueid[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          kdbg_trace_data(proc,arg_pid,arg_uniqueid);
+          free(proc);
+          free(arg_pid);
+          free(arg_uniqueid);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int _len_proc0 = 1;
           struct proc * proc = (struct proc *) malloc(_len_proc0*sizeof(struct proc));
           for(int _i0 = 0; _i0 < _len_proc0; _i0++) {
-            proc[_i0].p_pid = ((-2 * (next_i()%2)) + 1) * next_i();
-        proc[_i0].p_uniqueid = ((-2 * (next_i()%2)) + 1) * next_i();
+              proc[_i0].p_pid = ((-2 * (next_i()%2)) + 1) * next_i();
+          proc[_i0].p_uniqueid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_arg_pid0 = 1;
           long * arg_pid = (long *) malloc(_len_arg_pid0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_arg_pid0; _i0++) {
             arg_pid[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_arg_uniqueid0 = 1;
           long * arg_uniqueid = (long *) malloc(_len_arg_uniqueid0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_arg_uniqueid0; _i0++) {
             arg_uniqueid[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           kdbg_trace_data(proc,arg_pid,arg_uniqueid);
           free(proc);
           free(arg_pid);

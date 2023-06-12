@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static int fxchg(struct sh_fpu_soft_struct *fregs, int fla
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,11 +81,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int flag = 100;
+        
           int _len_fregs0 = 1;
           struct sh_fpu_soft_struct * fregs = (struct sh_fpu_soft_struct *) malloc(_len_fregs0*sizeof(struct sh_fpu_soft_struct));
           for(int _i0 = 0; _i0 < _len_fregs0; _i0++) {
-            fregs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              fregs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = fxchg(fregs,flag);
+          printf("%d\n", benchRet); 
+          free(fregs);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int flag = 255;
+        
+          int _len_fregs0 = 65025;
+          struct sh_fpu_soft_struct * fregs = (struct sh_fpu_soft_struct *) malloc(_len_fregs0*sizeof(struct sh_fpu_soft_struct));
+          for(int _i0 = 0; _i0 < _len_fregs0; _i0++) {
+              fregs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = fxchg(fregs,flag);
           printf("%d\n", benchRet); 
           free(fregs);
@@ -97,21 +114,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int flag = 10;
+        
           int _len_fregs0 = 100;
           struct sh_fpu_soft_struct * fregs = (struct sh_fpu_soft_struct *) malloc(_len_fregs0*sizeof(struct sh_fpu_soft_struct));
           for(int _i0 = 0; _i0 < _len_fregs0; _i0++) {
-            fregs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              fregs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = fxchg(fregs,flag);
           printf("%d\n", benchRet); 
           free(fregs);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fregs0 = 1;
+          struct sh_fpu_soft_struct * fregs = (struct sh_fpu_soft_struct *) malloc(_len_fregs0*sizeof(struct sh_fpu_soft_struct));
+          for(int _i0 = 0; _i0 < _len_fregs0; _i0++) {
+              fregs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fxchg(fregs,flag);
+          printf("%d\n", benchRet); 
+          free(fregs);
+        
+        break;
+    }
     default:
         usage();
         break;

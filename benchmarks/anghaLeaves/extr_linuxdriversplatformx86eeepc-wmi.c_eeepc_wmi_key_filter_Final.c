@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ __attribute__((used)) static void eeepc_wmi_key_filter(struct asus_wmi_driver *a
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,29 +92,177 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_asus_wmi0 = 65025;
+          struct asus_wmi_driver * asus_wmi = (struct asus_wmi_driver *) malloc(_len_asus_wmi0*sizeof(struct asus_wmi_driver));
+          for(int _i0 = 0; _i0 < _len_asus_wmi0; _i0++) {
+              asus_wmi[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_code0 = 65025;
+          int * code = (int *) malloc(_len_code0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_code0; _i0++) {
+            code[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_value0 = 65025;
+          unsigned int * value = (unsigned int *) malloc(_len_value0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_value0; _i0++) {
+            value[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_autorelease0 = 65025;
+          int * autorelease = (int *) malloc(_len_autorelease0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_autorelease0; _i0++) {
+            autorelease[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          eeepc_wmi_key_filter(asus_wmi,code,value,autorelease);
+          free(asus_wmi);
+          free(code);
+          free(value);
+          free(autorelease);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_asus_wmi0 = 100;
+          struct asus_wmi_driver * asus_wmi = (struct asus_wmi_driver *) malloc(_len_asus_wmi0*sizeof(struct asus_wmi_driver));
+          for(int _i0 = 0; _i0 < _len_asus_wmi0; _i0++) {
+              asus_wmi[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_code0 = 100;
+          int * code = (int *) malloc(_len_code0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_code0; _i0++) {
+            code[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_value0 = 100;
+          unsigned int * value = (unsigned int *) malloc(_len_value0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_value0; _i0++) {
+            value[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_autorelease0 = 100;
+          int * autorelease = (int *) malloc(_len_autorelease0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_autorelease0; _i0++) {
+            autorelease[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          eeepc_wmi_key_filter(asus_wmi,code,value,autorelease);
+          free(asus_wmi);
+          free(code);
+          free(value);
+          free(autorelease);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_asus_wmi0 = 1;
           struct asus_wmi_driver * asus_wmi = (struct asus_wmi_driver *) malloc(_len_asus_wmi0*sizeof(struct asus_wmi_driver));
           for(int _i0 = 0; _i0 < _len_asus_wmi0; _i0++) {
-            asus_wmi[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              asus_wmi[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_code0 = 1;
           int * code = (int *) malloc(_len_code0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_code0; _i0++) {
             code[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_value0 = 1;
           unsigned int * value = (unsigned int *) malloc(_len_value0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_value0; _i0++) {
             value[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_autorelease0 = 1;
           int * autorelease = (int *) malloc(_len_autorelease0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_autorelease0; _i0++) {
             autorelease[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           eeepc_wmi_key_filter(asus_wmi,code,value,autorelease);
           free(asus_wmi);
           free(code);

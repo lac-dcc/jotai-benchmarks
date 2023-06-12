@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ void cio_skip(opj_cio_t *cio, int n) {
 	cio->bp += n;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,31 +80,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int n = 100;
+        
           int _len_cio0 = 1;
           struct TYPE_3__ * cio = (struct TYPE_3__ *) malloc(_len_cio0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_cio0; _i0++) {
-            cio[_i0].bp = ((-2 * (next_i()%2)) + 1) * next_i();
+              cio[_i0].bp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          cio_skip(cio,n);
+          free(cio);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int n = 255;
+        
+          int _len_cio0 = 65025;
+          struct TYPE_3__ * cio = (struct TYPE_3__ *) malloc(_len_cio0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_cio0; _i0++) {
+              cio[_i0].bp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           cio_skip(cio,n);
           free(cio);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int n = 10;
+        
           int _len_cio0 = 100;
           struct TYPE_3__ * cio = (struct TYPE_3__ *) malloc(_len_cio0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_cio0; _i0++) {
-            cio[_i0].bp = ((-2 * (next_i()%2)) + 1) * next_i();
+              cio[_i0].bp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           cio_skip(cio,n);
           free(cio);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cio0 = 1;
+          struct TYPE_3__ * cio = (struct TYPE_3__ *) malloc(_len_cio0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_cio0; _i0++) {
+              cio[_i0].bp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cio_skip(cio,n);
+          free(cio);
+        
+        break;
+    }
     default:
         usage();
         break;

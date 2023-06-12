@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -99,12 +102,6 @@ __attribute__((used)) static void calc_percent(struct sym_hist *sym_hist,
 		data->percent[PERCENT_PERIOD_GLOBAL] = 100.0 * period / hists->stats.total_period;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -117,29 +114,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 73
+          // dynamic_instructions_O0 : 73
+          // ------------------------------- 
+          // static_instructions_O1 : 55
+          // dynamic_instructions_O1 : 55
+          // ------------------------------- 
+          // static_instructions_O2 : 59
+          // dynamic_instructions_O2 : 59
+          // ------------------------------- 
+          // static_instructions_O3 : 59
+          // dynamic_instructions_O3 : 59
+          // ------------------------------- 
+          // static_instructions_Ofast : 59
+          // dynamic_instructions_Ofast : 59
+          // ------------------------------- 
+          // static_instructions_Os : 55
+          // dynamic_instructions_Os : 55
+          // ------------------------------- 
+          // static_instructions_Oz : 53
+          // dynamic_instructions_Oz : 53
+          // ------------------------------- 
+
           unsigned long offset = 100;
+        
           unsigned long end = 100;
+        
           int _len_sym_hist0 = 1;
           struct sym_hist * sym_hist = (struct sym_hist *) malloc(_len_sym_hist0*sizeof(struct sym_hist));
           for(int _i0 = 0; _i0 < _len_sym_hist0; _i0++) {
-            sym_hist[_i0].nr_samples = ((-2 * (next_i()%2)) + 1) * next_i();
-        sym_hist[_i0].period = ((-2 * (next_i()%2)) + 1) * next_i();
+              sym_hist[_i0].nr_samples = ((-2 * (next_i()%2)) + 1) * next_i();
+          sym_hist[_i0].period = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_sym_hist__i0__addr0 = 1;
           sym_hist[_i0].addr = (struct TYPE_4__ *) malloc(_len_sym_hist__i0__addr0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_sym_hist__i0__addr0; _j0++) {
-            sym_hist[_i0].addr->period = ((-2 * (next_i()%2)) + 1) * next_i();
-        sym_hist[_i0].addr->nr_samples = ((-2 * (next_i()%2)) + 1) * next_i();
+              sym_hist[_i0].addr->period = ((-2 * (next_i()%2)) + 1) * next_i();
+          sym_hist[_i0].addr->nr_samples = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_hists0 = 1;
           struct hists * hists = (struct hists *) malloc(_len_hists0*sizeof(struct hists));
           for(int _i0 = 0; _i0 < _len_hists0; _i0++) {
-            hists[_i0].stats.nr_non_filtered_samples = ((-2 * (next_i()%2)) + 1) * next_i();
-        hists[_i0].stats.total_period = ((-2 * (next_i()%2)) + 1) * next_i();
+              hists[_i0].stats.nr_non_filtered_samples = ((-2 * (next_i()%2)) + 1) * next_i();
+          hists[_i0].stats.total_period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_data0 = 1;
           struct annotation_data * data = (struct annotation_data *) malloc(_len_data0*sizeof(struct annotation_data));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
@@ -148,9 +176,258 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_data__i0__percent0; _j0++) {
             data[_i0].percent[_j0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
-        data[_i0].he.period = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        data[_i0].he.nr_samples = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].he.period = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          data[_i0].he.nr_samples = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          calc_percent(sym_hist,hists,data,offset,end);
+          for(int _aux = 0; _aux < _len_sym_hist0; _aux++) {
+          free(sym_hist[_aux].addr);
+          }
+          free(sym_hist);
+          free(hists);
+          for(int _aux = 0; _aux < _len_data0; _aux++) {
+          free(data[_aux].percent);
+          }
+          free(data);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 73
+          // dynamic_instructions_O0 : 73
+          // ------------------------------- 
+          // static_instructions_O1 : 55
+          // dynamic_instructions_O1 : 55
+          // ------------------------------- 
+          // static_instructions_O2 : 59
+          // dynamic_instructions_O2 : 59
+          // ------------------------------- 
+          // static_instructions_O3 : 59
+          // dynamic_instructions_O3 : 59
+          // ------------------------------- 
+          // static_instructions_Ofast : 59
+          // dynamic_instructions_Ofast : 59
+          // ------------------------------- 
+          // static_instructions_Os : 55
+          // dynamic_instructions_Os : 55
+          // ------------------------------- 
+          // static_instructions_Oz : 53
+          // dynamic_instructions_Oz : 53
+          // ------------------------------- 
+
+          unsigned long offset = 255;
+        
+          unsigned long end = 255;
+        
+          int _len_sym_hist0 = 65025;
+          struct sym_hist * sym_hist = (struct sym_hist *) malloc(_len_sym_hist0*sizeof(struct sym_hist));
+          for(int _i0 = 0; _i0 < _len_sym_hist0; _i0++) {
+              sym_hist[_i0].nr_samples = ((-2 * (next_i()%2)) + 1) * next_i();
+          sym_hist[_i0].period = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_sym_hist__i0__addr0 = 1;
+          sym_hist[_i0].addr = (struct TYPE_4__ *) malloc(_len_sym_hist__i0__addr0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_sym_hist__i0__addr0; _j0++) {
+              sym_hist[_i0].addr->period = ((-2 * (next_i()%2)) + 1) * next_i();
+          sym_hist[_i0].addr->nr_samples = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_hists0 = 65025;
+          struct hists * hists = (struct hists *) malloc(_len_hists0*sizeof(struct hists));
+          for(int _i0 = 0; _i0 < _len_hists0; _i0++) {
+              hists[_i0].stats.nr_non_filtered_samples = ((-2 * (next_i()%2)) + 1) * next_i();
+          hists[_i0].stats.total_period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_data0 = 65025;
+          struct annotation_data * data = (struct annotation_data *) malloc(_len_data0*sizeof(struct annotation_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              int _len_data__i0__percent0 = 1;
+          data[_i0].percent = (double *) malloc(_len_data__i0__percent0*sizeof(double));
+          for(int _j0 = 0; _j0 < _len_data__i0__percent0; _j0++) {
+            data[_i0].percent[_j0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+          data[_i0].he.period = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          data[_i0].he.nr_samples = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          calc_percent(sym_hist,hists,data,offset,end);
+          for(int _aux = 0; _aux < _len_sym_hist0; _aux++) {
+          free(sym_hist[_aux].addr);
+          }
+          free(sym_hist);
+          free(hists);
+          for(int _aux = 0; _aux < _len_data0; _aux++) {
+          free(data[_aux].percent);
+          }
+          free(data);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 73
+          // dynamic_instructions_O0 : 73
+          // ------------------------------- 
+          // static_instructions_O1 : 55
+          // dynamic_instructions_O1 : 55
+          // ------------------------------- 
+          // static_instructions_O2 : 59
+          // dynamic_instructions_O2 : 59
+          // ------------------------------- 
+          // static_instructions_O3 : 59
+          // dynamic_instructions_O3 : 59
+          // ------------------------------- 
+          // static_instructions_Ofast : 59
+          // dynamic_instructions_Ofast : 59
+          // ------------------------------- 
+          // static_instructions_Os : 55
+          // dynamic_instructions_Os : 55
+          // ------------------------------- 
+          // static_instructions_Oz : 53
+          // dynamic_instructions_Oz : 53
+          // ------------------------------- 
+
+          unsigned long offset = 10;
+        
+          unsigned long end = 10;
+        
+          int _len_sym_hist0 = 100;
+          struct sym_hist * sym_hist = (struct sym_hist *) malloc(_len_sym_hist0*sizeof(struct sym_hist));
+          for(int _i0 = 0; _i0 < _len_sym_hist0; _i0++) {
+              sym_hist[_i0].nr_samples = ((-2 * (next_i()%2)) + 1) * next_i();
+          sym_hist[_i0].period = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_sym_hist__i0__addr0 = 1;
+          sym_hist[_i0].addr = (struct TYPE_4__ *) malloc(_len_sym_hist__i0__addr0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_sym_hist__i0__addr0; _j0++) {
+              sym_hist[_i0].addr->period = ((-2 * (next_i()%2)) + 1) * next_i();
+          sym_hist[_i0].addr->nr_samples = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_hists0 = 100;
+          struct hists * hists = (struct hists *) malloc(_len_hists0*sizeof(struct hists));
+          for(int _i0 = 0; _i0 < _len_hists0; _i0++) {
+              hists[_i0].stats.nr_non_filtered_samples = ((-2 * (next_i()%2)) + 1) * next_i();
+          hists[_i0].stats.total_period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_data0 = 100;
+          struct annotation_data * data = (struct annotation_data *) malloc(_len_data0*sizeof(struct annotation_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              int _len_data__i0__percent0 = 1;
+          data[_i0].percent = (double *) malloc(_len_data__i0__percent0*sizeof(double));
+          for(int _j0 = 0; _j0 < _len_data__i0__percent0; _j0++) {
+            data[_i0].percent[_j0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+          data[_i0].he.period = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          data[_i0].he.nr_samples = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          calc_percent(sym_hist,hists,data,offset,end);
+          for(int _aux = 0; _aux < _len_sym_hist0; _aux++) {
+          free(sym_hist[_aux].addr);
+          }
+          free(sym_hist);
+          free(hists);
+          for(int _aux = 0; _aux < _len_data0; _aux++) {
+          free(data[_aux].percent);
+          }
+          free(data);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 73
+          // dynamic_instructions_O0 : 73
+          // ------------------------------- 
+          // static_instructions_O1 : 55
+          // dynamic_instructions_O1 : 55
+          // ------------------------------- 
+          // static_instructions_O2 : 59
+          // dynamic_instructions_O2 : 59
+          // ------------------------------- 
+          // static_instructions_O3 : 59
+          // dynamic_instructions_O3 : 59
+          // ------------------------------- 
+          // static_instructions_Ofast : 59
+          // dynamic_instructions_Ofast : 59
+          // ------------------------------- 
+          // static_instructions_Os : 55
+          // dynamic_instructions_Os : 55
+          // ------------------------------- 
+          // static_instructions_Oz : 53
+          // dynamic_instructions_Oz : 53
+          // ------------------------------- 
+
+          unsigned long offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sym_hist0 = 1;
+          struct sym_hist * sym_hist = (struct sym_hist *) malloc(_len_sym_hist0*sizeof(struct sym_hist));
+          for(int _i0 = 0; _i0 < _len_sym_hist0; _i0++) {
+              sym_hist[_i0].nr_samples = ((-2 * (next_i()%2)) + 1) * next_i();
+          sym_hist[_i0].period = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_sym_hist__i0__addr0 = 1;
+          sym_hist[_i0].addr = (struct TYPE_4__ *) malloc(_len_sym_hist__i0__addr0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_sym_hist__i0__addr0; _j0++) {
+              sym_hist[_i0].addr->period = ((-2 * (next_i()%2)) + 1) * next_i();
+          sym_hist[_i0].addr->nr_samples = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_hists0 = 1;
+          struct hists * hists = (struct hists *) malloc(_len_hists0*sizeof(struct hists));
+          for(int _i0 = 0; _i0 < _len_hists0; _i0++) {
+              hists[_i0].stats.nr_non_filtered_samples = ((-2 * (next_i()%2)) + 1) * next_i();
+          hists[_i0].stats.total_period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_data0 = 1;
+          struct annotation_data * data = (struct annotation_data *) malloc(_len_data0*sizeof(struct annotation_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              int _len_data__i0__percent0 = 1;
+          data[_i0].percent = (double *) malloc(_len_data__i0__percent0*sizeof(double));
+          for(int _j0 = 0; _j0 < _len_data__i0__percent0; _j0++) {
+            data[_i0].percent[_j0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+          data[_i0].he.period = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          data[_i0].he.nr_samples = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           calc_percent(sym_hist,hists,data,offset,end);
           for(int _aux = 0; _aux < _len_sym_hist0; _aux++) {
           free(sym_hist[_aux].addr);

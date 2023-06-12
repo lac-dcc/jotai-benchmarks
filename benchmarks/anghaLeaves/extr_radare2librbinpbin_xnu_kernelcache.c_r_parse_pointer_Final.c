@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -85,12 +88,6 @@ __attribute__((used)) static bool r_parse_pointer(RParsedPointer *ptr, ut64 deco
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,24 +100,227 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int decorated_addr = 100;
+        
           int _len_ptr0 = 1;
           struct TYPE_7__ * ptr = (struct TYPE_7__ *) malloc(_len_ptr0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_ptr0; _i0++) {
-            ptr[_i0].address = ((-2 * (next_i()%2)) + 1) * next_i();
+              ptr[_i0].address = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_obj0 = 1;
           struct TYPE_8__ * obj = (struct TYPE_8__ *) malloc(_len_obj0*sizeof(struct TYPE_8__));
           for(int _i0 = 0; _i0 < _len_obj0; _i0++) {
               int _len_obj__i0__rebase_info0 = 1;
           obj[_i0].rebase_info = (struct TYPE_6__ *) malloc(_len_obj__i0__rebase_info0*sizeof(struct TYPE_6__));
           for(int _j0 = 0; _j0 < _len_obj__i0__rebase_info0; _j0++) {
-            obj[_i0].rebase_info->kernel_base = ((-2 * (next_i()%2)) + 1) * next_i();
+              obj[_i0].rebase_info->kernel_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = r_parse_pointer(ptr,decorated_addr,obj);
+          printf("%d\n", benchRet); 
+          free(ptr);
+          for(int _aux = 0; _aux < _len_obj0; _aux++) {
+          free(obj[_aux].rebase_info);
+          }
+          free(obj);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int decorated_addr = 255;
+        
+          int _len_ptr0 = 65025;
+          struct TYPE_7__ * ptr = (struct TYPE_7__ *) malloc(_len_ptr0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_ptr0; _i0++) {
+              ptr[_i0].address = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_obj0 = 65025;
+          struct TYPE_8__ * obj = (struct TYPE_8__ *) malloc(_len_obj0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_obj0; _i0++) {
+              int _len_obj__i0__rebase_info0 = 1;
+          obj[_i0].rebase_info = (struct TYPE_6__ *) malloc(_len_obj__i0__rebase_info0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_obj__i0__rebase_info0; _j0++) {
+              obj[_i0].rebase_info->kernel_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = r_parse_pointer(ptr,decorated_addr,obj);
+          printf("%d\n", benchRet); 
+          free(ptr);
+          for(int _aux = 0; _aux < _len_obj0; _aux++) {
+          free(obj[_aux].rebase_info);
+          }
+          free(obj);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int decorated_addr = 10;
+        
+          int _len_ptr0 = 100;
+          struct TYPE_7__ * ptr = (struct TYPE_7__ *) malloc(_len_ptr0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_ptr0; _i0++) {
+              ptr[_i0].address = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_obj0 = 100;
+          struct TYPE_8__ * obj = (struct TYPE_8__ *) malloc(_len_obj0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_obj0; _i0++) {
+              int _len_obj__i0__rebase_info0 = 1;
+          obj[_i0].rebase_info = (struct TYPE_6__ *) malloc(_len_obj__i0__rebase_info0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_obj__i0__rebase_info0; _j0++) {
+              obj[_i0].rebase_info->kernel_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = r_parse_pointer(ptr,decorated_addr,obj);
+          printf("%d\n", benchRet); 
+          free(ptr);
+          for(int _aux = 0; _aux < _len_obj0; _aux++) {
+          free(obj[_aux].rebase_info);
+          }
+          free(obj);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int decorated_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ptr0 = 1;
+          struct TYPE_7__ * ptr = (struct TYPE_7__ *) malloc(_len_ptr0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_ptr0; _i0++) {
+              ptr[_i0].address = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_obj0 = 1;
+          struct TYPE_8__ * obj = (struct TYPE_8__ *) malloc(_len_obj0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_obj0; _i0++) {
+              int _len_obj__i0__rebase_info0 = 1;
+          obj[_i0].rebase_info = (struct TYPE_6__ *) malloc(_len_obj__i0__rebase_info0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_obj__i0__rebase_info0; _j0++) {
+              obj[_i0].rebase_info->kernel_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = r_parse_pointer(ptr,decorated_addr,obj);
           printf("%d\n", benchRet); 
           free(ptr);

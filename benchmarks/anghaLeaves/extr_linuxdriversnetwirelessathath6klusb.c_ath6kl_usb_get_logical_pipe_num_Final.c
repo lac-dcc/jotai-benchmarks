@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -121,12 +124,6 @@ __attribute__((used)) static u8 ath6kl_usb_get_logical_pipe_num(struct ath6kl_us
 	return pipe_num;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -139,20 +136,194 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int ep_address = 100;
+        
           int _len_ar_usb0 = 1;
           struct ath6kl_usb * ar_usb = (struct ath6kl_usb *) malloc(_len_ar_usb0*sizeof(struct ath6kl_usb));
           for(int _i0 = 0; _i0 < _len_ar_usb0; _i0++) {
-            ar_usb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ar_usb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_urb_count0 = 1;
           int * urb_count = (int *) malloc(_len_urb_count0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_urb_count0; _i0++) {
             urb_count[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = ath6kl_usb_get_logical_pipe_num(ar_usb,ep_address,urb_count);
+          printf("%d\n", benchRet); 
+          free(ar_usb);
+          free(urb_count);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int ep_address = 255;
+        
+          int _len_ar_usb0 = 65025;
+          struct ath6kl_usb * ar_usb = (struct ath6kl_usb *) malloc(_len_ar_usb0*sizeof(struct ath6kl_usb));
+          for(int _i0 = 0; _i0 < _len_ar_usb0; _i0++) {
+              ar_usb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_urb_count0 = 65025;
+          int * urb_count = (int *) malloc(_len_urb_count0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_urb_count0; _i0++) {
+            urb_count[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ath6kl_usb_get_logical_pipe_num(ar_usb,ep_address,urb_count);
+          printf("%d\n", benchRet); 
+          free(ar_usb);
+          free(urb_count);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int ep_address = 10;
+        
+          int _len_ar_usb0 = 100;
+          struct ath6kl_usb * ar_usb = (struct ath6kl_usb *) malloc(_len_ar_usb0*sizeof(struct ath6kl_usb));
+          for(int _i0 = 0; _i0 < _len_ar_usb0; _i0++) {
+              ar_usb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_urb_count0 = 100;
+          int * urb_count = (int *) malloc(_len_urb_count0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_urb_count0; _i0++) {
+            urb_count[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ath6kl_usb_get_logical_pipe_num(ar_usb,ep_address,urb_count);
+          printf("%d\n", benchRet); 
+          free(ar_usb);
+          free(urb_count);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int ep_address = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ar_usb0 = 1;
+          struct ath6kl_usb * ar_usb = (struct ath6kl_usb *) malloc(_len_ar_usb0*sizeof(struct ath6kl_usb));
+          for(int _i0 = 0; _i0 < _len_ar_usb0; _i0++) {
+              ar_usb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_urb_count0 = 1;
+          int * urb_count = (int *) malloc(_len_urb_count0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_urb_count0; _i0++) {
+            urb_count[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = ath6kl_usb_get_logical_pipe_num(ar_usb,ep_address,urb_count);
           printf("%d\n", benchRet); 
           free(ar_usb);

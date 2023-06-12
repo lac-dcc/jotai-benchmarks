@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static inline void _clr_fwstate_(struct mlme_priv *pmlmepr
 	pmlmepriv->fw_state &= ~state;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,31 +80,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int state = 100;
+        
           int _len_pmlmepriv0 = 1;
           struct mlme_priv * pmlmepriv = (struct mlme_priv *) malloc(_len_pmlmepriv0*sizeof(struct mlme_priv));
           for(int _i0 = 0; _i0 < _len_pmlmepriv0; _i0++) {
-            pmlmepriv[_i0].fw_state = ((-2 * (next_i()%2)) + 1) * next_i();
+              pmlmepriv[_i0].fw_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          _clr_fwstate_(pmlmepriv,state);
+          free(pmlmepriv);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int state = 255;
+        
+          int _len_pmlmepriv0 = 65025;
+          struct mlme_priv * pmlmepriv = (struct mlme_priv *) malloc(_len_pmlmepriv0*sizeof(struct mlme_priv));
+          for(int _i0 = 0; _i0 < _len_pmlmepriv0; _i0++) {
+              pmlmepriv[_i0].fw_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           _clr_fwstate_(pmlmepriv,state);
           free(pmlmepriv);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int state = 10;
+        
           int _len_pmlmepriv0 = 100;
           struct mlme_priv * pmlmepriv = (struct mlme_priv *) malloc(_len_pmlmepriv0*sizeof(struct mlme_priv));
           for(int _i0 = 0; _i0 < _len_pmlmepriv0; _i0++) {
-            pmlmepriv[_i0].fw_state = ((-2 * (next_i()%2)) + 1) * next_i();
+              pmlmepriv[_i0].fw_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           _clr_fwstate_(pmlmepriv,state);
           free(pmlmepriv);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pmlmepriv0 = 1;
+          struct mlme_priv * pmlmepriv = (struct mlme_priv *) malloc(_len_pmlmepriv0*sizeof(struct mlme_priv));
+          for(int _i0 = 0; _i0 < _len_pmlmepriv0; _i0++) {
+              pmlmepriv[_i0].fw_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          _clr_fwstate_(pmlmepriv,state);
+          free(pmlmepriv);
+        
+        break;
+    }
     default:
         usage();
         break;

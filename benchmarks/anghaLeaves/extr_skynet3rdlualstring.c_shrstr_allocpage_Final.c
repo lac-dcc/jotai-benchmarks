@@ -31,9 +31,12 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            linked\n\
-       2            dlinked\n\
-       3            bintree\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            linked\n\
+       4            dlinked\n\
+       5            bintree\n\
+       6            empty\n\
 \n\
 ");
 
@@ -73,12 +76,6 @@ shrstr_allocpage(struct shrmap * s, int osz, int sz, struct shrmap_slot * newpag
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,32 +88,63 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int osz = 100;
+        
           int sz = 100;
+        
           int _len_s0 = 1;
           struct shrmap * s = (struct shrmap *) malloc(_len_s0*sizeof(struct shrmap));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].roslots = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].roslots = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_s__i0__readwrite0 = 1;
           s[_i0].readwrite = (struct shrmap_slot *) malloc(_len_s__i0__readwrite0*sizeof(struct shrmap_slot));
           for(int _j0 = 0; _j0 < _len_s__i0__readwrite0; _j0++) {
-            s[_i0].readwrite->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].readwrite->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_s__i0__readonly0 = 1;
           s[_i0].readonly = (struct shrmap_slot *) malloc(_len_s__i0__readonly0*sizeof(struct shrmap_slot));
           for(int _j0 = 0; _j0 < _len_s__i0__readonly0; _j0++) {
-            s[_i0].readonly->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].readonly->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_newpage0 = 1;
           struct shrmap_slot * newpage = (struct shrmap_slot *) malloc(_len_newpage0*sizeof(struct shrmap_slot));
           for(int _i0 = 0; _i0 < _len_newpage0; _i0++) {
-            newpage[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              newpage[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = shrstr_allocpage(s,osz,sz,newpage);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_s0; _aux++) {
@@ -130,32 +158,64 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-    // linked
+
+
+    // big-arr
     case 1:
     {
-          int osz = ((-2 * (next_i()%2)) + 1) * next_i();
-          int sz = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_s0 = 1;
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int osz = 255;
+        
+          int sz = 255;
+        
+          int _len_s0 = 65025;
           struct shrmap * s = (struct shrmap *) malloc(_len_s0*sizeof(struct shrmap));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].roslots = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].roslots = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_s__i0__readwrite0 = 1;
           s[_i0].readwrite = (struct shrmap_slot *) malloc(_len_s__i0__readwrite0*sizeof(struct shrmap_slot));
           for(int _j0 = 0; _j0 < _len_s__i0__readwrite0; _j0++) {
-            s[_i0].readwrite->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].readwrite->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_s__i0__readonly0 = 1;
           s[_i0].readonly = (struct shrmap_slot *) malloc(_len_s__i0__readonly0*sizeof(struct shrmap_slot));
           for(int _j0 = 0; _j0 < _len_s__i0__readonly0; _j0++) {
-            s[_i0].readonly->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].readonly->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
-          int _len_newpage0 = 1;
+        
+          int _len_newpage0 = 65025;
           struct shrmap_slot * newpage = (struct shrmap_slot *) malloc(_len_newpage0*sizeof(struct shrmap_slot));
           for(int _i0 = 0; _i0 < _len_newpage0; _i0++) {
-            newpage[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              newpage[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = shrstr_allocpage(s,osz,sz,newpage);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_s0; _aux++) {
@@ -169,32 +229,64 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-    // dlinked
+
+
+    // big-arr-10x
     case 2:
     {
-          int osz = ((-2 * (next_i()%2)) + 1) * next_i();
-          int sz = ((-2 * (next_i()%2)) + 1) * next_i();
-          int _len_s0 = 1;
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int osz = 10;
+        
+          int sz = 10;
+        
+          int _len_s0 = 100;
           struct shrmap * s = (struct shrmap *) malloc(_len_s0*sizeof(struct shrmap));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].roslots = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].roslots = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_s__i0__readwrite0 = 1;
           s[_i0].readwrite = (struct shrmap_slot *) malloc(_len_s__i0__readwrite0*sizeof(struct shrmap_slot));
           for(int _j0 = 0; _j0 < _len_s__i0__readwrite0; _j0++) {
-            s[_i0].readwrite->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].readwrite->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_s__i0__readonly0 = 1;
           s[_i0].readonly = (struct shrmap_slot *) malloc(_len_s__i0__readonly0*sizeof(struct shrmap_slot));
           for(int _j0 = 0; _j0 < _len_s__i0__readonly0; _j0++) {
-            s[_i0].readonly->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].readonly->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
-          int _len_newpage0 = 1;
+        
+          int _len_newpage0 = 100;
           struct shrmap_slot * newpage = (struct shrmap_slot *) malloc(_len_newpage0*sizeof(struct shrmap_slot));
           for(int _i0 = 0; _i0 < _len_newpage0; _i0++) {
-            newpage[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              newpage[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = shrstr_allocpage(s,osz,sz,newpage);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_s0; _aux++) {
@@ -208,32 +300,277 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-    // bintree
+
+
+    // linked
     case 3:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int osz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int sz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int _len_s0 = 1;
           struct shrmap * s = (struct shrmap *) malloc(_len_s0*sizeof(struct shrmap));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].roslots = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].roslots = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_s__i0__readwrite0 = 1;
           s[_i0].readwrite = (struct shrmap_slot *) malloc(_len_s__i0__readwrite0*sizeof(struct shrmap_slot));
           for(int _j0 = 0; _j0 < _len_s__i0__readwrite0; _j0++) {
-            s[_i0].readwrite->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].readwrite->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_s__i0__readonly0 = 1;
           s[_i0].readonly = (struct shrmap_slot *) malloc(_len_s__i0__readonly0*sizeof(struct shrmap_slot));
           for(int _j0 = 0; _j0 < _len_s__i0__readonly0; _j0++) {
-            s[_i0].readonly->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].readonly->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_newpage0 = 1;
           struct shrmap_slot * newpage = (struct shrmap_slot *) malloc(_len_newpage0*sizeof(struct shrmap_slot));
           for(int _i0 = 0; _i0 < _len_newpage0; _i0++) {
-            newpage[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              newpage[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = shrstr_allocpage(s,osz,sz,newpage);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].readwrite);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].readonly);
+          }
+          free(s);
+          free(newpage);
+        
+        break;
+    }
+
+
+    // dlinked
+    case 4:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int osz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int sz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_s0 = 1;
+          struct shrmap * s = (struct shrmap *) malloc(_len_s0*sizeof(struct shrmap));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].roslots = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_s__i0__readwrite0 = 1;
+          s[_i0].readwrite = (struct shrmap_slot *) malloc(_len_s__i0__readwrite0*sizeof(struct shrmap_slot));
+          for(int _j0 = 0; _j0 < _len_s__i0__readwrite0; _j0++) {
+              s[_i0].readwrite->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_s__i0__readonly0 = 1;
+          s[_i0].readonly = (struct shrmap_slot *) malloc(_len_s__i0__readonly0*sizeof(struct shrmap_slot));
+          for(int _j0 = 0; _j0 < _len_s__i0__readonly0; _j0++) {
+              s[_i0].readonly->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_newpage0 = 1;
+          struct shrmap_slot * newpage = (struct shrmap_slot *) malloc(_len_newpage0*sizeof(struct shrmap_slot));
+          for(int _i0 = 0; _i0 < _len_newpage0; _i0++) {
+              newpage[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = shrstr_allocpage(s,osz,sz,newpage);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].readwrite);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].readonly);
+          }
+          free(s);
+          free(newpage);
+        
+        break;
+    }
+
+
+    // bintree
+    case 5:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int osz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int sz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_s0 = 1;
+          struct shrmap * s = (struct shrmap *) malloc(_len_s0*sizeof(struct shrmap));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].roslots = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_s__i0__readwrite0 = 1;
+          s[_i0].readwrite = (struct shrmap_slot *) malloc(_len_s__i0__readwrite0*sizeof(struct shrmap_slot));
+          for(int _j0 = 0; _j0 < _len_s__i0__readwrite0; _j0++) {
+              s[_i0].readwrite->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_s__i0__readonly0 = 1;
+          s[_i0].readonly = (struct shrmap_slot *) malloc(_len_s__i0__readonly0*sizeof(struct shrmap_slot));
+          for(int _j0 = 0; _j0 < _len_s__i0__readonly0; _j0++) {
+              s[_i0].readonly->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_newpage0 = 1;
+          struct shrmap_slot * newpage = (struct shrmap_slot *) malloc(_len_newpage0*sizeof(struct shrmap_slot));
+          for(int _i0 = 0; _i0 < _len_newpage0; _i0++) {
+              newpage[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = shrstr_allocpage(s,osz,sz,newpage);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].readwrite);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].readonly);
+          }
+          free(s);
+          free(newpage);
+        
+        break;
+    }
+
+
+    // empty
+    case 6:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int osz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int sz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_s0 = 1;
+          struct shrmap * s = (struct shrmap *) malloc(_len_s0*sizeof(struct shrmap));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].roslots = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_s__i0__readwrite0 = 1;
+          s[_i0].readwrite = (struct shrmap_slot *) malloc(_len_s__i0__readwrite0*sizeof(struct shrmap_slot));
+          for(int _j0 = 0; _j0 < _len_s__i0__readwrite0; _j0++) {
+              s[_i0].readwrite->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_s__i0__readonly0 = 1;
+          s[_i0].readonly = (struct shrmap_slot *) malloc(_len_s__i0__readonly0*sizeof(struct shrmap_slot));
+          for(int _j0 = 0; _j0 < _len_s__i0__readonly0; _j0++) {
+              s[_i0].readonly->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_newpage0 = 1;
+          struct shrmap_slot * newpage = (struct shrmap_slot *) malloc(_len_newpage0*sizeof(struct shrmap_slot));
+          for(int _i0 = 0; _i0 < _len_newpage0; _i0++) {
+              newpage[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = shrstr_allocpage(s,osz,sz,newpage);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_s0; _aux++) {

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static inline u16 atmel_hi(struct atmel_private *priv, u16
 	return priv->host_info_base + offset;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,11 +80,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long offset = 100;
+        
           int _len_priv0 = 1;
           struct atmel_private * priv = (struct atmel_private *) malloc(_len_priv0*sizeof(struct atmel_private));
           for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
-            priv[_i0].host_info_base = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].host_info_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          long benchRet = atmel_hi(priv,offset);
+          printf("%ld\n", benchRet); 
+          free(priv);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long offset = 255;
+        
+          int _len_priv0 = 65025;
+          struct atmel_private * priv = (struct atmel_private *) malloc(_len_priv0*sizeof(struct atmel_private));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].host_info_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           long benchRet = atmel_hi(priv,offset);
           printf("%ld\n", benchRet); 
           free(priv);
@@ -96,21 +113,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long offset = 10;
+        
           int _len_priv0 = 100;
           struct atmel_private * priv = (struct atmel_private *) malloc(_len_priv0*sizeof(struct atmel_private));
           for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
-            priv[_i0].host_info_base = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].host_info_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = atmel_hi(priv,offset);
           printf("%ld\n", benchRet); 
           free(priv);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_priv0 = 1;
+          struct atmel_private * priv = (struct atmel_private *) malloc(_len_priv0*sizeof(struct atmel_private));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].host_info_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = atmel_hi(priv,offset);
+          printf("%ld\n", benchRet); 
+          free(priv);
+        
+        break;
+    }
     default:
         usage();
         break;

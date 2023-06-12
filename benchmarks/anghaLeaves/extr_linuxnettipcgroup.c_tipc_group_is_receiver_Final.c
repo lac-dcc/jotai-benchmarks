@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static bool tipc_group_is_receiver(struct tipc_member *m)
 	return m && m->state != MBR_JOINING && m->state != MBR_LEAVING;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_m0 = 1;
+          int _len_m0 = 65025;
           struct tipc_member * m = (struct tipc_member *) malloc(_len_m0*sizeof(struct tipc_member));
           for(int _i0 = 0; _i0 < _len_m0; _i0++) {
-            m[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+              m[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = tipc_group_is_receiver(m);
           printf("%d\n", benchRet); 
           free(m);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_m0 = 100;
           struct tipc_member * m = (struct tipc_member *) malloc(_len_m0*sizeof(struct tipc_member));
           for(int _i0 = 0; _i0 < _len_m0; _i0++) {
-            m[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+              m[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = tipc_group_is_receiver(m);
           printf("%d\n", benchRet); 
           free(m);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_m0 = 1;
+          struct tipc_member * m = (struct tipc_member *) malloc(_len_m0*sizeof(struct tipc_member));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = tipc_group_is_receiver(m);
+          printf("%d\n", benchRet); 
+          free(m);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ bool si476x_core_has_diversity(struct si476x_core *core)
 	return core->chip_id == SI476X_CHIP_SI4764;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,28 +75,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_core0 = 1;
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_core0 = 65025;
           struct si476x_core * core = (struct si476x_core *) malloc(_len_core0*sizeof(struct si476x_core));
           for(int _i0 = 0; _i0 < _len_core0; _i0++) {
-            core[_i0].chip_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              core[_i0].chip_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = si476x_core_has_diversity(core);
           printf("%d\n", benchRet); 
           free(core);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_core0 = 100;
           struct si476x_core * core = (struct si476x_core *) malloc(_len_core0*sizeof(struct si476x_core));
           for(int _i0 = 0; _i0 < _len_core0; _i0++) {
-            core[_i0].chip_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              core[_i0].chip_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = si476x_core_has_diversity(core);
+          printf("%d\n", benchRet); 
+          free(core);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_core0 = 1;
+          struct si476x_core * core = (struct si476x_core *) malloc(_len_core0*sizeof(struct si476x_core));
+          for(int _i0 = 0; _i0 < _len_core0; _i0++) {
+              core[_i0].chip_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = si476x_core_has_diversity(core);
           printf("%d\n", benchRet); 
           free(core);

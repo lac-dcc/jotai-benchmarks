@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -94,12 +96,6 @@ __attribute__((used)) static int ab8500_charger_get_usb_cur(struct ab8500_charge
 	return ret;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -112,16 +108,131 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 39
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          int _len_di0 = 65025;
+          struct ab8500_charger * di = (struct ab8500_charger *) malloc(_len_di0*sizeof(struct ab8500_charger));
+          for(int _i0 = 0; _i0 < _len_di0; _i0++) {
+              di[_i0].max_usb_in_curr.usb_type_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          di[_i0].max_usb_in_curr.set_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          di[_i0].usb_state.usb_current = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = ab8500_charger_get_usb_cur(di);
+          printf("%d\n", benchRet); 
+          free(di);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 39
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          int _len_di0 = 100;
+          struct ab8500_charger * di = (struct ab8500_charger *) malloc(_len_di0*sizeof(struct ab8500_charger));
+          for(int _i0 = 0; _i0 < _len_di0; _i0++) {
+              di[_i0].max_usb_in_curr.usb_type_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          di[_i0].max_usb_in_curr.set_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          di[_i0].usb_state.usb_current = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = ab8500_charger_get_usb_cur(di);
+          printf("%d\n", benchRet); 
+          free(di);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 39
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
           int _len_di0 = 1;
           struct ab8500_charger * di = (struct ab8500_charger *) malloc(_len_di0*sizeof(struct ab8500_charger));
           for(int _i0 = 0; _i0 < _len_di0; _i0++) {
-            di[_i0].max_usb_in_curr.usb_type_max = ((-2 * (next_i()%2)) + 1) * next_i();
-        di[_i0].max_usb_in_curr.set_max = ((-2 * (next_i()%2)) + 1) * next_i();
-        di[_i0].usb_state.usb_current = ((-2 * (next_i()%2)) + 1) * next_i();
+              di[_i0].max_usb_in_curr.usb_type_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          di[_i0].max_usb_in_curr.set_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          di[_i0].usb_state.usb_current = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = ab8500_charger_get_usb_cur(di);
           printf("%d\n", benchRet); 
           free(di);

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -84,12 +85,6 @@ __attribute__((used)) static bool nl80211_can_set_dev_channel(struct wireless_de
 		wdev->iftype == NL80211_IFTYPE_P2P_GO;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,28 +97,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_wdev0 = 1;
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_wdev0 = 65025;
           struct wireless_dev * wdev = (struct wireless_dev *) malloc(_len_wdev0*sizeof(struct wireless_dev));
           for(int _i0 = 0; _i0 < _len_wdev0; _i0++) {
-            wdev[_i0].iftype = ((-2 * (next_i()%2)) + 1) * next_i();
+              wdev[_i0].iftype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = nl80211_can_set_dev_channel(wdev);
           printf("%d\n", benchRet); 
           free(wdev);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int _len_wdev0 = 100;
           struct wireless_dev * wdev = (struct wireless_dev *) malloc(_len_wdev0*sizeof(struct wireless_dev));
           for(int _i0 = 0; _i0 < _len_wdev0; _i0++) {
-            wdev[_i0].iftype = ((-2 * (next_i()%2)) + 1) * next_i();
+              wdev[_i0].iftype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = nl80211_can_set_dev_channel(wdev);
+          printf("%d\n", benchRet); 
+          free(wdev);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_wdev0 = 1;
+          struct wireless_dev * wdev = (struct wireless_dev *) malloc(_len_wdev0*sizeof(struct wireless_dev));
+          for(int _i0 = 0; _i0 < _len_wdev0; _i0++) {
+              wdev[_i0].iftype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = nl80211_can_set_dev_channel(wdev);
           printf("%d\n", benchRet); 
           free(wdev);

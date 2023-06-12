@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ __attribute__((used)) static void julian_to_date(long jd, int *y, int *m, int *d
     *y = 100 * (n - 49) + i + L;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,21 +89,25 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long jd = 100;
+        
           int _len_y0 = 1;
           int * y = (int *) malloc(_len_y0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_y0; _i0++) {
             y[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_m0 = 1;
           int * m = (int *) malloc(_len_m0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_m0; _i0++) {
             m[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_d0 = 1;
           int * d = (int *) malloc(_len_d0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_d0; _i0++) {
             d[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           julian_to_date(jd,y,m,d);
           free(y);
           free(m);
@@ -114,7 +115,96 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long jd = 255;
+        
+          int _len_y0 = 65025;
+          int * y = (int *) malloc(_len_y0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_y0; _i0++) {
+            y[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_m0 = 65025;
+          int * m = (int *) malloc(_len_m0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+            m[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_d0 = 65025;
+          int * d = (int *) malloc(_len_d0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_d0; _i0++) {
+            d[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          julian_to_date(jd,y,m,d);
+          free(y);
+          free(m);
+          free(d);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long jd = 10;
+        
+          int _len_y0 = 100;
+          int * y = (int *) malloc(_len_y0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_y0; _i0++) {
+            y[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_m0 = 100;
+          int * m = (int *) malloc(_len_m0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+            m[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_d0 = 100;
+          int * d = (int *) malloc(_len_d0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_d0; _i0++) {
+            d[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          julian_to_date(jd,y,m,d);
+          free(y);
+          free(m);
+          free(d);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long jd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_y0 = 1;
+          int * y = (int *) malloc(_len_y0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_y0; _i0++) {
+            y[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_m0 = 1;
+          int * m = (int *) malloc(_len_m0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+            m[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_d0 = 1;
+          int * d = (int *) malloc(_len_d0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_d0; _i0++) {
+            d[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          julian_to_date(jd,y,m,d);
+          free(y);
+          free(m);
+          free(d);
+        
+        break;
+    }
     default:
         usage();
         break;

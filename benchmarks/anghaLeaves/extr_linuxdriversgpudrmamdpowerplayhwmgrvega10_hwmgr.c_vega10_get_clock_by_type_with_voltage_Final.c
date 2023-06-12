@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -115,12 +117,6 @@ __attribute__((used)) static int vega10_get_clock_by_type_with_voltage(struct pp
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -133,26 +129,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           enum amd_pp_clock_type type = 0;
-          int _len_hwmgr0 = 1;
+        
+          int _len_hwmgr0 = 65025;
           struct pp_hwmgr * hwmgr = (struct pp_hwmgr *) malloc(_len_hwmgr0*sizeof(struct pp_hwmgr));
           for(int _i0 = 0; _i0 < _len_hwmgr0; _i0++) {
-            hwmgr[_i0].pptable = ((-2 * (next_i()%2)) + 1) * next_i();
+              hwmgr[_i0].pptable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_clocks0 = 1;
+        
+          int _len_clocks0 = 65025;
           struct pp_clock_levels_with_voltage * clocks = (struct pp_clock_levels_with_voltage *) malloc(_len_clocks0*sizeof(struct pp_clock_levels_with_voltage));
           for(int _i0 = 0; _i0 < _len_clocks0; _i0++) {
-            clocks[_i0].num_levels = ((-2 * (next_i()%2)) + 1) * next_i();
+              clocks[_i0].num_levels = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_clocks__i0__data0 = 1;
           clocks[_i0].data = (struct TYPE_5__ *) malloc(_len_clocks__i0__data0*sizeof(struct TYPE_5__));
           for(int _j0 = 0; _j0 < _len_clocks__i0__data0; _j0++) {
-            clocks[_i0].data->clocks_in_khz = ((-2 * (next_i()%2)) + 1) * next_i();
-        clocks[_i0].data->voltage_in_mv = ((-2 * (next_i()%2)) + 1) * next_i();
+              clocks[_i0].data->clocks_in_khz = ((-2 * (next_i()%2)) + 1) * next_i();
+          clocks[_i0].data->voltage_in_mv = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = vega10_get_clock_by_type_with_voltage(hwmgr,type,clocks);
+          printf("%d\n", benchRet); 
+          free(hwmgr);
+          for(int _aux = 0; _aux < _len_clocks0; _aux++) {
+          free(clocks[_aux].data);
+          }
+          free(clocks);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          enum amd_pp_clock_type type = 0;
+        
+          int _len_hwmgr0 = 100;
+          struct pp_hwmgr * hwmgr = (struct pp_hwmgr *) malloc(_len_hwmgr0*sizeof(struct pp_hwmgr));
+          for(int _i0 = 0; _i0 < _len_hwmgr0; _i0++) {
+              hwmgr[_i0].pptable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_clocks0 = 100;
+          struct pp_clock_levels_with_voltage * clocks = (struct pp_clock_levels_with_voltage *) malloc(_len_clocks0*sizeof(struct pp_clock_levels_with_voltage));
+          for(int _i0 = 0; _i0 < _len_clocks0; _i0++) {
+              clocks[_i0].num_levels = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_clocks__i0__data0 = 1;
+          clocks[_i0].data = (struct TYPE_5__ *) malloc(_len_clocks__i0__data0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_clocks__i0__data0; _j0++) {
+              clocks[_i0].data->clocks_in_khz = ((-2 * (next_i()%2)) + 1) * next_i();
+          clocks[_i0].data->voltage_in_mv = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = vega10_get_clock_by_type_with_voltage(hwmgr,type,clocks);
+          printf("%d\n", benchRet); 
+          free(hwmgr);
+          for(int _aux = 0; _aux < _len_clocks0; _aux++) {
+          free(clocks[_aux].data);
+          }
+          free(clocks);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          enum amd_pp_clock_type type = 0;
+        
+          int _len_hwmgr0 = 1;
+          struct pp_hwmgr * hwmgr = (struct pp_hwmgr *) malloc(_len_hwmgr0*sizeof(struct pp_hwmgr));
+          for(int _i0 = 0; _i0 < _len_hwmgr0; _i0++) {
+              hwmgr[_i0].pptable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_clocks0 = 1;
+          struct pp_clock_levels_with_voltage * clocks = (struct pp_clock_levels_with_voltage *) malloc(_len_clocks0*sizeof(struct pp_clock_levels_with_voltage));
+          for(int _i0 = 0; _i0 < _len_clocks0; _i0++) {
+              clocks[_i0].num_levels = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_clocks__i0__data0 = 1;
+          clocks[_i0].data = (struct TYPE_5__ *) malloc(_len_clocks__i0__data0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_clocks__i0__data0; _j0++) {
+              clocks[_i0].data->clocks_in_khz = ((-2 * (next_i()%2)) + 1) * next_i();
+          clocks[_i0].data->voltage_in_mv = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = vega10_get_clock_by_type_with_voltage(hwmgr,type,clocks);
           printf("%d\n", benchRet); 
           free(hwmgr);

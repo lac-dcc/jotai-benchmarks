@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -88,12 +88,6 @@ __attribute__((used)) static inline size_t get_audio_bytes_per_channel(enum audi
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,16 +100,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum audio_format format = 0;
+        
           unsigned long benchRet = get_audio_bytes_per_channel(format);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

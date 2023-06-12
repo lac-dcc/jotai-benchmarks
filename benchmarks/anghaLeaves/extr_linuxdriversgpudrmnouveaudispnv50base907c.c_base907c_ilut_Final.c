@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ base907c_ilut(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
 	asyw->xlut.i.enable = 2;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,20 +81,149 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_wndw0 = 65025;
+          struct nv50_wndw * wndw = (struct nv50_wndw *) malloc(_len_wndw0*sizeof(struct nv50_wndw));
+          for(int _i0 = 0; _i0 < _len_wndw0; _i0++) {
+              wndw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_asyw0 = 65025;
+          struct nv50_wndw_atom * asyw = (struct nv50_wndw_atom *) malloc(_len_asyw0*sizeof(struct nv50_wndw_atom));
+          for(int _i0 = 0; _i0 < _len_asyw0; _i0++) {
+              asyw[_i0].xlut.i.mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          asyw[_i0].xlut.i.enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          base907c_ilut(wndw,asyw);
+          free(wndw);
+          free(asyw);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_wndw0 = 100;
+          struct nv50_wndw * wndw = (struct nv50_wndw *) malloc(_len_wndw0*sizeof(struct nv50_wndw));
+          for(int _i0 = 0; _i0 < _len_wndw0; _i0++) {
+              wndw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_asyw0 = 100;
+          struct nv50_wndw_atom * asyw = (struct nv50_wndw_atom *) malloc(_len_asyw0*sizeof(struct nv50_wndw_atom));
+          for(int _i0 = 0; _i0 < _len_asyw0; _i0++) {
+              asyw[_i0].xlut.i.mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          asyw[_i0].xlut.i.enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          base907c_ilut(wndw,asyw);
+          free(wndw);
+          free(asyw);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_wndw0 = 1;
           struct nv50_wndw * wndw = (struct nv50_wndw *) malloc(_len_wndw0*sizeof(struct nv50_wndw));
           for(int _i0 = 0; _i0 < _len_wndw0; _i0++) {
-            wndw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              wndw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_asyw0 = 1;
           struct nv50_wndw_atom * asyw = (struct nv50_wndw_atom *) malloc(_len_asyw0*sizeof(struct nv50_wndw_atom));
           for(int _i0 = 0; _i0 < _len_asyw0; _i0++) {
-            asyw[_i0].xlut.i.mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        asyw[_i0].xlut.i.enable = ((-2 * (next_i()%2)) + 1) * next_i();
+              asyw[_i0].xlut.i.mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          asyw[_i0].xlut.i.enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           base907c_ilut(wndw,asyw);
           free(wndw);
           free(asyw);

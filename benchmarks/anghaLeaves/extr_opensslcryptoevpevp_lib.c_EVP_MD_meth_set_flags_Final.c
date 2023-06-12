@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ int EVP_MD_meth_set_flags(EVP_MD *md, unsigned long flags)
     return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,11 +82,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long flags = 100;
+        
           int _len_md0 = 1;
           struct TYPE_3__ * md = (struct TYPE_3__ *) malloc(_len_md0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_md0; _i0++) {
-            md[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              md[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = EVP_MD_meth_set_flags(md,flags);
+          printf("%d\n", benchRet); 
+          free(md);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned long flags = 255;
+        
+          int _len_md0 = 65025;
+          struct TYPE_3__ * md = (struct TYPE_3__ *) malloc(_len_md0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_md0; _i0++) {
+              md[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = EVP_MD_meth_set_flags(md,flags);
           printf("%d\n", benchRet); 
           free(md);
@@ -98,21 +115,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned long flags = 10;
+        
           int _len_md0 = 100;
           struct TYPE_3__ * md = (struct TYPE_3__ *) malloc(_len_md0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_md0; _i0++) {
-            md[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              md[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = EVP_MD_meth_set_flags(md,flags);
           printf("%d\n", benchRet); 
           free(md);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_md0 = 1;
+          struct TYPE_3__ * md = (struct TYPE_3__ *) malloc(_len_md0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_md0; _i0++) {
+              md[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = EVP_MD_meth_set_flags(md,flags);
+          printf("%d\n", benchRet); 
+          free(md);
+        
+        break;
+    }
     default:
         usage();
         break;

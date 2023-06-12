@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ __attribute__((used)) static void ffshlim(FFFILE *f, ptrdiff_t lim)
         f->shend = f->rend;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,22 +88,90 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long lim = 100;
+        
           int _len_f0 = 1;
           struct TYPE_3__ * f = (struct TYPE_3__ *) malloc(_len_f0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_f0; _i0++) {
-            f[_i0].rend = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].shend = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].rpos = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].buf = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].shcnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].shlim = ((-2 * (next_i()%2)) + 1) * next_i();
+              f[_i0].rend = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].shend = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].rpos = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].buf = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].shcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].shlim = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ffshlim(f,lim);
           free(f);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long lim = 255;
+        
+          int _len_f0 = 65025;
+          struct TYPE_3__ * f = (struct TYPE_3__ *) malloc(_len_f0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_f0; _i0++) {
+              f[_i0].rend = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].shend = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].rpos = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].buf = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].shcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].shlim = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ffshlim(f,lim);
+          free(f);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long lim = 10;
+        
+          int _len_f0 = 100;
+          struct TYPE_3__ * f = (struct TYPE_3__ *) malloc(_len_f0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_f0; _i0++) {
+              f[_i0].rend = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].shend = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].rpos = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].buf = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].shcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].shlim = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ffshlim(f,lim);
+          free(f);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long lim = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_f0 = 1;
+          struct TYPE_3__ * f = (struct TYPE_3__ *) malloc(_len_f0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_f0; _i0++) {
+              f[_i0].rend = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].shend = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].rpos = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].buf = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].shcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].shlim = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ffshlim(f,lim);
+          free(f);
+        
+        break;
+    }
     default:
         usage();
         break;

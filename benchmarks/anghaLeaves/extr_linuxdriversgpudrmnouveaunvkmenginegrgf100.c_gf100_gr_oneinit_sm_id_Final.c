@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ gf100_gr_oneinit_sm_id(struct gf100_gr *gr)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,27 +86,30 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_gr0 = 1;
+          int _len_gr0 = 65025;
           struct gf100_gr * gr = (struct gf100_gr *) malloc(_len_gr0*sizeof(struct gf100_gr));
           for(int _i0 = 0; _i0 < _len_gr0; _i0++) {
-            gr[_i0].tpc_max = ((-2 * (next_i()%2)) + 1) * next_i();
-        gr[_i0].gpc_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+              gr[_i0].tpc_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          gr[_i0].gpc_nr = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_gr__i0__tpc_nr0 = 1;
           gr[_i0].tpc_nr = (int *) malloc(_len_gr__i0__tpc_nr0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_gr__i0__tpc_nr0; _j0++) {
             gr[_i0].tpc_nr[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        gr[_i0].sm_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+          gr[_i0].sm_nr = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_gr__i0__sm0 = 1;
           gr[_i0].sm = (struct TYPE_2__ *) malloc(_len_gr__i0__sm0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_gr__i0__sm0; _j0++) {
-            gr[_i0].sm->gpc = ((-2 * (next_i()%2)) + 1) * next_i();
-        gr[_i0].sm->tpc = ((-2 * (next_i()%2)) + 1) * next_i();
+              gr[_i0].sm->gpc = ((-2 * (next_i()%2)) + 1) * next_i();
+          gr[_i0].sm->tpc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           gf100_gr_oneinit_sm_id(gr);
           for(int _aux = 0; _aux < _len_gr0; _aux++) {
           free(gr[_aux].tpc_nr);
@@ -122,7 +121,76 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_gr0 = 100;
+          struct gf100_gr * gr = (struct gf100_gr *) malloc(_len_gr0*sizeof(struct gf100_gr));
+          for(int _i0 = 0; _i0 < _len_gr0; _i0++) {
+              gr[_i0].tpc_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          gr[_i0].gpc_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_gr__i0__tpc_nr0 = 1;
+          gr[_i0].tpc_nr = (int *) malloc(_len_gr__i0__tpc_nr0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_gr__i0__tpc_nr0; _j0++) {
+            gr[_i0].tpc_nr[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          gr[_i0].sm_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_gr__i0__sm0 = 1;
+          gr[_i0].sm = (struct TYPE_2__ *) malloc(_len_gr__i0__sm0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_gr__i0__sm0; _j0++) {
+              gr[_i0].sm->gpc = ((-2 * (next_i()%2)) + 1) * next_i();
+          gr[_i0].sm->tpc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          gf100_gr_oneinit_sm_id(gr);
+          for(int _aux = 0; _aux < _len_gr0; _aux++) {
+          free(gr[_aux].tpc_nr);
+          }
+          for(int _aux = 0; _aux < _len_gr0; _aux++) {
+          free(gr[_aux].sm);
+          }
+          free(gr);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_gr0 = 1;
+          struct gf100_gr * gr = (struct gf100_gr *) malloc(_len_gr0*sizeof(struct gf100_gr));
+          for(int _i0 = 0; _i0 < _len_gr0; _i0++) {
+              gr[_i0].tpc_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          gr[_i0].gpc_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_gr__i0__tpc_nr0 = 1;
+          gr[_i0].tpc_nr = (int *) malloc(_len_gr__i0__tpc_nr0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_gr__i0__tpc_nr0; _j0++) {
+            gr[_i0].tpc_nr[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          gr[_i0].sm_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_gr__i0__sm0 = 1;
+          gr[_i0].sm = (struct TYPE_2__ *) malloc(_len_gr__i0__sm0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_gr__i0__sm0; _j0++) {
+              gr[_i0].sm->gpc = ((-2 * (next_i()%2)) + 1) * next_i();
+          gr[_i0].sm->tpc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          gf100_gr_oneinit_sm_id(gr);
+          for(int _aux = 0; _aux < _len_gr0; _aux++) {
+          free(gr[_aux].tpc_nr);
+          }
+          for(int _aux = 0; _aux < _len_gr0; _aux++) {
+          free(gr[_aux].sm);
+          }
+          free(gr);
+        
+        break;
+    }
     default:
         usage();
         break;

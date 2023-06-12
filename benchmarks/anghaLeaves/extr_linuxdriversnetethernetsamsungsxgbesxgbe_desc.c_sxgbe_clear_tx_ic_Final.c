@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static void sxgbe_clear_tx_ic(struct sxgbe_tx_norm_desc *p
 	p->tdes23.tx_rd_des23.int_on_com = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,14 +78,18 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_p0 = 1;
+          int _len_p0 = 65025;
           struct sxgbe_tx_norm_desc * p = (struct sxgbe_tx_norm_desc *) malloc(_len_p0*sizeof(struct sxgbe_tx_norm_desc));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].tdes23.tx_rd_des23.int_on_com = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].tdes23.tx_rd_des23.int_on_com = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           sxgbe_clear_tx_ic(p);
           free(p);
         
@@ -102,14 +101,34 @@ int main(int argc, char *argv[]) {
           int _len_p0 = 100;
           struct sxgbe_tx_norm_desc * p = (struct sxgbe_tx_norm_desc *) malloc(_len_p0*sizeof(struct sxgbe_tx_norm_desc));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].tdes23.tx_rd_des23.int_on_com = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].tdes23.tx_rd_des23.int_on_com = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           sxgbe_clear_tx_ic(p);
           free(p);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_p0 = 1;
+          struct sxgbe_tx_norm_desc * p = (struct sxgbe_tx_norm_desc *) malloc(_len_p0*sizeof(struct sxgbe_tx_norm_desc));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].tdes23.tx_rd_des23.int_on_com = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          sxgbe_clear_tx_ic(p);
+          free(p);
+        
+        break;
+    }
     default:
         usage();
         break;

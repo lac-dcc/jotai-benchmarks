@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ bool zcache_mag_has_space(struct zcc_magazine *mag)
 	return (mag->zcc_magazine_index < mag->zcc_magazine_capacity);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,15 +74,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_mag0 = 65025;
+          struct zcc_magazine * mag = (struct zcc_magazine *) malloc(_len_mag0*sizeof(struct zcc_magazine));
+          for(int _i0 = 0; _i0 < _len_mag0; _i0++) {
+              mag[_i0].zcc_magazine_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          mag[_i0].zcc_magazine_capacity = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = zcache_mag_has_space(mag);
+          printf("%d\n", benchRet); 
+          free(mag);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_mag0 = 100;
+          struct zcc_magazine * mag = (struct zcc_magazine *) malloc(_len_mag0*sizeof(struct zcc_magazine));
+          for(int _i0 = 0; _i0 < _len_mag0; _i0++) {
+              mag[_i0].zcc_magazine_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          mag[_i0].zcc_magazine_capacity = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = zcache_mag_has_space(mag);
+          printf("%d\n", benchRet); 
+          free(mag);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_mag0 = 1;
           struct zcc_magazine * mag = (struct zcc_magazine *) malloc(_len_mag0*sizeof(struct zcc_magazine));
           for(int _i0 = 0; _i0 < _len_mag0; _i0++) {
-            mag[_i0].zcc_magazine_index = ((-2 * (next_i()%2)) + 1) * next_i();
-        mag[_i0].zcc_magazine_capacity = ((-2 * (next_i()%2)) + 1) * next_i();
+              mag[_i0].zcc_magazine_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          mag[_i0].zcc_magazine_capacity = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = zcache_mag_has_space(mag);
           printf("%d\n", benchRet); 
           free(mag);

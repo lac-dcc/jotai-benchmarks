@@ -81,12 +81,6 @@ __attribute__((used)) static u16 misr(u16 cur_value, u8 new_value)
 	return (u16)y;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,31 +93,108 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 54
+          // dynamic_instructions_O0 : 54
+          // ------------------------------- 
+          // static_instructions_O1 : 31
+          // dynamic_instructions_O1 : 31
+          // ------------------------------- 
+          // static_instructions_O2 : 31
+          // dynamic_instructions_O2 : 31
+          // ------------------------------- 
+          // static_instructions_O3 : 31
+          // dynamic_instructions_O3 : 31
+          // ------------------------------- 
+          // static_instructions_Ofast : 31
+          // dynamic_instructions_Ofast : 31
+          // ------------------------------- 
+          // static_instructions_Os : 31
+          // dynamic_instructions_Os : 31
+          // ------------------------------- 
+          // static_instructions_Oz : 31
+          // dynamic_instructions_Oz : 31
+          // ------------------------------- 
+
           int cur_value = 100;
+        
           int new_value = 100;
+        
           int benchRet = misr(cur_value,new_value);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 54
+          // dynamic_instructions_O0 : 54
+          // ------------------------------- 
+          // static_instructions_O1 : 31
+          // dynamic_instructions_O1 : 31
+          // ------------------------------- 
+          // static_instructions_O2 : 31
+          // dynamic_instructions_O2 : 31
+          // ------------------------------- 
+          // static_instructions_O3 : 31
+          // dynamic_instructions_O3 : 31
+          // ------------------------------- 
+          // static_instructions_Ofast : 31
+          // dynamic_instructions_Ofast : 31
+          // ------------------------------- 
+          // static_instructions_Os : 31
+          // dynamic_instructions_Os : 31
+          // ------------------------------- 
+          // static_instructions_Oz : 31
+          // dynamic_instructions_Oz : 31
+          // ------------------------------- 
+
           int cur_value = 255;
+        
           int new_value = 255;
+        
           int benchRet = misr(cur_value,new_value);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 54
+          // dynamic_instructions_O0 : 54
+          // ------------------------------- 
+          // static_instructions_O1 : 31
+          // dynamic_instructions_O1 : 31
+          // ------------------------------- 
+          // static_instructions_O2 : 31
+          // dynamic_instructions_O2 : 31
+          // ------------------------------- 
+          // static_instructions_O3 : 31
+          // dynamic_instructions_O3 : 31
+          // ------------------------------- 
+          // static_instructions_Ofast : 31
+          // dynamic_instructions_Ofast : 31
+          // ------------------------------- 
+          // static_instructions_Os : 31
+          // dynamic_instructions_Os : 31
+          // ------------------------------- 
+          // static_instructions_Oz : 31
+          // dynamic_instructions_Oz : 31
+          // ------------------------------- 
+
           int cur_value = 10;
+        
           int new_value = 10;
+        
           int benchRet = misr(cur_value,new_value);
           printf("%d\n", benchRet); 
         

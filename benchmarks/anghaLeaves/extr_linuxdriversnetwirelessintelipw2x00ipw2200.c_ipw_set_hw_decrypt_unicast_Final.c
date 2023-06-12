@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -89,12 +92,6 @@ __attribute__((used)) static void ipw_set_hw_decrypt_unicast(struct ipw_priv *pr
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,21 +104,205 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int level = 100;
+        
           int _len_priv0 = 1;
           struct ipw_priv * priv = (struct ipw_priv *) malloc(_len_priv0*sizeof(struct ipw_priv));
           for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
-            priv[_i0].sys_config.disable_unicast_decryption = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].sys_config.disable_unicast_decryption = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int _len_priv__i0__ieee0 = 1;
           priv[_i0].ieee = (struct TYPE_4__ *) malloc(_len_priv__i0__ieee0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_priv__i0__ieee0; _j0++) {
-            priv[_i0].ieee->host_decrypt = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].ieee->host_encrypt = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].ieee->host_decrypt = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].ieee->host_encrypt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          ipw_set_hw_decrypt_unicast(priv,level);
+          for(int _aux = 0; _aux < _len_priv0; _aux++) {
+          free(priv[_aux].ieee);
+          }
+          free(priv);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int level = 255;
+        
+          int _len_priv0 = 65025;
+          struct ipw_priv * priv = (struct ipw_priv *) malloc(_len_priv0*sizeof(struct ipw_priv));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].sys_config.disable_unicast_decryption = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_priv__i0__ieee0 = 1;
+          priv[_i0].ieee = (struct TYPE_4__ *) malloc(_len_priv__i0__ieee0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_priv__i0__ieee0; _j0++) {
+              priv[_i0].ieee->host_decrypt = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].ieee->host_encrypt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          ipw_set_hw_decrypt_unicast(priv,level);
+          for(int _aux = 0; _aux < _len_priv0; _aux++) {
+          free(priv[_aux].ieee);
+          }
+          free(priv);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int level = 10;
+        
+          int _len_priv0 = 100;
+          struct ipw_priv * priv = (struct ipw_priv *) malloc(_len_priv0*sizeof(struct ipw_priv));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].sys_config.disable_unicast_decryption = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_priv__i0__ieee0 = 1;
+          priv[_i0].ieee = (struct TYPE_4__ *) malloc(_len_priv__i0__ieee0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_priv__i0__ieee0; _j0++) {
+              priv[_i0].ieee->host_decrypt = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].ieee->host_encrypt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          ipw_set_hw_decrypt_unicast(priv,level);
+          for(int _aux = 0; _aux < _len_priv0; _aux++) {
+          free(priv[_aux].ieee);
+          }
+          free(priv);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_priv0 = 1;
+          struct ipw_priv * priv = (struct ipw_priv *) malloc(_len_priv0*sizeof(struct ipw_priv));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].sys_config.disable_unicast_decryption = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_priv__i0__ieee0 = 1;
+          priv[_i0].ieee = (struct TYPE_4__ *) malloc(_len_priv__i0__ieee0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_priv__i0__ieee0; _j0++) {
+              priv[_i0].ieee->host_decrypt = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].ieee->host_encrypt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           ipw_set_hw_decrypt_unicast(priv,level);
           for(int _aux = 0; _aux < _len_priv0; _aux++) {
           free(priv[_aux].ieee);

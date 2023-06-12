@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -146,12 +148,6 @@ __attribute__((used)) static PP_StateClassificationFlags make_classification_fla
 	return result;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -164,32 +160,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 69
+          // dynamic_instructions_O0 : 69
+          // ------------------------------- 
+          // static_instructions_O1 : 69
+          // dynamic_instructions_O1 : 69
+          // ------------------------------- 
+          // static_instructions_O2 : 69
+          // dynamic_instructions_O2 : 69
+          // ------------------------------- 
+          // static_instructions_O3 : 69
+          // dynamic_instructions_O3 : 69
+          // ------------------------------- 
+          // static_instructions_Ofast : 69
+          // dynamic_instructions_Ofast : 69
+          // ------------------------------- 
+          // static_instructions_Os : 69
+          // dynamic_instructions_Os : 69
+          // ------------------------------- 
+          // static_instructions_Oz : 69
+          // dynamic_instructions_Oz : 69
+          // ------------------------------- 
+
           int classification = 100;
+        
           int classification2 = 100;
+        
           int _len_hwmgr0 = 1;
           struct pp_hwmgr * hwmgr = (struct pp_hwmgr *) malloc(_len_hwmgr0*sizeof(struct pp_hwmgr));
           for(int _i0 = 0; _i0 < _len_hwmgr0; _i0++) {
-            hwmgr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              hwmgr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = make_classification_flags(hwmgr,classification,classification2);
           printf("%d\n", benchRet); 
           free(hwmgr);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 69
+          // dynamic_instructions_O0 : 69
+          // ------------------------------- 
+          // static_instructions_O1 : 69
+          // dynamic_instructions_O1 : 69
+          // ------------------------------- 
+          // static_instructions_O2 : 69
+          // dynamic_instructions_O2 : 69
+          // ------------------------------- 
+          // static_instructions_O3 : 69
+          // dynamic_instructions_O3 : 69
+          // ------------------------------- 
+          // static_instructions_Ofast : 69
+          // dynamic_instructions_Ofast : 69
+          // ------------------------------- 
+          // static_instructions_Os : 69
+          // dynamic_instructions_Os : 69
+          // ------------------------------- 
+          // static_instructions_Oz : 69
+          // dynamic_instructions_Oz : 69
+          // ------------------------------- 
+
+          int classification = 255;
+        
+          int classification2 = 255;
+        
+          int _len_hwmgr0 = 65025;
+          struct pp_hwmgr * hwmgr = (struct pp_hwmgr *) malloc(_len_hwmgr0*sizeof(struct pp_hwmgr));
+          for(int _i0 = 0; _i0 < _len_hwmgr0; _i0++) {
+              hwmgr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = make_classification_flags(hwmgr,classification,classification2);
+          printf("%d\n", benchRet); 
+          free(hwmgr);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 69
+          // dynamic_instructions_O0 : 69
+          // ------------------------------- 
+          // static_instructions_O1 : 69
+          // dynamic_instructions_O1 : 69
+          // ------------------------------- 
+          // static_instructions_O2 : 69
+          // dynamic_instructions_O2 : 69
+          // ------------------------------- 
+          // static_instructions_O3 : 69
+          // dynamic_instructions_O3 : 69
+          // ------------------------------- 
+          // static_instructions_Ofast : 69
+          // dynamic_instructions_Ofast : 69
+          // ------------------------------- 
+          // static_instructions_Os : 69
+          // dynamic_instructions_Os : 69
+          // ------------------------------- 
+          // static_instructions_Oz : 69
+          // dynamic_instructions_Oz : 69
+          // ------------------------------- 
+
           int classification = 10;
+        
           int classification2 = 10;
+        
           int _len_hwmgr0 = 100;
           struct pp_hwmgr * hwmgr = (struct pp_hwmgr *) malloc(_len_hwmgr0*sizeof(struct pp_hwmgr));
           for(int _i0 = 0; _i0 < _len_hwmgr0; _i0++) {
-            hwmgr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              hwmgr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = make_classification_flags(hwmgr,classification,classification2);
+          printf("%d\n", benchRet); 
+          free(hwmgr);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 69
+          // dynamic_instructions_O0 : 69
+          // ------------------------------- 
+          // static_instructions_O1 : 69
+          // dynamic_instructions_O1 : 69
+          // ------------------------------- 
+          // static_instructions_O2 : 69
+          // dynamic_instructions_O2 : 69
+          // ------------------------------- 
+          // static_instructions_O3 : 69
+          // dynamic_instructions_O3 : 69
+          // ------------------------------- 
+          // static_instructions_Ofast : 69
+          // dynamic_instructions_Ofast : 69
+          // ------------------------------- 
+          // static_instructions_Os : 69
+          // dynamic_instructions_Os : 69
+          // ------------------------------- 
+          // static_instructions_Oz : 69
+          // dynamic_instructions_Oz : 69
+          // ------------------------------- 
+
+          int classification = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int classification2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hwmgr0 = 1;
+          struct pp_hwmgr * hwmgr = (struct pp_hwmgr *) malloc(_len_hwmgr0*sizeof(struct pp_hwmgr));
+          for(int _i0 = 0; _i0 < _len_hwmgr0; _i0++) {
+              hwmgr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = make_classification_flags(hwmgr,classification,classification2);
           printf("%d\n", benchRet); 
           free(hwmgr);

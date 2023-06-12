@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            empty\n\
 \n\
 ");
 
@@ -79,12 +81,6 @@ int rosecmpm(rose_address *addr1, rose_address *addr2, unsigned short mask)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,10 +93,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           unsigned short mask = 100;
+        
           int _len_addr10 = 1;
           struct TYPE_4__ * addr1 = (struct TYPE_4__ *) malloc(_len_addr10*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_addr10; _i0++) {
@@ -109,7 +129,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_addr1__i0__rose_addr0; _j0++) {
             addr1[_i0].rose_addr[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int _len_addr20 = 1;
           struct TYPE_4__ * addr2 = (struct TYPE_4__ *) malloc(_len_addr20*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_addr20; _i0++) {
@@ -118,7 +140,137 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_addr2__i0__rose_addr0; _j0++) {
             addr2[_i0].rose_addr[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int benchRet = rosecmpm(addr1,addr2,mask);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_addr10; _aux++) {
+          free(addr1[_aux].rose_addr);
+          }
+          free(addr1);
+          for(int _aux = 0; _aux < _len_addr20; _aux++) {
+          free(addr2[_aux].rose_addr);
+          }
+          free(addr2);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          unsigned short mask = 255;
+        
+          int _len_addr10 = 65025;
+          struct TYPE_4__ * addr1 = (struct TYPE_4__ *) malloc(_len_addr10*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_addr10; _i0++) {
+              int _len_addr1__i0__rose_addr0 = 1;
+          addr1[_i0].rose_addr = (int *) malloc(_len_addr1__i0__rose_addr0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_addr1__i0__rose_addr0; _j0++) {
+            addr1[_i0].rose_addr[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_addr20 = 65025;
+          struct TYPE_4__ * addr2 = (struct TYPE_4__ *) malloc(_len_addr20*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_addr20; _i0++) {
+              int _len_addr2__i0__rose_addr0 = 1;
+          addr2[_i0].rose_addr = (int *) malloc(_len_addr2__i0__rose_addr0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_addr2__i0__rose_addr0; _j0++) {
+            addr2[_i0].rose_addr[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = rosecmpm(addr1,addr2,mask);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_addr10; _aux++) {
+          free(addr1[_aux].rose_addr);
+          }
+          free(addr1);
+          for(int _aux = 0; _aux < _len_addr20; _aux++) {
+          free(addr2[_aux].rose_addr);
+          }
+          free(addr2);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          unsigned short mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_addr10 = 1;
+          struct TYPE_4__ * addr1 = (struct TYPE_4__ *) malloc(_len_addr10*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_addr10; _i0++) {
+              int _len_addr1__i0__rose_addr0 = 1;
+          addr1[_i0].rose_addr = (int *) malloc(_len_addr1__i0__rose_addr0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_addr1__i0__rose_addr0; _j0++) {
+            addr1[_i0].rose_addr[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_addr20 = 1;
+          struct TYPE_4__ * addr2 = (struct TYPE_4__ *) malloc(_len_addr20*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_addr20; _i0++) {
+              int _len_addr2__i0__rose_addr0 = 1;
+          addr2[_i0].rose_addr = (int *) malloc(_len_addr2__i0__rose_addr0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_addr2__i0__rose_addr0; _j0++) {
+            addr2[_i0].rose_addr[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int benchRet = rosecmpm(addr1,addr2,mask);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_addr10; _aux++) {

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +80,6 @@ __attribute__((used)) static void mv_desc_init(struct mv_xor_desc_slot *desc,
 	hw_desc->byte_count = byte_count;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,21 +96,27 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int addr = 100;
+        
           int byte_count = 100;
+        
           enum dma_ctrl_flags flags = 0;
+        
           int _len_desc0 = 1;
           struct mv_xor_desc_slot * desc = (struct mv_xor_desc_slot *) malloc(_len_desc0*sizeof(struct mv_xor_desc_slot));
           for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
               int _len_desc__i0__hw_desc0 = 1;
           desc[_i0].hw_desc = (struct mv_xor_desc *) malloc(_len_desc__i0__hw_desc0*sizeof(struct mv_xor_desc));
           for(int _j0 = 0; _j0 < _len_desc__i0__hw_desc0; _j0++) {
-            desc[_i0].hw_desc->byte_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        desc[_i0].hw_desc->phy_dest_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        desc[_i0].hw_desc->desc_command = ((-2 * (next_i()%2)) + 1) * next_i();
-        desc[_i0].hw_desc->phy_next_desc = ((-2 * (next_i()%2)) + 1) * next_i();
-        desc[_i0].hw_desc->status = ((-2 * (next_i()%2)) + 1) * next_i();
+              desc[_i0].hw_desc->byte_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          desc[_i0].hw_desc->phy_dest_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          desc[_i0].hw_desc->desc_command = ((-2 * (next_i()%2)) + 1) * next_i();
+          desc[_i0].hw_desc->phy_next_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          desc[_i0].hw_desc->status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           mv_desc_init(desc,addr,byte_count,flags);
           for(int _aux = 0; _aux < _len_desc0; _aux++) {
           free(desc[_aux].hw_desc);
@@ -122,7 +125,105 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int addr = 255;
+        
+          int byte_count = 255;
+        
+          enum dma_ctrl_flags flags = 0;
+        
+          int _len_desc0 = 65025;
+          struct mv_xor_desc_slot * desc = (struct mv_xor_desc_slot *) malloc(_len_desc0*sizeof(struct mv_xor_desc_slot));
+          for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
+              int _len_desc__i0__hw_desc0 = 1;
+          desc[_i0].hw_desc = (struct mv_xor_desc *) malloc(_len_desc__i0__hw_desc0*sizeof(struct mv_xor_desc));
+          for(int _j0 = 0; _j0 < _len_desc__i0__hw_desc0; _j0++) {
+              desc[_i0].hw_desc->byte_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          desc[_i0].hw_desc->phy_dest_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          desc[_i0].hw_desc->desc_command = ((-2 * (next_i()%2)) + 1) * next_i();
+          desc[_i0].hw_desc->phy_next_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          desc[_i0].hw_desc->status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          mv_desc_init(desc,addr,byte_count,flags);
+          for(int _aux = 0; _aux < _len_desc0; _aux++) {
+          free(desc[_aux].hw_desc);
+          }
+          free(desc);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int addr = 10;
+        
+          int byte_count = 10;
+        
+          enum dma_ctrl_flags flags = 0;
+        
+          int _len_desc0 = 100;
+          struct mv_xor_desc_slot * desc = (struct mv_xor_desc_slot *) malloc(_len_desc0*sizeof(struct mv_xor_desc_slot));
+          for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
+              int _len_desc__i0__hw_desc0 = 1;
+          desc[_i0].hw_desc = (struct mv_xor_desc *) malloc(_len_desc__i0__hw_desc0*sizeof(struct mv_xor_desc));
+          for(int _j0 = 0; _j0 < _len_desc__i0__hw_desc0; _j0++) {
+              desc[_i0].hw_desc->byte_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          desc[_i0].hw_desc->phy_dest_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          desc[_i0].hw_desc->desc_command = ((-2 * (next_i()%2)) + 1) * next_i();
+          desc[_i0].hw_desc->phy_next_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          desc[_i0].hw_desc->status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          mv_desc_init(desc,addr,byte_count,flags);
+          for(int _aux = 0; _aux < _len_desc0; _aux++) {
+          free(desc[_aux].hw_desc);
+          }
+          free(desc);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int byte_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          enum dma_ctrl_flags flags = 0;
+        
+          int _len_desc0 = 1;
+          struct mv_xor_desc_slot * desc = (struct mv_xor_desc_slot *) malloc(_len_desc0*sizeof(struct mv_xor_desc_slot));
+          for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
+              int _len_desc__i0__hw_desc0 = 1;
+          desc[_i0].hw_desc = (struct mv_xor_desc *) malloc(_len_desc__i0__hw_desc0*sizeof(struct mv_xor_desc));
+          for(int _j0 = 0; _j0 < _len_desc__i0__hw_desc0; _j0++) {
+              desc[_i0].hw_desc->byte_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          desc[_i0].hw_desc->phy_dest_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          desc[_i0].hw_desc->desc_command = ((-2 * (next_i()%2)) + 1) * next_i();
+          desc[_i0].hw_desc->phy_next_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          desc[_i0].hw_desc->status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          mv_desc_init(desc,addr,byte_count,flags);
+          for(int _aux = 0; _aux < _len_desc0; _aux++) {
+          free(desc[_aux].hw_desc);
+          }
+          free(desc);
+        
+        break;
+    }
     default:
         usage();
         break;

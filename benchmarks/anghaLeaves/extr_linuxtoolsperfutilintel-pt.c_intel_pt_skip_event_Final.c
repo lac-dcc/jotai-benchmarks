@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline bool intel_pt_skip_event(struct intel_pt *pt
 	       pt->num_events++ < pt->synth_opts.initial_skip;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,22 +77,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pt0 = 1;
+          int _len_pt0 = 65025;
           struct intel_pt * pt = (struct intel_pt *) malloc(_len_pt0*sizeof(struct intel_pt));
           for(int _i0 = 0; _i0 < _len_pt0; _i0++) {
-            pt[_i0].synth_opts.initial_skip = ((-2 * (next_i()%2)) + 1) * next_i();
-        pt[_i0].num_events = ((-2 * (next_i()%2)) + 1) * next_i();
+              pt[_i0].synth_opts.initial_skip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          pt[_i0].num_events = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = intel_pt_skip_event(pt);
           printf("%d\n", benchRet); 
           free(pt);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_pt0 = 100;
+          struct intel_pt * pt = (struct intel_pt *) malloc(_len_pt0*sizeof(struct intel_pt));
+          for(int _i0 = 0; _i0 < _len_pt0; _i0++) {
+              pt[_i0].synth_opts.initial_skip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          pt[_i0].num_events = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = intel_pt_skip_event(pt);
+          printf("%d\n", benchRet); 
+          free(pt);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_pt0 = 1;
+          struct intel_pt * pt = (struct intel_pt *) malloc(_len_pt0*sizeof(struct intel_pt));
+          for(int _i0 = 0; _i0 < _len_pt0; _i0++) {
+              pt[_i0].synth_opts.initial_skip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          pt[_i0].num_events = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = intel_pt_skip_event(pt);
+          printf("%d\n", benchRet); 
+          free(pt);
+        
+        break;
+    }
     default:
         usage();
         break;

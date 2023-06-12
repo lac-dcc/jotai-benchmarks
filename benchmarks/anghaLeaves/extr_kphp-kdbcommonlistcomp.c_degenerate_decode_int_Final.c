@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static int degenerate_decode_int (struct list_decoder *dec
   return dec->k++;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,22 +76,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dec0 = 1;
+          int _len_dec0 = 65025;
           struct list_decoder * dec = (struct list_decoder *) malloc(_len_dec0*sizeof(struct list_decoder));
           for(int _i0 = 0; _i0 < _len_dec0; _i0++) {
-            dec[_i0].k = ((-2 * (next_i()%2)) + 1) * next_i();
-        dec[_i0].K = ((-2 * (next_i()%2)) + 1) * next_i();
+              dec[_i0].k = ((-2 * (next_i()%2)) + 1) * next_i();
+          dec[_i0].K = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = degenerate_decode_int(dec);
           printf("%d\n", benchRet); 
           free(dec);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dec0 = 100;
+          struct list_decoder * dec = (struct list_decoder *) malloc(_len_dec0*sizeof(struct list_decoder));
+          for(int _i0 = 0; _i0 < _len_dec0; _i0++) {
+              dec[_i0].k = ((-2 * (next_i()%2)) + 1) * next_i();
+          dec[_i0].K = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = degenerate_decode_int(dec);
+          printf("%d\n", benchRet); 
+          free(dec);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dec0 = 1;
+          struct list_decoder * dec = (struct list_decoder *) malloc(_len_dec0*sizeof(struct list_decoder));
+          for(int _i0 = 0; _i0 < _len_dec0; _i0++) {
+              dec[_i0].k = ((-2 * (next_i()%2)) + 1) * next_i();
+          dec[_i0].K = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = degenerate_decode_int(dec);
+          printf("%d\n", benchRet); 
+          free(dec);
+        
+        break;
+    }
     default:
         usage();
         break;

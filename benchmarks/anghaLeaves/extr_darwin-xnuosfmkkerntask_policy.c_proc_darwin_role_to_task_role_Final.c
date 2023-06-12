@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -107,12 +109,6 @@ proc_darwin_role_to_task_role(int darwin_role, int* task_role)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -129,11 +125,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int darwin_role = 100;
+        
           int _len_task_role0 = 1;
           int * task_role = (int *) malloc(_len_task_role0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_task_role0; _i0++) {
             task_role[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = proc_darwin_role_to_task_role(darwin_role,task_role);
+          printf("%d\n", benchRet); 
+          free(task_role);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int darwin_role = 255;
+        
+          int _len_task_role0 = 65025;
+          int * task_role = (int *) malloc(_len_task_role0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_task_role0; _i0++) {
+            task_role[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = proc_darwin_role_to_task_role(darwin_role,task_role);
           printf("%d\n", benchRet); 
           free(task_role);
@@ -141,21 +156,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int darwin_role = 10;
+        
           int _len_task_role0 = 100;
           int * task_role = (int *) malloc(_len_task_role0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_task_role0; _i0++) {
             task_role[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = proc_darwin_role_to_task_role(darwin_role,task_role);
           printf("%d\n", benchRet); 
           free(task_role);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int darwin_role = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_task_role0 = 1;
+          int * task_role = (int *) malloc(_len_task_role0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_task_role0; _i0++) {
+            task_role[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = proc_darwin_role_to_task_role(darwin_role,task_role);
+          printf("%d\n", benchRet); 
+          free(task_role);
+        
+        break;
+    }
     default:
         usage();
         break;

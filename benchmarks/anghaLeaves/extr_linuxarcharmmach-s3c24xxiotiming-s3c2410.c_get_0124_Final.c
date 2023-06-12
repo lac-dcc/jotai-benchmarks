@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static unsigned int get_0124(unsigned long hclk_tns,
 	return hclk_tns * ((val == 3) ? 4 : val);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,7 +80,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long hclk_tns = 100;
+        
           unsigned long val = 100;
+        
           unsigned int benchRet = get_0124(hclk_tns,val);
           printf("%u\n", benchRet); 
         
@@ -95,7 +92,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long hclk_tns = 255;
+        
           unsigned long val = 255;
+        
           unsigned int benchRet = get_0124(hclk_tns,val);
           printf("%u\n", benchRet); 
         
@@ -105,13 +104,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long hclk_tns = 10;
+        
           unsigned long val = 10;
+        
           unsigned int benchRet = get_0124(hclk_tns,val);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long hclk_tns = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = get_0124(hclk_tns,val);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

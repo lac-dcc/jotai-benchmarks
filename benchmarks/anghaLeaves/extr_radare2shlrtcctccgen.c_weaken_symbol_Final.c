@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static void weaken_symbol(Sym *sym) {
 	sym->type.t |= VT_WEAK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,14 +78,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_sym0 = 1;
+          int _len_sym0 = 65025;
           struct TYPE_5__ * sym = (struct TYPE_5__ *) malloc(_len_sym0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_sym0; _i0++) {
-            sym[_i0].type.t = ((-2 * (next_i()%2)) + 1) * next_i();
+              sym[_i0].type.t = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           weaken_symbol(sym);
           free(sym);
         
@@ -102,14 +100,32 @@ int main(int argc, char *argv[]) {
           int _len_sym0 = 100;
           struct TYPE_5__ * sym = (struct TYPE_5__ *) malloc(_len_sym0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_sym0; _i0++) {
-            sym[_i0].type.t = ((-2 * (next_i()%2)) + 1) * next_i();
+              sym[_i0].type.t = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           weaken_symbol(sym);
           free(sym);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_sym0 = 1;
+          struct TYPE_5__ * sym = (struct TYPE_5__ *) malloc(_len_sym0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_sym0; _i0++) {
+              sym[_i0].type.t = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          weaken_symbol(sym);
+          free(sym);
+        
+        break;
+    }
     default:
         usage();
         break;

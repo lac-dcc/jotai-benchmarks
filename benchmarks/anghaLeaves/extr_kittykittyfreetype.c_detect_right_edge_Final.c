@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ detect_right_edge(ProcessedBitmap *ans) {
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,22 +84,24 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ans0 = 1;
+          int _len_ans0 = 65025;
           struct TYPE_3__ * ans = (struct TYPE_3__ *) malloc(_len_ans0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_ans0; _i0++) {
-            ans[_i0].right_edge = ((-2 * (next_i()%2)) + 1) * next_i();
-        ans[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
-        ans[_i0].rows = ((-2 * (next_i()%2)) + 1) * next_i();
+              ans[_i0].right_edge = ((-2 * (next_i()%2)) + 1) * next_i();
+          ans[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          ans[_i0].rows = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_ans__i0__buf0 = 1;
           ans[_i0].buf = (int *) malloc(_len_ans__i0__buf0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_ans__i0__buf0; _j0++) {
             ans[_i0].buf[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        ans[_i0].stride = ((-2 * (next_i()%2)) + 1) * next_i();
+          ans[_i0].stride = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           detect_right_edge(ans);
           for(int _aux = 0; _aux < _len_ans0; _aux++) {
           free(ans[_aux].buf);
@@ -112,7 +110,58 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ans0 = 100;
+          struct TYPE_3__ * ans = (struct TYPE_3__ *) malloc(_len_ans0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ans0; _i0++) {
+              ans[_i0].right_edge = ((-2 * (next_i()%2)) + 1) * next_i();
+          ans[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          ans[_i0].rows = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ans__i0__buf0 = 1;
+          ans[_i0].buf = (int *) malloc(_len_ans__i0__buf0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ans__i0__buf0; _j0++) {
+            ans[_i0].buf[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          ans[_i0].stride = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          detect_right_edge(ans);
+          for(int _aux = 0; _aux < _len_ans0; _aux++) {
+          free(ans[_aux].buf);
+          }
+          free(ans);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ans0 = 1;
+          struct TYPE_3__ * ans = (struct TYPE_3__ *) malloc(_len_ans0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ans0; _i0++) {
+              ans[_i0].right_edge = ((-2 * (next_i()%2)) + 1) * next_i();
+          ans[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          ans[_i0].rows = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ans__i0__buf0 = 1;
+          ans[_i0].buf = (int *) malloc(_len_ans__i0__buf0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ans__i0__buf0; _j0++) {
+            ans[_i0].buf[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          ans[_i0].stride = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          detect_right_edge(ans);
+          for(int _aux = 0; _aux < _len_ans0; _aux++) {
+          free(ans[_aux].buf);
+          }
+          free(ans);
+        
+        break;
+    }
     default:
         usage();
         break;

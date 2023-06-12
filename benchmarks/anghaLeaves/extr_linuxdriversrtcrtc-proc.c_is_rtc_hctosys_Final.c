@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static bool is_rtc_hctosys(struct rtc_device *rtc)
 	return (rtc->id == 0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,28 +74,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_rtc0 = 1;
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_rtc0 = 65025;
           struct rtc_device * rtc = (struct rtc_device *) malloc(_len_rtc0*sizeof(struct rtc_device));
           for(int _i0 = 0; _i0 < _len_rtc0; _i0++) {
-            rtc[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+              rtc[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_rtc_hctosys(rtc);
           printf("%d\n", benchRet); 
           free(rtc);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_rtc0 = 100;
           struct rtc_device * rtc = (struct rtc_device *) malloc(_len_rtc0*sizeof(struct rtc_device));
           for(int _i0 = 0; _i0 < _len_rtc0; _i0++) {
-            rtc[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+              rtc[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = is_rtc_hctosys(rtc);
+          printf("%d\n", benchRet); 
+          free(rtc);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_rtc0 = 1;
+          struct rtc_device * rtc = (struct rtc_device *) malloc(_len_rtc0*sizeof(struct rtc_device));
+          for(int _i0 = 0; _i0 < _len_rtc0; _i0++) {
+              rtc[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = is_rtc_hctosys(rtc);
           printf("%d\n", benchRet); 
           free(rtc);

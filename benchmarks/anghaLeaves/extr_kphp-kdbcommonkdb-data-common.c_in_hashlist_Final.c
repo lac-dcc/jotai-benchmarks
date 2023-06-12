@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +78,6 @@ int in_hashlist (hash_t x, hash_list_t *L) {
   return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,16 +94,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long x = 100;
+        
           int _len_L0 = 1;
           struct TYPE_3__ * L = (struct TYPE_3__ *) malloc(_len_L0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_L0; _i0++) {
-            L[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+              L[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_L__i0__A0 = 1;
           L[_i0].A = (long *) malloc(_len_L__i0__A0*sizeof(long));
           for(int _j0 = 0; _j0 < _len_L__i0__A0; _j0++) {
             L[_i0].A[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = in_hashlist(x,L);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_L0; _aux++) {
@@ -116,7 +116,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long x = 255;
+        
+          int _len_L0 = 65025;
+          struct TYPE_3__ * L = (struct TYPE_3__ *) malloc(_len_L0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_L0; _i0++) {
+              L[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_L__i0__A0 = 1;
+          L[_i0].A = (long *) malloc(_len_L__i0__A0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_L__i0__A0; _j0++) {
+            L[_i0].A[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = in_hashlist(x,L);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_L0; _aux++) {
+          free(L[_aux].A);
+          }
+          free(L);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long x = 10;
+        
+          int _len_L0 = 100;
+          struct TYPE_3__ * L = (struct TYPE_3__ *) malloc(_len_L0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_L0; _i0++) {
+              L[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_L__i0__A0 = 1;
+          L[_i0].A = (long *) malloc(_len_L__i0__A0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_L__i0__A0; _j0++) {
+            L[_i0].A[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = in_hashlist(x,L);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_L0; _aux++) {
+          free(L[_aux].A);
+          }
+          free(L);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_L0 = 1;
+          struct TYPE_3__ * L = (struct TYPE_3__ *) malloc(_len_L0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_L0; _i0++) {
+              L[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_L__i0__A0 = 1;
+          L[_i0].A = (long *) malloc(_len_L__i0__A0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_L__i0__A0; _j0++) {
+            L[_i0].A[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = in_hashlist(x,L);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_L0; _aux++) {
+          free(L[_aux].A);
+          }
+          free(L);
+        
+        break;
+    }
     default:
         usage();
         break;

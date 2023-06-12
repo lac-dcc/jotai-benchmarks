@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline bool knav_queue_is_reserved(struct knav_queu
 	return inst->range->flags & RANGE_RESERVED;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,18 +77,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_inst0 = 65025;
+          struct knav_queue_inst * inst = (struct knav_queue_inst *) malloc(_len_inst0*sizeof(struct knav_queue_inst));
+          for(int _i0 = 0; _i0 < _len_inst0; _i0++) {
+              int _len_inst__i0__range0 = 1;
+          inst[_i0].range = (struct TYPE_2__ *) malloc(_len_inst__i0__range0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_inst__i0__range0; _j0++) {
+              inst[_i0].range->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = knav_queue_is_reserved(inst);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_inst0; _aux++) {
+          free(inst[_aux].range);
+          }
+          free(inst);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_inst0 = 100;
+          struct knav_queue_inst * inst = (struct knav_queue_inst *) malloc(_len_inst0*sizeof(struct knav_queue_inst));
+          for(int _i0 = 0; _i0 < _len_inst0; _i0++) {
+              int _len_inst__i0__range0 = 1;
+          inst[_i0].range = (struct TYPE_2__ *) malloc(_len_inst__i0__range0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_inst__i0__range0; _j0++) {
+              inst[_i0].range->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = knav_queue_is_reserved(inst);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_inst0; _aux++) {
+          free(inst[_aux].range);
+          }
+          free(inst);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_inst0 = 1;
           struct knav_queue_inst * inst = (struct knav_queue_inst *) malloc(_len_inst0*sizeof(struct knav_queue_inst));
           for(int _i0 = 0; _i0 < _len_inst0; _i0++) {
               int _len_inst__i0__range0 = 1;
           inst[_i0].range = (struct TYPE_2__ *) malloc(_len_inst__i0__range0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_inst__i0__range0; _j0++) {
-            inst[_i0].range->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              inst[_i0].range->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = knav_queue_is_reserved(inst);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_inst0; _aux++) {

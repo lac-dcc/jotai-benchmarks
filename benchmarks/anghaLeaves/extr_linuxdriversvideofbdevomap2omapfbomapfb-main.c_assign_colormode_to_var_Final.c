@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static void assign_colormode_to_var(struct fb_var_screenin
 	var->transp = color->transp;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,36 +81,105 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_var0 = 1;
+          int _len_var0 = 65025;
           struct fb_var_screeninfo * var = (struct fb_var_screeninfo *) malloc(_len_var0*sizeof(struct fb_var_screeninfo));
           for(int _i0 = 0; _i0 < _len_var0; _i0++) {
-            var[_i0].transp = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].blue = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].green = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].red = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].nonstd = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+              var[_i0].transp = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].blue = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].green = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].red = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].nonstd = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_color0 = 1;
+        
+          int _len_color0 = 65025;
           struct omapfb_colormode * color = (struct omapfb_colormode *) malloc(_len_color0*sizeof(struct omapfb_colormode));
           for(int _i0 = 0; _i0 < _len_color0; _i0++) {
-            color[_i0].transp = ((-2 * (next_i()%2)) + 1) * next_i();
-        color[_i0].blue = ((-2 * (next_i()%2)) + 1) * next_i();
-        color[_i0].green = ((-2 * (next_i()%2)) + 1) * next_i();
-        color[_i0].red = ((-2 * (next_i()%2)) + 1) * next_i();
-        color[_i0].nonstd = ((-2 * (next_i()%2)) + 1) * next_i();
-        color[_i0].bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+              color[_i0].transp = ((-2 * (next_i()%2)) + 1) * next_i();
+          color[_i0].blue = ((-2 * (next_i()%2)) + 1) * next_i();
+          color[_i0].green = ((-2 * (next_i()%2)) + 1) * next_i();
+          color[_i0].red = ((-2 * (next_i()%2)) + 1) * next_i();
+          color[_i0].nonstd = ((-2 * (next_i()%2)) + 1) * next_i();
+          color[_i0].bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           assign_colormode_to_var(var,color);
           free(var);
           free(color);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_var0 = 100;
+          struct fb_var_screeninfo * var = (struct fb_var_screeninfo *) malloc(_len_var0*sizeof(struct fb_var_screeninfo));
+          for(int _i0 = 0; _i0 < _len_var0; _i0++) {
+              var[_i0].transp = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].blue = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].green = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].red = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].nonstd = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_color0 = 100;
+          struct omapfb_colormode * color = (struct omapfb_colormode *) malloc(_len_color0*sizeof(struct omapfb_colormode));
+          for(int _i0 = 0; _i0 < _len_color0; _i0++) {
+              color[_i0].transp = ((-2 * (next_i()%2)) + 1) * next_i();
+          color[_i0].blue = ((-2 * (next_i()%2)) + 1) * next_i();
+          color[_i0].green = ((-2 * (next_i()%2)) + 1) * next_i();
+          color[_i0].red = ((-2 * (next_i()%2)) + 1) * next_i();
+          color[_i0].nonstd = ((-2 * (next_i()%2)) + 1) * next_i();
+          color[_i0].bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          assign_colormode_to_var(var,color);
+          free(var);
+          free(color);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_var0 = 1;
+          struct fb_var_screeninfo * var = (struct fb_var_screeninfo *) malloc(_len_var0*sizeof(struct fb_var_screeninfo));
+          for(int _i0 = 0; _i0 < _len_var0; _i0++) {
+              var[_i0].transp = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].blue = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].green = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].red = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].nonstd = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_color0 = 1;
+          struct omapfb_colormode * color = (struct omapfb_colormode *) malloc(_len_color0*sizeof(struct omapfb_colormode));
+          for(int _i0 = 0; _i0 < _len_color0; _i0++) {
+              color[_i0].transp = ((-2 * (next_i()%2)) + 1) * next_i();
+          color[_i0].blue = ((-2 * (next_i()%2)) + 1) * next_i();
+          color[_i0].green = ((-2 * (next_i()%2)) + 1) * next_i();
+          color[_i0].red = ((-2 * (next_i()%2)) + 1) * next_i();
+          color[_i0].nonstd = ((-2 * (next_i()%2)) + 1) * next_i();
+          color[_i0].bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          assign_colormode_to_var(var,color);
+          free(var);
+          free(color);
+        
+        break;
+    }
     default:
         usage();
         break;

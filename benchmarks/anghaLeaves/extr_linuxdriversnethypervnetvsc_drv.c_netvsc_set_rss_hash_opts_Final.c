@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -126,12 +128,6 @@ __attribute__((used)) static int netvsc_set_rss_hash_opts(struct net_device_cont
 	return -EOPNOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -144,20 +140,145 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_ndc0 = 65025;
+          struct net_device_context * ndc = (struct net_device_context *) malloc(_len_ndc0*sizeof(struct net_device_context));
+          for(int _i0 = 0; _i0 < _len_ndc0; _i0++) {
+              ndc[_i0].l4_hash = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_info0 = 65025;
+          struct ethtool_rxnfc * info = (struct ethtool_rxnfc *) malloc(_len_info0*sizeof(struct ethtool_rxnfc));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].flow_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = netvsc_set_rss_hash_opts(ndc,info);
+          printf("%d\n", benchRet); 
+          free(ndc);
+          free(info);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_ndc0 = 100;
+          struct net_device_context * ndc = (struct net_device_context *) malloc(_len_ndc0*sizeof(struct net_device_context));
+          for(int _i0 = 0; _i0 < _len_ndc0; _i0++) {
+              ndc[_i0].l4_hash = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_info0 = 100;
+          struct ethtool_rxnfc * info = (struct ethtool_rxnfc *) malloc(_len_info0*sizeof(struct ethtool_rxnfc));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].flow_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = netvsc_set_rss_hash_opts(ndc,info);
+          printf("%d\n", benchRet); 
+          free(ndc);
+          free(info);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int _len_ndc0 = 1;
           struct net_device_context * ndc = (struct net_device_context *) malloc(_len_ndc0*sizeof(struct net_device_context));
           for(int _i0 = 0; _i0 < _len_ndc0; _i0++) {
-            ndc[_i0].l4_hash = ((-2 * (next_i()%2)) + 1) * next_i();
+              ndc[_i0].l4_hash = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_info0 = 1;
           struct ethtool_rxnfc * info = (struct ethtool_rxnfc *) malloc(_len_info0*sizeof(struct ethtool_rxnfc));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].flow_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].flow_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = netvsc_set_rss_hash_opts(ndc,info);
           printf("%d\n", benchRet); 
           free(ndc);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static int has_channel(struct rt_channel_info *channel_set
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,23 +83,66 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int chanset_size = 10;
-          int chan = 10;
-          int _len_channel_set0 = 100;
+          int chanset_size = 255;
+        
+          int chan = 255;
+        
+          int _len_channel_set0 = 65025;
           struct rt_channel_info * channel_set = (struct rt_channel_info *) malloc(_len_channel_set0*sizeof(struct rt_channel_info));
           for(int _i0 = 0; _i0 < _len_channel_set0; _i0++) {
-            channel_set[_i0].ChannelNum = ((-2 * (next_i()%2)) + 1) * next_i();
+              channel_set[_i0].ChannelNum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = has_channel(channel_set,chanset_size,chan);
           printf("%d\n", benchRet); 
           free(channel_set);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int chanset_size = 10;
+        
+          int chan = 10;
+        
+          int _len_channel_set0 = 100;
+          struct rt_channel_info * channel_set = (struct rt_channel_info *) malloc(_len_channel_set0*sizeof(struct rt_channel_info));
+          for(int _i0 = 0; _i0 < _len_channel_set0; _i0++) {
+              channel_set[_i0].ChannelNum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = has_channel(channel_set,chanset_size,chan);
+          printf("%d\n", benchRet); 
+          free(channel_set);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int chanset_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int chan = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_channel_set0 = 1;
+          struct rt_channel_info * channel_set = (struct rt_channel_info *) malloc(_len_channel_set0*sizeof(struct rt_channel_info));
+          for(int _i0 = 0; _i0 < _len_channel_set0; _i0++) {
+              channel_set[_i0].ChannelNum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = has_channel(channel_set,chanset_size,chan);
+          printf("%d\n", benchRet); 
+          free(channel_set);
+        
+        break;
+    }
     default:
         usage();
         break;

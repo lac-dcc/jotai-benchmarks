@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +72,6 @@ int dtls1_get_queue_priority(unsigned short seq, int is_ccs)
     return seq * 2 - is_ccs;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,7 +88,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned short seq = 100;
+        
           int is_ccs = 100;
+        
           int benchRet = dtls1_get_queue_priority(seq,is_ccs);
           printf("%d\n", benchRet); 
         
@@ -103,7 +100,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned short seq = 255;
+        
           int is_ccs = 255;
+        
           int benchRet = dtls1_get_queue_priority(seq,is_ccs);
           printf("%d\n", benchRet); 
         
@@ -113,13 +112,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned short seq = 10;
+        
           int is_ccs = 10;
+        
           int benchRet = dtls1_get_queue_priority(seq,is_ccs);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned short seq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int is_ccs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = dtls1_get_queue_priority(seq,is_ccs);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

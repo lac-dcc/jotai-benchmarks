@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +81,6 @@ __attribute__((used)) static int mtk_mdp_check_scaler_ratio(struct mtk_mdp_varia
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,25 +97,118 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int src_w = 100;
+        
           int src_h = 100;
+        
           int dst_w = 100;
+        
           int dst_h = 100;
+        
           int rot = 100;
+        
           int _len_var0 = 1;
           struct mtk_mdp_variant * var = (struct mtk_mdp_variant *) malloc(_len_var0*sizeof(struct mtk_mdp_variant));
           for(int _i0 = 0; _i0 < _len_var0; _i0++) {
-            var[_i0].h_scale_down_max = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].v_scale_down_max = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].h_scale_up_max = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].v_scale_up_max = ((-2 * (next_i()%2)) + 1) * next_i();
+              var[_i0].h_scale_down_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].v_scale_down_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].h_scale_up_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].v_scale_up_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mtk_mdp_check_scaler_ratio(var,src_w,src_h,dst_w,dst_h,rot);
           printf("%d\n", benchRet); 
           free(var);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int src_w = 255;
+        
+          int src_h = 255;
+        
+          int dst_w = 255;
+        
+          int dst_h = 255;
+        
+          int rot = 255;
+        
+          int _len_var0 = 65025;
+          struct mtk_mdp_variant * var = (struct mtk_mdp_variant *) malloc(_len_var0*sizeof(struct mtk_mdp_variant));
+          for(int _i0 = 0; _i0 < _len_var0; _i0++) {
+              var[_i0].h_scale_down_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].v_scale_down_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].h_scale_up_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].v_scale_up_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mtk_mdp_check_scaler_ratio(var,src_w,src_h,dst_w,dst_h,rot);
+          printf("%d\n", benchRet); 
+          free(var);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int src_w = 10;
+        
+          int src_h = 10;
+        
+          int dst_w = 10;
+        
+          int dst_h = 10;
+        
+          int rot = 10;
+        
+          int _len_var0 = 100;
+          struct mtk_mdp_variant * var = (struct mtk_mdp_variant *) malloc(_len_var0*sizeof(struct mtk_mdp_variant));
+          for(int _i0 = 0; _i0 < _len_var0; _i0++) {
+              var[_i0].h_scale_down_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].v_scale_down_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].h_scale_up_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].v_scale_up_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mtk_mdp_check_scaler_ratio(var,src_w,src_h,dst_w,dst_h,rot);
+          printf("%d\n", benchRet); 
+          free(var);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int src_w = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int src_h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int dst_w = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int dst_h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int rot = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_var0 = 1;
+          struct mtk_mdp_variant * var = (struct mtk_mdp_variant *) malloc(_len_var0*sizeof(struct mtk_mdp_variant));
+          for(int _i0 = 0; _i0 < _len_var0; _i0++) {
+              var[_i0].h_scale_down_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].v_scale_down_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].h_scale_up_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].v_scale_up_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mtk_mdp_check_scaler_ratio(var,src_w,src_h,dst_w,dst_h,rot);
+          printf("%d\n", benchRet); 
+          free(var);
+        
+        break;
+    }
     default:
         usage();
         break;

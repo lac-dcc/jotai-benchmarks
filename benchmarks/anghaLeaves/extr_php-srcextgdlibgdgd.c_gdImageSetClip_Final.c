@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -89,12 +92,6 @@ void gdImageSetClip (gdImagePtr im, int x1, int y1, int x2, int y2)
 	im->cy2 = y2;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,23 +104,208 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 61
+          // dynamic_instructions_O0 : 61
+          // ------------------------------- 
+          // static_instructions_O1 : 29
+          // dynamic_instructions_O1 : 29
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
           int x1 = 100;
+        
           int y1 = 100;
+        
           int x2 = 100;
+        
           int y2 = 100;
+        
           int _len_im0 = 1;
           struct TYPE_3__ * im = (struct TYPE_3__ *) malloc(_len_im0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_im0; _i0++) {
-            im[_i0].sx = ((-2 * (next_i()%2)) + 1) * next_i();
-        im[_i0].sy = ((-2 * (next_i()%2)) + 1) * next_i();
-        im[_i0].cx1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        im[_i0].cy1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        im[_i0].cx2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        im[_i0].cy2 = ((-2 * (next_i()%2)) + 1) * next_i();
+              im[_i0].sx = ((-2 * (next_i()%2)) + 1) * next_i();
+          im[_i0].sy = ((-2 * (next_i()%2)) + 1) * next_i();
+          im[_i0].cx1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          im[_i0].cy1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          im[_i0].cx2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          im[_i0].cy2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          gdImageSetClip(im,x1,y1,x2,y2);
+          free(im);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 61
+          // dynamic_instructions_O0 : 61
+          // ------------------------------- 
+          // static_instructions_O1 : 29
+          // dynamic_instructions_O1 : 29
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          int x1 = 255;
+        
+          int y1 = 255;
+        
+          int x2 = 255;
+        
+          int y2 = 255;
+        
+          int _len_im0 = 65025;
+          struct TYPE_3__ * im = (struct TYPE_3__ *) malloc(_len_im0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_im0; _i0++) {
+              im[_i0].sx = ((-2 * (next_i()%2)) + 1) * next_i();
+          im[_i0].sy = ((-2 * (next_i()%2)) + 1) * next_i();
+          im[_i0].cx1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          im[_i0].cy1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          im[_i0].cx2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          im[_i0].cy2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          gdImageSetClip(im,x1,y1,x2,y2);
+          free(im);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 61
+          // dynamic_instructions_O0 : 61
+          // ------------------------------- 
+          // static_instructions_O1 : 29
+          // dynamic_instructions_O1 : 29
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          int x1 = 10;
+        
+          int y1 = 10;
+        
+          int x2 = 10;
+        
+          int y2 = 10;
+        
+          int _len_im0 = 100;
+          struct TYPE_3__ * im = (struct TYPE_3__ *) malloc(_len_im0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_im0; _i0++) {
+              im[_i0].sx = ((-2 * (next_i()%2)) + 1) * next_i();
+          im[_i0].sy = ((-2 * (next_i()%2)) + 1) * next_i();
+          im[_i0].cx1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          im[_i0].cy1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          im[_i0].cx2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          im[_i0].cy2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          gdImageSetClip(im,x1,y1,x2,y2);
+          free(im);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 65
+          // dynamic_instructions_O0 : 65
+          // ------------------------------- 
+          // static_instructions_O1 : 29
+          // dynamic_instructions_O1 : 29
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          int x1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int y1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int x2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int y2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_im0 = 1;
+          struct TYPE_3__ * im = (struct TYPE_3__ *) malloc(_len_im0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_im0; _i0++) {
+              im[_i0].sx = ((-2 * (next_i()%2)) + 1) * next_i();
+          im[_i0].sy = ((-2 * (next_i()%2)) + 1) * next_i();
+          im[_i0].cx1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          im[_i0].cy1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          im[_i0].cx2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          im[_i0].cy2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           gdImageSetClip(im,x1,y1,x2,y2);
           free(im);
         

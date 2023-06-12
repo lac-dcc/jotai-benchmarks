@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -101,12 +102,6 @@ int probe_is_insn_relative_long(u16 *insn)
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -119,14 +114,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_insn0 = 1;
+          int _len_insn0 = 65025;
           int * insn = (int *) malloc(_len_insn0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_insn0; _i0++) {
             insn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = probe_is_insn_relative_long(insn);
           printf("%d\n", benchRet); 
           free(insn);
@@ -141,13 +137,28 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_insn0; _i0++) {
             insn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = probe_is_insn_relative_long(insn);
           printf("%d\n", benchRet); 
           free(insn);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_insn0 = 1;
+          int * insn = (int *) malloc(_len_insn0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_insn0; _i0++) {
+            insn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = probe_is_insn_relative_long(insn);
+          printf("%d\n", benchRet); 
+          free(insn);
+        
+        break;
+    }
     default:
         usage();
         break;

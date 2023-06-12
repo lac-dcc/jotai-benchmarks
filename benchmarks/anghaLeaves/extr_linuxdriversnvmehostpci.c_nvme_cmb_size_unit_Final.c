@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static u64 nvme_cmb_size_unit(struct nvme_dev *dev)
 	return 1ULL << (12 + 4 * szu);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,14 +80,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dev0 = 1;
+          int _len_dev0 = 65025;
           struct nvme_dev * dev = (struct nvme_dev *) malloc(_len_dev0*sizeof(struct nvme_dev));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].cmbsz = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].cmbsz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long long benchRet = nvme_cmb_size_unit(dev);
           printf("%llu\n", benchRet); 
           free(dev);
@@ -105,15 +102,32 @@ int main(int argc, char *argv[]) {
           int _len_dev0 = 100;
           struct nvme_dev * dev = (struct nvme_dev *) malloc(_len_dev0*sizeof(struct nvme_dev));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].cmbsz = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].cmbsz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long long benchRet = nvme_cmb_size_unit(dev);
           printf("%llu\n", benchRet); 
           free(dev);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_dev0 = 1;
+          struct nvme_dev * dev = (struct nvme_dev *) malloc(_len_dev0*sizeof(struct nvme_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].cmbsz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long long benchRet = nvme_cmb_size_unit(dev);
+          printf("%llu\n", benchRet); 
+          free(dev);
+        
+        break;
+    }
     default:
         usage();
         break;

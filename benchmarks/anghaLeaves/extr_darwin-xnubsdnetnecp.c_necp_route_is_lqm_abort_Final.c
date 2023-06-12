@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ necp_route_is_lqm_abort(struct ifnet *ifp, struct ifnet *delegated_ifp)
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,21 +89,154 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_ifp0 = 65025;
+          struct ifnet * ifp = (struct ifnet *) malloc(_len_ifp0*sizeof(struct ifnet));
+          for(int _i0 = 0; _i0 < _len_ifp0; _i0++) {
+              ifp[_i0].if_interface_state.valid_bitmask = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifp[_i0].if_interface_state.lqm_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_delegated_ifp0 = 65025;
+          struct ifnet * delegated_ifp = (struct ifnet *) malloc(_len_delegated_ifp0*sizeof(struct ifnet));
+          for(int _i0 = 0; _i0 < _len_delegated_ifp0; _i0++) {
+              delegated_ifp[_i0].if_interface_state.valid_bitmask = ((-2 * (next_i()%2)) + 1) * next_i();
+          delegated_ifp[_i0].if_interface_state.lqm_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = necp_route_is_lqm_abort(ifp,delegated_ifp);
+          printf("%d\n", benchRet); 
+          free(ifp);
+          free(delegated_ifp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_ifp0 = 100;
+          struct ifnet * ifp = (struct ifnet *) malloc(_len_ifp0*sizeof(struct ifnet));
+          for(int _i0 = 0; _i0 < _len_ifp0; _i0++) {
+              ifp[_i0].if_interface_state.valid_bitmask = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifp[_i0].if_interface_state.lqm_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_delegated_ifp0 = 100;
+          struct ifnet * delegated_ifp = (struct ifnet *) malloc(_len_delegated_ifp0*sizeof(struct ifnet));
+          for(int _i0 = 0; _i0 < _len_delegated_ifp0; _i0++) {
+              delegated_ifp[_i0].if_interface_state.valid_bitmask = ((-2 * (next_i()%2)) + 1) * next_i();
+          delegated_ifp[_i0].if_interface_state.lqm_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = necp_route_is_lqm_abort(ifp,delegated_ifp);
+          printf("%d\n", benchRet); 
+          free(ifp);
+          free(delegated_ifp);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int _len_ifp0 = 1;
           struct ifnet * ifp = (struct ifnet *) malloc(_len_ifp0*sizeof(struct ifnet));
           for(int _i0 = 0; _i0 < _len_ifp0; _i0++) {
-            ifp[_i0].if_interface_state.valid_bitmask = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifp[_i0].if_interface_state.lqm_state = ((-2 * (next_i()%2)) + 1) * next_i();
+              ifp[_i0].if_interface_state.valid_bitmask = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifp[_i0].if_interface_state.lqm_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_delegated_ifp0 = 1;
           struct ifnet * delegated_ifp = (struct ifnet *) malloc(_len_delegated_ifp0*sizeof(struct ifnet));
           for(int _i0 = 0; _i0 < _len_delegated_ifp0; _i0++) {
-            delegated_ifp[_i0].if_interface_state.valid_bitmask = ((-2 * (next_i()%2)) + 1) * next_i();
-        delegated_ifp[_i0].if_interface_state.lqm_state = ((-2 * (next_i()%2)) + 1) * next_i();
+              delegated_ifp[_i0].if_interface_state.valid_bitmask = ((-2 * (next_i()%2)) + 1) * next_i();
+          delegated_ifp[_i0].if_interface_state.lqm_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = necp_route_is_lqm_abort(ifp,delegated_ifp);
           printf("%d\n", benchRet); 
           free(ifp);

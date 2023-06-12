@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -82,12 +84,6 @@ int binary_search(int array[], int n, int value)
 	return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,16 +96,128 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 216
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 147
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 106
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 106
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 106
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 106
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 106
+          // ------------------------------- 
+
+          int n = 255;
+        
+          int value = 255;
+        
+          int _len_array0 = 65025;
+          int * array = (int *) malloc(_len_array0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_array0; _i0++) {
+            array[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = binary_search(array,n,value);
+          printf("%d\n", benchRet); 
+          free(array);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 116
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 79
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 58
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 58
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 58
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 58
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 58
+          // ------------------------------- 
+
           int n = 10;
+        
           int value = 10;
+        
           int _len_array0 = 100;
           int * array = (int *) malloc(_len_array0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_array0; _i0++) {
             array[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = binary_search(array,n,value);
+          printf("%d\n", benchRet); 
+          free(array);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_array0 = 1;
+          int * array = (int *) malloc(_len_array0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_array0; _i0++) {
+            array[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = binary_search(array,n,value);
           printf("%d\n", benchRet); 
           free(array);

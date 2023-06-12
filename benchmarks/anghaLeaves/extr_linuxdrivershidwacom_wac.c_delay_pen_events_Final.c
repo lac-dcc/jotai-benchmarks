@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline bool delay_pen_events(struct wacom_wac *waco
 	return (wacom->shared->touch_down && touch_arbitration);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,18 +77,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_wacom0 = 1;
+          int _len_wacom0 = 65025;
           struct wacom_wac * wacom = (struct wacom_wac *) malloc(_len_wacom0*sizeof(struct wacom_wac));
           for(int _i0 = 0; _i0 < _len_wacom0; _i0++) {
               int _len_wacom__i0__shared0 = 1;
           wacom[_i0].shared = (struct TYPE_2__ *) malloc(_len_wacom__i0__shared0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_wacom__i0__shared0; _j0++) {
-            wacom[_i0].shared->touch_down = ((-2 * (next_i()%2)) + 1) * next_i();
+              wacom[_i0].shared->touch_down = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = delay_pen_events(wacom);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_wacom0; _aux++) {
@@ -102,7 +101,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_wacom0 = 100;
+          struct wacom_wac * wacom = (struct wacom_wac *) malloc(_len_wacom0*sizeof(struct wacom_wac));
+          for(int _i0 = 0; _i0 < _len_wacom0; _i0++) {
+              int _len_wacom__i0__shared0 = 1;
+          wacom[_i0].shared = (struct TYPE_2__ *) malloc(_len_wacom__i0__shared0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_wacom__i0__shared0; _j0++) {
+              wacom[_i0].shared->touch_down = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = delay_pen_events(wacom);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_wacom0; _aux++) {
+          free(wacom[_aux].shared);
+          }
+          free(wacom);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_wacom0 = 1;
+          struct wacom_wac * wacom = (struct wacom_wac *) malloc(_len_wacom0*sizeof(struct wacom_wac));
+          for(int _i0 = 0; _i0 < _len_wacom0; _i0++) {
+              int _len_wacom__i0__shared0 = 1;
+          wacom[_i0].shared = (struct TYPE_2__ *) malloc(_len_wacom__i0__shared0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_wacom__i0__shared0; _j0++) {
+              wacom[_i0].shared->touch_down = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = delay_pen_events(wacom);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_wacom0; _aux++) {
+          free(wacom[_aux].shared);
+          }
+          free(wacom);
+        
+        break;
+    }
     default:
         usage();
         break;

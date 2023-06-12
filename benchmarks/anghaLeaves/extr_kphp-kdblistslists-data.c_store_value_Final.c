@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ __attribute__((used)) static inline void store_value (int **P, value_t value) {
   *P = PVal + VALUE_INTS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,10 +79,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int value = 100;
+        
           int _len_P0 = 1;
           int ** P = (int **) malloc(_len_P0*sizeof(int *));
           for(int _i0 = 0; _i0 < _len_P0; _i0++) {
@@ -95,9 +116,150 @@ int main(int argc, char *argv[]) {
               P[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           store_value(P,value);
           for(int i1 = 0; i1 < _len_P0; i1++) {
+              free(P[i1]);
+          }
+          free(P);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int value = 255;
+        
+          int _len_P0 = 65025;
+          int ** P = (int **) malloc(_len_P0*sizeof(int *));
+          for(int _i0 = 0; _i0 < _len_P0; _i0++) {
             int _len_P1 = 1;
+            P[_i0] = (int *) malloc(_len_P1*sizeof(int));
+            for(int _i1 = 0; _i1 < _len_P1; _i1++) {
+              P[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          store_value(P,value);
+          for(int i1 = 0; i1 < _len_P0; i1++) {
+              free(P[i1]);
+          }
+          free(P);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int value = 10;
+        
+          int _len_P0 = 100;
+          int ** P = (int **) malloc(_len_P0*sizeof(int *));
+          for(int _i0 = 0; _i0 < _len_P0; _i0++) {
+            int _len_P1 = 1;
+            P[_i0] = (int *) malloc(_len_P1*sizeof(int));
+            for(int _i1 = 0; _i1 < _len_P1; _i1++) {
+              P[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          store_value(P,value);
+          for(int i1 = 0; i1 < _len_P0; i1++) {
+              free(P[i1]);
+          }
+          free(P);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_P0 = 1;
+          int ** P = (int **) malloc(_len_P0*sizeof(int *));
+          for(int _i0 = 0; _i0 < _len_P0; _i0++) {
+            int _len_P1 = 1;
+            P[_i0] = (int *) malloc(_len_P1*sizeof(int));
+            for(int _i1 = 0; _i1 < _len_P1; _i1++) {
+              P[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          store_value(P,value);
+          for(int i1 = 0; i1 < _len_P0; i1++) {
               free(P[i1]);
           }
           free(P);

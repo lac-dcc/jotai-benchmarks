@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -86,12 +89,6 @@ int saa7164_i2caddr_to_reglen(struct saa7164_i2c *bus, int addr)
 	return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -108,16 +105,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int addr = 100;
+        
           int _len_bus0 = 1;
           struct saa7164_i2c * bus = (struct saa7164_i2c *) malloc(_len_bus0*sizeof(struct saa7164_i2c));
           for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
-            bus[_i0].nr = ((-2 * (next_i()%2)) + 1) * next_i();
+              bus[_i0].nr = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_bus__i0__dev0 = 1;
           bus[_i0].dev = (struct saa7164_dev *) malloc(_len_bus__i0__dev0*sizeof(struct saa7164_dev));
           for(int _j0 = 0; _j0 < _len_bus__i0__dev0; _j0++) {
-            bus[_i0].dev->board = ((-2 * (next_i()%2)) + 1) * next_i();
+              bus[_i0].dev->board = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = saa7164_i2caddr_to_reglen(bus,addr);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_bus0; _aux++) {
@@ -127,7 +128,87 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int addr = 255;
+        
+          int _len_bus0 = 65025;
+          struct saa7164_i2c * bus = (struct saa7164_i2c *) malloc(_len_bus0*sizeof(struct saa7164_i2c));
+          for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
+              bus[_i0].nr = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_bus__i0__dev0 = 1;
+          bus[_i0].dev = (struct saa7164_dev *) malloc(_len_bus__i0__dev0*sizeof(struct saa7164_dev));
+          for(int _j0 = 0; _j0 < _len_bus__i0__dev0; _j0++) {
+              bus[_i0].dev->board = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = saa7164_i2caddr_to_reglen(bus,addr);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_bus0; _aux++) {
+          free(bus[_aux].dev);
+          }
+          free(bus);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int addr = 10;
+        
+          int _len_bus0 = 100;
+          struct saa7164_i2c * bus = (struct saa7164_i2c *) malloc(_len_bus0*sizeof(struct saa7164_i2c));
+          for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
+              bus[_i0].nr = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_bus__i0__dev0 = 1;
+          bus[_i0].dev = (struct saa7164_dev *) malloc(_len_bus__i0__dev0*sizeof(struct saa7164_dev));
+          for(int _j0 = 0; _j0 < _len_bus__i0__dev0; _j0++) {
+              bus[_i0].dev->board = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = saa7164_i2caddr_to_reglen(bus,addr);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_bus0; _aux++) {
+          free(bus[_aux].dev);
+          }
+          free(bus);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_bus0 = 1;
+          struct saa7164_i2c * bus = (struct saa7164_i2c *) malloc(_len_bus0*sizeof(struct saa7164_i2c));
+          for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
+              bus[_i0].nr = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_bus__i0__dev0 = 1;
+          bus[_i0].dev = (struct saa7164_dev *) malloc(_len_bus__i0__dev0*sizeof(struct saa7164_dev));
+          for(int _j0 = 0; _j0 < _len_bus__i0__dev0; _j0++) {
+              bus[_i0].dev->board = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = saa7164_i2caddr_to_reglen(bus,addr);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_bus0; _aux++) {
+          free(bus[_aux].dev);
+          }
+          free(bus);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ struct sway_layer_surface *layer_from_wlr_layer_surface_v1(
 	return layer_surface->data;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,18 +75,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_layer_surface0 = 1;
+          int _len_layer_surface0 = 65025;
           struct wlr_layer_surface_v1 * layer_surface = (struct wlr_layer_surface_v1 *) malloc(_len_layer_surface0*sizeof(struct wlr_layer_surface_v1));
           for(int _i0 = 0; _i0 < _len_layer_surface0; _i0++) {
               int _len_layer_surface__i0__data0 = 1;
           layer_surface[_i0].data = (struct sway_layer_surface *) malloc(_len_layer_surface__i0__data0*sizeof(struct sway_layer_surface));
           for(int _j0 = 0; _j0 < _len_layer_surface__i0__data0; _j0++) {
-            layer_surface[_i0].data->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              layer_surface[_i0].data->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct sway_layer_surface * benchRet = layer_from_wlr_layer_surface_v1(layer_surface);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_layer_surface0; _aux++) {
@@ -100,7 +99,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_layer_surface0 = 100;
+          struct wlr_layer_surface_v1 * layer_surface = (struct wlr_layer_surface_v1 *) malloc(_len_layer_surface0*sizeof(struct wlr_layer_surface_v1));
+          for(int _i0 = 0; _i0 < _len_layer_surface0; _i0++) {
+              int _len_layer_surface__i0__data0 = 1;
+          layer_surface[_i0].data = (struct sway_layer_surface *) malloc(_len_layer_surface__i0__data0*sizeof(struct sway_layer_surface));
+          for(int _j0 = 0; _j0 < _len_layer_surface__i0__data0; _j0++) {
+              layer_surface[_i0].data->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct sway_layer_surface * benchRet = layer_from_wlr_layer_surface_v1(layer_surface);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_layer_surface0; _aux++) {
+          free(layer_surface[_aux].data);
+          }
+          free(layer_surface);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_layer_surface0 = 1;
+          struct wlr_layer_surface_v1 * layer_surface = (struct wlr_layer_surface_v1 *) malloc(_len_layer_surface0*sizeof(struct wlr_layer_surface_v1));
+          for(int _i0 = 0; _i0 < _len_layer_surface0; _i0++) {
+              int _len_layer_surface__i0__data0 = 1;
+          layer_surface[_i0].data = (struct sway_layer_surface *) malloc(_len_layer_surface__i0__data0*sizeof(struct sway_layer_surface));
+          for(int _j0 = 0; _j0 < _len_layer_surface__i0__data0; _j0++) {
+              layer_surface[_i0].data->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct sway_layer_surface * benchRet = layer_from_wlr_layer_surface_v1(layer_surface);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_layer_surface0; _aux++) {
+          free(layer_surface[_aux].data);
+          }
+          free(layer_surface);
+        
+        break;
+    }
     default:
         usage();
         break;

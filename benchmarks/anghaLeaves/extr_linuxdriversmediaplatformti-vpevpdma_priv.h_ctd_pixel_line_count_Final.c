@@ -63,12 +63,6 @@ __attribute__((used)) static inline u32 ctd_pixel_line_count(int pixel_count, in
 	return (pixel_count << CTD_PIXEL_COUNT_SHFT) | line_count;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,7 +79,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int pixel_count = 100;
+        
           int line_count = 100;
+        
           int benchRet = ctd_pixel_line_count(pixel_count,line_count);
           printf("%d\n", benchRet); 
         
@@ -95,7 +91,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int pixel_count = 255;
+        
           int line_count = 255;
+        
           int benchRet = ctd_pixel_line_count(pixel_count,line_count);
           printf("%d\n", benchRet); 
         
@@ -105,13 +103,14 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int pixel_count = 10;
+        
           int line_count = 10;
+        
           int benchRet = ctd_pixel_line_count(pixel_count,line_count);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

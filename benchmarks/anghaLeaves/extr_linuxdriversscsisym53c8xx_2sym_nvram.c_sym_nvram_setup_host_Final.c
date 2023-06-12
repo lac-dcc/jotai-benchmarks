@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -111,12 +113,6 @@ void sym_nvram_setup_host(struct Scsi_Host *shost, struct sym_hcb *np, struct sy
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -129,32 +125,41 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_shost0 = 1;
+          int _len_shost0 = 65025;
           struct Scsi_Host * shost = (struct Scsi_Host *) malloc(_len_shost0*sizeof(struct Scsi_Host));
           for(int _i0 = 0; _i0 < _len_shost0; _i0++) {
-            shost[_i0].reverse_ordering = ((-2 * (next_i()%2)) + 1) * next_i();
+              shost[_i0].reverse_ordering = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_np0 = 1;
+        
+          int _len_np0 = 65025;
           struct sym_hcb * np = (struct sym_hcb *) malloc(_len_np0*sizeof(struct sym_hcb));
           for(int _i0 = 0; _i0 < _len_np0; _i0++) {
-            np[_i0].rv_scntl0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        np[_i0].myaddr = ((-2 * (next_i()%2)) + 1) * next_i();
-        np[_i0].verbose = ((-2 * (next_i()%2)) + 1) * next_i();
-        np[_i0].usrflags = ((-2 * (next_i()%2)) + 1) * next_i();
+              np[_i0].rv_scntl0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].myaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].verbose = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].usrflags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_nvram0 = 1;
+        
+          int _len_nvram0 = 65025;
           struct sym_nvram * nvram = (struct sym_nvram *) malloc(_len_nvram0*sizeof(struct sym_nvram));
           for(int _i0 = 0; _i0 < _len_nvram0; _i0++) {
-            nvram[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        nvram[_i0].data.Tekram.host_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        nvram[_i0].data.Symbios.flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        nvram[_i0].data.Symbios.host_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        nvram[_i0].data.Symbios.flags1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        nvram[_i0].data.Symbios.flags2 = ((-2 * (next_i()%2)) + 1) * next_i();
+              nvram[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          nvram[_i0].data.Tekram.host_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          nvram[_i0].data.Symbios.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          nvram[_i0].data.Symbios.host_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          nvram[_i0].data.Symbios.flags1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          nvram[_i0].data.Symbios.flags2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           sym_nvram_setup_host(shost,np,nvram);
           free(shost);
           free(np);
@@ -162,7 +167,90 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_shost0 = 100;
+          struct Scsi_Host * shost = (struct Scsi_Host *) malloc(_len_shost0*sizeof(struct Scsi_Host));
+          for(int _i0 = 0; _i0 < _len_shost0; _i0++) {
+              shost[_i0].reverse_ordering = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_np0 = 100;
+          struct sym_hcb * np = (struct sym_hcb *) malloc(_len_np0*sizeof(struct sym_hcb));
+          for(int _i0 = 0; _i0 < _len_np0; _i0++) {
+              np[_i0].rv_scntl0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].myaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].verbose = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].usrflags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_nvram0 = 100;
+          struct sym_nvram * nvram = (struct sym_nvram *) malloc(_len_nvram0*sizeof(struct sym_nvram));
+          for(int _i0 = 0; _i0 < _len_nvram0; _i0++) {
+              nvram[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          nvram[_i0].data.Tekram.host_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          nvram[_i0].data.Symbios.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          nvram[_i0].data.Symbios.host_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          nvram[_i0].data.Symbios.flags1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          nvram[_i0].data.Symbios.flags2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          sym_nvram_setup_host(shost,np,nvram);
+          free(shost);
+          free(np);
+          free(nvram);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_shost0 = 1;
+          struct Scsi_Host * shost = (struct Scsi_Host *) malloc(_len_shost0*sizeof(struct Scsi_Host));
+          for(int _i0 = 0; _i0 < _len_shost0; _i0++) {
+              shost[_i0].reverse_ordering = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_np0 = 1;
+          struct sym_hcb * np = (struct sym_hcb *) malloc(_len_np0*sizeof(struct sym_hcb));
+          for(int _i0 = 0; _i0 < _len_np0; _i0++) {
+              np[_i0].rv_scntl0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].myaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].verbose = ((-2 * (next_i()%2)) + 1) * next_i();
+          np[_i0].usrflags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_nvram0 = 1;
+          struct sym_nvram * nvram = (struct sym_nvram *) malloc(_len_nvram0*sizeof(struct sym_nvram));
+          for(int _i0 = 0; _i0 < _len_nvram0; _i0++) {
+              nvram[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          nvram[_i0].data.Tekram.host_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          nvram[_i0].data.Symbios.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          nvram[_i0].data.Symbios.host_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          nvram[_i0].data.Symbios.flags1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          nvram[_i0].data.Symbios.flags2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          sym_nvram_setup_host(shost,np,nvram);
+          free(shost);
+          free(np);
+          free(nvram);
+        
+        break;
+    }
     default:
         usage();
         break;

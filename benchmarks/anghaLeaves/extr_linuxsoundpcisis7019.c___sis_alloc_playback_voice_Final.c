@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ found_one:
 	return voice;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,18 +90,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_sis0 = 65025;
+          struct sis7019 * sis = (struct sis7019 *) malloc(_len_sis0*sizeof(struct sis7019));
+          for(int _i0 = 0; _i0 < _len_sis0; _i0++) {
+              int _len_sis__i0__voices0 = 1;
+          sis[_i0].voices = (struct voice *) malloc(_len_sis__i0__voices0*sizeof(struct voice));
+          for(int _j0 = 0; _j0 < _len_sis__i0__voices0; _j0++) {
+              sis[_i0].voices->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct voice * benchRet = __sis_alloc_playback_voice(sis);
+          printf("%d\n", (*benchRet).flags);
+          for(int _aux = 0; _aux < _len_sis0; _aux++) {
+          free(sis[_aux].voices);
+          }
+          free(sis);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_sis0 = 100;
+          struct sis7019 * sis = (struct sis7019 *) malloc(_len_sis0*sizeof(struct sis7019));
+          for(int _i0 = 0; _i0 < _len_sis0; _i0++) {
+              int _len_sis__i0__voices0 = 1;
+          sis[_i0].voices = (struct voice *) malloc(_len_sis__i0__voices0*sizeof(struct voice));
+          for(int _j0 = 0; _j0 < _len_sis__i0__voices0; _j0++) {
+              sis[_i0].voices->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct voice * benchRet = __sis_alloc_playback_voice(sis);
+          printf("%d\n", (*benchRet).flags);
+          for(int _aux = 0; _aux < _len_sis0; _aux++) {
+          free(sis[_aux].voices);
+          }
+          free(sis);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int _len_sis0 = 1;
           struct sis7019 * sis = (struct sis7019 *) malloc(_len_sis0*sizeof(struct sis7019));
           for(int _i0 = 0; _i0 < _len_sis0; _i0++) {
               int _len_sis__i0__voices0 = 1;
           sis[_i0].voices = (struct voice *) malloc(_len_sis__i0__voices0*sizeof(struct voice));
           for(int _j0 = 0; _j0 < _len_sis__i0__voices0; _j0++) {
-            sis[_i0].voices->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              sis[_i0].voices->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct voice * benchRet = __sis_alloc_playback_voice(sis);
           printf("%d\n", (*benchRet).flags);
           for(int _aux = 0; _aux < _len_sis0; _aux++) {

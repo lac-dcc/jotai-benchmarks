@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ __attribute__((used)) static sector_t get_zone(sector_t sector, struct pktcdvd_d
 	return (sector + pd->offset) & ~(sector_t)(pd->settings.size - 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,16 +78,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int sector = 100;
+        
           int _len_pd0 = 1;
           struct pktcdvd_device * pd = (struct pktcdvd_device *) malloc(_len_pd0*sizeof(struct pktcdvd_device));
           for(int _i0 = 0; _i0 < _len_pd0; _i0++) {
-            pd[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        pd[_i0].settings.size = ((-2 * (next_i()%2)) + 1) * next_i();
+              pd[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          pd[_i0].settings.size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = get_zone(sector,pd);
+          printf("%d\n", benchRet); 
+          free(pd);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int sector = 255;
+        
+          int _len_pd0 = 65025;
+          struct pktcdvd_device * pd = (struct pktcdvd_device *) malloc(_len_pd0*sizeof(struct pktcdvd_device));
+          for(int _i0 = 0; _i0 < _len_pd0; _i0++) {
+              pd[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          pd[_i0].settings.size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = get_zone(sector,pd);
+          printf("%d\n", benchRet); 
+          free(pd);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int sector = 10;
+        
+          int _len_pd0 = 100;
+          struct pktcdvd_device * pd = (struct pktcdvd_device *) malloc(_len_pd0*sizeof(struct pktcdvd_device));
+          for(int _i0 = 0; _i0 < _len_pd0; _i0++) {
+              pd[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          pd[_i0].settings.size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = get_zone(sector,pd);
+          printf("%d\n", benchRet); 
+          free(pd);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int sector = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pd0 = 1;
+          struct pktcdvd_device * pd = (struct pktcdvd_device *) malloc(_len_pd0*sizeof(struct pktcdvd_device));
+          for(int _i0 = 0; _i0 < _len_pd0; _i0++) {
+              pd[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          pd[_i0].settings.size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = get_zone(sector,pd);
           printf("%d\n", benchRet); 
           free(pd);

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static int event_type(struct cpts_event *event)
 	return (event->high >> EVENT_TYPE_SHIFT) & EVENT_TYPE_MASK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,28 +76,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_event0 = 1;
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_event0 = 65025;
           struct cpts_event * event = (struct cpts_event *) malloc(_len_event0*sizeof(struct cpts_event));
           for(int _i0 = 0; _i0 < _len_event0; _i0++) {
-            event[_i0].high = ((-2 * (next_i()%2)) + 1) * next_i();
+              event[_i0].high = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = event_type(event);
           printf("%d\n", benchRet); 
           free(event);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_event0 = 100;
           struct cpts_event * event = (struct cpts_event *) malloc(_len_event0*sizeof(struct cpts_event));
           for(int _i0 = 0; _i0 < _len_event0; _i0++) {
-            event[_i0].high = ((-2 * (next_i()%2)) + 1) * next_i();
+              event[_i0].high = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = event_type(event);
+          printf("%d\n", benchRet); 
+          free(event);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_event0 = 1;
+          struct cpts_event * event = (struct cpts_event *) malloc(_len_event0*sizeof(struct cpts_event));
+          for(int _i0 = 0; _i0 < _len_event0; _i0++) {
+              event[_i0].high = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = event_type(event);
           printf("%d\n", benchRet); 
           free(event);

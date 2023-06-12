@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline bool pll_is_valid(u64 val0, u64 val1, u64 mi
 	return (val0 >= (val1 * min) && val0 <= (val1 * max));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,9 +79,13 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int val0 = 100;
+        
           int val1 = 100;
+        
           int min = 100;
+        
           int max = 100;
+        
           int benchRet = pll_is_valid(val0,val1,min,max);
           printf("%d\n", benchRet); 
         
@@ -96,9 +95,13 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int val0 = 255;
+        
           int val1 = 255;
+        
           int min = 255;
+        
           int max = 255;
+        
           int benchRet = pll_is_valid(val0,val1,min,max);
           printf("%d\n", benchRet); 
         
@@ -108,15 +111,34 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int val0 = 10;
+        
           int val1 = 10;
+        
           int min = 10;
+        
           int max = 10;
+        
           int benchRet = pll_is_valid(val0,val1,min,max);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int val0 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int val1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = pll_is_valid(val0,val1,min,max);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

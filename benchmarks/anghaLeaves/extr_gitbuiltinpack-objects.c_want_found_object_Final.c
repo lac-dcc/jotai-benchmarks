@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -97,12 +100,6 @@ __attribute__((used)) static int want_found_object(int exclude, struct packed_gi
 	return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -119,20 +116,82 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int exclude = 100;
+        
           int _len_p0 = 1;
           struct packed_git * p = (struct packed_git *) malloc(_len_p0*sizeof(struct packed_git));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].pack_keep_in_core = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].pack_keep = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].pack_local = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].pack_keep_in_core = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].pack_keep = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].pack_local = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = want_found_object(exclude,p);
           printf("%d\n", benchRet); 
           free(p);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int exclude = 255;
+        
+          int _len_p0 = 65025;
+          struct packed_git * p = (struct packed_git *) malloc(_len_p0*sizeof(struct packed_git));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].pack_keep_in_core = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].pack_keep = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].pack_local = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = want_found_object(exclude,p);
+          printf("%d\n", benchRet); 
+          free(p);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int exclude = 10;
+        
+          int _len_p0 = 100;
+          struct packed_git * p = (struct packed_git *) malloc(_len_p0*sizeof(struct packed_git));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].pack_keep_in_core = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].pack_keep = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].pack_local = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = want_found_object(exclude,p);
+          printf("%d\n", benchRet); 
+          free(p);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int exclude = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_p0 = 1;
+          struct packed_git * p = (struct packed_git *) malloc(_len_p0*sizeof(struct packed_git));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].pack_keep_in_core = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].pack_keep = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].pack_local = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = want_found_object(exclude,p);
+          printf("%d\n", benchRet); 
+          free(p);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ void ath9k_hw_set_tsfadjust(struct ath_hw *ah, bool set)
 		ah->misc_mode &= ~AR_PCU_TX_ADD_TSF;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,31 +83,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int set = 100;
+        
           int _len_ah0 = 1;
           struct ath_hw * ah = (struct ath_hw *) malloc(_len_ah0*sizeof(struct ath_hw));
           for(int _i0 = 0; _i0 < _len_ah0; _i0++) {
-            ah[_i0].misc_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              ah[_i0].misc_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          ath9k_hw_set_tsfadjust(ah,set);
+          free(ah);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int set = 255;
+        
+          int _len_ah0 = 65025;
+          struct ath_hw * ah = (struct ath_hw *) malloc(_len_ah0*sizeof(struct ath_hw));
+          for(int _i0 = 0; _i0 < _len_ah0; _i0++) {
+              ah[_i0].misc_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           ath9k_hw_set_tsfadjust(ah,set);
           free(ah);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int set = 10;
+        
           int _len_ah0 = 100;
           struct ath_hw * ah = (struct ath_hw *) malloc(_len_ah0*sizeof(struct ath_hw));
           for(int _i0 = 0; _i0 < _len_ah0; _i0++) {
-            ah[_i0].misc_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              ah[_i0].misc_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ath9k_hw_set_tsfadjust(ah,set);
           free(ah);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int set = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ah0 = 1;
+          struct ath_hw * ah = (struct ath_hw *) malloc(_len_ah0*sizeof(struct ath_hw));
+          for(int _i0 = 0; _i0 < _len_ah0; _i0++) {
+              ah[_i0].misc_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ath9k_hw_set_tsfadjust(ah,set);
+          free(ah);
+        
+        break;
+    }
     default:
         usage();
         break;

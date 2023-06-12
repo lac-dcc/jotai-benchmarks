@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static inline u32 intel_uc_fw_get_upload_size(struct intel
 	return uc_fw->header_size + uc_fw->ucode_size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,16 +79,125 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_uc_fw0 = 65025;
+          struct intel_uc_fw * uc_fw = (struct intel_uc_fw *) malloc(_len_uc_fw0*sizeof(struct intel_uc_fw));
+          for(int _i0 = 0; _i0 < _len_uc_fw0; _i0++) {
+              uc_fw[_i0].fetch_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          uc_fw[_i0].ucode_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          uc_fw[_i0].header_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = intel_uc_fw_get_upload_size(uc_fw);
+          printf("%ld\n", benchRet); 
+          free(uc_fw);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_uc_fw0 = 100;
+          struct intel_uc_fw * uc_fw = (struct intel_uc_fw *) malloc(_len_uc_fw0*sizeof(struct intel_uc_fw));
+          for(int _i0 = 0; _i0 < _len_uc_fw0; _i0++) {
+              uc_fw[_i0].fetch_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          uc_fw[_i0].ucode_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          uc_fw[_i0].header_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = intel_uc_fw_get_upload_size(uc_fw);
+          printf("%ld\n", benchRet); 
+          free(uc_fw);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_uc_fw0 = 1;
           struct intel_uc_fw * uc_fw = (struct intel_uc_fw *) malloc(_len_uc_fw0*sizeof(struct intel_uc_fw));
           for(int _i0 = 0; _i0 < _len_uc_fw0; _i0++) {
-            uc_fw[_i0].fetch_status = ((-2 * (next_i()%2)) + 1) * next_i();
-        uc_fw[_i0].ucode_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        uc_fw[_i0].header_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              uc_fw[_i0].fetch_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          uc_fw[_i0].ucode_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          uc_fw[_i0].header_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = intel_uc_fw_get_upload_size(uc_fw);
           printf("%ld\n", benchRet); 
           free(uc_fw);

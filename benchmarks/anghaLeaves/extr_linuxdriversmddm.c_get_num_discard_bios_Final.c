@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static unsigned get_num_discard_bios(struct dm_target *ti)
 	return ti->num_discard_bios;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ti0 = 1;
+          int _len_ti0 = 65025;
           struct dm_target * ti = (struct dm_target *) malloc(_len_ti0*sizeof(struct dm_target));
           for(int _i0 = 0; _i0 < _len_ti0; _i0++) {
-            ti[_i0].num_discard_bios = ((-2 * (next_i()%2)) + 1) * next_i();
+              ti[_i0].num_discard_bios = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = get_num_discard_bios(ti);
           printf("%u\n", benchRet); 
           free(ti);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_ti0 = 100;
           struct dm_target * ti = (struct dm_target *) malloc(_len_ti0*sizeof(struct dm_target));
           for(int _i0 = 0; _i0 < _len_ti0; _i0++) {
-            ti[_i0].num_discard_bios = ((-2 * (next_i()%2)) + 1) * next_i();
+              ti[_i0].num_discard_bios = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = get_num_discard_bios(ti);
           printf("%u\n", benchRet); 
           free(ti);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ti0 = 1;
+          struct dm_target * ti = (struct dm_target *) malloc(_len_ti0*sizeof(struct dm_target));
+          for(int _i0 = 0; _i0 < _len_ti0; _i0++) {
+              ti[_i0].num_discard_bios = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = get_num_discard_bios(ti);
+          printf("%u\n", benchRet); 
+          free(ti);
+        
+        break;
+    }
     default:
         usage();
         break;

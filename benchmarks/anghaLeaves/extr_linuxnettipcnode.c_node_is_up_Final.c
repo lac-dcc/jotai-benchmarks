@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static bool node_is_up(struct tipc_node *n)
 	return n->active_links[0] != INVALID_BEARER_ID;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,9 +75,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_n0 = 65025;
+          struct tipc_node * n = (struct tipc_node *) malloc(_len_n0*sizeof(struct tipc_node));
+          for(int _i0 = 0; _i0 < _len_n0; _i0++) {
+              int _len_n__i0__active_links0 = 1;
+          n[_i0].active_links = (long *) malloc(_len_n__i0__active_links0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_n__i0__active_links0; _j0++) {
+            n[_i0].active_links[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = node_is_up(n);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_n0; _aux++) {
+          free(n[_aux].active_links);
+          }
+          free(n);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_n0 = 100;
+          struct tipc_node * n = (struct tipc_node *) malloc(_len_n0*sizeof(struct tipc_node));
+          for(int _i0 = 0; _i0 < _len_n0; _i0++) {
+              int _len_n__i0__active_links0 = 1;
+          n[_i0].active_links = (long *) malloc(_len_n__i0__active_links0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_n__i0__active_links0; _j0++) {
+            n[_i0].active_links[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = node_is_up(n);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_n0; _aux++) {
+          free(n[_aux].active_links);
+          }
+          free(n);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_n0 = 1;
           struct tipc_node * n = (struct tipc_node *) malloc(_len_n0*sizeof(struct tipc_node));
           for(int _i0 = 0; _i0 < _len_n0; _i0++) {
@@ -90,7 +203,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_n__i0__active_links0; _j0++) {
             n[_i0].active_links[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = node_is_up(n);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_n0; _aux++) {

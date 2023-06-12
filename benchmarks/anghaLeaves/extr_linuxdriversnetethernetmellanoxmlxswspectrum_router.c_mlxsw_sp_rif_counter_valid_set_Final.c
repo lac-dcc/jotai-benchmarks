@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +76,6 @@ mlxsw_sp_rif_counter_valid_set(struct mlxsw_sp_rif *rif,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,17 +88,176 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           enum mlxsw_sp_rif_counter_dir dir = 0;
+        
           int valid = 100;
+        
           int _len_rif0 = 1;
           struct mlxsw_sp_rif * rif = (struct mlxsw_sp_rif *) malloc(_len_rif0*sizeof(struct mlxsw_sp_rif));
           for(int _i0 = 0; _i0 < _len_rif0; _i0++) {
-            rif[_i0].counter_egress_valid = ((-2 * (next_i()%2)) + 1) * next_i();
-        rif[_i0].counter_ingress_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+              rif[_i0].counter_egress_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          rif[_i0].counter_ingress_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          mlxsw_sp_rif_counter_valid_set(rif,dir,valid);
+          free(rif);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          enum mlxsw_sp_rif_counter_dir dir = 0;
+        
+          int valid = 255;
+        
+          int _len_rif0 = 65025;
+          struct mlxsw_sp_rif * rif = (struct mlxsw_sp_rif *) malloc(_len_rif0*sizeof(struct mlxsw_sp_rif));
+          for(int _i0 = 0; _i0 < _len_rif0; _i0++) {
+              rif[_i0].counter_egress_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          rif[_i0].counter_ingress_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mlxsw_sp_rif_counter_valid_set(rif,dir,valid);
+          free(rif);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          enum mlxsw_sp_rif_counter_dir dir = 0;
+        
+          int valid = 10;
+        
+          int _len_rif0 = 100;
+          struct mlxsw_sp_rif * rif = (struct mlxsw_sp_rif *) malloc(_len_rif0*sizeof(struct mlxsw_sp_rif));
+          for(int _i0 = 0; _i0 < _len_rif0; _i0++) {
+              rif[_i0].counter_egress_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          rif[_i0].counter_ingress_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mlxsw_sp_rif_counter_valid_set(rif,dir,valid);
+          free(rif);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          enum mlxsw_sp_rif_counter_dir dir = 0;
+        
+          int valid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rif0 = 1;
+          struct mlxsw_sp_rif * rif = (struct mlxsw_sp_rif *) malloc(_len_rif0*sizeof(struct mlxsw_sp_rif));
+          for(int _i0 = 0; _i0 < _len_rif0; _i0++) {
+              rif[_i0].counter_egress_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          rif[_i0].counter_ingress_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           mlxsw_sp_rif_counter_valid_set(rif,dir,valid);
           free(rif);
         

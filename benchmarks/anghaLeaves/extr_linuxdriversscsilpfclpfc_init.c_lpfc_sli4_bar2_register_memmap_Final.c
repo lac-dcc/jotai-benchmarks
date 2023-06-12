@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -89,12 +92,6 @@ lpfc_sli4_bar2_register_memmap(struct lpfc_hba *phba, uint32_t vf)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,21 +104,195 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int vf = 100;
+        
           int _len_phba0 = 1;
           struct lpfc_hba * phba = (struct lpfc_hba *) malloc(_len_phba0*sizeof(struct lpfc_hba));
           for(int _i0 = 0; _i0 < _len_phba0; _i0++) {
-            phba[_i0].sli4_hba.drbl_regs_memmap_p = ((-2 * (next_i()%2)) + 1) * next_i();
-        phba[_i0].sli4_hba.BMBXregaddr = ((-2 * (next_i()%2)) + 1) * next_i();
-        phba[_i0].sli4_hba.MQDBregaddr = ((-2 * (next_i()%2)) + 1) * next_i();
-        phba[_i0].sli4_hba.CQDBregaddr = ((-2 * (next_i()%2)) + 1) * next_i();
-        phba[_i0].sli4_hba.EQDBregaddr = ((-2 * (next_i()%2)) + 1) * next_i();
-        phba[_i0].sli4_hba.WQDBregaddr = ((-2 * (next_i()%2)) + 1) * next_i();
-        phba[_i0].sli4_hba.RQDBregaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+              phba[_i0].sli4_hba.drbl_regs_memmap_p = ((-2 * (next_i()%2)) + 1) * next_i();
+          phba[_i0].sli4_hba.BMBXregaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          phba[_i0].sli4_hba.MQDBregaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          phba[_i0].sli4_hba.CQDBregaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          phba[_i0].sli4_hba.EQDBregaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          phba[_i0].sli4_hba.WQDBregaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          phba[_i0].sli4_hba.RQDBregaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = lpfc_sli4_bar2_register_memmap(phba,vf);
+          printf("%d\n", benchRet); 
+          free(phba);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int vf = 255;
+        
+          int _len_phba0 = 65025;
+          struct lpfc_hba * phba = (struct lpfc_hba *) malloc(_len_phba0*sizeof(struct lpfc_hba));
+          for(int _i0 = 0; _i0 < _len_phba0; _i0++) {
+              phba[_i0].sli4_hba.drbl_regs_memmap_p = ((-2 * (next_i()%2)) + 1) * next_i();
+          phba[_i0].sli4_hba.BMBXregaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          phba[_i0].sli4_hba.MQDBregaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          phba[_i0].sli4_hba.CQDBregaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          phba[_i0].sli4_hba.EQDBregaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          phba[_i0].sli4_hba.WQDBregaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          phba[_i0].sli4_hba.RQDBregaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = lpfc_sli4_bar2_register_memmap(phba,vf);
+          printf("%d\n", benchRet); 
+          free(phba);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int vf = 10;
+        
+          int _len_phba0 = 100;
+          struct lpfc_hba * phba = (struct lpfc_hba *) malloc(_len_phba0*sizeof(struct lpfc_hba));
+          for(int _i0 = 0; _i0 < _len_phba0; _i0++) {
+              phba[_i0].sli4_hba.drbl_regs_memmap_p = ((-2 * (next_i()%2)) + 1) * next_i();
+          phba[_i0].sli4_hba.BMBXregaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          phba[_i0].sli4_hba.MQDBregaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          phba[_i0].sli4_hba.CQDBregaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          phba[_i0].sli4_hba.EQDBregaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          phba[_i0].sli4_hba.WQDBregaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          phba[_i0].sli4_hba.RQDBregaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = lpfc_sli4_bar2_register_memmap(phba,vf);
+          printf("%d\n", benchRet); 
+          free(phba);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 60
+          // dynamic_instructions_O0 : 60
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 26
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 26
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 26
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
+          int vf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_phba0 = 1;
+          struct lpfc_hba * phba = (struct lpfc_hba *) malloc(_len_phba0*sizeof(struct lpfc_hba));
+          for(int _i0 = 0; _i0 < _len_phba0; _i0++) {
+              phba[_i0].sli4_hba.drbl_regs_memmap_p = ((-2 * (next_i()%2)) + 1) * next_i();
+          phba[_i0].sli4_hba.BMBXregaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          phba[_i0].sli4_hba.MQDBregaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          phba[_i0].sli4_hba.CQDBregaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          phba[_i0].sli4_hba.EQDBregaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          phba[_i0].sli4_hba.WQDBregaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          phba[_i0].sli4_hba.RQDBregaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = lpfc_sli4_bar2_register_memmap(phba,vf);
           printf("%d\n", benchRet); 
           free(phba);

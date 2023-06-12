@@ -61,12 +61,6 @@ bit(int b)
     return ((u_char)(1 << b));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,12 +77,12 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int b = 10;
+        
           int benchRet = bit(b);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

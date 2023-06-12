@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ __attribute__((used)) static inline void incr_be(uint8_t *v, size_t len)
   }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,21 +81,38 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          unsigned long len = 10;
-          int _len_v0 = 100;
+          unsigned long len = 255;
+        
+          int _len_v0 = 65025;
           long * v = (long *) malloc(_len_v0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_v0; _i0++) {
             v[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           incr_be(v,len);
           free(v);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          unsigned long len = 10;
+        
+          int _len_v0 = 100;
+          long * v = (long *) malloc(_len_v0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_v0; _i0++) {
+            v[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          incr_be(v,len);
+          free(v);
+        
+        break;
+    }
     default:
         usage();
         break;

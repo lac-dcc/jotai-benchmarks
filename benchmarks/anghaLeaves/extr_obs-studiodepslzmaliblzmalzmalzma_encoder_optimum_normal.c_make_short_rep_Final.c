@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ make_short_rep(lzma_optimal *optimal)
 	optimal->prev_1_is_literal = false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,21 +78,54 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_optimal0 = 1;
+          int _len_optimal0 = 65025;
           struct TYPE_3__ * optimal = (struct TYPE_3__ *) malloc(_len_optimal0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_optimal0; _i0++) {
-            optimal[_i0].prev_1_is_literal = ((-2 * (next_i()%2)) + 1) * next_i();
-        optimal[_i0].back_prev = ((-2 * (next_i()%2)) + 1) * next_i();
+              optimal[_i0].prev_1_is_literal = ((-2 * (next_i()%2)) + 1) * next_i();
+          optimal[_i0].back_prev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           make_short_rep(optimal);
           free(optimal);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_optimal0 = 100;
+          struct TYPE_3__ * optimal = (struct TYPE_3__ *) malloc(_len_optimal0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_optimal0; _i0++) {
+              optimal[_i0].prev_1_is_literal = ((-2 * (next_i()%2)) + 1) * next_i();
+          optimal[_i0].back_prev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          make_short_rep(optimal);
+          free(optimal);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_optimal0 = 1;
+          struct TYPE_3__ * optimal = (struct TYPE_3__ *) malloc(_len_optimal0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_optimal0; _i0++) {
+              optimal[_i0].prev_1_is_literal = ((-2 * (next_i()%2)) + 1) * next_i();
+          optimal[_i0].back_prev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          make_short_rep(optimal);
+          free(optimal);
+        
+        break;
+    }
     default:
         usage();
         break;

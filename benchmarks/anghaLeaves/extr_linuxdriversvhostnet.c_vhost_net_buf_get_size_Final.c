@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static int vhost_net_buf_get_size(struct vhost_net_buf *rx
 	return rxq->tail - rxq->head;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,15 +74,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_rxq0 = 65025;
+          struct vhost_net_buf * rxq = (struct vhost_net_buf *) malloc(_len_rxq0*sizeof(struct vhost_net_buf));
+          for(int _i0 = 0; _i0 < _len_rxq0; _i0++) {
+              rxq[_i0].tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxq[_i0].head = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vhost_net_buf_get_size(rxq);
+          printf("%d\n", benchRet); 
+          free(rxq);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_rxq0 = 100;
+          struct vhost_net_buf * rxq = (struct vhost_net_buf *) malloc(_len_rxq0*sizeof(struct vhost_net_buf));
+          for(int _i0 = 0; _i0 < _len_rxq0; _i0++) {
+              rxq[_i0].tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxq[_i0].head = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vhost_net_buf_get_size(rxq);
+          printf("%d\n", benchRet); 
+          free(rxq);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_rxq0 = 1;
           struct vhost_net_buf * rxq = (struct vhost_net_buf *) malloc(_len_rxq0*sizeof(struct vhost_net_buf));
           for(int _i0 = 0; _i0 < _len_rxq0; _i0++) {
-            rxq[_i0].tail = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxq[_i0].head = ((-2 * (next_i()%2)) + 1) * next_i();
+              rxq[_i0].tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxq[_i0].head = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = vhost_net_buf_get_size(rxq);
           printf("%d\n", benchRet); 
           free(rxq);

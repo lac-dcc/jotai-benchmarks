@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -69,7 +70,6 @@ __attribute__((used)) static void tag_tree_update(Jpeg2000TgtNode *node)
     }
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct TYPE_3__ *_allocate_node(int length, struct TYPE_3__ *aux_node[]) {
@@ -99,7 +99,6 @@ void _delete_node(struct TYPE_3__ *aux_node[], int aux_node_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -112,17 +111,28 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // linked
     case 0:
+    {
+          struct TYPE_3__ * aux_node[10000];
+          struct TYPE_3__ * node = _allocate_node(10000, aux_node);
+        
+          tag_tree_update(node);
+          _delete_node(aux_node, 10000);
+        
+        break;
+    }
+    // empty
+    case 1:
     {
           struct TYPE_3__ * aux_node[1];
           struct TYPE_3__ * node = _allocate_node(1, aux_node);
+        
           tag_tree_update(node);
           _delete_node(aux_node, 1);
         
         break;
     }
-
     default:
         usage();
         break;

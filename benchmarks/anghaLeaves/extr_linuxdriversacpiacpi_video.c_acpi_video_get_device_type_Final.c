@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +77,6 @@ acpi_video_get_device_type(struct acpi_video_bus *video,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,16 +93,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long device_id = 100;
+        
           int _len_video0 = 1;
           struct acpi_video_bus * video = (struct acpi_video_bus *) malloc(_len_video0*sizeof(struct acpi_video_bus));
           for(int _i0 = 0; _i0 < _len_video0; _i0++) {
-            video[_i0].attached_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              video[_i0].attached_count = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_video__i0__attached_array0 = 1;
           video[_i0].attached_array = (struct acpi_video_enumerated_device *) malloc(_len_video__i0__attached_array0*sizeof(struct acpi_video_enumerated_device));
           for(int _j0 = 0; _j0 < _len_video__i0__attached_array0; _j0++) {
-            video[_i0].attached_array->value.int_val = ((-2 * (next_i()%2)) + 1) * next_i();
+              video[_i0].attached_array->value.int_val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           int benchRet = acpi_video_get_device_type(video,device_id);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_video0; _aux++) {
@@ -115,7 +117,90 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long device_id = 255;
+        
+          int _len_video0 = 65025;
+          struct acpi_video_bus * video = (struct acpi_video_bus *) malloc(_len_video0*sizeof(struct acpi_video_bus));
+          for(int _i0 = 0; _i0 < _len_video0; _i0++) {
+              video[_i0].attached_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_video__i0__attached_array0 = 1;
+          video[_i0].attached_array = (struct acpi_video_enumerated_device *) malloc(_len_video__i0__attached_array0*sizeof(struct acpi_video_enumerated_device));
+          for(int _j0 = 0; _j0 < _len_video__i0__attached_array0; _j0++) {
+              video[_i0].attached_array->value.int_val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = acpi_video_get_device_type(video,device_id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_video0; _aux++) {
+          free(video[_aux].attached_array);
+          }
+          free(video);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long device_id = 10;
+        
+          int _len_video0 = 100;
+          struct acpi_video_bus * video = (struct acpi_video_bus *) malloc(_len_video0*sizeof(struct acpi_video_bus));
+          for(int _i0 = 0; _i0 < _len_video0; _i0++) {
+              video[_i0].attached_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_video__i0__attached_array0 = 1;
+          video[_i0].attached_array = (struct acpi_video_enumerated_device *) malloc(_len_video__i0__attached_array0*sizeof(struct acpi_video_enumerated_device));
+          for(int _j0 = 0; _j0 < _len_video__i0__attached_array0; _j0++) {
+              video[_i0].attached_array->value.int_val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = acpi_video_get_device_type(video,device_id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_video0; _aux++) {
+          free(video[_aux].attached_array);
+          }
+          free(video);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long device_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_video0 = 1;
+          struct acpi_video_bus * video = (struct acpi_video_bus *) malloc(_len_video0*sizeof(struct acpi_video_bus));
+          for(int _i0 = 0; _i0 < _len_video0; _i0++) {
+              video[_i0].attached_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_video__i0__attached_array0 = 1;
+          video[_i0].attached_array = (struct acpi_video_enumerated_device *) malloc(_len_video__i0__attached_array0*sizeof(struct acpi_video_enumerated_device));
+          for(int _j0 = 0; _j0 < _len_video__i0__attached_array0; _j0++) {
+              video[_i0].attached_array->value.int_val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = acpi_video_get_device_type(video,device_id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_video0; _aux++) {
+          free(video[_aux].attached_array);
+          }
+          free(video);
+        
+        break;
+    }
     default:
         usage();
         break;

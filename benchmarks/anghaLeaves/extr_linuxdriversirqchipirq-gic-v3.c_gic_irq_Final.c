@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline unsigned int gic_irq(struct irq_data *d)
 	return d->hwirq;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_d0 = 1;
+          int _len_d0 = 65025;
           struct irq_data * d = (struct irq_data *) malloc(_len_d0*sizeof(struct irq_data));
           for(int _i0 = 0; _i0 < _len_d0; _i0++) {
-            d[_i0].hwirq = ((-2 * (next_i()%2)) + 1) * next_i();
+              d[_i0].hwirq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = gic_irq(d);
           printf("%u\n", benchRet); 
           free(d);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_d0 = 100;
           struct irq_data * d = (struct irq_data *) malloc(_len_d0*sizeof(struct irq_data));
           for(int _i0 = 0; _i0 < _len_d0; _i0++) {
-            d[_i0].hwirq = ((-2 * (next_i()%2)) + 1) * next_i();
+              d[_i0].hwirq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = gic_irq(d);
           printf("%u\n", benchRet); 
           free(d);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_d0 = 1;
+          struct irq_data * d = (struct irq_data *) malloc(_len_d0*sizeof(struct irq_data));
+          for(int _i0 = 0; _i0 < _len_d0; _i0++) {
+              d[_i0].hwirq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = gic_irq(d);
+          printf("%u\n", benchRet); 
+          free(d);
+        
+        break;
+    }
     default:
         usage();
         break;

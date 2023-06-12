@@ -30,8 +30,10 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
-       1            linked\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            linked\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ mlxsw_sp_acl_rule_rulei(struct mlxsw_sp_acl_rule *rule)
 	return rule->rulei;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,18 +77,44 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_rule0 = 1;
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_rule0 = 65025;
           struct mlxsw_sp_acl_rule * rule = (struct mlxsw_sp_acl_rule *) malloc(_len_rule0*sizeof(struct mlxsw_sp_acl_rule));
           for(int _i0 = 0; _i0 < _len_rule0; _i0++) {
               int _len_rule__i0__rulei0 = 1;
           rule[_i0].rulei = (struct mlxsw_sp_acl_rule_info *) malloc(_len_rule__i0__rulei0*sizeof(struct mlxsw_sp_acl_rule_info));
           for(int _j0 = 0; _j0 < _len_rule__i0__rulei0; _j0++) {
-            rule[_i0].rulei->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rule[_i0].rulei->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct mlxsw_sp_acl_rule_info * benchRet = mlxsw_sp_acl_rule_rulei(rule);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_rule0; _aux++) {
@@ -102,18 +124,141 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-    // linked
+
+
+    // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_rule0 = 100;
+          struct mlxsw_sp_acl_rule * rule = (struct mlxsw_sp_acl_rule *) malloc(_len_rule0*sizeof(struct mlxsw_sp_acl_rule));
+          for(int _i0 = 0; _i0 < _len_rule0; _i0++) {
+              int _len_rule__i0__rulei0 = 1;
+          rule[_i0].rulei = (struct mlxsw_sp_acl_rule_info *) malloc(_len_rule__i0__rulei0*sizeof(struct mlxsw_sp_acl_rule_info));
+          for(int _j0 = 0; _j0 < _len_rule__i0__rulei0; _j0++) {
+              rule[_i0].rulei->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct mlxsw_sp_acl_rule_info * benchRet = mlxsw_sp_acl_rule_rulei(rule);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_rule0; _aux++) {
+          free(rule[_aux].rulei);
+          }
+          free(rule);
+        
+        break;
+    }
+
+
+    // linked
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_rule0 = 1;
           struct mlxsw_sp_acl_rule * rule = (struct mlxsw_sp_acl_rule *) malloc(_len_rule0*sizeof(struct mlxsw_sp_acl_rule));
           for(int _i0 = 0; _i0 < _len_rule0; _i0++) {
               int _len_rule__i0__rulei0 = 1;
           rule[_i0].rulei = (struct mlxsw_sp_acl_rule_info *) malloc(_len_rule__i0__rulei0*sizeof(struct mlxsw_sp_acl_rule_info));
           for(int _j0 = 0; _j0 < _len_rule__i0__rulei0; _j0++) {
-            rule[_i0].rulei->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rule[_i0].rulei->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          struct mlxsw_sp_acl_rule_info * benchRet = mlxsw_sp_acl_rule_rulei(rule);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_rule0; _aux++) {
+          free(rule[_aux].rulei);
+          }
+          free(rule);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_rule0 = 1;
+          struct mlxsw_sp_acl_rule * rule = (struct mlxsw_sp_acl_rule *) malloc(_len_rule0*sizeof(struct mlxsw_sp_acl_rule));
+          for(int _i0 = 0; _i0 < _len_rule0; _i0++) {
+              int _len_rule__i0__rulei0 = 1;
+          rule[_i0].rulei = (struct mlxsw_sp_acl_rule_info *) malloc(_len_rule__i0__rulei0*sizeof(struct mlxsw_sp_acl_rule_info));
+          for(int _j0 = 0; _j0 < _len_rule__i0__rulei0; _j0++) {
+              rule[_i0].rulei->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           struct mlxsw_sp_acl_rule_info * benchRet = mlxsw_sp_acl_rule_rulei(rule);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_rule0; _aux++) {

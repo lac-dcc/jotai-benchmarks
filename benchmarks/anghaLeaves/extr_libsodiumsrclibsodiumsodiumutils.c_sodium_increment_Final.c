@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -102,12 +103,6 @@ sodium_increment(unsigned char *n, const size_t nlen)
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -120,15 +115,80 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 5111
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 2048
+          // ------------------------------- 
+          // static_instructions_O2 : 48
+          // dynamic_instructions_O2 : 1242
+          // ------------------------------- 
+          // static_instructions_O3 : 48
+          // dynamic_instructions_O3 : 1242
+          // ------------------------------- 
+          // static_instructions_Ofast : 48
+          // dynamic_instructions_Ofast : 1242
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 2048
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 2048
+          // ------------------------------- 
+
+          const unsigned long nlen = 255;
+        
+          int _len_n0 = 65025;
+          unsigned char * n = (unsigned char *) malloc(_len_n0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_n0; _i0++) {
+            n[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          sodium_increment(n,nlen);
+          free(n);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 211
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 88
+          // ------------------------------- 
+          // static_instructions_O2 : 48
+          // dynamic_instructions_O2 : 75
+          // ------------------------------- 
+          // static_instructions_O3 : 48
+          // dynamic_instructions_O3 : 75
+          // ------------------------------- 
+          // static_instructions_Ofast : 48
+          // dynamic_instructions_Ofast : 75
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 88
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 88
+          // ------------------------------- 
+
           const unsigned long nlen = 10;
+        
           int _len_n0 = 100;
           unsigned char * n = (unsigned char *) malloc(_len_n0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_n0; _i0++) {
             n[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           sodium_increment(n,nlen);
           free(n);
         

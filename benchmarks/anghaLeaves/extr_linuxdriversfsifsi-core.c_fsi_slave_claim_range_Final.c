@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ extern int fsi_slave_claim_range(struct fsi_slave *slave,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,32 +85,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           long addr = 100;
+        
           long size = 100;
+        
           int _len_slave0 = 1;
           struct fsi_slave * slave = (struct fsi_slave *) malloc(_len_slave0*sizeof(struct fsi_slave));
           for(int _i0 = 0; _i0 < _len_slave0; _i0++) {
-            slave[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              slave[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = fsi_slave_claim_range(slave,addr,size);
           printf("%d\n", benchRet); 
           free(slave);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long addr = 255;
+        
+          long size = 255;
+        
+          int _len_slave0 = 65025;
+          struct fsi_slave * slave = (struct fsi_slave *) malloc(_len_slave0*sizeof(struct fsi_slave));
+          for(int _i0 = 0; _i0 < _len_slave0; _i0++) {
+              slave[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fsi_slave_claim_range(slave,addr,size);
+          printf("%d\n", benchRet); 
+          free(slave);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           long addr = 10;
+        
           long size = 10;
+        
           int _len_slave0 = 100;
           struct fsi_slave * slave = (struct fsi_slave *) malloc(_len_slave0*sizeof(struct fsi_slave));
           for(int _i0 = 0; _i0 < _len_slave0; _i0++) {
-            slave[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              slave[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = fsi_slave_claim_range(slave,addr,size);
+          printf("%d\n", benchRet); 
+          free(slave);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          long addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_slave0 = 1;
+          struct fsi_slave * slave = (struct fsi_slave *) malloc(_len_slave0*sizeof(struct fsi_slave));
+          for(int _i0 = 0; _i0 < _len_slave0; _i0++) {
+              slave[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = fsi_slave_claim_range(slave,addr,size);
           printf("%d\n", benchRet); 
           free(slave);

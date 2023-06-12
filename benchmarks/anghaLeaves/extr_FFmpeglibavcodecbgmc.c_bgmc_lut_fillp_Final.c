@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +80,6 @@ __attribute__((used)) static void bgmc_lut_fillp(uint8_t *lut, int *lut_status, 
     *lut_status = delta;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,20 +92,187 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 189
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 96
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 113
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 112
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 142
+          // ------------------------------- 
+
           int delta = 100;
+        
           int _len_lut0 = 1;
           int * lut = (int *) malloc(_len_lut0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_lut0; _i0++) {
             lut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_lut_status0 = 1;
           int * lut_status = (int *) malloc(_len_lut_status0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_lut_status0; _i0++) {
             lut_status[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          bgmc_lut_fillp(lut,lut_status,delta);
+          free(lut);
+          free(lut_status);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 189
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 96
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 113
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 112
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 142
+          // ------------------------------- 
+
+          int delta = 255;
+        
+          int _len_lut0 = 65025;
+          int * lut = (int *) malloc(_len_lut0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_lut0; _i0++) {
+            lut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_lut_status0 = 65025;
+          int * lut_status = (int *) malloc(_len_lut_status0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_lut_status0; _i0++) {
+            lut_status[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          bgmc_lut_fillp(lut,lut_status,delta);
+          free(lut);
+          free(lut_status);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 189
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 96
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 113
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 112
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 142
+          // ------------------------------- 
+
+          int delta = 10;
+        
+          int _len_lut0 = 100;
+          int * lut = (int *) malloc(_len_lut0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_lut0; _i0++) {
+            lut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_lut_status0 = 100;
+          int * lut_status = (int *) malloc(_len_lut_status0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_lut_status0; _i0++) {
+            lut_status[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          bgmc_lut_fillp(lut,lut_status,delta);
+          free(lut);
+          free(lut_status);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 189
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 96
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 113
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 112
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 142
+          // ------------------------------- 
+
+          int delta = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_lut0 = 1;
+          int * lut = (int *) malloc(_len_lut0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_lut0; _i0++) {
+            lut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_lut_status0 = 1;
+          int * lut_status = (int *) malloc(_len_lut_status0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_lut_status0; _i0++) {
+            lut_status[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           bgmc_lut_fillp(lut,lut_status,delta);
           free(lut);
           free(lut_status);

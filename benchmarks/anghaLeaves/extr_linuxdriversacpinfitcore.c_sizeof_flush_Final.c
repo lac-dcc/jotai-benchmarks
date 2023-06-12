@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static size_t sizeof_flush(struct acpi_nfit_flush_address 
 	return sizeof(*flush) + sizeof(u64) * (flush->hint_count - 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,15 +79,125 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_flush0 = 65025;
+          struct acpi_nfit_flush_address * flush = (struct acpi_nfit_flush_address *) malloc(_len_flush0*sizeof(struct acpi_nfit_flush_address));
+          for(int _i0 = 0; _i0 < _len_flush0; _i0++) {
+              flush[_i0].hint_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          flush[_i0].header.length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          unsigned long benchRet = sizeof_flush(flush);
+          printf("%lu\n", benchRet); 
+          free(flush);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_flush0 = 100;
+          struct acpi_nfit_flush_address * flush = (struct acpi_nfit_flush_address *) malloc(_len_flush0*sizeof(struct acpi_nfit_flush_address));
+          for(int _i0 = 0; _i0 < _len_flush0; _i0++) {
+              flush[_i0].hint_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          flush[_i0].header.length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          unsigned long benchRet = sizeof_flush(flush);
+          printf("%lu\n", benchRet); 
+          free(flush);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_flush0 = 1;
           struct acpi_nfit_flush_address * flush = (struct acpi_nfit_flush_address *) malloc(_len_flush0*sizeof(struct acpi_nfit_flush_address));
           for(int _i0 = 0; _i0 < _len_flush0; _i0++) {
-            flush[_i0].hint_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        flush[_i0].header.length = ((-2 * (next_i()%2)) + 1) * next_i();
+              flush[_i0].hint_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          flush[_i0].header.length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           unsigned long benchRet = sizeof_flush(flush);
           printf("%lu\n", benchRet); 
           free(flush);

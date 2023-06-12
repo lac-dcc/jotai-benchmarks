@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ void cxl_set_master(struct cxl_context *ctx)
 	ctx->master = true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ctx0 = 1;
+          int _len_ctx0 = 65025;
           struct cxl_context * ctx = (struct cxl_context *) malloc(_len_ctx0*sizeof(struct cxl_context));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
-            ctx[_i0].master = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctx[_i0].master = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           cxl_set_master(ctx);
           free(ctx);
         
@@ -98,14 +95,30 @@ int main(int argc, char *argv[]) {
           int _len_ctx0 = 100;
           struct cxl_context * ctx = (struct cxl_context *) malloc(_len_ctx0*sizeof(struct cxl_context));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
-            ctx[_i0].master = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctx[_i0].master = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           cxl_set_master(ctx);
           free(ctx);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ctx0 = 1;
+          struct cxl_context * ctx = (struct cxl_context *) malloc(_len_ctx0*sizeof(struct cxl_context));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].master = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cxl_set_master(ctx);
+          free(ctx);
+        
+        break;
+    }
     default:
         usage();
         break;

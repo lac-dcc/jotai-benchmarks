@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -83,12 +85,6 @@ __attribute__((used)) static unsigned int RB_CalcShaderVertexAttribs( shaderComm
 	return vertexAttribs;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,18 +97,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_input0 = 65025;
+          struct TYPE_6__ * input = (struct TYPE_6__ *) malloc(_len_input0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_input0; _i0++) {
+              int _len_input__i0__shader0 = 1;
+          input[_i0].shader = (struct TYPE_5__ *) malloc(_len_input__i0__shader0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_input__i0__shader0; _j0++) {
+              input[_i0].shader->vertexAttribs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = RB_CalcShaderVertexAttribs(input);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_input0; _aux++) {
+          free(input[_aux].shader);
+          }
+          free(input);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_input0 = 100;
+          struct TYPE_6__ * input = (struct TYPE_6__ *) malloc(_len_input0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_input0; _i0++) {
+              int _len_input__i0__shader0 = 1;
+          input[_i0].shader = (struct TYPE_5__ *) malloc(_len_input__i0__shader0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_input__i0__shader0; _j0++) {
+              input[_i0].shader->vertexAttribs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = RB_CalcShaderVertexAttribs(input);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_input0; _aux++) {
+          free(input[_aux].shader);
+          }
+          free(input);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_input0 = 1;
           struct TYPE_6__ * input = (struct TYPE_6__ *) malloc(_len_input0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_input0; _i0++) {
               int _len_input__i0__shader0 = 1;
           input[_i0].shader = (struct TYPE_5__ *) malloc(_len_input__i0__shader0*sizeof(struct TYPE_5__));
           for(int _j0 = 0; _j0 < _len_input__i0__shader0; _j0++) {
-            input[_i0].shader->vertexAttribs = ((-2 * (next_i()%2)) + 1) * next_i();
+              input[_i0].shader->vertexAttribs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           unsigned int benchRet = RB_CalcShaderVertexAttribs(input);
           printf("%u\n", benchRet); 
           for(int _aux = 0; _aux < _len_input0; _aux++) {

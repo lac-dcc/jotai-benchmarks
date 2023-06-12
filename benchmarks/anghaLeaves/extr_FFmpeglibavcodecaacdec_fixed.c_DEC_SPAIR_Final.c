@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline int *DEC_SPAIR(int *dst, unsigned idx)
     return dst + 2;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,22 +75,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          unsigned int idx = 10;
-          int _len_dst0 = 100;
+          unsigned int idx = 255;
+        
+          int _len_dst0 = 65025;
           int * dst = (int *) malloc(_len_dst0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
             dst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int * benchRet = DEC_SPAIR(dst,idx);
           printf("%d\n", (*benchRet)); 
           free(dst);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          unsigned int idx = 10;
+        
+          int _len_dst0 = 100;
+          int * dst = (int *) malloc(_len_dst0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+            dst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int * benchRet = DEC_SPAIR(dst,idx);
+          printf("%d\n", (*benchRet)); 
+          free(dst);
+        
+        break;
+    }
     default:
         usage();
         break;

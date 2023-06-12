@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ __attribute__((used)) static inline unsigned int pqi_num_elements_free(unsigned 
 	return elements_in_queue - num_elements_used - 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,8 +86,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int pi = 100;
+        
           unsigned int ci = 100;
+        
           unsigned int elements_in_queue = 100;
+        
           unsigned int benchRet = pqi_num_elements_free(pi,ci,elements_in_queue);
           printf("%u\n", benchRet); 
         
@@ -102,8 +100,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int pi = 255;
+        
           unsigned int ci = 255;
+        
           unsigned int elements_in_queue = 255;
+        
           unsigned int benchRet = pqi_num_elements_free(pi,ci,elements_in_queue);
           printf("%u\n", benchRet); 
         
@@ -113,14 +114,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int pi = 10;
+        
           unsigned int ci = 10;
+        
           unsigned int elements_in_queue = 10;
+        
           unsigned int benchRet = pqi_num_elements_free(pi,ci,elements_in_queue);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int pi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int ci = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int elements_in_queue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = pqi_num_elements_free(pi,ci,elements_in_queue);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

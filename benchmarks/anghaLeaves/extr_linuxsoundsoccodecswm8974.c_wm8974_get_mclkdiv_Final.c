@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -95,12 +97,6 @@ __attribute__((used)) static unsigned int wm8974_get_mclkdiv(unsigned int f_in, 
 	return f_out * ratio / 2;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -113,32 +109,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           unsigned int f_in = 100;
+        
           unsigned int f_out = 100;
+        
           int _len_mclkdiv0 = 1;
           int * mclkdiv = (int *) malloc(_len_mclkdiv0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_mclkdiv0; _i0++) {
             mclkdiv[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned int benchRet = wm8974_get_mclkdiv(f_in,f_out,mclkdiv);
           printf("%u\n", benchRet); 
           free(mclkdiv);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          unsigned int f_in = 255;
+        
+          unsigned int f_out = 255;
+        
+          int _len_mclkdiv0 = 65025;
+          int * mclkdiv = (int *) malloc(_len_mclkdiv0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mclkdiv0; _i0++) {
+            mclkdiv[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned int benchRet = wm8974_get_mclkdiv(f_in,f_out,mclkdiv);
+          printf("%u\n", benchRet); 
+          free(mclkdiv);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           unsigned int f_in = 10;
+        
           unsigned int f_out = 10;
+        
           int _len_mclkdiv0 = 100;
           int * mclkdiv = (int *) malloc(_len_mclkdiv0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_mclkdiv0; _i0++) {
             mclkdiv[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          unsigned int benchRet = wm8974_get_mclkdiv(f_in,f_out,mclkdiv);
+          printf("%u\n", benchRet); 
+          free(mclkdiv);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          unsigned int f_in = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int f_out = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_mclkdiv0 = 1;
+          int * mclkdiv = (int *) malloc(_len_mclkdiv0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mclkdiv0; _i0++) {
+            mclkdiv[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           unsigned int benchRet = wm8974_get_mclkdiv(f_in,f_out,mclkdiv);
           printf("%u\n", benchRet); 
           free(mclkdiv);

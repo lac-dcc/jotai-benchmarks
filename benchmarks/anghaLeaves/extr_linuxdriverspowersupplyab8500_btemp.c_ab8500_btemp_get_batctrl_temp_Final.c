@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ int ab8500_btemp_get_batctrl_temp(struct ab8500_btemp *btemp)
 	return btemp->bat_temp * 1000;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,28 +74,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_btemp0 = 1;
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_btemp0 = 65025;
           struct ab8500_btemp * btemp = (struct ab8500_btemp *) malloc(_len_btemp0*sizeof(struct ab8500_btemp));
           for(int _i0 = 0; _i0 < _len_btemp0; _i0++) {
-            btemp[_i0].bat_temp = ((-2 * (next_i()%2)) + 1) * next_i();
+              btemp[_i0].bat_temp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ab8500_btemp_get_batctrl_temp(btemp);
           printf("%d\n", benchRet); 
           free(btemp);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_btemp0 = 100;
           struct ab8500_btemp * btemp = (struct ab8500_btemp *) malloc(_len_btemp0*sizeof(struct ab8500_btemp));
           for(int _i0 = 0; _i0 < _len_btemp0; _i0++) {
-            btemp[_i0].bat_temp = ((-2 * (next_i()%2)) + 1) * next_i();
+              btemp[_i0].bat_temp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = ab8500_btemp_get_batctrl_temp(btemp);
+          printf("%d\n", benchRet); 
+          free(btemp);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_btemp0 = 1;
+          struct ab8500_btemp * btemp = (struct ab8500_btemp *) malloc(_len_btemp0*sizeof(struct ab8500_btemp));
+          for(int _i0 = 0; _i0 < _len_btemp0; _i0++) {
+              btemp[_i0].bat_temp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = ab8500_btemp_get_batctrl_temp(btemp);
           printf("%d\n", benchRet); 
           free(btemp);

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ int ext2fs_inode_scan_flags(ext2_inode_scan scan, int set_flags,
 	return old_flags;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,17 +87,179 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int set_flags = 100;
+        
           int clear_flags = 100;
+        
           int _len_scan0 = 1;
           struct TYPE_3__ * scan = (struct TYPE_3__ *) malloc(_len_scan0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_scan0; _i0++) {
-            scan[_i0].magic = ((-2 * (next_i()%2)) + 1) * next_i();
-        scan[_i0].scan_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              scan[_i0].magic = ((-2 * (next_i()%2)) + 1) * next_i();
+          scan[_i0].scan_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = ext2fs_inode_scan_flags(scan,set_flags,clear_flags);
+          printf("%d\n", benchRet); 
+          free(scan);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int set_flags = 255;
+        
+          int clear_flags = 255;
+        
+          int _len_scan0 = 65025;
+          struct TYPE_3__ * scan = (struct TYPE_3__ *) malloc(_len_scan0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_scan0; _i0++) {
+              scan[_i0].magic = ((-2 * (next_i()%2)) + 1) * next_i();
+          scan[_i0].scan_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ext2fs_inode_scan_flags(scan,set_flags,clear_flags);
+          printf("%d\n", benchRet); 
+          free(scan);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int set_flags = 10;
+        
+          int clear_flags = 10;
+        
+          int _len_scan0 = 100;
+          struct TYPE_3__ * scan = (struct TYPE_3__ *) malloc(_len_scan0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_scan0; _i0++) {
+              scan[_i0].magic = ((-2 * (next_i()%2)) + 1) * next_i();
+          scan[_i0].scan_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ext2fs_inode_scan_flags(scan,set_flags,clear_flags);
+          printf("%d\n", benchRet); 
+          free(scan);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int set_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int clear_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_scan0 = 1;
+          struct TYPE_3__ * scan = (struct TYPE_3__ *) malloc(_len_scan0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_scan0; _i0++) {
+              scan[_i0].magic = ((-2 * (next_i()%2)) + 1) * next_i();
+          scan[_i0].scan_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = ext2fs_inode_scan_flags(scan,set_flags,clear_flags);
           printf("%d\n", benchRet); 
           free(scan);

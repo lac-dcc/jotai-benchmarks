@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static u8 hdmi_infoframe_checksum(u8 *ptr, size_t size)
 	return 256 - csum;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,22 +80,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          unsigned long size = 10;
-          int _len_ptr0 = 100;
+          unsigned long size = 255;
+        
+          int _len_ptr0 = 65025;
           long * ptr = (long *) malloc(_len_ptr0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_ptr0; _i0++) {
             ptr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           long benchRet = hdmi_infoframe_checksum(ptr,size);
           printf("%ld\n", benchRet); 
           free(ptr);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          unsigned long size = 10;
+        
+          int _len_ptr0 = 100;
+          long * ptr = (long *) malloc(_len_ptr0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_ptr0; _i0++) {
+            ptr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          long benchRet = hdmi_infoframe_checksum(ptr,size);
+          printf("%ld\n", benchRet); 
+          free(ptr);
+        
+        break;
+    }
     default:
         usage();
         break;

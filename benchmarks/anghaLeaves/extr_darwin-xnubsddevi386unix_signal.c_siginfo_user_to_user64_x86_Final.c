@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -79,12 +81,6 @@ siginfo_user_to_user64_x86(user_siginfo_t *in, user64_siginfo_t *out)
 	out->__pad[0]	= in->pad[0];			/* mcontext.ss.r1 */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,10 +93,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_in0 = 1;
+          int _len_in0 = 65025;
           struct TYPE_9__ * in = (struct TYPE_9__ *) malloc(_len_in0*sizeof(struct TYPE_9__));
           for(int _i0 = 0; _i0 < _len_in0; _i0++) {
               int _len_in__i0__pad0 = 1;
@@ -108,17 +104,20 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_in__i0__pad0; _j0++) {
             in[_i0].pad[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        in[_i0].si_band = ((-2 * (next_i()%2)) + 1) * next_i();
-        in[_i0].si_value.sival_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
-        in[_i0].si_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        in[_i0].si_status = ((-2 * (next_i()%2)) + 1) * next_i();
-        in[_i0].si_uid = ((-2 * (next_i()%2)) + 1) * next_i();
-        in[_i0].si_pid = ((-2 * (next_i()%2)) + 1) * next_i();
-        in[_i0].si_code = ((-2 * (next_i()%2)) + 1) * next_i();
-        in[_i0].si_errno = ((-2 * (next_i()%2)) + 1) * next_i();
-        in[_i0].si_signo = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].si_band = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].si_value.sival_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          in[_i0].si_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].si_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].si_uid = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].si_pid = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].si_code = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].si_errno = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].si_signo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_out0 = 1;
+        
+          int _len_out0 = 65025;
           struct TYPE_10__ * out = (struct TYPE_10__ *) malloc(_len_out0*sizeof(struct TYPE_10__));
           for(int _i0 = 0; _i0 < _len_out0; _i0++) {
               int _len_out__i0____pad0 = 1;
@@ -126,16 +125,19 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_out__i0____pad0; _j0++) {
             out[_i0].__pad[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        out[_i0].si_band = ((-2 * (next_i()%2)) + 1) * next_i();
-        out[_i0].si_value.sival_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
-        out[_i0].si_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        out[_i0].si_status = ((-2 * (next_i()%2)) + 1) * next_i();
-        out[_i0].si_uid = ((-2 * (next_i()%2)) + 1) * next_i();
-        out[_i0].si_pid = ((-2 * (next_i()%2)) + 1) * next_i();
-        out[_i0].si_code = ((-2 * (next_i()%2)) + 1) * next_i();
-        out[_i0].si_errno = ((-2 * (next_i()%2)) + 1) * next_i();
-        out[_i0].si_signo = ((-2 * (next_i()%2)) + 1) * next_i();
+          out[_i0].si_band = ((-2 * (next_i()%2)) + 1) * next_i();
+          out[_i0].si_value.sival_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          out[_i0].si_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          out[_i0].si_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          out[_i0].si_uid = ((-2 * (next_i()%2)) + 1) * next_i();
+          out[_i0].si_pid = ((-2 * (next_i()%2)) + 1) * next_i();
+          out[_i0].si_code = ((-2 * (next_i()%2)) + 1) * next_i();
+          out[_i0].si_errno = ((-2 * (next_i()%2)) + 1) * next_i();
+          out[_i0].si_signo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           siginfo_user_to_user64_x86(in,out);
           for(int _aux = 0; _aux < _len_in0; _aux++) {
           free(in[_aux].pad);
@@ -148,7 +150,120 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_in0 = 100;
+          struct TYPE_9__ * in = (struct TYPE_9__ *) malloc(_len_in0*sizeof(struct TYPE_9__));
+          for(int _i0 = 0; _i0 < _len_in0; _i0++) {
+              int _len_in__i0__pad0 = 1;
+          in[_i0].pad = (int *) malloc(_len_in__i0__pad0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_in__i0__pad0; _j0++) {
+            in[_i0].pad[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          in[_i0].si_band = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].si_value.sival_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          in[_i0].si_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].si_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].si_uid = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].si_pid = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].si_code = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].si_errno = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].si_signo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_out0 = 100;
+          struct TYPE_10__ * out = (struct TYPE_10__ *) malloc(_len_out0*sizeof(struct TYPE_10__));
+          for(int _i0 = 0; _i0 < _len_out0; _i0++) {
+              int _len_out__i0____pad0 = 1;
+          out[_i0].__pad = (int *) malloc(_len_out__i0____pad0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_out__i0____pad0; _j0++) {
+            out[_i0].__pad[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          out[_i0].si_band = ((-2 * (next_i()%2)) + 1) * next_i();
+          out[_i0].si_value.sival_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          out[_i0].si_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          out[_i0].si_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          out[_i0].si_uid = ((-2 * (next_i()%2)) + 1) * next_i();
+          out[_i0].si_pid = ((-2 * (next_i()%2)) + 1) * next_i();
+          out[_i0].si_code = ((-2 * (next_i()%2)) + 1) * next_i();
+          out[_i0].si_errno = ((-2 * (next_i()%2)) + 1) * next_i();
+          out[_i0].si_signo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          siginfo_user_to_user64_x86(in,out);
+          for(int _aux = 0; _aux < _len_in0; _aux++) {
+          free(in[_aux].pad);
+          }
+          free(in);
+          for(int _aux = 0; _aux < _len_out0; _aux++) {
+          free(out[_aux].__pad);
+          }
+          free(out);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_in0 = 1;
+          struct TYPE_9__ * in = (struct TYPE_9__ *) malloc(_len_in0*sizeof(struct TYPE_9__));
+          for(int _i0 = 0; _i0 < _len_in0; _i0++) {
+              int _len_in__i0__pad0 = 1;
+          in[_i0].pad = (int *) malloc(_len_in__i0__pad0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_in__i0__pad0; _j0++) {
+            in[_i0].pad[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          in[_i0].si_band = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].si_value.sival_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          in[_i0].si_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].si_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].si_uid = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].si_pid = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].si_code = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].si_errno = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].si_signo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_out0 = 1;
+          struct TYPE_10__ * out = (struct TYPE_10__ *) malloc(_len_out0*sizeof(struct TYPE_10__));
+          for(int _i0 = 0; _i0 < _len_out0; _i0++) {
+              int _len_out__i0____pad0 = 1;
+          out[_i0].__pad = (int *) malloc(_len_out__i0____pad0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_out__i0____pad0; _j0++) {
+            out[_i0].__pad[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          out[_i0].si_band = ((-2 * (next_i()%2)) + 1) * next_i();
+          out[_i0].si_value.sival_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          out[_i0].si_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          out[_i0].si_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          out[_i0].si_uid = ((-2 * (next_i()%2)) + 1) * next_i();
+          out[_i0].si_pid = ((-2 * (next_i()%2)) + 1) * next_i();
+          out[_i0].si_code = ((-2 * (next_i()%2)) + 1) * next_i();
+          out[_i0].si_errno = ((-2 * (next_i()%2)) + 1) * next_i();
+          out[_i0].si_signo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          siginfo_user_to_user64_x86(in,out);
+          for(int _aux = 0; _aux < _len_in0; _aux++) {
+          free(in[_aux].pad);
+          }
+          free(in);
+          for(int _aux = 0; _aux < _len_out0; _aux++) {
+          free(out[_aux].__pad);
+          }
+          free(out);
+        
+        break;
+    }
     default:
         usage();
         break;

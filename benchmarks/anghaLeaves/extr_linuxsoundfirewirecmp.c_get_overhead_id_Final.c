@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -77,12 +78,6 @@ __attribute__((used)) static int get_overhead_id(struct cmp_connection *c)
 	return id;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,14 +90,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_c0 = 1;
+          int _len_c0 = 65025;
           struct cmp_connection * c = (struct cmp_connection *) malloc(_len_c0*sizeof(struct cmp_connection));
           for(int _i0 = 0; _i0 < _len_c0; _i0++) {
-            c[_i0].resources.bandwidth_overhead = ((-2 * (next_i()%2)) + 1) * next_i();
+              c[_i0].resources.bandwidth_overhead = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = get_overhead_id(c);
           printf("%d\n", benchRet); 
           free(c);
@@ -115,15 +113,34 @@ int main(int argc, char *argv[]) {
           int _len_c0 = 100;
           struct cmp_connection * c = (struct cmp_connection *) malloc(_len_c0*sizeof(struct cmp_connection));
           for(int _i0 = 0; _i0 < _len_c0; _i0++) {
-            c[_i0].resources.bandwidth_overhead = ((-2 * (next_i()%2)) + 1) * next_i();
+              c[_i0].resources.bandwidth_overhead = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = get_overhead_id(c);
           printf("%d\n", benchRet); 
           free(c);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_c0 = 1;
+          struct cmp_connection * c = (struct cmp_connection *) malloc(_len_c0*sizeof(struct cmp_connection));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].resources.bandwidth_overhead = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = get_overhead_id(c);
+          printf("%d\n", benchRet); 
+          free(c);
+        
+        break;
+    }
     default:
         usage();
         break;

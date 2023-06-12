@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ struct vmci_handle *vmci_handle_arr_get_handles(struct vmci_handle_arr *array)
 	return NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,19 +78,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_array0 = 65025;
+          struct vmci_handle_arr * array = (struct vmci_handle_arr *) malloc(_len_array0*sizeof(struct vmci_handle_arr));
+          for(int _i0 = 0; _i0 < _len_array0; _i0++) {
+              int _len_array__i0__entries0 = 1;
+          array[_i0].entries = (struct vmci_handle *) malloc(_len_array__i0__entries0*sizeof(struct vmci_handle));
+          for(int _j0 = 0; _j0 < _len_array__i0__entries0; _j0++) {
+              array[_i0].entries->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          array[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct vmci_handle * benchRet = vmci_handle_arr_get_handles(array);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_array0; _aux++) {
+          free(array[_aux].entries);
+          }
+          free(array);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_array0 = 100;
+          struct vmci_handle_arr * array = (struct vmci_handle_arr *) malloc(_len_array0*sizeof(struct vmci_handle_arr));
+          for(int _i0 = 0; _i0 < _len_array0; _i0++) {
+              int _len_array__i0__entries0 = 1;
+          array[_i0].entries = (struct vmci_handle *) malloc(_len_array__i0__entries0*sizeof(struct vmci_handle));
+          for(int _j0 = 0; _j0 < _len_array__i0__entries0; _j0++) {
+              array[_i0].entries->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          array[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct vmci_handle * benchRet = vmci_handle_arr_get_handles(array);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_array0; _aux++) {
+          free(array[_aux].entries);
+          }
+          free(array);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_array0 = 1;
           struct vmci_handle_arr * array = (struct vmci_handle_arr *) malloc(_len_array0*sizeof(struct vmci_handle_arr));
           for(int _i0 = 0; _i0 < _len_array0; _i0++) {
               int _len_array__i0__entries0 = 1;
           array[_i0].entries = (struct vmci_handle *) malloc(_len_array__i0__entries0*sizeof(struct vmci_handle));
           for(int _j0 = 0; _j0 < _len_array__i0__entries0; _j0++) {
-            array[_i0].entries->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              array[_i0].entries->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        array[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          array[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           struct vmci_handle * benchRet = vmci_handle_arr_get_handles(array);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_array0; _aux++) {

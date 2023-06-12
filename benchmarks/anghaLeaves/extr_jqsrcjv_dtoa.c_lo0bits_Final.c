@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -100,12 +102,6 @@ lo0bits
 	return k;
 	}
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -118,19 +114,139 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_C0 = 65025;
+          struct dtoa_context * C = (struct dtoa_context *) malloc(_len_C0*sizeof(struct dtoa_context));
+          for(int _i0 = 0; _i0 < _len_C0; _i0++) {
+              C[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_y0 = 65025;
+          int * y = (int *) malloc(_len_y0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_y0; _i0++) {
+            y[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = lo0bits(C,y);
+          printf("%d\n", benchRet); 
+          free(C);
+          free(y);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_C0 = 100;
+          struct dtoa_context * C = (struct dtoa_context *) malloc(_len_C0*sizeof(struct dtoa_context));
+          for(int _i0 = 0; _i0 < _len_C0; _i0++) {
+              C[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_y0 = 100;
+          int * y = (int *) malloc(_len_y0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_y0; _i0++) {
+            y[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = lo0bits(C,y);
+          printf("%d\n", benchRet); 
+          free(C);
+          free(y);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_C0 = 1;
           struct dtoa_context * C = (struct dtoa_context *) malloc(_len_C0*sizeof(struct dtoa_context));
           for(int _i0 = 0; _i0 < _len_C0; _i0++) {
-            C[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              C[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_y0 = 1;
           int * y = (int *) malloc(_len_y0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_y0; _i0++) {
             y[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = lo0bits(C,y);
           printf("%d\n", benchRet); 
           free(C);

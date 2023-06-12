@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ int entry_index(layer l, int batch, int location, int entry)
     return batch*l.outputs + n*l.w*l.h*(l.coords+l.classes+1) + entry*l.w*l.h + loc;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,52 +79,180 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           int batch = 100;
+        
           int location = 100;
+        
           int entry = 100;
+        
           struct TYPE_3__ l;
-        l.w = ((-2 * (next_i()%2)) + 1) * next_i();
-        l.h = ((-2 * (next_i()%2)) + 1) * next_i();
-        l.outputs = ((-2 * (next_i()%2)) + 1) * next_i();
-        l.coords = ((-2 * (next_i()%2)) + 1) * next_i();
-        l.classes = ((-2 * (next_i()%2)) + 1) * next_i();
+          l.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          l.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          l.outputs = ((-2 * (next_i()%2)) + 1) * next_i();
+          l.coords = ((-2 * (next_i()%2)) + 1) * next_i();
+          l.classes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = entry_index(l,batch,location,entry);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           int batch = 255;
+        
           int location = 255;
+        
           int entry = 255;
+        
           struct TYPE_3__ l;
-        l.w = ((-2 * (next_i()%2)) + 1) * next_i();
-        l.h = ((-2 * (next_i()%2)) + 1) * next_i();
-        l.outputs = ((-2 * (next_i()%2)) + 1) * next_i();
-        l.coords = ((-2 * (next_i()%2)) + 1) * next_i();
-        l.classes = ((-2 * (next_i()%2)) + 1) * next_i();
+          l.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          l.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          l.outputs = ((-2 * (next_i()%2)) + 1) * next_i();
+          l.coords = ((-2 * (next_i()%2)) + 1) * next_i();
+          l.classes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = entry_index(l,batch,location,entry);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           int batch = 10;
+        
           int location = 10;
+        
           int entry = 10;
+        
           struct TYPE_3__ l;
-        l.w = ((-2 * (next_i()%2)) + 1) * next_i();
-        l.h = ((-2 * (next_i()%2)) + 1) * next_i();
-        l.outputs = ((-2 * (next_i()%2)) + 1) * next_i();
-        l.coords = ((-2 * (next_i()%2)) + 1) * next_i();
-        l.classes = ((-2 * (next_i()%2)) + 1) * next_i();
+          l.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          l.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          l.outputs = ((-2 * (next_i()%2)) + 1) * next_i();
+          l.coords = ((-2 * (next_i()%2)) + 1) * next_i();
+          l.classes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = entry_index(l,batch,location,entry);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int batch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int location = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int entry = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          struct TYPE_3__ l;
+          l.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          l.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          l.outputs = ((-2 * (next_i()%2)) + 1) * next_i();
+          l.coords = ((-2 * (next_i()%2)) + 1) * next_i();
+          l.classes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = entry_index(l,batch,location,entry);
           printf("%d\n", benchRet); 
         

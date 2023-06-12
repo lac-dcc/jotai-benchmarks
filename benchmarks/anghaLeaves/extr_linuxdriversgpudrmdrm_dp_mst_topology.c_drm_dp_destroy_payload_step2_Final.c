@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ __attribute__((used)) static int drm_dp_destroy_payload_step2(struct drm_dp_mst_
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,16 +83,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int id = 100;
+        
           int _len_mgr0 = 1;
           struct drm_dp_mst_topology_mgr * mgr = (struct drm_dp_mst_topology_mgr *) malloc(_len_mgr0*sizeof(struct drm_dp_mst_topology_mgr));
           for(int _i0 = 0; _i0 < _len_mgr0; _i0++) {
-            mgr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              mgr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_payload0 = 1;
           struct drm_dp_payload * payload = (struct drm_dp_payload *) malloc(_len_payload0*sizeof(struct drm_dp_payload));
           for(int _i0 = 0; _i0 < _len_payload0; _i0++) {
-            payload[_i0].payload_state = ((-2 * (next_i()%2)) + 1) * next_i();
+              payload[_i0].payload_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = drm_dp_destroy_payload_step2(mgr,id,payload);
           printf("%d\n", benchRet); 
           free(mgr);
@@ -103,7 +105,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int id = 255;
+        
+          int _len_mgr0 = 65025;
+          struct drm_dp_mst_topology_mgr * mgr = (struct drm_dp_mst_topology_mgr *) malloc(_len_mgr0*sizeof(struct drm_dp_mst_topology_mgr));
+          for(int _i0 = 0; _i0 < _len_mgr0; _i0++) {
+              mgr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_payload0 = 65025;
+          struct drm_dp_payload * payload = (struct drm_dp_payload *) malloc(_len_payload0*sizeof(struct drm_dp_payload));
+          for(int _i0 = 0; _i0 < _len_payload0; _i0++) {
+              payload[_i0].payload_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = drm_dp_destroy_payload_step2(mgr,id,payload);
+          printf("%d\n", benchRet); 
+          free(mgr);
+          free(payload);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int id = 10;
+        
+          int _len_mgr0 = 100;
+          struct drm_dp_mst_topology_mgr * mgr = (struct drm_dp_mst_topology_mgr *) malloc(_len_mgr0*sizeof(struct drm_dp_mst_topology_mgr));
+          for(int _i0 = 0; _i0 < _len_mgr0; _i0++) {
+              mgr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_payload0 = 100;
+          struct drm_dp_payload * payload = (struct drm_dp_payload *) malloc(_len_payload0*sizeof(struct drm_dp_payload));
+          for(int _i0 = 0; _i0 < _len_payload0; _i0++) {
+              payload[_i0].payload_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = drm_dp_destroy_payload_step2(mgr,id,payload);
+          printf("%d\n", benchRet); 
+          free(mgr);
+          free(payload);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_mgr0 = 1;
+          struct drm_dp_mst_topology_mgr * mgr = (struct drm_dp_mst_topology_mgr *) malloc(_len_mgr0*sizeof(struct drm_dp_mst_topology_mgr));
+          for(int _i0 = 0; _i0 < _len_mgr0; _i0++) {
+              mgr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_payload0 = 1;
+          struct drm_dp_payload * payload = (struct drm_dp_payload *) malloc(_len_payload0*sizeof(struct drm_dp_payload));
+          for(int _i0 = 0; _i0 < _len_payload0; _i0++) {
+              payload[_i0].payload_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = drm_dp_destroy_payload_step2(mgr,id,payload);
+          printf("%d\n", benchRet); 
+          free(mgr);
+          free(payload);
+        
+        break;
+    }
     default:
         usage();
         break;

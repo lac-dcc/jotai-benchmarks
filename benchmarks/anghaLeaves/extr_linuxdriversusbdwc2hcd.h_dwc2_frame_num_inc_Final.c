@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline u16 dwc2_frame_num_inc(u16 frame, u16 inc)
 	return (frame + inc) & HFNUM_MAX_FRNUM;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,7 +80,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int frame = 100;
+        
           int inc = 100;
+        
           int benchRet = dwc2_frame_num_inc(frame,inc);
           printf("%d\n", benchRet); 
         
@@ -95,7 +92,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int frame = 255;
+        
           int inc = 255;
+        
           int benchRet = dwc2_frame_num_inc(frame,inc);
           printf("%d\n", benchRet); 
         
@@ -105,13 +104,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int frame = 10;
+        
           int inc = 10;
+        
           int benchRet = dwc2_frame_num_inc(frame,inc);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int frame = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int inc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = dwc2_frame_num_inc(frame,inc);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

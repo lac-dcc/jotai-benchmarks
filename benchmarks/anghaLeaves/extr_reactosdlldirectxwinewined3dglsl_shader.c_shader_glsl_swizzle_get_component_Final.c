@@ -62,12 +62,6 @@ __attribute__((used)) static unsigned int shader_glsl_swizzle_get_component(DWOR
     return (swizzle >> (2 * component_idx)) & 0x3;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,13 +78,14 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int swizzle = 10;
+        
           unsigned int component_idx = 10;
+        
           unsigned int benchRet = shader_glsl_swizzle_get_component(swizzle,component_idx);
           printf("%u\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

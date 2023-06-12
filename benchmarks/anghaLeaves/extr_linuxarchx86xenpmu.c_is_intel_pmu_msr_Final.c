@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -118,12 +121,6 @@ __attribute__((used)) static int is_intel_pmu_msr(u32 msr_index, int *type, int 
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -140,16 +137,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int msr_index = 100;
+        
           int _len_type0 = 1;
           int * type = (int *) malloc(_len_type0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_type0; _i0++) {
             type[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_index0 = 1;
           int * index = (int *) malloc(_len_index0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_index0; _i0++) {
             index[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = is_intel_pmu_msr(msr_index,type,index);
           printf("%d\n", benchRet); 
           free(type);
@@ -157,7 +157,78 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int msr_index = 255;
+        
+          int _len_type0 = 65025;
+          int * type = (int *) malloc(_len_type0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_type0; _i0++) {
+            type[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_index0 = 65025;
+          int * index = (int *) malloc(_len_index0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_index0; _i0++) {
+            index[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = is_intel_pmu_msr(msr_index,type,index);
+          printf("%d\n", benchRet); 
+          free(type);
+          free(index);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int msr_index = 10;
+        
+          int _len_type0 = 100;
+          int * type = (int *) malloc(_len_type0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_type0; _i0++) {
+            type[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_index0 = 100;
+          int * index = (int *) malloc(_len_index0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_index0; _i0++) {
+            index[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = is_intel_pmu_msr(msr_index,type,index);
+          printf("%d\n", benchRet); 
+          free(type);
+          free(index);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int msr_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_type0 = 1;
+          int * type = (int *) malloc(_len_type0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_type0; _i0++) {
+            type[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_index0 = 1;
+          int * index = (int *) malloc(_len_index0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_index0; _i0++) {
+            index[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = is_intel_pmu_msr(msr_index,type,index);
+          printf("%d\n", benchRet); 
+          free(type);
+          free(index);
+        
+        break;
+    }
     default:
         usage();
         break;

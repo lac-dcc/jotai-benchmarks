@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +73,6 @@ __attribute__((used)) static int phy_interface_mode(u8 lmac_type)
 	return PHY_INTERFACE_MODE_SGMII;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long lmac_type = 100;
+        
           int benchRet = phy_interface_mode(lmac_type);
           printf("%d\n", benchRet); 
         
@@ -103,6 +99,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long lmac_type = 255;
+        
           int benchRet = phy_interface_mode(lmac_type);
           printf("%d\n", benchRet); 
         
@@ -112,12 +109,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long lmac_type = 10;
+        
           int benchRet = phy_interface_mode(lmac_type);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long lmac_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = phy_interface_mode(lmac_type);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

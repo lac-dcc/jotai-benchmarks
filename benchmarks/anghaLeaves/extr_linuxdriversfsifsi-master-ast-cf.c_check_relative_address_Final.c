@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -88,12 +91,6 @@ __attribute__((used)) static bool check_relative_address(struct fsi_master_acf *
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -110,17 +107,22 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int id = 100;
+        
           int addr = 100;
+        
           int _len_master0 = 1;
           struct fsi_master_acf * master = (struct fsi_master_acf *) malloc(_len_master0*sizeof(struct fsi_master_acf));
           for(int _i0 = 0; _i0 < _len_master0; _i0++) {
-            master[_i0].last_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+              master[_i0].last_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_rel_addrp0 = 1;
           int * rel_addrp = (int *) malloc(_len_rel_addrp0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_rel_addrp0; _i0++) {
             rel_addrp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = check_relative_address(master,id,addr,rel_addrp);
           printf("%d\n", benchRet); 
           free(master);
@@ -128,7 +130,87 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int id = 255;
+        
+          int addr = 255;
+        
+          int _len_master0 = 65025;
+          struct fsi_master_acf * master = (struct fsi_master_acf *) malloc(_len_master0*sizeof(struct fsi_master_acf));
+          for(int _i0 = 0; _i0 < _len_master0; _i0++) {
+              master[_i0].last_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rel_addrp0 = 65025;
+          int * rel_addrp = (int *) malloc(_len_rel_addrp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_rel_addrp0; _i0++) {
+            rel_addrp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = check_relative_address(master,id,addr,rel_addrp);
+          printf("%d\n", benchRet); 
+          free(master);
+          free(rel_addrp);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int id = 10;
+        
+          int addr = 10;
+        
+          int _len_master0 = 100;
+          struct fsi_master_acf * master = (struct fsi_master_acf *) malloc(_len_master0*sizeof(struct fsi_master_acf));
+          for(int _i0 = 0; _i0 < _len_master0; _i0++) {
+              master[_i0].last_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rel_addrp0 = 100;
+          int * rel_addrp = (int *) malloc(_len_rel_addrp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_rel_addrp0; _i0++) {
+            rel_addrp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = check_relative_address(master,id,addr,rel_addrp);
+          printf("%d\n", benchRet); 
+          free(master);
+          free(rel_addrp);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_master0 = 1;
+          struct fsi_master_acf * master = (struct fsi_master_acf *) malloc(_len_master0*sizeof(struct fsi_master_acf));
+          for(int _i0 = 0; _i0 < _len_master0; _i0++) {
+              master[_i0].last_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rel_addrp0 = 1;
+          int * rel_addrp = (int *) malloc(_len_rel_addrp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_rel_addrp0; _i0++) {
+            rel_addrp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = check_relative_address(master,id,addr,rel_addrp);
+          printf("%d\n", benchRet); 
+          free(master);
+          free(rel_addrp);
+        
+        break;
+    }
     default:
         usage();
         break;

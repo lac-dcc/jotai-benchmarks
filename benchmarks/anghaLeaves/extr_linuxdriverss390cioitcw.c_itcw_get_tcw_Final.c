@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ struct tcw *itcw_get_tcw(struct itcw *itcw)
 	return itcw->tcw;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,18 +75,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_itcw0 = 65025;
+          struct itcw * itcw = (struct itcw *) malloc(_len_itcw0*sizeof(struct itcw));
+          for(int _i0 = 0; _i0 < _len_itcw0; _i0++) {
+              int _len_itcw__i0__tcw0 = 1;
+          itcw[_i0].tcw = (struct tcw *) malloc(_len_itcw__i0__tcw0*sizeof(struct tcw));
+          for(int _j0 = 0; _j0 < _len_itcw__i0__tcw0; _j0++) {
+              itcw[_i0].tcw->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct tcw * benchRet = itcw_get_tcw(itcw);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_itcw0; _aux++) {
+          free(itcw[_aux].tcw);
+          }
+          free(itcw);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_itcw0 = 100;
+          struct itcw * itcw = (struct itcw *) malloc(_len_itcw0*sizeof(struct itcw));
+          for(int _i0 = 0; _i0 < _len_itcw0; _i0++) {
+              int _len_itcw__i0__tcw0 = 1;
+          itcw[_i0].tcw = (struct tcw *) malloc(_len_itcw__i0__tcw0*sizeof(struct tcw));
+          for(int _j0 = 0; _j0 < _len_itcw__i0__tcw0; _j0++) {
+              itcw[_i0].tcw->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct tcw * benchRet = itcw_get_tcw(itcw);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_itcw0; _aux++) {
+          free(itcw[_aux].tcw);
+          }
+          free(itcw);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_itcw0 = 1;
           struct itcw * itcw = (struct itcw *) malloc(_len_itcw0*sizeof(struct itcw));
           for(int _i0 = 0; _i0 < _len_itcw0; _i0++) {
               int _len_itcw__i0__tcw0 = 1;
           itcw[_i0].tcw = (struct tcw *) malloc(_len_itcw__i0__tcw0*sizeof(struct tcw));
           for(int _j0 = 0; _j0 < _len_itcw__i0__tcw0; _j0++) {
-            itcw[_i0].tcw->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              itcw[_i0].tcw->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct tcw * benchRet = itcw_get_tcw(itcw);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_itcw0; _aux++) {

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ __attribute__((used)) static uint8_t frame_to_desc_idx(dwc_otg_qh_t * qh, uint16
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,11 +94,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int frame_idx = 100;
+        
           int _len_qh0 = 1;
           struct TYPE_3__ * qh = (struct TYPE_3__ *) malloc(_len_qh0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_qh0; _i0++) {
-            qh[_i0].dev_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+              qh[_i0].dev_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = frame_to_desc_idx(qh,frame_idx);
+          printf("%d\n", benchRet); 
+          free(qh);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int frame_idx = 255;
+        
+          int _len_qh0 = 65025;
+          struct TYPE_3__ * qh = (struct TYPE_3__ *) malloc(_len_qh0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_qh0; _i0++) {
+              qh[_i0].dev_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = frame_to_desc_idx(qh,frame_idx);
           printf("%d\n", benchRet); 
           free(qh);
@@ -110,21 +127,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int frame_idx = 10;
+        
           int _len_qh0 = 100;
           struct TYPE_3__ * qh = (struct TYPE_3__ *) malloc(_len_qh0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_qh0; _i0++) {
-            qh[_i0].dev_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+              qh[_i0].dev_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = frame_to_desc_idx(qh,frame_idx);
           printf("%d\n", benchRet); 
           free(qh);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int frame_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_qh0 = 1;
+          struct TYPE_3__ * qh = (struct TYPE_3__ *) malloc(_len_qh0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_qh0; _i0++) {
+              qh[_i0].dev_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = frame_to_desc_idx(qh,frame_idx);
+          printf("%d\n", benchRet); 
+          free(qh);
+        
+        break;
+    }
     default:
         usage();
         break;

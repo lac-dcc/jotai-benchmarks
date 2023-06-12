@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +64,6 @@ void packet_writer_init(struct packet_writer *writer, int dest_fd)
 	writer->use_sideband = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,16 +76,168 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int dest_fd = 100;
+        
           int _len_writer0 = 1;
           struct packet_writer * writer = (struct packet_writer *) malloc(_len_writer0*sizeof(struct packet_writer));
           for(int _i0 = 0; _i0 < _len_writer0; _i0++) {
-            writer[_i0].dest_fd = ((-2 * (next_i()%2)) + 1) * next_i();
-        writer[_i0].use_sideband = ((-2 * (next_i()%2)) + 1) * next_i();
+              writer[_i0].dest_fd = ((-2 * (next_i()%2)) + 1) * next_i();
+          writer[_i0].use_sideband = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          packet_writer_init(writer,dest_fd);
+          free(writer);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int dest_fd = 255;
+        
+          int _len_writer0 = 65025;
+          struct packet_writer * writer = (struct packet_writer *) malloc(_len_writer0*sizeof(struct packet_writer));
+          for(int _i0 = 0; _i0 < _len_writer0; _i0++) {
+              writer[_i0].dest_fd = ((-2 * (next_i()%2)) + 1) * next_i();
+          writer[_i0].use_sideband = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          packet_writer_init(writer,dest_fd);
+          free(writer);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int dest_fd = 10;
+        
+          int _len_writer0 = 100;
+          struct packet_writer * writer = (struct packet_writer *) malloc(_len_writer0*sizeof(struct packet_writer));
+          for(int _i0 = 0; _i0 < _len_writer0; _i0++) {
+              writer[_i0].dest_fd = ((-2 * (next_i()%2)) + 1) * next_i();
+          writer[_i0].use_sideband = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          packet_writer_init(writer,dest_fd);
+          free(writer);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int dest_fd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_writer0 = 1;
+          struct packet_writer * writer = (struct packet_writer *) malloc(_len_writer0*sizeof(struct packet_writer));
+          for(int _i0 = 0; _i0 < _len_writer0; _i0++) {
+              writer[_i0].dest_fd = ((-2 * (next_i()%2)) + 1) * next_i();
+          writer[_i0].use_sideband = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           packet_writer_init(writer,dest_fd);
           free(writer);
         

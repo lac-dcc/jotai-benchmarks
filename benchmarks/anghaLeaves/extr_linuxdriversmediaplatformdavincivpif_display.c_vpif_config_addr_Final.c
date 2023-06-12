@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +78,6 @@ __attribute__((used)) static void vpif_config_addr(struct channel_obj *ch, int m
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,16 +94,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int muxmode = 100;
+        
           int _len_ch0 = 1;
           struct channel_obj * ch = (struct channel_obj *) malloc(_len_ch0*sizeof(struct channel_obj));
           for(int _i0 = 0; _i0 < _len_ch0; _i0++) {
-            ch[_i0].channel_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              ch[_i0].channel_id = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_ch__i0__common0 = 1;
           ch[_i0].common = (struct common_obj *) malloc(_len_ch__i0__common0*sizeof(struct common_obj));
           for(int _j0 = 0; _j0 < _len_ch__i0__common0; _j0++) {
-            ch[_i0].common->set_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+              ch[_i0].common->set_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           vpif_config_addr(ch,muxmode);
           for(int _aux = 0; _aux < _len_ch0; _aux++) {
           free(ch[_aux].common);
@@ -115,7 +116,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int muxmode = 255;
+        
+          int _len_ch0 = 65025;
+          struct channel_obj * ch = (struct channel_obj *) malloc(_len_ch0*sizeof(struct channel_obj));
+          for(int _i0 = 0; _i0 < _len_ch0; _i0++) {
+              ch[_i0].channel_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ch__i0__common0 = 1;
+          ch[_i0].common = (struct common_obj *) malloc(_len_ch__i0__common0*sizeof(struct common_obj));
+          for(int _j0 = 0; _j0 < _len_ch__i0__common0; _j0++) {
+              ch[_i0].common->set_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          vpif_config_addr(ch,muxmode);
+          for(int _aux = 0; _aux < _len_ch0; _aux++) {
+          free(ch[_aux].common);
+          }
+          free(ch);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int muxmode = 10;
+        
+          int _len_ch0 = 100;
+          struct channel_obj * ch = (struct channel_obj *) malloc(_len_ch0*sizeof(struct channel_obj));
+          for(int _i0 = 0; _i0 < _len_ch0; _i0++) {
+              ch[_i0].channel_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ch__i0__common0 = 1;
+          ch[_i0].common = (struct common_obj *) malloc(_len_ch__i0__common0*sizeof(struct common_obj));
+          for(int _j0 = 0; _j0 < _len_ch__i0__common0; _j0++) {
+              ch[_i0].common->set_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          vpif_config_addr(ch,muxmode);
+          for(int _aux = 0; _aux < _len_ch0; _aux++) {
+          free(ch[_aux].common);
+          }
+          free(ch);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int muxmode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ch0 = 1;
+          struct channel_obj * ch = (struct channel_obj *) malloc(_len_ch0*sizeof(struct channel_obj));
+          for(int _i0 = 0; _i0 < _len_ch0; _i0++) {
+              ch[_i0].channel_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ch__i0__common0 = 1;
+          ch[_i0].common = (struct common_obj *) malloc(_len_ch__i0__common0*sizeof(struct common_obj));
+          for(int _j0 = 0; _j0 < _len_ch__i0__common0; _j0++) {
+              ch[_i0].common->set_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          vpif_config_addr(ch,muxmode);
+          for(int _aux = 0; _aux < _len_ch0; _aux++) {
+          free(ch[_aux].common);
+          }
+          free(ch);
+        
+        break;
+    }
     default:
         usage();
         break;

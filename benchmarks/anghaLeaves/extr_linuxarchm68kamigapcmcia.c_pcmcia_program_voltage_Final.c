@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -89,12 +90,6 @@ void pcmcia_program_voltage(int voltage)
 
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -111,6 +106,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int voltage = 100;
+        
           pcmcia_program_voltage(voltage);
         
         break;
@@ -119,6 +115,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int voltage = 255;
+        
           pcmcia_program_voltage(voltage);
         
         break;
@@ -127,11 +124,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int voltage = 10;
+        
           pcmcia_program_voltage(voltage);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int voltage = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          pcmcia_program_voltage(voltage);
+        
+        break;
+    }
     default:
         usage();
         break;

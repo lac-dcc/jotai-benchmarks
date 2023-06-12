@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ is_newabi (Elf_Internal_Ehdr *header)
   return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,10 +90,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_header0 = 1;
+          int _len_header0 = 65025;
           struct TYPE_3__ * header = (struct TYPE_3__ *) malloc(_len_header0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_header0; _i0++) {
               int _len_header__i0__e_ident0 = 1;
@@ -105,8 +101,10 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_header__i0__e_ident0; _j0++) {
             header[_i0].e_ident[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        header[_i0].e_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].e_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_newabi(header);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_header0; _aux++) {
@@ -116,7 +114,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_header0 = 100;
+          struct TYPE_3__ * header = (struct TYPE_3__ *) malloc(_len_header0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_header0; _i0++) {
+              int _len_header__i0__e_ident0 = 1;
+          header[_i0].e_ident = (long *) malloc(_len_header__i0__e_ident0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_header__i0__e_ident0; _j0++) {
+            header[_i0].e_ident[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          header[_i0].e_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_newabi(header);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_header0; _aux++) {
+          free(header[_aux].e_ident);
+          }
+          free(header);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_header0 = 1;
+          struct TYPE_3__ * header = (struct TYPE_3__ *) malloc(_len_header0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_header0; _i0++) {
+              int _len_header__i0__e_ident0 = 1;
+          header[_i0].e_ident = (long *) malloc(_len_header__i0__e_ident0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_header__i0__e_ident0; _j0++) {
+            header[_i0].e_ident[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          header[_i0].e_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_newabi(header);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_header0; _aux++) {
+          free(header[_aux].e_ident);
+          }
+          free(header);
+        
+        break;
+    }
     default:
         usage();
         break;

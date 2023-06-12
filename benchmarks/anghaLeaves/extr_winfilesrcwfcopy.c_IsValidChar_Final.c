@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -100,12 +101,6 @@ IsValidChar(TUCHAR ch, BOOL fPath, BOOL bLFN)
    return ch > CHAR_SPACE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -122,8 +117,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int ch = 100;
+        
           int fPath = 100;
+        
           int bLFN = 100;
+        
           int benchRet = IsValidChar(ch,fPath,bLFN);
           printf("%d\n", benchRet); 
         
@@ -133,8 +131,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int ch = 255;
+        
           int fPath = 255;
+        
           int bLFN = 255;
+        
           int benchRet = IsValidChar(ch,fPath,bLFN);
           printf("%d\n", benchRet); 
         
@@ -144,14 +145,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int ch = 10;
+        
           int fPath = 10;
+        
           int bLFN = 10;
+        
           int benchRet = IsValidChar(ch,fPath,bLFN);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int ch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int fPath = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int bLFN = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = IsValidChar(ch,fPath,bLFN);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ bool is_empty_dir_inode(struct inode *inode)
 		(inode->i_op == &empty_dir_inode_operations);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,9 +77,142 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_inode0 = 65025;
+          struct inode * inode = (struct inode *) malloc(_len_inode0*sizeof(struct inode));
+          for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
+              int _len_inode__i0__i_op0 = 1;
+          inode[_i0].i_op = (int *) malloc(_len_inode__i0__i_op0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_inode__i0__i_op0; _j0++) {
+            inode[_i0].i_op[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_inode__i0__i_fop0 = 1;
+          inode[_i0].i_fop = (int *) malloc(_len_inode__i0__i_fop0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_inode__i0__i_fop0; _j0++) {
+            inode[_i0].i_fop[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = is_empty_dir_inode(inode);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_inode0; _aux++) {
+          free(inode[_aux].i_op);
+          }
+          for(int _aux = 0; _aux < _len_inode0; _aux++) {
+          free(inode[_aux].i_fop);
+          }
+          free(inode);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_inode0 = 100;
+          struct inode * inode = (struct inode *) malloc(_len_inode0*sizeof(struct inode));
+          for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
+              int _len_inode__i0__i_op0 = 1;
+          inode[_i0].i_op = (int *) malloc(_len_inode__i0__i_op0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_inode__i0__i_op0; _j0++) {
+            inode[_i0].i_op[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_inode__i0__i_fop0 = 1;
+          inode[_i0].i_fop = (int *) malloc(_len_inode__i0__i_fop0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_inode__i0__i_fop0; _j0++) {
+            inode[_i0].i_fop[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = is_empty_dir_inode(inode);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_inode0; _aux++) {
+          free(inode[_aux].i_op);
+          }
+          for(int _aux = 0; _aux < _len_inode0; _aux++) {
+          free(inode[_aux].i_fop);
+          }
+          free(inode);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_inode0 = 1;
           struct inode * inode = (struct inode *) malloc(_len_inode0*sizeof(struct inode));
           for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
@@ -97,7 +226,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_inode__i0__i_fop0; _j0++) {
             inode[_i0].i_fop[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = is_empty_dir_inode(inode);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_inode0; _aux++) {

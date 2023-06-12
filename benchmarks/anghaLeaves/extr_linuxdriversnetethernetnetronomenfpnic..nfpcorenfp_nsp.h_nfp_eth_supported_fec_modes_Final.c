@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ nfp_eth_supported_fec_modes(struct nfp_eth_table_port *eth_port)
 	return eth_port->fec_modes_supported;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_eth_port0 = 1;
+          int _len_eth_port0 = 65025;
           struct nfp_eth_table_port * eth_port = (struct nfp_eth_table_port *) malloc(_len_eth_port0*sizeof(struct nfp_eth_table_port));
           for(int _i0 = 0; _i0 < _len_eth_port0; _i0++) {
-            eth_port[_i0].fec_modes_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+              eth_port[_i0].fec_modes_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = nfp_eth_supported_fec_modes(eth_port);
           printf("%u\n", benchRet); 
           free(eth_port);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_eth_port0 = 100;
           struct nfp_eth_table_port * eth_port = (struct nfp_eth_table_port *) malloc(_len_eth_port0*sizeof(struct nfp_eth_table_port));
           for(int _i0 = 0; _i0 < _len_eth_port0; _i0++) {
-            eth_port[_i0].fec_modes_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+              eth_port[_i0].fec_modes_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = nfp_eth_supported_fec_modes(eth_port);
           printf("%u\n", benchRet); 
           free(eth_port);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_eth_port0 = 1;
+          struct nfp_eth_table_port * eth_port = (struct nfp_eth_table_port *) malloc(_len_eth_port0*sizeof(struct nfp_eth_table_port));
+          for(int _i0 = 0; _i0 < _len_eth_port0; _i0++) {
+              eth_port[_i0].fec_modes_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = nfp_eth_supported_fec_modes(eth_port);
+          printf("%u\n", benchRet); 
+          free(eth_port);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ long calc_load_fold_active(struct rq *this_rq, long adjust)
 	return delta;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,20 +89,82 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long adjust = 100;
+        
           int _len_this_rq0 = 1;
           struct rq * this_rq = (struct rq *) malloc(_len_this_rq0*sizeof(struct rq));
           for(int _i0 = 0; _i0 < _len_this_rq0; _i0++) {
-            this_rq[_i0].nr_running = ((-2 * (next_i()%2)) + 1) * next_i();
-        this_rq[_i0].calc_load_active = ((-2 * (next_i()%2)) + 1) * next_i();
-        this_rq[_i0].nr_uninterruptible = ((-2 * (next_i()%2)) + 1) * next_i();
+              this_rq[_i0].nr_running = ((-2 * (next_i()%2)) + 1) * next_i();
+          this_rq[_i0].calc_load_active = ((-2 * (next_i()%2)) + 1) * next_i();
+          this_rq[_i0].nr_uninterruptible = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = calc_load_fold_active(this_rq,adjust);
           printf("%ld\n", benchRet); 
           free(this_rq);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long adjust = 255;
+        
+          int _len_this_rq0 = 65025;
+          struct rq * this_rq = (struct rq *) malloc(_len_this_rq0*sizeof(struct rq));
+          for(int _i0 = 0; _i0 < _len_this_rq0; _i0++) {
+              this_rq[_i0].nr_running = ((-2 * (next_i()%2)) + 1) * next_i();
+          this_rq[_i0].calc_load_active = ((-2 * (next_i()%2)) + 1) * next_i();
+          this_rq[_i0].nr_uninterruptible = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = calc_load_fold_active(this_rq,adjust);
+          printf("%ld\n", benchRet); 
+          free(this_rq);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long adjust = 10;
+        
+          int _len_this_rq0 = 100;
+          struct rq * this_rq = (struct rq *) malloc(_len_this_rq0*sizeof(struct rq));
+          for(int _i0 = 0; _i0 < _len_this_rq0; _i0++) {
+              this_rq[_i0].nr_running = ((-2 * (next_i()%2)) + 1) * next_i();
+          this_rq[_i0].calc_load_active = ((-2 * (next_i()%2)) + 1) * next_i();
+          this_rq[_i0].nr_uninterruptible = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = calc_load_fold_active(this_rq,adjust);
+          printf("%ld\n", benchRet); 
+          free(this_rq);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long adjust = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_this_rq0 = 1;
+          struct rq * this_rq = (struct rq *) malloc(_len_this_rq0*sizeof(struct rq));
+          for(int _i0 = 0; _i0 < _len_this_rq0; _i0++) {
+              this_rq[_i0].nr_running = ((-2 * (next_i()%2)) + 1) * next_i();
+          this_rq[_i0].calc_load_active = ((-2 * (next_i()%2)) + 1) * next_i();
+          this_rq[_i0].nr_uninterruptible = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = calc_load_fold_active(this_rq,adjust);
+          printf("%ld\n", benchRet); 
+          free(this_rq);
+        
+        break;
+    }
     default:
         usage();
         break;

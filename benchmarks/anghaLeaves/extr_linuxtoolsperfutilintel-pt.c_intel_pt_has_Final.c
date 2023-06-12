@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static bool intel_pt_has(struct auxtrace_info_event *auxtr
 		sizeof(struct auxtrace_info_event) + (sizeof(u64) * (pos + 1));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,11 +83,34 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int pos = 100;
+        
           int _len_auxtrace_info0 = 1;
           struct auxtrace_info_event * auxtrace_info = (struct auxtrace_info_event *) malloc(_len_auxtrace_info0*sizeof(struct auxtrace_info_event));
           for(int _i0 = 0; _i0 < _len_auxtrace_info0; _i0++) {
-            auxtrace_info[_i0].header.size = ((-2 * (next_i()%2)) + 1) * next_i();
+              auxtrace_info[_i0].header.size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = intel_pt_has(auxtrace_info,pos);
+          printf("%d\n", benchRet); 
+          free(auxtrace_info);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int pos = 255;
+        
+          int _len_auxtrace_info0 = 65025;
+          struct auxtrace_info_event * auxtrace_info = (struct auxtrace_info_event *) malloc(_len_auxtrace_info0*sizeof(struct auxtrace_info_event));
+          for(int _i0 = 0; _i0 < _len_auxtrace_info0; _i0++) {
+              auxtrace_info[_i0].header.size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = intel_pt_has(auxtrace_info,pos);
           printf("%d\n", benchRet); 
           free(auxtrace_info);
@@ -99,21 +118,43 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int pos = 10;
+        
           int _len_auxtrace_info0 = 100;
           struct auxtrace_info_event * auxtrace_info = (struct auxtrace_info_event *) malloc(_len_auxtrace_info0*sizeof(struct auxtrace_info_event));
           for(int _i0 = 0; _i0 < _len_auxtrace_info0; _i0++) {
-            auxtrace_info[_i0].header.size = ((-2 * (next_i()%2)) + 1) * next_i();
+              auxtrace_info[_i0].header.size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = intel_pt_has(auxtrace_info,pos);
           printf("%d\n", benchRet); 
           free(auxtrace_info);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_auxtrace_info0 = 1;
+          struct auxtrace_info_event * auxtrace_info = (struct auxtrace_info_event *) malloc(_len_auxtrace_info0*sizeof(struct auxtrace_info_event));
+          for(int _i0 = 0; _i0 < _len_auxtrace_info0; _i0++) {
+              auxtrace_info[_i0].header.size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = intel_pt_has(auxtrace_info,pos);
+          printf("%d\n", benchRet); 
+          free(auxtrace_info);
+        
+        break;
+    }
     default:
         usage();
         break;

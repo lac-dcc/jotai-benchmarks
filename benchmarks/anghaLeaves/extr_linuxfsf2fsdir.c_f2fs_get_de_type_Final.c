@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ unsigned char f2fs_get_de_type(struct f2fs_dir_entry *de)
 	return DT_UNKNOWN;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,14 +79,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_de0 = 1;
+          int _len_de0 = 65025;
           struct f2fs_dir_entry * de = (struct f2fs_dir_entry *) malloc(_len_de0*sizeof(struct f2fs_dir_entry));
           for(int _i0 = 0; _i0 < _len_de0; _i0++) {
-            de[_i0].file_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              de[_i0].file_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned char benchRet = f2fs_get_de_type(de);
           printf("%c\n", (benchRet %26) + 'a'); 
           free(de);
@@ -104,15 +101,32 @@ int main(int argc, char *argv[]) {
           int _len_de0 = 100;
           struct f2fs_dir_entry * de = (struct f2fs_dir_entry *) malloc(_len_de0*sizeof(struct f2fs_dir_entry));
           for(int _i0 = 0; _i0 < _len_de0; _i0++) {
-            de[_i0].file_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              de[_i0].file_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned char benchRet = f2fs_get_de_type(de);
           printf("%c\n", (benchRet %26) + 'a'); 
           free(de);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_de0 = 1;
+          struct f2fs_dir_entry * de = (struct f2fs_dir_entry *) malloc(_len_de0*sizeof(struct f2fs_dir_entry));
+          for(int _i0 = 0; _i0 < _len_de0; _i0++) {
+              de[_i0].file_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned char benchRet = f2fs_get_de_type(de);
+          printf("%c\n", (benchRet %26) + 'a'); 
+          free(de);
+        
+        break;
+    }
     default:
         usage();
         break;

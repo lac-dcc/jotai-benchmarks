@@ -57,12 +57,6 @@ typedef  int uint32_t ;
 
 __attribute__((used)) static uint32_t ror(uint32_t n, int k) { return (n >> k) | (n << (32-k)); }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,13 +73,14 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int n = 10;
+        
           int k = 10;
+        
           int benchRet = ror(n,k);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

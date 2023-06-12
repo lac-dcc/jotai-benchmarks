@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ int kvm_vm_ioctl_get_dirty_log(struct kvm *kvm, struct kvm_dirty_log *log)
 	return -ENOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,19 +76,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_kvm0 = 1;
+          int _len_kvm0 = 65025;
           struct kvm * kvm = (struct kvm *) malloc(_len_kvm0*sizeof(struct kvm));
           for(int _i0 = 0; _i0 < _len_kvm0; _i0++) {
-            kvm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              kvm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_log0 = 1;
+        
+          int _len_log0 = 65025;
           struct kvm_dirty_log * log = (struct kvm_dirty_log *) malloc(_len_log0*sizeof(struct kvm_dirty_log));
           for(int _i0 = 0; _i0 < _len_log0; _i0++) {
-            log[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              log[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = kvm_vm_ioctl_get_dirty_log(kvm,log);
           printf("%d\n", benchRet); 
           free(kvm);
@@ -100,7 +100,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_kvm0 = 100;
+          struct kvm * kvm = (struct kvm *) malloc(_len_kvm0*sizeof(struct kvm));
+          for(int _i0 = 0; _i0 < _len_kvm0; _i0++) {
+              kvm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_log0 = 100;
+          struct kvm_dirty_log * log = (struct kvm_dirty_log *) malloc(_len_log0*sizeof(struct kvm_dirty_log));
+          for(int _i0 = 0; _i0 < _len_log0; _i0++) {
+              log[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = kvm_vm_ioctl_get_dirty_log(kvm,log);
+          printf("%d\n", benchRet); 
+          free(kvm);
+          free(log);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_kvm0 = 1;
+          struct kvm * kvm = (struct kvm *) malloc(_len_kvm0*sizeof(struct kvm));
+          for(int _i0 = 0; _i0 < _len_kvm0; _i0++) {
+              kvm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_log0 = 1;
+          struct kvm_dirty_log * log = (struct kvm_dirty_log *) malloc(_len_log0*sizeof(struct kvm_dirty_log));
+          for(int _i0 = 0; _i0 < _len_log0; _i0++) {
+              log[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = kvm_vm_ioctl_get_dirty_log(kvm,log);
+          printf("%d\n", benchRet); 
+          free(kvm);
+          free(log);
+        
+        break;
+    }
     default:
         usage();
         break;

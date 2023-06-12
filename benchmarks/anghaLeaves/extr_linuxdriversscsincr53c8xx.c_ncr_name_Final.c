@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static inline char *ncr_name (struct ncb *np)
 	return np->inst_name;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,10 +74,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_np0 = 1;
+          int _len_np0 = 65025;
           struct ncb * np = (struct ncb *) malloc(_len_np0*sizeof(struct ncb));
           for(int _i0 = 0; _i0 < _len_np0; _i0++) {
               int _len_np__i0__inst_name0 = 1;
@@ -89,7 +85,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_np__i0__inst_name0; _j0++) {
             np[_i0].inst_name[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           char * benchRet = ncr_name(np);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           for(int _aux = 0; _aux < _len_np0; _aux++) {
@@ -99,7 +97,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_np0 = 100;
+          struct ncb * np = (struct ncb *) malloc(_len_np0*sizeof(struct ncb));
+          for(int _i0 = 0; _i0 < _len_np0; _i0++) {
+              int _len_np__i0__inst_name0 = 1;
+          np[_i0].inst_name = (char *) malloc(_len_np__i0__inst_name0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_np__i0__inst_name0; _j0++) {
+            np[_i0].inst_name[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          char * benchRet = ncr_name(np);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          for(int _aux = 0; _aux < _len_np0; _aux++) {
+          free(np[_aux].inst_name);
+          }
+          free(np);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_np0 = 1;
+          struct ncb * np = (struct ncb *) malloc(_len_np0*sizeof(struct ncb));
+          for(int _i0 = 0; _i0 < _len_np0; _i0++) {
+              int _len_np__i0__inst_name0 = 1;
+          np[_i0].inst_name = (char *) malloc(_len_np__i0__inst_name0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_np__i0__inst_name0; _j0++) {
+            np[_i0].inst_name[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          char * benchRet = ncr_name(np);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          for(int _aux = 0; _aux < _len_np0; _aux++) {
+          free(np[_aux].inst_name);
+          }
+          free(np);
+        
+        break;
+    }
     default:
         usage();
         break;

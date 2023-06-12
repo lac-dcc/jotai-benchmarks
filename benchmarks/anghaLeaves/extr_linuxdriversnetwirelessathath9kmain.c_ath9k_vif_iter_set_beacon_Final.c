@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ __attribute__((used)) static void ath9k_vif_iter_set_beacon(struct ath9k_vif_ite
 	iter_data->nbcnvifs += 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,25 +87,30 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_iter_data0 = 1;
+          int _len_iter_data0 = 65025;
           struct ath9k_vif_iter_data * iter_data = (struct ath9k_vif_iter_data *) malloc(_len_iter_data0*sizeof(struct ath9k_vif_iter_data));
           for(int _i0 = 0; _i0 < _len_iter_data0; _i0++) {
-            iter_data[_i0].beacons = ((-2 * (next_i()%2)) + 1) * next_i();
-        iter_data[_i0].nbcnvifs = ((-2 * (next_i()%2)) + 1) * next_i();
+              iter_data[_i0].beacons = ((-2 * (next_i()%2)) + 1) * next_i();
+          iter_data[_i0].nbcnvifs = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_iter_data__i0__primary_beacon_vif0 = 1;
           iter_data[_i0].primary_beacon_vif = (struct ieee80211_vif *) malloc(_len_iter_data__i0__primary_beacon_vif0*sizeof(struct ieee80211_vif));
           for(int _j0 = 0; _j0 < _len_iter_data__i0__primary_beacon_vif0; _j0++) {
-            iter_data[_i0].primary_beacon_vif->type = ((-2 * (next_i()%2)) + 1) * next_i();
+              iter_data[_i0].primary_beacon_vif->type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
-          int _len_vif0 = 1;
+        
+          int _len_vif0 = 65025;
           struct ieee80211_vif * vif = (struct ieee80211_vif *) malloc(_len_vif0*sizeof(struct ieee80211_vif));
           for(int _i0 = 0; _i0 < _len_vif0; _i0++) {
-            vif[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+              vif[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ath9k_vif_iter_set_beacon(iter_data,vif);
           for(int _aux = 0; _aux < _len_iter_data0; _aux++) {
           free(iter_data[_aux].primary_beacon_vif);
@@ -119,7 +120,72 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_iter_data0 = 100;
+          struct ath9k_vif_iter_data * iter_data = (struct ath9k_vif_iter_data *) malloc(_len_iter_data0*sizeof(struct ath9k_vif_iter_data));
+          for(int _i0 = 0; _i0 < _len_iter_data0; _i0++) {
+              iter_data[_i0].beacons = ((-2 * (next_i()%2)) + 1) * next_i();
+          iter_data[_i0].nbcnvifs = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_iter_data__i0__primary_beacon_vif0 = 1;
+          iter_data[_i0].primary_beacon_vif = (struct ieee80211_vif *) malloc(_len_iter_data__i0__primary_beacon_vif0*sizeof(struct ieee80211_vif));
+          for(int _j0 = 0; _j0 < _len_iter_data__i0__primary_beacon_vif0; _j0++) {
+              iter_data[_i0].primary_beacon_vif->type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_vif0 = 100;
+          struct ieee80211_vif * vif = (struct ieee80211_vif *) malloc(_len_vif0*sizeof(struct ieee80211_vif));
+          for(int _i0 = 0; _i0 < _len_vif0; _i0++) {
+              vif[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ath9k_vif_iter_set_beacon(iter_data,vif);
+          for(int _aux = 0; _aux < _len_iter_data0; _aux++) {
+          free(iter_data[_aux].primary_beacon_vif);
+          }
+          free(iter_data);
+          free(vif);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_iter_data0 = 1;
+          struct ath9k_vif_iter_data * iter_data = (struct ath9k_vif_iter_data *) malloc(_len_iter_data0*sizeof(struct ath9k_vif_iter_data));
+          for(int _i0 = 0; _i0 < _len_iter_data0; _i0++) {
+              iter_data[_i0].beacons = ((-2 * (next_i()%2)) + 1) * next_i();
+          iter_data[_i0].nbcnvifs = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_iter_data__i0__primary_beacon_vif0 = 1;
+          iter_data[_i0].primary_beacon_vif = (struct ieee80211_vif *) malloc(_len_iter_data__i0__primary_beacon_vif0*sizeof(struct ieee80211_vif));
+          for(int _j0 = 0; _j0 < _len_iter_data__i0__primary_beacon_vif0; _j0++) {
+              iter_data[_i0].primary_beacon_vif->type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_vif0 = 1;
+          struct ieee80211_vif * vif = (struct ieee80211_vif *) malloc(_len_vif0*sizeof(struct ieee80211_vif));
+          for(int _i0 = 0; _i0 < _len_vif0; _i0++) {
+              vif[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ath9k_vif_iter_set_beacon(iter_data,vif);
+          for(int _aux = 0; _aux < _len_iter_data0; _aux++) {
+          free(iter_data[_aux].primary_beacon_vif);
+          }
+          free(iter_data);
+          free(vif);
+        
+        break;
+    }
     default:
         usage();
         break;

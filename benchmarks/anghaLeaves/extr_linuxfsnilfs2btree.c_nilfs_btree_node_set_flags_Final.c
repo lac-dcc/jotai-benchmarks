@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ nilfs_btree_node_set_flags(struct nilfs_btree_node *node, int flags)
 	node->bn_flags = flags;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,29 +76,164 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int flags = 100;
+        
           int _len_node0 = 1;
           struct nilfs_btree_node * node = (struct nilfs_btree_node *) malloc(_len_node0*sizeof(struct nilfs_btree_node));
           for(int _i0 = 0; _i0 < _len_node0; _i0++) {
-            node[_i0].bn_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              node[_i0].bn_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           nilfs_btree_node_set_flags(node,flags);
           free(node);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int flags = 255;
+        
+          int _len_node0 = 65025;
+          struct nilfs_btree_node * node = (struct nilfs_btree_node *) malloc(_len_node0*sizeof(struct nilfs_btree_node));
+          for(int _i0 = 0; _i0 < _len_node0; _i0++) {
+              node[_i0].bn_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          nilfs_btree_node_set_flags(node,flags);
+          free(node);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int flags = 10;
+        
           int _len_node0 = 100;
           struct nilfs_btree_node * node = (struct nilfs_btree_node *) malloc(_len_node0*sizeof(struct nilfs_btree_node));
           for(int _i0 = 0; _i0 < _len_node0; _i0++) {
-            node[_i0].bn_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              node[_i0].bn_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          nilfs_btree_node_set_flags(node,flags);
+          free(node);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_node0 = 1;
+          struct nilfs_btree_node * node = (struct nilfs_btree_node *) malloc(_len_node0*sizeof(struct nilfs_btree_node));
+          for(int _i0 = 0; _i0 < _len_node0; _i0++) {
+              node[_i0].bn_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           nilfs_btree_node_set_flags(node,flags);
           free(node);
         

@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -91,12 +92,6 @@ LsMonthNameToNum(char *cp)
 	return (mon);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -109,21 +104,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int _len_cp0 = 100;
+          int _len_cp0 = 65025;
           char * cp = (char *) malloc(_len_cp0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_cp0; _i0++) {
             cp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = LsMonthNameToNum(cp);
           printf("%d\n", benchRet); 
           free(cp);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_cp0 = 100;
+          char * cp = (char *) malloc(_len_cp0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_cp0; _i0++) {
+            cp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = LsMonthNameToNum(cp);
+          printf("%d\n", benchRet); 
+          free(cp);
+        
+        break;
+    }
     default:
         usage();
         break;

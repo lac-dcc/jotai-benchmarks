@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ __attribute__((used)) static inline int ext4_ext_space_block_idx(struct inode *i
 	return size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,15 +91,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int check = 100;
+        
           int _len_inode0 = 1;
           struct inode * inode = (struct inode *) malloc(_len_inode0*sizeof(struct inode));
           for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
               int _len_inode__i0__i_sb0 = 1;
           inode[_i0].i_sb = (struct TYPE_2__ *) malloc(_len_inode__i0__i_sb0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_inode__i0__i_sb0; _j0++) {
-            inode[_i0].i_sb->s_blocksize = ((-2 * (next_i()%2)) + 1) * next_i();
+              inode[_i0].i_sb->s_blocksize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = ext4_ext_space_block_idx(inode,check);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_inode0; _aux++) {
@@ -112,7 +113,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int check = 255;
+        
+          int _len_inode0 = 65025;
+          struct inode * inode = (struct inode *) malloc(_len_inode0*sizeof(struct inode));
+          for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
+              int _len_inode__i0__i_sb0 = 1;
+          inode[_i0].i_sb = (struct TYPE_2__ *) malloc(_len_inode__i0__i_sb0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_inode__i0__i_sb0; _j0++) {
+              inode[_i0].i_sb->s_blocksize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ext4_ext_space_block_idx(inode,check);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_inode0; _aux++) {
+          free(inode[_aux].i_sb);
+          }
+          free(inode);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int check = 10;
+        
+          int _len_inode0 = 100;
+          struct inode * inode = (struct inode *) malloc(_len_inode0*sizeof(struct inode));
+          for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
+              int _len_inode__i0__i_sb0 = 1;
+          inode[_i0].i_sb = (struct TYPE_2__ *) malloc(_len_inode__i0__i_sb0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_inode__i0__i_sb0; _j0++) {
+              inode[_i0].i_sb->s_blocksize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ext4_ext_space_block_idx(inode,check);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_inode0; _aux++) {
+          free(inode[_aux].i_sb);
+          }
+          free(inode);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int check = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_inode0 = 1;
+          struct inode * inode = (struct inode *) malloc(_len_inode0*sizeof(struct inode));
+          for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
+              int _len_inode__i0__i_sb0 = 1;
+          inode[_i0].i_sb = (struct TYPE_2__ *) malloc(_len_inode__i0__i_sb0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_inode__i0__i_sb0; _j0++) {
+              inode[_i0].i_sb->s_blocksize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ext4_ext_space_block_idx(inode,check);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_inode0; _aux++) {
+          free(inode[_aux].i_sb);
+          }
+          free(inode);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ __attribute__((used)) static int n2rng_test_buffer_find(struct n2rng *np, u64 va
 	return count;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long val = 100;
+        
           int _len_np0 = 1;
           struct n2rng * np = (struct n2rng *) malloc(_len_np0*sizeof(struct n2rng));
           for(int _i0 = 0; _i0 < _len_np0; _i0++) {
@@ -99,7 +97,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_np__i0__test_buffer0; _j0++) {
             np[_i0].test_buffer[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = n2rng_test_buffer_find(np,val);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_np0; _aux++) {
@@ -109,7 +109,81 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long val = 255;
+        
+          int _len_np0 = 65025;
+          struct n2rng * np = (struct n2rng *) malloc(_len_np0*sizeof(struct n2rng));
+          for(int _i0 = 0; _i0 < _len_np0; _i0++) {
+              int _len_np__i0__test_buffer0 = 1;
+          np[_i0].test_buffer = (long *) malloc(_len_np__i0__test_buffer0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_np__i0__test_buffer0; _j0++) {
+            np[_i0].test_buffer[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = n2rng_test_buffer_find(np,val);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_np0; _aux++) {
+          free(np[_aux].test_buffer);
+          }
+          free(np);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long val = 10;
+        
+          int _len_np0 = 100;
+          struct n2rng * np = (struct n2rng *) malloc(_len_np0*sizeof(struct n2rng));
+          for(int _i0 = 0; _i0 < _len_np0; _i0++) {
+              int _len_np__i0__test_buffer0 = 1;
+          np[_i0].test_buffer = (long *) malloc(_len_np__i0__test_buffer0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_np__i0__test_buffer0; _j0++) {
+            np[_i0].test_buffer[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = n2rng_test_buffer_find(np,val);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_np0; _aux++) {
+          free(np[_aux].test_buffer);
+          }
+          free(np);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_np0 = 1;
+          struct n2rng * np = (struct n2rng *) malloc(_len_np0*sizeof(struct n2rng));
+          for(int _i0 = 0; _i0 < _len_np0; _i0++) {
+              int _len_np__i0__test_buffer0 = 1;
+          np[_i0].test_buffer = (long *) malloc(_len_np__i0__test_buffer0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_np__i0__test_buffer0; _j0++) {
+            np[_i0].test_buffer[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = n2rng_test_buffer_find(np,val);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_np0; _aux++) {
+          free(np[_aux].test_buffer);
+          }
+          free(np);
+        
+        break;
+    }
     default:
         usage();
         break;

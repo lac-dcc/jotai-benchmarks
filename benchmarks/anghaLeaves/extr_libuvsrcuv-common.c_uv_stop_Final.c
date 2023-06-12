@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ void uv_stop(uv_loop_t* loop) {
   loop->stop_flag = 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_loop0 = 1;
+          int _len_loop0 = 65025;
           struct TYPE_3__ * loop = (struct TYPE_3__ *) malloc(_len_loop0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_loop0; _i0++) {
-            loop[_i0].stop_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+              loop[_i0].stop_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           uv_stop(loop);
           free(loop);
         
@@ -99,14 +96,30 @@ int main(int argc, char *argv[]) {
           int _len_loop0 = 100;
           struct TYPE_3__ * loop = (struct TYPE_3__ *) malloc(_len_loop0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_loop0; _i0++) {
-            loop[_i0].stop_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+              loop[_i0].stop_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           uv_stop(loop);
           free(loop);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_loop0 = 1;
+          struct TYPE_3__ * loop = (struct TYPE_3__ *) malloc(_len_loop0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_loop0; _i0++) {
+              loop[_i0].stop_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          uv_stop(loop);
+          free(loop);
+        
+        break;
+    }
     default:
         usage();
         break;

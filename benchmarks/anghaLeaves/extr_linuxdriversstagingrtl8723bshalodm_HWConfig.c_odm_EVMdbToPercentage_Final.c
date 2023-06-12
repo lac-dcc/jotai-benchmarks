@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -85,12 +86,6 @@ __attribute__((used)) static u8 odm_EVMdbToPercentage(s8 Value)
 	return ret_val;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,6 +102,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int Value = 100;
+        
           int benchRet = odm_EVMdbToPercentage(Value);
           printf("%d\n", benchRet); 
         
@@ -116,6 +112,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int Value = 255;
+        
           int benchRet = odm_EVMdbToPercentage(Value);
           printf("%d\n", benchRet); 
         
@@ -125,12 +122,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int Value = 10;
+        
           int benchRet = odm_EVMdbToPercentage(Value);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int Value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = odm_EVMdbToPercentage(Value);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

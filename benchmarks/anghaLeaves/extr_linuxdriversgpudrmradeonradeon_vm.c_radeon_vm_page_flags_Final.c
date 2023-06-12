@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -81,12 +82,6 @@ __attribute__((used)) static uint32_t radeon_vm_page_flags(uint32_t flags)
 	return hw_flags;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,6 +98,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int flags = 100;
+        
           int benchRet = radeon_vm_page_flags(flags);
           printf("%d\n", benchRet); 
         
@@ -112,6 +108,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int flags = 255;
+        
           int benchRet = radeon_vm_page_flags(flags);
           printf("%d\n", benchRet); 
         
@@ -121,12 +118,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int flags = 10;
+        
           int benchRet = radeon_vm_page_flags(flags);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = radeon_vm_page_flags(flags);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

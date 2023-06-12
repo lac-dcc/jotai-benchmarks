@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static bool table_type_matches(struct iwl_scale_tbl_info *
 		(a->is_SGI == b->is_SGI);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,23 +76,154 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_a0 = 65025;
+          struct iwl_scale_tbl_info * a = (struct iwl_scale_tbl_info *) malloc(_len_a0*sizeof(struct iwl_scale_tbl_info));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              a[_i0].lq_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].ant_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].is_SGI = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_b0 = 65025;
+          struct iwl_scale_tbl_info * b = (struct iwl_scale_tbl_info *) malloc(_len_b0*sizeof(struct iwl_scale_tbl_info));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].lq_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].ant_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].is_SGI = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = table_type_matches(a,b);
+          printf("%d\n", benchRet); 
+          free(a);
+          free(b);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_a0 = 100;
+          struct iwl_scale_tbl_info * a = (struct iwl_scale_tbl_info *) malloc(_len_a0*sizeof(struct iwl_scale_tbl_info));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              a[_i0].lq_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].ant_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].is_SGI = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_b0 = 100;
+          struct iwl_scale_tbl_info * b = (struct iwl_scale_tbl_info *) malloc(_len_b0*sizeof(struct iwl_scale_tbl_info));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].lq_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].ant_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].is_SGI = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = table_type_matches(a,b);
+          printf("%d\n", benchRet); 
+          free(a);
+          free(b);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int _len_a0 = 1;
           struct iwl_scale_tbl_info * a = (struct iwl_scale_tbl_info *) malloc(_len_a0*sizeof(struct iwl_scale_tbl_info));
           for(int _i0 = 0; _i0 < _len_a0; _i0++) {
-            a[_i0].lq_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        a[_i0].ant_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        a[_i0].is_SGI = ((-2 * (next_i()%2)) + 1) * next_i();
+              a[_i0].lq_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].ant_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].is_SGI = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_b0 = 1;
           struct iwl_scale_tbl_info * b = (struct iwl_scale_tbl_info *) malloc(_len_b0*sizeof(struct iwl_scale_tbl_info));
           for(int _i0 = 0; _i0 < _len_b0; _i0++) {
-            b[_i0].lq_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        b[_i0].ant_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        b[_i0].is_SGI = ((-2 * (next_i()%2)) + 1) * next_i();
+              b[_i0].lq_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].ant_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].is_SGI = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = table_type_matches(a,b);
           printf("%d\n", benchRet); 
           free(a);

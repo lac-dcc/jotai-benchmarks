@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -98,12 +100,6 @@ bfa_cfg_get_default(struct bfa_iocfc_cfg_s *cfg)
 
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -116,28 +112,165 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 55
+          // dynamic_instructions_O0 : 55
+          // ------------------------------- 
+          // static_instructions_O1 : 36
+          // dynamic_instructions_O1 : 36
+          // ------------------------------- 
+          // static_instructions_O2 : 36
+          // dynamic_instructions_O2 : 36
+          // ------------------------------- 
+          // static_instructions_O3 : 36
+          // dynamic_instructions_O3 : 36
+          // ------------------------------- 
+          // static_instructions_Ofast : 36
+          // dynamic_instructions_Ofast : 36
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 36
+          // ------------------------------- 
+          // static_instructions_Oz : 36
+          // dynamic_instructions_Oz : 36
+          // ------------------------------- 
+
+          int _len_cfg0 = 65025;
+          struct bfa_iocfc_cfg_s * cfg = (struct bfa_iocfc_cfg_s *) malloc(_len_cfg0*sizeof(struct bfa_iocfc_cfg_s));
+          for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
+              cfg[_i0].drvcfg.path_tov = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].drvcfg.num_sboot_luns = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].drvcfg.num_sboot_tgts = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].drvcfg.num_sgpgs = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].drvcfg.num_rspq_elems = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].drvcfg.num_reqq_elems = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cfg[_i0].fwcfg.num_fwtio_reqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].fwcfg.num_cqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].fwcfg.num_uf_bufs = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].fwcfg.num_fcxp_reqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].fwcfg.num_tskim_reqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].fwcfg.num_ioim_reqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].fwcfg.num_rports = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].fwcfg.num_lports = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].fwcfg.num_fabrics = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          bfa_cfg_get_default(cfg);
+          free(cfg);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 55
+          // dynamic_instructions_O0 : 55
+          // ------------------------------- 
+          // static_instructions_O1 : 36
+          // dynamic_instructions_O1 : 36
+          // ------------------------------- 
+          // static_instructions_O2 : 36
+          // dynamic_instructions_O2 : 36
+          // ------------------------------- 
+          // static_instructions_O3 : 36
+          // dynamic_instructions_O3 : 36
+          // ------------------------------- 
+          // static_instructions_Ofast : 36
+          // dynamic_instructions_Ofast : 36
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 36
+          // ------------------------------- 
+          // static_instructions_Oz : 36
+          // dynamic_instructions_Oz : 36
+          // ------------------------------- 
+
+          int _len_cfg0 = 100;
+          struct bfa_iocfc_cfg_s * cfg = (struct bfa_iocfc_cfg_s *) malloc(_len_cfg0*sizeof(struct bfa_iocfc_cfg_s));
+          for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
+              cfg[_i0].drvcfg.path_tov = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].drvcfg.num_sboot_luns = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].drvcfg.num_sboot_tgts = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].drvcfg.num_sgpgs = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].drvcfg.num_rspq_elems = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].drvcfg.num_reqq_elems = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cfg[_i0].fwcfg.num_fwtio_reqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].fwcfg.num_cqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].fwcfg.num_uf_bufs = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].fwcfg.num_fcxp_reqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].fwcfg.num_tskim_reqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].fwcfg.num_ioim_reqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].fwcfg.num_rports = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].fwcfg.num_lports = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].fwcfg.num_fabrics = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          bfa_cfg_get_default(cfg);
+          free(cfg);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 55
+          // dynamic_instructions_O0 : 55
+          // ------------------------------- 
+          // static_instructions_O1 : 36
+          // dynamic_instructions_O1 : 36
+          // ------------------------------- 
+          // static_instructions_O2 : 36
+          // dynamic_instructions_O2 : 36
+          // ------------------------------- 
+          // static_instructions_O3 : 36
+          // dynamic_instructions_O3 : 36
+          // ------------------------------- 
+          // static_instructions_Ofast : 36
+          // dynamic_instructions_Ofast : 36
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 36
+          // ------------------------------- 
+          // static_instructions_Oz : 36
+          // dynamic_instructions_Oz : 36
+          // ------------------------------- 
+
           int _len_cfg0 = 1;
           struct bfa_iocfc_cfg_s * cfg = (struct bfa_iocfc_cfg_s *) malloc(_len_cfg0*sizeof(struct bfa_iocfc_cfg_s));
           for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
-            cfg[_i0].drvcfg.path_tov = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].drvcfg.num_sboot_luns = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].drvcfg.num_sboot_tgts = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].drvcfg.num_sgpgs = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].drvcfg.num_rspq_elems = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].drvcfg.num_reqq_elems = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].fwcfg.num_fwtio_reqs = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].fwcfg.num_cqs = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].fwcfg.num_uf_bufs = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].fwcfg.num_fcxp_reqs = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].fwcfg.num_tskim_reqs = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].fwcfg.num_ioim_reqs = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].fwcfg.num_rports = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].fwcfg.num_lports = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].fwcfg.num_fabrics = ((-2 * (next_i()%2)) + 1) * next_i();
+              cfg[_i0].drvcfg.path_tov = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].drvcfg.num_sboot_luns = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].drvcfg.num_sboot_tgts = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].drvcfg.num_sgpgs = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].drvcfg.num_rspq_elems = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].drvcfg.num_reqq_elems = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cfg[_i0].fwcfg.num_fwtio_reqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].fwcfg.num_cqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].fwcfg.num_uf_bufs = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].fwcfg.num_fcxp_reqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].fwcfg.num_tskim_reqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].fwcfg.num_ioim_reqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].fwcfg.num_rports = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].fwcfg.num_lports = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].fwcfg.num_fabrics = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           bfa_cfg_get_default(cfg);
           free(cfg);
         

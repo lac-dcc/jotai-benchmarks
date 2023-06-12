@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -83,12 +85,6 @@ nvkm_therm_temp_set_defaults(struct nvkm_therm *therm)
 	therm->bios_sensor.thrs_shutdown.hysteresis = 5; /*not that it matters */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,22 +97,156 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_therm0 = 65025;
+          struct nvkm_therm * therm = (struct nvkm_therm *) malloc(_len_therm0*sizeof(struct nvkm_therm));
+          for(int _i0 = 0; _i0 < _len_therm0; _i0++) {
+              therm[_i0].bios_sensor.thrs_shutdown.temp = ((-2 * (next_i()%2)) + 1) * next_i();
+          therm[_i0].bios_sensor.thrs_shutdown.hysteresis = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          therm[_i0].bios_sensor.thrs_critical.temp = ((-2 * (next_i()%2)) + 1) * next_i();
+          therm[_i0].bios_sensor.thrs_critical.hysteresis = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          therm[_i0].bios_sensor.thrs_down_clock.temp = ((-2 * (next_i()%2)) + 1) * next_i();
+          therm[_i0].bios_sensor.thrs_down_clock.hysteresis = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          therm[_i0].bios_sensor.thrs_fan_boost.temp = ((-2 * (next_i()%2)) + 1) * next_i();
+          therm[_i0].bios_sensor.thrs_fan_boost.hysteresis = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          therm[_i0].bios_sensor.offset_constant = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          nvkm_therm_temp_set_defaults(therm);
+          free(therm);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_therm0 = 100;
+          struct nvkm_therm * therm = (struct nvkm_therm *) malloc(_len_therm0*sizeof(struct nvkm_therm));
+          for(int _i0 = 0; _i0 < _len_therm0; _i0++) {
+              therm[_i0].bios_sensor.thrs_shutdown.temp = ((-2 * (next_i()%2)) + 1) * next_i();
+          therm[_i0].bios_sensor.thrs_shutdown.hysteresis = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          therm[_i0].bios_sensor.thrs_critical.temp = ((-2 * (next_i()%2)) + 1) * next_i();
+          therm[_i0].bios_sensor.thrs_critical.hysteresis = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          therm[_i0].bios_sensor.thrs_down_clock.temp = ((-2 * (next_i()%2)) + 1) * next_i();
+          therm[_i0].bios_sensor.thrs_down_clock.hysteresis = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          therm[_i0].bios_sensor.thrs_fan_boost.temp = ((-2 * (next_i()%2)) + 1) * next_i();
+          therm[_i0].bios_sensor.thrs_fan_boost.hysteresis = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          therm[_i0].bios_sensor.offset_constant = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          nvkm_therm_temp_set_defaults(therm);
+          free(therm);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_therm0 = 1;
           struct nvkm_therm * therm = (struct nvkm_therm *) malloc(_len_therm0*sizeof(struct nvkm_therm));
           for(int _i0 = 0; _i0 < _len_therm0; _i0++) {
-            therm[_i0].bios_sensor.thrs_shutdown.temp = ((-2 * (next_i()%2)) + 1) * next_i();
-        therm[_i0].bios_sensor.thrs_shutdown.hysteresis = ((-2 * (next_i()%2)) + 1) * next_i();
-        therm[_i0].bios_sensor.thrs_critical.temp = ((-2 * (next_i()%2)) + 1) * next_i();
-        therm[_i0].bios_sensor.thrs_critical.hysteresis = ((-2 * (next_i()%2)) + 1) * next_i();
-        therm[_i0].bios_sensor.thrs_down_clock.temp = ((-2 * (next_i()%2)) + 1) * next_i();
-        therm[_i0].bios_sensor.thrs_down_clock.hysteresis = ((-2 * (next_i()%2)) + 1) * next_i();
-        therm[_i0].bios_sensor.thrs_fan_boost.temp = ((-2 * (next_i()%2)) + 1) * next_i();
-        therm[_i0].bios_sensor.thrs_fan_boost.hysteresis = ((-2 * (next_i()%2)) + 1) * next_i();
-        therm[_i0].bios_sensor.offset_constant = ((-2 * (next_i()%2)) + 1) * next_i();
+              therm[_i0].bios_sensor.thrs_shutdown.temp = ((-2 * (next_i()%2)) + 1) * next_i();
+          therm[_i0].bios_sensor.thrs_shutdown.hysteresis = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          therm[_i0].bios_sensor.thrs_critical.temp = ((-2 * (next_i()%2)) + 1) * next_i();
+          therm[_i0].bios_sensor.thrs_critical.hysteresis = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          therm[_i0].bios_sensor.thrs_down_clock.temp = ((-2 * (next_i()%2)) + 1) * next_i();
+          therm[_i0].bios_sensor.thrs_down_clock.hysteresis = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          therm[_i0].bios_sensor.thrs_fan_boost.temp = ((-2 * (next_i()%2)) + 1) * next_i();
+          therm[_i0].bios_sensor.thrs_fan_boost.hysteresis = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          therm[_i0].bios_sensor.offset_constant = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           nvkm_therm_temp_set_defaults(therm);
           free(therm);
         

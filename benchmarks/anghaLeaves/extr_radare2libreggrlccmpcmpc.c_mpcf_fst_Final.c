@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -57,12 +60,6 @@ typedef  int /*<<< orphan*/  mpc_val_t ;
 
 mpc_val_t *mpcf_fst(int n, mpc_val_t **xs) { (void) n; return xs[0]; }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -75,10 +72,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int n = 100;
+        
           int _len_xs0 = 1;
           int ** xs = (int **) malloc(_len_xs0*sizeof(int *));
           for(int _i0 = 0; _i0 < _len_xs0; _i0++) {
@@ -88,10 +109,154 @@ int main(int argc, char *argv[]) {
               xs[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           int * benchRet = mpcf_fst(n,xs);
           printf("%d\n", (*benchRet)); 
           for(int i1 = 0; i1 < _len_xs0; i1++) {
+              free(xs[i1]);
+          }
+          free(xs);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int n = 255;
+        
+          int _len_xs0 = 65025;
+          int ** xs = (int **) malloc(_len_xs0*sizeof(int *));
+          for(int _i0 = 0; _i0 < _len_xs0; _i0++) {
             int _len_xs1 = 1;
+            xs[_i0] = (int *) malloc(_len_xs1*sizeof(int));
+            for(int _i1 = 0; _i1 < _len_xs1; _i1++) {
+              xs[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int * benchRet = mpcf_fst(n,xs);
+          printf("%d\n", (*benchRet)); 
+          for(int i1 = 0; i1 < _len_xs0; i1++) {
+              free(xs[i1]);
+          }
+          free(xs);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int n = 10;
+        
+          int _len_xs0 = 100;
+          int ** xs = (int **) malloc(_len_xs0*sizeof(int *));
+          for(int _i0 = 0; _i0 < _len_xs0; _i0++) {
+            int _len_xs1 = 1;
+            xs[_i0] = (int *) malloc(_len_xs1*sizeof(int));
+            for(int _i1 = 0; _i1 < _len_xs1; _i1++) {
+              xs[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int * benchRet = mpcf_fst(n,xs);
+          printf("%d\n", (*benchRet)); 
+          for(int i1 = 0; i1 < _len_xs0; i1++) {
+              free(xs[i1]);
+          }
+          free(xs);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_xs0 = 1;
+          int ** xs = (int **) malloc(_len_xs0*sizeof(int *));
+          for(int _i0 = 0; _i0 < _len_xs0; _i0++) {
+            int _len_xs1 = 1;
+            xs[_i0] = (int *) malloc(_len_xs1*sizeof(int));
+            for(int _i1 = 0; _i1 < _len_xs1; _i1++) {
+              xs[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int * benchRet = mpcf_fst(n,xs);
+          printf("%d\n", (*benchRet)); 
+          for(int i1 = 0; i1 < _len_xs0; i1++) {
               free(xs[i1]);
           }
           free(xs);

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ dasd_eckd_cdl_special(int blk_per_trk, int recid)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,7 +85,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int blk_per_trk = 100;
+        
           int recid = 100;
+        
           int benchRet = dasd_eckd_cdl_special(blk_per_trk,recid);
           printf("%d\n", benchRet); 
         
@@ -100,7 +97,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int blk_per_trk = 255;
+        
           int recid = 255;
+        
           int benchRet = dasd_eckd_cdl_special(blk_per_trk,recid);
           printf("%d\n", benchRet); 
         
@@ -110,13 +109,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int blk_per_trk = 10;
+        
           int recid = 10;
+        
           int benchRet = dasd_eckd_cdl_special(blk_per_trk,recid);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int blk_per_trk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int recid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = dasd_eckd_cdl_special(blk_per_trk,recid);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

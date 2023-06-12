@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static bool var_mtrr_range_is_valid(struct kvm_mtrr_range 
 	return (range->mask & (1 << 11)) != 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_range0 = 1;
+          int _len_range0 = 65025;
           struct kvm_mtrr_range * range = (struct kvm_mtrr_range *) malloc(_len_range0*sizeof(struct kvm_mtrr_range));
           for(int _i0 = 0; _i0 < _len_range0; _i0++) {
-            range[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              range[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = var_mtrr_range_is_valid(range);
           printf("%d\n", benchRet); 
           free(range);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_range0 = 100;
           struct kvm_mtrr_range * range = (struct kvm_mtrr_range *) malloc(_len_range0*sizeof(struct kvm_mtrr_range));
           for(int _i0 = 0; _i0 < _len_range0; _i0++) {
-            range[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              range[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = var_mtrr_range_is_valid(range);
           printf("%d\n", benchRet); 
           free(range);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_range0 = 1;
+          struct kvm_mtrr_range * range = (struct kvm_mtrr_range *) malloc(_len_range0*sizeof(struct kvm_mtrr_range));
+          for(int _i0 = 0; _i0 < _len_range0; _i0++) {
+              range[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = var_mtrr_range_is_valid(range);
+          printf("%d\n", benchRet); 
+          free(range);
+        
+        break;
+    }
     default:
         usage();
         break;

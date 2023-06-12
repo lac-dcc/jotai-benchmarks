@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline u8 hfi1_16B_get_becn(struct hfi1_16b_header 
 	return (u8)((hdr->lrh[0] & OPA_16B_BECN_MASK) >> OPA_16B_BECN_SHIFT);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,10 +77,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_hdr0 = 1;
+          int _len_hdr0 = 65025;
           struct hfi1_16b_header * hdr = (struct hfi1_16b_header *) malloc(_len_hdr0*sizeof(struct hfi1_16b_header));
           for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
               int _len_hdr__i0__lrh0 = 1;
@@ -92,7 +88,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_hdr__i0__lrh0; _j0++) {
             hdr[_i0].lrh[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = hfi1_16B_get_becn(hdr);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_hdr0; _aux++) {
@@ -102,7 +100,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_hdr0 = 100;
+          struct hfi1_16b_header * hdr = (struct hfi1_16b_header *) malloc(_len_hdr0*sizeof(struct hfi1_16b_header));
+          for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
+              int _len_hdr__i0__lrh0 = 1;
+          hdr[_i0].lrh = (int *) malloc(_len_hdr__i0__lrh0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_hdr__i0__lrh0; _j0++) {
+            hdr[_i0].lrh[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = hfi1_16B_get_becn(hdr);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hdr0; _aux++) {
+          free(hdr[_aux].lrh);
+          }
+          free(hdr);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_hdr0 = 1;
+          struct hfi1_16b_header * hdr = (struct hfi1_16b_header *) malloc(_len_hdr0*sizeof(struct hfi1_16b_header));
+          for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
+              int _len_hdr__i0__lrh0 = 1;
+          hdr[_i0].lrh = (int *) malloc(_len_hdr__i0__lrh0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_hdr__i0__lrh0; _j0++) {
+            hdr[_i0].lrh[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = hfi1_16B_get_becn(hdr);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hdr0; _aux++) {
+          free(hdr[_aux].lrh);
+          }
+          free(hdr);
+        
+        break;
+    }
     default:
         usage();
         break;

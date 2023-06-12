@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ bool cfsrvl_ready(struct cfsrvl *service, int *err)
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,19 +79,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_service0 = 1;
+          int _len_service0 = 65025;
           struct cfsrvl * service = (struct cfsrvl *) malloc(_len_service0*sizeof(struct cfsrvl));
           for(int _i0 = 0; _i0 < _len_service0; _i0++) {
-            service[_i0].open = ((-2 * (next_i()%2)) + 1) * next_i();
+              service[_i0].open = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_err0 = 1;
+        
+          int _len_err0 = 65025;
           int * err = (int *) malloc(_len_err0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_err0; _i0++) {
             err[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = cfsrvl_ready(service,err);
           printf("%d\n", benchRet); 
           free(service);
@@ -103,7 +102,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_service0 = 100;
+          struct cfsrvl * service = (struct cfsrvl *) malloc(_len_service0*sizeof(struct cfsrvl));
+          for(int _i0 = 0; _i0 < _len_service0; _i0++) {
+              service[_i0].open = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_err0 = 100;
+          int * err = (int *) malloc(_len_err0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_err0; _i0++) {
+            err[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = cfsrvl_ready(service,err);
+          printf("%d\n", benchRet); 
+          free(service);
+          free(err);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_service0 = 1;
+          struct cfsrvl * service = (struct cfsrvl *) malloc(_len_service0*sizeof(struct cfsrvl));
+          for(int _i0 = 0; _i0 < _len_service0; _i0++) {
+              service[_i0].open = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_err0 = 1;
+          int * err = (int *) malloc(_len_err0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_err0; _i0++) {
+            err[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = cfsrvl_ready(service,err);
+          printf("%d\n", benchRet); 
+          free(service);
+          free(err);
+        
+        break;
+    }
     default:
         usage();
         break;

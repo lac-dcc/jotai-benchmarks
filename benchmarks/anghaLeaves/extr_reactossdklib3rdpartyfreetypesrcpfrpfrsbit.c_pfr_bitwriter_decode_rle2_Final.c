@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -124,12 +126,6 @@ __attribute__((used)) static void
       cur[0] = (FT_Byte) c;
   }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -142,31 +138,35 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_writer0 = 1;
+          int _len_writer0 = 65025;
           struct TYPE_3__ * writer = (struct TYPE_3__ *) malloc(_len_writer0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_writer0; _i0++) {
-            writer[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
-        writer[_i0].total = ((-2 * (next_i()%2)) + 1) * next_i();
+              writer[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          writer[_i0].total = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_writer__i0__line0 = 1;
           writer[_i0].line = (long *) malloc(_len_writer__i0__line0*sizeof(long));
           for(int _j0 = 0; _j0 < _len_writer__i0__line0; _j0++) {
             writer[_i0].line[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        writer[_i0].pitch = ((-2 * (next_i()%2)) + 1) * next_i();
+          writer[_i0].pitch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_p0 = 1;
+        
+          int _len_p0 = 65025;
           long * p = (long *) malloc(_len_p0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
             p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_limit0 = 1;
+        
+          int _len_limit0 = 65025;
           long * limit = (long *) malloc(_len_limit0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_limit0; _i0++) {
             limit[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           pfr_bitwriter_decode_rle2(writer,p,limit);
           for(int _aux = 0; _aux < _len_writer0; _aux++) {
           free(writer[_aux].line);
@@ -177,7 +177,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_writer0 = 100;
+          struct TYPE_3__ * writer = (struct TYPE_3__ *) malloc(_len_writer0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_writer0; _i0++) {
+              writer[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          writer[_i0].total = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_writer__i0__line0 = 1;
+          writer[_i0].line = (long *) malloc(_len_writer__i0__line0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_writer__i0__line0; _j0++) {
+            writer[_i0].line[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          writer[_i0].pitch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_p0 = 100;
+          long * p = (long *) malloc(_len_p0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+            p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_limit0 = 100;
+          long * limit = (long *) malloc(_len_limit0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_limit0; _i0++) {
+            limit[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          pfr_bitwriter_decode_rle2(writer,p,limit);
+          for(int _aux = 0; _aux < _len_writer0; _aux++) {
+          free(writer[_aux].line);
+          }
+          free(writer);
+          free(p);
+          free(limit);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_writer0 = 1;
+          struct TYPE_3__ * writer = (struct TYPE_3__ *) malloc(_len_writer0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_writer0; _i0++) {
+              writer[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          writer[_i0].total = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_writer__i0__line0 = 1;
+          writer[_i0].line = (long *) malloc(_len_writer__i0__line0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_writer__i0__line0; _j0++) {
+            writer[_i0].line[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          writer[_i0].pitch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_p0 = 1;
+          long * p = (long *) malloc(_len_p0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+            p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_limit0 = 1;
+          long * limit = (long *) malloc(_len_limit0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_limit0; _i0++) {
+            limit[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          pfr_bitwriter_decode_rle2(writer,p,limit);
+          for(int _aux = 0; _aux < _len_writer0; _aux++) {
+          free(writer[_aux].line);
+          }
+          free(writer);
+          free(p);
+          free(limit);
+        
+        break;
+    }
     default:
         usage();
         break;

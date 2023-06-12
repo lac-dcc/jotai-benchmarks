@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static inline u16 hpios_locked_mem_get_phys_addr(struct co
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,19 +78,139 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_locked_mem_handle0 = 65025;
+          struct consistent_dma_area * locked_mem_handle = (struct consistent_dma_area *) malloc(_len_locked_mem_handle0*sizeof(struct consistent_dma_area));
+          for(int _i0 = 0; _i0 < _len_locked_mem_handle0; _i0++) {
+              locked_mem_handle[_i0].dma_handle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_p_physical_addr0 = 65025;
+          int * p_physical_addr = (int *) malloc(_len_p_physical_addr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p_physical_addr0; _i0++) {
+            p_physical_addr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = hpios_locked_mem_get_phys_addr(locked_mem_handle,p_physical_addr);
+          printf("%d\n", benchRet); 
+          free(locked_mem_handle);
+          free(p_physical_addr);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_locked_mem_handle0 = 100;
+          struct consistent_dma_area * locked_mem_handle = (struct consistent_dma_area *) malloc(_len_locked_mem_handle0*sizeof(struct consistent_dma_area));
+          for(int _i0 = 0; _i0 < _len_locked_mem_handle0; _i0++) {
+              locked_mem_handle[_i0].dma_handle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_p_physical_addr0 = 100;
+          int * p_physical_addr = (int *) malloc(_len_p_physical_addr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p_physical_addr0; _i0++) {
+            p_physical_addr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = hpios_locked_mem_get_phys_addr(locked_mem_handle,p_physical_addr);
+          printf("%d\n", benchRet); 
+          free(locked_mem_handle);
+          free(p_physical_addr);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_locked_mem_handle0 = 1;
           struct consistent_dma_area * locked_mem_handle = (struct consistent_dma_area *) malloc(_len_locked_mem_handle0*sizeof(struct consistent_dma_area));
           for(int _i0 = 0; _i0 < _len_locked_mem_handle0; _i0++) {
-            locked_mem_handle[_i0].dma_handle = ((-2 * (next_i()%2)) + 1) * next_i();
+              locked_mem_handle[_i0].dma_handle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_p_physical_addr0 = 1;
           int * p_physical_addr = (int *) malloc(_len_p_physical_addr0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_p_physical_addr0; _i0++) {
             p_physical_addr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = hpios_locked_mem_get_phys_addr(locked_mem_handle,p_physical_addr);
           printf("%d\n", benchRet); 
           free(locked_mem_handle);

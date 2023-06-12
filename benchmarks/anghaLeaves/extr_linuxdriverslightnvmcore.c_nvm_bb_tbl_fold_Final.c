@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -87,12 +90,6 @@ int nvm_bb_tbl_fold(struct nvm_dev *dev, u8 *blks, int nr_blks)
 	return geo->num_chk;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,21 +102,202 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int nr_blks = 100;
+        
           int _len_dev0 = 1;
           struct nvm_dev * dev = (struct nvm_dev *) malloc(_len_dev0*sizeof(struct nvm_dev));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].geo.num_chk = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].geo.pln_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].geo.num_chk = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].geo.pln_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_blks0 = 1;
           int * blks = (int *) malloc(_len_blks0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_blks0; _i0++) {
             blks[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = nvm_bb_tbl_fold(dev,blks,nr_blks);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(blks);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int nr_blks = 255;
+        
+          int _len_dev0 = 65025;
+          struct nvm_dev * dev = (struct nvm_dev *) malloc(_len_dev0*sizeof(struct nvm_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].geo.num_chk = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].geo.pln_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_blks0 = 65025;
+          int * blks = (int *) malloc(_len_blks0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_blks0; _i0++) {
+            blks[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = nvm_bb_tbl_fold(dev,blks,nr_blks);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(blks);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int nr_blks = 10;
+        
+          int _len_dev0 = 100;
+          struct nvm_dev * dev = (struct nvm_dev *) malloc(_len_dev0*sizeof(struct nvm_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].geo.num_chk = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].geo.pln_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_blks0 = 100;
+          int * blks = (int *) malloc(_len_blks0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_blks0; _i0++) {
+            blks[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = nvm_bb_tbl_fold(dev,blks,nr_blks);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(blks);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int nr_blks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dev0 = 1;
+          struct nvm_dev * dev = (struct nvm_dev *) malloc(_len_dev0*sizeof(struct nvm_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].geo.num_chk = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].geo.pln_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_blks0 = 1;
+          int * blks = (int *) malloc(_len_blks0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_blks0; _i0++) {
+            blks[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = nvm_bb_tbl_fold(dev,blks,nr_blks);
           printf("%d\n", benchRet); 
           free(dev);

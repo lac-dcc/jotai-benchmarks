@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ void omap_vout_default_crop(struct v4l2_pix_format *pix,
 	crop->top = ((pix->height - crop->height) >> 1) & ~1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,29 +86,181 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 53
+          // dynamic_instructions_O0 : 53
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
+          int _len_pix0 = 65025;
+          struct v4l2_pix_format * pix = (struct v4l2_pix_format *) malloc(_len_pix0*sizeof(struct v4l2_pix_format));
+          for(int _i0 = 0; _i0 < _len_pix0; _i0++) {
+              pix[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          pix[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fbuf0 = 65025;
+          struct v4l2_framebuffer * fbuf = (struct v4l2_framebuffer *) malloc(_len_fbuf0*sizeof(struct v4l2_framebuffer));
+          for(int _i0 = 0; _i0 < _len_fbuf0; _i0++) {
+              fbuf[_i0].fmt.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          fbuf[_i0].fmt.height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_crop0 = 65025;
+          struct v4l2_rect * crop = (struct v4l2_rect *) malloc(_len_crop0*sizeof(struct v4l2_rect));
+          for(int _i0 = 0; _i0 < _len_crop0; _i0++) {
+              crop[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          crop[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          crop[_i0].left = ((-2 * (next_i()%2)) + 1) * next_i();
+          crop[_i0].top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          omap_vout_default_crop(pix,fbuf,crop);
+          free(pix);
+          free(fbuf);
+          free(crop);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 53
+          // dynamic_instructions_O0 : 53
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
+          int _len_pix0 = 100;
+          struct v4l2_pix_format * pix = (struct v4l2_pix_format *) malloc(_len_pix0*sizeof(struct v4l2_pix_format));
+          for(int _i0 = 0; _i0 < _len_pix0; _i0++) {
+              pix[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          pix[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fbuf0 = 100;
+          struct v4l2_framebuffer * fbuf = (struct v4l2_framebuffer *) malloc(_len_fbuf0*sizeof(struct v4l2_framebuffer));
+          for(int _i0 = 0; _i0 < _len_fbuf0; _i0++) {
+              fbuf[_i0].fmt.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          fbuf[_i0].fmt.height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_crop0 = 100;
+          struct v4l2_rect * crop = (struct v4l2_rect *) malloc(_len_crop0*sizeof(struct v4l2_rect));
+          for(int _i0 = 0; _i0 < _len_crop0; _i0++) {
+              crop[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          crop[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          crop[_i0].left = ((-2 * (next_i()%2)) + 1) * next_i();
+          crop[_i0].top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          omap_vout_default_crop(pix,fbuf,crop);
+          free(pix);
+          free(fbuf);
+          free(crop);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 53
+          // dynamic_instructions_O0 : 53
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
           int _len_pix0 = 1;
           struct v4l2_pix_format * pix = (struct v4l2_pix_format *) malloc(_len_pix0*sizeof(struct v4l2_pix_format));
           for(int _i0 = 0; _i0 < _len_pix0; _i0++) {
-            pix[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
-        pix[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+              pix[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          pix[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_fbuf0 = 1;
           struct v4l2_framebuffer * fbuf = (struct v4l2_framebuffer *) malloc(_len_fbuf0*sizeof(struct v4l2_framebuffer));
           for(int _i0 = 0; _i0 < _len_fbuf0; _i0++) {
-            fbuf[_i0].fmt.width = ((-2 * (next_i()%2)) + 1) * next_i();
-        fbuf[_i0].fmt.height = ((-2 * (next_i()%2)) + 1) * next_i();
+              fbuf[_i0].fmt.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          fbuf[_i0].fmt.height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_crop0 = 1;
           struct v4l2_rect * crop = (struct v4l2_rect *) malloc(_len_crop0*sizeof(struct v4l2_rect));
           for(int _i0 = 0; _i0 < _len_crop0; _i0++) {
-            crop[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
-        crop[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
-        crop[_i0].left = ((-2 * (next_i()%2)) + 1) * next_i();
-        crop[_i0].top = ((-2 * (next_i()%2)) + 1) * next_i();
+              crop[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          crop[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          crop[_i0].left = ((-2 * (next_i()%2)) + 1) * next_i();
+          crop[_i0].top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           omap_vout_default_crop(pix,fbuf,crop);
           free(pix);
           free(fbuf);

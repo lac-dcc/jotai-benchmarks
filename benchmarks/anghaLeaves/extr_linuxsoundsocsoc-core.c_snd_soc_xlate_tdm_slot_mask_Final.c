@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +74,6 @@ __attribute__((used)) static int snd_soc_xlate_tdm_slot_mask(unsigned int slots,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,16 +90,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int slots = 100;
+        
           int _len_tx_mask0 = 1;
           unsigned int * tx_mask = (unsigned int *) malloc(_len_tx_mask0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_tx_mask0; _i0++) {
             tx_mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_rx_mask0 = 1;
           unsigned int * rx_mask = (unsigned int *) malloc(_len_rx_mask0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_rx_mask0; _i0++) {
             rx_mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = snd_soc_xlate_tdm_slot_mask(slots,tx_mask,rx_mask);
           printf("%d\n", benchRet); 
           free(tx_mask);
@@ -110,7 +110,78 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int slots = 255;
+        
+          int _len_tx_mask0 = 65025;
+          unsigned int * tx_mask = (unsigned int *) malloc(_len_tx_mask0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_tx_mask0; _i0++) {
+            tx_mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_rx_mask0 = 65025;
+          unsigned int * rx_mask = (unsigned int *) malloc(_len_rx_mask0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_rx_mask0; _i0++) {
+            rx_mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = snd_soc_xlate_tdm_slot_mask(slots,tx_mask,rx_mask);
+          printf("%d\n", benchRet); 
+          free(tx_mask);
+          free(rx_mask);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int slots = 10;
+        
+          int _len_tx_mask0 = 100;
+          unsigned int * tx_mask = (unsigned int *) malloc(_len_tx_mask0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_tx_mask0; _i0++) {
+            tx_mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_rx_mask0 = 100;
+          unsigned int * rx_mask = (unsigned int *) malloc(_len_rx_mask0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_rx_mask0; _i0++) {
+            rx_mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = snd_soc_xlate_tdm_slot_mask(slots,tx_mask,rx_mask);
+          printf("%d\n", benchRet); 
+          free(tx_mask);
+          free(rx_mask);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int slots = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_tx_mask0 = 1;
+          unsigned int * tx_mask = (unsigned int *) malloc(_len_tx_mask0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_tx_mask0; _i0++) {
+            tx_mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_rx_mask0 = 1;
+          unsigned int * rx_mask = (unsigned int *) malloc(_len_rx_mask0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_rx_mask0; _i0++) {
+            rx_mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = snd_soc_xlate_tdm_slot_mask(slots,tx_mask,rx_mask);
+          printf("%d\n", benchRet); 
+          free(tx_mask);
+          free(rx_mask);
+        
+        break;
+    }
     default:
         usage();
         break;

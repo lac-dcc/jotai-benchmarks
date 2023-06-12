@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ unsigned short CRC_Value(unsigned short crcvalue)
 	return crcvalue ^ CRC_XOR_VALUE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned short crcvalue = 100;
+        
           unsigned short benchRet = CRC_Value(crcvalue);
           printf("%hu\n", benchRet); 
         
@@ -93,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned short crcvalue = 255;
+        
           unsigned short benchRet = CRC_Value(crcvalue);
           printf("%hu\n", benchRet); 
         
@@ -102,12 +99,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned short crcvalue = 10;
+        
           unsigned short benchRet = CRC_Value(crcvalue);
           printf("%hu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned short crcvalue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned short benchRet = CRC_Value(crcvalue);
+          printf("%hu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

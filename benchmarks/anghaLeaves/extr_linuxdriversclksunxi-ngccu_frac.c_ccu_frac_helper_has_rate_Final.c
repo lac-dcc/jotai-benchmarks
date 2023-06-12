@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ bool ccu_frac_helper_has_rate(struct ccu_common *common,
 	return (cf->rates[0] == rate) || (cf->rates[1] == rate);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,11 +86,14 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long rate = 100;
+        
           int _len_common0 = 1;
           struct ccu_common * common = (struct ccu_common *) malloc(_len_common0*sizeof(struct ccu_common));
           for(int _i0 = 0; _i0 < _len_common0; _i0++) {
-            common[_i0].features = ((-2 * (next_i()%2)) + 1) * next_i();
+              common[_i0].features = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_cf0 = 1;
           struct ccu_frac_internal * cf = (struct ccu_frac_internal *) malloc(_len_cf0*sizeof(struct ccu_frac_internal));
           for(int _i0 = 0; _i0 < _len_cf0; _i0++) {
@@ -102,7 +102,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_cf__i0__rates0; _j0++) {
             cf[_i0].rates[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = ccu_frac_helper_has_rate(common,cf,rate);
           printf("%d\n", benchRet); 
           free(common);
@@ -113,7 +115,105 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long rate = 255;
+        
+          int _len_common0 = 65025;
+          struct ccu_common * common = (struct ccu_common *) malloc(_len_common0*sizeof(struct ccu_common));
+          for(int _i0 = 0; _i0 < _len_common0; _i0++) {
+              common[_i0].features = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cf0 = 65025;
+          struct ccu_frac_internal * cf = (struct ccu_frac_internal *) malloc(_len_cf0*sizeof(struct ccu_frac_internal));
+          for(int _i0 = 0; _i0 < _len_cf0; _i0++) {
+              int _len_cf__i0__rates0 = 1;
+          cf[_i0].rates = (unsigned long *) malloc(_len_cf__i0__rates0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_cf__i0__rates0; _j0++) {
+            cf[_i0].rates[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = ccu_frac_helper_has_rate(common,cf,rate);
+          printf("%d\n", benchRet); 
+          free(common);
+          for(int _aux = 0; _aux < _len_cf0; _aux++) {
+          free(cf[_aux].rates);
+          }
+          free(cf);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long rate = 10;
+        
+          int _len_common0 = 100;
+          struct ccu_common * common = (struct ccu_common *) malloc(_len_common0*sizeof(struct ccu_common));
+          for(int _i0 = 0; _i0 < _len_common0; _i0++) {
+              common[_i0].features = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cf0 = 100;
+          struct ccu_frac_internal * cf = (struct ccu_frac_internal *) malloc(_len_cf0*sizeof(struct ccu_frac_internal));
+          for(int _i0 = 0; _i0 < _len_cf0; _i0++) {
+              int _len_cf__i0__rates0 = 1;
+          cf[_i0].rates = (unsigned long *) malloc(_len_cf__i0__rates0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_cf__i0__rates0; _j0++) {
+            cf[_i0].rates[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = ccu_frac_helper_has_rate(common,cf,rate);
+          printf("%d\n", benchRet); 
+          free(common);
+          for(int _aux = 0; _aux < _len_cf0; _aux++) {
+          free(cf[_aux].rates);
+          }
+          free(cf);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_common0 = 1;
+          struct ccu_common * common = (struct ccu_common *) malloc(_len_common0*sizeof(struct ccu_common));
+          for(int _i0 = 0; _i0 < _len_common0; _i0++) {
+              common[_i0].features = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cf0 = 1;
+          struct ccu_frac_internal * cf = (struct ccu_frac_internal *) malloc(_len_cf0*sizeof(struct ccu_frac_internal));
+          for(int _i0 = 0; _i0 < _len_cf0; _i0++) {
+              int _len_cf__i0__rates0 = 1;
+          cf[_i0].rates = (unsigned long *) malloc(_len_cf__i0__rates0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_cf__i0__rates0; _j0++) {
+            cf[_i0].rates[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = ccu_frac_helper_has_rate(common,cf,rate);
+          printf("%d\n", benchRet); 
+          free(common);
+          for(int _aux = 0; _aux < _len_cf0; _aux++) {
+          free(cf[_aux].rates);
+          }
+          free(cf);
+        
+        break;
+    }
     default:
         usage();
         break;

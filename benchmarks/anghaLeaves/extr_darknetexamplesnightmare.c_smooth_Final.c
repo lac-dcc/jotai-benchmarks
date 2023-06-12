@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +81,6 @@ void smooth(image recon, image update, float lambda, int num)
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,87 +93,227 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 41
+          // dynamic_instructions_Oz : 41
+          // ------------------------------- 
+
           float lambda = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           int num = 100;
+        
           struct TYPE_4__ recon;
-        recon.c = ((-2 * (next_i()%2)) + 1) * next_i();
-        recon.h = ((-2 * (next_i()%2)) + 1) * next_i();
-        recon.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          recon.c = ((-2 * (next_i()%2)) + 1) * next_i();
+          recon.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          recon.w = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_recon_data0 = 1;
           recon.data = (float *) malloc(_len_recon_data0*sizeof(float));
           for(int _j0 = 0; _j0 < _len_recon_data0; _j0++) {
             recon.data[_j0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
+        
           struct TYPE_4__ update;
-        update.c = ((-2 * (next_i()%2)) + 1) * next_i();
-        update.h = ((-2 * (next_i()%2)) + 1) * next_i();
-        update.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          update.c = ((-2 * (next_i()%2)) + 1) * next_i();
+          update.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          update.w = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_update_data0 = 1;
           update.data = (float *) malloc(_len_update_data0*sizeof(float));
           for(int _j0 = 0; _j0 < _len_update_data0; _j0++) {
             update.data[_j0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
+        
           smooth(recon,update,lambda,num);
           free(recon.data);
           free(update.data);
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 41
+          // dynamic_instructions_Oz : 41
+          // ------------------------------- 
+
           float lambda = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           int num = 255;
+        
           struct TYPE_4__ recon;
-        recon.c = ((-2 * (next_i()%2)) + 1) * next_i();
-        recon.h = ((-2 * (next_i()%2)) + 1) * next_i();
-        recon.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          recon.c = ((-2 * (next_i()%2)) + 1) * next_i();
+          recon.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          recon.w = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_recon_data0 = 1;
           recon.data = (float *) malloc(_len_recon_data0*sizeof(float));
           for(int _j0 = 0; _j0 < _len_recon_data0; _j0++) {
             recon.data[_j0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
+        
           struct TYPE_4__ update;
-        update.c = ((-2 * (next_i()%2)) + 1) * next_i();
-        update.h = ((-2 * (next_i()%2)) + 1) * next_i();
-        update.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          update.c = ((-2 * (next_i()%2)) + 1) * next_i();
+          update.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          update.w = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_update_data0 = 1;
           update.data = (float *) malloc(_len_update_data0*sizeof(float));
           for(int _j0 = 0; _j0 < _len_update_data0; _j0++) {
             update.data[_j0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
+        
           smooth(recon,update,lambda,num);
           free(recon.data);
           free(update.data);
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 41
+          // dynamic_instructions_Oz : 41
+          // ------------------------------- 
+
           float lambda = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           int num = 10;
+        
           struct TYPE_4__ recon;
-        recon.c = ((-2 * (next_i()%2)) + 1) * next_i();
-        recon.h = ((-2 * (next_i()%2)) + 1) * next_i();
-        recon.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          recon.c = ((-2 * (next_i()%2)) + 1) * next_i();
+          recon.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          recon.w = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_recon_data0 = 1;
           recon.data = (float *) malloc(_len_recon_data0*sizeof(float));
           for(int _j0 = 0; _j0 < _len_recon_data0; _j0++) {
             recon.data[_j0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
+        
           struct TYPE_4__ update;
-        update.c = ((-2 * (next_i()%2)) + 1) * next_i();
-        update.h = ((-2 * (next_i()%2)) + 1) * next_i();
-        update.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          update.c = ((-2 * (next_i()%2)) + 1) * next_i();
+          update.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          update.w = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_update_data0 = 1;
           update.data = (float *) malloc(_len_update_data0*sizeof(float));
           for(int _j0 = 0; _j0 < _len_update_data0; _j0++) {
             update.data[_j0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
+        
+          smooth(recon,update,lambda,num);
+          free(recon.data);
+          free(update.data);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 41
+          // dynamic_instructions_Oz : 41
+          // ------------------------------- 
+
+          float lambda = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          int num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          struct TYPE_4__ recon;
+          recon.c = ((-2 * (next_i()%2)) + 1) * next_i();
+          recon.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          recon.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_recon_data0 = 1;
+          recon.data = (float *) malloc(_len_recon_data0*sizeof(float));
+          for(int _j0 = 0; _j0 < _len_recon_data0; _j0++) {
+            recon.data[_j0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          struct TYPE_4__ update;
+          update.c = ((-2 * (next_i()%2)) + 1) * next_i();
+          update.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          update.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_update_data0 = 1;
+          update.data = (float *) malloc(_len_update_data0*sizeof(float));
+          for(int _j0 = 0; _j0 < _len_update_data0; _j0++) {
+            update.data[_j0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
           smooth(recon,update,lambda,num);
           free(recon.data);
           free(update.data);

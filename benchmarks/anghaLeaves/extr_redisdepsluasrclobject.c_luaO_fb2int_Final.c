@@ -32,6 +32,7 @@ void usage() {
 \nARGS:\n\
        0            int-bounds\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ int luaO_fb2int (int x) {
   else return ((x & 7)+8) << (e - 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,6 +78,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int x = 100;
+        
           int benchRet = luaO_fb2int(x);
           printf("%d\n", benchRet); 
         
@@ -92,12 +88,22 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int x = 10;
+        
           int benchRet = luaO_fb2int(x);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = luaO_fb2int(x);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

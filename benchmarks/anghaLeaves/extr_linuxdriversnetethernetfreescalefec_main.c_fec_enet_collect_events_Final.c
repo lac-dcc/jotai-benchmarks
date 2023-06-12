@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -85,12 +88,6 @@ fec_enet_collect_events(struct fec_enet_private *fep, uint int_events)
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,16 +100,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
           int int_events = 100;
+        
           int _len_fep0 = 1;
           struct fec_enet_private * fep = (struct fec_enet_private *) malloc(_len_fep0*sizeof(struct fec_enet_private));
           for(int _i0 = 0; _i0 < _len_fep0; _i0++) {
-            fep[_i0].work_rx = ((-2 * (next_i()%2)) + 1) * next_i();
-        fep[_i0].work_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+              fep[_i0].work_rx = ((-2 * (next_i()%2)) + 1) * next_i();
+          fep[_i0].work_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = fec_enet_collect_events(fep,int_events);
+          printf("%d\n", benchRet); 
+          free(fep);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int int_events = 255;
+        
+          int _len_fep0 = 65025;
+          struct fec_enet_private * fep = (struct fec_enet_private *) malloc(_len_fep0*sizeof(struct fec_enet_private));
+          for(int _i0 = 0; _i0 < _len_fep0; _i0++) {
+              fep[_i0].work_rx = ((-2 * (next_i()%2)) + 1) * next_i();
+          fep[_i0].work_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fec_enet_collect_events(fep,int_events);
+          printf("%d\n", benchRet); 
+          free(fep);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int int_events = 10;
+        
+          int _len_fep0 = 100;
+          struct fec_enet_private * fep = (struct fec_enet_private *) malloc(_len_fep0*sizeof(struct fec_enet_private));
+          for(int _i0 = 0; _i0 < _len_fep0; _i0++) {
+              fep[_i0].work_rx = ((-2 * (next_i()%2)) + 1) * next_i();
+          fep[_i0].work_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fec_enet_collect_events(fep,int_events);
+          printf("%d\n", benchRet); 
+          free(fep);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int int_events = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fep0 = 1;
+          struct fec_enet_private * fep = (struct fec_enet_private *) malloc(_len_fep0*sizeof(struct fec_enet_private));
+          for(int _i0 = 0; _i0 < _len_fep0; _i0++) {
+              fep[_i0].work_rx = ((-2 * (next_i()%2)) + 1) * next_i();
+          fep[_i0].work_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = fec_enet_collect_events(fep,int_events);
           printf("%d\n", benchRet); 
           free(fep);

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -79,12 +82,6 @@ void ena_com_init_intr_moderation_entry(struct ena_com_dev *ena_dev,
 		intr_moder_tbl[level].bytes_per_interval = entry->bytes_per_interval;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,29 +94,244 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           enum ena_intr_moder_level level = 100;
+        
           int _len_ena_dev0 = 1;
           struct ena_com_dev * ena_dev = (struct ena_com_dev *) malloc(_len_ena_dev0*sizeof(struct ena_com_dev));
           for(int _i0 = 0; _i0 < _len_ena_dev0; _i0++) {
-            ena_dev[_i0].intr_delay_resolution = ((-2 * (next_i()%2)) + 1) * next_i();
+              ena_dev[_i0].intr_delay_resolution = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_ena_dev__i0__intr_moder_tbl0 = 1;
           ena_dev[_i0].intr_moder_tbl = (struct ena_intr_moder_entry *) malloc(_len_ena_dev__i0__intr_moder_tbl0*sizeof(struct ena_intr_moder_entry));
           for(int _j0 = 0; _j0 < _len_ena_dev__i0__intr_moder_tbl0; _j0++) {
-            ena_dev[_i0].intr_moder_tbl->intr_moder_interval = ((-2 * (next_i()%2)) + 1) * next_i();
-        ena_dev[_i0].intr_moder_tbl->bytes_per_interval = ((-2 * (next_i()%2)) + 1) * next_i();
-        ena_dev[_i0].intr_moder_tbl->pkts_per_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+              ena_dev[_i0].intr_moder_tbl->intr_moder_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+          ena_dev[_i0].intr_moder_tbl->bytes_per_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+          ena_dev[_i0].intr_moder_tbl->pkts_per_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_entry0 = 1;
           struct ena_intr_moder_entry * entry = (struct ena_intr_moder_entry *) malloc(_len_entry0*sizeof(struct ena_intr_moder_entry));
           for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
-            entry[_i0].intr_moder_interval = ((-2 * (next_i()%2)) + 1) * next_i();
-        entry[_i0].bytes_per_interval = ((-2 * (next_i()%2)) + 1) * next_i();
-        entry[_i0].pkts_per_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+              entry[_i0].intr_moder_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+          entry[_i0].bytes_per_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+          entry[_i0].pkts_per_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          ena_com_init_intr_moderation_entry(ena_dev,level,entry);
+          for(int _aux = 0; _aux < _len_ena_dev0; _aux++) {
+          free(ena_dev[_aux].intr_moder_tbl);
+          }
+          free(ena_dev);
+          free(entry);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          enum ena_intr_moder_level level = 255;
+        
+          int _len_ena_dev0 = 65025;
+          struct ena_com_dev * ena_dev = (struct ena_com_dev *) malloc(_len_ena_dev0*sizeof(struct ena_com_dev));
+          for(int _i0 = 0; _i0 < _len_ena_dev0; _i0++) {
+              ena_dev[_i0].intr_delay_resolution = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ena_dev__i0__intr_moder_tbl0 = 1;
+          ena_dev[_i0].intr_moder_tbl = (struct ena_intr_moder_entry *) malloc(_len_ena_dev__i0__intr_moder_tbl0*sizeof(struct ena_intr_moder_entry));
+          for(int _j0 = 0; _j0 < _len_ena_dev__i0__intr_moder_tbl0; _j0++) {
+              ena_dev[_i0].intr_moder_tbl->intr_moder_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+          ena_dev[_i0].intr_moder_tbl->bytes_per_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+          ena_dev[_i0].intr_moder_tbl->pkts_per_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_entry0 = 65025;
+          struct ena_intr_moder_entry * entry = (struct ena_intr_moder_entry *) malloc(_len_entry0*sizeof(struct ena_intr_moder_entry));
+          for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
+              entry[_i0].intr_moder_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+          entry[_i0].bytes_per_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+          entry[_i0].pkts_per_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ena_com_init_intr_moderation_entry(ena_dev,level,entry);
+          for(int _aux = 0; _aux < _len_ena_dev0; _aux++) {
+          free(ena_dev[_aux].intr_moder_tbl);
+          }
+          free(ena_dev);
+          free(entry);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          enum ena_intr_moder_level level = 10;
+        
+          int _len_ena_dev0 = 100;
+          struct ena_com_dev * ena_dev = (struct ena_com_dev *) malloc(_len_ena_dev0*sizeof(struct ena_com_dev));
+          for(int _i0 = 0; _i0 < _len_ena_dev0; _i0++) {
+              ena_dev[_i0].intr_delay_resolution = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ena_dev__i0__intr_moder_tbl0 = 1;
+          ena_dev[_i0].intr_moder_tbl = (struct ena_intr_moder_entry *) malloc(_len_ena_dev__i0__intr_moder_tbl0*sizeof(struct ena_intr_moder_entry));
+          for(int _j0 = 0; _j0 < _len_ena_dev__i0__intr_moder_tbl0; _j0++) {
+              ena_dev[_i0].intr_moder_tbl->intr_moder_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+          ena_dev[_i0].intr_moder_tbl->bytes_per_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+          ena_dev[_i0].intr_moder_tbl->pkts_per_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_entry0 = 100;
+          struct ena_intr_moder_entry * entry = (struct ena_intr_moder_entry *) malloc(_len_entry0*sizeof(struct ena_intr_moder_entry));
+          for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
+              entry[_i0].intr_moder_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+          entry[_i0].bytes_per_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+          entry[_i0].pkts_per_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ena_com_init_intr_moderation_entry(ena_dev,level,entry);
+          for(int _aux = 0; _aux < _len_ena_dev0; _aux++) {
+          free(ena_dev[_aux].intr_moder_tbl);
+          }
+          free(ena_dev);
+          free(entry);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          enum ena_intr_moder_level level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ena_dev0 = 1;
+          struct ena_com_dev * ena_dev = (struct ena_com_dev *) malloc(_len_ena_dev0*sizeof(struct ena_com_dev));
+          for(int _i0 = 0; _i0 < _len_ena_dev0; _i0++) {
+              ena_dev[_i0].intr_delay_resolution = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ena_dev__i0__intr_moder_tbl0 = 1;
+          ena_dev[_i0].intr_moder_tbl = (struct ena_intr_moder_entry *) malloc(_len_ena_dev__i0__intr_moder_tbl0*sizeof(struct ena_intr_moder_entry));
+          for(int _j0 = 0; _j0 < _len_ena_dev__i0__intr_moder_tbl0; _j0++) {
+              ena_dev[_i0].intr_moder_tbl->intr_moder_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+          ena_dev[_i0].intr_moder_tbl->bytes_per_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+          ena_dev[_i0].intr_moder_tbl->pkts_per_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_entry0 = 1;
+          struct ena_intr_moder_entry * entry = (struct ena_intr_moder_entry *) malloc(_len_entry0*sizeof(struct ena_intr_moder_entry));
+          for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
+              entry[_i0].intr_moder_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+          entry[_i0].bytes_per_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+          entry[_i0].pkts_per_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           ena_com_init_intr_moderation_entry(ena_dev,level,entry);
           for(int _aux = 0; _aux < _len_ena_dev0; _aux++) {
           free(ena_dev[_aux].intr_moder_tbl);

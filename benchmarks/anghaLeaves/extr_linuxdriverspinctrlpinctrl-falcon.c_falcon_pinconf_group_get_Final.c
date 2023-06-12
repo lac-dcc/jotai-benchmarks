@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +65,6 @@ __attribute__((used)) static int falcon_pinconf_group_get(struct pinctrl_dev *pc
 	return -ENOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,16 +81,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int group = 100;
+        
           int _len_pctrldev0 = 1;
           struct pinctrl_dev * pctrldev = (struct pinctrl_dev *) malloc(_len_pctrldev0*sizeof(struct pinctrl_dev));
           for(int _i0 = 0; _i0 < _len_pctrldev0; _i0++) {
-            pctrldev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              pctrldev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_config0 = 1;
           unsigned long * config = (unsigned long *) malloc(_len_config0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_config0; _i0++) {
             config[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = falcon_pinconf_group_get(pctrldev,group,config);
           printf("%d\n", benchRet); 
           free(pctrldev);
@@ -101,7 +102,81 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int group = 255;
+        
+          int _len_pctrldev0 = 65025;
+          struct pinctrl_dev * pctrldev = (struct pinctrl_dev *) malloc(_len_pctrldev0*sizeof(struct pinctrl_dev));
+          for(int _i0 = 0; _i0 < _len_pctrldev0; _i0++) {
+              pctrldev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_config0 = 65025;
+          unsigned long * config = (unsigned long *) malloc(_len_config0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_config0; _i0++) {
+            config[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = falcon_pinconf_group_get(pctrldev,group,config);
+          printf("%d\n", benchRet); 
+          free(pctrldev);
+          free(config);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int group = 10;
+        
+          int _len_pctrldev0 = 100;
+          struct pinctrl_dev * pctrldev = (struct pinctrl_dev *) malloc(_len_pctrldev0*sizeof(struct pinctrl_dev));
+          for(int _i0 = 0; _i0 < _len_pctrldev0; _i0++) {
+              pctrldev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_config0 = 100;
+          unsigned long * config = (unsigned long *) malloc(_len_config0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_config0; _i0++) {
+            config[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = falcon_pinconf_group_get(pctrldev,group,config);
+          printf("%d\n", benchRet); 
+          free(pctrldev);
+          free(config);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int group = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pctrldev0 = 1;
+          struct pinctrl_dev * pctrldev = (struct pinctrl_dev *) malloc(_len_pctrldev0*sizeof(struct pinctrl_dev));
+          for(int _i0 = 0; _i0 < _len_pctrldev0; _i0++) {
+              pctrldev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_config0 = 1;
+          unsigned long * config = (unsigned long *) malloc(_len_config0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_config0; _i0++) {
+            config[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = falcon_pinconf_group_get(pctrldev,group,config);
+          printf("%d\n", benchRet); 
+          free(pctrldev);
+          free(config);
+        
+        break;
+    }
     default:
         usage();
         break;

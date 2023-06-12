@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -80,7 +80,6 @@ __attribute__((used)) static struct node *node_prev(struct sparsebit *s, struct 
 	return (struct node *) nodep->parent;
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct node *_allocate_np(int length, struct node *aux_np[]) {
@@ -118,7 +117,6 @@ void _delete_np(struct node *aux_np[], int aux_np_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -131,16 +129,42 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // empty
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_s0 = 1;
           struct sparsebit * s = (struct sparsebit *) malloc(_len_s0*sizeof(struct sparsebit));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           struct node * aux_np[1];
           struct node * np = _allocate_np(1, aux_np);
+        
           struct node * benchRet = node_prev(s,np);
           free(s);
           _delete_np(aux_np, 1);

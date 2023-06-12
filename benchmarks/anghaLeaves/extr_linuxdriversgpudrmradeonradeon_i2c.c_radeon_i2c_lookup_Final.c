@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ struct radeon_i2c_chan *radeon_i2c_lookup(struct radeon_device *rdev,
 	return NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,9 +88,154 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_rdev0 = 65025;
+          struct radeon_device * rdev = (struct radeon_device *) malloc(_len_rdev0*sizeof(struct radeon_device));
+          for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
+              int _len_rdev__i0__i2c_bus0 = 1;
+          rdev[_i0].i2c_bus = (struct radeon_i2c_chan **) malloc(_len_rdev__i0__i2c_bus0*sizeof(struct radeon_i2c_chan *));
+          for(int _j0 = 0; _j0 < _len_rdev__i0__i2c_bus0; _j0++) {
+            int _len_rdev__i0__i2c_bus1 = 1;
+            rdev[_i0].i2c_bus[_j0] = (struct radeon_i2c_chan *) malloc(_len_rdev__i0__i2c_bus1*sizeof(struct radeon_i2c_chan));
+            for(int _j1 = 0; _j1 < _len_rdev__i0__i2c_bus1; _j1++) {
+                rdev[_i0].i2c_bus[_j0]->rec.i2c_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+            }
+          }
+        
+          }
+        
+          int _len_i2c_bus0 = 65025;
+          struct radeon_i2c_bus_rec * i2c_bus = (struct radeon_i2c_bus_rec *) malloc(_len_i2c_bus0*sizeof(struct radeon_i2c_bus_rec));
+          for(int _i0 = 0; _i0 < _len_i2c_bus0; _i0++) {
+              i2c_bus[_i0].i2c_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct radeon_i2c_chan * benchRet = radeon_i2c_lookup(rdev,i2c_bus);
+          for(int _aux = 0; _aux < _len_rdev0; _aux++) {
+          free(*(rdev[_aux].i2c_bus));
+        free(rdev[_aux].i2c_bus);
+          }
+          free(rdev);
+          free(i2c_bus);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_rdev0 = 100;
+          struct radeon_device * rdev = (struct radeon_device *) malloc(_len_rdev0*sizeof(struct radeon_device));
+          for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
+              int _len_rdev__i0__i2c_bus0 = 1;
+          rdev[_i0].i2c_bus = (struct radeon_i2c_chan **) malloc(_len_rdev__i0__i2c_bus0*sizeof(struct radeon_i2c_chan *));
+          for(int _j0 = 0; _j0 < _len_rdev__i0__i2c_bus0; _j0++) {
+            int _len_rdev__i0__i2c_bus1 = 1;
+            rdev[_i0].i2c_bus[_j0] = (struct radeon_i2c_chan *) malloc(_len_rdev__i0__i2c_bus1*sizeof(struct radeon_i2c_chan));
+            for(int _j1 = 0; _j1 < _len_rdev__i0__i2c_bus1; _j1++) {
+                rdev[_i0].i2c_bus[_j0]->rec.i2c_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+            }
+          }
+        
+          }
+        
+          int _len_i2c_bus0 = 100;
+          struct radeon_i2c_bus_rec * i2c_bus = (struct radeon_i2c_bus_rec *) malloc(_len_i2c_bus0*sizeof(struct radeon_i2c_bus_rec));
+          for(int _i0 = 0; _i0 < _len_i2c_bus0; _i0++) {
+              i2c_bus[_i0].i2c_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct radeon_i2c_chan * benchRet = radeon_i2c_lookup(rdev,i2c_bus);
+          for(int _aux = 0; _aux < _len_rdev0; _aux++) {
+          free(*(rdev[_aux].i2c_bus));
+        free(rdev[_aux].i2c_bus);
+          }
+          free(rdev);
+          free(i2c_bus);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_rdev0 = 1;
           struct radeon_device * rdev = (struct radeon_device *) malloc(_len_rdev0*sizeof(struct radeon_device));
           for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
@@ -104,15 +245,21 @@ int main(int argc, char *argv[]) {
             int _len_rdev__i0__i2c_bus1 = 1;
             rdev[_i0].i2c_bus[_j0] = (struct radeon_i2c_chan *) malloc(_len_rdev__i0__i2c_bus1*sizeof(struct radeon_i2c_chan));
             for(int _j1 = 0; _j1 < _len_rdev__i0__i2c_bus1; _j1++) {
-              rdev[_i0].i2c_bus[_j0]->rec.i2c_id = ((-2 * (next_i()%2)) + 1) * next_i();
+                rdev[_i0].i2c_bus[_j0]->rec.i2c_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
             }
           }
+        
           }
+        
           int _len_i2c_bus0 = 1;
           struct radeon_i2c_bus_rec * i2c_bus = (struct radeon_i2c_bus_rec *) malloc(_len_i2c_bus0*sizeof(struct radeon_i2c_bus_rec));
           for(int _i0 = 0; _i0 < _len_i2c_bus0; _i0++) {
-            i2c_bus[_i0].i2c_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              i2c_bus[_i0].i2c_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           struct radeon_i2c_chan * benchRet = radeon_i2c_lookup(rdev,i2c_bus);
           for(int _aux = 0; _aux < _len_rdev0; _aux++) {
           free(*(rdev[_aux].i2c_bus));

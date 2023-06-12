@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ struct dispc_device *dispc_get_dispc(struct dss_device *dss)
 	return dss->dispc;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,18 +75,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dss0 = 1;
+          int _len_dss0 = 65025;
           struct dss_device * dss = (struct dss_device *) malloc(_len_dss0*sizeof(struct dss_device));
           for(int _i0 = 0; _i0 < _len_dss0; _i0++) {
               int _len_dss__i0__dispc0 = 1;
           dss[_i0].dispc = (struct dispc_device *) malloc(_len_dss__i0__dispc0*sizeof(struct dispc_device));
           for(int _j0 = 0; _j0 < _len_dss__i0__dispc0; _j0++) {
-            dss[_i0].dispc->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dss[_i0].dispc->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct dispc_device * benchRet = dispc_get_dispc(dss);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_dss0; _aux++) {
@@ -100,7 +99,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dss0 = 100;
+          struct dss_device * dss = (struct dss_device *) malloc(_len_dss0*sizeof(struct dss_device));
+          for(int _i0 = 0; _i0 < _len_dss0; _i0++) {
+              int _len_dss__i0__dispc0 = 1;
+          dss[_i0].dispc = (struct dispc_device *) malloc(_len_dss__i0__dispc0*sizeof(struct dispc_device));
+          for(int _j0 = 0; _j0 < _len_dss__i0__dispc0; _j0++) {
+              dss[_i0].dispc->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct dispc_device * benchRet = dispc_get_dispc(dss);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_dss0; _aux++) {
+          free(dss[_aux].dispc);
+          }
+          free(dss);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dss0 = 1;
+          struct dss_device * dss = (struct dss_device *) malloc(_len_dss0*sizeof(struct dss_device));
+          for(int _i0 = 0; _i0 < _len_dss0; _i0++) {
+              int _len_dss__i0__dispc0 = 1;
+          dss[_i0].dispc = (struct dispc_device *) malloc(_len_dss__i0__dispc0*sizeof(struct dispc_device));
+          for(int _j0 = 0; _j0 < _len_dss__i0__dispc0; _j0++) {
+              dss[_i0].dispc->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct dispc_device * benchRet = dispc_get_dispc(dss);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_dss0; _aux++) {
+          free(dss[_aux].dispc);
+          }
+          free(dss);
+        
+        break;
+    }
     default:
         usage();
         break;

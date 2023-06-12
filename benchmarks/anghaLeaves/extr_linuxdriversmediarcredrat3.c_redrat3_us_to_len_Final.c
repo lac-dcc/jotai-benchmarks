@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +73,6 @@ __attribute__((used)) static u32 redrat3_us_to_len(u32 microsec)
 	return result ? result : 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int microsec = 100;
+        
           int benchRet = redrat3_us_to_len(microsec);
           printf("%d\n", benchRet); 
         
@@ -103,6 +99,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int microsec = 255;
+        
           int benchRet = redrat3_us_to_len(microsec);
           printf("%d\n", benchRet); 
         
@@ -112,12 +109,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int microsec = 10;
+        
           int benchRet = redrat3_us_to_len(microsec);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int microsec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = redrat3_us_to_len(microsec);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

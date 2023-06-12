@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static inline u16 mlx5_wq_cyc_ctr2ix(struct mlx5_wq_cyc *w
 	return ctr & wq->fbc.sz_m1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,30 +78,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int ctr = 100;
+        
           int _len_wq0 = 1;
           struct mlx5_wq_cyc * wq = (struct mlx5_wq_cyc *) malloc(_len_wq0*sizeof(struct mlx5_wq_cyc));
           for(int _i0 = 0; _i0 < _len_wq0; _i0++) {
-            wq[_i0].fbc.sz_m1 = ((-2 * (next_i()%2)) + 1) * next_i();
+              wq[_i0].fbc.sz_m1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = mlx5_wq_cyc_ctr2ix(wq,ctr);
           printf("%d\n", benchRet); 
           free(wq);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int ctr = 255;
+        
+          int _len_wq0 = 65025;
+          struct mlx5_wq_cyc * wq = (struct mlx5_wq_cyc *) malloc(_len_wq0*sizeof(struct mlx5_wq_cyc));
+          for(int _i0 = 0; _i0 < _len_wq0; _i0++) {
+              wq[_i0].fbc.sz_m1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = mlx5_wq_cyc_ctr2ix(wq,ctr);
+          printf("%d\n", benchRet); 
+          free(wq);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int ctr = 10;
+        
           int _len_wq0 = 100;
           struct mlx5_wq_cyc * wq = (struct mlx5_wq_cyc *) malloc(_len_wq0*sizeof(struct mlx5_wq_cyc));
           for(int _i0 = 0; _i0 < _len_wq0; _i0++) {
-            wq[_i0].fbc.sz_m1 = ((-2 * (next_i()%2)) + 1) * next_i();
+              wq[_i0].fbc.sz_m1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = mlx5_wq_cyc_ctr2ix(wq,ctr);
+          printf("%d\n", benchRet); 
+          free(wq);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int ctr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_wq0 = 1;
+          struct mlx5_wq_cyc * wq = (struct mlx5_wq_cyc *) malloc(_len_wq0*sizeof(struct mlx5_wq_cyc));
+          for(int _i0 = 0; _i0 < _len_wq0; _i0++) {
+              wq[_i0].fbc.sz_m1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = mlx5_wq_cyc_ctr2ix(wq,ctr);
           printf("%d\n", benchRet); 
           free(wq);

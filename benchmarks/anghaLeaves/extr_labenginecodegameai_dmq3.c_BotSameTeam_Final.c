@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -87,12 +89,6 @@ int BotSameTeam(bot_state_t *bs, int entnum) {
 	return qfalse;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -109,11 +105,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int entnum = 100;
+        
           int _len_bs0 = 1;
           struct TYPE_8__ * bs = (struct TYPE_8__ *) malloc(_len_bs0*sizeof(struct TYPE_8__));
           for(int _i0 = 0; _i0 < _len_bs0; _i0++) {
-            bs[_i0].client = ((-2 * (next_i()%2)) + 1) * next_i();
+              bs[_i0].client = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = BotSameTeam(bs,entnum);
+          printf("%d\n", benchRet); 
+          free(bs);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int entnum = 255;
+        
+          int _len_bs0 = 65025;
+          struct TYPE_8__ * bs = (struct TYPE_8__ *) malloc(_len_bs0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_bs0; _i0++) {
+              bs[_i0].client = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = BotSameTeam(bs,entnum);
           printf("%d\n", benchRet); 
           free(bs);
@@ -121,21 +138,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int entnum = 10;
+        
           int _len_bs0 = 100;
           struct TYPE_8__ * bs = (struct TYPE_8__ *) malloc(_len_bs0*sizeof(struct TYPE_8__));
           for(int _i0 = 0; _i0 < _len_bs0; _i0++) {
-            bs[_i0].client = ((-2 * (next_i()%2)) + 1) * next_i();
+              bs[_i0].client = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = BotSameTeam(bs,entnum);
           printf("%d\n", benchRet); 
           free(bs);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int entnum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_bs0 = 1;
+          struct TYPE_8__ * bs = (struct TYPE_8__ *) malloc(_len_bs0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_bs0; _i0++) {
+              bs[_i0].client = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = BotSameTeam(bs,entnum);
+          printf("%d\n", benchRet); 
+          free(bs);
+        
+        break;
+    }
     default:
         usage();
         break;

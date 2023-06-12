@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ spi_nor_set_read_settings_from_bfpt(struct spi_nor_read_command *read,
 	read->proto = proto;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,21 +87,90 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int half = 100;
+        
           enum spi_nor_protocol proto = 0;
+        
           int _len_read0 = 1;
           struct spi_nor_read_command * read = (struct spi_nor_read_command *) malloc(_len_read0*sizeof(struct spi_nor_read_command));
           for(int _i0 = 0; _i0 < _len_read0; _i0++) {
-            read[_i0].num_mode_clocks = ((-2 * (next_i()%2)) + 1) * next_i();
-        read[_i0].num_wait_states = ((-2 * (next_i()%2)) + 1) * next_i();
-        read[_i0].opcode = ((-2 * (next_i()%2)) + 1) * next_i();
-        read[_i0].proto = ((-2 * (next_i()%2)) + 1) * next_i();
+              read[_i0].num_mode_clocks = ((-2 * (next_i()%2)) + 1) * next_i();
+          read[_i0].num_wait_states = ((-2 * (next_i()%2)) + 1) * next_i();
+          read[_i0].opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+          read[_i0].proto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           spi_nor_set_read_settings_from_bfpt(read,half,proto);
           free(read);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int half = 255;
+        
+          enum spi_nor_protocol proto = 0;
+        
+          int _len_read0 = 65025;
+          struct spi_nor_read_command * read = (struct spi_nor_read_command *) malloc(_len_read0*sizeof(struct spi_nor_read_command));
+          for(int _i0 = 0; _i0 < _len_read0; _i0++) {
+              read[_i0].num_mode_clocks = ((-2 * (next_i()%2)) + 1) * next_i();
+          read[_i0].num_wait_states = ((-2 * (next_i()%2)) + 1) * next_i();
+          read[_i0].opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+          read[_i0].proto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          spi_nor_set_read_settings_from_bfpt(read,half,proto);
+          free(read);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int half = 10;
+        
+          enum spi_nor_protocol proto = 0;
+        
+          int _len_read0 = 100;
+          struct spi_nor_read_command * read = (struct spi_nor_read_command *) malloc(_len_read0*sizeof(struct spi_nor_read_command));
+          for(int _i0 = 0; _i0 < _len_read0; _i0++) {
+              read[_i0].num_mode_clocks = ((-2 * (next_i()%2)) + 1) * next_i();
+          read[_i0].num_wait_states = ((-2 * (next_i()%2)) + 1) * next_i();
+          read[_i0].opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+          read[_i0].proto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          spi_nor_set_read_settings_from_bfpt(read,half,proto);
+          free(read);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int half = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          enum spi_nor_protocol proto = 0;
+        
+          int _len_read0 = 1;
+          struct spi_nor_read_command * read = (struct spi_nor_read_command *) malloc(_len_read0*sizeof(struct spi_nor_read_command));
+          for(int _i0 = 0; _i0 < _len_read0; _i0++) {
+              read[_i0].num_mode_clocks = ((-2 * (next_i()%2)) + 1) * next_i();
+          read[_i0].num_wait_states = ((-2 * (next_i()%2)) + 1) * next_i();
+          read[_i0].opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+          read[_i0].proto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          spi_nor_set_read_settings_from_bfpt(read,half,proto);
+          free(read);
+        
+        break;
+    }
     default:
         usage();
         break;

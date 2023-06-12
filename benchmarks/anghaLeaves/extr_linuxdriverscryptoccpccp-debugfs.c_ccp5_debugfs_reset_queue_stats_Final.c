@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static void ccp5_debugfs_reset_queue_stats(struct ccp_cmd_
 	cmd_q->total_ecc_ops = 0L;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,27 +81,72 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cmd_q0 = 1;
+          int _len_cmd_q0 = 65025;
           struct ccp_cmd_queue * cmd_q = (struct ccp_cmd_queue *) malloc(_len_cmd_q0*sizeof(struct ccp_cmd_queue));
           for(int _i0 = 0; _i0 < _len_cmd_q0; _i0++) {
-            cmd_q[_i0].total_ops = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd_q[_i0].total_aes_ops = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd_q[_i0].total_xts_aes_ops = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd_q[_i0].total_3des_ops = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd_q[_i0].total_sha_ops = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd_q[_i0].total_rsa_ops = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd_q[_i0].total_pt_ops = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd_q[_i0].total_ecc_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmd_q[_i0].total_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd_q[_i0].total_aes_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd_q[_i0].total_xts_aes_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd_q[_i0].total_3des_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd_q[_i0].total_sha_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd_q[_i0].total_rsa_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd_q[_i0].total_pt_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd_q[_i0].total_ecc_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ccp5_debugfs_reset_queue_stats(cmd_q);
           free(cmd_q);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_cmd_q0 = 100;
+          struct ccp_cmd_queue * cmd_q = (struct ccp_cmd_queue *) malloc(_len_cmd_q0*sizeof(struct ccp_cmd_queue));
+          for(int _i0 = 0; _i0 < _len_cmd_q0; _i0++) {
+              cmd_q[_i0].total_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd_q[_i0].total_aes_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd_q[_i0].total_xts_aes_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd_q[_i0].total_3des_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd_q[_i0].total_sha_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd_q[_i0].total_rsa_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd_q[_i0].total_pt_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd_q[_i0].total_ecc_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ccp5_debugfs_reset_queue_stats(cmd_q);
+          free(cmd_q);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_cmd_q0 = 1;
+          struct ccp_cmd_queue * cmd_q = (struct ccp_cmd_queue *) malloc(_len_cmd_q0*sizeof(struct ccp_cmd_queue));
+          for(int _i0 = 0; _i0 < _len_cmd_q0; _i0++) {
+              cmd_q[_i0].total_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd_q[_i0].total_aes_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd_q[_i0].total_xts_aes_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd_q[_i0].total_3des_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd_q[_i0].total_sha_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd_q[_i0].total_rsa_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd_q[_i0].total_pt_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd_q[_i0].total_ecc_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ccp5_debugfs_reset_queue_stats(cmd_q);
+          free(cmd_q);
+        
+        break;
+    }
     default:
         usage();
         break;

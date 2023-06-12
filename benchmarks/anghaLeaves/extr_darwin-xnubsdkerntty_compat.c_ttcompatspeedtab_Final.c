@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ ttcompatspeedtab(int speed, struct speedtab *table)
 	return (1); /* 50, min and not hangup */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,19 +85,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int speed = 100;
+        
           int _len_table0 = 1;
           struct speedtab * table = (struct speedtab *) malloc(_len_table0*sizeof(struct speedtab));
           for(int _i0 = 0; _i0 < _len_table0; _i0++) {
-            table[_i0].sp_speed = ((-2 * (next_i()%2)) + 1) * next_i();
-        table[_i0].sp_code = ((-2 * (next_i()%2)) + 1) * next_i();
+              table[_i0].sp_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          table[_i0].sp_code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ttcompatspeedtab(speed,table);
           printf("%d\n", benchRet); 
           free(table);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int speed = 255;
+        
+          int _len_table0 = 65025;
+          struct speedtab * table = (struct speedtab *) malloc(_len_table0*sizeof(struct speedtab));
+          for(int _i0 = 0; _i0 < _len_table0; _i0++) {
+              table[_i0].sp_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          table[_i0].sp_code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ttcompatspeedtab(speed,table);
+          printf("%d\n", benchRet); 
+          free(table);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int speed = 10;
+        
+          int _len_table0 = 100;
+          struct speedtab * table = (struct speedtab *) malloc(_len_table0*sizeof(struct speedtab));
+          for(int _i0 = 0; _i0 < _len_table0; _i0++) {
+              table[_i0].sp_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          table[_i0].sp_code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ttcompatspeedtab(speed,table);
+          printf("%d\n", benchRet); 
+          free(table);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_table0 = 1;
+          struct speedtab * table = (struct speedtab *) malloc(_len_table0*sizeof(struct speedtab));
+          for(int _i0 = 0; _i0 < _len_table0; _i0++) {
+              table[_i0].sp_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          table[_i0].sp_code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ttcompatspeedtab(speed,table);
+          printf("%d\n", benchRet); 
+          free(table);
+        
+        break;
+    }
     default:
         usage();
         break;

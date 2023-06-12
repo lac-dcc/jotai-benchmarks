@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ unsigned int dcn_bw_max(const unsigned int arg1, const unsigned int arg2)
 	return arg1 > arg2 ? arg1 : arg2;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,7 +78,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           const unsigned int arg1 = 100;
+        
           const unsigned int arg2 = 100;
+        
           unsigned int benchRet = dcn_bw_max(arg1,arg2);
           printf("%u\n", benchRet); 
         
@@ -93,7 +90,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           const unsigned int arg1 = 255;
+        
           const unsigned int arg2 = 255;
+        
           unsigned int benchRet = dcn_bw_max(arg1,arg2);
           printf("%u\n", benchRet); 
         
@@ -103,13 +102,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           const unsigned int arg1 = 10;
+        
           const unsigned int arg2 = 10;
+        
           unsigned int benchRet = dcn_bw_max(arg1,arg2);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          const unsigned int arg1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          const unsigned int arg2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = dcn_bw_max(arg1,arg2);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

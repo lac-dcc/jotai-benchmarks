@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ scrub_frame(uint64_t *bt, int n_frames, int frame)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,12 +84,34 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int n_frames = 100;
+        
           int frame = 100;
+        
           int _len_bt0 = 1;
           int * bt = (int *) malloc(_len_bt0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_bt0; _i0++) {
             bt[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          unsigned long benchRet = scrub_frame(bt,n_frames,frame);
+          printf("%lu\n", benchRet); 
+          free(bt);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int n_frames = 255;
+        
+          int frame = 255;
+        
+          int _len_bt0 = 65025;
+          int * bt = (int *) malloc(_len_bt0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_bt0; _i0++) {
+            bt[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           unsigned long benchRet = scrub_frame(bt,n_frames,frame);
           printf("%lu\n", benchRet); 
           free(bt);
@@ -101,22 +119,43 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int n_frames = 10;
+        
           int frame = 10;
+        
           int _len_bt0 = 100;
           int * bt = (int *) malloc(_len_bt0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_bt0; _i0++) {
             bt[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned long benchRet = scrub_frame(bt,n_frames,frame);
           printf("%lu\n", benchRet); 
           free(bt);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int n_frames = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int frame = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_bt0 = 1;
+          int * bt = (int *) malloc(_len_bt0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_bt0; _i0++) {
+            bt[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned long benchRet = scrub_frame(bt,n_frames,frame);
+          printf("%lu\n", benchRet); 
+          free(bt);
+        
+        break;
+    }
     default:
         usage();
         break;

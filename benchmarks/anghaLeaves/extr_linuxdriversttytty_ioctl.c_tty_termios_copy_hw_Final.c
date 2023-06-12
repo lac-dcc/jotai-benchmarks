@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ void tty_termios_copy_hw(struct ktermios *new, struct ktermios *old)
 	new->c_ospeed = old->c_ospeed;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,23 +82,152 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_new0 = 65025;
+          struct ktermios * new = (struct ktermios *) malloc(_len_new0*sizeof(struct ktermios));
+          for(int _i0 = 0; _i0 < _len_new0; _i0++) {
+              new[_i0].c_cflag = ((-2 * (next_i()%2)) + 1) * next_i();
+          new[_i0].c_ospeed = ((-2 * (next_i()%2)) + 1) * next_i();
+          new[_i0].c_ispeed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_old0 = 65025;
+          struct ktermios * old = (struct ktermios *) malloc(_len_old0*sizeof(struct ktermios));
+          for(int _i0 = 0; _i0 < _len_old0; _i0++) {
+              old[_i0].c_cflag = ((-2 * (next_i()%2)) + 1) * next_i();
+          old[_i0].c_ospeed = ((-2 * (next_i()%2)) + 1) * next_i();
+          old[_i0].c_ispeed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          tty_termios_copy_hw(new,old);
+          free(new);
+          free(old);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_new0 = 100;
+          struct ktermios * new = (struct ktermios *) malloc(_len_new0*sizeof(struct ktermios));
+          for(int _i0 = 0; _i0 < _len_new0; _i0++) {
+              new[_i0].c_cflag = ((-2 * (next_i()%2)) + 1) * next_i();
+          new[_i0].c_ospeed = ((-2 * (next_i()%2)) + 1) * next_i();
+          new[_i0].c_ispeed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_old0 = 100;
+          struct ktermios * old = (struct ktermios *) malloc(_len_old0*sizeof(struct ktermios));
+          for(int _i0 = 0; _i0 < _len_old0; _i0++) {
+              old[_i0].c_cflag = ((-2 * (next_i()%2)) + 1) * next_i();
+          old[_i0].c_ospeed = ((-2 * (next_i()%2)) + 1) * next_i();
+          old[_i0].c_ispeed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          tty_termios_copy_hw(new,old);
+          free(new);
+          free(old);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           int _len_new0 = 1;
           struct ktermios * new = (struct ktermios *) malloc(_len_new0*sizeof(struct ktermios));
           for(int _i0 = 0; _i0 < _len_new0; _i0++) {
-            new[_i0].c_cflag = ((-2 * (next_i()%2)) + 1) * next_i();
-        new[_i0].c_ospeed = ((-2 * (next_i()%2)) + 1) * next_i();
-        new[_i0].c_ispeed = ((-2 * (next_i()%2)) + 1) * next_i();
+              new[_i0].c_cflag = ((-2 * (next_i()%2)) + 1) * next_i();
+          new[_i0].c_ospeed = ((-2 * (next_i()%2)) + 1) * next_i();
+          new[_i0].c_ispeed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_old0 = 1;
           struct ktermios * old = (struct ktermios *) malloc(_len_old0*sizeof(struct ktermios));
           for(int _i0 = 0; _i0 < _len_old0; _i0++) {
-            old[_i0].c_cflag = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].c_ospeed = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].c_ispeed = ((-2 * (next_i()%2)) + 1) * next_i();
+              old[_i0].c_cflag = ((-2 * (next_i()%2)) + 1) * next_i();
+          old[_i0].c_ospeed = ((-2 * (next_i()%2)) + 1) * next_i();
+          old[_i0].c_ispeed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           tty_termios_copy_hw(new,old);
           free(new);
           free(old);

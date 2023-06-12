@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static __u32 st_nci_get_rfprotocol(struct nci_dev *ndev,
 		NFC_PROTO_ISO15693_MASK : 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,11 +85,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long rf_protocol = 100;
+        
           int _len_ndev0 = 1;
           struct nci_dev * ndev = (struct nci_dev *) malloc(_len_ndev0*sizeof(struct nci_dev));
           for(int _i0 = 0; _i0 < _len_ndev0; _i0++) {
-            ndev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ndev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = st_nci_get_rfprotocol(ndev,rf_protocol);
+          printf("%d\n", benchRet); 
+          free(ndev);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long rf_protocol = 255;
+        
+          int _len_ndev0 = 65025;
+          struct nci_dev * ndev = (struct nci_dev *) malloc(_len_ndev0*sizeof(struct nci_dev));
+          for(int _i0 = 0; _i0 < _len_ndev0; _i0++) {
+              ndev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = st_nci_get_rfprotocol(ndev,rf_protocol);
           printf("%d\n", benchRet); 
           free(ndev);
@@ -101,21 +118,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long rf_protocol = 10;
+        
           int _len_ndev0 = 100;
           struct nci_dev * ndev = (struct nci_dev *) malloc(_len_ndev0*sizeof(struct nci_dev));
           for(int _i0 = 0; _i0 < _len_ndev0; _i0++) {
-            ndev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ndev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = st_nci_get_rfprotocol(ndev,rf_protocol);
           printf("%d\n", benchRet); 
           free(ndev);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long rf_protocol = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ndev0 = 1;
+          struct nci_dev * ndev = (struct nci_dev *) malloc(_len_ndev0*sizeof(struct nci_dev));
+          for(int _i0 = 0; _i0 < _len_ndev0; _i0++) {
+              ndev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = st_nci_get_rfprotocol(ndev,rf_protocol);
+          printf("%d\n", benchRet); 
+          free(ndev);
+        
+        break;
+    }
     default:
         usage();
         break;

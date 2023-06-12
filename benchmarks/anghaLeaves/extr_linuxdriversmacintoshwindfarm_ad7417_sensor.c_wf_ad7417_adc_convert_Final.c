@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -81,12 +84,6 @@ __attribute__((used)) static void wf_ad7417_adc_convert(struct wf_ad7417_priv *p
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,22 +100,28 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int chan = 100;
+        
           int raw = 100;
+        
           int _len_pv0 = 1;
           struct wf_ad7417_priv * pv = (struct wf_ad7417_priv *) malloc(_len_pv0*sizeof(struct wf_ad7417_priv));
           for(int _i0 = 0; _i0 < _len_pv0; _i0++) {
               int _len_pv__i0__mpu0 = 1;
           pv[_i0].mpu = (struct TYPE_2__ *) malloc(_len_pv__i0__mpu0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_pv__i0__mpu0; _j0++) {
-            pv[_i0].mpu->bdiode = ((-2 * (next_i()%2)) + 1) * next_i();
-        pv[_i0].mpu->mdiode = ((-2 * (next_i()%2)) + 1) * next_i();
+              pv[_i0].mpu->bdiode = ((-2 * (next_i()%2)) + 1) * next_i();
+          pv[_i0].mpu->mdiode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_value0 = 1;
           int * value = (int *) malloc(_len_value0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_value0; _i0++) {
             value[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           wf_ad7417_adc_convert(pv,chan,raw,value);
           for(int _aux = 0; _aux < _len_pv0; _aux++) {
           free(pv[_aux].mpu);
@@ -128,7 +131,111 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int chan = 255;
+        
+          int raw = 255;
+        
+          int _len_pv0 = 65025;
+          struct wf_ad7417_priv * pv = (struct wf_ad7417_priv *) malloc(_len_pv0*sizeof(struct wf_ad7417_priv));
+          for(int _i0 = 0; _i0 < _len_pv0; _i0++) {
+              int _len_pv__i0__mpu0 = 1;
+          pv[_i0].mpu = (struct TYPE_2__ *) malloc(_len_pv__i0__mpu0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_pv__i0__mpu0; _j0++) {
+              pv[_i0].mpu->bdiode = ((-2 * (next_i()%2)) + 1) * next_i();
+          pv[_i0].mpu->mdiode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_value0 = 65025;
+          int * value = (int *) malloc(_len_value0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_value0; _i0++) {
+            value[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          wf_ad7417_adc_convert(pv,chan,raw,value);
+          for(int _aux = 0; _aux < _len_pv0; _aux++) {
+          free(pv[_aux].mpu);
+          }
+          free(pv);
+          free(value);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int chan = 10;
+        
+          int raw = 10;
+        
+          int _len_pv0 = 100;
+          struct wf_ad7417_priv * pv = (struct wf_ad7417_priv *) malloc(_len_pv0*sizeof(struct wf_ad7417_priv));
+          for(int _i0 = 0; _i0 < _len_pv0; _i0++) {
+              int _len_pv__i0__mpu0 = 1;
+          pv[_i0].mpu = (struct TYPE_2__ *) malloc(_len_pv__i0__mpu0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_pv__i0__mpu0; _j0++) {
+              pv[_i0].mpu->bdiode = ((-2 * (next_i()%2)) + 1) * next_i();
+          pv[_i0].mpu->mdiode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_value0 = 100;
+          int * value = (int *) malloc(_len_value0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_value0; _i0++) {
+            value[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          wf_ad7417_adc_convert(pv,chan,raw,value);
+          for(int _aux = 0; _aux < _len_pv0; _aux++) {
+          free(pv[_aux].mpu);
+          }
+          free(pv);
+          free(value);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int chan = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int raw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pv0 = 1;
+          struct wf_ad7417_priv * pv = (struct wf_ad7417_priv *) malloc(_len_pv0*sizeof(struct wf_ad7417_priv));
+          for(int _i0 = 0; _i0 < _len_pv0; _i0++) {
+              int _len_pv__i0__mpu0 = 1;
+          pv[_i0].mpu = (struct TYPE_2__ *) malloc(_len_pv__i0__mpu0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_pv__i0__mpu0; _j0++) {
+              pv[_i0].mpu->bdiode = ((-2 * (next_i()%2)) + 1) * next_i();
+          pv[_i0].mpu->mdiode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_value0 = 1;
+          int * value = (int *) malloc(_len_value0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_value0; _i0++) {
+            value[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          wf_ad7417_adc_convert(pv,chan,raw,value);
+          for(int _aux = 0; _aux < _len_pv0; _aux++) {
+          free(pv[_aux].mpu);
+          }
+          free(pv);
+          free(value);
+        
+        break;
+    }
     default:
         usage();
         break;

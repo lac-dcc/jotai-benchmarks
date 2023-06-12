@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -169,12 +172,6 @@ ngx_http_lua_ffi_req_set_method(ngx_http_request_t *r, int method)
     return NGX_OK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -187,21 +184,204 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int method = 100;
+        
           int _len_r0 = 1;
           struct TYPE_5__ * r = (struct TYPE_5__ *) malloc(_len_r0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_r0; _i0++) {
-            r[_i0].method = ((-2 * (next_i()%2)) + 1) * next_i();
-        r[_i0].method_name = ((-2 * (next_i()%2)) + 1) * next_i();
+              r[_i0].method = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].method_name = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_r__i0__connection0 = 1;
           r[_i0].connection = (struct TYPE_4__ *) malloc(_len_r__i0__connection0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_r__i0__connection0; _j0++) {
-            r[_i0].connection->fd = ((-2 * (next_i()%2)) + 1) * next_i();
+              r[_i0].connection->fd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = ngx_http_lua_ffi_req_set_method(r,method);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_r0; _aux++) {
+          free(r[_aux].connection);
+          }
+          free(r);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int method = 255;
+        
+          int _len_r0 = 65025;
+          struct TYPE_5__ * r = (struct TYPE_5__ *) malloc(_len_r0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+              r[_i0].method = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].method_name = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_r__i0__connection0 = 1;
+          r[_i0].connection = (struct TYPE_4__ *) malloc(_len_r__i0__connection0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_r__i0__connection0; _j0++) {
+              r[_i0].connection->fd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ngx_http_lua_ffi_req_set_method(r,method);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_r0; _aux++) {
+          free(r[_aux].connection);
+          }
+          free(r);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int method = 10;
+        
+          int _len_r0 = 100;
+          struct TYPE_5__ * r = (struct TYPE_5__ *) malloc(_len_r0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+              r[_i0].method = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].method_name = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_r__i0__connection0 = 1;
+          r[_i0].connection = (struct TYPE_4__ *) malloc(_len_r__i0__connection0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_r__i0__connection0; _j0++) {
+              r[_i0].connection->fd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ngx_http_lua_ffi_req_set_method(r,method);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_r0; _aux++) {
+          free(r[_aux].connection);
+          }
+          free(r);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int method = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_r0 = 1;
+          struct TYPE_5__ * r = (struct TYPE_5__ *) malloc(_len_r0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+              r[_i0].method = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].method_name = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_r__i0__connection0 = 1;
+          r[_i0].connection = (struct TYPE_4__ *) malloc(_len_r__i0__connection0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_r__i0__connection0; _j0++) {
+              r[_i0].connection->fd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = ngx_http_lua_ffi_req_set_method(r,method);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_r0; _aux++) {

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ bool Curl_is_in_callback(struct Curl_easy *easy)
           (easy->multi_easy && easy->multi_easy->in_callback));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,23 +79,164 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_easy0 = 65025;
+          struct Curl_easy * easy = (struct Curl_easy *) malloc(_len_easy0*sizeof(struct Curl_easy));
+          for(int _i0 = 0; _i0 < _len_easy0; _i0++) {
+              int _len_easy__i0__multi_easy0 = 1;
+          easy[_i0].multi_easy = (struct TYPE_4__ *) malloc(_len_easy__i0__multi_easy0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_easy__i0__multi_easy0; _j0++) {
+              easy[_i0].multi_easy->in_callback = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_easy__i0__multi0 = 1;
+          easy[_i0].multi = (struct TYPE_3__ *) malloc(_len_easy__i0__multi0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_easy__i0__multi0; _j0++) {
+              easy[_i0].multi->in_callback = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = Curl_is_in_callback(easy);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_easy0; _aux++) {
+          free(easy[_aux].multi_easy);
+          }
+          for(int _aux = 0; _aux < _len_easy0; _aux++) {
+          free(easy[_aux].multi);
+          }
+          free(easy);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_easy0 = 100;
+          struct Curl_easy * easy = (struct Curl_easy *) malloc(_len_easy0*sizeof(struct Curl_easy));
+          for(int _i0 = 0; _i0 < _len_easy0; _i0++) {
+              int _len_easy__i0__multi_easy0 = 1;
+          easy[_i0].multi_easy = (struct TYPE_4__ *) malloc(_len_easy__i0__multi_easy0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_easy__i0__multi_easy0; _j0++) {
+              easy[_i0].multi_easy->in_callback = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_easy__i0__multi0 = 1;
+          easy[_i0].multi = (struct TYPE_3__ *) malloc(_len_easy__i0__multi0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_easy__i0__multi0; _j0++) {
+              easy[_i0].multi->in_callback = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = Curl_is_in_callback(easy);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_easy0; _aux++) {
+          free(easy[_aux].multi_easy);
+          }
+          for(int _aux = 0; _aux < _len_easy0; _aux++) {
+          free(easy[_aux].multi);
+          }
+          free(easy);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_easy0 = 1;
           struct Curl_easy * easy = (struct Curl_easy *) malloc(_len_easy0*sizeof(struct Curl_easy));
           for(int _i0 = 0; _i0 < _len_easy0; _i0++) {
               int _len_easy__i0__multi_easy0 = 1;
           easy[_i0].multi_easy = (struct TYPE_4__ *) malloc(_len_easy__i0__multi_easy0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_easy__i0__multi_easy0; _j0++) {
-            easy[_i0].multi_easy->in_callback = ((-2 * (next_i()%2)) + 1) * next_i();
+              easy[_i0].multi_easy->in_callback = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_easy__i0__multi0 = 1;
           easy[_i0].multi = (struct TYPE_3__ *) malloc(_len_easy__i0__multi0*sizeof(struct TYPE_3__));
           for(int _j0 = 0; _j0 < _len_easy__i0__multi0; _j0++) {
-            easy[_i0].multi->in_callback = ((-2 * (next_i()%2)) + 1) * next_i();
+              easy[_i0].multi->in_callback = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = Curl_is_in_callback(easy);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_easy0; _aux++) {

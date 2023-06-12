@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static inline BOOL is_hexdigit(WCHAR val) {
             (val >= '0' && val <= '9'));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +81,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           char val = 100;
+        
           int benchRet = is_hexdigit(val);
           printf("%d\n", benchRet); 
         
@@ -95,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           char val = 255;
+        
           int benchRet = is_hexdigit(val);
           printf("%d\n", benchRet); 
         
@@ -104,12 +101,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           char val = 10;
+        
           int benchRet = is_hexdigit(val);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          char val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = is_hexdigit(val);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

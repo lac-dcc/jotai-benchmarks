@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static inline bool dl_is_implicit(struct sched_dl_entity *
 	return dl_se->dl_deadline == dl_se->dl_period;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,22 +74,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dl_se0 = 1;
+          int _len_dl_se0 = 65025;
           struct sched_dl_entity * dl_se = (struct sched_dl_entity *) malloc(_len_dl_se0*sizeof(struct sched_dl_entity));
           for(int _i0 = 0; _i0 < _len_dl_se0; _i0++) {
-            dl_se[_i0].dl_deadline = ((-2 * (next_i()%2)) + 1) * next_i();
-        dl_se[_i0].dl_period = ((-2 * (next_i()%2)) + 1) * next_i();
+              dl_se[_i0].dl_deadline = ((-2 * (next_i()%2)) + 1) * next_i();
+          dl_se[_i0].dl_period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dl_is_implicit(dl_se);
           printf("%d\n", benchRet); 
           free(dl_se);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dl_se0 = 100;
+          struct sched_dl_entity * dl_se = (struct sched_dl_entity *) malloc(_len_dl_se0*sizeof(struct sched_dl_entity));
+          for(int _i0 = 0; _i0 < _len_dl_se0; _i0++) {
+              dl_se[_i0].dl_deadline = ((-2 * (next_i()%2)) + 1) * next_i();
+          dl_se[_i0].dl_period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dl_is_implicit(dl_se);
+          printf("%d\n", benchRet); 
+          free(dl_se);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dl_se0 = 1;
+          struct sched_dl_entity * dl_se = (struct sched_dl_entity *) malloc(_len_dl_se0*sizeof(struct sched_dl_entity));
+          for(int _i0 = 0; _i0 < _len_dl_se0; _i0++) {
+              dl_se[_i0].dl_deadline = ((-2 * (next_i()%2)) + 1) * next_i();
+          dl_se[_i0].dl_period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dl_is_implicit(dl_se);
+          printf("%d\n", benchRet); 
+          free(dl_se);
+        
+        break;
+    }
     default:
         usage();
         break;

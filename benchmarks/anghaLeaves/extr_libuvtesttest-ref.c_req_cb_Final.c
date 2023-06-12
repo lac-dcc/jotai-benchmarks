@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static void req_cb(uv_handle_t* req, int status) {
   req_cb_called++;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,31 +79,66 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int status = 100;
+        
           int _len_req0 = 1;
           int * req = (int *) malloc(_len_req0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_req0; _i0++) {
             req[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          req_cb(req,status);
+          free(req);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int status = 255;
+        
+          int _len_req0 = 65025;
+          int * req = (int *) malloc(_len_req0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_req0; _i0++) {
+            req[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           req_cb(req,status);
           free(req);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int status = 10;
+        
           int _len_req0 = 100;
           int * req = (int *) malloc(_len_req0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_req0; _i0++) {
             req[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           req_cb(req,status);
           free(req);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_req0 = 1;
+          int * req = (int *) malloc(_len_req0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_req0; _i0++) {
+            req[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          req_cb(req,status);
+          free(req);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ __attribute__((used)) static int ctsxs(unsigned int x, int scale, unsigned int *
 	return (x & 0x80000000)? -mant: mant;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,12 +96,34 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int x = 100;
+        
           int scale = 100;
+        
           int _len_vscrp0 = 1;
           unsigned int * vscrp = (unsigned int *) malloc(_len_vscrp0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_vscrp0; _i0++) {
             vscrp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = ctsxs(x,scale,vscrp);
+          printf("%d\n", benchRet); 
+          free(vscrp);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned int x = 255;
+        
+          int scale = 255;
+        
+          int _len_vscrp0 = 65025;
+          unsigned int * vscrp = (unsigned int *) malloc(_len_vscrp0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_vscrp0; _i0++) {
+            vscrp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = ctsxs(x,scale,vscrp);
           printf("%d\n", benchRet); 
           free(vscrp);
@@ -113,22 +131,43 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned int x = 10;
+        
           int scale = 10;
+        
           int _len_vscrp0 = 100;
           unsigned int * vscrp = (unsigned int *) malloc(_len_vscrp0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_vscrp0; _i0++) {
             vscrp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = ctsxs(x,scale,vscrp);
           printf("%d\n", benchRet); 
           free(vscrp);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int scale = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_vscrp0 = 1;
+          unsigned int * vscrp = (unsigned int *) malloc(_len_vscrp0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_vscrp0; _i0++) {
+            vscrp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ctsxs(x,scale,vscrp);
+          printf("%d\n", benchRet); 
+          free(vscrp);
+        
+        break;
+    }
     default:
         usage();
         break;

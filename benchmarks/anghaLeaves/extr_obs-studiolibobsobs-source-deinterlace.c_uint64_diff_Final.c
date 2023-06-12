@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline uint64_t uint64_diff(uint64_t ts1, uint64_t 
 	return (ts1 < ts2) ?  (ts2 - ts1) : (ts1 - ts2);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,7 +79,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long ts1 = 100;
+        
           long ts2 = 100;
+        
           long benchRet = uint64_diff(ts1,ts2);
           printf("%ld\n", benchRet); 
         
@@ -94,7 +91,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long ts1 = 255;
+        
           long ts2 = 255;
+        
           long benchRet = uint64_diff(ts1,ts2);
           printf("%ld\n", benchRet); 
         
@@ -104,13 +103,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long ts1 = 10;
+        
           long ts2 = 10;
+        
           long benchRet = uint64_diff(ts1,ts2);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long ts1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long ts2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long benchRet = uint64_diff(ts1,ts2);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

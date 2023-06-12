@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static void hists__inc_filter_stats(struct hists *hists, s
 	hists->stats.total_non_filtered_period += h->stat.period;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,27 +80,84 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_hists0 = 1;
+          int _len_hists0 = 65025;
           struct hists * hists = (struct hists *) malloc(_len_hists0*sizeof(struct hists));
           for(int _i0 = 0; _i0 < _len_hists0; _i0++) {
-            hists[_i0].stats.total_non_filtered_period = ((-2 * (next_i()%2)) + 1) * next_i();
-        hists[_i0].nr_non_filtered_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+              hists[_i0].stats.total_non_filtered_period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hists[_i0].nr_non_filtered_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_h0 = 1;
+        
+          int _len_h0 = 65025;
           struct hist_entry * h = (struct hist_entry *) malloc(_len_h0*sizeof(struct hist_entry));
           for(int _i0 = 0; _i0 < _len_h0; _i0++) {
-            h[_i0].stat.period = ((-2 * (next_i()%2)) + 1) * next_i();
+              h[_i0].stat.period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           hists__inc_filter_stats(hists,h);
           free(hists);
           free(h);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_hists0 = 100;
+          struct hists * hists = (struct hists *) malloc(_len_hists0*sizeof(struct hists));
+          for(int _i0 = 0; _i0 < _len_hists0; _i0++) {
+              hists[_i0].stats.total_non_filtered_period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hists[_i0].nr_non_filtered_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_h0 = 100;
+          struct hist_entry * h = (struct hist_entry *) malloc(_len_h0*sizeof(struct hist_entry));
+          for(int _i0 = 0; _i0 < _len_h0; _i0++) {
+              h[_i0].stat.period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          hists__inc_filter_stats(hists,h);
+          free(hists);
+          free(h);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_hists0 = 1;
+          struct hists * hists = (struct hists *) malloc(_len_hists0*sizeof(struct hists));
+          for(int _i0 = 0; _i0 < _len_hists0; _i0++) {
+              hists[_i0].stats.total_non_filtered_period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hists[_i0].nr_non_filtered_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_h0 = 1;
+          struct hist_entry * h = (struct hist_entry *) malloc(_len_h0*sizeof(struct hist_entry));
+          for(int _i0 = 0; _i0 < _len_h0; _i0++) {
+              h[_i0].stat.period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          hists__inc_filter_stats(hists,h);
+          free(hists);
+          free(h);
+        
+        break;
+    }
     default:
         usage();
         break;

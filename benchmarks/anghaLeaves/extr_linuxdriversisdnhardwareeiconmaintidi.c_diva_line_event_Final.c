@@ -62,12 +62,6 @@ __attribute__((used)) static int diva_line_event(diva_strace_context_t *pLib, in
 	return (0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,15 +74,41 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // big-arr-10x
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int Channel = 10;
+        
           int _len_pLib0 = 100;
           struct TYPE_3__ * pLib = (struct TYPE_3__ *) malloc(_len_pLib0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_pLib0; _i0++) {
-            pLib[_i0].pending_line_status = ((-2 * (next_i()%2)) + 1) * next_i();
+              pLib[_i0].pending_line_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = diva_line_event(pLib,Channel);
           printf("%d\n", benchRet); 
           free(pLib);

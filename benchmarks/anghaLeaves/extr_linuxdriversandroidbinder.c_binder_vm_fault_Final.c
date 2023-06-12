@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static vm_fault_t binder_vm_fault(struct vm_fault *vmf)
 	return VM_FAULT_SIGBUS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_vmf0 = 1;
+          int _len_vmf0 = 65025;
           struct vm_fault * vmf = (struct vm_fault *) malloc(_len_vmf0*sizeof(struct vm_fault));
           for(int _i0 = 0; _i0 < _len_vmf0; _i0++) {
-            vmf[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              vmf[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = binder_vm_fault(vmf);
           printf("%d\n", benchRet); 
           free(vmf);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_vmf0 = 100;
           struct vm_fault * vmf = (struct vm_fault *) malloc(_len_vmf0*sizeof(struct vm_fault));
           for(int _i0 = 0; _i0 < _len_vmf0; _i0++) {
-            vmf[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              vmf[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = binder_vm_fault(vmf);
           printf("%d\n", benchRet); 
           free(vmf);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_vmf0 = 1;
+          struct vm_fault * vmf = (struct vm_fault *) malloc(_len_vmf0*sizeof(struct vm_fault));
+          for(int _i0 = 0; _i0 < _len_vmf0; _i0++) {
+              vmf[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = binder_vm_fault(vmf);
+          printf("%d\n", benchRet); 
+          free(vmf);
+        
+        break;
+    }
     default:
         usage();
         break;

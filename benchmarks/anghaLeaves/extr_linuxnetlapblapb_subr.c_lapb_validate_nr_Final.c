@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +77,6 @@ int lapb_validate_nr(struct lapb_cb *lapb, unsigned short nr)
 	return nr == lapb->vs;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,17 +89,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
           unsigned short nr = 100;
+        
           int _len_lapb0 = 1;
           struct lapb_cb * lapb = (struct lapb_cb *) malloc(_len_lapb0*sizeof(struct lapb_cb));
           for(int _i0 = 0; _i0 < _len_lapb0; _i0++) {
-            lapb[_i0].va = ((-2 * (next_i()%2)) + 1) * next_i();
-        lapb[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        lapb[_i0].vs = ((-2 * (next_i()%2)) + 1) * next_i();
+              lapb[_i0].va = ((-2 * (next_i()%2)) + 1) * next_i();
+          lapb[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          lapb[_i0].vs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = lapb_validate_nr(lapb,nr);
+          printf("%d\n", benchRet); 
+          free(lapb);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          unsigned short nr = 255;
+        
+          int _len_lapb0 = 65025;
+          struct lapb_cb * lapb = (struct lapb_cb *) malloc(_len_lapb0*sizeof(struct lapb_cb));
+          for(int _i0 = 0; _i0 < _len_lapb0; _i0++) {
+              lapb[_i0].va = ((-2 * (next_i()%2)) + 1) * next_i();
+          lapb[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          lapb[_i0].vs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = lapb_validate_nr(lapb,nr);
+          printf("%d\n", benchRet); 
+          free(lapb);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          unsigned short nr = 10;
+        
+          int _len_lapb0 = 100;
+          struct lapb_cb * lapb = (struct lapb_cb *) malloc(_len_lapb0*sizeof(struct lapb_cb));
+          for(int _i0 = 0; _i0 < _len_lapb0; _i0++) {
+              lapb[_i0].va = ((-2 * (next_i()%2)) + 1) * next_i();
+          lapb[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          lapb[_i0].vs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = lapb_validate_nr(lapb,nr);
+          printf("%d\n", benchRet); 
+          free(lapb);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          unsigned short nr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_lapb0 = 1;
+          struct lapb_cb * lapb = (struct lapb_cb *) malloc(_len_lapb0*sizeof(struct lapb_cb));
+          for(int _i0 = 0; _i0 < _len_lapb0; _i0++) {
+              lapb[_i0].va = ((-2 * (next_i()%2)) + 1) * next_i();
+          lapb[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          lapb[_i0].vs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = lapb_validate_nr(lapb,nr);
           printf("%d\n", benchRet); 
           free(lapb);

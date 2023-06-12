@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ __attribute__((used)) static void copy_rectangle(AVSubtitleRect *dst, AVSubtitle
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,21 +88,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dst0 = 1;
+          int _len_dst0 = 65025;
           struct TYPE_4__ * dst = (struct TYPE_4__ *) malloc(_len_dst0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
-            dst[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+              dst[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_dst__i0__linesize0 = 1;
           dst[_i0].linesize = (int *) malloc(_len_dst__i0__linesize0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_dst__i0__linesize0; _j0++) {
             dst[_i0].linesize[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        dst[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].w = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].w = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_dst__i0__data0 = 1;
           dst[_i0].data = (int **) malloc(_len_dst__i0__data0*sizeof(int *));
           for(int _j0 = 0; _j0 < _len_dst__i0__data0; _j0++) {
@@ -116,19 +112,21 @@ int main(int argc, char *argv[]) {
               dst[_i0].data[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           }
-          int _len_src0 = 1;
+        
+          int _len_src0 = 65025;
           struct TYPE_4__ * src = (struct TYPE_4__ *) malloc(_len_src0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_src0; _i0++) {
-            src[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+              src[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_src__i0__linesize0 = 1;
           src[_i0].linesize = (int *) malloc(_len_src__i0__linesize0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_src__i0__linesize0; _j0++) {
             src[_i0].linesize[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        src[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].w = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].w = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_src__i0__data0 = 1;
           src[_i0].data = (int **) malloc(_len_src__i0__data0*sizeof(int *));
           for(int _j0 = 0; _j0 < _len_src__i0__data0; _j0++) {
@@ -138,12 +136,15 @@ int main(int argc, char *argv[]) {
               src[_i0].data[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           }
-          int _len_cmap0 = 1;
+        
+          int _len_cmap0 = 65025;
           int * cmap = (int *) malloc(_len_cmap0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_cmap0; _i0++) {
             cmap[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           copy_rectangle(dst,src,cmap);
           for(int _aux = 0; _aux < _len_dst0; _aux++) {
           free(dst[_aux].linesize);
@@ -165,7 +166,162 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dst0 = 100;
+          struct TYPE_4__ * dst = (struct TYPE_4__ *) malloc(_len_dst0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+              dst[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_dst__i0__linesize0 = 1;
+          dst[_i0].linesize = (int *) malloc(_len_dst__i0__linesize0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_dst__i0__linesize0; _j0++) {
+            dst[_i0].linesize[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          dst[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].w = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_dst__i0__data0 = 1;
+          dst[_i0].data = (int **) malloc(_len_dst__i0__data0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_dst__i0__data0; _j0++) {
+            int _len_dst__i0__data1 = 1;
+            dst[_i0].data[_j0] = (int *) malloc(_len_dst__i0__data1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_dst__i0__data1; _j1++) {
+              dst[_i0].data[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          }
+        
+          int _len_src0 = 100;
+          struct TYPE_4__ * src = (struct TYPE_4__ *) malloc(_len_src0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+              src[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_src__i0__linesize0 = 1;
+          src[_i0].linesize = (int *) malloc(_len_src__i0__linesize0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_src__i0__linesize0; _j0++) {
+            src[_i0].linesize[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          src[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].w = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_src__i0__data0 = 1;
+          src[_i0].data = (int **) malloc(_len_src__i0__data0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_src__i0__data0; _j0++) {
+            int _len_src__i0__data1 = 1;
+            src[_i0].data[_j0] = (int *) malloc(_len_src__i0__data1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_src__i0__data1; _j1++) {
+              src[_i0].data[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          }
+        
+          int _len_cmap0 = 100;
+          int * cmap = (int *) malloc(_len_cmap0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_cmap0; _i0++) {
+            cmap[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          copy_rectangle(dst,src,cmap);
+          for(int _aux = 0; _aux < _len_dst0; _aux++) {
+          free(dst[_aux].linesize);
+          }
+          for(int _aux = 0; _aux < _len_dst0; _aux++) {
+          free(*(dst[_aux].data));
+        free(dst[_aux].data);
+          }
+          free(dst);
+          for(int _aux = 0; _aux < _len_src0; _aux++) {
+          free(src[_aux].linesize);
+          }
+          for(int _aux = 0; _aux < _len_src0; _aux++) {
+          free(*(src[_aux].data));
+        free(src[_aux].data);
+          }
+          free(src);
+          free(cmap);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dst0 = 1;
+          struct TYPE_4__ * dst = (struct TYPE_4__ *) malloc(_len_dst0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+              dst[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_dst__i0__linesize0 = 1;
+          dst[_i0].linesize = (int *) malloc(_len_dst__i0__linesize0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_dst__i0__linesize0; _j0++) {
+            dst[_i0].linesize[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          dst[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].w = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_dst__i0__data0 = 1;
+          dst[_i0].data = (int **) malloc(_len_dst__i0__data0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_dst__i0__data0; _j0++) {
+            int _len_dst__i0__data1 = 1;
+            dst[_i0].data[_j0] = (int *) malloc(_len_dst__i0__data1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_dst__i0__data1; _j1++) {
+              dst[_i0].data[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          }
+        
+          int _len_src0 = 1;
+          struct TYPE_4__ * src = (struct TYPE_4__ *) malloc(_len_src0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+              src[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_src__i0__linesize0 = 1;
+          src[_i0].linesize = (int *) malloc(_len_src__i0__linesize0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_src__i0__linesize0; _j0++) {
+            src[_i0].linesize[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          src[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].w = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_src__i0__data0 = 1;
+          src[_i0].data = (int **) malloc(_len_src__i0__data0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_src__i0__data0; _j0++) {
+            int _len_src__i0__data1 = 1;
+            src[_i0].data[_j0] = (int *) malloc(_len_src__i0__data1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_src__i0__data1; _j1++) {
+              src[_i0].data[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          }
+        
+          int _len_cmap0 = 1;
+          int * cmap = (int *) malloc(_len_cmap0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_cmap0; _i0++) {
+            cmap[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          copy_rectangle(dst,src,cmap);
+          for(int _aux = 0; _aux < _len_dst0; _aux++) {
+          free(dst[_aux].linesize);
+          }
+          for(int _aux = 0; _aux < _len_dst0; _aux++) {
+          free(*(dst[_aux].data));
+        free(dst[_aux].data);
+          }
+          free(dst);
+          for(int _aux = 0; _aux < _len_src0; _aux++) {
+          free(src[_aux].linesize);
+          }
+          for(int _aux = 0; _aux < _len_src0; _aux++) {
+          free(*(src[_aux].data));
+        free(src[_aux].data);
+          }
+          free(src);
+          free(cmap);
+        
+        break;
+    }
     default:
         usage();
         break;

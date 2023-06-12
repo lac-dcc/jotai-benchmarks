@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ void perf_get_x86_pmu_capability(struct x86_pmu_capability *cap)
 	cap->events_mask_len	= x86_pmu.events_mask_len;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,20 +83,135 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_cap0 = 65025;
+          struct x86_pmu_capability * cap = (struct x86_pmu_capability *) malloc(_len_cap0*sizeof(struct x86_pmu_capability));
+          for(int _i0 = 0; _i0 < _len_cap0; _i0++) {
+              cap[_i0].events_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          cap[_i0].events_mask_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          cap[_i0].bit_width_fixed = ((-2 * (next_i()%2)) + 1) * next_i();
+          cap[_i0].bit_width_gp = ((-2 * (next_i()%2)) + 1) * next_i();
+          cap[_i0].num_counters_fixed = ((-2 * (next_i()%2)) + 1) * next_i();
+          cap[_i0].num_counters_gp = ((-2 * (next_i()%2)) + 1) * next_i();
+          cap[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          perf_get_x86_pmu_capability(cap);
+          free(cap);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_cap0 = 100;
+          struct x86_pmu_capability * cap = (struct x86_pmu_capability *) malloc(_len_cap0*sizeof(struct x86_pmu_capability));
+          for(int _i0 = 0; _i0 < _len_cap0; _i0++) {
+              cap[_i0].events_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          cap[_i0].events_mask_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          cap[_i0].bit_width_fixed = ((-2 * (next_i()%2)) + 1) * next_i();
+          cap[_i0].bit_width_gp = ((-2 * (next_i()%2)) + 1) * next_i();
+          cap[_i0].num_counters_fixed = ((-2 * (next_i()%2)) + 1) * next_i();
+          cap[_i0].num_counters_gp = ((-2 * (next_i()%2)) + 1) * next_i();
+          cap[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          perf_get_x86_pmu_capability(cap);
+          free(cap);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int _len_cap0 = 1;
           struct x86_pmu_capability * cap = (struct x86_pmu_capability *) malloc(_len_cap0*sizeof(struct x86_pmu_capability));
           for(int _i0 = 0; _i0 < _len_cap0; _i0++) {
-            cap[_i0].events_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        cap[_i0].events_mask_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        cap[_i0].bit_width_fixed = ((-2 * (next_i()%2)) + 1) * next_i();
-        cap[_i0].bit_width_gp = ((-2 * (next_i()%2)) + 1) * next_i();
-        cap[_i0].num_counters_fixed = ((-2 * (next_i()%2)) + 1) * next_i();
-        cap[_i0].num_counters_gp = ((-2 * (next_i()%2)) + 1) * next_i();
-        cap[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+              cap[_i0].events_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          cap[_i0].events_mask_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          cap[_i0].bit_width_fixed = ((-2 * (next_i()%2)) + 1) * next_i();
+          cap[_i0].bit_width_gp = ((-2 * (next_i()%2)) + 1) * next_i();
+          cap[_i0].num_counters_fixed = ((-2 * (next_i()%2)) + 1) * next_i();
+          cap[_i0].num_counters_gp = ((-2 * (next_i()%2)) + 1) * next_i();
+          cap[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           perf_get_x86_pmu_capability(cap);
           free(cap);
         

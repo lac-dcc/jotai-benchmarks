@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline bool nested_cpu_has_virtual_nmis(struct vmcs
 	return vmcs12->pin_based_vm_exec_control & PIN_BASED_VIRTUAL_NMIS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,28 +75,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_vmcs120 = 1;
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_vmcs120 = 65025;
           struct vmcs12 * vmcs12 = (struct vmcs12 *) malloc(_len_vmcs120*sizeof(struct vmcs12));
           for(int _i0 = 0; _i0 < _len_vmcs120; _i0++) {
-            vmcs12[_i0].pin_based_vm_exec_control = ((-2 * (next_i()%2)) + 1) * next_i();
+              vmcs12[_i0].pin_based_vm_exec_control = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = nested_cpu_has_virtual_nmis(vmcs12);
           printf("%d\n", benchRet); 
           free(vmcs12);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_vmcs120 = 100;
           struct vmcs12 * vmcs12 = (struct vmcs12 *) malloc(_len_vmcs120*sizeof(struct vmcs12));
           for(int _i0 = 0; _i0 < _len_vmcs120; _i0++) {
-            vmcs12[_i0].pin_based_vm_exec_control = ((-2 * (next_i()%2)) + 1) * next_i();
+              vmcs12[_i0].pin_based_vm_exec_control = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = nested_cpu_has_virtual_nmis(vmcs12);
+          printf("%d\n", benchRet); 
+          free(vmcs12);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_vmcs120 = 1;
+          struct vmcs12 * vmcs12 = (struct vmcs12 *) malloc(_len_vmcs120*sizeof(struct vmcs12));
+          for(int _i0 = 0; _i0 < _len_vmcs120; _i0++) {
+              vmcs12[_i0].pin_based_vm_exec_control = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = nested_cpu_has_virtual_nmis(vmcs12);
           printf("%d\n", benchRet); 
           free(vmcs12);

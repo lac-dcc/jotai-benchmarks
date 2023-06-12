@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -114,12 +117,6 @@ mega_get_ldrv_num(adapter_t *adapter, struct scsi_cmnd *cmd, int channel)
 	return ldrv_num;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -136,15 +133,18 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int channel = 100;
+        
           int _len_adapter0 = 1;
           struct TYPE_5__ * adapter = (struct TYPE_5__ *) malloc(_len_adapter0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
-            adapter[_i0].this_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].boot_ldrv = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].read_ldidmap = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].support_random_del = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].boot_ldrv_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+              adapter[_i0].this_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].boot_ldrv = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].read_ldidmap = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].support_random_del = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].boot_ldrv_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_cmd0 = 1;
           struct scsi_cmnd * cmd = (struct scsi_cmnd *) malloc(_len_cmd0*sizeof(struct scsi_cmnd));
           for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
@@ -156,9 +156,12 @@ int main(int argc, char *argv[]) {
           int _len_cmd__i0__device0 = 1;
           cmd[_i0].device = (struct TYPE_4__ *) malloc(_len_cmd__i0__device0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_cmd__i0__device0; _j0++) {
-            cmd[_i0].device->id = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmd[_i0].device->id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = mega_get_ldrv_num(adapter,cmd,channel);
           printf("%d\n", benchRet); 
           free(adapter);
@@ -172,7 +175,144 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int channel = 255;
+        
+          int _len_adapter0 = 65025;
+          struct TYPE_5__ * adapter = (struct TYPE_5__ *) malloc(_len_adapter0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].this_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].boot_ldrv = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].read_ldidmap = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].support_random_del = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].boot_ldrv_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cmd0 = 65025;
+          struct scsi_cmnd * cmd = (struct scsi_cmnd *) malloc(_len_cmd0*sizeof(struct scsi_cmnd));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              int _len_cmd__i0__cmnd0 = 1;
+          cmd[_i0].cmnd = (int *) malloc(_len_cmd__i0__cmnd0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_cmd__i0__cmnd0; _j0++) {
+            cmd[_i0].cmnd[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_cmd__i0__device0 = 1;
+          cmd[_i0].device = (struct TYPE_4__ *) malloc(_len_cmd__i0__device0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_cmd__i0__device0; _j0++) {
+              cmd[_i0].device->id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = mega_get_ldrv_num(adapter,cmd,channel);
+          printf("%d\n", benchRet); 
+          free(adapter);
+          for(int _aux = 0; _aux < _len_cmd0; _aux++) {
+          free(cmd[_aux].cmnd);
+          }
+          for(int _aux = 0; _aux < _len_cmd0; _aux++) {
+          free(cmd[_aux].device);
+          }
+          free(cmd);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int channel = 10;
+        
+          int _len_adapter0 = 100;
+          struct TYPE_5__ * adapter = (struct TYPE_5__ *) malloc(_len_adapter0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].this_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].boot_ldrv = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].read_ldidmap = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].support_random_del = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].boot_ldrv_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cmd0 = 100;
+          struct scsi_cmnd * cmd = (struct scsi_cmnd *) malloc(_len_cmd0*sizeof(struct scsi_cmnd));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              int _len_cmd__i0__cmnd0 = 1;
+          cmd[_i0].cmnd = (int *) malloc(_len_cmd__i0__cmnd0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_cmd__i0__cmnd0; _j0++) {
+            cmd[_i0].cmnd[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_cmd__i0__device0 = 1;
+          cmd[_i0].device = (struct TYPE_4__ *) malloc(_len_cmd__i0__device0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_cmd__i0__device0; _j0++) {
+              cmd[_i0].device->id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = mega_get_ldrv_num(adapter,cmd,channel);
+          printf("%d\n", benchRet); 
+          free(adapter);
+          for(int _aux = 0; _aux < _len_cmd0; _aux++) {
+          free(cmd[_aux].cmnd);
+          }
+          for(int _aux = 0; _aux < _len_cmd0; _aux++) {
+          free(cmd[_aux].device);
+          }
+          free(cmd);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int channel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_adapter0 = 1;
+          struct TYPE_5__ * adapter = (struct TYPE_5__ *) malloc(_len_adapter0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].this_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].boot_ldrv = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].read_ldidmap = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].support_random_del = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].boot_ldrv_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cmd0 = 1;
+          struct scsi_cmnd * cmd = (struct scsi_cmnd *) malloc(_len_cmd0*sizeof(struct scsi_cmnd));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              int _len_cmd__i0__cmnd0 = 1;
+          cmd[_i0].cmnd = (int *) malloc(_len_cmd__i0__cmnd0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_cmd__i0__cmnd0; _j0++) {
+            cmd[_i0].cmnd[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_cmd__i0__device0 = 1;
+          cmd[_i0].device = (struct TYPE_4__ *) malloc(_len_cmd__i0__device0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_cmd__i0__device0; _j0++) {
+              cmd[_i0].device->id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = mega_get_ldrv_num(adapter,cmd,channel);
+          printf("%d\n", benchRet); 
+          free(adapter);
+          for(int _aux = 0; _aux < _len_cmd0; _aux++) {
+          free(cmd[_aux].cmnd);
+          }
+          for(int _aux = 0; _aux < _len_cmd0; _aux++) {
+          free(cmd[_aux].device);
+          }
+          free(cmd);
+        
+        break;
+    }
     default:
         usage();
         break;

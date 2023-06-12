@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static int sst_platform_open(struct snd_pcm_substream *sub
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,23 +85,164 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_substream0 = 65025;
+          struct snd_pcm_substream * substream = (struct snd_pcm_substream *) malloc(_len_substream0*sizeof(struct snd_pcm_substream));
+          for(int _i0 = 0; _i0 < _len_substream0; _i0++) {
+              int _len_substream__i0__runtime0 = 1;
+          substream[_i0].runtime = (struct snd_pcm_runtime *) malloc(_len_substream__i0__runtime0*sizeof(struct snd_pcm_runtime));
+          for(int _j0 = 0; _j0 < _len_substream__i0__runtime0; _j0++) {
+              substream[_i0].runtime->hw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_substream__i0__pcm0 = 1;
+          substream[_i0].pcm = (struct TYPE_2__ *) malloc(_len_substream__i0__pcm0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_substream__i0__pcm0; _j0++) {
+              substream[_i0].pcm->internal = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = sst_platform_open(substream);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_substream0; _aux++) {
+          free(substream[_aux].runtime);
+          }
+          for(int _aux = 0; _aux < _len_substream0; _aux++) {
+          free(substream[_aux].pcm);
+          }
+          free(substream);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_substream0 = 100;
+          struct snd_pcm_substream * substream = (struct snd_pcm_substream *) malloc(_len_substream0*sizeof(struct snd_pcm_substream));
+          for(int _i0 = 0; _i0 < _len_substream0; _i0++) {
+              int _len_substream__i0__runtime0 = 1;
+          substream[_i0].runtime = (struct snd_pcm_runtime *) malloc(_len_substream__i0__runtime0*sizeof(struct snd_pcm_runtime));
+          for(int _j0 = 0; _j0 < _len_substream__i0__runtime0; _j0++) {
+              substream[_i0].runtime->hw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_substream__i0__pcm0 = 1;
+          substream[_i0].pcm = (struct TYPE_2__ *) malloc(_len_substream__i0__pcm0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_substream__i0__pcm0; _j0++) {
+              substream[_i0].pcm->internal = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = sst_platform_open(substream);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_substream0; _aux++) {
+          free(substream[_aux].runtime);
+          }
+          for(int _aux = 0; _aux < _len_substream0; _aux++) {
+          free(substream[_aux].pcm);
+          }
+          free(substream);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_substream0 = 1;
           struct snd_pcm_substream * substream = (struct snd_pcm_substream *) malloc(_len_substream0*sizeof(struct snd_pcm_substream));
           for(int _i0 = 0; _i0 < _len_substream0; _i0++) {
               int _len_substream__i0__runtime0 = 1;
           substream[_i0].runtime = (struct snd_pcm_runtime *) malloc(_len_substream__i0__runtime0*sizeof(struct snd_pcm_runtime));
           for(int _j0 = 0; _j0 < _len_substream__i0__runtime0; _j0++) {
-            substream[_i0].runtime->hw = ((-2 * (next_i()%2)) + 1) * next_i();
+              substream[_i0].runtime->hw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_substream__i0__pcm0 = 1;
           substream[_i0].pcm = (struct TYPE_2__ *) malloc(_len_substream__i0__pcm0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_substream__i0__pcm0; _j0++) {
-            substream[_i0].pcm->internal = ((-2 * (next_i()%2)) + 1) * next_i();
+              substream[_i0].pcm->internal = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = sst_platform_open(substream);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_substream0; _aux++) {

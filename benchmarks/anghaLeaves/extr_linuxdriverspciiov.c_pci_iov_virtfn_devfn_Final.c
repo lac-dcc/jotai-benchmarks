@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ int pci_iov_virtfn_devfn(struct pci_dev *dev, int vf_id)
 		dev->sriov->stride * vf_id) & 0xff;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,22 +81,208 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int vf_id = 100;
+        
           int _len_dev0 = 1;
           struct pci_dev * dev = (struct pci_dev *) malloc(_len_dev0*sizeof(struct pci_dev));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].devfn = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].devfn = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_dev__i0__sriov0 = 1;
           dev[_i0].sriov = (struct TYPE_2__ *) malloc(_len_dev__i0__sriov0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_dev__i0__sriov0; _j0++) {
-            dev[_i0].sriov->offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].sriov->stride = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].sriov->offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].sriov->stride = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        dev[_i0].is_physfn = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].is_physfn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = pci_iov_virtfn_devfn(dev,vf_id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(dev[_aux].sriov);
+          }
+          free(dev);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int vf_id = 255;
+        
+          int _len_dev0 = 65025;
+          struct pci_dev * dev = (struct pci_dev *) malloc(_len_dev0*sizeof(struct pci_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].devfn = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_dev__i0__sriov0 = 1;
+          dev[_i0].sriov = (struct TYPE_2__ *) malloc(_len_dev__i0__sriov0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_dev__i0__sriov0; _j0++) {
+              dev[_i0].sriov->offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].sriov->stride = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          dev[_i0].is_physfn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pci_iov_virtfn_devfn(dev,vf_id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(dev[_aux].sriov);
+          }
+          free(dev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int vf_id = 10;
+        
+          int _len_dev0 = 100;
+          struct pci_dev * dev = (struct pci_dev *) malloc(_len_dev0*sizeof(struct pci_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].devfn = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_dev__i0__sriov0 = 1;
+          dev[_i0].sriov = (struct TYPE_2__ *) malloc(_len_dev__i0__sriov0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_dev__i0__sriov0; _j0++) {
+              dev[_i0].sriov->offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].sriov->stride = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          dev[_i0].is_physfn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pci_iov_virtfn_devfn(dev,vf_id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(dev[_aux].sriov);
+          }
+          free(dev);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int vf_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dev0 = 1;
+          struct pci_dev * dev = (struct pci_dev *) malloc(_len_dev0*sizeof(struct pci_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].devfn = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_dev__i0__sriov0 = 1;
+          dev[_i0].sriov = (struct TYPE_2__ *) malloc(_len_dev__i0__sriov0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_dev__i0__sriov0; _j0++) {
+              dev[_i0].sriov->offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].sriov->stride = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          dev[_i0].is_physfn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = pci_iov_virtfn_devfn(dev,vf_id);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_dev0; _aux++) {

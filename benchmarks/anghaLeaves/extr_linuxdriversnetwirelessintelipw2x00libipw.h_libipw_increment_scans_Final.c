@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline void libipw_increment_scans(struct libipw_de
 	ieee->scans++;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ieee0 = 1;
+          int _len_ieee0 = 65025;
           struct libipw_device * ieee = (struct libipw_device *) malloc(_len_ieee0*sizeof(struct libipw_device));
           for(int _i0 = 0; _i0 < _len_ieee0; _i0++) {
-            ieee[_i0].scans = ((-2 * (next_i()%2)) + 1) * next_i();
+              ieee[_i0].scans = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           libipw_increment_scans(ieee);
           free(ieee);
         
@@ -98,14 +95,30 @@ int main(int argc, char *argv[]) {
           int _len_ieee0 = 100;
           struct libipw_device * ieee = (struct libipw_device *) malloc(_len_ieee0*sizeof(struct libipw_device));
           for(int _i0 = 0; _i0 < _len_ieee0; _i0++) {
-            ieee[_i0].scans = ((-2 * (next_i()%2)) + 1) * next_i();
+              ieee[_i0].scans = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           libipw_increment_scans(ieee);
           free(ieee);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ieee0 = 1;
+          struct libipw_device * ieee = (struct libipw_device *) malloc(_len_ieee0*sizeof(struct libipw_device));
+          for(int _i0 = 0; _i0 < _len_ieee0; _i0++) {
+              ieee[_i0].scans = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          libipw_increment_scans(ieee);
+          free(ieee);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static int arpentry_matches_prot(struct qeth_arp_entrytype
 		(type->ip == QETHARP_IP_ADDR_V6 && prot == QETH_PROT_IPV6);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,11 +85,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long prot = 100;
+        
           int _len_type0 = 1;
           struct qeth_arp_entrytype * type = (struct qeth_arp_entrytype *) malloc(_len_type0*sizeof(struct qeth_arp_entrytype));
           for(int _i0 = 0; _i0 < _len_type0; _i0++) {
-            type[_i0].ip = ((-2 * (next_i()%2)) + 1) * next_i();
+              type[_i0].ip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = arpentry_matches_prot(type,prot);
+          printf("%d\n", benchRet); 
+          free(type);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long prot = 255;
+        
+          int _len_type0 = 65025;
+          struct qeth_arp_entrytype * type = (struct qeth_arp_entrytype *) malloc(_len_type0*sizeof(struct qeth_arp_entrytype));
+          for(int _i0 = 0; _i0 < _len_type0; _i0++) {
+              type[_i0].ip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = arpentry_matches_prot(type,prot);
           printf("%d\n", benchRet); 
           free(type);
@@ -101,21 +118,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long prot = 10;
+        
           int _len_type0 = 100;
           struct qeth_arp_entrytype * type = (struct qeth_arp_entrytype *) malloc(_len_type0*sizeof(struct qeth_arp_entrytype));
           for(int _i0 = 0; _i0 < _len_type0; _i0++) {
-            type[_i0].ip = ((-2 * (next_i()%2)) + 1) * next_i();
+              type[_i0].ip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = arpentry_matches_prot(type,prot);
           printf("%d\n", benchRet); 
           free(type);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long prot = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_type0 = 1;
+          struct qeth_arp_entrytype * type = (struct qeth_arp_entrytype *) malloc(_len_type0*sizeof(struct qeth_arp_entrytype));
+          for(int _i0 = 0; _i0 < _len_type0; _i0++) {
+              type[_i0].ip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = arpentry_matches_prot(type,prot);
+          printf("%d\n", benchRet); 
+          free(type);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static struct wc_memory_superblock *sb(struct dm_writecach
 	return wc->memory_map;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,18 +75,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_wc0 = 65025;
+          struct dm_writecache * wc = (struct dm_writecache *) malloc(_len_wc0*sizeof(struct dm_writecache));
+          for(int _i0 = 0; _i0 < _len_wc0; _i0++) {
+              int _len_wc__i0__memory_map0 = 1;
+          wc[_i0].memory_map = (struct wc_memory_superblock *) malloc(_len_wc__i0__memory_map0*sizeof(struct wc_memory_superblock));
+          for(int _j0 = 0; _j0 < _len_wc__i0__memory_map0; _j0++) {
+              wc[_i0].memory_map->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct wc_memory_superblock * benchRet = sb(wc);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_wc0; _aux++) {
+          free(wc[_aux].memory_map);
+          }
+          free(wc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_wc0 = 100;
+          struct dm_writecache * wc = (struct dm_writecache *) malloc(_len_wc0*sizeof(struct dm_writecache));
+          for(int _i0 = 0; _i0 < _len_wc0; _i0++) {
+              int _len_wc__i0__memory_map0 = 1;
+          wc[_i0].memory_map = (struct wc_memory_superblock *) malloc(_len_wc__i0__memory_map0*sizeof(struct wc_memory_superblock));
+          for(int _j0 = 0; _j0 < _len_wc__i0__memory_map0; _j0++) {
+              wc[_i0].memory_map->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct wc_memory_superblock * benchRet = sb(wc);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_wc0; _aux++) {
+          free(wc[_aux].memory_map);
+          }
+          free(wc);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_wc0 = 1;
           struct dm_writecache * wc = (struct dm_writecache *) malloc(_len_wc0*sizeof(struct dm_writecache));
           for(int _i0 = 0; _i0 < _len_wc0; _i0++) {
               int _len_wc__i0__memory_map0 = 1;
           wc[_i0].memory_map = (struct wc_memory_superblock *) malloc(_len_wc__i0__memory_map0*sizeof(struct wc_memory_superblock));
           for(int _j0 = 0; _j0 < _len_wc__i0__memory_map0; _j0++) {
-            wc[_i0].memory_map->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              wc[_i0].memory_map->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct wc_memory_superblock * benchRet = sb(wc);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_wc0; _aux++) {

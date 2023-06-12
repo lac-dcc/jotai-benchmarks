@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ void BrotliInitBlockSplit(BlockSplit* self) {
   self->lengths_alloc_size = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,25 +80,66 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_self0 = 1;
+          int _len_self0 = 65025;
           struct TYPE_3__ * self = (struct TYPE_3__ *) malloc(_len_self0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_self0; _i0++) {
-            self[_i0].lengths_alloc_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        self[_i0].types_alloc_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        self[_i0].lengths = ((-2 * (next_i()%2)) + 1) * next_i();
-        self[_i0].types = ((-2 * (next_i()%2)) + 1) * next_i();
-        self[_i0].num_blocks = ((-2 * (next_i()%2)) + 1) * next_i();
-        self[_i0].num_types = ((-2 * (next_i()%2)) + 1) * next_i();
+              self[_i0].lengths_alloc_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].types_alloc_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].lengths = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].types = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].num_blocks = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].num_types = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           BrotliInitBlockSplit(self);
           free(self);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_self0 = 100;
+          struct TYPE_3__ * self = (struct TYPE_3__ *) malloc(_len_self0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_self0; _i0++) {
+              self[_i0].lengths_alloc_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].types_alloc_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].lengths = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].types = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].num_blocks = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].num_types = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          BrotliInitBlockSplit(self);
+          free(self);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_self0 = 1;
+          struct TYPE_3__ * self = (struct TYPE_3__ *) malloc(_len_self0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_self0; _i0++) {
+              self[_i0].lengths_alloc_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].types_alloc_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].lengths = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].types = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].num_blocks = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].num_types = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          BrotliInitBlockSplit(self);
+          free(self);
+        
+        break;
+    }
     default:
         usage();
         break;

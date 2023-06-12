@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ pci_valid_pba_offset(struct pci_devinst *pi, uint64_t offset)
 	return (1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,16 +87,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           long offset = 100;
+        
           int _len_pi0 = 1;
           struct pci_devinst * pi = (struct pci_devinst *) malloc(_len_pi0*sizeof(struct pci_devinst));
           for(int _i0 = 0; _i0 < _len_pi0; _i0++) {
-            pi[_i0].pi_msix.pba_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        pi[_i0].pi_msix.pba_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              pi[_i0].pi_msix.pba_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          pi[_i0].pi_msix.pba_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = pci_valid_pba_offset(pi,offset);
+          printf("%d\n", benchRet); 
+          free(pi);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long offset = 255;
+        
+          int _len_pi0 = 65025;
+          struct pci_devinst * pi = (struct pci_devinst *) malloc(_len_pi0*sizeof(struct pci_devinst));
+          for(int _i0 = 0; _i0 < _len_pi0; _i0++) {
+              pi[_i0].pi_msix.pba_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          pi[_i0].pi_msix.pba_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = pci_valid_pba_offset(pi,offset);
+          printf("%d\n", benchRet); 
+          free(pi);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long offset = 10;
+        
+          int _len_pi0 = 100;
+          struct pci_devinst * pi = (struct pci_devinst *) malloc(_len_pi0*sizeof(struct pci_devinst));
+          for(int _i0 = 0; _i0 < _len_pi0; _i0++) {
+              pi[_i0].pi_msix.pba_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          pi[_i0].pi_msix.pba_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = pci_valid_pba_offset(pi,offset);
+          printf("%d\n", benchRet); 
+          free(pi);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pi0 = 1;
+          struct pci_devinst * pi = (struct pci_devinst *) malloc(_len_pi0*sizeof(struct pci_devinst));
+          for(int _i0 = 0; _i0 < _len_pi0; _i0++) {
+              pi[_i0].pi_msix.pba_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          pi[_i0].pi_msix.pba_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = pci_valid_pba_offset(pi,offset);
           printf("%d\n", benchRet); 
           free(pi);

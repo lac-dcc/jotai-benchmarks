@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static int pisnd_output_open(struct snd_rawmidi_substream 
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_substream0 = 1;
+          int _len_substream0 = 65025;
           struct snd_rawmidi_substream * substream = (struct snd_rawmidi_substream *) malloc(_len_substream0*sizeof(struct snd_rawmidi_substream));
           for(int _i0 = 0; _i0 < _len_substream0; _i0++) {
-            substream[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              substream[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = pisnd_output_open(substream);
           printf("%d\n", benchRet); 
           free(substream);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_substream0 = 100;
           struct snd_rawmidi_substream * substream = (struct snd_rawmidi_substream *) malloc(_len_substream0*sizeof(struct snd_rawmidi_substream));
           for(int _i0 = 0; _i0 < _len_substream0; _i0++) {
-            substream[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              substream[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = pisnd_output_open(substream);
           printf("%d\n", benchRet); 
           free(substream);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_substream0 = 1;
+          struct snd_rawmidi_substream * substream = (struct snd_rawmidi_substream *) malloc(_len_substream0*sizeof(struct snd_rawmidi_substream));
+          for(int _i0 = 0; _i0 < _len_substream0; _i0++) {
+              substream[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pisnd_output_open(substream);
+          printf("%d\n", benchRet); 
+          free(substream);
+        
+        break;
+    }
     default:
         usage();
         break;

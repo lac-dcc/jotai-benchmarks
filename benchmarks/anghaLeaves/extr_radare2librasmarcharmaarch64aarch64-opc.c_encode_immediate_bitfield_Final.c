@@ -63,12 +63,6 @@ encode_immediate_bitfield (int is64, uint32_t s, uint32_t r)
   return (is64 << 12) | (r << 6) | s;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,8 +79,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int is64 = 100;
+        
           int s = 100;
+        
           int r = 100;
+        
           int benchRet = encode_immediate_bitfield(is64,s,r);
           printf("%d\n", benchRet); 
         
@@ -96,8 +93,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int is64 = 255;
+        
           int s = 255;
+        
           int r = 255;
+        
           int benchRet = encode_immediate_bitfield(is64,s,r);
           printf("%d\n", benchRet); 
         
@@ -107,14 +107,16 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int is64 = 10;
+        
           int s = 10;
+        
           int r = 10;
+        
           int benchRet = encode_immediate_bitfield(is64,s,r);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

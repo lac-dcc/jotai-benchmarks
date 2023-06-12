@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static int corsair_usage_to_gkey(unsigned int usage)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,6 +84,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int usage = 100;
+        
           int benchRet = corsair_usage_to_gkey(usage);
           printf("%d\n", benchRet); 
         
@@ -98,6 +94,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int usage = 255;
+        
           int benchRet = corsair_usage_to_gkey(usage);
           printf("%d\n", benchRet); 
         
@@ -107,12 +104,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int usage = 10;
+        
           int benchRet = corsair_usage_to_gkey(usage);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int usage = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = corsair_usage_to_gkey(usage);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

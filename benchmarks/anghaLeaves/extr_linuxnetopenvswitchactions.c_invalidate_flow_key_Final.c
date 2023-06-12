@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static void invalidate_flow_key(struct sw_flow_key *key)
 	key->mac_proto |= SW_FLOW_KEY_INVALID;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_key0 = 1;
+          int _len_key0 = 65025;
           struct sw_flow_key * key = (struct sw_flow_key *) malloc(_len_key0*sizeof(struct sw_flow_key));
           for(int _i0 = 0; _i0 < _len_key0; _i0++) {
-            key[_i0].mac_proto = ((-2 * (next_i()%2)) + 1) * next_i();
+              key[_i0].mac_proto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           invalidate_flow_key(key);
           free(key);
         
@@ -99,14 +96,30 @@ int main(int argc, char *argv[]) {
           int _len_key0 = 100;
           struct sw_flow_key * key = (struct sw_flow_key *) malloc(_len_key0*sizeof(struct sw_flow_key));
           for(int _i0 = 0; _i0 < _len_key0; _i0++) {
-            key[_i0].mac_proto = ((-2 * (next_i()%2)) + 1) * next_i();
+              key[_i0].mac_proto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           invalidate_flow_key(key);
           free(key);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_key0 = 1;
+          struct sw_flow_key * key = (struct sw_flow_key *) malloc(_len_key0*sizeof(struct sw_flow_key));
+          for(int _i0 = 0; _i0 < _len_key0; _i0++) {
+              key[_i0].mac_proto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          invalidate_flow_key(key);
+          free(key);
+        
+        break;
+    }
     default:
         usage();
         break;

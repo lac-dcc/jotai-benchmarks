@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static int is_ipmb_addr(struct ipmi_addr *addr)
 	return addr->addr_type == IPMI_IPMB_ADDR_TYPE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_addr0 = 1;
+          int _len_addr0 = 65025;
           struct ipmi_addr * addr = (struct ipmi_addr *) malloc(_len_addr0*sizeof(struct ipmi_addr));
           for(int _i0 = 0; _i0 < _len_addr0; _i0++) {
-            addr[_i0].addr_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              addr[_i0].addr_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_ipmb_addr(addr);
           printf("%d\n", benchRet); 
           free(addr);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_addr0 = 100;
           struct ipmi_addr * addr = (struct ipmi_addr *) malloc(_len_addr0*sizeof(struct ipmi_addr));
           for(int _i0 = 0; _i0 < _len_addr0; _i0++) {
-            addr[_i0].addr_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              addr[_i0].addr_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_ipmb_addr(addr);
           printf("%d\n", benchRet); 
           free(addr);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_addr0 = 1;
+          struct ipmi_addr * addr = (struct ipmi_addr *) malloc(_len_addr0*sizeof(struct ipmi_addr));
+          for(int _i0 = 0; _i0 < _len_addr0; _i0++) {
+              addr[_i0].addr_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_ipmb_addr(addr);
+          printf("%d\n", benchRet); 
+          free(addr);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +79,6 @@ __attribute__((used)) static enum dpu_intf dpu_encoder_get_intf(struct dpu_mdss_
 	return INTF_MAX;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,23 +91,213 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           enum dpu_intf_type type = 100;
+        
           long controller_id = 100;
+        
           int _len_catalog0 = 1;
           struct dpu_mdss_cfg * catalog = (struct dpu_mdss_cfg *) malloc(_len_catalog0*sizeof(struct dpu_mdss_cfg));
           for(int _i0 = 0; _i0 < _len_catalog0; _i0++) {
-            catalog[_i0].intf_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              catalog[_i0].intf_count = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_catalog__i0__intf0 = 1;
           catalog[_i0].intf = (struct TYPE_2__ *) malloc(_len_catalog__i0__intf0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_catalog__i0__intf0; _j0++) {
-            catalog[_i0].intf->type = ((-2 * (next_i()%2)) + 1) * next_i();
-        catalog[_i0].intf->controller_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        catalog[_i0].intf->id = ((-2 * (next_i()%2)) + 1) * next_i();
+              catalog[_i0].intf->type = ((-2 * (next_i()%2)) + 1) * next_i();
+          catalog[_i0].intf->controller_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          catalog[_i0].intf->id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          enum dpu_intf benchRet = dpu_encoder_get_intf(catalog,type,controller_id);
+          for(int _aux = 0; _aux < _len_catalog0; _aux++) {
+          free(catalog[_aux].intf);
+          }
+          free(catalog);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          enum dpu_intf_type type = 255;
+        
+          long controller_id = 255;
+        
+          int _len_catalog0 = 65025;
+          struct dpu_mdss_cfg * catalog = (struct dpu_mdss_cfg *) malloc(_len_catalog0*sizeof(struct dpu_mdss_cfg));
+          for(int _i0 = 0; _i0 < _len_catalog0; _i0++) {
+              catalog[_i0].intf_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_catalog__i0__intf0 = 1;
+          catalog[_i0].intf = (struct TYPE_2__ *) malloc(_len_catalog__i0__intf0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_catalog__i0__intf0; _j0++) {
+              catalog[_i0].intf->type = ((-2 * (next_i()%2)) + 1) * next_i();
+          catalog[_i0].intf->controller_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          catalog[_i0].intf->id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          enum dpu_intf benchRet = dpu_encoder_get_intf(catalog,type,controller_id);
+          for(int _aux = 0; _aux < _len_catalog0; _aux++) {
+          free(catalog[_aux].intf);
+          }
+          free(catalog);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          enum dpu_intf_type type = 10;
+        
+          long controller_id = 10;
+        
+          int _len_catalog0 = 100;
+          struct dpu_mdss_cfg * catalog = (struct dpu_mdss_cfg *) malloc(_len_catalog0*sizeof(struct dpu_mdss_cfg));
+          for(int _i0 = 0; _i0 < _len_catalog0; _i0++) {
+              catalog[_i0].intf_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_catalog__i0__intf0 = 1;
+          catalog[_i0].intf = (struct TYPE_2__ *) malloc(_len_catalog__i0__intf0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_catalog__i0__intf0; _j0++) {
+              catalog[_i0].intf->type = ((-2 * (next_i()%2)) + 1) * next_i();
+          catalog[_i0].intf->controller_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          catalog[_i0].intf->id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          enum dpu_intf benchRet = dpu_encoder_get_intf(catalog,type,controller_id);
+          for(int _aux = 0; _aux < _len_catalog0; _aux++) {
+          free(catalog[_aux].intf);
+          }
+          free(catalog);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          enum dpu_intf_type type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long controller_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_catalog0 = 1;
+          struct dpu_mdss_cfg * catalog = (struct dpu_mdss_cfg *) malloc(_len_catalog0*sizeof(struct dpu_mdss_cfg));
+          for(int _i0 = 0; _i0 < _len_catalog0; _i0++) {
+              catalog[_i0].intf_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_catalog__i0__intf0 = 1;
+          catalog[_i0].intf = (struct TYPE_2__ *) malloc(_len_catalog__i0__intf0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_catalog__i0__intf0; _j0++) {
+              catalog[_i0].intf->type = ((-2 * (next_i()%2)) + 1) * next_i();
+          catalog[_i0].intf->controller_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          catalog[_i0].intf->id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           enum dpu_intf benchRet = dpu_encoder_get_intf(catalog,type,controller_id);
           for(int _aux = 0; _aux < _len_catalog0; _aux++) {
           free(catalog[_aux].intf);

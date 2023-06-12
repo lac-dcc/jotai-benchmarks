@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static inline int lifebook_detect(struct psmouse *psmouse,
 	return -ENOSYS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,11 +80,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int set_properties = 100;
+        
           int _len_psmouse0 = 1;
           struct psmouse * psmouse = (struct psmouse *) malloc(_len_psmouse0*sizeof(struct psmouse));
           for(int _i0 = 0; _i0 < _len_psmouse0; _i0++) {
-            psmouse[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              psmouse[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = lifebook_detect(psmouse,set_properties);
+          printf("%d\n", benchRet); 
+          free(psmouse);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int set_properties = 255;
+        
+          int _len_psmouse0 = 65025;
+          struct psmouse * psmouse = (struct psmouse *) malloc(_len_psmouse0*sizeof(struct psmouse));
+          for(int _i0 = 0; _i0 < _len_psmouse0; _i0++) {
+              psmouse[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = lifebook_detect(psmouse,set_properties);
           printf("%d\n", benchRet); 
           free(psmouse);
@@ -96,21 +113,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int set_properties = 10;
+        
           int _len_psmouse0 = 100;
           struct psmouse * psmouse = (struct psmouse *) malloc(_len_psmouse0*sizeof(struct psmouse));
           for(int _i0 = 0; _i0 < _len_psmouse0; _i0++) {
-            psmouse[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              psmouse[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = lifebook_detect(psmouse,set_properties);
           printf("%d\n", benchRet); 
           free(psmouse);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int set_properties = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_psmouse0 = 1;
+          struct psmouse * psmouse = (struct psmouse *) malloc(_len_psmouse0*sizeof(struct psmouse));
+          for(int _i0 = 0; _i0 < _len_psmouse0; _i0++) {
+              psmouse[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = lifebook_detect(psmouse,set_properties);
+          printf("%d\n", benchRet); 
+          free(psmouse);
+        
+        break;
+    }
     default:
         usage();
         break;

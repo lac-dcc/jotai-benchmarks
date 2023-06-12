@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +79,6 @@ should_cancel(aio_workq_entry *entryp, user_addr_t aiocbp, int fd)
 	return FALSE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,17 +91,183 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           long aiocbp = 100;
+        
           int fd = 100;
+        
           int _len_entryp0 = 1;
           struct TYPE_5__ * entryp = (struct TYPE_5__ *) malloc(_len_entryp0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_entryp0; _i0++) {
-            entryp[_i0].uaiocbp = ((-2 * (next_i()%2)) + 1) * next_i();
-        entryp[_i0].aiocb.aio_fildes = ((-2 * (next_i()%2)) + 1) * next_i();
+              entryp[_i0].uaiocbp = ((-2 * (next_i()%2)) + 1) * next_i();
+          entryp[_i0].aiocb.aio_fildes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = should_cancel(entryp,aiocbp,fd);
+          printf("%d\n", benchRet); 
+          free(entryp);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          long aiocbp = 255;
+        
+          int fd = 255;
+        
+          int _len_entryp0 = 65025;
+          struct TYPE_5__ * entryp = (struct TYPE_5__ *) malloc(_len_entryp0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_entryp0; _i0++) {
+              entryp[_i0].uaiocbp = ((-2 * (next_i()%2)) + 1) * next_i();
+          entryp[_i0].aiocb.aio_fildes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = should_cancel(entryp,aiocbp,fd);
+          printf("%d\n", benchRet); 
+          free(entryp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          long aiocbp = 10;
+        
+          int fd = 10;
+        
+          int _len_entryp0 = 100;
+          struct TYPE_5__ * entryp = (struct TYPE_5__ *) malloc(_len_entryp0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_entryp0; _i0++) {
+              entryp[_i0].uaiocbp = ((-2 * (next_i()%2)) + 1) * next_i();
+          entryp[_i0].aiocb.aio_fildes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = should_cancel(entryp,aiocbp,fd);
+          printf("%d\n", benchRet); 
+          free(entryp);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          long aiocbp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int fd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_entryp0 = 1;
+          struct TYPE_5__ * entryp = (struct TYPE_5__ *) malloc(_len_entryp0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_entryp0; _i0++) {
+              entryp[_i0].uaiocbp = ((-2 * (next_i()%2)) + 1) * next_i();
+          entryp[_i0].aiocb.aio_fildes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = should_cancel(entryp,aiocbp,fd);
           printf("%d\n", benchRet); 
           free(entryp);

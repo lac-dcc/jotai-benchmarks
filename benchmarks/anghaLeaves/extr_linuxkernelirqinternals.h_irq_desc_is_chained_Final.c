@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static inline int irq_desc_is_chained(struct irq_desc *des
 	return (desc->action && desc->action == &chained_action);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,10 +75,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_desc0 = 1;
+          int _len_desc0 = 65025;
           struct irq_desc * desc = (struct irq_desc *) malloc(_len_desc0*sizeof(struct irq_desc));
           for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
               int _len_desc__i0__action0 = 1;
@@ -90,7 +86,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_desc__i0__action0; _j0++) {
             desc[_i0].action[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = irq_desc_is_chained(desc);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_desc0; _aux++) {
@@ -100,7 +98,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_desc0 = 100;
+          struct irq_desc * desc = (struct irq_desc *) malloc(_len_desc0*sizeof(struct irq_desc));
+          for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
+              int _len_desc__i0__action0 = 1;
+          desc[_i0].action = (int *) malloc(_len_desc__i0__action0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_desc__i0__action0; _j0++) {
+            desc[_i0].action[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = irq_desc_is_chained(desc);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_desc0; _aux++) {
+          free(desc[_aux].action);
+          }
+          free(desc);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_desc0 = 1;
+          struct irq_desc * desc = (struct irq_desc *) malloc(_len_desc0*sizeof(struct irq_desc));
+          for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
+              int _len_desc__i0__action0 = 1;
+          desc[_i0].action = (int *) malloc(_len_desc__i0__action0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_desc__i0__action0; _j0++) {
+            desc[_i0].action[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = irq_desc_is_chained(desc);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_desc0; _aux++) {
+          free(desc[_aux].action);
+          }
+          free(desc);
+        
+        break;
+    }
     default:
         usage();
         break;

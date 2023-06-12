@@ -71,12 +71,6 @@ __attribute__((used)) static int shiftsigned(int v, int shift, int bits)
    return result;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,14 +87,16 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int v = 10;
+        
           int shift = 10;
+        
           int bits = 10;
+        
           int benchRet = shiftsigned(v,shift,bits);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

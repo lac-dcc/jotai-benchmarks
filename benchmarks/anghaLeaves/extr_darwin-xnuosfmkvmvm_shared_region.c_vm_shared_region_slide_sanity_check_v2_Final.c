@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -97,12 +100,6 @@ vm_shared_region_slide_sanity_check_v2(vm_shared_region_slide_info_entry_v2_t s_
 	return KERN_SUCCESS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -115,17 +112,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int slide_info_size = 100;
+        
           int _len_s_info0 = 1;
           struct TYPE_3__ * s_info = (struct TYPE_3__ *) malloc(_len_s_info0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_s_info0; _i0++) {
-            s_info[_i0].page_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        s_info[_i0].page_starts_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        s_info[_i0].page_extras_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              s_info[_i0].page_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          s_info[_i0].page_starts_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          s_info[_i0].page_extras_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = vm_shared_region_slide_sanity_check_v2(s_info,slide_info_size);
+          printf("%d\n", benchRet); 
+          free(s_info);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int slide_info_size = 255;
+        
+          int _len_s_info0 = 65025;
+          struct TYPE_3__ * s_info = (struct TYPE_3__ *) malloc(_len_s_info0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_s_info0; _i0++) {
+              s_info[_i0].page_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          s_info[_i0].page_starts_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          s_info[_i0].page_extras_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vm_shared_region_slide_sanity_check_v2(s_info,slide_info_size);
+          printf("%d\n", benchRet); 
+          free(s_info);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int slide_info_size = 10;
+        
+          int _len_s_info0 = 100;
+          struct TYPE_3__ * s_info = (struct TYPE_3__ *) malloc(_len_s_info0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_s_info0; _i0++) {
+              s_info[_i0].page_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          s_info[_i0].page_starts_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          s_info[_i0].page_extras_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vm_shared_region_slide_sanity_check_v2(s_info,slide_info_size);
+          printf("%d\n", benchRet); 
+          free(s_info);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int slide_info_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_s_info0 = 1;
+          struct TYPE_3__ * s_info = (struct TYPE_3__ *) malloc(_len_s_info0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_s_info0; _i0++) {
+              s_info[_i0].page_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          s_info[_i0].page_starts_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          s_info[_i0].page_extras_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = vm_shared_region_slide_sanity_check_v2(s_info,slide_info_size);
           printf("%d\n", benchRet); 
           free(s_info);

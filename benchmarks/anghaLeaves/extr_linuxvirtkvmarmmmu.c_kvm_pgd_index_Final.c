@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static unsigned int kvm_pgd_index(unsigned long addr, unsi
 	return (addr >> PGDIR_SHIFT) & (ptrs_per_pgd - 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,7 +79,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long addr = 100;
+        
           unsigned int ptrs_per_pgd = 100;
+        
           unsigned int benchRet = kvm_pgd_index(addr,ptrs_per_pgd);
           printf("%u\n", benchRet); 
         
@@ -94,7 +91,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long addr = 255;
+        
           unsigned int ptrs_per_pgd = 255;
+        
           unsigned int benchRet = kvm_pgd_index(addr,ptrs_per_pgd);
           printf("%u\n", benchRet); 
         
@@ -104,13 +103,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long addr = 10;
+        
           unsigned int ptrs_per_pgd = 10;
+        
           unsigned int benchRet = kvm_pgd_index(addr,ptrs_per_pgd);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int ptrs_per_pgd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = kvm_pgd_index(addr,ptrs_per_pgd);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -61,12 +61,6 @@ __attribute__((used)) static inline u32 host1x_uclass_incr_syncpt_base_base_indx
 	return (v & 0xff) << 24;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,6 +77,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int v = 100;
+        
           int benchRet = host1x_uclass_incr_syncpt_base_base_indx_f(v);
           printf("%d\n", benchRet); 
         
@@ -92,12 +87,12 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int v = 10;
+        
           int benchRet = host1x_uclass_incr_syncpt_base_base_indx_f(v);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

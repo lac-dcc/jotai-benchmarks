@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +74,6 @@ __attribute__((used)) static unsigned int dsa_switch_fastest_ageing_time(struct 
 	return ageing_time;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,16 +90,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int ageing_time = 100;
+        
           int _len_ds0 = 1;
           struct dsa_switch * ds = (struct dsa_switch *) malloc(_len_ds0*sizeof(struct dsa_switch));
           for(int _i0 = 0; _i0 < _len_ds0; _i0++) {
-            ds[_i0].num_ports = ((-2 * (next_i()%2)) + 1) * next_i();
+              ds[_i0].num_ports = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_ds__i0__ports0 = 1;
           ds[_i0].ports = (struct dsa_port *) malloc(_len_ds__i0__ports0*sizeof(struct dsa_port));
           for(int _j0 = 0; _j0 < _len_ds__i0__ports0; _j0++) {
-            ds[_i0].ports->ageing_time = ((-2 * (next_i()%2)) + 1) * next_i();
+              ds[_i0].ports->ageing_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           unsigned int benchRet = dsa_switch_fastest_ageing_time(ds,ageing_time);
           printf("%u\n", benchRet); 
           for(int _aux = 0; _aux < _len_ds0; _aux++) {
@@ -112,7 +113,87 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int ageing_time = 255;
+        
+          int _len_ds0 = 65025;
+          struct dsa_switch * ds = (struct dsa_switch *) malloc(_len_ds0*sizeof(struct dsa_switch));
+          for(int _i0 = 0; _i0 < _len_ds0; _i0++) {
+              ds[_i0].num_ports = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ds__i0__ports0 = 1;
+          ds[_i0].ports = (struct dsa_port *) malloc(_len_ds__i0__ports0*sizeof(struct dsa_port));
+          for(int _j0 = 0; _j0 < _len_ds__i0__ports0; _j0++) {
+              ds[_i0].ports->ageing_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = dsa_switch_fastest_ageing_time(ds,ageing_time);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ds0; _aux++) {
+          free(ds[_aux].ports);
+          }
+          free(ds);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int ageing_time = 10;
+        
+          int _len_ds0 = 100;
+          struct dsa_switch * ds = (struct dsa_switch *) malloc(_len_ds0*sizeof(struct dsa_switch));
+          for(int _i0 = 0; _i0 < _len_ds0; _i0++) {
+              ds[_i0].num_ports = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ds__i0__ports0 = 1;
+          ds[_i0].ports = (struct dsa_port *) malloc(_len_ds__i0__ports0*sizeof(struct dsa_port));
+          for(int _j0 = 0; _j0 < _len_ds__i0__ports0; _j0++) {
+              ds[_i0].ports->ageing_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = dsa_switch_fastest_ageing_time(ds,ageing_time);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ds0; _aux++) {
+          free(ds[_aux].ports);
+          }
+          free(ds);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int ageing_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ds0 = 1;
+          struct dsa_switch * ds = (struct dsa_switch *) malloc(_len_ds0*sizeof(struct dsa_switch));
+          for(int _i0 = 0; _i0 < _len_ds0; _i0++) {
+              ds[_i0].num_ports = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ds__i0__ports0 = 1;
+          ds[_i0].ports = (struct dsa_port *) malloc(_len_ds__i0__ports0*sizeof(struct dsa_port));
+          for(int _j0 = 0; _j0 < _len_ds__i0__ports0; _j0++) {
+              ds[_i0].ports->ageing_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = dsa_switch_fastest_ageing_time(ds,ageing_time);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ds0; _aux++) {
+          free(ds[_aux].ports);
+          }
+          free(ds);
+        
+        break;
+    }
     default:
         usage();
         break;

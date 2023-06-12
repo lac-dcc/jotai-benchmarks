@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ mrb_gc_mark_hash_size(mrb_state *mrb, struct RHash *hash)
   return hash->ht->size*2;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,23 +79,160 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_mrb0 = 65025;
+          int * mrb = (int *) malloc(_len_mrb0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mrb0; _i0++) {
+            mrb[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_hash0 = 65025;
+          struct RHash * hash = (struct RHash *) malloc(_len_hash0*sizeof(struct RHash));
+          for(int _i0 = 0; _i0 < _len_hash0; _i0++) {
+              int _len_hash__i0__ht0 = 1;
+          hash[_i0].ht = (struct TYPE_2__ *) malloc(_len_hash__i0__ht0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_hash__i0__ht0; _j0++) {
+              hash[_i0].ht->size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned long benchRet = mrb_gc_mark_hash_size(mrb,hash);
+          printf("%lu\n", benchRet); 
+          free(mrb);
+          for(int _aux = 0; _aux < _len_hash0; _aux++) {
+          free(hash[_aux].ht);
+          }
+          free(hash);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_mrb0 = 100;
+          int * mrb = (int *) malloc(_len_mrb0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mrb0; _i0++) {
+            mrb[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_hash0 = 100;
+          struct RHash * hash = (struct RHash *) malloc(_len_hash0*sizeof(struct RHash));
+          for(int _i0 = 0; _i0 < _len_hash0; _i0++) {
+              int _len_hash__i0__ht0 = 1;
+          hash[_i0].ht = (struct TYPE_2__ *) malloc(_len_hash__i0__ht0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_hash__i0__ht0; _j0++) {
+              hash[_i0].ht->size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned long benchRet = mrb_gc_mark_hash_size(mrb,hash);
+          printf("%lu\n", benchRet); 
+          free(mrb);
+          for(int _aux = 0; _aux < _len_hash0; _aux++) {
+          free(hash[_aux].ht);
+          }
+          free(hash);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_mrb0 = 1;
           int * mrb = (int *) malloc(_len_mrb0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_mrb0; _i0++) {
             mrb[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_hash0 = 1;
           struct RHash * hash = (struct RHash *) malloc(_len_hash0*sizeof(struct RHash));
           for(int _i0 = 0; _i0 < _len_hash0; _i0++) {
               int _len_hash__i0__ht0 = 1;
           hash[_i0].ht = (struct TYPE_2__ *) malloc(_len_hash__i0__ht0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_hash__i0__ht0; _j0++) {
-            hash[_i0].ht->size = ((-2 * (next_i()%2)) + 1) * next_i();
+              hash[_i0].ht->size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           unsigned long benchRet = mrb_gc_mark_hash_size(mrb,hash);
           printf("%lu\n", benchRet); 
           free(mrb);

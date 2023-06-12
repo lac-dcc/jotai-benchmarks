@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +79,6 @@ __attribute__((used)) static void _setup_mdp_ops(struct dpu_hw_mdp_ops *ops,
 	ops->intf_audio_select = dpu_hw_intf_audio_select;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,22 +91,192 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           unsigned long cap = 100;
+        
           int _len_ops0 = 1;
           struct dpu_hw_mdp_ops * ops = (struct dpu_hw_mdp_ops *) malloc(_len_ops0*sizeof(struct dpu_hw_mdp_ops));
           for(int _i0 = 0; _i0 < _len_ops0; _i0++) {
-            ops[_i0].intf_audio_select = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].reset_ubwc = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].get_safe_status = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].setup_vsync_source = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].get_danger_status = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].setup_clk_force_ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].setup_cdm_output = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].setup_split_pipe = ((-2 * (next_i()%2)) + 1) * next_i();
+              ops[_i0].intf_audio_select = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].reset_ubwc = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_safe_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].setup_vsync_source = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_danger_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].setup_clk_force_ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].setup_cdm_output = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].setup_split_pipe = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          _setup_mdp_ops(ops,cap);
+          free(ops);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          unsigned long cap = 255;
+        
+          int _len_ops0 = 65025;
+          struct dpu_hw_mdp_ops * ops = (struct dpu_hw_mdp_ops *) malloc(_len_ops0*sizeof(struct dpu_hw_mdp_ops));
+          for(int _i0 = 0; _i0 < _len_ops0; _i0++) {
+              ops[_i0].intf_audio_select = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].reset_ubwc = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_safe_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].setup_vsync_source = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_danger_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].setup_clk_force_ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].setup_cdm_output = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].setup_split_pipe = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          _setup_mdp_ops(ops,cap);
+          free(ops);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          unsigned long cap = 10;
+        
+          int _len_ops0 = 100;
+          struct dpu_hw_mdp_ops * ops = (struct dpu_hw_mdp_ops *) malloc(_len_ops0*sizeof(struct dpu_hw_mdp_ops));
+          for(int _i0 = 0; _i0 < _len_ops0; _i0++) {
+              ops[_i0].intf_audio_select = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].reset_ubwc = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_safe_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].setup_vsync_source = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_danger_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].setup_clk_force_ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].setup_cdm_output = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].setup_split_pipe = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          _setup_mdp_ops(ops,cap);
+          free(ops);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          unsigned long cap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ops0 = 1;
+          struct dpu_hw_mdp_ops * ops = (struct dpu_hw_mdp_ops *) malloc(_len_ops0*sizeof(struct dpu_hw_mdp_ops));
+          for(int _i0 = 0; _i0 < _len_ops0; _i0++) {
+              ops[_i0].intf_audio_select = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].reset_ubwc = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_safe_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].setup_vsync_source = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_danger_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].setup_clk_force_ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].setup_cdm_output = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].setup_split_pipe = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           _setup_mdp_ops(ops,cap);
           free(ops);
         

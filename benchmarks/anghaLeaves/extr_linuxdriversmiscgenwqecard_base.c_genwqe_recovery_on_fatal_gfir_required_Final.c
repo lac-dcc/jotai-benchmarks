@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ int genwqe_recovery_on_fatal_gfir_required(struct genwqe_dev *cd)
 	return (cd->slu_unitcfg & 0xFFFF0ull) >= 0x32170ull;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cd0 = 1;
+          int _len_cd0 = 65025;
           struct genwqe_dev * cd = (struct genwqe_dev *) malloc(_len_cd0*sizeof(struct genwqe_dev));
           for(int _i0 = 0; _i0 < _len_cd0; _i0++) {
-            cd[_i0].slu_unitcfg = ((-2 * (next_i()%2)) + 1) * next_i();
+              cd[_i0].slu_unitcfg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = genwqe_recovery_on_fatal_gfir_required(cd);
           printf("%d\n", benchRet); 
           free(cd);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_cd0 = 100;
           struct genwqe_dev * cd = (struct genwqe_dev *) malloc(_len_cd0*sizeof(struct genwqe_dev));
           for(int _i0 = 0; _i0 < _len_cd0; _i0++) {
-            cd[_i0].slu_unitcfg = ((-2 * (next_i()%2)) + 1) * next_i();
+              cd[_i0].slu_unitcfg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = genwqe_recovery_on_fatal_gfir_required(cd);
           printf("%d\n", benchRet); 
           free(cd);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_cd0 = 1;
+          struct genwqe_dev * cd = (struct genwqe_dev *) malloc(_len_cd0*sizeof(struct genwqe_dev));
+          for(int _i0 = 0; _i0 < _len_cd0; _i0++) {
+              cd[_i0].slu_unitcfg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = genwqe_recovery_on_fatal_gfir_required(cd);
+          printf("%d\n", benchRet); 
+          free(cd);
+        
+        break;
+    }
     default:
         usage();
         break;

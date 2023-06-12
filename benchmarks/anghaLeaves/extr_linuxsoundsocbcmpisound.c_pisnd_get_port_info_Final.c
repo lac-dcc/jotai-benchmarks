@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ __attribute__((used)) static void pisnd_get_port_info(
 	seq_port_info->midi_voices = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,24 +91,106 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int number = 100;
+        
           int _len_rmidi0 = 1;
           struct snd_rawmidi * rmidi = (struct snd_rawmidi *) malloc(_len_rmidi0*sizeof(struct snd_rawmidi));
           for(int _i0 = 0; _i0 < _len_rmidi0; _i0++) {
-            rmidi[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rmidi[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_seq_port_info0 = 1;
           struct snd_seq_port_info * seq_port_info = (struct snd_seq_port_info *) malloc(_len_seq_port_info0*sizeof(struct snd_seq_port_info));
           for(int _i0 = 0; _i0 < _len_seq_port_info0; _i0++) {
-            seq_port_info[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        seq_port_info[_i0].midi_voices = ((-2 * (next_i()%2)) + 1) * next_i();
+              seq_port_info[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          seq_port_info[_i0].midi_voices = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           pisnd_get_port_info(rmidi,number,seq_port_info);
           free(rmidi);
           free(seq_port_info);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int number = 255;
+        
+          int _len_rmidi0 = 65025;
+          struct snd_rawmidi * rmidi = (struct snd_rawmidi *) malloc(_len_rmidi0*sizeof(struct snd_rawmidi));
+          for(int _i0 = 0; _i0 < _len_rmidi0; _i0++) {
+              rmidi[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_seq_port_info0 = 65025;
+          struct snd_seq_port_info * seq_port_info = (struct snd_seq_port_info *) malloc(_len_seq_port_info0*sizeof(struct snd_seq_port_info));
+          for(int _i0 = 0; _i0 < _len_seq_port_info0; _i0++) {
+              seq_port_info[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          seq_port_info[_i0].midi_voices = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          pisnd_get_port_info(rmidi,number,seq_port_info);
+          free(rmidi);
+          free(seq_port_info);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int number = 10;
+        
+          int _len_rmidi0 = 100;
+          struct snd_rawmidi * rmidi = (struct snd_rawmidi *) malloc(_len_rmidi0*sizeof(struct snd_rawmidi));
+          for(int _i0 = 0; _i0 < _len_rmidi0; _i0++) {
+              rmidi[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_seq_port_info0 = 100;
+          struct snd_seq_port_info * seq_port_info = (struct snd_seq_port_info *) malloc(_len_seq_port_info0*sizeof(struct snd_seq_port_info));
+          for(int _i0 = 0; _i0 < _len_seq_port_info0; _i0++) {
+              seq_port_info[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          seq_port_info[_i0].midi_voices = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          pisnd_get_port_info(rmidi,number,seq_port_info);
+          free(rmidi);
+          free(seq_port_info);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int number = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rmidi0 = 1;
+          struct snd_rawmidi * rmidi = (struct snd_rawmidi *) malloc(_len_rmidi0*sizeof(struct snd_rawmidi));
+          for(int _i0 = 0; _i0 < _len_rmidi0; _i0++) {
+              rmidi[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_seq_port_info0 = 1;
+          struct snd_seq_port_info * seq_port_info = (struct snd_seq_port_info *) malloc(_len_seq_port_info0*sizeof(struct snd_seq_port_info));
+          for(int _i0 = 0; _i0 < _len_seq_port_info0; _i0++) {
+              seq_port_info[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          seq_port_info[_i0].midi_voices = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          pisnd_get_port_info(rmidi,number,seq_port_info);
+          free(rmidi);
+          free(seq_port_info);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -84,12 +87,6 @@ __attribute__((used)) static int mlx4_en_ethtool_add_mac_rule_by_ipv4(struct mlx
 #endif
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,30 +99,260 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int ipv4_dst = 100;
+        
           int _len_priv0 = 1;
           struct mlx4_en_priv * priv = (struct mlx4_en_priv *) malloc(_len_priv0*sizeof(struct mlx4_en_priv));
           for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
-            priv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_cmd0 = 1;
           struct ethtool_rxnfc * cmd = (struct ethtool_rxnfc *) malloc(_len_cmd0*sizeof(struct ethtool_rxnfc));
           for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
-            cmd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_rule_list_h0 = 1;
           struct list_head * rule_list_h = (struct list_head *) malloc(_len_rule_list_h0*sizeof(struct list_head));
           for(int _i0 = 0; _i0 < _len_rule_list_h0; _i0++) {
-            rule_list_h[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rule_list_h[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_spec_l20 = 1;
           struct mlx4_spec_list * spec_l2 = (struct mlx4_spec_list *) malloc(_len_spec_l20*sizeof(struct mlx4_spec_list));
           for(int _i0 = 0; _i0 < _len_spec_l20; _i0++) {
-            spec_l2[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              spec_l2[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = mlx4_en_ethtool_add_mac_rule_by_ipv4(priv,cmd,rule_list_h,spec_l2,ipv4_dst);
+          printf("%d\n", benchRet); 
+          free(priv);
+          free(cmd);
+          free(rule_list_h);
+          free(spec_l2);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int ipv4_dst = 255;
+        
+          int _len_priv0 = 65025;
+          struct mlx4_en_priv * priv = (struct mlx4_en_priv *) malloc(_len_priv0*sizeof(struct mlx4_en_priv));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cmd0 = 65025;
+          struct ethtool_rxnfc * cmd = (struct ethtool_rxnfc *) malloc(_len_cmd0*sizeof(struct ethtool_rxnfc));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rule_list_h0 = 65025;
+          struct list_head * rule_list_h = (struct list_head *) malloc(_len_rule_list_h0*sizeof(struct list_head));
+          for(int _i0 = 0; _i0 < _len_rule_list_h0; _i0++) {
+              rule_list_h[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_spec_l20 = 65025;
+          struct mlx4_spec_list * spec_l2 = (struct mlx4_spec_list *) malloc(_len_spec_l20*sizeof(struct mlx4_spec_list));
+          for(int _i0 = 0; _i0 < _len_spec_l20; _i0++) {
+              spec_l2[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mlx4_en_ethtool_add_mac_rule_by_ipv4(priv,cmd,rule_list_h,spec_l2,ipv4_dst);
+          printf("%d\n", benchRet); 
+          free(priv);
+          free(cmd);
+          free(rule_list_h);
+          free(spec_l2);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int ipv4_dst = 10;
+        
+          int _len_priv0 = 100;
+          struct mlx4_en_priv * priv = (struct mlx4_en_priv *) malloc(_len_priv0*sizeof(struct mlx4_en_priv));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cmd0 = 100;
+          struct ethtool_rxnfc * cmd = (struct ethtool_rxnfc *) malloc(_len_cmd0*sizeof(struct ethtool_rxnfc));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rule_list_h0 = 100;
+          struct list_head * rule_list_h = (struct list_head *) malloc(_len_rule_list_h0*sizeof(struct list_head));
+          for(int _i0 = 0; _i0 < _len_rule_list_h0; _i0++) {
+              rule_list_h[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_spec_l20 = 100;
+          struct mlx4_spec_list * spec_l2 = (struct mlx4_spec_list *) malloc(_len_spec_l20*sizeof(struct mlx4_spec_list));
+          for(int _i0 = 0; _i0 < _len_spec_l20; _i0++) {
+              spec_l2[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mlx4_en_ethtool_add_mac_rule_by_ipv4(priv,cmd,rule_list_h,spec_l2,ipv4_dst);
+          printf("%d\n", benchRet); 
+          free(priv);
+          free(cmd);
+          free(rule_list_h);
+          free(spec_l2);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int ipv4_dst = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_priv0 = 1;
+          struct mlx4_en_priv * priv = (struct mlx4_en_priv *) malloc(_len_priv0*sizeof(struct mlx4_en_priv));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cmd0 = 1;
+          struct ethtool_rxnfc * cmd = (struct ethtool_rxnfc *) malloc(_len_cmd0*sizeof(struct ethtool_rxnfc));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rule_list_h0 = 1;
+          struct list_head * rule_list_h = (struct list_head *) malloc(_len_rule_list_h0*sizeof(struct list_head));
+          for(int _i0 = 0; _i0 < _len_rule_list_h0; _i0++) {
+              rule_list_h[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_spec_l20 = 1;
+          struct mlx4_spec_list * spec_l2 = (struct mlx4_spec_list *) malloc(_len_spec_l20*sizeof(struct mlx4_spec_list));
+          for(int _i0 = 0; _i0 < _len_spec_l20; _i0++) {
+              spec_l2[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = mlx4_en_ethtool_add_mac_rule_by_ipv4(priv,cmd,rule_list_h,spec_l2,ipv4_dst);
           printf("%d\n", benchRet); 
           free(priv);

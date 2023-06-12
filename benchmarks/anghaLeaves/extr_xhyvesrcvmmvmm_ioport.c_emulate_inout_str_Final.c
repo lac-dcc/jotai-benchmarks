@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ emulate_inout_str(bool *retu)
 	return (0);	/* Return to userspace to finish emulation */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_retu0 = 1;
+          int _len_retu0 = 65025;
           int * retu = (int *) malloc(_len_retu0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_retu0; _i0++) {
             retu[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = emulate_inout_str(retu);
           printf("%d\n", benchRet); 
           free(retu);
@@ -102,13 +98,28 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_retu0; _i0++) {
             retu[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = emulate_inout_str(retu);
           printf("%d\n", benchRet); 
           free(retu);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_retu0 = 1;
+          int * retu = (int *) malloc(_len_retu0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_retu0; _i0++) {
+            retu[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = emulate_inout_str(retu);
+          printf("%d\n", benchRet); 
+          free(retu);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static inline int nilfs_segbuf_empty(struct nilfs_segment_
 	return segbuf->sb_sum.nblocks == segbuf->sb_sum.nsumblk;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,15 +76,125 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_segbuf0 = 65025;
+          struct nilfs_segment_buffer * segbuf = (struct nilfs_segment_buffer *) malloc(_len_segbuf0*sizeof(struct nilfs_segment_buffer));
+          for(int _i0 = 0; _i0 < _len_segbuf0; _i0++) {
+              segbuf[_i0].sb_sum.nblocks = ((-2 * (next_i()%2)) + 1) * next_i();
+          segbuf[_i0].sb_sum.nsumblk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = nilfs_segbuf_empty(segbuf);
+          printf("%d\n", benchRet); 
+          free(segbuf);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_segbuf0 = 100;
+          struct nilfs_segment_buffer * segbuf = (struct nilfs_segment_buffer *) malloc(_len_segbuf0*sizeof(struct nilfs_segment_buffer));
+          for(int _i0 = 0; _i0 < _len_segbuf0; _i0++) {
+              segbuf[_i0].sb_sum.nblocks = ((-2 * (next_i()%2)) + 1) * next_i();
+          segbuf[_i0].sb_sum.nsumblk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = nilfs_segbuf_empty(segbuf);
+          printf("%d\n", benchRet); 
+          free(segbuf);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_segbuf0 = 1;
           struct nilfs_segment_buffer * segbuf = (struct nilfs_segment_buffer *) malloc(_len_segbuf0*sizeof(struct nilfs_segment_buffer));
           for(int _i0 = 0; _i0 < _len_segbuf0; _i0++) {
-            segbuf[_i0].sb_sum.nblocks = ((-2 * (next_i()%2)) + 1) * next_i();
-        segbuf[_i0].sb_sum.nsumblk = ((-2 * (next_i()%2)) + 1) * next_i();
+              segbuf[_i0].sb_sum.nblocks = ((-2 * (next_i()%2)) + 1) * next_i();
+          segbuf[_i0].sb_sum.nsumblk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = nilfs_segbuf_empty(segbuf);
           printf("%d\n", benchRet); 
           free(segbuf);

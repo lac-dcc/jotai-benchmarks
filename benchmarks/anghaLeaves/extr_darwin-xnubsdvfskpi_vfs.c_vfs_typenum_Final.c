@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ vfs_typenum(mount_t mp)
 	return(mp->mnt_vtable->vfc_typenum);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,18 +79,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_mp0 = 65025;
+          struct TYPE_5__ * mp = (struct TYPE_5__ *) malloc(_len_mp0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_mp0; _i0++) {
+              int _len_mp__i0__mnt_vtable0 = 1;
+          mp[_i0].mnt_vtable = (struct TYPE_4__ *) malloc(_len_mp__i0__mnt_vtable0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_mp__i0__mnt_vtable0; _j0++) {
+              mp[_i0].mnt_vtable->vfc_typenum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = vfs_typenum(mp);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mp0; _aux++) {
+          free(mp[_aux].mnt_vtable);
+          }
+          free(mp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_mp0 = 100;
+          struct TYPE_5__ * mp = (struct TYPE_5__ *) malloc(_len_mp0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_mp0; _i0++) {
+              int _len_mp__i0__mnt_vtable0 = 1;
+          mp[_i0].mnt_vtable = (struct TYPE_4__ *) malloc(_len_mp__i0__mnt_vtable0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_mp__i0__mnt_vtable0; _j0++) {
+              mp[_i0].mnt_vtable->vfc_typenum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = vfs_typenum(mp);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mp0; _aux++) {
+          free(mp[_aux].mnt_vtable);
+          }
+          free(mp);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_mp0 = 1;
           struct TYPE_5__ * mp = (struct TYPE_5__ *) malloc(_len_mp0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_mp0; _i0++) {
               int _len_mp__i0__mnt_vtable0 = 1;
           mp[_i0].mnt_vtable = (struct TYPE_4__ *) malloc(_len_mp__i0__mnt_vtable0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_mp__i0__mnt_vtable0; _j0++) {
-            mp[_i0].mnt_vtable->vfc_typenum = ((-2 * (next_i()%2)) + 1) * next_i();
+              mp[_i0].mnt_vtable->vfc_typenum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = vfs_typenum(mp);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_mp0; _aux++) {

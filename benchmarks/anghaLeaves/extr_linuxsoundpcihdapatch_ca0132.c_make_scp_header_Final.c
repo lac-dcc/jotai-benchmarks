@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +77,6 @@ make_scp_header(unsigned int target_id, unsigned int source_id,
 	return header;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,13 +93,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int target_id = 100;
+        
           unsigned int source_id = 100;
+        
           unsigned int get_flag = 100;
+        
           unsigned int req = 100;
+        
           unsigned int device_flag = 100;
+        
           unsigned int resp_flag = 100;
+        
           unsigned int error_flag = 100;
+        
           unsigned int data_size = 100;
+        
           unsigned int benchRet = make_scp_header(target_id,source_id,get_flag,req,device_flag,resp_flag,error_flag,data_size);
           printf("%u\n", benchRet); 
         
@@ -114,13 +117,21 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int target_id = 255;
+        
           unsigned int source_id = 255;
+        
           unsigned int get_flag = 255;
+        
           unsigned int req = 255;
+        
           unsigned int device_flag = 255;
+        
           unsigned int resp_flag = 255;
+        
           unsigned int error_flag = 255;
+        
           unsigned int data_size = 255;
+        
           unsigned int benchRet = make_scp_header(target_id,source_id,get_flag,req,device_flag,resp_flag,error_flag,data_size);
           printf("%u\n", benchRet); 
         
@@ -130,19 +141,50 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int target_id = 10;
+        
           unsigned int source_id = 10;
+        
           unsigned int get_flag = 10;
+        
           unsigned int req = 10;
+        
           unsigned int device_flag = 10;
+        
           unsigned int resp_flag = 10;
+        
           unsigned int error_flag = 10;
+        
           unsigned int data_size = 10;
+        
           unsigned int benchRet = make_scp_header(target_id,source_id,get_flag,req,device_flag,resp_flag,error_flag,data_size);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int target_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int source_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int get_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int req = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int device_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int resp_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int error_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int data_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = make_scp_header(target_id,source_id,get_flag,req,device_flag,resp_flag,error_flag,data_size);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

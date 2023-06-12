@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -61,12 +61,6 @@ __attribute__((used)) static inline unsigned int oo_objects(struct kmem_cache_or
 	return x.x & OO_MASK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,17 +73,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           struct kmem_cache_order_objects x;
-        x.x = ((-2 * (next_i()%2)) + 1) * next_i();
+          x.x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           unsigned int benchRet = oo_objects(x);
           printf("%u\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

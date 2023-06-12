@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline u16 hpios_locked_mem_valid(struct consistent
 	return locked_mem_handle->size != 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,28 +76,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_locked_mem_handle0 = 1;
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_locked_mem_handle0 = 65025;
           struct consistent_dma_area * locked_mem_handle = (struct consistent_dma_area *) malloc(_len_locked_mem_handle0*sizeof(struct consistent_dma_area));
           for(int _i0 = 0; _i0 < _len_locked_mem_handle0; _i0++) {
-            locked_mem_handle[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              locked_mem_handle[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = hpios_locked_mem_valid(locked_mem_handle);
           printf("%d\n", benchRet); 
           free(locked_mem_handle);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_locked_mem_handle0 = 100;
           struct consistent_dma_area * locked_mem_handle = (struct consistent_dma_area *) malloc(_len_locked_mem_handle0*sizeof(struct consistent_dma_area));
           for(int _i0 = 0; _i0 < _len_locked_mem_handle0; _i0++) {
-            locked_mem_handle[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              locked_mem_handle[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = hpios_locked_mem_valid(locked_mem_handle);
+          printf("%d\n", benchRet); 
+          free(locked_mem_handle);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_locked_mem_handle0 = 1;
+          struct consistent_dma_area * locked_mem_handle = (struct consistent_dma_area *) malloc(_len_locked_mem_handle0*sizeof(struct consistent_dma_area));
+          for(int _i0 = 0; _i0 < _len_locked_mem_handle0; _i0++) {
+              locked_mem_handle[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = hpios_locked_mem_valid(locked_mem_handle);
           printf("%d\n", benchRet); 
           free(locked_mem_handle);

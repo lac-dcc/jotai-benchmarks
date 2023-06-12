@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ __attribute__((used)) static int attrRangeIntersect(struct attr *a, size_t *star
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,25 +86,162 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_a0 = 65025;
+          struct attr * a = (struct attr *) malloc(_len_a0*sizeof(struct attr));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              a[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_start0 = 65025;
+          unsigned long * start = (unsigned long *) malloc(_len_start0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_start0; _i0++) {
+            start[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_end0 = 65025;
+          unsigned long * end = (unsigned long *) malloc(_len_end0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_end0; _i0++) {
+            end[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = attrRangeIntersect(a,start,end);
+          printf("%d\n", benchRet); 
+          free(a);
+          free(start);
+          free(end);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_a0 = 100;
+          struct attr * a = (struct attr *) malloc(_len_a0*sizeof(struct attr));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              a[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_start0 = 100;
+          unsigned long * start = (unsigned long *) malloc(_len_start0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_start0; _i0++) {
+            start[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_end0 = 100;
+          unsigned long * end = (unsigned long *) malloc(_len_end0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_end0; _i0++) {
+            end[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = attrRangeIntersect(a,start,end);
+          printf("%d\n", benchRet); 
+          free(a);
+          free(start);
+          free(end);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_a0 = 1;
           struct attr * a = (struct attr *) malloc(_len_a0*sizeof(struct attr));
           for(int _i0 = 0; _i0 < _len_a0; _i0++) {
-            a[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
-        a[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+              a[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_start0 = 1;
           unsigned long * start = (unsigned long *) malloc(_len_start0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_start0; _i0++) {
             start[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_end0 = 1;
           unsigned long * end = (unsigned long *) malloc(_len_end0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_end0; _i0++) {
             end[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = attrRangeIntersect(a,start,end);
           printf("%d\n", benchRet); 
           free(a);

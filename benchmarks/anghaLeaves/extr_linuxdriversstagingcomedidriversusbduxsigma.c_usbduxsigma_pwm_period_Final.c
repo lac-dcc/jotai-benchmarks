@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +81,6 @@ __attribute__((used)) static int usbduxsigma_pwm_period(struct comedi_device *de
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,21 +97,27 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int period = 100;
+        
           int _len_dev0 = 1;
           struct comedi_device * dev = (struct comedi_device *) malloc(_len_dev0*sizeof(struct comedi_device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
               int _len_dev__i0__private0 = 1;
           dev[_i0].private = (struct usbduxsigma_private *) malloc(_len_dev__i0__private0*sizeof(struct usbduxsigma_private));
           for(int _j0 = 0; _j0 < _len_dev__i0__private0; _j0++) {
-            dev[_i0].private->pwm_delay = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].private->pwm_period = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].private->pwm_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].private->pwm_period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_s0 = 1;
           struct comedi_subdevice * s = (struct comedi_subdevice *) malloc(_len_s0*sizeof(struct comedi_subdevice));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = usbduxsigma_pwm_period(dev,s,period);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_dev0; _aux++) {
@@ -125,7 +128,111 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int period = 255;
+        
+          int _len_dev0 = 65025;
+          struct comedi_device * dev = (struct comedi_device *) malloc(_len_dev0*sizeof(struct comedi_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              int _len_dev__i0__private0 = 1;
+          dev[_i0].private = (struct usbduxsigma_private *) malloc(_len_dev__i0__private0*sizeof(struct usbduxsigma_private));
+          for(int _j0 = 0; _j0 < _len_dev__i0__private0; _j0++) {
+              dev[_i0].private->pwm_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].private->pwm_period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_s0 = 65025;
+          struct comedi_subdevice * s = (struct comedi_subdevice *) malloc(_len_s0*sizeof(struct comedi_subdevice));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = usbduxsigma_pwm_period(dev,s,period);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(dev[_aux].private);
+          }
+          free(dev);
+          free(s);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int period = 10;
+        
+          int _len_dev0 = 100;
+          struct comedi_device * dev = (struct comedi_device *) malloc(_len_dev0*sizeof(struct comedi_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              int _len_dev__i0__private0 = 1;
+          dev[_i0].private = (struct usbduxsigma_private *) malloc(_len_dev__i0__private0*sizeof(struct usbduxsigma_private));
+          for(int _j0 = 0; _j0 < _len_dev__i0__private0; _j0++) {
+              dev[_i0].private->pwm_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].private->pwm_period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_s0 = 100;
+          struct comedi_subdevice * s = (struct comedi_subdevice *) malloc(_len_s0*sizeof(struct comedi_subdevice));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = usbduxsigma_pwm_period(dev,s,period);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(dev[_aux].private);
+          }
+          free(dev);
+          free(s);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dev0 = 1;
+          struct comedi_device * dev = (struct comedi_device *) malloc(_len_dev0*sizeof(struct comedi_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              int _len_dev__i0__private0 = 1;
+          dev[_i0].private = (struct usbduxsigma_private *) malloc(_len_dev__i0__private0*sizeof(struct usbduxsigma_private));
+          for(int _j0 = 0; _j0 < _len_dev__i0__private0; _j0++) {
+              dev[_i0].private->pwm_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].private->pwm_period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_s0 = 1;
+          struct comedi_subdevice * s = (struct comedi_subdevice *) malloc(_len_s0*sizeof(struct comedi_subdevice));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = usbduxsigma_pwm_period(dev,s,period);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(dev[_aux].private);
+          }
+          free(dev);
+          free(s);
+        
+        break;
+    }
     default:
         usage();
         break;

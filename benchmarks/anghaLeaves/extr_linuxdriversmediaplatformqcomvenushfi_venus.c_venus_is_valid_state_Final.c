@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static bool venus_is_valid_state(struct venus_hfi_device *
 	return hdev->state != VENUS_STATE_DEINIT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_hdev0 = 1;
+          int _len_hdev0 = 65025;
           struct venus_hfi_device * hdev = (struct venus_hfi_device *) malloc(_len_hdev0*sizeof(struct venus_hfi_device));
           for(int _i0 = 0; _i0 < _len_hdev0; _i0++) {
-            hdev[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+              hdev[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = venus_is_valid_state(hdev);
           printf("%d\n", benchRet); 
           free(hdev);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_hdev0 = 100;
           struct venus_hfi_device * hdev = (struct venus_hfi_device *) malloc(_len_hdev0*sizeof(struct venus_hfi_device));
           for(int _i0 = 0; _i0 < _len_hdev0; _i0++) {
-            hdev[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+              hdev[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = venus_is_valid_state(hdev);
           printf("%d\n", benchRet); 
           free(hdev);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_hdev0 = 1;
+          struct venus_hfi_device * hdev = (struct venus_hfi_device *) malloc(_len_hdev0*sizeof(struct venus_hfi_device));
+          for(int _i0 = 0; _i0 < _len_hdev0; _i0++) {
+              hdev[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = venus_is_valid_state(hdev);
+          printf("%d\n", benchRet); 
+          free(hdev);
+        
+        break;
+    }
     default:
         usage();
         break;

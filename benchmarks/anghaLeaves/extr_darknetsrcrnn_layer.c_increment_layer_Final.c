@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +76,6 @@ __attribute__((used)) static void increment_layer(layer *l, int steps)
 #endif
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,22 +92,90 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int steps = 100;
+        
           int _len_l0 = 1;
           struct TYPE_3__ * l = (struct TYPE_3__ *) malloc(_len_l0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_l0; _i0++) {
-            l[_i0].outputs = ((-2 * (next_i()%2)) + 1) * next_i();
-        l[_i0].batch = ((-2 * (next_i()%2)) + 1) * next_i();
-        l[_i0].output = ((-2 * (next_i()%2)) + 1) * next_i();
-        l[_i0].delta = ((-2 * (next_i()%2)) + 1) * next_i();
-        l[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
-        l[_i0].x_norm = ((-2 * (next_i()%2)) + 1) * next_i();
+              l[_i0].outputs = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].batch = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].output = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].delta = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].x_norm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           increment_layer(l,steps);
           free(l);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int steps = 255;
+        
+          int _len_l0 = 65025;
+          struct TYPE_3__ * l = (struct TYPE_3__ *) malloc(_len_l0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_l0; _i0++) {
+              l[_i0].outputs = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].batch = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].output = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].delta = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].x_norm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          increment_layer(l,steps);
+          free(l);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int steps = 10;
+        
+          int _len_l0 = 100;
+          struct TYPE_3__ * l = (struct TYPE_3__ *) malloc(_len_l0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_l0; _i0++) {
+              l[_i0].outputs = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].batch = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].output = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].delta = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].x_norm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          increment_layer(l,steps);
+          free(l);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int steps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_l0 = 1;
+          struct TYPE_3__ * l = (struct TYPE_3__ *) malloc(_len_l0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_l0; _i0++) {
+              l[_i0].outputs = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].batch = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].output = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].delta = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].x_norm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          increment_layer(l,steps);
+          free(l);
+        
+        break;
+    }
     default:
         usage();
         break;

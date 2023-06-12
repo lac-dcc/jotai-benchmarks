@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ __attribute__((used)) static void hdmi_checksum_audio_infoframe(struct hdmi_audi
 	hdmi_ai->checksum = -sum;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,14 +83,78 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 115
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 42
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 36
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 51
+          // ------------------------------- 
+
+          int _len_hdmi_ai0 = 65025;
+          struct hdmi_audio_infoframe * hdmi_ai = (struct hdmi_audio_infoframe *) malloc(_len_hdmi_ai0*sizeof(struct hdmi_audio_infoframe));
+          for(int _i0 = 0; _i0 < _len_hdmi_ai0; _i0++) {
+              hdmi_ai[_i0].checksum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          hdmi_checksum_audio_infoframe(hdmi_ai);
+          free(hdmi_ai);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 115
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 42
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 36
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 51
+          // ------------------------------- 
+
           int _len_hdmi_ai0 = 100;
           struct hdmi_audio_infoframe * hdmi_ai = (struct hdmi_audio_infoframe *) malloc(_len_hdmi_ai0*sizeof(struct hdmi_audio_infoframe));
           for(int _i0 = 0; _i0 < _len_hdmi_ai0; _i0++) {
-            hdmi_ai[_i0].checksum = ((-2 * (next_i()%2)) + 1) * next_i();
+              hdmi_ai[_i0].checksum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           hdmi_checksum_audio_infoframe(hdmi_ai);
           free(hdmi_ai);
         

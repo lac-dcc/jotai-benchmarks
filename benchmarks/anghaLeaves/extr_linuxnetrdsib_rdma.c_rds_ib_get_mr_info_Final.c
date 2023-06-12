@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ void rds_ib_get_mr_info(struct rds_ib_device *rds_ibdev, struct rds_info_rdma_co
 	iinfo->rdma_mr_size = pool_1m->fmr_attr.max_pages;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,25 +81,31 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rds_ibdev0 = 1;
+          int _len_rds_ibdev0 = 65025;
           struct rds_ib_device * rds_ibdev = (struct rds_ib_device *) malloc(_len_rds_ibdev0*sizeof(struct rds_ib_device));
           for(int _i0 = 0; _i0 < _len_rds_ibdev0; _i0++) {
               int _len_rds_ibdev__i0__mr_1m_pool0 = 1;
           rds_ibdev[_i0].mr_1m_pool = (struct rds_ib_mr_pool *) malloc(_len_rds_ibdev__i0__mr_1m_pool0*sizeof(struct rds_ib_mr_pool));
           for(int _j0 = 0; _j0 < _len_rds_ibdev__i0__mr_1m_pool0; _j0++) {
-            rds_ibdev[_i0].mr_1m_pool->fmr_attr.max_pages = ((-2 * (next_i()%2)) + 1) * next_i();
-        rds_ibdev[_i0].mr_1m_pool->max_items = ((-2 * (next_i()%2)) + 1) * next_i();
+              rds_ibdev[_i0].mr_1m_pool->fmr_attr.max_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          rds_ibdev[_i0].mr_1m_pool->max_items = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
-          int _len_iinfo0 = 1;
+        
+          int _len_iinfo0 = 65025;
           struct rds_info_rdma_connection * iinfo = (struct rds_info_rdma_connection *) malloc(_len_iinfo0*sizeof(struct rds_info_rdma_connection));
           for(int _i0 = 0; _i0 < _len_iinfo0; _i0++) {
-            iinfo[_i0].rdma_mr_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        iinfo[_i0].rdma_mr_max = ((-2 * (next_i()%2)) + 1) * next_i();
+              iinfo[_i0].rdma_mr_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          iinfo[_i0].rdma_mr_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           rds_ib_get_mr_info(rds_ibdev,iinfo);
           for(int _aux = 0; _aux < _len_rds_ibdev0; _aux++) {
           free(rds_ibdev[_aux].mr_1m_pool);
@@ -113,7 +115,74 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_rds_ibdev0 = 100;
+          struct rds_ib_device * rds_ibdev = (struct rds_ib_device *) malloc(_len_rds_ibdev0*sizeof(struct rds_ib_device));
+          for(int _i0 = 0; _i0 < _len_rds_ibdev0; _i0++) {
+              int _len_rds_ibdev__i0__mr_1m_pool0 = 1;
+          rds_ibdev[_i0].mr_1m_pool = (struct rds_ib_mr_pool *) malloc(_len_rds_ibdev__i0__mr_1m_pool0*sizeof(struct rds_ib_mr_pool));
+          for(int _j0 = 0; _j0 < _len_rds_ibdev__i0__mr_1m_pool0; _j0++) {
+              rds_ibdev[_i0].mr_1m_pool->fmr_attr.max_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          rds_ibdev[_i0].mr_1m_pool->max_items = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_iinfo0 = 100;
+          struct rds_info_rdma_connection * iinfo = (struct rds_info_rdma_connection *) malloc(_len_iinfo0*sizeof(struct rds_info_rdma_connection));
+          for(int _i0 = 0; _i0 < _len_iinfo0; _i0++) {
+              iinfo[_i0].rdma_mr_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          iinfo[_i0].rdma_mr_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          rds_ib_get_mr_info(rds_ibdev,iinfo);
+          for(int _aux = 0; _aux < _len_rds_ibdev0; _aux++) {
+          free(rds_ibdev[_aux].mr_1m_pool);
+          }
+          free(rds_ibdev);
+          free(iinfo);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_rds_ibdev0 = 1;
+          struct rds_ib_device * rds_ibdev = (struct rds_ib_device *) malloc(_len_rds_ibdev0*sizeof(struct rds_ib_device));
+          for(int _i0 = 0; _i0 < _len_rds_ibdev0; _i0++) {
+              int _len_rds_ibdev__i0__mr_1m_pool0 = 1;
+          rds_ibdev[_i0].mr_1m_pool = (struct rds_ib_mr_pool *) malloc(_len_rds_ibdev__i0__mr_1m_pool0*sizeof(struct rds_ib_mr_pool));
+          for(int _j0 = 0; _j0 < _len_rds_ibdev__i0__mr_1m_pool0; _j0++) {
+              rds_ibdev[_i0].mr_1m_pool->fmr_attr.max_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          rds_ibdev[_i0].mr_1m_pool->max_items = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_iinfo0 = 1;
+          struct rds_info_rdma_connection * iinfo = (struct rds_info_rdma_connection *) malloc(_len_iinfo0*sizeof(struct rds_info_rdma_connection));
+          for(int _i0 = 0; _i0 < _len_iinfo0; _i0++) {
+              iinfo[_i0].rdma_mr_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          iinfo[_i0].rdma_mr_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          rds_ib_get_mr_info(rds_ibdev,iinfo);
+          for(int _aux = 0; _aux < _len_rds_ibdev0; _aux++) {
+          free(rds_ibdev[_aux].mr_1m_pool);
+          }
+          free(rds_ibdev);
+          free(iinfo);
+        
+        break;
+    }
     default:
         usage();
         break;

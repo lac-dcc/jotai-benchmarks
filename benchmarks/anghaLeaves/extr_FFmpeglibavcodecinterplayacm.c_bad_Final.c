@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static int bad(InterplayACMContext *s, unsigned ind, unsig
     return AVERROR_INVALIDDATA;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,12 +80,34 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int ind = 100;
+        
           unsigned int col = 100;
+        
           int _len_s0 = 1;
           int * s = (int *) malloc(_len_s0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
             s[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = bad(s,ind,col);
+          printf("%d\n", benchRet); 
+          free(s);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned int ind = 255;
+        
+          unsigned int col = 255;
+        
+          int _len_s0 = 65025;
+          int * s = (int *) malloc(_len_s0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+            s[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = bad(s,ind,col);
           printf("%d\n", benchRet); 
           free(s);
@@ -97,22 +115,43 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned int ind = 10;
+        
           unsigned int col = 10;
+        
           int _len_s0 = 100;
           int * s = (int *) malloc(_len_s0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
             s[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = bad(s,ind,col);
           printf("%d\n", benchRet); 
           free(s);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int ind = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int col = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_s0 = 1;
+          int * s = (int *) malloc(_len_s0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+            s[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = bad(s,ind,col);
+          printf("%d\n", benchRet); 
+          free(s);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -205,12 +206,6 @@ errno_t mach_to_bsd_errno(kern_return_t mach_err)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -227,6 +222,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int mach_err = 100;
+        
           int benchRet = mach_to_bsd_errno(mach_err);
           printf("%d\n", benchRet); 
         
@@ -236,6 +232,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int mach_err = 255;
+        
           int benchRet = mach_to_bsd_errno(mach_err);
           printf("%d\n", benchRet); 
         
@@ -245,12 +242,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int mach_err = 10;
+        
           int benchRet = mach_to_bsd_errno(mach_err);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int mach_err = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = mach_to_bsd_errno(mach_err);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

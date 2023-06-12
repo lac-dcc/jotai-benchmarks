@@ -66,12 +66,6 @@ __attribute__((used)) static inline u32 ctd_type_source_ctl(int source, int cont
 		(source << CTD_SOURCE_SHFT) | control;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,7 +82,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int source = 100;
+        
           int control = 100;
+        
           int benchRet = ctd_type_source_ctl(source,control);
           printf("%d\n", benchRet); 
         
@@ -98,7 +94,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int source = 255;
+        
           int control = 255;
+        
           int benchRet = ctd_type_source_ctl(source,control);
           printf("%d\n", benchRet); 
         
@@ -108,13 +106,14 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int source = 10;
+        
           int control = 10;
+        
           int benchRet = ctd_type_source_ctl(source,control);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

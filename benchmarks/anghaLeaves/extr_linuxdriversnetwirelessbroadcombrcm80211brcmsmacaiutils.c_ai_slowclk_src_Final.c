@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static uint ai_slowclk_src(struct si_pub *sih, struct bcma
 	return SCC_SS_XTAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,19 +77,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_sih0 = 1;
+          int _len_sih0 = 65025;
           struct si_pub * sih = (struct si_pub *) malloc(_len_sih0*sizeof(struct si_pub));
           for(int _i0 = 0; _i0 < _len_sih0; _i0++) {
-            sih[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              sih[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_cc0 = 1;
+        
+          int _len_cc0 = 65025;
           struct bcma_device * cc = (struct bcma_device *) malloc(_len_cc0*sizeof(struct bcma_device));
           for(int _i0 = 0; _i0 < _len_cc0; _i0++) {
-            cc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              cc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ai_slowclk_src(sih,cc);
           printf("%d\n", benchRet); 
           free(sih);
@@ -101,7 +101,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_sih0 = 100;
+          struct si_pub * sih = (struct si_pub *) malloc(_len_sih0*sizeof(struct si_pub));
+          for(int _i0 = 0; _i0 < _len_sih0; _i0++) {
+              sih[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cc0 = 100;
+          struct bcma_device * cc = (struct bcma_device *) malloc(_len_cc0*sizeof(struct bcma_device));
+          for(int _i0 = 0; _i0 < _len_cc0; _i0++) {
+              cc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ai_slowclk_src(sih,cc);
+          printf("%d\n", benchRet); 
+          free(sih);
+          free(cc);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_sih0 = 1;
+          struct si_pub * sih = (struct si_pub *) malloc(_len_sih0*sizeof(struct si_pub));
+          for(int _i0 = 0; _i0 < _len_sih0; _i0++) {
+              sih[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cc0 = 1;
+          struct bcma_device * cc = (struct bcma_device *) malloc(_len_cc0*sizeof(struct bcma_device));
+          for(int _i0 = 0; _i0 < _len_cc0; _i0++) {
+              cc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ai_slowclk_src(sih,cc);
+          printf("%d\n", benchRet); 
+          free(sih);
+          free(cc);
+        
+        break;
+    }
     default:
         usage();
         break;

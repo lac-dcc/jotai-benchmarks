@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ bool qed_mcp_is_init(struct qed_hwfn *p_hwfn)
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,18 +78,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_p_hwfn0 = 65025;
+          struct qed_hwfn * p_hwfn = (struct qed_hwfn *) malloc(_len_p_hwfn0*sizeof(struct qed_hwfn));
+          for(int _i0 = 0; _i0 < _len_p_hwfn0; _i0++) {
+              int _len_p_hwfn__i0__mcp_info0 = 1;
+          p_hwfn[_i0].mcp_info = (struct TYPE_2__ *) malloc(_len_p_hwfn__i0__mcp_info0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_p_hwfn__i0__mcp_info0; _j0++) {
+              p_hwfn[_i0].mcp_info->public_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = qed_mcp_is_init(p_hwfn);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_p_hwfn0; _aux++) {
+          free(p_hwfn[_aux].mcp_info);
+          }
+          free(p_hwfn);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_p_hwfn0 = 100;
+          struct qed_hwfn * p_hwfn = (struct qed_hwfn *) malloc(_len_p_hwfn0*sizeof(struct qed_hwfn));
+          for(int _i0 = 0; _i0 < _len_p_hwfn0; _i0++) {
+              int _len_p_hwfn__i0__mcp_info0 = 1;
+          p_hwfn[_i0].mcp_info = (struct TYPE_2__ *) malloc(_len_p_hwfn__i0__mcp_info0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_p_hwfn__i0__mcp_info0; _j0++) {
+              p_hwfn[_i0].mcp_info->public_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = qed_mcp_is_init(p_hwfn);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_p_hwfn0; _aux++) {
+          free(p_hwfn[_aux].mcp_info);
+          }
+          free(p_hwfn);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_p_hwfn0 = 1;
           struct qed_hwfn * p_hwfn = (struct qed_hwfn *) malloc(_len_p_hwfn0*sizeof(struct qed_hwfn));
           for(int _i0 = 0; _i0 < _len_p_hwfn0; _i0++) {
               int _len_p_hwfn__i0__mcp_info0 = 1;
           p_hwfn[_i0].mcp_info = (struct TYPE_2__ *) malloc(_len_p_hwfn__i0__mcp_info0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_p_hwfn__i0__mcp_info0; _j0++) {
-            p_hwfn[_i0].mcp_info->public_base = ((-2 * (next_i()%2)) + 1) * next_i();
+              p_hwfn[_i0].mcp_info->public_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = qed_mcp_is_init(p_hwfn);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_p_hwfn0; _aux++) {

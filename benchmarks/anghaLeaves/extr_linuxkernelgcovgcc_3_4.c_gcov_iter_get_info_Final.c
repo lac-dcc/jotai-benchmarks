@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ struct gcov_info *gcov_iter_get_info(struct gcov_iterator *iter)
 	return iter->info;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,18 +75,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_iter0 = 65025;
+          struct gcov_iterator * iter = (struct gcov_iterator *) malloc(_len_iter0*sizeof(struct gcov_iterator));
+          for(int _i0 = 0; _i0 < _len_iter0; _i0++) {
+              int _len_iter__i0__info0 = 1;
+          iter[_i0].info = (struct gcov_info *) malloc(_len_iter__i0__info0*sizeof(struct gcov_info));
+          for(int _j0 = 0; _j0 < _len_iter__i0__info0; _j0++) {
+              iter[_i0].info->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct gcov_info * benchRet = gcov_iter_get_info(iter);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_iter0; _aux++) {
+          free(iter[_aux].info);
+          }
+          free(iter);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_iter0 = 100;
+          struct gcov_iterator * iter = (struct gcov_iterator *) malloc(_len_iter0*sizeof(struct gcov_iterator));
+          for(int _i0 = 0; _i0 < _len_iter0; _i0++) {
+              int _len_iter__i0__info0 = 1;
+          iter[_i0].info = (struct gcov_info *) malloc(_len_iter__i0__info0*sizeof(struct gcov_info));
+          for(int _j0 = 0; _j0 < _len_iter__i0__info0; _j0++) {
+              iter[_i0].info->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct gcov_info * benchRet = gcov_iter_get_info(iter);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_iter0; _aux++) {
+          free(iter[_aux].info);
+          }
+          free(iter);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_iter0 = 1;
           struct gcov_iterator * iter = (struct gcov_iterator *) malloc(_len_iter0*sizeof(struct gcov_iterator));
           for(int _i0 = 0; _i0 < _len_iter0; _i0++) {
               int _len_iter__i0__info0 = 1;
           iter[_i0].info = (struct gcov_info *) malloc(_len_iter__i0__info0*sizeof(struct gcov_info));
           for(int _j0 = 0; _j0 < _len_iter__i0__info0; _j0++) {
-            iter[_i0].info->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              iter[_i0].info->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct gcov_info * benchRet = gcov_iter_get_info(iter);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_iter0; _aux++) {

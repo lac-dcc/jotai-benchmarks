@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -116,12 +119,6 @@ int check_alloc_btres_lock(struct bttv *btv, struct bttv_fh *fh, int bit)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -134,29 +131,255 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 45
+          // dynamic_instructions_O0 : 45
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 30
+          // dynamic_instructions_Oz : 30
+          // ------------------------------- 
+
           int bit = 100;
+        
           int _len_btv0 = 1;
           struct bttv * btv = (struct bttv *) malloc(_len_btv0*sizeof(struct bttv));
           for(int _i0 = 0; _i0 < _len_btv0; _i0++) {
-            btv[_i0].resources = ((-2 * (next_i()%2)) + 1) * next_i();
-        btv[_i0].vbi_end = ((-2 * (next_i()%2)) + 1) * next_i();
-        btv[_i0].crop_start = ((-2 * (next_i()%2)) + 1) * next_i();
+              btv[_i0].resources = ((-2 * (next_i()%2)) + 1) * next_i();
+          btv[_i0].vbi_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          btv[_i0].crop_start = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_btv__i0__crop0 = 1;
           btv[_i0].crop = (struct TYPE_5__ *) malloc(_len_btv__i0__crop0*sizeof(struct TYPE_5__));
           for(int _j0 = 0; _j0 < _len_btv__i0__crop0; _j0++) {
-            btv[_i0].crop->rect.top = ((-2 * (next_i()%2)) + 1) * next_i();
+              btv[_i0].crop->rect.top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           int _len_fh0 = 1;
           struct bttv_fh * fh = (struct bttv_fh *) malloc(_len_fh0*sizeof(struct bttv_fh));
           for(int _i0 = 0; _i0 < _len_fh0; _i0++) {
-            fh[_i0].resources = ((-2 * (next_i()%2)) + 1) * next_i();
-        fh[_i0].vbi_fmt.end = ((-2 * (next_i()%2)) + 1) * next_i();
-        fh[_i0].do_crop = ((-2 * (next_i()%2)) + 1) * next_i();
+              fh[_i0].resources = ((-2 * (next_i()%2)) + 1) * next_i();
+          fh[_i0].vbi_fmt.end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          fh[_i0].do_crop = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = check_alloc_btres_lock(btv,fh,bit);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_btv0; _aux++) {
+          free(btv[_aux].crop);
+          }
+          free(btv);
+          free(fh);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int bit = 255;
+        
+          int _len_btv0 = 65025;
+          struct bttv * btv = (struct bttv *) malloc(_len_btv0*sizeof(struct bttv));
+          for(int _i0 = 0; _i0 < _len_btv0; _i0++) {
+              btv[_i0].resources = ((-2 * (next_i()%2)) + 1) * next_i();
+          btv[_i0].vbi_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          btv[_i0].crop_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_btv__i0__crop0 = 1;
+          btv[_i0].crop = (struct TYPE_5__ *) malloc(_len_btv__i0__crop0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_btv__i0__crop0; _j0++) {
+              btv[_i0].crop->rect.top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int _len_fh0 = 65025;
+          struct bttv_fh * fh = (struct bttv_fh *) malloc(_len_fh0*sizeof(struct bttv_fh));
+          for(int _i0 = 0; _i0 < _len_fh0; _i0++) {
+              fh[_i0].resources = ((-2 * (next_i()%2)) + 1) * next_i();
+          fh[_i0].vbi_fmt.end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          fh[_i0].do_crop = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = check_alloc_btres_lock(btv,fh,bit);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_btv0; _aux++) {
+          free(btv[_aux].crop);
+          }
+          free(btv);
+          free(fh);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int bit = 10;
+        
+          int _len_btv0 = 100;
+          struct bttv * btv = (struct bttv *) malloc(_len_btv0*sizeof(struct bttv));
+          for(int _i0 = 0; _i0 < _len_btv0; _i0++) {
+              btv[_i0].resources = ((-2 * (next_i()%2)) + 1) * next_i();
+          btv[_i0].vbi_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          btv[_i0].crop_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_btv__i0__crop0 = 1;
+          btv[_i0].crop = (struct TYPE_5__ *) malloc(_len_btv__i0__crop0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_btv__i0__crop0; _j0++) {
+              btv[_i0].crop->rect.top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int _len_fh0 = 100;
+          struct bttv_fh * fh = (struct bttv_fh *) malloc(_len_fh0*sizeof(struct bttv_fh));
+          for(int _i0 = 0; _i0 < _len_fh0; _i0++) {
+              fh[_i0].resources = ((-2 * (next_i()%2)) + 1) * next_i();
+          fh[_i0].vbi_fmt.end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          fh[_i0].do_crop = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = check_alloc_btres_lock(btv,fh,bit);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_btv0; _aux++) {
+          free(btv[_aux].crop);
+          }
+          free(btv);
+          free(fh);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int bit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_btv0 = 1;
+          struct bttv * btv = (struct bttv *) malloc(_len_btv0*sizeof(struct bttv));
+          for(int _i0 = 0; _i0 < _len_btv0; _i0++) {
+              btv[_i0].resources = ((-2 * (next_i()%2)) + 1) * next_i();
+          btv[_i0].vbi_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          btv[_i0].crop_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_btv__i0__crop0 = 1;
+          btv[_i0].crop = (struct TYPE_5__ *) malloc(_len_btv__i0__crop0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_btv__i0__crop0; _j0++) {
+              btv[_i0].crop->rect.top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int _len_fh0 = 1;
+          struct bttv_fh * fh = (struct bttv_fh *) malloc(_len_fh0*sizeof(struct bttv_fh));
+          for(int _i0 = 0; _i0 < _len_fh0; _i0++) {
+              fh[_i0].resources = ((-2 * (next_i()%2)) + 1) * next_i();
+          fh[_i0].vbi_fmt.end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          fh[_i0].do_crop = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = check_alloc_btres_lock(btv,fh,bit);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_btv0; _aux++) {

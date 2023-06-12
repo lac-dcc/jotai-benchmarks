@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ __attribute__((used)) static void dpcm_init_runtime_hw(struct snd_pcm_runtime *r
 	runtime->hw.rates = stream->rates;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,29 +86,173 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_runtime0 = 65025;
+          struct snd_pcm_runtime * runtime = (struct snd_pcm_runtime *) malloc(_len_runtime0*sizeof(struct snd_pcm_runtime));
+          for(int _i0 = 0; _i0 < _len_runtime0; _i0++) {
+              runtime[_i0].hw.formats = ((-2 * (next_i()%2)) + 1) * next_i();
+          runtime[_i0].hw.rates = ((-2 * (next_i()%2)) + 1) * next_i();
+          runtime[_i0].hw.channels_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          runtime[_i0].hw.channels_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          runtime[_i0].hw.rate_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          runtime[_i0].hw.rate_min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_stream0 = 65025;
+          struct snd_soc_pcm_stream * stream = (struct snd_soc_pcm_stream *) malloc(_len_stream0*sizeof(struct snd_soc_pcm_stream));
+          for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
+              stream[_i0].formats = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].rates = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].channels_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].channels_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].rate_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].rate_min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          dpcm_init_runtime_hw(runtime,stream);
+          free(runtime);
+          free(stream);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_runtime0 = 100;
+          struct snd_pcm_runtime * runtime = (struct snd_pcm_runtime *) malloc(_len_runtime0*sizeof(struct snd_pcm_runtime));
+          for(int _i0 = 0; _i0 < _len_runtime0; _i0++) {
+              runtime[_i0].hw.formats = ((-2 * (next_i()%2)) + 1) * next_i();
+          runtime[_i0].hw.rates = ((-2 * (next_i()%2)) + 1) * next_i();
+          runtime[_i0].hw.channels_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          runtime[_i0].hw.channels_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          runtime[_i0].hw.rate_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          runtime[_i0].hw.rate_min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_stream0 = 100;
+          struct snd_soc_pcm_stream * stream = (struct snd_soc_pcm_stream *) malloc(_len_stream0*sizeof(struct snd_soc_pcm_stream));
+          for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
+              stream[_i0].formats = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].rates = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].channels_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].channels_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].rate_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].rate_min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          dpcm_init_runtime_hw(runtime,stream);
+          free(runtime);
+          free(stream);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int _len_runtime0 = 1;
           struct snd_pcm_runtime * runtime = (struct snd_pcm_runtime *) malloc(_len_runtime0*sizeof(struct snd_pcm_runtime));
           for(int _i0 = 0; _i0 < _len_runtime0; _i0++) {
-            runtime[_i0].hw.formats = ((-2 * (next_i()%2)) + 1) * next_i();
-        runtime[_i0].hw.rates = ((-2 * (next_i()%2)) + 1) * next_i();
-        runtime[_i0].hw.channels_max = ((-2 * (next_i()%2)) + 1) * next_i();
-        runtime[_i0].hw.channels_min = ((-2 * (next_i()%2)) + 1) * next_i();
-        runtime[_i0].hw.rate_max = ((-2 * (next_i()%2)) + 1) * next_i();
-        runtime[_i0].hw.rate_min = ((-2 * (next_i()%2)) + 1) * next_i();
+              runtime[_i0].hw.formats = ((-2 * (next_i()%2)) + 1) * next_i();
+          runtime[_i0].hw.rates = ((-2 * (next_i()%2)) + 1) * next_i();
+          runtime[_i0].hw.channels_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          runtime[_i0].hw.channels_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          runtime[_i0].hw.rate_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          runtime[_i0].hw.rate_min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_stream0 = 1;
           struct snd_soc_pcm_stream * stream = (struct snd_soc_pcm_stream *) malloc(_len_stream0*sizeof(struct snd_soc_pcm_stream));
           for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
-            stream[_i0].formats = ((-2 * (next_i()%2)) + 1) * next_i();
-        stream[_i0].rates = ((-2 * (next_i()%2)) + 1) * next_i();
-        stream[_i0].channels_max = ((-2 * (next_i()%2)) + 1) * next_i();
-        stream[_i0].channels_min = ((-2 * (next_i()%2)) + 1) * next_i();
-        stream[_i0].rate_max = ((-2 * (next_i()%2)) + 1) * next_i();
-        stream[_i0].rate_min = ((-2 * (next_i()%2)) + 1) * next_i();
+              stream[_i0].formats = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].rates = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].channels_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].channels_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].rate_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].rate_min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           dpcm_init_runtime_hw(runtime,stream);
           free(runtime);
           free(stream);

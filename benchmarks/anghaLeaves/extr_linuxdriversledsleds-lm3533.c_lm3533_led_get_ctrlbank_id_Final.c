@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline int lm3533_led_get_ctrlbank_id(struct lm3533
 	return led->id + 2;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_led0 = 1;
+          int _len_led0 = 65025;
           struct lm3533_led * led = (struct lm3533_led *) malloc(_len_led0*sizeof(struct lm3533_led));
           for(int _i0 = 0; _i0 < _len_led0; _i0++) {
-            led[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+              led[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = lm3533_led_get_ctrlbank_id(led);
           printf("%d\n", benchRet); 
           free(led);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_led0 = 100;
           struct lm3533_led * led = (struct lm3533_led *) malloc(_len_led0*sizeof(struct lm3533_led));
           for(int _i0 = 0; _i0 < _len_led0; _i0++) {
-            led[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+              led[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = lm3533_led_get_ctrlbank_id(led);
           printf("%d\n", benchRet); 
           free(led);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_led0 = 1;
+          struct lm3533_led * led = (struct lm3533_led *) malloc(_len_led0*sizeof(struct lm3533_led));
+          for(int _i0 = 0; _i0 < _len_led0; _i0++) {
+              led[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = lm3533_led_get_ctrlbank_id(led);
+          printf("%d\n", benchRet); 
+          free(led);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -95,12 +98,6 @@ __attribute__((used)) static int envctrl_i2c_fan_status(struct i2c_child_t *pchi
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -113,20 +110,194 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           unsigned char data = 100;
+        
           int _len_pchild0 = 1;
           struct i2c_child_t * pchild = (struct i2c_child_t *) malloc(_len_pchild0*sizeof(struct i2c_child_t));
           for(int _i0 = 0; _i0 < _len_pchild0; _i0++) {
-            pchild[_i0].fan_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              pchild[_i0].fan_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_bufdata0 = 1;
           char * bufdata = (char *) malloc(_len_bufdata0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_bufdata0; _i0++) {
             bufdata[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = envctrl_i2c_fan_status(pchild,data,bufdata);
+          printf("%d\n", benchRet); 
+          free(pchild);
+          free(bufdata);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          unsigned char data = 255;
+        
+          int _len_pchild0 = 65025;
+          struct i2c_child_t * pchild = (struct i2c_child_t *) malloc(_len_pchild0*sizeof(struct i2c_child_t));
+          for(int _i0 = 0; _i0 < _len_pchild0; _i0++) {
+              pchild[_i0].fan_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_bufdata0 = 65025;
+          char * bufdata = (char *) malloc(_len_bufdata0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_bufdata0; _i0++) {
+            bufdata[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = envctrl_i2c_fan_status(pchild,data,bufdata);
+          printf("%d\n", benchRet); 
+          free(pchild);
+          free(bufdata);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          unsigned char data = 10;
+        
+          int _len_pchild0 = 100;
+          struct i2c_child_t * pchild = (struct i2c_child_t *) malloc(_len_pchild0*sizeof(struct i2c_child_t));
+          for(int _i0 = 0; _i0 < _len_pchild0; _i0++) {
+              pchild[_i0].fan_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_bufdata0 = 100;
+          char * bufdata = (char *) malloc(_len_bufdata0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_bufdata0; _i0++) {
+            bufdata[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = envctrl_i2c_fan_status(pchild,data,bufdata);
+          printf("%d\n", benchRet); 
+          free(pchild);
+          free(bufdata);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          unsigned char data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pchild0 = 1;
+          struct i2c_child_t * pchild = (struct i2c_child_t *) malloc(_len_pchild0*sizeof(struct i2c_child_t));
+          for(int _i0 = 0; _i0 < _len_pchild0; _i0++) {
+              pchild[_i0].fan_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_bufdata0 = 1;
+          char * bufdata = (char *) malloc(_len_bufdata0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_bufdata0; _i0++) {
+            bufdata[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = envctrl_i2c_fan_status(pchild,data,bufdata);
           printf("%d\n", benchRet); 
           free(pchild);

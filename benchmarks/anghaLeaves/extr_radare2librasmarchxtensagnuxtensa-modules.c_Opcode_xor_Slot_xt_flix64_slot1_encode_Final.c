@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ Opcode_xor_Slot_xt_flix64_slot1_encode (xtensa_insnbuf slotbuf)
   slotbuf[0] = 0xb0000;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_slotbuf0 = 1;
+          int _len_slotbuf0 = 65025;
           int * slotbuf = (int *) malloc(_len_slotbuf0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_slotbuf0; _i0++) {
             slotbuf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           Opcode_xor_Slot_xt_flix64_slot1_encode(slotbuf);
           free(slotbuf);
         
@@ -101,12 +97,26 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_slotbuf0; _i0++) {
             slotbuf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           Opcode_xor_Slot_xt_flix64_slot1_encode(slotbuf);
           free(slotbuf);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_slotbuf0 = 1;
+          int * slotbuf = (int *) malloc(_len_slotbuf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_slotbuf0; _i0++) {
+            slotbuf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          Opcode_xor_Slot_xt_flix64_slot1_encode(slotbuf);
+          free(slotbuf);
+        
+        break;
+    }
     default:
         usage();
         break;

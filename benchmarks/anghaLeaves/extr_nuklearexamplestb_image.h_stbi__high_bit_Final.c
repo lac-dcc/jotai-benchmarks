@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ __attribute__((used)) static int stbi__high_bit(unsigned int z)
    return n;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,6 +85,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int z = 100;
+        
           int benchRet = stbi__high_bit(z);
           printf("%d\n", benchRet); 
         
@@ -99,6 +95,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int z = 255;
+        
           int benchRet = stbi__high_bit(z);
           printf("%d\n", benchRet); 
         
@@ -108,12 +105,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int z = 10;
+        
           int benchRet = stbi__high_bit(z);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int z = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = stbi__high_bit(z);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

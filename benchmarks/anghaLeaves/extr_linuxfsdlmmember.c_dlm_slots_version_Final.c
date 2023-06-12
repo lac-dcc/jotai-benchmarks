@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ int dlm_slots_version(struct dlm_header *h)
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,28 +77,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_h0 = 1;
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_h0 = 65025;
           struct dlm_header * h = (struct dlm_header *) malloc(_len_h0*sizeof(struct dlm_header));
           for(int _i0 = 0; _i0 < _len_h0; _i0++) {
-            h[_i0].h_version = ((-2 * (next_i()%2)) + 1) * next_i();
+              h[_i0].h_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dlm_slots_version(h);
           printf("%d\n", benchRet); 
           free(h);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_h0 = 100;
           struct dlm_header * h = (struct dlm_header *) malloc(_len_h0*sizeof(struct dlm_header));
           for(int _i0 = 0; _i0 < _len_h0; _i0++) {
-            h[_i0].h_version = ((-2 * (next_i()%2)) + 1) * next_i();
+              h[_i0].h_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = dlm_slots_version(h);
+          printf("%d\n", benchRet); 
+          free(h);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_h0 = 1;
+          struct dlm_header * h = (struct dlm_header *) malloc(_len_h0*sizeof(struct dlm_header));
+          for(int _i0 = 0; _i0 < _len_h0; _i0++) {
+              h[_i0].h_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = dlm_slots_version(h);
           printf("%d\n", benchRet); 
           free(h);

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static inline int wl3501_fw_cap_info(struct wl3501_card *t
 						 WL3501_MGMT_CAPABILITY_IBSS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,14 +78,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_this0 = 1;
+          int _len_this0 = 65025;
           struct wl3501_card * this = (struct wl3501_card *) malloc(_len_this0*sizeof(struct wl3501_card));
           for(int _i0 = 0; _i0 < _len_this0; _i0++) {
-            this[_i0].net_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              this[_i0].net_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = wl3501_fw_cap_info(this);
           printf("%d\n", benchRet); 
           free(this);
@@ -103,15 +100,32 @@ int main(int argc, char *argv[]) {
           int _len_this0 = 100;
           struct wl3501_card * this = (struct wl3501_card *) malloc(_len_this0*sizeof(struct wl3501_card));
           for(int _i0 = 0; _i0 < _len_this0; _i0++) {
-            this[_i0].net_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              this[_i0].net_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = wl3501_fw_cap_info(this);
           printf("%d\n", benchRet); 
           free(this);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_this0 = 1;
+          struct wl3501_card * this = (struct wl3501_card *) malloc(_len_this0*sizeof(struct wl3501_card));
+          for(int _i0 = 0; _i0 < _len_this0; _i0++) {
+              this[_i0].net_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = wl3501_fw_cap_info(this);
+          printf("%d\n", benchRet); 
+          free(this);
+        
+        break;
+    }
     default:
         usage();
         break;

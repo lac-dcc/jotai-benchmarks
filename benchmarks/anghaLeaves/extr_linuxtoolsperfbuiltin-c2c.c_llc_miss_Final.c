@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static uint64_t llc_miss(struct c2c_stats *stats)
 	return llcmiss;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,17 +82,128 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_stats0 = 65025;
+          struct c2c_stats * stats = (struct c2c_stats *) malloc(_len_stats0*sizeof(struct c2c_stats));
+          for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
+              stats[_i0].rmt_hit = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rmt_hitm = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rmt_dram = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].lcl_dram = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = llc_miss(stats);
+          printf("%ld\n", benchRet); 
+          free(stats);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_stats0 = 100;
+          struct c2c_stats * stats = (struct c2c_stats *) malloc(_len_stats0*sizeof(struct c2c_stats));
+          for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
+              stats[_i0].rmt_hit = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rmt_hitm = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rmt_dram = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].lcl_dram = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = llc_miss(stats);
+          printf("%ld\n", benchRet); 
+          free(stats);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_stats0 = 1;
           struct c2c_stats * stats = (struct c2c_stats *) malloc(_len_stats0*sizeof(struct c2c_stats));
           for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
-            stats[_i0].rmt_hit = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].rmt_hitm = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].rmt_dram = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].lcl_dram = ((-2 * (next_i()%2)) + 1) * next_i();
+              stats[_i0].rmt_hit = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rmt_hitm = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rmt_dram = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].lcl_dram = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = llc_miss(stats);
           printf("%ld\n", benchRet); 
           free(stats);

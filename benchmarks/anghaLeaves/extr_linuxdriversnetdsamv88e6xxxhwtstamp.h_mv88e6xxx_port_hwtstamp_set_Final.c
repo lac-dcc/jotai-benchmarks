@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ __attribute__((used)) static inline int mv88e6xxx_port_hwtstamp_set(struct dsa_s
 	return -EOPNOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,16 +82,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int port = 100;
+        
           int _len_ds0 = 1;
           struct dsa_switch * ds = (struct dsa_switch *) malloc(_len_ds0*sizeof(struct dsa_switch));
           for(int _i0 = 0; _i0 < _len_ds0; _i0++) {
-            ds[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ds[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_ifr0 = 1;
           struct ifreq * ifr = (struct ifreq *) malloc(_len_ifr0*sizeof(struct ifreq));
           for(int _i0 = 0; _i0 < _len_ifr0; _i0++) {
-            ifr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ifr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mv88e6xxx_port_hwtstamp_set(ds,port,ifr);
           printf("%d\n", benchRet); 
           free(ds);
@@ -102,7 +104,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int port = 255;
+        
+          int _len_ds0 = 65025;
+          struct dsa_switch * ds = (struct dsa_switch *) malloc(_len_ds0*sizeof(struct dsa_switch));
+          for(int _i0 = 0; _i0 < _len_ds0; _i0++) {
+              ds[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ifr0 = 65025;
+          struct ifreq * ifr = (struct ifreq *) malloc(_len_ifr0*sizeof(struct ifreq));
+          for(int _i0 = 0; _i0 < _len_ifr0; _i0++) {
+              ifr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mv88e6xxx_port_hwtstamp_set(ds,port,ifr);
+          printf("%d\n", benchRet); 
+          free(ds);
+          free(ifr);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int port = 10;
+        
+          int _len_ds0 = 100;
+          struct dsa_switch * ds = (struct dsa_switch *) malloc(_len_ds0*sizeof(struct dsa_switch));
+          for(int _i0 = 0; _i0 < _len_ds0; _i0++) {
+              ds[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ifr0 = 100;
+          struct ifreq * ifr = (struct ifreq *) malloc(_len_ifr0*sizeof(struct ifreq));
+          for(int _i0 = 0; _i0 < _len_ifr0; _i0++) {
+              ifr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mv88e6xxx_port_hwtstamp_set(ds,port,ifr);
+          printf("%d\n", benchRet); 
+          free(ds);
+          free(ifr);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int port = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ds0 = 1;
+          struct dsa_switch * ds = (struct dsa_switch *) malloc(_len_ds0*sizeof(struct dsa_switch));
+          for(int _i0 = 0; _i0 < _len_ds0; _i0++) {
+              ds[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ifr0 = 1;
+          struct ifreq * ifr = (struct ifreq *) malloc(_len_ifr0*sizeof(struct ifreq));
+          for(int _i0 = 0; _i0 < _len_ifr0; _i0++) {
+              ifr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mv88e6xxx_port_hwtstamp_set(ds,port,ifr);
+          printf("%d\n", benchRet); 
+          free(ds);
+          free(ifr);
+        
+        break;
+    }
     default:
         usage();
         break;

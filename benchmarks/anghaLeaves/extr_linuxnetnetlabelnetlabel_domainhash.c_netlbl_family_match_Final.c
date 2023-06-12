@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static bool netlbl_family_match(u16 f1, u16 f2)
 	return (f1 == f2) || (f1 == AF_UNSPEC) || (f2 == AF_UNSPEC);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,7 +80,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long f1 = 100;
+        
           long f2 = 100;
+        
           int benchRet = netlbl_family_match(f1,f2);
           printf("%d\n", benchRet); 
         
@@ -95,7 +92,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long f1 = 255;
+        
           long f2 = 255;
+        
           int benchRet = netlbl_family_match(f1,f2);
           printf("%d\n", benchRet); 
         
@@ -105,13 +104,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long f1 = 10;
+        
           long f2 = 10;
+        
           int benchRet = netlbl_family_match(f1,f2);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long f1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long f2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = netlbl_family_match(f1,f2);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

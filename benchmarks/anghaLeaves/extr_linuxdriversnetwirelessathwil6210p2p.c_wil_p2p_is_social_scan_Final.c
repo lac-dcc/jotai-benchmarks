@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ bool wil_p2p_is_social_scan(struct cfg80211_scan_request *request)
 	       (request->channels[0]->hw_value == P2P_DMG_SOCIAL_CHANNEL);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,23 +78,157 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_request0 = 1;
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_request0 = 65025;
           struct cfg80211_scan_request * request = (struct cfg80211_scan_request *) malloc(_len_request0*sizeof(struct cfg80211_scan_request));
           for(int _i0 = 0; _i0 < _len_request0; _i0++) {
-            request[_i0].n_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+              request[_i0].n_channels = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_request__i0__channels0 = 1;
           request[_i0].channels = (struct TYPE_2__ **) malloc(_len_request__i0__channels0*sizeof(struct TYPE_2__ *));
           for(int _j0 = 0; _j0 < _len_request__i0__channels0; _j0++) {
             int _len_request__i0__channels1 = 1;
             request[_i0].channels[_j0] = (struct TYPE_2__ *) malloc(_len_request__i0__channels1*sizeof(struct TYPE_2__));
             for(int _j1 = 0; _j1 < _len_request__i0__channels1; _j1++) {
-              request[_i0].channels[_j0]->hw_value = ((-2 * (next_i()%2)) + 1) * next_i();
+                request[_i0].channels[_j0]->hw_value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           }
+        
+          int benchRet = wil_p2p_is_social_scan(request);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_request0; _aux++) {
+          free(*(request[_aux].channels));
+        free(request[_aux].channels);
+          }
+          free(request);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_request0 = 100;
+          struct cfg80211_scan_request * request = (struct cfg80211_scan_request *) malloc(_len_request0*sizeof(struct cfg80211_scan_request));
+          for(int _i0 = 0; _i0 < _len_request0; _i0++) {
+              request[_i0].n_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_request__i0__channels0 = 1;
+          request[_i0].channels = (struct TYPE_2__ **) malloc(_len_request__i0__channels0*sizeof(struct TYPE_2__ *));
+          for(int _j0 = 0; _j0 < _len_request__i0__channels0; _j0++) {
+            int _len_request__i0__channels1 = 1;
+            request[_i0].channels[_j0] = (struct TYPE_2__ *) malloc(_len_request__i0__channels1*sizeof(struct TYPE_2__));
+            for(int _j1 = 0; _j1 < _len_request__i0__channels1; _j1++) {
+                request[_i0].channels[_j0]->hw_value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int benchRet = wil_p2p_is_social_scan(request);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_request0; _aux++) {
+          free(*(request[_aux].channels));
+        free(request[_aux].channels);
+          }
+          free(request);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_request0 = 1;
+          struct cfg80211_scan_request * request = (struct cfg80211_scan_request *) malloc(_len_request0*sizeof(struct cfg80211_scan_request));
+          for(int _i0 = 0; _i0 < _len_request0; _i0++) {
+              request[_i0].n_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_request__i0__channels0 = 1;
+          request[_i0].channels = (struct TYPE_2__ **) malloc(_len_request__i0__channels0*sizeof(struct TYPE_2__ *));
+          for(int _j0 = 0; _j0 < _len_request__i0__channels0; _j0++) {
+            int _len_request__i0__channels1 = 1;
+            request[_i0].channels[_j0] = (struct TYPE_2__ *) malloc(_len_request__i0__channels1*sizeof(struct TYPE_2__));
+            for(int _j1 = 0; _j1 < _len_request__i0__channels1; _j1++) {
+                request[_i0].channels[_j0]->hw_value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
           int benchRet = wil_p2p_is_social_scan(request);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_request0; _aux++) {

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ __attribute__((used)) static void comp_set_format_struct(struct v4l2_format *f)
 	f->fmt.pix.priv = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,21 +88,144 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_f0 = 65025;
+          struct v4l2_format * f = (struct v4l2_format *) malloc(_len_f0*sizeof(struct v4l2_format));
+          for(int _i0 = 0; _i0 < _len_f0; _i0++) {
+              f[_i0].fmt.pix.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].fmt.pix.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].fmt.pix.sizeimage = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].fmt.pix.priv = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].fmt.pix.field = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].fmt.pix.colorspace = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].fmt.pix.bytesperline = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].fmt.pix.pixelformat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          comp_set_format_struct(f);
+          free(f);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_f0 = 100;
+          struct v4l2_format * f = (struct v4l2_format *) malloc(_len_f0*sizeof(struct v4l2_format));
+          for(int _i0 = 0; _i0 < _len_f0; _i0++) {
+              f[_i0].fmt.pix.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].fmt.pix.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].fmt.pix.sizeimage = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].fmt.pix.priv = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].fmt.pix.field = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].fmt.pix.colorspace = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].fmt.pix.bytesperline = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].fmt.pix.pixelformat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          comp_set_format_struct(f);
+          free(f);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int _len_f0 = 1;
           struct v4l2_format * f = (struct v4l2_format *) malloc(_len_f0*sizeof(struct v4l2_format));
           for(int _i0 = 0; _i0 < _len_f0; _i0++) {
-            f[_i0].fmt.pix.width = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].fmt.pix.height = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].fmt.pix.sizeimage = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].fmt.pix.priv = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].fmt.pix.field = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].fmt.pix.colorspace = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].fmt.pix.bytesperline = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].fmt.pix.pixelformat = ((-2 * (next_i()%2)) + 1) * next_i();
+              f[_i0].fmt.pix.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].fmt.pix.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].fmt.pix.sizeimage = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].fmt.pix.priv = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].fmt.pix.field = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].fmt.pix.colorspace = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].fmt.pix.bytesperline = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].fmt.pix.pixelformat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           comp_set_format_struct(f);
           free(f);
         

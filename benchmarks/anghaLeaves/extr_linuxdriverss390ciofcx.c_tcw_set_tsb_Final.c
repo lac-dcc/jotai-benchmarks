@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ void tcw_set_tsb(struct tcw *tcw, struct tsb *tsb)
 	tcw->tsb = (u64) ((addr_t) tsb);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,26 +77,75 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_tcw0 = 1;
+          int _len_tcw0 = 65025;
           struct tcw * tcw = (struct tcw *) malloc(_len_tcw0*sizeof(struct tcw));
           for(int _i0 = 0; _i0 < _len_tcw0; _i0++) {
-            tcw[_i0].tsb = ((-2 * (next_i()%2)) + 1) * next_i();
+              tcw[_i0].tsb = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_tsb0 = 1;
+        
+          int _len_tsb0 = 65025;
           struct tsb * tsb = (struct tsb *) malloc(_len_tsb0*sizeof(struct tsb));
           for(int _i0 = 0; _i0 < _len_tsb0; _i0++) {
-            tsb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              tsb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           tcw_set_tsb(tcw,tsb);
           free(tcw);
           free(tsb);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_tcw0 = 100;
+          struct tcw * tcw = (struct tcw *) malloc(_len_tcw0*sizeof(struct tcw));
+          for(int _i0 = 0; _i0 < _len_tcw0; _i0++) {
+              tcw[_i0].tsb = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_tsb0 = 100;
+          struct tsb * tsb = (struct tsb *) malloc(_len_tsb0*sizeof(struct tsb));
+          for(int _i0 = 0; _i0 < _len_tsb0; _i0++) {
+              tsb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          tcw_set_tsb(tcw,tsb);
+          free(tcw);
+          free(tsb);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_tcw0 = 1;
+          struct tcw * tcw = (struct tcw *) malloc(_len_tcw0*sizeof(struct tcw));
+          for(int _i0 = 0; _i0 < _len_tcw0; _i0++) {
+              tcw[_i0].tsb = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_tsb0 = 1;
+          struct tsb * tsb = (struct tsb *) malloc(_len_tsb0*sizeof(struct tsb));
+          for(int _i0 = 0; _i0 < _len_tsb0; _i0++) {
+              tsb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          tcw_set_tsb(tcw,tsb);
+          free(tcw);
+          free(tsb);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +75,6 @@ __attribute__((used)) static u16 txclkesc(u32 divider, unsigned int us)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,7 +91,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int divider = 100;
+        
           unsigned int us = 100;
+        
           int benchRet = txclkesc(divider,us);
           printf("%d\n", benchRet); 
         
@@ -106,7 +103,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int divider = 255;
+        
           unsigned int us = 255;
+        
           int benchRet = txclkesc(divider,us);
           printf("%d\n", benchRet); 
         
@@ -116,13 +115,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int divider = 10;
+        
           unsigned int us = 10;
+        
           int benchRet = txclkesc(divider,us);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int divider = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int us = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = txclkesc(divider,us);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

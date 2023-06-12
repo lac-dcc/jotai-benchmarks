@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -77,12 +77,6 @@ void normalize_image(image p)
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,18 +89,42 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // empty
     case 0:
     {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 27
+          // dynamic_instructions_O1 : 27
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
           struct TYPE_3__ p;
-        p.h = ((-2 * (next_i()%2)) + 1) * next_i();
-        p.w = ((-2 * (next_i()%2)) + 1) * next_i();
-        p.c = ((-2 * (next_i()%2)) + 1) * next_i();
+          p.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          p.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          p.c = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_p_data0 = 1;
           p.data = (float *) malloc(_len_p_data0*sizeof(float));
           for(int _j0 = 0; _j0 < _len_p_data0; _j0++) {
             p.data[_j0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
+        
           normalize_image(p);
           free(p.data);
         

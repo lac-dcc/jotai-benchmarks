@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static int enclosed_rectangle(struct v4l2_rect *a, struct 
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,25 +81,160 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 38
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int _len_a0 = 65025;
+          struct v4l2_rect * a = (struct v4l2_rect *) malloc(_len_a0*sizeof(struct v4l2_rect));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              a[_i0].left = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].top = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_b0 = 65025;
+          struct v4l2_rect * b = (struct v4l2_rect *) malloc(_len_b0*sizeof(struct v4l2_rect));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].left = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].top = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = enclosed_rectangle(a,b);
+          printf("%d\n", benchRet); 
+          free(a);
+          free(b);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 38
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int _len_a0 = 100;
+          struct v4l2_rect * a = (struct v4l2_rect *) malloc(_len_a0*sizeof(struct v4l2_rect));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              a[_i0].left = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].top = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_b0 = 100;
+          struct v4l2_rect * b = (struct v4l2_rect *) malloc(_len_b0*sizeof(struct v4l2_rect));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].left = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].top = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = enclosed_rectangle(a,b);
+          printf("%d\n", benchRet); 
+          free(a);
+          free(b);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 38
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
           int _len_a0 = 1;
           struct v4l2_rect * a = (struct v4l2_rect *) malloc(_len_a0*sizeof(struct v4l2_rect));
           for(int _i0 = 0; _i0 < _len_a0; _i0++) {
-            a[_i0].left = ((-2 * (next_i()%2)) + 1) * next_i();
-        a[_i0].top = ((-2 * (next_i()%2)) + 1) * next_i();
-        a[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
-        a[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+              a[_i0].left = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].top = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_b0 = 1;
           struct v4l2_rect * b = (struct v4l2_rect *) malloc(_len_b0*sizeof(struct v4l2_rect));
           for(int _i0 = 0; _i0 < _len_b0; _i0++) {
-            b[_i0].left = ((-2 * (next_i()%2)) + 1) * next_i();
-        b[_i0].top = ((-2 * (next_i()%2)) + 1) * next_i();
-        b[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
-        b[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+              b[_i0].left = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].top = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = enclosed_rectangle(a,b);
           printf("%d\n", benchRet); 
           free(a);

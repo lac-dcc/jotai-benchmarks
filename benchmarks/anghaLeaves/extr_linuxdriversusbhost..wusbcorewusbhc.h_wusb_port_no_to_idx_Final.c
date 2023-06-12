@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline u8 wusb_port_no_to_idx(u8 port_no)
 	return port_no - 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long port_no = 100;
+        
           long benchRet = wusb_port_no_to_idx(port_no);
           printf("%ld\n", benchRet); 
         
@@ -93,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long port_no = 255;
+        
           long benchRet = wusb_port_no_to_idx(port_no);
           printf("%ld\n", benchRet); 
         
@@ -102,12 +99,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long port_no = 10;
+        
           long benchRet = wusb_port_no_to_idx(port_no);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long port_no = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long benchRet = wusb_port_no_to_idx(port_no);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

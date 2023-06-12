@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ BOOLEAN NoUiEditBox(PCSTR MessageText, PCHAR EditTextBuffer, ULONG Length)
     return FALSE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,8 +83,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int MessageText = 100;
+        
           int EditTextBuffer = 100;
+        
           int Length = 100;
+        
           int benchRet = NoUiEditBox(MessageText,EditTextBuffer,Length);
           printf("%d\n", benchRet); 
         
@@ -99,8 +97,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int MessageText = 255;
+        
           int EditTextBuffer = 255;
+        
           int Length = 255;
+        
           int benchRet = NoUiEditBox(MessageText,EditTextBuffer,Length);
           printf("%d\n", benchRet); 
         
@@ -110,14 +111,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int MessageText = 10;
+        
           int EditTextBuffer = 10;
+        
           int Length = 10;
+        
           int benchRet = NoUiEditBox(MessageText,EditTextBuffer,Length);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int MessageText = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int EditTextBuffer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int Length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = NoUiEditBox(MessageText,EditTextBuffer,Length);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

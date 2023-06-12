@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ kern_return_t _dtrace_register_anon_DOF(char *arg1, unsigned char *arg2, uint32_
         return KERN_FAILURE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,16 +82,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int arg3 = 100;
+        
           int _len_arg10 = 1;
           char * arg1 = (char *) malloc(_len_arg10*sizeof(char));
           for(int _i0 = 0; _i0 < _len_arg10; _i0++) {
             arg1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_arg20 = 1;
           unsigned char * arg2 = (unsigned char *) malloc(_len_arg20*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_arg20; _i0++) {
             arg2[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = _dtrace_register_anon_DOF(arg1,arg2,arg3);
           printf("%d\n", benchRet); 
           free(arg1);
@@ -102,7 +102,78 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int arg3 = 255;
+        
+          int _len_arg10 = 65025;
+          char * arg1 = (char *) malloc(_len_arg10*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_arg10; _i0++) {
+            arg1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_arg20 = 65025;
+          unsigned char * arg2 = (unsigned char *) malloc(_len_arg20*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_arg20; _i0++) {
+            arg2[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _dtrace_register_anon_DOF(arg1,arg2,arg3);
+          printf("%d\n", benchRet); 
+          free(arg1);
+          free(arg2);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int arg3 = 10;
+        
+          int _len_arg10 = 100;
+          char * arg1 = (char *) malloc(_len_arg10*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_arg10; _i0++) {
+            arg1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_arg20 = 100;
+          unsigned char * arg2 = (unsigned char *) malloc(_len_arg20*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_arg20; _i0++) {
+            arg2[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _dtrace_register_anon_DOF(arg1,arg2,arg3);
+          printf("%d\n", benchRet); 
+          free(arg1);
+          free(arg2);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int arg3 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_arg10 = 1;
+          char * arg1 = (char *) malloc(_len_arg10*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_arg10; _i0++) {
+            arg1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_arg20 = 1;
+          unsigned char * arg2 = (unsigned char *) malloc(_len_arg20*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_arg20; _i0++) {
+            arg2[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _dtrace_register_anon_DOF(arg1,arg2,arg3);
+          printf("%d\n", benchRet); 
+          free(arg1);
+          free(arg2);
+        
+        break;
+    }
     default:
         usage();
         break;

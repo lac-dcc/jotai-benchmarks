@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ __attribute__((used)) static void ctl2_init_segdir(
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,21 +92,24 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_typelib0 = 1;
+          int _len_typelib0 = 65025;
           struct TYPE_4__ * typelib = (struct TYPE_4__ *) malloc(_len_typelib0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_typelib0; _i0++) {
               int _len_typelib__i0__typelib_segdir0 = 1;
           typelib[_i0].typelib_segdir = (struct TYPE_5__ *) malloc(_len_typelib__i0__typelib_segdir0*sizeof(struct TYPE_5__));
           for(int _j0 = 0; _j0 < _len_typelib__i0__typelib_segdir0; _j0++) {
-            typelib[_i0].typelib_segdir->offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        typelib[_i0].typelib_segdir->res08 = ((-2 * (next_i()%2)) + 1) * next_i();
-        typelib[_i0].typelib_segdir->res0c = ((-2 * (next_i()%2)) + 1) * next_i();
-        typelib[_i0].typelib_segdir->length = ((-2 * (next_i()%2)) + 1) * next_i();
+              typelib[_i0].typelib_segdir->offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_segdir->res08 = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_segdir->res0c = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_segdir->length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           ctl2_init_segdir(typelib);
           for(int _aux = 0; _aux < _len_typelib0; _aux++) {
           free(typelib[_aux].typelib_segdir);
@@ -119,7 +118,58 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_typelib0 = 100;
+          struct TYPE_4__ * typelib = (struct TYPE_4__ *) malloc(_len_typelib0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_typelib0; _i0++) {
+              int _len_typelib__i0__typelib_segdir0 = 1;
+          typelib[_i0].typelib_segdir = (struct TYPE_5__ *) malloc(_len_typelib__i0__typelib_segdir0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_typelib__i0__typelib_segdir0; _j0++) {
+              typelib[_i0].typelib_segdir->offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_segdir->res08 = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_segdir->res0c = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_segdir->length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          ctl2_init_segdir(typelib);
+          for(int _aux = 0; _aux < _len_typelib0; _aux++) {
+          free(typelib[_aux].typelib_segdir);
+          }
+          free(typelib);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_typelib0 = 1;
+          struct TYPE_4__ * typelib = (struct TYPE_4__ *) malloc(_len_typelib0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_typelib0; _i0++) {
+              int _len_typelib__i0__typelib_segdir0 = 1;
+          typelib[_i0].typelib_segdir = (struct TYPE_5__ *) malloc(_len_typelib__i0__typelib_segdir0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_typelib__i0__typelib_segdir0; _j0++) {
+              typelib[_i0].typelib_segdir->offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_segdir->res08 = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_segdir->res0c = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_segdir->length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          ctl2_init_segdir(typelib);
+          for(int _aux = 0; _aux < _len_typelib0; _aux++) {
+          free(typelib[_aux].typelib_segdir);
+          }
+          free(typelib);
+        
+        break;
+    }
     default:
         usage();
         break;

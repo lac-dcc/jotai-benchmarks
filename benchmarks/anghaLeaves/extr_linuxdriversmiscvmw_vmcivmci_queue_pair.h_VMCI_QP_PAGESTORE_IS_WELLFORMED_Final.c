@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ VMCI_QP_PAGESTORE_IS_WELLFORMED(struct vmci_qp_page_store *page_store)
 	return page_store->len >= 2;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_page_store0 = 1;
+          int _len_page_store0 = 65025;
           struct vmci_qp_page_store * page_store = (struct vmci_qp_page_store *) malloc(_len_page_store0*sizeof(struct vmci_qp_page_store));
           for(int _i0 = 0; _i0 < _len_page_store0; _i0++) {
-            page_store[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+              page_store[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = VMCI_QP_PAGESTORE_IS_WELLFORMED(page_store);
           printf("%d\n", benchRet); 
           free(page_store);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_page_store0 = 100;
           struct vmci_qp_page_store * page_store = (struct vmci_qp_page_store *) malloc(_len_page_store0*sizeof(struct vmci_qp_page_store));
           for(int _i0 = 0; _i0 < _len_page_store0; _i0++) {
-            page_store[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+              page_store[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = VMCI_QP_PAGESTORE_IS_WELLFORMED(page_store);
           printf("%d\n", benchRet); 
           free(page_store);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_page_store0 = 1;
+          struct vmci_qp_page_store * page_store = (struct vmci_qp_page_store *) malloc(_len_page_store0*sizeof(struct vmci_qp_page_store));
+          for(int _i0 = 0; _i0 < _len_page_store0; _i0++) {
+              page_store[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = VMCI_QP_PAGESTORE_IS_WELLFORMED(page_store);
+          printf("%d\n", benchRet); 
+          free(page_store);
+        
+        break;
+    }
     default:
         usage();
         break;

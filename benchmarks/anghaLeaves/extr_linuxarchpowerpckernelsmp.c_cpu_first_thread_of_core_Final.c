@@ -62,12 +62,6 @@ int cpu_first_thread_of_core(int core)
 	return core << threads_shift;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +78,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int core = 100;
+        
           int benchRet = cpu_first_thread_of_core(core);
           printf("%d\n", benchRet); 
         
@@ -93,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int core = 255;
+        
           int benchRet = cpu_first_thread_of_core(core);
           printf("%d\n", benchRet); 
         
@@ -102,12 +98,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int core = 10;
+        
           int benchRet = cpu_first_thread_of_core(core);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

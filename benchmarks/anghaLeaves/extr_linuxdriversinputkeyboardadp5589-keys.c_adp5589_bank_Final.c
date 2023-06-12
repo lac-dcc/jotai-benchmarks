@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static unsigned char adp5589_bank(unsigned char offset)
 	return offset >> 3;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,6 +78,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned char offset = 100;
+        
           unsigned char benchRet = adp5589_bank(offset);
           printf("%c\n", (benchRet %26) + 'a'); 
         
@@ -92,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned char offset = 255;
+        
           unsigned char benchRet = adp5589_bank(offset);
           printf("%c\n", (benchRet %26) + 'a'); 
         
@@ -101,12 +98,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned char offset = 10;
+        
           unsigned char benchRet = adp5589_bank(offset);
           printf("%c\n", (benchRet %26) + 'a'); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned char offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned char benchRet = adp5589_bank(offset);
+          printf("%c\n", (benchRet %26) + 'a'); 
+        
+        break;
+    }
     default:
         usage();
         break;

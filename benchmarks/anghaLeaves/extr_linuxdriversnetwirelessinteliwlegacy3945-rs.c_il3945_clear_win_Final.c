@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ il3945_clear_win(struct il3945_rate_scale_data *win)
 	win->stamp = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,25 +81,66 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_win0 = 1;
+          int _len_win0 = 65025;
           struct il3945_rate_scale_data * win = (struct il3945_rate_scale_data *) malloc(_len_win0*sizeof(struct il3945_rate_scale_data));
           for(int _i0 = 0; _i0 < _len_win0; _i0++) {
-            win[_i0].success_ratio = ((-2 * (next_i()%2)) + 1) * next_i();
-        win[_i0].stamp = ((-2 * (next_i()%2)) + 1) * next_i();
-        win[_i0].average_tpt = ((-2 * (next_i()%2)) + 1) * next_i();
-        win[_i0].counter = ((-2 * (next_i()%2)) + 1) * next_i();
-        win[_i0].success_counter = ((-2 * (next_i()%2)) + 1) * next_i();
-        win[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+              win[_i0].success_ratio = ((-2 * (next_i()%2)) + 1) * next_i();
+          win[_i0].stamp = ((-2 * (next_i()%2)) + 1) * next_i();
+          win[_i0].average_tpt = ((-2 * (next_i()%2)) + 1) * next_i();
+          win[_i0].counter = ((-2 * (next_i()%2)) + 1) * next_i();
+          win[_i0].success_counter = ((-2 * (next_i()%2)) + 1) * next_i();
+          win[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           il3945_clear_win(win);
           free(win);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_win0 = 100;
+          struct il3945_rate_scale_data * win = (struct il3945_rate_scale_data *) malloc(_len_win0*sizeof(struct il3945_rate_scale_data));
+          for(int _i0 = 0; _i0 < _len_win0; _i0++) {
+              win[_i0].success_ratio = ((-2 * (next_i()%2)) + 1) * next_i();
+          win[_i0].stamp = ((-2 * (next_i()%2)) + 1) * next_i();
+          win[_i0].average_tpt = ((-2 * (next_i()%2)) + 1) * next_i();
+          win[_i0].counter = ((-2 * (next_i()%2)) + 1) * next_i();
+          win[_i0].success_counter = ((-2 * (next_i()%2)) + 1) * next_i();
+          win[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          il3945_clear_win(win);
+          free(win);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_win0 = 1;
+          struct il3945_rate_scale_data * win = (struct il3945_rate_scale_data *) malloc(_len_win0*sizeof(struct il3945_rate_scale_data));
+          for(int _i0 = 0; _i0 < _len_win0; _i0++) {
+              win[_i0].success_ratio = ((-2 * (next_i()%2)) + 1) * next_i();
+          win[_i0].stamp = ((-2 * (next_i()%2)) + 1) * next_i();
+          win[_i0].average_tpt = ((-2 * (next_i()%2)) + 1) * next_i();
+          win[_i0].counter = ((-2 * (next_i()%2)) + 1) * next_i();
+          win[_i0].success_counter = ((-2 * (next_i()%2)) + 1) * next_i();
+          win[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          il3945_clear_win(win);
+          free(win);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static bool dev_pm_qos_invalid_req_type(struct device *dev
 	       !dev->power.set_latency_tolerance;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,30 +80,128 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           enum dev_pm_qos_req_type type = 0;
-          int _len_dev0 = 1;
+        
+          int _len_dev0 = 65025;
           struct device * dev = (struct device *) malloc(_len_dev0*sizeof(struct device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].power.set_latency_tolerance = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].power.set_latency_tolerance = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = dev_pm_qos_invalid_req_type(dev,type);
           printf("%d\n", benchRet); 
           free(dev);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           enum dev_pm_qos_req_type type = 0;
+        
           int _len_dev0 = 100;
           struct device * dev = (struct device *) malloc(_len_dev0*sizeof(struct device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].power.set_latency_tolerance = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].power.set_latency_tolerance = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = dev_pm_qos_invalid_req_type(dev,type);
+          printf("%d\n", benchRet); 
+          free(dev);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          enum dev_pm_qos_req_type type = 0;
+        
+          int _len_dev0 = 1;
+          struct device * dev = (struct device *) malloc(_len_dev0*sizeof(struct device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].power.set_latency_tolerance = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = dev_pm_qos_invalid_req_type(dev,type);
           printf("%d\n", benchRet); 
           free(dev);

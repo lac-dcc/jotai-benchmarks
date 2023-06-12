@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -122,12 +125,6 @@ __attribute__((used)) static void tg3_aux_stat_to_speed_duplex(struct tg3 *tp, u
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -140,25 +137,218 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int val = 100;
+        
           int _len_tp0 = 1;
           struct tg3 * tp = (struct tg3 *) malloc(_len_tp0*sizeof(struct tg3));
           for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
-            tp[_i0].phy_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              tp[_i0].phy_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_speed0 = 1;
           int * speed = (int *) malloc(_len_speed0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_speed0; _i0++) {
             speed[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_duplex0 = 1;
           int * duplex = (int *) malloc(_len_duplex0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_duplex0; _i0++) {
             duplex[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          tg3_aux_stat_to_speed_duplex(tp,val,speed,duplex);
+          free(tp);
+          free(speed);
+          free(duplex);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int val = 255;
+        
+          int _len_tp0 = 65025;
+          struct tg3 * tp = (struct tg3 *) malloc(_len_tp0*sizeof(struct tg3));
+          for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
+              tp[_i0].phy_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_speed0 = 65025;
+          int * speed = (int *) malloc(_len_speed0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_speed0; _i0++) {
+            speed[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_duplex0 = 65025;
+          int * duplex = (int *) malloc(_len_duplex0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_duplex0; _i0++) {
+            duplex[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          tg3_aux_stat_to_speed_duplex(tp,val,speed,duplex);
+          free(tp);
+          free(speed);
+          free(duplex);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int val = 10;
+        
+          int _len_tp0 = 100;
+          struct tg3 * tp = (struct tg3 *) malloc(_len_tp0*sizeof(struct tg3));
+          for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
+              tp[_i0].phy_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_speed0 = 100;
+          int * speed = (int *) malloc(_len_speed0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_speed0; _i0++) {
+            speed[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_duplex0 = 100;
+          int * duplex = (int *) malloc(_len_duplex0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_duplex0; _i0++) {
+            duplex[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          tg3_aux_stat_to_speed_duplex(tp,val,speed,duplex);
+          free(tp);
+          free(speed);
+          free(duplex);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_tp0 = 1;
+          struct tg3 * tp = (struct tg3 *) malloc(_len_tp0*sizeof(struct tg3));
+          for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
+              tp[_i0].phy_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_speed0 = 1;
+          int * speed = (int *) malloc(_len_speed0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_speed0; _i0++) {
+            speed[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_duplex0 = 1;
+          int * duplex = (int *) malloc(_len_duplex0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_duplex0; _i0++) {
+            duplex[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           tg3_aux_stat_to_speed_duplex(tp,val,speed,duplex);
           free(tp);
           free(speed);

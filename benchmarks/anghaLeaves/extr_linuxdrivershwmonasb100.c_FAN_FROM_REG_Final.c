@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static int FAN_FROM_REG(u8 val, int div)
 	return val == 0 ? -1 : val == 255 ? 0 : 1350000 / (val * div);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,7 +79,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int val = 100;
+        
           int div = 100;
+        
           int benchRet = FAN_FROM_REG(val,div);
           printf("%d\n", benchRet); 
         
@@ -94,7 +91,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int val = 255;
+        
           int div = 255;
+        
           int benchRet = FAN_FROM_REG(val,div);
           printf("%d\n", benchRet); 
         
@@ -104,13 +103,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int val = 10;
+        
           int div = 10;
+        
           int benchRet = FAN_FROM_REG(val,div);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int div = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = FAN_FROM_REG(val,div);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

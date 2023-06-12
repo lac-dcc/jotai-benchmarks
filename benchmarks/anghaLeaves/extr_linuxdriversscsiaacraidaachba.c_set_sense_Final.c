@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -86,12 +87,6 @@ __attribute__((used)) static inline void set_sense(struct sense_data *sense_data
 		sense_buf[7] = 6;	/* Additional sense length */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,19 +99,98 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int sense_key = 255;
+        
+          int sense_code = 255;
+        
+          int a_sense_code = 255;
+        
+          int bit_pointer = 255;
+        
+          int field_pointer = 255;
+        
+          int _len_sense_data0 = 65025;
+          struct sense_data * sense_data = (struct sense_data *) malloc(_len_sense_data0*sizeof(struct sense_data));
+          for(int _i0 = 0; _i0 < _len_sense_data0; _i0++) {
+              sense_data[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_sense(sense_data,sense_key,sense_code,a_sense_code,bit_pointer,field_pointer);
+          free(sense_data);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int sense_key = 10;
+        
           int sense_code = 10;
+        
           int a_sense_code = 10;
+        
           int bit_pointer = 10;
+        
           int field_pointer = 10;
+        
           int _len_sense_data0 = 100;
           struct sense_data * sense_data = (struct sense_data *) malloc(_len_sense_data0*sizeof(struct sense_data));
           for(int _i0 = 0; _i0 < _len_sense_data0; _i0++) {
-            sense_data[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              sense_data[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           set_sense(sense_data,sense_key,sense_code,a_sense_code,bit_pointer,field_pointer);
           free(sense_data);
         

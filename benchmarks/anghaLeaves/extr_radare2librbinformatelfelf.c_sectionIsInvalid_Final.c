@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static bool sectionIsInvalid(ELFOBJ *bin, RBinElfSection *
 	return (sect->offset + sect->size > bin->size);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,20 +78,24 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_bin0 = 1;
+          int _len_bin0 = 65025;
           struct TYPE_6__ * bin = (struct TYPE_6__ *) malloc(_len_bin0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_bin0; _i0++) {
-            bin[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              bin[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_sect0 = 1;
+        
+          int _len_sect0 = 65025;
           struct TYPE_5__ * sect = (struct TYPE_5__ *) malloc(_len_sect0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_sect0; _i0++) {
-            sect[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        sect[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              sect[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          sect[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = sectionIsInvalid(bin,sect);
           printf("%d\n", benchRet); 
           free(bin);
@@ -103,7 +103,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_bin0 = 100;
+          struct TYPE_6__ * bin = (struct TYPE_6__ *) malloc(_len_bin0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_bin0; _i0++) {
+              bin[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_sect0 = 100;
+          struct TYPE_5__ * sect = (struct TYPE_5__ *) malloc(_len_sect0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_sect0; _i0++) {
+              sect[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          sect[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sectionIsInvalid(bin,sect);
+          printf("%d\n", benchRet); 
+          free(bin);
+          free(sect);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_bin0 = 1;
+          struct TYPE_6__ * bin = (struct TYPE_6__ *) malloc(_len_bin0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_bin0; _i0++) {
+              bin[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_sect0 = 1;
+          struct TYPE_5__ * sect = (struct TYPE_5__ *) malloc(_len_sect0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_sect0; _i0++) {
+              sect[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          sect[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sectionIsInvalid(bin,sect);
+          printf("%d\n", benchRet); 
+          free(bin);
+          free(sect);
+        
+        break;
+    }
     default:
         usage();
         break;

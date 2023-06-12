@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -176,12 +177,6 @@ __attribute__((used)) static ut8 z80_fddd_branch_index_res (ut8 hex) {
 	return 0x56;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -198,6 +193,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int hex = 100;
+        
           int benchRet = z80_fddd_branch_index_res(hex);
           printf("%d\n", benchRet); 
         
@@ -207,6 +203,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int hex = 255;
+        
           int benchRet = z80_fddd_branch_index_res(hex);
           printf("%d\n", benchRet); 
         
@@ -216,12 +213,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int hex = 10;
+        
           int benchRet = z80_fddd_branch_index_res(hex);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int hex = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = z80_fddd_branch_index_res(hex);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

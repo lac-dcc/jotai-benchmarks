@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -98,12 +100,6 @@ __attribute__((used)) static void doit4(register uint32_t *a,register long x,reg
   }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -116,33 +112,176 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 61
+          // dynamic_instructions_O0 : 210
+          // ------------------------------- 
+          // static_instructions_O1 : 39
+          // dynamic_instructions_O1 : 104
+          // ------------------------------- 
+          // static_instructions_O2 : 39
+          // dynamic_instructions_O2 : 104
+          // ------------------------------- 
+          // static_instructions_O3 : 39
+          // dynamic_instructions_O3 : 104
+          // ------------------------------- 
+          // static_instructions_Ofast : 39
+          // dynamic_instructions_Ofast : 104
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 95
+          // ------------------------------- 
+          // static_instructions_Oz : 31
+          // dynamic_instructions_Oz : 105
+          // ------------------------------- 
+
           long x = 100;
+        
           long y = 100;
+        
           int start = 100;
+        
           int _len_a0 = 1;
           int * a = (int *) malloc(_len_a0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_a0; _i0++) {
             a[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           doit4(a,x,y,start);
           free(a);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 61
+          // dynamic_instructions_O0 : 503
+          // ------------------------------- 
+          // static_instructions_O1 : 39
+          // dynamic_instructions_O1 : 237
+          // ------------------------------- 
+          // static_instructions_O2 : 39
+          // dynamic_instructions_O2 : 237
+          // ------------------------------- 
+          // static_instructions_O3 : 39
+          // dynamic_instructions_O3 : 237
+          // ------------------------------- 
+          // static_instructions_Ofast : 39
+          // dynamic_instructions_Ofast : 237
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 216
+          // ------------------------------- 
+          // static_instructions_Oz : 31
+          // dynamic_instructions_Oz : 250
+          // ------------------------------- 
+
+          long x = 255;
+        
+          long y = 255;
+        
+          int start = 255;
+        
+          int _len_a0 = 65025;
+          int * a = (int *) malloc(_len_a0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+            a[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          doit4(a,x,y,start);
+          free(a);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
           long x = 10;
+        
           long y = 10;
+        
           int start = 10;
+        
           int _len_a0 = 100;
           int * a = (int *) malloc(_len_a0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_a0; _i0++) {
             a[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          doit4(a,x,y,start);
+          free(a);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 68
+          // dynamic_instructions_O0 : 478
+          // ------------------------------- 
+          // static_instructions_O1 : 46
+          // dynamic_instructions_O1 : 213
+          // ------------------------------- 
+          // static_instructions_O2 : 44
+          // dynamic_instructions_O2 : 211
+          // ------------------------------- 
+          // static_instructions_O3 : 44
+          // dynamic_instructions_O3 : 211
+          // ------------------------------- 
+          // static_instructions_Ofast : 44
+          // dynamic_instructions_Ofast : 211
+          // ------------------------------- 
+          // static_instructions_Os : 40
+          // dynamic_instructions_Os : 199
+          // ------------------------------- 
+          // static_instructions_Oz : 34
+          // dynamic_instructions_Oz : 242
+          // ------------------------------- 
+
+          long x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_a0 = 1;
+          int * a = (int *) malloc(_len_a0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+            a[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           doit4(a,x,y,start);
           free(a);
         

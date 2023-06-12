@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static void nv_swncq_fis_reinit(struct ata_port *ap)
 	pp->ncq_flags = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,21 +80,147 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_ap0 = 65025;
+          struct ata_port * ap = (struct ata_port *) malloc(_len_ap0*sizeof(struct ata_port));
+          for(int _i0 = 0; _i0 < _len_ap0; _i0++) {
+              int _len_ap__i0__private_data0 = 1;
+          ap[_i0].private_data = (struct nv_swncq_port_priv *) malloc(_len_ap__i0__private_data0*sizeof(struct nv_swncq_port_priv));
+          for(int _j0 = 0; _j0 < _len_ap__i0__private_data0; _j0++) {
+              ap[_i0].private_data->ncq_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          ap[_i0].private_data->sdbfis_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+          ap[_i0].private_data->dmafis_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+          ap[_i0].private_data->dhfis_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          nv_swncq_fis_reinit(ap);
+          for(int _aux = 0; _aux < _len_ap0; _aux++) {
+          free(ap[_aux].private_data);
+          }
+          free(ap);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_ap0 = 100;
+          struct ata_port * ap = (struct ata_port *) malloc(_len_ap0*sizeof(struct ata_port));
+          for(int _i0 = 0; _i0 < _len_ap0; _i0++) {
+              int _len_ap__i0__private_data0 = 1;
+          ap[_i0].private_data = (struct nv_swncq_port_priv *) malloc(_len_ap__i0__private_data0*sizeof(struct nv_swncq_port_priv));
+          for(int _j0 = 0; _j0 < _len_ap__i0__private_data0; _j0++) {
+              ap[_i0].private_data->ncq_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          ap[_i0].private_data->sdbfis_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+          ap[_i0].private_data->dmafis_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+          ap[_i0].private_data->dhfis_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          nv_swncq_fis_reinit(ap);
+          for(int _aux = 0; _aux < _len_ap0; _aux++) {
+          free(ap[_aux].private_data);
+          }
+          free(ap);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_ap0 = 1;
           struct ata_port * ap = (struct ata_port *) malloc(_len_ap0*sizeof(struct ata_port));
           for(int _i0 = 0; _i0 < _len_ap0; _i0++) {
               int _len_ap__i0__private_data0 = 1;
           ap[_i0].private_data = (struct nv_swncq_port_priv *) malloc(_len_ap__i0__private_data0*sizeof(struct nv_swncq_port_priv));
           for(int _j0 = 0; _j0 < _len_ap__i0__private_data0; _j0++) {
-            ap[_i0].private_data->ncq_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        ap[_i0].private_data->sdbfis_bits = ((-2 * (next_i()%2)) + 1) * next_i();
-        ap[_i0].private_data->dmafis_bits = ((-2 * (next_i()%2)) + 1) * next_i();
-        ap[_i0].private_data->dhfis_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+              ap[_i0].private_data->ncq_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          ap[_i0].private_data->sdbfis_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+          ap[_i0].private_data->dmafis_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+          ap[_i0].private_data->dhfis_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           nv_swncq_fis_reinit(ap);
           for(int _aux = 0; _aux < _len_ap0; _aux++) {
           free(ap[_aux].private_data);

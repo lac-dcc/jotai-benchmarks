@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -83,12 +85,6 @@ __attribute__((used)) static void update_attrib_phy_info(struct pkt_attrib *patt
 	pattrib->retry_ctrl = false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,34 +97,188 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_pattrib0 = 65025;
+          struct pkt_attrib * pattrib = (struct pkt_attrib *) malloc(_len_pattrib0*sizeof(struct pkt_attrib));
+          for(int _i0 = 0; _i0 < _len_pattrib0; _i0++) {
+              pattrib[_i0].ampdu_en = ((-2 * (next_i()%2)) + 1) * next_i();
+          pattrib[_i0].retry_ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+          pattrib[_i0].sgi = ((-2 * (next_i()%2)) + 1) * next_i();
+          pattrib[_i0].ch_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          pattrib[_i0].bwmode = ((-2 * (next_i()%2)) + 1) * next_i();
+          pattrib[_i0].ht_en = ((-2 * (next_i()%2)) + 1) * next_i();
+          pattrib[_i0].raid = ((-2 * (next_i()%2)) + 1) * next_i();
+          pattrib[_i0].qos_en = ((-2 * (next_i()%2)) + 1) * next_i();
+          pattrib[_i0].triggered = ((-2 * (next_i()%2)) + 1) * next_i();
+          pattrib[_i0].eosp = ((-2 * (next_i()%2)) + 1) * next_i();
+          pattrib[_i0].mdata = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_psta0 = 65025;
+          struct sta_info * psta = (struct sta_info *) malloc(_len_psta0*sizeof(struct sta_info));
+          for(int _i0 = 0; _i0 < _len_psta0; _i0++) {
+              psta[_i0].htpriv.sgi = ((-2 * (next_i()%2)) + 1) * next_i();
+          psta[_i0].htpriv.ch_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          psta[_i0].htpriv.bwmode = ((-2 * (next_i()%2)) + 1) * next_i();
+          psta[_i0].htpriv.ht_option = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          psta[_i0].raid = ((-2 * (next_i()%2)) + 1) * next_i();
+          psta[_i0].qos_option = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          update_attrib_phy_info(pattrib,psta);
+          free(pattrib);
+          free(psta);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_pattrib0 = 100;
+          struct pkt_attrib * pattrib = (struct pkt_attrib *) malloc(_len_pattrib0*sizeof(struct pkt_attrib));
+          for(int _i0 = 0; _i0 < _len_pattrib0; _i0++) {
+              pattrib[_i0].ampdu_en = ((-2 * (next_i()%2)) + 1) * next_i();
+          pattrib[_i0].retry_ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+          pattrib[_i0].sgi = ((-2 * (next_i()%2)) + 1) * next_i();
+          pattrib[_i0].ch_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          pattrib[_i0].bwmode = ((-2 * (next_i()%2)) + 1) * next_i();
+          pattrib[_i0].ht_en = ((-2 * (next_i()%2)) + 1) * next_i();
+          pattrib[_i0].raid = ((-2 * (next_i()%2)) + 1) * next_i();
+          pattrib[_i0].qos_en = ((-2 * (next_i()%2)) + 1) * next_i();
+          pattrib[_i0].triggered = ((-2 * (next_i()%2)) + 1) * next_i();
+          pattrib[_i0].eosp = ((-2 * (next_i()%2)) + 1) * next_i();
+          pattrib[_i0].mdata = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_psta0 = 100;
+          struct sta_info * psta = (struct sta_info *) malloc(_len_psta0*sizeof(struct sta_info));
+          for(int _i0 = 0; _i0 < _len_psta0; _i0++) {
+              psta[_i0].htpriv.sgi = ((-2 * (next_i()%2)) + 1) * next_i();
+          psta[_i0].htpriv.ch_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          psta[_i0].htpriv.bwmode = ((-2 * (next_i()%2)) + 1) * next_i();
+          psta[_i0].htpriv.ht_option = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          psta[_i0].raid = ((-2 * (next_i()%2)) + 1) * next_i();
+          psta[_i0].qos_option = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          update_attrib_phy_info(pattrib,psta);
+          free(pattrib);
+          free(psta);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int _len_pattrib0 = 1;
           struct pkt_attrib * pattrib = (struct pkt_attrib *) malloc(_len_pattrib0*sizeof(struct pkt_attrib));
           for(int _i0 = 0; _i0 < _len_pattrib0; _i0++) {
-            pattrib[_i0].ampdu_en = ((-2 * (next_i()%2)) + 1) * next_i();
-        pattrib[_i0].retry_ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
-        pattrib[_i0].sgi = ((-2 * (next_i()%2)) + 1) * next_i();
-        pattrib[_i0].ch_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        pattrib[_i0].bwmode = ((-2 * (next_i()%2)) + 1) * next_i();
-        pattrib[_i0].ht_en = ((-2 * (next_i()%2)) + 1) * next_i();
-        pattrib[_i0].raid = ((-2 * (next_i()%2)) + 1) * next_i();
-        pattrib[_i0].qos_en = ((-2 * (next_i()%2)) + 1) * next_i();
-        pattrib[_i0].triggered = ((-2 * (next_i()%2)) + 1) * next_i();
-        pattrib[_i0].eosp = ((-2 * (next_i()%2)) + 1) * next_i();
-        pattrib[_i0].mdata = ((-2 * (next_i()%2)) + 1) * next_i();
+              pattrib[_i0].ampdu_en = ((-2 * (next_i()%2)) + 1) * next_i();
+          pattrib[_i0].retry_ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+          pattrib[_i0].sgi = ((-2 * (next_i()%2)) + 1) * next_i();
+          pattrib[_i0].ch_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          pattrib[_i0].bwmode = ((-2 * (next_i()%2)) + 1) * next_i();
+          pattrib[_i0].ht_en = ((-2 * (next_i()%2)) + 1) * next_i();
+          pattrib[_i0].raid = ((-2 * (next_i()%2)) + 1) * next_i();
+          pattrib[_i0].qos_en = ((-2 * (next_i()%2)) + 1) * next_i();
+          pattrib[_i0].triggered = ((-2 * (next_i()%2)) + 1) * next_i();
+          pattrib[_i0].eosp = ((-2 * (next_i()%2)) + 1) * next_i();
+          pattrib[_i0].mdata = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_psta0 = 1;
           struct sta_info * psta = (struct sta_info *) malloc(_len_psta0*sizeof(struct sta_info));
           for(int _i0 = 0; _i0 < _len_psta0; _i0++) {
-            psta[_i0].htpriv.sgi = ((-2 * (next_i()%2)) + 1) * next_i();
-        psta[_i0].htpriv.ch_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        psta[_i0].htpriv.bwmode = ((-2 * (next_i()%2)) + 1) * next_i();
-        psta[_i0].htpriv.ht_option = ((-2 * (next_i()%2)) + 1) * next_i();
-        psta[_i0].raid = ((-2 * (next_i()%2)) + 1) * next_i();
-        psta[_i0].qos_option = ((-2 * (next_i()%2)) + 1) * next_i();
+              psta[_i0].htpriv.sgi = ((-2 * (next_i()%2)) + 1) * next_i();
+          psta[_i0].htpriv.ch_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          psta[_i0].htpriv.bwmode = ((-2 * (next_i()%2)) + 1) * next_i();
+          psta[_i0].htpriv.ht_option = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          psta[_i0].raid = ((-2 * (next_i()%2)) + 1) * next_i();
+          psta[_i0].qos_option = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           update_attrib_phy_info(pattrib,psta);
           free(pattrib);
           free(psta);

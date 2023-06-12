@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static void hw_breakpoint_copy_attr(struct perf_event_attr
 	to->disabled = from->disabled;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,25 +78,158 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_to0 = 65025;
+          struct perf_event_attr * to = (struct perf_event_attr *) malloc(_len_to0*sizeof(struct perf_event_attr));
+          for(int _i0 = 0; _i0 < _len_to0; _i0++) {
+              to[_i0].disabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          to[_i0].bp_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          to[_i0].bp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          to[_i0].bp_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_from0 = 65025;
+          struct perf_event_attr * from = (struct perf_event_attr *) malloc(_len_from0*sizeof(struct perf_event_attr));
+          for(int _i0 = 0; _i0 < _len_from0; _i0++) {
+              from[_i0].disabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          from[_i0].bp_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          from[_i0].bp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          from[_i0].bp_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          hw_breakpoint_copy_attr(to,from);
+          free(to);
+          free(from);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_to0 = 100;
+          struct perf_event_attr * to = (struct perf_event_attr *) malloc(_len_to0*sizeof(struct perf_event_attr));
+          for(int _i0 = 0; _i0 < _len_to0; _i0++) {
+              to[_i0].disabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          to[_i0].bp_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          to[_i0].bp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          to[_i0].bp_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_from0 = 100;
+          struct perf_event_attr * from = (struct perf_event_attr *) malloc(_len_from0*sizeof(struct perf_event_attr));
+          for(int _i0 = 0; _i0 < _len_from0; _i0++) {
+              from[_i0].disabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          from[_i0].bp_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          from[_i0].bp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          from[_i0].bp_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          hw_breakpoint_copy_attr(to,from);
+          free(to);
+          free(from);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_to0 = 1;
           struct perf_event_attr * to = (struct perf_event_attr *) malloc(_len_to0*sizeof(struct perf_event_attr));
           for(int _i0 = 0; _i0 < _len_to0; _i0++) {
-            to[_i0].disabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        to[_i0].bp_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        to[_i0].bp_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        to[_i0].bp_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+              to[_i0].disabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          to[_i0].bp_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          to[_i0].bp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          to[_i0].bp_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_from0 = 1;
           struct perf_event_attr * from = (struct perf_event_attr *) malloc(_len_from0*sizeof(struct perf_event_attr));
           for(int _i0 = 0; _i0 < _len_from0; _i0++) {
-            from[_i0].disabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        from[_i0].bp_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        from[_i0].bp_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        from[_i0].bp_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+              from[_i0].disabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          from[_i0].bp_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          from[_i0].bp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          from[_i0].bp_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           hw_breakpoint_copy_attr(to,from);
           free(to);
           free(from);

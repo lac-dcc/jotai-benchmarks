@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ __attribute__((used)) static void update_rx_ring_mtu(struct ena_adapter *adapter
 		adapter->rx_ring[i].mtu = mtu;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,20 +80,197 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int mtu = 100;
+        
           int _len_adapter0 = 1;
           struct ena_adapter * adapter = (struct ena_adapter *) malloc(_len_adapter0*sizeof(struct ena_adapter));
           for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
-            adapter[_i0].num_queues = ((-2 * (next_i()%2)) + 1) * next_i();
+              adapter[_i0].num_queues = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_adapter__i0__rx_ring0 = 1;
           adapter[_i0].rx_ring = (struct TYPE_2__ *) malloc(_len_adapter__i0__rx_ring0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_adapter__i0__rx_ring0; _j0++) {
-            adapter[_i0].rx_ring->mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+              adapter[_i0].rx_ring->mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          update_rx_ring_mtu(adapter,mtu);
+          for(int _aux = 0; _aux < _len_adapter0; _aux++) {
+          free(adapter[_aux].rx_ring);
+          }
+          free(adapter);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int mtu = 255;
+        
+          int _len_adapter0 = 65025;
+          struct ena_adapter * adapter = (struct ena_adapter *) malloc(_len_adapter0*sizeof(struct ena_adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].num_queues = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_adapter__i0__rx_ring0 = 1;
+          adapter[_i0].rx_ring = (struct TYPE_2__ *) malloc(_len_adapter__i0__rx_ring0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_adapter__i0__rx_ring0; _j0++) {
+              adapter[_i0].rx_ring->mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          update_rx_ring_mtu(adapter,mtu);
+          for(int _aux = 0; _aux < _len_adapter0; _aux++) {
+          free(adapter[_aux].rx_ring);
+          }
+          free(adapter);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int mtu = 10;
+        
+          int _len_adapter0 = 100;
+          struct ena_adapter * adapter = (struct ena_adapter *) malloc(_len_adapter0*sizeof(struct ena_adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].num_queues = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_adapter__i0__rx_ring0 = 1;
+          adapter[_i0].rx_ring = (struct TYPE_2__ *) malloc(_len_adapter__i0__rx_ring0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_adapter__i0__rx_ring0; _j0++) {
+              adapter[_i0].rx_ring->mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          update_rx_ring_mtu(adapter,mtu);
+          for(int _aux = 0; _aux < _len_adapter0; _aux++) {
+          free(adapter[_aux].rx_ring);
+          }
+          free(adapter);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_adapter0 = 1;
+          struct ena_adapter * adapter = (struct ena_adapter *) malloc(_len_adapter0*sizeof(struct ena_adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].num_queues = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_adapter__i0__rx_ring0 = 1;
+          adapter[_i0].rx_ring = (struct TYPE_2__ *) malloc(_len_adapter__i0__rx_ring0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_adapter__i0__rx_ring0; _j0++) {
+              adapter[_i0].rx_ring->mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           update_rx_ring_mtu(adapter,mtu);
           for(int _aux = 0; _aux < _len_adapter0; _aux++) {
           free(adapter[_aux].rx_ring);

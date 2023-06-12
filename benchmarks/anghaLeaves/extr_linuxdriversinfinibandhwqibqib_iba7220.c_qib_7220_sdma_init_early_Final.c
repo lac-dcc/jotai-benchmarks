@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static void qib_7220_sdma_init_early(struct qib_pportdata 
 	ppd->sdma_state.set_state_action = sdma_7220_action_table;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ppd0 = 1;
+          int _len_ppd0 = 65025;
           struct qib_pportdata * ppd = (struct qib_pportdata *) malloc(_len_ppd0*sizeof(struct qib_pportdata));
           for(int _i0 = 0; _i0 < _len_ppd0; _i0++) {
-            ppd[_i0].sdma_state.set_state_action = ((-2 * (next_i()%2)) + 1) * next_i();
+              ppd[_i0].sdma_state.set_state_action = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           qib_7220_sdma_init_early(ppd);
           free(ppd);
         
@@ -101,14 +99,32 @@ int main(int argc, char *argv[]) {
           int _len_ppd0 = 100;
           struct qib_pportdata * ppd = (struct qib_pportdata *) malloc(_len_ppd0*sizeof(struct qib_pportdata));
           for(int _i0 = 0; _i0 < _len_ppd0; _i0++) {
-            ppd[_i0].sdma_state.set_state_action = ((-2 * (next_i()%2)) + 1) * next_i();
+              ppd[_i0].sdma_state.set_state_action = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           qib_7220_sdma_init_early(ppd);
           free(ppd);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ppd0 = 1;
+          struct qib_pportdata * ppd = (struct qib_pportdata *) malloc(_len_ppd0*sizeof(struct qib_pportdata));
+          for(int _i0 = 0; _i0 < _len_ppd0; _i0++) {
+              ppd[_i0].sdma_state.set_state_action = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          qib_7220_sdma_init_early(ppd);
+          free(ppd);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ __attribute__((used)) static inline int is5301x(struct b53_device *dev)
 		dev->chip_id == BCM53019_DEVICE_ID;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,14 +83,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dev0 = 1;
+          int _len_dev0 = 65025;
           struct b53_device * dev = (struct b53_device *) malloc(_len_dev0*sizeof(struct b53_device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].chip_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].chip_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is5301x(dev);
           printf("%d\n", benchRet); 
           free(dev);
@@ -108,15 +105,32 @@ int main(int argc, char *argv[]) {
           int _len_dev0 = 100;
           struct b53_device * dev = (struct b53_device *) malloc(_len_dev0*sizeof(struct b53_device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].chip_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].chip_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is5301x(dev);
           printf("%d\n", benchRet); 
           free(dev);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_dev0 = 1;
+          struct b53_device * dev = (struct b53_device *) malloc(_len_dev0*sizeof(struct b53_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].chip_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is5301x(dev);
+          printf("%d\n", benchRet); 
+          free(dev);
+        
+        break;
+    }
     default:
         usage();
         break;

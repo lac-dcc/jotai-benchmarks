@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -59,12 +60,6 @@ typedef  int U32 ;
 
 __attribute__((used)) static U32 FSE_tableStep(U32 tableSize) { return (tableSize>>1) + (tableSize>>3) + 3; }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,6 +76,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int tableSize = 100;
+        
           int benchRet = FSE_tableStep(tableSize);
           printf("%d\n", benchRet); 
         
@@ -90,6 +86,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int tableSize = 255;
+        
           int benchRet = FSE_tableStep(tableSize);
           printf("%d\n", benchRet); 
         
@@ -99,12 +96,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int tableSize = 10;
+        
           int benchRet = FSE_tableStep(tableSize);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int tableSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = FSE_tableStep(tableSize);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

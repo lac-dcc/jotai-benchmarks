@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -145,12 +147,6 @@ __attribute__((used)) static void tpg_calculate_square_border(struct tpg_data *t
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -163,31 +159,90 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_tpg0 = 1;
+          int _len_tpg0 = 65025;
           struct tpg_data * tpg = (struct tpg_data *) malloc(_len_tpg0*sizeof(struct tpg_data));
           for(int _i0 = 0; _i0 < _len_tpg0; _i0++) {
-            tpg[_i0].src_width = ((-2 * (next_i()%2)) + 1) * next_i();
-        tpg[_i0].src_height = ((-2 * (next_i()%2)) + 1) * next_i();
-        tpg[_i0].vid_aspect = ((-2 * (next_i()%2)) + 1) * next_i();
-        tpg[_i0].pix_aspect = ((-2 * (next_i()%2)) + 1) * next_i();
-        tpg[_i0].border.left = ((-2 * (next_i()%2)) + 1) * next_i();
-        tpg[_i0].border.width = ((-2 * (next_i()%2)) + 1) * next_i();
-        tpg[_i0].border.top = ((-2 * (next_i()%2)) + 1) * next_i();
-        tpg[_i0].border.height = ((-2 * (next_i()%2)) + 1) * next_i();
-        tpg[_i0].square.width = ((-2 * (next_i()%2)) + 1) * next_i();
-        tpg[_i0].square.left = ((-2 * (next_i()%2)) + 1) * next_i();
-        tpg[_i0].square.height = ((-2 * (next_i()%2)) + 1) * next_i();
-        tpg[_i0].square.top = ((-2 * (next_i()%2)) + 1) * next_i();
+              tpg[_i0].src_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].src_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].vid_aspect = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].pix_aspect = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].border.left = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].border.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].border.top = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].border.height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          tpg[_i0].square.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].square.left = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].square.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].square.top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           tpg_calculate_square_border(tpg);
           free(tpg);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_tpg0 = 100;
+          struct tpg_data * tpg = (struct tpg_data *) malloc(_len_tpg0*sizeof(struct tpg_data));
+          for(int _i0 = 0; _i0 < _len_tpg0; _i0++) {
+              tpg[_i0].src_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].src_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].vid_aspect = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].pix_aspect = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].border.left = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].border.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].border.top = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].border.height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          tpg[_i0].square.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].square.left = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].square.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].square.top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          tpg_calculate_square_border(tpg);
+          free(tpg);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_tpg0 = 1;
+          struct tpg_data * tpg = (struct tpg_data *) malloc(_len_tpg0*sizeof(struct tpg_data));
+          for(int _i0 = 0; _i0 < _len_tpg0; _i0++) {
+              tpg[_i0].src_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].src_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].vid_aspect = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].pix_aspect = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].border.left = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].border.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].border.top = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].border.height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          tpg[_i0].square.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].square.left = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].square.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].square.top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          tpg_calculate_square_border(tpg);
+          free(tpg);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -59,12 +59,6 @@ __attribute__((used)) static int numachip_phys_pkg_id(int initial_apic_id, int i
 	return initial_apic_id >> index_msb;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,13 +75,14 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int initial_apic_id = 10;
+        
           int index_msb = 10;
+        
           int benchRet = numachip_phys_pkg_id(initial_apic_id,index_msb);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -67,12 +67,6 @@ __attribute__((used)) static int calc_pitch_target(int pitch)
 	return ptarget;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,6 +83,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int pitch = 100;
+        
           int benchRet = calc_pitch_target(pitch);
           printf("%d\n", benchRet); 
         
@@ -98,6 +93,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int pitch = 255;
+        
           int benchRet = calc_pitch_target(pitch);
           printf("%d\n", benchRet); 
         
@@ -107,12 +103,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int pitch = 10;
+        
           int benchRet = calc_pitch_target(pitch);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

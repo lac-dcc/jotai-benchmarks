@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ mptcp_ok_to_create_subflows(struct mptcb *mp_tp)
 		!(mp_tp->mpt_flags & MPTCPF_FALLBACK_TO_TCP));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,15 +81,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_mp_tp0 = 65025;
+          struct mptcb * mp_tp = (struct mptcb *) malloc(_len_mp_tp0*sizeof(struct mptcb));
+          for(int _i0 = 0; _i0 < _len_mp_tp0; _i0++) {
+              mp_tp[_i0].mpt_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          mp_tp[_i0].mpt_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mptcp_ok_to_create_subflows(mp_tp);
+          printf("%d\n", benchRet); 
+          free(mp_tp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_mp_tp0 = 100;
+          struct mptcb * mp_tp = (struct mptcb *) malloc(_len_mp_tp0*sizeof(struct mptcb));
+          for(int _i0 = 0; _i0 < _len_mp_tp0; _i0++) {
+              mp_tp[_i0].mpt_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          mp_tp[_i0].mpt_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mptcp_ok_to_create_subflows(mp_tp);
+          printf("%d\n", benchRet); 
+          free(mp_tp);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_mp_tp0 = 1;
           struct mptcb * mp_tp = (struct mptcb *) malloc(_len_mp_tp0*sizeof(struct mptcb));
           for(int _i0 = 0; _i0 < _len_mp_tp0; _i0++) {
-            mp_tp[_i0].mpt_state = ((-2 * (next_i()%2)) + 1) * next_i();
-        mp_tp[_i0].mpt_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              mp_tp[_i0].mpt_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          mp_tp[_i0].mpt_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mptcp_ok_to_create_subflows(mp_tp);
           printf("%d\n", benchRet); 
           free(mp_tp);

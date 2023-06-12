@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static void get_3d_side_by_side(int stereo_mode, int div[2
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,31 +88,66 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int stereo_mode = 100;
+        
           int _len_div0 = 2;
           int * div = (int *) malloc(_len_div0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_div0; _i0++) {
             div[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          get_3d_side_by_side(stereo_mode,div);
+          free(div);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int stereo_mode = 255;
+        
+          int _len_div0 = 65025;
+          int * div = (int *) malloc(_len_div0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_div0; _i0++) {
+            div[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           get_3d_side_by_side(stereo_mode,div);
           free(div);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int stereo_mode = 10;
+        
           int _len_div0 = 100;
           int * div = (int *) malloc(_len_div0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_div0; _i0++) {
             div[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           get_3d_side_by_side(stereo_mode,div);
           free(div);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int stereo_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_div0 = 2;
+          int * div = (int *) malloc(_len_div0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_div0; _i0++) {
+            div[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          get_3d_side_by_side(stereo_mode,div);
+          free(div);
+        
+        break;
+    }
     default:
         usage();
         break;

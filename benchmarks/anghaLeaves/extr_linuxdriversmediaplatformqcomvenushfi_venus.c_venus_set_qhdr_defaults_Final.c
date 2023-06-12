@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ __attribute__((used)) static void venus_set_qhdr_defaults(struct hfi_queue_heade
 	qhdr->write_idx = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,25 +87,150 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_qhdr0 = 65025;
+          struct hfi_queue_header * qhdr = (struct hfi_queue_header *) malloc(_len_qhdr0*sizeof(struct hfi_queue_header));
+          for(int _i0 = 0; _i0 < _len_qhdr0; _i0++) {
+              qhdr[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+          qhdr[_i0].q_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          qhdr[_i0].rx_wm = ((-2 * (next_i()%2)) + 1) * next_i();
+          qhdr[_i0].tx_wm = ((-2 * (next_i()%2)) + 1) * next_i();
+          qhdr[_i0].rx_req = ((-2 * (next_i()%2)) + 1) * next_i();
+          qhdr[_i0].write_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          qhdr[_i0].read_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          qhdr[_i0].tx_irq_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          qhdr[_i0].rx_irq_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          qhdr[_i0].tx_req = ((-2 * (next_i()%2)) + 1) * next_i();
+          qhdr[_i0].pkt_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          qhdr[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          venus_set_qhdr_defaults(qhdr);
+          free(qhdr);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_qhdr0 = 100;
+          struct hfi_queue_header * qhdr = (struct hfi_queue_header *) malloc(_len_qhdr0*sizeof(struct hfi_queue_header));
+          for(int _i0 = 0; _i0 < _len_qhdr0; _i0++) {
+              qhdr[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+          qhdr[_i0].q_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          qhdr[_i0].rx_wm = ((-2 * (next_i()%2)) + 1) * next_i();
+          qhdr[_i0].tx_wm = ((-2 * (next_i()%2)) + 1) * next_i();
+          qhdr[_i0].rx_req = ((-2 * (next_i()%2)) + 1) * next_i();
+          qhdr[_i0].write_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          qhdr[_i0].read_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          qhdr[_i0].tx_irq_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          qhdr[_i0].rx_irq_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          qhdr[_i0].tx_req = ((-2 * (next_i()%2)) + 1) * next_i();
+          qhdr[_i0].pkt_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          qhdr[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          venus_set_qhdr_defaults(qhdr);
+          free(qhdr);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           int _len_qhdr0 = 1;
           struct hfi_queue_header * qhdr = (struct hfi_queue_header *) malloc(_len_qhdr0*sizeof(struct hfi_queue_header));
           for(int _i0 = 0; _i0 < _len_qhdr0; _i0++) {
-            qhdr[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
-        qhdr[_i0].q_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        qhdr[_i0].rx_wm = ((-2 * (next_i()%2)) + 1) * next_i();
-        qhdr[_i0].tx_wm = ((-2 * (next_i()%2)) + 1) * next_i();
-        qhdr[_i0].rx_req = ((-2 * (next_i()%2)) + 1) * next_i();
-        qhdr[_i0].write_idx = ((-2 * (next_i()%2)) + 1) * next_i();
-        qhdr[_i0].read_idx = ((-2 * (next_i()%2)) + 1) * next_i();
-        qhdr[_i0].tx_irq_status = ((-2 * (next_i()%2)) + 1) * next_i();
-        qhdr[_i0].rx_irq_status = ((-2 * (next_i()%2)) + 1) * next_i();
-        qhdr[_i0].tx_req = ((-2 * (next_i()%2)) + 1) * next_i();
-        qhdr[_i0].pkt_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        qhdr[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+              qhdr[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+          qhdr[_i0].q_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          qhdr[_i0].rx_wm = ((-2 * (next_i()%2)) + 1) * next_i();
+          qhdr[_i0].tx_wm = ((-2 * (next_i()%2)) + 1) * next_i();
+          qhdr[_i0].rx_req = ((-2 * (next_i()%2)) + 1) * next_i();
+          qhdr[_i0].write_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          qhdr[_i0].read_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          qhdr[_i0].tx_irq_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          qhdr[_i0].rx_irq_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          qhdr[_i0].tx_req = ((-2 * (next_i()%2)) + 1) * next_i();
+          qhdr[_i0].pkt_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          qhdr[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           venus_set_qhdr_defaults(qhdr);
           free(qhdr);
         

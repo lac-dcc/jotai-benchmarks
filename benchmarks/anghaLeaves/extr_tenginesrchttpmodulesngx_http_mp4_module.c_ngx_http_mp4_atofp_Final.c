@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -115,12 +117,6 @@ ngx_http_mp4_atofp(u_char *line, size_t n, size_t point)
     return value;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -133,32 +129,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 33
+          // dynamic_instructions_O1 : 33
+          // ------------------------------- 
+          // static_instructions_O2 : 31
+          // dynamic_instructions_O2 : 31
+          // ------------------------------- 
+          // static_instructions_O3 : 31
+          // dynamic_instructions_O3 : 31
+          // ------------------------------- 
+          // static_instructions_Ofast : 31
+          // dynamic_instructions_Ofast : 31
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 31
+          // dynamic_instructions_Oz : 31
+          // ------------------------------- 
+
           unsigned long n = 100;
+        
           unsigned long point = 100;
+        
           int _len_line0 = 1;
           char * line = (char *) malloc(_len_line0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_line0; _i0++) {
             line[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           char benchRet = ngx_http_mp4_atofp(line,n,point);
           printf("%c\n", (benchRet %26) + 'a'); 
           free(line);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 33
+          // dynamic_instructions_O1 : 33
+          // ------------------------------- 
+          // static_instructions_O2 : 31
+          // dynamic_instructions_O2 : 31
+          // ------------------------------- 
+          // static_instructions_O3 : 31
+          // dynamic_instructions_O3 : 31
+          // ------------------------------- 
+          // static_instructions_Ofast : 31
+          // dynamic_instructions_Ofast : 31
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 31
+          // dynamic_instructions_Oz : 31
+          // ------------------------------- 
+
+          unsigned long n = 255;
+        
+          unsigned long point = 255;
+        
+          int _len_line0 = 65025;
+          char * line = (char *) malloc(_len_line0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_line0; _i0++) {
+            line[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          char benchRet = ngx_http_mp4_atofp(line,n,point);
+          printf("%c\n", (benchRet %26) + 'a'); 
+          free(line);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 33
+          // dynamic_instructions_O1 : 33
+          // ------------------------------- 
+          // static_instructions_O2 : 31
+          // dynamic_instructions_O2 : 31
+          // ------------------------------- 
+          // static_instructions_O3 : 31
+          // dynamic_instructions_O3 : 31
+          // ------------------------------- 
+          // static_instructions_Ofast : 31
+          // dynamic_instructions_Ofast : 31
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 31
+          // dynamic_instructions_Oz : 31
+          // ------------------------------- 
+
           unsigned long n = 10;
+        
           unsigned long point = 10;
+        
           int _len_line0 = 100;
           char * line = (char *) malloc(_len_line0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_line0; _i0++) {
             line[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          char benchRet = ngx_http_mp4_atofp(line,n,point);
+          printf("%c\n", (benchRet %26) + 'a'); 
+          free(line);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 33
+          // dynamic_instructions_O1 : 33
+          // ------------------------------- 
+          // static_instructions_O2 : 31
+          // dynamic_instructions_O2 : 31
+          // ------------------------------- 
+          // static_instructions_O3 : 31
+          // dynamic_instructions_O3 : 31
+          // ------------------------------- 
+          // static_instructions_Ofast : 31
+          // dynamic_instructions_Ofast : 31
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 31
+          // dynamic_instructions_Oz : 31
+          // ------------------------------- 
+
+          unsigned long n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long point = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_line0 = 1;
+          char * line = (char *) malloc(_len_line0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_line0; _i0++) {
+            line[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           char benchRet = ngx_http_mp4_atofp(line,n,point);
           printf("%c\n", (benchRet %26) + 'a'); 
           free(line);

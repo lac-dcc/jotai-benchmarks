@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -88,12 +90,6 @@ void rt2800_get_txwi_rxwi_size(struct rt2x00_dev *rt2x00dev,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,24 +102,160 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_rt2x00dev0 = 65025;
+          struct rt2x00_dev * rt2x00dev = (struct rt2x00_dev *) malloc(_len_rt2x00dev0*sizeof(struct rt2x00_dev));
+          for(int _i0 = 0; _i0 < _len_rt2x00dev0; _i0++) {
+              rt2x00dev[_i0].chip.rt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_txwi_size0 = 65025;
+          unsigned short * txwi_size = (unsigned short *) malloc(_len_txwi_size0*sizeof(unsigned short));
+          for(int _i0 = 0; _i0 < _len_txwi_size0; _i0++) {
+            txwi_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_rxwi_size0 = 65025;
+          unsigned short * rxwi_size = (unsigned short *) malloc(_len_rxwi_size0*sizeof(unsigned short));
+          for(int _i0 = 0; _i0 < _len_rxwi_size0; _i0++) {
+            rxwi_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          rt2800_get_txwi_rxwi_size(rt2x00dev,txwi_size,rxwi_size);
+          free(rt2x00dev);
+          free(txwi_size);
+          free(rxwi_size);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_rt2x00dev0 = 100;
+          struct rt2x00_dev * rt2x00dev = (struct rt2x00_dev *) malloc(_len_rt2x00dev0*sizeof(struct rt2x00_dev));
+          for(int _i0 = 0; _i0 < _len_rt2x00dev0; _i0++) {
+              rt2x00dev[_i0].chip.rt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_txwi_size0 = 100;
+          unsigned short * txwi_size = (unsigned short *) malloc(_len_txwi_size0*sizeof(unsigned short));
+          for(int _i0 = 0; _i0 < _len_txwi_size0; _i0++) {
+            txwi_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_rxwi_size0 = 100;
+          unsigned short * rxwi_size = (unsigned short *) malloc(_len_rxwi_size0*sizeof(unsigned short));
+          for(int _i0 = 0; _i0 < _len_rxwi_size0; _i0++) {
+            rxwi_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          rt2800_get_txwi_rxwi_size(rt2x00dev,txwi_size,rxwi_size);
+          free(rt2x00dev);
+          free(txwi_size);
+          free(rxwi_size);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int _len_rt2x00dev0 = 1;
           struct rt2x00_dev * rt2x00dev = (struct rt2x00_dev *) malloc(_len_rt2x00dev0*sizeof(struct rt2x00_dev));
           for(int _i0 = 0; _i0 < _len_rt2x00dev0; _i0++) {
-            rt2x00dev[_i0].chip.rt = ((-2 * (next_i()%2)) + 1) * next_i();
+              rt2x00dev[_i0].chip.rt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_txwi_size0 = 1;
           unsigned short * txwi_size = (unsigned short *) malloc(_len_txwi_size0*sizeof(unsigned short));
           for(int _i0 = 0; _i0 < _len_txwi_size0; _i0++) {
             txwi_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_rxwi_size0 = 1;
           unsigned short * rxwi_size = (unsigned short *) malloc(_len_rxwi_size0*sizeof(unsigned short));
           for(int _i0 = 0; _i0 < _len_rxwi_size0; _i0++) {
             rxwi_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           rt2800_get_txwi_rxwi_size(rt2x00dev,txwi_size,rxwi_size);
           free(rt2x00dev);
           free(txwi_size);

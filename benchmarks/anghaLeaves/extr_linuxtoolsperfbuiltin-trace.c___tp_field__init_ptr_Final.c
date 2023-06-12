@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ __attribute__((used)) static int __tp_field__init_ptr(struct tp_field *field, in
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,19 +82,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int offset = 100;
+        
           int _len_field0 = 1;
           struct tp_field * field = (struct tp_field *) malloc(_len_field0*sizeof(struct tp_field));
           for(int _i0 = 0; _i0 < _len_field0; _i0++) {
-            field[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        field[_i0].pointer = ((-2 * (next_i()%2)) + 1) * next_i();
+              field[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          field[_i0].pointer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = __tp_field__init_ptr(field,offset);
           printf("%d\n", benchRet); 
           free(field);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int offset = 255;
+        
+          int _len_field0 = 65025;
+          struct tp_field * field = (struct tp_field *) malloc(_len_field0*sizeof(struct tp_field));
+          for(int _i0 = 0; _i0 < _len_field0; _i0++) {
+              field[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          field[_i0].pointer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = __tp_field__init_ptr(field,offset);
+          printf("%d\n", benchRet); 
+          free(field);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int offset = 10;
+        
+          int _len_field0 = 100;
+          struct tp_field * field = (struct tp_field *) malloc(_len_field0*sizeof(struct tp_field));
+          for(int _i0 = 0; _i0 < _len_field0; _i0++) {
+              field[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          field[_i0].pointer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = __tp_field__init_ptr(field,offset);
+          printf("%d\n", benchRet); 
+          free(field);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_field0 = 1;
+          struct tp_field * field = (struct tp_field *) malloc(_len_field0*sizeof(struct tp_field));
+          for(int _i0 = 0; _i0 < _len_field0; _i0++) {
+              field[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          field[_i0].pointer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = __tp_field__init_ptr(field,offset);
+          printf("%d\n", benchRet); 
+          free(field);
+        
+        break;
+    }
     default:
         usage();
         break;

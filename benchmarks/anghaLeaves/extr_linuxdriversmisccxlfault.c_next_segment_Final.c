@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ __attribute__((used)) static u64 next_segment(u64 ea, u64 vsid)
 	return ea + 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,7 +85,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int ea = 100;
+        
           int vsid = 100;
+        
           int benchRet = next_segment(ea,vsid);
           printf("%d\n", benchRet); 
         
@@ -100,7 +97,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int ea = 255;
+        
           int vsid = 255;
+        
           int benchRet = next_segment(ea,vsid);
           printf("%d\n", benchRet); 
         
@@ -110,13 +109,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int ea = 10;
+        
           int vsid = 10;
+        
           int benchRet = next_segment(ea,vsid);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int ea = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int vsid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = next_segment(ea,vsid);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ _RpcDeletePrinterDriver(WINSPOOL_HANDLE pName, WCHAR* pEnvironment, WCHAR* pDriv
     return ERROR_INVALID_FUNCTION;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,20 +81,190 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int pName = 100;
+        
           int _len_pEnvironment0 = 1;
           int * pEnvironment = (int *) malloc(_len_pEnvironment0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pEnvironment0; _i0++) {
             pEnvironment[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_pDriverName0 = 1;
           int * pDriverName = (int *) malloc(_len_pDriverName0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pDriverName0; _i0++) {
             pDriverName[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = _RpcDeletePrinterDriver(pName,pEnvironment,pDriverName);
+          printf("%d\n", benchRet); 
+          free(pEnvironment);
+          free(pDriverName);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int pName = 255;
+        
+          int _len_pEnvironment0 = 65025;
+          int * pEnvironment = (int *) malloc(_len_pEnvironment0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pEnvironment0; _i0++) {
+            pEnvironment[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pDriverName0 = 65025;
+          int * pDriverName = (int *) malloc(_len_pDriverName0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pDriverName0; _i0++) {
+            pDriverName[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _RpcDeletePrinterDriver(pName,pEnvironment,pDriverName);
+          printf("%d\n", benchRet); 
+          free(pEnvironment);
+          free(pDriverName);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int pName = 10;
+        
+          int _len_pEnvironment0 = 100;
+          int * pEnvironment = (int *) malloc(_len_pEnvironment0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pEnvironment0; _i0++) {
+            pEnvironment[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pDriverName0 = 100;
+          int * pDriverName = (int *) malloc(_len_pDriverName0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pDriverName0; _i0++) {
+            pDriverName[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _RpcDeletePrinterDriver(pName,pEnvironment,pDriverName);
+          printf("%d\n", benchRet); 
+          free(pEnvironment);
+          free(pDriverName);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int pName = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pEnvironment0 = 1;
+          int * pEnvironment = (int *) malloc(_len_pEnvironment0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pEnvironment0; _i0++) {
+            pEnvironment[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pDriverName0 = 1;
+          int * pDriverName = (int *) malloc(_len_pDriverName0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pDriverName0; _i0++) {
+            pDriverName[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = _RpcDeletePrinterDriver(pName,pEnvironment,pDriverName);
           printf("%d\n", benchRet); 
           free(pEnvironment);

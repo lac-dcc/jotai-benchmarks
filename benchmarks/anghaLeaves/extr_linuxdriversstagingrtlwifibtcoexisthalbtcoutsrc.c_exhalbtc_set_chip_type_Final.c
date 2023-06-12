@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -102,12 +104,6 @@ void exhalbtc_set_chip_type(struct btc_coexist *btcoexist, u8 chip_type)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -124,31 +120,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int chip_type = 100;
+        
           int _len_btcoexist0 = 1;
           struct btc_coexist * btcoexist = (struct btc_coexist *) malloc(_len_btcoexist0*sizeof(struct btc_coexist));
           for(int _i0 = 0; _i0 < _len_btcoexist0; _i0++) {
-            btcoexist[_i0].board_info.bt_chip_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              btcoexist[_i0].board_info.bt_chip_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          exhalbtc_set_chip_type(btcoexist,chip_type);
+          free(btcoexist);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int chip_type = 255;
+        
+          int _len_btcoexist0 = 65025;
+          struct btc_coexist * btcoexist = (struct btc_coexist *) malloc(_len_btcoexist0*sizeof(struct btc_coexist));
+          for(int _i0 = 0; _i0 < _len_btcoexist0; _i0++) {
+              btcoexist[_i0].board_info.bt_chip_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           exhalbtc_set_chip_type(btcoexist,chip_type);
           free(btcoexist);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int chip_type = 10;
+        
           int _len_btcoexist0 = 100;
           struct btc_coexist * btcoexist = (struct btc_coexist *) malloc(_len_btcoexist0*sizeof(struct btc_coexist));
           for(int _i0 = 0; _i0 < _len_btcoexist0; _i0++) {
-            btcoexist[_i0].board_info.bt_chip_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              btcoexist[_i0].board_info.bt_chip_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           exhalbtc_set_chip_type(btcoexist,chip_type);
           free(btcoexist);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int chip_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_btcoexist0 = 1;
+          struct btc_coexist * btcoexist = (struct btc_coexist *) malloc(_len_btcoexist0*sizeof(struct btc_coexist));
+          for(int _i0 = 0; _i0 < _len_btcoexist0; _i0++) {
+              btcoexist[_i0].board_info.bt_chip_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          exhalbtc_set_chip_type(btcoexist,chip_type);
+          free(btcoexist);
+        
+        break;
+    }
     default:
         usage();
         break;

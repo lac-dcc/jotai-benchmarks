@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ __attribute__((used)) static void l2cap_sock_state_change_cb(struct l2cap_chan *
 		sk->sk_err = err;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,17 +86,22 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int state = 100;
+        
           int err = 100;
+        
           int _len_chan0 = 1;
           struct l2cap_chan * chan = (struct l2cap_chan *) malloc(_len_chan0*sizeof(struct l2cap_chan));
           for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
               int _len_chan__i0__data0 = 1;
           chan[_i0].data = (struct sock *) malloc(_len_chan__i0__data0*sizeof(struct sock));
           for(int _j0 = 0; _j0 < _len_chan__i0__data0; _j0++) {
-            chan[_i0].data->sk_state = ((-2 * (next_i()%2)) + 1) * next_i();
-        chan[_i0].data->sk_err = ((-2 * (next_i()%2)) + 1) * next_i();
+              chan[_i0].data->sk_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          chan[_i0].data->sk_err = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           l2cap_sock_state_change_cb(chan,state,err);
           for(int _aux = 0; _aux < _len_chan0; _aux++) {
           free(chan[_aux].data);
@@ -108,7 +110,90 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int state = 255;
+        
+          int err = 255;
+        
+          int _len_chan0 = 65025;
+          struct l2cap_chan * chan = (struct l2cap_chan *) malloc(_len_chan0*sizeof(struct l2cap_chan));
+          for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
+              int _len_chan__i0__data0 = 1;
+          chan[_i0].data = (struct sock *) malloc(_len_chan__i0__data0*sizeof(struct sock));
+          for(int _j0 = 0; _j0 < _len_chan__i0__data0; _j0++) {
+              chan[_i0].data->sk_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          chan[_i0].data->sk_err = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          l2cap_sock_state_change_cb(chan,state,err);
+          for(int _aux = 0; _aux < _len_chan0; _aux++) {
+          free(chan[_aux].data);
+          }
+          free(chan);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int state = 10;
+        
+          int err = 10;
+        
+          int _len_chan0 = 100;
+          struct l2cap_chan * chan = (struct l2cap_chan *) malloc(_len_chan0*sizeof(struct l2cap_chan));
+          for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
+              int _len_chan__i0__data0 = 1;
+          chan[_i0].data = (struct sock *) malloc(_len_chan__i0__data0*sizeof(struct sock));
+          for(int _j0 = 0; _j0 < _len_chan__i0__data0; _j0++) {
+              chan[_i0].data->sk_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          chan[_i0].data->sk_err = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          l2cap_sock_state_change_cb(chan,state,err);
+          for(int _aux = 0; _aux < _len_chan0; _aux++) {
+          free(chan[_aux].data);
+          }
+          free(chan);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int err = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_chan0 = 1;
+          struct l2cap_chan * chan = (struct l2cap_chan *) malloc(_len_chan0*sizeof(struct l2cap_chan));
+          for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
+              int _len_chan__i0__data0 = 1;
+          chan[_i0].data = (struct sock *) malloc(_len_chan__i0__data0*sizeof(struct sock));
+          for(int _j0 = 0; _j0 < _len_chan__i0__data0; _j0++) {
+              chan[_i0].data->sk_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          chan[_i0].data->sk_err = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          l2cap_sock_state_change_cb(chan,state,err);
+          for(int _aux = 0; _aux < _len_chan0; _aux++) {
+          free(chan[_aux].data);
+          }
+          free(chan);
+        
+        break;
+    }
     default:
         usage();
         break;

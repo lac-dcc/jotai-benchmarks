@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -59,12 +61,6 @@ __attribute__((used)) static int index_name_qual(char **a)
     return (a[0][0] == 'V');
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -77,8 +73,52 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
+    {
+          int _len_a0 = 65025;
+          char ** a = (char **) malloc(_len_a0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+            int _len_a1 = 1;
+            a[_i0] = (char *) malloc(_len_a1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_a1; _i1++) {
+              a[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int benchRet = index_name_qual(a);
+          printf("%d\n", benchRet); 
+          for(int i1 = 0; i1 < _len_a0; i1++) {
+              free(a[i1]);
+          }
+          free(a);
+        
+        break;
+    }
+    // big-arr-10x
+    case 1:
+    {
+          int _len_a0 = 100;
+          char ** a = (char **) malloc(_len_a0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+            int _len_a1 = 1;
+            a[_i0] = (char *) malloc(_len_a1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_a1; _i1++) {
+              a[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int benchRet = index_name_qual(a);
+          printf("%d\n", benchRet); 
+          for(int i1 = 0; i1 < _len_a0; i1++) {
+              free(a[i1]);
+          }
+          free(a);
+        
+        break;
+    }
+    // empty
+    case 2:
     {
           int _len_a0 = 1;
           char ** a = (char **) malloc(_len_a0*sizeof(char *));
@@ -89,17 +129,16 @@ int main(int argc, char *argv[]) {
               a[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           int benchRet = index_name_qual(a);
           printf("%d\n", benchRet); 
           for(int i1 = 0; i1 < _len_a0; i1++) {
-            int _len_a1 = 1;
               free(a[i1]);
           }
           free(a);
         
         break;
     }
-
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ void DCMI_StructInit(DCMI_InitTypeDef* DCMI_InitStruct)
   DCMI_InitStruct->DCMI_ExtendedDataMode = DCMI_ExtendedDataMode_8b;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,20 +90,135 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_DCMI_InitStruct0 = 65025;
+          struct TYPE_3__ * DCMI_InitStruct = (struct TYPE_3__ *) malloc(_len_DCMI_InitStruct0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_DCMI_InitStruct0; _i0++) {
+              DCMI_InitStruct[_i0].DCMI_ExtendedDataMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          DCMI_InitStruct[_i0].DCMI_CaptureRate = ((-2 * (next_i()%2)) + 1) * next_i();
+          DCMI_InitStruct[_i0].DCMI_HSPolarity = ((-2 * (next_i()%2)) + 1) * next_i();
+          DCMI_InitStruct[_i0].DCMI_VSPolarity = ((-2 * (next_i()%2)) + 1) * next_i();
+          DCMI_InitStruct[_i0].DCMI_PCKPolarity = ((-2 * (next_i()%2)) + 1) * next_i();
+          DCMI_InitStruct[_i0].DCMI_SynchroMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          DCMI_InitStruct[_i0].DCMI_CaptureMode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          DCMI_StructInit(DCMI_InitStruct);
+          free(DCMI_InitStruct);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_DCMI_InitStruct0 = 100;
+          struct TYPE_3__ * DCMI_InitStruct = (struct TYPE_3__ *) malloc(_len_DCMI_InitStruct0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_DCMI_InitStruct0; _i0++) {
+              DCMI_InitStruct[_i0].DCMI_ExtendedDataMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          DCMI_InitStruct[_i0].DCMI_CaptureRate = ((-2 * (next_i()%2)) + 1) * next_i();
+          DCMI_InitStruct[_i0].DCMI_HSPolarity = ((-2 * (next_i()%2)) + 1) * next_i();
+          DCMI_InitStruct[_i0].DCMI_VSPolarity = ((-2 * (next_i()%2)) + 1) * next_i();
+          DCMI_InitStruct[_i0].DCMI_PCKPolarity = ((-2 * (next_i()%2)) + 1) * next_i();
+          DCMI_InitStruct[_i0].DCMI_SynchroMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          DCMI_InitStruct[_i0].DCMI_CaptureMode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          DCMI_StructInit(DCMI_InitStruct);
+          free(DCMI_InitStruct);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int _len_DCMI_InitStruct0 = 1;
           struct TYPE_3__ * DCMI_InitStruct = (struct TYPE_3__ *) malloc(_len_DCMI_InitStruct0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_DCMI_InitStruct0; _i0++) {
-            DCMI_InitStruct[_i0].DCMI_ExtendedDataMode = ((-2 * (next_i()%2)) + 1) * next_i();
-        DCMI_InitStruct[_i0].DCMI_CaptureRate = ((-2 * (next_i()%2)) + 1) * next_i();
-        DCMI_InitStruct[_i0].DCMI_HSPolarity = ((-2 * (next_i()%2)) + 1) * next_i();
-        DCMI_InitStruct[_i0].DCMI_VSPolarity = ((-2 * (next_i()%2)) + 1) * next_i();
-        DCMI_InitStruct[_i0].DCMI_PCKPolarity = ((-2 * (next_i()%2)) + 1) * next_i();
-        DCMI_InitStruct[_i0].DCMI_SynchroMode = ((-2 * (next_i()%2)) + 1) * next_i();
-        DCMI_InitStruct[_i0].DCMI_CaptureMode = ((-2 * (next_i()%2)) + 1) * next_i();
+              DCMI_InitStruct[_i0].DCMI_ExtendedDataMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          DCMI_InitStruct[_i0].DCMI_CaptureRate = ((-2 * (next_i()%2)) + 1) * next_i();
+          DCMI_InitStruct[_i0].DCMI_HSPolarity = ((-2 * (next_i()%2)) + 1) * next_i();
+          DCMI_InitStruct[_i0].DCMI_VSPolarity = ((-2 * (next_i()%2)) + 1) * next_i();
+          DCMI_InitStruct[_i0].DCMI_PCKPolarity = ((-2 * (next_i()%2)) + 1) * next_i();
+          DCMI_InitStruct[_i0].DCMI_SynchroMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          DCMI_InitStruct[_i0].DCMI_CaptureMode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           DCMI_StructInit(DCMI_InitStruct);
           free(DCMI_InitStruct);
         

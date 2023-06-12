@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -86,12 +88,6 @@ __attribute__((used)) static inline int mthca_check_fmr(struct mthca_fmr *fmr, u
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,24 +100,163 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int list_len = 100;
+        
           int iova = 100;
+        
           int _len_fmr0 = 1;
           struct mthca_fmr * fmr = (struct mthca_fmr *) malloc(_len_fmr0*sizeof(struct mthca_fmr));
           for(int _i0 = 0; _i0 < _len_fmr0; _i0++) {
-            fmr[_i0].maps = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmr[_i0].attr.max_pages = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmr[_i0].attr.page_shift = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmr[_i0].attr.max_maps = ((-2 * (next_i()%2)) + 1) * next_i();
+              fmr[_i0].maps = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmr[_i0].attr.max_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmr[_i0].attr.page_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmr[_i0].attr.max_maps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_page_list0 = 1;
           int * page_list = (int *) malloc(_len_page_list0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_page_list0; _i0++) {
             page_list[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = mthca_check_fmr(fmr,page_list,list_len,iova);
+          printf("%d\n", benchRet); 
+          free(fmr);
+          free(page_list);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int list_len = 255;
+        
+          int iova = 255;
+        
+          int _len_fmr0 = 65025;
+          struct mthca_fmr * fmr = (struct mthca_fmr *) malloc(_len_fmr0*sizeof(struct mthca_fmr));
+          for(int _i0 = 0; _i0 < _len_fmr0; _i0++) {
+              fmr[_i0].maps = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmr[_i0].attr.max_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmr[_i0].attr.page_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmr[_i0].attr.max_maps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_page_list0 = 65025;
+          int * page_list = (int *) malloc(_len_page_list0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_page_list0; _i0++) {
+            page_list[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = mthca_check_fmr(fmr,page_list,list_len,iova);
+          printf("%d\n", benchRet); 
+          free(fmr);
+          free(page_list);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int list_len = 10;
+        
+          int iova = 10;
+        
+          int _len_fmr0 = 100;
+          struct mthca_fmr * fmr = (struct mthca_fmr *) malloc(_len_fmr0*sizeof(struct mthca_fmr));
+          for(int _i0 = 0; _i0 < _len_fmr0; _i0++) {
+              fmr[_i0].maps = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmr[_i0].attr.max_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmr[_i0].attr.page_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmr[_i0].attr.max_maps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_page_list0 = 100;
+          int * page_list = (int *) malloc(_len_page_list0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_page_list0; _i0++) {
+            page_list[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = mthca_check_fmr(fmr,page_list,list_len,iova);
           printf("%d\n", benchRet); 
           free(fmr);

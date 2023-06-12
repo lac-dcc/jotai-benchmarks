@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ int sr_get_last_session(struct cdrom_device_info *cdi,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,25 +86,172 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_cdi0 = 65025;
+          struct cdrom_device_info * cdi = (struct cdrom_device_info *) malloc(_len_cdi0*sizeof(struct cdrom_device_info));
+          for(int _i0 = 0; _i0 < _len_cdi0; _i0++) {
+              int _len_cdi__i0__handle0 = 1;
+          cdi[_i0].handle = (struct TYPE_4__ *) malloc(_len_cdi__i0__handle0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_cdi__i0__handle0; _j0++) {
+              cdi[_i0].handle->ms_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          cdi[_i0].handle->xa_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_ms_info0 = 65025;
+          struct cdrom_multisession * ms_info = (struct cdrom_multisession *) malloc(_len_ms_info0*sizeof(struct cdrom_multisession));
+          for(int _i0 = 0; _i0 < _len_ms_info0; _i0++) {
+              ms_info[_i0].xa_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          ms_info[_i0].addr.lba = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = sr_get_last_session(cdi,ms_info);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cdi0; _aux++) {
+          free(cdi[_aux].handle);
+          }
+          free(cdi);
+          free(ms_info);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_cdi0 = 100;
+          struct cdrom_device_info * cdi = (struct cdrom_device_info *) malloc(_len_cdi0*sizeof(struct cdrom_device_info));
+          for(int _i0 = 0; _i0 < _len_cdi0; _i0++) {
+              int _len_cdi__i0__handle0 = 1;
+          cdi[_i0].handle = (struct TYPE_4__ *) malloc(_len_cdi__i0__handle0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_cdi__i0__handle0; _j0++) {
+              cdi[_i0].handle->ms_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          cdi[_i0].handle->xa_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_ms_info0 = 100;
+          struct cdrom_multisession * ms_info = (struct cdrom_multisession *) malloc(_len_ms_info0*sizeof(struct cdrom_multisession));
+          for(int _i0 = 0; _i0 < _len_ms_info0; _i0++) {
+              ms_info[_i0].xa_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          ms_info[_i0].addr.lba = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = sr_get_last_session(cdi,ms_info);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cdi0; _aux++) {
+          free(cdi[_aux].handle);
+          }
+          free(cdi);
+          free(ms_info);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int _len_cdi0 = 1;
           struct cdrom_device_info * cdi = (struct cdrom_device_info *) malloc(_len_cdi0*sizeof(struct cdrom_device_info));
           for(int _i0 = 0; _i0 < _len_cdi0; _i0++) {
               int _len_cdi__i0__handle0 = 1;
           cdi[_i0].handle = (struct TYPE_4__ *) malloc(_len_cdi__i0__handle0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_cdi__i0__handle0; _j0++) {
-            cdi[_i0].handle->ms_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        cdi[_i0].handle->xa_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+              cdi[_i0].handle->ms_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          cdi[_i0].handle->xa_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_ms_info0 = 1;
           struct cdrom_multisession * ms_info = (struct cdrom_multisession *) malloc(_len_ms_info0*sizeof(struct cdrom_multisession));
           for(int _i0 = 0; _i0 < _len_ms_info0; _i0++) {
-            ms_info[_i0].xa_flag = ((-2 * (next_i()%2)) + 1) * next_i();
-        ms_info[_i0].addr.lba = ((-2 * (next_i()%2)) + 1) * next_i();
+              ms_info[_i0].xa_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          ms_info[_i0].addr.lba = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = sr_get_last_session(cdi,ms_info);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_cdi0; _aux++) {

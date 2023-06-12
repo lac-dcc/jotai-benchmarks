@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +81,6 @@ __attribute__((used)) static long clk_hifiberry_dacpro_round_rate(struct clk_hw 
 	return actual_rate;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,16 +97,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long rate = 100;
+        
           int _len_hw0 = 1;
           struct clk_hw * hw = (struct clk_hw *) malloc(_len_hw0*sizeof(struct clk_hw));
           for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
-            hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_parent_rate0 = 1;
           unsigned long * parent_rate = (unsigned long *) malloc(_len_parent_rate0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_parent_rate0; _i0++) {
             parent_rate[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           long benchRet = clk_hifiberry_dacpro_round_rate(hw,rate,parent_rate);
           printf("%ld\n", benchRet); 
           free(hw);
@@ -117,7 +118,81 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long rate = 255;
+        
+          int _len_hw0 = 65025;
+          struct clk_hw * hw = (struct clk_hw *) malloc(_len_hw0*sizeof(struct clk_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_parent_rate0 = 65025;
+          unsigned long * parent_rate = (unsigned long *) malloc(_len_parent_rate0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_parent_rate0; _i0++) {
+            parent_rate[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          long benchRet = clk_hifiberry_dacpro_round_rate(hw,rate,parent_rate);
+          printf("%ld\n", benchRet); 
+          free(hw);
+          free(parent_rate);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long rate = 10;
+        
+          int _len_hw0 = 100;
+          struct clk_hw * hw = (struct clk_hw *) malloc(_len_hw0*sizeof(struct clk_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_parent_rate0 = 100;
+          unsigned long * parent_rate = (unsigned long *) malloc(_len_parent_rate0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_parent_rate0; _i0++) {
+            parent_rate[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          long benchRet = clk_hifiberry_dacpro_round_rate(hw,rate,parent_rate);
+          printf("%ld\n", benchRet); 
+          free(hw);
+          free(parent_rate);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hw0 = 1;
+          struct clk_hw * hw = (struct clk_hw *) malloc(_len_hw0*sizeof(struct clk_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_parent_rate0 = 1;
+          unsigned long * parent_rate = (unsigned long *) malloc(_len_parent_rate0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_parent_rate0; _i0++) {
+            parent_rate[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          long benchRet = clk_hifiberry_dacpro_round_rate(hw,rate,parent_rate);
+          printf("%ld\n", benchRet); 
+          free(hw);
+          free(parent_rate);
+        
+        break;
+    }
     default:
         usage();
         break;

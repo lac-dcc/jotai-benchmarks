@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -83,12 +85,6 @@ void ff_eac3_get_frame_exp_strategy(AC3EncodeContext *s)
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,15 +97,38 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_s0 = 1;
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_s0 = 65025;
           struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].num_blocks = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].use_frame_exp_strategy = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].fbw_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].num_blocks = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].use_frame_exp_strategy = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].fbw_channels = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_s__i0__exp_strategy0 = 1;
           s[_i0].exp_strategy = (int **) malloc(_len_s__i0__exp_strategy0*sizeof(int *));
           for(int _j0 = 0; _j0 < _len_s__i0__exp_strategy0; _j0++) {
@@ -124,8 +143,136 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_s__i0__frame_exp_strategy0; _j0++) {
             s[_i0].frame_exp_strategy[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        s[_i0].cpl_on = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].cpl_on = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          ff_eac3_get_frame_exp_strategy(s);
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(*(s[_aux].exp_strategy));
+        free(s[_aux].exp_strategy);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].frame_exp_strategy);
+          }
+          free(s);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_s0 = 100;
+          struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].num_blocks = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].use_frame_exp_strategy = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].fbw_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_s__i0__exp_strategy0 = 1;
+          s[_i0].exp_strategy = (int **) malloc(_len_s__i0__exp_strategy0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_s__i0__exp_strategy0; _j0++) {
+            int _len_s__i0__exp_strategy1 = 1;
+            s[_i0].exp_strategy[_j0] = (int *) malloc(_len_s__i0__exp_strategy1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_s__i0__exp_strategy1; _j1++) {
+              s[_i0].exp_strategy[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+          int _len_s__i0__frame_exp_strategy0 = 1;
+          s[_i0].frame_exp_strategy = (int *) malloc(_len_s__i0__frame_exp_strategy0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_s__i0__frame_exp_strategy0; _j0++) {
+            s[_i0].frame_exp_strategy[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          s[_i0].cpl_on = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ff_eac3_get_frame_exp_strategy(s);
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(*(s[_aux].exp_strategy));
+        free(s[_aux].exp_strategy);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].frame_exp_strategy);
+          }
+          free(s);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_s0 = 1;
+          struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].num_blocks = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].use_frame_exp_strategy = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].fbw_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_s__i0__exp_strategy0 = 1;
+          s[_i0].exp_strategy = (int **) malloc(_len_s__i0__exp_strategy0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_s__i0__exp_strategy0; _j0++) {
+            int _len_s__i0__exp_strategy1 = 1;
+            s[_i0].exp_strategy[_j0] = (int *) malloc(_len_s__i0__exp_strategy1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_s__i0__exp_strategy1; _j1++) {
+              s[_i0].exp_strategy[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+          int _len_s__i0__frame_exp_strategy0 = 1;
+          s[_i0].frame_exp_strategy = (int *) malloc(_len_s__i0__frame_exp_strategy0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_s__i0__frame_exp_strategy0; _j0++) {
+            s[_i0].frame_exp_strategy[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          s[_i0].cpl_on = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           ff_eac3_get_frame_exp_strategy(s);
           for(int _aux = 0; _aux < _len_s0; _aux++) {
           free(*(s[_aux].exp_strategy));

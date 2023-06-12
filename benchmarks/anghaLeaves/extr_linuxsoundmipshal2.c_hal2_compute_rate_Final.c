@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ __attribute__((used)) static int hal2_compute_rate(struct hal2_codec *codec, uns
 	return rate;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,17 +88,131 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
           unsigned int rate = 100;
+        
           int _len_codec0 = 1;
           struct hal2_codec * codec = (struct hal2_codec *) malloc(_len_codec0*sizeof(struct hal2_codec));
           for(int _i0 = 0; _i0 < _len_codec0; _i0++) {
-            codec[_i0].master = ((-2 * (next_i()%2)) + 1) * next_i();
-        codec[_i0].inc = ((-2 * (next_i()%2)) + 1) * next_i();
-        codec[_i0].mod = ((-2 * (next_i()%2)) + 1) * next_i();
+              codec[_i0].master = ((-2 * (next_i()%2)) + 1) * next_i();
+          codec[_i0].inc = ((-2 * (next_i()%2)) + 1) * next_i();
+          codec[_i0].mod = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = hal2_compute_rate(codec,rate);
+          printf("%d\n", benchRet); 
+          free(codec);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
+          unsigned int rate = 255;
+        
+          int _len_codec0 = 65025;
+          struct hal2_codec * codec = (struct hal2_codec *) malloc(_len_codec0*sizeof(struct hal2_codec));
+          for(int _i0 = 0; _i0 < _len_codec0; _i0++) {
+              codec[_i0].master = ((-2 * (next_i()%2)) + 1) * next_i();
+          codec[_i0].inc = ((-2 * (next_i()%2)) + 1) * next_i();
+          codec[_i0].mod = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hal2_compute_rate(codec,rate);
+          printf("%d\n", benchRet); 
+          free(codec);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
+          unsigned int rate = 10;
+        
+          int _len_codec0 = 100;
+          struct hal2_codec * codec = (struct hal2_codec *) malloc(_len_codec0*sizeof(struct hal2_codec));
+          for(int _i0 = 0; _i0 < _len_codec0; _i0++) {
+              codec[_i0].master = ((-2 * (next_i()%2)) + 1) * next_i();
+          codec[_i0].inc = ((-2 * (next_i()%2)) + 1) * next_i();
+          codec[_i0].mod = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = hal2_compute_rate(codec,rate);
           printf("%d\n", benchRet); 
           free(codec);

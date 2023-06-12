@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ int ata_cable_sata(struct ata_port *ap)
 	return ATA_CBL_SATA;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ap0 = 1;
+          int _len_ap0 = 65025;
           struct ata_port * ap = (struct ata_port *) malloc(_len_ap0*sizeof(struct ata_port));
           for(int _i0 = 0; _i0 < _len_ap0; _i0++) {
-            ap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ata_cable_sata(ap);
           printf("%d\n", benchRet); 
           free(ap);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_ap0 = 100;
           struct ata_port * ap = (struct ata_port *) malloc(_len_ap0*sizeof(struct ata_port));
           for(int _i0 = 0; _i0 < _len_ap0; _i0++) {
-            ap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ata_cable_sata(ap);
           printf("%d\n", benchRet); 
           free(ap);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ap0 = 1;
+          struct ata_port * ap = (struct ata_port *) malloc(_len_ap0*sizeof(struct ata_port));
+          for(int _i0 = 0; _i0 < _len_ap0; _i0++) {
+              ap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ata_cable_sata(ap);
+          printf("%d\n", benchRet); 
+          free(ap);
+        
+        break;
+    }
     default:
         usage();
         break;

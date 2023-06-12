@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -81,12 +83,6 @@ __attribute__((used)) static void qed_get_mfw_force_cmd(struct qed_hwfn *p_hwfn,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,20 +95,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
           enum qed_load_req_force force_cmd = 0;
+        
+          int _len_p_hwfn0 = 65025;
+          struct qed_hwfn * p_hwfn = (struct qed_hwfn *) malloc(_len_p_hwfn0*sizeof(struct qed_hwfn));
+          for(int _i0 = 0; _i0 < _len_p_hwfn0; _i0++) {
+              p_hwfn[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_p_mfw_force_cmd0 = 65025;
+          int * p_mfw_force_cmd = (int *) malloc(_len_p_mfw_force_cmd0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p_mfw_force_cmd0; _i0++) {
+            p_mfw_force_cmd[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          qed_get_mfw_force_cmd(p_hwfn,force_cmd,p_mfw_force_cmd);
+          free(p_hwfn);
+          free(p_mfw_force_cmd);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
+          enum qed_load_req_force force_cmd = 0;
+        
+          int _len_p_hwfn0 = 100;
+          struct qed_hwfn * p_hwfn = (struct qed_hwfn *) malloc(_len_p_hwfn0*sizeof(struct qed_hwfn));
+          for(int _i0 = 0; _i0 < _len_p_hwfn0; _i0++) {
+              p_hwfn[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_p_mfw_force_cmd0 = 100;
+          int * p_mfw_force_cmd = (int *) malloc(_len_p_mfw_force_cmd0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p_mfw_force_cmd0; _i0++) {
+            p_mfw_force_cmd[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          qed_get_mfw_force_cmd(p_hwfn,force_cmd,p_mfw_force_cmd);
+          free(p_hwfn);
+          free(p_mfw_force_cmd);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
+          enum qed_load_req_force force_cmd = 0;
+        
           int _len_p_hwfn0 = 1;
           struct qed_hwfn * p_hwfn = (struct qed_hwfn *) malloc(_len_p_hwfn0*sizeof(struct qed_hwfn));
           for(int _i0 = 0; _i0 < _len_p_hwfn0; _i0++) {
-            p_hwfn[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              p_hwfn[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_p_mfw_force_cmd0 = 1;
           int * p_mfw_force_cmd = (int *) malloc(_len_p_mfw_force_cmd0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_p_mfw_force_cmd0; _i0++) {
             p_mfw_force_cmd[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           qed_get_mfw_force_cmd(p_hwfn,force_cmd,p_mfw_force_cmd);
           free(p_hwfn);
           free(p_mfw_force_cmd);

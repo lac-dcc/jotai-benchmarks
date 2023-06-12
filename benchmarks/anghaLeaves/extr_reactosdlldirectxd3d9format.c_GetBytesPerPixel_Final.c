@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -246,12 +247,6 @@ DWORD GetBytesPerPixel(D3DFORMAT Format)
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -268,6 +263,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int Format = 100;
+        
           int benchRet = GetBytesPerPixel(Format);
           printf("%d\n", benchRet); 
         
@@ -277,6 +273,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int Format = 255;
+        
           int benchRet = GetBytesPerPixel(Format);
           printf("%d\n", benchRet); 
         
@@ -286,12 +283,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int Format = 10;
+        
           int benchRet = GetBytesPerPixel(Format);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int Format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = GetBytesPerPixel(Format);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

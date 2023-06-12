@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static int path_check_status(struct mmp_path *path)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,19 +81,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_path0 = 1;
+          int _len_path0 = 65025;
           struct mmp_path * path = (struct mmp_path *) malloc(_len_path0*sizeof(struct mmp_path));
           for(int _i0 = 0; _i0 < _len_path0; _i0++) {
-            path[_i0].overlay_num = ((-2 * (next_i()%2)) + 1) * next_i();
+              path[_i0].overlay_num = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_path__i0__overlays0 = 1;
           path[_i0].overlays = (struct TYPE_2__ *) malloc(_len_path__i0__overlays0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_path__i0__overlays0; _j0++) {
-            path[_i0].overlays->status = ((-2 * (next_i()%2)) + 1) * next_i();
+              path[_i0].overlays->status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = path_check_status(path);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_path0; _aux++) {
@@ -107,7 +106,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_path0 = 100;
+          struct mmp_path * path = (struct mmp_path *) malloc(_len_path0*sizeof(struct mmp_path));
+          for(int _i0 = 0; _i0 < _len_path0; _i0++) {
+              path[_i0].overlay_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_path__i0__overlays0 = 1;
+          path[_i0].overlays = (struct TYPE_2__ *) malloc(_len_path__i0__overlays0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_path__i0__overlays0; _j0++) {
+              path[_i0].overlays->status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = path_check_status(path);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_path0; _aux++) {
+          free(path[_aux].overlays);
+          }
+          free(path);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_path0 = 1;
+          struct mmp_path * path = (struct mmp_path *) malloc(_len_path0*sizeof(struct mmp_path));
+          for(int _i0 = 0; _i0 < _len_path0; _i0++) {
+              path[_i0].overlay_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_path__i0__overlays0 = 1;
+          path[_i0].overlays = (struct TYPE_2__ *) malloc(_len_path__i0__overlays0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_path__i0__overlays0; _j0++) {
+              path[_i0].overlays->status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = path_check_status(path);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_path0; _aux++) {
+          free(path[_aux].overlays);
+          }
+          free(path);
+        
+        break;
+    }
     default:
         usage();
         break;

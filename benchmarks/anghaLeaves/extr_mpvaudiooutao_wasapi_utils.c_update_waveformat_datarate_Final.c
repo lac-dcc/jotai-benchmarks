@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static void update_waveformat_datarate(WAVEFORMATEXTENSIBL
     wf->nAvgBytesPerSec = wf->nSamplesPerSec * wf->nBlockAlign;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,18 +81,132 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_wformat0 = 65025;
+          struct TYPE_4__ * wformat = (struct TYPE_4__ *) malloc(_len_wformat0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_wformat0; _i0++) {
+              wformat[_i0].Format.nBlockAlign = ((-2 * (next_i()%2)) + 1) * next_i();
+          wformat[_i0].Format.nChannels = ((-2 * (next_i()%2)) + 1) * next_i();
+          wformat[_i0].Format.wBitsPerSample = ((-2 * (next_i()%2)) + 1) * next_i();
+          wformat[_i0].Format.nAvgBytesPerSec = ((-2 * (next_i()%2)) + 1) * next_i();
+          wformat[_i0].Format.nSamplesPerSec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          update_waveformat_datarate(wformat);
+          free(wformat);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_wformat0 = 100;
+          struct TYPE_4__ * wformat = (struct TYPE_4__ *) malloc(_len_wformat0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_wformat0; _i0++) {
+              wformat[_i0].Format.nBlockAlign = ((-2 * (next_i()%2)) + 1) * next_i();
+          wformat[_i0].Format.nChannels = ((-2 * (next_i()%2)) + 1) * next_i();
+          wformat[_i0].Format.wBitsPerSample = ((-2 * (next_i()%2)) + 1) * next_i();
+          wformat[_i0].Format.nAvgBytesPerSec = ((-2 * (next_i()%2)) + 1) * next_i();
+          wformat[_i0].Format.nSamplesPerSec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          update_waveformat_datarate(wformat);
+          free(wformat);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_wformat0 = 1;
           struct TYPE_4__ * wformat = (struct TYPE_4__ *) malloc(_len_wformat0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_wformat0; _i0++) {
-            wformat[_i0].Format.nBlockAlign = ((-2 * (next_i()%2)) + 1) * next_i();
-        wformat[_i0].Format.nChannels = ((-2 * (next_i()%2)) + 1) * next_i();
-        wformat[_i0].Format.wBitsPerSample = ((-2 * (next_i()%2)) + 1) * next_i();
-        wformat[_i0].Format.nAvgBytesPerSec = ((-2 * (next_i()%2)) + 1) * next_i();
-        wformat[_i0].Format.nSamplesPerSec = ((-2 * (next_i()%2)) + 1) * next_i();
+              wformat[_i0].Format.nBlockAlign = ((-2 * (next_i()%2)) + 1) * next_i();
+          wformat[_i0].Format.nChannels = ((-2 * (next_i()%2)) + 1) * next_i();
+          wformat[_i0].Format.wBitsPerSample = ((-2 * (next_i()%2)) + 1) * next_i();
+          wformat[_i0].Format.nAvgBytesPerSec = ((-2 * (next_i()%2)) + 1) * next_i();
+          wformat[_i0].Format.nSamplesPerSec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           update_waveformat_datarate(wformat);
           free(wformat);
         

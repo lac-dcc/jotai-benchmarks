@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ sockopt_name(sockopt_t sopt)
 	return (sopt->sopt_name);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_sopt0 = 1;
+          int _len_sopt0 = 65025;
           struct TYPE_3__ * sopt = (struct TYPE_3__ *) malloc(_len_sopt0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_sopt0; _i0++) {
-            sopt[_i0].sopt_name = ((-2 * (next_i()%2)) + 1) * next_i();
+              sopt[_i0].sopt_name = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = sockopt_name(sopt);
           printf("%d\n", benchRet); 
           free(sopt);
@@ -102,15 +99,32 @@ int main(int argc, char *argv[]) {
           int _len_sopt0 = 100;
           struct TYPE_3__ * sopt = (struct TYPE_3__ *) malloc(_len_sopt0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_sopt0; _i0++) {
-            sopt[_i0].sopt_name = ((-2 * (next_i()%2)) + 1) * next_i();
+              sopt[_i0].sopt_name = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = sockopt_name(sopt);
           printf("%d\n", benchRet); 
           free(sopt);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_sopt0 = 1;
+          struct TYPE_3__ * sopt = (struct TYPE_3__ *) malloc(_len_sopt0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_sopt0; _i0++) {
+              sopt[_i0].sopt_name = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sockopt_name(sopt);
+          printf("%d\n", benchRet); 
+          free(sopt);
+        
+        break;
+    }
     default:
         usage();
         break;

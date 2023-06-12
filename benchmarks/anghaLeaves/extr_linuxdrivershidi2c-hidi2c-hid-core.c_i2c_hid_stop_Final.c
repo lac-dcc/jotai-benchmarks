@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static void i2c_hid_stop(struct hid_device *hid)
 	hid->claimed = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_hid0 = 1;
+          int _len_hid0 = 65025;
           struct hid_device * hid = (struct hid_device *) malloc(_len_hid0*sizeof(struct hid_device));
           for(int _i0 = 0; _i0 < _len_hid0; _i0++) {
-            hid[_i0].claimed = ((-2 * (next_i()%2)) + 1) * next_i();
+              hid[_i0].claimed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           i2c_hid_stop(hid);
           free(hid);
         
@@ -98,14 +95,30 @@ int main(int argc, char *argv[]) {
           int _len_hid0 = 100;
           struct hid_device * hid = (struct hid_device *) malloc(_len_hid0*sizeof(struct hid_device));
           for(int _i0 = 0; _i0 < _len_hid0; _i0++) {
-            hid[_i0].claimed = ((-2 * (next_i()%2)) + 1) * next_i();
+              hid[_i0].claimed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           i2c_hid_stop(hid);
           free(hid);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_hid0 = 1;
+          struct hid_device * hid = (struct hid_device *) malloc(_len_hid0*sizeof(struct hid_device));
+          for(int _i0 = 0; _i0 < _len_hid0; _i0++) {
+              hid[_i0].claimed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          i2c_hid_stop(hid);
+          free(hid);
+        
+        break;
+    }
     default:
         usage();
         break;

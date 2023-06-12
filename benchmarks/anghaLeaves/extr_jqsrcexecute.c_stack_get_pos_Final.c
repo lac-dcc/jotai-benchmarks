@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ struct stack_pos stack_get_pos(jq_state* jq) {
   return sp;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,15 +77,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_jq0 = 1;
+          int _len_jq0 = 65025;
           struct TYPE_3__ * jq = (struct TYPE_3__ *) malloc(_len_jq0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_jq0; _i0++) {
-            jq[_i0].curr_frame = ((-2 * (next_i()%2)) + 1) * next_i();
-        jq[_i0].stk_top = ((-2 * (next_i()%2)) + 1) * next_i();
+              jq[_i0].curr_frame = ((-2 * (next_i()%2)) + 1) * next_i();
+          jq[_i0].stk_top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           struct stack_pos benchRet = stack_get_pos(jq);
           printf("%d\n", benchRet.member_1);
           printf("%d\n", benchRet.member_0);
@@ -97,7 +95,42 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_jq0 = 100;
+          struct TYPE_3__ * jq = (struct TYPE_3__ *) malloc(_len_jq0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_jq0; _i0++) {
+              jq[_i0].curr_frame = ((-2 * (next_i()%2)) + 1) * next_i();
+          jq[_i0].stk_top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct stack_pos benchRet = stack_get_pos(jq);
+          printf("%d\n", benchRet.member_1);
+          printf("%d\n", benchRet.member_0);
+          free(jq);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_jq0 = 1;
+          struct TYPE_3__ * jq = (struct TYPE_3__ *) malloc(_len_jq0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_jq0; _i0++) {
+              jq[_i0].curr_frame = ((-2 * (next_i()%2)) + 1) * next_i();
+          jq[_i0].stk_top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct stack_pos benchRet = stack_get_pos(jq);
+          printf("%d\n", benchRet.member_1);
+          printf("%d\n", benchRet.member_0);
+          free(jq);
+        
+        break;
+    }
     default:
         usage();
         break;

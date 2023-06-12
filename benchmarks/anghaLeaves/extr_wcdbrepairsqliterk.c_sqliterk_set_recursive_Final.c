@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ void sqliterk_set_recursive(sqliterk *rk, int recursive)
     rk->recursive = (char) recursive;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,29 +77,164 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int recursive = 100;
+        
           int _len_rk0 = 1;
           struct TYPE_3__ * rk = (struct TYPE_3__ *) malloc(_len_rk0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_rk0; _i0++) {
-            rk[_i0].recursive = ((-2 * (next_i()%2)) + 1) * next_i();
+              rk[_i0].recursive = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           sqliterk_set_recursive(rk,recursive);
           free(rk);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int recursive = 255;
+        
+          int _len_rk0 = 65025;
+          struct TYPE_3__ * rk = (struct TYPE_3__ *) malloc(_len_rk0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_rk0; _i0++) {
+              rk[_i0].recursive = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          sqliterk_set_recursive(rk,recursive);
+          free(rk);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int recursive = 10;
+        
           int _len_rk0 = 100;
           struct TYPE_3__ * rk = (struct TYPE_3__ *) malloc(_len_rk0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_rk0; _i0++) {
-            rk[_i0].recursive = ((-2 * (next_i()%2)) + 1) * next_i();
+              rk[_i0].recursive = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          sqliterk_set_recursive(rk,recursive);
+          free(rk);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int recursive = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rk0 = 1;
+          struct TYPE_3__ * rk = (struct TYPE_3__ *) malloc(_len_rk0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_rk0; _i0++) {
+              rk[_i0].recursive = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           sqliterk_set_recursive(rk,recursive);
           free(rk);
         

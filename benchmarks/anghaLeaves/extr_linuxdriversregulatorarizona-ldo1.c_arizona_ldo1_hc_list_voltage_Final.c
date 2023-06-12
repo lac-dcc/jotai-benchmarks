@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ __attribute__((used)) static int arizona_ldo1_hc_list_voltage(struct regulator_d
 		return rdev->desc->min_uV + (rdev->desc->uV_step * selector);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,17 +89,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int selector = 100;
+        
           int _len_rdev0 = 1;
           struct regulator_dev * rdev = (struct regulator_dev *) malloc(_len_rdev0*sizeof(struct regulator_dev));
           for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
               int _len_rdev__i0__desc0 = 1;
           rdev[_i0].desc = (struct TYPE_2__ *) malloc(_len_rdev__i0__desc0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_rdev__i0__desc0; _j0++) {
-            rdev[_i0].desc->n_voltages = ((-2 * (next_i()%2)) + 1) * next_i();
-        rdev[_i0].desc->min_uV = ((-2 * (next_i()%2)) + 1) * next_i();
-        rdev[_i0].desc->uV_step = ((-2 * (next_i()%2)) + 1) * next_i();
+              rdev[_i0].desc->n_voltages = ((-2 * (next_i()%2)) + 1) * next_i();
+          rdev[_i0].desc->min_uV = ((-2 * (next_i()%2)) + 1) * next_i();
+          rdev[_i0].desc->uV_step = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = arizona_ldo1_hc_list_voltage(rdev,selector);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_rdev0; _aux++) {
@@ -112,7 +113,90 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int selector = 255;
+        
+          int _len_rdev0 = 65025;
+          struct regulator_dev * rdev = (struct regulator_dev *) malloc(_len_rdev0*sizeof(struct regulator_dev));
+          for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
+              int _len_rdev__i0__desc0 = 1;
+          rdev[_i0].desc = (struct TYPE_2__ *) malloc(_len_rdev__i0__desc0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_rdev__i0__desc0; _j0++) {
+              rdev[_i0].desc->n_voltages = ((-2 * (next_i()%2)) + 1) * next_i();
+          rdev[_i0].desc->min_uV = ((-2 * (next_i()%2)) + 1) * next_i();
+          rdev[_i0].desc->uV_step = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = arizona_ldo1_hc_list_voltage(rdev,selector);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_rdev0; _aux++) {
+          free(rdev[_aux].desc);
+          }
+          free(rdev);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int selector = 10;
+        
+          int _len_rdev0 = 100;
+          struct regulator_dev * rdev = (struct regulator_dev *) malloc(_len_rdev0*sizeof(struct regulator_dev));
+          for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
+              int _len_rdev__i0__desc0 = 1;
+          rdev[_i0].desc = (struct TYPE_2__ *) malloc(_len_rdev__i0__desc0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_rdev__i0__desc0; _j0++) {
+              rdev[_i0].desc->n_voltages = ((-2 * (next_i()%2)) + 1) * next_i();
+          rdev[_i0].desc->min_uV = ((-2 * (next_i()%2)) + 1) * next_i();
+          rdev[_i0].desc->uV_step = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = arizona_ldo1_hc_list_voltage(rdev,selector);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_rdev0; _aux++) {
+          free(rdev[_aux].desc);
+          }
+          free(rdev);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int selector = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rdev0 = 1;
+          struct regulator_dev * rdev = (struct regulator_dev *) malloc(_len_rdev0*sizeof(struct regulator_dev));
+          for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
+              int _len_rdev__i0__desc0 = 1;
+          rdev[_i0].desc = (struct TYPE_2__ *) malloc(_len_rdev__i0__desc0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_rdev__i0__desc0; _j0++) {
+              rdev[_i0].desc->n_voltages = ((-2 * (next_i()%2)) + 1) * next_i();
+          rdev[_i0].desc->min_uV = ((-2 * (next_i()%2)) + 1) * next_i();
+          rdev[_i0].desc->uV_step = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = arizona_ldo1_hc_list_voltage(rdev,selector);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_rdev0; _aux++) {
+          free(rdev[_aux].desc);
+          }
+          free(rdev);
+        
+        break;
+    }
     default:
         usage();
         break;

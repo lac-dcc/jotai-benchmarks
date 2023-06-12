@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static void copy_ancestor (struct counter *dst, struct cou
   //dst->type = src->type;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,28 +76,81 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dst0 = 1;
+          int _len_dst0 = 65025;
           struct counter * dst = (struct counter *) malloc(_len_dst0*sizeof(struct counter));
           for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
-            dst[_i0].meta = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].timezone = ((-2 * (next_i()%2)) + 1) * next_i();
+              dst[_i0].meta = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].timezone = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_src0 = 1;
+        
+          int _len_src0 = 65025;
           struct counter * src = (struct counter *) malloc(_len_src0*sizeof(struct counter));
           for(int _i0 = 0; _i0 < _len_src0; _i0++) {
-            src[_i0].meta = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].timezone = ((-2 * (next_i()%2)) + 1) * next_i();
+              src[_i0].meta = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].timezone = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           copy_ancestor(dst,src);
           free(dst);
           free(src);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dst0 = 100;
+          struct counter * dst = (struct counter *) malloc(_len_dst0*sizeof(struct counter));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+              dst[_i0].meta = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].timezone = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_src0 = 100;
+          struct counter * src = (struct counter *) malloc(_len_src0*sizeof(struct counter));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+              src[_i0].meta = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].timezone = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          copy_ancestor(dst,src);
+          free(dst);
+          free(src);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dst0 = 1;
+          struct counter * dst = (struct counter *) malloc(_len_dst0*sizeof(struct counter));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+              dst[_i0].meta = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].timezone = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_src0 = 1;
+          struct counter * src = (struct counter *) malloc(_len_src0*sizeof(struct counter));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+              src[_i0].meta = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].timezone = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          copy_ancestor(dst,src);
+          free(dst);
+          free(src);
+        
+        break;
+    }
     default:
         usage();
         break;

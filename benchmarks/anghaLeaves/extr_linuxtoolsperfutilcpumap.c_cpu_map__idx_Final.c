@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ int cpu_map__idx(struct cpu_map *cpus, int cpu)
 	return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,16 +86,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int cpu = 100;
+        
           int _len_cpus0 = 1;
           struct cpu_map * cpus = (struct cpu_map *) malloc(_len_cpus0*sizeof(struct cpu_map));
           for(int _i0 = 0; _i0 < _len_cpus0; _i0++) {
-            cpus[_i0].nr = ((-2 * (next_i()%2)) + 1) * next_i();
+              cpus[_i0].nr = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_cpus__i0__map0 = 1;
           cpus[_i0].map = (int *) malloc(_len_cpus__i0__map0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_cpus__i0__map0; _j0++) {
             cpus[_i0].map[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = cpu_map__idx(cpus,cpu);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_cpus0; _aux++) {
@@ -108,7 +108,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int cpu = 255;
+        
+          int _len_cpus0 = 65025;
+          struct cpu_map * cpus = (struct cpu_map *) malloc(_len_cpus0*sizeof(struct cpu_map));
+          for(int _i0 = 0; _i0 < _len_cpus0; _i0++) {
+              cpus[_i0].nr = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cpus__i0__map0 = 1;
+          cpus[_i0].map = (int *) malloc(_len_cpus__i0__map0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_cpus__i0__map0; _j0++) {
+            cpus[_i0].map[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = cpu_map__idx(cpus,cpu);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cpus0; _aux++) {
+          free(cpus[_aux].map);
+          }
+          free(cpus);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int cpu = 10;
+        
+          int _len_cpus0 = 100;
+          struct cpu_map * cpus = (struct cpu_map *) malloc(_len_cpus0*sizeof(struct cpu_map));
+          for(int _i0 = 0; _i0 < _len_cpus0; _i0++) {
+              cpus[_i0].nr = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cpus__i0__map0 = 1;
+          cpus[_i0].map = (int *) malloc(_len_cpus__i0__map0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_cpus__i0__map0; _j0++) {
+            cpus[_i0].map[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = cpu_map__idx(cpus,cpu);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cpus0; _aux++) {
+          free(cpus[_aux].map);
+          }
+          free(cpus);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int cpu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cpus0 = 1;
+          struct cpu_map * cpus = (struct cpu_map *) malloc(_len_cpus0*sizeof(struct cpu_map));
+          for(int _i0 = 0; _i0 < _len_cpus0; _i0++) {
+              cpus[_i0].nr = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cpus__i0__map0 = 1;
+          cpus[_i0].map = (int *) malloc(_len_cpus__i0__map0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_cpus__i0__map0; _j0++) {
+            cpus[_i0].map[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = cpu_map__idx(cpus,cpu);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cpus0; _aux++) {
+          free(cpus[_aux].map);
+          }
+          free(cpus);
+        
+        break;
+    }
     default:
         usage();
         break;

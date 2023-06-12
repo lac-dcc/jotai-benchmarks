@@ -31,6 +31,7 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            big-arr-10x\n\
+       1            empty\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ __attribute__((used)) static int vc_dmaman_chan_free(struct vc_dmaman *dmaman, i
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,15 +83,83 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // big-arr-10x
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int chan = 10;
+        
           int _len_dmaman0 = 100;
           struct vc_dmaman * dmaman = (struct vc_dmaman *) malloc(_len_dmaman0*sizeof(struct vc_dmaman));
           for(int _i0 = 0; _i0 < _len_dmaman0; _i0++) {
-            dmaman[_i0].chan_available = ((-2 * (next_i()%2)) + 1) * next_i();
+              dmaman[_i0].chan_available = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = vc_dmaman_chan_free(dmaman,chan);
+          printf("%d\n", benchRet); 
+          free(dmaman);
+        
+        break;
+    }
+
+
+    // empty
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int chan = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dmaman0 = 1;
+          struct vc_dmaman * dmaman = (struct vc_dmaman *) malloc(_len_dmaman0*sizeof(struct vc_dmaman));
+          for(int _i0 = 0; _i0 < _len_dmaman0; _i0++) {
+              dmaman[_i0].chan_available = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = vc_dmaman_chan_free(dmaman,chan);
           printf("%d\n", benchRet); 
           free(dmaman);

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -81,12 +83,6 @@ __attribute__((used)) static int __set_phy_supported(struct phy_device *phydev, 
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,30 +95,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int max_speed = 100;
+        
           int _len_phydev0 = 1;
           struct phy_device * phydev = (struct phy_device *) malloc(_len_phydev0*sizeof(struct phy_device));
           for(int _i0 = 0; _i0 < _len_phydev0; _i0++) {
-            phydev[_i0].supported = ((-2 * (next_i()%2)) + 1) * next_i();
+              phydev[_i0].supported = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = __set_phy_supported(phydev,max_speed);
           printf("%d\n", benchRet); 
           free(phydev);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int max_speed = 255;
+        
+          int _len_phydev0 = 65025;
+          struct phy_device * phydev = (struct phy_device *) malloc(_len_phydev0*sizeof(struct phy_device));
+          for(int _i0 = 0; _i0 < _len_phydev0; _i0++) {
+              phydev[_i0].supported = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = __set_phy_supported(phydev,max_speed);
+          printf("%d\n", benchRet); 
+          free(phydev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int max_speed = 10;
+        
           int _len_phydev0 = 100;
           struct phy_device * phydev = (struct phy_device *) malloc(_len_phydev0*sizeof(struct phy_device));
           for(int _i0 = 0; _i0 < _len_phydev0; _i0++) {
-            phydev[_i0].supported = ((-2 * (next_i()%2)) + 1) * next_i();
+              phydev[_i0].supported = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = __set_phy_supported(phydev,max_speed);
+          printf("%d\n", benchRet); 
+          free(phydev);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int max_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_phydev0 = 1;
+          struct phy_device * phydev = (struct phy_device *) malloc(_len_phydev0*sizeof(struct phy_device));
+          for(int _i0 = 0; _i0 < _len_phydev0; _i0++) {
+              phydev[_i0].supported = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = __set_phy_supported(phydev,max_speed);
           printf("%d\n", benchRet); 
           free(phydev);

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static inline int ti_thermal_hotspot_temperature(int t, in
 	return t + delta;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,8 +83,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int t = 100;
+        
           int s = 100;
+        
           int c = 100;
+        
           int benchRet = ti_thermal_hotspot_temperature(t,s,c);
           printf("%d\n", benchRet); 
         
@@ -99,8 +97,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int t = 255;
+        
           int s = 255;
+        
           int c = 255;
+        
           int benchRet = ti_thermal_hotspot_temperature(t,s,c);
           printf("%d\n", benchRet); 
         
@@ -110,14 +111,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int t = 10;
+        
           int s = 10;
+        
           int c = 10;
+        
           int benchRet = ti_thermal_hotspot_temperature(t,s,c);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int t = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int s = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int c = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = ti_thermal_hotspot_temperature(t,s,c);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

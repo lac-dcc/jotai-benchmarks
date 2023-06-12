@@ -62,12 +62,6 @@ __attribute__((used)) static u32 rv6xx_clocks_per_unit(u32 unit)
 	return tmp;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,12 +78,12 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int unit = 10;
+        
           int benchRet = rv6xx_clocks_per_unit(unit);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

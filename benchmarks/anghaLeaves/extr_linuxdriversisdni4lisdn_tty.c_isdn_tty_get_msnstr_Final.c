@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ isdn_tty_get_msnstr(char *n, char **p)
 	*n = '\0';
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,14 +82,142 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_n0 = 65025;
+          char * n = (char *) malloc(_len_n0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_n0; _i0++) {
+            n[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_p0 = 65025;
+          char ** p = (char **) malloc(_len_p0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+            int _len_p1 = 1;
+            p[_i0] = (char *) malloc(_len_p1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_p1; _i1++) {
+              p[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          isdn_tty_get_msnstr(n,p);
+          free(n);
+          for(int i1 = 0; i1 < _len_p0; i1++) {
+              free(p[i1]);
+          }
+          free(p);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_n0 = 100;
+          char * n = (char *) malloc(_len_n0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_n0; _i0++) {
+            n[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_p0 = 100;
+          char ** p = (char **) malloc(_len_p0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+            int _len_p1 = 1;
+            p[_i0] = (char *) malloc(_len_p1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_p1; _i1++) {
+              p[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          isdn_tty_get_msnstr(n,p);
+          free(n);
+          for(int i1 = 0; i1 < _len_p0; i1++) {
+              free(p[i1]);
+          }
+          free(p);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int _len_n0 = 1;
           char * n = (char *) malloc(_len_n0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_n0; _i0++) {
             n[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_p0 = 1;
           char ** p = (char **) malloc(_len_p0*sizeof(char *));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
@@ -103,10 +227,10 @@ int main(int argc, char *argv[]) {
               p[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           isdn_tty_get_msnstr(n,p);
           free(n);
           for(int i1 = 0; i1 < _len_p0; i1++) {
-            int _len_p1 = 1;
               free(p[i1]);
           }
           free(p);

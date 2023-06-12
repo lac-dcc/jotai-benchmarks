@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ __attribute__((used)) static inline void vnic_wq_copy_desc_process(struct vnic_w
 
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,17 +87,176 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
           int index = 100;
+        
           int _len_wq0 = 1;
           struct vnic_wq_copy * wq = (struct vnic_wq_copy *) malloc(_len_wq0*sizeof(struct vnic_wq_copy));
           for(int _i0 = 0; _i0 < _len_wq0; _i0++) {
-            wq[_i0].to_clean_index = ((-2 * (next_i()%2)) + 1) * next_i();
-        wq[_i0].ring.desc_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        wq[_i0].ring.desc_avail = ((-2 * (next_i()%2)) + 1) * next_i();
+              wq[_i0].to_clean_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          wq[_i0].ring.desc_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          wq[_i0].ring.desc_avail = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          vnic_wq_copy_desc_process(wq,index);
+          free(wq);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int index = 255;
+        
+          int _len_wq0 = 65025;
+          struct vnic_wq_copy * wq = (struct vnic_wq_copy *) malloc(_len_wq0*sizeof(struct vnic_wq_copy));
+          for(int _i0 = 0; _i0 < _len_wq0; _i0++) {
+              wq[_i0].to_clean_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          wq[_i0].ring.desc_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          wq[_i0].ring.desc_avail = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          vnic_wq_copy_desc_process(wq,index);
+          free(wq);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int index = 10;
+        
+          int _len_wq0 = 100;
+          struct vnic_wq_copy * wq = (struct vnic_wq_copy *) malloc(_len_wq0*sizeof(struct vnic_wq_copy));
+          for(int _i0 = 0; _i0 < _len_wq0; _i0++) {
+              wq[_i0].to_clean_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          wq[_i0].ring.desc_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          wq[_i0].ring.desc_avail = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          vnic_wq_copy_desc_process(wq,index);
+          free(wq);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_wq0 = 1;
+          struct vnic_wq_copy * wq = (struct vnic_wq_copy *) malloc(_len_wq0*sizeof(struct vnic_wq_copy));
+          for(int _i0 = 0; _i0 < _len_wq0; _i0++) {
+              wq[_i0].to_clean_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          wq[_i0].ring.desc_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          wq[_i0].ring.desc_avail = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           vnic_wq_copy_desc_process(wq,index);
           free(wq);
         

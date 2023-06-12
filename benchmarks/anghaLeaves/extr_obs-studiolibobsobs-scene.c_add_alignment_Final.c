@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +76,6 @@ void add_alignment(struct vec2 *v, uint32_t align, int cx, int cy)
 		v->y += (float)(cy / 2);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,20 +92,90 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int align = 100;
+        
           int cx = 100;
+        
           int cy = 100;
+        
           int _len_v0 = 1;
           struct vec2 * v = (struct vec2 *) malloc(_len_v0*sizeof(struct vec2));
           for(int _i0 = 0; _i0 < _len_v0; _i0++) {
-            v[_i0].x = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        v[_i0].y = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+              v[_i0].x = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          v[_i0].y = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           }
+        
           add_alignment(v,align,cx,cy);
           free(v);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int align = 255;
+        
+          int cx = 255;
+        
+          int cy = 255;
+        
+          int _len_v0 = 65025;
+          struct vec2 * v = (struct vec2 *) malloc(_len_v0*sizeof(struct vec2));
+          for(int _i0 = 0; _i0 < _len_v0; _i0++) {
+              v[_i0].x = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          v[_i0].y = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          }
+        
+          add_alignment(v,align,cx,cy);
+          free(v);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int align = 10;
+        
+          int cx = 10;
+        
+          int cy = 10;
+        
+          int _len_v0 = 100;
+          struct vec2 * v = (struct vec2 *) malloc(_len_v0*sizeof(struct vec2));
+          for(int _i0 = 0; _i0 < _len_v0; _i0++) {
+              v[_i0].x = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          v[_i0].y = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          }
+        
+          add_alignment(v,align,cx,cy);
+          free(v);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int align = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int cx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int cy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_v0 = 1;
+          struct vec2 * v = (struct vec2 *) malloc(_len_v0*sizeof(struct vec2));
+          for(int _i0 = 0; _i0 < _len_v0; _i0++) {
+              v[_i0].x = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          v[_i0].y = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          }
+        
+          add_alignment(v,align,cx,cy);
+          free(v);
+        
+        break;
+    }
     default:
         usage();
         break;

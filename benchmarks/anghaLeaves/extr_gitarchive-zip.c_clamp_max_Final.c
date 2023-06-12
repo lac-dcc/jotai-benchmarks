@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static uint64_t clamp_max(uint64_t n, uint64_t max, int *c
 	return max;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,32 +78,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
           long n = 100;
+        
           long max = 100;
+        
           int _len_clamped0 = 1;
           int * clamped = (int *) malloc(_len_clamped0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_clamped0; _i0++) {
             clamped[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           long benchRet = clamp_max(n,max,clamped);
           printf("%ld\n", benchRet); 
           free(clamped);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
+          long n = 255;
+        
+          long max = 255;
+        
+          int _len_clamped0 = 65025;
+          int * clamped = (int *) malloc(_len_clamped0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_clamped0; _i0++) {
+            clamped[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          long benchRet = clamp_max(n,max,clamped);
+          printf("%ld\n", benchRet); 
+          free(clamped);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
           long n = 10;
+        
           long max = 10;
+        
           int _len_clamped0 = 100;
           int * clamped = (int *) malloc(_len_clamped0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_clamped0; _i0++) {
             clamped[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          long benchRet = clamp_max(n,max,clamped);
+          printf("%ld\n", benchRet); 
+          free(clamped);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
+          long n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_clamped0 = 1;
+          int * clamped = (int *) malloc(_len_clamped0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_clamped0; _i0++) {
+            clamped[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           long benchRet = clamp_max(n,max,clamped);
           printf("%ld\n", benchRet); 
           free(clamped);

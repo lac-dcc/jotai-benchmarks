@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -60,12 +61,6 @@ __attribute__((used)) static inline u8 rsi_get_channel(u8 *addr)
 	return *(char *)(addr + 15);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,21 +73,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int _len_addr0 = 100;
+          int _len_addr0 = 65025;
           char * addr = (char *) malloc(_len_addr0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_addr0; _i0++) {
             addr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           char benchRet = rsi_get_channel(addr);
           printf("%c\n", (benchRet %26) + 'a'); 
           free(addr);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_addr0 = 100;
+          char * addr = (char *) malloc(_len_addr0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_addr0; _i0++) {
+            addr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          char benchRet = rsi_get_channel(addr);
+          printf("%c\n", (benchRet %26) + 'a'); 
+          free(addr);
+        
+        break;
+    }
     default:
         usage();
         break;

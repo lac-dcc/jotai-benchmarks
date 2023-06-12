@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static inline int reiserfs_transaction_free_space(struct r
 	return th->t_blocks_allocated - th->t_blocks_logged;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,15 +74,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_th0 = 65025;
+          struct reiserfs_transaction_handle * th = (struct reiserfs_transaction_handle *) malloc(_len_th0*sizeof(struct reiserfs_transaction_handle));
+          for(int _i0 = 0; _i0 < _len_th0; _i0++) {
+              th[_i0].t_blocks_allocated = ((-2 * (next_i()%2)) + 1) * next_i();
+          th[_i0].t_blocks_logged = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = reiserfs_transaction_free_space(th);
+          printf("%d\n", benchRet); 
+          free(th);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_th0 = 100;
+          struct reiserfs_transaction_handle * th = (struct reiserfs_transaction_handle *) malloc(_len_th0*sizeof(struct reiserfs_transaction_handle));
+          for(int _i0 = 0; _i0 < _len_th0; _i0++) {
+              th[_i0].t_blocks_allocated = ((-2 * (next_i()%2)) + 1) * next_i();
+          th[_i0].t_blocks_logged = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = reiserfs_transaction_free_space(th);
+          printf("%d\n", benchRet); 
+          free(th);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_th0 = 1;
           struct reiserfs_transaction_handle * th = (struct reiserfs_transaction_handle *) malloc(_len_th0*sizeof(struct reiserfs_transaction_handle));
           for(int _i0 = 0; _i0 < _len_th0; _i0++) {
-            th[_i0].t_blocks_allocated = ((-2 * (next_i()%2)) + 1) * next_i();
-        th[_i0].t_blocks_logged = ((-2 * (next_i()%2)) + 1) * next_i();
+              th[_i0].t_blocks_allocated = ((-2 * (next_i()%2)) + 1) * next_i();
+          th[_i0].t_blocks_logged = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = reiserfs_transaction_free_space(th);
           printf("%d\n", benchRet); 
           free(th);

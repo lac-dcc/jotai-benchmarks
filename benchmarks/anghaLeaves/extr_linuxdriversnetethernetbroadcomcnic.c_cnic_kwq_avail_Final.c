@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static inline u32 cnic_kwq_avail(struct cnic_local *cp)
 		((cp->kwq_prod_idx - cp->kwq_con_idx) & cp->max_kwq_idx);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,23 +76,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cp0 = 1;
+          int _len_cp0 = 65025;
           struct cnic_local * cp = (struct cnic_local *) malloc(_len_cp0*sizeof(struct cnic_local));
           for(int _i0 = 0; _i0 < _len_cp0; _i0++) {
-            cp[_i0].max_kwq_idx = ((-2 * (next_i()%2)) + 1) * next_i();
-        cp[_i0].kwq_prod_idx = ((-2 * (next_i()%2)) + 1) * next_i();
-        cp[_i0].kwq_con_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+              cp[_i0].max_kwq_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          cp[_i0].kwq_prod_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          cp[_i0].kwq_con_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cnic_kwq_avail(cp);
           printf("%d\n", benchRet); 
           free(cp);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_cp0 = 100;
+          struct cnic_local * cp = (struct cnic_local *) malloc(_len_cp0*sizeof(struct cnic_local));
+          for(int _i0 = 0; _i0 < _len_cp0; _i0++) {
+              cp[_i0].max_kwq_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          cp[_i0].kwq_prod_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          cp[_i0].kwq_con_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cnic_kwq_avail(cp);
+          printf("%d\n", benchRet); 
+          free(cp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_cp0 = 1;
+          struct cnic_local * cp = (struct cnic_local *) malloc(_len_cp0*sizeof(struct cnic_local));
+          for(int _i0 = 0; _i0 < _len_cp0; _i0++) {
+              cp[_i0].max_kwq_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          cp[_i0].kwq_prod_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          cp[_i0].kwq_con_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cnic_kwq_avail(cp);
+          printf("%d\n", benchRet); 
+          free(cp);
+        
+        break;
+    }
     default:
         usage();
         break;

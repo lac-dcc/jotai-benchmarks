@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +74,6 @@ __attribute__((used)) static void i40iw_ieq_check_first_buf(struct i40iw_puda_bu
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,17 +86,172 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           long fps = 100;
+        
           int _len_buf0 = 1;
           struct i40iw_puda_buf * buf = (struct i40iw_puda_buf *) malloc(_len_buf0*sizeof(struct i40iw_puda_buf));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
-            buf[_i0].seqnum = ((-2 * (next_i()%2)) + 1) * next_i();
-        buf[_i0].datalen = ((-2 * (next_i()%2)) + 1) * next_i();
-        buf[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+              buf[_i0].seqnum = ((-2 * (next_i()%2)) + 1) * next_i();
+          buf[_i0].datalen = ((-2 * (next_i()%2)) + 1) * next_i();
+          buf[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          i40iw_ieq_check_first_buf(buf,fps);
+          free(buf);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long fps = 255;
+        
+          int _len_buf0 = 65025;
+          struct i40iw_puda_buf * buf = (struct i40iw_puda_buf *) malloc(_len_buf0*sizeof(struct i40iw_puda_buf));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+              buf[_i0].seqnum = ((-2 * (next_i()%2)) + 1) * next_i();
+          buf[_i0].datalen = ((-2 * (next_i()%2)) + 1) * next_i();
+          buf[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          i40iw_ieq_check_first_buf(buf,fps);
+          free(buf);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long fps = 10;
+        
+          int _len_buf0 = 100;
+          struct i40iw_puda_buf * buf = (struct i40iw_puda_buf *) malloc(_len_buf0*sizeof(struct i40iw_puda_buf));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+              buf[_i0].seqnum = ((-2 * (next_i()%2)) + 1) * next_i();
+          buf[_i0].datalen = ((-2 * (next_i()%2)) + 1) * next_i();
+          buf[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          i40iw_ieq_check_first_buf(buf,fps);
+          free(buf);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          long fps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_buf0 = 1;
+          struct i40iw_puda_buf * buf = (struct i40iw_puda_buf *) malloc(_len_buf0*sizeof(struct i40iw_puda_buf));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+              buf[_i0].seqnum = ((-2 * (next_i()%2)) + 1) * next_i();
+          buf[_i0].datalen = ((-2 * (next_i()%2)) + 1) * next_i();
+          buf[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           i40iw_ieq_check_first_buf(buf,fps);
           free(buf);
         

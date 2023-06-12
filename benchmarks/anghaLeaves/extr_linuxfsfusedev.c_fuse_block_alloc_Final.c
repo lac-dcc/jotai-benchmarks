@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -60,12 +63,6 @@ __attribute__((used)) static bool fuse_block_alloc(struct fuse_conn *fc, bool fo
 	return !fc->initialized || (for_background && fc->blocked);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,16 +75,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int for_background = 100;
+        
           int _len_fc0 = 1;
           struct fuse_conn * fc = (struct fuse_conn *) malloc(_len_fc0*sizeof(struct fuse_conn));
           for(int _i0 = 0; _i0 < _len_fc0; _i0++) {
-            fc[_i0].blocked = ((-2 * (next_i()%2)) + 1) * next_i();
-        fc[_i0].initialized = ((-2 * (next_i()%2)) + 1) * next_i();
+              fc[_i0].blocked = ((-2 * (next_i()%2)) + 1) * next_i();
+          fc[_i0].initialized = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = fuse_block_alloc(fc,for_background);
+          printf("%d\n", benchRet); 
+          free(fc);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int for_background = 255;
+        
+          int _len_fc0 = 65025;
+          struct fuse_conn * fc = (struct fuse_conn *) malloc(_len_fc0*sizeof(struct fuse_conn));
+          for(int _i0 = 0; _i0 < _len_fc0; _i0++) {
+              fc[_i0].blocked = ((-2 * (next_i()%2)) + 1) * next_i();
+          fc[_i0].initialized = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fuse_block_alloc(fc,for_background);
+          printf("%d\n", benchRet); 
+          free(fc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int for_background = 10;
+        
+          int _len_fc0 = 100;
+          struct fuse_conn * fc = (struct fuse_conn *) malloc(_len_fc0*sizeof(struct fuse_conn));
+          for(int _i0 = 0; _i0 < _len_fc0; _i0++) {
+              fc[_i0].blocked = ((-2 * (next_i()%2)) + 1) * next_i();
+          fc[_i0].initialized = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fuse_block_alloc(fc,for_background);
+          printf("%d\n", benchRet); 
+          free(fc);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int for_background = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fc0 = 1;
+          struct fuse_conn * fc = (struct fuse_conn *) malloc(_len_fc0*sizeof(struct fuse_conn));
+          for(int _i0 = 0; _i0 < _len_fc0; _i0++) {
+              fc[_i0].blocked = ((-2 * (next_i()%2)) + 1) * next_i();
+          fc[_i0].initialized = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = fuse_block_alloc(fc,for_background);
           printf("%d\n", benchRet); 
           free(fc);

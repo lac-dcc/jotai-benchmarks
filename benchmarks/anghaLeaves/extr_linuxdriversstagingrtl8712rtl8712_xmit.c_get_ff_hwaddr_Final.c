@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -134,12 +136,6 @@ __attribute__((used)) static u32 get_ff_hwaddr(struct xmit_frame *pxmitframe)
 	return addr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -152,21 +148,26 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pxmitframe0 = 1;
+          int _len_pxmitframe0 = 65025;
           struct xmit_frame * pxmitframe = (struct xmit_frame *) malloc(_len_pxmitframe0*sizeof(struct xmit_frame));
           for(int _i0 = 0; _i0 < _len_pxmitframe0; _i0++) {
-            pxmitframe[_i0].frame_tag = ((-2 * (next_i()%2)) + 1) * next_i();
+              pxmitframe[_i0].frame_tag = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_pxmitframe__i0__padapter0 = 1;
           pxmitframe[_i0].padapter = (struct _adapter *) malloc(_len_pxmitframe__i0__padapter0*sizeof(struct _adapter));
           for(int _j0 = 0; _j0 < _len_pxmitframe__i0__padapter0; _j0++) {
-            pxmitframe[_i0].padapter->dvobjpriv.nr_endpoint = ((-2 * (next_i()%2)) + 1) * next_i();
+              pxmitframe[_i0].padapter->dvobjpriv.nr_endpoint = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-        pxmitframe[_i0].attrib.priority = ((-2 * (next_i()%2)) + 1) * next_i();
-        pxmitframe[_i0].attrib.qsel = ((-2 * (next_i()%2)) + 1) * next_i();
+          pxmitframe[_i0].attrib.priority = ((-2 * (next_i()%2)) + 1) * next_i();
+          pxmitframe[_i0].attrib.qsel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = get_ff_hwaddr(pxmitframe);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_pxmitframe0; _aux++) {
@@ -176,7 +177,64 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_pxmitframe0 = 100;
+          struct xmit_frame * pxmitframe = (struct xmit_frame *) malloc(_len_pxmitframe0*sizeof(struct xmit_frame));
+          for(int _i0 = 0; _i0 < _len_pxmitframe0; _i0++) {
+              pxmitframe[_i0].frame_tag = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pxmitframe__i0__padapter0 = 1;
+          pxmitframe[_i0].padapter = (struct _adapter *) malloc(_len_pxmitframe__i0__padapter0*sizeof(struct _adapter));
+          for(int _j0 = 0; _j0 < _len_pxmitframe__i0__padapter0; _j0++) {
+              pxmitframe[_i0].padapter->dvobjpriv.nr_endpoint = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+          pxmitframe[_i0].attrib.priority = ((-2 * (next_i()%2)) + 1) * next_i();
+          pxmitframe[_i0].attrib.qsel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = get_ff_hwaddr(pxmitframe);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pxmitframe0; _aux++) {
+          free(pxmitframe[_aux].padapter);
+          }
+          free(pxmitframe);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_pxmitframe0 = 1;
+          struct xmit_frame * pxmitframe = (struct xmit_frame *) malloc(_len_pxmitframe0*sizeof(struct xmit_frame));
+          for(int _i0 = 0; _i0 < _len_pxmitframe0; _i0++) {
+              pxmitframe[_i0].frame_tag = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pxmitframe__i0__padapter0 = 1;
+          pxmitframe[_i0].padapter = (struct _adapter *) malloc(_len_pxmitframe__i0__padapter0*sizeof(struct _adapter));
+          for(int _j0 = 0; _j0 < _len_pxmitframe__i0__padapter0; _j0++) {
+              pxmitframe[_i0].padapter->dvobjpriv.nr_endpoint = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+          pxmitframe[_i0].attrib.priority = ((-2 * (next_i()%2)) + 1) * next_i();
+          pxmitframe[_i0].attrib.qsel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = get_ff_hwaddr(pxmitframe);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pxmitframe0; _aux++) {
+          free(pxmitframe[_aux].padapter);
+          }
+          free(pxmitframe);
+        
+        break;
+    }
     default:
         usage();
         break;

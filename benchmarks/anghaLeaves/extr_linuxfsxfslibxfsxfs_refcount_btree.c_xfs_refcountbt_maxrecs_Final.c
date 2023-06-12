@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +74,6 @@ xfs_refcountbt_maxrecs(
 			   sizeof(xfs_refcount_ptr_t));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,7 +90,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int blocklen = 100;
+        
           int leaf = 100;
+        
           int benchRet = xfs_refcountbt_maxrecs(blocklen,leaf);
           printf("%d\n", benchRet); 
         
@@ -105,7 +102,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int blocklen = 255;
+        
           int leaf = 255;
+        
           int benchRet = xfs_refcountbt_maxrecs(blocklen,leaf);
           printf("%d\n", benchRet); 
         
@@ -115,13 +114,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int blocklen = 10;
+        
           int leaf = 10;
+        
           int benchRet = xfs_refcountbt_maxrecs(blocklen,leaf);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int blocklen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int leaf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = xfs_refcountbt_maxrecs(blocklen,leaf);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

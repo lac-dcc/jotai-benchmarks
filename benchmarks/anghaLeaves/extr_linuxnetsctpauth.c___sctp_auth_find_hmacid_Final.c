@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static int __sctp_auth_find_hmacid(__be16 *hmacs, int n_el
 	return found;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,23 +84,63 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int n_elts = 10;
-          long hmac_id = 10;
-          int _len_hmacs0 = 100;
+          int n_elts = 255;
+        
+          long hmac_id = 255;
+        
+          int _len_hmacs0 = 65025;
           long * hmacs = (long *) malloc(_len_hmacs0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_hmacs0; _i0++) {
             hmacs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = __sctp_auth_find_hmacid(hmacs,n_elts,hmac_id);
           printf("%d\n", benchRet); 
           free(hmacs);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int n_elts = 10;
+        
+          long hmac_id = 10;
+        
+          int _len_hmacs0 = 100;
+          long * hmacs = (long *) malloc(_len_hmacs0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_hmacs0; _i0++) {
+            hmacs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = __sctp_auth_find_hmacid(hmacs,n_elts,hmac_id);
+          printf("%d\n", benchRet); 
+          free(hmacs);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int n_elts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long hmac_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hmacs0 = 1;
+          long * hmacs = (long *) malloc(_len_hmacs0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_hmacs0; _i0++) {
+            hmacs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = __sctp_auth_find_hmacid(hmacs,n_elts,hmac_id);
+          printf("%d\n", benchRet); 
+          free(hmacs);
+        
+        break;
+    }
     default:
         usage();
         break;

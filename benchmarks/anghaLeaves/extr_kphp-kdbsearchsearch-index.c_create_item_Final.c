@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ __attribute__((used)) static int create_item (struct item *C, long long item_id)
   return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,21 +81,191 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           long long item_id = 100;
+        
           int _len_C0 = 1;
           struct item * C = (struct item *) malloc(_len_C0*sizeof(struct item));
           for(int _i0 = 0; _i0 < _len_C0; _i0++) {
-            C[_i0].item_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        C[_i0].str = ((-2 * (next_i()%2)) + 1) * next_i();
-        C[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
-        C[_i0].extra = ((-2 * (next_i()%2)) + 1) * next_i();
-        C[_i0].rates = ((-2 * (next_i()%2)) + 1) * next_i();
-        C[_i0].rates_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        C[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              C[_i0].item_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          C[_i0].str = ((-2 * (next_i()%2)) + 1) * next_i();
+          C[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          C[_i0].extra = ((-2 * (next_i()%2)) + 1) * next_i();
+          C[_i0].rates = ((-2 * (next_i()%2)) + 1) * next_i();
+          C[_i0].rates_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          C[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = create_item(C,item_id);
+          printf("%d\n", benchRet); 
+          free(C);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          long long item_id = 255;
+        
+          int _len_C0 = 65025;
+          struct item * C = (struct item *) malloc(_len_C0*sizeof(struct item));
+          for(int _i0 = 0; _i0 < _len_C0; _i0++) {
+              C[_i0].item_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          C[_i0].str = ((-2 * (next_i()%2)) + 1) * next_i();
+          C[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          C[_i0].extra = ((-2 * (next_i()%2)) + 1) * next_i();
+          C[_i0].rates = ((-2 * (next_i()%2)) + 1) * next_i();
+          C[_i0].rates_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          C[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = create_item(C,item_id);
+          printf("%d\n", benchRet); 
+          free(C);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          long long item_id = 10;
+        
+          int _len_C0 = 100;
+          struct item * C = (struct item *) malloc(_len_C0*sizeof(struct item));
+          for(int _i0 = 0; _i0 < _len_C0; _i0++) {
+              C[_i0].item_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          C[_i0].str = ((-2 * (next_i()%2)) + 1) * next_i();
+          C[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          C[_i0].extra = ((-2 * (next_i()%2)) + 1) * next_i();
+          C[_i0].rates = ((-2 * (next_i()%2)) + 1) * next_i();
+          C[_i0].rates_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          C[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = create_item(C,item_id);
+          printf("%d\n", benchRet); 
+          free(C);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          long long item_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_C0 = 1;
+          struct item * C = (struct item *) malloc(_len_C0*sizeof(struct item));
+          for(int _i0 = 0; _i0 < _len_C0; _i0++) {
+              C[_i0].item_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          C[_i0].str = ((-2 * (next_i()%2)) + 1) * next_i();
+          C[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          C[_i0].extra = ((-2 * (next_i()%2)) + 1) * next_i();
+          C[_i0].rates = ((-2 * (next_i()%2)) + 1) * next_i();
+          C[_i0].rates_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          C[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = create_item(C,item_id);
           printf("%d\n", benchRet); 
           free(C);

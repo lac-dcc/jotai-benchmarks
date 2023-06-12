@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -109,12 +111,6 @@ int ufshcd_map_desc_id_to_length(struct ufs_hba *hba,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -127,26 +123,166 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           enum desc_idn desc_id = 0;
+        
+          int _len_hba0 = 65025;
+          struct ufs_hba * hba = (struct ufs_hba *) malloc(_len_hba0*sizeof(struct ufs_hba));
+          for(int _i0 = 0; _i0 < _len_hba0; _i0++) {
+              hba[_i0].desc_size.dev_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].desc_size.pwr_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].desc_size.geom_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].desc_size.conf_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].desc_size.unit_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].desc_size.interc_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].desc_size.hlth_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_desc_len0 = 65025;
+          int * desc_len = (int *) malloc(_len_desc_len0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_desc_len0; _i0++) {
+            desc_len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ufshcd_map_desc_id_to_length(hba,desc_id,desc_len);
+          printf("%d\n", benchRet); 
+          free(hba);
+          free(desc_len);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          enum desc_idn desc_id = 0;
+        
+          int _len_hba0 = 100;
+          struct ufs_hba * hba = (struct ufs_hba *) malloc(_len_hba0*sizeof(struct ufs_hba));
+          for(int _i0 = 0; _i0 < _len_hba0; _i0++) {
+              hba[_i0].desc_size.dev_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].desc_size.pwr_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].desc_size.geom_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].desc_size.conf_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].desc_size.unit_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].desc_size.interc_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].desc_size.hlth_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_desc_len0 = 100;
+          int * desc_len = (int *) malloc(_len_desc_len0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_desc_len0; _i0++) {
+            desc_len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ufshcd_map_desc_id_to_length(hba,desc_id,desc_len);
+          printf("%d\n", benchRet); 
+          free(hba);
+          free(desc_len);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          enum desc_idn desc_id = 0;
+        
           int _len_hba0 = 1;
           struct ufs_hba * hba = (struct ufs_hba *) malloc(_len_hba0*sizeof(struct ufs_hba));
           for(int _i0 = 0; _i0 < _len_hba0; _i0++) {
-            hba[_i0].desc_size.dev_desc = ((-2 * (next_i()%2)) + 1) * next_i();
-        hba[_i0].desc_size.pwr_desc = ((-2 * (next_i()%2)) + 1) * next_i();
-        hba[_i0].desc_size.geom_desc = ((-2 * (next_i()%2)) + 1) * next_i();
-        hba[_i0].desc_size.conf_desc = ((-2 * (next_i()%2)) + 1) * next_i();
-        hba[_i0].desc_size.unit_desc = ((-2 * (next_i()%2)) + 1) * next_i();
-        hba[_i0].desc_size.interc_desc = ((-2 * (next_i()%2)) + 1) * next_i();
-        hba[_i0].desc_size.hlth_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+              hba[_i0].desc_size.dev_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].desc_size.pwr_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].desc_size.geom_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].desc_size.conf_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].desc_size.unit_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].desc_size.interc_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].desc_size.hlth_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_desc_len0 = 1;
           int * desc_len = (int *) malloc(_len_desc_len0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_desc_len0; _i0++) {
             desc_len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = ufshcd_map_desc_id_to_length(hba,desc_id,desc_len);
           printf("%d\n", benchRet); 
           free(hba);

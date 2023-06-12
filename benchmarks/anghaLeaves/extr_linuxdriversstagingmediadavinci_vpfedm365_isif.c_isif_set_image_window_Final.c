@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -89,12 +91,6 @@ __attribute__((used)) static int isif_set_image_window(struct vpfe_isif_device *
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,30 +103,39 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_isif0 = 1;
+          int _len_isif0 = 65025;
           struct vpfe_isif_device * isif = (struct vpfe_isif_device *) malloc(_len_isif0*sizeof(struct vpfe_isif_device));
           for(int _i0 = 0; _i0 < _len_isif0; _i0++) {
-            isif[_i0].isif_cfg.ycbcr.win.height = ((-2 * (next_i()%2)) + 1) * next_i();
-        isif[_i0].isif_cfg.ycbcr.win.width = ((-2 * (next_i()%2)) + 1) * next_i();
-        isif[_i0].isif_cfg.ycbcr.win.left = ((-2 * (next_i()%2)) + 1) * next_i();
-        isif[_i0].isif_cfg.ycbcr.win.top = ((-2 * (next_i()%2)) + 1) * next_i();
-        isif[_i0].isif_cfg.bayer.win.height = ((-2 * (next_i()%2)) + 1) * next_i();
-        isif[_i0].isif_cfg.bayer.win.width = ((-2 * (next_i()%2)) + 1) * next_i();
-        isif[_i0].isif_cfg.bayer.win.left = ((-2 * (next_i()%2)) + 1) * next_i();
-        isif[_i0].isif_cfg.bayer.win.top = ((-2 * (next_i()%2)) + 1) * next_i();
+              isif[_i0].isif_cfg.ycbcr.win.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.ycbcr.win.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.ycbcr.win.left = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.ycbcr.win.top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          isif[_i0].isif_cfg.bayer.win.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.bayer.win.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.bayer.win.left = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.bayer.win.top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           int _len_isif__i0__formats0 = 1;
           isif[_i0].formats = (struct TYPE_7__ *) malloc(_len_isif__i0__formats0*sizeof(struct TYPE_7__));
           for(int _j0 = 0; _j0 < _len_isif__i0__formats0; _j0++) {
-            isif[_i0].formats->code = ((-2 * (next_i()%2)) + 1) * next_i();
+              isif[_i0].formats->code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        isif[_i0].crop.height = ((-2 * (next_i()%2)) + 1) * next_i();
-        isif[_i0].crop.width = ((-2 * (next_i()%2)) + 1) * next_i();
-        isif[_i0].crop.left = ((-2 * (next_i()%2)) + 1) * next_i();
-        isif[_i0].crop.top = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].crop.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].crop.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].crop.left = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].crop.top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = isif_set_image_window(isif);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_isif0; _aux++) {
@@ -140,7 +145,90 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_isif0 = 100;
+          struct vpfe_isif_device * isif = (struct vpfe_isif_device *) malloc(_len_isif0*sizeof(struct vpfe_isif_device));
+          for(int _i0 = 0; _i0 < _len_isif0; _i0++) {
+              isif[_i0].isif_cfg.ycbcr.win.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.ycbcr.win.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.ycbcr.win.left = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.ycbcr.win.top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          isif[_i0].isif_cfg.bayer.win.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.bayer.win.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.bayer.win.left = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.bayer.win.top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          int _len_isif__i0__formats0 = 1;
+          isif[_i0].formats = (struct TYPE_7__ *) malloc(_len_isif__i0__formats0*sizeof(struct TYPE_7__));
+          for(int _j0 = 0; _j0 < _len_isif__i0__formats0; _j0++) {
+              isif[_i0].formats->code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          isif[_i0].crop.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].crop.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].crop.left = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].crop.top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = isif_set_image_window(isif);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_isif0; _aux++) {
+          free(isif[_aux].formats);
+          }
+          free(isif);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_isif0 = 1;
+          struct vpfe_isif_device * isif = (struct vpfe_isif_device *) malloc(_len_isif0*sizeof(struct vpfe_isif_device));
+          for(int _i0 = 0; _i0 < _len_isif0; _i0++) {
+              isif[_i0].isif_cfg.ycbcr.win.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.ycbcr.win.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.ycbcr.win.left = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.ycbcr.win.top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          isif[_i0].isif_cfg.bayer.win.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.bayer.win.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.bayer.win.left = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.bayer.win.top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          int _len_isif__i0__formats0 = 1;
+          isif[_i0].formats = (struct TYPE_7__ *) malloc(_len_isif__i0__formats0*sizeof(struct TYPE_7__));
+          for(int _j0 = 0; _j0 < _len_isif__i0__formats0; _j0++) {
+              isif[_i0].formats->code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          isif[_i0].crop.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].crop.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].crop.left = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].crop.top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = isif_set_image_window(isif);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_isif0; _aux++) {
+          free(isif[_aux].formats);
+          }
+          free(isif);
+        
+        break;
+    }
     default:
         usage();
         break;

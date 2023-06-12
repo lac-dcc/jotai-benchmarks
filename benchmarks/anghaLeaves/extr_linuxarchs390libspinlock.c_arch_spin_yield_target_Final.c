@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            linked\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,7 +70,6 @@ __attribute__((used)) static inline int arch_spin_yield_target(int lock, struct 
 	return node->node_id >> _Q_TAIL_CPU_OFFSET;
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct spin_wait *_allocate_node(int length, struct spin_wait *aux_node[]) {
@@ -98,7 +99,6 @@ void _delete_node(struct spin_wait *aux_node[], int aux_node_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -111,12 +111,113 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int lock = 100;
+        
           struct spin_wait * aux_node[1];
           struct spin_wait * node = _allocate_node(1, aux_node);
+        
+          int benchRet = arch_spin_yield_target(lock,node);
+          printf("%d\n", benchRet); 
+          _delete_node(aux_node, 1);
+        
+        break;
+    }
+
+
+    // linked
+    case 1:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 70018
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 40016
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 40012
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 40012
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 40012
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 40012
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 60012
+          // ------------------------------- 
+
+          int lock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          struct spin_wait * aux_node[10000];
+          struct spin_wait * node = _allocate_node(10000, aux_node);
+        
+          int benchRet = arch_spin_yield_target(lock,node);
+          printf("%d\n", benchRet); 
+          _delete_node(aux_node, 10000);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int lock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          struct spin_wait * aux_node[1];
+          struct spin_wait * node = _allocate_node(1, aux_node);
+        
           int benchRet = arch_spin_yield_target(lock,node);
           printf("%d\n", benchRet); 
           _delete_node(aux_node, 1);

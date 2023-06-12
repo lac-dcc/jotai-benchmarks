@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static u8 h5_cfg_field(struct h5 *h5)
 	return h5->tx_win & 0x07;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,28 +76,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_h50 = 1;
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_h50 = 65025;
           struct h5 * h5 = (struct h5 *) malloc(_len_h50*sizeof(struct h5));
           for(int _i0 = 0; _i0 < _len_h50; _i0++) {
-            h5[_i0].tx_win = ((-2 * (next_i()%2)) + 1) * next_i();
+              h5[_i0].tx_win = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = h5_cfg_field(h5);
           printf("%d\n", benchRet); 
           free(h5);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_h50 = 100;
           struct h5 * h5 = (struct h5 *) malloc(_len_h50*sizeof(struct h5));
           for(int _i0 = 0; _i0 < _len_h50; _i0++) {
-            h5[_i0].tx_win = ((-2 * (next_i()%2)) + 1) * next_i();
+              h5[_i0].tx_win = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = h5_cfg_field(h5);
+          printf("%d\n", benchRet); 
+          free(h5);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_h50 = 1;
+          struct h5 * h5 = (struct h5 *) malloc(_len_h50*sizeof(struct h5));
+          for(int _i0 = 0; _i0 < _len_h50; _i0++) {
+              h5[_i0].tx_win = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = h5_cfg_field(h5);
           printf("%d\n", benchRet); 
           free(h5);

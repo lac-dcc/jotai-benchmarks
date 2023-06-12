@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -96,12 +99,6 @@ __attribute__((used)) static void sp_populate(struct sja1000_priv *priv,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -114,26 +111,227 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 44
+          // dynamic_instructions_O0 : 44
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
           unsigned long resource_mem_flags = 100;
+        
           int _len_priv0 = 1;
           struct sja1000_priv * priv = (struct sja1000_priv *) malloc(_len_priv0*sizeof(struct sja1000_priv));
           for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
-            priv[_i0].write_reg = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].read_reg = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].cdr = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].ocr = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].can.clock.freq = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].write_reg = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].read_reg = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].cdr = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].ocr = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].can.clock.freq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int _len_pdata0 = 1;
           struct sja1000_platform_data * pdata = (struct sja1000_platform_data *) malloc(_len_pdata0*sizeof(struct sja1000_platform_data));
           for(int _i0 = 0; _i0 < _len_pdata0; _i0++) {
-            pdata[_i0].osc_freq = ((-2 * (next_i()%2)) + 1) * next_i();
-        pdata[_i0].cdr = ((-2 * (next_i()%2)) + 1) * next_i();
-        pdata[_i0].ocr = ((-2 * (next_i()%2)) + 1) * next_i();
+              pdata[_i0].osc_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdata[_i0].cdr = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdata[_i0].ocr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          sp_populate(priv,pdata,resource_mem_flags);
+          free(priv);
+          free(pdata);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 44
+          // dynamic_instructions_O0 : 44
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          unsigned long resource_mem_flags = 255;
+        
+          int _len_priv0 = 65025;
+          struct sja1000_priv * priv = (struct sja1000_priv *) malloc(_len_priv0*sizeof(struct sja1000_priv));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].write_reg = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].read_reg = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].cdr = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].ocr = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].can.clock.freq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_pdata0 = 65025;
+          struct sja1000_platform_data * pdata = (struct sja1000_platform_data *) malloc(_len_pdata0*sizeof(struct sja1000_platform_data));
+          for(int _i0 = 0; _i0 < _len_pdata0; _i0++) {
+              pdata[_i0].osc_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdata[_i0].cdr = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdata[_i0].ocr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          sp_populate(priv,pdata,resource_mem_flags);
+          free(priv);
+          free(pdata);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 44
+          // dynamic_instructions_O0 : 44
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          unsigned long resource_mem_flags = 10;
+        
+          int _len_priv0 = 100;
+          struct sja1000_priv * priv = (struct sja1000_priv *) malloc(_len_priv0*sizeof(struct sja1000_priv));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].write_reg = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].read_reg = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].cdr = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].ocr = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].can.clock.freq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_pdata0 = 100;
+          struct sja1000_platform_data * pdata = (struct sja1000_platform_data *) malloc(_len_pdata0*sizeof(struct sja1000_platform_data));
+          for(int _i0 = 0; _i0 < _len_pdata0; _i0++) {
+              pdata[_i0].osc_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdata[_i0].cdr = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdata[_i0].ocr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          sp_populate(priv,pdata,resource_mem_flags);
+          free(priv);
+          free(pdata);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 44
+          // dynamic_instructions_O0 : 44
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          unsigned long resource_mem_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_priv0 = 1;
+          struct sja1000_priv * priv = (struct sja1000_priv *) malloc(_len_priv0*sizeof(struct sja1000_priv));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].write_reg = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].read_reg = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].cdr = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].ocr = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].can.clock.freq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_pdata0 = 1;
+          struct sja1000_platform_data * pdata = (struct sja1000_platform_data *) malloc(_len_pdata0*sizeof(struct sja1000_platform_data));
+          for(int _i0 = 0; _i0 < _len_pdata0; _i0++) {
+              pdata[_i0].osc_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdata[_i0].cdr = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdata[_i0].ocr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           sp_populate(priv,pdata,resource_mem_flags);
           free(priv);
           free(pdata);

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -92,12 +95,6 @@ __attribute__((used)) static int kbd_set_level(struct kbd_state *state, u8 level
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -114,19 +111,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long level = 100;
+        
           int _len_state0 = 1;
           struct kbd_state * state = (struct kbd_state *) malloc(_len_state0*sizeof(struct kbd_state));
           for(int _i0 = 0; _i0 < _len_state0; _i0++) {
-            state[_i0].level = ((-2 * (next_i()%2)) + 1) * next_i();
-        state[_i0].mode_bit = ((-2 * (next_i()%2)) + 1) * next_i();
+              state[_i0].level = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].mode_bit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = kbd_set_level(state,level);
           printf("%d\n", benchRet); 
           free(state);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long level = 255;
+        
+          int _len_state0 = 65025;
+          struct kbd_state * state = (struct kbd_state *) malloc(_len_state0*sizeof(struct kbd_state));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].level = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].mode_bit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = kbd_set_level(state,level);
+          printf("%d\n", benchRet); 
+          free(state);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long level = 10;
+        
+          int _len_state0 = 100;
+          struct kbd_state * state = (struct kbd_state *) malloc(_len_state0*sizeof(struct kbd_state));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].level = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].mode_bit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = kbd_set_level(state,level);
+          printf("%d\n", benchRet); 
+          free(state);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_state0 = 1;
+          struct kbd_state * state = (struct kbd_state *) malloc(_len_state0*sizeof(struct kbd_state));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].level = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].mode_bit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = kbd_set_level(state,level);
+          printf("%d\n", benchRet); 
+          free(state);
+        
+        break;
+    }
     default:
         usage();
         break;

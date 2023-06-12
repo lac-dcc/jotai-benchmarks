@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ dmaengine_desc_callback_valid(struct dmaengine_desc_callback *cb)
 	return (cb->callback) ? true : false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cb0 = 1;
+          int _len_cb0 = 65025;
           struct dmaengine_desc_callback * cb = (struct dmaengine_desc_callback *) malloc(_len_cb0*sizeof(struct dmaengine_desc_callback));
           for(int _i0 = 0; _i0 < _len_cb0; _i0++) {
-            cb[_i0].callback = ((-2 * (next_i()%2)) + 1) * next_i();
+              cb[_i0].callback = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dmaengine_desc_callback_valid(cb);
           printf("%d\n", benchRet); 
           free(cb);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_cb0 = 100;
           struct dmaengine_desc_callback * cb = (struct dmaengine_desc_callback *) malloc(_len_cb0*sizeof(struct dmaengine_desc_callback));
           for(int _i0 = 0; _i0 < _len_cb0; _i0++) {
-            cb[_i0].callback = ((-2 * (next_i()%2)) + 1) * next_i();
+              cb[_i0].callback = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dmaengine_desc_callback_valid(cb);
           printf("%d\n", benchRet); 
           free(cb);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_cb0 = 1;
+          struct dmaengine_desc_callback * cb = (struct dmaengine_desc_callback *) malloc(_len_cb0*sizeof(struct dmaengine_desc_callback));
+          for(int _i0 = 0; _i0 < _len_cb0; _i0++) {
+              cb[_i0].callback = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dmaengine_desc_callback_valid(cb);
+          printf("%d\n", benchRet); 
+          free(cb);
+        
+        break;
+    }
     default:
         usage();
         break;

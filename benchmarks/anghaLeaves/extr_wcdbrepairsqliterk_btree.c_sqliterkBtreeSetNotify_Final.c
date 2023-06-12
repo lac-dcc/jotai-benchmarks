@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ void sqliterkBtreeSetNotify(sqliterk_btree *btree,
     btree->notify = *notify;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,26 +81,72 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_btree0 = 1;
+          int _len_btree0 = 65025;
           struct TYPE_3__ * btree = (struct TYPE_3__ *) malloc(_len_btree0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_btree0; _i0++) {
-            btree[_i0].notify = ((-2 * (next_i()%2)) + 1) * next_i();
+              btree[_i0].notify = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_notify0 = 1;
+        
+          int _len_notify0 = 65025;
           int * notify = (int *) malloc(_len_notify0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_notify0; _i0++) {
             notify[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           sqliterkBtreeSetNotify(btree,notify);
           free(btree);
           free(notify);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_btree0 = 100;
+          struct TYPE_3__ * btree = (struct TYPE_3__ *) malloc(_len_btree0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_btree0; _i0++) {
+              btree[_i0].notify = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_notify0 = 100;
+          int * notify = (int *) malloc(_len_notify0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_notify0; _i0++) {
+            notify[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          sqliterkBtreeSetNotify(btree,notify);
+          free(btree);
+          free(notify);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_btree0 = 1;
+          struct TYPE_3__ * btree = (struct TYPE_3__ *) malloc(_len_btree0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_btree0; _i0++) {
+              btree[_i0].notify = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_notify0 = 1;
+          int * notify = (int *) malloc(_len_notify0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_notify0; _i0++) {
+            notify[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          sqliterkBtreeSetNotify(btree,notify);
+          free(btree);
+          free(notify);
+        
+        break;
+    }
     default:
         usage();
         break;

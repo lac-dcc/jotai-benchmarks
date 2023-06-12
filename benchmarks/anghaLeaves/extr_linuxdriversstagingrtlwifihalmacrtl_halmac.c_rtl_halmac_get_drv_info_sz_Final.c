@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ int rtl_halmac_get_drv_info_sz(struct rtl_priv *rtlpriv, u8 *sz)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,19 +79,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rtlpriv0 = 1;
+          int _len_rtlpriv0 = 65025;
           struct rtl_priv * rtlpriv = (struct rtl_priv *) malloc(_len_rtlpriv0*sizeof(struct rtl_priv));
           for(int _i0 = 0; _i0 < _len_rtlpriv0; _i0++) {
-            rtlpriv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rtlpriv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_sz0 = 1;
+        
+          int _len_sz0 = 65025;
           int * sz = (int *) malloc(_len_sz0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_sz0; _i0++) {
             sz[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = rtl_halmac_get_drv_info_sz(rtlpriv,sz);
           printf("%d\n", benchRet); 
           free(rtlpriv);
@@ -103,7 +102,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_rtlpriv0 = 100;
+          struct rtl_priv * rtlpriv = (struct rtl_priv *) malloc(_len_rtlpriv0*sizeof(struct rtl_priv));
+          for(int _i0 = 0; _i0 < _len_rtlpriv0; _i0++) {
+              rtlpriv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_sz0 = 100;
+          int * sz = (int *) malloc(_len_sz0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_sz0; _i0++) {
+            sz[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = rtl_halmac_get_drv_info_sz(rtlpriv,sz);
+          printf("%d\n", benchRet); 
+          free(rtlpriv);
+          free(sz);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_rtlpriv0 = 1;
+          struct rtl_priv * rtlpriv = (struct rtl_priv *) malloc(_len_rtlpriv0*sizeof(struct rtl_priv));
+          for(int _i0 = 0; _i0 < _len_rtlpriv0; _i0++) {
+              rtlpriv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_sz0 = 1;
+          int * sz = (int *) malloc(_len_sz0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_sz0; _i0++) {
+            sz[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = rtl_halmac_get_drv_info_sz(rtlpriv,sz);
+          printf("%d\n", benchRet); 
+          free(rtlpriv);
+          free(sz);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static void tcf_chain_hold(struct tcf_chain *chain)
 	++chain->refcnt;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_chain0 = 1;
+          int _len_chain0 = 65025;
           struct tcf_chain * chain = (struct tcf_chain *) malloc(_len_chain0*sizeof(struct tcf_chain));
           for(int _i0 = 0; _i0 < _len_chain0; _i0++) {
-            chain[_i0].refcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+              chain[_i0].refcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           tcf_chain_hold(chain);
           free(chain);
         
@@ -98,14 +95,30 @@ int main(int argc, char *argv[]) {
           int _len_chain0 = 100;
           struct tcf_chain * chain = (struct tcf_chain *) malloc(_len_chain0*sizeof(struct tcf_chain));
           for(int _i0 = 0; _i0 < _len_chain0; _i0++) {
-            chain[_i0].refcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+              chain[_i0].refcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           tcf_chain_hold(chain);
           free(chain);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_chain0 = 1;
+          struct tcf_chain * chain = (struct tcf_chain *) malloc(_len_chain0*sizeof(struct tcf_chain));
+          for(int _i0 = 0; _i0 < _len_chain0; _i0++) {
+              chain[_i0].refcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          tcf_chain_hold(chain);
+          free(chain);
+        
+        break;
+    }
     default:
         usage();
         break;

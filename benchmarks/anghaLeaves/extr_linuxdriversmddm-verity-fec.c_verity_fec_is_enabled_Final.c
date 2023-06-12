@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ bool verity_fec_is_enabled(struct dm_verity *v)
 	return v->fec && v->fec->dev;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,18 +76,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_v0 = 1;
+          int _len_v0 = 65025;
           struct dm_verity * v = (struct dm_verity *) malloc(_len_v0*sizeof(struct dm_verity));
           for(int _i0 = 0; _i0 < _len_v0; _i0++) {
               int _len_v__i0__fec0 = 1;
           v[_i0].fec = (struct TYPE_2__ *) malloc(_len_v__i0__fec0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_v__i0__fec0; _j0++) {
-            v[_i0].fec->dev = ((-2 * (next_i()%2)) + 1) * next_i();
+              v[_i0].fec->dev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = verity_fec_is_enabled(v);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_v0; _aux++) {
@@ -101,7 +100,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_v0 = 100;
+          struct dm_verity * v = (struct dm_verity *) malloc(_len_v0*sizeof(struct dm_verity));
+          for(int _i0 = 0; _i0 < _len_v0; _i0++) {
+              int _len_v__i0__fec0 = 1;
+          v[_i0].fec = (struct TYPE_2__ *) malloc(_len_v__i0__fec0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_v__i0__fec0; _j0++) {
+              v[_i0].fec->dev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = verity_fec_is_enabled(v);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_v0; _aux++) {
+          free(v[_aux].fec);
+          }
+          free(v);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_v0 = 1;
+          struct dm_verity * v = (struct dm_verity *) malloc(_len_v0*sizeof(struct dm_verity));
+          for(int _i0 = 0; _i0 < _len_v0; _i0++) {
+              int _len_v__i0__fec0 = 1;
+          v[_i0].fec = (struct TYPE_2__ *) malloc(_len_v__i0__fec0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_v__i0__fec0; _j0++) {
+              v[_i0].fec->dev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = verity_fec_is_enabled(v);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_v0; _aux++) {
+          free(v[_aux].fec);
+          }
+          free(v);
+        
+        break;
+    }
     default:
         usage();
         break;

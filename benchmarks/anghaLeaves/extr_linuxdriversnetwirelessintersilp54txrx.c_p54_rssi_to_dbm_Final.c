@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ __attribute__((used)) static int p54_rssi_to_dbm(struct p54_common *priv, int rs
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,21 +85,204 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int rssi = 100;
+        
           int _len_priv0 = 1;
           struct p54_common * priv = (struct p54_common *) malloc(_len_priv0*sizeof(struct p54_common));
           for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
-            priv[_i0].rxhw = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].rxhw = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_priv__i0__cur_rssi0 = 1;
           priv[_i0].cur_rssi = (struct TYPE_2__ *) malloc(_len_priv__i0__cur_rssi0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_priv__i0__cur_rssi0; _j0++) {
-            priv[_i0].cur_rssi->mul = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].cur_rssi->add = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].cur_rssi->mul = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].cur_rssi->add = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = p54_rssi_to_dbm(priv,rssi);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_priv0; _aux++) {
+          free(priv[_aux].cur_rssi);
+          }
+          free(priv);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int rssi = 255;
+        
+          int _len_priv0 = 65025;
+          struct p54_common * priv = (struct p54_common *) malloc(_len_priv0*sizeof(struct p54_common));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].rxhw = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_priv__i0__cur_rssi0 = 1;
+          priv[_i0].cur_rssi = (struct TYPE_2__ *) malloc(_len_priv__i0__cur_rssi0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_priv__i0__cur_rssi0; _j0++) {
+              priv[_i0].cur_rssi->mul = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].cur_rssi->add = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = p54_rssi_to_dbm(priv,rssi);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_priv0; _aux++) {
+          free(priv[_aux].cur_rssi);
+          }
+          free(priv);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int rssi = 10;
+        
+          int _len_priv0 = 100;
+          struct p54_common * priv = (struct p54_common *) malloc(_len_priv0*sizeof(struct p54_common));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].rxhw = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_priv__i0__cur_rssi0 = 1;
+          priv[_i0].cur_rssi = (struct TYPE_2__ *) malloc(_len_priv__i0__cur_rssi0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_priv__i0__cur_rssi0; _j0++) {
+              priv[_i0].cur_rssi->mul = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].cur_rssi->add = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = p54_rssi_to_dbm(priv,rssi);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_priv0; _aux++) {
+          free(priv[_aux].cur_rssi);
+          }
+          free(priv);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int rssi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_priv0 = 1;
+          struct p54_common * priv = (struct p54_common *) malloc(_len_priv0*sizeof(struct p54_common));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].rxhw = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_priv__i0__cur_rssi0 = 1;
+          priv[_i0].cur_rssi = (struct TYPE_2__ *) malloc(_len_priv__i0__cur_rssi0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_priv__i0__cur_rssi0; _j0++) {
+              priv[_i0].cur_rssi->mul = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].cur_rssi->add = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = p54_rssi_to_dbm(priv,rssi);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_priv0; _aux++) {

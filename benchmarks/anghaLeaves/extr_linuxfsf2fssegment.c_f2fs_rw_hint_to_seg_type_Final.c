@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +75,6 @@ int f2fs_rw_hint_to_seg_type(enum rw_hint hint)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           enum rw_hint hint = 100;
+        
           int benchRet = f2fs_rw_hint_to_seg_type(hint);
           printf("%d\n", benchRet); 
         
@@ -105,6 +101,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           enum rw_hint hint = 255;
+        
           int benchRet = f2fs_rw_hint_to_seg_type(hint);
           printf("%d\n", benchRet); 
         
@@ -114,12 +111,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           enum rw_hint hint = 10;
+        
           int benchRet = f2fs_rw_hint_to_seg_type(hint);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          enum rw_hint hint = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = f2fs_rw_hint_to_seg_type(hint);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -59,12 +60,6 @@ __attribute__((used)) static inline uint8_t get_pit_avg3( uint8_t *line, int i )
     return ((line[i-1] + line[i] + line[i+1]) / 3);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -77,22 +72,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int i = 10;
-          int _len_line0 = 100;
+          int i = 255;
+        
+          int _len_line0 = 65025;
           int * line = (int *) malloc(_len_line0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_line0; _i0++) {
             line[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = get_pit_avg3(line,i);
           printf("%d\n", benchRet); 
           free(line);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int i = 10;
+        
+          int _len_line0 = 100;
+          int * line = (int *) malloc(_len_line0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_line0; _i0++) {
+            line[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = get_pit_avg3(line,i);
+          printf("%d\n", benchRet); 
+          free(line);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ __attribute__((used)) static int offset_in_entry(struct btrfs_ordered_extent *en
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,19 +83,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long file_offset = 100;
+        
           int _len_entry0 = 1;
           struct btrfs_ordered_extent * entry = (struct btrfs_ordered_extent *) malloc(_len_entry0*sizeof(struct btrfs_ordered_extent));
           for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
-            entry[_i0].file_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        entry[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+              entry[_i0].file_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          entry[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = offset_in_entry(entry,file_offset);
           printf("%d\n", benchRet); 
           free(entry);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long file_offset = 255;
+        
+          int _len_entry0 = 65025;
+          struct btrfs_ordered_extent * entry = (struct btrfs_ordered_extent *) malloc(_len_entry0*sizeof(struct btrfs_ordered_extent));
+          for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
+              entry[_i0].file_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          entry[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = offset_in_entry(entry,file_offset);
+          printf("%d\n", benchRet); 
+          free(entry);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long file_offset = 10;
+        
+          int _len_entry0 = 100;
+          struct btrfs_ordered_extent * entry = (struct btrfs_ordered_extent *) malloc(_len_entry0*sizeof(struct btrfs_ordered_extent));
+          for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
+              entry[_i0].file_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          entry[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = offset_in_entry(entry,file_offset);
+          printf("%d\n", benchRet); 
+          free(entry);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long file_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_entry0 = 1;
+          struct btrfs_ordered_extent * entry = (struct btrfs_ordered_extent *) malloc(_len_entry0*sizeof(struct btrfs_ordered_extent));
+          for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
+              entry[_i0].file_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          entry[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = offset_in_entry(entry,file_offset);
+          printf("%d\n", benchRet); 
+          free(entry);
+        
+        break;
+    }
     default:
         usage();
         break;

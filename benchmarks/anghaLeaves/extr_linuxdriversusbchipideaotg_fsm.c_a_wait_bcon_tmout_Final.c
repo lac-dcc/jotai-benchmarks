@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static int a_wait_bcon_tmout(struct ci_hdrc *ci)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ci0 = 1;
+          int _len_ci0 = 65025;
           struct ci_hdrc * ci = (struct ci_hdrc *) malloc(_len_ci0*sizeof(struct ci_hdrc));
           for(int _i0 = 0; _i0 < _len_ci0; _i0++) {
-            ci[_i0].fsm.a_wait_bcon_tmout = ((-2 * (next_i()%2)) + 1) * next_i();
+              ci[_i0].fsm.a_wait_bcon_tmout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = a_wait_bcon_tmout(ci);
           printf("%d\n", benchRet); 
           free(ci);
@@ -102,15 +100,34 @@ int main(int argc, char *argv[]) {
           int _len_ci0 = 100;
           struct ci_hdrc * ci = (struct ci_hdrc *) malloc(_len_ci0*sizeof(struct ci_hdrc));
           for(int _i0 = 0; _i0 < _len_ci0; _i0++) {
-            ci[_i0].fsm.a_wait_bcon_tmout = ((-2 * (next_i()%2)) + 1) * next_i();
+              ci[_i0].fsm.a_wait_bcon_tmout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = a_wait_bcon_tmout(ci);
           printf("%d\n", benchRet); 
           free(ci);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ci0 = 1;
+          struct ci_hdrc * ci = (struct ci_hdrc *) malloc(_len_ci0*sizeof(struct ci_hdrc));
+          for(int _i0 = 0; _i0 < _len_ci0; _i0++) {
+              ci[_i0].fsm.a_wait_bcon_tmout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = a_wait_bcon_tmout(ci);
+          printf("%d\n", benchRet); 
+          free(ci);
+        
+        break;
+    }
     default:
         usage();
         break;

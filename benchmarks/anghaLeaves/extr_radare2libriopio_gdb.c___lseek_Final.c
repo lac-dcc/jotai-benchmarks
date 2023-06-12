@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +80,6 @@ __attribute__((used)) static ut64 __lseek(RIO *io, RIODesc *fd, ut64 offset, int
 	return io->off;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,17 +96,22 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int offset = 100;
+        
           int whence = 100;
+        
           int _len_io0 = 1;
           struct TYPE_3__ * io = (struct TYPE_3__ *) malloc(_len_io0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_io0; _i0++) {
-            io[_i0].off = ((-2 * (next_i()%2)) + 1) * next_i();
+              io[_i0].off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_fd0 = 1;
           int * fd = (int *) malloc(_len_fd0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_fd0; _i0++) {
             fd[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = __lseek(io,fd,offset,whence);
           printf("%d\n", benchRet); 
           free(io);
@@ -117,7 +119,87 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int offset = 255;
+        
+          int whence = 255;
+        
+          int _len_io0 = 65025;
+          struct TYPE_3__ * io = (struct TYPE_3__ *) malloc(_len_io0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_io0; _i0++) {
+              io[_i0].off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fd0 = 65025;
+          int * fd = (int *) malloc(_len_fd0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_fd0; _i0++) {
+            fd[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = __lseek(io,fd,offset,whence);
+          printf("%d\n", benchRet); 
+          free(io);
+          free(fd);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int offset = 10;
+        
+          int whence = 10;
+        
+          int _len_io0 = 100;
+          struct TYPE_3__ * io = (struct TYPE_3__ *) malloc(_len_io0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_io0; _i0++) {
+              io[_i0].off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fd0 = 100;
+          int * fd = (int *) malloc(_len_fd0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_fd0; _i0++) {
+            fd[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = __lseek(io,fd,offset,whence);
+          printf("%d\n", benchRet); 
+          free(io);
+          free(fd);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int whence = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_io0 = 1;
+          struct TYPE_3__ * io = (struct TYPE_3__ *) malloc(_len_io0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_io0; _i0++) {
+              io[_i0].off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fd0 = 1;
+          int * fd = (int *) malloc(_len_fd0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_fd0; _i0++) {
+            fd[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = __lseek(io,fd,offset,whence);
+          printf("%d\n", benchRet); 
+          free(io);
+          free(fd);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -87,12 +89,6 @@ __attribute__((used)) static void _dpu_get_v_h_subsample_rate(
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,20 +101,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           enum dpu_chroma_samp_type chroma_sample = 0;
+        
+          int _len_v_sample0 = 65025;
+          int * v_sample = (int *) malloc(_len_v_sample0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_v_sample0; _i0++) {
+            v_sample[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_h_sample0 = 65025;
+          int * h_sample = (int *) malloc(_len_h_sample0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_h_sample0; _i0++) {
+            h_sample[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          _dpu_get_v_h_subsample_rate(chroma_sample,v_sample,h_sample);
+          free(v_sample);
+          free(h_sample);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          enum dpu_chroma_samp_type chroma_sample = 0;
+        
+          int _len_v_sample0 = 100;
+          int * v_sample = (int *) malloc(_len_v_sample0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_v_sample0; _i0++) {
+            v_sample[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_h_sample0 = 100;
+          int * h_sample = (int *) malloc(_len_h_sample0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_h_sample0; _i0++) {
+            h_sample[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          _dpu_get_v_h_subsample_rate(chroma_sample,v_sample,h_sample);
+          free(v_sample);
+          free(h_sample);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          enum dpu_chroma_samp_type chroma_sample = 0;
+        
           int _len_v_sample0 = 1;
           int * v_sample = (int *) malloc(_len_v_sample0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_v_sample0; _i0++) {
             v_sample[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_h_sample0 = 1;
           int * h_sample = (int *) malloc(_len_h_sample0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_h_sample0; _i0++) {
             h_sample[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           _dpu_get_v_h_subsample_rate(chroma_sample,v_sample,h_sample);
           free(v_sample);
           free(h_sample);

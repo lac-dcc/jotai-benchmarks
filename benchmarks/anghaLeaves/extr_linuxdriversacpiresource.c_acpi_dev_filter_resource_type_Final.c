@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -127,12 +130,6 @@ int acpi_dev_filter_resource_type(struct acpi_resource *ares,
 	return (type & types) ? 0 : 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -149,19 +146,86 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long types = 100;
+        
           int _len_ares0 = 1;
           struct acpi_resource * ares = (struct acpi_resource *) malloc(_len_ares0*sizeof(struct acpi_resource));
           for(int _i0 = 0; _i0 < _len_ares0; _i0++) {
-            ares[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        ares[_i0].data.address.resource_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              ares[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          ares[_i0].data.address.resource_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int benchRet = acpi_dev_filter_resource_type(ares,types);
           printf("%d\n", benchRet); 
           free(ares);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long types = 255;
+        
+          int _len_ares0 = 65025;
+          struct acpi_resource * ares = (struct acpi_resource *) malloc(_len_ares0*sizeof(struct acpi_resource));
+          for(int _i0 = 0; _i0 < _len_ares0; _i0++) {
+              ares[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          ares[_i0].data.address.resource_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = acpi_dev_filter_resource_type(ares,types);
+          printf("%d\n", benchRet); 
+          free(ares);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long types = 10;
+        
+          int _len_ares0 = 100;
+          struct acpi_resource * ares = (struct acpi_resource *) malloc(_len_ares0*sizeof(struct acpi_resource));
+          for(int _i0 = 0; _i0 < _len_ares0; _i0++) {
+              ares[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          ares[_i0].data.address.resource_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = acpi_dev_filter_resource_type(ares,types);
+          printf("%d\n", benchRet); 
+          free(ares);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long types = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ares0 = 1;
+          struct acpi_resource * ares = (struct acpi_resource *) malloc(_len_ares0*sizeof(struct acpi_resource));
+          for(int _i0 = 0; _i0 < _len_ares0; _i0++) {
+              ares[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          ares[_i0].data.address.resource_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = acpi_dev_filter_resource_type(ares,types);
+          printf("%d\n", benchRet); 
+          free(ares);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -98,12 +99,6 @@ __attribute__((used)) static int speed_duplex_to_caps(int speed, int duplex)
 	return cap;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -120,7 +115,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int speed = 100;
+        
           int duplex = 100;
+        
           int benchRet = speed_duplex_to_caps(speed,duplex);
           printf("%d\n", benchRet); 
         
@@ -130,7 +127,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int speed = 255;
+        
           int duplex = 255;
+        
           int benchRet = speed_duplex_to_caps(speed,duplex);
           printf("%d\n", benchRet); 
         
@@ -140,13 +139,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int speed = 10;
+        
           int duplex = 10;
+        
           int benchRet = speed_duplex_to_caps(speed,duplex);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int duplex = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = speed_duplex_to_caps(speed,duplex);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

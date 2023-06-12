@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ __attribute__((used)) static int bnx2x_vf_devfn(struct bnx2x *bp, int vfid)
 	return (dev->devfn + iov->offset + iov->stride * vfid) & 0xff;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,25 +82,237 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int vfid = 100;
+        
           int _len_bp0 = 1;
           struct bnx2x * bp = (struct bnx2x *) malloc(_len_bp0*sizeof(struct bnx2x));
           for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
               int _len_bp__i0__vfdb0 = 1;
           bp[_i0].vfdb = (struct TYPE_2__ *) malloc(_len_bp__i0__vfdb0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_bp__i0__vfdb0; _j0++) {
-            bp[_i0].vfdb->sriov.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        bp[_i0].vfdb->sriov.stride = ((-2 * (next_i()%2)) + 1) * next_i();
+              bp[_i0].vfdb->sriov.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].vfdb->sriov.stride = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
           int _len_bp__i0__pdev0 = 1;
           bp[_i0].pdev = (struct pci_dev *) malloc(_len_bp__i0__pdev0*sizeof(struct pci_dev));
           for(int _j0 = 0; _j0 < _len_bp__i0__pdev0; _j0++) {
-            bp[_i0].pdev->devfn = ((-2 * (next_i()%2)) + 1) * next_i();
+              bp[_i0].pdev->devfn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = bnx2x_vf_devfn(bp,vfid);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_bp0; _aux++) {
+          free(bp[_aux].vfdb);
+          }
+          for(int _aux = 0; _aux < _len_bp0; _aux++) {
+          free(bp[_aux].pdev);
+          }
+          free(bp);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int vfid = 255;
+        
+          int _len_bp0 = 65025;
+          struct bnx2x * bp = (struct bnx2x *) malloc(_len_bp0*sizeof(struct bnx2x));
+          for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
+              int _len_bp__i0__vfdb0 = 1;
+          bp[_i0].vfdb = (struct TYPE_2__ *) malloc(_len_bp__i0__vfdb0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_bp__i0__vfdb0; _j0++) {
+              bp[_i0].vfdb->sriov.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].vfdb->sriov.stride = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+          int _len_bp__i0__pdev0 = 1;
+          bp[_i0].pdev = (struct pci_dev *) malloc(_len_bp__i0__pdev0*sizeof(struct pci_dev));
+          for(int _j0 = 0; _j0 < _len_bp__i0__pdev0; _j0++) {
+              bp[_i0].pdev->devfn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = bnx2x_vf_devfn(bp,vfid);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_bp0; _aux++) {
+          free(bp[_aux].vfdb);
+          }
+          for(int _aux = 0; _aux < _len_bp0; _aux++) {
+          free(bp[_aux].pdev);
+          }
+          free(bp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int vfid = 10;
+        
+          int _len_bp0 = 100;
+          struct bnx2x * bp = (struct bnx2x *) malloc(_len_bp0*sizeof(struct bnx2x));
+          for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
+              int _len_bp__i0__vfdb0 = 1;
+          bp[_i0].vfdb = (struct TYPE_2__ *) malloc(_len_bp__i0__vfdb0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_bp__i0__vfdb0; _j0++) {
+              bp[_i0].vfdb->sriov.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].vfdb->sriov.stride = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+          int _len_bp__i0__pdev0 = 1;
+          bp[_i0].pdev = (struct pci_dev *) malloc(_len_bp__i0__pdev0*sizeof(struct pci_dev));
+          for(int _j0 = 0; _j0 < _len_bp__i0__pdev0; _j0++) {
+              bp[_i0].pdev->devfn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = bnx2x_vf_devfn(bp,vfid);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_bp0; _aux++) {
+          free(bp[_aux].vfdb);
+          }
+          for(int _aux = 0; _aux < _len_bp0; _aux++) {
+          free(bp[_aux].pdev);
+          }
+          free(bp);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int vfid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_bp0 = 1;
+          struct bnx2x * bp = (struct bnx2x *) malloc(_len_bp0*sizeof(struct bnx2x));
+          for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
+              int _len_bp__i0__vfdb0 = 1;
+          bp[_i0].vfdb = (struct TYPE_2__ *) malloc(_len_bp__i0__vfdb0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_bp__i0__vfdb0; _j0++) {
+              bp[_i0].vfdb->sriov.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].vfdb->sriov.stride = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+          int _len_bp__i0__pdev0 = 1;
+          bp[_i0].pdev = (struct pci_dev *) malloc(_len_bp__i0__pdev0*sizeof(struct pci_dev));
+          for(int _j0 = 0; _j0 < _len_bp__i0__pdev0; _j0++) {
+              bp[_i0].pdev->devfn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = bnx2x_vf_devfn(bp,vfid);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_bp0; _aux++) {

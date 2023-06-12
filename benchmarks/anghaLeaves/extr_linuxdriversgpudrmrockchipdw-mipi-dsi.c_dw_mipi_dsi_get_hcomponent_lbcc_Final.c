@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +77,6 @@ __attribute__((used)) static u32 dw_mipi_dsi_get_hcomponent_lbcc(struct dw_mipi_
 	return lbcc;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,20 +89,198 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int hcomponent = 100;
+        
           int _len_dsi0 = 1;
           struct dw_mipi_dsi * dsi = (struct dw_mipi_dsi *) malloc(_len_dsi0*sizeof(struct dw_mipi_dsi));
           for(int _i0 = 0; _i0 < _len_dsi0; _i0++) {
-            dsi[_i0].lane_mbps = ((-2 * (next_i()%2)) + 1) * next_i();
+              dsi[_i0].lane_mbps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_mode0 = 1;
           struct drm_display_mode * mode = (struct drm_display_mode *) malloc(_len_mode0*sizeof(struct drm_display_mode));
           for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
-            mode[_i0].clock = ((-2 * (next_i()%2)) + 1) * next_i();
+              mode[_i0].clock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = dw_mipi_dsi_get_hcomponent_lbcc(dsi,mode,hcomponent);
+          printf("%d\n", benchRet); 
+          free(dsi);
+          free(mode);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int hcomponent = 255;
+        
+          int _len_dsi0 = 65025;
+          struct dw_mipi_dsi * dsi = (struct dw_mipi_dsi *) malloc(_len_dsi0*sizeof(struct dw_mipi_dsi));
+          for(int _i0 = 0; _i0 < _len_dsi0; _i0++) {
+              dsi[_i0].lane_mbps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_mode0 = 65025;
+          struct drm_display_mode * mode = (struct drm_display_mode *) malloc(_len_mode0*sizeof(struct drm_display_mode));
+          for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
+              mode[_i0].clock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dw_mipi_dsi_get_hcomponent_lbcc(dsi,mode,hcomponent);
+          printf("%d\n", benchRet); 
+          free(dsi);
+          free(mode);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int hcomponent = 10;
+        
+          int _len_dsi0 = 100;
+          struct dw_mipi_dsi * dsi = (struct dw_mipi_dsi *) malloc(_len_dsi0*sizeof(struct dw_mipi_dsi));
+          for(int _i0 = 0; _i0 < _len_dsi0; _i0++) {
+              dsi[_i0].lane_mbps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_mode0 = 100;
+          struct drm_display_mode * mode = (struct drm_display_mode *) malloc(_len_mode0*sizeof(struct drm_display_mode));
+          for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
+              mode[_i0].clock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dw_mipi_dsi_get_hcomponent_lbcc(dsi,mode,hcomponent);
+          printf("%d\n", benchRet); 
+          free(dsi);
+          free(mode);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int hcomponent = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dsi0 = 1;
+          struct dw_mipi_dsi * dsi = (struct dw_mipi_dsi *) malloc(_len_dsi0*sizeof(struct dw_mipi_dsi));
+          for(int _i0 = 0; _i0 < _len_dsi0; _i0++) {
+              dsi[_i0].lane_mbps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_mode0 = 1;
+          struct drm_display_mode * mode = (struct drm_display_mode *) malloc(_len_mode0*sizeof(struct drm_display_mode));
+          for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
+              mode[_i0].clock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = dw_mipi_dsi_get_hcomponent_lbcc(dsi,mode,hcomponent);
           printf("%d\n", benchRet); 
           free(dsi);

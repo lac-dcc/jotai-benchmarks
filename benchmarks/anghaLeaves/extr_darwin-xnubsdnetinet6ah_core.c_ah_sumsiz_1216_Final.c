@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ ah_sumsiz_1216(struct secasvar *sav)
 		return 12;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,14 +81,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_sav0 = 1;
+          int _len_sav0 = 65025;
           struct secasvar * sav = (struct secasvar *) malloc(_len_sav0*sizeof(struct secasvar));
           for(int _i0 = 0; _i0 < _len_sav0; _i0++) {
-            sav[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              sav[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ah_sumsiz_1216(sav);
           printf("%d\n", benchRet); 
           free(sav);
@@ -106,15 +103,32 @@ int main(int argc, char *argv[]) {
           int _len_sav0 = 100;
           struct secasvar * sav = (struct secasvar *) malloc(_len_sav0*sizeof(struct secasvar));
           for(int _i0 = 0; _i0 < _len_sav0; _i0++) {
-            sav[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              sav[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ah_sumsiz_1216(sav);
           printf("%d\n", benchRet); 
           free(sav);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_sav0 = 1;
+          struct secasvar * sav = (struct secasvar *) malloc(_len_sav0*sizeof(struct secasvar));
+          for(int _i0 = 0; _i0 < _len_sav0; _i0++) {
+              sav[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ah_sumsiz_1216(sav);
+          printf("%d\n", benchRet); 
+          free(sav);
+        
+        break;
+    }
     default:
         usage();
         break;

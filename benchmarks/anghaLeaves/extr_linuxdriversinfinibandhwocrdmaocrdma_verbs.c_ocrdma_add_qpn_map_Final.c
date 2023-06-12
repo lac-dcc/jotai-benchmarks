@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static int ocrdma_add_qpn_map(struct ocrdma_dev *dev, stru
 	return status;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,9 +83,154 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_dev0 = 65025;
+          struct ocrdma_dev * dev = (struct ocrdma_dev *) malloc(_len_dev0*sizeof(struct ocrdma_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              int _len_dev__i0__qp_tbl0 = 1;
+          dev[_i0].qp_tbl = (struct ocrdma_qp **) malloc(_len_dev__i0__qp_tbl0*sizeof(struct ocrdma_qp *));
+          for(int _j0 = 0; _j0 < _len_dev__i0__qp_tbl0; _j0++) {
+            int _len_dev__i0__qp_tbl1 = 1;
+            dev[_i0].qp_tbl[_j0] = (struct ocrdma_qp *) malloc(_len_dev__i0__qp_tbl1*sizeof(struct ocrdma_qp));
+            for(int _j1 = 0; _j1 < _len_dev__i0__qp_tbl1; _j1++) {
+                dev[_i0].qp_tbl[_j0]->id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int _len_qp0 = 65025;
+          struct ocrdma_qp * qp = (struct ocrdma_qp *) malloc(_len_qp0*sizeof(struct ocrdma_qp));
+          for(int _i0 = 0; _i0 < _len_qp0; _i0++) {
+              qp[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ocrdma_add_qpn_map(dev,qp);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(*(dev[_aux].qp_tbl));
+        free(dev[_aux].qp_tbl);
+          }
+          free(dev);
+          free(qp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_dev0 = 100;
+          struct ocrdma_dev * dev = (struct ocrdma_dev *) malloc(_len_dev0*sizeof(struct ocrdma_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              int _len_dev__i0__qp_tbl0 = 1;
+          dev[_i0].qp_tbl = (struct ocrdma_qp **) malloc(_len_dev__i0__qp_tbl0*sizeof(struct ocrdma_qp *));
+          for(int _j0 = 0; _j0 < _len_dev__i0__qp_tbl0; _j0++) {
+            int _len_dev__i0__qp_tbl1 = 1;
+            dev[_i0].qp_tbl[_j0] = (struct ocrdma_qp *) malloc(_len_dev__i0__qp_tbl1*sizeof(struct ocrdma_qp));
+            for(int _j1 = 0; _j1 < _len_dev__i0__qp_tbl1; _j1++) {
+                dev[_i0].qp_tbl[_j0]->id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int _len_qp0 = 100;
+          struct ocrdma_qp * qp = (struct ocrdma_qp *) malloc(_len_qp0*sizeof(struct ocrdma_qp));
+          for(int _i0 = 0; _i0 < _len_qp0; _i0++) {
+              qp[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ocrdma_add_qpn_map(dev,qp);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(*(dev[_aux].qp_tbl));
+        free(dev[_aux].qp_tbl);
+          }
+          free(dev);
+          free(qp);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_dev0 = 1;
           struct ocrdma_dev * dev = (struct ocrdma_dev *) malloc(_len_dev0*sizeof(struct ocrdma_dev));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
@@ -99,15 +240,20 @@ int main(int argc, char *argv[]) {
             int _len_dev__i0__qp_tbl1 = 1;
             dev[_i0].qp_tbl[_j0] = (struct ocrdma_qp *) malloc(_len_dev__i0__qp_tbl1*sizeof(struct ocrdma_qp));
             for(int _j1 = 0; _j1 < _len_dev__i0__qp_tbl1; _j1++) {
-              dev[_i0].qp_tbl[_j0]->id = ((-2 * (next_i()%2)) + 1) * next_i();
+                dev[_i0].qp_tbl[_j0]->id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           }
+        
           int _len_qp0 = 1;
           struct ocrdma_qp * qp = (struct ocrdma_qp *) malloc(_len_qp0*sizeof(struct ocrdma_qp));
           for(int _i0 = 0; _i0 < _len_qp0; _i0++) {
-            qp[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+              qp[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ocrdma_add_qpn_map(dev,qp);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_dev0; _aux++) {

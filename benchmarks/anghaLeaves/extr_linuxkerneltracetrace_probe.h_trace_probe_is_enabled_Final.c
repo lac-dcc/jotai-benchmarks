@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline bool trace_probe_is_enabled(struct trace_pro
 	return !!(tp->flags & (TP_FLAG_TRACE | TP_FLAG_PROFILE));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_tp0 = 1;
+          int _len_tp0 = 65025;
           struct trace_probe * tp = (struct trace_probe *) malloc(_len_tp0*sizeof(struct trace_probe));
           for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
-            tp[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              tp[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = trace_probe_is_enabled(tp);
           printf("%d\n", benchRet); 
           free(tp);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_tp0 = 100;
           struct trace_probe * tp = (struct trace_probe *) malloc(_len_tp0*sizeof(struct trace_probe));
           for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
-            tp[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              tp[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = trace_probe_is_enabled(tp);
           printf("%d\n", benchRet); 
           free(tp);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_tp0 = 1;
+          struct trace_probe * tp = (struct trace_probe *) malloc(_len_tp0*sizeof(struct trace_probe));
+          for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
+              tp[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = trace_probe_is_enabled(tp);
+          printf("%d\n", benchRet); 
+          free(tp);
+        
+        break;
+    }
     default:
         usage();
         break;

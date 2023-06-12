@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ __attribute__((used)) static unsigned int atkbd_oqo_01plus_scancode_fixup(struct
 	return code;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,19 +86,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int code = 100;
+        
           int _len_atkbd0 = 1;
           struct atkbd * atkbd = (struct atkbd *) malloc(_len_atkbd0*sizeof(struct atkbd));
           for(int _i0 = 0; _i0 < _len_atkbd0; _i0++) {
-            atkbd[_i0].emul = ((-2 * (next_i()%2)) + 1) * next_i();
-        atkbd[_i0].translated = ((-2 * (next_i()%2)) + 1) * next_i();
+              atkbd[_i0].emul = ((-2 * (next_i()%2)) + 1) * next_i();
+          atkbd[_i0].translated = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = atkbd_oqo_01plus_scancode_fixup(atkbd,code);
           printf("%u\n", benchRet); 
           free(atkbd);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int code = 255;
+        
+          int _len_atkbd0 = 65025;
+          struct atkbd * atkbd = (struct atkbd *) malloc(_len_atkbd0*sizeof(struct atkbd));
+          for(int _i0 = 0; _i0 < _len_atkbd0; _i0++) {
+              atkbd[_i0].emul = ((-2 * (next_i()%2)) + 1) * next_i();
+          atkbd[_i0].translated = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = atkbd_oqo_01plus_scancode_fixup(atkbd,code);
+          printf("%u\n", benchRet); 
+          free(atkbd);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int code = 10;
+        
+          int _len_atkbd0 = 100;
+          struct atkbd * atkbd = (struct atkbd *) malloc(_len_atkbd0*sizeof(struct atkbd));
+          for(int _i0 = 0; _i0 < _len_atkbd0; _i0++) {
+              atkbd[_i0].emul = ((-2 * (next_i()%2)) + 1) * next_i();
+          atkbd[_i0].translated = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = atkbd_oqo_01plus_scancode_fixup(atkbd,code);
+          printf("%u\n", benchRet); 
+          free(atkbd);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_atkbd0 = 1;
+          struct atkbd * atkbd = (struct atkbd *) malloc(_len_atkbd0*sizeof(struct atkbd));
+          for(int _i0 = 0; _i0 < _len_atkbd0; _i0++) {
+              atkbd[_i0].emul = ((-2 * (next_i()%2)) + 1) * next_i();
+          atkbd[_i0].translated = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = atkbd_oqo_01plus_scancode_fixup(atkbd,code);
+          printf("%u\n", benchRet); 
+          free(atkbd);
+        
+        break;
+    }
     default:
         usage();
         break;

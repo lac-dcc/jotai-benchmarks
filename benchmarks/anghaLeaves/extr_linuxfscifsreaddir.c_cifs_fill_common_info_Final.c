@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -127,12 +129,6 @@ cifs_fill_common_info(struct cifs_fattr *fattr, struct cifs_sb_info *cifs_sb)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -145,36 +141,105 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_fattr0 = 1;
+          int _len_fattr0 = 65025;
           struct cifs_fattr * fattr = (struct cifs_fattr *) malloc(_len_fattr0*sizeof(struct cifs_fattr));
           for(int _i0 = 0; _i0 < _len_fattr0; _i0++) {
-            fattr[_i0].cf_cifsattrs = ((-2 * (next_i()%2)) + 1) * next_i();
-        fattr[_i0].cf_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        fattr[_i0].cf_eof = ((-2 * (next_i()%2)) + 1) * next_i();
-        fattr[_i0].cf_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        fattr[_i0].cf_dtype = ((-2 * (next_i()%2)) + 1) * next_i();
-        fattr[_i0].cf_gid = ((-2 * (next_i()%2)) + 1) * next_i();
-        fattr[_i0].cf_uid = ((-2 * (next_i()%2)) + 1) * next_i();
+              fattr[_i0].cf_cifsattrs = ((-2 * (next_i()%2)) + 1) * next_i();
+          fattr[_i0].cf_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          fattr[_i0].cf_eof = ((-2 * (next_i()%2)) + 1) * next_i();
+          fattr[_i0].cf_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          fattr[_i0].cf_dtype = ((-2 * (next_i()%2)) + 1) * next_i();
+          fattr[_i0].cf_gid = ((-2 * (next_i()%2)) + 1) * next_i();
+          fattr[_i0].cf_uid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_cifs_sb0 = 1;
+        
+          int _len_cifs_sb0 = 65025;
           struct cifs_sb_info * cifs_sb = (struct cifs_sb_info *) malloc(_len_cifs_sb0*sizeof(struct cifs_sb_info));
           for(int _i0 = 0; _i0 < _len_cifs_sb0; _i0++) {
-            cifs_sb[_i0].mnt_dir_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        cifs_sb[_i0].mnt_file_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        cifs_sb[_i0].mnt_cifs_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        cifs_sb[_i0].mnt_gid = ((-2 * (next_i()%2)) + 1) * next_i();
-        cifs_sb[_i0].mnt_uid = ((-2 * (next_i()%2)) + 1) * next_i();
+              cifs_sb[_i0].mnt_dir_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          cifs_sb[_i0].mnt_file_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          cifs_sb[_i0].mnt_cifs_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          cifs_sb[_i0].mnt_gid = ((-2 * (next_i()%2)) + 1) * next_i();
+          cifs_sb[_i0].mnt_uid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           cifs_fill_common_info(fattr,cifs_sb);
           free(fattr);
           free(cifs_sb);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_fattr0 = 100;
+          struct cifs_fattr * fattr = (struct cifs_fattr *) malloc(_len_fattr0*sizeof(struct cifs_fattr));
+          for(int _i0 = 0; _i0 < _len_fattr0; _i0++) {
+              fattr[_i0].cf_cifsattrs = ((-2 * (next_i()%2)) + 1) * next_i();
+          fattr[_i0].cf_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          fattr[_i0].cf_eof = ((-2 * (next_i()%2)) + 1) * next_i();
+          fattr[_i0].cf_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          fattr[_i0].cf_dtype = ((-2 * (next_i()%2)) + 1) * next_i();
+          fattr[_i0].cf_gid = ((-2 * (next_i()%2)) + 1) * next_i();
+          fattr[_i0].cf_uid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cifs_sb0 = 100;
+          struct cifs_sb_info * cifs_sb = (struct cifs_sb_info *) malloc(_len_cifs_sb0*sizeof(struct cifs_sb_info));
+          for(int _i0 = 0; _i0 < _len_cifs_sb0; _i0++) {
+              cifs_sb[_i0].mnt_dir_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          cifs_sb[_i0].mnt_file_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          cifs_sb[_i0].mnt_cifs_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          cifs_sb[_i0].mnt_gid = ((-2 * (next_i()%2)) + 1) * next_i();
+          cifs_sb[_i0].mnt_uid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cifs_fill_common_info(fattr,cifs_sb);
+          free(fattr);
+          free(cifs_sb);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_fattr0 = 1;
+          struct cifs_fattr * fattr = (struct cifs_fattr *) malloc(_len_fattr0*sizeof(struct cifs_fattr));
+          for(int _i0 = 0; _i0 < _len_fattr0; _i0++) {
+              fattr[_i0].cf_cifsattrs = ((-2 * (next_i()%2)) + 1) * next_i();
+          fattr[_i0].cf_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          fattr[_i0].cf_eof = ((-2 * (next_i()%2)) + 1) * next_i();
+          fattr[_i0].cf_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          fattr[_i0].cf_dtype = ((-2 * (next_i()%2)) + 1) * next_i();
+          fattr[_i0].cf_gid = ((-2 * (next_i()%2)) + 1) * next_i();
+          fattr[_i0].cf_uid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cifs_sb0 = 1;
+          struct cifs_sb_info * cifs_sb = (struct cifs_sb_info *) malloc(_len_cifs_sb0*sizeof(struct cifs_sb_info));
+          for(int _i0 = 0; _i0 < _len_cifs_sb0; _i0++) {
+              cifs_sb[_i0].mnt_dir_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          cifs_sb[_i0].mnt_file_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          cifs_sb[_i0].mnt_cifs_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          cifs_sb[_i0].mnt_gid = ((-2 * (next_i()%2)) + 1) * next_i();
+          cifs_sb[_i0].mnt_uid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cifs_fill_common_info(fattr,cifs_sb);
+          free(fattr);
+          free(cifs_sb);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ __attribute__((used)) static unsigned int mc13xxx_max_brightness(int id)
 	return 0x3f;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,6 +87,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int id = 100;
+        
           unsigned int benchRet = mc13xxx_max_brightness(id);
           printf("%u\n", benchRet); 
         
@@ -101,6 +97,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int id = 255;
+        
           unsigned int benchRet = mc13xxx_max_brightness(id);
           printf("%u\n", benchRet); 
         
@@ -110,12 +107,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int id = 10;
+        
           unsigned int benchRet = mc13xxx_max_brightness(id);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = mc13xxx_max_brightness(id);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

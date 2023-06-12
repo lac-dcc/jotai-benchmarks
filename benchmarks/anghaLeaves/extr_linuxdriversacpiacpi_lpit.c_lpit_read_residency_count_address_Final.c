@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +73,6 @@ int lpit_read_residency_count_address(u64 *address)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,14 +85,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_address0 = 1;
+          int _len_address0 = 65025;
           long * address = (long *) malloc(_len_address0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_address0; _i0++) {
             address[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = lpit_read_residency_count_address(address);
           printf("%d\n", benchRet); 
           free(address);
@@ -112,13 +108,28 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_address0; _i0++) {
             address[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = lpit_read_residency_count_address(address);
           printf("%d\n", benchRet); 
           free(address);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_address0 = 1;
+          long * address = (long *) malloc(_len_address0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_address0; _i0++) {
+            address[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = lpit_read_residency_count_address(address);
+          printf("%d\n", benchRet); 
+          free(address);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static inline bool mmc_card_hs200(struct mmc_card *card)
 	return card->host->ios.timing == MMC_TIMING_MMC_HS200;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,18 +79,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_card0 = 1;
+          int _len_card0 = 65025;
           struct mmc_card * card = (struct mmc_card *) malloc(_len_card0*sizeof(struct mmc_card));
           for(int _i0 = 0; _i0 < _len_card0; _i0++) {
               int _len_card__i0__host0 = 1;
           card[_i0].host = (struct TYPE_4__ *) malloc(_len_card__i0__host0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_card__i0__host0; _j0++) {
-            card[_i0].host->ios.timing = ((-2 * (next_i()%2)) + 1) * next_i();
+              card[_i0].host->ios.timing = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           int benchRet = mmc_card_hs200(card);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_card0; _aux++) {
@@ -104,7 +104,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_card0 = 100;
+          struct mmc_card * card = (struct mmc_card *) malloc(_len_card0*sizeof(struct mmc_card));
+          for(int _i0 = 0; _i0 < _len_card0; _i0++) {
+              int _len_card__i0__host0 = 1;
+          card[_i0].host = (struct TYPE_4__ *) malloc(_len_card__i0__host0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_card__i0__host0; _j0++) {
+              card[_i0].host->ios.timing = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = mmc_card_hs200(card);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_card0; _aux++) {
+          free(card[_aux].host);
+          }
+          free(card);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_card0 = 1;
+          struct mmc_card * card = (struct mmc_card *) malloc(_len_card0*sizeof(struct mmc_card));
+          for(int _i0 = 0; _i0 < _len_card0; _i0++) {
+              int _len_card__i0__host0 = 1;
+          card[_i0].host = (struct TYPE_4__ *) malloc(_len_card__i0__host0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_card__i0__host0; _j0++) {
+              card[_i0].host->ios.timing = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = mmc_card_hs200(card);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_card0; _aux++) {
+          free(card[_aux].host);
+          }
+          free(card);
+        
+        break;
+    }
     default:
         usage();
         break;

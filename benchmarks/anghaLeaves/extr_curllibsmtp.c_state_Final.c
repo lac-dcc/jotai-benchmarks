@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -90,12 +92,6 @@ __attribute__((used)) static void state(struct connectdata *conn, smtpstate news
   smtpc->state = newstate;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -108,29 +104,172 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int newstate = 100;
+        
           int _len_conn0 = 1;
           struct connectdata * conn = (struct connectdata *) malloc(_len_conn0*sizeof(struct connectdata));
           for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
-            conn[_i0].proto.smtpc.state = ((-2 * (next_i()%2)) + 1) * next_i();
+              conn[_i0].proto.smtpc.state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           state(conn,newstate);
           free(conn);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int newstate = 255;
+        
+          int _len_conn0 = 65025;
+          struct connectdata * conn = (struct connectdata *) malloc(_len_conn0*sizeof(struct connectdata));
+          for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
+              conn[_i0].proto.smtpc.state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          state(conn,newstate);
+          free(conn);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int newstate = 10;
+        
           int _len_conn0 = 100;
           struct connectdata * conn = (struct connectdata *) malloc(_len_conn0*sizeof(struct connectdata));
           for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
-            conn[_i0].proto.smtpc.state = ((-2 * (next_i()%2)) + 1) * next_i();
+              conn[_i0].proto.smtpc.state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
+          state(conn,newstate);
+          free(conn);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int newstate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_conn0 = 1;
+          struct connectdata * conn = (struct connectdata *) malloc(_len_conn0*sizeof(struct connectdata));
+          for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
+              conn[_i0].proto.smtpc.state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
           state(conn,newstate);
           free(conn);
         

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static void skip_spaces(char **head) {
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,8 +74,50 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
+    {
+          int _len_head0 = 65025;
+          char ** head = (char **) malloc(_len_head0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_head0; _i0++) {
+            int _len_head1 = 1;
+            head[_i0] = (char *) malloc(_len_head1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_head1; _i1++) {
+              head[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          skip_spaces(head);
+          for(int i1 = 0; i1 < _len_head0; i1++) {
+              free(head[i1]);
+          }
+          free(head);
+        
+        break;
+    }
+    // big-arr-10x
+    case 1:
+    {
+          int _len_head0 = 100;
+          char ** head = (char **) malloc(_len_head0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_head0; _i0++) {
+            int _len_head1 = 1;
+            head[_i0] = (char *) malloc(_len_head1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_head1; _i1++) {
+              head[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          skip_spaces(head);
+          for(int i1 = 0; i1 < _len_head0; i1++) {
+              free(head[i1]);
+          }
+          free(head);
+        
+        break;
+    }
+    // empty
+    case 2:
     {
           int _len_head0 = 1;
           char ** head = (char **) malloc(_len_head0*sizeof(char *));
@@ -90,16 +128,15 @@ int main(int argc, char *argv[]) {
               head[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           skip_spaces(head);
           for(int i1 = 0; i1 < _len_head0; i1++) {
-            int _len_head1 = 1;
               free(head[i1]);
           }
           free(head);
         
         break;
     }
-
     default:
         usage();
         break;

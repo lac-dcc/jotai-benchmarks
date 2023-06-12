@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ sclp_set_htab(struct sclp_buffer *buffer, unsigned short htab)
 	buffer->htab = htab;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,29 +76,164 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           unsigned short htab = 100;
+        
           int _len_buffer0 = 1;
           struct sclp_buffer * buffer = (struct sclp_buffer *) malloc(_len_buffer0*sizeof(struct sclp_buffer));
           for(int _i0 = 0; _i0 < _len_buffer0; _i0++) {
-            buffer[_i0].htab = ((-2 * (next_i()%2)) + 1) * next_i();
+              buffer[_i0].htab = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           sclp_set_htab(buffer,htab);
           free(buffer);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          unsigned short htab = 255;
+        
+          int _len_buffer0 = 65025;
+          struct sclp_buffer * buffer = (struct sclp_buffer *) malloc(_len_buffer0*sizeof(struct sclp_buffer));
+          for(int _i0 = 0; _i0 < _len_buffer0; _i0++) {
+              buffer[_i0].htab = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          sclp_set_htab(buffer,htab);
+          free(buffer);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           unsigned short htab = 10;
+        
           int _len_buffer0 = 100;
           struct sclp_buffer * buffer = (struct sclp_buffer *) malloc(_len_buffer0*sizeof(struct sclp_buffer));
           for(int _i0 = 0; _i0 < _len_buffer0; _i0++) {
-            buffer[_i0].htab = ((-2 * (next_i()%2)) + 1) * next_i();
+              buffer[_i0].htab = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          sclp_set_htab(buffer,htab);
+          free(buffer);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          unsigned short htab = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_buffer0 = 1;
+          struct sclp_buffer * buffer = (struct sclp_buffer *) malloc(_len_buffer0*sizeof(struct sclp_buffer));
+          for(int _i0 = 0; _i0 < _len_buffer0; _i0++) {
+              buffer[_i0].htab = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           sclp_set_htab(buffer,htab);
           free(buffer);
         

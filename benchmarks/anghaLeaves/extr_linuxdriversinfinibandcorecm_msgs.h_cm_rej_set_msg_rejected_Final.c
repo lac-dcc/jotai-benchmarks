@@ -31,7 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline void cm_rej_set_msg_rejected(struct cm_rej_m
 	rej_msg->offset8 = (u8) ((rej_msg->offset8 & 0x3F) | (msg << 6));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,31 +79,53 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int msg = 100;
+        
           int _len_rej_msg0 = 1;
           struct cm_rej_msg * rej_msg = (struct cm_rej_msg *) malloc(_len_rej_msg0*sizeof(struct cm_rej_msg));
           for(int _i0 = 0; _i0 < _len_rej_msg0; _i0++) {
-            rej_msg[_i0].offset8 = ((-2 * (next_i()%2)) + 1) * next_i();
+              rej_msg[_i0].offset8 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          cm_rej_set_msg_rejected(rej_msg,msg);
+          free(rej_msg);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int msg = 255;
+        
+          int _len_rej_msg0 = 65025;
+          struct cm_rej_msg * rej_msg = (struct cm_rej_msg *) malloc(_len_rej_msg0*sizeof(struct cm_rej_msg));
+          for(int _i0 = 0; _i0 < _len_rej_msg0; _i0++) {
+              rej_msg[_i0].offset8 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           cm_rej_set_msg_rejected(rej_msg,msg);
           free(rej_msg);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int msg = 10;
+        
           int _len_rej_msg0 = 100;
           struct cm_rej_msg * rej_msg = (struct cm_rej_msg *) malloc(_len_rej_msg0*sizeof(struct cm_rej_msg));
           for(int _i0 = 0; _i0 < _len_rej_msg0; _i0++) {
-            rej_msg[_i0].offset8 = ((-2 * (next_i()%2)) + 1) * next_i();
+              rej_msg[_i0].offset8 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           cm_rej_set_msg_rejected(rej_msg,msg);
           free(rej_msg);
         
         break;
     }
-
     default:
         usage();
         break;

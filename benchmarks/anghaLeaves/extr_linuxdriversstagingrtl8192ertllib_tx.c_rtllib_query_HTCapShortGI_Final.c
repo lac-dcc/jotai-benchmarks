@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ __attribute__((used)) static void rtllib_query_HTCapShortGI(struct rtllib_device
 		tcb_desc->bUseShortGI = true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,28 +92,33 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ieee0 = 1;
+          int _len_ieee0 = 65025;
           struct rtllib_device * ieee = (struct rtllib_device *) malloc(_len_ieee0*sizeof(struct rtllib_device));
           for(int _i0 = 0; _i0 < _len_ieee0; _i0++) {
               int _len_ieee__i0__pHTInfo0 = 1;
           ieee[_i0].pHTInfo = (struct rt_hi_throughput *) malloc(_len_ieee__i0__pHTInfo0*sizeof(struct rt_hi_throughput));
           for(int _j0 = 0; _j0 < _len_ieee__i0__pHTInfo0; _j0++) {
-            ieee[_i0].pHTInfo->bCurBW40MHz = ((-2 * (next_i()%2)) + 1) * next_i();
-        ieee[_i0].pHTInfo->bCurShortGI20MHz = ((-2 * (next_i()%2)) + 1) * next_i();
-        ieee[_i0].pHTInfo->bCurShortGI40MHz = ((-2 * (next_i()%2)) + 1) * next_i();
-        ieee[_i0].pHTInfo->bForcedShortGI = ((-2 * (next_i()%2)) + 1) * next_i();
-        ieee[_i0].pHTInfo->bEnableHT = ((-2 * (next_i()%2)) + 1) * next_i();
-        ieee[_i0].pHTInfo->bCurrentHTSupport = ((-2 * (next_i()%2)) + 1) * next_i();
+              ieee[_i0].pHTInfo->bCurBW40MHz = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bCurShortGI20MHz = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bCurShortGI40MHz = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bForcedShortGI = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bEnableHT = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bCurrentHTSupport = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
-          int _len_tcb_desc0 = 1;
+        
+          int _len_tcb_desc0 = 65025;
           struct cb_desc * tcb_desc = (struct cb_desc *) malloc(_len_tcb_desc0*sizeof(struct cb_desc));
           for(int _i0 = 0; _i0 < _len_tcb_desc0; _i0++) {
-            tcb_desc[_i0].bUseShortGI = ((-2 * (next_i()%2)) + 1) * next_i();
+              tcb_desc[_i0].bUseShortGI = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           rtllib_query_HTCapShortGI(ieee,tcb_desc);
           for(int _aux = 0; _aux < _len_ieee0; _aux++) {
           free(ieee[_aux].pHTInfo);
@@ -127,7 +128,78 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ieee0 = 100;
+          struct rtllib_device * ieee = (struct rtllib_device *) malloc(_len_ieee0*sizeof(struct rtllib_device));
+          for(int _i0 = 0; _i0 < _len_ieee0; _i0++) {
+              int _len_ieee__i0__pHTInfo0 = 1;
+          ieee[_i0].pHTInfo = (struct rt_hi_throughput *) malloc(_len_ieee__i0__pHTInfo0*sizeof(struct rt_hi_throughput));
+          for(int _j0 = 0; _j0 < _len_ieee__i0__pHTInfo0; _j0++) {
+              ieee[_i0].pHTInfo->bCurBW40MHz = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bCurShortGI20MHz = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bCurShortGI40MHz = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bForcedShortGI = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bEnableHT = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bCurrentHTSupport = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_tcb_desc0 = 100;
+          struct cb_desc * tcb_desc = (struct cb_desc *) malloc(_len_tcb_desc0*sizeof(struct cb_desc));
+          for(int _i0 = 0; _i0 < _len_tcb_desc0; _i0++) {
+              tcb_desc[_i0].bUseShortGI = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          rtllib_query_HTCapShortGI(ieee,tcb_desc);
+          for(int _aux = 0; _aux < _len_ieee0; _aux++) {
+          free(ieee[_aux].pHTInfo);
+          }
+          free(ieee);
+          free(tcb_desc);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ieee0 = 1;
+          struct rtllib_device * ieee = (struct rtllib_device *) malloc(_len_ieee0*sizeof(struct rtllib_device));
+          for(int _i0 = 0; _i0 < _len_ieee0; _i0++) {
+              int _len_ieee__i0__pHTInfo0 = 1;
+          ieee[_i0].pHTInfo = (struct rt_hi_throughput *) malloc(_len_ieee__i0__pHTInfo0*sizeof(struct rt_hi_throughput));
+          for(int _j0 = 0; _j0 < _len_ieee__i0__pHTInfo0; _j0++) {
+              ieee[_i0].pHTInfo->bCurBW40MHz = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bCurShortGI20MHz = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bCurShortGI40MHz = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bForcedShortGI = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bEnableHT = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bCurrentHTSupport = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_tcb_desc0 = 1;
+          struct cb_desc * tcb_desc = (struct cb_desc *) malloc(_len_tcb_desc0*sizeof(struct cb_desc));
+          for(int _i0 = 0; _i0 < _len_tcb_desc0; _i0++) {
+              tcb_desc[_i0].bUseShortGI = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          rtllib_query_HTCapShortGI(ieee,tcb_desc);
+          for(int _aux = 0; _aux < _len_ieee0; _aux++) {
+          free(ieee[_aux].pHTInfo);
+          }
+          free(ieee);
+          free(tcb_desc);
+        
+        break;
+    }
     default:
         usage();
         break;

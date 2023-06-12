@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static bool bpf_is_valid_sock_op(struct bpf_sock_ops_kern 
 	       ops->op == BPF_SOCK_OPS_ACTIVE_ESTABLISHED_CB;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,28 +77,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_ops0 = 1;
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_ops0 = 65025;
           struct bpf_sock_ops_kern * ops = (struct bpf_sock_ops_kern *) malloc(_len_ops0*sizeof(struct bpf_sock_ops_kern));
           for(int _i0 = 0; _i0 < _len_ops0; _i0++) {
-            ops[_i0].op = ((-2 * (next_i()%2)) + 1) * next_i();
+              ops[_i0].op = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = bpf_is_valid_sock_op(ops);
           printf("%d\n", benchRet); 
           free(ops);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_ops0 = 100;
           struct bpf_sock_ops_kern * ops = (struct bpf_sock_ops_kern *) malloc(_len_ops0*sizeof(struct bpf_sock_ops_kern));
           for(int _i0 = 0; _i0 < _len_ops0; _i0++) {
-            ops[_i0].op = ((-2 * (next_i()%2)) + 1) * next_i();
+              ops[_i0].op = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = bpf_is_valid_sock_op(ops);
+          printf("%d\n", benchRet); 
+          free(ops);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_ops0 = 1;
+          struct bpf_sock_ops_kern * ops = (struct bpf_sock_ops_kern *) malloc(_len_ops0*sizeof(struct bpf_sock_ops_kern));
+          for(int _i0 = 0; _i0 < _len_ops0; _i0++) {
+              ops[_i0].op = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = bpf_is_valid_sock_op(ops);
           printf("%d\n", benchRet); 
           free(ops);

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +78,6 @@ void efx_link_set_wanted_fc(struct efx_nic *efx, u8 wanted_fc)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,16 +94,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int wanted_fc = 100;
+        
           int _len_efx0 = 1;
           struct efx_nic * efx = (struct efx_nic *) malloc(_len_efx0*sizeof(struct efx_nic));
           for(int _i0 = 0; _i0 < _len_efx0; _i0++) {
-            efx[_i0].wanted_fc = ((-2 * (next_i()%2)) + 1) * next_i();
+              efx[_i0].wanted_fc = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_efx__i0__link_advertising0 = 1;
           efx[_i0].link_advertising = (int *) malloc(_len_efx__i0__link_advertising0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_efx__i0__link_advertising0; _j0++) {
             efx[_i0].link_advertising[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           efx_link_set_wanted_fc(efx,wanted_fc);
           for(int _aux = 0; _aux < _len_efx0; _aux++) {
           free(efx[_aux].link_advertising);
@@ -115,7 +115,81 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int wanted_fc = 255;
+        
+          int _len_efx0 = 65025;
+          struct efx_nic * efx = (struct efx_nic *) malloc(_len_efx0*sizeof(struct efx_nic));
+          for(int _i0 = 0; _i0 < _len_efx0; _i0++) {
+              efx[_i0].wanted_fc = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_efx__i0__link_advertising0 = 1;
+          efx[_i0].link_advertising = (int *) malloc(_len_efx__i0__link_advertising0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_efx__i0__link_advertising0; _j0++) {
+            efx[_i0].link_advertising[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          efx_link_set_wanted_fc(efx,wanted_fc);
+          for(int _aux = 0; _aux < _len_efx0; _aux++) {
+          free(efx[_aux].link_advertising);
+          }
+          free(efx);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int wanted_fc = 10;
+        
+          int _len_efx0 = 100;
+          struct efx_nic * efx = (struct efx_nic *) malloc(_len_efx0*sizeof(struct efx_nic));
+          for(int _i0 = 0; _i0 < _len_efx0; _i0++) {
+              efx[_i0].wanted_fc = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_efx__i0__link_advertising0 = 1;
+          efx[_i0].link_advertising = (int *) malloc(_len_efx__i0__link_advertising0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_efx__i0__link_advertising0; _j0++) {
+            efx[_i0].link_advertising[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          efx_link_set_wanted_fc(efx,wanted_fc);
+          for(int _aux = 0; _aux < _len_efx0; _aux++) {
+          free(efx[_aux].link_advertising);
+          }
+          free(efx);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int wanted_fc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_efx0 = 1;
+          struct efx_nic * efx = (struct efx_nic *) malloc(_len_efx0*sizeof(struct efx_nic));
+          for(int _i0 = 0; _i0 < _len_efx0; _i0++) {
+              efx[_i0].wanted_fc = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_efx__i0__link_advertising0 = 1;
+          efx[_i0].link_advertising = (int *) malloc(_len_efx__i0__link_advertising0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_efx__i0__link_advertising0; _j0++) {
+            efx[_i0].link_advertising[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          efx_link_set_wanted_fc(efx,wanted_fc);
+          for(int _aux = 0; _aux < _len_efx0; _aux++) {
+          free(efx[_aux].link_advertising);
+          }
+          free(efx);
+        
+        break;
+    }
     default:
         usage();
         break;

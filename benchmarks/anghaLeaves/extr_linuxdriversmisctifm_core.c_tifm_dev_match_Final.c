@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static int tifm_dev_match(struct tifm_dev *sock, struct ti
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,19 +77,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_sock0 = 1;
+          int _len_sock0 = 65025;
           struct tifm_dev * sock = (struct tifm_dev *) malloc(_len_sock0*sizeof(struct tifm_dev));
           for(int _i0 = 0; _i0 < _len_sock0; _i0++) {
-            sock[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+              sock[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_id0 = 1;
+        
+          int _len_id0 = 65025;
           struct tifm_device_id * id = (struct tifm_device_id *) malloc(_len_id0*sizeof(struct tifm_device_id));
           for(int _i0 = 0; _i0 < _len_id0; _i0++) {
-            id[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+              id[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = tifm_dev_match(sock,id);
           printf("%d\n", benchRet); 
           free(sock);
@@ -101,7 +101,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_sock0 = 100;
+          struct tifm_dev * sock = (struct tifm_dev *) malloc(_len_sock0*sizeof(struct tifm_dev));
+          for(int _i0 = 0; _i0 < _len_sock0; _i0++) {
+              sock[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_id0 = 100;
+          struct tifm_device_id * id = (struct tifm_device_id *) malloc(_len_id0*sizeof(struct tifm_device_id));
+          for(int _i0 = 0; _i0 < _len_id0; _i0++) {
+              id[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = tifm_dev_match(sock,id);
+          printf("%d\n", benchRet); 
+          free(sock);
+          free(id);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_sock0 = 1;
+          struct tifm_dev * sock = (struct tifm_dev *) malloc(_len_sock0*sizeof(struct tifm_dev));
+          for(int _i0 = 0; _i0 < _len_sock0; _i0++) {
+              sock[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_id0 = 1;
+          struct tifm_device_id * id = (struct tifm_device_id *) malloc(_len_id0*sizeof(struct tifm_device_id));
+          for(int _i0 = 0; _i0 < _len_id0; _i0++) {
+              id[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = tifm_dev_match(sock,id);
+          printf("%d\n", benchRet); 
+          free(sock);
+          free(id);
+        
+        break;
+    }
     default:
         usage();
         break;

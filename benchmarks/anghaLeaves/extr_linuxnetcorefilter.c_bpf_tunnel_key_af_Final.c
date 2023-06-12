@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static unsigned short bpf_tunnel_key_af(u64 flags)
 	return flags & BPF_F_TUNINFO_IPV6 ? AF_INET6 : AF_INET;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,6 +82,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int flags = 100;
+        
           unsigned short benchRet = bpf_tunnel_key_af(flags);
           printf("%hu\n", benchRet); 
         
@@ -96,6 +92,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int flags = 255;
+        
           unsigned short benchRet = bpf_tunnel_key_af(flags);
           printf("%hu\n", benchRet); 
         
@@ -105,12 +102,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int flags = 10;
+        
           unsigned short benchRet = bpf_tunnel_key_af(flags);
           printf("%hu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned short benchRet = bpf_tunnel_key_af(flags);
+          printf("%hu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

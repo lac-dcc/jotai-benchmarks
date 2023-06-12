@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static void arche_platform_set_wake_detect_state(
 	arche_pdata->wake_detect_state = state;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,15 +77,18 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           enum svc_wakedetect_state state = 0;
-          int _len_arche_pdata0 = 1;
+        
+          int _len_arche_pdata0 = 65025;
           struct arche_platform_drvdata * arche_pdata = (struct arche_platform_drvdata *) malloc(_len_arche_pdata0*sizeof(struct arche_platform_drvdata));
           for(int _i0 = 0; _i0 < _len_arche_pdata0; _i0++) {
-            arche_pdata[_i0].wake_detect_state = ((-2 * (next_i()%2)) + 1) * next_i();
+              arche_pdata[_i0].wake_detect_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           arche_platform_set_wake_detect_state(arche_pdata,state);
           free(arche_pdata);
         
@@ -100,17 +98,36 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           enum svc_wakedetect_state state = 0;
+        
           int _len_arche_pdata0 = 100;
           struct arche_platform_drvdata * arche_pdata = (struct arche_platform_drvdata *) malloc(_len_arche_pdata0*sizeof(struct arche_platform_drvdata));
           for(int _i0 = 0; _i0 < _len_arche_pdata0; _i0++) {
-            arche_pdata[_i0].wake_detect_state = ((-2 * (next_i()%2)) + 1) * next_i();
+              arche_pdata[_i0].wake_detect_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           arche_platform_set_wake_detect_state(arche_pdata,state);
           free(arche_pdata);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          enum svc_wakedetect_state state = 0;
+        
+          int _len_arche_pdata0 = 1;
+          struct arche_platform_drvdata * arche_pdata = (struct arche_platform_drvdata *) malloc(_len_arche_pdata0*sizeof(struct arche_platform_drvdata));
+          for(int _i0 = 0; _i0 < _len_arche_pdata0; _i0++) {
+              arche_pdata[_i0].wake_detect_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          arche_platform_set_wake_detect_state(arche_pdata,state);
+          free(arche_pdata);
+        
+        break;
+    }
     default:
         usage();
         break;

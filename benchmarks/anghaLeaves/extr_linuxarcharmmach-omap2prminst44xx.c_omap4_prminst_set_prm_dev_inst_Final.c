@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ void omap4_prminst_set_prm_dev_inst(s32 dev_inst)
 	prm_dev_inst = dev_inst;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int dev_inst = 100;
+        
           omap4_prminst_set_prm_dev_inst(dev_inst);
         
         break;
@@ -93,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int dev_inst = 255;
+        
           omap4_prminst_set_prm_dev_inst(dev_inst);
         
         break;
@@ -101,11 +98,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int dev_inst = 10;
+        
           omap4_prminst_set_prm_dev_inst(dev_inst);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int dev_inst = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          omap4_prminst_set_prm_dev_inst(dev_inst);
+        
+        break;
+    }
     default:
         usage();
         break;

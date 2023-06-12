@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -149,12 +150,6 @@ __attribute__((used)) static int efx_ef10_filter_match_flags_from_mcdi(bool enca
 	return match_flags;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -167,31 +162,144 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 187
+          // dynamic_instructions_O0 : 187
+          // ------------------------------- 
+          // static_instructions_O1 : 99
+          // dynamic_instructions_O1 : 99
+          // ------------------------------- 
+          // static_instructions_O2 : 99
+          // dynamic_instructions_O2 : 99
+          // ------------------------------- 
+          // static_instructions_O3 : 99
+          // dynamic_instructions_O3 : 99
+          // ------------------------------- 
+          // static_instructions_Ofast : 99
+          // dynamic_instructions_Ofast : 99
+          // ------------------------------- 
+          // static_instructions_Os : 99
+          // dynamic_instructions_Os : 99
+          // ------------------------------- 
+          // static_instructions_Oz : 99
+          // dynamic_instructions_Oz : 99
+          // ------------------------------- 
+
           int encap = 100;
+        
           int mcdi_flags = 100;
+        
           int benchRet = efx_ef10_filter_match_flags_from_mcdi(encap,mcdi_flags);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 187
+          // dynamic_instructions_O0 : 187
+          // ------------------------------- 
+          // static_instructions_O1 : 99
+          // dynamic_instructions_O1 : 99
+          // ------------------------------- 
+          // static_instructions_O2 : 99
+          // dynamic_instructions_O2 : 99
+          // ------------------------------- 
+          // static_instructions_O3 : 99
+          // dynamic_instructions_O3 : 99
+          // ------------------------------- 
+          // static_instructions_Ofast : 99
+          // dynamic_instructions_Ofast : 99
+          // ------------------------------- 
+          // static_instructions_Os : 99
+          // dynamic_instructions_Os : 99
+          // ------------------------------- 
+          // static_instructions_Oz : 99
+          // dynamic_instructions_Oz : 99
+          // ------------------------------- 
+
           int encap = 255;
+        
           int mcdi_flags = 255;
+        
           int benchRet = efx_ef10_filter_match_flags_from_mcdi(encap,mcdi_flags);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 187
+          // dynamic_instructions_O0 : 187
+          // ------------------------------- 
+          // static_instructions_O1 : 99
+          // dynamic_instructions_O1 : 99
+          // ------------------------------- 
+          // static_instructions_O2 : 99
+          // dynamic_instructions_O2 : 99
+          // ------------------------------- 
+          // static_instructions_O3 : 99
+          // dynamic_instructions_O3 : 99
+          // ------------------------------- 
+          // static_instructions_Ofast : 99
+          // dynamic_instructions_Ofast : 99
+          // ------------------------------- 
+          // static_instructions_Os : 99
+          // dynamic_instructions_Os : 99
+          // ------------------------------- 
+          // static_instructions_Oz : 99
+          // dynamic_instructions_Oz : 99
+          // ------------------------------- 
+
           int encap = 10;
+        
           int mcdi_flags = 10;
+        
+          int benchRet = efx_ef10_filter_match_flags_from_mcdi(encap,mcdi_flags);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 187
+          // dynamic_instructions_O0 : 187
+          // ------------------------------- 
+          // static_instructions_O1 : 99
+          // dynamic_instructions_O1 : 99
+          // ------------------------------- 
+          // static_instructions_O2 : 99
+          // dynamic_instructions_O2 : 99
+          // ------------------------------- 
+          // static_instructions_O3 : 99
+          // dynamic_instructions_O3 : 99
+          // ------------------------------- 
+          // static_instructions_Ofast : 99
+          // dynamic_instructions_Ofast : 99
+          // ------------------------------- 
+          // static_instructions_Os : 99
+          // dynamic_instructions_Os : 99
+          // ------------------------------- 
+          // static_instructions_Oz : 99
+          // dynamic_instructions_Oz : 99
+          // ------------------------------- 
+
+          int encap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int mcdi_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = efx_ef10_filter_match_flags_from_mcdi(encap,mcdi_flags);
           printf("%d\n", benchRet); 
         

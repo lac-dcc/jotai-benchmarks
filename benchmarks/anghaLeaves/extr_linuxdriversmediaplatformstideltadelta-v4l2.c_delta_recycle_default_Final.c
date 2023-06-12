@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ int delta_recycle_default(struct delta_ctx *pctx,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,19 +79,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pctx0 = 1;
+          int _len_pctx0 = 65025;
           struct delta_ctx * pctx = (struct delta_ctx *) malloc(_len_pctx0*sizeof(struct delta_ctx));
           for(int _i0 = 0; _i0 < _len_pctx0; _i0++) {
-            pctx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              pctx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_frame0 = 1;
+        
+          int _len_frame0 = 65025;
           struct delta_frame * frame = (struct delta_frame *) malloc(_len_frame0*sizeof(struct delta_frame));
           for(int _i0 = 0; _i0 < _len_frame0; _i0++) {
-            frame[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+              frame[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = delta_recycle_default(pctx,frame);
           printf("%d\n", benchRet); 
           free(pctx);
@@ -103,7 +103,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_pctx0 = 100;
+          struct delta_ctx * pctx = (struct delta_ctx *) malloc(_len_pctx0*sizeof(struct delta_ctx));
+          for(int _i0 = 0; _i0 < _len_pctx0; _i0++) {
+              pctx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_frame0 = 100;
+          struct delta_frame * frame = (struct delta_frame *) malloc(_len_frame0*sizeof(struct delta_frame));
+          for(int _i0 = 0; _i0 < _len_frame0; _i0++) {
+              frame[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = delta_recycle_default(pctx,frame);
+          printf("%d\n", benchRet); 
+          free(pctx);
+          free(frame);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_pctx0 = 1;
+          struct delta_ctx * pctx = (struct delta_ctx *) malloc(_len_pctx0*sizeof(struct delta_ctx));
+          for(int _i0 = 0; _i0 < _len_pctx0; _i0++) {
+              pctx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_frame0 = 1;
+          struct delta_frame * frame = (struct delta_frame *) malloc(_len_frame0*sizeof(struct delta_frame));
+          for(int _i0 = 0; _i0 < _len_frame0; _i0++) {
+              frame[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = delta_recycle_default(pctx,frame);
+          printf("%d\n", benchRet); 
+          free(pctx);
+          free(frame);
+        
+        break;
+    }
     default:
         usage();
         break;

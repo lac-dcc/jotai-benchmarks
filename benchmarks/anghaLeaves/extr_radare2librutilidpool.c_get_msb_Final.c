@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static ut32 get_msb(ut32 v) {
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,28 +80,136 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 400
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 160
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 212
+          // ------------------------------- 
+          // static_instructions_O3 : 82
+          // dynamic_instructions_O3 : 82
+          // ------------------------------- 
+          // static_instructions_Ofast : 82
+          // dynamic_instructions_Ofast : 82
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 211
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 189
+          // ------------------------------- 
+
           int v = 100;
+        
           int benchRet = get_msb(v);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 385
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 154
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 204
+          // ------------------------------- 
+          // static_instructions_O3 : 79
+          // dynamic_instructions_O3 : 79
+          // ------------------------------- 
+          // static_instructions_Ofast : 79
+          // dynamic_instructions_Ofast : 79
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 203
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 182
+          // ------------------------------- 
+
           int v = 255;
+        
           int benchRet = get_msb(v);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 445
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 178
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 236
+          // ------------------------------- 
+          // static_instructions_O3 : 91
+          // dynamic_instructions_O3 : 91
+          // ------------------------------- 
+          // static_instructions_Ofast : 91
+          // dynamic_instructions_Ofast : 91
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 235
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 210
+          // ------------------------------- 
+
           int v = 10;
+        
+          int benchRet = get_msb(v);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int v = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = get_msb(v);
           printf("%d\n", benchRet); 
         

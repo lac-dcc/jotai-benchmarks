@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +76,6 @@ __attribute__((used)) static inline bool fscrypt_valid_enc_modes(u32 contents_mo
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,7 +92,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long contents_mode = 100;
+        
           long filenames_mode = 100;
+        
           int benchRet = fscrypt_valid_enc_modes(contents_mode,filenames_mode);
           printf("%d\n", benchRet); 
         
@@ -107,7 +104,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long contents_mode = 255;
+        
           long filenames_mode = 255;
+        
           int benchRet = fscrypt_valid_enc_modes(contents_mode,filenames_mode);
           printf("%d\n", benchRet); 
         
@@ -117,13 +116,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long contents_mode = 10;
+        
           long filenames_mode = 10;
+        
           int benchRet = fscrypt_valid_enc_modes(contents_mode,filenames_mode);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long contents_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long filenames_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = fscrypt_valid_enc_modes(contents_mode,filenames_mode);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

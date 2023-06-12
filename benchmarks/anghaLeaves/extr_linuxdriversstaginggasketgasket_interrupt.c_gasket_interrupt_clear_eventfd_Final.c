@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ int gasket_interrupt_clear_eventfd(struct gasket_interrupt_data *interrupt_data,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,14 +81,38 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int interrupt = 100;
+        
           int _len_interrupt_data0 = 1;
           struct gasket_interrupt_data * interrupt_data = (struct gasket_interrupt_data *) malloc(_len_interrupt_data0*sizeof(struct gasket_interrupt_data));
           for(int _i0 = 0; _i0 < _len_interrupt_data0; _i0++) {
-            interrupt_data[_i0].num_interrupts = ((-2 * (next_i()%2)) + 1) * next_i();
+              interrupt_data[_i0].num_interrupts = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_interrupt_data__i0__eventfd_ctxs0 = 1;
           interrupt_data[_i0].eventfd_ctxs = (int **) malloc(_len_interrupt_data__i0__eventfd_ctxs0*sizeof(int *));
           for(int _j0 = 0; _j0 < _len_interrupt_data__i0__eventfd_ctxs0; _j0++) {
@@ -101,7 +122,174 @@ int main(int argc, char *argv[]) {
               interrupt_data[_i0].eventfd_ctxs[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           }
+        
+          int benchRet = gasket_interrupt_clear_eventfd(interrupt_data,interrupt);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_interrupt_data0; _aux++) {
+          free(*(interrupt_data[_aux].eventfd_ctxs));
+        free(interrupt_data[_aux].eventfd_ctxs);
+          }
+          free(interrupt_data);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int interrupt = 255;
+        
+          int _len_interrupt_data0 = 65025;
+          struct gasket_interrupt_data * interrupt_data = (struct gasket_interrupt_data *) malloc(_len_interrupt_data0*sizeof(struct gasket_interrupt_data));
+          for(int _i0 = 0; _i0 < _len_interrupt_data0; _i0++) {
+              interrupt_data[_i0].num_interrupts = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_interrupt_data__i0__eventfd_ctxs0 = 1;
+          interrupt_data[_i0].eventfd_ctxs = (int **) malloc(_len_interrupt_data__i0__eventfd_ctxs0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_interrupt_data__i0__eventfd_ctxs0; _j0++) {
+            int _len_interrupt_data__i0__eventfd_ctxs1 = 1;
+            interrupt_data[_i0].eventfd_ctxs[_j0] = (int *) malloc(_len_interrupt_data__i0__eventfd_ctxs1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_interrupt_data__i0__eventfd_ctxs1; _j1++) {
+              interrupt_data[_i0].eventfd_ctxs[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          }
+        
+          int benchRet = gasket_interrupt_clear_eventfd(interrupt_data,interrupt);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_interrupt_data0; _aux++) {
+          free(*(interrupt_data[_aux].eventfd_ctxs));
+        free(interrupt_data[_aux].eventfd_ctxs);
+          }
+          free(interrupt_data);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int interrupt = 10;
+        
+          int _len_interrupt_data0 = 100;
+          struct gasket_interrupt_data * interrupt_data = (struct gasket_interrupt_data *) malloc(_len_interrupt_data0*sizeof(struct gasket_interrupt_data));
+          for(int _i0 = 0; _i0 < _len_interrupt_data0; _i0++) {
+              interrupt_data[_i0].num_interrupts = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_interrupt_data__i0__eventfd_ctxs0 = 1;
+          interrupt_data[_i0].eventfd_ctxs = (int **) malloc(_len_interrupt_data__i0__eventfd_ctxs0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_interrupt_data__i0__eventfd_ctxs0; _j0++) {
+            int _len_interrupt_data__i0__eventfd_ctxs1 = 1;
+            interrupt_data[_i0].eventfd_ctxs[_j0] = (int *) malloc(_len_interrupt_data__i0__eventfd_ctxs1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_interrupt_data__i0__eventfd_ctxs1; _j1++) {
+              interrupt_data[_i0].eventfd_ctxs[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          }
+        
+          int benchRet = gasket_interrupt_clear_eventfd(interrupt_data,interrupt);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_interrupt_data0; _aux++) {
+          free(*(interrupt_data[_aux].eventfd_ctxs));
+        free(interrupt_data[_aux].eventfd_ctxs);
+          }
+          free(interrupt_data);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int interrupt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_interrupt_data0 = 1;
+          struct gasket_interrupt_data * interrupt_data = (struct gasket_interrupt_data *) malloc(_len_interrupt_data0*sizeof(struct gasket_interrupt_data));
+          for(int _i0 = 0; _i0 < _len_interrupt_data0; _i0++) {
+              interrupt_data[_i0].num_interrupts = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_interrupt_data__i0__eventfd_ctxs0 = 1;
+          interrupt_data[_i0].eventfd_ctxs = (int **) malloc(_len_interrupt_data__i0__eventfd_ctxs0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_interrupt_data__i0__eventfd_ctxs0; _j0++) {
+            int _len_interrupt_data__i0__eventfd_ctxs1 = 1;
+            interrupt_data[_i0].eventfd_ctxs[_j0] = (int *) malloc(_len_interrupt_data__i0__eventfd_ctxs1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_interrupt_data__i0__eventfd_ctxs1; _j1++) {
+              interrupt_data[_i0].eventfd_ctxs[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          }
+        
           int benchRet = gasket_interrupt_clear_eventfd(interrupt_data,interrupt);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_interrupt_data0; _aux++) {

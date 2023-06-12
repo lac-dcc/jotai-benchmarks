@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +81,6 @@ __attribute__((used)) static u32 ufx_calc_range(u32 ref_freq)
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,6 +97,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int ref_freq = 100;
+        
           int benchRet = ufx_calc_range(ref_freq);
           printf("%d\n", benchRet); 
         
@@ -111,6 +107,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int ref_freq = 255;
+        
           int benchRet = ufx_calc_range(ref_freq);
           printf("%d\n", benchRet); 
         
@@ -120,12 +117,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int ref_freq = 10;
+        
           int benchRet = ufx_calc_range(ref_freq);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int ref_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = ufx_calc_range(ref_freq);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

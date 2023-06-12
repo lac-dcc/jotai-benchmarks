@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static int bnx2x_is_8483x_8485x(struct bnx2x_phy *phy)
 		(phy->type == PORT_HW_CFG_XGXS_EXT_PHY_TYPE_BCM84858));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,14 +79,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_phy0 = 1;
+          int _len_phy0 = 65025;
           struct bnx2x_phy * phy = (struct bnx2x_phy *) malloc(_len_phy0*sizeof(struct bnx2x_phy));
           for(int _i0 = 0; _i0 < _len_phy0; _i0++) {
-            phy[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+              phy[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = bnx2x_is_8483x_8485x(phy);
           printf("%d\n", benchRet); 
           free(phy);
@@ -104,15 +101,32 @@ int main(int argc, char *argv[]) {
           int _len_phy0 = 100;
           struct bnx2x_phy * phy = (struct bnx2x_phy *) malloc(_len_phy0*sizeof(struct bnx2x_phy));
           for(int _i0 = 0; _i0 < _len_phy0; _i0++) {
-            phy[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+              phy[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = bnx2x_is_8483x_8485x(phy);
           printf("%d\n", benchRet); 
           free(phy);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_phy0 = 1;
+          struct bnx2x_phy * phy = (struct bnx2x_phy *) malloc(_len_phy0*sizeof(struct bnx2x_phy));
+          for(int _i0 = 0; _i0 < _len_phy0; _i0++) {
+              phy[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = bnx2x_is_8483x_8485x(phy);
+          printf("%d\n", benchRet); 
+          free(phy);
+        
+        break;
+    }
     default:
         usage();
         break;

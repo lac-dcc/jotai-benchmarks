@@ -66,12 +66,6 @@ uint8_t popcnt8(uint8_t val)
 	return nibble_lookup[val & 0x0F] + nibble_lookup[val >> 4];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,6 +82,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int val = 100;
+        
           int benchRet = popcnt8(val);
           printf("%d\n", benchRet); 
         
@@ -97,6 +92,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int val = 255;
+        
           int benchRet = popcnt8(val);
           printf("%d\n", benchRet); 
         
@@ -106,12 +102,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int val = 10;
+        
           int benchRet = popcnt8(val);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

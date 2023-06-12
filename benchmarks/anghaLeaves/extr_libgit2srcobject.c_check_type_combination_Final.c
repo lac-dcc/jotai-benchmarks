@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -89,12 +90,6 @@ __attribute__((used)) static int check_type_combination(git_object_t type, git_o
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -111,7 +106,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int type = 100;
+        
           int target = 100;
+        
           int benchRet = check_type_combination(type,target);
           printf("%d\n", benchRet); 
         
@@ -121,7 +118,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int type = 255;
+        
           int target = 255;
+        
           int benchRet = check_type_combination(type,target);
           printf("%d\n", benchRet); 
         
@@ -131,13 +130,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int type = 10;
+        
           int target = 10;
+        
           int benchRet = check_type_combination(type,target);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int target = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = check_type_combination(type,target);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

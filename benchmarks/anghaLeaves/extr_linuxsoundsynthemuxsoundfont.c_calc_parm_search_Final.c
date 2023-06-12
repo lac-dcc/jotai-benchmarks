@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ calc_parm_search(int msec, short *table)
 	return left;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,15 +81,81 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 138
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 91
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 91
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 91
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 91
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 97
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 101
+          // ------------------------------- 
+
+          int msec = 255;
+        
+          int _len_table0 = 65025;
+          short * table = (short *) malloc(_len_table0*sizeof(short));
+          for(int _i0 = 0; _i0 < _len_table0; _i0++) {
+            table[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = calc_parm_search(msec,table);
+          printf("%d\n", benchRet); 
+          free(table);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 138
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 91
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 91
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 91
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 91
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 97
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 101
+          // ------------------------------- 
+
           int msec = 10;
+        
           int _len_table0 = 100;
           short * table = (short *) malloc(_len_table0*sizeof(short));
           for(int _i0 = 0; _i0 < _len_table0; _i0++) {
             table[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = calc_parm_search(msec,table);
           printf("%d\n", benchRet); 
           free(table);

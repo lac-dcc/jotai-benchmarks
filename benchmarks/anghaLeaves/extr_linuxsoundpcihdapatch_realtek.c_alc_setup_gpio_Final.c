@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ __attribute__((used)) static void alc_setup_gpio(struct hda_codec *codec, unsign
 	spec->gpio_data |= mask;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,17 +84,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int mask = 100;
+        
           int _len_codec0 = 1;
           struct hda_codec * codec = (struct hda_codec *) malloc(_len_codec0*sizeof(struct hda_codec));
           for(int _i0 = 0; _i0 < _len_codec0; _i0++) {
               int _len_codec__i0__spec0 = 1;
           codec[_i0].spec = (struct alc_spec *) malloc(_len_codec__i0__spec0*sizeof(struct alc_spec));
           for(int _j0 = 0; _j0 < _len_codec__i0__spec0; _j0++) {
-            codec[_i0].spec->gpio_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        codec[_i0].spec->gpio_dir = ((-2 * (next_i()%2)) + 1) * next_i();
-        codec[_i0].spec->gpio_data = ((-2 * (next_i()%2)) + 1) * next_i();
+              codec[_i0].spec->gpio_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          codec[_i0].spec->gpio_dir = ((-2 * (next_i()%2)) + 1) * next_i();
+          codec[_i0].spec->gpio_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           alc_setup_gpio(codec,mask);
           for(int _aux = 0; _aux < _len_codec0; _aux++) {
           free(codec[_aux].spec);
@@ -106,7 +107,87 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int mask = 255;
+        
+          int _len_codec0 = 65025;
+          struct hda_codec * codec = (struct hda_codec *) malloc(_len_codec0*sizeof(struct hda_codec));
+          for(int _i0 = 0; _i0 < _len_codec0; _i0++) {
+              int _len_codec__i0__spec0 = 1;
+          codec[_i0].spec = (struct alc_spec *) malloc(_len_codec__i0__spec0*sizeof(struct alc_spec));
+          for(int _j0 = 0; _j0 < _len_codec__i0__spec0; _j0++) {
+              codec[_i0].spec->gpio_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          codec[_i0].spec->gpio_dir = ((-2 * (next_i()%2)) + 1) * next_i();
+          codec[_i0].spec->gpio_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          alc_setup_gpio(codec,mask);
+          for(int _aux = 0; _aux < _len_codec0; _aux++) {
+          free(codec[_aux].spec);
+          }
+          free(codec);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int mask = 10;
+        
+          int _len_codec0 = 100;
+          struct hda_codec * codec = (struct hda_codec *) malloc(_len_codec0*sizeof(struct hda_codec));
+          for(int _i0 = 0; _i0 < _len_codec0; _i0++) {
+              int _len_codec__i0__spec0 = 1;
+          codec[_i0].spec = (struct alc_spec *) malloc(_len_codec__i0__spec0*sizeof(struct alc_spec));
+          for(int _j0 = 0; _j0 < _len_codec__i0__spec0; _j0++) {
+              codec[_i0].spec->gpio_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          codec[_i0].spec->gpio_dir = ((-2 * (next_i()%2)) + 1) * next_i();
+          codec[_i0].spec->gpio_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          alc_setup_gpio(codec,mask);
+          for(int _aux = 0; _aux < _len_codec0; _aux++) {
+          free(codec[_aux].spec);
+          }
+          free(codec);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_codec0 = 1;
+          struct hda_codec * codec = (struct hda_codec *) malloc(_len_codec0*sizeof(struct hda_codec));
+          for(int _i0 = 0; _i0 < _len_codec0; _i0++) {
+              int _len_codec__i0__spec0 = 1;
+          codec[_i0].spec = (struct alc_spec *) malloc(_len_codec__i0__spec0*sizeof(struct alc_spec));
+          for(int _j0 = 0; _j0 < _len_codec__i0__spec0; _j0++) {
+              codec[_i0].spec->gpio_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          codec[_i0].spec->gpio_dir = ((-2 * (next_i()%2)) + 1) * next_i();
+          codec[_i0].spec->gpio_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          alc_setup_gpio(codec,mask);
+          for(int _aux = 0; _aux < _len_codec0; _aux++) {
+          free(codec[_aux].spec);
+          }
+          free(codec);
+        
+        break;
+    }
     default:
         usage();
         break;

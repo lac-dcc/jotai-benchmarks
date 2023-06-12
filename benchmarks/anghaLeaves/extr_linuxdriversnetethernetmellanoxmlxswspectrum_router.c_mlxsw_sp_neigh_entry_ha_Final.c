@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ mlxsw_sp_neigh_entry_ha(struct mlxsw_sp_neigh_entry *neigh_entry)
 	return neigh_entry->ha;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,9 +75,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_neigh_entry0 = 65025;
+          struct mlxsw_sp_neigh_entry * neigh_entry = (struct mlxsw_sp_neigh_entry *) malloc(_len_neigh_entry0*sizeof(struct mlxsw_sp_neigh_entry));
+          for(int _i0 = 0; _i0 < _len_neigh_entry0; _i0++) {
+              int _len_neigh_entry__i0__ha0 = 1;
+          neigh_entry[_i0].ha = (unsigned char *) malloc(_len_neigh_entry__i0__ha0*sizeof(unsigned char));
+          for(int _j0 = 0; _j0 < _len_neigh_entry__i0__ha0; _j0++) {
+            neigh_entry[_i0].ha[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          unsigned char * benchRet = mlxsw_sp_neigh_entry_ha(neigh_entry);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          for(int _aux = 0; _aux < _len_neigh_entry0; _aux++) {
+          free(neigh_entry[_aux].ha);
+          }
+          free(neigh_entry);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_neigh_entry0 = 100;
+          struct mlxsw_sp_neigh_entry * neigh_entry = (struct mlxsw_sp_neigh_entry *) malloc(_len_neigh_entry0*sizeof(struct mlxsw_sp_neigh_entry));
+          for(int _i0 = 0; _i0 < _len_neigh_entry0; _i0++) {
+              int _len_neigh_entry__i0__ha0 = 1;
+          neigh_entry[_i0].ha = (unsigned char *) malloc(_len_neigh_entry__i0__ha0*sizeof(unsigned char));
+          for(int _j0 = 0; _j0 < _len_neigh_entry__i0__ha0; _j0++) {
+            neigh_entry[_i0].ha[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          unsigned char * benchRet = mlxsw_sp_neigh_entry_ha(neigh_entry);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          for(int _aux = 0; _aux < _len_neigh_entry0; _aux++) {
+          free(neigh_entry[_aux].ha);
+          }
+          free(neigh_entry);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_neigh_entry0 = 1;
           struct mlxsw_sp_neigh_entry * neigh_entry = (struct mlxsw_sp_neigh_entry *) malloc(_len_neigh_entry0*sizeof(struct mlxsw_sp_neigh_entry));
           for(int _i0 = 0; _i0 < _len_neigh_entry0; _i0++) {
@@ -90,7 +203,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_neigh_entry__i0__ha0; _j0++) {
             neigh_entry[_i0].ha[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           unsigned char * benchRet = mlxsw_sp_neigh_entry_ha(neigh_entry);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           for(int _aux = 0; _aux < _len_neigh_entry0; _aux++) {

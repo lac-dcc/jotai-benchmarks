@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline u8 cm_lap_get_local_ack_timeout(struct cm_la
 	return lap_msg->offset63 >> 3;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,28 +75,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_lap_msg0 = 1;
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_lap_msg0 = 65025;
           struct cm_lap_msg * lap_msg = (struct cm_lap_msg *) malloc(_len_lap_msg0*sizeof(struct cm_lap_msg));
           for(int _i0 = 0; _i0 < _len_lap_msg0; _i0++) {
-            lap_msg[_i0].offset63 = ((-2 * (next_i()%2)) + 1) * next_i();
+              lap_msg[_i0].offset63 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cm_lap_get_local_ack_timeout(lap_msg);
           printf("%d\n", benchRet); 
           free(lap_msg);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_lap_msg0 = 100;
           struct cm_lap_msg * lap_msg = (struct cm_lap_msg *) malloc(_len_lap_msg0*sizeof(struct cm_lap_msg));
           for(int _i0 = 0; _i0 < _len_lap_msg0; _i0++) {
-            lap_msg[_i0].offset63 = ((-2 * (next_i()%2)) + 1) * next_i();
+              lap_msg[_i0].offset63 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = cm_lap_get_local_ack_timeout(lap_msg);
+          printf("%d\n", benchRet); 
+          free(lap_msg);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_lap_msg0 = 1;
+          struct cm_lap_msg * lap_msg = (struct cm_lap_msg *) malloc(_len_lap_msg0*sizeof(struct cm_lap_msg));
+          for(int _i0 = 0; _i0 < _len_lap_msg0; _i0++) {
+              lap_msg[_i0].offset63 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = cm_lap_get_local_ack_timeout(lap_msg);
           printf("%d\n", benchRet); 
           free(lap_msg);

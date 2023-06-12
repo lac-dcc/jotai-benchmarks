@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static bool match_die(struct cpuinfo_x86 *c, struct cpuinf
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,19 +76,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_c0 = 1;
+          int _len_c0 = 65025;
           struct cpuinfo_x86 * c = (struct cpuinfo_x86 *) malloc(_len_c0*sizeof(struct cpuinfo_x86));
           for(int _i0 = 0; _i0 < _len_c0; _i0++) {
-            c[_i0].phys_proc_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              c[_i0].phys_proc_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_o0 = 1;
+        
+          int _len_o0 = 65025;
           struct cpuinfo_x86 * o = (struct cpuinfo_x86 *) malloc(_len_o0*sizeof(struct cpuinfo_x86));
           for(int _i0 = 0; _i0 < _len_o0; _i0++) {
-            o[_i0].phys_proc_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              o[_i0].phys_proc_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = match_die(c,o);
           printf("%d\n", benchRet); 
           free(c);
@@ -100,7 +100,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_c0 = 100;
+          struct cpuinfo_x86 * c = (struct cpuinfo_x86 *) malloc(_len_c0*sizeof(struct cpuinfo_x86));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].phys_proc_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_o0 = 100;
+          struct cpuinfo_x86 * o = (struct cpuinfo_x86 *) malloc(_len_o0*sizeof(struct cpuinfo_x86));
+          for(int _i0 = 0; _i0 < _len_o0; _i0++) {
+              o[_i0].phys_proc_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = match_die(c,o);
+          printf("%d\n", benchRet); 
+          free(c);
+          free(o);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_c0 = 1;
+          struct cpuinfo_x86 * c = (struct cpuinfo_x86 *) malloc(_len_c0*sizeof(struct cpuinfo_x86));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].phys_proc_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_o0 = 1;
+          struct cpuinfo_x86 * o = (struct cpuinfo_x86 *) malloc(_len_o0*sizeof(struct cpuinfo_x86));
+          for(int _i0 = 0; _i0 < _len_o0; _i0++) {
+              o[_i0].phys_proc_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = match_die(c,o);
+          printf("%d\n", benchRet); 
+          free(c);
+          free(o);
+        
+        break;
+    }
     default:
         usage();
         break;

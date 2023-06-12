@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static inline bool is_hamming_ecc(struct brcmnand_controll
 			(cfg->spare_area_size == 28 && cfg->ecc_level == 16));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,21 +82,25 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ctrl0 = 1;
+          int _len_ctrl0 = 65025;
           struct brcmnand_controller * ctrl = (struct brcmnand_controller *) malloc(_len_ctrl0*sizeof(struct brcmnand_controller));
           for(int _i0 = 0; _i0 < _len_ctrl0; _i0++) {
-            ctrl[_i0].nand_version = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctrl[_i0].nand_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_cfg0 = 1;
+        
+          int _len_cfg0 = 65025;
           struct brcmnand_cfg * cfg = (struct brcmnand_cfg *) malloc(_len_cfg0*sizeof(struct brcmnand_cfg));
           for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
-            cfg[_i0].sector_size_1k = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].spare_area_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].ecc_level = ((-2 * (next_i()%2)) + 1) * next_i();
+              cfg[_i0].sector_size_1k = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].spare_area_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].ecc_level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_hamming_ecc(ctrl,cfg);
           printf("%d\n", benchRet); 
           free(ctrl);
@@ -108,7 +108,58 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ctrl0 = 100;
+          struct brcmnand_controller * ctrl = (struct brcmnand_controller *) malloc(_len_ctrl0*sizeof(struct brcmnand_controller));
+          for(int _i0 = 0; _i0 < _len_ctrl0; _i0++) {
+              ctrl[_i0].nand_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cfg0 = 100;
+          struct brcmnand_cfg * cfg = (struct brcmnand_cfg *) malloc(_len_cfg0*sizeof(struct brcmnand_cfg));
+          for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
+              cfg[_i0].sector_size_1k = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].spare_area_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].ecc_level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_hamming_ecc(ctrl,cfg);
+          printf("%d\n", benchRet); 
+          free(ctrl);
+          free(cfg);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ctrl0 = 1;
+          struct brcmnand_controller * ctrl = (struct brcmnand_controller *) malloc(_len_ctrl0*sizeof(struct brcmnand_controller));
+          for(int _i0 = 0; _i0 < _len_ctrl0; _i0++) {
+              ctrl[_i0].nand_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cfg0 = 1;
+          struct brcmnand_cfg * cfg = (struct brcmnand_cfg *) malloc(_len_cfg0*sizeof(struct brcmnand_cfg));
+          for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
+              cfg[_i0].sector_size_1k = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].spare_area_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].ecc_level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_hamming_ecc(ctrl,cfg);
+          printf("%d\n", benchRet); 
+          free(ctrl);
+          free(cfg);
+        
+        break;
+    }
     default:
         usage();
         break;

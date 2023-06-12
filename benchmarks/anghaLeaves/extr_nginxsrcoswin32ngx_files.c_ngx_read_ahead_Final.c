@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ ngx_read_ahead(ngx_fd_t fd, size_t n)
     return ~NGX_FILE_ERROR;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,7 +82,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int fd = 100;
+        
           unsigned long n = 100;
+        
           int benchRet = ngx_read_ahead(fd,n);
           printf("%d\n", benchRet); 
         
@@ -97,7 +94,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int fd = 255;
+        
           unsigned long n = 255;
+        
           int benchRet = ngx_read_ahead(fd,n);
           printf("%d\n", benchRet); 
         
@@ -107,13 +106,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int fd = 10;
+        
           unsigned long n = 10;
+        
           int benchRet = ngx_read_ahead(fd,n);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int fd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = ngx_read_ahead(fd,n);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

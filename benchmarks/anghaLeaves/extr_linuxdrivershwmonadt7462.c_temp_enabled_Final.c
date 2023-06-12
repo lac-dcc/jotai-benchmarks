@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +78,6 @@ __attribute__((used)) static int temp_enabled(struct adt7462_data *data, int whi
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,10 +90,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int which = 100;
+        
           int _len_data0 = 1;
           struct adt7462_data * data = (struct adt7462_data *) malloc(_len_data0*sizeof(struct adt7462_data));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
@@ -105,7 +126,156 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_data__i0__pin_cfg0; _j0++) {
             data[_i0].pin_cfg[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int benchRet = temp_enabled(data,which);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_data0; _aux++) {
+          free(data[_aux].pin_cfg);
+          }
+          free(data);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int which = 255;
+        
+          int _len_data0 = 65025;
+          struct adt7462_data * data = (struct adt7462_data *) malloc(_len_data0*sizeof(struct adt7462_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              int _len_data__i0__pin_cfg0 = 1;
+          data[_i0].pin_cfg = (int *) malloc(_len_data__i0__pin_cfg0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_data__i0__pin_cfg0; _j0++) {
+            data[_i0].pin_cfg[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = temp_enabled(data,which);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_data0; _aux++) {
+          free(data[_aux].pin_cfg);
+          }
+          free(data);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int which = 10;
+        
+          int _len_data0 = 100;
+          struct adt7462_data * data = (struct adt7462_data *) malloc(_len_data0*sizeof(struct adt7462_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              int _len_data__i0__pin_cfg0 = 1;
+          data[_i0].pin_cfg = (int *) malloc(_len_data__i0__pin_cfg0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_data__i0__pin_cfg0; _j0++) {
+            data[_i0].pin_cfg[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = temp_enabled(data,which);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_data0; _aux++) {
+          free(data[_aux].pin_cfg);
+          }
+          free(data);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int which = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_data0 = 1;
+          struct adt7462_data * data = (struct adt7462_data *) malloc(_len_data0*sizeof(struct adt7462_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              int _len_data__i0__pin_cfg0 = 1;
+          data[_i0].pin_cfg = (int *) malloc(_len_data__i0__pin_cfg0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_data__i0__pin_cfg0; _j0++) {
+            data[_i0].pin_cfg[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int benchRet = temp_enabled(data,which);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_data0; _aux++) {

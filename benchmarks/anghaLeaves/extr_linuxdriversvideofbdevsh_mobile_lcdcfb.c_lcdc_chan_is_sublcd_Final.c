@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static int lcdc_chan_is_sublcd(struct sh_mobile_lcdc_chan 
 	return chan->cfg->chan == LCDC_CHAN_SUBLCD;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,18 +77,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_chan0 = 65025;
+          struct sh_mobile_lcdc_chan * chan = (struct sh_mobile_lcdc_chan *) malloc(_len_chan0*sizeof(struct sh_mobile_lcdc_chan));
+          for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
+              int _len_chan__i0__cfg0 = 1;
+          chan[_i0].cfg = (struct TYPE_2__ *) malloc(_len_chan__i0__cfg0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_chan__i0__cfg0; _j0++) {
+              chan[_i0].cfg->chan = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = lcdc_chan_is_sublcd(chan);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_chan0; _aux++) {
+          free(chan[_aux].cfg);
+          }
+          free(chan);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_chan0 = 100;
+          struct sh_mobile_lcdc_chan * chan = (struct sh_mobile_lcdc_chan *) malloc(_len_chan0*sizeof(struct sh_mobile_lcdc_chan));
+          for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
+              int _len_chan__i0__cfg0 = 1;
+          chan[_i0].cfg = (struct TYPE_2__ *) malloc(_len_chan__i0__cfg0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_chan__i0__cfg0; _j0++) {
+              chan[_i0].cfg->chan = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = lcdc_chan_is_sublcd(chan);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_chan0; _aux++) {
+          free(chan[_aux].cfg);
+          }
+          free(chan);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_chan0 = 1;
           struct sh_mobile_lcdc_chan * chan = (struct sh_mobile_lcdc_chan *) malloc(_len_chan0*sizeof(struct sh_mobile_lcdc_chan));
           for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
               int _len_chan__i0__cfg0 = 1;
           chan[_i0].cfg = (struct TYPE_2__ *) malloc(_len_chan__i0__cfg0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_chan__i0__cfg0; _j0++) {
-            chan[_i0].cfg->chan = ((-2 * (next_i()%2)) + 1) * next_i();
+              chan[_i0].cfg->chan = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = lcdc_chan_is_sublcd(chan);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_chan0; _aux++) {

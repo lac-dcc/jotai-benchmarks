@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ __attribute__((used)) static int dummy_queue_iso(struct fw_iso_context *ctx, str
 	return -ENODEV;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,25 +79,229 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           unsigned long payload = 100;
+        
           int _len_ctx0 = 1;
           struct fw_iso_context * ctx = (struct fw_iso_context *) malloc(_len_ctx0*sizeof(struct fw_iso_context));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
-            ctx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_p0 = 1;
           struct fw_iso_packet * p = (struct fw_iso_packet *) malloc(_len_p0*sizeof(struct fw_iso_packet));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_buffer0 = 1;
           struct fw_iso_buffer * buffer = (struct fw_iso_buffer *) malloc(_len_buffer0*sizeof(struct fw_iso_buffer));
           for(int _i0 = 0; _i0 < _len_buffer0; _i0++) {
-            buffer[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              buffer[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = dummy_queue_iso(ctx,p,buffer,payload);
+          printf("%d\n", benchRet); 
+          free(ctx);
+          free(p);
+          free(buffer);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned long payload = 255;
+        
+          int _len_ctx0 = 65025;
+          struct fw_iso_context * ctx = (struct fw_iso_context *) malloc(_len_ctx0*sizeof(struct fw_iso_context));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_p0 = 65025;
+          struct fw_iso_packet * p = (struct fw_iso_packet *) malloc(_len_p0*sizeof(struct fw_iso_packet));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_buffer0 = 65025;
+          struct fw_iso_buffer * buffer = (struct fw_iso_buffer *) malloc(_len_buffer0*sizeof(struct fw_iso_buffer));
+          for(int _i0 = 0; _i0 < _len_buffer0; _i0++) {
+              buffer[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dummy_queue_iso(ctx,p,buffer,payload);
+          printf("%d\n", benchRet); 
+          free(ctx);
+          free(p);
+          free(buffer);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned long payload = 10;
+        
+          int _len_ctx0 = 100;
+          struct fw_iso_context * ctx = (struct fw_iso_context *) malloc(_len_ctx0*sizeof(struct fw_iso_context));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_p0 = 100;
+          struct fw_iso_packet * p = (struct fw_iso_packet *) malloc(_len_p0*sizeof(struct fw_iso_packet));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_buffer0 = 100;
+          struct fw_iso_buffer * buffer = (struct fw_iso_buffer *) malloc(_len_buffer0*sizeof(struct fw_iso_buffer));
+          for(int _i0 = 0; _i0 < _len_buffer0; _i0++) {
+              buffer[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dummy_queue_iso(ctx,p,buffer,payload);
+          printf("%d\n", benchRet); 
+          free(ctx);
+          free(p);
+          free(buffer);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned long payload = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ctx0 = 1;
+          struct fw_iso_context * ctx = (struct fw_iso_context *) malloc(_len_ctx0*sizeof(struct fw_iso_context));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_p0 = 1;
+          struct fw_iso_packet * p = (struct fw_iso_packet *) malloc(_len_p0*sizeof(struct fw_iso_packet));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_buffer0 = 1;
+          struct fw_iso_buffer * buffer = (struct fw_iso_buffer *) malloc(_len_buffer0*sizeof(struct fw_iso_buffer));
+          for(int _i0 = 0; _i0 < _len_buffer0; _i0++) {
+              buffer[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = dummy_queue_iso(ctx,p,buffer,payload);
           printf("%d\n", benchRet); 
           free(ctx);

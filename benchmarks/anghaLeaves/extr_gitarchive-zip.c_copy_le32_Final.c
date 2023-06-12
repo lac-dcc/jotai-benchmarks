@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static void copy_le32(unsigned char *dest, unsigned int n)
 	dest[3] = 0xff & (n >> 030);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,21 +75,38 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          unsigned int n = 10;
-          int _len_dest0 = 100;
+          unsigned int n = 255;
+        
+          int _len_dest0 = 65025;
           unsigned char * dest = (unsigned char *) malloc(_len_dest0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_dest0; _i0++) {
             dest[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           copy_le32(dest,n);
           free(dest);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          unsigned int n = 10;
+        
+          int _len_dest0 = 100;
+          unsigned char * dest = (unsigned char *) malloc(_len_dest0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_dest0; _i0++) {
+            dest[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          copy_le32(dest,n);
+          free(dest);
+        
+        break;
+    }
     default:
         usage();
         break;

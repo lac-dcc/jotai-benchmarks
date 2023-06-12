@@ -72,12 +72,6 @@ __attribute__((used)) static uint8_t gfmul(uint8_t a, uint8_t b)
     return r;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,31 +84,108 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 219
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 122
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 122
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 122
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 122
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 122
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 128
+          // ------------------------------- 
+
           int a = 100;
+        
           int b = 100;
+        
           int benchRet = gfmul(a,b);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 257
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 138
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 138
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 138
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 138
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 138
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 145
+          // ------------------------------- 
+
           int a = 255;
+        
           int b = 255;
+        
           int benchRet = gfmul(a,b);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 126
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 74
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 74
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 74
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 74
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 74
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 77
+          // ------------------------------- 
+
           int a = 10;
+        
           int b = 10;
+        
           int benchRet = gfmul(a,b);
           printf("%d\n", benchRet); 
         

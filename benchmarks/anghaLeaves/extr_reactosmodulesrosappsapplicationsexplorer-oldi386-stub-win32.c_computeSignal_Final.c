@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -113,12 +114,6 @@ computeSignal (int exceptionVector)
   return (sigval);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -135,6 +130,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int exceptionVector = 100;
+        
           int benchRet = computeSignal(exceptionVector);
           printf("%d\n", benchRet); 
         
@@ -144,6 +140,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int exceptionVector = 255;
+        
           int benchRet = computeSignal(exceptionVector);
           printf("%d\n", benchRet); 
         
@@ -153,12 +150,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int exceptionVector = 10;
+        
           int benchRet = computeSignal(exceptionVector);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int exceptionVector = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = computeSignal(exceptionVector);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

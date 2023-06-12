@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static int cmtp_msgnum_get(struct cmtp_session *session)
 	return session->msgnum;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,14 +80,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_session0 = 1;
+          int _len_session0 = 65025;
           struct cmtp_session * session = (struct cmtp_session *) malloc(_len_session0*sizeof(struct cmtp_session));
           for(int _i0 = 0; _i0 < _len_session0; _i0++) {
-            session[_i0].msgnum = ((-2 * (next_i()%2)) + 1) * next_i();
+              session[_i0].msgnum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cmtp_msgnum_get(session);
           printf("%d\n", benchRet); 
           free(session);
@@ -105,15 +102,32 @@ int main(int argc, char *argv[]) {
           int _len_session0 = 100;
           struct cmtp_session * session = (struct cmtp_session *) malloc(_len_session0*sizeof(struct cmtp_session));
           for(int _i0 = 0; _i0 < _len_session0; _i0++) {
-            session[_i0].msgnum = ((-2 * (next_i()%2)) + 1) * next_i();
+              session[_i0].msgnum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cmtp_msgnum_get(session);
           printf("%d\n", benchRet); 
           free(session);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_session0 = 1;
+          struct cmtp_session * session = (struct cmtp_session *) malloc(_len_session0*sizeof(struct cmtp_session));
+          for(int _i0 = 0; _i0 < _len_session0; _i0++) {
+              session[_i0].msgnum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cmtp_msgnum_get(session);
+          printf("%d\n", benchRet); 
+          free(session);
+        
+        break;
+    }
     default:
         usage();
         break;

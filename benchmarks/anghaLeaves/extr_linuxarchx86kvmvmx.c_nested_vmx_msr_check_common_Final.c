@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ __attribute__((used)) static int nested_vmx_msr_check_common(struct kvm_vcpu *vc
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,20 +90,148 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_vcpu0 = 65025;
+          struct kvm_vcpu * vcpu = (struct kvm_vcpu *) malloc(_len_vcpu0*sizeof(struct kvm_vcpu));
+          for(int _i0 = 0; _i0 < _len_vcpu0; _i0++) {
+              vcpu[_i0].arch.apic_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_e0 = 65025;
+          struct vmx_msr_entry * e = (struct vmx_msr_entry *) malloc(_len_e0*sizeof(struct vmx_msr_entry));
+          for(int _i0 = 0; _i0 < _len_e0; _i0++) {
+              e[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+          e[_i0].reserved = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nested_vmx_msr_check_common(vcpu,e);
+          printf("%d\n", benchRet); 
+          free(vcpu);
+          free(e);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_vcpu0 = 100;
+          struct kvm_vcpu * vcpu = (struct kvm_vcpu *) malloc(_len_vcpu0*sizeof(struct kvm_vcpu));
+          for(int _i0 = 0; _i0 < _len_vcpu0; _i0++) {
+              vcpu[_i0].arch.apic_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_e0 = 100;
+          struct vmx_msr_entry * e = (struct vmx_msr_entry *) malloc(_len_e0*sizeof(struct vmx_msr_entry));
+          for(int _i0 = 0; _i0 < _len_e0; _i0++) {
+              e[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+          e[_i0].reserved = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nested_vmx_msr_check_common(vcpu,e);
+          printf("%d\n", benchRet); 
+          free(vcpu);
+          free(e);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int _len_vcpu0 = 1;
           struct kvm_vcpu * vcpu = (struct kvm_vcpu *) malloc(_len_vcpu0*sizeof(struct kvm_vcpu));
           for(int _i0 = 0; _i0 < _len_vcpu0; _i0++) {
-            vcpu[_i0].arch.apic_base = ((-2 * (next_i()%2)) + 1) * next_i();
+              vcpu[_i0].arch.apic_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_e0 = 1;
           struct vmx_msr_entry * e = (struct vmx_msr_entry *) malloc(_len_e0*sizeof(struct vmx_msr_entry));
           for(int _i0 = 0; _i0 < _len_e0; _i0++) {
-            e[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
-        e[_i0].reserved = ((-2 * (next_i()%2)) + 1) * next_i();
+              e[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+          e[_i0].reserved = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = nested_vmx_msr_check_common(vcpu,e);
           printf("%d\n", benchRet); 
           free(vcpu);

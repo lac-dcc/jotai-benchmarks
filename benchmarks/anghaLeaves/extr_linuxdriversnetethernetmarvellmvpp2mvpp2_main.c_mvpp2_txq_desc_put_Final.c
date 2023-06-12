@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static void mvpp2_txq_desc_put(struct mvpp2_tx_queue *txq)
 		txq->next_desc_to_proc--;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,21 +77,54 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_txq0 = 1;
+          int _len_txq0 = 65025;
           struct mvpp2_tx_queue * txq = (struct mvpp2_tx_queue *) malloc(_len_txq0*sizeof(struct mvpp2_tx_queue));
           for(int _i0 = 0; _i0 < _len_txq0; _i0++) {
-            txq[_i0].next_desc_to_proc = ((-2 * (next_i()%2)) + 1) * next_i();
-        txq[_i0].last_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+              txq[_i0].next_desc_to_proc = ((-2 * (next_i()%2)) + 1) * next_i();
+          txq[_i0].last_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           mvpp2_txq_desc_put(txq);
           free(txq);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_txq0 = 100;
+          struct mvpp2_tx_queue * txq = (struct mvpp2_tx_queue *) malloc(_len_txq0*sizeof(struct mvpp2_tx_queue));
+          for(int _i0 = 0; _i0 < _len_txq0; _i0++) {
+              txq[_i0].next_desc_to_proc = ((-2 * (next_i()%2)) + 1) * next_i();
+          txq[_i0].last_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mvpp2_txq_desc_put(txq);
+          free(txq);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_txq0 = 1;
+          struct mvpp2_tx_queue * txq = (struct mvpp2_tx_queue *) malloc(_len_txq0*sizeof(struct mvpp2_tx_queue));
+          for(int _i0 = 0; _i0 < _len_txq0; _i0++) {
+              txq[_i0].next_desc_to_proc = ((-2 * (next_i()%2)) + 1) * next_i();
+          txq[_i0].last_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mvpp2_txq_desc_put(txq);
+          free(txq);
+        
+        break;
+    }
     default:
         usage();
         break;

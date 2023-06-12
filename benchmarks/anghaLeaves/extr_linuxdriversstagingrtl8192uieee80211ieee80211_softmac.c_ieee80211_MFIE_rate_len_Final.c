@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +74,6 @@ __attribute__((used)) static unsigned int ieee80211_MFIE_rate_len(struct ieee802
 	return rate_len;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,14 +86,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ieee0 = 1;
+          int _len_ieee0 = 65025;
           struct ieee80211_device * ieee = (struct ieee80211_device *) malloc(_len_ieee0*sizeof(struct ieee80211_device));
           for(int _i0 = 0; _i0 < _len_ieee0; _i0++) {
-            ieee[_i0].modulation = ((-2 * (next_i()%2)) + 1) * next_i();
+              ieee[_i0].modulation = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = ieee80211_MFIE_rate_len(ieee);
           printf("%u\n", benchRet); 
           free(ieee);
@@ -111,15 +108,32 @@ int main(int argc, char *argv[]) {
           int _len_ieee0 = 100;
           struct ieee80211_device * ieee = (struct ieee80211_device *) malloc(_len_ieee0*sizeof(struct ieee80211_device));
           for(int _i0 = 0; _i0 < _len_ieee0; _i0++) {
-            ieee[_i0].modulation = ((-2 * (next_i()%2)) + 1) * next_i();
+              ieee[_i0].modulation = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = ieee80211_MFIE_rate_len(ieee);
           printf("%u\n", benchRet); 
           free(ieee);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ieee0 = 1;
+          struct ieee80211_device * ieee = (struct ieee80211_device *) malloc(_len_ieee0*sizeof(struct ieee80211_device));
+          for(int _i0 = 0; _i0 < _len_ieee0; _i0++) {
+              ieee[_i0].modulation = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = ieee80211_MFIE_rate_len(ieee);
+          printf("%u\n", benchRet); 
+          free(ieee);
+        
+        break;
+    }
     default:
         usage();
         break;

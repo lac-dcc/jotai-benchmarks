@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static inline int raw3270_state_final(struct raw3270 *rp)
 		rp->state == RAW3270_STATE_READY;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rp0 = 1;
+          int _len_rp0 = 65025;
           struct raw3270 * rp = (struct raw3270 *) malloc(_len_rp0*sizeof(struct raw3270));
           for(int _i0 = 0; _i0 < _len_rp0; _i0++) {
-            rp[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+              rp[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = raw3270_state_final(rp);
           printf("%d\n", benchRet); 
           free(rp);
@@ -102,15 +99,32 @@ int main(int argc, char *argv[]) {
           int _len_rp0 = 100;
           struct raw3270 * rp = (struct raw3270 *) malloc(_len_rp0*sizeof(struct raw3270));
           for(int _i0 = 0; _i0 < _len_rp0; _i0++) {
-            rp[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+              rp[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = raw3270_state_final(rp);
           printf("%d\n", benchRet); 
           free(rp);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_rp0 = 1;
+          struct raw3270 * rp = (struct raw3270 *) malloc(_len_rp0*sizeof(struct raw3270));
+          for(int _i0 = 0; _i0 < _len_rp0; _i0++) {
+              rp[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = raw3270_state_final(rp);
+          printf("%d\n", benchRet); 
+          free(rp);
+        
+        break;
+    }
     default:
         usage();
         break;

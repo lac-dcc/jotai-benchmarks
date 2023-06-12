@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -77,7 +78,6 @@ x86_match_cache(x86_cpu_cache_t *list, x86_cpu_cache_t *matcher)
 
     return(cur_cache);
 }
-
 
 // ------------------------------------------------------------------------- //
 
@@ -153,7 +153,6 @@ void _delete_matcher(struct TYPE_5__ *aux_matcher[], int aux_matcher_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -166,13 +165,83 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // linked
     case 0:
     {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 42
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 27
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          struct TYPE_5__ * aux_list[10000];
+          struct TYPE_5__ * list = _allocate_list(10000, aux_list);
+        
+          struct TYPE_5__ * aux_matcher[10000];
+          struct TYPE_5__ * matcher = _allocate_matcher(10000, aux_matcher);
+        
+          struct TYPE_5__ * benchRet = x86_match_cache(list,matcher);
+          printf("%ld\n", (*benchRet).maxcpus);
+          printf("%ld\n", (*benchRet).type);
+          printf("%ld\n", (*benchRet).level);
+          printf("%ld\n", (*benchRet).partitions);
+          printf("%ld\n", (*benchRet).line_size);
+          printf("%ld\n", (*benchRet).cache_size);
+          _delete_list(aux_list, 10000);
+          _delete_matcher(aux_matcher, 10000);
+        
+        break;
+    }
+
+
+    // empty
+    case 1:
+    {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 42
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 27
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
           struct TYPE_5__ * aux_list[1];
           struct TYPE_5__ * list = _allocate_list(1, aux_list);
+        
           struct TYPE_5__ * aux_matcher[1];
           struct TYPE_5__ * matcher = _allocate_matcher(1, aux_matcher);
+        
           struct TYPE_5__ * benchRet = x86_match_cache(list,matcher);
           printf("%ld\n", (*benchRet).maxcpus);
           printf("%ld\n", (*benchRet).type);

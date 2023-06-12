@@ -68,12 +68,6 @@ __attribute__((used)) static u16 ipack_crc_byte(u16 crc, u8 c)
 	return crc;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,31 +80,108 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 142
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 67
+          // ------------------------------- 
+          // static_instructions_O2 : 47
+          // dynamic_instructions_O2 : 47
+          // ------------------------------- 
+          // static_instructions_O3 : 47
+          // dynamic_instructions_O3 : 47
+          // ------------------------------- 
+          // static_instructions_Ofast : 47
+          // dynamic_instructions_Ofast : 47
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 65
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 83
+          // ------------------------------- 
+
           int crc = 100;
+        
           int c = 100;
+        
           int benchRet = ipack_crc_byte(crc,c);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 142
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 67
+          // ------------------------------- 
+          // static_instructions_O2 : 47
+          // dynamic_instructions_O2 : 47
+          // ------------------------------- 
+          // static_instructions_O3 : 47
+          // dynamic_instructions_O3 : 47
+          // ------------------------------- 
+          // static_instructions_Ofast : 47
+          // dynamic_instructions_Ofast : 47
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 65
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 83
+          // ------------------------------- 
+
           int crc = 255;
+        
           int c = 255;
+        
           int benchRet = ipack_crc_byte(crc,c);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 142
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 67
+          // ------------------------------- 
+          // static_instructions_O2 : 47
+          // dynamic_instructions_O2 : 47
+          // ------------------------------- 
+          // static_instructions_O3 : 47
+          // dynamic_instructions_O3 : 47
+          // ------------------------------- 
+          // static_instructions_Ofast : 47
+          // dynamic_instructions_Ofast : 47
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 65
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 83
+          // ------------------------------- 
+
           int crc = 10;
+        
           int c = 10;
+        
           int benchRet = ipack_crc_byte(crc,c);
           printf("%d\n", benchRet); 
         

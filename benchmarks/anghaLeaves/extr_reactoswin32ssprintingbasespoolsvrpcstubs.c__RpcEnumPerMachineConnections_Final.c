@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ _RpcEnumPerMachineConnections(WINSPOOL_HANDLE pServer, BYTE* pPrinterEnum, DWORD
     return ERROR_INVALID_FUNCTION;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,26 +81,225 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int pServer = 100;
+        
           int cbBuf = 100;
+        
           int _len_pPrinterEnum0 = 1;
           int * pPrinterEnum = (int *) malloc(_len_pPrinterEnum0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pPrinterEnum0; _i0++) {
             pPrinterEnum[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_pcbNeeded0 = 1;
           int * pcbNeeded = (int *) malloc(_len_pcbNeeded0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pcbNeeded0; _i0++) {
             pcbNeeded[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_pcReturned0 = 1;
           int * pcReturned = (int *) malloc(_len_pcReturned0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pcReturned0; _i0++) {
             pcReturned[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = _RpcEnumPerMachineConnections(pServer,pPrinterEnum,cbBuf,pcbNeeded,pcReturned);
+          printf("%d\n", benchRet); 
+          free(pPrinterEnum);
+          free(pcbNeeded);
+          free(pcReturned);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int pServer = 255;
+        
+          int cbBuf = 255;
+        
+          int _len_pPrinterEnum0 = 65025;
+          int * pPrinterEnum = (int *) malloc(_len_pPrinterEnum0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pPrinterEnum0; _i0++) {
+            pPrinterEnum[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pcbNeeded0 = 65025;
+          int * pcbNeeded = (int *) malloc(_len_pcbNeeded0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pcbNeeded0; _i0++) {
+            pcbNeeded[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pcReturned0 = 65025;
+          int * pcReturned = (int *) malloc(_len_pcReturned0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pcReturned0; _i0++) {
+            pcReturned[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _RpcEnumPerMachineConnections(pServer,pPrinterEnum,cbBuf,pcbNeeded,pcReturned);
+          printf("%d\n", benchRet); 
+          free(pPrinterEnum);
+          free(pcbNeeded);
+          free(pcReturned);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int pServer = 10;
+        
+          int cbBuf = 10;
+        
+          int _len_pPrinterEnum0 = 100;
+          int * pPrinterEnum = (int *) malloc(_len_pPrinterEnum0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pPrinterEnum0; _i0++) {
+            pPrinterEnum[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pcbNeeded0 = 100;
+          int * pcbNeeded = (int *) malloc(_len_pcbNeeded0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pcbNeeded0; _i0++) {
+            pcbNeeded[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pcReturned0 = 100;
+          int * pcReturned = (int *) malloc(_len_pcReturned0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pcReturned0; _i0++) {
+            pcReturned[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _RpcEnumPerMachineConnections(pServer,pPrinterEnum,cbBuf,pcbNeeded,pcReturned);
+          printf("%d\n", benchRet); 
+          free(pPrinterEnum);
+          free(pcbNeeded);
+          free(pcReturned);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int pServer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int cbBuf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pPrinterEnum0 = 1;
+          int * pPrinterEnum = (int *) malloc(_len_pPrinterEnum0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pPrinterEnum0; _i0++) {
+            pPrinterEnum[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pcbNeeded0 = 1;
+          int * pcbNeeded = (int *) malloc(_len_pcbNeeded0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pcbNeeded0; _i0++) {
+            pcbNeeded[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pcReturned0 = 1;
+          int * pcReturned = (int *) malloc(_len_pcReturned0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pcReturned0; _i0++) {
+            pcReturned[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = _RpcEnumPerMachineConnections(pServer,pPrinterEnum,cbBuf,pcbNeeded,pcReturned);
           printf("%d\n", benchRet); 
           free(pPrinterEnum);

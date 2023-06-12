@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -86,12 +88,6 @@ __attribute__((used)) static u32 fb_cvt_vbi_lines(struct fb_cvt_data *cvt)
 	return act_vbi_lines;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,16 +100,125 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_cvt0 = 65025;
+          struct fb_cvt_data * cvt = (struct fb_cvt_data *) malloc(_len_cvt0*sizeof(struct fb_cvt_data));
+          for(int _i0 = 0; _i0 < _len_cvt0; _i0++) {
+              cvt[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          cvt[_i0].hperiod = ((-2 * (next_i()%2)) + 1) * next_i();
+          cvt[_i0].vsync = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fb_cvt_vbi_lines(cvt);
+          printf("%d\n", benchRet); 
+          free(cvt);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_cvt0 = 100;
+          struct fb_cvt_data * cvt = (struct fb_cvt_data *) malloc(_len_cvt0*sizeof(struct fb_cvt_data));
+          for(int _i0 = 0; _i0 < _len_cvt0; _i0++) {
+              cvt[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          cvt[_i0].hperiod = ((-2 * (next_i()%2)) + 1) * next_i();
+          cvt[_i0].vsync = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fb_cvt_vbi_lines(cvt);
+          printf("%d\n", benchRet); 
+          free(cvt);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int _len_cvt0 = 1;
           struct fb_cvt_data * cvt = (struct fb_cvt_data *) malloc(_len_cvt0*sizeof(struct fb_cvt_data));
           for(int _i0 = 0; _i0 < _len_cvt0; _i0++) {
-            cvt[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        cvt[_i0].hperiod = ((-2 * (next_i()%2)) + 1) * next_i();
-        cvt[_i0].vsync = ((-2 * (next_i()%2)) + 1) * next_i();
+              cvt[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          cvt[_i0].hperiod = ((-2 * (next_i()%2)) + 1) * next_i();
+          cvt[_i0].vsync = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = fb_cvt_vbi_lines(cvt);
           printf("%d\n", benchRet); 
           free(cvt);

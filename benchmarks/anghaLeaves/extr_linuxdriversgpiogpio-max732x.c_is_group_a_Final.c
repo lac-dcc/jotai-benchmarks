@@ -60,12 +60,6 @@ __attribute__((used)) static inline int is_group_a(struct max732x_chip *chip, un
 	return (1u << off) & chip->mask_group_a;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,15 +72,41 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // big-arr-10x
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           unsigned int off = 10;
+        
           int _len_chip0 = 100;
           struct max732x_chip * chip = (struct max732x_chip *) malloc(_len_chip0*sizeof(struct max732x_chip));
           for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
-            chip[_i0].mask_group_a = ((-2 * (next_i()%2)) + 1) * next_i();
+              chip[_i0].mask_group_a = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_group_a(chip,off);
           printf("%d\n", benchRet); 
           free(chip);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ BOOLEAN DiskGetBootVolume(PUCHAR DriveNumber, PULONGLONG StartSector, PULONGLONG
     return FALSE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,29 +81,33 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_DriveNumber0 = 1;
+          int _len_DriveNumber0 = 65025;
           long * DriveNumber = (long *) malloc(_len_DriveNumber0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_DriveNumber0; _i0++) {
             DriveNumber[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_StartSector0 = 1;
+        
+          int _len_StartSector0 = 65025;
           long * StartSector = (long *) malloc(_len_StartSector0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_StartSector0; _i0++) {
             StartSector[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_SectorCount0 = 1;
+        
+          int _len_SectorCount0 = 65025;
           long * SectorCount = (long *) malloc(_len_SectorCount0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_SectorCount0; _i0++) {
             SectorCount[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_FsType0 = 1;
+        
+          int _len_FsType0 = 65025;
           int * FsType = (int *) malloc(_len_FsType0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_FsType0; _i0++) {
             FsType[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = DiskGetBootVolume(DriveNumber,StartSector,SectorCount,FsType);
           printf("%d\n", benchRet); 
           free(DriveNumber);
@@ -117,7 +117,78 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_DriveNumber0 = 100;
+          long * DriveNumber = (long *) malloc(_len_DriveNumber0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_DriveNumber0; _i0++) {
+            DriveNumber[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_StartSector0 = 100;
+          long * StartSector = (long *) malloc(_len_StartSector0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_StartSector0; _i0++) {
+            StartSector[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_SectorCount0 = 100;
+          long * SectorCount = (long *) malloc(_len_SectorCount0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_SectorCount0; _i0++) {
+            SectorCount[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_FsType0 = 100;
+          int * FsType = (int *) malloc(_len_FsType0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_FsType0; _i0++) {
+            FsType[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = DiskGetBootVolume(DriveNumber,StartSector,SectorCount,FsType);
+          printf("%d\n", benchRet); 
+          free(DriveNumber);
+          free(StartSector);
+          free(SectorCount);
+          free(FsType);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_DriveNumber0 = 1;
+          long * DriveNumber = (long *) malloc(_len_DriveNumber0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_DriveNumber0; _i0++) {
+            DriveNumber[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_StartSector0 = 1;
+          long * StartSector = (long *) malloc(_len_StartSector0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_StartSector0; _i0++) {
+            StartSector[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_SectorCount0 = 1;
+          long * SectorCount = (long *) malloc(_len_SectorCount0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_SectorCount0; _i0++) {
+            SectorCount[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_FsType0 = 1;
+          int * FsType = (int *) malloc(_len_FsType0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_FsType0; _i0++) {
+            FsType[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = DiskGetBootVolume(DriveNumber,StartSector,SectorCount,FsType);
+          printf("%d\n", benchRet); 
+          free(DriveNumber);
+          free(StartSector);
+          free(SectorCount);
+          free(FsType);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -83,12 +84,6 @@ speed_t tty_termios_baud_rate(struct ktermios *termios)
 	return cbaud >= n_baud_table ? 0 : baud_table[cbaud];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,28 +96,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_termios0 = 1;
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_termios0 = 65025;
           struct ktermios * termios = (struct ktermios *) malloc(_len_termios0*sizeof(struct ktermios));
           for(int _i0 = 0; _i0 < _len_termios0; _i0++) {
-            termios[_i0].c_cflag = ((-2 * (next_i()%2)) + 1) * next_i();
+              termios[_i0].c_cflag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = tty_termios_baud_rate(termios);
           printf("%d\n", benchRet); 
           free(termios);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int _len_termios0 = 100;
           struct ktermios * termios = (struct ktermios *) malloc(_len_termios0*sizeof(struct ktermios));
           for(int _i0 = 0; _i0 < _len_termios0; _i0++) {
-            termios[_i0].c_cflag = ((-2 * (next_i()%2)) + 1) * next_i();
+              termios[_i0].c_cflag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = tty_termios_baud_rate(termios);
+          printf("%d\n", benchRet); 
+          free(termios);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_termios0 = 1;
+          struct ktermios * termios = (struct ktermios *) malloc(_len_termios0*sizeof(struct ktermios));
+          for(int _i0 = 0; _i0 < _len_termios0; _i0++) {
+              termios[_i0].c_cflag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = tty_termios_baud_rate(termios);
           printf("%d\n", benchRet); 
           free(termios);

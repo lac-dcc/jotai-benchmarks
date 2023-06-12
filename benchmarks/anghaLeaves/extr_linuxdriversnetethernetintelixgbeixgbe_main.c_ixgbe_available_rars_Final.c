@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -85,12 +88,6 @@ __attribute__((used)) static int ixgbe_available_rars(struct ixgbe_adapter *adap
 	return count;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,17 +104,23 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long pool = 100;
+        
           int _len_adapter0 = 1;
           struct ixgbe_adapter * adapter = (struct ixgbe_adapter *) malloc(_len_adapter0*sizeof(struct ixgbe_adapter));
           for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
-            adapter[_i0].hw.mac.num_rar_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+              adapter[_i0].hw.mac.num_rar_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           int _len_adapter__i0__mac_table0 = 1;
           adapter[_i0].mac_table = (struct ixgbe_mac_addr *) malloc(_len_adapter__i0__mac_table0*sizeof(struct ixgbe_mac_addr));
           for(int _j0 = 0; _j0 < _len_adapter__i0__mac_table0; _j0++) {
-            adapter[_i0].mac_table->state = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].mac_table->pool = ((-2 * (next_i()%2)) + 1) * next_i();
+              adapter[_i0].mac_table->state = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].mac_table->pool = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = ixgbe_available_rars(adapter,pool);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_adapter0; _aux++) {
@@ -127,7 +130,96 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long pool = 255;
+        
+          int _len_adapter0 = 65025;
+          struct ixgbe_adapter * adapter = (struct ixgbe_adapter *) malloc(_len_adapter0*sizeof(struct ixgbe_adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].hw.mac.num_rar_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          int _len_adapter__i0__mac_table0 = 1;
+          adapter[_i0].mac_table = (struct ixgbe_mac_addr *) malloc(_len_adapter__i0__mac_table0*sizeof(struct ixgbe_mac_addr));
+          for(int _j0 = 0; _j0 < _len_adapter__i0__mac_table0; _j0++) {
+              adapter[_i0].mac_table->state = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].mac_table->pool = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ixgbe_available_rars(adapter,pool);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_adapter0; _aux++) {
+          free(adapter[_aux].mac_table);
+          }
+          free(adapter);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long pool = 10;
+        
+          int _len_adapter0 = 100;
+          struct ixgbe_adapter * adapter = (struct ixgbe_adapter *) malloc(_len_adapter0*sizeof(struct ixgbe_adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].hw.mac.num_rar_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          int _len_adapter__i0__mac_table0 = 1;
+          adapter[_i0].mac_table = (struct ixgbe_mac_addr *) malloc(_len_adapter__i0__mac_table0*sizeof(struct ixgbe_mac_addr));
+          for(int _j0 = 0; _j0 < _len_adapter__i0__mac_table0; _j0++) {
+              adapter[_i0].mac_table->state = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].mac_table->pool = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ixgbe_available_rars(adapter,pool);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_adapter0; _aux++) {
+          free(adapter[_aux].mac_table);
+          }
+          free(adapter);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long pool = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_adapter0 = 1;
+          struct ixgbe_adapter * adapter = (struct ixgbe_adapter *) malloc(_len_adapter0*sizeof(struct ixgbe_adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].hw.mac.num_rar_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          int _len_adapter__i0__mac_table0 = 1;
+          adapter[_i0].mac_table = (struct ixgbe_mac_addr *) malloc(_len_adapter__i0__mac_table0*sizeof(struct ixgbe_mac_addr));
+          for(int _j0 = 0; _j0 < _len_adapter__i0__mac_table0; _j0++) {
+              adapter[_i0].mac_table->state = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].mac_table->pool = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ixgbe_available_rars(adapter,pool);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_adapter0; _aux++) {
+          free(adapter[_aux].mac_table);
+          }
+          free(adapter);
+        
+        break;
+    }
     default:
         usage();
         break;

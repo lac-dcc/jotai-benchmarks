@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ void scsi_sanitize_inquiry_string(unsigned char *s, int len)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,21 +80,54 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int len = 10;
-          int _len_s0 = 100;
+          int len = 255;
+        
+          int _len_s0 = 65025;
           unsigned char * s = (unsigned char *) malloc(_len_s0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
             s[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           scsi_sanitize_inquiry_string(s,len);
           free(s);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int len = 10;
+        
+          int _len_s0 = 100;
+          unsigned char * s = (unsigned char *) malloc(_len_s0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+            s[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          scsi_sanitize_inquiry_string(s,len);
+          free(s);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_s0 = 1;
+          unsigned char * s = (unsigned char *) malloc(_len_s0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+            s[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          scsi_sanitize_inquiry_string(s,len);
+          free(s);
+        
+        break;
+    }
     default:
         usage();
         break;

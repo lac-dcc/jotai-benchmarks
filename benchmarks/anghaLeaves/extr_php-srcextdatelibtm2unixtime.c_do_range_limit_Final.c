@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ __attribute__((used)) static void do_range_limit(timelib_sll start, timelib_sll 
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,22 +82,203 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 61
+          // dynamic_instructions_O0 : 61
+          // ------------------------------- 
+          // static_instructions_O1 : 34
+          // dynamic_instructions_O1 : 34
+          // ------------------------------- 
+          // static_instructions_O2 : 33
+          // dynamic_instructions_O2 : 33
+          // ------------------------------- 
+          // static_instructions_O3 : 33
+          // dynamic_instructions_O3 : 33
+          // ------------------------------- 
+          // static_instructions_Ofast : 33
+          // dynamic_instructions_Ofast : 33
+          // ------------------------------- 
+          // static_instructions_Os : 33
+          // dynamic_instructions_Os : 33
+          // ------------------------------- 
+          // static_instructions_Oz : 33
+          // dynamic_instructions_Oz : 33
+          // ------------------------------- 
+
           int start = 100;
+        
           int end = 100;
+        
           int adj = 100;
+        
           int _len_a0 = 1;
           int * a = (int *) malloc(_len_a0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_a0; _i0++) {
             a[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_b0 = 1;
           int * b = (int *) malloc(_len_b0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_b0; _i0++) {
             b[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          do_range_limit(start,end,adj,a,b);
+          free(a);
+          free(b);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 61
+          // dynamic_instructions_O0 : 61
+          // ------------------------------- 
+          // static_instructions_O1 : 34
+          // dynamic_instructions_O1 : 34
+          // ------------------------------- 
+          // static_instructions_O2 : 33
+          // dynamic_instructions_O2 : 33
+          // ------------------------------- 
+          // static_instructions_O3 : 33
+          // dynamic_instructions_O3 : 33
+          // ------------------------------- 
+          // static_instructions_Ofast : 33
+          // dynamic_instructions_Ofast : 33
+          // ------------------------------- 
+          // static_instructions_Os : 33
+          // dynamic_instructions_Os : 33
+          // ------------------------------- 
+          // static_instructions_Oz : 33
+          // dynamic_instructions_Oz : 33
+          // ------------------------------- 
+
+          int start = 255;
+        
+          int end = 255;
+        
+          int adj = 255;
+        
+          int _len_a0 = 65025;
+          int * a = (int *) malloc(_len_a0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+            a[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_b0 = 65025;
+          int * b = (int *) malloc(_len_b0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+            b[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          do_range_limit(start,end,adj,a,b);
+          free(a);
+          free(b);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 61
+          // dynamic_instructions_O0 : 61
+          // ------------------------------- 
+          // static_instructions_O1 : 34
+          // dynamic_instructions_O1 : 34
+          // ------------------------------- 
+          // static_instructions_O2 : 33
+          // dynamic_instructions_O2 : 33
+          // ------------------------------- 
+          // static_instructions_O3 : 33
+          // dynamic_instructions_O3 : 33
+          // ------------------------------- 
+          // static_instructions_Ofast : 33
+          // dynamic_instructions_Ofast : 33
+          // ------------------------------- 
+          // static_instructions_Os : 33
+          // dynamic_instructions_Os : 33
+          // ------------------------------- 
+          // static_instructions_Oz : 33
+          // dynamic_instructions_Oz : 33
+          // ------------------------------- 
+
+          int start = 10;
+        
+          int end = 10;
+        
+          int adj = 10;
+        
+          int _len_a0 = 100;
+          int * a = (int *) malloc(_len_a0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+            a[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_b0 = 100;
+          int * b = (int *) malloc(_len_b0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+            b[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          do_range_limit(start,end,adj,a,b);
+          free(a);
+          free(b);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 37
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int adj = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_a0 = 1;
+          int * a = (int *) malloc(_len_a0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+            a[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_b0 = 1;
+          int * b = (int *) malloc(_len_b0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+            b[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           do_range_limit(start,end,adj,a,b);
           free(a);
           free(b);

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static inline int xfs_ilog_fdata(int w)
 	return (w == XFS_DATA_FORK ? XFS_ILOG_DDATA : XFS_ILOG_ADATA);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +81,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int w = 100;
+        
           int benchRet = xfs_ilog_fdata(w);
           printf("%d\n", benchRet); 
         
@@ -95,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int w = 255;
+        
           int benchRet = xfs_ilog_fdata(w);
           printf("%d\n", benchRet); 
         
@@ -104,12 +101,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int w = 10;
+        
           int benchRet = xfs_ilog_fdata(w);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int w = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = xfs_ilog_fdata(w);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

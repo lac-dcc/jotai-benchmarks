@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static void correctbytes (char *b, int size, int endian) {
   }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,22 +82,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int size = 10;
-          int endian = 10;
-          int _len_b0 = 100;
+          int size = 255;
+        
+          int endian = 255;
+        
+          int _len_b0 = 65025;
           char * b = (char *) malloc(_len_b0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_b0; _i0++) {
             b[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           correctbytes(b,size,endian);
           free(b);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int size = 10;
+        
+          int endian = 10;
+        
+          int _len_b0 = 100;
+          char * b = (char *) malloc(_len_b0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+            b[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          correctbytes(b,size,endian);
+          free(b);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int endian = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_b0 = 1;
+          char * b = (char *) malloc(_len_b0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+            b[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          correctbytes(b,size,endian);
+          free(b);
+        
+        break;
+    }
     default:
         usage();
         break;

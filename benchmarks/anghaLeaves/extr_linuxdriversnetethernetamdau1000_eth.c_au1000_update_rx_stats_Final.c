@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -89,12 +92,6 @@ __attribute__((used)) static inline void au1000_update_rx_stats(struct net_devic
 
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,22 +104,196 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int status = 100;
+        
           int _len_dev0 = 1;
           struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].stats.rx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].stats.collisions = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].stats.rx_crc_errors = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].stats.rx_length_errors = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].stats.rx_missed_errors = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].stats.rx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].stats.multicast = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].stats.rx_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].stats.rx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.collisions = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.rx_crc_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.rx_length_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.rx_missed_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.rx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.multicast = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.rx_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          au1000_update_rx_stats(dev,status);
+          free(dev);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int status = 255;
+        
+          int _len_dev0 = 65025;
+          struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].stats.rx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.collisions = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.rx_crc_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.rx_length_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.rx_missed_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.rx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.multicast = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.rx_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          au1000_update_rx_stats(dev,status);
+          free(dev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int status = 10;
+        
+          int _len_dev0 = 100;
+          struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].stats.rx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.collisions = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.rx_crc_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.rx_length_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.rx_missed_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.rx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.multicast = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.rx_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          au1000_update_rx_stats(dev,status);
+          free(dev);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dev0 = 1;
+          struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].stats.rx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.collisions = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.rx_crc_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.rx_length_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.rx_missed_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.rx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.multicast = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.rx_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           au1000_update_rx_stats(dev,status);
           free(dev);
         

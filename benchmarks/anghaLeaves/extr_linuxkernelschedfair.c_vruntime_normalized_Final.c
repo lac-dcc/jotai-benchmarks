@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -85,12 +87,6 @@ __attribute__((used)) static inline bool vruntime_normalized(struct task_struct 
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,24 +99,66 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_p0 = 1;
+          int _len_p0 = 65025;
           struct task_struct * p = (struct task_struct *) malloc(_len_p0*sizeof(struct task_struct));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].sched_remote_wakeup = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].on_rq = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].se.sum_exec_runtime = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].sched_remote_wakeup = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].on_rq = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].se.sum_exec_runtime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = vruntime_normalized(p);
           printf("%d\n", benchRet); 
           free(p);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_p0 = 100;
+          struct task_struct * p = (struct task_struct *) malloc(_len_p0*sizeof(struct task_struct));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].sched_remote_wakeup = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].on_rq = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].se.sum_exec_runtime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = vruntime_normalized(p);
+          printf("%d\n", benchRet); 
+          free(p);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_p0 = 1;
+          struct task_struct * p = (struct task_struct *) malloc(_len_p0*sizeof(struct task_struct));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].sched_remote_wakeup = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].on_rq = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].se.sum_exec_runtime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = vruntime_normalized(p);
+          printf("%d\n", benchRet); 
+          free(p);
+        
+        break;
+    }
     default:
         usage();
         break;

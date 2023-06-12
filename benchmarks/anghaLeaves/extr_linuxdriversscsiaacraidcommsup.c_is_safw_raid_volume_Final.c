@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static inline int is_safw_raid_volume(struct aac_dev *aac,
 	return bus == CONTAINER_CHANNEL && target < aac->maximum_num_containers;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,12 +80,36 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int bus = 100;
+        
           int target = 100;
+        
           int _len_aac0 = 1;
           struct aac_dev * aac = (struct aac_dev *) malloc(_len_aac0*sizeof(struct aac_dev));
           for(int _i0 = 0; _i0 < _len_aac0; _i0++) {
-            aac[_i0].maximum_num_containers = ((-2 * (next_i()%2)) + 1) * next_i();
+              aac[_i0].maximum_num_containers = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = is_safw_raid_volume(aac,bus,target);
+          printf("%d\n", benchRet); 
+          free(aac);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int bus = 255;
+        
+          int target = 255;
+        
+          int _len_aac0 = 65025;
+          struct aac_dev * aac = (struct aac_dev *) malloc(_len_aac0*sizeof(struct aac_dev));
+          for(int _i0 = 0; _i0 < _len_aac0; _i0++) {
+              aac[_i0].maximum_num_containers = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = is_safw_raid_volume(aac,bus,target);
           printf("%d\n", benchRet); 
           free(aac);
@@ -97,22 +117,45 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int bus = 10;
+        
           int target = 10;
+        
           int _len_aac0 = 100;
           struct aac_dev * aac = (struct aac_dev *) malloc(_len_aac0*sizeof(struct aac_dev));
           for(int _i0 = 0; _i0 < _len_aac0; _i0++) {
-            aac[_i0].maximum_num_containers = ((-2 * (next_i()%2)) + 1) * next_i();
+              aac[_i0].maximum_num_containers = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_safw_raid_volume(aac,bus,target);
           printf("%d\n", benchRet); 
           free(aac);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int bus = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int target = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_aac0 = 1;
+          struct aac_dev * aac = (struct aac_dev *) malloc(_len_aac0*sizeof(struct aac_dev));
+          for(int _i0 = 0; _i0 < _len_aac0; _i0++) {
+              aac[_i0].maximum_num_containers = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_safw_raid_volume(aac,bus,target);
+          printf("%d\n", benchRet); 
+          free(aac);
+        
+        break;
+    }
     default:
         usage();
         break;

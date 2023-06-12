@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -352,12 +353,6 @@ SiS_GetModeID_LCD(int VGAEngine, unsigned int VBFlags, int HDisplay, int VDispla
    return ModeIndex;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -370,55 +365,208 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int VGAEngine = 100;
+        
           unsigned int VBFlags = 100;
+        
           int HDisplay = 100;
+        
           int VDisplay = 100;
+        
           int Depth = 100;
+        
           int FSTN = 100;
+        
           unsigned short CustomT = 100;
+        
           int LCDwidth = 100;
+        
           int LCDheight = 100;
+        
           unsigned int VBFlags2 = 100;
+        
           unsigned short benchRet = SiS_GetModeID_LCD(VGAEngine,VBFlags,HDisplay,VDisplay,Depth,FSTN,CustomT,LCDwidth,LCDheight,VBFlags2);
           printf("%hu\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int VGAEngine = 255;
+        
           unsigned int VBFlags = 255;
+        
           int HDisplay = 255;
+        
           int VDisplay = 255;
+        
           int Depth = 255;
+        
           int FSTN = 255;
+        
           unsigned short CustomT = 255;
+        
           int LCDwidth = 255;
+        
           int LCDheight = 255;
+        
           unsigned int VBFlags2 = 255;
+        
           unsigned short benchRet = SiS_GetModeID_LCD(VGAEngine,VBFlags,HDisplay,VDisplay,Depth,FSTN,CustomT,LCDwidth,LCDheight,VBFlags2);
           printf("%hu\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int VGAEngine = 10;
+        
           unsigned int VBFlags = 10;
+        
           int HDisplay = 10;
+        
           int VDisplay = 10;
+        
           int Depth = 10;
+        
           int FSTN = 10;
+        
           unsigned short CustomT = 10;
+        
           int LCDwidth = 10;
+        
           int LCDheight = 10;
+        
           unsigned int VBFlags2 = 10;
+        
+          unsigned short benchRet = SiS_GetModeID_LCD(VGAEngine,VBFlags,HDisplay,VDisplay,Depth,FSTN,CustomT,LCDwidth,LCDheight,VBFlags2);
+          printf("%hu\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int VGAEngine = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int VBFlags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int HDisplay = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int VDisplay = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int Depth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int FSTN = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned short CustomT = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int LCDwidth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int LCDheight = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int VBFlags2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           unsigned short benchRet = SiS_GetModeID_LCD(VGAEngine,VBFlags,HDisplay,VDisplay,Depth,FSTN,CustomT,LCDwidth,LCDheight,VBFlags2);
           printf("%hu\n", benchRet); 
         

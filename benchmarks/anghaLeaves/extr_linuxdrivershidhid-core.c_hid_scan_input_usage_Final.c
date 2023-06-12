@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ __attribute__((used)) static void hid_scan_input_usage(struct hid_parser *parser
 		hid->group = HID_GROUP_MULTITOUCH;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,19 +82,193 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           long usage = 100;
+        
           int _len_parser0 = 1;
           struct hid_parser * parser = (struct hid_parser *) malloc(_len_parser0*sizeof(struct hid_parser));
           for(int _i0 = 0; _i0 < _len_parser0; _i0++) {
               int _len_parser__i0__device0 = 1;
           parser[_i0].device = (struct hid_device *) malloc(_len_parser__i0__device0*sizeof(struct hid_device));
           for(int _j0 = 0; _j0 < _len_parser__i0__device0; _j0++) {
-            parser[_i0].device->group = ((-2 * (next_i()%2)) + 1) * next_i();
+              parser[_i0].device->group = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          hid_scan_input_usage(parser,usage);
+          for(int _aux = 0; _aux < _len_parser0; _aux++) {
+          free(parser[_aux].device);
+          }
+          free(parser);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          long usage = 255;
+        
+          int _len_parser0 = 65025;
+          struct hid_parser * parser = (struct hid_parser *) malloc(_len_parser0*sizeof(struct hid_parser));
+          for(int _i0 = 0; _i0 < _len_parser0; _i0++) {
+              int _len_parser__i0__device0 = 1;
+          parser[_i0].device = (struct hid_device *) malloc(_len_parser__i0__device0*sizeof(struct hid_device));
+          for(int _j0 = 0; _j0 < _len_parser__i0__device0; _j0++) {
+              parser[_i0].device->group = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          hid_scan_input_usage(parser,usage);
+          for(int _aux = 0; _aux < _len_parser0; _aux++) {
+          free(parser[_aux].device);
+          }
+          free(parser);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          long usage = 10;
+        
+          int _len_parser0 = 100;
+          struct hid_parser * parser = (struct hid_parser *) malloc(_len_parser0*sizeof(struct hid_parser));
+          for(int _i0 = 0; _i0 < _len_parser0; _i0++) {
+              int _len_parser__i0__device0 = 1;
+          parser[_i0].device = (struct hid_device *) malloc(_len_parser__i0__device0*sizeof(struct hid_device));
+          for(int _j0 = 0; _j0 < _len_parser__i0__device0; _j0++) {
+              parser[_i0].device->group = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          hid_scan_input_usage(parser,usage);
+          for(int _aux = 0; _aux < _len_parser0; _aux++) {
+          free(parser[_aux].device);
+          }
+          free(parser);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          long usage = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_parser0 = 1;
+          struct hid_parser * parser = (struct hid_parser *) malloc(_len_parser0*sizeof(struct hid_parser));
+          for(int _i0 = 0; _i0 < _len_parser0; _i0++) {
+              int _len_parser__i0__device0 = 1;
+          parser[_i0].device = (struct hid_device *) malloc(_len_parser__i0__device0*sizeof(struct hid_device));
+          for(int _j0 = 0; _j0 < _len_parser__i0__device0; _j0++) {
+              parser[_i0].device->group = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           hid_scan_input_usage(parser,usage);
           for(int _aux = 0; _aux < _len_parser0; _aux++) {
           free(parser[_aux].device);

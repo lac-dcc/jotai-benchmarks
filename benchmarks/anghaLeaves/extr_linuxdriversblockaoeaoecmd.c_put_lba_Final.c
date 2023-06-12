@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ put_lba(struct aoe_atahdr *ah, sector_t lba)
 	ah->lba5 = lba >>= 8;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,20 +82,184 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int lba = 100;
+        
           int _len_ah0 = 1;
           struct aoe_atahdr * ah = (struct aoe_atahdr *) malloc(_len_ah0*sizeof(struct aoe_atahdr));
           for(int _i0 = 0; _i0 < _len_ah0; _i0++) {
-            ah[_i0].lba0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        ah[_i0].lba1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        ah[_i0].lba2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        ah[_i0].lba3 = ((-2 * (next_i()%2)) + 1) * next_i();
-        ah[_i0].lba4 = ((-2 * (next_i()%2)) + 1) * next_i();
-        ah[_i0].lba5 = ((-2 * (next_i()%2)) + 1) * next_i();
+              ah[_i0].lba0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].lba1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].lba2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].lba3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].lba4 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].lba5 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          put_lba(ah,lba);
+          free(ah);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int lba = 255;
+        
+          int _len_ah0 = 65025;
+          struct aoe_atahdr * ah = (struct aoe_atahdr *) malloc(_len_ah0*sizeof(struct aoe_atahdr));
+          for(int _i0 = 0; _i0 < _len_ah0; _i0++) {
+              ah[_i0].lba0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].lba1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].lba2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].lba3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].lba4 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].lba5 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          put_lba(ah,lba);
+          free(ah);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int lba = 10;
+        
+          int _len_ah0 = 100;
+          struct aoe_atahdr * ah = (struct aoe_atahdr *) malloc(_len_ah0*sizeof(struct aoe_atahdr));
+          for(int _i0 = 0; _i0 < _len_ah0; _i0++) {
+              ah[_i0].lba0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].lba1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].lba2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].lba3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].lba4 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].lba5 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          put_lba(ah,lba);
+          free(ah);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int lba = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ah0 = 1;
+          struct aoe_atahdr * ah = (struct aoe_atahdr *) malloc(_len_ah0*sizeof(struct aoe_atahdr));
+          for(int _i0 = 0; _i0 < _len_ah0; _i0++) {
+              ah[_i0].lba0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].lba1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].lba2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].lba3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].lba4 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].lba5 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           put_lba(ah,lba);
           free(ah);
         

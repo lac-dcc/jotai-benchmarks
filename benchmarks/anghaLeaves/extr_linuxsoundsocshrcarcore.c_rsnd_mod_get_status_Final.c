@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ u32 *rsnd_mod_get_status(struct rsnd_dai_stream *io,
 	return &mod->status;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,20 +79,25 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           enum rsnd_mod_type type = 0;
-          int _len_io0 = 1;
+        
+          int _len_io0 = 65025;
           struct rsnd_dai_stream * io = (struct rsnd_dai_stream *) malloc(_len_io0*sizeof(struct rsnd_dai_stream));
           for(int _i0 = 0; _i0 < _len_io0; _i0++) {
-            io[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              io[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_mod0 = 1;
+        
+          int _len_mod0 = 65025;
           struct rsnd_mod * mod = (struct rsnd_mod *) malloc(_len_mod0*sizeof(struct rsnd_mod));
           for(int _i0 = 0; _i0 < _len_mod0; _i0++) {
-            mod[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+              mod[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int * benchRet = rsnd_mod_get_status(io,mod,type);
           printf("%d\n", (*benchRet)); 
           free(io);
@@ -104,7 +105,58 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          enum rsnd_mod_type type = 0;
+        
+          int _len_io0 = 100;
+          struct rsnd_dai_stream * io = (struct rsnd_dai_stream *) malloc(_len_io0*sizeof(struct rsnd_dai_stream));
+          for(int _i0 = 0; _i0 < _len_io0; _i0++) {
+              io[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_mod0 = 100;
+          struct rsnd_mod * mod = (struct rsnd_mod *) malloc(_len_mod0*sizeof(struct rsnd_mod));
+          for(int _i0 = 0; _i0 < _len_mod0; _i0++) {
+              mod[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int * benchRet = rsnd_mod_get_status(io,mod,type);
+          printf("%d\n", (*benchRet)); 
+          free(io);
+          free(mod);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          enum rsnd_mod_type type = 0;
+        
+          int _len_io0 = 1;
+          struct rsnd_dai_stream * io = (struct rsnd_dai_stream *) malloc(_len_io0*sizeof(struct rsnd_dai_stream));
+          for(int _i0 = 0; _i0 < _len_io0; _i0++) {
+              io[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_mod0 = 1;
+          struct rsnd_mod * mod = (struct rsnd_mod *) malloc(_len_mod0*sizeof(struct rsnd_mod));
+          for(int _i0 = 0; _i0 < _len_mod0; _i0++) {
+              mod[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int * benchRet = rsnd_mod_get_status(io,mod,type);
+          printf("%d\n", (*benchRet)); 
+          free(io);
+          free(mod);
+        
+        break;
+    }
     default:
         usage();
         break;

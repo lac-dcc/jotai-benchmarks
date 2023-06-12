@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ void dictSetHashFunctionSeed(uint32_t seed) {
     dict_hash_function_seed = seed;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int seed = 100;
+        
           dictSetHashFunctionSeed(seed);
         
         break;
@@ -92,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int seed = 255;
+        
           dictSetHashFunctionSeed(seed);
         
         break;
@@ -100,11 +97,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int seed = 10;
+        
           dictSetHashFunctionSeed(seed);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int seed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          dictSetHashFunctionSeed(seed);
+        
+        break;
+    }
     default:
         usage();
         break;

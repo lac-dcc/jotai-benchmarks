@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline int ib_ucm_new_cm_id(int event)
 	return event == IB_CM_REQ_RECEIVED || event == IB_CM_SIDR_REQ_RECEIVED;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int event = 100;
+        
           int benchRet = ib_ucm_new_cm_id(event);
           printf("%d\n", benchRet); 
         
@@ -94,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int event = 255;
+        
           int benchRet = ib_ucm_new_cm_id(event);
           printf("%d\n", benchRet); 
         
@@ -103,12 +100,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int event = 10;
+        
           int benchRet = ib_ucm_new_cm_id(event);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int event = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = ib_ucm_new_cm_id(event);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

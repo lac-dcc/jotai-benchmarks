@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -79,12 +82,6 @@ resizer_calculate_line_length(u32 pix, int width, int height,
 	*line_len_c &= ~0x1f;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,25 +98,110 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long pix = 100;
+        
           int width = 100;
+        
           int height = 100;
+        
           int _len_line_len0 = 1;
           int * line_len = (int *) malloc(_len_line_len0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_line_len0; _i0++) {
             line_len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_line_len_c0 = 1;
           int * line_len_c = (int *) malloc(_len_line_len_c0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_line_len_c0; _i0++) {
             line_len_c[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           resizer_calculate_line_length(pix,width,height,line_len,line_len_c);
           free(line_len);
           free(line_len_c);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long pix = 255;
+        
+          int width = 255;
+        
+          int height = 255;
+        
+          int _len_line_len0 = 65025;
+          int * line_len = (int *) malloc(_len_line_len0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_line_len0; _i0++) {
+            line_len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_line_len_c0 = 65025;
+          int * line_len_c = (int *) malloc(_len_line_len_c0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_line_len_c0; _i0++) {
+            line_len_c[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          resizer_calculate_line_length(pix,width,height,line_len,line_len_c);
+          free(line_len);
+          free(line_len_c);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long pix = 10;
+        
+          int width = 10;
+        
+          int height = 10;
+        
+          int _len_line_len0 = 100;
+          int * line_len = (int *) malloc(_len_line_len0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_line_len0; _i0++) {
+            line_len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_line_len_c0 = 100;
+          int * line_len_c = (int *) malloc(_len_line_len_c0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_line_len_c0; _i0++) {
+            line_len_c[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          resizer_calculate_line_length(pix,width,height,line_len,line_len_c);
+          free(line_len);
+          free(line_len_c);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long pix = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_line_len0 = 1;
+          int * line_len = (int *) malloc(_len_line_len0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_line_len0; _i0++) {
+            line_len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_line_len_c0 = 1;
+          int * line_len_c = (int *) malloc(_len_line_len_c0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_line_len_c0; _i0++) {
+            line_len_c[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          resizer_calculate_line_length(pix,width,height,line_len,line_len_c);
+          free(line_len);
+          free(line_len_c);
+        
+        break;
+    }
     default:
         usage();
         break;

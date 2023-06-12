@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -107,12 +110,6 @@ __attribute__((used)) static inline bool ath_ant_div_comb_alt_check(struct ath_h
 	return result;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -125,25 +122,226 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
           int alt_ratio = 100;
+        
           int alt_rssi_avg = 100;
+        
           int main_rssi_avg = 100;
+        
           int _len_conf0 = 1;
           struct ath_hw_antcomb_conf * conf = (struct ath_hw_antcomb_conf *) malloc(_len_conf0*sizeof(struct ath_hw_antcomb_conf));
           for(int _i0 = 0; _i0 < _len_conf0; _i0++) {
-            conf[_i0].main_lna_conf = ((-2 * (next_i()%2)) + 1) * next_i();
-        conf[_i0].alt_lna_conf = ((-2 * (next_i()%2)) + 1) * next_i();
-        conf[_i0].div_group = ((-2 * (next_i()%2)) + 1) * next_i();
+              conf[_i0].main_lna_conf = ((-2 * (next_i()%2)) + 1) * next_i();
+          conf[_i0].alt_lna_conf = ((-2 * (next_i()%2)) + 1) * next_i();
+          conf[_i0].div_group = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_antcomb0 = 1;
           struct ath_ant_comb * antcomb = (struct ath_ant_comb *) malloc(_len_antcomb0*sizeof(struct ath_ant_comb));
           for(int _i0 = 0; _i0 < _len_antcomb0; _i0++) {
-            antcomb[_i0].low_rssi_thresh = ((-2 * (next_i()%2)) + 1) * next_i();
-        antcomb[_i0].ant_ratio = ((-2 * (next_i()%2)) + 1) * next_i();
+              antcomb[_i0].low_rssi_thresh = ((-2 * (next_i()%2)) + 1) * next_i();
+          antcomb[_i0].ant_ratio = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = ath_ant_div_comb_alt_check(conf,antcomb,alt_ratio,alt_rssi_avg,main_rssi_avg);
+          printf("%d\n", benchRet); 
+          free(conf);
+          free(antcomb);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
+          int alt_ratio = 255;
+        
+          int alt_rssi_avg = 255;
+        
+          int main_rssi_avg = 255;
+        
+          int _len_conf0 = 65025;
+          struct ath_hw_antcomb_conf * conf = (struct ath_hw_antcomb_conf *) malloc(_len_conf0*sizeof(struct ath_hw_antcomb_conf));
+          for(int _i0 = 0; _i0 < _len_conf0; _i0++) {
+              conf[_i0].main_lna_conf = ((-2 * (next_i()%2)) + 1) * next_i();
+          conf[_i0].alt_lna_conf = ((-2 * (next_i()%2)) + 1) * next_i();
+          conf[_i0].div_group = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_antcomb0 = 65025;
+          struct ath_ant_comb * antcomb = (struct ath_ant_comb *) malloc(_len_antcomb0*sizeof(struct ath_ant_comb));
+          for(int _i0 = 0; _i0 < _len_antcomb0; _i0++) {
+              antcomb[_i0].low_rssi_thresh = ((-2 * (next_i()%2)) + 1) * next_i();
+          antcomb[_i0].ant_ratio = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ath_ant_div_comb_alt_check(conf,antcomb,alt_ratio,alt_rssi_avg,main_rssi_avg);
+          printf("%d\n", benchRet); 
+          free(conf);
+          free(antcomb);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
+          int alt_ratio = 10;
+        
+          int alt_rssi_avg = 10;
+        
+          int main_rssi_avg = 10;
+        
+          int _len_conf0 = 100;
+          struct ath_hw_antcomb_conf * conf = (struct ath_hw_antcomb_conf *) malloc(_len_conf0*sizeof(struct ath_hw_antcomb_conf));
+          for(int _i0 = 0; _i0 < _len_conf0; _i0++) {
+              conf[_i0].main_lna_conf = ((-2 * (next_i()%2)) + 1) * next_i();
+          conf[_i0].alt_lna_conf = ((-2 * (next_i()%2)) + 1) * next_i();
+          conf[_i0].div_group = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_antcomb0 = 100;
+          struct ath_ant_comb * antcomb = (struct ath_ant_comb *) malloc(_len_antcomb0*sizeof(struct ath_ant_comb));
+          for(int _i0 = 0; _i0 < _len_antcomb0; _i0++) {
+              antcomb[_i0].low_rssi_thresh = ((-2 * (next_i()%2)) + 1) * next_i();
+          antcomb[_i0].ant_ratio = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ath_ant_div_comb_alt_check(conf,antcomb,alt_ratio,alt_rssi_avg,main_rssi_avg);
+          printf("%d\n", benchRet); 
+          free(conf);
+          free(antcomb);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
+          int alt_ratio = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int alt_rssi_avg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int main_rssi_avg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_conf0 = 1;
+          struct ath_hw_antcomb_conf * conf = (struct ath_hw_antcomb_conf *) malloc(_len_conf0*sizeof(struct ath_hw_antcomb_conf));
+          for(int _i0 = 0; _i0 < _len_conf0; _i0++) {
+              conf[_i0].main_lna_conf = ((-2 * (next_i()%2)) + 1) * next_i();
+          conf[_i0].alt_lna_conf = ((-2 * (next_i()%2)) + 1) * next_i();
+          conf[_i0].div_group = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_antcomb0 = 1;
+          struct ath_ant_comb * antcomb = (struct ath_ant_comb *) malloc(_len_antcomb0*sizeof(struct ath_ant_comb));
+          for(int _i0 = 0; _i0 < _len_antcomb0; _i0++) {
+              antcomb[_i0].low_rssi_thresh = ((-2 * (next_i()%2)) + 1) * next_i();
+          antcomb[_i0].ant_ratio = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = ath_ant_div_comb_alt_check(conf,antcomb,alt_ratio,alt_rssi_avg,main_rssi_avg);
           printf("%d\n", benchRet); 
           free(conf);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static bool is_band_valid(struct wiphy *wiphy, enum nl8021
 	return b < NUM_NL80211_BANDS && wiphy->bands[b];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,10 +76,132 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           enum nl80211_band b = 0;
+        
+          int _len_wiphy0 = 65025;
+          struct wiphy * wiphy = (struct wiphy *) malloc(_len_wiphy0*sizeof(struct wiphy));
+          for(int _i0 = 0; _i0 < _len_wiphy0; _i0++) {
+              int _len_wiphy__i0__bands0 = 1;
+          wiphy[_i0].bands = (long *) malloc(_len_wiphy__i0__bands0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_wiphy__i0__bands0; _j0++) {
+            wiphy[_i0].bands[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = is_band_valid(wiphy,b);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_wiphy0; _aux++) {
+          free(wiphy[_aux].bands);
+          }
+          free(wiphy);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          enum nl80211_band b = 0;
+        
+          int _len_wiphy0 = 100;
+          struct wiphy * wiphy = (struct wiphy *) malloc(_len_wiphy0*sizeof(struct wiphy));
+          for(int _i0 = 0; _i0 < _len_wiphy0; _i0++) {
+              int _len_wiphy__i0__bands0 = 1;
+          wiphy[_i0].bands = (long *) malloc(_len_wiphy__i0__bands0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_wiphy__i0__bands0; _j0++) {
+            wiphy[_i0].bands[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = is_band_valid(wiphy,b);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_wiphy0; _aux++) {
+          free(wiphy[_aux].bands);
+          }
+          free(wiphy);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          enum nl80211_band b = 0;
+        
           int _len_wiphy0 = 1;
           struct wiphy * wiphy = (struct wiphy *) malloc(_len_wiphy0*sizeof(struct wiphy));
           for(int _i0 = 0; _i0 < _len_wiphy0; _i0++) {
@@ -92,7 +210,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_wiphy__i0__bands0; _j0++) {
             wiphy[_i0].bands[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = is_band_valid(wiphy,b);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_wiphy0; _aux++) {

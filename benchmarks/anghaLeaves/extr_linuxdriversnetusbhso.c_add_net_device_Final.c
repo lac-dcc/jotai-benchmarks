@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +74,6 @@ __attribute__((used)) static int add_net_device(struct hso_device *hso_dev)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,14 +86,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_hso_dev0 = 1;
+          int _len_hso_dev0 = 65025;
           struct hso_device * hso_dev = (struct hso_device *) malloc(_len_hso_dev0*sizeof(struct hso_device));
           for(int _i0 = 0; _i0 < _len_hso_dev0; _i0++) {
-            hso_dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              hso_dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = add_net_device(hso_dev);
           printf("%d\n", benchRet); 
           free(hso_dev);
@@ -111,15 +108,32 @@ int main(int argc, char *argv[]) {
           int _len_hso_dev0 = 100;
           struct hso_device * hso_dev = (struct hso_device *) malloc(_len_hso_dev0*sizeof(struct hso_device));
           for(int _i0 = 0; _i0 < _len_hso_dev0; _i0++) {
-            hso_dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              hso_dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = add_net_device(hso_dev);
           printf("%d\n", benchRet); 
           free(hso_dev);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_hso_dev0 = 1;
+          struct hso_device * hso_dev = (struct hso_device *) malloc(_len_hso_dev0*sizeof(struct hso_device));
+          for(int _i0 = 0; _i0 < _len_hso_dev0; _i0++) {
+              hso_dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = add_net_device(hso_dev);
+          printf("%d\n", benchRet); 
+          free(hso_dev);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ rdmab_addr(struct rpcrdma_regbuf *rb)
 	return rb->rg_iov.addr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,14 +78,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rb0 = 1;
+          int _len_rb0 = 65025;
           struct rpcrdma_regbuf * rb = (struct rpcrdma_regbuf *) malloc(_len_rb0*sizeof(struct rpcrdma_regbuf));
           for(int _i0 = 0; _i0 < _len_rb0; _i0++) {
-            rb[_i0].rg_iov.addr = ((-2 * (next_i()%2)) + 1) * next_i();
+              rb[_i0].rg_iov.addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = rdmab_addr(rb);
           printf("%d\n", benchRet); 
           free(rb);
@@ -103,15 +101,34 @@ int main(int argc, char *argv[]) {
           int _len_rb0 = 100;
           struct rpcrdma_regbuf * rb = (struct rpcrdma_regbuf *) malloc(_len_rb0*sizeof(struct rpcrdma_regbuf));
           for(int _i0 = 0; _i0 < _len_rb0; _i0++) {
-            rb[_i0].rg_iov.addr = ((-2 * (next_i()%2)) + 1) * next_i();
+              rb[_i0].rg_iov.addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = rdmab_addr(rb);
           printf("%d\n", benchRet); 
           free(rb);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_rb0 = 1;
+          struct rpcrdma_regbuf * rb = (struct rpcrdma_regbuf *) malloc(_len_rb0*sizeof(struct rpcrdma_regbuf));
+          for(int _i0 = 0; _i0 < _len_rb0; _i0++) {
+              rb[_i0].rg_iov.addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = rdmab_addr(rb);
+          printf("%d\n", benchRet); 
+          free(rb);
+        
+        break;
+    }
     default:
         usage();
         break;

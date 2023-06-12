@@ -74,12 +74,6 @@ __attribute__((used)) static inline u32 dtd_type_ctl_stride(int type, bool notif
 		line_stride;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,12 +90,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int type = 100;
+        
           int notify = 100;
+        
           int field = 100;
+        
           int one_d = 100;
+        
           int even_line_skip = 100;
+        
           int odd_line_skip = 100;
+        
           int line_stride = 100;
+        
           int benchRet = dtd_type_ctl_stride(type,notify,field,one_d,even_line_skip,odd_line_skip,line_stride);
           printf("%d\n", benchRet); 
         
@@ -111,12 +112,19 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int type = 255;
+        
           int notify = 255;
+        
           int field = 255;
+        
           int one_d = 255;
+        
           int even_line_skip = 255;
+        
           int odd_line_skip = 255;
+        
           int line_stride = 255;
+        
           int benchRet = dtd_type_ctl_stride(type,notify,field,one_d,even_line_skip,odd_line_skip,line_stride);
           printf("%d\n", benchRet); 
         
@@ -126,18 +134,24 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int type = 10;
+        
           int notify = 10;
+        
           int field = 10;
+        
           int one_d = 10;
+        
           int even_line_skip = 10;
+        
           int odd_line_skip = 10;
+        
           int line_stride = 10;
+        
           int benchRet = dtd_type_ctl_stride(type,notify,field,one_d,even_line_skip,odd_line_skip,line_stride);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

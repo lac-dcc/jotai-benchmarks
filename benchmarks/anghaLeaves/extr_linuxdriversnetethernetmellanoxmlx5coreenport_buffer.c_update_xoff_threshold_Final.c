@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -85,12 +88,6 @@ __attribute__((used)) static int update_xoff_threshold(struct mlx5e_port_buffer 
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,19 +104,24 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long xoff = 100;
+        
           unsigned int max_mtu = 100;
+        
           int _len_port_buffer0 = 1;
           struct mlx5e_port_buffer * port_buffer = (struct mlx5e_port_buffer *) malloc(_len_port_buffer0*sizeof(struct mlx5e_port_buffer));
           for(int _i0 = 0; _i0 < _len_port_buffer0; _i0++) {
               int _len_port_buffer__i0__buffer0 = 1;
           port_buffer[_i0].buffer = (struct TYPE_2__ *) malloc(_len_port_buffer__i0__buffer0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_port_buffer__i0__buffer0; _j0++) {
-            port_buffer[_i0].buffer->size = ((-2 * (next_i()%2)) + 1) * next_i();
-        port_buffer[_i0].buffer->xoff = ((-2 * (next_i()%2)) + 1) * next_i();
-        port_buffer[_i0].buffer->xon = ((-2 * (next_i()%2)) + 1) * next_i();
-        port_buffer[_i0].buffer->lossy = ((-2 * (next_i()%2)) + 1) * next_i();
+              port_buffer[_i0].buffer->size = ((-2 * (next_i()%2)) + 1) * next_i();
+          port_buffer[_i0].buffer->xoff = ((-2 * (next_i()%2)) + 1) * next_i();
+          port_buffer[_i0].buffer->xon = ((-2 * (next_i()%2)) + 1) * next_i();
+          port_buffer[_i0].buffer->lossy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = update_xoff_threshold(port_buffer,xoff,max_mtu);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_port_buffer0; _aux++) {
@@ -129,7 +131,99 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long xoff = 255;
+        
+          unsigned int max_mtu = 255;
+        
+          int _len_port_buffer0 = 65025;
+          struct mlx5e_port_buffer * port_buffer = (struct mlx5e_port_buffer *) malloc(_len_port_buffer0*sizeof(struct mlx5e_port_buffer));
+          for(int _i0 = 0; _i0 < _len_port_buffer0; _i0++) {
+              int _len_port_buffer__i0__buffer0 = 1;
+          port_buffer[_i0].buffer = (struct TYPE_2__ *) malloc(_len_port_buffer__i0__buffer0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_port_buffer__i0__buffer0; _j0++) {
+              port_buffer[_i0].buffer->size = ((-2 * (next_i()%2)) + 1) * next_i();
+          port_buffer[_i0].buffer->xoff = ((-2 * (next_i()%2)) + 1) * next_i();
+          port_buffer[_i0].buffer->xon = ((-2 * (next_i()%2)) + 1) * next_i();
+          port_buffer[_i0].buffer->lossy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = update_xoff_threshold(port_buffer,xoff,max_mtu);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_port_buffer0; _aux++) {
+          free(port_buffer[_aux].buffer);
+          }
+          free(port_buffer);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long xoff = 10;
+        
+          unsigned int max_mtu = 10;
+        
+          int _len_port_buffer0 = 100;
+          struct mlx5e_port_buffer * port_buffer = (struct mlx5e_port_buffer *) malloc(_len_port_buffer0*sizeof(struct mlx5e_port_buffer));
+          for(int _i0 = 0; _i0 < _len_port_buffer0; _i0++) {
+              int _len_port_buffer__i0__buffer0 = 1;
+          port_buffer[_i0].buffer = (struct TYPE_2__ *) malloc(_len_port_buffer__i0__buffer0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_port_buffer__i0__buffer0; _j0++) {
+              port_buffer[_i0].buffer->size = ((-2 * (next_i()%2)) + 1) * next_i();
+          port_buffer[_i0].buffer->xoff = ((-2 * (next_i()%2)) + 1) * next_i();
+          port_buffer[_i0].buffer->xon = ((-2 * (next_i()%2)) + 1) * next_i();
+          port_buffer[_i0].buffer->lossy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = update_xoff_threshold(port_buffer,xoff,max_mtu);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_port_buffer0; _aux++) {
+          free(port_buffer[_aux].buffer);
+          }
+          free(port_buffer);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long xoff = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int max_mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_port_buffer0 = 1;
+          struct mlx5e_port_buffer * port_buffer = (struct mlx5e_port_buffer *) malloc(_len_port_buffer0*sizeof(struct mlx5e_port_buffer));
+          for(int _i0 = 0; _i0 < _len_port_buffer0; _i0++) {
+              int _len_port_buffer__i0__buffer0 = 1;
+          port_buffer[_i0].buffer = (struct TYPE_2__ *) malloc(_len_port_buffer__i0__buffer0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_port_buffer__i0__buffer0; _j0++) {
+              port_buffer[_i0].buffer->size = ((-2 * (next_i()%2)) + 1) * next_i();
+          port_buffer[_i0].buffer->xoff = ((-2 * (next_i()%2)) + 1) * next_i();
+          port_buffer[_i0].buffer->xon = ((-2 * (next_i()%2)) + 1) * next_i();
+          port_buffer[_i0].buffer->lossy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = update_xoff_threshold(port_buffer,xoff,max_mtu);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_port_buffer0; _aux++) {
+          free(port_buffer[_aux].buffer);
+          }
+          free(port_buffer);
+        
+        break;
+    }
     default:
         usage();
         break;

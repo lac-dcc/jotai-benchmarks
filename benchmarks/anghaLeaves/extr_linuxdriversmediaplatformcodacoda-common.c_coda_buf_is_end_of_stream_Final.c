@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static bool coda_buf_is_end_of_stream(struct coda_ctx *ctx
 		(buf->sequence == (ctx->qsequence - 1)));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,20 +78,24 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ctx0 = 1;
+          int _len_ctx0 = 65025;
           struct coda_ctx * ctx = (struct coda_ctx *) malloc(_len_ctx0*sizeof(struct coda_ctx));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
-            ctx[_i0].bit_stream_param = ((-2 * (next_i()%2)) + 1) * next_i();
-        ctx[_i0].qsequence = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctx[_i0].bit_stream_param = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].qsequence = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_buf0 = 1;
+        
+          int _len_buf0 = 65025;
           struct vb2_v4l2_buffer * buf = (struct vb2_v4l2_buffer *) malloc(_len_buf0*sizeof(struct vb2_v4l2_buffer));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
-            buf[_i0].sequence = ((-2 * (next_i()%2)) + 1) * next_i();
+              buf[_i0].sequence = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = coda_buf_is_end_of_stream(ctx,buf);
           printf("%d\n", benchRet); 
           free(ctx);
@@ -103,7 +103,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ctx0 = 100;
+          struct coda_ctx * ctx = (struct coda_ctx *) malloc(_len_ctx0*sizeof(struct coda_ctx));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].bit_stream_param = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].qsequence = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_buf0 = 100;
+          struct vb2_v4l2_buffer * buf = (struct vb2_v4l2_buffer *) malloc(_len_buf0*sizeof(struct vb2_v4l2_buffer));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+              buf[_i0].sequence = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = coda_buf_is_end_of_stream(ctx,buf);
+          printf("%d\n", benchRet); 
+          free(ctx);
+          free(buf);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ctx0 = 1;
+          struct coda_ctx * ctx = (struct coda_ctx *) malloc(_len_ctx0*sizeof(struct coda_ctx));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].bit_stream_param = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].qsequence = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_buf0 = 1;
+          struct vb2_v4l2_buffer * buf = (struct vb2_v4l2_buffer *) malloc(_len_buf0*sizeof(struct vb2_v4l2_buffer));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+              buf[_i0].sequence = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = coda_buf_is_end_of_stream(ctx,buf);
+          printf("%d\n", benchRet); 
+          free(ctx);
+          free(buf);
+        
+        break;
+    }
     default:
         usage();
         break;

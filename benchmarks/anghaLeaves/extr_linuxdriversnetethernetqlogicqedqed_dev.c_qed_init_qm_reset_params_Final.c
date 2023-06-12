@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static void qed_init_qm_reset_params(struct qed_hwfn *p_hw
 	qm_info->first_rl_pq = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,26 +83,72 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_p_hwfn0 = 1;
+          int _len_p_hwfn0 = 65025;
           struct qed_hwfn * p_hwfn = (struct qed_hwfn *) malloc(_len_p_hwfn0*sizeof(struct qed_hwfn));
           for(int _i0 = 0; _i0 < _len_p_hwfn0; _i0++) {
-            p_hwfn[_i0].qm_info.first_rl_pq = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_hwfn[_i0].qm_info.first_mcos_pq = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_hwfn[_i0].qm_info.first_vf_pq = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_hwfn[_i0].qm_info.num_vf_pqs = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_hwfn[_i0].qm_info.num_pf_rls = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_hwfn[_i0].qm_info.num_vports = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_hwfn[_i0].qm_info.num_pqs = ((-2 * (next_i()%2)) + 1) * next_i();
+              p_hwfn[_i0].qm_info.first_rl_pq = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_hwfn[_i0].qm_info.first_mcos_pq = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_hwfn[_i0].qm_info.first_vf_pq = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_hwfn[_i0].qm_info.num_vf_pqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_hwfn[_i0].qm_info.num_pf_rls = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_hwfn[_i0].qm_info.num_vports = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_hwfn[_i0].qm_info.num_pqs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           qed_init_qm_reset_params(p_hwfn);
           free(p_hwfn);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_p_hwfn0 = 100;
+          struct qed_hwfn * p_hwfn = (struct qed_hwfn *) malloc(_len_p_hwfn0*sizeof(struct qed_hwfn));
+          for(int _i0 = 0; _i0 < _len_p_hwfn0; _i0++) {
+              p_hwfn[_i0].qm_info.first_rl_pq = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_hwfn[_i0].qm_info.first_mcos_pq = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_hwfn[_i0].qm_info.first_vf_pq = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_hwfn[_i0].qm_info.num_vf_pqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_hwfn[_i0].qm_info.num_pf_rls = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_hwfn[_i0].qm_info.num_vports = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_hwfn[_i0].qm_info.num_pqs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          qed_init_qm_reset_params(p_hwfn);
+          free(p_hwfn);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_p_hwfn0 = 1;
+          struct qed_hwfn * p_hwfn = (struct qed_hwfn *) malloc(_len_p_hwfn0*sizeof(struct qed_hwfn));
+          for(int _i0 = 0; _i0 < _len_p_hwfn0; _i0++) {
+              p_hwfn[_i0].qm_info.first_rl_pq = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_hwfn[_i0].qm_info.first_mcos_pq = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_hwfn[_i0].qm_info.first_vf_pq = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_hwfn[_i0].qm_info.num_vf_pqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_hwfn[_i0].qm_info.num_pf_rls = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_hwfn[_i0].qm_info.num_vports = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_hwfn[_i0].qm_info.num_pqs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          qed_init_qm_reset_params(p_hwfn);
+          free(p_hwfn);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -65,7 +66,6 @@ __attribute__((used)) static void link_cache_lists(struct cache *smaller, struct
 
 	smaller->next_local = bigger;
 }
-
 
 // ------------------------------------------------------------------------- //
 
@@ -117,7 +117,6 @@ void _delete_bigger(struct cache *aux_bigger[], int aux_bigger_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -130,20 +129,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // linked
     case 0:
+    {
+          struct cache * aux_smaller[10000];
+          struct cache * smaller = _allocate_smaller(10000, aux_smaller);
+        
+          struct cache * aux_bigger[10000];
+          struct cache * bigger = _allocate_bigger(10000, aux_bigger);
+        
+          link_cache_lists(smaller,bigger);
+          _delete_smaller(aux_smaller, 10000);
+          _delete_bigger(aux_bigger, 10000);
+        
+        break;
+    }
+    // empty
+    case 1:
     {
           struct cache * aux_smaller[1];
           struct cache * smaller = _allocate_smaller(1, aux_smaller);
+        
           struct cache * aux_bigger[1];
           struct cache * bigger = _allocate_bigger(1, aux_bigger);
+        
           link_cache_lists(smaller,bigger);
           _delete_smaller(aux_smaller, 1);
           _delete_bigger(aux_bigger, 1);
         
         break;
     }
-
     default:
         usage();
         break;

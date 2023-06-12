@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ u32 qman_fq_fqid(struct qman_fq *fq)
 	return fq->fqid;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_fq0 = 1;
+          int _len_fq0 = 65025;
           struct qman_fq * fq = (struct qman_fq *) malloc(_len_fq0*sizeof(struct qman_fq));
           for(int _i0 = 0; _i0 < _len_fq0; _i0++) {
-            fq[_i0].fqid = ((-2 * (next_i()%2)) + 1) * next_i();
+              fq[_i0].fqid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = qman_fq_fqid(fq);
           printf("%d\n", benchRet); 
           free(fq);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_fq0 = 100;
           struct qman_fq * fq = (struct qman_fq *) malloc(_len_fq0*sizeof(struct qman_fq));
           for(int _i0 = 0; _i0 < _len_fq0; _i0++) {
-            fq[_i0].fqid = ((-2 * (next_i()%2)) + 1) * next_i();
+              fq[_i0].fqid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = qman_fq_fqid(fq);
           printf("%d\n", benchRet); 
           free(fq);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_fq0 = 1;
+          struct qman_fq * fq = (struct qman_fq *) malloc(_len_fq0*sizeof(struct qman_fq));
+          for(int _i0 = 0; _i0 < _len_fq0; _i0++) {
+              fq[_i0].fqid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = qman_fq_fqid(fq);
+          printf("%d\n", benchRet); 
+          free(fq);
+        
+        break;
+    }
     default:
         usage();
         break;

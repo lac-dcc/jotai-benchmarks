@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ __attribute__((used)) static void mon_buff_area_free(struct mon_reader_bin *rp, 
 		rp->b_out -= rp->b_size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,17 +80,172 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           unsigned int size = 100;
+        
           int _len_rp0 = 1;
           struct mon_reader_bin * rp = (struct mon_reader_bin *) malloc(_len_rp0*sizeof(struct mon_reader_bin));
           for(int _i0 = 0; _i0 < _len_rp0; _i0++) {
-            rp[_i0].b_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        rp[_i0].b_out = ((-2 * (next_i()%2)) + 1) * next_i();
-        rp[_i0].b_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              rp[_i0].b_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          rp[_i0].b_out = ((-2 * (next_i()%2)) + 1) * next_i();
+          rp[_i0].b_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          mon_buff_area_free(rp,size);
+          free(rp);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          unsigned int size = 255;
+        
+          int _len_rp0 = 65025;
+          struct mon_reader_bin * rp = (struct mon_reader_bin *) malloc(_len_rp0*sizeof(struct mon_reader_bin));
+          for(int _i0 = 0; _i0 < _len_rp0; _i0++) {
+              rp[_i0].b_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          rp[_i0].b_out = ((-2 * (next_i()%2)) + 1) * next_i();
+          rp[_i0].b_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mon_buff_area_free(rp,size);
+          free(rp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          unsigned int size = 10;
+        
+          int _len_rp0 = 100;
+          struct mon_reader_bin * rp = (struct mon_reader_bin *) malloc(_len_rp0*sizeof(struct mon_reader_bin));
+          for(int _i0 = 0; _i0 < _len_rp0; _i0++) {
+              rp[_i0].b_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          rp[_i0].b_out = ((-2 * (next_i()%2)) + 1) * next_i();
+          rp[_i0].b_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mon_buff_area_free(rp,size);
+          free(rp);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          unsigned int size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rp0 = 1;
+          struct mon_reader_bin * rp = (struct mon_reader_bin *) malloc(_len_rp0*sizeof(struct mon_reader_bin));
+          for(int _i0 = 0; _i0 < _len_rp0; _i0++) {
+              rp[_i0].b_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          rp[_i0].b_out = ((-2 * (next_i()%2)) + 1) * next_i();
+          rp[_i0].b_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           mon_buff_area_free(rp,size);
           free(rp);
         

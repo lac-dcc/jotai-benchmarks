@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static unsigned int i2c_mii_phy_addr(int phy_id)
 	return phy_id + 0x40;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,6 +78,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int phy_id = 100;
+        
           unsigned int benchRet = i2c_mii_phy_addr(phy_id);
           printf("%u\n", benchRet); 
         
@@ -92,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int phy_id = 255;
+        
           unsigned int benchRet = i2c_mii_phy_addr(phy_id);
           printf("%u\n", benchRet); 
         
@@ -101,12 +98,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int phy_id = 10;
+        
           unsigned int benchRet = i2c_mii_phy_addr(phy_id);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int phy_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = i2c_mii_phy_addr(phy_id);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

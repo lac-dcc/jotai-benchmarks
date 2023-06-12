@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static unsigned int wm831x_gp_ldo_get_optimum_mode(struct 
 	return REGULATOR_MODE_NORMAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,13 +88,40 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int input_uV = 100;
+        
           int output_uV = 100;
+        
           int load_uA = 100;
+        
           int _len_rdev0 = 1;
           struct regulator_dev * rdev = (struct regulator_dev *) malloc(_len_rdev0*sizeof(struct regulator_dev));
           for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
-            rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          unsigned int benchRet = wm831x_gp_ldo_get_optimum_mode(rdev,input_uV,output_uV,load_uA);
+          printf("%u\n", benchRet); 
+          free(rdev);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int input_uV = 255;
+        
+          int output_uV = 255;
+        
+          int load_uA = 255;
+        
+          int _len_rdev0 = 65025;
+          struct regulator_dev * rdev = (struct regulator_dev *) malloc(_len_rdev0*sizeof(struct regulator_dev));
+          for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
+              rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           unsigned int benchRet = wm831x_gp_ldo_get_optimum_mode(rdev,input_uV,output_uV,load_uA);
           printf("%u\n", benchRet); 
           free(rdev);
@@ -106,23 +129,49 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int input_uV = 10;
+        
           int output_uV = 10;
+        
           int load_uA = 10;
+        
           int _len_rdev0 = 100;
           struct regulator_dev * rdev = (struct regulator_dev *) malloc(_len_rdev0*sizeof(struct regulator_dev));
           for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
-            rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = wm831x_gp_ldo_get_optimum_mode(rdev,input_uV,output_uV,load_uA);
           printf("%u\n", benchRet); 
           free(rdev);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int input_uV = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int output_uV = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int load_uA = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rdev0 = 1;
+          struct regulator_dev * rdev = (struct regulator_dev *) malloc(_len_rdev0*sizeof(struct regulator_dev));
+          for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
+              rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = wm831x_gp_ldo_get_optimum_mode(rdev,input_uV,output_uV,load_uA);
+          printf("%u\n", benchRet); 
+          free(rdev);
+        
+        break;
+    }
     default:
         usage();
         break;

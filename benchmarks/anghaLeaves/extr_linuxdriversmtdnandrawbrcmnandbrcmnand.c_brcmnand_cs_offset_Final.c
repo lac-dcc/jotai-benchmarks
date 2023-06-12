@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +81,6 @@ __attribute__((used)) static inline u16 brcmnand_cs_offset(struct brcmnand_contr
 	return offs_cs0 + cs * ctrl->reg_spacing + cs_offs;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,11 +97,13 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int cs = 100;
+        
           enum brcmnand_cs_reg reg = 0;
+        
           int _len_ctrl0 = 1;
           struct brcmnand_controller * ctrl = (struct brcmnand_controller *) malloc(_len_ctrl0*sizeof(struct brcmnand_controller));
           for(int _i0 = 0; _i0 < _len_ctrl0; _i0++) {
-            ctrl[_i0].reg_spacing = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctrl[_i0].reg_spacing = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_ctrl__i0__cs_offsets0 = 1;
           ctrl[_i0].cs_offsets = (long *) malloc(_len_ctrl__i0__cs_offsets0*sizeof(long));
           for(int _j0 = 0; _j0 < _len_ctrl__i0__cs_offsets0; _j0++) {
@@ -120,7 +119,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_ctrl__i0__reg_offsets0; _j0++) {
             ctrl[_i0].reg_offsets[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           long benchRet = brcmnand_cs_offset(ctrl,cs,reg);
           printf("%ld\n", benchRet); 
           for(int _aux = 0; _aux < _len_ctrl0; _aux++) {
@@ -136,7 +137,138 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int cs = 255;
+        
+          enum brcmnand_cs_reg reg = 0;
+        
+          int _len_ctrl0 = 65025;
+          struct brcmnand_controller * ctrl = (struct brcmnand_controller *) malloc(_len_ctrl0*sizeof(struct brcmnand_controller));
+          for(int _i0 = 0; _i0 < _len_ctrl0; _i0++) {
+              ctrl[_i0].reg_spacing = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ctrl__i0__cs_offsets0 = 1;
+          ctrl[_i0].cs_offsets = (long *) malloc(_len_ctrl__i0__cs_offsets0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_ctrl__i0__cs_offsets0; _j0++) {
+            ctrl[_i0].cs_offsets[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_ctrl__i0__cs0_offsets0 = 1;
+          ctrl[_i0].cs0_offsets = (long *) malloc(_len_ctrl__i0__cs0_offsets0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_ctrl__i0__cs0_offsets0; _j0++) {
+            ctrl[_i0].cs0_offsets[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_ctrl__i0__reg_offsets0 = 1;
+          ctrl[_i0].reg_offsets = (long *) malloc(_len_ctrl__i0__reg_offsets0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_ctrl__i0__reg_offsets0; _j0++) {
+            ctrl[_i0].reg_offsets[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          long benchRet = brcmnand_cs_offset(ctrl,cs,reg);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ctrl0; _aux++) {
+          free(ctrl[_aux].cs_offsets);
+          }
+          for(int _aux = 0; _aux < _len_ctrl0; _aux++) {
+          free(ctrl[_aux].cs0_offsets);
+          }
+          for(int _aux = 0; _aux < _len_ctrl0; _aux++) {
+          free(ctrl[_aux].reg_offsets);
+          }
+          free(ctrl);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int cs = 10;
+        
+          enum brcmnand_cs_reg reg = 0;
+        
+          int _len_ctrl0 = 100;
+          struct brcmnand_controller * ctrl = (struct brcmnand_controller *) malloc(_len_ctrl0*sizeof(struct brcmnand_controller));
+          for(int _i0 = 0; _i0 < _len_ctrl0; _i0++) {
+              ctrl[_i0].reg_spacing = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ctrl__i0__cs_offsets0 = 1;
+          ctrl[_i0].cs_offsets = (long *) malloc(_len_ctrl__i0__cs_offsets0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_ctrl__i0__cs_offsets0; _j0++) {
+            ctrl[_i0].cs_offsets[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_ctrl__i0__cs0_offsets0 = 1;
+          ctrl[_i0].cs0_offsets = (long *) malloc(_len_ctrl__i0__cs0_offsets0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_ctrl__i0__cs0_offsets0; _j0++) {
+            ctrl[_i0].cs0_offsets[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_ctrl__i0__reg_offsets0 = 1;
+          ctrl[_i0].reg_offsets = (long *) malloc(_len_ctrl__i0__reg_offsets0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_ctrl__i0__reg_offsets0; _j0++) {
+            ctrl[_i0].reg_offsets[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          long benchRet = brcmnand_cs_offset(ctrl,cs,reg);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ctrl0; _aux++) {
+          free(ctrl[_aux].cs_offsets);
+          }
+          for(int _aux = 0; _aux < _len_ctrl0; _aux++) {
+          free(ctrl[_aux].cs0_offsets);
+          }
+          for(int _aux = 0; _aux < _len_ctrl0; _aux++) {
+          free(ctrl[_aux].reg_offsets);
+          }
+          free(ctrl);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int cs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          enum brcmnand_cs_reg reg = 0;
+        
+          int _len_ctrl0 = 1;
+          struct brcmnand_controller * ctrl = (struct brcmnand_controller *) malloc(_len_ctrl0*sizeof(struct brcmnand_controller));
+          for(int _i0 = 0; _i0 < _len_ctrl0; _i0++) {
+              ctrl[_i0].reg_spacing = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ctrl__i0__cs_offsets0 = 1;
+          ctrl[_i0].cs_offsets = (long *) malloc(_len_ctrl__i0__cs_offsets0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_ctrl__i0__cs_offsets0; _j0++) {
+            ctrl[_i0].cs_offsets[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_ctrl__i0__cs0_offsets0 = 1;
+          ctrl[_i0].cs0_offsets = (long *) malloc(_len_ctrl__i0__cs0_offsets0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_ctrl__i0__cs0_offsets0; _j0++) {
+            ctrl[_i0].cs0_offsets[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_ctrl__i0__reg_offsets0 = 1;
+          ctrl[_i0].reg_offsets = (long *) malloc(_len_ctrl__i0__reg_offsets0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_ctrl__i0__reg_offsets0; _j0++) {
+            ctrl[_i0].reg_offsets[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          long benchRet = brcmnand_cs_offset(ctrl,cs,reg);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ctrl0; _aux++) {
+          free(ctrl[_aux].cs_offsets);
+          }
+          for(int _aux = 0; _aux < _len_ctrl0; _aux++) {
+          free(ctrl[_aux].cs0_offsets);
+          }
+          for(int _aux = 0; _aux < _len_ctrl0; _aux++) {
+          free(ctrl[_aux].reg_offsets);
+          }
+          free(ctrl);
+        
+        break;
+    }
     default:
         usage();
         break;

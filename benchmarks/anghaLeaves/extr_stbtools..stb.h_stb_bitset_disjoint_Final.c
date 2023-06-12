@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ int stb_bitset_disjoint(stb_bitset *p0, stb_bitset *p1, int len)
    return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,16 +82,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int len = 100;
+        
           int _len_p00 = 1;
           int * p0 = (int *) malloc(_len_p00*sizeof(int));
           for(int _i0 = 0; _i0 < _len_p00; _i0++) {
             p0[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_p10 = 1;
           int * p1 = (int *) malloc(_len_p10*sizeof(int));
           for(int _i0 = 0; _i0 < _len_p10; _i0++) {
             p1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = stb_bitset_disjoint(p0,p1,len);
           printf("%d\n", benchRet); 
           free(p0);
@@ -102,7 +102,78 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int len = 255;
+        
+          int _len_p00 = 65025;
+          int * p0 = (int *) malloc(_len_p00*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p00; _i0++) {
+            p0[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_p10 = 65025;
+          int * p1 = (int *) malloc(_len_p10*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p10; _i0++) {
+            p1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = stb_bitset_disjoint(p0,p1,len);
+          printf("%d\n", benchRet); 
+          free(p0);
+          free(p1);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int len = 10;
+        
+          int _len_p00 = 100;
+          int * p0 = (int *) malloc(_len_p00*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p00; _i0++) {
+            p0[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_p10 = 100;
+          int * p1 = (int *) malloc(_len_p10*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p10; _i0++) {
+            p1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = stb_bitset_disjoint(p0,p1,len);
+          printf("%d\n", benchRet); 
+          free(p0);
+          free(p1);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_p00 = 1;
+          int * p0 = (int *) malloc(_len_p00*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p00; _i0++) {
+            p0[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_p10 = 1;
+          int * p1 = (int *) malloc(_len_p10*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p10; _i0++) {
+            p1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = stb_bitset_disjoint(p0,p1,len);
+          printf("%d\n", benchRet); 
+          free(p0);
+          free(p1);
+        
+        break;
+    }
     default:
         usage();
         break;

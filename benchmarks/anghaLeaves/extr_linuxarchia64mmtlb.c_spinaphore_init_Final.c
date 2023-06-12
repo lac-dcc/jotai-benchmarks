@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +64,6 @@ __attribute__((used)) static inline void spinaphore_init(struct spinaphore *ss, 
 	ss->serve = val;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,16 +76,168 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int val = 100;
+        
           int _len_ss0 = 1;
           struct spinaphore * ss = (struct spinaphore *) malloc(_len_ss0*sizeof(struct spinaphore));
           for(int _i0 = 0; _i0 < _len_ss0; _i0++) {
-            ss[_i0].serve = ((-2 * (next_i()%2)) + 1) * next_i();
-        ss[_i0].ticket = ((-2 * (next_i()%2)) + 1) * next_i();
+              ss[_i0].serve = ((-2 * (next_i()%2)) + 1) * next_i();
+          ss[_i0].ticket = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          spinaphore_init(ss,val);
+          free(ss);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int val = 255;
+        
+          int _len_ss0 = 65025;
+          struct spinaphore * ss = (struct spinaphore *) malloc(_len_ss0*sizeof(struct spinaphore));
+          for(int _i0 = 0; _i0 < _len_ss0; _i0++) {
+              ss[_i0].serve = ((-2 * (next_i()%2)) + 1) * next_i();
+          ss[_i0].ticket = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          spinaphore_init(ss,val);
+          free(ss);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int val = 10;
+        
+          int _len_ss0 = 100;
+          struct spinaphore * ss = (struct spinaphore *) malloc(_len_ss0*sizeof(struct spinaphore));
+          for(int _i0 = 0; _i0 < _len_ss0; _i0++) {
+              ss[_i0].serve = ((-2 * (next_i()%2)) + 1) * next_i();
+          ss[_i0].ticket = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          spinaphore_init(ss,val);
+          free(ss);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ss0 = 1;
+          struct spinaphore * ss = (struct spinaphore *) malloc(_len_ss0*sizeof(struct spinaphore));
+          for(int _i0 = 0; _i0 < _len_ss0; _i0++) {
+              ss[_i0].serve = ((-2 * (next_i()%2)) + 1) * next_i();
+          ss[_i0].ticket = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           spinaphore_init(ss,val);
           free(ss);
         

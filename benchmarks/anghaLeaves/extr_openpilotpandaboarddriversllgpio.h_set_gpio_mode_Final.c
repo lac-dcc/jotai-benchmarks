@@ -65,12 +65,6 @@ void set_gpio_mode(GPIO_TypeDef *GPIO, int pin, int mode) {
   GPIO->MODER = tmp;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,18 +81,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int pin = 10;
+        
           int mode = 10;
+        
           int _len_GPIO0 = 100;
           struct TYPE_3__ * GPIO = (struct TYPE_3__ *) malloc(_len_GPIO0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_GPIO0; _i0++) {
-            GPIO[_i0].MODER = ((-2 * (next_i()%2)) + 1) * next_i();
+              GPIO[_i0].MODER = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           set_gpio_mode(GPIO,pin,mode);
           free(GPIO);
         
         break;
     }
-
     default:
         usage();
         break;

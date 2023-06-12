@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -99,12 +102,6 @@ __attribute__((used)) static void analyze_64bit_constant(u32 high_bits, u32 low_
 	*abbasp = all_bits_between_are_set;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -117,26 +114,222 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 91
+          // dynamic_instructions_O0 : 841
+          // ------------------------------- 
+          // static_instructions_O1 : 59
+          // dynamic_instructions_O1 : 634
+          // ------------------------------- 
+          // static_instructions_O2 : 58
+          // dynamic_instructions_O2 : 633
+          // ------------------------------- 
+          // static_instructions_O3 : 58
+          // dynamic_instructions_O3 : 633
+          // ------------------------------- 
+          // static_instructions_Ofast : 58
+          // dynamic_instructions_Ofast : 633
+          // ------------------------------- 
+          // static_instructions_Os : 56
+          // dynamic_instructions_Os : 631
+          // ------------------------------- 
+          // static_instructions_Oz : 54
+          // dynamic_instructions_Oz : 631
+          // ------------------------------- 
+
           int high_bits = 100;
+        
           int low_bits = 100;
+        
           int _len_hbsp0 = 1;
           int * hbsp = (int *) malloc(_len_hbsp0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_hbsp0; _i0++) {
             hbsp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_lbsp0 = 1;
           int * lbsp = (int *) malloc(_len_lbsp0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_lbsp0; _i0++) {
             lbsp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_abbasp0 = 1;
           int * abbasp = (int *) malloc(_len_abbasp0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_abbasp0; _i0++) {
             abbasp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          analyze_64bit_constant(high_bits,low_bits,hbsp,lbsp,abbasp);
+          free(hbsp);
+          free(lbsp);
+          free(abbasp);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 91
+          // dynamic_instructions_O0 : 926
+          // ------------------------------- 
+          // static_instructions_O1 : 59
+          // dynamic_instructions_O1 : 664
+          // ------------------------------- 
+          // static_instructions_O2 : 58
+          // dynamic_instructions_O2 : 663
+          // ------------------------------- 
+          // static_instructions_O3 : 58
+          // dynamic_instructions_O3 : 663
+          // ------------------------------- 
+          // static_instructions_Ofast : 58
+          // dynamic_instructions_Ofast : 663
+          // ------------------------------- 
+          // static_instructions_Os : 56
+          // dynamic_instructions_Os : 661
+          // ------------------------------- 
+          // static_instructions_Oz : 54
+          // dynamic_instructions_Oz : 668
+          // ------------------------------- 
+
+          int high_bits = 255;
+        
+          int low_bits = 255;
+        
+          int _len_hbsp0 = 65025;
+          int * hbsp = (int *) malloc(_len_hbsp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_hbsp0; _i0++) {
+            hbsp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_lbsp0 = 65025;
+          int * lbsp = (int *) malloc(_len_lbsp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_lbsp0; _i0++) {
+            lbsp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_abbasp0 = 65025;
+          int * abbasp = (int *) malloc(_len_abbasp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_abbasp0; _i0++) {
+            abbasp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          analyze_64bit_constant(high_bits,low_bits,hbsp,lbsp,abbasp);
+          free(hbsp);
+          free(lbsp);
+          free(abbasp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 91
+          // dynamic_instructions_O0 : 922
+          // ------------------------------- 
+          // static_instructions_O1 : 59
+          // dynamic_instructions_O1 : 705
+          // ------------------------------- 
+          // static_instructions_O2 : 58
+          // dynamic_instructions_O2 : 704
+          // ------------------------------- 
+          // static_instructions_O3 : 58
+          // dynamic_instructions_O3 : 704
+          // ------------------------------- 
+          // static_instructions_Ofast : 58
+          // dynamic_instructions_Ofast : 704
+          // ------------------------------- 
+          // static_instructions_Os : 56
+          // dynamic_instructions_Os : 702
+          // ------------------------------- 
+          // static_instructions_Oz : 54
+          // dynamic_instructions_Oz : 702
+          // ------------------------------- 
+
+          int high_bits = 10;
+        
+          int low_bits = 10;
+        
+          int _len_hbsp0 = 100;
+          int * hbsp = (int *) malloc(_len_hbsp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_hbsp0; _i0++) {
+            hbsp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_lbsp0 = 100;
+          int * lbsp = (int *) malloc(_len_lbsp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_lbsp0; _i0++) {
+            lbsp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_abbasp0 = 100;
+          int * abbasp = (int *) malloc(_len_abbasp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_abbasp0; _i0++) {
+            abbasp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          analyze_64bit_constant(high_bits,low_bits,hbsp,lbsp,abbasp);
+          free(hbsp);
+          free(lbsp);
+          free(abbasp);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 91
+          // dynamic_instructions_O0 : 104
+          // ------------------------------- 
+          // static_instructions_O1 : 59
+          // dynamic_instructions_O1 : 63
+          // ------------------------------- 
+          // static_instructions_O2 : 58
+          // dynamic_instructions_O2 : 62
+          // ------------------------------- 
+          // static_instructions_O3 : 58
+          // dynamic_instructions_O3 : 62
+          // ------------------------------- 
+          // static_instructions_Ofast : 58
+          // dynamic_instructions_Ofast : 62
+          // ------------------------------- 
+          // static_instructions_Os : 56
+          // dynamic_instructions_Os : 60
+          // ------------------------------- 
+          // static_instructions_Oz : 54
+          // dynamic_instructions_Oz : 60
+          // ------------------------------- 
+
+          int high_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int low_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hbsp0 = 1;
+          int * hbsp = (int *) malloc(_len_hbsp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_hbsp0; _i0++) {
+            hbsp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_lbsp0 = 1;
+          int * lbsp = (int *) malloc(_len_lbsp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_lbsp0; _i0++) {
+            lbsp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_abbasp0 = 1;
+          int * abbasp = (int *) malloc(_len_abbasp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_abbasp0; _i0++) {
+            abbasp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           analyze_64bit_constant(high_bits,low_bits,hbsp,lbsp,abbasp);
           free(hbsp);
           free(lbsp);

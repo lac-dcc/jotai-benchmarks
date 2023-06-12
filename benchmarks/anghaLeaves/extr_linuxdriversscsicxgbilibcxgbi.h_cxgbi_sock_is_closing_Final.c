@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline int cxgbi_sock_is_closing(struct cxgbi_sock 
 	return csk->state >= CTP_ACTIVE_CLOSE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,28 +75,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_csk0 = 1;
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_csk0 = 65025;
           struct cxgbi_sock * csk = (struct cxgbi_sock *) malloc(_len_csk0*sizeof(struct cxgbi_sock));
           for(int _i0 = 0; _i0 < _len_csk0; _i0++) {
-            csk[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+              csk[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cxgbi_sock_is_closing(csk);
           printf("%d\n", benchRet); 
           free(csk);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_csk0 = 100;
           struct cxgbi_sock * csk = (struct cxgbi_sock *) malloc(_len_csk0*sizeof(struct cxgbi_sock));
           for(int _i0 = 0; _i0 < _len_csk0; _i0++) {
-            csk[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+              csk[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = cxgbi_sock_is_closing(csk);
+          printf("%d\n", benchRet); 
+          free(csk);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_csk0 = 1;
+          struct cxgbi_sock * csk = (struct cxgbi_sock *) malloc(_len_csk0*sizeof(struct cxgbi_sock));
+          for(int _i0 = 0; _i0 < _len_csk0; _i0++) {
+              csk[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = cxgbi_sock_is_closing(csk);
           printf("%d\n", benchRet); 
           free(csk);

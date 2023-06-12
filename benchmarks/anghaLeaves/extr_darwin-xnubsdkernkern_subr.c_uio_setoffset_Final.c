@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ void uio_setoffset( uio_t a_uio, off_t a_offset )
 	return;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,31 +92,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int a_offset = 100;
+        
           int _len_a_uio0 = 1;
           struct TYPE_3__ * a_uio = (struct TYPE_3__ *) malloc(_len_a_uio0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_a_uio0; _i0++) {
-            a_uio[_i0].uio_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              a_uio[_i0].uio_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          uio_setoffset(a_uio,a_offset);
+          free(a_uio);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int a_offset = 255;
+        
+          int _len_a_uio0 = 65025;
+          struct TYPE_3__ * a_uio = (struct TYPE_3__ *) malloc(_len_a_uio0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_a_uio0; _i0++) {
+              a_uio[_i0].uio_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           uio_setoffset(a_uio,a_offset);
           free(a_uio);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int a_offset = 10;
+        
           int _len_a_uio0 = 100;
           struct TYPE_3__ * a_uio = (struct TYPE_3__ *) malloc(_len_a_uio0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_a_uio0; _i0++) {
-            a_uio[_i0].uio_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              a_uio[_i0].uio_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           uio_setoffset(a_uio,a_offset);
           free(a_uio);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int a_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_a_uio0 = 1;
+          struct TYPE_3__ * a_uio = (struct TYPE_3__ *) malloc(_len_a_uio0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_a_uio0; _i0++) {
+              a_uio[_i0].uio_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          uio_setoffset(a_uio,a_offset);
+          free(a_uio);
+        
+        break;
+    }
     default:
         usage();
         break;

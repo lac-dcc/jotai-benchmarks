@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -94,12 +96,6 @@ void HTUpdateDefaultSetting(struct rtllib_device *ieee)
 	pHTInfo->RxReorderPendingTime = 30;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -112,35 +108,38 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ieee0 = 1;
+          int _len_ieee0 = 65025;
           struct rtllib_device * ieee = (struct rtllib_device *) malloc(_len_ieee0*sizeof(struct rtllib_device));
           for(int _i0 = 0; _i0 < _len_ieee0; _i0++) {
-            ieee[_i0].bTxEnableFwCalcDur = ((-2 * (next_i()%2)) + 1) * next_i();
-        ieee[_i0].bTxUseDriverAssingedRate = ((-2 * (next_i()%2)) + 1) * next_i();
-        ieee[_i0].bTxDisableRateFallBack = ((-2 * (next_i()%2)) + 1) * next_i();
+              ieee[_i0].bTxEnableFwCalcDur = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].bTxUseDriverAssingedRate = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].bTxDisableRateFallBack = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_ieee__i0__pHTInfo0 = 1;
           ieee[_i0].pHTInfo = (struct rt_hi_throughput *) malloc(_len_ieee__i0__pHTInfo0*sizeof(struct rt_hi_throughput));
           for(int _j0 = 0; _j0 < _len_ieee__i0__pHTInfo0; _j0++) {
-            ieee[_i0].pHTInfo->bAcceptAddbaReq = ((-2 * (next_i()%2)) + 1) * next_i();
-        ieee[_i0].pHTInfo->bRegShortGI20MHz = ((-2 * (next_i()%2)) + 1) * next_i();
-        ieee[_i0].pHTInfo->bRegShortGI40MHz = ((-2 * (next_i()%2)) + 1) * next_i();
-        ieee[_i0].pHTInfo->bRegBW40MHz = ((-2 * (next_i()%2)) + 1) * next_i();
-        ieee[_i0].pHTInfo->bRegSuppCCK = ((-2 * (next_i()%2)) + 1) * next_i();
-        ieee[_i0].pHTInfo->nAMSDU_MaxSize = ((-2 * (next_i()%2)) + 1) * next_i();
-        ieee[_i0].pHTInfo->bAMPDUEnable = ((-2 * (next_i()%2)) + 1) * next_i();
-        ieee[_i0].pHTInfo->AMPDU_Factor = ((-2 * (next_i()%2)) + 1) * next_i();
-        ieee[_i0].pHTInfo->SelfMimoPs = ((-2 * (next_i()%2)) + 1) * next_i();
-        ieee[_i0].pHTInfo->bRegRT2RTAggregation = ((-2 * (next_i()%2)) + 1) * next_i();
-        ieee[_i0].pHTInfo->bRegRxReorderEnable = ((-2 * (next_i()%2)) + 1) * next_i();
-        ieee[_i0].pHTInfo->RxReorderWinSize = ((-2 * (next_i()%2)) + 1) * next_i();
-        ieee[_i0].pHTInfo->RxReorderPendingTime = ((-2 * (next_i()%2)) + 1) * next_i();
-        ieee[_i0].pHTInfo->MPDU_Density = ((-2 * (next_i()%2)) + 1) * next_i();
-        ieee[_i0].pHTInfo->bAMSDU_Support = ((-2 * (next_i()%2)) + 1) * next_i();
+              ieee[_i0].pHTInfo->bAcceptAddbaReq = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bRegShortGI20MHz = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bRegShortGI40MHz = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bRegBW40MHz = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bRegSuppCCK = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->nAMSDU_MaxSize = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bAMPDUEnable = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->AMPDU_Factor = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->SelfMimoPs = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bRegRT2RTAggregation = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bRegRxReorderEnable = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->RxReorderWinSize = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->RxReorderPendingTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->MPDU_Density = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bAMSDU_Support = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           HTUpdateDefaultSetting(ieee);
           for(int _aux = 0; _aux < _len_ieee0; _aux++) {
           free(ieee[_aux].pHTInfo);
@@ -149,7 +148,86 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ieee0 = 100;
+          struct rtllib_device * ieee = (struct rtllib_device *) malloc(_len_ieee0*sizeof(struct rtllib_device));
+          for(int _i0 = 0; _i0 < _len_ieee0; _i0++) {
+              ieee[_i0].bTxEnableFwCalcDur = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].bTxUseDriverAssingedRate = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].bTxDisableRateFallBack = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ieee__i0__pHTInfo0 = 1;
+          ieee[_i0].pHTInfo = (struct rt_hi_throughput *) malloc(_len_ieee__i0__pHTInfo0*sizeof(struct rt_hi_throughput));
+          for(int _j0 = 0; _j0 < _len_ieee__i0__pHTInfo0; _j0++) {
+              ieee[_i0].pHTInfo->bAcceptAddbaReq = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bRegShortGI20MHz = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bRegShortGI40MHz = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bRegBW40MHz = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bRegSuppCCK = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->nAMSDU_MaxSize = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bAMPDUEnable = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->AMPDU_Factor = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->SelfMimoPs = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bRegRT2RTAggregation = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bRegRxReorderEnable = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->RxReorderWinSize = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->RxReorderPendingTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->MPDU_Density = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bAMSDU_Support = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          HTUpdateDefaultSetting(ieee);
+          for(int _aux = 0; _aux < _len_ieee0; _aux++) {
+          free(ieee[_aux].pHTInfo);
+          }
+          free(ieee);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ieee0 = 1;
+          struct rtllib_device * ieee = (struct rtllib_device *) malloc(_len_ieee0*sizeof(struct rtllib_device));
+          for(int _i0 = 0; _i0 < _len_ieee0; _i0++) {
+              ieee[_i0].bTxEnableFwCalcDur = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].bTxUseDriverAssingedRate = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].bTxDisableRateFallBack = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ieee__i0__pHTInfo0 = 1;
+          ieee[_i0].pHTInfo = (struct rt_hi_throughput *) malloc(_len_ieee__i0__pHTInfo0*sizeof(struct rt_hi_throughput));
+          for(int _j0 = 0; _j0 < _len_ieee__i0__pHTInfo0; _j0++) {
+              ieee[_i0].pHTInfo->bAcceptAddbaReq = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bRegShortGI20MHz = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bRegShortGI40MHz = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bRegBW40MHz = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bRegSuppCCK = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->nAMSDU_MaxSize = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bAMPDUEnable = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->AMPDU_Factor = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->SelfMimoPs = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bRegRT2RTAggregation = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bRegRxReorderEnable = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->RxReorderWinSize = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->RxReorderPendingTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->MPDU_Density = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bAMSDU_Support = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          HTUpdateDefaultSetting(ieee);
+          for(int _aux = 0; _aux < _len_ieee0; _aux++) {
+          free(ieee[_aux].pHTInfo);
+          }
+          free(ieee);
+        
+        break;
+    }
     default:
         usage();
         break;

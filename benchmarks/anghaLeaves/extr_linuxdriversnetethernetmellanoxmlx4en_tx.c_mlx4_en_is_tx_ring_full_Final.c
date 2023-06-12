@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static inline bool mlx4_en_is_tx_ring_full(struct mlx4_en_
 	return ring->prod - ring->cons > ring->full_size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,23 +74,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ring0 = 1;
+          int _len_ring0 = 65025;
           struct mlx4_en_tx_ring * ring = (struct mlx4_en_tx_ring *) malloc(_len_ring0*sizeof(struct mlx4_en_tx_ring));
           for(int _i0 = 0; _i0 < _len_ring0; _i0++) {
-            ring[_i0].prod = ((-2 * (next_i()%2)) + 1) * next_i();
-        ring[_i0].cons = ((-2 * (next_i()%2)) + 1) * next_i();
-        ring[_i0].full_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              ring[_i0].prod = ((-2 * (next_i()%2)) + 1) * next_i();
+          ring[_i0].cons = ((-2 * (next_i()%2)) + 1) * next_i();
+          ring[_i0].full_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mlx4_en_is_tx_ring_full(ring);
           printf("%d\n", benchRet); 
           free(ring);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ring0 = 100;
+          struct mlx4_en_tx_ring * ring = (struct mlx4_en_tx_ring *) malloc(_len_ring0*sizeof(struct mlx4_en_tx_ring));
+          for(int _i0 = 0; _i0 < _len_ring0; _i0++) {
+              ring[_i0].prod = ((-2 * (next_i()%2)) + 1) * next_i();
+          ring[_i0].cons = ((-2 * (next_i()%2)) + 1) * next_i();
+          ring[_i0].full_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mlx4_en_is_tx_ring_full(ring);
+          printf("%d\n", benchRet); 
+          free(ring);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ring0 = 1;
+          struct mlx4_en_tx_ring * ring = (struct mlx4_en_tx_ring *) malloc(_len_ring0*sizeof(struct mlx4_en_tx_ring));
+          for(int _i0 = 0; _i0 < _len_ring0; _i0++) {
+              ring[_i0].prod = ((-2 * (next_i()%2)) + 1) * next_i();
+          ring[_i0].cons = ((-2 * (next_i()%2)) + 1) * next_i();
+          ring[_i0].full_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mlx4_en_is_tx_ring_full(ring);
+          printf("%d\n", benchRet); 
+          free(ring);
+        
+        break;
+    }
     default:
         usage();
         break;

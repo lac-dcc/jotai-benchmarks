@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static bool exclusive_event_match(struct perf_event *e1, s
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,21 +79,148 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_e10 = 65025;
+          struct perf_event * e1 = (struct perf_event *) malloc(_len_e10*sizeof(struct perf_event));
+          for(int _i0 = 0; _i0 < _len_e10; _i0++) {
+              e1[_i0].pmu = ((-2 * (next_i()%2)) + 1) * next_i();
+          e1[_i0].cpu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_e20 = 65025;
+          struct perf_event * e2 = (struct perf_event *) malloc(_len_e20*sizeof(struct perf_event));
+          for(int _i0 = 0; _i0 < _len_e20; _i0++) {
+              e2[_i0].pmu = ((-2 * (next_i()%2)) + 1) * next_i();
+          e2[_i0].cpu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = exclusive_event_match(e1,e2);
+          printf("%d\n", benchRet); 
+          free(e1);
+          free(e2);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_e10 = 100;
+          struct perf_event * e1 = (struct perf_event *) malloc(_len_e10*sizeof(struct perf_event));
+          for(int _i0 = 0; _i0 < _len_e10; _i0++) {
+              e1[_i0].pmu = ((-2 * (next_i()%2)) + 1) * next_i();
+          e1[_i0].cpu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_e20 = 100;
+          struct perf_event * e2 = (struct perf_event *) malloc(_len_e20*sizeof(struct perf_event));
+          for(int _i0 = 0; _i0 < _len_e20; _i0++) {
+              e2[_i0].pmu = ((-2 * (next_i()%2)) + 1) * next_i();
+          e2[_i0].cpu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = exclusive_event_match(e1,e2);
+          printf("%d\n", benchRet); 
+          free(e1);
+          free(e2);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int _len_e10 = 1;
           struct perf_event * e1 = (struct perf_event *) malloc(_len_e10*sizeof(struct perf_event));
           for(int _i0 = 0; _i0 < _len_e10; _i0++) {
-            e1[_i0].pmu = ((-2 * (next_i()%2)) + 1) * next_i();
-        e1[_i0].cpu = ((-2 * (next_i()%2)) + 1) * next_i();
+              e1[_i0].pmu = ((-2 * (next_i()%2)) + 1) * next_i();
+          e1[_i0].cpu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_e20 = 1;
           struct perf_event * e2 = (struct perf_event *) malloc(_len_e20*sizeof(struct perf_event));
           for(int _i0 = 0; _i0 < _len_e20; _i0++) {
-            e2[_i0].pmu = ((-2 * (next_i()%2)) + 1) * next_i();
-        e2[_i0].cpu = ((-2 * (next_i()%2)) + 1) * next_i();
+              e2[_i0].pmu = ((-2 * (next_i()%2)) + 1) * next_i();
+          e2[_i0].cpu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = exclusive_event_match(e1,e2);
           printf("%d\n", benchRet); 
           free(e1);

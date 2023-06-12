@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +72,6 @@ void blocky_image(image im, int s)
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,15 +88,17 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int s = 100;
+        
           struct TYPE_3__ im;
-        im.c = ((-2 * (next_i()%2)) + 1) * next_i();
-        im.h = ((-2 * (next_i()%2)) + 1) * next_i();
-        im.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          im.c = ((-2 * (next_i()%2)) + 1) * next_i();
+          im.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          im.w = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_im_data0 = 1;
           im.data = (int *) malloc(_len_im_data0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_im_data0; _j0++) {
             im.data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           blocky_image(im,s);
           free(im.data);
         
@@ -111,15 +108,17 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int s = 255;
+        
           struct TYPE_3__ im;
-        im.c = ((-2 * (next_i()%2)) + 1) * next_i();
-        im.h = ((-2 * (next_i()%2)) + 1) * next_i();
-        im.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          im.c = ((-2 * (next_i()%2)) + 1) * next_i();
+          im.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          im.w = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_im_data0 = 1;
           im.data = (int *) malloc(_len_im_data0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_im_data0; _j0++) {
             im.data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           blocky_image(im,s);
           free(im.data);
         
@@ -129,21 +128,42 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int s = 10;
+        
           struct TYPE_3__ im;
-        im.c = ((-2 * (next_i()%2)) + 1) * next_i();
-        im.h = ((-2 * (next_i()%2)) + 1) * next_i();
-        im.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          im.c = ((-2 * (next_i()%2)) + 1) * next_i();
+          im.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          im.w = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_im_data0 = 1;
           im.data = (int *) malloc(_len_im_data0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_im_data0; _j0++) {
             im.data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           blocky_image(im,s);
           free(im.data);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int s = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          struct TYPE_3__ im;
+          im.c = ((-2 * (next_i()%2)) + 1) * next_i();
+          im.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          im.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_im_data0 = 1;
+          im.data = (int *) malloc(_len_im_data0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_im_data0; _j0++) {
+            im.data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          blocky_image(im,s);
+          free(im.data);
+        
+        break;
+    }
     default:
         usage();
         break;

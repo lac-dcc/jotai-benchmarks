@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ void seq_putc(struct seq_file *m, char c)
 	m->buf[m->count++] = c;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,17 +82,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           char c = 100;
+        
           int _len_m0 = 1;
           struct seq_file * m = (struct seq_file *) malloc(_len_m0*sizeof(struct seq_file));
           for(int _i0 = 0; _i0 < _len_m0; _i0++) {
-            m[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
-        m[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              m[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_m__i0__buf0 = 1;
           m[_i0].buf = (char *) malloc(_len_m__i0__buf0*sizeof(char));
           for(int _j0 = 0; _j0 < _len_m__i0__buf0; _j0++) {
             m[_i0].buf[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           seq_putc(m,c);
           for(int _aux = 0; _aux < _len_m0; _aux++) {
           free(m[_aux].buf);
@@ -104,7 +104,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          char c = 255;
+        
+          int _len_m0 = 65025;
+          struct seq_file * m = (struct seq_file *) malloc(_len_m0*sizeof(struct seq_file));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_m__i0__buf0 = 1;
+          m[_i0].buf = (char *) malloc(_len_m__i0__buf0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_m__i0__buf0; _j0++) {
+            m[_i0].buf[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          seq_putc(m,c);
+          for(int _aux = 0; _aux < _len_m0; _aux++) {
+          free(m[_aux].buf);
+          }
+          free(m);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          char c = 10;
+        
+          int _len_m0 = 100;
+          struct seq_file * m = (struct seq_file *) malloc(_len_m0*sizeof(struct seq_file));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_m__i0__buf0 = 1;
+          m[_i0].buf = (char *) malloc(_len_m__i0__buf0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_m__i0__buf0; _j0++) {
+            m[_i0].buf[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          seq_putc(m,c);
+          for(int _aux = 0; _aux < _len_m0; _aux++) {
+          free(m[_aux].buf);
+          }
+          free(m);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          char c = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_m0 = 1;
+          struct seq_file * m = (struct seq_file *) malloc(_len_m0*sizeof(struct seq_file));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_m__i0__buf0 = 1;
+          m[_i0].buf = (char *) malloc(_len_m__i0__buf0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_m__i0__buf0; _j0++) {
+            m[_i0].buf[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          seq_putc(m,c);
+          for(int _aux = 0; _aux < _len_m0; _aux++) {
+          free(m[_aux].buf);
+          }
+          free(m);
+        
+        break;
+    }
     default:
         usage();
         break;

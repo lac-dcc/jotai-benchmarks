@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static int check_vendor_class(struct ib_mad_mgmt_vendor_cl
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,9 +80,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_vendor_class0 = 65025;
+          struct ib_mad_mgmt_vendor_class * vendor_class = (struct ib_mad_mgmt_vendor_class *) malloc(_len_vendor_class0*sizeof(struct ib_mad_mgmt_vendor_class));
+          for(int _i0 = 0; _i0 < _len_vendor_class0; _i0++) {
+              int _len_vendor_class__i0__method_table0 = 1;
+          vendor_class[_i0].method_table = (long *) malloc(_len_vendor_class__i0__method_table0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_vendor_class__i0__method_table0; _j0++) {
+            vendor_class[_i0].method_table[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = check_vendor_class(vendor_class);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vendor_class0; _aux++) {
+          free(vendor_class[_aux].method_table);
+          }
+          free(vendor_class);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_vendor_class0 = 100;
+          struct ib_mad_mgmt_vendor_class * vendor_class = (struct ib_mad_mgmt_vendor_class *) malloc(_len_vendor_class0*sizeof(struct ib_mad_mgmt_vendor_class));
+          for(int _i0 = 0; _i0 < _len_vendor_class0; _i0++) {
+              int _len_vendor_class__i0__method_table0 = 1;
+          vendor_class[_i0].method_table = (long *) malloc(_len_vendor_class__i0__method_table0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_vendor_class__i0__method_table0; _j0++) {
+            vendor_class[_i0].method_table[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = check_vendor_class(vendor_class);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vendor_class0; _aux++) {
+          free(vendor_class[_aux].method_table);
+          }
+          free(vendor_class);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_vendor_class0 = 1;
           struct ib_mad_mgmt_vendor_class * vendor_class = (struct ib_mad_mgmt_vendor_class *) malloc(_len_vendor_class0*sizeof(struct ib_mad_mgmt_vendor_class));
           for(int _i0 = 0; _i0 < _len_vendor_class0; _i0++) {
@@ -95,7 +208,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_vendor_class__i0__method_table0; _j0++) {
             vendor_class[_i0].method_table[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = check_vendor_class(vendor_class);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_vendor_class0; _aux++) {

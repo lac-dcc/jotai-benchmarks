@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ __attribute__((used)) static void qed_set_tunn_ports(struct qed_tunnel_info *p_t
 		p_tun->vxlan_port.port = p_src->vxlan_port.port;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,25 +86,170 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_p_tun0 = 65025;
+          struct qed_tunnel_info * p_tun = (struct qed_tunnel_info *) malloc(_len_p_tun0*sizeof(struct qed_tunnel_info));
+          for(int _i0 = 0; _i0 < _len_p_tun0; _i0++) {
+              p_tun[_i0].vxlan_port.port = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].vxlan_port.b_update_port = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_tun[_i0].geneve_port.port = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].geneve_port.b_update_port = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_p_src0 = 65025;
+          struct qed_tunnel_info * p_src = (struct qed_tunnel_info *) malloc(_len_p_src0*sizeof(struct qed_tunnel_info));
+          for(int _i0 = 0; _i0 < _len_p_src0; _i0++) {
+              p_src[_i0].vxlan_port.port = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_src[_i0].vxlan_port.b_update_port = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_src[_i0].geneve_port.port = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_src[_i0].geneve_port.b_update_port = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          qed_set_tunn_ports(p_tun,p_src);
+          free(p_tun);
+          free(p_src);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_p_tun0 = 100;
+          struct qed_tunnel_info * p_tun = (struct qed_tunnel_info *) malloc(_len_p_tun0*sizeof(struct qed_tunnel_info));
+          for(int _i0 = 0; _i0 < _len_p_tun0; _i0++) {
+              p_tun[_i0].vxlan_port.port = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].vxlan_port.b_update_port = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_tun[_i0].geneve_port.port = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].geneve_port.b_update_port = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_p_src0 = 100;
+          struct qed_tunnel_info * p_src = (struct qed_tunnel_info *) malloc(_len_p_src0*sizeof(struct qed_tunnel_info));
+          for(int _i0 = 0; _i0 < _len_p_src0; _i0++) {
+              p_src[_i0].vxlan_port.port = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_src[_i0].vxlan_port.b_update_port = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_src[_i0].geneve_port.port = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_src[_i0].geneve_port.b_update_port = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          qed_set_tunn_ports(p_tun,p_src);
+          free(p_tun);
+          free(p_src);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int _len_p_tun0 = 1;
           struct qed_tunnel_info * p_tun = (struct qed_tunnel_info *) malloc(_len_p_tun0*sizeof(struct qed_tunnel_info));
           for(int _i0 = 0; _i0 < _len_p_tun0; _i0++) {
-            p_tun[_i0].vxlan_port.port = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].vxlan_port.b_update_port = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].geneve_port.port = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].geneve_port.b_update_port = ((-2 * (next_i()%2)) + 1) * next_i();
+              p_tun[_i0].vxlan_port.port = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].vxlan_port.b_update_port = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_tun[_i0].geneve_port.port = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].geneve_port.b_update_port = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_p_src0 = 1;
           struct qed_tunnel_info * p_src = (struct qed_tunnel_info *) malloc(_len_p_src0*sizeof(struct qed_tunnel_info));
           for(int _i0 = 0; _i0 < _len_p_src0; _i0++) {
-            p_src[_i0].vxlan_port.port = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_src[_i0].vxlan_port.b_update_port = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_src[_i0].geneve_port.port = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_src[_i0].geneve_port.b_update_port = ((-2 * (next_i()%2)) + 1) * next_i();
+              p_src[_i0].vxlan_port.port = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_src[_i0].vxlan_port.b_update_port = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_src[_i0].geneve_port.port = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_src[_i0].geneve_port.b_update_port = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           qed_set_tunn_ports(p_tun,p_src);
           free(p_tun);
           free(p_src);

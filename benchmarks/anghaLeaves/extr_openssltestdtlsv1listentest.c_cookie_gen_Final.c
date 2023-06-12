@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static int cookie_gen(SSL *ssl, unsigned char *cookie, uns
     return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,24 +81,156 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_ssl0 = 65025;
+          int * ssl = (int *) malloc(_len_ssl0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ssl0; _i0++) {
+            ssl[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_cookie0 = 65025;
+          unsigned char * cookie = (unsigned char *) malloc(_len_cookie0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_cookie0; _i0++) {
+            cookie[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_cookie_len0 = 65025;
+          unsigned int * cookie_len = (unsigned int *) malloc(_len_cookie_len0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_cookie_len0; _i0++) {
+            cookie_len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = cookie_gen(ssl,cookie,cookie_len);
+          printf("%d\n", benchRet); 
+          free(ssl);
+          free(cookie);
+          free(cookie_len);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_ssl0 = 100;
+          int * ssl = (int *) malloc(_len_ssl0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ssl0; _i0++) {
+            ssl[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_cookie0 = 100;
+          unsigned char * cookie = (unsigned char *) malloc(_len_cookie0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_cookie0; _i0++) {
+            cookie[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_cookie_len0 = 100;
+          unsigned int * cookie_len = (unsigned int *) malloc(_len_cookie_len0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_cookie_len0; _i0++) {
+            cookie_len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = cookie_gen(ssl,cookie,cookie_len);
+          printf("%d\n", benchRet); 
+          free(ssl);
+          free(cookie);
+          free(cookie_len);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_ssl0 = 1;
           int * ssl = (int *) malloc(_len_ssl0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_ssl0; _i0++) {
             ssl[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_cookie0 = 1;
           unsigned char * cookie = (unsigned char *) malloc(_len_cookie0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_cookie0; _i0++) {
             cookie[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_cookie_len0 = 1;
           unsigned int * cookie_len = (unsigned int *) malloc(_len_cookie_len0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_cookie_len0; _i0++) {
             cookie_len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = cookie_gen(ssl,cookie,cookie_len);
           printf("%d\n", benchRet); 
           free(ssl);

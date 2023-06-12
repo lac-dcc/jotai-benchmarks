@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline int da9150_gpadc_ibus_current_avg(int raw_va
 	return (4 * ((raw_val * 1000) + 500)) / 2048;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int raw_val = 100;
+        
           int benchRet = da9150_gpadc_ibus_current_avg(raw_val);
           printf("%d\n", benchRet); 
         
@@ -93,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int raw_val = 255;
+        
           int benchRet = da9150_gpadc_ibus_current_avg(raw_val);
           printf("%d\n", benchRet); 
         
@@ -102,12 +99,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int raw_val = 10;
+        
           int benchRet = da9150_gpadc_ibus_current_avg(raw_val);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int raw_val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = da9150_gpadc_ibus_current_avg(raw_val);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

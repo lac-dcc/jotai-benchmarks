@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ set_titlebar_color(OSWindow *w, color_type color) {
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,16 +83,168 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int color = 100;
+        
           int _len_w0 = 1;
           struct TYPE_3__ * w = (struct TYPE_3__ *) malloc(_len_w0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_w0; _i0++) {
-            w[_i0].last_titlebar_color = ((-2 * (next_i()%2)) + 1) * next_i();
-        w[_i0].handle = ((-2 * (next_i()%2)) + 1) * next_i();
+              w[_i0].last_titlebar_color = ((-2 * (next_i()%2)) + 1) * next_i();
+          w[_i0].handle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          set_titlebar_color(w,color);
+          free(w);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int color = 255;
+        
+          int _len_w0 = 65025;
+          struct TYPE_3__ * w = (struct TYPE_3__ *) malloc(_len_w0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_w0; _i0++) {
+              w[_i0].last_titlebar_color = ((-2 * (next_i()%2)) + 1) * next_i();
+          w[_i0].handle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_titlebar_color(w,color);
+          free(w);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int color = 10;
+        
+          int _len_w0 = 100;
+          struct TYPE_3__ * w = (struct TYPE_3__ *) malloc(_len_w0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_w0; _i0++) {
+              w[_i0].last_titlebar_color = ((-2 * (next_i()%2)) + 1) * next_i();
+          w[_i0].handle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_titlebar_color(w,color);
+          free(w);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int color = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_w0 = 1;
+          struct TYPE_3__ * w = (struct TYPE_3__ *) malloc(_len_w0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_w0; _i0++) {
+              w[_i0].last_titlebar_color = ((-2 * (next_i()%2)) + 1) * next_i();
+          w[_i0].handle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           set_titlebar_color(w,color);
           free(w);
         

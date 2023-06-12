@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline int esdhc_is_usdhc(struct pltfm_imx_data *da
 	return !!(data->socdata->flags & ESDHC_FLAG_USDHC);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,18 +77,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_data0 = 1;
+          int _len_data0 = 65025;
           struct pltfm_imx_data * data = (struct pltfm_imx_data *) malloc(_len_data0*sizeof(struct pltfm_imx_data));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
               int _len_data__i0__socdata0 = 1;
           data[_i0].socdata = (struct TYPE_2__ *) malloc(_len_data__i0__socdata0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_data__i0__socdata0; _j0++) {
-            data[_i0].socdata->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              data[_i0].socdata->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = esdhc_is_usdhc(data);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_data0; _aux++) {
@@ -102,7 +101,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_data0 = 100;
+          struct pltfm_imx_data * data = (struct pltfm_imx_data *) malloc(_len_data0*sizeof(struct pltfm_imx_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              int _len_data__i0__socdata0 = 1;
+          data[_i0].socdata = (struct TYPE_2__ *) malloc(_len_data__i0__socdata0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_data__i0__socdata0; _j0++) {
+              data[_i0].socdata->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = esdhc_is_usdhc(data);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_data0; _aux++) {
+          free(data[_aux].socdata);
+          }
+          free(data);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_data0 = 1;
+          struct pltfm_imx_data * data = (struct pltfm_imx_data *) malloc(_len_data0*sizeof(struct pltfm_imx_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              int _len_data__i0__socdata0 = 1;
+          data[_i0].socdata = (struct TYPE_2__ *) malloc(_len_data__i0__socdata0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_data__i0__socdata0; _j0++) {
+              data[_i0].socdata->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = esdhc_is_usdhc(data);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_data0; _aux++) {
+          free(data[_aux].socdata);
+          }
+          free(data);
+        
+        break;
+    }
     default:
         usage();
         break;

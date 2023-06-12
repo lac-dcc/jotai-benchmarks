@@ -30,8 +30,10 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
-       1            linked\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            linked\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static struct spu_pdata *spu_pdata(struct spu *spu)
 	return spu->pdata;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,18 +76,45 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_spu0 = 1;
+          int _len_spu0 = 65025;
           struct spu * spu = (struct spu *) malloc(_len_spu0*sizeof(struct spu));
           for(int _i0 = 0; _i0 < _len_spu0; _i0++) {
               int _len_spu__i0__pdata0 = 1;
           spu[_i0].pdata = (struct spu_pdata *) malloc(_len_spu__i0__pdata0*sizeof(struct spu_pdata));
           for(int _j0 = 0; _j0 < _len_spu__i0__pdata0; _j0++) {
-            spu[_i0].pdata->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              spu[_i0].pdata->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          struct spu_pdata * benchRet = spu_pdata(spu);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_spu0; _aux++) {
+          free(spu[_aux].pdata);
+          }
+          free(spu);
+        
+        break;
+    }
+    // big-arr-10x
+    case 1:
+    {
+          int _len_spu0 = 100;
+          struct spu * spu = (struct spu *) malloc(_len_spu0*sizeof(struct spu));
+          for(int _i0 = 0; _i0 < _len_spu0; _i0++) {
+              int _len_spu__i0__pdata0 = 1;
+          spu[_i0].pdata = (struct spu_pdata *) malloc(_len_spu__i0__pdata0*sizeof(struct spu_pdata));
+          for(int _j0 = 0; _j0 < _len_spu__i0__pdata0; _j0++) {
+              spu[_i0].pdata->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           struct spu_pdata * benchRet = spu_pdata(spu);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_spu0; _aux++) {
@@ -102,7 +125,7 @@ int main(int argc, char *argv[]) {
         break;
     }
     // linked
-    case 1:
+    case 2:
     {
           int _len_spu0 = 1;
           struct spu * spu = (struct spu *) malloc(_len_spu0*sizeof(struct spu));
@@ -110,9 +133,12 @@ int main(int argc, char *argv[]) {
               int _len_spu__i0__pdata0 = 1;
           spu[_i0].pdata = (struct spu_pdata *) malloc(_len_spu__i0__pdata0*sizeof(struct spu_pdata));
           for(int _j0 = 0; _j0 < _len_spu__i0__pdata0; _j0++) {
-            spu[_i0].pdata->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              spu[_i0].pdata->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct spu_pdata * benchRet = spu_pdata(spu);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_spu0; _aux++) {
@@ -122,7 +148,30 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int _len_spu0 = 1;
+          struct spu * spu = (struct spu *) malloc(_len_spu0*sizeof(struct spu));
+          for(int _i0 = 0; _i0 < _len_spu0; _i0++) {
+              int _len_spu__i0__pdata0 = 1;
+          spu[_i0].pdata = (struct spu_pdata *) malloc(_len_spu__i0__pdata0*sizeof(struct spu_pdata));
+          for(int _j0 = 0; _j0 < _len_spu__i0__pdata0; _j0++) {
+              spu[_i0].pdata->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct spu_pdata * benchRet = spu_pdata(spu);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_spu0; _aux++) {
+          free(spu[_aux].pdata);
+          }
+          free(spu);
+        
+        break;
+    }
     default:
         usage();
         break;

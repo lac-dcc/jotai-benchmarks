@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ size_t h2o_http2_casper_num_entries(h2o_http2_casper_t *casper)
     return casper->keys.size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,14 +78,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_casper0 = 1;
+          int _len_casper0 = 65025;
           struct TYPE_5__ * casper = (struct TYPE_5__ *) malloc(_len_casper0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_casper0; _i0++) {
-            casper[_i0].keys.size = ((-2 * (next_i()%2)) + 1) * next_i();
+              casper[_i0].keys.size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           unsigned long benchRet = h2o_http2_casper_num_entries(casper);
           printf("%lu\n", benchRet); 
           free(casper);
@@ -103,15 +101,34 @@ int main(int argc, char *argv[]) {
           int _len_casper0 = 100;
           struct TYPE_5__ * casper = (struct TYPE_5__ *) malloc(_len_casper0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_casper0; _i0++) {
-            casper[_i0].keys.size = ((-2 * (next_i()%2)) + 1) * next_i();
+              casper[_i0].keys.size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           unsigned long benchRet = h2o_http2_casper_num_entries(casper);
           printf("%lu\n", benchRet); 
           free(casper);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_casper0 = 1;
+          struct TYPE_5__ * casper = (struct TYPE_5__ *) malloc(_len_casper0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_casper0; _i0++) {
+              casper[_i0].keys.size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          unsigned long benchRet = h2o_http2_casper_num_entries(casper);
+          printf("%lu\n", benchRet); 
+          free(casper);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,10 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            linked\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            linked\n\
+       4            empty\n\
 \n\
 ");
 
@@ -74,12 +77,6 @@ __attribute__((used)) static int gicp_idx_to_spi(struct mvebu_gicp *gicp, int id
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,17 +93,77 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int idx = 100;
+        
           int _len_gicp0 = 1;
           struct mvebu_gicp * gicp = (struct mvebu_gicp *) malloc(_len_gicp0*sizeof(struct mvebu_gicp));
           for(int _i0 = 0; _i0 < _len_gicp0; _i0++) {
-            gicp[_i0].spi_ranges_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+              gicp[_i0].spi_ranges_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_gicp__i0__spi_ranges0 = 1;
           gicp[_i0].spi_ranges = (struct mvebu_gicp_spi_range *) malloc(_len_gicp__i0__spi_ranges0*sizeof(struct mvebu_gicp_spi_range));
           for(int _j0 = 0; _j0 < _len_gicp__i0__spi_ranges0; _j0++) {
-            gicp[_i0].spi_ranges->count = ((-2 * (next_i()%2)) + 1) * next_i();
-        gicp[_i0].spi_ranges->start = ((-2 * (next_i()%2)) + 1) * next_i();
+              gicp[_i0].spi_ranges->count = ((-2 * (next_i()%2)) + 1) * next_i();
+          gicp[_i0].spi_ranges->start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = gicp_idx_to_spi(gicp,idx);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_gicp0; _aux++) {
+          free(gicp[_aux].spi_ranges);
+          }
+          free(gicp);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int idx = 255;
+        
+          int _len_gicp0 = 65025;
+          struct mvebu_gicp * gicp = (struct mvebu_gicp *) malloc(_len_gicp0*sizeof(struct mvebu_gicp));
+          for(int _i0 = 0; _i0 < _len_gicp0; _i0++) {
+              gicp[_i0].spi_ranges_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_gicp__i0__spi_ranges0 = 1;
+          gicp[_i0].spi_ranges = (struct mvebu_gicp_spi_range *) malloc(_len_gicp__i0__spi_ranges0*sizeof(struct mvebu_gicp_spi_range));
+          for(int _j0 = 0; _j0 < _len_gicp__i0__spi_ranges0; _j0++) {
+              gicp[_i0].spi_ranges->count = ((-2 * (next_i()%2)) + 1) * next_i();
+          gicp[_i0].spi_ranges->start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = gicp_idx_to_spi(gicp,idx);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_gicp0; _aux++) {
+          free(gicp[_aux].spi_ranges);
+          }
+          free(gicp);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int idx = 10;
+        
+          int _len_gicp0 = 100;
+          struct mvebu_gicp * gicp = (struct mvebu_gicp *) malloc(_len_gicp0*sizeof(struct mvebu_gicp));
+          for(int _i0 = 0; _i0 < _len_gicp0; _i0++) {
+              gicp[_i0].spi_ranges_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_gicp__i0__spi_ranges0 = 1;
+          gicp[_i0].spi_ranges = (struct mvebu_gicp_spi_range *) malloc(_len_gicp__i0__spi_ranges0*sizeof(struct mvebu_gicp_spi_range));
+          for(int _j0 = 0; _j0 < _len_gicp__i0__spi_ranges0; _j0++) {
+              gicp[_i0].spi_ranges->count = ((-2 * (next_i()%2)) + 1) * next_i();
+          gicp[_i0].spi_ranges->start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = gicp_idx_to_spi(gicp,idx);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_gicp0; _aux++) {
@@ -117,20 +174,24 @@ int main(int argc, char *argv[]) {
         break;
     }
     // linked
-    case 1:
+    case 3:
     {
           int idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int _len_gicp0 = 1;
           struct mvebu_gicp * gicp = (struct mvebu_gicp *) malloc(_len_gicp0*sizeof(struct mvebu_gicp));
           for(int _i0 = 0; _i0 < _len_gicp0; _i0++) {
-            gicp[_i0].spi_ranges_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+              gicp[_i0].spi_ranges_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_gicp__i0__spi_ranges0 = 1;
           gicp[_i0].spi_ranges = (struct mvebu_gicp_spi_range *) malloc(_len_gicp__i0__spi_ranges0*sizeof(struct mvebu_gicp_spi_range));
           for(int _j0 = 0; _j0 < _len_gicp__i0__spi_ranges0; _j0++) {
-            gicp[_i0].spi_ranges->count = ((-2 * (next_i()%2)) + 1) * next_i();
-        gicp[_i0].spi_ranges->start = ((-2 * (next_i()%2)) + 1) * next_i();
+              gicp[_i0].spi_ranges->count = ((-2 * (next_i()%2)) + 1) * next_i();
+          gicp[_i0].spi_ranges->start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = gicp_idx_to_spi(gicp,idx);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_gicp0; _aux++) {
@@ -140,7 +201,34 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // empty
+    case 4:
+    {
+          int idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_gicp0 = 1;
+          struct mvebu_gicp * gicp = (struct mvebu_gicp *) malloc(_len_gicp0*sizeof(struct mvebu_gicp));
+          for(int _i0 = 0; _i0 < _len_gicp0; _i0++) {
+              gicp[_i0].spi_ranges_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_gicp__i0__spi_ranges0 = 1;
+          gicp[_i0].spi_ranges = (struct mvebu_gicp_spi_range *) malloc(_len_gicp__i0__spi_ranges0*sizeof(struct mvebu_gicp_spi_range));
+          for(int _j0 = 0; _j0 < _len_gicp__i0__spi_ranges0; _j0++) {
+              gicp[_i0].spi_ranges->count = ((-2 * (next_i()%2)) + 1) * next_i();
+          gicp[_i0].spi_ranges->start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = gicp_idx_to_spi(gicp,idx);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_gicp0; _aux++) {
+          free(gicp[_aux].spi_ranges);
+          }
+          free(gicp);
+        
+        break;
+    }
     default:
         usage();
         break;

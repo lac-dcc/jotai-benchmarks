@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -114,12 +116,6 @@ void AAS_SetTexinfo(mapbrush_t *brush)
 	} //end else
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -132,21 +128,147 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_brush0 = 1;
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
+          int _len_brush0 = 65025;
           struct TYPE_5__ * brush = (struct TYPE_5__ *) malloc(_len_brush0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_brush0; _i0++) {
-            brush[_i0].contents = ((-2 * (next_i()%2)) + 1) * next_i();
-        brush[_i0].numsides = ((-2 * (next_i()%2)) + 1) * next_i();
+              brush[_i0].contents = ((-2 * (next_i()%2)) + 1) * next_i();
+          brush[_i0].numsides = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_brush__i0__original_sides0 = 1;
           brush[_i0].original_sides = (struct TYPE_4__ *) malloc(_len_brush__i0__original_sides0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_brush__i0__original_sides0; _j0++) {
-            brush[_i0].original_sides->flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        brush[_i0].original_sides->texinfo = ((-2 * (next_i()%2)) + 1) * next_i();
+              brush[_i0].original_sides->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          brush[_i0].original_sides->texinfo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          AAS_SetTexinfo(brush);
+          for(int _aux = 0; _aux < _len_brush0; _aux++) {
+          free(brush[_aux].original_sides);
+          }
+          free(brush);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
+          int _len_brush0 = 100;
+          struct TYPE_5__ * brush = (struct TYPE_5__ *) malloc(_len_brush0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_brush0; _i0++) {
+              brush[_i0].contents = ((-2 * (next_i()%2)) + 1) * next_i();
+          brush[_i0].numsides = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_brush__i0__original_sides0 = 1;
+          brush[_i0].original_sides = (struct TYPE_4__ *) malloc(_len_brush__i0__original_sides0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_brush__i0__original_sides0; _j0++) {
+              brush[_i0].original_sides->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          brush[_i0].original_sides->texinfo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          AAS_SetTexinfo(brush);
+          for(int _aux = 0; _aux < _len_brush0; _aux++) {
+          free(brush[_aux].original_sides);
+          }
+          free(brush);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
+          int _len_brush0 = 1;
+          struct TYPE_5__ * brush = (struct TYPE_5__ *) malloc(_len_brush0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_brush0; _i0++) {
+              brush[_i0].contents = ((-2 * (next_i()%2)) + 1) * next_i();
+          brush[_i0].numsides = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_brush__i0__original_sides0 = 1;
+          brush[_i0].original_sides = (struct TYPE_4__ *) malloc(_len_brush__i0__original_sides0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_brush__i0__original_sides0; _j0++) {
+              brush[_i0].original_sides->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          brush[_i0].original_sides->texinfo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           AAS_SetTexinfo(brush);
           for(int _aux = 0; _aux < _len_brush0; _aux++) {
           free(brush[_aux].original_sides);

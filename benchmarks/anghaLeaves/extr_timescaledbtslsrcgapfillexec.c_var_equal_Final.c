@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ var_equal(Var *v1, Var *v2)
 	return v1->varno == v2->varno && v1->varattno == v2->varattno && v1->vartype == v2->vartype;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,23 +77,154 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_v10 = 65025;
+          struct TYPE_4__ * v1 = (struct TYPE_4__ *) malloc(_len_v10*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_v10; _i0++) {
+              v1[_i0].varno = ((-2 * (next_i()%2)) + 1) * next_i();
+          v1[_i0].varattno = ((-2 * (next_i()%2)) + 1) * next_i();
+          v1[_i0].vartype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_v20 = 65025;
+          struct TYPE_4__ * v2 = (struct TYPE_4__ *) malloc(_len_v20*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_v20; _i0++) {
+              v2[_i0].varno = ((-2 * (next_i()%2)) + 1) * next_i();
+          v2[_i0].varattno = ((-2 * (next_i()%2)) + 1) * next_i();
+          v2[_i0].vartype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = var_equal(v1,v2);
+          printf("%d\n", benchRet); 
+          free(v1);
+          free(v2);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_v10 = 100;
+          struct TYPE_4__ * v1 = (struct TYPE_4__ *) malloc(_len_v10*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_v10; _i0++) {
+              v1[_i0].varno = ((-2 * (next_i()%2)) + 1) * next_i();
+          v1[_i0].varattno = ((-2 * (next_i()%2)) + 1) * next_i();
+          v1[_i0].vartype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_v20 = 100;
+          struct TYPE_4__ * v2 = (struct TYPE_4__ *) malloc(_len_v20*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_v20; _i0++) {
+              v2[_i0].varno = ((-2 * (next_i()%2)) + 1) * next_i();
+          v2[_i0].varattno = ((-2 * (next_i()%2)) + 1) * next_i();
+          v2[_i0].vartype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = var_equal(v1,v2);
+          printf("%d\n", benchRet); 
+          free(v1);
+          free(v2);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int _len_v10 = 1;
           struct TYPE_4__ * v1 = (struct TYPE_4__ *) malloc(_len_v10*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_v10; _i0++) {
-            v1[_i0].varno = ((-2 * (next_i()%2)) + 1) * next_i();
-        v1[_i0].varattno = ((-2 * (next_i()%2)) + 1) * next_i();
-        v1[_i0].vartype = ((-2 * (next_i()%2)) + 1) * next_i();
+              v1[_i0].varno = ((-2 * (next_i()%2)) + 1) * next_i();
+          v1[_i0].varattno = ((-2 * (next_i()%2)) + 1) * next_i();
+          v1[_i0].vartype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_v20 = 1;
           struct TYPE_4__ * v2 = (struct TYPE_4__ *) malloc(_len_v20*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_v20; _i0++) {
-            v2[_i0].varno = ((-2 * (next_i()%2)) + 1) * next_i();
-        v2[_i0].varattno = ((-2 * (next_i()%2)) + 1) * next_i();
-        v2[_i0].vartype = ((-2 * (next_i()%2)) + 1) * next_i();
+              v2[_i0].varno = ((-2 * (next_i()%2)) + 1) * next_i();
+          v2[_i0].varattno = ((-2 * (next_i()%2)) + 1) * next_i();
+          v2[_i0].vartype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = var_equal(v1,v2);
           printf("%d\n", benchRet); 
           free(v1);

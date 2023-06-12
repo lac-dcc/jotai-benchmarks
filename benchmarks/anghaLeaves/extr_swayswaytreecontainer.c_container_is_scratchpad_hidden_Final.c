@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -59,12 +61,6 @@ bool container_is_scratchpad_hidden(struct sway_container *con) {
 	return con->scratchpad && !con->workspace;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -77,15 +73,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_con0 = 65025;
+          struct sway_container * con = (struct sway_container *) malloc(_len_con0*sizeof(struct sway_container));
+          for(int _i0 = 0; _i0 < _len_con0; _i0++) {
+              con[_i0].workspace = ((-2 * (next_i()%2)) + 1) * next_i();
+          con[_i0].scratchpad = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = container_is_scratchpad_hidden(con);
+          printf("%d\n", benchRet); 
+          free(con);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_con0 = 100;
+          struct sway_container * con = (struct sway_container *) malloc(_len_con0*sizeof(struct sway_container));
+          for(int _i0 = 0; _i0 < _len_con0; _i0++) {
+              con[_i0].workspace = ((-2 * (next_i()%2)) + 1) * next_i();
+          con[_i0].scratchpad = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = container_is_scratchpad_hidden(con);
+          printf("%d\n", benchRet); 
+          free(con);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_con0 = 1;
           struct sway_container * con = (struct sway_container *) malloc(_len_con0*sizeof(struct sway_container));
           for(int _i0 = 0; _i0 < _len_con0; _i0++) {
-            con[_i0].workspace = ((-2 * (next_i()%2)) + 1) * next_i();
-        con[_i0].scratchpad = ((-2 * (next_i()%2)) + 1) * next_i();
+              con[_i0].workspace = ((-2 * (next_i()%2)) + 1) * next_i();
+          con[_i0].scratchpad = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = container_is_scratchpad_hidden(con);
           printf("%d\n", benchRet); 
           free(con);

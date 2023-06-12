@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline unsigned long __owner_flags(unsigned long ow
 	return owner & MUTEX_FLAGS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long owner = 100;
+        
           unsigned long benchRet = __owner_flags(owner);
           printf("%lu\n", benchRet); 
         
@@ -93,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long owner = 255;
+        
           unsigned long benchRet = __owner_flags(owner);
           printf("%lu\n", benchRet); 
         
@@ -102,12 +99,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long owner = 10;
+        
           unsigned long benchRet = __owner_flags(owner);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long owner = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = __owner_flags(owner);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

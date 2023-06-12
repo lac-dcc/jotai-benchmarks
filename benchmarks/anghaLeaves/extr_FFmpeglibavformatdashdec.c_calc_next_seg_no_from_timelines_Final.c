@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -88,12 +90,6 @@ finish:
     return num;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,26 +102,169 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 49
+          // dynamic_instructions_O0 : 49
+          // ------------------------------- 
+          // static_instructions_O1 : 29
+          // dynamic_instructions_O1 : 29
+          // ------------------------------- 
+          // static_instructions_O2 : 33
+          // dynamic_instructions_O2 : 33
+          // ------------------------------- 
+          // static_instructions_O3 : 33
+          // dynamic_instructions_O3 : 33
+          // ------------------------------- 
+          // static_instructions_Ofast : 33
+          // dynamic_instructions_Ofast : 33
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 41
+          // dynamic_instructions_Oz : 41
+          // ------------------------------- 
+
           unsigned long cur_time = 100;
+        
           int _len_pls0 = 1;
           struct representation * pls = (struct representation *) malloc(_len_pls0*sizeof(struct representation));
           for(int _i0 = 0; _i0 < _len_pls0; _i0++) {
-            pls[_i0].n_timelines = ((-2 * (next_i()%2)) + 1) * next_i();
+              pls[_i0].n_timelines = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_pls__i0__timelines0 = 1;
           pls[_i0].timelines = (struct TYPE_2__ **) malloc(_len_pls__i0__timelines0*sizeof(struct TYPE_2__ *));
           for(int _j0 = 0; _j0 < _len_pls__i0__timelines0; _j0++) {
             int _len_pls__i0__timelines1 = 1;
             pls[_i0].timelines[_j0] = (struct TYPE_2__ *) malloc(_len_pls__i0__timelines1*sizeof(struct TYPE_2__));
             for(int _j1 = 0; _j1 < _len_pls__i0__timelines1; _j1++) {
-              pls[_i0].timelines[_j0]->starttime = ((-2 * (next_i()%2)) + 1) * next_i();
-        pls[_i0].timelines[_j0]->duration = ((-2 * (next_i()%2)) + 1) * next_i();
-        pls[_i0].timelines[_j0]->repeat = ((-2 * (next_i()%2)) + 1) * next_i();
+                pls[_i0].timelines[_j0]->starttime = ((-2 * (next_i()%2)) + 1) * next_i();
+          pls[_i0].timelines[_j0]->duration = ((-2 * (next_i()%2)) + 1) * next_i();
+          pls[_i0].timelines[_j0]->repeat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           }
+        
+          unsigned long benchRet = calc_next_seg_no_from_timelines(pls,cur_time);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pls0; _aux++) {
+          free(*(pls[_aux].timelines));
+        free(pls[_aux].timelines);
+          }
+          free(pls);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 49
+          // dynamic_instructions_O0 : 49
+          // ------------------------------- 
+          // static_instructions_O1 : 29
+          // dynamic_instructions_O1 : 29
+          // ------------------------------- 
+          // static_instructions_O2 : 33
+          // dynamic_instructions_O2 : 33
+          // ------------------------------- 
+          // static_instructions_O3 : 33
+          // dynamic_instructions_O3 : 33
+          // ------------------------------- 
+          // static_instructions_Ofast : 33
+          // dynamic_instructions_Ofast : 33
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 41
+          // dynamic_instructions_Oz : 41
+          // ------------------------------- 
+
+          unsigned long cur_time = 255;
+        
+          int _len_pls0 = 65025;
+          struct representation * pls = (struct representation *) malloc(_len_pls0*sizeof(struct representation));
+          for(int _i0 = 0; _i0 < _len_pls0; _i0++) {
+              pls[_i0].n_timelines = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pls__i0__timelines0 = 1;
+          pls[_i0].timelines = (struct TYPE_2__ **) malloc(_len_pls__i0__timelines0*sizeof(struct TYPE_2__ *));
+          for(int _j0 = 0; _j0 < _len_pls__i0__timelines0; _j0++) {
+            int _len_pls__i0__timelines1 = 1;
+            pls[_i0].timelines[_j0] = (struct TYPE_2__ *) malloc(_len_pls__i0__timelines1*sizeof(struct TYPE_2__));
+            for(int _j1 = 0; _j1 < _len_pls__i0__timelines1; _j1++) {
+                pls[_i0].timelines[_j0]->starttime = ((-2 * (next_i()%2)) + 1) * next_i();
+          pls[_i0].timelines[_j0]->duration = ((-2 * (next_i()%2)) + 1) * next_i();
+          pls[_i0].timelines[_j0]->repeat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          unsigned long benchRet = calc_next_seg_no_from_timelines(pls,cur_time);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pls0; _aux++) {
+          free(*(pls[_aux].timelines));
+        free(pls[_aux].timelines);
+          }
+          free(pls);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 49
+          // dynamic_instructions_O0 : 49
+          // ------------------------------- 
+          // static_instructions_O1 : 29
+          // dynamic_instructions_O1 : 29
+          // ------------------------------- 
+          // static_instructions_O2 : 33
+          // dynamic_instructions_O2 : 33
+          // ------------------------------- 
+          // static_instructions_O3 : 33
+          // dynamic_instructions_O3 : 33
+          // ------------------------------- 
+          // static_instructions_Ofast : 33
+          // dynamic_instructions_Ofast : 33
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 41
+          // dynamic_instructions_Oz : 41
+          // ------------------------------- 
+
+          unsigned long cur_time = 10;
+        
+          int _len_pls0 = 100;
+          struct representation * pls = (struct representation *) malloc(_len_pls0*sizeof(struct representation));
+          for(int _i0 = 0; _i0 < _len_pls0; _i0++) {
+              pls[_i0].n_timelines = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pls__i0__timelines0 = 1;
+          pls[_i0].timelines = (struct TYPE_2__ **) malloc(_len_pls__i0__timelines0*sizeof(struct TYPE_2__ *));
+          for(int _j0 = 0; _j0 < _len_pls__i0__timelines0; _j0++) {
+            int _len_pls__i0__timelines1 = 1;
+            pls[_i0].timelines[_j0] = (struct TYPE_2__ *) malloc(_len_pls__i0__timelines1*sizeof(struct TYPE_2__));
+            for(int _j1 = 0; _j1 < _len_pls__i0__timelines1; _j1++) {
+                pls[_i0].timelines[_j0]->starttime = ((-2 * (next_i()%2)) + 1) * next_i();
+          pls[_i0].timelines[_j0]->duration = ((-2 * (next_i()%2)) + 1) * next_i();
+          pls[_i0].timelines[_j0]->repeat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
           unsigned long benchRet = calc_next_seg_no_from_timelines(pls,cur_time);
           printf("%lu\n", benchRet); 
           for(int _aux = 0; _aux < _len_pls0; _aux++) {

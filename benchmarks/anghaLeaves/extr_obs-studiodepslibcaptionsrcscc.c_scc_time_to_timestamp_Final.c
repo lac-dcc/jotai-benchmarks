@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ double scc_time_to_timestamp(int hh, int mm, int ss, int ff)
     return (hh * 3600.0) + (mm * 60.0) + ss + (ff / 29.97);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,9 +78,13 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int hh = 100;
+        
           int mm = 100;
+        
           int ss = 100;
+        
           int ff = 100;
+        
           double benchRet = scc_time_to_timestamp(hh,mm,ss,ff);
           printf("%lf\n", benchRet); 
         
@@ -95,9 +94,13 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int hh = 255;
+        
           int mm = 255;
+        
           int ss = 255;
+        
           int ff = 255;
+        
           double benchRet = scc_time_to_timestamp(hh,mm,ss,ff);
           printf("%lf\n", benchRet); 
         
@@ -107,15 +110,34 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int hh = 10;
+        
           int mm = 10;
+        
           int ss = 10;
+        
           int ff = 10;
+        
           double benchRet = scc_time_to_timestamp(hh,mm,ss,ff);
           printf("%lf\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int hh = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int mm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int ss = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int ff = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          double benchRet = scc_time_to_timestamp(hh,mm,ss,ff);
+          printf("%lf\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

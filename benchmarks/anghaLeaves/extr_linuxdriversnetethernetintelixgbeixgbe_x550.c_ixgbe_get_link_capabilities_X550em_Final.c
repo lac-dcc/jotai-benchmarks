@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -146,12 +148,6 @@ __attribute__((used)) static s32 ixgbe_get_link_capabilities_X550em(struct ixgbe
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -164,31 +160,186 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_hw0 = 65025;
+          struct ixgbe_hw * hw = (struct ixgbe_hw *) malloc(_len_hw0*sizeof(struct ixgbe_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].device_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].phy.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].phy.speeds_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].phy.media_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].phy.sfp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].phy.nw_mng_if_sel = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].phy.multispeed_fiber = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hw[_i0].mac.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_speed0 = 65025;
+          int * speed = (int *) malloc(_len_speed0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_speed0; _i0++) {
+            speed[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_autoneg0 = 65025;
+          int * autoneg = (int *) malloc(_len_autoneg0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_autoneg0; _i0++) {
+            autoneg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ixgbe_get_link_capabilities_X550em(hw,speed,autoneg);
+          printf("%d\n", benchRet); 
+          free(hw);
+          free(speed);
+          free(autoneg);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_hw0 = 100;
+          struct ixgbe_hw * hw = (struct ixgbe_hw *) malloc(_len_hw0*sizeof(struct ixgbe_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].device_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].phy.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].phy.speeds_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].phy.media_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].phy.sfp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].phy.nw_mng_if_sel = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].phy.multispeed_fiber = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hw[_i0].mac.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_speed0 = 100;
+          int * speed = (int *) malloc(_len_speed0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_speed0; _i0++) {
+            speed[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_autoneg0 = 100;
+          int * autoneg = (int *) malloc(_len_autoneg0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_autoneg0; _i0++) {
+            autoneg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ixgbe_get_link_capabilities_X550em(hw,speed,autoneg);
+          printf("%d\n", benchRet); 
+          free(hw);
+          free(speed);
+          free(autoneg);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int _len_hw0 = 1;
           struct ixgbe_hw * hw = (struct ixgbe_hw *) malloc(_len_hw0*sizeof(struct ixgbe_hw));
           for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
-            hw[_i0].device_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].phy.type = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].phy.speeds_supported = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].phy.media_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].phy.sfp_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].phy.nw_mng_if_sel = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].phy.multispeed_fiber = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].mac.type = ((-2 * (next_i()%2)) + 1) * next_i();
+              hw[_i0].device_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].phy.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].phy.speeds_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].phy.media_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].phy.sfp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].phy.nw_mng_if_sel = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].phy.multispeed_fiber = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hw[_i0].mac.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_speed0 = 1;
           int * speed = (int *) malloc(_len_speed0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_speed0; _i0++) {
             speed[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_autoneg0 = 1;
           int * autoneg = (int *) malloc(_len_autoneg0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_autoneg0; _i0++) {
             autoneg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = ixgbe_get_link_capabilities_X550em(hw,speed,autoneg);
           printf("%d\n", benchRet); 
           free(hw);

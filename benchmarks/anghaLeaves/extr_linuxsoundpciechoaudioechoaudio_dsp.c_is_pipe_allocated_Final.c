@@ -61,12 +61,6 @@ __attribute__((used)) static inline int is_pipe_allocated(struct echoaudio *chip
 	return (chip->pipe_alloc_mask & (1 << pipe_index));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,15 +73,41 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // big-arr-10x
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int pipe_index = 10;
+        
           int _len_chip0 = 100;
           struct echoaudio * chip = (struct echoaudio *) malloc(_len_chip0*sizeof(struct echoaudio));
           for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
-            chip[_i0].pipe_alloc_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              chip[_i0].pipe_alloc_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_pipe_allocated(chip,pipe_index);
           printf("%d\n", benchRet); 
           free(chip);

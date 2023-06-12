@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static inline bool is880(struct atp_unit *atp)
 	       atp->pdev->device == ATP880_DEVID2;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,18 +79,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_atp0 = 1;
+          int _len_atp0 = 65025;
           struct atp_unit * atp = (struct atp_unit *) malloc(_len_atp0*sizeof(struct atp_unit));
           for(int _i0 = 0; _i0 < _len_atp0; _i0++) {
               int _len_atp__i0__pdev0 = 1;
           atp[_i0].pdev = (struct TYPE_2__ *) malloc(_len_atp__i0__pdev0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_atp__i0__pdev0; _j0++) {
-            atp[_i0].pdev->device = ((-2 * (next_i()%2)) + 1) * next_i();
+              atp[_i0].pdev->device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = is880(atp);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_atp0; _aux++) {
@@ -104,7 +103,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_atp0 = 100;
+          struct atp_unit * atp = (struct atp_unit *) malloc(_len_atp0*sizeof(struct atp_unit));
+          for(int _i0 = 0; _i0 < _len_atp0; _i0++) {
+              int _len_atp__i0__pdev0 = 1;
+          atp[_i0].pdev = (struct TYPE_2__ *) malloc(_len_atp__i0__pdev0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_atp__i0__pdev0; _j0++) {
+              atp[_i0].pdev->device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = is880(atp);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_atp0; _aux++) {
+          free(atp[_aux].pdev);
+          }
+          free(atp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_atp0 = 1;
+          struct atp_unit * atp = (struct atp_unit *) malloc(_len_atp0*sizeof(struct atp_unit));
+          for(int _i0 = 0; _i0 < _len_atp0; _i0++) {
+              int _len_atp__i0__pdev0 = 1;
+          atp[_i0].pdev = (struct TYPE_2__ *) malloc(_len_atp__i0__pdev0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_atp__i0__pdev0; _j0++) {
+              atp[_i0].pdev->device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = is880(atp);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_atp0; _aux++) {
+          free(atp[_aux].pdev);
+          }
+          free(atp);
+        
+        break;
+    }
     default:
         usage();
         break;

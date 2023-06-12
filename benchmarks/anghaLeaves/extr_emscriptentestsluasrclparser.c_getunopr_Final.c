@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +72,6 @@ __attribute__((used)) static UnOpr getunopr (int op) {
   }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int op = 100;
+        
           int benchRet = getunopr(op);
           printf("%d\n", benchRet); 
         
@@ -102,6 +98,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int op = 255;
+        
           int benchRet = getunopr(op);
           printf("%d\n", benchRet); 
         
@@ -111,12 +108,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int op = 10;
+        
           int benchRet = getunopr(op);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int op = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = getunopr(op);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

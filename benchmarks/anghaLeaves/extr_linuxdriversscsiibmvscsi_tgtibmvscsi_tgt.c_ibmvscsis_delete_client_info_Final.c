@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +74,6 @@ __attribute__((used)) static void ibmvscsis_delete_client_info(struct scsi_info 
 		vscsi->client_data.os_type = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,18 +90,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int client_closed = 100;
+        
           int _len_vscsi0 = 1;
           struct scsi_info * vscsi = (struct scsi_info *) malloc(_len_vscsi0*sizeof(struct scsi_info));
           for(int _i0 = 0; _i0 < _len_vscsi0; _i0++) {
-            vscsi[_i0].client_data.os_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        vscsi[_i0].client_cap = ((-2 * (next_i()%2)) + 1) * next_i();
+              vscsi[_i0].client_data.os_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          vscsi[_i0].client_cap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ibmvscsis_delete_client_info(vscsi,client_closed);
           free(vscsi);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int client_closed = 255;
+        
+          int _len_vscsi0 = 65025;
+          struct scsi_info * vscsi = (struct scsi_info *) malloc(_len_vscsi0*sizeof(struct scsi_info));
+          for(int _i0 = 0; _i0 < _len_vscsi0; _i0++) {
+              vscsi[_i0].client_data.os_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          vscsi[_i0].client_cap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ibmvscsis_delete_client_info(vscsi,client_closed);
+          free(vscsi);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int client_closed = 10;
+        
+          int _len_vscsi0 = 100;
+          struct scsi_info * vscsi = (struct scsi_info *) malloc(_len_vscsi0*sizeof(struct scsi_info));
+          for(int _i0 = 0; _i0 < _len_vscsi0; _i0++) {
+              vscsi[_i0].client_data.os_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          vscsi[_i0].client_cap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ibmvscsis_delete_client_info(vscsi,client_closed);
+          free(vscsi);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int client_closed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_vscsi0 = 1;
+          struct scsi_info * vscsi = (struct scsi_info *) malloc(_len_vscsi0*sizeof(struct scsi_info));
+          for(int _i0 = 0; _i0 < _len_vscsi0; _i0++) {
+              vscsi[_i0].client_data.os_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          vscsi[_i0].client_cap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ibmvscsis_delete_client_info(vscsi,client_closed);
+          free(vscsi);
+        
+        break;
+    }
     default:
         usage();
         break;

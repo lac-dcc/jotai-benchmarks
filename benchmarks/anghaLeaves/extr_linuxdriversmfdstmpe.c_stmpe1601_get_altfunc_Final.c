@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +76,6 @@ __attribute__((used)) static int stmpe1601_get_altfunc(struct stmpe *stmpe, enum
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,15 +88,18 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           enum stmpe_block block = 0;
-          int _len_stmpe0 = 1;
+        
+          int _len_stmpe0 = 65025;
           struct stmpe * stmpe = (struct stmpe *) malloc(_len_stmpe0*sizeof(struct stmpe));
           for(int _i0 = 0; _i0 < _len_stmpe0; _i0++) {
-            stmpe[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              stmpe[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = stmpe1601_get_altfunc(stmpe,block);
           printf("%d\n", benchRet); 
           free(stmpe);
@@ -112,18 +110,38 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           enum stmpe_block block = 0;
+        
           int _len_stmpe0 = 100;
           struct stmpe * stmpe = (struct stmpe *) malloc(_len_stmpe0*sizeof(struct stmpe));
           for(int _i0 = 0; _i0 < _len_stmpe0; _i0++) {
-            stmpe[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              stmpe[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = stmpe1601_get_altfunc(stmpe,block);
           printf("%d\n", benchRet); 
           free(stmpe);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          enum stmpe_block block = 0;
+        
+          int _len_stmpe0 = 1;
+          struct stmpe * stmpe = (struct stmpe *) malloc(_len_stmpe0*sizeof(struct stmpe));
+          for(int _i0 = 0; _i0 < _len_stmpe0; _i0++) {
+              stmpe[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = stmpe1601_get_altfunc(stmpe,block);
+          printf("%d\n", benchRet); 
+          free(stmpe);
+        
+        break;
+    }
     default:
         usage();
         break;

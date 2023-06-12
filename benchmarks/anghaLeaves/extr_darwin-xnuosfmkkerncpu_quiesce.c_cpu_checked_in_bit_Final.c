@@ -61,12 +61,6 @@ cpu_checked_in_bit(int cpuid)
 	return 1UL << (2 * cpuid);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,12 +77,12 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int cpuid = 10;
+        
           unsigned long benchRet = cpu_checked_in_bit(cpuid);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

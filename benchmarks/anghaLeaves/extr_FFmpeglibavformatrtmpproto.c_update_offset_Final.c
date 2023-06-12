@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +79,6 @@ __attribute__((used)) static int update_offset(RTMPContext *rt, int size)
     return old_flv_size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,16 +91,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int size = 100;
+        
           int _len_rt0 = 1;
           struct TYPE_3__ * rt = (struct TYPE_3__ *) malloc(_len_rt0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_rt0; _i0++) {
-            rt[_i0].flv_off = ((-2 * (next_i()%2)) + 1) * next_i();
-        rt[_i0].flv_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              rt[_i0].flv_off = ((-2 * (next_i()%2)) + 1) * next_i();
+          rt[_i0].flv_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = update_offset(rt,size);
+          printf("%d\n", benchRet); 
+          free(rt);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int size = 255;
+        
+          int _len_rt0 = 65025;
+          struct TYPE_3__ * rt = (struct TYPE_3__ *) malloc(_len_rt0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_rt0; _i0++) {
+              rt[_i0].flv_off = ((-2 * (next_i()%2)) + 1) * next_i();
+          rt[_i0].flv_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = update_offset(rt,size);
+          printf("%d\n", benchRet); 
+          free(rt);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int size = 10;
+        
+          int _len_rt0 = 100;
+          struct TYPE_3__ * rt = (struct TYPE_3__ *) malloc(_len_rt0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_rt0; _i0++) {
+              rt[_i0].flv_off = ((-2 * (next_i()%2)) + 1) * next_i();
+          rt[_i0].flv_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = update_offset(rt,size);
+          printf("%d\n", benchRet); 
+          free(rt);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rt0 = 1;
+          struct TYPE_3__ * rt = (struct TYPE_3__ *) malloc(_len_rt0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_rt0; _i0++) {
+              rt[_i0].flv_off = ((-2 * (next_i()%2)) + 1) * next_i();
+          rt[_i0].flv_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = update_offset(rt,size);
           printf("%d\n", benchRet); 
           free(rt);

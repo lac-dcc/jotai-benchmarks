@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static void apq8096_add_be_ops(struct snd_soc_card *card)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,20 +83,144 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_card0 = 1;
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_card0 = 65025;
           struct snd_soc_card * card = (struct snd_soc_card *) malloc(_len_card0*sizeof(struct snd_soc_card));
           for(int _i0 = 0; _i0 < _len_card0; _i0++) {
-            card[_i0].num_links = ((-2 * (next_i()%2)) + 1) * next_i();
+              card[_i0].num_links = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_card__i0__dai_link0 = 1;
           card[_i0].dai_link = (struct snd_soc_dai_link *) malloc(_len_card__i0__dai_link0*sizeof(struct snd_soc_dai_link));
           for(int _j0 = 0; _j0 < _len_card__i0__dai_link0; _j0++) {
-            card[_i0].dai_link->no_pcm = ((-2 * (next_i()%2)) + 1) * next_i();
-        card[_i0].dai_link->be_hw_params_fixup = ((-2 * (next_i()%2)) + 1) * next_i();
+              card[_i0].dai_link->no_pcm = ((-2 * (next_i()%2)) + 1) * next_i();
+          card[_i0].dai_link->be_hw_params_fixup = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          apq8096_add_be_ops(card);
+          for(int _aux = 0; _aux < _len_card0; _aux++) {
+          free(card[_aux].dai_link);
+          }
+          free(card);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_card0 = 100;
+          struct snd_soc_card * card = (struct snd_soc_card *) malloc(_len_card0*sizeof(struct snd_soc_card));
+          for(int _i0 = 0; _i0 < _len_card0; _i0++) {
+              card[_i0].num_links = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_card__i0__dai_link0 = 1;
+          card[_i0].dai_link = (struct snd_soc_dai_link *) malloc(_len_card__i0__dai_link0*sizeof(struct snd_soc_dai_link));
+          for(int _j0 = 0; _j0 < _len_card__i0__dai_link0; _j0++) {
+              card[_i0].dai_link->no_pcm = ((-2 * (next_i()%2)) + 1) * next_i();
+          card[_i0].dai_link->be_hw_params_fixup = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          apq8096_add_be_ops(card);
+          for(int _aux = 0; _aux < _len_card0; _aux++) {
+          free(card[_aux].dai_link);
+          }
+          free(card);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_card0 = 1;
+          struct snd_soc_card * card = (struct snd_soc_card *) malloc(_len_card0*sizeof(struct snd_soc_card));
+          for(int _i0 = 0; _i0 < _len_card0; _i0++) {
+              card[_i0].num_links = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_card__i0__dai_link0 = 1;
+          card[_i0].dai_link = (struct snd_soc_dai_link *) malloc(_len_card__i0__dai_link0*sizeof(struct snd_soc_dai_link));
+          for(int _j0 = 0; _j0 < _len_card__i0__dai_link0; _j0++) {
+              card[_i0].dai_link->no_pcm = ((-2 * (next_i()%2)) + 1) * next_i();
+          card[_i0].dai_link->be_hw_params_fixup = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           apq8096_add_be_ops(card);
           for(int _aux = 0; _aux < _len_card0; _aux++) {
           free(card[_aux].dai_link);

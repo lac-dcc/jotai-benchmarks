@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ do_rand(unsigned long *ctx)
 	return ((*ctx = *ctx * 1103515245 + 12345) % ((u_long)PHP_RAND_MAX + 1));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ctx0 = 1;
+          int _len_ctx0 = 65025;
           unsigned long * ctx = (unsigned long *) malloc(_len_ctx0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
             ctx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = do_rand(ctx);
           printf("%d\n", benchRet); 
           free(ctx);
@@ -103,13 +99,28 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
             ctx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = do_rand(ctx);
           printf("%d\n", benchRet); 
           free(ctx);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ctx0 = 1;
+          unsigned long * ctx = (unsigned long *) malloc(_len_ctx0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+            ctx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = do_rand(ctx);
+          printf("%d\n", benchRet); 
+          free(ctx);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -60,12 +60,6 @@ __attribute__((used)) static inline int signed_shift(int i, int shift) {
     return i >> -shift;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,13 +76,14 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int i = 10;
+        
           int shift = 10;
+        
           int benchRet = signed_shift(i,shift);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ options_array_cmp(struct options_array_item *a1, struct options_array_item *a2)
 	return (0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,19 +79,142 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_a10 = 65025;
+          struct options_array_item * a1 = (struct options_array_item *) malloc(_len_a10*sizeof(struct options_array_item));
+          for(int _i0 = 0; _i0 < _len_a10; _i0++) {
+              a1[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_a20 = 65025;
+          struct options_array_item * a2 = (struct options_array_item *) malloc(_len_a20*sizeof(struct options_array_item));
+          for(int _i0 = 0; _i0 < _len_a20; _i0++) {
+              a2[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = options_array_cmp(a1,a2);
+          printf("%d\n", benchRet); 
+          free(a1);
+          free(a2);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_a10 = 100;
+          struct options_array_item * a1 = (struct options_array_item *) malloc(_len_a10*sizeof(struct options_array_item));
+          for(int _i0 = 0; _i0 < _len_a10; _i0++) {
+              a1[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_a20 = 100;
+          struct options_array_item * a2 = (struct options_array_item *) malloc(_len_a20*sizeof(struct options_array_item));
+          for(int _i0 = 0; _i0 < _len_a20; _i0++) {
+              a2[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = options_array_cmp(a1,a2);
+          printf("%d\n", benchRet); 
+          free(a1);
+          free(a2);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_a10 = 1;
           struct options_array_item * a1 = (struct options_array_item *) malloc(_len_a10*sizeof(struct options_array_item));
           for(int _i0 = 0; _i0 < _len_a10; _i0++) {
-            a1[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+              a1[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_a20 = 1;
           struct options_array_item * a2 = (struct options_array_item *) malloc(_len_a20*sizeof(struct options_array_item));
           for(int _i0 = 0; _i0 < _len_a20; _i0++) {
-            a2[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+              a2[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = options_array_cmp(a1,a2);
           printf("%d\n", benchRet); 
           free(a1);

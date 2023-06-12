@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static int need_core(struct ff_effect *old, struct ff_effe
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,27 +85,178 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          int _len_old0 = 65025;
+          struct ff_effect * old = (struct ff_effect *) malloc(_len_old0*sizeof(struct ff_effect));
+          for(int _i0 = 0; _i0 < _len_old0; _i0++) {
+              old[_i0].direction = ((-2 * (next_i()%2)) + 1) * next_i();
+          old[_i0].replay.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          old[_i0].replay.delay = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          old[_i0].trigger.button = ((-2 * (next_i()%2)) + 1) * next_i();
+          old[_i0].trigger.interval = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_new0 = 65025;
+          struct ff_effect * new = (struct ff_effect *) malloc(_len_new0*sizeof(struct ff_effect));
+          for(int _i0 = 0; _i0 < _len_new0; _i0++) {
+              new[_i0].direction = ((-2 * (next_i()%2)) + 1) * next_i();
+          new[_i0].replay.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          new[_i0].replay.delay = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          new[_i0].trigger.button = ((-2 * (next_i()%2)) + 1) * next_i();
+          new[_i0].trigger.interval = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = need_core(old,new);
+          printf("%d\n", benchRet); 
+          free(old);
+          free(new);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          int _len_old0 = 100;
+          struct ff_effect * old = (struct ff_effect *) malloc(_len_old0*sizeof(struct ff_effect));
+          for(int _i0 = 0; _i0 < _len_old0; _i0++) {
+              old[_i0].direction = ((-2 * (next_i()%2)) + 1) * next_i();
+          old[_i0].replay.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          old[_i0].replay.delay = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          old[_i0].trigger.button = ((-2 * (next_i()%2)) + 1) * next_i();
+          old[_i0].trigger.interval = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_new0 = 100;
+          struct ff_effect * new = (struct ff_effect *) malloc(_len_new0*sizeof(struct ff_effect));
+          for(int _i0 = 0; _i0 < _len_new0; _i0++) {
+              new[_i0].direction = ((-2 * (next_i()%2)) + 1) * next_i();
+          new[_i0].replay.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          new[_i0].replay.delay = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          new[_i0].trigger.button = ((-2 * (next_i()%2)) + 1) * next_i();
+          new[_i0].trigger.interval = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = need_core(old,new);
+          printf("%d\n", benchRet); 
+          free(old);
+          free(new);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
           int _len_old0 = 1;
           struct ff_effect * old = (struct ff_effect *) malloc(_len_old0*sizeof(struct ff_effect));
           for(int _i0 = 0; _i0 < _len_old0; _i0++) {
-            old[_i0].direction = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].replay.length = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].replay.delay = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].trigger.button = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].trigger.interval = ((-2 * (next_i()%2)) + 1) * next_i();
+              old[_i0].direction = ((-2 * (next_i()%2)) + 1) * next_i();
+          old[_i0].replay.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          old[_i0].replay.delay = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          old[_i0].trigger.button = ((-2 * (next_i()%2)) + 1) * next_i();
+          old[_i0].trigger.interval = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_new0 = 1;
           struct ff_effect * new = (struct ff_effect *) malloc(_len_new0*sizeof(struct ff_effect));
           for(int _i0 = 0; _i0 < _len_new0; _i0++) {
-            new[_i0].direction = ((-2 * (next_i()%2)) + 1) * next_i();
-        new[_i0].replay.length = ((-2 * (next_i()%2)) + 1) * next_i();
-        new[_i0].replay.delay = ((-2 * (next_i()%2)) + 1) * next_i();
-        new[_i0].trigger.button = ((-2 * (next_i()%2)) + 1) * next_i();
-        new[_i0].trigger.interval = ((-2 * (next_i()%2)) + 1) * next_i();
+              new[_i0].direction = ((-2 * (next_i()%2)) + 1) * next_i();
+          new[_i0].replay.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          new[_i0].replay.delay = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          new[_i0].trigger.button = ((-2 * (next_i()%2)) + 1) * next_i();
+          new[_i0].trigger.interval = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = need_core(old,new);
           printf("%d\n", benchRet); 
           free(old);

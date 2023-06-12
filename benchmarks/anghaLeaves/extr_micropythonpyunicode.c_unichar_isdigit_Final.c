@@ -61,12 +61,6 @@ bool unichar_isdigit(unichar c) {
     return c < 128 && (attr[c] & FL_DIGIT) != 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,12 +77,12 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int c = 255;
+        
           int benchRet = unichar_isdigit(c);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

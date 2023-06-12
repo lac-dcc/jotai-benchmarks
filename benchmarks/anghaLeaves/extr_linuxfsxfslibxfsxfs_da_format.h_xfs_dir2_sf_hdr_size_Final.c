@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static inline int xfs_dir2_sf_hdr_size(int i8count)
 		(i8count == 0) * XFS_INO64_DIFF;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +81,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int i8count = 100;
+        
           int benchRet = xfs_dir2_sf_hdr_size(i8count);
           printf("%d\n", benchRet); 
         
@@ -95,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int i8count = 255;
+        
           int benchRet = xfs_dir2_sf_hdr_size(i8count);
           printf("%d\n", benchRet); 
         
@@ -104,12 +101,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int i8count = 10;
+        
           int benchRet = xfs_dir2_sf_hdr_size(i8count);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int i8count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = xfs_dir2_sf_hdr_size(i8count);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

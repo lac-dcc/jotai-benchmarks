@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static void brb_init(struct bop_ring_buffer *brb)
 	brb->end = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,21 +75,54 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_brb0 = 1;
+          int _len_brb0 = 65025;
           struct bop_ring_buffer * brb = (struct bop_ring_buffer *) malloc(_len_brb0*sizeof(struct bop_ring_buffer));
           for(int _i0 = 0; _i0 < _len_brb0; _i0++) {
-            brb[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
-        brb[_i0].begin = ((-2 * (next_i()%2)) + 1) * next_i();
+              brb[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+          brb[_i0].begin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           brb_init(brb);
           free(brb);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_brb0 = 100;
+          struct bop_ring_buffer * brb = (struct bop_ring_buffer *) malloc(_len_brb0*sizeof(struct bop_ring_buffer));
+          for(int _i0 = 0; _i0 < _len_brb0; _i0++) {
+              brb[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+          brb[_i0].begin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          brb_init(brb);
+          free(brb);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_brb0 = 1;
+          struct bop_ring_buffer * brb = (struct bop_ring_buffer *) malloc(_len_brb0*sizeof(struct bop_ring_buffer));
+          for(int _i0 = 0; _i0 < _len_brb0; _i0++) {
+              brb[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+          brb[_i0].begin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          brb_init(brb);
+          free(brb);
+        
+        break;
+    }
     default:
         usage();
         break;

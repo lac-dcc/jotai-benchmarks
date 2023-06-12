@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +73,6 @@ int pwrdm_register_platform_funcs(struct pwrdm_ops *po)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,14 +85,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_po0 = 1;
+          int _len_po0 = 65025;
           struct pwrdm_ops * po = (struct pwrdm_ops *) malloc(_len_po0*sizeof(struct pwrdm_ops));
           for(int _i0 = 0; _i0 < _len_po0; _i0++) {
-            po[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              po[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = pwrdm_register_platform_funcs(po);
           printf("%d\n", benchRet); 
           free(po);
@@ -110,15 +107,32 @@ int main(int argc, char *argv[]) {
           int _len_po0 = 100;
           struct pwrdm_ops * po = (struct pwrdm_ops *) malloc(_len_po0*sizeof(struct pwrdm_ops));
           for(int _i0 = 0; _i0 < _len_po0; _i0++) {
-            po[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              po[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = pwrdm_register_platform_funcs(po);
           printf("%d\n", benchRet); 
           free(po);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_po0 = 1;
+          struct pwrdm_ops * po = (struct pwrdm_ops *) malloc(_len_po0*sizeof(struct pwrdm_ops));
+          for(int _i0 = 0; _i0 < _len_po0; _i0++) {
+              po[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pwrdm_register_platform_funcs(po);
+          printf("%d\n", benchRet); 
+          free(po);
+        
+        break;
+    }
     default:
         usage();
         break;

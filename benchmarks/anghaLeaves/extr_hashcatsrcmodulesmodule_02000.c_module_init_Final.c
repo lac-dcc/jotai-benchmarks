@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -148,12 +150,6 @@ void module_init (module_ctx_t *module_ctx)
   module_ctx->module_warmup_disable           = module_warmup_disable;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -166,38 +162,105 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_module_ctx0 = 1;
+          int _len_module_ctx0 = 65025;
           struct TYPE_3__ * module_ctx = (struct TYPE_3__ *) malloc(_len_module_ctx0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_module_ctx0; _i0++) {
-            module_ctx[_i0].module_warmup_disable = ((-2 * (next_i()%2)) + 1) * next_i();
-        module_ctx[_i0].module_st_pass = ((-2 * (next_i()%2)) + 1) * next_i();
-        module_ctx[_i0].module_st_hash = ((-2 * (next_i()%2)) + 1) * next_i();
-        module_ctx[_i0].module_salt_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        module_ctx[_i0].module_opts_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        module_ctx[_i0].module_opti_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        module_ctx[_i0].module_kern_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        module_ctx[_i0].module_hash_name = ((-2 * (next_i()%2)) + 1) * next_i();
-        module_ctx[_i0].module_hash_category = ((-2 * (next_i()%2)) + 1) * next_i();
-        module_ctx[_i0].module_hash_encode = ((-2 * (next_i()%2)) + 1) * next_i();
-        module_ctx[_i0].module_hash_decode = ((-2 * (next_i()%2)) + 1) * next_i();
-        module_ctx[_i0].module_dgst_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        module_ctx[_i0].module_dgst_pos3 = ((-2 * (next_i()%2)) + 1) * next_i();
-        module_ctx[_i0].module_dgst_pos2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        module_ctx[_i0].module_dgst_pos1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        module_ctx[_i0].module_dgst_pos0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        module_ctx[_i0].module_attack_exec = ((-2 * (next_i()%2)) + 1) * next_i();
-        module_ctx[_i0].module_interface_version = ((-2 * (next_i()%2)) + 1) * next_i();
-        module_ctx[_i0].module_context_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              module_ctx[_i0].module_warmup_disable = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_st_pass = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_st_hash = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_salt_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_opts_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_opti_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_kern_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_hash_name = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_hash_category = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_hash_encode = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_hash_decode = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_dgst_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_dgst_pos3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_dgst_pos2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_dgst_pos1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_dgst_pos0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_attack_exec = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_interface_version = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_context_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           module_init(module_ctx);
           free(module_ctx);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_module_ctx0 = 100;
+          struct TYPE_3__ * module_ctx = (struct TYPE_3__ *) malloc(_len_module_ctx0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_module_ctx0; _i0++) {
+              module_ctx[_i0].module_warmup_disable = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_st_pass = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_st_hash = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_salt_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_opts_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_opti_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_kern_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_hash_name = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_hash_category = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_hash_encode = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_hash_decode = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_dgst_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_dgst_pos3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_dgst_pos2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_dgst_pos1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_dgst_pos0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_attack_exec = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_interface_version = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_context_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          module_init(module_ctx);
+          free(module_ctx);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_module_ctx0 = 1;
+          struct TYPE_3__ * module_ctx = (struct TYPE_3__ *) malloc(_len_module_ctx0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_module_ctx0; _i0++) {
+              module_ctx[_i0].module_warmup_disable = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_st_pass = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_st_hash = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_salt_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_opts_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_opti_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_kern_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_hash_name = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_hash_category = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_hash_encode = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_hash_decode = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_dgst_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_dgst_pos3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_dgst_pos2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_dgst_pos1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_dgst_pos0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_attack_exec = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_interface_version = ((-2 * (next_i()%2)) + 1) * next_i();
+          module_ctx[_i0].module_context_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          module_init(module_ctx);
+          free(module_ctx);
+        
+        break;
+    }
     default:
         usage();
         break;

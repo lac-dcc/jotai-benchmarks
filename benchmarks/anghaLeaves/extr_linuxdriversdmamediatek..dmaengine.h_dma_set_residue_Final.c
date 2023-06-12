@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline void dma_set_residue(struct dma_tx_state *st
 		state->residue = residue;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,31 +81,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int residue = 100;
+        
           int _len_state0 = 1;
           struct dma_tx_state * state = (struct dma_tx_state *) malloc(_len_state0*sizeof(struct dma_tx_state));
           for(int _i0 = 0; _i0 < _len_state0; _i0++) {
-            state[_i0].residue = ((-2 * (next_i()%2)) + 1) * next_i();
+              state[_i0].residue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          dma_set_residue(state,residue);
+          free(state);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int residue = 255;
+        
+          int _len_state0 = 65025;
+          struct dma_tx_state * state = (struct dma_tx_state *) malloc(_len_state0*sizeof(struct dma_tx_state));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].residue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           dma_set_residue(state,residue);
           free(state);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int residue = 10;
+        
           int _len_state0 = 100;
           struct dma_tx_state * state = (struct dma_tx_state *) malloc(_len_state0*sizeof(struct dma_tx_state));
           for(int _i0 = 0; _i0 < _len_state0; _i0++) {
-            state[_i0].residue = ((-2 * (next_i()%2)) + 1) * next_i();
+              state[_i0].residue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           dma_set_residue(state,residue);
           free(state);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int residue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_state0 = 1;
+          struct dma_tx_state * state = (struct dma_tx_state *) malloc(_len_state0*sizeof(struct dma_tx_state));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].residue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          dma_set_residue(state,residue);
+          free(state);
+        
+        break;
+    }
     default:
         usage();
         break;

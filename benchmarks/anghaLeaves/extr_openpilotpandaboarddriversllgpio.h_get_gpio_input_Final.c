@@ -61,12 +61,6 @@ int get_gpio_input(GPIO_TypeDef *GPIO, int pin) {
   return (GPIO->IDR & (1 << pin)) == (1 << pin);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,18 +77,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int pin = 10;
+        
           int _len_GPIO0 = 100;
           struct TYPE_3__ * GPIO = (struct TYPE_3__ *) malloc(_len_GPIO0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_GPIO0; _i0++) {
-            GPIO[_i0].IDR = ((-2 * (next_i()%2)) + 1) * next_i();
+              GPIO[_i0].IDR = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = get_gpio_input(GPIO,pin);
           printf("%d\n", benchRet); 
           free(GPIO);
         
         break;
     }
-
     default:
         usage();
         break;

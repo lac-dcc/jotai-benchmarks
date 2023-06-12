@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline IUINT32 _imax_(IUINT32 a, IUINT32 b) {
 	return a >= b ? a : b;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,7 +78,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long a = 100;
+        
           long b = 100;
+        
           long benchRet = _imax_(a,b);
           printf("%ld\n", benchRet); 
         
@@ -93,7 +90,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long a = 255;
+        
           long b = 255;
+        
           long benchRet = _imax_(a,b);
           printf("%ld\n", benchRet); 
         
@@ -103,13 +102,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long a = 10;
+        
           long b = 10;
+        
           long benchRet = _imax_(a,b);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long a = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long benchRet = _imax_(a,b);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

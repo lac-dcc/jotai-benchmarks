@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static void PROGRESS_CoercePos(PROGRESS_INFO *infoPtr)
         infoPtr->CurVal = infoPtr->MaxVal;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,16 +79,123 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_infoPtr0 = 65025;
+          struct TYPE_3__ * infoPtr = (struct TYPE_3__ *) malloc(_len_infoPtr0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_infoPtr0; _i0++) {
+              infoPtr[_i0].CurVal = ((-2 * (next_i()%2)) + 1) * next_i();
+          infoPtr[_i0].MinVal = ((-2 * (next_i()%2)) + 1) * next_i();
+          infoPtr[_i0].MaxVal = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          PROGRESS_CoercePos(infoPtr);
+          free(infoPtr);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_infoPtr0 = 100;
+          struct TYPE_3__ * infoPtr = (struct TYPE_3__ *) malloc(_len_infoPtr0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_infoPtr0; _i0++) {
+              infoPtr[_i0].CurVal = ((-2 * (next_i()%2)) + 1) * next_i();
+          infoPtr[_i0].MinVal = ((-2 * (next_i()%2)) + 1) * next_i();
+          infoPtr[_i0].MaxVal = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          PROGRESS_CoercePos(infoPtr);
+          free(infoPtr);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_infoPtr0 = 1;
           struct TYPE_3__ * infoPtr = (struct TYPE_3__ *) malloc(_len_infoPtr0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_infoPtr0; _i0++) {
-            infoPtr[_i0].CurVal = ((-2 * (next_i()%2)) + 1) * next_i();
-        infoPtr[_i0].MinVal = ((-2 * (next_i()%2)) + 1) * next_i();
-        infoPtr[_i0].MaxVal = ((-2 * (next_i()%2)) + 1) * next_i();
+              infoPtr[_i0].CurVal = ((-2 * (next_i()%2)) + 1) * next_i();
+          infoPtr[_i0].MinVal = ((-2 * (next_i()%2)) + 1) * next_i();
+          infoPtr[_i0].MaxVal = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           PROGRESS_CoercePos(infoPtr);
           free(infoPtr);
         

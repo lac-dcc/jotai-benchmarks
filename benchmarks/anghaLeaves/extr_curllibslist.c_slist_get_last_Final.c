@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -71,7 +72,6 @@ __attribute__((used)) static struct curl_slist *slist_get_last(struct curl_slist
   return item;
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct curl_slist *_allocate_list(int length, struct curl_slist *aux_list[]) {
@@ -99,7 +99,6 @@ void _delete_list(struct curl_slist *aux_list[], int aux_list_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -112,11 +111,70 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // linked
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 70008
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 40007
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 40007
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 40007
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 40007
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 40007
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 40007
+          // ------------------------------- 
+
+          struct curl_slist * aux_list[10000];
+          struct curl_slist * list = _allocate_list(10000, aux_list);
+        
+          struct curl_slist * benchRet = slist_get_last(list);
+          _delete_list(aux_list, 10000);
+        
+        break;
+    }
+
+
+    // empty
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           struct curl_slist * aux_list[1];
           struct curl_slist * list = _allocate_list(1, aux_list);
+        
           struct curl_slist * benchRet = slist_get_last(list);
           _delete_list(aux_list, 1);
         

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -86,12 +88,6 @@ char *saa7164_unitid_name(struct saa7164_dev *dev, u8 unitid)
 	return undefed;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -108,11 +104,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long unitid = 100;
+        
           int _len_dev0 = 1;
           struct saa7164_dev * dev = (struct saa7164_dev *) malloc(_len_dev0*sizeof(struct saa7164_dev));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].board = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].board = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          char * benchRet = saa7164_unitid_name(dev,unitid);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          free(dev);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long unitid = 255;
+        
+          int _len_dev0 = 65025;
+          struct saa7164_dev * dev = (struct saa7164_dev *) malloc(_len_dev0*sizeof(struct saa7164_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].board = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           char * benchRet = saa7164_unitid_name(dev,unitid);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(dev);
@@ -120,21 +137,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long unitid = 10;
+        
           int _len_dev0 = 100;
           struct saa7164_dev * dev = (struct saa7164_dev *) malloc(_len_dev0*sizeof(struct saa7164_dev));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].board = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].board = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           char * benchRet = saa7164_unitid_name(dev,unitid);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(dev);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long unitid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dev0 = 1;
+          struct saa7164_dev * dev = (struct saa7164_dev *) malloc(_len_dev0*sizeof(struct saa7164_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].board = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          char * benchRet = saa7164_unitid_name(dev,unitid);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          free(dev);
+        
+        break;
+    }
     default:
         usage();
         break;

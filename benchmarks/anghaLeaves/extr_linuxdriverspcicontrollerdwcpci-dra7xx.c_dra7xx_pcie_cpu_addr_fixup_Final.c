@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static u64 dra7xx_pcie_cpu_addr_fixup(struct dw_pcie *pci,
 	return pci_addr & DRA7XX_CPU_TO_BUS_ADDR;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,11 +81,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int pci_addr = 100;
+        
           int _len_pci0 = 1;
           struct dw_pcie * pci = (struct dw_pcie *) malloc(_len_pci0*sizeof(struct dw_pcie));
           for(int _i0 = 0; _i0 < _len_pci0; _i0++) {
-            pci[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              pci[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = dra7xx_pcie_cpu_addr_fixup(pci,pci_addr);
+          printf("%d\n", benchRet); 
+          free(pci);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int pci_addr = 255;
+        
+          int _len_pci0 = 65025;
+          struct dw_pcie * pci = (struct dw_pcie *) malloc(_len_pci0*sizeof(struct dw_pcie));
+          for(int _i0 = 0; _i0 < _len_pci0; _i0++) {
+              pci[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = dra7xx_pcie_cpu_addr_fixup(pci,pci_addr);
           printf("%d\n", benchRet); 
           free(pci);
@@ -97,21 +114,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int pci_addr = 10;
+        
           int _len_pci0 = 100;
           struct dw_pcie * pci = (struct dw_pcie *) malloc(_len_pci0*sizeof(struct dw_pcie));
           for(int _i0 = 0; _i0 < _len_pci0; _i0++) {
-            pci[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              pci[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dra7xx_pcie_cpu_addr_fixup(pci,pci_addr);
           printf("%d\n", benchRet); 
           free(pci);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int pci_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pci0 = 1;
+          struct dw_pcie * pci = (struct dw_pcie *) malloc(_len_pci0*sizeof(struct dw_pcie));
+          for(int _i0 = 0; _i0 < _len_pci0; _i0++) {
+              pci[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dra7xx_pcie_cpu_addr_fixup(pci,pci_addr);
+          printf("%d\n", benchRet); 
+          free(pci);
+        
+        break;
+    }
     default:
         usage();
         break;

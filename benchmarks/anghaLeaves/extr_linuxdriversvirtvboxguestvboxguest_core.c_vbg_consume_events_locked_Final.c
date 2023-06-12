@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ __attribute__((used)) static u32 vbg_consume_events_locked(struct vbg_dev *gdev,
 	return events;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,20 +82,198 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int event_mask = 100;
+        
           int _len_gdev0 = 1;
           struct vbg_dev * gdev = (struct vbg_dev *) malloc(_len_gdev0*sizeof(struct vbg_dev));
           for(int _i0 = 0; _i0 < _len_gdev0; _i0++) {
-            gdev[_i0].pending_events = ((-2 * (next_i()%2)) + 1) * next_i();
+              gdev[_i0].pending_events = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_session0 = 1;
           struct vbg_session * session = (struct vbg_session *) malloc(_len_session0*sizeof(struct vbg_session));
           for(int _i0 = 0; _i0 < _len_session0; _i0++) {
-            session[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              session[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = vbg_consume_events_locked(gdev,session,event_mask);
+          printf("%d\n", benchRet); 
+          free(gdev);
+          free(session);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int event_mask = 255;
+        
+          int _len_gdev0 = 65025;
+          struct vbg_dev * gdev = (struct vbg_dev *) malloc(_len_gdev0*sizeof(struct vbg_dev));
+          for(int _i0 = 0; _i0 < _len_gdev0; _i0++) {
+              gdev[_i0].pending_events = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_session0 = 65025;
+          struct vbg_session * session = (struct vbg_session *) malloc(_len_session0*sizeof(struct vbg_session));
+          for(int _i0 = 0; _i0 < _len_session0; _i0++) {
+              session[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vbg_consume_events_locked(gdev,session,event_mask);
+          printf("%d\n", benchRet); 
+          free(gdev);
+          free(session);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int event_mask = 10;
+        
+          int _len_gdev0 = 100;
+          struct vbg_dev * gdev = (struct vbg_dev *) malloc(_len_gdev0*sizeof(struct vbg_dev));
+          for(int _i0 = 0; _i0 < _len_gdev0; _i0++) {
+              gdev[_i0].pending_events = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_session0 = 100;
+          struct vbg_session * session = (struct vbg_session *) malloc(_len_session0*sizeof(struct vbg_session));
+          for(int _i0 = 0; _i0 < _len_session0; _i0++) {
+              session[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vbg_consume_events_locked(gdev,session,event_mask);
+          printf("%d\n", benchRet); 
+          free(gdev);
+          free(session);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int event_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_gdev0 = 1;
+          struct vbg_dev * gdev = (struct vbg_dev *) malloc(_len_gdev0*sizeof(struct vbg_dev));
+          for(int _i0 = 0; _i0 < _len_gdev0; _i0++) {
+              gdev[_i0].pending_events = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_session0 = 1;
+          struct vbg_session * session = (struct vbg_session *) malloc(_len_session0*sizeof(struct vbg_session));
+          for(int _i0 = 0; _i0 < _len_session0; _i0++) {
+              session[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = vbg_consume_events_locked(gdev,session,event_mask);
           printf("%d\n", benchRet); 
           free(gdev);

@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -76,12 +77,6 @@ __attribute__((used)) static u16 am2315_crc(u8 *data, u8 nr_bytes)
 	return crc;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,15 +89,81 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 44
+          // dynamic_instructions_O0 : 36961
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 20153
+          // ------------------------------- 
+          // static_instructions_O2 : 62
+          // dynamic_instructions_O2 : 13270
+          // ------------------------------- 
+          // static_instructions_O3 : 62
+          // dynamic_instructions_O3 : 13270
+          // ------------------------------- 
+          // static_instructions_Ofast : 62
+          // dynamic_instructions_Ofast : 13270
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 20152
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 24488
+          // ------------------------------- 
+
+          int nr_bytes = 255;
+        
+          int _len_data0 = 65025;
+          int * data = (int *) malloc(_len_data0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+            data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = am2315_crc(data,nr_bytes);
+          printf("%d\n", benchRet); 
+          free(data);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 44
+          // dynamic_instructions_O0 : 1472
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 798
+          // ------------------------------- 
+          // static_instructions_O2 : 62
+          // dynamic_instructions_O2 : 530
+          // ------------------------------- 
+          // static_instructions_O3 : 62
+          // dynamic_instructions_O3 : 530
+          // ------------------------------- 
+          // static_instructions_Ofast : 62
+          // dynamic_instructions_Ofast : 530
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 797
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 968
+          // ------------------------------- 
+
           int nr_bytes = 10;
+        
           int _len_data0 = 100;
           int * data = (int *) malloc(_len_data0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
             data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = am2315_crc(data,nr_bytes);
           printf("%d\n", benchRet); 
           free(data);

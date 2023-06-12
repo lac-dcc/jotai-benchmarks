@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static void rocker_wait_reset(struct rocker_wait *wait)
 	wait->nowait = false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,15 +75,120 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_wait0 = 65025;
+          struct rocker_wait * wait = (struct rocker_wait *) malloc(_len_wait0*sizeof(struct rocker_wait));
+          for(int _i0 = 0; _i0 < _len_wait0; _i0++) {
+              wait[_i0].done = ((-2 * (next_i()%2)) + 1) * next_i();
+          wait[_i0].nowait = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          rocker_wait_reset(wait);
+          free(wait);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_wait0 = 100;
+          struct rocker_wait * wait = (struct rocker_wait *) malloc(_len_wait0*sizeof(struct rocker_wait));
+          for(int _i0 = 0; _i0 < _len_wait0; _i0++) {
+              wait[_i0].done = ((-2 * (next_i()%2)) + 1) * next_i();
+          wait[_i0].nowait = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          rocker_wait_reset(wait);
+          free(wait);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_wait0 = 1;
           struct rocker_wait * wait = (struct rocker_wait *) malloc(_len_wait0*sizeof(struct rocker_wait));
           for(int _i0 = 0; _i0 < _len_wait0; _i0++) {
-            wait[_i0].done = ((-2 * (next_i()%2)) + 1) * next_i();
-        wait[_i0].nowait = ((-2 * (next_i()%2)) + 1) * next_i();
+              wait[_i0].done = ((-2 * (next_i()%2)) + 1) * next_i();
+          wait[_i0].nowait = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           rocker_wait_reset(wait);
           free(wait);
         

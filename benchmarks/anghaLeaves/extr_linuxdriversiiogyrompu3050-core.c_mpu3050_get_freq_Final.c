@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static unsigned int mpu3050_get_freq(struct mpu3050 *mpu30
 	return freq;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,15 +83,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_mpu30500 = 65025;
+          struct mpu3050 * mpu3050 = (struct mpu3050 *) malloc(_len_mpu30500*sizeof(struct mpu3050));
+          for(int _i0 = 0; _i0 < _len_mpu30500; _i0++) {
+              mpu3050[_i0].lpf = ((-2 * (next_i()%2)) + 1) * next_i();
+          mpu3050[_i0].divisor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = mpu3050_get_freq(mpu3050);
+          printf("%u\n", benchRet); 
+          free(mpu3050);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_mpu30500 = 100;
+          struct mpu3050 * mpu3050 = (struct mpu3050 *) malloc(_len_mpu30500*sizeof(struct mpu3050));
+          for(int _i0 = 0; _i0 < _len_mpu30500; _i0++) {
+              mpu3050[_i0].lpf = ((-2 * (next_i()%2)) + 1) * next_i();
+          mpu3050[_i0].divisor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = mpu3050_get_freq(mpu3050);
+          printf("%u\n", benchRet); 
+          free(mpu3050);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int _len_mpu30500 = 1;
           struct mpu3050 * mpu3050 = (struct mpu3050 *) malloc(_len_mpu30500*sizeof(struct mpu3050));
           for(int _i0 = 0; _i0 < _len_mpu30500; _i0++) {
-            mpu3050[_i0].lpf = ((-2 * (next_i()%2)) + 1) * next_i();
-        mpu3050[_i0].divisor = ((-2 * (next_i()%2)) + 1) * next_i();
+              mpu3050[_i0].lpf = ((-2 * (next_i()%2)) + 1) * next_i();
+          mpu3050[_i0].divisor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = mpu3050_get_freq(mpu3050);
           printf("%u\n", benchRet); 
           free(mpu3050);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static int csk_mem_free(struct chtls_dev *cdev, struct soc
 	return (cdev->max_host_sndbuf - sk->sk_wmem_queued);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,19 +75,142 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_cdev0 = 65025;
+          struct chtls_dev * cdev = (struct chtls_dev *) malloc(_len_cdev0*sizeof(struct chtls_dev));
+          for(int _i0 = 0; _i0 < _len_cdev0; _i0++) {
+              cdev[_i0].max_host_sndbuf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_sk0 = 65025;
+          struct sock * sk = (struct sock *) malloc(_len_sk0*sizeof(struct sock));
+          for(int _i0 = 0; _i0 < _len_sk0; _i0++) {
+              sk[_i0].sk_wmem_queued = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = csk_mem_free(cdev,sk);
+          printf("%d\n", benchRet); 
+          free(cdev);
+          free(sk);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_cdev0 = 100;
+          struct chtls_dev * cdev = (struct chtls_dev *) malloc(_len_cdev0*sizeof(struct chtls_dev));
+          for(int _i0 = 0; _i0 < _len_cdev0; _i0++) {
+              cdev[_i0].max_host_sndbuf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_sk0 = 100;
+          struct sock * sk = (struct sock *) malloc(_len_sk0*sizeof(struct sock));
+          for(int _i0 = 0; _i0 < _len_sk0; _i0++) {
+              sk[_i0].sk_wmem_queued = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = csk_mem_free(cdev,sk);
+          printf("%d\n", benchRet); 
+          free(cdev);
+          free(sk);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_cdev0 = 1;
           struct chtls_dev * cdev = (struct chtls_dev *) malloc(_len_cdev0*sizeof(struct chtls_dev));
           for(int _i0 = 0; _i0 < _len_cdev0; _i0++) {
-            cdev[_i0].max_host_sndbuf = ((-2 * (next_i()%2)) + 1) * next_i();
+              cdev[_i0].max_host_sndbuf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_sk0 = 1;
           struct sock * sk = (struct sock *) malloc(_len_sk0*sizeof(struct sock));
           for(int _i0 = 0; _i0 < _len_sk0; _i0++) {
-            sk[_i0].sk_wmem_queued = ((-2 * (next_i()%2)) + 1) * next_i();
+              sk[_i0].sk_wmem_queued = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = csk_mem_free(cdev,sk);
           printf("%d\n", benchRet); 
           free(cdev);

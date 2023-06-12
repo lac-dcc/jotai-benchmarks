@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static u64 chan_rate(struct adapter *adap, unsigned int by
 	return v * 62 + v / 2;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,11 +86,36 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int bytes256 = 100;
+        
           int _len_adap0 = 1;
           struct adapter * adap = (struct adapter *) malloc(_len_adap0*sizeof(struct adapter));
           for(int _i0 = 0; _i0 < _len_adap0; _i0++) {
-            adap[_i0].params.vpd.cclk = ((-2 * (next_i()%2)) + 1) * next_i();
+              adap[_i0].params.vpd.cclk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
+          int benchRet = chan_rate(adap,bytes256);
+          printf("%d\n", benchRet); 
+          free(adap);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned int bytes256 = 255;
+        
+          int _len_adap0 = 65025;
+          struct adapter * adap = (struct adapter *) malloc(_len_adap0*sizeof(struct adapter));
+          for(int _i0 = 0; _i0 < _len_adap0; _i0++) {
+              adap[_i0].params.vpd.cclk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
           int benchRet = chan_rate(adap,bytes256);
           printf("%d\n", benchRet); 
           free(adap);
@@ -102,21 +123,45 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned int bytes256 = 10;
+        
           int _len_adap0 = 100;
           struct adapter * adap = (struct adapter *) malloc(_len_adap0*sizeof(struct adapter));
           for(int _i0 = 0; _i0 < _len_adap0; _i0++) {
-            adap[_i0].params.vpd.cclk = ((-2 * (next_i()%2)) + 1) * next_i();
+              adap[_i0].params.vpd.cclk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int benchRet = chan_rate(adap,bytes256);
           printf("%d\n", benchRet); 
           free(adap);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int bytes256 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_adap0 = 1;
+          struct adapter * adap = (struct adapter *) malloc(_len_adap0*sizeof(struct adapter));
+          for(int _i0 = 0; _i0 < _len_adap0; _i0++) {
+              adap[_i0].params.vpd.cclk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = chan_rate(adap,bytes256);
+          printf("%d\n", benchRet); 
+          free(adap);
+        
+        break;
+    }
     default:
         usage();
         break;

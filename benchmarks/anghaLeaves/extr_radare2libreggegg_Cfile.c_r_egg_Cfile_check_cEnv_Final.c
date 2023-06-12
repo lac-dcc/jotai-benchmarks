@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static inline bool r_egg_Cfile_check_cEnv(struct cEnv_t *c
 		|| !cEnv->SHDR || !cEnv->TRIPLET);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,26 +74,69 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cEnv0 = 1;
+          int _len_cEnv0 = 65025;
           struct cEnv_t * cEnv = (struct cEnv_t *) malloc(_len_cEnv0*sizeof(struct cEnv_t));
           for(int _i0 = 0; _i0 < _len_cEnv0; _i0++) {
-            cEnv[_i0].TRIPLET = ((-2 * (next_i()%2)) + 1) * next_i();
-        cEnv[_i0].SHDR = ((-2 * (next_i()%2)) + 1) * next_i();
-        cEnv[_i0].LDFLAGS = ((-2 * (next_i()%2)) + 1) * next_i();
-        cEnv[_i0].CFLAGS = ((-2 * (next_i()%2)) + 1) * next_i();
-        cEnv[_i0].CC = ((-2 * (next_i()%2)) + 1) * next_i();
-        cEnv[_i0].SFLIBPATH = ((-2 * (next_i()%2)) + 1) * next_i();
+              cEnv[_i0].TRIPLET = ((-2 * (next_i()%2)) + 1) * next_i();
+          cEnv[_i0].SHDR = ((-2 * (next_i()%2)) + 1) * next_i();
+          cEnv[_i0].LDFLAGS = ((-2 * (next_i()%2)) + 1) * next_i();
+          cEnv[_i0].CFLAGS = ((-2 * (next_i()%2)) + 1) * next_i();
+          cEnv[_i0].CC = ((-2 * (next_i()%2)) + 1) * next_i();
+          cEnv[_i0].SFLIBPATH = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = r_egg_Cfile_check_cEnv(cEnv);
           printf("%d\n", benchRet); 
           free(cEnv);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_cEnv0 = 100;
+          struct cEnv_t * cEnv = (struct cEnv_t *) malloc(_len_cEnv0*sizeof(struct cEnv_t));
+          for(int _i0 = 0; _i0 < _len_cEnv0; _i0++) {
+              cEnv[_i0].TRIPLET = ((-2 * (next_i()%2)) + 1) * next_i();
+          cEnv[_i0].SHDR = ((-2 * (next_i()%2)) + 1) * next_i();
+          cEnv[_i0].LDFLAGS = ((-2 * (next_i()%2)) + 1) * next_i();
+          cEnv[_i0].CFLAGS = ((-2 * (next_i()%2)) + 1) * next_i();
+          cEnv[_i0].CC = ((-2 * (next_i()%2)) + 1) * next_i();
+          cEnv[_i0].SFLIBPATH = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = r_egg_Cfile_check_cEnv(cEnv);
+          printf("%d\n", benchRet); 
+          free(cEnv);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_cEnv0 = 1;
+          struct cEnv_t * cEnv = (struct cEnv_t *) malloc(_len_cEnv0*sizeof(struct cEnv_t));
+          for(int _i0 = 0; _i0 < _len_cEnv0; _i0++) {
+              cEnv[_i0].TRIPLET = ((-2 * (next_i()%2)) + 1) * next_i();
+          cEnv[_i0].SHDR = ((-2 * (next_i()%2)) + 1) * next_i();
+          cEnv[_i0].LDFLAGS = ((-2 * (next_i()%2)) + 1) * next_i();
+          cEnv[_i0].CFLAGS = ((-2 * (next_i()%2)) + 1) * next_i();
+          cEnv[_i0].CC = ((-2 * (next_i()%2)) + 1) * next_i();
+          cEnv[_i0].SFLIBPATH = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = r_egg_Cfile_check_cEnv(cEnv);
+          printf("%d\n", benchRet); 
+          free(cEnv);
+        
+        break;
+    }
     default:
         usage();
         break;

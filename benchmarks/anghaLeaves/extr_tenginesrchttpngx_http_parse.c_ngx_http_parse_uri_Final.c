@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -209,12 +211,6 @@ ngx_http_parse_uri(ngx_http_request_t *r)
     return NGX_OK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -227,9 +223,182 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          int _len_r0 = 65025;
+          struct TYPE_3__ * r = (struct TYPE_3__ *) malloc(_len_r0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+              int _len_r__i0__uri_start0 = 1;
+          r[_i0].uri_start = (char *) malloc(_len_r__i0__uri_start0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_r__i0__uri_start0; _j0++) {
+            r[_i0].uri_start[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_r__i0__uri_end0 = 1;
+          r[_i0].uri_end = (char *) malloc(_len_r__i0__uri_end0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_r__i0__uri_end0; _j0++) {
+            r[_i0].uri_end[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          r[_i0].space_in_uri = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].complex_uri = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].quoted_uri = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_r__i0__args_start0 = 1;
+          r[_i0].args_start = (char *) malloc(_len_r__i0__args_start0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_r__i0__args_start0; _j0++) {
+            r[_i0].args_start[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          r[_i0].plus_in_uri = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_r__i0__uri_ext0 = 1;
+          r[_i0].uri_ext = (char *) malloc(_len_r__i0__uri_ext0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_r__i0__uri_ext0; _j0++) {
+            r[_i0].uri_ext[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = ngx_http_parse_uri(r);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_r0; _aux++) {
+          free(r[_aux].uri_start);
+          }
+          for(int _aux = 0; _aux < _len_r0; _aux++) {
+          free(r[_aux].uri_end);
+          }
+          for(int _aux = 0; _aux < _len_r0; _aux++) {
+          free(r[_aux].args_start);
+          }
+          for(int _aux = 0; _aux < _len_r0; _aux++) {
+          free(r[_aux].uri_ext);
+          }
+          free(r);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          int _len_r0 = 100;
+          struct TYPE_3__ * r = (struct TYPE_3__ *) malloc(_len_r0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+              int _len_r__i0__uri_start0 = 1;
+          r[_i0].uri_start = (char *) malloc(_len_r__i0__uri_start0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_r__i0__uri_start0; _j0++) {
+            r[_i0].uri_start[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_r__i0__uri_end0 = 1;
+          r[_i0].uri_end = (char *) malloc(_len_r__i0__uri_end0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_r__i0__uri_end0; _j0++) {
+            r[_i0].uri_end[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          r[_i0].space_in_uri = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].complex_uri = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].quoted_uri = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_r__i0__args_start0 = 1;
+          r[_i0].args_start = (char *) malloc(_len_r__i0__args_start0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_r__i0__args_start0; _j0++) {
+            r[_i0].args_start[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          r[_i0].plus_in_uri = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_r__i0__uri_ext0 = 1;
+          r[_i0].uri_ext = (char *) malloc(_len_r__i0__uri_ext0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_r__i0__uri_ext0; _j0++) {
+            r[_i0].uri_ext[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = ngx_http_parse_uri(r);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_r0; _aux++) {
+          free(r[_aux].uri_start);
+          }
+          for(int _aux = 0; _aux < _len_r0; _aux++) {
+          free(r[_aux].uri_end);
+          }
+          for(int _aux = 0; _aux < _len_r0; _aux++) {
+          free(r[_aux].args_start);
+          }
+          for(int _aux = 0; _aux < _len_r0; _aux++) {
+          free(r[_aux].uri_ext);
+          }
+          free(r);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
           int _len_r0 = 1;
           struct TYPE_3__ * r = (struct TYPE_3__ *) malloc(_len_r0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_r0; _i0++) {
@@ -243,21 +412,23 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_r__i0__uri_end0; _j0++) {
             r[_i0].uri_end[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        r[_i0].space_in_uri = ((-2 * (next_i()%2)) + 1) * next_i();
-        r[_i0].complex_uri = ((-2 * (next_i()%2)) + 1) * next_i();
-        r[_i0].quoted_uri = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].space_in_uri = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].complex_uri = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].quoted_uri = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_r__i0__args_start0 = 1;
           r[_i0].args_start = (char *) malloc(_len_r__i0__args_start0*sizeof(char));
           for(int _j0 = 0; _j0 < _len_r__i0__args_start0; _j0++) {
             r[_i0].args_start[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        r[_i0].plus_in_uri = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].plus_in_uri = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_r__i0__uri_ext0 = 1;
           r[_i0].uri_ext = (char *) malloc(_len_r__i0__uri_ext0*sizeof(char));
           for(int _j0 = 0; _j0 < _len_r__i0__uri_ext0; _j0++) {
             r[_i0].uri_ext[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = ngx_http_parse_uri(r);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_r0; _aux++) {

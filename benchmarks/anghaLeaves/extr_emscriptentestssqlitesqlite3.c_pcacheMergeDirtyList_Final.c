@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -80,7 +81,6 @@ __attribute__((used)) static PgHdr *pcacheMergeDirtyList(PgHdr *pA, PgHdr *pB){
   }
   return result.pDirty;
 }
-
 
 // ------------------------------------------------------------------------- //
 
@@ -136,7 +136,6 @@ void _delete_pB(struct TYPE_5__ *aux_pB[], int aux_pB_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -149,13 +148,78 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // linked
     case 0:
     {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 240026
+          // ------------------------------- 
+          // static_instructions_O1 : 38
+          // dynamic_instructions_O1 : 160022
+          // ------------------------------- 
+          // static_instructions_O2 : 38
+          // dynamic_instructions_O2 : 160022
+          // ------------------------------- 
+          // static_instructions_O3 : 38
+          // dynamic_instructions_O3 : 160022
+          // ------------------------------- 
+          // static_instructions_Ofast : 38
+          // dynamic_instructions_Ofast : 160022
+          // ------------------------------- 
+          // static_instructions_Os : 37
+          // dynamic_instructions_Os : 160021
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 110015
+          // ------------------------------- 
+
+          struct TYPE_5__ * aux_pA[10000];
+          struct TYPE_5__ * pA = _allocate_pA(10000, aux_pA);
+        
+          struct TYPE_5__ * aux_pB[10000];
+          struct TYPE_5__ * pB = _allocate_pB(10000, aux_pB);
+        
+          struct TYPE_5__ * benchRet = pcacheMergeDirtyList(pA,pB);
+          printf("%ld\n", (*benchRet).pgno);
+          _delete_pA(aux_pA, 10000);
+          _delete_pB(aux_pB, 10000);
+        
+        break;
+    }
+
+
+    // empty
+    case 1:
+    {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 50
+          // ------------------------------- 
+          // static_instructions_O1 : 38
+          // dynamic_instructions_O1 : 38
+          // ------------------------------- 
+          // static_instructions_O2 : 38
+          // dynamic_instructions_O2 : 38
+          // ------------------------------- 
+          // static_instructions_O3 : 38
+          // dynamic_instructions_O3 : 38
+          // ------------------------------- 
+          // static_instructions_Ofast : 38
+          // dynamic_instructions_Ofast : 38
+          // ------------------------------- 
+          // static_instructions_Os : 37
+          // dynamic_instructions_Os : 37
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
           struct TYPE_5__ * aux_pA[1];
           struct TYPE_5__ * pA = _allocate_pA(1, aux_pA);
+        
           struct TYPE_5__ * aux_pB[1];
           struct TYPE_5__ * pB = _allocate_pB(1, aux_pB);
+        
           struct TYPE_5__ * benchRet = pcacheMergeDirtyList(pA,pB);
           printf("%ld\n", (*benchRet).pgno);
           _delete_pA(aux_pA, 1);

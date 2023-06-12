@@ -31,7 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -71,12 +72,6 @@ __attribute__((used)) static int get_amba_irq(struct vfio_platform_device *vdev,
 	return ret ? ret : -ENXIO;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,30 +84,125 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int i = 100;
+        
           int _len_vdev0 = 1;
           struct vfio_platform_device * vdev = (struct vfio_platform_device *) malloc(_len_vdev0*sizeof(struct vfio_platform_device));
           for(int _i0 = 0; _i0 < _len_vdev0; _i0++) {
-            vdev[_i0].opaque = ((-2 * (next_i()%2)) + 1) * next_i();
+              vdev[_i0].opaque = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = get_amba_irq(vdev,i);
           printf("%d\n", benchRet); 
           free(vdev);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int i = 255;
+        
+          int _len_vdev0 = 65025;
+          struct vfio_platform_device * vdev = (struct vfio_platform_device *) malloc(_len_vdev0*sizeof(struct vfio_platform_device));
+          for(int _i0 = 0; _i0 < _len_vdev0; _i0++) {
+              vdev[_i0].opaque = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = get_amba_irq(vdev,i);
+          printf("%d\n", benchRet); 
+          free(vdev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int i = 10;
+        
           int _len_vdev0 = 100;
           struct vfio_platform_device * vdev = (struct vfio_platform_device *) malloc(_len_vdev0*sizeof(struct vfio_platform_device));
           for(int _i0 = 0; _i0 < _len_vdev0; _i0++) {
-            vdev[_i0].opaque = ((-2 * (next_i()%2)) + 1) * next_i();
+              vdev[_i0].opaque = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = get_amba_irq(vdev,i);
           printf("%d\n", benchRet); 
           free(vdev);

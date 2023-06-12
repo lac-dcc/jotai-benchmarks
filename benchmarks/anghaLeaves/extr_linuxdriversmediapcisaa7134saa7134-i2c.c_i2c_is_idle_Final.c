@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -68,12 +68,6 @@ __attribute__((used)) static inline int i2c_is_idle(enum i2c_status status)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,16 +80,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum i2c_status status = 0;
+        
           int benchRet = i2c_is_idle(status);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

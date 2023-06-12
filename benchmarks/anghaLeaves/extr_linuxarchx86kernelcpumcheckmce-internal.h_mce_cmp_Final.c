@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline bool mce_cmp(struct mce *m1, struct mce *m2)
 		m1->misc != m2->misc;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,25 +77,160 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_m10 = 65025;
+          struct mce * m1 = (struct mce *) malloc(_len_m10*sizeof(struct mce));
+          for(int _i0 = 0; _i0 < _len_m10; _i0++) {
+              m1[_i0].bank = ((-2 * (next_i()%2)) + 1) * next_i();
+          m1[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+          m1[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          m1[_i0].misc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_m20 = 65025;
+          struct mce * m2 = (struct mce *) malloc(_len_m20*sizeof(struct mce));
+          for(int _i0 = 0; _i0 < _len_m20; _i0++) {
+              m2[_i0].bank = ((-2 * (next_i()%2)) + 1) * next_i();
+          m2[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+          m2[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          m2[_i0].misc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mce_cmp(m1,m2);
+          printf("%d\n", benchRet); 
+          free(m1);
+          free(m2);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_m10 = 100;
+          struct mce * m1 = (struct mce *) malloc(_len_m10*sizeof(struct mce));
+          for(int _i0 = 0; _i0 < _len_m10; _i0++) {
+              m1[_i0].bank = ((-2 * (next_i()%2)) + 1) * next_i();
+          m1[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+          m1[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          m1[_i0].misc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_m20 = 100;
+          struct mce * m2 = (struct mce *) malloc(_len_m20*sizeof(struct mce));
+          for(int _i0 = 0; _i0 < _len_m20; _i0++) {
+              m2[_i0].bank = ((-2 * (next_i()%2)) + 1) * next_i();
+          m2[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+          m2[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          m2[_i0].misc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mce_cmp(m1,m2);
+          printf("%d\n", benchRet); 
+          free(m1);
+          free(m2);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int _len_m10 = 1;
           struct mce * m1 = (struct mce *) malloc(_len_m10*sizeof(struct mce));
           for(int _i0 = 0; _i0 < _len_m10; _i0++) {
-            m1[_i0].bank = ((-2 * (next_i()%2)) + 1) * next_i();
-        m1[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
-        m1[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        m1[_i0].misc = ((-2 * (next_i()%2)) + 1) * next_i();
+              m1[_i0].bank = ((-2 * (next_i()%2)) + 1) * next_i();
+          m1[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+          m1[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          m1[_i0].misc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_m20 = 1;
           struct mce * m2 = (struct mce *) malloc(_len_m20*sizeof(struct mce));
           for(int _i0 = 0; _i0 < _len_m20; _i0++) {
-            m2[_i0].bank = ((-2 * (next_i()%2)) + 1) * next_i();
-        m2[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
-        m2[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        m2[_i0].misc = ((-2 * (next_i()%2)) + 1) * next_i();
+              m2[_i0].bank = ((-2 * (next_i()%2)) + 1) * next_i();
+          m2[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+          m2[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          m2[_i0].misc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mce_cmp(m1,m2);
           printf("%d\n", benchRet); 
           free(m1);

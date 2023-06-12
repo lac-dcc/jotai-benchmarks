@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ __attribute__((used)) static void afcex_info_get(struct mb86a16_state *state,
 	*AFCEX_H = (AFCEX & 0x0f00) >> 8;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,25 +82,218 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int afcex_freq = 100;
+        
           int _len_state0 = 1;
           struct mb86a16_state * state = (struct mb86a16_state *) malloc(_len_state0*sizeof(struct mb86a16_state));
           for(int _i0 = 0; _i0 < _len_state0; _i0++) {
-            state[_i0].master_clk = ((-2 * (next_i()%2)) + 1) * next_i();
+              state[_i0].master_clk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_AFCEX_L0 = 1;
           unsigned char * AFCEX_L = (unsigned char *) malloc(_len_AFCEX_L0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_AFCEX_L0; _i0++) {
             AFCEX_L[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_AFCEX_H0 = 1;
           unsigned char * AFCEX_H = (unsigned char *) malloc(_len_AFCEX_H0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_AFCEX_H0; _i0++) {
             AFCEX_H[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          afcex_info_get(state,afcex_freq,AFCEX_L,AFCEX_H);
+          free(state);
+          free(AFCEX_L);
+          free(AFCEX_H);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int afcex_freq = 255;
+        
+          int _len_state0 = 65025;
+          struct mb86a16_state * state = (struct mb86a16_state *) malloc(_len_state0*sizeof(struct mb86a16_state));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].master_clk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_AFCEX_L0 = 65025;
+          unsigned char * AFCEX_L = (unsigned char *) malloc(_len_AFCEX_L0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_AFCEX_L0; _i0++) {
+            AFCEX_L[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_AFCEX_H0 = 65025;
+          unsigned char * AFCEX_H = (unsigned char *) malloc(_len_AFCEX_H0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_AFCEX_H0; _i0++) {
+            AFCEX_H[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          afcex_info_get(state,afcex_freq,AFCEX_L,AFCEX_H);
+          free(state);
+          free(AFCEX_L);
+          free(AFCEX_H);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int afcex_freq = 10;
+        
+          int _len_state0 = 100;
+          struct mb86a16_state * state = (struct mb86a16_state *) malloc(_len_state0*sizeof(struct mb86a16_state));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].master_clk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_AFCEX_L0 = 100;
+          unsigned char * AFCEX_L = (unsigned char *) malloc(_len_AFCEX_L0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_AFCEX_L0; _i0++) {
+            AFCEX_L[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_AFCEX_H0 = 100;
+          unsigned char * AFCEX_H = (unsigned char *) malloc(_len_AFCEX_H0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_AFCEX_H0; _i0++) {
+            AFCEX_H[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          afcex_info_get(state,afcex_freq,AFCEX_L,AFCEX_H);
+          free(state);
+          free(AFCEX_L);
+          free(AFCEX_H);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int afcex_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_state0 = 1;
+          struct mb86a16_state * state = (struct mb86a16_state *) malloc(_len_state0*sizeof(struct mb86a16_state));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].master_clk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_AFCEX_L0 = 1;
+          unsigned char * AFCEX_L = (unsigned char *) malloc(_len_AFCEX_L0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_AFCEX_L0; _i0++) {
+            AFCEX_L[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_AFCEX_H0 = 1;
+          unsigned char * AFCEX_H = (unsigned char *) malloc(_len_AFCEX_H0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_AFCEX_H0; _i0++) {
+            AFCEX_H[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           afcex_info_get(state,afcex_freq,AFCEX_L,AFCEX_H);
           free(state);
           free(AFCEX_L);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ bfa_fcs_itnim_get_fcid(struct bfa_fcs_itnim_s *itnim)
 	return itnim->rport->pid;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,18 +78,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_itnim0 = 1;
+          int _len_itnim0 = 65025;
           struct bfa_fcs_itnim_s * itnim = (struct bfa_fcs_itnim_s *) malloc(_len_itnim0*sizeof(struct bfa_fcs_itnim_s));
           for(int _i0 = 0; _i0 < _len_itnim0; _i0++) {
               int _len_itnim__i0__rport0 = 1;
           itnim[_i0].rport = (struct TYPE_2__ *) malloc(_len_itnim__i0__rport0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_itnim__i0__rport0; _j0++) {
-            itnim[_i0].rport->pid = ((-2 * (next_i()%2)) + 1) * next_i();
+              itnim[_i0].rport->pid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = bfa_fcs_itnim_get_fcid(itnim);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_itnim0; _aux++) {
@@ -103,7 +102,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_itnim0 = 100;
+          struct bfa_fcs_itnim_s * itnim = (struct bfa_fcs_itnim_s *) malloc(_len_itnim0*sizeof(struct bfa_fcs_itnim_s));
+          for(int _i0 = 0; _i0 < _len_itnim0; _i0++) {
+              int _len_itnim__i0__rport0 = 1;
+          itnim[_i0].rport = (struct TYPE_2__ *) malloc(_len_itnim__i0__rport0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_itnim__i0__rport0; _j0++) {
+              itnim[_i0].rport->pid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = bfa_fcs_itnim_get_fcid(itnim);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_itnim0; _aux++) {
+          free(itnim[_aux].rport);
+          }
+          free(itnim);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_itnim0 = 1;
+          struct bfa_fcs_itnim_s * itnim = (struct bfa_fcs_itnim_s *) malloc(_len_itnim0*sizeof(struct bfa_fcs_itnim_s));
+          for(int _i0 = 0; _i0 < _len_itnim0; _i0++) {
+              int _len_itnim__i0__rport0 = 1;
+          itnim[_i0].rport = (struct TYPE_2__ *) malloc(_len_itnim__i0__rport0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_itnim__i0__rport0; _j0++) {
+              itnim[_i0].rport->pid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = bfa_fcs_itnim_get_fcid(itnim);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_itnim0; _aux++) {
+          free(itnim[_aux].rport);
+          }
+          free(itnim);
+        
+        break;
+    }
     default:
         usage();
         break;

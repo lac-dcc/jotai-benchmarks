@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ __attribute__((used)) static unsigned short xs_next_srcport(struct sock_xprt *tr
 	return --port;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,19 +89,82 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned short port = 100;
+        
           int _len_transport0 = 1;
           struct sock_xprt * transport = (struct sock_xprt *) malloc(_len_transport0*sizeof(struct sock_xprt));
           for(int _i0 = 0; _i0 < _len_transport0; _i0++) {
-            transport[_i0].srcport = ((-2 * (next_i()%2)) + 1) * next_i();
-        transport[_i0].xprt.resvport = ((-2 * (next_i()%2)) + 1) * next_i();
+              transport[_i0].srcport = ((-2 * (next_i()%2)) + 1) * next_i();
+          transport[_i0].xprt.resvport = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           unsigned short benchRet = xs_next_srcport(transport,port);
           printf("%hu\n", benchRet); 
           free(transport);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned short port = 255;
+        
+          int _len_transport0 = 65025;
+          struct sock_xprt * transport = (struct sock_xprt *) malloc(_len_transport0*sizeof(struct sock_xprt));
+          for(int _i0 = 0; _i0 < _len_transport0; _i0++) {
+              transport[_i0].srcport = ((-2 * (next_i()%2)) + 1) * next_i();
+          transport[_i0].xprt.resvport = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          unsigned short benchRet = xs_next_srcport(transport,port);
+          printf("%hu\n", benchRet); 
+          free(transport);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned short port = 10;
+        
+          int _len_transport0 = 100;
+          struct sock_xprt * transport = (struct sock_xprt *) malloc(_len_transport0*sizeof(struct sock_xprt));
+          for(int _i0 = 0; _i0 < _len_transport0; _i0++) {
+              transport[_i0].srcport = ((-2 * (next_i()%2)) + 1) * next_i();
+          transport[_i0].xprt.resvport = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          unsigned short benchRet = xs_next_srcport(transport,port);
+          printf("%hu\n", benchRet); 
+          free(transport);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned short port = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_transport0 = 1;
+          struct sock_xprt * transport = (struct sock_xprt *) malloc(_len_transport0*sizeof(struct sock_xprt));
+          for(int _i0 = 0; _i0 < _len_transport0; _i0++) {
+              transport[_i0].srcport = ((-2 * (next_i()%2)) + 1) * next_i();
+          transport[_i0].xprt.resvport = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          unsigned short benchRet = xs_next_srcport(transport,port);
+          printf("%hu\n", benchRet); 
+          free(transport);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static int md_uuid_equal(mdp_super_t *sb1, mdp_super_t *sb
 		sb1->set_uuid3 == sb2->set_uuid3;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,25 +79,160 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_sb10 = 65025;
+          struct TYPE_4__ * sb1 = (struct TYPE_4__ *) malloc(_len_sb10*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_sb10; _i0++) {
+              sb1[_i0].set_uuid0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          sb1[_i0].set_uuid1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          sb1[_i0].set_uuid2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          sb1[_i0].set_uuid3 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_sb20 = 65025;
+          struct TYPE_4__ * sb2 = (struct TYPE_4__ *) malloc(_len_sb20*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_sb20; _i0++) {
+              sb2[_i0].set_uuid0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          sb2[_i0].set_uuid1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          sb2[_i0].set_uuid2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          sb2[_i0].set_uuid3 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = md_uuid_equal(sb1,sb2);
+          printf("%d\n", benchRet); 
+          free(sb1);
+          free(sb2);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_sb10 = 100;
+          struct TYPE_4__ * sb1 = (struct TYPE_4__ *) malloc(_len_sb10*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_sb10; _i0++) {
+              sb1[_i0].set_uuid0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          sb1[_i0].set_uuid1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          sb1[_i0].set_uuid2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          sb1[_i0].set_uuid3 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_sb20 = 100;
+          struct TYPE_4__ * sb2 = (struct TYPE_4__ *) malloc(_len_sb20*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_sb20; _i0++) {
+              sb2[_i0].set_uuid0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          sb2[_i0].set_uuid1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          sb2[_i0].set_uuid2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          sb2[_i0].set_uuid3 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = md_uuid_equal(sb1,sb2);
+          printf("%d\n", benchRet); 
+          free(sb1);
+          free(sb2);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int _len_sb10 = 1;
           struct TYPE_4__ * sb1 = (struct TYPE_4__ *) malloc(_len_sb10*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_sb10; _i0++) {
-            sb1[_i0].set_uuid0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        sb1[_i0].set_uuid1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        sb1[_i0].set_uuid2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        sb1[_i0].set_uuid3 = ((-2 * (next_i()%2)) + 1) * next_i();
+              sb1[_i0].set_uuid0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          sb1[_i0].set_uuid1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          sb1[_i0].set_uuid2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          sb1[_i0].set_uuid3 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_sb20 = 1;
           struct TYPE_4__ * sb2 = (struct TYPE_4__ *) malloc(_len_sb20*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_sb20; _i0++) {
-            sb2[_i0].set_uuid0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        sb2[_i0].set_uuid1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        sb2[_i0].set_uuid2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        sb2[_i0].set_uuid3 = ((-2 * (next_i()%2)) + 1) * next_i();
+              sb2[_i0].set_uuid0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          sb2[_i0].set_uuid1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          sb2[_i0].set_uuid2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          sb2[_i0].set_uuid3 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = md_uuid_equal(sb1,sb2);
           printf("%d\n", benchRet); 
           free(sb1);

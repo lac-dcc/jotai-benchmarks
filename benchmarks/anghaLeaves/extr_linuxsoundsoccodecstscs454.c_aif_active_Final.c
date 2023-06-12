@@ -60,12 +60,6 @@ __attribute__((used)) static bool aif_active(struct aifs_status *status, int aif
 	return (0x03 << aif_id * 2) & status->streams;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,15 +72,41 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // big-arr-10x
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int aif_id = 10;
+        
           int _len_status0 = 100;
           struct aifs_status * status = (struct aifs_status *) malloc(_len_status0*sizeof(struct aifs_status));
           for(int _i0 = 0; _i0 < _len_status0; _i0++) {
-            status[_i0].streams = ((-2 * (next_i()%2)) + 1) * next_i();
+              status[_i0].streams = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = aif_active(status,aif_id);
           printf("%d\n", benchRet); 
           free(status);

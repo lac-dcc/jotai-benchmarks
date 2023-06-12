@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ __attribute__((used)) static inline const char *fc_exch_name_lookup(unsigned int
 	return name;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,11 +81,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           unsigned int op = 100;
+        
           unsigned int max_index = 100;
+        
           int _len_table0 = 1;
           char ** table = (char **) malloc(_len_table0*sizeof(char *));
           for(int _i0 = 0; _i0 < _len_table0; _i0++) {
@@ -98,10 +120,160 @@ int main(int argc, char *argv[]) {
               table[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           const char * benchRet = fc_exch_name_lookup(op,table,max_index);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           for(int i1 = 0; i1 < _len_table0; i1++) {
+              free(table[i1]);
+          }
+          free(table);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          unsigned int op = 255;
+        
+          unsigned int max_index = 255;
+        
+          int _len_table0 = 65025;
+          char ** table = (char **) malloc(_len_table0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_table0; _i0++) {
             int _len_table1 = 1;
+            table[_i0] = (char *) malloc(_len_table1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_table1; _i1++) {
+              table[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          const char * benchRet = fc_exch_name_lookup(op,table,max_index);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          for(int i1 = 0; i1 < _len_table0; i1++) {
+              free(table[i1]);
+          }
+          free(table);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          unsigned int op = 10;
+        
+          unsigned int max_index = 10;
+        
+          int _len_table0 = 100;
+          char ** table = (char **) malloc(_len_table0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_table0; _i0++) {
+            int _len_table1 = 1;
+            table[_i0] = (char *) malloc(_len_table1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_table1; _i1++) {
+              table[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          const char * benchRet = fc_exch_name_lookup(op,table,max_index);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          for(int i1 = 0; i1 < _len_table0; i1++) {
+              free(table[i1]);
+          }
+          free(table);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          unsigned int op = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int max_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_table0 = 1;
+          char ** table = (char **) malloc(_len_table0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_table0; _i0++) {
+            int _len_table1 = 1;
+            table[_i0] = (char *) malloc(_len_table1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_table1; _i1++) {
+              table[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          const char * benchRet = fc_exch_name_lookup(op,table,max_index);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          for(int i1 = 0; i1 < _len_table0; i1++) {
               free(table[i1]);
           }
           free(table);

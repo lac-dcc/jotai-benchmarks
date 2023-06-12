@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +76,6 @@ __attribute__((used)) static void mct_u232_msr_to_icount(struct async_icount *ic
 		icount->dcd++;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,18 +88,176 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           unsigned char msr = 100;
+        
           int _len_icount0 = 1;
           struct async_icount * icount = (struct async_icount *) malloc(_len_icount0*sizeof(struct async_icount));
           for(int _i0 = 0; _i0 < _len_icount0; _i0++) {
-            icount[_i0].dcd = ((-2 * (next_i()%2)) + 1) * next_i();
-        icount[_i0].rng = ((-2 * (next_i()%2)) + 1) * next_i();
-        icount[_i0].cts = ((-2 * (next_i()%2)) + 1) * next_i();
-        icount[_i0].dsr = ((-2 * (next_i()%2)) + 1) * next_i();
+              icount[_i0].dcd = ((-2 * (next_i()%2)) + 1) * next_i();
+          icount[_i0].rng = ((-2 * (next_i()%2)) + 1) * next_i();
+          icount[_i0].cts = ((-2 * (next_i()%2)) + 1) * next_i();
+          icount[_i0].dsr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          mct_u232_msr_to_icount(icount,msr);
+          free(icount);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          unsigned char msr = 255;
+        
+          int _len_icount0 = 65025;
+          struct async_icount * icount = (struct async_icount *) malloc(_len_icount0*sizeof(struct async_icount));
+          for(int _i0 = 0; _i0 < _len_icount0; _i0++) {
+              icount[_i0].dcd = ((-2 * (next_i()%2)) + 1) * next_i();
+          icount[_i0].rng = ((-2 * (next_i()%2)) + 1) * next_i();
+          icount[_i0].cts = ((-2 * (next_i()%2)) + 1) * next_i();
+          icount[_i0].dsr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mct_u232_msr_to_icount(icount,msr);
+          free(icount);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          unsigned char msr = 10;
+        
+          int _len_icount0 = 100;
+          struct async_icount * icount = (struct async_icount *) malloc(_len_icount0*sizeof(struct async_icount));
+          for(int _i0 = 0; _i0 < _len_icount0; _i0++) {
+              icount[_i0].dcd = ((-2 * (next_i()%2)) + 1) * next_i();
+          icount[_i0].rng = ((-2 * (next_i()%2)) + 1) * next_i();
+          icount[_i0].cts = ((-2 * (next_i()%2)) + 1) * next_i();
+          icount[_i0].dsr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mct_u232_msr_to_icount(icount,msr);
+          free(icount);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          unsigned char msr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_icount0 = 1;
+          struct async_icount * icount = (struct async_icount *) malloc(_len_icount0*sizeof(struct async_icount));
+          for(int _i0 = 0; _i0 < _len_icount0; _i0++) {
+              icount[_i0].dcd = ((-2 * (next_i()%2)) + 1) * next_i();
+          icount[_i0].rng = ((-2 * (next_i()%2)) + 1) * next_i();
+          icount[_i0].cts = ((-2 * (next_i()%2)) + 1) * next_i();
+          icount[_i0].dsr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           mct_u232_msr_to_icount(icount,msr);
           free(icount);
         

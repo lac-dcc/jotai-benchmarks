@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -123,12 +125,6 @@ __attribute__((used)) static void ti_sci_setup_ops(struct ti_sci_info *info)
 	cops->get_freq = ti_sci_cmd_clk_get_freq;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -141,37 +137,201 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 87
+          // dynamic_instructions_O0 : 87
+          // ------------------------------- 
+          // static_instructions_O1 : 52
+          // dynamic_instructions_O1 : 52
+          // ------------------------------- 
+          // static_instructions_O2 : 52
+          // dynamic_instructions_O2 : 52
+          // ------------------------------- 
+          // static_instructions_O3 : 52
+          // dynamic_instructions_O3 : 52
+          // ------------------------------- 
+          // static_instructions_Ofast : 52
+          // dynamic_instructions_Ofast : 52
+          // ------------------------------- 
+          // static_instructions_Os : 52
+          // dynamic_instructions_Os : 52
+          // ------------------------------- 
+          // static_instructions_Oz : 52
+          // dynamic_instructions_Oz : 52
+          // ------------------------------- 
+
+          int _len_info0 = 65025;
+          struct ti_sci_info * info = (struct ti_sci_info *) malloc(_len_info0*sizeof(struct ti_sci_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].handle.ops.clk_ops.get_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.clk_ops.set_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.clk_ops.get_best_match_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.clk_ops.get_num_parents = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.clk_ops.get_parent = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.clk_ops.set_parent = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.clk_ops.is_off = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.clk_ops.is_on = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.clk_ops.is_auto = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.clk_ops.put_clock = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.clk_ops.idle_clock = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.clk_ops.get_clock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].handle.ops.dev_ops.get_device_resets = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.dev_ops.set_device_resets = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.dev_ops.is_transitioning = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.dev_ops.is_on = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.dev_ops.is_stop = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.dev_ops.is_idle = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.dev_ops.get_context_loss_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.dev_ops.is_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.dev_ops.put_device = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.dev_ops.idle_device = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.dev_ops.get_device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].handle.ops.core_ops.reboot_device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
+          }
+        
+          ti_sci_setup_ops(info);
+          free(info);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 87
+          // dynamic_instructions_O0 : 87
+          // ------------------------------- 
+          // static_instructions_O1 : 52
+          // dynamic_instructions_O1 : 52
+          // ------------------------------- 
+          // static_instructions_O2 : 52
+          // dynamic_instructions_O2 : 52
+          // ------------------------------- 
+          // static_instructions_O3 : 52
+          // dynamic_instructions_O3 : 52
+          // ------------------------------- 
+          // static_instructions_Ofast : 52
+          // dynamic_instructions_Ofast : 52
+          // ------------------------------- 
+          // static_instructions_Os : 52
+          // dynamic_instructions_Os : 52
+          // ------------------------------- 
+          // static_instructions_Oz : 52
+          // dynamic_instructions_Oz : 52
+          // ------------------------------- 
+
+          int _len_info0 = 100;
+          struct ti_sci_info * info = (struct ti_sci_info *) malloc(_len_info0*sizeof(struct ti_sci_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].handle.ops.clk_ops.get_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.clk_ops.set_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.clk_ops.get_best_match_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.clk_ops.get_num_parents = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.clk_ops.get_parent = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.clk_ops.set_parent = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.clk_ops.is_off = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.clk_ops.is_on = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.clk_ops.is_auto = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.clk_ops.put_clock = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.clk_ops.idle_clock = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.clk_ops.get_clock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].handle.ops.dev_ops.get_device_resets = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.dev_ops.set_device_resets = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.dev_ops.is_transitioning = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.dev_ops.is_on = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.dev_ops.is_stop = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.dev_ops.is_idle = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.dev_ops.get_context_loss_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.dev_ops.is_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.dev_ops.put_device = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.dev_ops.idle_device = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.dev_ops.get_device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].handle.ops.core_ops.reboot_device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
+          }
+        
+          ti_sci_setup_ops(info);
+          free(info);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 87
+          // dynamic_instructions_O0 : 87
+          // ------------------------------- 
+          // static_instructions_O1 : 52
+          // dynamic_instructions_O1 : 52
+          // ------------------------------- 
+          // static_instructions_O2 : 52
+          // dynamic_instructions_O2 : 52
+          // ------------------------------- 
+          // static_instructions_O3 : 52
+          // dynamic_instructions_O3 : 52
+          // ------------------------------- 
+          // static_instructions_Ofast : 52
+          // dynamic_instructions_Ofast : 52
+          // ------------------------------- 
+          // static_instructions_Os : 52
+          // dynamic_instructions_Os : 52
+          // ------------------------------- 
+          // static_instructions_Oz : 52
+          // dynamic_instructions_Oz : 52
+          // ------------------------------- 
+
           int _len_info0 = 1;
           struct ti_sci_info * info = (struct ti_sci_info *) malloc(_len_info0*sizeof(struct ti_sci_info));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].handle.ops.clk_ops.get_freq = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].handle.ops.clk_ops.set_freq = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].handle.ops.clk_ops.get_best_match_freq = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].handle.ops.clk_ops.get_num_parents = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].handle.ops.clk_ops.get_parent = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].handle.ops.clk_ops.set_parent = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].handle.ops.clk_ops.is_off = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].handle.ops.clk_ops.is_on = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].handle.ops.clk_ops.is_auto = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].handle.ops.clk_ops.put_clock = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].handle.ops.clk_ops.idle_clock = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].handle.ops.clk_ops.get_clock = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].handle.ops.dev_ops.get_device_resets = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].handle.ops.dev_ops.set_device_resets = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].handle.ops.dev_ops.is_transitioning = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].handle.ops.dev_ops.is_on = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].handle.ops.dev_ops.is_stop = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].handle.ops.dev_ops.is_idle = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].handle.ops.dev_ops.get_context_loss_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].handle.ops.dev_ops.is_valid = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].handle.ops.dev_ops.put_device = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].handle.ops.dev_ops.idle_device = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].handle.ops.dev_ops.get_device = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].handle.ops.core_ops.reboot_device = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].handle.ops.clk_ops.get_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.clk_ops.set_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.clk_ops.get_best_match_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.clk_ops.get_num_parents = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.clk_ops.get_parent = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.clk_ops.set_parent = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.clk_ops.is_off = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.clk_ops.is_on = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.clk_ops.is_auto = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.clk_ops.put_clock = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.clk_ops.idle_clock = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.clk_ops.get_clock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].handle.ops.dev_ops.get_device_resets = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.dev_ops.set_device_resets = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.dev_ops.is_transitioning = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.dev_ops.is_on = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.dev_ops.is_stop = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.dev_ops.is_idle = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.dev_ops.get_context_loss_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.dev_ops.is_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.dev_ops.put_device = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.dev_ops.idle_device = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].handle.ops.dev_ops.get_device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].handle.ops.core_ops.reboot_device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
           }
+        
           ti_sci_setup_ops(info);
           free(info);
         

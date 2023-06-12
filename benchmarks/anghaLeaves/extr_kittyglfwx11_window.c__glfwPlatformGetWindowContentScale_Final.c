@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ void _glfwPlatformGetWindowContentScale(_GLFWwindow* window,
         *yscale = _glfw.x11.contentScaleY;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,24 +83,154 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_window0 = 65025;
+          int * window = (int *) malloc(_len_window0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_window0; _i0++) {
+            window[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_xscale0 = 65025;
+          float * xscale = (float *) malloc(_len_xscale0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_xscale0; _i0++) {
+            xscale[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          int _len_yscale0 = 65025;
+          float * yscale = (float *) malloc(_len_yscale0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_yscale0; _i0++) {
+            yscale[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          _glfwPlatformGetWindowContentScale(window,xscale,yscale);
+          free(window);
+          free(xscale);
+          free(yscale);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_window0 = 100;
+          int * window = (int *) malloc(_len_window0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_window0; _i0++) {
+            window[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_xscale0 = 100;
+          float * xscale = (float *) malloc(_len_xscale0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_xscale0; _i0++) {
+            xscale[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          int _len_yscale0 = 100;
+          float * yscale = (float *) malloc(_len_yscale0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_yscale0; _i0++) {
+            yscale[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          _glfwPlatformGetWindowContentScale(window,xscale,yscale);
+          free(window);
+          free(xscale);
+          free(yscale);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_window0 = 1;
           int * window = (int *) malloc(_len_window0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_window0; _i0++) {
             window[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_xscale0 = 1;
           float * xscale = (float *) malloc(_len_xscale0*sizeof(float));
           for(int _i0 = 0; _i0 < _len_xscale0; _i0++) {
             xscale[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
+        
           int _len_yscale0 = 1;
           float * yscale = (float *) malloc(_len_yscale0*sizeof(float));
           for(int _i0 = 0; _i0 < _len_yscale0; _i0++) {
             yscale[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
+        
           _glfwPlatformGetWindowContentScale(window,xscale,yscale);
           free(window);
           free(xscale);

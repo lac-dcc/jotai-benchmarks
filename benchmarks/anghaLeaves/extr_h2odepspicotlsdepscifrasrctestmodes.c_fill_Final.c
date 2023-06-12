@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static void fill(uint8_t *buf, size_t len, uint8_t b)
     buf[i] = b++;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,16 +74,84 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 3581
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 1283
+          // ------------------------------- 
+          // static_instructions_O2 : 90
+          // dynamic_instructions_O2 : 480
+          // ------------------------------- 
+          // static_instructions_O3 : 90
+          // dynamic_instructions_O3 : 480
+          // ------------------------------- 
+          // static_instructions_Ofast : 90
+          // dynamic_instructions_Ofast : 480
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 1282
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 1537
+          // ------------------------------- 
+
+          unsigned long len = 255;
+        
+          long b = 255;
+        
+          int _len_buf0 = 65025;
+          long * buf = (long *) malloc(_len_buf0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          fill(buf,len,b);
+          free(buf);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 151
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 58
+          // ------------------------------- 
+          // static_instructions_O2 : 53
+          // dynamic_instructions_O2 : 66
+          // ------------------------------- 
+          // static_instructions_O3 : 53
+          // dynamic_instructions_O3 : 66
+          // ------------------------------- 
+          // static_instructions_Ofast : 53
+          // dynamic_instructions_Ofast : 66
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 57
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 67
+          // ------------------------------- 
+
           unsigned long len = 10;
+        
           long b = 10;
+        
           int _len_buf0 = 100;
           long * buf = (long *) malloc(_len_buf0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
             buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           fill(buf,len,b);
           free(buf);
         

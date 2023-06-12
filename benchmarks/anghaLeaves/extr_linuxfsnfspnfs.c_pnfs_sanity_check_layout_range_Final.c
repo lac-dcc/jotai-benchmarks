@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ pnfs_sanity_check_layout_range(struct pnfs_layout_range *range)
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,16 +92,125 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_range0 = 65025;
+          struct pnfs_layout_range * range = (struct pnfs_layout_range *) malloc(_len_range0*sizeof(struct pnfs_layout_range));
+          for(int _i0 = 0; _i0 < _len_range0; _i0++) {
+              range[_i0].iomode = ((-2 * (next_i()%2)) + 1) * next_i();
+          range[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          range[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pnfs_sanity_check_layout_range(range);
+          printf("%d\n", benchRet); 
+          free(range);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_range0 = 100;
+          struct pnfs_layout_range * range = (struct pnfs_layout_range *) malloc(_len_range0*sizeof(struct pnfs_layout_range));
+          for(int _i0 = 0; _i0 < _len_range0; _i0++) {
+              range[_i0].iomode = ((-2 * (next_i()%2)) + 1) * next_i();
+          range[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          range[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pnfs_sanity_check_layout_range(range);
+          printf("%d\n", benchRet); 
+          free(range);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_range0 = 1;
           struct pnfs_layout_range * range = (struct pnfs_layout_range *) malloc(_len_range0*sizeof(struct pnfs_layout_range));
           for(int _i0 = 0; _i0 < _len_range0; _i0++) {
-            range[_i0].iomode = ((-2 * (next_i()%2)) + 1) * next_i();
-        range[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        range[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+              range[_i0].iomode = ((-2 * (next_i()%2)) + 1) * next_i();
+          range[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          range[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = pnfs_sanity_check_layout_range(range);
           printf("%d\n", benchRet); 
           free(range);

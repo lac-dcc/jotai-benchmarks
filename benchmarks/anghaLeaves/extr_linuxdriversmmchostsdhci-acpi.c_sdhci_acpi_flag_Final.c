@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +65,6 @@ __attribute__((used)) static inline bool sdhci_acpi_flag(struct sdhci_acpi_host 
 	return c->slot && (c->slot->flags & flag);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,19 +77,196 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           unsigned int flag = 100;
+        
           int _len_c0 = 1;
           struct sdhci_acpi_host * c = (struct sdhci_acpi_host *) malloc(_len_c0*sizeof(struct sdhci_acpi_host));
           for(int _i0 = 0; _i0 < _len_c0; _i0++) {
               int _len_c__i0__slot0 = 1;
           c[_i0].slot = (struct TYPE_2__ *) malloc(_len_c__i0__slot0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_c__i0__slot0; _j0++) {
-            c[_i0].slot->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              c[_i0].slot->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = sdhci_acpi_flag(c,flag);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_c0; _aux++) {
+          free(c[_aux].slot);
+          }
+          free(c);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          unsigned int flag = 255;
+        
+          int _len_c0 = 65025;
+          struct sdhci_acpi_host * c = (struct sdhci_acpi_host *) malloc(_len_c0*sizeof(struct sdhci_acpi_host));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              int _len_c__i0__slot0 = 1;
+          c[_i0].slot = (struct TYPE_2__ *) malloc(_len_c__i0__slot0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_c__i0__slot0; _j0++) {
+              c[_i0].slot->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = sdhci_acpi_flag(c,flag);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_c0; _aux++) {
+          free(c[_aux].slot);
+          }
+          free(c);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          unsigned int flag = 10;
+        
+          int _len_c0 = 100;
+          struct sdhci_acpi_host * c = (struct sdhci_acpi_host *) malloc(_len_c0*sizeof(struct sdhci_acpi_host));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              int _len_c__i0__slot0 = 1;
+          c[_i0].slot = (struct TYPE_2__ *) malloc(_len_c__i0__slot0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_c__i0__slot0; _j0++) {
+              c[_i0].slot->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = sdhci_acpi_flag(c,flag);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_c0; _aux++) {
+          free(c[_aux].slot);
+          }
+          free(c);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          unsigned int flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_c0 = 1;
+          struct sdhci_acpi_host * c = (struct sdhci_acpi_host *) malloc(_len_c0*sizeof(struct sdhci_acpi_host));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              int _len_c__i0__slot0 = 1;
+          c[_i0].slot = (struct TYPE_2__ *) malloc(_len_c__i0__slot0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_c__i0__slot0; _j0++) {
+              c[_i0].slot->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = sdhci_acpi_flag(c,flag);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_c0; _aux++) {

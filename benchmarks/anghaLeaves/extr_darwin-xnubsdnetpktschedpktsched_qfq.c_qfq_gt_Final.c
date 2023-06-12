@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ qfq_gt(u_int64_t a, u_int64_t b)
 	return ((int64_t)(a - b) > 0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,7 +81,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long a = 100;
+        
           long b = 100;
+        
           int benchRet = qfq_gt(a,b);
           printf("%d\n", benchRet); 
         
@@ -96,7 +93,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long a = 255;
+        
           long b = 255;
+        
           int benchRet = qfq_gt(a,b);
           printf("%d\n", benchRet); 
         
@@ -106,13 +105,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long a = 10;
+        
           long b = 10;
+        
           int benchRet = qfq_gt(a,b);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long a = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = qfq_gt(a,b);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

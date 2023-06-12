@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +77,6 @@ selection_coord(Screen *self, unsigned int x, unsigned int y, unsigned int ydelt
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,28 +93,130 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int x = 100;
+        
           unsigned int y = 100;
+        
           unsigned int ydelta = 100;
+        
           int _len_self0 = 1;
           struct TYPE_6__ * self = (struct TYPE_6__ *) malloc(_len_self0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_self0; _i0++) {
-            self[_i0].scrolled_by = ((-2 * (next_i()%2)) + 1) * next_i();
-        self[_i0].lines = ((-2 * (next_i()%2)) + 1) * next_i();
-        self[_i0].columns = ((-2 * (next_i()%2)) + 1) * next_i();
+              self[_i0].scrolled_by = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].lines = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].columns = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_ans0 = 1;
           struct TYPE_5__ * ans = (struct TYPE_5__ *) malloc(_len_ans0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_ans0; _i0++) {
-            ans[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
-        ans[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+              ans[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          ans[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           selection_coord(self,x,y,ydelta,ans);
           free(self);
           free(ans);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int x = 255;
+        
+          unsigned int y = 255;
+        
+          unsigned int ydelta = 255;
+        
+          int _len_self0 = 65025;
+          struct TYPE_6__ * self = (struct TYPE_6__ *) malloc(_len_self0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_self0; _i0++) {
+              self[_i0].scrolled_by = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].lines = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].columns = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ans0 = 65025;
+          struct TYPE_5__ * ans = (struct TYPE_5__ *) malloc(_len_ans0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_ans0; _i0++) {
+              ans[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          ans[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          selection_coord(self,x,y,ydelta,ans);
+          free(self);
+          free(ans);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int x = 10;
+        
+          unsigned int y = 10;
+        
+          unsigned int ydelta = 10;
+        
+          int _len_self0 = 100;
+          struct TYPE_6__ * self = (struct TYPE_6__ *) malloc(_len_self0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_self0; _i0++) {
+              self[_i0].scrolled_by = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].lines = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].columns = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ans0 = 100;
+          struct TYPE_5__ * ans = (struct TYPE_5__ *) malloc(_len_ans0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_ans0; _i0++) {
+              ans[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          ans[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          selection_coord(self,x,y,ydelta,ans);
+          free(self);
+          free(ans);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int ydelta = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_self0 = 1;
+          struct TYPE_6__ * self = (struct TYPE_6__ *) malloc(_len_self0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_self0; _i0++) {
+              self[_i0].scrolled_by = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].lines = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].columns = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ans0 = 1;
+          struct TYPE_5__ * ans = (struct TYPE_5__ *) malloc(_len_ans0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_ans0; _i0++) {
+              ans[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          ans[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          selection_coord(self,x,y,ydelta,ans);
+          free(self);
+          free(ans);
+        
+        break;
+    }
     default:
         usage();
         break;

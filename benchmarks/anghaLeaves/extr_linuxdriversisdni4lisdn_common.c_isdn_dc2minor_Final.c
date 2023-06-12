@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ isdn_dc2minor(int di, int ch)
 	return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,7 +87,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int di = 100;
+        
           int ch = 100;
+        
           int benchRet = isdn_dc2minor(di,ch);
           printf("%d\n", benchRet); 
         
@@ -102,7 +99,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int di = 255;
+        
           int ch = 255;
+        
           int benchRet = isdn_dc2minor(di,ch);
           printf("%d\n", benchRet); 
         
@@ -112,13 +111,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int di = 10;
+        
           int ch = 10;
+        
           int benchRet = isdn_dc2minor(di,ch);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int di = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int ch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = isdn_dc2minor(di,ch);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

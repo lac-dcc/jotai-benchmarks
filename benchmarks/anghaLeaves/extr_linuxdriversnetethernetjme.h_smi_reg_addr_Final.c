@@ -64,12 +64,6 @@ __attribute__((used)) static inline u32 smi_reg_addr(int x)
 	return (x << SMI_REG_ADDR_SHIFT) & SMI_REG_ADDR_MASK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int x = 100;
+        
           int benchRet = smi_reg_addr(x);
           printf("%d\n", benchRet); 
         
@@ -95,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int x = 255;
+        
           int benchRet = smi_reg_addr(x);
           printf("%d\n", benchRet); 
         
@@ -104,12 +100,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int x = 10;
+        
           int benchRet = smi_reg_addr(x);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

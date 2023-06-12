@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -126,12 +128,6 @@ __attribute__((used)) static int malidp550_rotmem_required(struct malidp_hw_devi
 	return w * bytes_per_col;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -144,34 +140,183 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 39
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int w = 100;
+        
           int h = 100;
+        
           int fmt = 100;
+        
           int _len_hwdev0 = 1;
           struct malidp_hw_device * hwdev = (struct malidp_hw_device *) malloc(_len_hwdev0*sizeof(struct malidp_hw_device));
           for(int _i0 = 0; _i0 < _len_hwdev0; _i0++) {
-            hwdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              hwdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = malidp550_rotmem_required(hwdev,w,h,fmt);
           printf("%d\n", benchRet); 
           free(hwdev);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 39
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int w = 255;
+        
+          int h = 255;
+        
+          int fmt = 255;
+        
+          int _len_hwdev0 = 65025;
+          struct malidp_hw_device * hwdev = (struct malidp_hw_device *) malloc(_len_hwdev0*sizeof(struct malidp_hw_device));
+          for(int _i0 = 0; _i0 < _len_hwdev0; _i0++) {
+              hwdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = malidp550_rotmem_required(hwdev,w,h,fmt);
+          printf("%d\n", benchRet); 
+          free(hwdev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 39
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int w = 10;
+        
           int h = 10;
+        
           int fmt = 10;
+        
           int _len_hwdev0 = 100;
           struct malidp_hw_device * hwdev = (struct malidp_hw_device *) malloc(_len_hwdev0*sizeof(struct malidp_hw_device));
           for(int _i0 = 0; _i0 < _len_hwdev0; _i0++) {
-            hwdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              hwdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = malidp550_rotmem_required(hwdev,w,h,fmt);
+          printf("%d\n", benchRet); 
+          free(hwdev);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 39
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int w = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hwdev0 = 1;
+          struct malidp_hw_device * hwdev = (struct malidp_hw_device *) malloc(_len_hwdev0*sizeof(struct malidp_hw_device));
+          for(int _i0 = 0; _i0 < _len_hwdev0; _i0++) {
+              hwdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = malidp550_rotmem_required(hwdev,w,h,fmt);
           printf("%d\n", benchRet); 
           free(hwdev);

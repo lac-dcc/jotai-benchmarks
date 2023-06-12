@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -97,12 +100,6 @@ __attribute__((used)) static int sm5502_parse_irq(struct sm5502_muic_info *info,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -119,19 +116,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int irq_type = 100;
+        
           int _len_info0 = 1;
           struct sm5502_muic_info * info = (struct sm5502_muic_info *) malloc(_len_info0*sizeof(struct sm5502_muic_info));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].irq_attach = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].irq_detach = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].irq_attach = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].irq_detach = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = sm5502_parse_irq(info,irq_type);
           printf("%d\n", benchRet); 
           free(info);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int irq_type = 255;
+        
+          int _len_info0 = 65025;
+          struct sm5502_muic_info * info = (struct sm5502_muic_info *) malloc(_len_info0*sizeof(struct sm5502_muic_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].irq_attach = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].irq_detach = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sm5502_parse_irq(info,irq_type);
+          printf("%d\n", benchRet); 
+          free(info);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int irq_type = 10;
+        
+          int _len_info0 = 100;
+          struct sm5502_muic_info * info = (struct sm5502_muic_info *) malloc(_len_info0*sizeof(struct sm5502_muic_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].irq_attach = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].irq_detach = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sm5502_parse_irq(info,irq_type);
+          printf("%d\n", benchRet); 
+          free(info);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int irq_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_info0 = 1;
+          struct sm5502_muic_info * info = (struct sm5502_muic_info *) malloc(_len_info0*sizeof(struct sm5502_muic_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].irq_attach = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].irq_detach = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sm5502_parse_irq(info,irq_type);
+          printf("%d\n", benchRet); 
+          free(info);
+        
+        break;
+    }
     default:
         usage();
         break;

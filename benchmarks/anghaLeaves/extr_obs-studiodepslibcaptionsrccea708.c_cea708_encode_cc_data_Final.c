@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ cc_data_t cea708_encode_cc_data(int cc_valid, cea708_cc_type_t type, uint16_t cc
     return data;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,8 +84,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int cc_valid = 100;
+        
           int type = 100;
+        
           int cc_data = 100;
+        
           struct TYPE_3__ benchRet = cea708_encode_cc_data(cc_valid,type,cc_data);
           printf("%d\n", benchRet.member_0);
           printf("%d\n", benchRet.member_1);
@@ -103,8 +101,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int cc_valid = 255;
+        
           int type = 255;
+        
           int cc_data = 255;
+        
           struct TYPE_3__ benchRet = cea708_encode_cc_data(cc_valid,type,cc_data);
           printf("%d\n", benchRet.member_0);
           printf("%d\n", benchRet.member_1);
@@ -117,8 +118,11 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int cc_valid = 10;
+        
           int type = 10;
+        
           int cc_data = 10;
+        
           struct TYPE_3__ benchRet = cea708_encode_cc_data(cc_valid,type,cc_data);
           printf("%d\n", benchRet.member_0);
           printf("%d\n", benchRet.member_1);
@@ -127,7 +131,23 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int cc_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int cc_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          struct TYPE_3__ benchRet = cea708_encode_cc_data(cc_valid,type,cc_data);
+          printf("%d\n", benchRet.member_0);
+          printf("%d\n", benchRet.member_1);
+          printf("%d\n", benchRet.member_3);
+          printf("%d\n", benchRet.member_2);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static bool is_new_segment(struct dec_sub *sub, struct dem
         (p->start != sub->start || p->end != sub->end || p->codec != sub->codec);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,24 +76,28 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_sub0 = 1;
+          int _len_sub0 = 65025;
           struct dec_sub * sub = (struct dec_sub *) malloc(_len_sub0*sizeof(struct dec_sub));
           for(int _i0 = 0; _i0 < _len_sub0; _i0++) {
-            sub[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
-        sub[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
-        sub[_i0].codec = ((-2 * (next_i()%2)) + 1) * next_i();
+              sub[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          sub[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+          sub[_i0].codec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_p0 = 1;
+        
+          int _len_p0 = 65025;
           struct demux_packet * p = (struct demux_packet *) malloc(_len_p0*sizeof(struct demux_packet));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].codec = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].segmented = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].codec = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].segmented = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_new_segment(sub,p);
           printf("%d\n", benchRet); 
           free(sub);
@@ -105,7 +105,64 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_sub0 = 100;
+          struct dec_sub * sub = (struct dec_sub *) malloc(_len_sub0*sizeof(struct dec_sub));
+          for(int _i0 = 0; _i0 < _len_sub0; _i0++) {
+              sub[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          sub[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+          sub[_i0].codec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_p0 = 100;
+          struct demux_packet * p = (struct demux_packet *) malloc(_len_p0*sizeof(struct demux_packet));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].codec = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].segmented = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_new_segment(sub,p);
+          printf("%d\n", benchRet); 
+          free(sub);
+          free(p);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_sub0 = 1;
+          struct dec_sub * sub = (struct dec_sub *) malloc(_len_sub0*sizeof(struct dec_sub));
+          for(int _i0 = 0; _i0 < _len_sub0; _i0++) {
+              sub[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          sub[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+          sub[_i0].codec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_p0 = 1;
+          struct demux_packet * p = (struct demux_packet *) malloc(_len_p0*sizeof(struct demux_packet));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].codec = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].segmented = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_new_segment(sub,p);
+          printf("%d\n", benchRet); 
+          free(sub);
+          free(p);
+        
+        break;
+    }
     default:
         usage();
         break;

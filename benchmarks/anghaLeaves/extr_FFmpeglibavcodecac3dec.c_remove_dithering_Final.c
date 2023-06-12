@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static void remove_dithering(AC3DecodeContext *s) {
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,13 +85,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_s0 = 1;
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_s0 = 65025;
           struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].fbw_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].fbw_channels = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_s__i0__start_freq0 = 1;
           s[_i0].start_freq = (int *) malloc(_len_s__i0__start_freq0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_s__i0__start_freq0; _j0++) {
@@ -134,7 +153,203 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_s__i0__dither_flag0; _j0++) {
             s[_i0].dither_flag[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          remove_dithering(s);
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].start_freq);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].end_freq);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(*(s[_aux].fixed_coeffs));
+        free(s[_aux].fixed_coeffs);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(*(s[_aux].bap));
+        free(s[_aux].bap);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].channel_in_cpl);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].dither_flag);
+          }
+          free(s);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_s0 = 100;
+          struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].fbw_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_s__i0__start_freq0 = 1;
+          s[_i0].start_freq = (int *) malloc(_len_s__i0__start_freq0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_s__i0__start_freq0; _j0++) {
+            s[_i0].start_freq[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_s__i0__end_freq0 = 1;
+          s[_i0].end_freq = (int *) malloc(_len_s__i0__end_freq0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_s__i0__end_freq0; _j0++) {
+            s[_i0].end_freq[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_s__i0__fixed_coeffs0 = 1;
+          s[_i0].fixed_coeffs = (long **) malloc(_len_s__i0__fixed_coeffs0*sizeof(long *));
+          for(int _j0 = 0; _j0 < _len_s__i0__fixed_coeffs0; _j0++) {
+            int _len_s__i0__fixed_coeffs1 = 1;
+            s[_i0].fixed_coeffs[_j0] = (long *) malloc(_len_s__i0__fixed_coeffs1*sizeof(long));
+            for(int _j1 = 0; _j1 < _len_s__i0__fixed_coeffs1; _j1++) {
+              s[_i0].fixed_coeffs[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+          int _len_s__i0__bap0 = 1;
+          s[_i0].bap = (int **) malloc(_len_s__i0__bap0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_s__i0__bap0; _j0++) {
+            int _len_s__i0__bap1 = 1;
+            s[_i0].bap[_j0] = (int *) malloc(_len_s__i0__bap1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_s__i0__bap1; _j1++) {
+              s[_i0].bap[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+          int _len_s__i0__channel_in_cpl0 = 1;
+          s[_i0].channel_in_cpl = (long *) malloc(_len_s__i0__channel_in_cpl0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_s__i0__channel_in_cpl0; _j0++) {
+            s[_i0].channel_in_cpl[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_s__i0__dither_flag0 = 1;
+          s[_i0].dither_flag = (int *) malloc(_len_s__i0__dither_flag0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_s__i0__dither_flag0; _j0++) {
+            s[_i0].dither_flag[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          remove_dithering(s);
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].start_freq);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].end_freq);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(*(s[_aux].fixed_coeffs));
+        free(s[_aux].fixed_coeffs);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(*(s[_aux].bap));
+        free(s[_aux].bap);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].channel_in_cpl);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].dither_flag);
+          }
+          free(s);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_s0 = 1;
+          struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].fbw_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_s__i0__start_freq0 = 1;
+          s[_i0].start_freq = (int *) malloc(_len_s__i0__start_freq0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_s__i0__start_freq0; _j0++) {
+            s[_i0].start_freq[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_s__i0__end_freq0 = 1;
+          s[_i0].end_freq = (int *) malloc(_len_s__i0__end_freq0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_s__i0__end_freq0; _j0++) {
+            s[_i0].end_freq[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_s__i0__fixed_coeffs0 = 1;
+          s[_i0].fixed_coeffs = (long **) malloc(_len_s__i0__fixed_coeffs0*sizeof(long *));
+          for(int _j0 = 0; _j0 < _len_s__i0__fixed_coeffs0; _j0++) {
+            int _len_s__i0__fixed_coeffs1 = 1;
+            s[_i0].fixed_coeffs[_j0] = (long *) malloc(_len_s__i0__fixed_coeffs1*sizeof(long));
+            for(int _j1 = 0; _j1 < _len_s__i0__fixed_coeffs1; _j1++) {
+              s[_i0].fixed_coeffs[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+          int _len_s__i0__bap0 = 1;
+          s[_i0].bap = (int **) malloc(_len_s__i0__bap0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_s__i0__bap0; _j0++) {
+            int _len_s__i0__bap1 = 1;
+            s[_i0].bap[_j0] = (int *) malloc(_len_s__i0__bap1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_s__i0__bap1; _j1++) {
+              s[_i0].bap[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+          int _len_s__i0__channel_in_cpl0 = 1;
+          s[_i0].channel_in_cpl = (long *) malloc(_len_s__i0__channel_in_cpl0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_s__i0__channel_in_cpl0; _j0++) {
+            s[_i0].channel_in_cpl[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_s__i0__dither_flag0 = 1;
+          s[_i0].dither_flag = (int *) malloc(_len_s__i0__dither_flag0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_s__i0__dither_flag0; _j0++) {
+            s[_i0].dither_flag[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           remove_dithering(s);
           for(int _aux = 0; _aux < _len_s0; _aux++) {
           free(s[_aux].start_freq);

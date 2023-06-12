@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ void brain_server_handle_signal (int signo)
   }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,6 +83,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int signo = 100;
+        
           brain_server_handle_signal(signo);
         
         break;
@@ -96,6 +92,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int signo = 255;
+        
           brain_server_handle_signal(signo);
         
         break;
@@ -104,11 +101,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int signo = 10;
+        
           brain_server_handle_signal(signo);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int signo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          brain_server_handle_signal(signo);
+        
+        break;
+    }
     default:
         usage();
         break;

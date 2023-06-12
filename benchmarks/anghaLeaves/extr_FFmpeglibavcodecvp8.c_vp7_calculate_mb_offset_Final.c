@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ __attribute__((used)) static int vp7_calculate_mb_offset(int mb_x, int mb_y, int
     return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,21 +86,29 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int mb_x = 100;
+        
           int mb_y = 100;
+        
           int mb_width = 100;
+        
           int xoffset = 100;
+        
           int yoffset = 100;
+        
           int boundary = 100;
+        
           int _len_edge_x0 = 1;
           int * edge_x = (int *) malloc(_len_edge_x0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_edge_x0; _i0++) {
             edge_x[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_edge_y0 = 1;
           int * edge_y = (int *) malloc(_len_edge_y0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_edge_y0; _i0++) {
             edge_y[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = vp7_calculate_mb_offset(mb_x,mb_y,mb_width,xoffset,yoffset,boundary,edge_x,edge_y);
           printf("%d\n", benchRet); 
           free(edge_x);
@@ -111,7 +116,108 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int mb_x = 255;
+        
+          int mb_y = 255;
+        
+          int mb_width = 255;
+        
+          int xoffset = 255;
+        
+          int yoffset = 255;
+        
+          int boundary = 255;
+        
+          int _len_edge_x0 = 65025;
+          int * edge_x = (int *) malloc(_len_edge_x0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_edge_x0; _i0++) {
+            edge_x[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_edge_y0 = 65025;
+          int * edge_y = (int *) malloc(_len_edge_y0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_edge_y0; _i0++) {
+            edge_y[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = vp7_calculate_mb_offset(mb_x,mb_y,mb_width,xoffset,yoffset,boundary,edge_x,edge_y);
+          printf("%d\n", benchRet); 
+          free(edge_x);
+          free(edge_y);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int mb_x = 10;
+        
+          int mb_y = 10;
+        
+          int mb_width = 10;
+        
+          int xoffset = 10;
+        
+          int yoffset = 10;
+        
+          int boundary = 10;
+        
+          int _len_edge_x0 = 100;
+          int * edge_x = (int *) malloc(_len_edge_x0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_edge_x0; _i0++) {
+            edge_x[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_edge_y0 = 100;
+          int * edge_y = (int *) malloc(_len_edge_y0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_edge_y0; _i0++) {
+            edge_y[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = vp7_calculate_mb_offset(mb_x,mb_y,mb_width,xoffset,yoffset,boundary,edge_x,edge_y);
+          printf("%d\n", benchRet); 
+          free(edge_x);
+          free(edge_y);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int mb_x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int mb_y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int mb_width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int xoffset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int yoffset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int boundary = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_edge_x0 = 1;
+          int * edge_x = (int *) malloc(_len_edge_x0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_edge_x0; _i0++) {
+            edge_x[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_edge_y0 = 1;
+          int * edge_y = (int *) malloc(_len_edge_y0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_edge_y0; _i0++) {
+            edge_y[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = vp7_calculate_mb_offset(mb_x,mb_y,mb_width,xoffset,yoffset,boundary,edge_x,edge_y);
+          printf("%d\n", benchRet); 
+          free(edge_x);
+          free(edge_y);
+        
+        break;
+    }
     default:
         usage();
         break;

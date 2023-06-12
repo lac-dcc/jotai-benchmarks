@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +78,6 @@ __attribute__((used)) static void fixed_event_count(u32 event_number)
 	return;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,6 +94,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long event_number = 100;
+        
           fixed_event_count(event_number);
         
         break;
@@ -107,6 +103,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long event_number = 255;
+        
           fixed_event_count(event_number);
         
         break;
@@ -115,11 +112,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long event_number = 10;
+        
           fixed_event_count(event_number);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long event_number = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          fixed_event_count(event_number);
+        
+        break;
+    }
     default:
         usage();
         break;

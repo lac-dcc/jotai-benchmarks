@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ void LSAPI_Set_Slow_Req_Msecs( int msecs )
     s_slow_req_msecs = msecs;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int msecs = 100;
+        
           LSAPI_Set_Slow_Req_Msecs(msecs);
         
         break;
@@ -92,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int msecs = 255;
+        
           LSAPI_Set_Slow_Req_Msecs(msecs);
         
         break;
@@ -100,11 +97,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int msecs = 10;
+        
           LSAPI_Set_Slow_Req_Msecs(msecs);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int msecs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          LSAPI_Set_Slow_Req_Msecs(msecs);
+        
+        break;
+    }
     default:
         usage();
         break;

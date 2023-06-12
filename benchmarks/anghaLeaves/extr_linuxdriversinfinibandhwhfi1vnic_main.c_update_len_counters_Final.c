@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +78,6 @@ __attribute__((used)) static inline void update_len_counters(struct opa_vnic_grp
 		grp->s_64++;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,23 +94,94 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int len = 100;
+        
           int _len_grp0 = 1;
           struct opa_vnic_grp_stats * grp = (struct opa_vnic_grp_stats *) malloc(_len_grp0*sizeof(struct opa_vnic_grp_stats));
           for(int _i0 = 0; _i0 < _len_grp0; _i0++) {
-            grp[_i0].s_64 = ((-2 * (next_i()%2)) + 1) * next_i();
-        grp[_i0].s_65_127 = ((-2 * (next_i()%2)) + 1) * next_i();
-        grp[_i0].s_128_255 = ((-2 * (next_i()%2)) + 1) * next_i();
-        grp[_i0].s_256_511 = ((-2 * (next_i()%2)) + 1) * next_i();
-        grp[_i0].s_512_1023 = ((-2 * (next_i()%2)) + 1) * next_i();
-        grp[_i0].s_1024_1518 = ((-2 * (next_i()%2)) + 1) * next_i();
-        grp[_i0].s_1519_max = ((-2 * (next_i()%2)) + 1) * next_i();
+              grp[_i0].s_64 = ((-2 * (next_i()%2)) + 1) * next_i();
+          grp[_i0].s_65_127 = ((-2 * (next_i()%2)) + 1) * next_i();
+          grp[_i0].s_128_255 = ((-2 * (next_i()%2)) + 1) * next_i();
+          grp[_i0].s_256_511 = ((-2 * (next_i()%2)) + 1) * next_i();
+          grp[_i0].s_512_1023 = ((-2 * (next_i()%2)) + 1) * next_i();
+          grp[_i0].s_1024_1518 = ((-2 * (next_i()%2)) + 1) * next_i();
+          grp[_i0].s_1519_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           update_len_counters(grp,len);
           free(grp);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int len = 255;
+        
+          int _len_grp0 = 65025;
+          struct opa_vnic_grp_stats * grp = (struct opa_vnic_grp_stats *) malloc(_len_grp0*sizeof(struct opa_vnic_grp_stats));
+          for(int _i0 = 0; _i0 < _len_grp0; _i0++) {
+              grp[_i0].s_64 = ((-2 * (next_i()%2)) + 1) * next_i();
+          grp[_i0].s_65_127 = ((-2 * (next_i()%2)) + 1) * next_i();
+          grp[_i0].s_128_255 = ((-2 * (next_i()%2)) + 1) * next_i();
+          grp[_i0].s_256_511 = ((-2 * (next_i()%2)) + 1) * next_i();
+          grp[_i0].s_512_1023 = ((-2 * (next_i()%2)) + 1) * next_i();
+          grp[_i0].s_1024_1518 = ((-2 * (next_i()%2)) + 1) * next_i();
+          grp[_i0].s_1519_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          update_len_counters(grp,len);
+          free(grp);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int len = 10;
+        
+          int _len_grp0 = 100;
+          struct opa_vnic_grp_stats * grp = (struct opa_vnic_grp_stats *) malloc(_len_grp0*sizeof(struct opa_vnic_grp_stats));
+          for(int _i0 = 0; _i0 < _len_grp0; _i0++) {
+              grp[_i0].s_64 = ((-2 * (next_i()%2)) + 1) * next_i();
+          grp[_i0].s_65_127 = ((-2 * (next_i()%2)) + 1) * next_i();
+          grp[_i0].s_128_255 = ((-2 * (next_i()%2)) + 1) * next_i();
+          grp[_i0].s_256_511 = ((-2 * (next_i()%2)) + 1) * next_i();
+          grp[_i0].s_512_1023 = ((-2 * (next_i()%2)) + 1) * next_i();
+          grp[_i0].s_1024_1518 = ((-2 * (next_i()%2)) + 1) * next_i();
+          grp[_i0].s_1519_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          update_len_counters(grp,len);
+          free(grp);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_grp0 = 1;
+          struct opa_vnic_grp_stats * grp = (struct opa_vnic_grp_stats *) malloc(_len_grp0*sizeof(struct opa_vnic_grp_stats));
+          for(int _i0 = 0; _i0 < _len_grp0; _i0++) {
+              grp[_i0].s_64 = ((-2 * (next_i()%2)) + 1) * next_i();
+          grp[_i0].s_65_127 = ((-2 * (next_i()%2)) + 1) * next_i();
+          grp[_i0].s_128_255 = ((-2 * (next_i()%2)) + 1) * next_i();
+          grp[_i0].s_256_511 = ((-2 * (next_i()%2)) + 1) * next_i();
+          grp[_i0].s_512_1023 = ((-2 * (next_i()%2)) + 1) * next_i();
+          grp[_i0].s_1024_1518 = ((-2 * (next_i()%2)) + 1) * next_i();
+          grp[_i0].s_1519_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          update_len_counters(grp,len);
+          free(grp);
+        
+        break;
+    }
     default:
         usage();
         break;

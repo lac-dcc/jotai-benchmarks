@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ void gdImageColorDeallocate (gdImagePtr im, int color)
 	im->open[color] = 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,10 +81,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int color = 100;
+        
           int _len_im0 = 1;
           struct TYPE_3__ * im = (struct TYPE_3__ *) malloc(_len_im0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_im0; _i0++) {
@@ -96,8 +117,157 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_im__i0__open0; _j0++) {
             im[_i0].open[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        im[_i0].trueColor = ((-2 * (next_i()%2)) + 1) * next_i();
+          im[_i0].trueColor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          gdImageColorDeallocate(im,color);
+          for(int _aux = 0; _aux < _len_im0; _aux++) {
+          free(im[_aux].open);
+          }
+          free(im);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int color = 255;
+        
+          int _len_im0 = 65025;
+          struct TYPE_3__ * im = (struct TYPE_3__ *) malloc(_len_im0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_im0; _i0++) {
+              int _len_im__i0__open0 = 1;
+          im[_i0].open = (int *) malloc(_len_im__i0__open0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_im__i0__open0; _j0++) {
+            im[_i0].open[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          im[_i0].trueColor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          gdImageColorDeallocate(im,color);
+          for(int _aux = 0; _aux < _len_im0; _aux++) {
+          free(im[_aux].open);
+          }
+          free(im);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int color = 10;
+        
+          int _len_im0 = 100;
+          struct TYPE_3__ * im = (struct TYPE_3__ *) malloc(_len_im0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_im0; _i0++) {
+              int _len_im__i0__open0 = 1;
+          im[_i0].open = (int *) malloc(_len_im__i0__open0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_im__i0__open0; _j0++) {
+            im[_i0].open[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          im[_i0].trueColor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          gdImageColorDeallocate(im,color);
+          for(int _aux = 0; _aux < _len_im0; _aux++) {
+          free(im[_aux].open);
+          }
+          free(im);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int color = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_im0 = 1;
+          struct TYPE_3__ * im = (struct TYPE_3__ *) malloc(_len_im0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_im0; _i0++) {
+              int _len_im__i0__open0 = 1;
+          im[_i0].open = (int *) malloc(_len_im__i0__open0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_im__i0__open0; _j0++) {
+            im[_i0].open[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          im[_i0].trueColor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           gdImageColorDeallocate(im,color);
           for(int _aux = 0; _aux < _len_im0; _aux++) {
           free(im[_aux].open);

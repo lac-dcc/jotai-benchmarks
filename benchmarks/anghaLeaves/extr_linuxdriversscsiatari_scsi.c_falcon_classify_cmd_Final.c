@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -89,12 +91,6 @@ __attribute__((used)) static int falcon_classify_cmd(struct scsi_cmnd *cmd)
 		return CMD_MODE_UNKNOWN;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,9 +103,144 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 43
+          // dynamic_instructions_O0 : 43
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          int _len_cmd0 = 65025;
+          struct scsi_cmnd * cmd = (struct scsi_cmnd *) malloc(_len_cmd0*sizeof(struct scsi_cmnd));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              int _len_cmd__i0__cmnd0 = 1;
+          cmd[_i0].cmnd = (unsigned char *) malloc(_len_cmd__i0__cmnd0*sizeof(unsigned char));
+          for(int _j0 = 0; _j0 < _len_cmd__i0__cmnd0; _j0++) {
+            cmd[_i0].cmnd[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_cmd__i0__device0 = 1;
+          cmd[_i0].device = (struct TYPE_2__ *) malloc(_len_cmd__i0__device0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_cmd__i0__device0; _j0++) {
+              cmd[_i0].device->type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = falcon_classify_cmd(cmd);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cmd0; _aux++) {
+          free(cmd[_aux].cmnd);
+          }
+          for(int _aux = 0; _aux < _len_cmd0; _aux++) {
+          free(cmd[_aux].device);
+          }
+          free(cmd);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 43
+          // dynamic_instructions_O0 : 43
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          int _len_cmd0 = 100;
+          struct scsi_cmnd * cmd = (struct scsi_cmnd *) malloc(_len_cmd0*sizeof(struct scsi_cmnd));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              int _len_cmd__i0__cmnd0 = 1;
+          cmd[_i0].cmnd = (unsigned char *) malloc(_len_cmd__i0__cmnd0*sizeof(unsigned char));
+          for(int _j0 = 0; _j0 < _len_cmd__i0__cmnd0; _j0++) {
+            cmd[_i0].cmnd[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_cmd__i0__device0 = 1;
+          cmd[_i0].device = (struct TYPE_2__ *) malloc(_len_cmd__i0__device0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_cmd__i0__device0; _j0++) {
+              cmd[_i0].device->type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = falcon_classify_cmd(cmd);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cmd0; _aux++) {
+          free(cmd[_aux].cmnd);
+          }
+          for(int _aux = 0; _aux < _len_cmd0; _aux++) {
+          free(cmd[_aux].device);
+          }
+          free(cmd);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 43
+          // dynamic_instructions_O0 : 43
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
           int _len_cmd0 = 1;
           struct scsi_cmnd * cmd = (struct scsi_cmnd *) malloc(_len_cmd0*sizeof(struct scsi_cmnd));
           for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
@@ -121,9 +252,12 @@ int main(int argc, char *argv[]) {
           int _len_cmd__i0__device0 = 1;
           cmd[_i0].device = (struct TYPE_2__ *) malloc(_len_cmd__i0__device0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_cmd__i0__device0; _j0++) {
-            cmd[_i0].device->type = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmd[_i0].device->type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = falcon_classify_cmd(cmd);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_cmd0; _aux++) {

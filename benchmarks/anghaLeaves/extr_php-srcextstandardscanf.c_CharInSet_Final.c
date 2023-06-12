@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -82,12 +85,6 @@ __attribute__((used)) static int CharInSet(CharSet *cset, int c)
 	return (cset->exclude ? !match : match);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,28 +97,241 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
           int c = 100;
+        
           int _len_cset0 = 1;
           struct TYPE_5__ * cset = (struct TYPE_5__ *) malloc(_len_cset0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_cset0; _i0++) {
-            cset[_i0].nchars = ((-2 * (next_i()%2)) + 1) * next_i();
+              cset[_i0].nchars = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_cset__i0__chars0 = 1;
           cset[_i0].chars = (char *) malloc(_len_cset__i0__chars0*sizeof(char));
           for(int _j0 = 0; _j0 < _len_cset__i0__chars0; _j0++) {
             cset[_i0].chars[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        cset[_i0].nranges = ((-2 * (next_i()%2)) + 1) * next_i();
-        cset[_i0].exclude = ((-2 * (next_i()%2)) + 1) * next_i();
+          cset[_i0].nranges = ((-2 * (next_i()%2)) + 1) * next_i();
+          cset[_i0].exclude = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_cset__i0__ranges0 = 1;
           cset[_i0].ranges = (struct TYPE_4__ *) malloc(_len_cset__i0__ranges0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_cset__i0__ranges0; _j0++) {
-            cset[_i0].ranges->start = ((-2 * (next_i()%2)) + 1) * next_i();
-        cset[_i0].ranges->end = ((-2 * (next_i()%2)) + 1) * next_i();
+              cset[_i0].ranges->start = ((-2 * (next_i()%2)) + 1) * next_i();
+          cset[_i0].ranges->end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = CharInSet(cset,c);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cset0; _aux++) {
+          free(cset[_aux].chars);
+          }
+          for(int _aux = 0; _aux < _len_cset0; _aux++) {
+          free(cset[_aux].ranges);
+          }
+          free(cset);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          int c = 255;
+        
+          int _len_cset0 = 65025;
+          struct TYPE_5__ * cset = (struct TYPE_5__ *) malloc(_len_cset0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_cset0; _i0++) {
+              cset[_i0].nchars = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cset__i0__chars0 = 1;
+          cset[_i0].chars = (char *) malloc(_len_cset__i0__chars0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_cset__i0__chars0; _j0++) {
+            cset[_i0].chars[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          cset[_i0].nranges = ((-2 * (next_i()%2)) + 1) * next_i();
+          cset[_i0].exclude = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cset__i0__ranges0 = 1;
+          cset[_i0].ranges = (struct TYPE_4__ *) malloc(_len_cset__i0__ranges0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_cset__i0__ranges0; _j0++) {
+              cset[_i0].ranges->start = ((-2 * (next_i()%2)) + 1) * next_i();
+          cset[_i0].ranges->end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = CharInSet(cset,c);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cset0; _aux++) {
+          free(cset[_aux].chars);
+          }
+          for(int _aux = 0; _aux < _len_cset0; _aux++) {
+          free(cset[_aux].ranges);
+          }
+          free(cset);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          int c = 10;
+        
+          int _len_cset0 = 100;
+          struct TYPE_5__ * cset = (struct TYPE_5__ *) malloc(_len_cset0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_cset0; _i0++) {
+              cset[_i0].nchars = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cset__i0__chars0 = 1;
+          cset[_i0].chars = (char *) malloc(_len_cset__i0__chars0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_cset__i0__chars0; _j0++) {
+            cset[_i0].chars[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          cset[_i0].nranges = ((-2 * (next_i()%2)) + 1) * next_i();
+          cset[_i0].exclude = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cset__i0__ranges0 = 1;
+          cset[_i0].ranges = (struct TYPE_4__ *) malloc(_len_cset__i0__ranges0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_cset__i0__ranges0; _j0++) {
+              cset[_i0].ranges->start = ((-2 * (next_i()%2)) + 1) * next_i();
+          cset[_i0].ranges->end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = CharInSet(cset,c);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cset0; _aux++) {
+          free(cset[_aux].chars);
+          }
+          for(int _aux = 0; _aux < _len_cset0; _aux++) {
+          free(cset[_aux].ranges);
+          }
+          free(cset);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          int c = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cset0 = 1;
+          struct TYPE_5__ * cset = (struct TYPE_5__ *) malloc(_len_cset0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_cset0; _i0++) {
+              cset[_i0].nchars = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cset__i0__chars0 = 1;
+          cset[_i0].chars = (char *) malloc(_len_cset__i0__chars0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_cset__i0__chars0; _j0++) {
+            cset[_i0].chars[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          cset[_i0].nranges = ((-2 * (next_i()%2)) + 1) * next_i();
+          cset[_i0].exclude = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cset__i0__ranges0 = 1;
+          cset[_i0].ranges = (struct TYPE_4__ *) malloc(_len_cset__i0__ranges0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_cset__i0__ranges0; _j0++) {
+              cset[_i0].ranges->start = ((-2 * (next_i()%2)) + 1) * next_i();
+          cset[_i0].ranges->end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = CharInSet(cset,c);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_cset0; _aux++) {

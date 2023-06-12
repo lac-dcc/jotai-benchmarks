@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ parport_atari_read_status(struct parport *p)
 		PARPORT_STATUS_SELECT | PARPORT_STATUS_ERROR);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,14 +82,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_p0 = 1;
+          int _len_p0 = 65025;
           struct parport * p = (struct parport *) malloc(_len_p0*sizeof(struct parport));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned char benchRet = parport_atari_read_status(p);
           printf("%c\n", (benchRet %26) + 'a'); 
           free(p);
@@ -107,15 +104,32 @@ int main(int argc, char *argv[]) {
           int _len_p0 = 100;
           struct parport * p = (struct parport *) malloc(_len_p0*sizeof(struct parport));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned char benchRet = parport_atari_read_status(p);
           printf("%c\n", (benchRet %26) + 'a'); 
           free(p);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_p0 = 1;
+          struct parport * p = (struct parport *) malloc(_len_p0*sizeof(struct parport));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned char benchRet = parport_atari_read_status(p);
+          printf("%c\n", (benchRet %26) + 'a'); 
+          free(p);
+        
+        break;
+    }
     default:
         usage();
         break;

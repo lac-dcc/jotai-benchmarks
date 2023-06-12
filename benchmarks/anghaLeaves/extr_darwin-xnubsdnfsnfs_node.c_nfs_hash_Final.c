@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ nfs_hash(u_char *fhp, int fhsize)
 	return (fhsum);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,22 +82,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int fhsize = 10;
-          int _len_fhp0 = 100;
+          int fhsize = 255;
+        
+          int _len_fhp0 = 65025;
           int * fhp = (int *) malloc(_len_fhp0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_fhp0; _i0++) {
             fhp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           long benchRet = nfs_hash(fhp,fhsize);
           printf("%ld\n", benchRet); 
           free(fhp);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int fhsize = 10;
+        
+          int _len_fhp0 = 100;
+          int * fhp = (int *) malloc(_len_fhp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_fhp0; _i0++) {
+            fhp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          long benchRet = nfs_hash(fhp,fhsize);
+          printf("%ld\n", benchRet); 
+          free(fhp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int fhsize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fhp0 = 1;
+          int * fhp = (int *) malloc(_len_fhp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_fhp0; _i0++) {
+            fhp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          long benchRet = nfs_hash(fhp,fhsize);
+          printf("%ld\n", benchRet); 
+          free(fhp);
+        
+        break;
+    }
     default:
         usage();
         break;

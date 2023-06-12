@@ -63,12 +63,6 @@ il_beacon_time_mask_low(struct il_priv *il, u16 tsf_bits)
 	return (1 << tsf_bits) - 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,15 +75,41 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // big-arr-10x
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int tsf_bits = 10;
+        
           int _len_il0 = 100;
           struct il_priv * il = (struct il_priv *) malloc(_len_il0*sizeof(struct il_priv));
           for(int _i0 = 0; _i0 < _len_il0; _i0++) {
-            il[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              il[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = il_beacon_time_mask_low(il,tsf_bits);
           printf("%d\n", benchRet); 
           free(il);

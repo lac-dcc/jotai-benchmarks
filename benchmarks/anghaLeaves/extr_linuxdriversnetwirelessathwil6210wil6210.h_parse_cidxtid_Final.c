@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +64,6 @@ __attribute__((used)) static inline void parse_cidxtid(u8 cidxtid, u8 *cid, u8 *
 	*tid = (cidxtid >> 4) & 0xf;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,20 +76,187 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int cidxtid = 100;
+        
           int _len_cid0 = 1;
           int * cid = (int *) malloc(_len_cid0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_cid0; _i0++) {
             cid[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_tid0 = 1;
           int * tid = (int *) malloc(_len_tid0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_tid0; _i0++) {
             tid[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          parse_cidxtid(cidxtid,cid,tid);
+          free(cid);
+          free(tid);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int cidxtid = 255;
+        
+          int _len_cid0 = 65025;
+          int * cid = (int *) malloc(_len_cid0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_cid0; _i0++) {
+            cid[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_tid0 = 65025;
+          int * tid = (int *) malloc(_len_tid0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_tid0; _i0++) {
+            tid[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          parse_cidxtid(cidxtid,cid,tid);
+          free(cid);
+          free(tid);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int cidxtid = 10;
+        
+          int _len_cid0 = 100;
+          int * cid = (int *) malloc(_len_cid0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_cid0; _i0++) {
+            cid[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_tid0 = 100;
+          int * tid = (int *) malloc(_len_tid0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_tid0; _i0++) {
+            tid[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          parse_cidxtid(cidxtid,cid,tid);
+          free(cid);
+          free(tid);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int cidxtid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cid0 = 1;
+          int * cid = (int *) malloc(_len_cid0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_cid0; _i0++) {
+            cid[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_tid0 = 1;
+          int * tid = (int *) malloc(_len_tid0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_tid0; _i0++) {
+            tid[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           parse_cidxtid(cidxtid,cid,tid);
           free(cid);
           free(tid);

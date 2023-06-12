@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +78,6 @@ error_ret:
 	return ret;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,7 +94,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int thismask = 100;
+        
           int checkmask = 100;
+        
           int benchRet = __max1363_check_event_mask(thismask,checkmask);
           printf("%d\n", benchRet); 
         
@@ -109,7 +106,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int thismask = 255;
+        
           int checkmask = 255;
+        
           int benchRet = __max1363_check_event_mask(thismask,checkmask);
           printf("%d\n", benchRet); 
         
@@ -119,13 +118,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int thismask = 10;
+        
           int checkmask = 10;
+        
           int benchRet = __max1363_check_event_mask(thismask,checkmask);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int thismask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int checkmask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = __max1363_check_event_mask(thismask,checkmask);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

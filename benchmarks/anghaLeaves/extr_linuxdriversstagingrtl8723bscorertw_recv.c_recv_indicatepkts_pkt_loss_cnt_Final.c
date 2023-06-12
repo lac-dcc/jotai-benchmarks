@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ void recv_indicatepkts_pkt_loss_cnt(struct debug_priv *pdbgpriv, u64 prev_seq, u
 
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,33 +84,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long prev_seq = 100;
+        
           long current_seq = 100;
+        
           int _len_pdbgpriv0 = 1;
           struct debug_priv * pdbgpriv = (struct debug_priv *) malloc(_len_pdbgpriv0*sizeof(struct debug_priv));
           for(int _i0 = 0; _i0 < _len_pdbgpriv0; _i0++) {
-            pdbgpriv[_i0].dbg_rx_ampdu_loss_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              pdbgpriv[_i0].dbg_rx_ampdu_loss_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          recv_indicatepkts_pkt_loss_cnt(pdbgpriv,prev_seq,current_seq);
+          free(pdbgpriv);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long prev_seq = 255;
+        
+          long current_seq = 255;
+        
+          int _len_pdbgpriv0 = 65025;
+          struct debug_priv * pdbgpriv = (struct debug_priv *) malloc(_len_pdbgpriv0*sizeof(struct debug_priv));
+          for(int _i0 = 0; _i0 < _len_pdbgpriv0; _i0++) {
+              pdbgpriv[_i0].dbg_rx_ampdu_loss_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           recv_indicatepkts_pkt_loss_cnt(pdbgpriv,prev_seq,current_seq);
           free(pdbgpriv);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long prev_seq = 10;
+        
           long current_seq = 10;
+        
           int _len_pdbgpriv0 = 100;
           struct debug_priv * pdbgpriv = (struct debug_priv *) malloc(_len_pdbgpriv0*sizeof(struct debug_priv));
           for(int _i0 = 0; _i0 < _len_pdbgpriv0; _i0++) {
-            pdbgpriv[_i0].dbg_rx_ampdu_loss_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              pdbgpriv[_i0].dbg_rx_ampdu_loss_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           recv_indicatepkts_pkt_loss_cnt(pdbgpriv,prev_seq,current_seq);
           free(pdbgpriv);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long prev_seq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long current_seq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pdbgpriv0 = 1;
+          struct debug_priv * pdbgpriv = (struct debug_priv *) malloc(_len_pdbgpriv0*sizeof(struct debug_priv));
+          for(int _i0 = 0; _i0 < _len_pdbgpriv0; _i0++) {
+              pdbgpriv[_i0].dbg_rx_ampdu_loss_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          recv_indicatepkts_pkt_loss_cnt(pdbgpriv,prev_seq,current_seq);
+          free(pdbgpriv);
+        
+        break;
+    }
     default:
         usage();
         break;

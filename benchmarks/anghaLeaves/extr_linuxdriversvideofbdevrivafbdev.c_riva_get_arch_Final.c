@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -100,12 +101,6 @@ __attribute__((used)) static u32 riva_get_arch(struct pci_dev *pd)
 	return arch;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -118,28 +113,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_pd0 = 1;
+          // static_instructions_O0 : 79
+          // dynamic_instructions_O0 : 79
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 34
+          // dynamic_instructions_Oz : 34
+          // ------------------------------- 
+
+          int _len_pd0 = 65025;
           struct pci_dev * pd = (struct pci_dev *) malloc(_len_pd0*sizeof(struct pci_dev));
           for(int _i0 = 0; _i0 < _len_pd0; _i0++) {
-            pd[_i0].device = ((-2 * (next_i()%2)) + 1) * next_i();
+              pd[_i0].device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = riva_get_arch(pd);
           printf("%d\n", benchRet); 
           free(pd);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 79
+          // dynamic_instructions_O0 : 79
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 34
+          // dynamic_instructions_Oz : 34
+          // ------------------------------- 
+
           int _len_pd0 = 100;
           struct pci_dev * pd = (struct pci_dev *) malloc(_len_pd0*sizeof(struct pci_dev));
           for(int _i0 = 0; _i0 < _len_pd0; _i0++) {
-            pd[_i0].device = ((-2 * (next_i()%2)) + 1) * next_i();
+              pd[_i0].device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = riva_get_arch(pd);
+          printf("%d\n", benchRet); 
+          free(pd);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 79
+          // dynamic_instructions_O0 : 79
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 34
+          // dynamic_instructions_Oz : 34
+          // ------------------------------- 
+
+          int _len_pd0 = 1;
+          struct pci_dev * pd = (struct pci_dev *) malloc(_len_pd0*sizeof(struct pci_dev));
+          for(int _i0 = 0; _i0 < _len_pd0; _i0++) {
+              pd[_i0].device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = riva_get_arch(pd);
           printf("%d\n", benchRet); 
           free(pd);

@@ -62,12 +62,6 @@ __attribute__((used)) static u32 pmic_arb_fmt_cmd_v1(u8 opc, u8 sid, u16 addr, u
 	return (opc << 27) | ((sid & 0xf) << 20) | (addr << 4) | (bc & 0x7);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,15 +78,18 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int opc = 10;
+        
           int sid = 10;
+        
           int addr = 10;
+        
           int bc = 10;
+        
           int benchRet = pmic_arb_fmt_cmd_v1(opc,sid,addr,bc);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

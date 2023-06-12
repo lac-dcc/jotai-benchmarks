@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static inline DOUBLE make_time(DOUBLE hour, DOUBLE min, DO
     return hour*MS_PER_HOUR + min*MS_PER_MINUTE + sec*1000 + ms;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,9 +81,13 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int hour = 100;
+        
           int min = 100;
+        
           int sec = 100;
+        
           int ms = 100;
+        
           int benchRet = make_time(hour,min,sec,ms);
           printf("%d\n", benchRet); 
         
@@ -98,9 +97,13 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int hour = 255;
+        
           int min = 255;
+        
           int sec = 255;
+        
           int ms = 255;
+        
           int benchRet = make_time(hour,min,sec,ms);
           printf("%d\n", benchRet); 
         
@@ -110,15 +113,34 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int hour = 10;
+        
           int min = 10;
+        
           int sec = 10;
+        
           int ms = 10;
+        
           int benchRet = make_time(hour,min,sec,ms);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int hour = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int ms = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = make_time(hour,min,sec,ms);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

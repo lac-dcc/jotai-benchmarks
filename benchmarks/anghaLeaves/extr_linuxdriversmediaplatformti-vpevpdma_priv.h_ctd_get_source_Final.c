@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline int ctd_get_source(struct vpdma_ctd *ctd)
 	return (ctd->type_source_ctl >> CTD_SOURCE_SHFT) & CTD_SOURCE_MASK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ctd0 = 1;
+          int _len_ctd0 = 65025;
           struct vpdma_ctd * ctd = (struct vpdma_ctd *) malloc(_len_ctd0*sizeof(struct vpdma_ctd));
           for(int _i0 = 0; _i0 < _len_ctd0; _i0++) {
-            ctd[_i0].type_source_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctd[_i0].type_source_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ctd_get_source(ctd);
           printf("%d\n", benchRet); 
           free(ctd);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_ctd0 = 100;
           struct vpdma_ctd * ctd = (struct vpdma_ctd *) malloc(_len_ctd0*sizeof(struct vpdma_ctd));
           for(int _i0 = 0; _i0 < _len_ctd0; _i0++) {
-            ctd[_i0].type_source_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctd[_i0].type_source_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ctd_get_source(ctd);
           printf("%d\n", benchRet); 
           free(ctd);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ctd0 = 1;
+          struct vpdma_ctd * ctd = (struct vpdma_ctd *) malloc(_len_ctd0*sizeof(struct vpdma_ctd));
+          for(int _i0 = 0; _i0 < _len_ctd0; _i0++) {
+              ctd[_i0].type_source_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ctd_get_source(ctd);
+          printf("%d\n", benchRet); 
+          free(ctd);
+        
+        break;
+    }
     default:
         usage();
         break;

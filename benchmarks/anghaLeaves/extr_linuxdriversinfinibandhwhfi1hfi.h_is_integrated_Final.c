@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline bool is_integrated(struct hfi1_devdata *dd)
 	return dd->pcidev->device == PCI_DEVICE_ID_INTEL1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,18 +77,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dd0 = 1;
+          int _len_dd0 = 65025;
           struct hfi1_devdata * dd = (struct hfi1_devdata *) malloc(_len_dd0*sizeof(struct hfi1_devdata));
           for(int _i0 = 0; _i0 < _len_dd0; _i0++) {
               int _len_dd__i0__pcidev0 = 1;
           dd[_i0].pcidev = (struct TYPE_2__ *) malloc(_len_dd__i0__pcidev0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_dd__i0__pcidev0; _j0++) {
-            dd[_i0].pcidev->device = ((-2 * (next_i()%2)) + 1) * next_i();
+              dd[_i0].pcidev->device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = is_integrated(dd);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_dd0; _aux++) {
@@ -102,7 +101,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dd0 = 100;
+          struct hfi1_devdata * dd = (struct hfi1_devdata *) malloc(_len_dd0*sizeof(struct hfi1_devdata));
+          for(int _i0 = 0; _i0 < _len_dd0; _i0++) {
+              int _len_dd__i0__pcidev0 = 1;
+          dd[_i0].pcidev = (struct TYPE_2__ *) malloc(_len_dd__i0__pcidev0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_dd__i0__pcidev0; _j0++) {
+              dd[_i0].pcidev->device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = is_integrated(dd);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dd0; _aux++) {
+          free(dd[_aux].pcidev);
+          }
+          free(dd);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dd0 = 1;
+          struct hfi1_devdata * dd = (struct hfi1_devdata *) malloc(_len_dd0*sizeof(struct hfi1_devdata));
+          for(int _i0 = 0; _i0 < _len_dd0; _i0++) {
+              int _len_dd__i0__pcidev0 = 1;
+          dd[_i0].pcidev = (struct TYPE_2__ *) malloc(_len_dd__i0__pcidev0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_dd__i0__pcidev0; _j0++) {
+              dd[_i0].pcidev->device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = is_integrated(dd);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dd0; _aux++) {
+          free(dd[_aux].pcidev);
+          }
+          free(dd);
+        
+        break;
+    }
     default:
         usage();
         break;

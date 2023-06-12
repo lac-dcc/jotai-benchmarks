@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ struct qtnf_vif *qtnf_mac_get_free_vif(struct qtnf_wmac *mac)
 	return NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,18 +88,141 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_mac0 = 65025;
+          struct qtnf_wmac * mac = (struct qtnf_wmac *) malloc(_len_mac0*sizeof(struct qtnf_wmac));
+          for(int _i0 = 0; _i0 < _len_mac0; _i0++) {
+              int _len_mac__i0__iflist0 = 1;
+          mac[_i0].iflist = (struct qtnf_vif *) malloc(_len_mac__i0__iflist0*sizeof(struct qtnf_vif));
+          for(int _j0 = 0; _j0 < _len_mac__i0__iflist0; _j0++) {
+              mac[_i0].iflist->wdev.iftype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          struct qtnf_vif * benchRet = qtnf_mac_get_free_vif(mac);
+          for(int _aux = 0; _aux < _len_mac0; _aux++) {
+          free(mac[_aux].iflist);
+          }
+          free(mac);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_mac0 = 100;
+          struct qtnf_wmac * mac = (struct qtnf_wmac *) malloc(_len_mac0*sizeof(struct qtnf_wmac));
+          for(int _i0 = 0; _i0 < _len_mac0; _i0++) {
+              int _len_mac__i0__iflist0 = 1;
+          mac[_i0].iflist = (struct qtnf_vif *) malloc(_len_mac__i0__iflist0*sizeof(struct qtnf_vif));
+          for(int _j0 = 0; _j0 < _len_mac__i0__iflist0; _j0++) {
+              mac[_i0].iflist->wdev.iftype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          struct qtnf_vif * benchRet = qtnf_mac_get_free_vif(mac);
+          for(int _aux = 0; _aux < _len_mac0; _aux++) {
+          free(mac[_aux].iflist);
+          }
+          free(mac);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int _len_mac0 = 1;
           struct qtnf_wmac * mac = (struct qtnf_wmac *) malloc(_len_mac0*sizeof(struct qtnf_wmac));
           for(int _i0 = 0; _i0 < _len_mac0; _i0++) {
               int _len_mac__i0__iflist0 = 1;
           mac[_i0].iflist = (struct qtnf_vif *) malloc(_len_mac__i0__iflist0*sizeof(struct qtnf_vif));
           for(int _j0 = 0; _j0 < _len_mac__i0__iflist0; _j0++) {
-            mac[_i0].iflist->wdev.iftype = ((-2 * (next_i()%2)) + 1) * next_i();
+              mac[_i0].iflist->wdev.iftype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           struct qtnf_vif * benchRet = qtnf_mac_get_free_vif(mac);
           for(int _aux = 0; _aux < _len_mac0; _aux++) {
           free(mac[_aux].iflist);

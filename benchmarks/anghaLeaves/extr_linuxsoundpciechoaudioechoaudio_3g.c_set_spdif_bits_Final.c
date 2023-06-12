@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -93,12 +96,6 @@ __attribute__((used)) static u32 set_spdif_bits(struct echoaudio *chip, u32 cont
 	return control_reg;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -115,20 +112,86 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int control_reg = 100;
+        
           int rate = 100;
+        
           int _len_chip0 = 1;
           struct echoaudio * chip = (struct echoaudio *) malloc(_len_chip0*sizeof(struct echoaudio));
           for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
-            chip[_i0].non_audio_spdif = ((-2 * (next_i()%2)) + 1) * next_i();
-        chip[_i0].professional_spdif = ((-2 * (next_i()%2)) + 1) * next_i();
+              chip[_i0].non_audio_spdif = ((-2 * (next_i()%2)) + 1) * next_i();
+          chip[_i0].professional_spdif = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = set_spdif_bits(chip,control_reg,rate);
           printf("%d\n", benchRet); 
           free(chip);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int control_reg = 255;
+        
+          int rate = 255;
+        
+          int _len_chip0 = 65025;
+          struct echoaudio * chip = (struct echoaudio *) malloc(_len_chip0*sizeof(struct echoaudio));
+          for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
+              chip[_i0].non_audio_spdif = ((-2 * (next_i()%2)) + 1) * next_i();
+          chip[_i0].professional_spdif = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = set_spdif_bits(chip,control_reg,rate);
+          printf("%d\n", benchRet); 
+          free(chip);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int control_reg = 10;
+        
+          int rate = 10;
+        
+          int _len_chip0 = 100;
+          struct echoaudio * chip = (struct echoaudio *) malloc(_len_chip0*sizeof(struct echoaudio));
+          for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
+              chip[_i0].non_audio_spdif = ((-2 * (next_i()%2)) + 1) * next_i();
+          chip[_i0].professional_spdif = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = set_spdif_bits(chip,control_reg,rate);
+          printf("%d\n", benchRet); 
+          free(chip);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int control_reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_chip0 = 1;
+          struct echoaudio * chip = (struct echoaudio *) malloc(_len_chip0*sizeof(struct echoaudio));
+          for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
+              chip[_i0].non_audio_spdif = ((-2 * (next_i()%2)) + 1) * next_i();
+          chip[_i0].professional_spdif = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = set_spdif_bits(chip,control_reg,rate);
+          printf("%d\n", benchRet); 
+          free(chip);
+        
+        break;
+    }
     default:
         usage();
         break;

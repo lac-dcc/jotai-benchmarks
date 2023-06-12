@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -84,12 +85,6 @@ __attribute__((used)) static bool is_f54_report_type_valid(struct f54_data *f54,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,30 +97,125 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           enum rmi_f54_report_type reptype = 0;
-          int _len_f540 = 1;
+        
+          int _len_f540 = 65025;
           struct f54_data * f54 = (struct f54_data *) malloc(_len_f540*sizeof(struct f54_data));
           for(int _i0 = 0; _i0 < _len_f540; _i0++) {
-            f54[_i0].capabilities = ((-2 * (next_i()%2)) + 1) * next_i();
+              f54[_i0].capabilities = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_f54_report_type_valid(f54,reptype);
           printf("%d\n", benchRet); 
           free(f54);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           enum rmi_f54_report_type reptype = 0;
+        
           int _len_f540 = 100;
           struct f54_data * f54 = (struct f54_data *) malloc(_len_f540*sizeof(struct f54_data));
           for(int _i0 = 0; _i0 < _len_f540; _i0++) {
-            f54[_i0].capabilities = ((-2 * (next_i()%2)) + 1) * next_i();
+              f54[_i0].capabilities = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = is_f54_report_type_valid(f54,reptype);
+          printf("%d\n", benchRet); 
+          free(f54);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          enum rmi_f54_report_type reptype = 0;
+        
+          int _len_f540 = 1;
+          struct f54_data * f54 = (struct f54_data *) malloc(_len_f540*sizeof(struct f54_data));
+          for(int _i0 = 0; _i0 < _len_f540; _i0++) {
+              f54[_i0].capabilities = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = is_f54_report_type_valid(f54,reptype);
           printf("%d\n", benchRet); 
           free(f54);

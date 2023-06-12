@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static zd_addr_t fw_reg_addr(struct zd_chip *chip, u16 off
 	return (zd_addr_t)((u16)chip->fw_regs_base + offset);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,11 +81,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long offset = 100;
+        
           int _len_chip0 = 1;
           struct zd_chip * chip = (struct zd_chip *) malloc(_len_chip0*sizeof(struct zd_chip));
           for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
-            chip[_i0].fw_regs_base = ((-2 * (next_i()%2)) + 1) * next_i();
+              chip[_i0].fw_regs_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = fw_reg_addr(chip,offset);
+          printf("%d\n", benchRet); 
+          free(chip);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long offset = 255;
+        
+          int _len_chip0 = 65025;
+          struct zd_chip * chip = (struct zd_chip *) malloc(_len_chip0*sizeof(struct zd_chip));
+          for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
+              chip[_i0].fw_regs_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = fw_reg_addr(chip,offset);
           printf("%d\n", benchRet); 
           free(chip);
@@ -97,21 +114,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long offset = 10;
+        
           int _len_chip0 = 100;
           struct zd_chip * chip = (struct zd_chip *) malloc(_len_chip0*sizeof(struct zd_chip));
           for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
-            chip[_i0].fw_regs_base = ((-2 * (next_i()%2)) + 1) * next_i();
+              chip[_i0].fw_regs_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = fw_reg_addr(chip,offset);
           printf("%d\n", benchRet); 
           free(chip);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_chip0 = 1;
+          struct zd_chip * chip = (struct zd_chip *) malloc(_len_chip0*sizeof(struct zd_chip));
+          for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
+              chip[_i0].fw_regs_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fw_reg_addr(chip,offset);
+          printf("%d\n", benchRet); 
+          free(chip);
+        
+        break;
+    }
     default:
         usage();
         break;

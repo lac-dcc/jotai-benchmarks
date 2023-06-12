@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ int xen_remap_domain_mfn_array(struct vm_area_struct *vma,
 	return -ENOSYS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,44 +83,307 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           unsigned long addr = 100;
+        
           int nr = 100;
+        
           int prot = 100;
+        
           unsigned int domid = 100;
+        
           int _len_vma0 = 1;
           struct vm_area_struct * vma = (struct vm_area_struct *) malloc(_len_vma0*sizeof(struct vm_area_struct));
           for(int _i0 = 0; _i0 < _len_vma0; _i0++) {
-            vma[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              vma[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_mfn0 = 1;
           int * mfn = (int *) malloc(_len_mfn0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_mfn0; _i0++) {
             mfn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_err_ptr0 = 1;
           int * err_ptr = (int *) malloc(_len_err_ptr0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_err_ptr0; _i0++) {
             err_ptr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_pages0 = 1;
           struct page ** pages = (struct page **) malloc(_len_pages0*sizeof(struct page *));
           for(int _i0 = 0; _i0 < _len_pages0; _i0++) {
             int _len_pages1 = 1;
             pages[_i0] = (struct page *) malloc(_len_pages1*sizeof(struct page));
             for(int _i1 = 0; _i1 < _len_pages1; _i1++) {
-              pages[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+                pages[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           int benchRet = xen_remap_domain_mfn_array(vma,addr,mfn,nr,err_ptr,prot,domid,pages);
           printf("%d\n", benchRet); 
           free(vma);
           free(mfn);
           free(err_ptr);
           for(int i1 = 0; i1 < _len_pages0; i1++) {
+              free(pages[i1]);
+          }
+          free(pages);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned long addr = 255;
+        
+          int nr = 255;
+        
+          int prot = 255;
+        
+          unsigned int domid = 255;
+        
+          int _len_vma0 = 65025;
+          struct vm_area_struct * vma = (struct vm_area_struct *) malloc(_len_vma0*sizeof(struct vm_area_struct));
+          for(int _i0 = 0; _i0 < _len_vma0; _i0++) {
+              vma[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_mfn0 = 65025;
+          int * mfn = (int *) malloc(_len_mfn0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mfn0; _i0++) {
+            mfn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_err_ptr0 = 65025;
+          int * err_ptr = (int *) malloc(_len_err_ptr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_err_ptr0; _i0++) {
+            err_ptr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pages0 = 65025;
+          struct page ** pages = (struct page **) malloc(_len_pages0*sizeof(struct page *));
+          for(int _i0 = 0; _i0 < _len_pages0; _i0++) {
             int _len_pages1 = 1;
+            pages[_i0] = (struct page *) malloc(_len_pages1*sizeof(struct page));
+            for(int _i1 = 0; _i1 < _len_pages1; _i1++) {
+                pages[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int benchRet = xen_remap_domain_mfn_array(vma,addr,mfn,nr,err_ptr,prot,domid,pages);
+          printf("%d\n", benchRet); 
+          free(vma);
+          free(mfn);
+          free(err_ptr);
+          for(int i1 = 0; i1 < _len_pages0; i1++) {
+              free(pages[i1]);
+          }
+          free(pages);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned long addr = 10;
+        
+          int nr = 10;
+        
+          int prot = 10;
+        
+          unsigned int domid = 10;
+        
+          int _len_vma0 = 100;
+          struct vm_area_struct * vma = (struct vm_area_struct *) malloc(_len_vma0*sizeof(struct vm_area_struct));
+          for(int _i0 = 0; _i0 < _len_vma0; _i0++) {
+              vma[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_mfn0 = 100;
+          int * mfn = (int *) malloc(_len_mfn0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mfn0; _i0++) {
+            mfn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_err_ptr0 = 100;
+          int * err_ptr = (int *) malloc(_len_err_ptr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_err_ptr0; _i0++) {
+            err_ptr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pages0 = 100;
+          struct page ** pages = (struct page **) malloc(_len_pages0*sizeof(struct page *));
+          for(int _i0 = 0; _i0 < _len_pages0; _i0++) {
+            int _len_pages1 = 1;
+            pages[_i0] = (struct page *) malloc(_len_pages1*sizeof(struct page));
+            for(int _i1 = 0; _i1 < _len_pages1; _i1++) {
+                pages[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int benchRet = xen_remap_domain_mfn_array(vma,addr,mfn,nr,err_ptr,prot,domid,pages);
+          printf("%d\n", benchRet); 
+          free(vma);
+          free(mfn);
+          free(err_ptr);
+          for(int i1 = 0; i1 < _len_pages0; i1++) {
+              free(pages[i1]);
+          }
+          free(pages);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned long addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int nr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int prot = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int domid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_vma0 = 1;
+          struct vm_area_struct * vma = (struct vm_area_struct *) malloc(_len_vma0*sizeof(struct vm_area_struct));
+          for(int _i0 = 0; _i0 < _len_vma0; _i0++) {
+              vma[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_mfn0 = 1;
+          int * mfn = (int *) malloc(_len_mfn0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mfn0; _i0++) {
+            mfn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_err_ptr0 = 1;
+          int * err_ptr = (int *) malloc(_len_err_ptr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_err_ptr0; _i0++) {
+            err_ptr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pages0 = 1;
+          struct page ** pages = (struct page **) malloc(_len_pages0*sizeof(struct page *));
+          for(int _i0 = 0; _i0 < _len_pages0; _i0++) {
+            int _len_pages1 = 1;
+            pages[_i0] = (struct page *) malloc(_len_pages1*sizeof(struct page));
+            for(int _i1 = 0; _i1 < _len_pages1; _i1++) {
+                pages[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int benchRet = xen_remap_domain_mfn_array(vma,addr,mfn,nr,err_ptr,prot,domid,pages);
+          printf("%d\n", benchRet); 
+          free(vma);
+          free(mfn);
+          free(err_ptr);
+          for(int i1 = 0; i1 < _len_pages0; i1++) {
               free(pages[i1]);
           }
           free(pages);

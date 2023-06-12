@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -79,12 +81,6 @@ __attribute__((used)) static u8 qed_vf_calculate_legacy(struct qed_vf_info *p_vf
 	return legacy;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,22 +93,63 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_p_vf0 = 1;
+          int _len_p_vf0 = 65025;
           struct qed_vf_info * p_vf = (struct qed_vf_info *) malloc(_len_p_vf0*sizeof(struct qed_vf_info));
           for(int _i0 = 0; _i0 < _len_p_vf0; _i0++) {
-            p_vf[_i0].acquire.vfdev_info.eth_fp_hsi_minor = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_vf[_i0].acquire.vfdev_info.capabilities = ((-2 * (next_i()%2)) + 1) * next_i();
+              p_vf[_i0].acquire.vfdev_info.eth_fp_hsi_minor = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_vf[_i0].acquire.vfdev_info.capabilities = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int benchRet = qed_vf_calculate_legacy(p_vf);
           printf("%d\n", benchRet); 
           free(p_vf);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_p_vf0 = 100;
+          struct qed_vf_info * p_vf = (struct qed_vf_info *) malloc(_len_p_vf0*sizeof(struct qed_vf_info));
+          for(int _i0 = 0; _i0 < _len_p_vf0; _i0++) {
+              p_vf[_i0].acquire.vfdev_info.eth_fp_hsi_minor = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_vf[_i0].acquire.vfdev_info.capabilities = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = qed_vf_calculate_legacy(p_vf);
+          printf("%d\n", benchRet); 
+          free(p_vf);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_p_vf0 = 1;
+          struct qed_vf_info * p_vf = (struct qed_vf_info *) malloc(_len_p_vf0*sizeof(struct qed_vf_info));
+          for(int _i0 = 0; _i0 < _len_p_vf0; _i0++) {
+              p_vf[_i0].acquire.vfdev_info.eth_fp_hsi_minor = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_vf[_i0].acquire.vfdev_info.capabilities = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = qed_vf_calculate_legacy(p_vf);
+          printf("%d\n", benchRet); 
+          free(p_vf);
+        
+        break;
+    }
     default:
         usage();
         break;

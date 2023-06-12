@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +83,6 @@ init_genrand(rk_state *self, unsigned long s)
     return;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,10 +95,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           unsigned long s = 100;
+        
           int _len_self0 = 1;
           struct TYPE_3__ * self = (struct TYPE_3__ *) malloc(_len_self0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_self0; _i0++) {
@@ -110,8 +131,157 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_self__i0__key0; _j0++) {
             self[_i0].key[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        self[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          init_genrand(self,s);
+          for(int _aux = 0; _aux < _len_self0; _aux++) {
+          free(self[_aux].key);
+          }
+          free(self);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          unsigned long s = 255;
+        
+          int _len_self0 = 65025;
+          struct TYPE_3__ * self = (struct TYPE_3__ *) malloc(_len_self0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_self0; _i0++) {
+              int _len_self__i0__key0 = 1;
+          self[_i0].key = (unsigned long *) malloc(_len_self__i0__key0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_self__i0__key0; _j0++) {
+            self[_i0].key[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          self[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          init_genrand(self,s);
+          for(int _aux = 0; _aux < _len_self0; _aux++) {
+          free(self[_aux].key);
+          }
+          free(self);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          unsigned long s = 10;
+        
+          int _len_self0 = 100;
+          struct TYPE_3__ * self = (struct TYPE_3__ *) malloc(_len_self0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_self0; _i0++) {
+              int _len_self__i0__key0 = 1;
+          self[_i0].key = (unsigned long *) malloc(_len_self__i0__key0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_self__i0__key0; _j0++) {
+            self[_i0].key[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          self[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          init_genrand(self,s);
+          for(int _aux = 0; _aux < _len_self0; _aux++) {
+          free(self[_aux].key);
+          }
+          free(self);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          unsigned long s = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_self0 = 1;
+          struct TYPE_3__ * self = (struct TYPE_3__ *) malloc(_len_self0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_self0; _i0++) {
+              int _len_self__i0__key0 = 1;
+          self[_i0].key = (unsigned long *) malloc(_len_self__i0__key0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_self__i0__key0; _j0++) {
+            self[_i0].key[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          self[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           init_genrand(self,s);
           for(int _aux = 0; _aux < _len_self0; _aux++) {
           free(self[_aux].key);

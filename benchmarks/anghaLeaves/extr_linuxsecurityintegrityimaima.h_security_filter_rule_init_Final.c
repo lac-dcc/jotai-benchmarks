@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline int security_filter_rule_init(u32 field, u32
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,49 +77,204 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int field = 100;
+        
           int op = 100;
+        
           int _len_rulestr0 = 1;
           char * rulestr = (char *) malloc(_len_rulestr0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_rulestr0; _i0++) {
             rulestr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_lsmrule0 = 1;
           void ** lsmrule = (void **) malloc(_len_lsmrule0*sizeof(void *));
           for(int _i0 = 0; _i0 < _len_lsmrule0; _i0++) {
           }
+        
           int benchRet = security_filter_rule_init(field,op,rulestr,lsmrule);
           printf("%d\n", benchRet); 
           free(rulestr);
           for(int i1 = 0; i1 < _len_lsmrule0; i1++) {
-            int _len_lsmrule1 = 1;
               }
           free(lsmrule);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int field = 255;
+        
+          int op = 255;
+        
+          int _len_rulestr0 = 65025;
+          char * rulestr = (char *) malloc(_len_rulestr0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_rulestr0; _i0++) {
+            rulestr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_lsmrule0 = 65025;
+          void ** lsmrule = (void **) malloc(_len_lsmrule0*sizeof(void *));
+          for(int _i0 = 0; _i0 < _len_lsmrule0; _i0++) {
+          }
+        
+          int benchRet = security_filter_rule_init(field,op,rulestr,lsmrule);
+          printf("%d\n", benchRet); 
+          free(rulestr);
+          for(int i1 = 0; i1 < _len_lsmrule0; i1++) {
+              }
+          free(lsmrule);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int field = 10;
+        
           int op = 10;
+        
           int _len_rulestr0 = 100;
           char * rulestr = (char *) malloc(_len_rulestr0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_rulestr0; _i0++) {
             rulestr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_lsmrule0 = 100;
           void ** lsmrule = (void **) malloc(_len_lsmrule0*sizeof(void *));
           for(int _i0 = 0; _i0 < _len_lsmrule0; _i0++) {
           }
+        
           int benchRet = security_filter_rule_init(field,op,rulestr,lsmrule);
           printf("%d\n", benchRet); 
           free(rulestr);
           for(int i1 = 0; i1 < _len_lsmrule0; i1++) {
-            int _len_lsmrule1 = 1;
+              }
+          free(lsmrule);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int field = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int op = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rulestr0 = 1;
+          char * rulestr = (char *) malloc(_len_rulestr0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_rulestr0; _i0++) {
+            rulestr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_lsmrule0 = 1;
+          void ** lsmrule = (void **) malloc(_len_lsmrule0*sizeof(void *));
+          for(int _i0 = 0; _i0 < _len_lsmrule0; _i0++) {
+          }
+        
+          int benchRet = security_filter_rule_init(field,op,rulestr,lsmrule);
+          printf("%d\n", benchRet); 
+          free(rulestr);
+          for(int i1 = 0; i1 < _len_lsmrule0; i1++) {
               }
           free(lsmrule);
         

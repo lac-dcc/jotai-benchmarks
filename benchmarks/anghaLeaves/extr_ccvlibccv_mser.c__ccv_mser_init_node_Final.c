@@ -31,6 +31,7 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            empty\n\
 \n\
 ");
 
@@ -67,7 +68,6 @@ __attribute__((used)) static void _ccv_mser_init_node(ccv_mser_node_t* node, int
 	node->root = -1;
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct TYPE_5__ *_allocate_node(int length, struct TYPE_5__ *aux_node[]) {
@@ -75,8 +75,9 @@ struct TYPE_5__ *_allocate_node(int length, struct TYPE_5__ *aux_node[]) {
 
   aux_node[0] = walker;
 walker->root = ((-2 * (next_i()%2)) + 1) * next_i();
-walker->point.x = ((-2 * (next_i()%2)) + 1) * next_i();
-walker->point.y = ((-2 * (next_i()%2)) + 1) * next_i();
+  walker->point.x = ((-2 * (next_i()%2)) + 1) * next_i();
+  walker->point.y = ((-2 * (next_i()%2)) + 1) * next_i();
+
   walker->shortcut = NULL;
   walker->next = NULL;
   walker->prev = NULL;
@@ -93,8 +94,9 @@ walker->point.y = ((-2 * (next_i()%2)) + 1) * next_i();
     walker = walker->prev;
     aux_node[i] = walker;
 walker->root = ((-2 * (next_i()%2)) + 1) * next_i();
-walker->point.x = ((-2 * (next_i()%2)) + 1) * next_i();
-walker->point.y = ((-2 * (next_i()%2)) + 1) * next_i();
+  walker->point.x = ((-2 * (next_i()%2)) + 1) * next_i();
+  walker->point.y = ((-2 * (next_i()%2)) + 1) * next_i();
+
     walker->shortcut = NULL;
     walker->next = NULL;
     walker->prev = NULL;
@@ -111,7 +113,6 @@ void _delete_node(struct TYPE_5__ *aux_node[], int aux_node_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -124,13 +125,78 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int x = 100;
+        
           int y = 100;
+        
           struct TYPE_5__ * aux_node[1];
           struct TYPE_5__ * node = _allocate_node(1, aux_node);
+        
+          _ccv_mser_init_node(node,x,y);
+          _delete_node(aux_node, 1);
+        
+        break;
+    }
+
+
+    // empty
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          struct TYPE_5__ * aux_node[1];
+          struct TYPE_5__ * node = _allocate_node(1, aux_node);
+        
           _ccv_mser_init_node(node,x,y);
           _delete_node(aux_node, 1);
         

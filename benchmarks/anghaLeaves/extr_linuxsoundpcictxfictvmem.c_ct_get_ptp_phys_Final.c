@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ ct_get_ptp_phys(struct ct_vm *vm, int index)
 	return (index >= CT_PTP_NUM) ? ~0UL : vm->ptp[index].addr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,19 +79,146 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int index = 100;
+        
           int _len_vm0 = 1;
           struct ct_vm * vm = (struct ct_vm *) malloc(_len_vm0*sizeof(struct ct_vm));
           for(int _i0 = 0; _i0 < _len_vm0; _i0++) {
               int _len_vm__i0__ptp0 = 1;
           vm[_i0].ptp = (struct TYPE_2__ *) malloc(_len_vm__i0__ptp0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_vm__i0__ptp0; _j0++) {
-            vm[_i0].ptp->addr = ((-2 * (next_i()%2)) + 1) * next_i();
+              vm[_i0].ptp->addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          unsigned long benchRet = ct_get_ptp_phys(vm,index);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vm0; _aux++) {
+          free(vm[_aux].ptp);
+          }
+          free(vm);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int index = 255;
+        
+          int _len_vm0 = 65025;
+          struct ct_vm * vm = (struct ct_vm *) malloc(_len_vm0*sizeof(struct ct_vm));
+          for(int _i0 = 0; _i0 < _len_vm0; _i0++) {
+              int _len_vm__i0__ptp0 = 1;
+          vm[_i0].ptp = (struct TYPE_2__ *) malloc(_len_vm__i0__ptp0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_vm__i0__ptp0; _j0++) {
+              vm[_i0].ptp->addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned long benchRet = ct_get_ptp_phys(vm,index);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vm0; _aux++) {
+          free(vm[_aux].ptp);
+          }
+          free(vm);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int index = 10;
+        
+          int _len_vm0 = 100;
+          struct ct_vm * vm = (struct ct_vm *) malloc(_len_vm0*sizeof(struct ct_vm));
+          for(int _i0 = 0; _i0 < _len_vm0; _i0++) {
+              int _len_vm__i0__ptp0 = 1;
+          vm[_i0].ptp = (struct TYPE_2__ *) malloc(_len_vm__i0__ptp0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_vm__i0__ptp0; _j0++) {
+              vm[_i0].ptp->addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           unsigned long benchRet = ct_get_ptp_phys(vm,index);
           printf("%lu\n", benchRet); 
           for(int _aux = 0; _aux < _len_vm0; _aux++) {

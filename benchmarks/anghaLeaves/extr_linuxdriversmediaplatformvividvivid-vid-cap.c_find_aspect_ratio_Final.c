@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -79,12 +82,6 @@ __attribute__((used)) static void find_aspect_ratio(u32 width, u32 height,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,24 +98,102 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int width = 100;
+        
           int height = 100;
+        
           int _len_num0 = 1;
           int * num = (int *) malloc(_len_num0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_num0; _i0++) {
             num[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_denom0 = 1;
           int * denom = (int *) malloc(_len_denom0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_denom0; _i0++) {
             denom[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           find_aspect_ratio(width,height,num,denom);
           free(num);
           free(denom);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int width = 255;
+        
+          int height = 255;
+        
+          int _len_num0 = 65025;
+          int * num = (int *) malloc(_len_num0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_num0; _i0++) {
+            num[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_denom0 = 65025;
+          int * denom = (int *) malloc(_len_denom0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_denom0; _i0++) {
+            denom[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          find_aspect_ratio(width,height,num,denom);
+          free(num);
+          free(denom);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int width = 10;
+        
+          int height = 10;
+        
+          int _len_num0 = 100;
+          int * num = (int *) malloc(_len_num0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_num0; _i0++) {
+            num[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_denom0 = 100;
+          int * denom = (int *) malloc(_len_denom0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_denom0; _i0++) {
+            denom[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          find_aspect_ratio(width,height,num,denom);
+          free(num);
+          free(denom);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_num0 = 1;
+          int * num = (int *) malloc(_len_num0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_num0; _i0++) {
+            num[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_denom0 = 1;
+          int * denom = (int *) malloc(_len_denom0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_denom0; _i0++) {
+            denom[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          find_aspect_ratio(width,height,num,denom);
+          free(num);
+          free(denom);
+        
+        break;
+    }
     default:
         usage();
         break;

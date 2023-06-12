@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ xfs_getbmap_full(
 	return bmv->bmv_length == 0 || bmv->bmv_entries >= bmv->bmv_count - 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,16 +76,125 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_bmv0 = 65025;
+          struct getbmapx * bmv = (struct getbmapx *) malloc(_len_bmv0*sizeof(struct getbmapx));
+          for(int _i0 = 0; _i0 < _len_bmv0; _i0++) {
+              bmv[_i0].bmv_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          bmv[_i0].bmv_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+          bmv[_i0].bmv_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = xfs_getbmap_full(bmv);
+          printf("%d\n", benchRet); 
+          free(bmv);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_bmv0 = 100;
+          struct getbmapx * bmv = (struct getbmapx *) malloc(_len_bmv0*sizeof(struct getbmapx));
+          for(int _i0 = 0; _i0 < _len_bmv0; _i0++) {
+              bmv[_i0].bmv_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          bmv[_i0].bmv_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+          bmv[_i0].bmv_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = xfs_getbmap_full(bmv);
+          printf("%d\n", benchRet); 
+          free(bmv);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_bmv0 = 1;
           struct getbmapx * bmv = (struct getbmapx *) malloc(_len_bmv0*sizeof(struct getbmapx));
           for(int _i0 = 0; _i0 < _len_bmv0; _i0++) {
-            bmv[_i0].bmv_length = ((-2 * (next_i()%2)) + 1) * next_i();
-        bmv[_i0].bmv_entries = ((-2 * (next_i()%2)) + 1) * next_i();
-        bmv[_i0].bmv_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              bmv[_i0].bmv_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          bmv[_i0].bmv_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+          bmv[_i0].bmv_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = xfs_getbmap_full(bmv);
           printf("%d\n", benchRet); 
           free(bmv);

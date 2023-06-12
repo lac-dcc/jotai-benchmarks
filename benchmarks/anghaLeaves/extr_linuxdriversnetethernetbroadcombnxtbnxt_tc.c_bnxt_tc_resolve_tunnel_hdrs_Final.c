@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -133,12 +135,6 @@ put_rt:
 #endif
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -151,24 +147,165 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_bp0 = 65025;
+          struct bnxt * bp = (struct bnxt *) malloc(_len_bp0*sizeof(struct bnxt));
+          for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
+              bp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_tun_key0 = 65025;
+          struct ip_tunnel_key * tun_key = (struct ip_tunnel_key *) malloc(_len_tun_key0*sizeof(struct ip_tunnel_key));
+          for(int _i0 = 0; _i0 < _len_tun_key0; _i0++) {
+              tun_key[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_l2_info0 = 65025;
+          struct bnxt_tc_l2_key * l2_info = (struct bnxt_tc_l2_key *) malloc(_len_l2_info0*sizeof(struct bnxt_tc_l2_key));
+          for(int _i0 = 0; _i0 < _len_l2_info0; _i0++) {
+              l2_info[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = bnxt_tc_resolve_tunnel_hdrs(bp,tun_key,l2_info);
+          printf("%d\n", benchRet); 
+          free(bp);
+          free(tun_key);
+          free(l2_info);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_bp0 = 100;
+          struct bnxt * bp = (struct bnxt *) malloc(_len_bp0*sizeof(struct bnxt));
+          for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
+              bp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_tun_key0 = 100;
+          struct ip_tunnel_key * tun_key = (struct ip_tunnel_key *) malloc(_len_tun_key0*sizeof(struct ip_tunnel_key));
+          for(int _i0 = 0; _i0 < _len_tun_key0; _i0++) {
+              tun_key[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_l2_info0 = 100;
+          struct bnxt_tc_l2_key * l2_info = (struct bnxt_tc_l2_key *) malloc(_len_l2_info0*sizeof(struct bnxt_tc_l2_key));
+          for(int _i0 = 0; _i0 < _len_l2_info0; _i0++) {
+              l2_info[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = bnxt_tc_resolve_tunnel_hdrs(bp,tun_key,l2_info);
+          printf("%d\n", benchRet); 
+          free(bp);
+          free(tun_key);
+          free(l2_info);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_bp0 = 1;
           struct bnxt * bp = (struct bnxt *) malloc(_len_bp0*sizeof(struct bnxt));
           for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
-            bp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              bp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_tun_key0 = 1;
           struct ip_tunnel_key * tun_key = (struct ip_tunnel_key *) malloc(_len_tun_key0*sizeof(struct ip_tunnel_key));
           for(int _i0 = 0; _i0 < _len_tun_key0; _i0++) {
-            tun_key[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              tun_key[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_l2_info0 = 1;
           struct bnxt_tc_l2_key * l2_info = (struct bnxt_tc_l2_key *) malloc(_len_l2_info0*sizeof(struct bnxt_tc_l2_key));
           for(int _i0 = 0; _i0 < _len_l2_info0; _i0++) {
-            l2_info[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              l2_info[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = bnxt_tc_resolve_tunnel_hdrs(bp,tun_key,l2_info);
           printf("%d\n", benchRet); 
           free(bp);

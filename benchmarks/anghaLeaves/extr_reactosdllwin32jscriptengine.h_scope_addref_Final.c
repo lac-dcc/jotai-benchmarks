@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static inline scope_chain_t *scope_addref(scope_chain_t *s
     return scope;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_scope0 = 1;
+          int _len_scope0 = 65025;
           struct TYPE_4__ * scope = (struct TYPE_4__ *) malloc(_len_scope0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_scope0; _i0++) {
-            scope[_i0].ref = ((-2 * (next_i()%2)) + 1) * next_i();
+              scope[_i0].ref = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           struct TYPE_4__ * benchRet = scope_addref(scope);
           printf("%d\n", (*benchRet).ref);
           free(scope);
@@ -102,15 +99,32 @@ int main(int argc, char *argv[]) {
           int _len_scope0 = 100;
           struct TYPE_4__ * scope = (struct TYPE_4__ *) malloc(_len_scope0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_scope0; _i0++) {
-            scope[_i0].ref = ((-2 * (next_i()%2)) + 1) * next_i();
+              scope[_i0].ref = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           struct TYPE_4__ * benchRet = scope_addref(scope);
           printf("%d\n", (*benchRet).ref);
           free(scope);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_scope0 = 1;
+          struct TYPE_4__ * scope = (struct TYPE_4__ *) malloc(_len_scope0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_scope0; _i0++) {
+              scope[_i0].ref = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct TYPE_4__ * benchRet = scope_addref(scope);
+          printf("%d\n", (*benchRet).ref);
+          free(scope);
+        
+        break;
+    }
     default:
         usage();
         break;

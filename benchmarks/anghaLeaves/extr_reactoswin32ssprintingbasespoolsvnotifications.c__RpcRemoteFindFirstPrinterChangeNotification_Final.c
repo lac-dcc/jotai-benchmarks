@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ _RpcRemoteFindFirstPrinterChangeNotification(WINSPOOL_PRINTER_HANDLE hPrinter, D
     return ERROR_INVALID_FUNCTION;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,24 +82,222 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int hPrinter = 100;
+        
           int fdwFlags = 100;
+        
           int fdwOptions = 100;
+        
           int dwPrinterLocal = 100;
+        
           int cbBuffer = 100;
+        
           int _len_pszLocalMachine0 = 1;
           int * pszLocalMachine = (int *) malloc(_len_pszLocalMachine0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pszLocalMachine0; _i0++) {
             pszLocalMachine[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_pBuffer0 = 1;
           int * pBuffer = (int *) malloc(_len_pBuffer0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pBuffer0; _i0++) {
             pBuffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = _RpcRemoteFindFirstPrinterChangeNotification(hPrinter,fdwFlags,fdwOptions,pszLocalMachine,dwPrinterLocal,cbBuffer,pBuffer);
+          printf("%d\n", benchRet); 
+          free(pszLocalMachine);
+          free(pBuffer);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int hPrinter = 255;
+        
+          int fdwFlags = 255;
+        
+          int fdwOptions = 255;
+        
+          int dwPrinterLocal = 255;
+        
+          int cbBuffer = 255;
+        
+          int _len_pszLocalMachine0 = 65025;
+          int * pszLocalMachine = (int *) malloc(_len_pszLocalMachine0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pszLocalMachine0; _i0++) {
+            pszLocalMachine[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pBuffer0 = 65025;
+          int * pBuffer = (int *) malloc(_len_pBuffer0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pBuffer0; _i0++) {
+            pBuffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _RpcRemoteFindFirstPrinterChangeNotification(hPrinter,fdwFlags,fdwOptions,pszLocalMachine,dwPrinterLocal,cbBuffer,pBuffer);
+          printf("%d\n", benchRet); 
+          free(pszLocalMachine);
+          free(pBuffer);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int hPrinter = 10;
+        
+          int fdwFlags = 10;
+        
+          int fdwOptions = 10;
+        
+          int dwPrinterLocal = 10;
+        
+          int cbBuffer = 10;
+        
+          int _len_pszLocalMachine0 = 100;
+          int * pszLocalMachine = (int *) malloc(_len_pszLocalMachine0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pszLocalMachine0; _i0++) {
+            pszLocalMachine[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pBuffer0 = 100;
+          int * pBuffer = (int *) malloc(_len_pBuffer0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pBuffer0; _i0++) {
+            pBuffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _RpcRemoteFindFirstPrinterChangeNotification(hPrinter,fdwFlags,fdwOptions,pszLocalMachine,dwPrinterLocal,cbBuffer,pBuffer);
+          printf("%d\n", benchRet); 
+          free(pszLocalMachine);
+          free(pBuffer);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int hPrinter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int fdwFlags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int fdwOptions = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int dwPrinterLocal = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int cbBuffer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pszLocalMachine0 = 1;
+          int * pszLocalMachine = (int *) malloc(_len_pszLocalMachine0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pszLocalMachine0; _i0++) {
+            pszLocalMachine[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pBuffer0 = 1;
+          int * pBuffer = (int *) malloc(_len_pBuffer0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pBuffer0; _i0++) {
+            pBuffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = _RpcRemoteFindFirstPrinterChangeNotification(hPrinter,fdwFlags,fdwOptions,pszLocalMachine,dwPrinterLocal,cbBuffer,pBuffer);
           printf("%d\n", benchRet); 
           free(pszLocalMachine);

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ __attribute__((used)) static inline void snd_hda_override_wcaps(struct hda_codec
 		codec->wcaps[nid - codec->core.start_nid] = val;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,18 +86,23 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long nid = 100;
+        
           int val = 100;
+        
           int _len_codec0 = 1;
           struct hda_codec * codec = (struct hda_codec *) malloc(_len_codec0*sizeof(struct hda_codec));
           for(int _i0 = 0; _i0 < _len_codec0; _i0++) {
-            codec[_i0].core.start_nid = ((-2 * (next_i()%2)) + 1) * next_i();
-        codec[_i0].core.num_nodes = ((-2 * (next_i()%2)) + 1) * next_i();
+              codec[_i0].core.start_nid = ((-2 * (next_i()%2)) + 1) * next_i();
+          codec[_i0].core.num_nodes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int _len_codec__i0__wcaps0 = 1;
           codec[_i0].wcaps = (int *) malloc(_len_codec__i0__wcaps0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_codec__i0__wcaps0; _j0++) {
             codec[_i0].wcaps[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           snd_hda_override_wcaps(codec,nid,val);
           for(int _aux = 0; _aux < _len_codec0; _aux++) {
           free(codec[_aux].wcaps);
@@ -109,7 +111,93 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long nid = 255;
+        
+          int val = 255;
+        
+          int _len_codec0 = 65025;
+          struct hda_codec * codec = (struct hda_codec *) malloc(_len_codec0*sizeof(struct hda_codec));
+          for(int _i0 = 0; _i0 < _len_codec0; _i0++) {
+              codec[_i0].core.start_nid = ((-2 * (next_i()%2)) + 1) * next_i();
+          codec[_i0].core.num_nodes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_codec__i0__wcaps0 = 1;
+          codec[_i0].wcaps = (int *) malloc(_len_codec__i0__wcaps0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_codec__i0__wcaps0; _j0++) {
+            codec[_i0].wcaps[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          snd_hda_override_wcaps(codec,nid,val);
+          for(int _aux = 0; _aux < _len_codec0; _aux++) {
+          free(codec[_aux].wcaps);
+          }
+          free(codec);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long nid = 10;
+        
+          int val = 10;
+        
+          int _len_codec0 = 100;
+          struct hda_codec * codec = (struct hda_codec *) malloc(_len_codec0*sizeof(struct hda_codec));
+          for(int _i0 = 0; _i0 < _len_codec0; _i0++) {
+              codec[_i0].core.start_nid = ((-2 * (next_i()%2)) + 1) * next_i();
+          codec[_i0].core.num_nodes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_codec__i0__wcaps0 = 1;
+          codec[_i0].wcaps = (int *) malloc(_len_codec__i0__wcaps0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_codec__i0__wcaps0; _j0++) {
+            codec[_i0].wcaps[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          snd_hda_override_wcaps(codec,nid,val);
+          for(int _aux = 0; _aux < _len_codec0; _aux++) {
+          free(codec[_aux].wcaps);
+          }
+          free(codec);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long nid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_codec0 = 1;
+          struct hda_codec * codec = (struct hda_codec *) malloc(_len_codec0*sizeof(struct hda_codec));
+          for(int _i0 = 0; _i0 < _len_codec0; _i0++) {
+              codec[_i0].core.start_nid = ((-2 * (next_i()%2)) + 1) * next_i();
+          codec[_i0].core.num_nodes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_codec__i0__wcaps0 = 1;
+          codec[_i0].wcaps = (int *) malloc(_len_codec__i0__wcaps0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_codec__i0__wcaps0; _j0++) {
+            codec[_i0].wcaps[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          snd_hda_override_wcaps(codec,nid,val);
+          for(int _aux = 0; _aux < _len_codec0; _aux++) {
+          free(codec[_aux].wcaps);
+          }
+          free(codec);
+        
+        break;
+    }
     default:
         usage();
         break;

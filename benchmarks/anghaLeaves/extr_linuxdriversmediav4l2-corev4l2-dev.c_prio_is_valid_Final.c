@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -65,12 +65,6 @@ __attribute__((used)) static inline bool prio_is_valid(enum v4l2_priority prio)
 	       prio == V4L2_PRIORITY_RECORD;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,16 +77,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum v4l2_priority prio = 0;
+        
           int benchRet = prio_is_valid(prio);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

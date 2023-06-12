@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ void oslec_adaption_mode(struct oslec_state *ec, int adaption_mode)
 	ec->adaption_mode = adaption_mode;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,31 +79,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int adaption_mode = 100;
+        
           int _len_ec0 = 1;
           struct oslec_state * ec = (struct oslec_state *) malloc(_len_ec0*sizeof(struct oslec_state));
           for(int _i0 = 0; _i0 < _len_ec0; _i0++) {
-            ec[_i0].adaption_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              ec[_i0].adaption_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          oslec_adaption_mode(ec,adaption_mode);
+          free(ec);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int adaption_mode = 255;
+        
+          int _len_ec0 = 65025;
+          struct oslec_state * ec = (struct oslec_state *) malloc(_len_ec0*sizeof(struct oslec_state));
+          for(int _i0 = 0; _i0 < _len_ec0; _i0++) {
+              ec[_i0].adaption_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           oslec_adaption_mode(ec,adaption_mode);
           free(ec);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int adaption_mode = 10;
+        
           int _len_ec0 = 100;
           struct oslec_state * ec = (struct oslec_state *) malloc(_len_ec0*sizeof(struct oslec_state));
           for(int _i0 = 0; _i0 < _len_ec0; _i0++) {
-            ec[_i0].adaption_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              ec[_i0].adaption_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           oslec_adaption_mode(ec,adaption_mode);
           free(ec);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int adaption_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ec0 = 1;
+          struct oslec_state * ec = (struct oslec_state *) malloc(_len_ec0*sizeof(struct oslec_state));
+          for(int _i0 = 0; _i0 < _len_ec0; _i0++) {
+              ec[_i0].adaption_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          oslec_adaption_mode(ec,adaption_mode);
+          free(ec);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -75,12 +75,6 @@ __attribute__((used)) static int tl_lb_bpp_to_int(enum lb_pixel_depth depth)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,16 +87,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum lb_pixel_depth depth = 0;
+        
           int benchRet = tl_lb_bpp_to_int(depth);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

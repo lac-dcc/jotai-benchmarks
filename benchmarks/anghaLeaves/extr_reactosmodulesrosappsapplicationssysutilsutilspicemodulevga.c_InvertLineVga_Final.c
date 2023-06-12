@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +79,6 @@ void InvertLineVga(ULONG line)
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,6 +95,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long line = 100;
+        
           InvertLineVga(line);
         
         break;
@@ -108,6 +104,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long line = 255;
+        
           InvertLineVga(line);
         
         break;
@@ -116,11 +113,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long line = 10;
+        
           InvertLineVga(line);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long line = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          InvertLineVga(line);
+        
+        break;
+    }
     default:
         usage();
         break;

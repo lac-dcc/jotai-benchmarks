@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static s64 virtio_transport_has_space(struct vsock_sock *v
 	return bytes;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,20 +83,146 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_vsk0 = 65025;
+          struct vsock_sock * vsk = (struct vsock_sock *) malloc(_len_vsk0*sizeof(struct vsock_sock));
+          for(int _i0 = 0; _i0 < _len_vsk0; _i0++) {
+              int _len_vsk__i0__trans0 = 1;
+          vsk[_i0].trans = (struct virtio_vsock_sock *) malloc(_len_vsk__i0__trans0*sizeof(struct virtio_vsock_sock));
+          for(int _j0 = 0; _j0 < _len_vsk__i0__trans0; _j0++) {
+              vsk[_i0].trans->peer_buf_alloc = ((-2 * (next_i()%2)) + 1) * next_i();
+          vsk[_i0].trans->tx_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          vsk[_i0].trans->peer_fwd_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          long benchRet = virtio_transport_has_space(vsk);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vsk0; _aux++) {
+          free(vsk[_aux].trans);
+          }
+          free(vsk);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_vsk0 = 100;
+          struct vsock_sock * vsk = (struct vsock_sock *) malloc(_len_vsk0*sizeof(struct vsock_sock));
+          for(int _i0 = 0; _i0 < _len_vsk0; _i0++) {
+              int _len_vsk__i0__trans0 = 1;
+          vsk[_i0].trans = (struct virtio_vsock_sock *) malloc(_len_vsk__i0__trans0*sizeof(struct virtio_vsock_sock));
+          for(int _j0 = 0; _j0 < _len_vsk__i0__trans0; _j0++) {
+              vsk[_i0].trans->peer_buf_alloc = ((-2 * (next_i()%2)) + 1) * next_i();
+          vsk[_i0].trans->tx_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          vsk[_i0].trans->peer_fwd_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          long benchRet = virtio_transport_has_space(vsk);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vsk0; _aux++) {
+          free(vsk[_aux].trans);
+          }
+          free(vsk);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_vsk0 = 1;
           struct vsock_sock * vsk = (struct vsock_sock *) malloc(_len_vsk0*sizeof(struct vsock_sock));
           for(int _i0 = 0; _i0 < _len_vsk0; _i0++) {
               int _len_vsk__i0__trans0 = 1;
           vsk[_i0].trans = (struct virtio_vsock_sock *) malloc(_len_vsk__i0__trans0*sizeof(struct virtio_vsock_sock));
           for(int _j0 = 0; _j0 < _len_vsk__i0__trans0; _j0++) {
-            vsk[_i0].trans->peer_buf_alloc = ((-2 * (next_i()%2)) + 1) * next_i();
-        vsk[_i0].trans->tx_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        vsk[_i0].trans->peer_fwd_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+              vsk[_i0].trans->peer_buf_alloc = ((-2 * (next_i()%2)) + 1) * next_i();
+          vsk[_i0].trans->tx_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          vsk[_i0].trans->peer_fwd_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           long benchRet = virtio_transport_has_space(vsk);
           printf("%ld\n", benchRet); 
           for(int _aux = 0; _aux < _len_vsk0; _aux++) {

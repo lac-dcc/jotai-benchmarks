@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ __attribute__((used)) static inline int get_current_xferred_count(struct tegra_d
 	return sg_req->req_len - (status & TEGRA_APBDMA_STATUS_COUNT_MASK) - 4;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,16 +82,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long status = 100;
+        
           int _len_tdc0 = 1;
           struct tegra_dma_channel * tdc = (struct tegra_dma_channel *) malloc(_len_tdc0*sizeof(struct tegra_dma_channel));
           for(int _i0 = 0; _i0 < _len_tdc0; _i0++) {
-            tdc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              tdc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_sg_req0 = 1;
           struct tegra_dma_sg_req * sg_req = (struct tegra_dma_sg_req *) malloc(_len_sg_req0*sizeof(struct tegra_dma_sg_req));
           for(int _i0 = 0; _i0 < _len_sg_req0; _i0++) {
-            sg_req[_i0].req_len = ((-2 * (next_i()%2)) + 1) * next_i();
+              sg_req[_i0].req_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = get_current_xferred_count(tdc,sg_req,status);
           printf("%d\n", benchRet); 
           free(tdc);
@@ -102,7 +104,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long status = 255;
+        
+          int _len_tdc0 = 65025;
+          struct tegra_dma_channel * tdc = (struct tegra_dma_channel *) malloc(_len_tdc0*sizeof(struct tegra_dma_channel));
+          for(int _i0 = 0; _i0 < _len_tdc0; _i0++) {
+              tdc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_sg_req0 = 65025;
+          struct tegra_dma_sg_req * sg_req = (struct tegra_dma_sg_req *) malloc(_len_sg_req0*sizeof(struct tegra_dma_sg_req));
+          for(int _i0 = 0; _i0 < _len_sg_req0; _i0++) {
+              sg_req[_i0].req_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = get_current_xferred_count(tdc,sg_req,status);
+          printf("%d\n", benchRet); 
+          free(tdc);
+          free(sg_req);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long status = 10;
+        
+          int _len_tdc0 = 100;
+          struct tegra_dma_channel * tdc = (struct tegra_dma_channel *) malloc(_len_tdc0*sizeof(struct tegra_dma_channel));
+          for(int _i0 = 0; _i0 < _len_tdc0; _i0++) {
+              tdc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_sg_req0 = 100;
+          struct tegra_dma_sg_req * sg_req = (struct tegra_dma_sg_req *) malloc(_len_sg_req0*sizeof(struct tegra_dma_sg_req));
+          for(int _i0 = 0; _i0 < _len_sg_req0; _i0++) {
+              sg_req[_i0].req_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = get_current_xferred_count(tdc,sg_req,status);
+          printf("%d\n", benchRet); 
+          free(tdc);
+          free(sg_req);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_tdc0 = 1;
+          struct tegra_dma_channel * tdc = (struct tegra_dma_channel *) malloc(_len_tdc0*sizeof(struct tegra_dma_channel));
+          for(int _i0 = 0; _i0 < _len_tdc0; _i0++) {
+              tdc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_sg_req0 = 1;
+          struct tegra_dma_sg_req * sg_req = (struct tegra_dma_sg_req *) malloc(_len_sg_req0*sizeof(struct tegra_dma_sg_req));
+          for(int _i0 = 0; _i0 < _len_sg_req0; _i0++) {
+              sg_req[_i0].req_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = get_current_xferred_count(tdc,sg_req,status);
+          printf("%d\n", benchRet); 
+          free(tdc);
+          free(sg_req);
+        
+        break;
+    }
     default:
         usage();
         break;

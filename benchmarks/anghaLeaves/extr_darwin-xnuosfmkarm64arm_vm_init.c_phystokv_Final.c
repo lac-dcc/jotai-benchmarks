@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +75,6 @@ phystokv(pmap_paddr_t pa)
 	return (pa - gPhysBase + gVirtBase);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long pa = 100;
+        
           long benchRet = phystokv(pa);
           printf("%ld\n", benchRet); 
         
@@ -105,6 +101,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long pa = 255;
+        
           long benchRet = phystokv(pa);
           printf("%ld\n", benchRet); 
         
@@ -114,12 +111,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long pa = 10;
+        
           long benchRet = phystokv(pa);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long pa = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long benchRet = phystokv(pa);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

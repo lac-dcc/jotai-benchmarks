@@ -30,8 +30,10 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
-       1            linked\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            linked\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ __attribute__((used)) static inline unsigned int norm_maxh(struct em28xx *dev)
 	return (v4l2->norm & V4L2_STD_625_50) ? 576 : 480;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,21 +87,48 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_dev0 = 1;
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_dev0 = 65025;
           struct em28xx * dev = (struct em28xx *) malloc(_len_dev0*sizeof(struct em28xx));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].board.max_range_640_480 = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].is_webcam = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].board.max_range_640_480 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          dev[_i0].is_webcam = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_dev__i0__v4l20 = 1;
           dev[_i0].v4l2 = (struct em28xx_v4l2 *) malloc(_len_dev__i0__v4l20*sizeof(struct em28xx_v4l2));
           for(int _j0 = 0; _j0 < _len_dev__i0__v4l20; _j0++) {
-            dev[_i0].v4l2->sensor_yres = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].v4l2->norm = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].v4l2->sensor_yres = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].v4l2->norm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           unsigned int benchRet = norm_maxh(dev);
           printf("%u\n", benchRet); 
           for(int _aux = 0; _aux < _len_dev0; _aux++) {
@@ -115,21 +138,153 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-    // linked
+
+
+    // big-arr-10x
     case 1:
     {
-          int _len_dev0 = 1;
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_dev0 = 100;
           struct em28xx * dev = (struct em28xx *) malloc(_len_dev0*sizeof(struct em28xx));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].board.max_range_640_480 = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].is_webcam = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].board.max_range_640_480 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          dev[_i0].is_webcam = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_dev__i0__v4l20 = 1;
           dev[_i0].v4l2 = (struct em28xx_v4l2 *) malloc(_len_dev__i0__v4l20*sizeof(struct em28xx_v4l2));
           for(int _j0 = 0; _j0 < _len_dev__i0__v4l20; _j0++) {
-            dev[_i0].v4l2->sensor_yres = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].v4l2->norm = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].v4l2->sensor_yres = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].v4l2->norm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          unsigned int benchRet = norm_maxh(dev);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(dev[_aux].v4l2);
+          }
+          free(dev);
+        
+        break;
+    }
+
+
+    // linked
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_dev0 = 1;
+          struct em28xx * dev = (struct em28xx *) malloc(_len_dev0*sizeof(struct em28xx));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].board.max_range_640_480 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          dev[_i0].is_webcam = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_dev__i0__v4l20 = 1;
+          dev[_i0].v4l2 = (struct em28xx_v4l2 *) malloc(_len_dev__i0__v4l20*sizeof(struct em28xx_v4l2));
+          for(int _j0 = 0; _j0 < _len_dev__i0__v4l20; _j0++) {
+              dev[_i0].v4l2->sensor_yres = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].v4l2->norm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = norm_maxh(dev);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(dev[_aux].v4l2);
+          }
+          free(dev);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_dev0 = 1;
+          struct em28xx * dev = (struct em28xx *) malloc(_len_dev0*sizeof(struct em28xx));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].board.max_range_640_480 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          dev[_i0].is_webcam = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_dev__i0__v4l20 = 1;
+          dev[_i0].v4l2 = (struct em28xx_v4l2 *) malloc(_len_dev__i0__v4l20*sizeof(struct em28xx_v4l2));
+          for(int _j0 = 0; _j0 < _len_dev__i0__v4l20; _j0++) {
+              dev[_i0].v4l2->sensor_yres = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].v4l2->norm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           unsigned int benchRet = norm_maxh(dev);
           printf("%u\n", benchRet); 
           for(int _aux = 0; _aux < _len_dev0; _aux++) {

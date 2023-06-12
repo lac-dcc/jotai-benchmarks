@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static void isku_profile_activated(struct isku_device *isk
 	isku->actual_profile = new_profile;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,31 +80,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int new_profile = 100;
+        
           int _len_isku0 = 1;
           struct isku_device * isku = (struct isku_device *) malloc(_len_isku0*sizeof(struct isku_device));
           for(int _i0 = 0; _i0 < _len_isku0; _i0++) {
-            isku[_i0].actual_profile = ((-2 * (next_i()%2)) + 1) * next_i();
+              isku[_i0].actual_profile = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          isku_profile_activated(isku,new_profile);
+          free(isku);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int new_profile = 255;
+        
+          int _len_isku0 = 65025;
+          struct isku_device * isku = (struct isku_device *) malloc(_len_isku0*sizeof(struct isku_device));
+          for(int _i0 = 0; _i0 < _len_isku0; _i0++) {
+              isku[_i0].actual_profile = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           isku_profile_activated(isku,new_profile);
           free(isku);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int new_profile = 10;
+        
           int _len_isku0 = 100;
           struct isku_device * isku = (struct isku_device *) malloc(_len_isku0*sizeof(struct isku_device));
           for(int _i0 = 0; _i0 < _len_isku0; _i0++) {
-            isku[_i0].actual_profile = ((-2 * (next_i()%2)) + 1) * next_i();
+              isku[_i0].actual_profile = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           isku_profile_activated(isku,new_profile);
           free(isku);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int new_profile = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_isku0 = 1;
+          struct isku_device * isku = (struct isku_device *) malloc(_len_isku0*sizeof(struct isku_device));
+          for(int _i0 = 0; _i0 < _len_isku0; _i0++) {
+              isku[_i0].actual_profile = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          isku_profile_activated(isku,new_profile);
+          free(isku);
+        
+        break;
+    }
     default:
         usage();
         break;

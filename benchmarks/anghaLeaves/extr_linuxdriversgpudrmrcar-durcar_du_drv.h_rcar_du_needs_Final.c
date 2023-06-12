@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ __attribute__((used)) static inline bool rcar_du_needs(struct rcar_du_device *rc
 	return rcdu->info->quirks & quirk;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,19 +78,196 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           unsigned int quirk = 100;
+        
           int _len_rcdu0 = 1;
           struct rcar_du_device * rcdu = (struct rcar_du_device *) malloc(_len_rcdu0*sizeof(struct rcar_du_device));
           for(int _i0 = 0; _i0 < _len_rcdu0; _i0++) {
               int _len_rcdu__i0__info0 = 1;
           rcdu[_i0].info = (struct TYPE_2__ *) malloc(_len_rcdu__i0__info0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_rcdu__i0__info0; _j0++) {
-            rcdu[_i0].info->quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+              rcdu[_i0].info->quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = rcar_du_needs(rcdu,quirk);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_rcdu0; _aux++) {
+          free(rcdu[_aux].info);
+          }
+          free(rcdu);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          unsigned int quirk = 255;
+        
+          int _len_rcdu0 = 65025;
+          struct rcar_du_device * rcdu = (struct rcar_du_device *) malloc(_len_rcdu0*sizeof(struct rcar_du_device));
+          for(int _i0 = 0; _i0 < _len_rcdu0; _i0++) {
+              int _len_rcdu__i0__info0 = 1;
+          rcdu[_i0].info = (struct TYPE_2__ *) malloc(_len_rcdu__i0__info0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_rcdu__i0__info0; _j0++) {
+              rcdu[_i0].info->quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = rcar_du_needs(rcdu,quirk);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_rcdu0; _aux++) {
+          free(rcdu[_aux].info);
+          }
+          free(rcdu);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          unsigned int quirk = 10;
+        
+          int _len_rcdu0 = 100;
+          struct rcar_du_device * rcdu = (struct rcar_du_device *) malloc(_len_rcdu0*sizeof(struct rcar_du_device));
+          for(int _i0 = 0; _i0 < _len_rcdu0; _i0++) {
+              int _len_rcdu__i0__info0 = 1;
+          rcdu[_i0].info = (struct TYPE_2__ *) malloc(_len_rcdu__i0__info0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_rcdu__i0__info0; _j0++) {
+              rcdu[_i0].info->quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = rcar_du_needs(rcdu,quirk);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_rcdu0; _aux++) {
+          free(rcdu[_aux].info);
+          }
+          free(rcdu);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          unsigned int quirk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rcdu0 = 1;
+          struct rcar_du_device * rcdu = (struct rcar_du_device *) malloc(_len_rcdu0*sizeof(struct rcar_du_device));
+          for(int _i0 = 0; _i0 < _len_rcdu0; _i0++) {
+              int _len_rcdu__i0__info0 = 1;
+          rcdu[_i0].info = (struct TYPE_2__ *) malloc(_len_rcdu__i0__info0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_rcdu__i0__info0; _j0++) {
+              rcdu[_i0].info->quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = rcar_du_needs(rcdu,quirk);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_rcdu0; _aux++) {

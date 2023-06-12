@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ void HASH_StructInit(HASH_InitTypeDef* HASH_InitStruct)
   HASH_InitStruct->HASH_HMACKeyType = HASH_HMACKeyType_ShortKey;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,23 +90,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_HASH_InitStruct0 = 1;
+          int _len_HASH_InitStruct0 = 65025;
           struct TYPE_3__ * HASH_InitStruct = (struct TYPE_3__ *) malloc(_len_HASH_InitStruct0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_HASH_InitStruct0; _i0++) {
-            HASH_InitStruct[_i0].HASH_HMACKeyType = ((-2 * (next_i()%2)) + 1) * next_i();
-        HASH_InitStruct[_i0].HASH_DataType = ((-2 * (next_i()%2)) + 1) * next_i();
-        HASH_InitStruct[_i0].HASH_AlgoMode = ((-2 * (next_i()%2)) + 1) * next_i();
-        HASH_InitStruct[_i0].HASH_AlgoSelection = ((-2 * (next_i()%2)) + 1) * next_i();
+              HASH_InitStruct[_i0].HASH_HMACKeyType = ((-2 * (next_i()%2)) + 1) * next_i();
+          HASH_InitStruct[_i0].HASH_DataType = ((-2 * (next_i()%2)) + 1) * next_i();
+          HASH_InitStruct[_i0].HASH_AlgoMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          HASH_InitStruct[_i0].HASH_AlgoSelection = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           HASH_StructInit(HASH_InitStruct);
           free(HASH_InitStruct);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_HASH_InitStruct0 = 100;
+          struct TYPE_3__ * HASH_InitStruct = (struct TYPE_3__ *) malloc(_len_HASH_InitStruct0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_HASH_InitStruct0; _i0++) {
+              HASH_InitStruct[_i0].HASH_HMACKeyType = ((-2 * (next_i()%2)) + 1) * next_i();
+          HASH_InitStruct[_i0].HASH_DataType = ((-2 * (next_i()%2)) + 1) * next_i();
+          HASH_InitStruct[_i0].HASH_AlgoMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          HASH_InitStruct[_i0].HASH_AlgoSelection = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          HASH_StructInit(HASH_InitStruct);
+          free(HASH_InitStruct);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_HASH_InitStruct0 = 1;
+          struct TYPE_3__ * HASH_InitStruct = (struct TYPE_3__ *) malloc(_len_HASH_InitStruct0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_HASH_InitStruct0; _i0++) {
+              HASH_InitStruct[_i0].HASH_HMACKeyType = ((-2 * (next_i()%2)) + 1) * next_i();
+          HASH_InitStruct[_i0].HASH_DataType = ((-2 * (next_i()%2)) + 1) * next_i();
+          HASH_InitStruct[_i0].HASH_AlgoMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          HASH_InitStruct[_i0].HASH_AlgoSelection = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          HASH_StructInit(HASH_InitStruct);
+          free(HASH_InitStruct);
+        
+        break;
+    }
     default:
         usage();
         break;

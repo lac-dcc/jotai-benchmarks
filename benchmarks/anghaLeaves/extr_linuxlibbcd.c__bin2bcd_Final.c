@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ unsigned char _bin2bcd(unsigned val)
 	return ((val / 10) << 4) + val % 10;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,6 +78,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int val = 100;
+        
           unsigned char benchRet = _bin2bcd(val);
           printf("%c\n", (benchRet %26) + 'a'); 
         
@@ -92,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int val = 255;
+        
           unsigned char benchRet = _bin2bcd(val);
           printf("%c\n", (benchRet %26) + 'a'); 
         
@@ -101,12 +98,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int val = 10;
+        
           unsigned char benchRet = _bin2bcd(val);
           printf("%c\n", (benchRet %26) + 'a'); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned char benchRet = _bin2bcd(val);
+          printf("%c\n", (benchRet %26) + 'a'); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -79,12 +81,6 @@ __attribute__((used)) static void cast_to_ulong(cval_t *v)
 	v->type = cv_ulong;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,25 +93,69 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_v0 = 1;
+          int _len_v0 = 65025;
           struct TYPE_5__ * v = (struct TYPE_5__ *) malloc(_len_v0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_v0; _i0++) {
-            v[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        v[_i0].val.ull = ((-2 * (next_i()%2)) + 1) * next_i();
-        v[_i0].val.ul = ((-2 * (next_i()%2)) + 1) * next_i();
-        v[_i0].val.sll = ((-2 * (next_i()%2)) + 1) * next_i();
-        v[_i0].val.ui = ((-2 * (next_i()%2)) + 1) * next_i();
-        v[_i0].val.si = ((-2 * (next_i()%2)) + 1) * next_i();
+              v[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].val.ull = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].val.ul = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].val.sll = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].val.ui = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].val.si = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           cast_to_ulong(v);
           free(v);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_v0 = 100;
+          struct TYPE_5__ * v = (struct TYPE_5__ *) malloc(_len_v0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_v0; _i0++) {
+              v[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].val.ull = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].val.ul = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].val.sll = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].val.ui = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].val.si = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          cast_to_ulong(v);
+          free(v);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_v0 = 1;
+          struct TYPE_5__ * v = (struct TYPE_5__ *) malloc(_len_v0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_v0; _i0++) {
+              v[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].val.ull = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].val.ul = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].val.sll = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].val.ui = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].val.si = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          cast_to_ulong(v);
+          free(v);
+        
+        break;
+    }
     default:
         usage();
         break;

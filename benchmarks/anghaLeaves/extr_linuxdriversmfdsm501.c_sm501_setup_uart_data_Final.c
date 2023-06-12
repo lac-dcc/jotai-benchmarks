@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +78,6 @@ __attribute__((used)) static void sm501_setup_uart_data(struct sm501_devdata *sm
 	uart_data->uartclk = (9600 * 16);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,28 +94,34 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int offset = 100;
+        
           int _len_sm0 = 1;
           struct sm501_devdata * sm = (struct sm501_devdata *) malloc(_len_sm0*sizeof(struct sm501_devdata));
           for(int _i0 = 0; _i0 < _len_sm0; _i0++) {
-            sm[_i0].irq = ((-2 * (next_i()%2)) + 1) * next_i();
+              sm[_i0].irq = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_sm__i0__io_res0 = 1;
           sm[_i0].io_res = (struct TYPE_2__ *) malloc(_len_sm__i0__io_res0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_sm__i0__io_res0; _j0++) {
-            sm[_i0].io_res->start = ((-2 * (next_i()%2)) + 1) * next_i();
+              sm[_i0].io_res->start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        sm[_i0].regs = ((-2 * (next_i()%2)) + 1) * next_i();
+          sm[_i0].regs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_uart_data0 = 1;
           struct plat_serial8250_port * uart_data = (struct plat_serial8250_port *) malloc(_len_uart_data0*sizeof(struct plat_serial8250_port));
           for(int _i0 = 0; _i0 < _len_uart_data0; _i0++) {
-            uart_data[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        uart_data[_i0].regshift = ((-2 * (next_i()%2)) + 1) * next_i();
-        uart_data[_i0].uartclk = ((-2 * (next_i()%2)) + 1) * next_i();
-        uart_data[_i0].irq = ((-2 * (next_i()%2)) + 1) * next_i();
-        uart_data[_i0].iotype = ((-2 * (next_i()%2)) + 1) * next_i();
-        uart_data[_i0].mapbase = ((-2 * (next_i()%2)) + 1) * next_i();
-        uart_data[_i0].membase = ((-2 * (next_i()%2)) + 1) * next_i();
+              uart_data[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          uart_data[_i0].regshift = ((-2 * (next_i()%2)) + 1) * next_i();
+          uart_data[_i0].uartclk = ((-2 * (next_i()%2)) + 1) * next_i();
+          uart_data[_i0].irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          uart_data[_i0].iotype = ((-2 * (next_i()%2)) + 1) * next_i();
+          uart_data[_i0].mapbase = ((-2 * (next_i()%2)) + 1) * next_i();
+          uart_data[_i0].membase = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           sm501_setup_uart_data(sm,uart_data,offset);
           for(int _aux = 0; _aux < _len_sm0; _aux++) {
           free(sm[_aux].io_res);
@@ -128,7 +131,129 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int offset = 255;
+        
+          int _len_sm0 = 65025;
+          struct sm501_devdata * sm = (struct sm501_devdata *) malloc(_len_sm0*sizeof(struct sm501_devdata));
+          for(int _i0 = 0; _i0 < _len_sm0; _i0++) {
+              sm[_i0].irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_sm__i0__io_res0 = 1;
+          sm[_i0].io_res = (struct TYPE_2__ *) malloc(_len_sm__i0__io_res0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_sm__i0__io_res0; _j0++) {
+              sm[_i0].io_res->start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          sm[_i0].regs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_uart_data0 = 65025;
+          struct plat_serial8250_port * uart_data = (struct plat_serial8250_port *) malloc(_len_uart_data0*sizeof(struct plat_serial8250_port));
+          for(int _i0 = 0; _i0 < _len_uart_data0; _i0++) {
+              uart_data[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          uart_data[_i0].regshift = ((-2 * (next_i()%2)) + 1) * next_i();
+          uart_data[_i0].uartclk = ((-2 * (next_i()%2)) + 1) * next_i();
+          uart_data[_i0].irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          uart_data[_i0].iotype = ((-2 * (next_i()%2)) + 1) * next_i();
+          uart_data[_i0].mapbase = ((-2 * (next_i()%2)) + 1) * next_i();
+          uart_data[_i0].membase = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          sm501_setup_uart_data(sm,uart_data,offset);
+          for(int _aux = 0; _aux < _len_sm0; _aux++) {
+          free(sm[_aux].io_res);
+          }
+          free(sm);
+          free(uart_data);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int offset = 10;
+        
+          int _len_sm0 = 100;
+          struct sm501_devdata * sm = (struct sm501_devdata *) malloc(_len_sm0*sizeof(struct sm501_devdata));
+          for(int _i0 = 0; _i0 < _len_sm0; _i0++) {
+              sm[_i0].irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_sm__i0__io_res0 = 1;
+          sm[_i0].io_res = (struct TYPE_2__ *) malloc(_len_sm__i0__io_res0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_sm__i0__io_res0; _j0++) {
+              sm[_i0].io_res->start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          sm[_i0].regs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_uart_data0 = 100;
+          struct plat_serial8250_port * uart_data = (struct plat_serial8250_port *) malloc(_len_uart_data0*sizeof(struct plat_serial8250_port));
+          for(int _i0 = 0; _i0 < _len_uart_data0; _i0++) {
+              uart_data[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          uart_data[_i0].regshift = ((-2 * (next_i()%2)) + 1) * next_i();
+          uart_data[_i0].uartclk = ((-2 * (next_i()%2)) + 1) * next_i();
+          uart_data[_i0].irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          uart_data[_i0].iotype = ((-2 * (next_i()%2)) + 1) * next_i();
+          uart_data[_i0].mapbase = ((-2 * (next_i()%2)) + 1) * next_i();
+          uart_data[_i0].membase = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          sm501_setup_uart_data(sm,uart_data,offset);
+          for(int _aux = 0; _aux < _len_sm0; _aux++) {
+          free(sm[_aux].io_res);
+          }
+          free(sm);
+          free(uart_data);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sm0 = 1;
+          struct sm501_devdata * sm = (struct sm501_devdata *) malloc(_len_sm0*sizeof(struct sm501_devdata));
+          for(int _i0 = 0; _i0 < _len_sm0; _i0++) {
+              sm[_i0].irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_sm__i0__io_res0 = 1;
+          sm[_i0].io_res = (struct TYPE_2__ *) malloc(_len_sm__i0__io_res0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_sm__i0__io_res0; _j0++) {
+              sm[_i0].io_res->start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          sm[_i0].regs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_uart_data0 = 1;
+          struct plat_serial8250_port * uart_data = (struct plat_serial8250_port *) malloc(_len_uart_data0*sizeof(struct plat_serial8250_port));
+          for(int _i0 = 0; _i0 < _len_uart_data0; _i0++) {
+              uart_data[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          uart_data[_i0].regshift = ((-2 * (next_i()%2)) + 1) * next_i();
+          uart_data[_i0].uartclk = ((-2 * (next_i()%2)) + 1) * next_i();
+          uart_data[_i0].irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          uart_data[_i0].iotype = ((-2 * (next_i()%2)) + 1) * next_i();
+          uart_data[_i0].mapbase = ((-2 * (next_i()%2)) + 1) * next_i();
+          uart_data[_i0].membase = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          sm501_setup_uart_data(sm,uart_data,offset);
+          for(int _aux = 0; _aux < _len_sm0; _aux++) {
+          free(sm[_aux].io_res);
+          }
+          free(sm);
+          free(uart_data);
+        
+        break;
+    }
     default:
         usage();
         break;

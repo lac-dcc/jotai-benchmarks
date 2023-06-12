@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -95,12 +97,6 @@ __attribute__((used)) static void hns3_vector_gl_rl_init(struct hns3_enet_tqp_ve
 	tqp_vector->tx_group.coal.flow_level = HNS3_FLOW_LOW;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -113,25 +109,182 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_tqp_vector0 = 65025;
+          struct hns3_enet_tqp_vector * tqp_vector = (struct hns3_enet_tqp_vector *) malloc(_len_tqp_vector0*sizeof(struct hns3_enet_tqp_vector));
+          for(int _i0 = 0; _i0 < _len_tqp_vector0; _i0++) {
+              tqp_vector[_i0].tx_group.coal.gl_adapt_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          tqp_vector[_i0].rx_group.coal.gl_adapt_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          tqp_vector[_i0].int_adapt_down = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_priv0 = 65025;
+          struct hns3_nic_priv * priv = (struct hns3_nic_priv *) malloc(_len_priv0*sizeof(struct hns3_nic_priv));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              int _len_priv__i0__ae_handle0 = 1;
+          priv[_i0].ae_handle = (struct hnae3_handle *) malloc(_len_priv__i0__ae_handle0*sizeof(struct hnae3_handle));
+          for(int _j0 = 0; _j0 < _len_priv__i0__ae_handle0; _j0++) {
+              priv[_i0].ae_handle->kinfo.int_rl_setting = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          hns3_vector_gl_rl_init(tqp_vector,priv);
+          free(tqp_vector);
+          for(int _aux = 0; _aux < _len_priv0; _aux++) {
+          free(priv[_aux].ae_handle);
+          }
+          free(priv);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_tqp_vector0 = 100;
+          struct hns3_enet_tqp_vector * tqp_vector = (struct hns3_enet_tqp_vector *) malloc(_len_tqp_vector0*sizeof(struct hns3_enet_tqp_vector));
+          for(int _i0 = 0; _i0 < _len_tqp_vector0; _i0++) {
+              tqp_vector[_i0].tx_group.coal.gl_adapt_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          tqp_vector[_i0].rx_group.coal.gl_adapt_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          tqp_vector[_i0].int_adapt_down = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_priv0 = 100;
+          struct hns3_nic_priv * priv = (struct hns3_nic_priv *) malloc(_len_priv0*sizeof(struct hns3_nic_priv));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              int _len_priv__i0__ae_handle0 = 1;
+          priv[_i0].ae_handle = (struct hnae3_handle *) malloc(_len_priv__i0__ae_handle0*sizeof(struct hnae3_handle));
+          for(int _j0 = 0; _j0 < _len_priv__i0__ae_handle0; _j0++) {
+              priv[_i0].ae_handle->kinfo.int_rl_setting = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          hns3_vector_gl_rl_init(tqp_vector,priv);
+          free(tqp_vector);
+          for(int _aux = 0; _aux < _len_priv0; _aux++) {
+          free(priv[_aux].ae_handle);
+          }
+          free(priv);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int _len_tqp_vector0 = 1;
           struct hns3_enet_tqp_vector * tqp_vector = (struct hns3_enet_tqp_vector *) malloc(_len_tqp_vector0*sizeof(struct hns3_enet_tqp_vector));
           for(int _i0 = 0; _i0 < _len_tqp_vector0; _i0++) {
-            tqp_vector[_i0].tx_group.coal.gl_adapt_enable = ((-2 * (next_i()%2)) + 1) * next_i();
-        tqp_vector[_i0].rx_group.coal.gl_adapt_enable = ((-2 * (next_i()%2)) + 1) * next_i();
-        tqp_vector[_i0].int_adapt_down = ((-2 * (next_i()%2)) + 1) * next_i();
+              tqp_vector[_i0].tx_group.coal.gl_adapt_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          tqp_vector[_i0].rx_group.coal.gl_adapt_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          tqp_vector[_i0].int_adapt_down = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_priv0 = 1;
           struct hns3_nic_priv * priv = (struct hns3_nic_priv *) malloc(_len_priv0*sizeof(struct hns3_nic_priv));
           for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
               int _len_priv__i0__ae_handle0 = 1;
           priv[_i0].ae_handle = (struct hnae3_handle *) malloc(_len_priv__i0__ae_handle0*sizeof(struct hnae3_handle));
           for(int _j0 = 0; _j0 < _len_priv__i0__ae_handle0; _j0++) {
-            priv[_i0].ae_handle->kinfo.int_rl_setting = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].ae_handle->kinfo.int_rl_setting = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           hns3_vector_gl_rl_init(tqp_vector,priv);
           free(tqp_vector);
           for(int _aux = 0; _aux < _len_priv0; _aux++) {

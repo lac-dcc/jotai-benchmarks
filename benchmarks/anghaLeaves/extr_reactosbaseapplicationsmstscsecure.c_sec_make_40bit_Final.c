@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ sec_make_40bit(uint8 * key)
 	key[2] = 0x9e;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,20 +76,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
+    {
+          int _len_key0 = 65025;
+          int * key = (int *) malloc(_len_key0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_key0; _i0++) {
+            key[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          sec_make_40bit(key);
+          free(key);
+        
+        break;
+    }
+    // big-arr-10x
+    case 1:
     {
           int _len_key0 = 100;
           int * key = (int *) malloc(_len_key0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_key0; _i0++) {
             key[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           sec_make_40bit(key);
           free(key);
         
         break;
     }
-
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static inline void qcafrm_fsm_init_uart(struct qcafrm_hand
 	handle->state = handle->init;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,15 +76,120 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_handle0 = 65025;
+          struct qcafrm_handle * handle = (struct qcafrm_handle *) malloc(_len_handle0*sizeof(struct qcafrm_handle));
+          for(int _i0 = 0; _i0 < _len_handle0; _i0++) {
+              handle[_i0].init = ((-2 * (next_i()%2)) + 1) * next_i();
+          handle[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          qcafrm_fsm_init_uart(handle);
+          free(handle);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_handle0 = 100;
+          struct qcafrm_handle * handle = (struct qcafrm_handle *) malloc(_len_handle0*sizeof(struct qcafrm_handle));
+          for(int _i0 = 0; _i0 < _len_handle0; _i0++) {
+              handle[_i0].init = ((-2 * (next_i()%2)) + 1) * next_i();
+          handle[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          qcafrm_fsm_init_uart(handle);
+          free(handle);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_handle0 = 1;
           struct qcafrm_handle * handle = (struct qcafrm_handle *) malloc(_len_handle0*sizeof(struct qcafrm_handle));
           for(int _i0 = 0; _i0 < _len_handle0; _i0++) {
-            handle[_i0].init = ((-2 * (next_i()%2)) + 1) * next_i();
-        handle[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+              handle[_i0].init = ((-2 * (next_i()%2)) + 1) * next_i();
+          handle[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           qcafrm_fsm_init_uart(handle);
           free(handle);
         

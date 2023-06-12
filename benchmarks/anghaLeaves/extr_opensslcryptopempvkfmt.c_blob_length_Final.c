@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -89,12 +90,6 @@ __attribute__((used)) static unsigned int blob_length(unsigned bitlen, int isdss
 
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -111,8 +106,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int bitlen = 100;
+        
           int isdss = 100;
+        
           int ispub = 100;
+        
           unsigned int benchRet = blob_length(bitlen,isdss,ispub);
           printf("%u\n", benchRet); 
         
@@ -122,8 +120,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int bitlen = 255;
+        
           int isdss = 255;
+        
           int ispub = 255;
+        
           unsigned int benchRet = blob_length(bitlen,isdss,ispub);
           printf("%u\n", benchRet); 
         
@@ -133,14 +134,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int bitlen = 10;
+        
           int isdss = 10;
+        
           int ispub = 10;
+        
           unsigned int benchRet = blob_length(bitlen,isdss,ispub);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int bitlen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int isdss = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int ispub = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = blob_length(bitlen,isdss,ispub);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

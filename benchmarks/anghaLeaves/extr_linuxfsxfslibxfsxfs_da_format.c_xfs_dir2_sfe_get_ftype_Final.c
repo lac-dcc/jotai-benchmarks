@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ xfs_dir2_sfe_get_ftype(
 	return XFS_DIR3_FT_UNKNOWN;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,14 +78,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_sfep0 = 1;
+          int _len_sfep0 = 65025;
           struct xfs_dir2_sf_entry * sfep = (struct xfs_dir2_sf_entry *) malloc(_len_sfep0*sizeof(struct xfs_dir2_sf_entry));
           for(int _i0 = 0; _i0 < _len_sfep0; _i0++) {
-            sfep[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              sfep[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = xfs_dir2_sfe_get_ftype(sfep);
           printf("%d\n", benchRet); 
           free(sfep);
@@ -103,15 +100,32 @@ int main(int argc, char *argv[]) {
           int _len_sfep0 = 100;
           struct xfs_dir2_sf_entry * sfep = (struct xfs_dir2_sf_entry *) malloc(_len_sfep0*sizeof(struct xfs_dir2_sf_entry));
           for(int _i0 = 0; _i0 < _len_sfep0; _i0++) {
-            sfep[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              sfep[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = xfs_dir2_sfe_get_ftype(sfep);
           printf("%d\n", benchRet); 
           free(sfep);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_sfep0 = 1;
+          struct xfs_dir2_sf_entry * sfep = (struct xfs_dir2_sf_entry *) malloc(_len_sfep0*sizeof(struct xfs_dir2_sf_entry));
+          for(int _i0 = 0; _i0 < _len_sfep0; _i0++) {
+              sfep[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = xfs_dir2_sfe_get_ftype(sfep);
+          printf("%d\n", benchRet); 
+          free(sfep);
+        
+        break;
+    }
     default:
         usage();
         break;

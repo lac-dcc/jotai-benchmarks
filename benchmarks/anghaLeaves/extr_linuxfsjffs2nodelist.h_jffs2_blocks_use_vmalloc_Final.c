@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static inline int jffs2_blocks_use_vmalloc(struct jffs2_sb
 	return ((c->flash_size / c->sector_size) * sizeof (struct jffs2_eraseblock)) > (128 * 1024);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,22 +75,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_c0 = 1;
+          int _len_c0 = 65025;
           struct jffs2_sb_info * c = (struct jffs2_sb_info *) malloc(_len_c0*sizeof(struct jffs2_sb_info));
           for(int _i0 = 0; _i0 < _len_c0; _i0++) {
-            c[_i0].flash_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].sector_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              c[_i0].flash_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].sector_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = jffs2_blocks_use_vmalloc(c);
           printf("%d\n", benchRet); 
           free(c);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_c0 = 100;
+          struct jffs2_sb_info * c = (struct jffs2_sb_info *) malloc(_len_c0*sizeof(struct jffs2_sb_info));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].flash_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].sector_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = jffs2_blocks_use_vmalloc(c);
+          printf("%d\n", benchRet); 
+          free(c);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_c0 = 1;
+          struct jffs2_sb_info * c = (struct jffs2_sb_info *) malloc(_len_c0*sizeof(struct jffs2_sb_info));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].flash_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].sector_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = jffs2_blocks_use_vmalloc(c);
+          printf("%d\n", benchRet); 
+          free(c);
+        
+        break;
+    }
     default:
         usage();
         break;

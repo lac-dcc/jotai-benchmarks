@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ void mp_chmap_from_lavc(struct mp_chmap *dst, uint64_t src)
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,16 +91,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long long src = 100;
+        
           int _len_dst0 = 1;
           struct mp_chmap * dst = (struct mp_chmap *) malloc(_len_dst0*sizeof(struct mp_chmap));
           for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
-            dst[_i0].num = ((-2 * (next_i()%2)) + 1) * next_i();
+              dst[_i0].num = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_dst__i0__speaker0 = 1;
           dst[_i0].speaker = (int *) malloc(_len_dst__i0__speaker0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_dst__i0__speaker0; _j0++) {
             dst[_i0].speaker[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           mp_chmap_from_lavc(dst,src);
           for(int _aux = 0; _aux < _len_dst0; _aux++) {
           free(dst[_aux].speaker);
@@ -112,7 +112,81 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long long src = 255;
+        
+          int _len_dst0 = 65025;
+          struct mp_chmap * dst = (struct mp_chmap *) malloc(_len_dst0*sizeof(struct mp_chmap));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+              dst[_i0].num = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_dst__i0__speaker0 = 1;
+          dst[_i0].speaker = (int *) malloc(_len_dst__i0__speaker0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_dst__i0__speaker0; _j0++) {
+            dst[_i0].speaker[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          mp_chmap_from_lavc(dst,src);
+          for(int _aux = 0; _aux < _len_dst0; _aux++) {
+          free(dst[_aux].speaker);
+          }
+          free(dst);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long long src = 10;
+        
+          int _len_dst0 = 100;
+          struct mp_chmap * dst = (struct mp_chmap *) malloc(_len_dst0*sizeof(struct mp_chmap));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+              dst[_i0].num = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_dst__i0__speaker0 = 1;
+          dst[_i0].speaker = (int *) malloc(_len_dst__i0__speaker0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_dst__i0__speaker0; _j0++) {
+            dst[_i0].speaker[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          mp_chmap_from_lavc(dst,src);
+          for(int _aux = 0; _aux < _len_dst0; _aux++) {
+          free(dst[_aux].speaker);
+          }
+          free(dst);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long long src = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dst0 = 1;
+          struct mp_chmap * dst = (struct mp_chmap *) malloc(_len_dst0*sizeof(struct mp_chmap));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+              dst[_i0].num = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_dst__i0__speaker0 = 1;
+          dst[_i0].speaker = (int *) malloc(_len_dst__i0__speaker0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_dst__i0__speaker0; _j0++) {
+            dst[_i0].speaker[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          mp_chmap_from_lavc(dst,src);
+          for(int _aux = 0; _aux < _len_dst0; _aux++) {
+          free(dst[_aux].speaker);
+          }
+          free(dst);
+        
+        break;
+    }
     default:
         usage();
         break;

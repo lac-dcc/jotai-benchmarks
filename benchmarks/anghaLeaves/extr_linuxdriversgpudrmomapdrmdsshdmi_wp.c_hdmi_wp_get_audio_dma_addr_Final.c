@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ phys_addr_t hdmi_wp_get_audio_dma_addr(struct hdmi_wp_data *wp)
 	return wp->phys_base + HDMI_WP_AUDIO_DATA;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,28 +76,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_wp0 = 1;
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_wp0 = 65025;
           struct hdmi_wp_data * wp = (struct hdmi_wp_data *) malloc(_len_wp0*sizeof(struct hdmi_wp_data));
           for(int _i0 = 0; _i0 < _len_wp0; _i0++) {
-            wp[_i0].phys_base = ((-2 * (next_i()%2)) + 1) * next_i();
+              wp[_i0].phys_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = hdmi_wp_get_audio_dma_addr(wp);
           printf("%ld\n", benchRet); 
           free(wp);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_wp0 = 100;
           struct hdmi_wp_data * wp = (struct hdmi_wp_data *) malloc(_len_wp0*sizeof(struct hdmi_wp_data));
           for(int _i0 = 0; _i0 < _len_wp0; _i0++) {
-            wp[_i0].phys_base = ((-2 * (next_i()%2)) + 1) * next_i();
+              wp[_i0].phys_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          long benchRet = hdmi_wp_get_audio_dma_addr(wp);
+          printf("%ld\n", benchRet); 
+          free(wp);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_wp0 = 1;
+          struct hdmi_wp_data * wp = (struct hdmi_wp_data *) malloc(_len_wp0*sizeof(struct hdmi_wp_data));
+          for(int _i0 = 0; _i0 < _len_wp0; _i0++) {
+              wp[_i0].phys_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           long benchRet = hdmi_wp_get_audio_dma_addr(wp);
           printf("%ld\n", benchRet); 
           free(wp);

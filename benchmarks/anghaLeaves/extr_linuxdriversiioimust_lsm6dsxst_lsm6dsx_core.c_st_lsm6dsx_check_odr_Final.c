@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -81,12 +84,6 @@ __attribute__((used)) static int st_lsm6dsx_check_odr(struct st_lsm6dsx_sensor *
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,20 +96,194 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           long odr = 100;
+        
           int _len_sensor0 = 1;
           struct st_lsm6dsx_sensor * sensor = (struct st_lsm6dsx_sensor *) malloc(_len_sensor0*sizeof(struct st_lsm6dsx_sensor));
           for(int _i0 = 0; _i0 < _len_sensor0; _i0++) {
-            sensor[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+              sensor[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_val0 = 1;
           int * val = (int *) malloc(_len_val0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_val0; _i0++) {
             val[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = st_lsm6dsx_check_odr(sensor,odr,val);
+          printf("%d\n", benchRet); 
+          free(sensor);
+          free(val);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          long odr = 255;
+        
+          int _len_sensor0 = 65025;
+          struct st_lsm6dsx_sensor * sensor = (struct st_lsm6dsx_sensor *) malloc(_len_sensor0*sizeof(struct st_lsm6dsx_sensor));
+          for(int _i0 = 0; _i0 < _len_sensor0; _i0++) {
+              sensor[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_val0 = 65025;
+          int * val = (int *) malloc(_len_val0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_val0; _i0++) {
+            val[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = st_lsm6dsx_check_odr(sensor,odr,val);
+          printf("%d\n", benchRet); 
+          free(sensor);
+          free(val);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          long odr = 10;
+        
+          int _len_sensor0 = 100;
+          struct st_lsm6dsx_sensor * sensor = (struct st_lsm6dsx_sensor *) malloc(_len_sensor0*sizeof(struct st_lsm6dsx_sensor));
+          for(int _i0 = 0; _i0 < _len_sensor0; _i0++) {
+              sensor[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_val0 = 100;
+          int * val = (int *) malloc(_len_val0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_val0; _i0++) {
+            val[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = st_lsm6dsx_check_odr(sensor,odr,val);
+          printf("%d\n", benchRet); 
+          free(sensor);
+          free(val);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          long odr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sensor0 = 1;
+          struct st_lsm6dsx_sensor * sensor = (struct st_lsm6dsx_sensor *) malloc(_len_sensor0*sizeof(struct st_lsm6dsx_sensor));
+          for(int _i0 = 0; _i0 < _len_sensor0; _i0++) {
+              sensor[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_val0 = 1;
+          int * val = (int *) malloc(_len_val0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_val0; _i0++) {
+            val[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = st_lsm6dsx_check_odr(sensor,odr,val);
           printf("%d\n", benchRet); 
           free(sensor);

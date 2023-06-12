@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -158,12 +160,6 @@ fq_if_service_to_priority(fq_if_t *fqs, mbuf_svc_class_t svc)
 	return (pri);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -180,11 +176,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int svc = 100;
+        
           int _len_fqs0 = 1;
           struct TYPE_3__ * fqs = (struct TYPE_3__ *) malloc(_len_fqs0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_fqs0; _i0++) {
-            fqs[_i0].fqs_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              fqs[_i0].fqs_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = fq_if_service_to_priority(fqs,svc);
+          printf("%d\n", benchRet); 
+          free(fqs);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int svc = 255;
+        
+          int _len_fqs0 = 65025;
+          struct TYPE_3__ * fqs = (struct TYPE_3__ *) malloc(_len_fqs0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_fqs0; _i0++) {
+              fqs[_i0].fqs_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = fq_if_service_to_priority(fqs,svc);
           printf("%d\n", benchRet); 
           free(fqs);
@@ -192,21 +209,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int svc = 10;
+        
           int _len_fqs0 = 100;
           struct TYPE_3__ * fqs = (struct TYPE_3__ *) malloc(_len_fqs0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_fqs0; _i0++) {
-            fqs[_i0].fqs_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              fqs[_i0].fqs_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = fq_if_service_to_priority(fqs,svc);
           printf("%d\n", benchRet); 
           free(fqs);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int svc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fqs0 = 1;
+          struct TYPE_3__ * fqs = (struct TYPE_3__ *) malloc(_len_fqs0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_fqs0; _i0++) {
+              fqs[_i0].fqs_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fq_if_service_to_priority(fqs,svc);
+          printf("%d\n", benchRet); 
+          free(fqs);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static void ender(int s)
     endit = 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int s = 100;
+        
           ender(s);
         
         break;
@@ -92,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int s = 255;
+        
           ender(s);
         
         break;
@@ -100,11 +97,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int s = 10;
+        
           ender(s);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int s = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ender(s);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +81,6 @@ __attribute__((used)) static int COVER_checkParameters(ZDICT_cover_params_t para
   return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,10 +97,12 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long maxDictSize = 100;
+        
           struct TYPE_3__ parameters;
-        parameters.d = ((-2 * (next_i()%2)) + 1) * next_i();
-        parameters.k = ((-2 * (next_i()%2)) + 1) * next_i();
-        parameters.splitPoint = ((-2 * (next_i()%2)) + 1) * next_i();
+          parameters.d = ((-2 * (next_i()%2)) + 1) * next_i();
+          parameters.k = ((-2 * (next_i()%2)) + 1) * next_i();
+          parameters.splitPoint = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = COVER_checkParameters(parameters,maxDictSize);
           printf("%d\n", benchRet); 
         
@@ -115,10 +112,12 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long maxDictSize = 255;
+        
           struct TYPE_3__ parameters;
-        parameters.d = ((-2 * (next_i()%2)) + 1) * next_i();
-        parameters.k = ((-2 * (next_i()%2)) + 1) * next_i();
-        parameters.splitPoint = ((-2 * (next_i()%2)) + 1) * next_i();
+          parameters.d = ((-2 * (next_i()%2)) + 1) * next_i();
+          parameters.k = ((-2 * (next_i()%2)) + 1) * next_i();
+          parameters.splitPoint = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = COVER_checkParameters(parameters,maxDictSize);
           printf("%d\n", benchRet); 
         
@@ -128,16 +127,32 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long maxDictSize = 10;
+        
           struct TYPE_3__ parameters;
-        parameters.d = ((-2 * (next_i()%2)) + 1) * next_i();
-        parameters.k = ((-2 * (next_i()%2)) + 1) * next_i();
-        parameters.splitPoint = ((-2 * (next_i()%2)) + 1) * next_i();
+          parameters.d = ((-2 * (next_i()%2)) + 1) * next_i();
+          parameters.k = ((-2 * (next_i()%2)) + 1) * next_i();
+          parameters.splitPoint = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = COVER_checkParameters(parameters,maxDictSize);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long maxDictSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          struct TYPE_3__ parameters;
+          parameters.d = ((-2 * (next_i()%2)) + 1) * next_i();
+          parameters.k = ((-2 * (next_i()%2)) + 1) * next_i();
+          parameters.splitPoint = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = COVER_checkParameters(parameters,maxDictSize);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

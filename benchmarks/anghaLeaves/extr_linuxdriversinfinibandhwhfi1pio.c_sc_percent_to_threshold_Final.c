@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ u32 sc_percent_to_threshold(struct send_context *sc, u32 percent)
 	return (sc->credits * percent) / 100;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,30 +76,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int percent = 100;
+        
           int _len_sc0 = 1;
           struct send_context * sc = (struct send_context *) malloc(_len_sc0*sizeof(struct send_context));
           for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
-            sc[_i0].credits = ((-2 * (next_i()%2)) + 1) * next_i();
+              sc[_i0].credits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = sc_percent_to_threshold(sc,percent);
           printf("%d\n", benchRet); 
           free(sc);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int percent = 255;
+        
+          int _len_sc0 = 65025;
+          struct send_context * sc = (struct send_context *) malloc(_len_sc0*sizeof(struct send_context));
+          for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
+              sc[_i0].credits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sc_percent_to_threshold(sc,percent);
+          printf("%d\n", benchRet); 
+          free(sc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int percent = 10;
+        
           int _len_sc0 = 100;
           struct send_context * sc = (struct send_context *) malloc(_len_sc0*sizeof(struct send_context));
           for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
-            sc[_i0].credits = ((-2 * (next_i()%2)) + 1) * next_i();
+              sc[_i0].credits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = sc_percent_to_threshold(sc,percent);
+          printf("%d\n", benchRet); 
+          free(sc);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int percent = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sc0 = 1;
+          struct send_context * sc = (struct send_context *) malloc(_len_sc0*sizeof(struct send_context));
+          for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
+              sc[_i0].credits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = sc_percent_to_threshold(sc,percent);
           printf("%d\n", benchRet); 
           free(sc);

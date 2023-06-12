@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static int ptp_clock_getres(struct posix_clock *pc, struct
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,20 +77,145 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_pc0 = 65025;
+          struct posix_clock * pc = (struct posix_clock *) malloc(_len_pc0*sizeof(struct posix_clock));
+          for(int _i0 = 0; _i0 < _len_pc0; _i0++) {
+              pc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_tp0 = 65025;
+          struct timespec64 * tp = (struct timespec64 *) malloc(_len_tp0*sizeof(struct timespec64));
+          for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
+              tp[_i0].tv_nsec = ((-2 * (next_i()%2)) + 1) * next_i();
+          tp[_i0].tv_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ptp_clock_getres(pc,tp);
+          printf("%d\n", benchRet); 
+          free(pc);
+          free(tp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_pc0 = 100;
+          struct posix_clock * pc = (struct posix_clock *) malloc(_len_pc0*sizeof(struct posix_clock));
+          for(int _i0 = 0; _i0 < _len_pc0; _i0++) {
+              pc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_tp0 = 100;
+          struct timespec64 * tp = (struct timespec64 *) malloc(_len_tp0*sizeof(struct timespec64));
+          for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
+              tp[_i0].tv_nsec = ((-2 * (next_i()%2)) + 1) * next_i();
+          tp[_i0].tv_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ptp_clock_getres(pc,tp);
+          printf("%d\n", benchRet); 
+          free(pc);
+          free(tp);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_pc0 = 1;
           struct posix_clock * pc = (struct posix_clock *) malloc(_len_pc0*sizeof(struct posix_clock));
           for(int _i0 = 0; _i0 < _len_pc0; _i0++) {
-            pc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              pc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_tp0 = 1;
           struct timespec64 * tp = (struct timespec64 *) malloc(_len_tp0*sizeof(struct timespec64));
           for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
-            tp[_i0].tv_nsec = ((-2 * (next_i()%2)) + 1) * next_i();
-        tp[_i0].tv_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+              tp[_i0].tv_nsec = ((-2 * (next_i()%2)) + 1) * next_i();
+          tp[_i0].tv_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ptp_clock_getres(pc,tp);
           printf("%d\n", benchRet); 
           free(pc);

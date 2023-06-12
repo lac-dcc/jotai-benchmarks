@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -84,12 +84,6 @@ __attribute__((used)) static fInt fMultiply (fInt X, fInt Y) /* Uses 64-bit inte
 	return Product;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,17 +96,44 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // empty
     case 0:
     {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           struct TYPE_7__ X;
-        X.full = ((-2 * (next_i()%2)) + 1) * next_i();
-        X.partial.real = ((-2 * (next_i()%2)) + 1) * next_i();
-        X.partial.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
+          X.full = ((-2 * (next_i()%2)) + 1) * next_i();
+          X.partial.real = ((-2 * (next_i()%2)) + 1) * next_i();
+          X.partial.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           struct TYPE_7__ Y;
-        Y.full = ((-2 * (next_i()%2)) + 1) * next_i();
-        Y.partial.real = ((-2 * (next_i()%2)) + 1) * next_i();
-        Y.partial.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
+          Y.full = ((-2 * (next_i()%2)) + 1) * next_i();
+          Y.partial.real = ((-2 * (next_i()%2)) + 1) * next_i();
+          Y.partial.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           struct TYPE_7__ benchRet = fMultiply(X,Y);
           printf("%ld\n", benchRet.full);
         

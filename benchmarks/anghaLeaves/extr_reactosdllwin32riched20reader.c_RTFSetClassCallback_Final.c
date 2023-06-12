@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ __attribute__((used)) static void RTFSetClassCallback(RTF_Info *info, int class,
 		info->ccb[class] = callback;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,7 +84,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int class = 100;
+        
           int callback = 100;
+        
           int _len_info0 = 1;
           struct TYPE_3__ * info = (struct TYPE_3__ *) malloc(_len_info0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
@@ -96,7 +95,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_info__i0__ccb0; _j0++) {
             info[_i0].ccb[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           RTFSetClassCallback(info,class,callback);
           for(int _aux = 0; _aux < _len_info0; _aux++) {
           free(info[_aux].ccb);
@@ -105,7 +106,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int class = 255;
+        
+          int callback = 255;
+        
+          int _len_info0 = 65025;
+          struct TYPE_3__ * info = (struct TYPE_3__ *) malloc(_len_info0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              int _len_info__i0__ccb0 = 1;
+          info[_i0].ccb = (int *) malloc(_len_info__i0__ccb0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_info__i0__ccb0; _j0++) {
+            info[_i0].ccb[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          RTFSetClassCallback(info,class,callback);
+          for(int _aux = 0; _aux < _len_info0; _aux++) {
+          free(info[_aux].ccb);
+          }
+          free(info);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int class = 10;
+        
+          int callback = 10;
+        
+          int _len_info0 = 100;
+          struct TYPE_3__ * info = (struct TYPE_3__ *) malloc(_len_info0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              int _len_info__i0__ccb0 = 1;
+          info[_i0].ccb = (int *) malloc(_len_info__i0__ccb0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_info__i0__ccb0; _j0++) {
+            info[_i0].ccb[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          RTFSetClassCallback(info,class,callback);
+          for(int _aux = 0; _aux < _len_info0; _aux++) {
+          free(info[_aux].ccb);
+          }
+          free(info);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int class = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int callback = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_info0 = 1;
+          struct TYPE_3__ * info = (struct TYPE_3__ *) malloc(_len_info0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              int _len_info__i0__ccb0 = 1;
+          info[_i0].ccb = (int *) malloc(_len_info__i0__ccb0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_info__i0__ccb0; _j0++) {
+            info[_i0].ccb[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          RTFSetClassCallback(info,class,callback);
+          for(int _aux = 0; _aux < _len_info0; _aux++) {
+          free(info[_aux].ccb);
+          }
+          free(info);
+        
+        break;
+    }
     default:
         usage();
         break;

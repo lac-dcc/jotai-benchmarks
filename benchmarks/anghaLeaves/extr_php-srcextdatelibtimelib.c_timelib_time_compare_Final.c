@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ int timelib_time_compare(timelib_time *t1, timelib_time *t2)
 	return (t1->sse < t2->sse) ? -1 : 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,21 +84,25 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_t10 = 1;
+          int _len_t10 = 65025;
           struct TYPE_4__ * t1 = (struct TYPE_4__ *) malloc(_len_t10*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_t10; _i0++) {
-            t1[_i0].sse = ((-2 * (next_i()%2)) + 1) * next_i();
-        t1[_i0].us = ((-2 * (next_i()%2)) + 1) * next_i();
+              t1[_i0].sse = ((-2 * (next_i()%2)) + 1) * next_i();
+          t1[_i0].us = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_t20 = 1;
+        
+          int _len_t20 = 65025;
           struct TYPE_4__ * t2 = (struct TYPE_4__ *) malloc(_len_t20*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_t20; _i0++) {
-            t2[_i0].sse = ((-2 * (next_i()%2)) + 1) * next_i();
-        t2[_i0].us = ((-2 * (next_i()%2)) + 1) * next_i();
+              t2[_i0].sse = ((-2 * (next_i()%2)) + 1) * next_i();
+          t2[_i0].us = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = timelib_time_compare(t1,t2);
           printf("%d\n", benchRet); 
           free(t1);
@@ -110,7 +110,58 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_t10 = 100;
+          struct TYPE_4__ * t1 = (struct TYPE_4__ *) malloc(_len_t10*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_t10; _i0++) {
+              t1[_i0].sse = ((-2 * (next_i()%2)) + 1) * next_i();
+          t1[_i0].us = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_t20 = 100;
+          struct TYPE_4__ * t2 = (struct TYPE_4__ *) malloc(_len_t20*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_t20; _i0++) {
+              t2[_i0].sse = ((-2 * (next_i()%2)) + 1) * next_i();
+          t2[_i0].us = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = timelib_time_compare(t1,t2);
+          printf("%d\n", benchRet); 
+          free(t1);
+          free(t2);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_t10 = 1;
+          struct TYPE_4__ * t1 = (struct TYPE_4__ *) malloc(_len_t10*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_t10; _i0++) {
+              t1[_i0].sse = ((-2 * (next_i()%2)) + 1) * next_i();
+          t1[_i0].us = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_t20 = 1;
+          struct TYPE_4__ * t2 = (struct TYPE_4__ *) malloc(_len_t20*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_t20; _i0++) {
+              t2[_i0].sse = ((-2 * (next_i()%2)) + 1) * next_i();
+          t2[_i0].us = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = timelib_time_compare(t1,t2);
+          printf("%d\n", benchRet); 
+          free(t1);
+          free(t2);
+        
+        break;
+    }
     default:
         usage();
         break;

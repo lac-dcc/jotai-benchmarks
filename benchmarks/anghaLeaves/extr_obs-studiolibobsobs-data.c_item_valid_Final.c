@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline bool item_valid(struct obs_data_item *item,
 	return item && item->type == type;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,30 +76,125 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           enum obs_data_type type = 0;
-          int _len_item0 = 1;
+        
+          int _len_item0 = 65025;
           struct obs_data_item * item = (struct obs_data_item *) malloc(_len_item0*sizeof(struct obs_data_item));
           for(int _i0 = 0; _i0 < _len_item0; _i0++) {
-            item[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+              item[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = item_valid(item,type);
           printf("%d\n", benchRet); 
           free(item);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           enum obs_data_type type = 0;
+        
           int _len_item0 = 100;
           struct obs_data_item * item = (struct obs_data_item *) malloc(_len_item0*sizeof(struct obs_data_item));
           for(int _i0 = 0; _i0 < _len_item0; _i0++) {
-            item[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+              item[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = item_valid(item,type);
+          printf("%d\n", benchRet); 
+          free(item);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          enum obs_data_type type = 0;
+        
+          int _len_item0 = 1;
+          struct obs_data_item * item = (struct obs_data_item *) malloc(_len_item0*sizeof(struct obs_data_item));
+          for(int _i0 = 0; _i0 < _len_item0; _i0++) {
+              item[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = item_valid(item,type);
           printf("%d\n", benchRet); 
           free(item);

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static void ath_force_no_ir_chan(struct ieee80211_channel 
 	ch->flags |= IEEE80211_CHAN_NO_IR;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ch0 = 1;
+          int _len_ch0 = 65025;
           struct ieee80211_channel * ch = (struct ieee80211_channel *) malloc(_len_ch0*sizeof(struct ieee80211_channel));
           for(int _i0 = 0; _i0 < _len_ch0; _i0++) {
-            ch[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              ch[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ath_force_no_ir_chan(ch);
           free(ch);
         
@@ -99,14 +96,30 @@ int main(int argc, char *argv[]) {
           int _len_ch0 = 100;
           struct ieee80211_channel * ch = (struct ieee80211_channel *) malloc(_len_ch0*sizeof(struct ieee80211_channel));
           for(int _i0 = 0; _i0 < _len_ch0; _i0++) {
-            ch[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              ch[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ath_force_no_ir_chan(ch);
           free(ch);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ch0 = 1;
+          struct ieee80211_channel * ch = (struct ieee80211_channel *) malloc(_len_ch0*sizeof(struct ieee80211_channel));
+          for(int _i0 = 0; _i0 < _len_ch0; _i0++) {
+              ch[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ath_force_no_ir_chan(ch);
+          free(ch);
+        
+        break;
+    }
     default:
         usage();
         break;

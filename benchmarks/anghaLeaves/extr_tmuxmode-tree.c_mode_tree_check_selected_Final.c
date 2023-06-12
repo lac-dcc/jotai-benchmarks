@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ mode_tree_check_selected(struct mode_tree_data *mtd)
 		mtd->offset = mtd->current - mtd->height + 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,22 +80,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_mtd0 = 1;
+          int _len_mtd0 = 65025;
           struct mode_tree_data * mtd = (struct mode_tree_data *) malloc(_len_mtd0*sizeof(struct mode_tree_data));
           for(int _i0 = 0; _i0 < _len_mtd0; _i0++) {
-            mtd[_i0].current = ((-2 * (next_i()%2)) + 1) * next_i();
-        mtd[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
-        mtd[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              mtd[_i0].current = ((-2 * (next_i()%2)) + 1) * next_i();
+          mtd[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          mtd[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           mode_tree_check_selected(mtd);
           free(mtd);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_mtd0 = 100;
+          struct mode_tree_data * mtd = (struct mode_tree_data *) malloc(_len_mtd0*sizeof(struct mode_tree_data));
+          for(int _i0 = 0; _i0 < _len_mtd0; _i0++) {
+              mtd[_i0].current = ((-2 * (next_i()%2)) + 1) * next_i();
+          mtd[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          mtd[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mode_tree_check_selected(mtd);
+          free(mtd);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_mtd0 = 1;
+          struct mode_tree_data * mtd = (struct mode_tree_data *) malloc(_len_mtd0*sizeof(struct mode_tree_data));
+          for(int _i0 = 0; _i0 < _len_mtd0; _i0++) {
+              mtd[_i0].current = ((-2 * (next_i()%2)) + 1) * next_i();
+          mtd[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          mtd[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mode_tree_check_selected(mtd);
+          free(mtd);
+        
+        break;
+    }
     default:
         usage();
         break;

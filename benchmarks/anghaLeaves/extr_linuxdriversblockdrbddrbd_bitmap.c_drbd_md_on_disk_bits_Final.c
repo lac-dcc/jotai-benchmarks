@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static u64 drbd_md_on_disk_bits(struct drbd_backing_dev *l
 	return bitmap_sectors << (9 + 3);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,16 +82,128 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_ldev0 = 65025;
+          struct drbd_backing_dev * ldev = (struct drbd_backing_dev *) malloc(_len_ldev0*sizeof(struct drbd_backing_dev));
+          for(int _i0 = 0; _i0 < _len_ldev0; _i0++) {
+              ldev[_i0].md.al_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          ldev[_i0].md.md_size_sect = ((-2 * (next_i()%2)) + 1) * next_i();
+          ldev[_i0].md.bm_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = drbd_md_on_disk_bits(ldev);
+          printf("%d\n", benchRet); 
+          free(ldev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_ldev0 = 100;
+          struct drbd_backing_dev * ldev = (struct drbd_backing_dev *) malloc(_len_ldev0*sizeof(struct drbd_backing_dev));
+          for(int _i0 = 0; _i0 < _len_ldev0; _i0++) {
+              ldev[_i0].md.al_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          ldev[_i0].md.md_size_sect = ((-2 * (next_i()%2)) + 1) * next_i();
+          ldev[_i0].md.bm_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = drbd_md_on_disk_bits(ldev);
+          printf("%d\n", benchRet); 
+          free(ldev);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_ldev0 = 1;
           struct drbd_backing_dev * ldev = (struct drbd_backing_dev *) malloc(_len_ldev0*sizeof(struct drbd_backing_dev));
           for(int _i0 = 0; _i0 < _len_ldev0; _i0++) {
-            ldev[_i0].md.al_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        ldev[_i0].md.md_size_sect = ((-2 * (next_i()%2)) + 1) * next_i();
-        ldev[_i0].md.bm_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              ldev[_i0].md.al_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          ldev[_i0].md.md_size_sect = ((-2 * (next_i()%2)) + 1) * next_i();
+          ldev[_i0].md.bm_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = drbd_md_on_disk_bits(ldev);
           printf("%d\n", benchRet); 
           free(ldev);

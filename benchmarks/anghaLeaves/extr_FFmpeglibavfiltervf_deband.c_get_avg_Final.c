@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static int inline get_avg(int ref0, int ref1, int ref2, in
     return (ref0 + ref1 + ref2 + ref3) / 4;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,9 +78,13 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int ref0 = 100;
+        
           int ref1 = 100;
+        
           int ref2 = 100;
+        
           int ref3 = 100;
+        
           int benchRet = get_avg(ref0,ref1,ref2,ref3);
           printf("%d\n", benchRet); 
         
@@ -95,9 +94,13 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int ref0 = 255;
+        
           int ref1 = 255;
+        
           int ref2 = 255;
+        
           int ref3 = 255;
+        
           int benchRet = get_avg(ref0,ref1,ref2,ref3);
           printf("%d\n", benchRet); 
         
@@ -107,15 +110,34 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int ref0 = 10;
+        
           int ref1 = 10;
+        
           int ref2 = 10;
+        
           int ref3 = 10;
+        
           int benchRet = get_avg(ref0,ref1,ref2,ref3);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int ref0 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int ref1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int ref2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int ref3 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = get_avg(ref0,ref1,ref2,ref3);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

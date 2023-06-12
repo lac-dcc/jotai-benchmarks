@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -85,12 +86,6 @@ halmac_convert_to_sdio_bus_offset(u32 *halmac_offset)
 	return HALMAC_RET_SUCCESS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,27 +98,114 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_halmac_offset0 = 1;
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_halmac_offset0 = 65025;
           int * halmac_offset = (int *) malloc(_len_halmac_offset0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_halmac_offset0; _i0++) {
             halmac_offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           enum halmac_ret_status benchRet = halmac_convert_to_sdio_bus_offset(halmac_offset);
           free(halmac_offset);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_halmac_offset0 = 100;
           int * halmac_offset = (int *) malloc(_len_halmac_offset0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_halmac_offset0; _i0++) {
             halmac_offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          enum halmac_ret_status benchRet = halmac_convert_to_sdio_bus_offset(halmac_offset);
+          free(halmac_offset);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_halmac_offset0 = 1;
+          int * halmac_offset = (int *) malloc(_len_halmac_offset0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_halmac_offset0; _i0++) {
+            halmac_offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           enum halmac_ret_status benchRet = halmac_convert_to_sdio_bus_offset(halmac_offset);
           free(halmac_offset);
         

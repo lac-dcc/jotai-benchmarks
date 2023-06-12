@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -90,12 +92,6 @@ sl_get_stats64(struct net_device *dev, struct rtnl_link_stats64 *stats)
 #endif
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -108,42 +104,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dev0 = 1;
+          int _len_dev0 = 65025;
           struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].stats.rx_over_errors = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].stats.rx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].stats.tx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].stats.tx_dropped = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].stats.rx_dropped = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].stats.tx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].stats.rx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].stats.tx_packets = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].stats.rx_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].stats.rx_over_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.rx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.tx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.tx_dropped = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.rx_dropped = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.tx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.rx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.tx_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.rx_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-          int _len_stats0 = 1;
+        
+          int _len_stats0 = 65025;
           struct rtnl_link_stats64 * stats = (struct rtnl_link_stats64 *) malloc(_len_stats0*sizeof(struct rtnl_link_stats64));
           for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
-            stats[_i0].rx_over_errors = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].rx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].tx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].tx_dropped = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].rx_dropped = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].tx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].rx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].tx_packets = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].rx_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+              stats[_i0].rx_over_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].tx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].tx_dropped = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rx_dropped = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].tx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].tx_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rx_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           sl_get_stats64(dev,stats);
           free(dev);
           free(stats);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dev0 = 100;
+          struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].stats.rx_over_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.rx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.tx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.tx_dropped = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.rx_dropped = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.tx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.rx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.tx_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.rx_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_stats0 = 100;
+          struct rtnl_link_stats64 * stats = (struct rtnl_link_stats64 *) malloc(_len_stats0*sizeof(struct rtnl_link_stats64));
+          for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
+              stats[_i0].rx_over_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].tx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].tx_dropped = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rx_dropped = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].tx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].tx_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rx_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          sl_get_stats64(dev,stats);
+          free(dev);
+          free(stats);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dev0 = 1;
+          struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].stats.rx_over_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.rx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.tx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.tx_dropped = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.rx_dropped = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.tx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.rx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.tx_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].stats.rx_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_stats0 = 1;
+          struct rtnl_link_stats64 * stats = (struct rtnl_link_stats64 *) malloc(_len_stats0*sizeof(struct rtnl_link_stats64));
+          for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
+              stats[_i0].rx_over_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].tx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].tx_dropped = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rx_dropped = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].tx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].tx_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rx_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          sl_get_stats64(dev,stats);
+          free(dev);
+          free(stats);
+        
+        break;
+    }
     default:
         usage();
         break;

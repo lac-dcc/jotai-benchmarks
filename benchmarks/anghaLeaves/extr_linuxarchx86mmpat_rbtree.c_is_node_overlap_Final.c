@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ __attribute__((used)) static int is_node_overlap(struct memtype *node, u64 start
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,20 +83,86 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long start = 100;
+        
           long end = 100;
+        
           int _len_node0 = 1;
           struct memtype * node = (struct memtype *) malloc(_len_node0*sizeof(struct memtype));
           for(int _i0 = 0; _i0 < _len_node0; _i0++) {
-            node[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
-        node[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+              node[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          node[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_node_overlap(node,start,end);
           printf("%d\n", benchRet); 
           free(node);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long start = 255;
+        
+          long end = 255;
+        
+          int _len_node0 = 65025;
+          struct memtype * node = (struct memtype *) malloc(_len_node0*sizeof(struct memtype));
+          for(int _i0 = 0; _i0 < _len_node0; _i0++) {
+              node[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          node[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_node_overlap(node,start,end);
+          printf("%d\n", benchRet); 
+          free(node);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long start = 10;
+        
+          long end = 10;
+        
+          int _len_node0 = 100;
+          struct memtype * node = (struct memtype *) malloc(_len_node0*sizeof(struct memtype));
+          for(int _i0 = 0; _i0 < _len_node0; _i0++) {
+              node[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          node[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_node_overlap(node,start,end);
+          printf("%d\n", benchRet); 
+          free(node);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_node0 = 1;
+          struct memtype * node = (struct memtype *) malloc(_len_node0*sizeof(struct memtype));
+          for(int _i0 = 0; _i0 < _len_node0; _i0++) {
+              node[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          node[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_node_overlap(node,start,end);
+          printf("%d\n", benchRet); 
+          free(node);
+        
+        break;
+    }
     default:
         usage();
         break;

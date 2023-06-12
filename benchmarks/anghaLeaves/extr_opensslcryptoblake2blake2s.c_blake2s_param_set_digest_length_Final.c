@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ void blake2s_param_set_digest_length(BLAKE2S_PARAM *P, uint8_t outlen)
     P->digest_length = outlen;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,31 +82,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int outlen = 100;
+        
           int _len_P0 = 1;
           struct TYPE_3__ * P = (struct TYPE_3__ *) malloc(_len_P0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_P0; _i0++) {
-            P[_i0].digest_length = ((-2 * (next_i()%2)) + 1) * next_i();
+              P[_i0].digest_length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          blake2s_param_set_digest_length(P,outlen);
+          free(P);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int outlen = 255;
+        
+          int _len_P0 = 65025;
+          struct TYPE_3__ * P = (struct TYPE_3__ *) malloc(_len_P0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_P0; _i0++) {
+              P[_i0].digest_length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           blake2s_param_set_digest_length(P,outlen);
           free(P);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int outlen = 10;
+        
           int _len_P0 = 100;
           struct TYPE_3__ * P = (struct TYPE_3__ *) malloc(_len_P0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_P0; _i0++) {
-            P[_i0].digest_length = ((-2 * (next_i()%2)) + 1) * next_i();
+              P[_i0].digest_length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           blake2s_param_set_digest_length(P,outlen);
           free(P);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int outlen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_P0 = 1;
+          struct TYPE_3__ * P = (struct TYPE_3__ *) malloc(_len_P0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_P0; _i0++) {
+              P[_i0].digest_length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          blake2s_param_set_digest_length(P,outlen);
+          free(P);
+        
+        break;
+    }
     default:
         usage();
         break;

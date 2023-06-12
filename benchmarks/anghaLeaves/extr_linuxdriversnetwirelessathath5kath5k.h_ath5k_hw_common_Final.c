@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline struct ath_common *ath5k_hw_common(struct at
 	return &ah->common;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ah0 = 1;
+          int _len_ah0 = 65025;
           struct ath5k_hw * ah = (struct ath5k_hw *) malloc(_len_ah0*sizeof(struct ath5k_hw));
           for(int _i0 = 0; _i0 < _len_ah0; _i0++) {
-            ah[_i0].common.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ah[_i0].common.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           struct ath_common * benchRet = ath5k_hw_common(ah);
           printf("%d\n", (*benchRet).dummy);
           free(ah);
@@ -100,15 +98,34 @@ int main(int argc, char *argv[]) {
           int _len_ah0 = 100;
           struct ath5k_hw * ah = (struct ath5k_hw *) malloc(_len_ah0*sizeof(struct ath5k_hw));
           for(int _i0 = 0; _i0 < _len_ah0; _i0++) {
-            ah[_i0].common.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ah[_i0].common.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           struct ath_common * benchRet = ath5k_hw_common(ah);
           printf("%d\n", (*benchRet).dummy);
           free(ah);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ah0 = 1;
+          struct ath5k_hw * ah = (struct ath5k_hw *) malloc(_len_ah0*sizeof(struct ath5k_hw));
+          for(int _i0 = 0; _i0 < _len_ah0; _i0++) {
+              ah[_i0].common.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          struct ath_common * benchRet = ath5k_hw_common(ah);
+          printf("%d\n", (*benchRet).dummy);
+          free(ah);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static char mpc_input_buffer_get(mpc_input_t *i) {
   return i->buffer[i->state.pos - i->marks[0].pos];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,10 +79,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_i0 = 1;
+          int _len_i0 = 65025;
           struct TYPE_7__ * i = (struct TYPE_7__ *) malloc(_len_i0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_i0; _i0++) {
               int _len_i__i0__buffer0 = 1;
@@ -97,10 +93,14 @@ int main(int argc, char *argv[]) {
           int _len_i__i0__marks0 = 1;
           i[_i0].marks = (struct TYPE_6__ *) malloc(_len_i__i0__marks0*sizeof(struct TYPE_6__));
           for(int _j0 = 0; _j0 < _len_i__i0__marks0; _j0++) {
-            i[_i0].marks->pos = ((-2 * (next_i()%2)) + 1) * next_i();
+              i[_i0].marks->pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        i[_i0].state.pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          i[_i0].state.pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           char benchRet = mpc_input_buffer_get(i);
           printf("%c\n", (benchRet %26) + 'a'); 
           for(int _aux = 0; _aux < _len_i0; _aux++) {
@@ -113,7 +113,74 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_i0 = 100;
+          struct TYPE_7__ * i = (struct TYPE_7__ *) malloc(_len_i0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_i0; _i0++) {
+              int _len_i__i0__buffer0 = 1;
+          i[_i0].buffer = (char *) malloc(_len_i__i0__buffer0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_i__i0__buffer0; _j0++) {
+            i[_i0].buffer[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_i__i0__marks0 = 1;
+          i[_i0].marks = (struct TYPE_6__ *) malloc(_len_i__i0__marks0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_i__i0__marks0; _j0++) {
+              i[_i0].marks->pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          i[_i0].state.pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          char benchRet = mpc_input_buffer_get(i);
+          printf("%c\n", (benchRet %26) + 'a'); 
+          for(int _aux = 0; _aux < _len_i0; _aux++) {
+          free(i[_aux].buffer);
+          }
+          for(int _aux = 0; _aux < _len_i0; _aux++) {
+          free(i[_aux].marks);
+          }
+          free(i);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_i0 = 1;
+          struct TYPE_7__ * i = (struct TYPE_7__ *) malloc(_len_i0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_i0; _i0++) {
+              int _len_i__i0__buffer0 = 1;
+          i[_i0].buffer = (char *) malloc(_len_i__i0__buffer0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_i__i0__buffer0; _j0++) {
+            i[_i0].buffer[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_i__i0__marks0 = 1;
+          i[_i0].marks = (struct TYPE_6__ *) malloc(_len_i__i0__marks0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_i__i0__marks0; _j0++) {
+              i[_i0].marks->pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          i[_i0].state.pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          char benchRet = mpc_input_buffer_get(i);
+          printf("%c\n", (benchRet %26) + 'a'); 
+          for(int _aux = 0; _aux < _len_i0; _aux++) {
+          free(i[_aux].buffer);
+          }
+          for(int _aux = 0; _aux < _len_i0; _aux++) {
+          free(i[_aux].marks);
+          }
+          free(i);
+        
+        break;
+    }
     default:
         usage();
         break;

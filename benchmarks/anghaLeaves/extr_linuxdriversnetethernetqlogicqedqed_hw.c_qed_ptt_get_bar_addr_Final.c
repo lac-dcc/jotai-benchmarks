@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ u32 qed_ptt_get_bar_addr(struct qed_ptt *p_ptt)
 	       p_ptt->idx * PXP_EXTERNAL_BAR_PF_WINDOW_SINGLE_SIZE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,28 +78,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_p_ptt0 = 1;
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_p_ptt0 = 65025;
           struct qed_ptt * p_ptt = (struct qed_ptt *) malloc(_len_p_ptt0*sizeof(struct qed_ptt));
           for(int _i0 = 0; _i0 < _len_p_ptt0; _i0++) {
-            p_ptt[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+              p_ptt[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = qed_ptt_get_bar_addr(p_ptt);
           printf("%ld\n", benchRet); 
           free(p_ptt);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_p_ptt0 = 100;
           struct qed_ptt * p_ptt = (struct qed_ptt *) malloc(_len_p_ptt0*sizeof(struct qed_ptt));
           for(int _i0 = 0; _i0 < _len_p_ptt0; _i0++) {
-            p_ptt[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+              p_ptt[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          long benchRet = qed_ptt_get_bar_addr(p_ptt);
+          printf("%ld\n", benchRet); 
+          free(p_ptt);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_p_ptt0 = 1;
+          struct qed_ptt * p_ptt = (struct qed_ptt *) malloc(_len_p_ptt0*sizeof(struct qed_ptt));
+          for(int _i0 = 0; _i0 < _len_p_ptt0; _i0++) {
+              p_ptt[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           long benchRet = qed_ptt_get_bar_addr(p_ptt);
           printf("%ld\n", benchRet); 
           free(p_ptt);

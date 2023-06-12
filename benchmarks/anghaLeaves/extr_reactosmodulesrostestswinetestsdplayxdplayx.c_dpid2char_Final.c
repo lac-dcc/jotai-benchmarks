@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static char dpid2char(DPID* dpid, DWORD dpidSize, DPID idP
     return '?';
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,16 +85,128 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 3331
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 1287
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 1287
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 1287
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 1287
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 1287
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 1542
+          // ------------------------------- 
+
+          unsigned long dpidSize = 255;
+        
+          long idPlayer = 255;
+        
+          int _len_dpid0 = 65025;
+          long * dpid = (long *) malloc(_len_dpid0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_dpid0; _i0++) {
+            dpid[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          char benchRet = dpid2char(dpid,dpidSize,idPlayer);
+          printf("%c\n", (benchRet %26) + 'a'); 
+          free(dpid);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 146
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 62
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 62
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 62
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 62
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 62
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 72
+          // ------------------------------- 
+
           unsigned long dpidSize = 10;
+        
           long idPlayer = 10;
+        
           int _len_dpid0 = 100;
           long * dpid = (long *) malloc(_len_dpid0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_dpid0; _i0++) {
             dpid[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          char benchRet = dpid2char(dpid,dpidSize,idPlayer);
+          printf("%c\n", (benchRet %26) + 'a'); 
+          free(dpid);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          unsigned long dpidSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long idPlayer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dpid0 = 1;
+          long * dpid = (long *) malloc(_len_dpid0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_dpid0; _i0++) {
+            dpid[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           char benchRet = dpid2char(dpid,dpidSize,idPlayer);
           printf("%c\n", (benchRet %26) + 'a'); 
           free(dpid);

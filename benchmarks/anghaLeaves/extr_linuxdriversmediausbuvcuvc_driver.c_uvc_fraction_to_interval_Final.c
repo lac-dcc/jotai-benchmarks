@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -79,12 +80,6 @@ u32 uvc_fraction_to_interval(u32 numerator, u32 denominator)
 	return denominator ? numerator * multiplier / denominator : 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,7 +96,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int numerator = 100;
+        
           int denominator = 100;
+        
           int benchRet = uvc_fraction_to_interval(numerator,denominator);
           printf("%d\n", benchRet); 
         
@@ -111,7 +108,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int numerator = 255;
+        
           int denominator = 255;
+        
           int benchRet = uvc_fraction_to_interval(numerator,denominator);
           printf("%d\n", benchRet); 
         
@@ -121,13 +120,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int numerator = 10;
+        
           int denominator = 10;
+        
           int benchRet = uvc_fraction_to_interval(numerator,denominator);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int numerator = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int denominator = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = uvc_fraction_to_interval(numerator,denominator);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

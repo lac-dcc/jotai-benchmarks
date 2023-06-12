@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +76,6 @@ int add_range(struct range *range, int az, int nr_range, u64 start, u64 end)
 	return nr_range;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,19 +88,195 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
           int az = 100;
+        
           int nr_range = 100;
+        
           long start = 100;
+        
           long end = 100;
+        
           int _len_range0 = 1;
           struct range * range = (struct range *) malloc(_len_range0*sizeof(struct range));
           for(int _i0 = 0; _i0 < _len_range0; _i0++) {
-            range[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
-        range[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+              range[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+          range[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = add_range(range,az,nr_range,start,end);
+          printf("%d\n", benchRet); 
+          free(range);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
+          int az = 255;
+        
+          int nr_range = 255;
+        
+          long start = 255;
+        
+          long end = 255;
+        
+          int _len_range0 = 65025;
+          struct range * range = (struct range *) malloc(_len_range0*sizeof(struct range));
+          for(int _i0 = 0; _i0 < _len_range0; _i0++) {
+              range[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+          range[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = add_range(range,az,nr_range,start,end);
+          printf("%d\n", benchRet); 
+          free(range);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
+          int az = 10;
+        
+          int nr_range = 10;
+        
+          long start = 10;
+        
+          long end = 10;
+        
+          int _len_range0 = 100;
+          struct range * range = (struct range *) malloc(_len_range0*sizeof(struct range));
+          for(int _i0 = 0; _i0 < _len_range0; _i0++) {
+              range[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+          range[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = add_range(range,az,nr_range,start,end);
+          printf("%d\n", benchRet); 
+          free(range);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
+          int az = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int nr_range = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_range0 = 1;
+          struct range * range = (struct range *) malloc(_len_range0*sizeof(struct range));
+          for(int _i0 = 0; _i0 < _len_range0; _i0++) {
+              range[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+          range[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = add_range(range,az,nr_range,start,end);
           printf("%d\n", benchRet); 
           free(range);

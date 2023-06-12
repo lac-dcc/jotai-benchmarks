@@ -68,12 +68,6 @@ int    BigLong (int l)
 	return ((int)b1<<24) + ((int)b2<<16) + ((int)b3<<8) + b4;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,6 +84,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int l = 100;
+        
           int benchRet = BigLong(l);
           printf("%d\n", benchRet); 
         
@@ -99,12 +94,12 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int l = 10;
+        
           int benchRet = BigLong(l);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

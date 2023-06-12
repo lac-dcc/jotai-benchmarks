@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ struct map *machine__kernel_map(struct machine *machine)
 	return machine->vmlinux_map;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,18 +76,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_machine0 = 65025;
+          struct machine * machine = (struct machine *) malloc(_len_machine0*sizeof(struct machine));
+          for(int _i0 = 0; _i0 < _len_machine0; _i0++) {
+              int _len_machine__i0__vmlinux_map0 = 1;
+          machine[_i0].vmlinux_map = (struct map *) malloc(_len_machine__i0__vmlinux_map0*sizeof(struct map));
+          for(int _j0 = 0; _j0 < _len_machine__i0__vmlinux_map0; _j0++) {
+              machine[_i0].vmlinux_map->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct map * benchRet = machine__kernel_map(machine);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_machine0; _aux++) {
+          free(machine[_aux].vmlinux_map);
+          }
+          free(machine);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_machine0 = 100;
+          struct machine * machine = (struct machine *) malloc(_len_machine0*sizeof(struct machine));
+          for(int _i0 = 0; _i0 < _len_machine0; _i0++) {
+              int _len_machine__i0__vmlinux_map0 = 1;
+          machine[_i0].vmlinux_map = (struct map *) malloc(_len_machine__i0__vmlinux_map0*sizeof(struct map));
+          for(int _j0 = 0; _j0 < _len_machine__i0__vmlinux_map0; _j0++) {
+              machine[_i0].vmlinux_map->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct map * benchRet = machine__kernel_map(machine);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_machine0; _aux++) {
+          free(machine[_aux].vmlinux_map);
+          }
+          free(machine);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_machine0 = 1;
           struct machine * machine = (struct machine *) malloc(_len_machine0*sizeof(struct machine));
           for(int _i0 = 0; _i0 < _len_machine0; _i0++) {
               int _len_machine__i0__vmlinux_map0 = 1;
           machine[_i0].vmlinux_map = (struct map *) malloc(_len_machine__i0__vmlinux_map0*sizeof(struct map));
           for(int _j0 = 0; _j0 < _len_machine__i0__vmlinux_map0; _j0++) {
-            machine[_i0].vmlinux_map->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              machine[_i0].vmlinux_map->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct map * benchRet = machine__kernel_map(machine);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_machine0; _aux++) {

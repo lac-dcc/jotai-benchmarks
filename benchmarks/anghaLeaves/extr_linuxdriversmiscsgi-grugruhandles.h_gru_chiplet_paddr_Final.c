@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline unsigned long gru_chiplet_paddr(unsigned lon
 	return paddr + GRU_SIZE * (2 * pnode  + chiplet);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,8 +80,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long paddr = 100;
+        
           int pnode = 100;
+        
           int chiplet = 100;
+        
           unsigned long benchRet = gru_chiplet_paddr(paddr,pnode,chiplet);
           printf("%lu\n", benchRet); 
         
@@ -96,8 +94,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long paddr = 255;
+        
           int pnode = 255;
+        
           int chiplet = 255;
+        
           unsigned long benchRet = gru_chiplet_paddr(paddr,pnode,chiplet);
           printf("%lu\n", benchRet); 
         
@@ -107,14 +108,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long paddr = 10;
+        
           int pnode = 10;
+        
           int chiplet = 10;
+        
           unsigned long benchRet = gru_chiplet_paddr(paddr,pnode,chiplet);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long paddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int pnode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int chiplet = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = gru_chiplet_paddr(paddr,pnode,chiplet);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

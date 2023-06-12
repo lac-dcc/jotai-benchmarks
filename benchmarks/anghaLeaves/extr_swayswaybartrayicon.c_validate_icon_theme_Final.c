@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -59,12 +61,6 @@ __attribute__((used)) static bool validate_icon_theme(struct icon_theme *theme) 
 	return theme && theme->name && theme->comment && theme->directories;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -77,23 +73,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_theme0 = 1;
+          int _len_theme0 = 65025;
           struct icon_theme * theme = (struct icon_theme *) malloc(_len_theme0*sizeof(struct icon_theme));
           for(int _i0 = 0; _i0 < _len_theme0; _i0++) {
-            theme[_i0].directories = ((-2 * (next_i()%2)) + 1) * next_i();
-        theme[_i0].comment = ((-2 * (next_i()%2)) + 1) * next_i();
-        theme[_i0].name = ((-2 * (next_i()%2)) + 1) * next_i();
+              theme[_i0].directories = ((-2 * (next_i()%2)) + 1) * next_i();
+          theme[_i0].comment = ((-2 * (next_i()%2)) + 1) * next_i();
+          theme[_i0].name = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = validate_icon_theme(theme);
           printf("%d\n", benchRet); 
           free(theme);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_theme0 = 100;
+          struct icon_theme * theme = (struct icon_theme *) malloc(_len_theme0*sizeof(struct icon_theme));
+          for(int _i0 = 0; _i0 < _len_theme0; _i0++) {
+              theme[_i0].directories = ((-2 * (next_i()%2)) + 1) * next_i();
+          theme[_i0].comment = ((-2 * (next_i()%2)) + 1) * next_i();
+          theme[_i0].name = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = validate_icon_theme(theme);
+          printf("%d\n", benchRet); 
+          free(theme);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_theme0 = 1;
+          struct icon_theme * theme = (struct icon_theme *) malloc(_len_theme0*sizeof(struct icon_theme));
+          for(int _i0 = 0; _i0 < _len_theme0; _i0++) {
+              theme[_i0].directories = ((-2 * (next_i()%2)) + 1) * next_i();
+          theme[_i0].comment = ((-2 * (next_i()%2)) + 1) * next_i();
+          theme[_i0].name = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = validate_icon_theme(theme);
+          printf("%d\n", benchRet); 
+          free(theme);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static int slave_alloc(struct scsi_device *sdev)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,14 +80,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_sdev0 = 1;
+          int _len_sdev0 = 65025;
           struct scsi_device * sdev = (struct scsi_device *) malloc(_len_sdev0*sizeof(struct scsi_device));
           for(int _i0 = 0; _i0 < _len_sdev0; _i0++) {
-            sdev[_i0].inquiry_len = ((-2 * (next_i()%2)) + 1) * next_i();
+              sdev[_i0].inquiry_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = slave_alloc(sdev);
           printf("%d\n", benchRet); 
           free(sdev);
@@ -105,15 +102,32 @@ int main(int argc, char *argv[]) {
           int _len_sdev0 = 100;
           struct scsi_device * sdev = (struct scsi_device *) malloc(_len_sdev0*sizeof(struct scsi_device));
           for(int _i0 = 0; _i0 < _len_sdev0; _i0++) {
-            sdev[_i0].inquiry_len = ((-2 * (next_i()%2)) + 1) * next_i();
+              sdev[_i0].inquiry_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = slave_alloc(sdev);
           printf("%d\n", benchRet); 
           free(sdev);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_sdev0 = 1;
+          struct scsi_device * sdev = (struct scsi_device *) malloc(_len_sdev0*sizeof(struct scsi_device));
+          for(int _i0 = 0; _i0 < _len_sdev0; _i0++) {
+              sdev[_i0].inquiry_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = slave_alloc(sdev);
+          printf("%d\n", benchRet); 
+          free(sdev);
+        
+        break;
+    }
     default:
         usage();
         break;

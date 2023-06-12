@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static int max3191x_direction_output(struct gpio_chip *gpi
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,12 +81,36 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int offset = 100;
+        
           int value = 100;
+        
           int _len_gpio0 = 1;
           struct gpio_chip * gpio = (struct gpio_chip *) malloc(_len_gpio0*sizeof(struct gpio_chip));
           for(int _i0 = 0; _i0 < _len_gpio0; _i0++) {
-            gpio[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              gpio[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = max3191x_direction_output(gpio,offset,value);
+          printf("%d\n", benchRet); 
+          free(gpio);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned int offset = 255;
+        
+          int value = 255;
+        
+          int _len_gpio0 = 65025;
+          struct gpio_chip * gpio = (struct gpio_chip *) malloc(_len_gpio0*sizeof(struct gpio_chip));
+          for(int _i0 = 0; _i0 < _len_gpio0; _i0++) {
+              gpio[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = max3191x_direction_output(gpio,offset,value);
           printf("%d\n", benchRet); 
           free(gpio);
@@ -98,22 +118,45 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned int offset = 10;
+        
           int value = 10;
+        
           int _len_gpio0 = 100;
           struct gpio_chip * gpio = (struct gpio_chip *) malloc(_len_gpio0*sizeof(struct gpio_chip));
           for(int _i0 = 0; _i0 < _len_gpio0; _i0++) {
-            gpio[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              gpio[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = max3191x_direction_output(gpio,offset,value);
           printf("%d\n", benchRet); 
           free(gpio);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_gpio0 = 1;
+          struct gpio_chip * gpio = (struct gpio_chip *) malloc(_len_gpio0*sizeof(struct gpio_chip));
+          for(int _i0 = 0; _i0 < _len_gpio0; _i0++) {
+              gpio[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = max3191x_direction_output(gpio,offset,value);
+          printf("%d\n", benchRet); 
+          free(gpio);
+        
+        break;
+    }
     default:
         usage();
         break;

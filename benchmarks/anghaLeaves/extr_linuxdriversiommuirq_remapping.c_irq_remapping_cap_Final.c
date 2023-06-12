@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -67,12 +67,6 @@ bool irq_remapping_cap(enum irq_remap_cap cap)
 	return (remap_ops->capability & (1 << cap));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,16 +79,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum irq_remap_cap cap = 0;
+        
           int benchRet = irq_remapping_cap(cap);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

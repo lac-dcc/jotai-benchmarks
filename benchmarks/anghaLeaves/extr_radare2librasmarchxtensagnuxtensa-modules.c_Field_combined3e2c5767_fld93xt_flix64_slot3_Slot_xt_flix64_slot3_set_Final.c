@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ Field_combined3e2c5767_fld93xt_flix64_slot3_Slot_xt_flix64_slot3_set (xtensa_ins
   insn[1] = (insn[1] & ~0x7) | (tie_t << 0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,21 +79,38 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int val = 10;
-          int _len_insn0 = 100;
+          int val = 255;
+        
+          int _len_insn0 = 65025;
           int * insn = (int *) malloc(_len_insn0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_insn0; _i0++) {
             insn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           Field_combined3e2c5767_fld93xt_flix64_slot3_Slot_xt_flix64_slot3_set(insn,val);
           free(insn);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int val = 10;
+        
+          int _len_insn0 = 100;
+          int * insn = (int *) malloc(_len_insn0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_insn0; _i0++) {
+            insn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          Field_combined3e2c5767_fld93xt_flix64_slot3_Slot_xt_flix64_slot3_set(insn,val);
+          free(insn);
+        
+        break;
+    }
     default:
         usage();
         break;

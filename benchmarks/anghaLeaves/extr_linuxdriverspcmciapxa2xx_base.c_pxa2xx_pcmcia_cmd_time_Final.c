@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline u_int pxa2xx_pcmcia_cmd_time(u_int mem_clk_1
 	return (300000 * (pcmcia_mcxx_asst + 1) / mem_clk_10khz);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,7 +80,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int mem_clk_10khz = 100;
+        
           int pcmcia_mcxx_asst = 100;
+        
           int benchRet = pxa2xx_pcmcia_cmd_time(mem_clk_10khz,pcmcia_mcxx_asst);
           printf("%d\n", benchRet); 
         
@@ -95,7 +92,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int mem_clk_10khz = 255;
+        
           int pcmcia_mcxx_asst = 255;
+        
           int benchRet = pxa2xx_pcmcia_cmd_time(mem_clk_10khz,pcmcia_mcxx_asst);
           printf("%d\n", benchRet); 
         
@@ -105,13 +104,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int mem_clk_10khz = 10;
+        
           int pcmcia_mcxx_asst = 10;
+        
           int benchRet = pxa2xx_pcmcia_cmd_time(mem_clk_10khz,pcmcia_mcxx_asst);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int mem_clk_10khz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int pcmcia_mcxx_asst = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = pxa2xx_pcmcia_cmd_time(mem_clk_10khz,pcmcia_mcxx_asst);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

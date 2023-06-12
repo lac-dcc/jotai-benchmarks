@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ unsigned long regs_get_register(struct pt_regs *regs, unsigned int offset)
 	return regs->gprs[offset];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +82,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int offset = 100;
+        
           int _len_regs0 = 1;
           struct pt_regs * regs = (struct pt_regs *) malloc(_len_regs0*sizeof(struct pt_regs));
           for(int _i0 = 0; _i0 < _len_regs0; _i0++) {
@@ -93,7 +91,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_regs__i0__gprs0; _j0++) {
             regs[_i0].gprs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           unsigned long benchRet = regs_get_register(regs,offset);
           printf("%lu\n", benchRet); 
           for(int _aux = 0; _aux < _len_regs0; _aux++) {
@@ -103,7 +103,81 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int offset = 255;
+        
+          int _len_regs0 = 65025;
+          struct pt_regs * regs = (struct pt_regs *) malloc(_len_regs0*sizeof(struct pt_regs));
+          for(int _i0 = 0; _i0 < _len_regs0; _i0++) {
+              int _len_regs__i0__gprs0 = 1;
+          regs[_i0].gprs = (unsigned long *) malloc(_len_regs__i0__gprs0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_regs__i0__gprs0; _j0++) {
+            regs[_i0].gprs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          unsigned long benchRet = regs_get_register(regs,offset);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_regs0; _aux++) {
+          free(regs[_aux].gprs);
+          }
+          free(regs);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int offset = 10;
+        
+          int _len_regs0 = 100;
+          struct pt_regs * regs = (struct pt_regs *) malloc(_len_regs0*sizeof(struct pt_regs));
+          for(int _i0 = 0; _i0 < _len_regs0; _i0++) {
+              int _len_regs__i0__gprs0 = 1;
+          regs[_i0].gprs = (unsigned long *) malloc(_len_regs__i0__gprs0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_regs__i0__gprs0; _j0++) {
+            regs[_i0].gprs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          unsigned long benchRet = regs_get_register(regs,offset);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_regs0; _aux++) {
+          free(regs[_aux].gprs);
+          }
+          free(regs);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_regs0 = 1;
+          struct pt_regs * regs = (struct pt_regs *) malloc(_len_regs0*sizeof(struct pt_regs));
+          for(int _i0 = 0; _i0 < _len_regs0; _i0++) {
+              int _len_regs__i0__gprs0 = 1;
+          regs[_i0].gprs = (unsigned long *) malloc(_len_regs__i0__gprs0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_regs__i0__gprs0; _j0++) {
+            regs[_i0].gprs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          unsigned long benchRet = regs_get_register(regs,offset);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_regs0; _aux++) {
+          free(regs[_aux].gprs);
+          }
+          free(regs);
+        
+        break;
+    }
     default:
         usage();
         break;

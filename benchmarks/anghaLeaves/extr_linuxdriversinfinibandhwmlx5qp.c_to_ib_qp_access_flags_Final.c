@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +77,6 @@ __attribute__((used)) static int to_ib_qp_access_flags(int mlx5_flags)
 	return ib_flags;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,6 +93,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int mlx5_flags = 100;
+        
           int benchRet = to_ib_qp_access_flags(mlx5_flags);
           printf("%d\n", benchRet); 
         
@@ -107,6 +103,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int mlx5_flags = 255;
+        
           int benchRet = to_ib_qp_access_flags(mlx5_flags);
           printf("%d\n", benchRet); 
         
@@ -116,12 +113,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int mlx5_flags = 10;
+        
           int benchRet = to_ib_qp_access_flags(mlx5_flags);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int mlx5_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = to_ib_qp_access_flags(mlx5_flags);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

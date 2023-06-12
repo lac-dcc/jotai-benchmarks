@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static struct kv_ps *kv_get_ps(struct amdgpu_ps *rps)
 	return ps;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,18 +77,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rps0 = 1;
+          int _len_rps0 = 65025;
           struct amdgpu_ps * rps = (struct amdgpu_ps *) malloc(_len_rps0*sizeof(struct amdgpu_ps));
           for(int _i0 = 0; _i0 < _len_rps0; _i0++) {
               int _len_rps__i0__ps_priv0 = 1;
           rps[_i0].ps_priv = (struct kv_ps *) malloc(_len_rps__i0__ps_priv0*sizeof(struct kv_ps));
           for(int _j0 = 0; _j0 < _len_rps__i0__ps_priv0; _j0++) {
-            rps[_i0].ps_priv->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rps[_i0].ps_priv->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct kv_ps * benchRet = kv_get_ps(rps);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_rps0; _aux++) {
@@ -102,7 +101,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_rps0 = 100;
+          struct amdgpu_ps * rps = (struct amdgpu_ps *) malloc(_len_rps0*sizeof(struct amdgpu_ps));
+          for(int _i0 = 0; _i0 < _len_rps0; _i0++) {
+              int _len_rps__i0__ps_priv0 = 1;
+          rps[_i0].ps_priv = (struct kv_ps *) malloc(_len_rps__i0__ps_priv0*sizeof(struct kv_ps));
+          for(int _j0 = 0; _j0 < _len_rps__i0__ps_priv0; _j0++) {
+              rps[_i0].ps_priv->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct kv_ps * benchRet = kv_get_ps(rps);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_rps0; _aux++) {
+          free(rps[_aux].ps_priv);
+          }
+          free(rps);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_rps0 = 1;
+          struct amdgpu_ps * rps = (struct amdgpu_ps *) malloc(_len_rps0*sizeof(struct amdgpu_ps));
+          for(int _i0 = 0; _i0 < _len_rps0; _i0++) {
+              int _len_rps__i0__ps_priv0 = 1;
+          rps[_i0].ps_priv = (struct kv_ps *) malloc(_len_rps__i0__ps_priv0*sizeof(struct kv_ps));
+          for(int _j0 = 0; _j0 < _len_rps__i0__ps_priv0; _j0++) {
+              rps[_i0].ps_priv->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct kv_ps * benchRet = kv_get_ps(rps);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_rps0; _aux++) {
+          free(rps[_aux].ps_priv);
+          }
+          free(rps);
+        
+        break;
+    }
     default:
         usage();
         break;

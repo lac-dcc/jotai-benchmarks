@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +64,6 @@ __attribute__((used)) static void reg_split(unsigned long long variable, unsigne
 	*high = (unsigned int)(variable >> 32);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,23 +80,94 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long long variable = 100;
+        
           int _len_high0 = 1;
           unsigned int * high = (unsigned int *) malloc(_len_high0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_high0; _i0++) {
             high[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_low0 = 1;
           unsigned int * low = (unsigned int *) malloc(_len_low0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_low0; _i0++) {
             low[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           reg_split(variable,high,low);
           free(high);
           free(low);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long long variable = 255;
+        
+          int _len_high0 = 65025;
+          unsigned int * high = (unsigned int *) malloc(_len_high0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_high0; _i0++) {
+            high[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_low0 = 65025;
+          unsigned int * low = (unsigned int *) malloc(_len_low0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_low0; _i0++) {
+            low[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          reg_split(variable,high,low);
+          free(high);
+          free(low);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long long variable = 10;
+        
+          int _len_high0 = 100;
+          unsigned int * high = (unsigned int *) malloc(_len_high0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_high0; _i0++) {
+            high[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_low0 = 100;
+          unsigned int * low = (unsigned int *) malloc(_len_low0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_low0; _i0++) {
+            low[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          reg_split(variable,high,low);
+          free(high);
+          free(low);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long long variable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_high0 = 1;
+          unsigned int * high = (unsigned int *) malloc(_len_high0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_high0; _i0++) {
+            high[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_low0 = 1;
+          unsigned int * low = (unsigned int *) malloc(_len_low0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_low0; _i0++) {
+            low[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          reg_split(variable,high,low);
+          free(high);
+          free(low);
+        
+        break;
+    }
     default:
         usage();
         break;

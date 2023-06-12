@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -153,12 +155,6 @@ lpfc_sli4_port_speed_parse(struct lpfc_hba *phba, uint32_t evt_code,
 	return port_speed;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -175,12 +171,36 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int evt_code = 100;
+        
           int speed_code = 100;
+        
           int _len_phba0 = 1;
           struct lpfc_hba * phba = (struct lpfc_hba *) malloc(_len_phba0*sizeof(struct lpfc_hba));
           for(int _i0 = 0; _i0 < _len_phba0; _i0++) {
-            phba[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              phba[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = lpfc_sli4_port_speed_parse(phba,evt_code,speed_code);
+          printf("%d\n", benchRet); 
+          free(phba);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int evt_code = 255;
+        
+          int speed_code = 255;
+        
+          int _len_phba0 = 65025;
+          struct lpfc_hba * phba = (struct lpfc_hba *) malloc(_len_phba0*sizeof(struct lpfc_hba));
+          for(int _i0 = 0; _i0 < _len_phba0; _i0++) {
+              phba[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = lpfc_sli4_port_speed_parse(phba,evt_code,speed_code);
           printf("%d\n", benchRet); 
           free(phba);
@@ -188,22 +208,45 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int evt_code = 10;
+        
           int speed_code = 10;
+        
           int _len_phba0 = 100;
           struct lpfc_hba * phba = (struct lpfc_hba *) malloc(_len_phba0*sizeof(struct lpfc_hba));
           for(int _i0 = 0; _i0 < _len_phba0; _i0++) {
-            phba[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              phba[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = lpfc_sli4_port_speed_parse(phba,evt_code,speed_code);
           printf("%d\n", benchRet); 
           free(phba);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int evt_code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int speed_code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_phba0 = 1;
+          struct lpfc_hba * phba = (struct lpfc_hba *) malloc(_len_phba0*sizeof(struct lpfc_hba));
+          for(int _i0 = 0; _i0 < _len_phba0; _i0++) {
+              phba[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = lpfc_sli4_port_speed_parse(phba,evt_code,speed_code);
+          printf("%d\n", benchRet); 
+          free(phba);
+        
+        break;
+    }
     default:
         usage();
         break;

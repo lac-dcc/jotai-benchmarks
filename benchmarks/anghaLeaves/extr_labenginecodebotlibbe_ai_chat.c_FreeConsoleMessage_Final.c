@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            dlinked\n\
+       1            bintree\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,8 +68,50 @@ void FreeConsoleMessage(bot_consolemessage_t *message)
 	freeconsolemessages = message;
 }
 
-
 // ------------------------------------------------------------------------- //
+
+struct TYPE_4__ *_allocate_Dlinked_message(int length, struct TYPE_4__ *aux_dlinked_message[] ) {
+  struct TYPE_4__ *walker = (struct TYPE_4__ *)malloc(sizeof(struct TYPE_4__));
+
+  aux_dlinked_message[0] = walker;
+  walker->next = NULL;
+  walker->prev = NULL;
+
+  struct TYPE_4__ *head = walker;
+  for(int i = 1; i < length; i++) {
+    walker->prev = (struct TYPE_4__ *)malloc(sizeof(struct TYPE_4__));
+    walker->prev->next = walker;
+    walker = walker->prev;
+    aux_dlinked_message[i] = walker;
+    if (i == (length - 1)) 
+      walker->prev = NULL;  }
+
+  return head;
+}
+
+void _delete_Dlinked_message(struct TYPE_4__ *aux_dlinked_message[], int aux_dlinked_message_size) {
+  for(int i = 0; i < aux_dlinked_message_size; i++) 
+    if(aux_dlinked_message[i])
+      free(aux_dlinked_message[i]);
+}
+
+struct TYPE_4__ *_allocateBinTree_message(int length, struct TYPE_4__ *aux_tree_message[], int *counter_message) {
+  if(length == 0)
+    return NULL;
+  struct TYPE_4__ *walker = (struct TYPE_4__ *)malloc(sizeof(struct TYPE_4__));
+
+  aux_tree_message[*counter_message] = walker;
+  (*counter_message)++;
+  walker->next = _allocateBinTree_message(length - 1, aux_tree_message, counter_message);
+  walker->prev = _allocateBinTree_message(length - 1, aux_tree_message, counter_message);
+  return walker;
+}
+
+void _deleteBinTree_message(struct TYPE_4__ *aux_tree_message[]) {
+  for(int i = 0; i < 1023; i++) 
+    if(aux_tree_message[i])
+      free(aux_tree_message[i]);
+}
 
 struct TYPE_4__ *_allocate_message(int length, struct TYPE_4__ *aux_message[]) {
   struct TYPE_4__ *walker = (struct TYPE_4__ *)malloc(sizeof(struct TYPE_4__));
@@ -99,7 +143,6 @@ void _delete_message(struct TYPE_4__ *aux_message[], int aux_message_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -112,17 +155,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // dlinked
     case 0:
+    {
+          struct TYPE_4__ * aux_dlinked_message[10000];
+          struct TYPE_4__ * message = _allocate_Dlinked_message(10000, aux_dlinked_message);
+        
+          FreeConsoleMessage(message);
+          _delete_Dlinked_message(aux_dlinked_message, 10000);
+        
+        break;
+    }
+    // bintree
+    case 1:
+    {
+          int counter_message= 0;
+          struct TYPE_4__ *  aux_tree_message[1023];
+          struct TYPE_4__ * message = _allocateBinTree_message(10, aux_tree_message, &counter_message);
+        
+          FreeConsoleMessage(message);
+          _deleteBinTree_message(aux_tree_message);
+        
+        break;
+    }
+    // empty
+    case 2:
     {
           struct TYPE_4__ * aux_message[1];
           struct TYPE_4__ * message = _allocate_message(1, aux_message);
+        
           FreeConsoleMessage(message);
           _delete_message(aux_message, 1);
         
         break;
     }
-
     default:
         usage();
         break;

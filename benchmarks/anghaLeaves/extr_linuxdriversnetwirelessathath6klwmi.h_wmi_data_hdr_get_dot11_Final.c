@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ __attribute__((used)) static inline u8 wmi_data_hdr_get_dot11(struct wmi_data_hd
 	return (data_type == WMI_DATA_HDR_DATA_TYPE_802_11);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,14 +82,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dhdr0 = 1;
+          int _len_dhdr0 = 65025;
           struct wmi_data_hdr * dhdr = (struct wmi_data_hdr *) malloc(_len_dhdr0*sizeof(struct wmi_data_hdr));
           for(int _i0 = 0; _i0 < _len_dhdr0; _i0++) {
-            dhdr[_i0].info = ((-2 * (next_i()%2)) + 1) * next_i();
+              dhdr[_i0].info = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = wmi_data_hdr_get_dot11(dhdr);
           printf("%d\n", benchRet); 
           free(dhdr);
@@ -107,15 +104,32 @@ int main(int argc, char *argv[]) {
           int _len_dhdr0 = 100;
           struct wmi_data_hdr * dhdr = (struct wmi_data_hdr *) malloc(_len_dhdr0*sizeof(struct wmi_data_hdr));
           for(int _i0 = 0; _i0 < _len_dhdr0; _i0++) {
-            dhdr[_i0].info = ((-2 * (next_i()%2)) + 1) * next_i();
+              dhdr[_i0].info = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = wmi_data_hdr_get_dot11(dhdr);
           printf("%d\n", benchRet); 
           free(dhdr);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_dhdr0 = 1;
+          struct wmi_data_hdr * dhdr = (struct wmi_data_hdr *) malloc(_len_dhdr0*sizeof(struct wmi_data_hdr));
+          for(int _i0 = 0; _i0 < _len_dhdr0; _i0++) {
+              dhdr[_i0].info = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = wmi_data_hdr_get_dot11(dhdr);
+          printf("%d\n", benchRet); 
+          free(dhdr);
+        
+        break;
+    }
     default:
         usage();
         break;

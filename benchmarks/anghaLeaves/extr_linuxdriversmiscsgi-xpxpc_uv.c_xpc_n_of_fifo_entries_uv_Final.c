@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ xpc_n_of_fifo_entries_uv(struct xpc_fifo_head_uv *head)
 	return head->n_entries;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_head0 = 1;
+          int _len_head0 = 65025;
           struct xpc_fifo_head_uv * head = (struct xpc_fifo_head_uv *) malloc(_len_head0*sizeof(struct xpc_fifo_head_uv));
           for(int _i0 = 0; _i0 < _len_head0; _i0++) {
-            head[_i0].n_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+              head[_i0].n_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = xpc_n_of_fifo_entries_uv(head);
           printf("%d\n", benchRet); 
           free(head);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_head0 = 100;
           struct xpc_fifo_head_uv * head = (struct xpc_fifo_head_uv *) malloc(_len_head0*sizeof(struct xpc_fifo_head_uv));
           for(int _i0 = 0; _i0 < _len_head0; _i0++) {
-            head[_i0].n_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+              head[_i0].n_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = xpc_n_of_fifo_entries_uv(head);
           printf("%d\n", benchRet); 
           free(head);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_head0 = 1;
+          struct xpc_fifo_head_uv * head = (struct xpc_fifo_head_uv *) malloc(_len_head0*sizeof(struct xpc_fifo_head_uv));
+          for(int _i0 = 0; _i0 < _len_head0; _i0++) {
+              head[_i0].n_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = xpc_n_of_fifo_entries_uv(head);
+          printf("%d\n", benchRet); 
+          free(head);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static void bio_dp_init(struct dpages *dp, struct bio *bio
 	dp->context_bi = bio->bi_iter;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,23 +85,152 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_dp0 = 65025;
+          struct dpages * dp = (struct dpages *) malloc(_len_dp0*sizeof(struct dpages));
+          for(int _i0 = 0; _i0 < _len_dp0; _i0++) {
+              dp[_i0].context_bi = ((-2 * (next_i()%2)) + 1) * next_i();
+          dp[_i0].context_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          dp[_i0].next_page = ((-2 * (next_i()%2)) + 1) * next_i();
+          dp[_i0].get_page = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_bio0 = 65025;
+          struct bio * bio = (struct bio *) malloc(_len_bio0*sizeof(struct bio));
+          for(int _i0 = 0; _i0 < _len_bio0; _i0++) {
+              bio[_i0].bi_iter = ((-2 * (next_i()%2)) + 1) * next_i();
+          bio[_i0].bi_io_vec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          bio_dp_init(dp,bio);
+          free(dp);
+          free(bio);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_dp0 = 100;
+          struct dpages * dp = (struct dpages *) malloc(_len_dp0*sizeof(struct dpages));
+          for(int _i0 = 0; _i0 < _len_dp0; _i0++) {
+              dp[_i0].context_bi = ((-2 * (next_i()%2)) + 1) * next_i();
+          dp[_i0].context_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          dp[_i0].next_page = ((-2 * (next_i()%2)) + 1) * next_i();
+          dp[_i0].get_page = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_bio0 = 100;
+          struct bio * bio = (struct bio *) malloc(_len_bio0*sizeof(struct bio));
+          for(int _i0 = 0; _i0 < _len_bio0; _i0++) {
+              bio[_i0].bi_iter = ((-2 * (next_i()%2)) + 1) * next_i();
+          bio[_i0].bi_io_vec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          bio_dp_init(dp,bio);
+          free(dp);
+          free(bio);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_dp0 = 1;
           struct dpages * dp = (struct dpages *) malloc(_len_dp0*sizeof(struct dpages));
           for(int _i0 = 0; _i0 < _len_dp0; _i0++) {
-            dp[_i0].context_bi = ((-2 * (next_i()%2)) + 1) * next_i();
-        dp[_i0].context_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
-        dp[_i0].next_page = ((-2 * (next_i()%2)) + 1) * next_i();
-        dp[_i0].get_page = ((-2 * (next_i()%2)) + 1) * next_i();
+              dp[_i0].context_bi = ((-2 * (next_i()%2)) + 1) * next_i();
+          dp[_i0].context_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          dp[_i0].next_page = ((-2 * (next_i()%2)) + 1) * next_i();
+          dp[_i0].get_page = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_bio0 = 1;
           struct bio * bio = (struct bio *) malloc(_len_bio0*sizeof(struct bio));
           for(int _i0 = 0; _i0 < _len_bio0; _i0++) {
-            bio[_i0].bi_iter = ((-2 * (next_i()%2)) + 1) * next_i();
-        bio[_i0].bi_io_vec = ((-2 * (next_i()%2)) + 1) * next_i();
+              bio[_i0].bi_iter = ((-2 * (next_i()%2)) + 1) * next_i();
+          bio[_i0].bi_io_vec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           bio_dp_init(dp,bio);
           free(dp);
           free(bio);

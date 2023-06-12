@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline void set_hal_stop(struct rtl_hal *rtlhal)
 	rtlhal->state = _HAL_STATE_STOP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rtlhal0 = 1;
+          int _len_rtlhal0 = 65025;
           struct rtl_hal * rtlhal = (struct rtl_hal *) malloc(_len_rtlhal0*sizeof(struct rtl_hal));
           for(int _i0 = 0; _i0 < _len_rtlhal0; _i0++) {
-            rtlhal[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+              rtlhal[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           set_hal_stop(rtlhal);
           free(rtlhal);
         
@@ -99,14 +96,30 @@ int main(int argc, char *argv[]) {
           int _len_rtlhal0 = 100;
           struct rtl_hal * rtlhal = (struct rtl_hal *) malloc(_len_rtlhal0*sizeof(struct rtl_hal));
           for(int _i0 = 0; _i0 < _len_rtlhal0; _i0++) {
-            rtlhal[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+              rtlhal[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           set_hal_stop(rtlhal);
           free(rtlhal);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_rtlhal0 = 1;
+          struct rtl_hal * rtlhal = (struct rtl_hal *) malloc(_len_rtlhal0*sizeof(struct rtl_hal));
+          for(int _i0 = 0; _i0 < _len_rtlhal0; _i0++) {
+              rtlhal[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_hal_stop(rtlhal);
+          free(rtlhal);
+        
+        break;
+    }
     default:
         usage();
         break;

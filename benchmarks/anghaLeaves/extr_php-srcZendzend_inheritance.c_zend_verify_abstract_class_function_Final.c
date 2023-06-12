@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -84,12 +86,6 @@ __attribute__((used)) static void zend_verify_abstract_class_function(zend_funct
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,29 +98,187 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_fn0 = 1;
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_fn0 = 65025;
           struct TYPE_7__ * fn = (struct TYPE_7__ *) malloc(_len_fn0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_fn0; _i0++) {
-            fn[_i0].common.fn_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              fn[_i0].common.fn_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-          int _len_ai0 = 1;
+        
+          int _len_ai0 = 65025;
           struct TYPE_8__ * ai = (struct TYPE_8__ *) malloc(_len_ai0*sizeof(struct TYPE_8__));
           for(int _i0 = 0; _i0 < _len_ai0; _i0++) {
-            ai[_i0].cnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        ai[_i0].ctor = ((-2 * (next_i()%2)) + 1) * next_i();
+              ai[_i0].cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          ai[_i0].ctor = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_ai__i0__afn0 = 1;
           ai[_i0].afn = (struct TYPE_7__ **) malloc(_len_ai__i0__afn0*sizeof(struct TYPE_7__ *));
           for(int _j0 = 0; _j0 < _len_ai__i0__afn0; _j0++) {
             int _len_ai__i0__afn1 = 1;
             ai[_i0].afn[_j0] = (struct TYPE_7__ *) malloc(_len_ai__i0__afn1*sizeof(struct TYPE_7__));
             for(int _j1 = 0; _j1 < _len_ai__i0__afn1; _j1++) {
-              ai[_i0].afn[_j0]->common.fn_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+                ai[_i0].afn[_j0]->common.fn_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
             }
           }
+        
           }
+        
+          zend_verify_abstract_class_function(fn,ai);
+          free(fn);
+          for(int _aux = 0; _aux < _len_ai0; _aux++) {
+          free(*(ai[_aux].afn));
+        free(ai[_aux].afn);
+          }
+          free(ai);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_fn0 = 100;
+          struct TYPE_7__ * fn = (struct TYPE_7__ *) malloc(_len_fn0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_fn0; _i0++) {
+              fn[_i0].common.fn_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_ai0 = 100;
+          struct TYPE_8__ * ai = (struct TYPE_8__ *) malloc(_len_ai0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_ai0; _i0++) {
+              ai[_i0].cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          ai[_i0].ctor = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ai__i0__afn0 = 1;
+          ai[_i0].afn = (struct TYPE_7__ **) malloc(_len_ai__i0__afn0*sizeof(struct TYPE_7__ *));
+          for(int _j0 = 0; _j0 < _len_ai__i0__afn0; _j0++) {
+            int _len_ai__i0__afn1 = 1;
+            ai[_i0].afn[_j0] = (struct TYPE_7__ *) malloc(_len_ai__i0__afn1*sizeof(struct TYPE_7__));
+            for(int _j1 = 0; _j1 < _len_ai__i0__afn1; _j1++) {
+                ai[_i0].afn[_j0]->common.fn_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+            }
+          }
+        
+          }
+        
+          zend_verify_abstract_class_function(fn,ai);
+          free(fn);
+          for(int _aux = 0; _aux < _len_ai0; _aux++) {
+          free(*(ai[_aux].afn));
+        free(ai[_aux].afn);
+          }
+          free(ai);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_fn0 = 1;
+          struct TYPE_7__ * fn = (struct TYPE_7__ *) malloc(_len_fn0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_fn0; _i0++) {
+              fn[_i0].common.fn_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_ai0 = 1;
+          struct TYPE_8__ * ai = (struct TYPE_8__ *) malloc(_len_ai0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_ai0; _i0++) {
+              ai[_i0].cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          ai[_i0].ctor = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ai__i0__afn0 = 1;
+          ai[_i0].afn = (struct TYPE_7__ **) malloc(_len_ai__i0__afn0*sizeof(struct TYPE_7__ *));
+          for(int _j0 = 0; _j0 < _len_ai__i0__afn0; _j0++) {
+            int _len_ai__i0__afn1 = 1;
+            ai[_i0].afn[_j0] = (struct TYPE_7__ *) malloc(_len_ai__i0__afn1*sizeof(struct TYPE_7__));
+            for(int _j1 = 0; _j1 < _len_ai__i0__afn1; _j1++) {
+                ai[_i0].afn[_j0]->common.fn_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+            }
+          }
+        
+          }
+        
           zend_verify_abstract_class_function(fn,ai);
           free(fn);
           for(int _aux = 0; _aux < _len_ai0; _aux++) {

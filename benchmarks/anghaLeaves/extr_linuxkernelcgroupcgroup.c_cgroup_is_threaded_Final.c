@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -60,7 +61,6 @@ bool cgroup_is_threaded(struct cgroup *cgrp)
 	return cgrp->dom_cgrp != cgrp;
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct cgroup *_allocate_cgrp(int length, struct cgroup *aux_cgrp[]) {
@@ -88,7 +88,6 @@ void _delete_cgrp(struct cgroup *aux_cgrp[], int aux_cgrp_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,11 +100,71 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // linked
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          struct cgroup * aux_cgrp[10000];
+          struct cgroup * cgrp = _allocate_cgrp(10000, aux_cgrp);
+        
+          int benchRet = cgroup_is_threaded(cgrp);
+          printf("%d\n", benchRet); 
+          _delete_cgrp(aux_cgrp, 10000);
+        
+        break;
+    }
+
+
+    // empty
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           struct cgroup * aux_cgrp[1];
           struct cgroup * cgrp = _allocate_cgrp(1, aux_cgrp);
+        
           int benchRet = cgroup_is_threaded(cgrp);
           printf("%d\n", benchRet); 
           _delete_cgrp(aux_cgrp, 1);

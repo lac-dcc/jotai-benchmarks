@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -86,12 +88,6 @@ f17h_determine_edac_ctl_cap(struct mem_ctl_info *mci, struct amd64_pvt *pvt)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,24 +100,164 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
+          int _len_mci0 = 65025;
+          struct mem_ctl_info * mci = (struct mem_ctl_info *) malloc(_len_mci0*sizeof(struct mem_ctl_info));
+          for(int _i0 = 0; _i0 < _len_mci0; _i0++) {
+              mci[_i0].edac_ctl_cap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pvt0 = 65025;
+          struct amd64_pvt * pvt = (struct amd64_pvt *) malloc(_len_pvt0*sizeof(struct amd64_pvt));
+          for(int _i0 = 0; _i0 < _len_pvt0; _i0++) {
+              int _len_pvt__i0__umc0 = 1;
+          pvt[_i0].umc = (struct TYPE_2__ *) malloc(_len_pvt__i0__umc0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_pvt__i0__umc0; _j0++) {
+              pvt[_i0].umc->sdp_ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+          pvt[_i0].umc->umc_cap_hi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          f17h_determine_edac_ctl_cap(mci,pvt);
+          free(mci);
+          for(int _aux = 0; _aux < _len_pvt0; _aux++) {
+          free(pvt[_aux].umc);
+          }
+          free(pvt);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
+          int _len_mci0 = 100;
+          struct mem_ctl_info * mci = (struct mem_ctl_info *) malloc(_len_mci0*sizeof(struct mem_ctl_info));
+          for(int _i0 = 0; _i0 < _len_mci0; _i0++) {
+              mci[_i0].edac_ctl_cap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pvt0 = 100;
+          struct amd64_pvt * pvt = (struct amd64_pvt *) malloc(_len_pvt0*sizeof(struct amd64_pvt));
+          for(int _i0 = 0; _i0 < _len_pvt0; _i0++) {
+              int _len_pvt__i0__umc0 = 1;
+          pvt[_i0].umc = (struct TYPE_2__ *) malloc(_len_pvt__i0__umc0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_pvt__i0__umc0; _j0++) {
+              pvt[_i0].umc->sdp_ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+          pvt[_i0].umc->umc_cap_hi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          f17h_determine_edac_ctl_cap(mci,pvt);
+          free(mci);
+          for(int _aux = 0; _aux < _len_pvt0; _aux++) {
+          free(pvt[_aux].umc);
+          }
+          free(pvt);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
           int _len_mci0 = 1;
           struct mem_ctl_info * mci = (struct mem_ctl_info *) malloc(_len_mci0*sizeof(struct mem_ctl_info));
           for(int _i0 = 0; _i0 < _len_mci0; _i0++) {
-            mci[_i0].edac_ctl_cap = ((-2 * (next_i()%2)) + 1) * next_i();
+              mci[_i0].edac_ctl_cap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_pvt0 = 1;
           struct amd64_pvt * pvt = (struct amd64_pvt *) malloc(_len_pvt0*sizeof(struct amd64_pvt));
           for(int _i0 = 0; _i0 < _len_pvt0; _i0++) {
               int _len_pvt__i0__umc0 = 1;
           pvt[_i0].umc = (struct TYPE_2__ *) malloc(_len_pvt__i0__umc0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_pvt__i0__umc0; _j0++) {
-            pvt[_i0].umc->sdp_ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
-        pvt[_i0].umc->umc_cap_hi = ((-2 * (next_i()%2)) + 1) * next_i();
+              pvt[_i0].umc->sdp_ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+          pvt[_i0].umc->umc_cap_hi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           f17h_determine_edac_ctl_cap(mci,pvt);
           free(mci);
           for(int _aux = 0; _aux < _len_pvt0; _aux++) {

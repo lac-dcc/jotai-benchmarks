@@ -31,7 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ WriteCompactIndex(jsbytecode *pc, size_t index)
     return pc;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,35 +86,53 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long index = 100;
+        
           int _len_pc0 = 1;
           void ** pc = (void **) malloc(_len_pc0*sizeof(void *));
           for(int _i0 = 0; _i0 < _len_pc0; _i0++) {
           }
+        
           void ** benchRet = WriteCompactIndex(pc,index);
           for(int i1 = 0; i1 < _len_pc0; i1++) {
-            int _len_pc1 = 1;
+              }
+          free(pc);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned long index = 255;
+        
+          int _len_pc0 = 65025;
+          void ** pc = (void **) malloc(_len_pc0*sizeof(void *));
+          for(int _i0 = 0; _i0 < _len_pc0; _i0++) {
+          }
+        
+          void ** benchRet = WriteCompactIndex(pc,index);
+          for(int i1 = 0; i1 < _len_pc0; i1++) {
               }
           free(pc);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned long index = 10;
+        
           int _len_pc0 = 100;
           void ** pc = (void **) malloc(_len_pc0*sizeof(void *));
           for(int _i0 = 0; _i0 < _len_pc0; _i0++) {
           }
+        
           void ** benchRet = WriteCompactIndex(pc,index);
           for(int i1 = 0; i1 < _len_pc0; i1++) {
-            int _len_pc1 = 1;
               }
           free(pc);
         
         break;
     }
-
     default:
         usage();
         break;

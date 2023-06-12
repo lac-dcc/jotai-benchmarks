@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ void HTResetIOTSetting(PRT_HIGH_THROUGHPUT pHTInfo)
 	pHTInfo->IOTPeer = HT_IOT_PEER_UNKNOWN;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,21 +78,54 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pHTInfo0 = 1;
+          int _len_pHTInfo0 = 65025;
           struct TYPE_3__ * pHTInfo = (struct TYPE_3__ *) malloc(_len_pHTInfo0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_pHTInfo0; _i0++) {
-            pHTInfo[_i0].IOTPeer = ((-2 * (next_i()%2)) + 1) * next_i();
-        pHTInfo[_i0].IOTAction = ((-2 * (next_i()%2)) + 1) * next_i();
+              pHTInfo[_i0].IOTPeer = ((-2 * (next_i()%2)) + 1) * next_i();
+          pHTInfo[_i0].IOTAction = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           HTResetIOTSetting(pHTInfo);
           free(pHTInfo);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_pHTInfo0 = 100;
+          struct TYPE_3__ * pHTInfo = (struct TYPE_3__ *) malloc(_len_pHTInfo0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_pHTInfo0; _i0++) {
+              pHTInfo[_i0].IOTPeer = ((-2 * (next_i()%2)) + 1) * next_i();
+          pHTInfo[_i0].IOTAction = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          HTResetIOTSetting(pHTInfo);
+          free(pHTInfo);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_pHTInfo0 = 1;
+          struct TYPE_3__ * pHTInfo = (struct TYPE_3__ *) malloc(_len_pHTInfo0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_pHTInfo0; _i0++) {
+              pHTInfo[_i0].IOTPeer = ((-2 * (next_i()%2)) + 1) * next_i();
+          pHTInfo[_i0].IOTAction = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          HTResetIOTSetting(pHTInfo);
+          free(pHTInfo);
+        
+        break;
+    }
     default:
         usage();
         break;

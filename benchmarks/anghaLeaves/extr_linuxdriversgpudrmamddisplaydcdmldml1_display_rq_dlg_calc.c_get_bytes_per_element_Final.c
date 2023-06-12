@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -89,12 +90,6 @@ __attribute__((used)) static unsigned int get_bytes_per_element(enum source_form
 	return ret_val;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -111,7 +106,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           enum source_format_class source_format = 0;
+        
           int is_chroma = 100;
+        
           unsigned int benchRet = get_bytes_per_element(source_format,is_chroma);
           printf("%u\n", benchRet); 
         
@@ -121,7 +118,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           enum source_format_class source_format = 0;
+        
           int is_chroma = 255;
+        
           unsigned int benchRet = get_bytes_per_element(source_format,is_chroma);
           printf("%u\n", benchRet); 
         
@@ -131,13 +130,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           enum source_format_class source_format = 0;
+        
           int is_chroma = 10;
+        
           unsigned int benchRet = get_bytes_per_element(source_format,is_chroma);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          enum source_format_class source_format = 0;
+        
+          int is_chroma = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = get_bytes_per_element(source_format,is_chroma);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

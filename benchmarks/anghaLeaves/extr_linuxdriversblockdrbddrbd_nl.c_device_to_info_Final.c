@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static void device_to_info(struct device_info *info,
 	info->dev_disk_state = device->state.disk;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,26 +78,78 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_info0 = 1;
+          int _len_info0 = 65025;
           struct device_info * info = (struct device_info *) malloc(_len_info0*sizeof(struct device_info));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].dev_disk_state = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].dev_disk_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_device0 = 1;
+        
+          int _len_device0 = 65025;
           struct drbd_device * device = (struct drbd_device *) malloc(_len_device0*sizeof(struct drbd_device));
           for(int _i0 = 0; _i0 < _len_device0; _i0++) {
-            device[_i0].state.disk = ((-2 * (next_i()%2)) + 1) * next_i();
+              device[_i0].state.disk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           device_to_info(info,device);
           free(info);
           free(device);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_info0 = 100;
+          struct device_info * info = (struct device_info *) malloc(_len_info0*sizeof(struct device_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].dev_disk_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_device0 = 100;
+          struct drbd_device * device = (struct drbd_device *) malloc(_len_device0*sizeof(struct drbd_device));
+          for(int _i0 = 0; _i0 < _len_device0; _i0++) {
+              device[_i0].state.disk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          device_to_info(info,device);
+          free(info);
+          free(device);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_info0 = 1;
+          struct device_info * info = (struct device_info *) malloc(_len_info0*sizeof(struct device_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].dev_disk_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_device0 = 1;
+          struct drbd_device * device = (struct drbd_device *) malloc(_len_device0*sizeof(struct drbd_device));
+          for(int _i0 = 0; _i0 < _len_device0; _i0++) {
+              device[_i0].state.disk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          device_to_info(info,device);
+          free(info);
+          free(device);
+        
+        break;
+    }
     default:
         usage();
         break;

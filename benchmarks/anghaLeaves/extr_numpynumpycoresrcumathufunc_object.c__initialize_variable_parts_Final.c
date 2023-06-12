@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ _initialize_variable_parts(PyUFuncObject *ufunc,
     return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,19 +90,42 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_ufunc0 = 1;
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_ufunc0 = 65025;
           struct TYPE_3__ * ufunc = (struct TYPE_3__ *) malloc(_len_ufunc0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_ufunc0; _i0++) {
-            ufunc[_i0].nargs = ((-2 * (next_i()%2)) + 1) * next_i();
+              ufunc[_i0].nargs = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_ufunc__i0__core_num_dims0 = 1;
           ufunc[_i0].core_num_dims = (int *) malloc(_len_ufunc__i0__core_num_dims0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_ufunc__i0__core_num_dims0; _j0++) {
             ufunc[_i0].core_num_dims[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        ufunc[_i0].core_num_dim_ix = ((-2 * (next_i()%2)) + 1) * next_i();
+          ufunc[_i0].core_num_dim_ix = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_ufunc__i0__core_dim_flags0 = 1;
           ufunc[_i0].core_dim_flags = (int *) malloc(_len_ufunc__i0__core_dim_flags0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_ufunc__i0__core_dim_flags0; _j0++) {
@@ -117,22 +136,199 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_ufunc__i0__core_dim_sizes0; _j0++) {
             ufunc[_i0].core_dim_sizes[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int _len_op_core_num_dims0 = 65025;
+          int * op_core_num_dims = (int *) malloc(_len_op_core_num_dims0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_op_core_num_dims0; _i0++) {
+            op_core_num_dims[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_core_dim_sizes0 = 65025;
+          int * core_dim_sizes = (int *) malloc(_len_core_dim_sizes0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_core_dim_sizes0; _i0++) {
+            core_dim_sizes[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_core_dim_flags0 = 65025;
+          int * core_dim_flags = (int *) malloc(_len_core_dim_flags0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_core_dim_flags0; _i0++) {
+            core_dim_flags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _initialize_variable_parts(ufunc,op_core_num_dims,core_dim_sizes,core_dim_flags);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ufunc0; _aux++) {
+          free(ufunc[_aux].core_num_dims);
+          }
+          for(int _aux = 0; _aux < _len_ufunc0; _aux++) {
+          free(ufunc[_aux].core_dim_flags);
+          }
+          for(int _aux = 0; _aux < _len_ufunc0; _aux++) {
+          free(ufunc[_aux].core_dim_sizes);
+          }
+          free(ufunc);
+          free(op_core_num_dims);
+          free(core_dim_sizes);
+          free(core_dim_flags);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_ufunc0 = 100;
+          struct TYPE_3__ * ufunc = (struct TYPE_3__ *) malloc(_len_ufunc0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ufunc0; _i0++) {
+              ufunc[_i0].nargs = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ufunc__i0__core_num_dims0 = 1;
+          ufunc[_i0].core_num_dims = (int *) malloc(_len_ufunc__i0__core_num_dims0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ufunc__i0__core_num_dims0; _j0++) {
+            ufunc[_i0].core_num_dims[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          ufunc[_i0].core_num_dim_ix = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ufunc__i0__core_dim_flags0 = 1;
+          ufunc[_i0].core_dim_flags = (int *) malloc(_len_ufunc__i0__core_dim_flags0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ufunc__i0__core_dim_flags0; _j0++) {
+            ufunc[_i0].core_dim_flags[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_ufunc__i0__core_dim_sizes0 = 1;
+          ufunc[_i0].core_dim_sizes = (int *) malloc(_len_ufunc__i0__core_dim_sizes0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ufunc__i0__core_dim_sizes0; _j0++) {
+            ufunc[_i0].core_dim_sizes[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_op_core_num_dims0 = 100;
+          int * op_core_num_dims = (int *) malloc(_len_op_core_num_dims0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_op_core_num_dims0; _i0++) {
+            op_core_num_dims[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_core_dim_sizes0 = 100;
+          int * core_dim_sizes = (int *) malloc(_len_core_dim_sizes0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_core_dim_sizes0; _i0++) {
+            core_dim_sizes[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_core_dim_flags0 = 100;
+          int * core_dim_flags = (int *) malloc(_len_core_dim_flags0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_core_dim_flags0; _i0++) {
+            core_dim_flags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _initialize_variable_parts(ufunc,op_core_num_dims,core_dim_sizes,core_dim_flags);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ufunc0; _aux++) {
+          free(ufunc[_aux].core_num_dims);
+          }
+          for(int _aux = 0; _aux < _len_ufunc0; _aux++) {
+          free(ufunc[_aux].core_dim_flags);
+          }
+          for(int _aux = 0; _aux < _len_ufunc0; _aux++) {
+          free(ufunc[_aux].core_dim_sizes);
+          }
+          free(ufunc);
+          free(op_core_num_dims);
+          free(core_dim_sizes);
+          free(core_dim_flags);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_ufunc0 = 1;
+          struct TYPE_3__ * ufunc = (struct TYPE_3__ *) malloc(_len_ufunc0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ufunc0; _i0++) {
+              ufunc[_i0].nargs = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ufunc__i0__core_num_dims0 = 1;
+          ufunc[_i0].core_num_dims = (int *) malloc(_len_ufunc__i0__core_num_dims0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ufunc__i0__core_num_dims0; _j0++) {
+            ufunc[_i0].core_num_dims[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          ufunc[_i0].core_num_dim_ix = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ufunc__i0__core_dim_flags0 = 1;
+          ufunc[_i0].core_dim_flags = (int *) malloc(_len_ufunc__i0__core_dim_flags0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ufunc__i0__core_dim_flags0; _j0++) {
+            ufunc[_i0].core_dim_flags[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_ufunc__i0__core_dim_sizes0 = 1;
+          ufunc[_i0].core_dim_sizes = (int *) malloc(_len_ufunc__i0__core_dim_sizes0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ufunc__i0__core_dim_sizes0; _j0++) {
+            ufunc[_i0].core_dim_sizes[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int _len_op_core_num_dims0 = 1;
           int * op_core_num_dims = (int *) malloc(_len_op_core_num_dims0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_op_core_num_dims0; _i0++) {
             op_core_num_dims[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_core_dim_sizes0 = 1;
           int * core_dim_sizes = (int *) malloc(_len_core_dim_sizes0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_core_dim_sizes0; _i0++) {
             core_dim_sizes[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_core_dim_flags0 = 1;
           int * core_dim_flags = (int *) malloc(_len_core_dim_flags0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_core_dim_flags0; _i0++) {
             core_dim_flags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = _initialize_variable_parts(ufunc,op_core_num_dims,core_dim_sizes,core_dim_flags);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_ufunc0; _aux++) {

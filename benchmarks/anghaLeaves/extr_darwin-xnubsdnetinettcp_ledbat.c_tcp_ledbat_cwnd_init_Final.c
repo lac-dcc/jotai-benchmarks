@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ tcp_ledbat_cwnd_init(struct tcpcb *tp) {
 	tp->bg_ssthresh = tp->snd_ssthresh;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,23 +76,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_tp0 = 1;
+          int _len_tp0 = 65025;
           struct tcpcb * tp = (struct tcpcb *) malloc(_len_tp0*sizeof(struct tcpcb));
           for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
-            tp[_i0].snd_cwnd = ((-2 * (next_i()%2)) + 1) * next_i();
-        tp[_i0].t_maxseg = ((-2 * (next_i()%2)) + 1) * next_i();
-        tp[_i0].snd_ssthresh = ((-2 * (next_i()%2)) + 1) * next_i();
-        tp[_i0].bg_ssthresh = ((-2 * (next_i()%2)) + 1) * next_i();
+              tp[_i0].snd_cwnd = ((-2 * (next_i()%2)) + 1) * next_i();
+          tp[_i0].t_maxseg = ((-2 * (next_i()%2)) + 1) * next_i();
+          tp[_i0].snd_ssthresh = ((-2 * (next_i()%2)) + 1) * next_i();
+          tp[_i0].bg_ssthresh = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           tcp_ledbat_cwnd_init(tp);
           free(tp);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_tp0 = 100;
+          struct tcpcb * tp = (struct tcpcb *) malloc(_len_tp0*sizeof(struct tcpcb));
+          for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
+              tp[_i0].snd_cwnd = ((-2 * (next_i()%2)) + 1) * next_i();
+          tp[_i0].t_maxseg = ((-2 * (next_i()%2)) + 1) * next_i();
+          tp[_i0].snd_ssthresh = ((-2 * (next_i()%2)) + 1) * next_i();
+          tp[_i0].bg_ssthresh = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          tcp_ledbat_cwnd_init(tp);
+          free(tp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_tp0 = 1;
+          struct tcpcb * tp = (struct tcpcb *) malloc(_len_tp0*sizeof(struct tcpcb));
+          for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
+              tp[_i0].snd_cwnd = ((-2 * (next_i()%2)) + 1) * next_i();
+          tp[_i0].t_maxseg = ((-2 * (next_i()%2)) + 1) * next_i();
+          tp[_i0].snd_ssthresh = ((-2 * (next_i()%2)) + 1) * next_i();
+          tp[_i0].bg_ssthresh = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          tcp_ledbat_cwnd_init(tp);
+          free(tp);
+        
+        break;
+    }
     default:
         usage();
         break;

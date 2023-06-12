@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -92,12 +95,6 @@ __attribute__((used)) static BOOL verify_comp_for_removal(MSICOMPONENT *comp, UI
     return FALSE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -114,19 +111,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long install_mode = 100;
+        
           int _len_comp0 = 1;
           struct TYPE_3__ * comp = (struct TYPE_3__ *) malloc(_len_comp0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_comp0; _i0++) {
-            comp[_i0].Action = ((-2 * (next_i()%2)) + 1) * next_i();
-        comp[_i0].Attributes = ((-2 * (next_i()%2)) + 1) * next_i();
+              comp[_i0].Action = ((-2 * (next_i()%2)) + 1) * next_i();
+          comp[_i0].Attributes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = verify_comp_for_removal(comp,install_mode);
           printf("%d\n", benchRet); 
           free(comp);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long install_mode = 255;
+        
+          int _len_comp0 = 65025;
+          struct TYPE_3__ * comp = (struct TYPE_3__ *) malloc(_len_comp0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_comp0; _i0++) {
+              comp[_i0].Action = ((-2 * (next_i()%2)) + 1) * next_i();
+          comp[_i0].Attributes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = verify_comp_for_removal(comp,install_mode);
+          printf("%d\n", benchRet); 
+          free(comp);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long install_mode = 10;
+        
+          int _len_comp0 = 100;
+          struct TYPE_3__ * comp = (struct TYPE_3__ *) malloc(_len_comp0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_comp0; _i0++) {
+              comp[_i0].Action = ((-2 * (next_i()%2)) + 1) * next_i();
+          comp[_i0].Attributes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = verify_comp_for_removal(comp,install_mode);
+          printf("%d\n", benchRet); 
+          free(comp);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long install_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_comp0 = 1;
+          struct TYPE_3__ * comp = (struct TYPE_3__ *) malloc(_len_comp0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_comp0; _i0++) {
+              comp[_i0].Action = ((-2 * (next_i()%2)) + 1) * next_i();
+          comp[_i0].Attributes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = verify_comp_for_removal(comp,install_mode);
+          printf("%d\n", benchRet); 
+          free(comp);
+        
+        break;
+    }
     default:
         usage();
         break;

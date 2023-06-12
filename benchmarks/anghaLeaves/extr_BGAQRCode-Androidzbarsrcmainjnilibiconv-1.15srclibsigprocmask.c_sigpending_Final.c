@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +72,6 @@ sigpending (sigset_t *set)
   return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,14 +84,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_set0 = 1;
+          int _len_set0 = 65025;
           unsigned int * set = (unsigned int *) malloc(_len_set0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_set0; _i0++) {
             set[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = sigpending(set);
           printf("%d\n", benchRet); 
           free(set);
@@ -111,13 +107,28 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_set0; _i0++) {
             set[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = sigpending(set);
           printf("%d\n", benchRet); 
           free(set);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_set0 = 1;
+          unsigned int * set = (unsigned int *) malloc(_len_set0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_set0; _i0++) {
+            set[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = sigpending(set);
+          printf("%d\n", benchRet); 
+          free(set);
+        
+        break;
+    }
     default:
         usage();
         break;

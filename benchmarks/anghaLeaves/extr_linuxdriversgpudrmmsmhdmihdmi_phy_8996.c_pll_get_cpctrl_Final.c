@@ -32,6 +32,7 @@ void usage() {
 \nARGS:\n\
        0            int-bounds\n\
        1            big-arr\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static inline u32 pll_get_cpctrl(u64 frac_start, unsigned 
 	return 0x23;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,8 +83,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long frac_start = 100;
+        
           unsigned long ref_clk = 100;
+        
           int gen_ssc = 100;
+        
           int benchRet = pll_get_cpctrl(frac_start,ref_clk,gen_ssc);
           printf("%d\n", benchRet); 
         
@@ -99,14 +97,30 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long frac_start = 255;
+        
           unsigned long ref_clk = 255;
+        
           int gen_ssc = 255;
+        
           int benchRet = pll_get_cpctrl(frac_start,ref_clk,gen_ssc);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          long frac_start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long ref_clk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int gen_ssc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = pll_get_cpctrl(frac_start,ref_clk,gen_ssc);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

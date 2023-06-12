@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -90,12 +93,6 @@ xfs_alloc_longest_free_extent(
 	return pag->pagf_flcount > 0 || pag->pagf_longest > 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -112,21 +109,90 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long need = 100;
+        
           long reserved = 100;
+        
           int _len_pag0 = 1;
           struct xfs_perag * pag = (struct xfs_perag *) malloc(_len_pag0*sizeof(struct xfs_perag));
           for(int _i0 = 0; _i0 < _len_pag0; _i0++) {
-            pag[_i0].pagf_flcount = ((-2 * (next_i()%2)) + 1) * next_i();
-        pag[_i0].pagf_freeblks = ((-2 * (next_i()%2)) + 1) * next_i();
-        pag[_i0].pagf_longest = ((-2 * (next_i()%2)) + 1) * next_i();
+              pag[_i0].pagf_flcount = ((-2 * (next_i()%2)) + 1) * next_i();
+          pag[_i0].pagf_freeblks = ((-2 * (next_i()%2)) + 1) * next_i();
+          pag[_i0].pagf_longest = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = xfs_alloc_longest_free_extent(pag,need,reserved);
           printf("%ld\n", benchRet); 
           free(pag);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long need = 255;
+        
+          long reserved = 255;
+        
+          int _len_pag0 = 65025;
+          struct xfs_perag * pag = (struct xfs_perag *) malloc(_len_pag0*sizeof(struct xfs_perag));
+          for(int _i0 = 0; _i0 < _len_pag0; _i0++) {
+              pag[_i0].pagf_flcount = ((-2 * (next_i()%2)) + 1) * next_i();
+          pag[_i0].pagf_freeblks = ((-2 * (next_i()%2)) + 1) * next_i();
+          pag[_i0].pagf_longest = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = xfs_alloc_longest_free_extent(pag,need,reserved);
+          printf("%ld\n", benchRet); 
+          free(pag);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long need = 10;
+        
+          long reserved = 10;
+        
+          int _len_pag0 = 100;
+          struct xfs_perag * pag = (struct xfs_perag *) malloc(_len_pag0*sizeof(struct xfs_perag));
+          for(int _i0 = 0; _i0 < _len_pag0; _i0++) {
+              pag[_i0].pagf_flcount = ((-2 * (next_i()%2)) + 1) * next_i();
+          pag[_i0].pagf_freeblks = ((-2 * (next_i()%2)) + 1) * next_i();
+          pag[_i0].pagf_longest = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = xfs_alloc_longest_free_extent(pag,need,reserved);
+          printf("%ld\n", benchRet); 
+          free(pag);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long need = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long reserved = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pag0 = 1;
+          struct xfs_perag * pag = (struct xfs_perag *) malloc(_len_pag0*sizeof(struct xfs_perag));
+          for(int _i0 = 0; _i0 < _len_pag0; _i0++) {
+              pag[_i0].pagf_flcount = ((-2 * (next_i()%2)) + 1) * next_i();
+          pag[_i0].pagf_freeblks = ((-2 * (next_i()%2)) + 1) * next_i();
+          pag[_i0].pagf_longest = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = xfs_alloc_longest_free_extent(pag,need,reserved);
+          printf("%ld\n", benchRet); 
+          free(pag);
+        
+        break;
+    }
     default:
         usage();
         break;

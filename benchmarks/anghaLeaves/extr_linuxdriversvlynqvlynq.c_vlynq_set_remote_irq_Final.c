@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +77,6 @@ int vlynq_set_remote_irq(struct vlynq_device *dev, int virq)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,22 +93,90 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int virq = 100;
+        
           int _len_dev0 = 1;
           struct vlynq_device * dev = (struct vlynq_device *) malloc(_len_dev0*sizeof(struct vlynq_device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].irq_start = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].irq_end = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].local_irq = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].remote_irq = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].irq_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].irq_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].local_irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].remote_irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = vlynq_set_remote_irq(dev,virq);
           printf("%d\n", benchRet); 
           free(dev);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int virq = 255;
+        
+          int _len_dev0 = 65025;
+          struct vlynq_device * dev = (struct vlynq_device *) malloc(_len_dev0*sizeof(struct vlynq_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].irq_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].irq_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].local_irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].remote_irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vlynq_set_remote_irq(dev,virq);
+          printf("%d\n", benchRet); 
+          free(dev);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int virq = 10;
+        
+          int _len_dev0 = 100;
+          struct vlynq_device * dev = (struct vlynq_device *) malloc(_len_dev0*sizeof(struct vlynq_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].irq_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].irq_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].local_irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].remote_irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vlynq_set_remote_irq(dev,virq);
+          printf("%d\n", benchRet); 
+          free(dev);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int virq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dev0 = 1;
+          struct vlynq_device * dev = (struct vlynq_device *) malloc(_len_dev0*sizeof(struct vlynq_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].irq_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].irq_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].local_irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].remote_irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vlynq_set_remote_irq(dev,virq);
+          printf("%d\n", benchRet); 
+          free(dev);
+        
+        break;
+    }
     default:
         usage();
         break;

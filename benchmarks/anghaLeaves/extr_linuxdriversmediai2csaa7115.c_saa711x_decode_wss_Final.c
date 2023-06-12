@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -82,12 +83,6 @@ __attribute__((used)) static int saa711x_decode_wss(u8 *p)
 	return wss;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,14 +95,77 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 56
+          // dynamic_instructions_O0 : 493
+          // ------------------------------- 
+          // static_instructions_O1 : 33
+          // dynamic_instructions_O1 : 228
+          // ------------------------------- 
+          // static_instructions_O2 : 47
+          // dynamic_instructions_O2 : 236
+          // ------------------------------- 
+          // static_instructions_O3 : 193
+          // dynamic_instructions_O3 : 193
+          // ------------------------------- 
+          // static_instructions_Ofast : 193
+          // dynamic_instructions_Ofast : 193
+          // ------------------------------- 
+          // static_instructions_Os : 33
+          // dynamic_instructions_Os : 228
+          // ------------------------------- 
+          // static_instructions_Oz : 34
+          // dynamic_instructions_Oz : 246
+          // ------------------------------- 
+
+          int _len_p0 = 65025;
+          int * p = (int *) malloc(_len_p0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+            p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = saa711x_decode_wss(p);
+          printf("%d\n", benchRet); 
+          free(p);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 56
+          // dynamic_instructions_O0 : 493
+          // ------------------------------- 
+          // static_instructions_O1 : 33
+          // dynamic_instructions_O1 : 228
+          // ------------------------------- 
+          // static_instructions_O2 : 47
+          // dynamic_instructions_O2 : 236
+          // ------------------------------- 
+          // static_instructions_O3 : 193
+          // dynamic_instructions_O3 : 193
+          // ------------------------------- 
+          // static_instructions_Ofast : 193
+          // dynamic_instructions_Ofast : 193
+          // ------------------------------- 
+          // static_instructions_Os : 33
+          // dynamic_instructions_Os : 228
+          // ------------------------------- 
+          // static_instructions_Oz : 34
+          // dynamic_instructions_Oz : 246
+          // ------------------------------- 
+
           int _len_p0 = 100;
           int * p = (int *) malloc(_len_p0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
             p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = saa711x_decode_wss(p);
           printf("%d\n", benchRet); 
           free(p);

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ void mic_hw_intr_init(struct mic_driver *mdrv)
 				MIC_X100_NUM_RDMASR_IRQ;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,27 +79,120 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_mdrv0 = 1;
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_mdrv0 = 65025;
           struct mic_driver * mdrv = (struct mic_driver *) malloc(_len_mdrv0*sizeof(struct mic_driver));
           for(int _i0 = 0; _i0 < _len_mdrv0; _i0++) {
-            mdrv[_i0].intr_info.num_intr = ((-2 * (next_i()%2)) + 1) * next_i();
+              mdrv[_i0].intr_info.num_intr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           mic_hw_intr_init(mdrv);
           free(mdrv);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_mdrv0 = 100;
           struct mic_driver * mdrv = (struct mic_driver *) malloc(_len_mdrv0*sizeof(struct mic_driver));
           for(int _i0 = 0; _i0 < _len_mdrv0; _i0++) {
-            mdrv[_i0].intr_info.num_intr = ((-2 * (next_i()%2)) + 1) * next_i();
+              mdrv[_i0].intr_info.num_intr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          mic_hw_intr_init(mdrv);
+          free(mdrv);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_mdrv0 = 1;
+          struct mic_driver * mdrv = (struct mic_driver *) malloc(_len_mdrv0*sizeof(struct mic_driver));
+          for(int _i0 = 0; _i0 < _len_mdrv0; _i0++) {
+              mdrv[_i0].intr_info.num_intr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           mic_hw_intr_init(mdrv);
           free(mdrv);
         

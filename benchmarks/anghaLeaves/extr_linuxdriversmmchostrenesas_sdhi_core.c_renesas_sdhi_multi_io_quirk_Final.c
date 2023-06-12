@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ __attribute__((used)) static int renesas_sdhi_multi_io_quirk(struct mmc_card *ca
 	return blk_size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,12 +93,36 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int direction = 100;
+        
           int blk_size = 100;
+        
           int _len_card0 = 1;
           struct mmc_card * card = (struct mmc_card *) malloc(_len_card0*sizeof(struct mmc_card));
           for(int _i0 = 0; _i0 < _len_card0; _i0++) {
-            card[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              card[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = renesas_sdhi_multi_io_quirk(card,direction,blk_size);
+          printf("%d\n", benchRet); 
+          free(card);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned int direction = 255;
+        
+          int blk_size = 255;
+        
+          int _len_card0 = 65025;
+          struct mmc_card * card = (struct mmc_card *) malloc(_len_card0*sizeof(struct mmc_card));
+          for(int _i0 = 0; _i0 < _len_card0; _i0++) {
+              card[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = renesas_sdhi_multi_io_quirk(card,direction,blk_size);
           printf("%d\n", benchRet); 
           free(card);
@@ -110,22 +130,45 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned int direction = 10;
+        
           int blk_size = 10;
+        
           int _len_card0 = 100;
           struct mmc_card * card = (struct mmc_card *) malloc(_len_card0*sizeof(struct mmc_card));
           for(int _i0 = 0; _i0 < _len_card0; _i0++) {
-            card[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              card[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = renesas_sdhi_multi_io_quirk(card,direction,blk_size);
           printf("%d\n", benchRet); 
           free(card);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int direction = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int blk_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_card0 = 1;
+          struct mmc_card * card = (struct mmc_card *) malloc(_len_card0*sizeof(struct mmc_card));
+          for(int _i0 = 0; _i0 < _len_card0; _i0++) {
+              card[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = renesas_sdhi_multi_io_quirk(card,direction,blk_size);
+          printf("%d\n", benchRet); 
+          free(card);
+        
+        break;
+    }
     default:
         usage();
         break;

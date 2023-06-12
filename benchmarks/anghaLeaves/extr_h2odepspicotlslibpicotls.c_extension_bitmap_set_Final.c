@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static inline void extension_bitmap_set(struct st_ptls_ext
         bitmap->bits[id / 8] |= 1 << (id % 8);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,10 +76,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 3
+          // dynamic_instructions_O1 : 3
+          // ------------------------------- 
+          // static_instructions_O2 : 3
+          // dynamic_instructions_O2 : 3
+          // ------------------------------- 
+          // static_instructions_O3 : 3
+          // dynamic_instructions_O3 : 3
+          // ------------------------------- 
+          // static_instructions_Ofast : 3
+          // dynamic_instructions_Ofast : 3
+          // ------------------------------- 
+          // static_instructions_Os : 3
+          // dynamic_instructions_Os : 3
+          // ------------------------------- 
+          // static_instructions_Oz : 3
+          // dynamic_instructions_Oz : 3
+          // ------------------------------- 
+
           int id = 100;
+        
           int _len_bitmap0 = 1;
           struct st_ptls_extension_bitmap_t * bitmap = (struct st_ptls_extension_bitmap_t *) malloc(_len_bitmap0*sizeof(struct st_ptls_extension_bitmap_t));
           for(int _i0 = 0; _i0 < _len_bitmap0; _i0++) {
@@ -92,7 +112,105 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_bitmap__i0__bits0; _j0++) {
             bitmap[_i0].bits[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          extension_bitmap_set(bitmap,id);
+          for(int _aux = 0; _aux < _len_bitmap0; _aux++) {
+          free(bitmap[_aux].bits);
+          }
+          free(bitmap);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 3
+          // dynamic_instructions_O1 : 3
+          // ------------------------------- 
+          // static_instructions_O2 : 3
+          // dynamic_instructions_O2 : 3
+          // ------------------------------- 
+          // static_instructions_O3 : 3
+          // dynamic_instructions_O3 : 3
+          // ------------------------------- 
+          // static_instructions_Ofast : 3
+          // dynamic_instructions_Ofast : 3
+          // ------------------------------- 
+          // static_instructions_Os : 3
+          // dynamic_instructions_Os : 3
+          // ------------------------------- 
+          // static_instructions_Oz : 3
+          // dynamic_instructions_Oz : 3
+          // ------------------------------- 
+
+          int id = 255;
+        
+          int _len_bitmap0 = 65025;
+          struct st_ptls_extension_bitmap_t * bitmap = (struct st_ptls_extension_bitmap_t *) malloc(_len_bitmap0*sizeof(struct st_ptls_extension_bitmap_t));
+          for(int _i0 = 0; _i0 < _len_bitmap0; _i0++) {
+              int _len_bitmap__i0__bits0 = 1;
+          bitmap[_i0].bits = (int *) malloc(_len_bitmap__i0__bits0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_bitmap__i0__bits0; _j0++) {
+            bitmap[_i0].bits[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          extension_bitmap_set(bitmap,id);
+          for(int _aux = 0; _aux < _len_bitmap0; _aux++) {
+          free(bitmap[_aux].bits);
+          }
+          free(bitmap);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 3
+          // dynamic_instructions_O1 : 3
+          // ------------------------------- 
+          // static_instructions_O2 : 3
+          // dynamic_instructions_O2 : 3
+          // ------------------------------- 
+          // static_instructions_O3 : 3
+          // dynamic_instructions_O3 : 3
+          // ------------------------------- 
+          // static_instructions_Ofast : 3
+          // dynamic_instructions_Ofast : 3
+          // ------------------------------- 
+          // static_instructions_Os : 3
+          // dynamic_instructions_Os : 3
+          // ------------------------------- 
+          // static_instructions_Oz : 3
+          // dynamic_instructions_Oz : 3
+          // ------------------------------- 
+
+          int id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_bitmap0 = 1;
+          struct st_ptls_extension_bitmap_t * bitmap = (struct st_ptls_extension_bitmap_t *) malloc(_len_bitmap0*sizeof(struct st_ptls_extension_bitmap_t));
+          for(int _i0 = 0; _i0 < _len_bitmap0; _i0++) {
+              int _len_bitmap__i0__bits0 = 1;
+          bitmap[_i0].bits = (int *) malloc(_len_bitmap__i0__bits0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_bitmap__i0__bits0; _j0++) {
+            bitmap[_i0].bits[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           extension_bitmap_set(bitmap,id);
           for(int _aux = 0; _aux < _len_bitmap0; _aux++) {
           free(bitmap[_aux].bits);

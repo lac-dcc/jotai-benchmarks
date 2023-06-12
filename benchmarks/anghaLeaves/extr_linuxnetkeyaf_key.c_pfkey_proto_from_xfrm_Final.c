@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static uint8_t pfkey_proto_from_xfrm(uint8_t proto)
 	return proto ? proto : IPSEC_PROTO_ANY;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long proto = 100;
+        
           long benchRet = pfkey_proto_from_xfrm(proto);
           printf("%ld\n", benchRet); 
         
@@ -94,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long proto = 255;
+        
           long benchRet = pfkey_proto_from_xfrm(proto);
           printf("%ld\n", benchRet); 
         
@@ -103,12 +100,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long proto = 10;
+        
           long benchRet = pfkey_proto_from_xfrm(proto);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long proto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long benchRet = pfkey_proto_from_xfrm(proto);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

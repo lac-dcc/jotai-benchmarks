@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -212,12 +213,6 @@ __attribute__((used)) static u8 _rtl92e_rate_mgn_to_hw(u8 rate)
 	return ret;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -234,6 +229,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int rate = 100;
+        
           int benchRet = _rtl92e_rate_mgn_to_hw(rate);
           printf("%d\n", benchRet); 
         
@@ -243,6 +239,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int rate = 255;
+        
           int benchRet = _rtl92e_rate_mgn_to_hw(rate);
           printf("%d\n", benchRet); 
         
@@ -252,12 +249,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int rate = 10;
+        
           int benchRet = _rtl92e_rate_mgn_to_hw(rate);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = _rtl92e_rate_mgn_to_hw(rate);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

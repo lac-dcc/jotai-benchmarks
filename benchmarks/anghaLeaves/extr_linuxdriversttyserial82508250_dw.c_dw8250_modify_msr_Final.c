@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ __attribute__((used)) static inline int dw8250_modify_msr(struct uart_port *p, i
 	return value;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,21 +85,208 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int offset = 100;
+        
           int value = 100;
+        
           int _len_p0 = 1;
           struct uart_port * p = (struct uart_port *) malloc(_len_p0*sizeof(struct uart_port));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
               int _len_p__i0__private_data0 = 1;
           p[_i0].private_data = (struct dw8250_data *) malloc(_len_p__i0__private_data0*sizeof(struct dw8250_data));
           for(int _j0 = 0; _j0 < _len_p__i0__private_data0; _j0++) {
-            p[_i0].private_data->msr_mask_on = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].private_data->msr_mask_off = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].private_data->msr_mask_on = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].private_data->msr_mask_off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = dw8250_modify_msr(p,offset,value);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_p0; _aux++) {
+          free(p[_aux].private_data);
+          }
+          free(p);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int offset = 255;
+        
+          int value = 255;
+        
+          int _len_p0 = 65025;
+          struct uart_port * p = (struct uart_port *) malloc(_len_p0*sizeof(struct uart_port));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              int _len_p__i0__private_data0 = 1;
+          p[_i0].private_data = (struct dw8250_data *) malloc(_len_p__i0__private_data0*sizeof(struct dw8250_data));
+          for(int _j0 = 0; _j0 < _len_p__i0__private_data0; _j0++) {
+              p[_i0].private_data->msr_mask_on = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].private_data->msr_mask_off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = dw8250_modify_msr(p,offset,value);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_p0; _aux++) {
+          free(p[_aux].private_data);
+          }
+          free(p);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int offset = 10;
+        
+          int value = 10;
+        
+          int _len_p0 = 100;
+          struct uart_port * p = (struct uart_port *) malloc(_len_p0*sizeof(struct uart_port));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              int _len_p__i0__private_data0 = 1;
+          p[_i0].private_data = (struct dw8250_data *) malloc(_len_p__i0__private_data0*sizeof(struct dw8250_data));
+          for(int _j0 = 0; _j0 < _len_p__i0__private_data0; _j0++) {
+              p[_i0].private_data->msr_mask_on = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].private_data->msr_mask_off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = dw8250_modify_msr(p,offset,value);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_p0; _aux++) {
+          free(p[_aux].private_data);
+          }
+          free(p);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_p0 = 1;
+          struct uart_port * p = (struct uart_port *) malloc(_len_p0*sizeof(struct uart_port));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              int _len_p__i0__private_data0 = 1;
+          p[_i0].private_data = (struct dw8250_data *) malloc(_len_p__i0__private_data0*sizeof(struct dw8250_data));
+          for(int _j0 = 0; _j0 < _len_p__i0__private_data0; _j0++) {
+              p[_i0].private_data->msr_mask_on = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].private_data->msr_mask_off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = dw8250_modify_msr(p,offset,value);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_p0; _aux++) {

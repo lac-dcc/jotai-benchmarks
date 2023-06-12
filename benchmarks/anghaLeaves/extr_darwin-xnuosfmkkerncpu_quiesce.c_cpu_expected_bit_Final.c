@@ -61,12 +61,6 @@ cpu_expected_bit(int cpuid)
 	return 1UL << (2 * cpuid + 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,12 +77,12 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int cpuid = 10;
+        
           unsigned long benchRet = cpu_expected_bit(cpuid);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

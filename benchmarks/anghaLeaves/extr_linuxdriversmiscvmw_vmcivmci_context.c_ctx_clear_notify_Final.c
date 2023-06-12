@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static void ctx_clear_notify(struct vmci_ctx *context)
 	*context->notify = false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,8 +74,52 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
+    {
+          int _len_context0 = 65025;
+          struct vmci_ctx * context = (struct vmci_ctx *) malloc(_len_context0*sizeof(struct vmci_ctx));
+          for(int _i0 = 0; _i0 < _len_context0; _i0++) {
+              int _len_context__i0__notify0 = 1;
+          context[_i0].notify = (int *) malloc(_len_context__i0__notify0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_context__i0__notify0; _j0++) {
+            context[_i0].notify[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          ctx_clear_notify(context);
+          for(int _aux = 0; _aux < _len_context0; _aux++) {
+          free(context[_aux].notify);
+          }
+          free(context);
+        
+        break;
+    }
+    // big-arr-10x
+    case 1:
+    {
+          int _len_context0 = 100;
+          struct vmci_ctx * context = (struct vmci_ctx *) malloc(_len_context0*sizeof(struct vmci_ctx));
+          for(int _i0 = 0; _i0 < _len_context0; _i0++) {
+              int _len_context__i0__notify0 = 1;
+          context[_i0].notify = (int *) malloc(_len_context__i0__notify0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_context__i0__notify0; _j0++) {
+            context[_i0].notify[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          ctx_clear_notify(context);
+          for(int _aux = 0; _aux < _len_context0; _aux++) {
+          free(context[_aux].notify);
+          }
+          free(context);
+        
+        break;
+    }
+    // empty
+    case 2:
     {
           int _len_context0 = 1;
           struct vmci_ctx * context = (struct vmci_ctx *) malloc(_len_context0*sizeof(struct vmci_ctx));
@@ -89,7 +129,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_context__i0__notify0; _j0++) {
             context[_i0].notify[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           ctx_clear_notify(context);
           for(int _aux = 0; _aux < _len_context0; _aux++) {
           free(context[_aux].notify);
@@ -98,7 +140,6 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
     default:
         usage();
         break;

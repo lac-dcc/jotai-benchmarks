@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +65,6 @@ __attribute__((used)) static void cypress_set_packet_size(struct psmouse *psmous
 	cytp->pkt_size = n;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,19 +77,193 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           unsigned int n = 100;
+        
           int _len_psmouse0 = 1;
           struct psmouse * psmouse = (struct psmouse *) malloc(_len_psmouse0*sizeof(struct psmouse));
           for(int _i0 = 0; _i0 < _len_psmouse0; _i0++) {
               int _len_psmouse__i0__private0 = 1;
           psmouse[_i0].private = (struct cytp_data *) malloc(_len_psmouse__i0__private0*sizeof(struct cytp_data));
           for(int _j0 = 0; _j0 < _len_psmouse__i0__private0; _j0++) {
-            psmouse[_i0].private->pkt_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              psmouse[_i0].private->pkt_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          cypress_set_packet_size(psmouse,n);
+          for(int _aux = 0; _aux < _len_psmouse0; _aux++) {
+          free(psmouse[_aux].private);
+          }
+          free(psmouse);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int n = 255;
+        
+          int _len_psmouse0 = 65025;
+          struct psmouse * psmouse = (struct psmouse *) malloc(_len_psmouse0*sizeof(struct psmouse));
+          for(int _i0 = 0; _i0 < _len_psmouse0; _i0++) {
+              int _len_psmouse__i0__private0 = 1;
+          psmouse[_i0].private = (struct cytp_data *) malloc(_len_psmouse__i0__private0*sizeof(struct cytp_data));
+          for(int _j0 = 0; _j0 < _len_psmouse__i0__private0; _j0++) {
+              psmouse[_i0].private->pkt_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          cypress_set_packet_size(psmouse,n);
+          for(int _aux = 0; _aux < _len_psmouse0; _aux++) {
+          free(psmouse[_aux].private);
+          }
+          free(psmouse);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int n = 10;
+        
+          int _len_psmouse0 = 100;
+          struct psmouse * psmouse = (struct psmouse *) malloc(_len_psmouse0*sizeof(struct psmouse));
+          for(int _i0 = 0; _i0 < _len_psmouse0; _i0++) {
+              int _len_psmouse__i0__private0 = 1;
+          psmouse[_i0].private = (struct cytp_data *) malloc(_len_psmouse__i0__private0*sizeof(struct cytp_data));
+          for(int _j0 = 0; _j0 < _len_psmouse__i0__private0; _j0++) {
+              psmouse[_i0].private->pkt_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          cypress_set_packet_size(psmouse,n);
+          for(int _aux = 0; _aux < _len_psmouse0; _aux++) {
+          free(psmouse[_aux].private);
+          }
+          free(psmouse);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_psmouse0 = 1;
+          struct psmouse * psmouse = (struct psmouse *) malloc(_len_psmouse0*sizeof(struct psmouse));
+          for(int _i0 = 0; _i0 < _len_psmouse0; _i0++) {
+              int _len_psmouse__i0__private0 = 1;
+          psmouse[_i0].private = (struct cytp_data *) malloc(_len_psmouse__i0__private0*sizeof(struct cytp_data));
+          for(int _j0 = 0; _j0 < _len_psmouse__i0__private0; _j0++) {
+              psmouse[_i0].private->pkt_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           cypress_set_packet_size(psmouse,n);
           for(int _aux = 0; _aux < _len_psmouse0; _aux++) {
           free(psmouse[_aux].private);

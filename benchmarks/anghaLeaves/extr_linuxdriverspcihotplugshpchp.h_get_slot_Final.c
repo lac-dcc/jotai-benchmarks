@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static inline struct slot *get_slot(struct hotplug_slot *h
 	return hotplug_slot->private;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,18 +75,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_hotplug_slot0 = 1;
+          int _len_hotplug_slot0 = 65025;
           struct hotplug_slot * hotplug_slot = (struct hotplug_slot *) malloc(_len_hotplug_slot0*sizeof(struct hotplug_slot));
           for(int _i0 = 0; _i0 < _len_hotplug_slot0; _i0++) {
               int _len_hotplug_slot__i0__private0 = 1;
           hotplug_slot[_i0].private = (struct slot *) malloc(_len_hotplug_slot__i0__private0*sizeof(struct slot));
           for(int _j0 = 0; _j0 < _len_hotplug_slot__i0__private0; _j0++) {
-            hotplug_slot[_i0].private->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              hotplug_slot[_i0].private->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct slot * benchRet = get_slot(hotplug_slot);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_hotplug_slot0; _aux++) {
@@ -100,7 +99,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_hotplug_slot0 = 100;
+          struct hotplug_slot * hotplug_slot = (struct hotplug_slot *) malloc(_len_hotplug_slot0*sizeof(struct hotplug_slot));
+          for(int _i0 = 0; _i0 < _len_hotplug_slot0; _i0++) {
+              int _len_hotplug_slot__i0__private0 = 1;
+          hotplug_slot[_i0].private = (struct slot *) malloc(_len_hotplug_slot__i0__private0*sizeof(struct slot));
+          for(int _j0 = 0; _j0 < _len_hotplug_slot__i0__private0; _j0++) {
+              hotplug_slot[_i0].private->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct slot * benchRet = get_slot(hotplug_slot);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_hotplug_slot0; _aux++) {
+          free(hotplug_slot[_aux].private);
+          }
+          free(hotplug_slot);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_hotplug_slot0 = 1;
+          struct hotplug_slot * hotplug_slot = (struct hotplug_slot *) malloc(_len_hotplug_slot0*sizeof(struct hotplug_slot));
+          for(int _i0 = 0; _i0 < _len_hotplug_slot0; _i0++) {
+              int _len_hotplug_slot__i0__private0 = 1;
+          hotplug_slot[_i0].private = (struct slot *) malloc(_len_hotplug_slot__i0__private0*sizeof(struct slot));
+          for(int _j0 = 0; _j0 < _len_hotplug_slot__i0__private0; _j0++) {
+              hotplug_slot[_i0].private->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct slot * benchRet = get_slot(hotplug_slot);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_hotplug_slot0; _aux++) {
+          free(hotplug_slot[_aux].private);
+          }
+          free(hotplug_slot);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static unsigned long arm_smmu_resource_size(struct arm_smm
 		return SZ_128K;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,14 +80,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_smmu0 = 1;
+          int _len_smmu0 = 65025;
           struct arm_smmu_device * smmu = (struct arm_smmu_device *) malloc(_len_smmu0*sizeof(struct arm_smmu_device));
           for(int _i0 = 0; _i0 < _len_smmu0; _i0++) {
-            smmu[_i0].options = ((-2 * (next_i()%2)) + 1) * next_i();
+              smmu[_i0].options = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = arm_smmu_resource_size(smmu);
           printf("%lu\n", benchRet); 
           free(smmu);
@@ -105,15 +102,32 @@ int main(int argc, char *argv[]) {
           int _len_smmu0 = 100;
           struct arm_smmu_device * smmu = (struct arm_smmu_device *) malloc(_len_smmu0*sizeof(struct arm_smmu_device));
           for(int _i0 = 0; _i0 < _len_smmu0; _i0++) {
-            smmu[_i0].options = ((-2 * (next_i()%2)) + 1) * next_i();
+              smmu[_i0].options = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = arm_smmu_resource_size(smmu);
           printf("%lu\n", benchRet); 
           free(smmu);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_smmu0 = 1;
+          struct arm_smmu_device * smmu = (struct arm_smmu_device *) malloc(_len_smmu0*sizeof(struct arm_smmu_device));
+          for(int _i0 = 0; _i0 < _len_smmu0; _i0++) {
+              smmu[_i0].options = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = arm_smmu_resource_size(smmu);
+          printf("%lu\n", benchRet); 
+          free(smmu);
+        
+        break;
+    }
     default:
         usage();
         break;

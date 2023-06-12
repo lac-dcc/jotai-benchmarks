@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static inline bool ufshcd_is_hs_mode(struct ufs_pa_layer_a
 		pwr_info->pwr_tx == FASTAUTO_MODE);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,22 +79,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pwr_info0 = 1;
+          int _len_pwr_info0 = 65025;
           struct ufs_pa_layer_attr * pwr_info = (struct ufs_pa_layer_attr *) malloc(_len_pwr_info0*sizeof(struct ufs_pa_layer_attr));
           for(int _i0 = 0; _i0 < _len_pwr_info0; _i0++) {
-            pwr_info[_i0].pwr_rx = ((-2 * (next_i()%2)) + 1) * next_i();
-        pwr_info[_i0].pwr_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+              pwr_info[_i0].pwr_rx = ((-2 * (next_i()%2)) + 1) * next_i();
+          pwr_info[_i0].pwr_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ufshcd_is_hs_mode(pwr_info);
           printf("%d\n", benchRet); 
           free(pwr_info);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_pwr_info0 = 100;
+          struct ufs_pa_layer_attr * pwr_info = (struct ufs_pa_layer_attr *) malloc(_len_pwr_info0*sizeof(struct ufs_pa_layer_attr));
+          for(int _i0 = 0; _i0 < _len_pwr_info0; _i0++) {
+              pwr_info[_i0].pwr_rx = ((-2 * (next_i()%2)) + 1) * next_i();
+          pwr_info[_i0].pwr_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ufshcd_is_hs_mode(pwr_info);
+          printf("%d\n", benchRet); 
+          free(pwr_info);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_pwr_info0 = 1;
+          struct ufs_pa_layer_attr * pwr_info = (struct ufs_pa_layer_attr *) malloc(_len_pwr_info0*sizeof(struct ufs_pa_layer_attr));
+          for(int _i0 = 0; _i0 < _len_pwr_info0; _i0++) {
+              pwr_info[_i0].pwr_rx = ((-2 * (next_i()%2)) + 1) * next_i();
+          pwr_info[_i0].pwr_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ufshcd_is_hs_mode(pwr_info);
+          printf("%d\n", benchRet); 
+          free(pwr_info);
+        
+        break;
+    }
     default:
         usage();
         break;

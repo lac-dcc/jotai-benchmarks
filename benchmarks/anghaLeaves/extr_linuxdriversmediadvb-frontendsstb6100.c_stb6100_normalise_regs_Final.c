@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ __attribute__((used)) static inline void stb6100_normalise_regs(u8 regs[])
 		regs[i] = (regs[i] & stb6100_template[i].mask) | stb6100_template[i].set;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,14 +81,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_regs0 = 1;
+          int _len_regs0 = 65025;
           int * regs = (int *) malloc(_len_regs0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_regs0; _i0++) {
             regs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           stb6100_normalise_regs(regs);
           free(regs);
         
@@ -107,12 +103,26 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_regs0; _i0++) {
             regs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           stb6100_normalise_regs(regs);
           free(regs);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_regs0 = 1;
+          int * regs = (int *) malloc(_len_regs0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_regs0; _i0++) {
+            regs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          stb6100_normalise_regs(regs);
+          free(regs);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -110,12 +112,6 @@ __attribute__((used)) static u8 Hal_GetChnlGroup88E(u8 chnl, u8 *pGroup)
 	return bIn24G;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -128,30 +124,163 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           int chnl = 100;
+        
           int _len_pGroup0 = 1;
           int * pGroup = (int *) malloc(_len_pGroup0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pGroup0; _i0++) {
             pGroup[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = Hal_GetChnlGroup88E(chnl,pGroup);
           printf("%d\n", benchRet); 
           free(pGroup);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 50
+          // dynamic_instructions_O0 : 50
+          // ------------------------------- 
+          // static_instructions_O1 : 41
+          // dynamic_instructions_O1 : 41
+          // ------------------------------- 
+          // static_instructions_O2 : 41
+          // dynamic_instructions_O2 : 41
+          // ------------------------------- 
+          // static_instructions_O3 : 41
+          // dynamic_instructions_O3 : 41
+          // ------------------------------- 
+          // static_instructions_Ofast : 41
+          // dynamic_instructions_Ofast : 41
+          // ------------------------------- 
+          // static_instructions_Os : 41
+          // dynamic_instructions_Os : 41
+          // ------------------------------- 
+          // static_instructions_Oz : 29
+          // dynamic_instructions_Oz : 29
+          // ------------------------------- 
+
+          int chnl = 255;
+        
+          int _len_pGroup0 = 65025;
+          int * pGroup = (int *) malloc(_len_pGroup0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pGroup0; _i0++) {
+            pGroup[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = Hal_GetChnlGroup88E(chnl,pGroup);
+          printf("%d\n", benchRet); 
+          free(pGroup);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int chnl = 10;
+        
           int _len_pGroup0 = 100;
           int * pGroup = (int *) malloc(_len_pGroup0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pGroup0; _i0++) {
             pGroup[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = Hal_GetChnlGroup88E(chnl,pGroup);
+          printf("%d\n", benchRet); 
+          free(pGroup);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int chnl = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pGroup0 = 1;
+          int * pGroup = (int *) malloc(_len_pGroup0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pGroup0; _i0++) {
+            pGroup[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = Hal_GetChnlGroup88E(chnl,pGroup);
           printf("%d\n", benchRet); 
           free(pGroup);

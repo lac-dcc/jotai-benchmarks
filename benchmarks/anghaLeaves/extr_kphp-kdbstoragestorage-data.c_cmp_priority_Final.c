@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static storage_binlog_file_t *cmp_priority (void **IP, sto
   return A;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,27 +81,166 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_IP0 = 65025;
+          void ** IP = (void **) malloc(_len_IP0*sizeof(void *));
+          for(int _i0 = 0; _i0 < _len_IP0; _i0++) {
+          }
+        
+          int _len_A0 = 65025;
+          struct TYPE_5__ * A = (struct TYPE_5__ *) malloc(_len_A0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_A0; _i0++) {
+              A[_i0].priority = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_B0 = 65025;
+          struct TYPE_5__ * B = (struct TYPE_5__ *) malloc(_len_B0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_B0; _i0++) {
+              B[_i0].priority = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct TYPE_5__ * benchRet = cmp_priority(IP,A,B);
+          printf("%ld\n", (*benchRet).priority);
+          for(int i1 = 0; i1 < _len_IP0; i1++) {
+              }
+          free(IP);
+          free(A);
+          free(B);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_IP0 = 100;
+          void ** IP = (void **) malloc(_len_IP0*sizeof(void *));
+          for(int _i0 = 0; _i0 < _len_IP0; _i0++) {
+          }
+        
+          int _len_A0 = 100;
+          struct TYPE_5__ * A = (struct TYPE_5__ *) malloc(_len_A0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_A0; _i0++) {
+              A[_i0].priority = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_B0 = 100;
+          struct TYPE_5__ * B = (struct TYPE_5__ *) malloc(_len_B0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_B0; _i0++) {
+              B[_i0].priority = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct TYPE_5__ * benchRet = cmp_priority(IP,A,B);
+          printf("%ld\n", (*benchRet).priority);
+          for(int i1 = 0; i1 < _len_IP0; i1++) {
+              }
+          free(IP);
+          free(A);
+          free(B);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_IP0 = 1;
           void ** IP = (void **) malloc(_len_IP0*sizeof(void *));
           for(int _i0 = 0; _i0 < _len_IP0; _i0++) {
           }
+        
           int _len_A0 = 1;
           struct TYPE_5__ * A = (struct TYPE_5__ *) malloc(_len_A0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_A0; _i0++) {
-            A[_i0].priority = ((-2 * (next_i()%2)) + 1) * next_i();
+              A[_i0].priority = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_B0 = 1;
           struct TYPE_5__ * B = (struct TYPE_5__ *) malloc(_len_B0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_B0; _i0++) {
-            B[_i0].priority = ((-2 * (next_i()%2)) + 1) * next_i();
+              B[_i0].priority = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           struct TYPE_5__ * benchRet = cmp_priority(IP,A,B);
           printf("%ld\n", (*benchRet).priority);
           for(int i1 = 0; i1 < _len_IP0; i1++) {
-            int _len_IP1 = 1;
               }
           free(IP);
           free(A);

@@ -31,7 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static inline void ext4_es_store_status(struct extent_stat
 		      (es->es_pblk & ~ES_MASK);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,29 +79,123 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           unsigned int status = 100;
+        
           int _len_es0 = 1;
           struct extent_status * es = (struct extent_status *) malloc(_len_es0*sizeof(struct extent_status));
           for(int _i0 = 0; _i0 < _len_es0; _i0++) {
-            es[_i0].es_pblk = ((-2 * (next_i()%2)) + 1) * next_i();
+              es[_i0].es_pblk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ext4_es_store_status(es,status);
           free(es);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          unsigned int status = 255;
+        
+          int _len_es0 = 65025;
+          struct extent_status * es = (struct extent_status *) malloc(_len_es0*sizeof(struct extent_status));
+          for(int _i0 = 0; _i0 < _len_es0; _i0++) {
+              es[_i0].es_pblk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ext4_es_store_status(es,status);
+          free(es);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           unsigned int status = 10;
+        
           int _len_es0 = 100;
           struct extent_status * es = (struct extent_status *) malloc(_len_es0*sizeof(struct extent_status));
           for(int _i0 = 0; _i0 < _len_es0; _i0++) {
-            es[_i0].es_pblk = ((-2 * (next_i()%2)) + 1) * next_i();
+              es[_i0].es_pblk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ext4_es_store_status(es,status);
           free(es);
         

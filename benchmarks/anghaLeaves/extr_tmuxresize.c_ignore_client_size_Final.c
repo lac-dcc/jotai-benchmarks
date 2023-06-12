@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ ignore_client_size(struct client *c)
 	return (0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,19 +84,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_c0 = 1;
+          int _len_c0 = 65025;
           struct client * c = (struct client *) malloc(_len_c0*sizeof(struct client));
           for(int _i0 = 0; _i0 < _len_c0; _i0++) {
-            c[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              c[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_c__i0__session0 = 1;
           c[_i0].session = (int *) malloc(_len_c__i0__session0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_c__i0__session0; _j0++) {
             c[_i0].session[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = ignore_client_size(c);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_c0; _aux++) {
@@ -110,7 +108,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_c0 = 100;
+          struct client * c = (struct client *) malloc(_len_c0*sizeof(struct client));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_c__i0__session0 = 1;
+          c[_i0].session = (int *) malloc(_len_c__i0__session0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_c__i0__session0; _j0++) {
+            c[_i0].session[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = ignore_client_size(c);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_c0; _aux++) {
+          free(c[_aux].session);
+          }
+          free(c);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_c0 = 1;
+          struct client * c = (struct client *) malloc(_len_c0*sizeof(struct client));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_c__i0__session0 = 1;
+          c[_i0].session = (int *) malloc(_len_c__i0__session0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_c__i0__session0; _j0++) {
+            c[_i0].session[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = ignore_client_size(c);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_c0; _aux++) {
+          free(c[_aux].session);
+          }
+          free(c);
+        
+        break;
+    }
     default:
         usage();
         break;

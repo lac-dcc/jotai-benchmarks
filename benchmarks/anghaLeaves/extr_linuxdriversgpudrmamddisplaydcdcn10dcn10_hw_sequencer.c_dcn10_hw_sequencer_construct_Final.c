@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ void dcn10_hw_sequencer_construct(struct dc *dc)
 	dc->hwss = dcn10_funcs;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dc0 = 1;
+          int _len_dc0 = 65025;
           struct dc * dc = (struct dc *) malloc(_len_dc0*sizeof(struct dc));
           for(int _i0 = 0; _i0 < _len_dc0; _i0++) {
-            dc[_i0].hwss = ((-2 * (next_i()%2)) + 1) * next_i();
+              dc[_i0].hwss = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           dcn10_hw_sequencer_construct(dc);
           free(dc);
         
@@ -99,14 +96,30 @@ int main(int argc, char *argv[]) {
           int _len_dc0 = 100;
           struct dc * dc = (struct dc *) malloc(_len_dc0*sizeof(struct dc));
           for(int _i0 = 0; _i0 < _len_dc0; _i0++) {
-            dc[_i0].hwss = ((-2 * (next_i()%2)) + 1) * next_i();
+              dc[_i0].hwss = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           dcn10_hw_sequencer_construct(dc);
           free(dc);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_dc0 = 1;
+          struct dc * dc = (struct dc *) malloc(_len_dc0*sizeof(struct dc));
+          for(int _i0 = 0; _i0 < _len_dc0; _i0++) {
+              dc[_i0].hwss = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          dcn10_hw_sequencer_construct(dc);
+          free(dc);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +72,6 @@ bool mesh_action_is_path_sel(struct ieee80211_mgmt *mgmt)
 			WLAN_MESH_ACTION_HWMP_PATH_SELECTION);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,14 +84,20 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_mgmt0 = 1;
+          int _len_mgmt0 = 65025;
           struct ieee80211_mgmt * mgmt = (struct ieee80211_mgmt *) malloc(_len_mgmt0*sizeof(struct ieee80211_mgmt));
           for(int _i0 = 0; _i0 < _len_mgmt0; _i0++) {
-            mgmt[_i0].u.action.u.mesh_action.action_code = ((-2 * (next_i()%2)) + 1) * next_i();
+              mgmt[_i0].u.action.u.mesh_action.action_code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
+        
           }
+        
           int benchRet = mesh_action_is_path_sel(mgmt);
           printf("%d\n", benchRet); 
           free(mgmt);
@@ -109,15 +110,40 @@ int main(int argc, char *argv[]) {
           int _len_mgmt0 = 100;
           struct ieee80211_mgmt * mgmt = (struct ieee80211_mgmt *) malloc(_len_mgmt0*sizeof(struct ieee80211_mgmt));
           for(int _i0 = 0; _i0 < _len_mgmt0; _i0++) {
-            mgmt[_i0].u.action.u.mesh_action.action_code = ((-2 * (next_i()%2)) + 1) * next_i();
+              mgmt[_i0].u.action.u.mesh_action.action_code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
+        
           }
+        
           int benchRet = mesh_action_is_path_sel(mgmt);
           printf("%d\n", benchRet); 
           free(mgmt);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_mgmt0 = 1;
+          struct ieee80211_mgmt * mgmt = (struct ieee80211_mgmt *) malloc(_len_mgmt0*sizeof(struct ieee80211_mgmt));
+          for(int _i0 = 0; _i0 < _len_mgmt0; _i0++) {
+              mgmt[_i0].u.action.u.mesh_action.action_code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
+        
+          }
+        
+          int benchRet = mesh_action_is_path_sel(mgmt);
+          printf("%d\n", benchRet); 
+          free(mgmt);
+        
+        break;
+    }
     default:
         usage();
         break;

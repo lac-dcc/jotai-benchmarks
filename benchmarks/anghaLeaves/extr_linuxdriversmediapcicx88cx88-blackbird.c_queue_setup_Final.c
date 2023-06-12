@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static int queue_setup(struct vb2_queue *q,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,43 +84,74 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_q0 = 1;
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_q0 = 65025;
           struct vb2_queue * q = (struct vb2_queue *) malloc(_len_q0*sizeof(struct vb2_queue));
           for(int _i0 = 0; _i0 < _len_q0; _i0++) {
               int _len_q__i0__drv_priv0 = 1;
           q[_i0].drv_priv = (struct cx8802_dev *) malloc(_len_q__i0__drv_priv0*sizeof(struct cx8802_dev));
           for(int _j0 = 0; _j0 < _len_q__i0__drv_priv0; _j0++) {
-            q[_i0].drv_priv->ts_packet_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].drv_priv->ts_packet_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              q[_i0].drv_priv->ts_packet_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].drv_priv->ts_packet_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
-          int _len_num_buffers0 = 1;
+        
+          int _len_num_buffers0 = 65025;
           unsigned int * num_buffers = (unsigned int *) malloc(_len_num_buffers0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_num_buffers0; _i0++) {
             num_buffers[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_num_planes0 = 1;
+        
+          int _len_num_planes0 = 65025;
           unsigned int * num_planes = (unsigned int *) malloc(_len_num_planes0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_num_planes0; _i0++) {
             num_planes[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_sizes0 = 1;
+        
+          int _len_sizes0 = 65025;
           unsigned int * sizes = (unsigned int *) malloc(_len_sizes0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_sizes0; _i0++) {
             sizes[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_alloc_devs0 = 1;
+        
+          int _len_alloc_devs0 = 65025;
           struct device ** alloc_devs = (struct device **) malloc(_len_alloc_devs0*sizeof(struct device *));
           for(int _i0 = 0; _i0 < _len_alloc_devs0; _i0++) {
             int _len_alloc_devs1 = 1;
             alloc_devs[_i0] = (struct device *) malloc(_len_alloc_devs1*sizeof(struct device));
             for(int _i1 = 0; _i1 < _len_alloc_devs1; _i1++) {
-              alloc_devs[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+                alloc_devs[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           int benchRet = queue_setup(q,num_buffers,num_planes,sizes,alloc_devs);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_q0; _aux++) {
@@ -135,7 +162,176 @@ int main(int argc, char *argv[]) {
           free(num_planes);
           free(sizes);
           for(int i1 = 0; i1 < _len_alloc_devs0; i1++) {
+              free(alloc_devs[i1]);
+          }
+          free(alloc_devs);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_q0 = 100;
+          struct vb2_queue * q = (struct vb2_queue *) malloc(_len_q0*sizeof(struct vb2_queue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              int _len_q__i0__drv_priv0 = 1;
+          q[_i0].drv_priv = (struct cx8802_dev *) malloc(_len_q__i0__drv_priv0*sizeof(struct cx8802_dev));
+          for(int _j0 = 0; _j0 < _len_q__i0__drv_priv0; _j0++) {
+              q[_i0].drv_priv->ts_packet_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].drv_priv->ts_packet_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_num_buffers0 = 100;
+          unsigned int * num_buffers = (unsigned int *) malloc(_len_num_buffers0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_num_buffers0; _i0++) {
+            num_buffers[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_num_planes0 = 100;
+          unsigned int * num_planes = (unsigned int *) malloc(_len_num_planes0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_num_planes0; _i0++) {
+            num_planes[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_sizes0 = 100;
+          unsigned int * sizes = (unsigned int *) malloc(_len_sizes0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_sizes0; _i0++) {
+            sizes[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_alloc_devs0 = 100;
+          struct device ** alloc_devs = (struct device **) malloc(_len_alloc_devs0*sizeof(struct device *));
+          for(int _i0 = 0; _i0 < _len_alloc_devs0; _i0++) {
             int _len_alloc_devs1 = 1;
+            alloc_devs[_i0] = (struct device *) malloc(_len_alloc_devs1*sizeof(struct device));
+            for(int _i1 = 0; _i1 < _len_alloc_devs1; _i1++) {
+                alloc_devs[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int benchRet = queue_setup(q,num_buffers,num_planes,sizes,alloc_devs);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_q0; _aux++) {
+          free(q[_aux].drv_priv);
+          }
+          free(q);
+          free(num_buffers);
+          free(num_planes);
+          free(sizes);
+          for(int i1 = 0; i1 < _len_alloc_devs0; i1++) {
+              free(alloc_devs[i1]);
+          }
+          free(alloc_devs);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_q0 = 1;
+          struct vb2_queue * q = (struct vb2_queue *) malloc(_len_q0*sizeof(struct vb2_queue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              int _len_q__i0__drv_priv0 = 1;
+          q[_i0].drv_priv = (struct cx8802_dev *) malloc(_len_q__i0__drv_priv0*sizeof(struct cx8802_dev));
+          for(int _j0 = 0; _j0 < _len_q__i0__drv_priv0; _j0++) {
+              q[_i0].drv_priv->ts_packet_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].drv_priv->ts_packet_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_num_buffers0 = 1;
+          unsigned int * num_buffers = (unsigned int *) malloc(_len_num_buffers0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_num_buffers0; _i0++) {
+            num_buffers[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_num_planes0 = 1;
+          unsigned int * num_planes = (unsigned int *) malloc(_len_num_planes0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_num_planes0; _i0++) {
+            num_planes[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_sizes0 = 1;
+          unsigned int * sizes = (unsigned int *) malloc(_len_sizes0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_sizes0; _i0++) {
+            sizes[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_alloc_devs0 = 1;
+          struct device ** alloc_devs = (struct device **) malloc(_len_alloc_devs0*sizeof(struct device *));
+          for(int _i0 = 0; _i0 < _len_alloc_devs0; _i0++) {
+            int _len_alloc_devs1 = 1;
+            alloc_devs[_i0] = (struct device *) malloc(_len_alloc_devs1*sizeof(struct device));
+            for(int _i1 = 0; _i1 < _len_alloc_devs1; _i1++) {
+                alloc_devs[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int benchRet = queue_setup(q,num_buffers,num_planes,sizes,alloc_devs);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_q0; _aux++) {
+          free(q[_aux].drv_priv);
+          }
+          free(q);
+          free(num_buffers);
+          free(num_planes);
+          free(sizes);
+          for(int i1 = 0; i1 < _len_alloc_devs0; i1++) {
               free(alloc_devs[i1]);
           }
           free(alloc_devs);

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +76,6 @@ u64 dmi_memdev_size(u16 handle)
 	return ~0ull;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,6 +92,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long handle = 100;
+        
           unsigned long long benchRet = dmi_memdev_size(handle);
           printf("%llu\n", benchRet); 
         
@@ -106,6 +102,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long handle = 255;
+        
           unsigned long long benchRet = dmi_memdev_size(handle);
           printf("%llu\n", benchRet); 
         
@@ -115,12 +112,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long handle = 10;
+        
           unsigned long long benchRet = dmi_memdev_size(handle);
           printf("%llu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long handle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long long benchRet = dmi_memdev_size(handle);
+          printf("%llu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

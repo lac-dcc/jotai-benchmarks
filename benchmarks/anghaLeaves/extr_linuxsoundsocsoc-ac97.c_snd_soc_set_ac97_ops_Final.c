@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +76,6 @@ int snd_soc_set_ac97_ops(struct snd_ac97_bus_ops *ops)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,14 +88,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ops0 = 1;
+          int _len_ops0 = 65025;
           struct snd_ac97_bus_ops * ops = (struct snd_ac97_bus_ops *) malloc(_len_ops0*sizeof(struct snd_ac97_bus_ops));
           for(int _i0 = 0; _i0 < _len_ops0; _i0++) {
-            ops[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ops[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = snd_soc_set_ac97_ops(ops);
           printf("%d\n", benchRet); 
           free(ops);
@@ -113,15 +110,32 @@ int main(int argc, char *argv[]) {
           int _len_ops0 = 100;
           struct snd_ac97_bus_ops * ops = (struct snd_ac97_bus_ops *) malloc(_len_ops0*sizeof(struct snd_ac97_bus_ops));
           for(int _i0 = 0; _i0 < _len_ops0; _i0++) {
-            ops[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ops[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = snd_soc_set_ac97_ops(ops);
           printf("%d\n", benchRet); 
           free(ops);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ops0 = 1;
+          struct snd_ac97_bus_ops * ops = (struct snd_ac97_bus_ops *) malloc(_len_ops0*sizeof(struct snd_ac97_bus_ops));
+          for(int _i0 = 0; _i0 < _len_ops0; _i0++) {
+              ops[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = snd_soc_set_ac97_ops(ops);
+          printf("%d\n", benchRet); 
+          free(ops);
+        
+        break;
+    }
     default:
         usage();
         break;

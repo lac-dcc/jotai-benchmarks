@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ __attribute__((used)) static u32 tsl2563_calib_adc(u32 adc, u32 calib)
 	return (u32) scaled;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,7 +85,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long adc = 100;
+        
           unsigned long calib = 100;
+        
           unsigned long benchRet = tsl2563_calib_adc(adc,calib);
           printf("%lu\n", benchRet); 
         
@@ -100,7 +97,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long adc = 255;
+        
           unsigned long calib = 255;
+        
           unsigned long benchRet = tsl2563_calib_adc(adc,calib);
           printf("%lu\n", benchRet); 
         
@@ -110,13 +109,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long adc = 10;
+        
           unsigned long calib = 10;
+        
           unsigned long benchRet = tsl2563_calib_adc(adc,calib);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long adc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long calib = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = tsl2563_calib_adc(adc,calib);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -60,12 +63,6 @@ __attribute__((used)) static int peer_lut_index(struct switchtec_ntb *sndev, int
 	return mw_idx - sndev->peer_nr_direct_mw + sndev->nr_rsvd_luts;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,16 +75,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int mw_idx = 100;
+        
           int _len_sndev0 = 1;
           struct switchtec_ntb * sndev = (struct switchtec_ntb *) malloc(_len_sndev0*sizeof(struct switchtec_ntb));
           for(int _i0 = 0; _i0 < _len_sndev0; _i0++) {
-            sndev[_i0].peer_nr_direct_mw = ((-2 * (next_i()%2)) + 1) * next_i();
-        sndev[_i0].nr_rsvd_luts = ((-2 * (next_i()%2)) + 1) * next_i();
+              sndev[_i0].peer_nr_direct_mw = ((-2 * (next_i()%2)) + 1) * next_i();
+          sndev[_i0].nr_rsvd_luts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = peer_lut_index(sndev,mw_idx);
+          printf("%d\n", benchRet); 
+          free(sndev);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int mw_idx = 255;
+        
+          int _len_sndev0 = 65025;
+          struct switchtec_ntb * sndev = (struct switchtec_ntb *) malloc(_len_sndev0*sizeof(struct switchtec_ntb));
+          for(int _i0 = 0; _i0 < _len_sndev0; _i0++) {
+              sndev[_i0].peer_nr_direct_mw = ((-2 * (next_i()%2)) + 1) * next_i();
+          sndev[_i0].nr_rsvd_luts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = peer_lut_index(sndev,mw_idx);
+          printf("%d\n", benchRet); 
+          free(sndev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int mw_idx = 10;
+        
+          int _len_sndev0 = 100;
+          struct switchtec_ntb * sndev = (struct switchtec_ntb *) malloc(_len_sndev0*sizeof(struct switchtec_ntb));
+          for(int _i0 = 0; _i0 < _len_sndev0; _i0++) {
+              sndev[_i0].peer_nr_direct_mw = ((-2 * (next_i()%2)) + 1) * next_i();
+          sndev[_i0].nr_rsvd_luts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = peer_lut_index(sndev,mw_idx);
+          printf("%d\n", benchRet); 
+          free(sndev);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int mw_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sndev0 = 1;
+          struct switchtec_ntb * sndev = (struct switchtec_ntb *) malloc(_len_sndev0*sizeof(struct switchtec_ntb));
+          for(int _i0 = 0; _i0 < _len_sndev0; _i0++) {
+              sndev[_i0].peer_nr_direct_mw = ((-2 * (next_i()%2)) + 1) * next_i();
+          sndev[_i0].nr_rsvd_luts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = peer_lut_index(sndev,mw_idx);
           printf("%d\n", benchRet); 
           free(sndev);

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ __attribute__((used)) static void NVSelectHeadRegisters(struct nvidia_par *par, 
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,24 +89,98 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int head = 100;
+        
           int _len_par0 = 1;
           struct nvidia_par * par = (struct nvidia_par *) malloc(_len_par0*sizeof(struct nvidia_par));
           for(int _i0 = 0; _i0 < _len_par0; _i0++) {
-            par[_i0].PDIO0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        par[_i0].PDIO = ((-2 * (next_i()%2)) + 1) * next_i();
-        par[_i0].PRAMDAC0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        par[_i0].PRAMDAC = ((-2 * (next_i()%2)) + 1) * next_i();
-        par[_i0].PCRTC0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        par[_i0].PCRTC = ((-2 * (next_i()%2)) + 1) * next_i();
-        par[_i0].PCIO0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        par[_i0].PCIO = ((-2 * (next_i()%2)) + 1) * next_i();
+              par[_i0].PDIO0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].PDIO = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].PRAMDAC0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].PRAMDAC = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].PCRTC0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].PCRTC = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].PCIO0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].PCIO = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           NVSelectHeadRegisters(par,head);
           free(par);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int head = 255;
+        
+          int _len_par0 = 65025;
+          struct nvidia_par * par = (struct nvidia_par *) malloc(_len_par0*sizeof(struct nvidia_par));
+          for(int _i0 = 0; _i0 < _len_par0; _i0++) {
+              par[_i0].PDIO0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].PDIO = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].PRAMDAC0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].PRAMDAC = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].PCRTC0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].PCRTC = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].PCIO0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].PCIO = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          NVSelectHeadRegisters(par,head);
+          free(par);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int head = 10;
+        
+          int _len_par0 = 100;
+          struct nvidia_par * par = (struct nvidia_par *) malloc(_len_par0*sizeof(struct nvidia_par));
+          for(int _i0 = 0; _i0 < _len_par0; _i0++) {
+              par[_i0].PDIO0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].PDIO = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].PRAMDAC0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].PRAMDAC = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].PCRTC0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].PCRTC = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].PCIO0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].PCIO = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          NVSelectHeadRegisters(par,head);
+          free(par);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int head = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_par0 = 1;
+          struct nvidia_par * par = (struct nvidia_par *) malloc(_len_par0*sizeof(struct nvidia_par));
+          for(int _i0 = 0; _i0 < _len_par0; _i0++) {
+              par[_i0].PDIO0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].PDIO = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].PRAMDAC0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].PRAMDAC = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].PCRTC0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].PCRTC = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].PCIO0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].PCIO = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          NVSelectHeadRegisters(par,head);
+          free(par);
+        
+        break;
+    }
     default:
         usage();
         break;

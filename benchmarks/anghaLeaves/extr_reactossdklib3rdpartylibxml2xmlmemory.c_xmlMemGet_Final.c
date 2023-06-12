@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ xmlMemGet(xmlFreeFunc *freeFunc, xmlMallocFunc *mallocFunc,
     return(0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,29 +86,33 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_freeFunc0 = 1;
+          int _len_freeFunc0 = 65025;
           int * freeFunc = (int *) malloc(_len_freeFunc0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_freeFunc0; _i0++) {
             freeFunc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_mallocFunc0 = 1;
+        
+          int _len_mallocFunc0 = 65025;
           int * mallocFunc = (int *) malloc(_len_mallocFunc0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_mallocFunc0; _i0++) {
             mallocFunc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_reallocFunc0 = 1;
+        
+          int _len_reallocFunc0 = 65025;
           int * reallocFunc = (int *) malloc(_len_reallocFunc0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_reallocFunc0; _i0++) {
             reallocFunc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_strdupFunc0 = 1;
+        
+          int _len_strdupFunc0 = 65025;
           int * strdupFunc = (int *) malloc(_len_strdupFunc0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_strdupFunc0; _i0++) {
             strdupFunc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = xmlMemGet(freeFunc,mallocFunc,reallocFunc,strdupFunc);
           printf("%d\n", benchRet); 
           free(freeFunc);
@@ -122,7 +122,78 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_freeFunc0 = 100;
+          int * freeFunc = (int *) malloc(_len_freeFunc0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_freeFunc0; _i0++) {
+            freeFunc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_mallocFunc0 = 100;
+          int * mallocFunc = (int *) malloc(_len_mallocFunc0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mallocFunc0; _i0++) {
+            mallocFunc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_reallocFunc0 = 100;
+          int * reallocFunc = (int *) malloc(_len_reallocFunc0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_reallocFunc0; _i0++) {
+            reallocFunc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_strdupFunc0 = 100;
+          int * strdupFunc = (int *) malloc(_len_strdupFunc0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_strdupFunc0; _i0++) {
+            strdupFunc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = xmlMemGet(freeFunc,mallocFunc,reallocFunc,strdupFunc);
+          printf("%d\n", benchRet); 
+          free(freeFunc);
+          free(mallocFunc);
+          free(reallocFunc);
+          free(strdupFunc);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_freeFunc0 = 1;
+          int * freeFunc = (int *) malloc(_len_freeFunc0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_freeFunc0; _i0++) {
+            freeFunc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_mallocFunc0 = 1;
+          int * mallocFunc = (int *) malloc(_len_mallocFunc0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mallocFunc0; _i0++) {
+            mallocFunc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_reallocFunc0 = 1;
+          int * reallocFunc = (int *) malloc(_len_reallocFunc0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_reallocFunc0; _i0++) {
+            reallocFunc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_strdupFunc0 = 1;
+          int * strdupFunc = (int *) malloc(_len_strdupFunc0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_strdupFunc0; _i0++) {
+            strdupFunc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = xmlMemGet(freeFunc,mallocFunc,reallocFunc,strdupFunc);
+          printf("%d\n", benchRet); 
+          free(freeFunc);
+          free(mallocFunc);
+          free(reallocFunc);
+          free(strdupFunc);
+        
+        break;
+    }
     default:
         usage();
         break;

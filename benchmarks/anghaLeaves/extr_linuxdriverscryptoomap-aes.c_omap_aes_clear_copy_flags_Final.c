@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ void omap_aes_clear_copy_flags(struct omap_aes_dev *dd)
 	dd->flags &= ~(OMAP_CRYPTO_COPY_MASK << FLAGS_ASSOC_DATA_ST_SHIFT);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,14 +80,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dd0 = 1;
+          int _len_dd0 = 65025;
           struct omap_aes_dev * dd = (struct omap_aes_dev *) malloc(_len_dd0*sizeof(struct omap_aes_dev));
           for(int _i0 = 0; _i0 < _len_dd0; _i0++) {
-            dd[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              dd[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           omap_aes_clear_copy_flags(dd);
           free(dd);
         
@@ -104,14 +101,30 @@ int main(int argc, char *argv[]) {
           int _len_dd0 = 100;
           struct omap_aes_dev * dd = (struct omap_aes_dev *) malloc(_len_dd0*sizeof(struct omap_aes_dev));
           for(int _i0 = 0; _i0 < _len_dd0; _i0++) {
-            dd[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              dd[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           omap_aes_clear_copy_flags(dd);
           free(dd);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_dd0 = 1;
+          struct omap_aes_dev * dd = (struct omap_aes_dev *) malloc(_len_dd0*sizeof(struct omap_aes_dev));
+          for(int _i0 = 0; _i0 < _len_dd0; _i0++) {
+              dd[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          omap_aes_clear_copy_flags(dd);
+          free(dd);
+        
+        break;
+    }
     default:
         usage();
         break;

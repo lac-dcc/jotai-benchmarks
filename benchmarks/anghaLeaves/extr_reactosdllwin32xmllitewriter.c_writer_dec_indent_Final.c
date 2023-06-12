@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static void writer_dec_indent(xmlwriter *writer)
         writer->indent_level--;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_writer0 = 1;
+          int _len_writer0 = 65025;
           struct TYPE_3__ * writer = (struct TYPE_3__ *) malloc(_len_writer0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_writer0; _i0++) {
-            writer[_i0].indent_level = ((-2 * (next_i()%2)) + 1) * next_i();
+              writer[_i0].indent_level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           writer_dec_indent(writer);
           free(writer);
         
@@ -101,14 +98,30 @@ int main(int argc, char *argv[]) {
           int _len_writer0 = 100;
           struct TYPE_3__ * writer = (struct TYPE_3__ *) malloc(_len_writer0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_writer0; _i0++) {
-            writer[_i0].indent_level = ((-2 * (next_i()%2)) + 1) * next_i();
+              writer[_i0].indent_level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           writer_dec_indent(writer);
           free(writer);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_writer0 = 1;
+          struct TYPE_3__ * writer = (struct TYPE_3__ *) malloc(_len_writer0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_writer0; _i0++) {
+              writer[_i0].indent_level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          writer_dec_indent(writer);
+          free(writer);
+        
+        break;
+    }
     default:
         usage();
         break;

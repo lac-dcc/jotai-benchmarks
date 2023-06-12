@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -98,12 +101,6 @@ pf_match_addr(u_int8_t n, struct pf_addr *a, struct pf_addr *m,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -120,22 +117,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long n = 100;
+        
           int af = 100;
+        
           int _len_a0 = 1;
           struct pf_addr * a = (struct pf_addr *) malloc(_len_a0*sizeof(struct pf_addr));
           for(int _i0 = 0; _i0 < _len_a0; _i0++) {
-            a[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              a[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_m0 = 1;
           struct pf_addr * m = (struct pf_addr *) malloc(_len_m0*sizeof(struct pf_addr));
           for(int _i0 = 0; _i0 < _len_m0; _i0++) {
-            m[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              m[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_b0 = 1;
           struct pf_addr * b = (struct pf_addr *) malloc(_len_b0*sizeof(struct pf_addr));
           for(int _i0 = 0; _i0 < _len_b0; _i0++) {
-            b[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              b[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = pf_match_addr(n,a,m,b,af);
           printf("%d\n", benchRet); 
           free(a);
@@ -144,7 +149,114 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long n = 255;
+        
+          int af = 255;
+        
+          int _len_a0 = 65025;
+          struct pf_addr * a = (struct pf_addr *) malloc(_len_a0*sizeof(struct pf_addr));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              a[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_m0 = 65025;
+          struct pf_addr * m = (struct pf_addr *) malloc(_len_m0*sizeof(struct pf_addr));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_b0 = 65025;
+          struct pf_addr * b = (struct pf_addr *) malloc(_len_b0*sizeof(struct pf_addr));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pf_match_addr(n,a,m,b,af);
+          printf("%d\n", benchRet); 
+          free(a);
+          free(m);
+          free(b);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long n = 10;
+        
+          int af = 10;
+        
+          int _len_a0 = 100;
+          struct pf_addr * a = (struct pf_addr *) malloc(_len_a0*sizeof(struct pf_addr));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              a[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_m0 = 100;
+          struct pf_addr * m = (struct pf_addr *) malloc(_len_m0*sizeof(struct pf_addr));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_b0 = 100;
+          struct pf_addr * b = (struct pf_addr *) malloc(_len_b0*sizeof(struct pf_addr));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pf_match_addr(n,a,m,b,af);
+          printf("%d\n", benchRet); 
+          free(a);
+          free(m);
+          free(b);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int af = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_a0 = 1;
+          struct pf_addr * a = (struct pf_addr *) malloc(_len_a0*sizeof(struct pf_addr));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              a[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_m0 = 1;
+          struct pf_addr * m = (struct pf_addr *) malloc(_len_m0*sizeof(struct pf_addr));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_b0 = 1;
+          struct pf_addr * b = (struct pf_addr *) malloc(_len_b0*sizeof(struct pf_addr));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pf_match_addr(n,a,m,b,af);
+          printf("%d\n", benchRet); 
+          free(a);
+          free(m);
+          free(b);
+        
+        break;
+    }
     default:
         usage();
         break;

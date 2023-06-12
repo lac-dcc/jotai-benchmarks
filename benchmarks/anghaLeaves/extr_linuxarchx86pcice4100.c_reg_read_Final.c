@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static void reg_read(struct sim_dev_reg *reg, u32 *value)
 	*value = reg->sim_reg.value;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,26 +77,75 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_reg0 = 1;
+          int _len_reg0 = 65025;
           struct sim_dev_reg * reg = (struct sim_dev_reg *) malloc(_len_reg0*sizeof(struct sim_dev_reg));
           for(int _i0 = 0; _i0 < _len_reg0; _i0++) {
-            reg[_i0].sim_reg.value = ((-2 * (next_i()%2)) + 1) * next_i();
+              reg[_i0].sim_reg.value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-          int _len_value0 = 1;
+        
+          int _len_value0 = 65025;
           int * value = (int *) malloc(_len_value0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_value0; _i0++) {
             value[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           reg_read(reg,value);
           free(reg);
           free(value);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_reg0 = 100;
+          struct sim_dev_reg * reg = (struct sim_dev_reg *) malloc(_len_reg0*sizeof(struct sim_dev_reg));
+          for(int _i0 = 0; _i0 < _len_reg0; _i0++) {
+              reg[_i0].sim_reg.value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_value0 = 100;
+          int * value = (int *) malloc(_len_value0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_value0; _i0++) {
+            value[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          reg_read(reg,value);
+          free(reg);
+          free(value);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_reg0 = 1;
+          struct sim_dev_reg * reg = (struct sim_dev_reg *) malloc(_len_reg0*sizeof(struct sim_dev_reg));
+          for(int _i0 = 0; _i0 < _len_reg0; _i0++) {
+              reg[_i0].sim_reg.value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_value0 = 1;
+          int * value = (int *) malloc(_len_value0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_value0; _i0++) {
+            value[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          reg_read(reg,value);
+          free(reg);
+          free(value);
+        
+        break;
+    }
     default:
         usage();
         break;

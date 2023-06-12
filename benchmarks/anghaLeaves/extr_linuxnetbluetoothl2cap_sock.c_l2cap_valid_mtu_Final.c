@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ __attribute__((used)) static bool l2cap_valid_mtu(struct l2cap_chan *chan, u16 m
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,11 +94,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int mtu = 100;
+        
           int _len_chan0 = 1;
           struct l2cap_chan * chan = (struct l2cap_chan *) malloc(_len_chan0*sizeof(struct l2cap_chan));
           for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
-            chan[_i0].scid = ((-2 * (next_i()%2)) + 1) * next_i();
+              chan[_i0].scid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = l2cap_valid_mtu(chan,mtu);
+          printf("%d\n", benchRet); 
+          free(chan);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int mtu = 255;
+        
+          int _len_chan0 = 65025;
+          struct l2cap_chan * chan = (struct l2cap_chan *) malloc(_len_chan0*sizeof(struct l2cap_chan));
+          for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
+              chan[_i0].scid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = l2cap_valid_mtu(chan,mtu);
           printf("%d\n", benchRet); 
           free(chan);
@@ -110,21 +127,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int mtu = 10;
+        
           int _len_chan0 = 100;
           struct l2cap_chan * chan = (struct l2cap_chan *) malloc(_len_chan0*sizeof(struct l2cap_chan));
           for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
-            chan[_i0].scid = ((-2 * (next_i()%2)) + 1) * next_i();
+              chan[_i0].scid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = l2cap_valid_mtu(chan,mtu);
           printf("%d\n", benchRet); 
           free(chan);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_chan0 = 1;
+          struct l2cap_chan * chan = (struct l2cap_chan *) malloc(_len_chan0*sizeof(struct l2cap_chan));
+          for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
+              chan[_i0].scid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = l2cap_valid_mtu(chan,mtu);
+          printf("%d\n", benchRet); 
+          free(chan);
+        
+        break;
+    }
     default:
         usage();
         break;

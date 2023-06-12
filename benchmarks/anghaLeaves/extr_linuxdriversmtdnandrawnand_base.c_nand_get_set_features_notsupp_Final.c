@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ int nand_get_set_features_notsupp(struct mtd_info *mtd, struct nand_chip *chip,
 	return -ENOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,21 +83,27 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int addr = 100;
+        
           int _len_mtd0 = 1;
           struct mtd_info * mtd = (struct mtd_info *) malloc(_len_mtd0*sizeof(struct mtd_info));
           for(int _i0 = 0; _i0 < _len_mtd0; _i0++) {
-            mtd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              mtd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_chip0 = 1;
           struct nand_chip * chip = (struct nand_chip *) malloc(_len_chip0*sizeof(struct nand_chip));
           for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
-            chip[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              chip[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_subfeature_param0 = 1;
           int * subfeature_param = (int *) malloc(_len_subfeature_param0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_subfeature_param0; _i0++) {
             subfeature_param[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = nand_get_set_features_notsupp(mtd,chip,addr,subfeature_param);
           printf("%d\n", benchRet); 
           free(mtd);
@@ -109,7 +112,105 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int addr = 255;
+        
+          int _len_mtd0 = 65025;
+          struct mtd_info * mtd = (struct mtd_info *) malloc(_len_mtd0*sizeof(struct mtd_info));
+          for(int _i0 = 0; _i0 < _len_mtd0; _i0++) {
+              mtd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_chip0 = 65025;
+          struct nand_chip * chip = (struct nand_chip *) malloc(_len_chip0*sizeof(struct nand_chip));
+          for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
+              chip[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_subfeature_param0 = 65025;
+          int * subfeature_param = (int *) malloc(_len_subfeature_param0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_subfeature_param0; _i0++) {
+            subfeature_param[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = nand_get_set_features_notsupp(mtd,chip,addr,subfeature_param);
+          printf("%d\n", benchRet); 
+          free(mtd);
+          free(chip);
+          free(subfeature_param);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int addr = 10;
+        
+          int _len_mtd0 = 100;
+          struct mtd_info * mtd = (struct mtd_info *) malloc(_len_mtd0*sizeof(struct mtd_info));
+          for(int _i0 = 0; _i0 < _len_mtd0; _i0++) {
+              mtd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_chip0 = 100;
+          struct nand_chip * chip = (struct nand_chip *) malloc(_len_chip0*sizeof(struct nand_chip));
+          for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
+              chip[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_subfeature_param0 = 100;
+          int * subfeature_param = (int *) malloc(_len_subfeature_param0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_subfeature_param0; _i0++) {
+            subfeature_param[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = nand_get_set_features_notsupp(mtd,chip,addr,subfeature_param);
+          printf("%d\n", benchRet); 
+          free(mtd);
+          free(chip);
+          free(subfeature_param);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_mtd0 = 1;
+          struct mtd_info * mtd = (struct mtd_info *) malloc(_len_mtd0*sizeof(struct mtd_info));
+          for(int _i0 = 0; _i0 < _len_mtd0; _i0++) {
+              mtd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_chip0 = 1;
+          struct nand_chip * chip = (struct nand_chip *) malloc(_len_chip0*sizeof(struct nand_chip));
+          for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
+              chip[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_subfeature_param0 = 1;
+          int * subfeature_param = (int *) malloc(_len_subfeature_param0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_subfeature_param0; _i0++) {
+            subfeature_param[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = nand_get_set_features_notsupp(mtd,chip,addr,subfeature_param);
+          printf("%d\n", benchRet); 
+          free(mtd);
+          free(chip);
+          free(subfeature_param);
+        
+        break;
+    }
     default:
         usage();
         break;

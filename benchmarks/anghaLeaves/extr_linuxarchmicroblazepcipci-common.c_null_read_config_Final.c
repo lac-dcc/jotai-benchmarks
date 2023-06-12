@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ null_read_config(struct pci_bus *bus, unsigned int devfn, int offset,
 	return PCIBIOS_DEVICE_NOT_FOUND;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,18 +83,24 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int devfn = 100;
+        
           int offset = 100;
+        
           int len = 100;
+        
           int _len_bus0 = 1;
           struct pci_bus * bus = (struct pci_bus *) malloc(_len_bus0*sizeof(struct pci_bus));
           for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
-            bus[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              bus[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_val0 = 1;
           int * val = (int *) malloc(_len_val0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_val0; _i0++) {
             val[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = null_read_config(bus,devfn,offset,len,val);
           printf("%d\n", benchRet); 
           free(bus);
@@ -105,7 +108,93 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int devfn = 255;
+        
+          int offset = 255;
+        
+          int len = 255;
+        
+          int _len_bus0 = 65025;
+          struct pci_bus * bus = (struct pci_bus *) malloc(_len_bus0*sizeof(struct pci_bus));
+          for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
+              bus[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_val0 = 65025;
+          int * val = (int *) malloc(_len_val0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_val0; _i0++) {
+            val[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = null_read_config(bus,devfn,offset,len,val);
+          printf("%d\n", benchRet); 
+          free(bus);
+          free(val);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int devfn = 10;
+        
+          int offset = 10;
+        
+          int len = 10;
+        
+          int _len_bus0 = 100;
+          struct pci_bus * bus = (struct pci_bus *) malloc(_len_bus0*sizeof(struct pci_bus));
+          for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
+              bus[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_val0 = 100;
+          int * val = (int *) malloc(_len_val0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_val0; _i0++) {
+            val[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = null_read_config(bus,devfn,offset,len,val);
+          printf("%d\n", benchRet); 
+          free(bus);
+          free(val);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int devfn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_bus0 = 1;
+          struct pci_bus * bus = (struct pci_bus *) malloc(_len_bus0*sizeof(struct pci_bus));
+          for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
+              bus[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_val0 = 1;
+          int * val = (int *) malloc(_len_val0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_val0; _i0++) {
+            val[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = null_read_config(bus,devfn,offset,len,val);
+          printf("%d\n", benchRet); 
+          free(bus);
+          free(val);
+        
+        break;
+    }
     default:
         usage();
         break;

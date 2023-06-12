@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ void git_oidarray__from_array(git_oidarray *arr, git_array_oid_t *array)
 	arr->ids = array->ptr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,28 +80,81 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_arr0 = 1;
+          int _len_arr0 = 65025;
           struct TYPE_5__ * arr = (struct TYPE_5__ *) malloc(_len_arr0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_arr0; _i0++) {
-            arr[_i0].ids = ((-2 * (next_i()%2)) + 1) * next_i();
-        arr[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+              arr[_i0].ids = ((-2 * (next_i()%2)) + 1) * next_i();
+          arr[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_array0 = 1;
+        
+          int _len_array0 = 65025;
           struct TYPE_6__ * array = (struct TYPE_6__ *) malloc(_len_array0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_array0; _i0++) {
-            array[_i0].ptr = ((-2 * (next_i()%2)) + 1) * next_i();
-        array[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              array[_i0].ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          array[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           git_oidarray__from_array(arr,array);
           free(arr);
           free(array);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_arr0 = 100;
+          struct TYPE_5__ * arr = (struct TYPE_5__ *) malloc(_len_arr0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_arr0; _i0++) {
+              arr[_i0].ids = ((-2 * (next_i()%2)) + 1) * next_i();
+          arr[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_array0 = 100;
+          struct TYPE_6__ * array = (struct TYPE_6__ *) malloc(_len_array0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_array0; _i0++) {
+              array[_i0].ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          array[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          git_oidarray__from_array(arr,array);
+          free(arr);
+          free(array);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_arr0 = 1;
+          struct TYPE_5__ * arr = (struct TYPE_5__ *) malloc(_len_arr0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_arr0; _i0++) {
+              arr[_i0].ids = ((-2 * (next_i()%2)) + 1) * next_i();
+          arr[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_array0 = 1;
+          struct TYPE_6__ * array = (struct TYPE_6__ *) malloc(_len_array0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_array0; _i0++) {
+              array[_i0].ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          array[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          git_oidarray__from_array(arr,array);
+          free(arr);
+          free(array);
+        
+        break;
+    }
     default:
         usage();
         break;

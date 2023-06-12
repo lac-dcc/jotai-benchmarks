@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static unsigned long get_offset(struct symbol *sym, struct
 	return offset;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,25 +84,169 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_sym0 = 1;
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_sym0 = 65025;
           struct symbol * sym = (struct symbol *) malloc(_len_sym0*sizeof(struct symbol));
           for(int _i0 = 0; _i0 < _len_sym0; _i0++) {
-            sym[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
-        sym[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+              sym[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+          sym[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_al0 = 1;
+        
+          int _len_al0 = 65025;
           struct addr_location * al = (struct addr_location *) malloc(_len_al0*sizeof(struct addr_location));
           for(int _i0 = 0; _i0 < _len_al0; _i0++) {
-            al[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+              al[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_al__i0__map0 = 1;
           al[_i0].map = (struct TYPE_2__ *) malloc(_len_al__i0__map0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_al__i0__map0; _j0++) {
-            al[_i0].map->start = ((-2 * (next_i()%2)) + 1) * next_i();
+              al[_i0].map->start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          unsigned long benchRet = get_offset(sym,al);
+          printf("%lu\n", benchRet); 
+          free(sym);
+          for(int _aux = 0; _aux < _len_al0; _aux++) {
+          free(al[_aux].map);
+          }
+          free(al);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_sym0 = 100;
+          struct symbol * sym = (struct symbol *) malloc(_len_sym0*sizeof(struct symbol));
+          for(int _i0 = 0; _i0 < _len_sym0; _i0++) {
+              sym[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+          sym[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_al0 = 100;
+          struct addr_location * al = (struct addr_location *) malloc(_len_al0*sizeof(struct addr_location));
+          for(int _i0 = 0; _i0 < _len_al0; _i0++) {
+              al[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_al__i0__map0 = 1;
+          al[_i0].map = (struct TYPE_2__ *) malloc(_len_al__i0__map0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_al__i0__map0; _j0++) {
+              al[_i0].map->start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned long benchRet = get_offset(sym,al);
+          printf("%lu\n", benchRet); 
+          free(sym);
+          for(int _aux = 0; _aux < _len_al0; _aux++) {
+          free(al[_aux].map);
+          }
+          free(al);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_sym0 = 1;
+          struct symbol * sym = (struct symbol *) malloc(_len_sym0*sizeof(struct symbol));
+          for(int _i0 = 0; _i0 < _len_sym0; _i0++) {
+              sym[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+          sym[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_al0 = 1;
+          struct addr_location * al = (struct addr_location *) malloc(_len_al0*sizeof(struct addr_location));
+          for(int _i0 = 0; _i0 < _len_al0; _i0++) {
+              al[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_al__i0__map0 = 1;
+          al[_i0].map = (struct TYPE_2__ *) malloc(_len_al__i0__map0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_al__i0__map0; _j0++) {
+              al[_i0].map->start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           unsigned long benchRet = get_offset(sym,al);
           printf("%lu\n", benchRet); 
           free(sym);

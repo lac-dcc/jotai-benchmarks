@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ __attribute__((used)) static void MakeButton(TBBUTTON *p, int idCommand, int fsS
   p->iString = nString;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,23 +85,102 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int idCommand = 100;
+        
           int fsStyle = 100;
+        
           int nString = 100;
+        
           int _len_p0 = 1;
           struct TYPE_3__ * p = (struct TYPE_3__ *) malloc(_len_p0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].iBitmap = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].idCommand = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].fsStyle = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].iString = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].fsState = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].iBitmap = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].idCommand = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].fsStyle = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].iString = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].fsState = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           MakeButton(p,idCommand,fsStyle,nString);
           free(p);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int idCommand = 255;
+        
+          int fsStyle = 255;
+        
+          int nString = 255;
+        
+          int _len_p0 = 65025;
+          struct TYPE_3__ * p = (struct TYPE_3__ *) malloc(_len_p0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].iBitmap = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].idCommand = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].fsStyle = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].iString = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].fsState = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          MakeButton(p,idCommand,fsStyle,nString);
+          free(p);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int idCommand = 10;
+        
+          int fsStyle = 10;
+        
+          int nString = 10;
+        
+          int _len_p0 = 100;
+          struct TYPE_3__ * p = (struct TYPE_3__ *) malloc(_len_p0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].iBitmap = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].idCommand = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].fsStyle = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].iString = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].fsState = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          MakeButton(p,idCommand,fsStyle,nString);
+          free(p);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int idCommand = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int fsStyle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int nString = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_p0 = 1;
+          struct TYPE_3__ * p = (struct TYPE_3__ *) malloc(_len_p0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].iBitmap = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].idCommand = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].fsStyle = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].iString = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].fsState = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          MakeButton(p,idCommand,fsStyle,nString);
+          free(p);
+        
+        break;
+    }
     default:
         usage();
         break;

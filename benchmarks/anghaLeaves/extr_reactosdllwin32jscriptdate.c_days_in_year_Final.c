@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +73,6 @@ __attribute__((used)) static inline DOUBLE days_in_year(DOUBLE year)
     return 366;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int year = 100;
+        
           int benchRet = days_in_year(year);
           printf("%d\n", benchRet); 
         
@@ -103,6 +99,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int year = 255;
+        
           int benchRet = days_in_year(year);
           printf("%d\n", benchRet); 
         
@@ -112,12 +109,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int year = 10;
+        
           int benchRet = days_in_year(year);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int year = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = days_in_year(year);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

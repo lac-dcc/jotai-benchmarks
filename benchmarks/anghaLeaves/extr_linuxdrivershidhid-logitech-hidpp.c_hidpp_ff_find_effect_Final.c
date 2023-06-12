@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ __attribute__((used)) static u8 hidpp_ff_find_effect(struct hidpp_ff_private_dat
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,16 +86,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int effect_id = 100;
+        
           int _len_data0 = 1;
           struct hidpp_ff_private_data * data = (struct hidpp_ff_private_data *) malloc(_len_data0*sizeof(struct hidpp_ff_private_data));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
-            data[_i0].num_effects = ((-2 * (next_i()%2)) + 1) * next_i();
+              data[_i0].num_effects = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_data__i0__effect_ids0 = 1;
           data[_i0].effect_ids = (int *) malloc(_len_data__i0__effect_ids0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_data__i0__effect_ids0; _j0++) {
             data[_i0].effect_ids[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = hidpp_ff_find_effect(data,effect_id);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_data0; _aux++) {
@@ -108,7 +108,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int effect_id = 255;
+        
+          int _len_data0 = 65025;
+          struct hidpp_ff_private_data * data = (struct hidpp_ff_private_data *) malloc(_len_data0*sizeof(struct hidpp_ff_private_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].num_effects = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_data__i0__effect_ids0 = 1;
+          data[_i0].effect_ids = (int *) malloc(_len_data__i0__effect_ids0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_data__i0__effect_ids0; _j0++) {
+            data[_i0].effect_ids[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = hidpp_ff_find_effect(data,effect_id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_data0; _aux++) {
+          free(data[_aux].effect_ids);
+          }
+          free(data);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int effect_id = 10;
+        
+          int _len_data0 = 100;
+          struct hidpp_ff_private_data * data = (struct hidpp_ff_private_data *) malloc(_len_data0*sizeof(struct hidpp_ff_private_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].num_effects = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_data__i0__effect_ids0 = 1;
+          data[_i0].effect_ids = (int *) malloc(_len_data__i0__effect_ids0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_data__i0__effect_ids0; _j0++) {
+            data[_i0].effect_ids[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = hidpp_ff_find_effect(data,effect_id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_data0; _aux++) {
+          free(data[_aux].effect_ids);
+          }
+          free(data);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int effect_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_data0 = 1;
+          struct hidpp_ff_private_data * data = (struct hidpp_ff_private_data *) malloc(_len_data0*sizeof(struct hidpp_ff_private_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].num_effects = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_data__i0__effect_ids0 = 1;
+          data[_i0].effect_ids = (int *) malloc(_len_data__i0__effect_ids0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_data__i0__effect_ids0; _j0++) {
+            data[_i0].effect_ids[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = hidpp_ff_find_effect(data,effect_id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_data0; _aux++) {
+          free(data[_aux].effect_ids);
+          }
+          free(data);
+        
+        break;
+    }
     default:
         usage();
         break;

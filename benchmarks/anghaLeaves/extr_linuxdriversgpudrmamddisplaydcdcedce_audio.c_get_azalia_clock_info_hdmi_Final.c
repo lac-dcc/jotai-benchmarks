@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ __attribute__((used)) static void get_azalia_clock_info_hdmi(
 			actual_pixel_clock_in_khz * 10;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,17 +87,176 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int crtc_pixel_clock_in_khz = 100;
+        
           int actual_pixel_clock_in_khz = 100;
+        
           int _len_azalia_clock_info0 = 1;
           struct azalia_clock_info * azalia_clock_info = (struct azalia_clock_info *) malloc(_len_azalia_clock_info0*sizeof(struct azalia_clock_info));
           for(int _i0 = 0; _i0 < _len_azalia_clock_info0; _i0++) {
-            azalia_clock_info[_i0].audio_dto_phase = ((-2 * (next_i()%2)) + 1) * next_i();
-        azalia_clock_info[_i0].audio_dto_module = ((-2 * (next_i()%2)) + 1) * next_i();
+              azalia_clock_info[_i0].audio_dto_phase = ((-2 * (next_i()%2)) + 1) * next_i();
+          azalia_clock_info[_i0].audio_dto_module = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          get_azalia_clock_info_hdmi(crtc_pixel_clock_in_khz,actual_pixel_clock_in_khz,azalia_clock_info);
+          free(azalia_clock_info);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int crtc_pixel_clock_in_khz = 255;
+        
+          int actual_pixel_clock_in_khz = 255;
+        
+          int _len_azalia_clock_info0 = 65025;
+          struct azalia_clock_info * azalia_clock_info = (struct azalia_clock_info *) malloc(_len_azalia_clock_info0*sizeof(struct azalia_clock_info));
+          for(int _i0 = 0; _i0 < _len_azalia_clock_info0; _i0++) {
+              azalia_clock_info[_i0].audio_dto_phase = ((-2 * (next_i()%2)) + 1) * next_i();
+          azalia_clock_info[_i0].audio_dto_module = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          get_azalia_clock_info_hdmi(crtc_pixel_clock_in_khz,actual_pixel_clock_in_khz,azalia_clock_info);
+          free(azalia_clock_info);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int crtc_pixel_clock_in_khz = 10;
+        
+          int actual_pixel_clock_in_khz = 10;
+        
+          int _len_azalia_clock_info0 = 100;
+          struct azalia_clock_info * azalia_clock_info = (struct azalia_clock_info *) malloc(_len_azalia_clock_info0*sizeof(struct azalia_clock_info));
+          for(int _i0 = 0; _i0 < _len_azalia_clock_info0; _i0++) {
+              azalia_clock_info[_i0].audio_dto_phase = ((-2 * (next_i()%2)) + 1) * next_i();
+          azalia_clock_info[_i0].audio_dto_module = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          get_azalia_clock_info_hdmi(crtc_pixel_clock_in_khz,actual_pixel_clock_in_khz,azalia_clock_info);
+          free(azalia_clock_info);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int crtc_pixel_clock_in_khz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int actual_pixel_clock_in_khz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_azalia_clock_info0 = 1;
+          struct azalia_clock_info * azalia_clock_info = (struct azalia_clock_info *) malloc(_len_azalia_clock_info0*sizeof(struct azalia_clock_info));
+          for(int _i0 = 0; _i0 < _len_azalia_clock_info0; _i0++) {
+              azalia_clock_info[_i0].audio_dto_phase = ((-2 * (next_i()%2)) + 1) * next_i();
+          azalia_clock_info[_i0].audio_dto_module = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           get_azalia_clock_info_hdmi(crtc_pixel_clock_in_khz,actual_pixel_clock_in_khz,azalia_clock_info);
           free(azalia_clock_info);
         

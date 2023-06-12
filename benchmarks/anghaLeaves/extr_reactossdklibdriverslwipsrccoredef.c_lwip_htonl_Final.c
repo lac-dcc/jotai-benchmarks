@@ -65,12 +65,6 @@ lwip_htonl(u32_t n)
     ((n & 0xff000000UL) >> 24);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,6 +81,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int n = 100;
+        
           int benchRet = lwip_htonl(n);
           printf("%d\n", benchRet); 
         
@@ -96,12 +91,12 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int n = 10;
+        
           int benchRet = lwip_htonl(n);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ void iscsi_tcp_conn_get_stats(struct iscsi_cls_conn *cls_conn,
 	stats->tmfrsp_pdus = conn->tmfrsp_pdus_cnt;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,39 +87,44 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cls_conn0 = 1;
+          int _len_cls_conn0 = 65025;
           struct iscsi_cls_conn * cls_conn = (struct iscsi_cls_conn *) malloc(_len_cls_conn0*sizeof(struct iscsi_cls_conn));
           for(int _i0 = 0; _i0 < _len_cls_conn0; _i0++) {
               int _len_cls_conn__i0__dd_data0 = 1;
           cls_conn[_i0].dd_data = (struct iscsi_conn *) malloc(_len_cls_conn__i0__dd_data0*sizeof(struct iscsi_conn));
           for(int _j0 = 0; _j0 < _len_cls_conn__i0__dd_data0; _j0++) {
-            cls_conn[_i0].dd_data->tmfrsp_pdus_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        cls_conn[_i0].dd_data->tmfcmd_pdus_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        cls_conn[_i0].dd_data->r2t_pdus_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        cls_conn[_i0].dd_data->datain_pdus_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        cls_conn[_i0].dd_data->scsirsp_pdus_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        cls_conn[_i0].dd_data->dataout_pdus_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        cls_conn[_i0].dd_data->scsicmd_pdus_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        cls_conn[_i0].dd_data->rxdata_octets = ((-2 * (next_i()%2)) + 1) * next_i();
-        cls_conn[_i0].dd_data->txdata_octets = ((-2 * (next_i()%2)) + 1) * next_i();
+              cls_conn[_i0].dd_data->tmfrsp_pdus_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          cls_conn[_i0].dd_data->tmfcmd_pdus_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          cls_conn[_i0].dd_data->r2t_pdus_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          cls_conn[_i0].dd_data->datain_pdus_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          cls_conn[_i0].dd_data->scsirsp_pdus_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          cls_conn[_i0].dd_data->dataout_pdus_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          cls_conn[_i0].dd_data->scsicmd_pdus_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          cls_conn[_i0].dd_data->rxdata_octets = ((-2 * (next_i()%2)) + 1) * next_i();
+          cls_conn[_i0].dd_data->txdata_octets = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
-          int _len_stats0 = 1;
+        
+          int _len_stats0 = 65025;
           struct iscsi_stats * stats = (struct iscsi_stats *) malloc(_len_stats0*sizeof(struct iscsi_stats));
           for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
-            stats[_i0].tmfrsp_pdus = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].tmfcmd_pdus = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].r2t_pdus = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].datain_pdus = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].scsirsp_pdus = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].dataout_pdus = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].scsicmd_pdus = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].rxdata_octets = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].txdata_octets = ((-2 * (next_i()%2)) + 1) * next_i();
+              stats[_i0].tmfrsp_pdus = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].tmfcmd_pdus = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].r2t_pdus = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].datain_pdus = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].scsirsp_pdus = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].dataout_pdus = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].scsicmd_pdus = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rxdata_octets = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].txdata_octets = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           iscsi_tcp_conn_get_stats(cls_conn,stats);
           for(int _aux = 0; _aux < _len_cls_conn0; _aux++) {
           free(cls_conn[_aux].dd_data);
@@ -133,7 +134,100 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_cls_conn0 = 100;
+          struct iscsi_cls_conn * cls_conn = (struct iscsi_cls_conn *) malloc(_len_cls_conn0*sizeof(struct iscsi_cls_conn));
+          for(int _i0 = 0; _i0 < _len_cls_conn0; _i0++) {
+              int _len_cls_conn__i0__dd_data0 = 1;
+          cls_conn[_i0].dd_data = (struct iscsi_conn *) malloc(_len_cls_conn__i0__dd_data0*sizeof(struct iscsi_conn));
+          for(int _j0 = 0; _j0 < _len_cls_conn__i0__dd_data0; _j0++) {
+              cls_conn[_i0].dd_data->tmfrsp_pdus_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          cls_conn[_i0].dd_data->tmfcmd_pdus_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          cls_conn[_i0].dd_data->r2t_pdus_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          cls_conn[_i0].dd_data->datain_pdus_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          cls_conn[_i0].dd_data->scsirsp_pdus_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          cls_conn[_i0].dd_data->dataout_pdus_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          cls_conn[_i0].dd_data->scsicmd_pdus_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          cls_conn[_i0].dd_data->rxdata_octets = ((-2 * (next_i()%2)) + 1) * next_i();
+          cls_conn[_i0].dd_data->txdata_octets = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_stats0 = 100;
+          struct iscsi_stats * stats = (struct iscsi_stats *) malloc(_len_stats0*sizeof(struct iscsi_stats));
+          for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
+              stats[_i0].tmfrsp_pdus = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].tmfcmd_pdus = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].r2t_pdus = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].datain_pdus = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].scsirsp_pdus = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].dataout_pdus = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].scsicmd_pdus = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rxdata_octets = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].txdata_octets = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          iscsi_tcp_conn_get_stats(cls_conn,stats);
+          for(int _aux = 0; _aux < _len_cls_conn0; _aux++) {
+          free(cls_conn[_aux].dd_data);
+          }
+          free(cls_conn);
+          free(stats);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_cls_conn0 = 1;
+          struct iscsi_cls_conn * cls_conn = (struct iscsi_cls_conn *) malloc(_len_cls_conn0*sizeof(struct iscsi_cls_conn));
+          for(int _i0 = 0; _i0 < _len_cls_conn0; _i0++) {
+              int _len_cls_conn__i0__dd_data0 = 1;
+          cls_conn[_i0].dd_data = (struct iscsi_conn *) malloc(_len_cls_conn__i0__dd_data0*sizeof(struct iscsi_conn));
+          for(int _j0 = 0; _j0 < _len_cls_conn__i0__dd_data0; _j0++) {
+              cls_conn[_i0].dd_data->tmfrsp_pdus_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          cls_conn[_i0].dd_data->tmfcmd_pdus_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          cls_conn[_i0].dd_data->r2t_pdus_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          cls_conn[_i0].dd_data->datain_pdus_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          cls_conn[_i0].dd_data->scsirsp_pdus_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          cls_conn[_i0].dd_data->dataout_pdus_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          cls_conn[_i0].dd_data->scsicmd_pdus_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          cls_conn[_i0].dd_data->rxdata_octets = ((-2 * (next_i()%2)) + 1) * next_i();
+          cls_conn[_i0].dd_data->txdata_octets = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_stats0 = 1;
+          struct iscsi_stats * stats = (struct iscsi_stats *) malloc(_len_stats0*sizeof(struct iscsi_stats));
+          for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
+              stats[_i0].tmfrsp_pdus = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].tmfcmd_pdus = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].r2t_pdus = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].datain_pdus = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].scsirsp_pdus = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].dataout_pdus = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].scsicmd_pdus = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rxdata_octets = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].txdata_octets = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          iscsi_tcp_conn_get_stats(cls_conn,stats);
+          for(int _aux = 0; _aux < _len_cls_conn0; _aux++) {
+          free(cls_conn[_aux].dd_data);
+          }
+          free(cls_conn);
+          free(stats);
+        
+        break;
+    }
     default:
         usage();
         break;

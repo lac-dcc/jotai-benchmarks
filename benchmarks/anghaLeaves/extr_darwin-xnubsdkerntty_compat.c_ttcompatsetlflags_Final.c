@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -166,12 +168,6 @@ ttcompatsetlflags(struct tty *tp, struct termios *t)
 	t->c_cflag = cflag;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -184,29 +180,84 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_tp0 = 1;
+          int _len_tp0 = 65025;
           struct tty * tp = (struct tty *) malloc(_len_tp0*sizeof(struct tty));
           for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
-            tp[_i0].t_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              tp[_i0].t_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_t0 = 1;
+        
+          int _len_t0 = 65025;
           struct termios * t = (struct termios *) malloc(_len_t0*sizeof(struct termios));
           for(int _i0 = 0; _i0 < _len_t0; _i0++) {
-            t[_i0].c_iflag = ((-2 * (next_i()%2)) + 1) * next_i();
-        t[_i0].c_oflag = ((-2 * (next_i()%2)) + 1) * next_i();
-        t[_i0].c_lflag = ((-2 * (next_i()%2)) + 1) * next_i();
-        t[_i0].c_cflag = ((-2 * (next_i()%2)) + 1) * next_i();
+              t[_i0].c_iflag = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].c_oflag = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].c_lflag = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].c_cflag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ttcompatsetlflags(tp,t);
           free(tp);
           free(t);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_tp0 = 100;
+          struct tty * tp = (struct tty *) malloc(_len_tp0*sizeof(struct tty));
+          for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
+              tp[_i0].t_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_t0 = 100;
+          struct termios * t = (struct termios *) malloc(_len_t0*sizeof(struct termios));
+          for(int _i0 = 0; _i0 < _len_t0; _i0++) {
+              t[_i0].c_iflag = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].c_oflag = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].c_lflag = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].c_cflag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ttcompatsetlflags(tp,t);
+          free(tp);
+          free(t);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_tp0 = 1;
+          struct tty * tp = (struct tty *) malloc(_len_tp0*sizeof(struct tty));
+          for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
+              tp[_i0].t_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_t0 = 1;
+          struct termios * t = (struct termios *) malloc(_len_t0*sizeof(struct termios));
+          for(int _i0 = 0; _i0 < _len_t0; _i0++) {
+              t[_i0].c_iflag = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].c_oflag = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].c_lflag = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].c_cflag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ttcompatsetlflags(tp,t);
+          free(tp);
+          free(t);
+        
+        break;
+    }
     default:
         usage();
         break;

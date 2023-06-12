@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ __attribute__((used)) static bool sprd_dma_check_trans_done(struct sprd_dma_desc
 		return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,32 +86,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           enum sprd_dma_int_type int_type = 100;
+        
           enum sprd_dma_req_mode req_mode = 0;
+        
           int _len_sdesc0 = 1;
           struct sprd_dma_desc * sdesc = (struct sprd_dma_desc *) malloc(_len_sdesc0*sizeof(struct sprd_dma_desc));
           for(int _i0 = 0; _i0 < _len_sdesc0; _i0++) {
-            sdesc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              sdesc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = sprd_dma_check_trans_done(sdesc,int_type,req_mode);
           printf("%d\n", benchRet); 
           free(sdesc);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
-          enum sprd_dma_int_type int_type = 10;
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          enum sprd_dma_int_type int_type = 255;
+        
           enum sprd_dma_req_mode req_mode = 0;
+        
+          int _len_sdesc0 = 65025;
+          struct sprd_dma_desc * sdesc = (struct sprd_dma_desc *) malloc(_len_sdesc0*sizeof(struct sprd_dma_desc));
+          for(int _i0 = 0; _i0 < _len_sdesc0; _i0++) {
+              sdesc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sprd_dma_check_trans_done(sdesc,int_type,req_mode);
+          printf("%d\n", benchRet); 
+          free(sdesc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          enum sprd_dma_int_type int_type = 10;
+        
+          enum sprd_dma_req_mode req_mode = 0;
+        
           int _len_sdesc0 = 100;
           struct sprd_dma_desc * sdesc = (struct sprd_dma_desc *) malloc(_len_sdesc0*sizeof(struct sprd_dma_desc));
           for(int _i0 = 0; _i0 < _len_sdesc0; _i0++) {
-            sdesc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              sdesc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = sprd_dma_check_trans_done(sdesc,int_type,req_mode);
+          printf("%d\n", benchRet); 
+          free(sdesc);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          enum sprd_dma_int_type int_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          enum sprd_dma_req_mode req_mode = 0;
+        
+          int _len_sdesc0 = 1;
+          struct sprd_dma_desc * sdesc = (struct sprd_dma_desc *) malloc(_len_sdesc0*sizeof(struct sprd_dma_desc));
+          for(int _i0 = 0; _i0 < _len_sdesc0; _i0++) {
+              sdesc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = sprd_dma_check_trans_done(sdesc,int_type,req_mode);
           printf("%d\n", benchRet); 
           free(sdesc);

@@ -64,12 +64,6 @@ __attribute__((used)) static inline uint32_t A3XX_GRAS_CL_GB_CLIP_ADJ_VERT(uint3
 	return ((val) << A3XX_GRAS_CL_GB_CLIP_ADJ_VERT__SHIFT) & A3XX_GRAS_CL_GB_CLIP_ADJ_VERT__MASK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int val = 100;
+        
           int benchRet = A3XX_GRAS_CL_GB_CLIP_ADJ_VERT(val);
           printf("%d\n", benchRet); 
         
@@ -95,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int val = 255;
+        
           int benchRet = A3XX_GRAS_CL_GB_CLIP_ADJ_VERT(val);
           printf("%d\n", benchRet); 
         
@@ -104,12 +100,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int val = 10;
+        
           int benchRet = A3XX_GRAS_CL_GB_CLIP_ADJ_VERT(val);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

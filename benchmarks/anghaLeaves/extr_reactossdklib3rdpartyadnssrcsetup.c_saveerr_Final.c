@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static void saveerr(adns_state ads, int en) {
   if (!ads->configerrno) ads->configerrno= en;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,31 +80,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int en = 100;
+        
           int _len_ads0 = 1;
           struct TYPE_3__ * ads = (struct TYPE_3__ *) malloc(_len_ads0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_ads0; _i0++) {
-            ads[_i0].configerrno = ((-2 * (next_i()%2)) + 1) * next_i();
+              ads[_i0].configerrno = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          saveerr(ads,en);
+          free(ads);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int en = 255;
+        
+          int _len_ads0 = 65025;
+          struct TYPE_3__ * ads = (struct TYPE_3__ *) malloc(_len_ads0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ads0; _i0++) {
+              ads[_i0].configerrno = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           saveerr(ads,en);
           free(ads);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int en = 10;
+        
           int _len_ads0 = 100;
           struct TYPE_3__ * ads = (struct TYPE_3__ *) malloc(_len_ads0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_ads0; _i0++) {
-            ads[_i0].configerrno = ((-2 * (next_i()%2)) + 1) * next_i();
+              ads[_i0].configerrno = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           saveerr(ads,en);
           free(ads);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int en = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ads0 = 1;
+          struct TYPE_3__ * ads = (struct TYPE_3__ *) malloc(_len_ads0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ads0; _i0++) {
+              ads[_i0].configerrno = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          saveerr(ads,en);
+          free(ads);
+        
+        break;
+    }
     default:
         usage();
         break;

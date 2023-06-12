@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +74,6 @@ __attribute__((used)) static bool _dispc_lcd_timings_ok(struct dispc_device *dis
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,26 +86,244 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int hsync_len = 100;
+        
           int hfp = 100;
+        
           int hbp = 100;
+        
           int vsw = 100;
+        
           int vfp = 100;
+        
           int vbp = 100;
+        
           int _len_dispc0 = 1;
           struct dispc_device * dispc = (struct dispc_device *) malloc(_len_dispc0*sizeof(struct dispc_device));
           for(int _i0 = 0; _i0 < _len_dispc0; _i0++) {
               int _len_dispc__i0__feat0 = 1;
           dispc[_i0].feat = (struct TYPE_2__ *) malloc(_len_dispc__i0__feat0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_dispc__i0__feat0; _j0++) {
-            dispc[_i0].feat->sw_max = ((-2 * (next_i()%2)) + 1) * next_i();
-        dispc[_i0].feat->hp_max = ((-2 * (next_i()%2)) + 1) * next_i();
-        dispc[_i0].feat->vp_max = ((-2 * (next_i()%2)) + 1) * next_i();
+              dispc[_i0].feat->sw_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          dispc[_i0].feat->hp_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          dispc[_i0].feat->vp_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = _dispc_lcd_timings_ok(dispc,hsync_len,hfp,hbp,vsw,vfp,vbp);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dispc0; _aux++) {
+          free(dispc[_aux].feat);
+          }
+          free(dispc);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int hsync_len = 255;
+        
+          int hfp = 255;
+        
+          int hbp = 255;
+        
+          int vsw = 255;
+        
+          int vfp = 255;
+        
+          int vbp = 255;
+        
+          int _len_dispc0 = 65025;
+          struct dispc_device * dispc = (struct dispc_device *) malloc(_len_dispc0*sizeof(struct dispc_device));
+          for(int _i0 = 0; _i0 < _len_dispc0; _i0++) {
+              int _len_dispc__i0__feat0 = 1;
+          dispc[_i0].feat = (struct TYPE_2__ *) malloc(_len_dispc__i0__feat0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_dispc__i0__feat0; _j0++) {
+              dispc[_i0].feat->sw_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          dispc[_i0].feat->hp_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          dispc[_i0].feat->vp_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = _dispc_lcd_timings_ok(dispc,hsync_len,hfp,hbp,vsw,vfp,vbp);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dispc0; _aux++) {
+          free(dispc[_aux].feat);
+          }
+          free(dispc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int hsync_len = 10;
+        
+          int hfp = 10;
+        
+          int hbp = 10;
+        
+          int vsw = 10;
+        
+          int vfp = 10;
+        
+          int vbp = 10;
+        
+          int _len_dispc0 = 100;
+          struct dispc_device * dispc = (struct dispc_device *) malloc(_len_dispc0*sizeof(struct dispc_device));
+          for(int _i0 = 0; _i0 < _len_dispc0; _i0++) {
+              int _len_dispc__i0__feat0 = 1;
+          dispc[_i0].feat = (struct TYPE_2__ *) malloc(_len_dispc__i0__feat0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_dispc__i0__feat0; _j0++) {
+              dispc[_i0].feat->sw_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          dispc[_i0].feat->hp_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          dispc[_i0].feat->vp_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = _dispc_lcd_timings_ok(dispc,hsync_len,hfp,hbp,vsw,vfp,vbp);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dispc0; _aux++) {
+          free(dispc[_aux].feat);
+          }
+          free(dispc);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int hsync_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int hfp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int hbp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int vsw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int vfp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int vbp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dispc0 = 1;
+          struct dispc_device * dispc = (struct dispc_device *) malloc(_len_dispc0*sizeof(struct dispc_device));
+          for(int _i0 = 0; _i0 < _len_dispc0; _i0++) {
+              int _len_dispc__i0__feat0 = 1;
+          dispc[_i0].feat = (struct TYPE_2__ *) malloc(_len_dispc__i0__feat0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_dispc__i0__feat0; _j0++) {
+              dispc[_i0].feat->sw_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          dispc[_i0].feat->hp_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          dispc[_i0].feat->vp_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = _dispc_lcd_timings_ok(dispc,hsync_len,hfp,hbp,vsw,vfp,vbp);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_dispc0; _aux++) {

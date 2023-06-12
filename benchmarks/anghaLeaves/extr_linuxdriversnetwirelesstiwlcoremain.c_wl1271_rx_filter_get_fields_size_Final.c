@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ int wl1271_rx_filter_get_fields_size(struct wl12xx_rx_filter *filter)
 	return fields_size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,19 +85,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_filter0 = 1;
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_filter0 = 65025;
           struct wl12xx_rx_filter * filter = (struct wl12xx_rx_filter *) malloc(_len_filter0*sizeof(struct wl12xx_rx_filter));
           for(int _i0 = 0; _i0 < _len_filter0; _i0++) {
-            filter[_i0].num_fields = ((-2 * (next_i()%2)) + 1) * next_i();
+              filter[_i0].num_fields = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_filter__i0__fields0 = 1;
           filter[_i0].fields = (struct TYPE_2__ *) malloc(_len_filter__i0__fields0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_filter__i0__fields0; _j0++) {
-            filter[_i0].fields->len = ((-2 * (next_i()%2)) + 1) * next_i();
+              filter[_i0].fields->len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = wl1271_rx_filter_get_fields_size(filter);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_filter0; _aux++) {
+          free(filter[_aux].fields);
+          }
+          free(filter);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_filter0 = 100;
+          struct wl12xx_rx_filter * filter = (struct wl12xx_rx_filter *) malloc(_len_filter0*sizeof(struct wl12xx_rx_filter));
+          for(int _i0 = 0; _i0 < _len_filter0; _i0++) {
+              filter[_i0].num_fields = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_filter__i0__fields0 = 1;
+          filter[_i0].fields = (struct TYPE_2__ *) malloc(_len_filter__i0__fields0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_filter__i0__fields0; _j0++) {
+              filter[_i0].fields->len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = wl1271_rx_filter_get_fields_size(filter);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_filter0; _aux++) {
+          free(filter[_aux].fields);
+          }
+          free(filter);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_filter0 = 1;
+          struct wl12xx_rx_filter * filter = (struct wl12xx_rx_filter *) malloc(_len_filter0*sizeof(struct wl12xx_rx_filter));
+          for(int _i0 = 0; _i0 < _len_filter0; _i0++) {
+              filter[_i0].num_fields = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_filter__i0__fields0 = 1;
+          filter[_i0].fields = (struct TYPE_2__ *) malloc(_len_filter__i0__fields0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_filter__i0__fields0; _j0++) {
+              filter[_i0].fields->len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = wl1271_rx_filter_get_fields_size(filter);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_filter0; _aux++) {

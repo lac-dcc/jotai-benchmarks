@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static u16 ath9k_hw_ar9300_get_spur_channel(struct ath_hw 
 	return AR_NO_SPUR;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,12 +82,36 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int i = 100;
+        
           int is2GHz = 100;
+        
           int _len_ah0 = 1;
           struct ath_hw * ah = (struct ath_hw *) malloc(_len_ah0*sizeof(struct ath_hw));
           for(int _i0 = 0; _i0 < _len_ah0; _i0++) {
-            ah[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ah[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = ath9k_hw_ar9300_get_spur_channel(ah,i,is2GHz);
+          printf("%d\n", benchRet); 
+          free(ah);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int i = 255;
+        
+          int is2GHz = 255;
+        
+          int _len_ah0 = 65025;
+          struct ath_hw * ah = (struct ath_hw *) malloc(_len_ah0*sizeof(struct ath_hw));
+          for(int _i0 = 0; _i0 < _len_ah0; _i0++) {
+              ah[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = ath9k_hw_ar9300_get_spur_channel(ah,i,is2GHz);
           printf("%d\n", benchRet); 
           free(ah);
@@ -99,22 +119,45 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int i = 10;
+        
           int is2GHz = 10;
+        
           int _len_ah0 = 100;
           struct ath_hw * ah = (struct ath_hw *) malloc(_len_ah0*sizeof(struct ath_hw));
           for(int _i0 = 0; _i0 < _len_ah0; _i0++) {
-            ah[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ah[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ath9k_hw_ar9300_get_spur_channel(ah,i,is2GHz);
           printf("%d\n", benchRet); 
           free(ah);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int i = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int is2GHz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ah0 = 1;
+          struct ath_hw * ah = (struct ath_hw *) malloc(_len_ah0*sizeof(struct ath_hw));
+          for(int _i0 = 0; _i0 < _len_ah0; _i0++) {
+              ah[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ath9k_hw_ar9300_get_spur_channel(ah,i,is2GHz);
+          printf("%d\n", benchRet); 
+          free(ah);
+        
+        break;
+    }
     default:
         usage();
         break;

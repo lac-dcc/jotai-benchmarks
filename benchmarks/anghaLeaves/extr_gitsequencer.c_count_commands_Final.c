@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static int count_commands(struct todo_list *todo_list)
 	return count;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,19 +83,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_todo_list0 = 1;
+          int _len_todo_list0 = 65025;
           struct todo_list * todo_list = (struct todo_list *) malloc(_len_todo_list0*sizeof(struct todo_list));
           for(int _i0 = 0; _i0 < _len_todo_list0; _i0++) {
-            todo_list[_i0].nr = ((-2 * (next_i()%2)) + 1) * next_i();
+              todo_list[_i0].nr = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_todo_list__i0__items0 = 1;
           todo_list[_i0].items = (struct TYPE_2__ *) malloc(_len_todo_list__i0__items0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_todo_list__i0__items0; _j0++) {
-            todo_list[_i0].items->command = ((-2 * (next_i()%2)) + 1) * next_i();
+              todo_list[_i0].items->command = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = count_commands(todo_list);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_todo_list0; _aux++) {
@@ -109,7 +108,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_todo_list0 = 100;
+          struct todo_list * todo_list = (struct todo_list *) malloc(_len_todo_list0*sizeof(struct todo_list));
+          for(int _i0 = 0; _i0 < _len_todo_list0; _i0++) {
+              todo_list[_i0].nr = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_todo_list__i0__items0 = 1;
+          todo_list[_i0].items = (struct TYPE_2__ *) malloc(_len_todo_list__i0__items0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_todo_list__i0__items0; _j0++) {
+              todo_list[_i0].items->command = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = count_commands(todo_list);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_todo_list0; _aux++) {
+          free(todo_list[_aux].items);
+          }
+          free(todo_list);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_todo_list0 = 1;
+          struct todo_list * todo_list = (struct todo_list *) malloc(_len_todo_list0*sizeof(struct todo_list));
+          for(int _i0 = 0; _i0 < _len_todo_list0; _i0++) {
+              todo_list[_i0].nr = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_todo_list__i0__items0 = 1;
+          todo_list[_i0].items = (struct TYPE_2__ *) malloc(_len_todo_list__i0__items0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_todo_list__i0__items0; _j0++) {
+              todo_list[_i0].items->command = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = count_commands(todo_list);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_todo_list0; _aux++) {
+          free(todo_list[_aux].items);
+          }
+          free(todo_list);
+        
+        break;
+    }
     default:
         usage();
         break;

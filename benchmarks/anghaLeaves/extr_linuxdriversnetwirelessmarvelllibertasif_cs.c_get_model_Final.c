@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +81,6 @@ __attribute__((used)) static inline u32 get_model(u16 manf_id, u16 card_id)
 	return MODEL_UNKNOWN;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,7 +97,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long manf_id = 100;
+        
           long card_id = 100;
+        
           int benchRet = get_model(manf_id,card_id);
           printf("%d\n", benchRet); 
         
@@ -112,7 +109,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long manf_id = 255;
+        
           long card_id = 255;
+        
           int benchRet = get_model(manf_id,card_id);
           printf("%d\n", benchRet); 
         
@@ -122,13 +121,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long manf_id = 10;
+        
           long card_id = 10;
+        
           int benchRet = get_model(manf_id,card_id);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long manf_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long card_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = get_model(manf_id,card_id);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

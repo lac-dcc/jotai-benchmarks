@@ -61,12 +61,6 @@ __attribute__((used)) static unsigned short GDT3(int idx)
 	return (idx << 3) | 3;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,6 +77,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int idx = 100;
+        
           unsigned short benchRet = GDT3(idx);
           printf("%hu\n", benchRet); 
         
@@ -92,6 +87,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int idx = 255;
+        
           unsigned short benchRet = GDT3(idx);
           printf("%hu\n", benchRet); 
         
@@ -101,12 +97,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int idx = 10;
+        
           unsigned short benchRet = GDT3(idx);
           printf("%hu\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

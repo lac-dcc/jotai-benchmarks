@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -59,12 +60,6 @@ void _pico_zero_vec4( picoVec4_t vec ){
 	vec[ 0 ] = vec[ 1 ] = vec[ 2 ] = vec[ 3 ] = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -77,20 +72,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
+    {
+          int _len_vec0 = 65025;
+          long * vec = (long *) malloc(_len_vec0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_vec0; _i0++) {
+            vec[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          _pico_zero_vec4(vec);
+          free(vec);
+        
+        break;
+    }
+    // big-arr-10x
+    case 1:
     {
           int _len_vec0 = 100;
           long * vec = (long *) malloc(_len_vec0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_vec0; _i0++) {
             vec[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           _pico_zero_vec4(vec);
           free(vec);
         
         break;
     }
-
     default:
         usage();
         break;

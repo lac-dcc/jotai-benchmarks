@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +65,6 @@ int b43legacy_is_mode(struct b43legacy_wl *wl, int type)
 		wl->if_type == type);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,16 +77,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int type = 100;
+        
           int _len_wl0 = 1;
           struct b43legacy_wl * wl = (struct b43legacy_wl *) malloc(_len_wl0*sizeof(struct b43legacy_wl));
           for(int _i0 = 0; _i0 < _len_wl0; _i0++) {
-            wl[_i0].if_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        wl[_i0].operating = ((-2 * (next_i()%2)) + 1) * next_i();
+              wl[_i0].if_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          wl[_i0].operating = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = b43legacy_is_mode(wl,type);
+          printf("%d\n", benchRet); 
+          free(wl);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int type = 255;
+        
+          int _len_wl0 = 65025;
+          struct b43legacy_wl * wl = (struct b43legacy_wl *) malloc(_len_wl0*sizeof(struct b43legacy_wl));
+          for(int _i0 = 0; _i0 < _len_wl0; _i0++) {
+              wl[_i0].if_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          wl[_i0].operating = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = b43legacy_is_mode(wl,type);
+          printf("%d\n", benchRet); 
+          free(wl);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int type = 10;
+        
+          int _len_wl0 = 100;
+          struct b43legacy_wl * wl = (struct b43legacy_wl *) malloc(_len_wl0*sizeof(struct b43legacy_wl));
+          for(int _i0 = 0; _i0 < _len_wl0; _i0++) {
+              wl[_i0].if_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          wl[_i0].operating = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = b43legacy_is_mode(wl,type);
+          printf("%d\n", benchRet); 
+          free(wl);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_wl0 = 1;
+          struct b43legacy_wl * wl = (struct b43legacy_wl *) malloc(_len_wl0*sizeof(struct b43legacy_wl));
+          for(int _i0 = 0; _i0 < _len_wl0; _i0++) {
+              wl[_i0].if_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          wl[_i0].operating = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = b43legacy_is_mode(wl,type);
           printf("%d\n", benchRet); 
           free(wl);

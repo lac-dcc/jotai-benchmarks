@@ -63,12 +63,6 @@ __attribute__((used)) static inline u32 iosf_mbi_form_mcr(u8 op, u8 port, u8 off
 	return (op << 24) | (port << 16) | (offset << 8) | MBI_ENABLE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,8 +79,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int op = 100;
+        
           int port = 100;
+        
           int offset = 100;
+        
           int benchRet = iosf_mbi_form_mcr(op,port,offset);
           printf("%d\n", benchRet); 
         
@@ -96,14 +93,16 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int op = 10;
+        
           int port = 10;
+        
           int offset = 10;
+        
           int benchRet = iosf_mbi_form_mcr(op,port,offset);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

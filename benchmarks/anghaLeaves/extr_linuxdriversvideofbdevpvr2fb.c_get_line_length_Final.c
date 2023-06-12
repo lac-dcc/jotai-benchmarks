@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline unsigned long get_line_length(int xres_virtu
 	return (unsigned long)((((xres_virtual*bpp)+31)&~31) >> 3);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,7 +78,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int xres_virtual = 100;
+        
           int bpp = 100;
+        
           unsigned long benchRet = get_line_length(xres_virtual,bpp);
           printf("%lu\n", benchRet); 
         
@@ -93,7 +90,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int xres_virtual = 255;
+        
           int bpp = 255;
+        
           unsigned long benchRet = get_line_length(xres_virtual,bpp);
           printf("%lu\n", benchRet); 
         
@@ -103,13 +102,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int xres_virtual = 10;
+        
           int bpp = 10;
+        
           unsigned long benchRet = get_line_length(xres_virtual,bpp);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int xres_virtual = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int bpp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = get_line_length(xres_virtual,bpp);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -81,12 +83,6 @@ __attribute__((used)) static bool matchGraph(RSignItem *a, RSignItem *b) {
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,35 +95,208 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 50
+          // dynamic_instructions_O0 : 50
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 26
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 26
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
+          int _len_a0 = 65025;
+          struct TYPE_6__ * a = (struct TYPE_6__ *) malloc(_len_a0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              int _len_a__i0__graph0 = 1;
+          a[_i0].graph = (struct TYPE_5__ *) malloc(_len_a__i0__graph0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_a__i0__graph0; _j0++) {
+              a[_i0].graph->cc = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].graph->nbbs = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].graph->ebbs = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].graph->edges = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].graph->bbsum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_b0 = 65025;
+          struct TYPE_6__ * b = (struct TYPE_6__ *) malloc(_len_b0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              int _len_b__i0__graph0 = 1;
+          b[_i0].graph = (struct TYPE_5__ *) malloc(_len_b__i0__graph0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_b__i0__graph0; _j0++) {
+              b[_i0].graph->cc = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].graph->nbbs = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].graph->ebbs = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].graph->edges = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].graph->bbsum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = matchGraph(a,b);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_a0; _aux++) {
+          free(a[_aux].graph);
+          }
+          free(a);
+          for(int _aux = 0; _aux < _len_b0; _aux++) {
+          free(b[_aux].graph);
+          }
+          free(b);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 50
+          // dynamic_instructions_O0 : 50
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 26
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 26
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
+          int _len_a0 = 100;
+          struct TYPE_6__ * a = (struct TYPE_6__ *) malloc(_len_a0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              int _len_a__i0__graph0 = 1;
+          a[_i0].graph = (struct TYPE_5__ *) malloc(_len_a__i0__graph0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_a__i0__graph0; _j0++) {
+              a[_i0].graph->cc = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].graph->nbbs = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].graph->ebbs = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].graph->edges = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].graph->bbsum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_b0 = 100;
+          struct TYPE_6__ * b = (struct TYPE_6__ *) malloc(_len_b0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              int _len_b__i0__graph0 = 1;
+          b[_i0].graph = (struct TYPE_5__ *) malloc(_len_b__i0__graph0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_b__i0__graph0; _j0++) {
+              b[_i0].graph->cc = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].graph->nbbs = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].graph->ebbs = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].graph->edges = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].graph->bbsum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = matchGraph(a,b);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_a0; _aux++) {
+          free(a[_aux].graph);
+          }
+          free(a);
+          for(int _aux = 0; _aux < _len_b0; _aux++) {
+          free(b[_aux].graph);
+          }
+          free(b);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 50
+          // dynamic_instructions_O0 : 50
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 26
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 26
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
           int _len_a0 = 1;
           struct TYPE_6__ * a = (struct TYPE_6__ *) malloc(_len_a0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_a0; _i0++) {
               int _len_a__i0__graph0 = 1;
           a[_i0].graph = (struct TYPE_5__ *) malloc(_len_a__i0__graph0*sizeof(struct TYPE_5__));
           for(int _j0 = 0; _j0 < _len_a__i0__graph0; _j0++) {
-            a[_i0].graph->cc = ((-2 * (next_i()%2)) + 1) * next_i();
-        a[_i0].graph->nbbs = ((-2 * (next_i()%2)) + 1) * next_i();
-        a[_i0].graph->ebbs = ((-2 * (next_i()%2)) + 1) * next_i();
-        a[_i0].graph->edges = ((-2 * (next_i()%2)) + 1) * next_i();
-        a[_i0].graph->bbsum = ((-2 * (next_i()%2)) + 1) * next_i();
+              a[_i0].graph->cc = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].graph->nbbs = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].graph->ebbs = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].graph->edges = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].graph->bbsum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_b0 = 1;
           struct TYPE_6__ * b = (struct TYPE_6__ *) malloc(_len_b0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_b0; _i0++) {
               int _len_b__i0__graph0 = 1;
           b[_i0].graph = (struct TYPE_5__ *) malloc(_len_b__i0__graph0*sizeof(struct TYPE_5__));
           for(int _j0 = 0; _j0 < _len_b__i0__graph0; _j0++) {
-            b[_i0].graph->cc = ((-2 * (next_i()%2)) + 1) * next_i();
-        b[_i0].graph->nbbs = ((-2 * (next_i()%2)) + 1) * next_i();
-        b[_i0].graph->ebbs = ((-2 * (next_i()%2)) + 1) * next_i();
-        b[_i0].graph->edges = ((-2 * (next_i()%2)) + 1) * next_i();
-        b[_i0].graph->bbsum = ((-2 * (next_i()%2)) + 1) * next_i();
+              b[_i0].graph->cc = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].graph->nbbs = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].graph->ebbs = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].graph->edges = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].graph->bbsum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = matchGraph(a,b);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_a0; _aux++) {

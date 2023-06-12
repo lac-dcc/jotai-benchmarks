@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static int kvm_vcpu_check_hw_bp(unsigned long addr, u32 ty
 	return dr6;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,34 +85,179 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 98
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 49
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 26
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 26
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 48
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 54
+          // ------------------------------- 
+
           unsigned long addr = 100;
+        
           int type = 100;
+        
           int dr7 = 100;
+        
           int _len_db0 = 1;
           unsigned long * db = (unsigned long *) malloc(_len_db0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_db0; _i0++) {
             db[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = kvm_vcpu_check_hw_bp(addr,type,dr7,db);
           printf("%d\n", benchRet); 
           free(db);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 102
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 53
+          // ------------------------------- 
+          // static_instructions_O2 : 31
+          // dynamic_instructions_O2 : 31
+          // ------------------------------- 
+          // static_instructions_O3 : 31
+          // dynamic_instructions_O3 : 31
+          // ------------------------------- 
+          // static_instructions_Ofast : 31
+          // dynamic_instructions_Ofast : 31
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 52
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 58
+          // ------------------------------- 
+
+          unsigned long addr = 255;
+        
+          int type = 255;
+        
+          int dr7 = 255;
+        
+          int _len_db0 = 65025;
+          unsigned long * db = (unsigned long *) malloc(_len_db0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_db0; _i0++) {
+            db[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = kvm_vcpu_check_hw_bp(addr,type,dr7,db);
+          printf("%d\n", benchRet); 
+          free(db);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 94
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 45
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 44
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 50
+          // ------------------------------- 
+
           unsigned long addr = 10;
+        
           int type = 10;
+        
           int dr7 = 10;
+        
           int _len_db0 = 100;
           unsigned long * db = (unsigned long *) malloc(_len_db0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_db0; _i0++) {
             db[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = kvm_vcpu_check_hw_bp(addr,type,dr7,db);
+          printf("%d\n", benchRet); 
+          free(db);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 102
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 53
+          // ------------------------------- 
+          // static_instructions_O2 : 31
+          // dynamic_instructions_O2 : 31
+          // ------------------------------- 
+          // static_instructions_O3 : 31
+          // dynamic_instructions_O3 : 31
+          // ------------------------------- 
+          // static_instructions_Ofast : 31
+          // dynamic_instructions_Ofast : 31
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 52
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 58
+          // ------------------------------- 
+
+          unsigned long addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int dr7 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_db0 = 1;
+          unsigned long * db = (unsigned long *) malloc(_len_db0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_db0; _i0++) {
+            db[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = kvm_vcpu_check_hw_bp(addr,type,dr7,db);
           printf("%d\n", benchRet); 
           free(db);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static inline int sony_compare_connection_type(struct sony
 	return sc0_not_bt == sc1_not_bt;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,19 +79,142 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_sc00 = 65025;
+          struct sony_sc * sc0 = (struct sony_sc *) malloc(_len_sc00*sizeof(struct sony_sc));
+          for(int _i0 = 0; _i0 < _len_sc00; _i0++) {
+              sc0[_i0].quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_sc10 = 65025;
+          struct sony_sc * sc1 = (struct sony_sc *) malloc(_len_sc10*sizeof(struct sony_sc));
+          for(int _i0 = 0; _i0 < _len_sc10; _i0++) {
+              sc1[_i0].quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sony_compare_connection_type(sc0,sc1);
+          printf("%d\n", benchRet); 
+          free(sc0);
+          free(sc1);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_sc00 = 100;
+          struct sony_sc * sc0 = (struct sony_sc *) malloc(_len_sc00*sizeof(struct sony_sc));
+          for(int _i0 = 0; _i0 < _len_sc00; _i0++) {
+              sc0[_i0].quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_sc10 = 100;
+          struct sony_sc * sc1 = (struct sony_sc *) malloc(_len_sc10*sizeof(struct sony_sc));
+          for(int _i0 = 0; _i0 < _len_sc10; _i0++) {
+              sc1[_i0].quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sony_compare_connection_type(sc0,sc1);
+          printf("%d\n", benchRet); 
+          free(sc0);
+          free(sc1);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_sc00 = 1;
           struct sony_sc * sc0 = (struct sony_sc *) malloc(_len_sc00*sizeof(struct sony_sc));
           for(int _i0 = 0; _i0 < _len_sc00; _i0++) {
-            sc0[_i0].quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+              sc0[_i0].quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_sc10 = 1;
           struct sony_sc * sc1 = (struct sony_sc *) malloc(_len_sc10*sizeof(struct sony_sc));
           for(int _i0 = 0; _i0 < _len_sc10; _i0++) {
-            sc1[_i0].quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+              sc1[_i0].quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = sony_compare_connection_type(sc0,sc1);
           printf("%d\n", benchRet); 
           free(sc0);

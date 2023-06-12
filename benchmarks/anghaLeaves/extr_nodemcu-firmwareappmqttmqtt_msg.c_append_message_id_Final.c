@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +79,6 @@ __attribute__((used)) static uint16_t append_message_id(mqtt_connection_t* conne
   return message_id;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,22 +91,208 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int message_id = 100;
+        
           int _len_connection0 = 1;
           struct TYPE_5__ * connection = (struct TYPE_5__ *) malloc(_len_connection0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_connection0; _i0++) {
-            connection[_i0].message_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        connection[_i0].buffer_length = ((-2 * (next_i()%2)) + 1) * next_i();
+              connection[_i0].message_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          connection[_i0].buffer_length = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_connection__i0__buffer0 = 1;
           connection[_i0].buffer = (int *) malloc(_len_connection__i0__buffer0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_connection__i0__buffer0; _j0++) {
             connection[_i0].buffer[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        connection[_i0].message.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          connection[_i0].message.length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = append_message_id(connection,message_id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_connection0; _aux++) {
+          free(connection[_aux].buffer);
+          }
+          free(connection);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int message_id = 255;
+        
+          int _len_connection0 = 65025;
+          struct TYPE_5__ * connection = (struct TYPE_5__ *) malloc(_len_connection0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_connection0; _i0++) {
+              connection[_i0].message_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          connection[_i0].buffer_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_connection__i0__buffer0 = 1;
+          connection[_i0].buffer = (int *) malloc(_len_connection__i0__buffer0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_connection__i0__buffer0; _j0++) {
+            connection[_i0].buffer[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          connection[_i0].message.length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = append_message_id(connection,message_id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_connection0; _aux++) {
+          free(connection[_aux].buffer);
+          }
+          free(connection);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int message_id = 10;
+        
+          int _len_connection0 = 100;
+          struct TYPE_5__ * connection = (struct TYPE_5__ *) malloc(_len_connection0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_connection0; _i0++) {
+              connection[_i0].message_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          connection[_i0].buffer_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_connection__i0__buffer0 = 1;
+          connection[_i0].buffer = (int *) malloc(_len_connection__i0__buffer0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_connection__i0__buffer0; _j0++) {
+            connection[_i0].buffer[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          connection[_i0].message.length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = append_message_id(connection,message_id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_connection0; _aux++) {
+          free(connection[_aux].buffer);
+          }
+          free(connection);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int message_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_connection0 = 1;
+          struct TYPE_5__ * connection = (struct TYPE_5__ *) malloc(_len_connection0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_connection0; _i0++) {
+              connection[_i0].message_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          connection[_i0].buffer_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_connection__i0__buffer0 = 1;
+          connection[_i0].buffer = (int *) malloc(_len_connection__i0__buffer0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_connection__i0__buffer0; _j0++) {
+            connection[_i0].buffer[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          connection[_i0].message.length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = append_message_id(connection,message_id);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_connection0; _aux++) {

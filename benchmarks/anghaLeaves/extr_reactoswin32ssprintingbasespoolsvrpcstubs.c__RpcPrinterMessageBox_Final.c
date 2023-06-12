@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ _RpcPrinterMessageBox(WINSPOOL_PRINTER_HANDLE hPrinter, DWORD Error, ULONG_PTR h
     return ERROR_INVALID_FUNCTION;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,19 +86,25 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int hPrinter = 100;
+        
           int Error = 100;
+        
           int hWnd = 100;
+        
           int dwType = 100;
+        
           int _len_pText0 = 1;
           int * pText = (int *) malloc(_len_pText0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pText0; _i0++) {
             pText[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_pCaption0 = 1;
           int * pCaption = (int *) malloc(_len_pCaption0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pCaption0; _i0++) {
             pCaption[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = _RpcPrinterMessageBox(hPrinter,Error,hWnd,pText,pCaption,dwType);
           printf("%d\n", benchRet); 
           free(pText);
@@ -109,7 +112,96 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int hPrinter = 255;
+        
+          int Error = 255;
+        
+          int hWnd = 255;
+        
+          int dwType = 255;
+        
+          int _len_pText0 = 65025;
+          int * pText = (int *) malloc(_len_pText0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pText0; _i0++) {
+            pText[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pCaption0 = 65025;
+          int * pCaption = (int *) malloc(_len_pCaption0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pCaption0; _i0++) {
+            pCaption[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _RpcPrinterMessageBox(hPrinter,Error,hWnd,pText,pCaption,dwType);
+          printf("%d\n", benchRet); 
+          free(pText);
+          free(pCaption);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int hPrinter = 10;
+        
+          int Error = 10;
+        
+          int hWnd = 10;
+        
+          int dwType = 10;
+        
+          int _len_pText0 = 100;
+          int * pText = (int *) malloc(_len_pText0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pText0; _i0++) {
+            pText[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pCaption0 = 100;
+          int * pCaption = (int *) malloc(_len_pCaption0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pCaption0; _i0++) {
+            pCaption[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _RpcPrinterMessageBox(hPrinter,Error,hWnd,pText,pCaption,dwType);
+          printf("%d\n", benchRet); 
+          free(pText);
+          free(pCaption);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int hPrinter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int Error = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int hWnd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int dwType = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pText0 = 1;
+          int * pText = (int *) malloc(_len_pText0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pText0; _i0++) {
+            pText[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pCaption0 = 1;
+          int * pCaption = (int *) malloc(_len_pCaption0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pCaption0; _i0++) {
+            pCaption[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _RpcPrinterMessageBox(hPrinter,Error,hWnd,pText,pCaption,dwType);
+          printf("%d\n", benchRet); 
+          free(pText);
+          free(pCaption);
+        
+        break;
+    }
     default:
         usage();
         break;

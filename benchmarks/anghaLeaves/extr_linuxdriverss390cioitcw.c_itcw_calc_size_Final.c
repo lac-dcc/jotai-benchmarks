@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -102,12 +103,6 @@ size_t itcw_calc_size(int intrg, int max_tidaws, int intrg_max_tidaws)
 	return len;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -124,8 +119,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int intrg = 100;
+        
           int max_tidaws = 100;
+        
           int intrg_max_tidaws = 100;
+        
           unsigned long benchRet = itcw_calc_size(intrg,max_tidaws,intrg_max_tidaws);
           printf("%lu\n", benchRet); 
         
@@ -135,8 +133,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int intrg = 255;
+        
           int max_tidaws = 255;
+        
           int intrg_max_tidaws = 255;
+        
           unsigned long benchRet = itcw_calc_size(intrg,max_tidaws,intrg_max_tidaws);
           printf("%lu\n", benchRet); 
         
@@ -146,14 +147,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int intrg = 10;
+        
           int max_tidaws = 10;
+        
           int intrg_max_tidaws = 10;
+        
           unsigned long benchRet = itcw_calc_size(intrg,max_tidaws,intrg_max_tidaws);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int intrg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int max_tidaws = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int intrg_max_tidaws = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = itcw_calc_size(intrg,max_tidaws,intrg_max_tidaws);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

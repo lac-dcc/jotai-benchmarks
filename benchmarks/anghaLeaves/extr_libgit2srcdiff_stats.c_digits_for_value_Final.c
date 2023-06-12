@@ -69,12 +69,6 @@ __attribute__((used)) static int digits_for_value(size_t val)
 	return count;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,6 +85,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long val = 100;
+        
           int benchRet = digits_for_value(val);
           printf("%d\n", benchRet); 
         
@@ -100,6 +95,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long val = 255;
+        
           int benchRet = digits_for_value(val);
           printf("%d\n", benchRet); 
         
@@ -109,12 +105,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long val = 10;
+        
           int benchRet = digits_for_value(val);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

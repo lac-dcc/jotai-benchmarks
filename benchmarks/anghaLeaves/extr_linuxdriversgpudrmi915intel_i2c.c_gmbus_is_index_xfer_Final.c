@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ gmbus_is_index_xfer(struct i2c_msg *msgs, int i, int num)
 		msgs[i + 1].len > 0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,21 +85,90 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int i = 100;
+        
           int num = 100;
+        
           int _len_msgs0 = 1;
           struct i2c_msg * msgs = (struct i2c_msg *) malloc(_len_msgs0*sizeof(struct i2c_msg));
           for(int _i0 = 0; _i0 < _len_msgs0; _i0++) {
-            msgs[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        msgs[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        msgs[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+              msgs[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          msgs[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          msgs[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = gmbus_is_index_xfer(msgs,i,num);
           printf("%d\n", benchRet); 
           free(msgs);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int i = 255;
+        
+          int num = 255;
+        
+          int _len_msgs0 = 65025;
+          struct i2c_msg * msgs = (struct i2c_msg *) malloc(_len_msgs0*sizeof(struct i2c_msg));
+          for(int _i0 = 0; _i0 < _len_msgs0; _i0++) {
+              msgs[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          msgs[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          msgs[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = gmbus_is_index_xfer(msgs,i,num);
+          printf("%d\n", benchRet); 
+          free(msgs);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int i = 10;
+        
+          int num = 10;
+        
+          int _len_msgs0 = 100;
+          struct i2c_msg * msgs = (struct i2c_msg *) malloc(_len_msgs0*sizeof(struct i2c_msg));
+          for(int _i0 = 0; _i0 < _len_msgs0; _i0++) {
+              msgs[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          msgs[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          msgs[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = gmbus_is_index_xfer(msgs,i,num);
+          printf("%d\n", benchRet); 
+          free(msgs);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int i = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_msgs0 = 1;
+          struct i2c_msg * msgs = (struct i2c_msg *) malloc(_len_msgs0*sizeof(struct i2c_msg));
+          for(int _i0 = 0; _i0 < _len_msgs0; _i0++) {
+              msgs[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          msgs[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          msgs[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = gmbus_is_index_xfer(msgs,i,num);
+          printf("%d\n", benchRet); 
+          free(msgs);
+        
+        break;
+    }
     default:
         usage();
         break;

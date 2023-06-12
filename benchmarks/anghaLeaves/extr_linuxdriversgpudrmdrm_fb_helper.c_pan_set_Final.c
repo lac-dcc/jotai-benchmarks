@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ __attribute__((used)) static void pan_set(struct drm_fb_helper *fb_helper, int x
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,22 +87,213 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int x = 100;
+        
           int y = 100;
+        
           int _len_fb_helper0 = 1;
           struct drm_fb_helper * fb_helper = (struct drm_fb_helper *) malloc(_len_fb_helper0*sizeof(struct drm_fb_helper));
           for(int _i0 = 0; _i0 < _len_fb_helper0; _i0++) {
-            fb_helper[_i0].crtc_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              fb_helper[_i0].crtc_count = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_fb_helper__i0__crtc_info0 = 1;
           fb_helper[_i0].crtc_info = (struct TYPE_2__ *) malloc(_len_fb_helper__i0__crtc_info0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_fb_helper__i0__crtc_info0; _j0++) {
-            fb_helper[_i0].crtc_info->mode_set.x = ((-2 * (next_i()%2)) + 1) * next_i();
-        fb_helper[_i0].crtc_info->mode_set.y = ((-2 * (next_i()%2)) + 1) * next_i();
+              fb_helper[_i0].crtc_info->mode_set.x = ((-2 * (next_i()%2)) + 1) * next_i();
+          fb_helper[_i0].crtc_info->mode_set.y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
+          pan_set(fb_helper,x,y);
+          for(int _aux = 0; _aux < _len_fb_helper0; _aux++) {
+          free(fb_helper[_aux].crtc_info);
+          }
+          free(fb_helper);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int x = 255;
+        
+          int y = 255;
+        
+          int _len_fb_helper0 = 65025;
+          struct drm_fb_helper * fb_helper = (struct drm_fb_helper *) malloc(_len_fb_helper0*sizeof(struct drm_fb_helper));
+          for(int _i0 = 0; _i0 < _len_fb_helper0; _i0++) {
+              fb_helper[_i0].crtc_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_fb_helper__i0__crtc_info0 = 1;
+          fb_helper[_i0].crtc_info = (struct TYPE_2__ *) malloc(_len_fb_helper__i0__crtc_info0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_fb_helper__i0__crtc_info0; _j0++) {
+              fb_helper[_i0].crtc_info->mode_set.x = ((-2 * (next_i()%2)) + 1) * next_i();
+          fb_helper[_i0].crtc_info->mode_set.y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          pan_set(fb_helper,x,y);
+          for(int _aux = 0; _aux < _len_fb_helper0; _aux++) {
+          free(fb_helper[_aux].crtc_info);
+          }
+          free(fb_helper);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int x = 10;
+        
+          int y = 10;
+        
+          int _len_fb_helper0 = 100;
+          struct drm_fb_helper * fb_helper = (struct drm_fb_helper *) malloc(_len_fb_helper0*sizeof(struct drm_fb_helper));
+          for(int _i0 = 0; _i0 < _len_fb_helper0; _i0++) {
+              fb_helper[_i0].crtc_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_fb_helper__i0__crtc_info0 = 1;
+          fb_helper[_i0].crtc_info = (struct TYPE_2__ *) malloc(_len_fb_helper__i0__crtc_info0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_fb_helper__i0__crtc_info0; _j0++) {
+              fb_helper[_i0].crtc_info->mode_set.x = ((-2 * (next_i()%2)) + 1) * next_i();
+          fb_helper[_i0].crtc_info->mode_set.y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          pan_set(fb_helper,x,y);
+          for(int _aux = 0; _aux < _len_fb_helper0; _aux++) {
+          free(fb_helper[_aux].crtc_info);
+          }
+          free(fb_helper);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fb_helper0 = 1;
+          struct drm_fb_helper * fb_helper = (struct drm_fb_helper *) malloc(_len_fb_helper0*sizeof(struct drm_fb_helper));
+          for(int _i0 = 0; _i0 < _len_fb_helper0; _i0++) {
+              fb_helper[_i0].crtc_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_fb_helper__i0__crtc_info0 = 1;
+          fb_helper[_i0].crtc_info = (struct TYPE_2__ *) malloc(_len_fb_helper__i0__crtc_info0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_fb_helper__i0__crtc_info0; _j0++) {
+              fb_helper[_i0].crtc_info->mode_set.x = ((-2 * (next_i()%2)) + 1) * next_i();
+          fb_helper[_i0].crtc_info->mode_set.y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
           pan_set(fb_helper,x,y);
           for(int _aux = 0; _aux < _len_fb_helper0; _aux++) {
           free(fb_helper[_aux].crtc_info);

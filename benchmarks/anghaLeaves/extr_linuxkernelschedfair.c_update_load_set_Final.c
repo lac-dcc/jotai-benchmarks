@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +64,6 @@ __attribute__((used)) static inline void update_load_set(struct load_weight *lw,
 	lw->inv_weight = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,18 +80,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long w = 100;
+        
           int _len_lw0 = 1;
           struct load_weight * lw = (struct load_weight *) malloc(_len_lw0*sizeof(struct load_weight));
           for(int _i0 = 0; _i0 < _len_lw0; _i0++) {
-            lw[_i0].weight = ((-2 * (next_i()%2)) + 1) * next_i();
-        lw[_i0].inv_weight = ((-2 * (next_i()%2)) + 1) * next_i();
+              lw[_i0].weight = ((-2 * (next_i()%2)) + 1) * next_i();
+          lw[_i0].inv_weight = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           update_load_set(lw,w);
           free(lw);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long w = 255;
+        
+          int _len_lw0 = 65025;
+          struct load_weight * lw = (struct load_weight *) malloc(_len_lw0*sizeof(struct load_weight));
+          for(int _i0 = 0; _i0 < _len_lw0; _i0++) {
+              lw[_i0].weight = ((-2 * (next_i()%2)) + 1) * next_i();
+          lw[_i0].inv_weight = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          update_load_set(lw,w);
+          free(lw);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long w = 10;
+        
+          int _len_lw0 = 100;
+          struct load_weight * lw = (struct load_weight *) malloc(_len_lw0*sizeof(struct load_weight));
+          for(int _i0 = 0; _i0 < _len_lw0; _i0++) {
+              lw[_i0].weight = ((-2 * (next_i()%2)) + 1) * next_i();
+          lw[_i0].inv_weight = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          update_load_set(lw,w);
+          free(lw);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long w = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_lw0 = 1;
+          struct load_weight * lw = (struct load_weight *) malloc(_len_lw0*sizeof(struct load_weight));
+          for(int _i0 = 0; _i0 < _len_lw0; _i0++) {
+              lw[_i0].weight = ((-2 * (next_i()%2)) + 1) * next_i();
+          lw[_i0].inv_weight = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          update_load_set(lw,w);
+          free(lw);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static int to_be_deleted(struct patch *patch)
 	return patch == PATH_TO_BE_DELETED;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_patch0 = 1;
+          int _len_patch0 = 65025;
           struct patch * patch = (struct patch *) malloc(_len_patch0*sizeof(struct patch));
           for(int _i0 = 0; _i0 < _len_patch0; _i0++) {
-            patch[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              patch[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = to_be_deleted(patch);
           printf("%d\n", benchRet); 
           free(patch);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_patch0 = 100;
           struct patch * patch = (struct patch *) malloc(_len_patch0*sizeof(struct patch));
           for(int _i0 = 0; _i0 < _len_patch0; _i0++) {
-            patch[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              patch[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = to_be_deleted(patch);
           printf("%d\n", benchRet); 
           free(patch);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_patch0 = 1;
+          struct patch * patch = (struct patch *) malloc(_len_patch0*sizeof(struct patch));
+          for(int _i0 = 0; _i0 < _len_patch0; _i0++) {
+              patch[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = to_be_deleted(patch);
+          printf("%d\n", benchRet); 
+          free(patch);
+        
+        break;
+    }
     default:
         usage();
         break;

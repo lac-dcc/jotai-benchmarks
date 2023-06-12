@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +77,6 @@ __attribute__((used)) static int microread_target_from_gate(struct nfc_hci_dev *
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,16 +93,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int gate = 100;
+        
           int _len_hdev0 = 1;
           struct nfc_hci_dev * hdev = (struct nfc_hci_dev *) malloc(_len_hdev0*sizeof(struct nfc_hci_dev));
           for(int _i0 = 0; _i0 < _len_hdev0; _i0++) {
-            hdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              hdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_target0 = 1;
           struct nfc_target * target = (struct nfc_target *) malloc(_len_target0*sizeof(struct nfc_target));
           for(int _i0 = 0; _i0 < _len_target0; _i0++) {
-            target[_i0].supported_protocols = ((-2 * (next_i()%2)) + 1) * next_i();
+              target[_i0].supported_protocols = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = microread_target_from_gate(hdev,gate,target);
           printf("%d\n", benchRet); 
           free(hdev);
@@ -113,7 +115,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int gate = 255;
+        
+          int _len_hdev0 = 65025;
+          struct nfc_hci_dev * hdev = (struct nfc_hci_dev *) malloc(_len_hdev0*sizeof(struct nfc_hci_dev));
+          for(int _i0 = 0; _i0 < _len_hdev0; _i0++) {
+              hdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_target0 = 65025;
+          struct nfc_target * target = (struct nfc_target *) malloc(_len_target0*sizeof(struct nfc_target));
+          for(int _i0 = 0; _i0 < _len_target0; _i0++) {
+              target[_i0].supported_protocols = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = microread_target_from_gate(hdev,gate,target);
+          printf("%d\n", benchRet); 
+          free(hdev);
+          free(target);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int gate = 10;
+        
+          int _len_hdev0 = 100;
+          struct nfc_hci_dev * hdev = (struct nfc_hci_dev *) malloc(_len_hdev0*sizeof(struct nfc_hci_dev));
+          for(int _i0 = 0; _i0 < _len_hdev0; _i0++) {
+              hdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_target0 = 100;
+          struct nfc_target * target = (struct nfc_target *) malloc(_len_target0*sizeof(struct nfc_target));
+          for(int _i0 = 0; _i0 < _len_target0; _i0++) {
+              target[_i0].supported_protocols = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = microread_target_from_gate(hdev,gate,target);
+          printf("%d\n", benchRet); 
+          free(hdev);
+          free(target);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int gate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hdev0 = 1;
+          struct nfc_hci_dev * hdev = (struct nfc_hci_dev *) malloc(_len_hdev0*sizeof(struct nfc_hci_dev));
+          for(int _i0 = 0; _i0 < _len_hdev0; _i0++) {
+              hdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_target0 = 1;
+          struct nfc_target * target = (struct nfc_target *) malloc(_len_target0*sizeof(struct nfc_target));
+          for(int _i0 = 0; _i0 < _len_target0; _i0++) {
+              target[_i0].supported_protocols = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = microread_target_from_gate(hdev,gate,target);
+          printf("%d\n", benchRet); 
+          free(hdev);
+          free(target);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static inline int ivi_pic_config_cmp(IVIPicConfig *str1, I
            str1->luma_bands   != str2->luma_bands   || str1->chroma_bands  != str2->chroma_bands;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,33 +79,37 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_str10 = 1;
+          int _len_str10 = 65025;
           struct TYPE_4__ * str1 = (struct TYPE_4__ *) malloc(_len_str10*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_str10; _i0++) {
-            str1[_i0].pic_width = ((-2 * (next_i()%2)) + 1) * next_i();
-        str1[_i0].pic_height = ((-2 * (next_i()%2)) + 1) * next_i();
-        str1[_i0].chroma_width = ((-2 * (next_i()%2)) + 1) * next_i();
-        str1[_i0].chroma_height = ((-2 * (next_i()%2)) + 1) * next_i();
-        str1[_i0].tile_width = ((-2 * (next_i()%2)) + 1) * next_i();
-        str1[_i0].tile_height = ((-2 * (next_i()%2)) + 1) * next_i();
-        str1[_i0].luma_bands = ((-2 * (next_i()%2)) + 1) * next_i();
-        str1[_i0].chroma_bands = ((-2 * (next_i()%2)) + 1) * next_i();
+              str1[_i0].pic_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          str1[_i0].pic_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          str1[_i0].chroma_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          str1[_i0].chroma_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          str1[_i0].tile_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          str1[_i0].tile_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          str1[_i0].luma_bands = ((-2 * (next_i()%2)) + 1) * next_i();
+          str1[_i0].chroma_bands = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_str20 = 1;
+        
+          int _len_str20 = 65025;
           struct TYPE_4__ * str2 = (struct TYPE_4__ *) malloc(_len_str20*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_str20; _i0++) {
-            str2[_i0].pic_width = ((-2 * (next_i()%2)) + 1) * next_i();
-        str2[_i0].pic_height = ((-2 * (next_i()%2)) + 1) * next_i();
-        str2[_i0].chroma_width = ((-2 * (next_i()%2)) + 1) * next_i();
-        str2[_i0].chroma_height = ((-2 * (next_i()%2)) + 1) * next_i();
-        str2[_i0].tile_width = ((-2 * (next_i()%2)) + 1) * next_i();
-        str2[_i0].tile_height = ((-2 * (next_i()%2)) + 1) * next_i();
-        str2[_i0].luma_bands = ((-2 * (next_i()%2)) + 1) * next_i();
-        str2[_i0].chroma_bands = ((-2 * (next_i()%2)) + 1) * next_i();
+              str2[_i0].pic_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          str2[_i0].pic_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          str2[_i0].chroma_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          str2[_i0].chroma_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          str2[_i0].tile_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          str2[_i0].tile_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          str2[_i0].luma_bands = ((-2 * (next_i()%2)) + 1) * next_i();
+          str2[_i0].chroma_bands = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ivi_pic_config_cmp(str1,str2);
           printf("%d\n", benchRet); 
           free(str1);
@@ -117,7 +117,82 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_str10 = 100;
+          struct TYPE_4__ * str1 = (struct TYPE_4__ *) malloc(_len_str10*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_str10; _i0++) {
+              str1[_i0].pic_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          str1[_i0].pic_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          str1[_i0].chroma_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          str1[_i0].chroma_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          str1[_i0].tile_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          str1[_i0].tile_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          str1[_i0].luma_bands = ((-2 * (next_i()%2)) + 1) * next_i();
+          str1[_i0].chroma_bands = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_str20 = 100;
+          struct TYPE_4__ * str2 = (struct TYPE_4__ *) malloc(_len_str20*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_str20; _i0++) {
+              str2[_i0].pic_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          str2[_i0].pic_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          str2[_i0].chroma_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          str2[_i0].chroma_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          str2[_i0].tile_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          str2[_i0].tile_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          str2[_i0].luma_bands = ((-2 * (next_i()%2)) + 1) * next_i();
+          str2[_i0].chroma_bands = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ivi_pic_config_cmp(str1,str2);
+          printf("%d\n", benchRet); 
+          free(str1);
+          free(str2);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_str10 = 1;
+          struct TYPE_4__ * str1 = (struct TYPE_4__ *) malloc(_len_str10*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_str10; _i0++) {
+              str1[_i0].pic_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          str1[_i0].pic_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          str1[_i0].chroma_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          str1[_i0].chroma_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          str1[_i0].tile_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          str1[_i0].tile_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          str1[_i0].luma_bands = ((-2 * (next_i()%2)) + 1) * next_i();
+          str1[_i0].chroma_bands = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_str20 = 1;
+          struct TYPE_4__ * str2 = (struct TYPE_4__ *) malloc(_len_str20*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_str20; _i0++) {
+              str2[_i0].pic_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          str2[_i0].pic_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          str2[_i0].chroma_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          str2[_i0].chroma_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          str2[_i0].tile_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          str2[_i0].tile_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          str2[_i0].luma_bands = ((-2 * (next_i()%2)) + 1) * next_i();
+          str2[_i0].chroma_bands = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ivi_pic_config_cmp(str1,str2);
+          printf("%d\n", benchRet); 
+          free(str1);
+          free(str2);
+        
+        break;
+    }
     default:
         usage();
         break;

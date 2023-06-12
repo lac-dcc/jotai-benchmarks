@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ __attribute__((used)) static bool arm_smmu_sid_in_range(struct arm_smmu_device *
 	return sid < limit;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,19 +89,82 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long sid = 100;
+        
           int _len_smmu0 = 1;
           struct arm_smmu_device * smmu = (struct arm_smmu_device *) malloc(_len_smmu0*sizeof(struct arm_smmu_device));
           for(int _i0 = 0; _i0 < _len_smmu0; _i0++) {
-            smmu[_i0].features = ((-2 * (next_i()%2)) + 1) * next_i();
-        smmu[_i0].strtab_cfg.num_l1_ents = ((-2 * (next_i()%2)) + 1) * next_i();
+              smmu[_i0].features = ((-2 * (next_i()%2)) + 1) * next_i();
+          smmu[_i0].strtab_cfg.num_l1_ents = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = arm_smmu_sid_in_range(smmu,sid);
           printf("%d\n", benchRet); 
           free(smmu);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long sid = 255;
+        
+          int _len_smmu0 = 65025;
+          struct arm_smmu_device * smmu = (struct arm_smmu_device *) malloc(_len_smmu0*sizeof(struct arm_smmu_device));
+          for(int _i0 = 0; _i0 < _len_smmu0; _i0++) {
+              smmu[_i0].features = ((-2 * (next_i()%2)) + 1) * next_i();
+          smmu[_i0].strtab_cfg.num_l1_ents = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = arm_smmu_sid_in_range(smmu,sid);
+          printf("%d\n", benchRet); 
+          free(smmu);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long sid = 10;
+        
+          int _len_smmu0 = 100;
+          struct arm_smmu_device * smmu = (struct arm_smmu_device *) malloc(_len_smmu0*sizeof(struct arm_smmu_device));
+          for(int _i0 = 0; _i0 < _len_smmu0; _i0++) {
+              smmu[_i0].features = ((-2 * (next_i()%2)) + 1) * next_i();
+          smmu[_i0].strtab_cfg.num_l1_ents = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = arm_smmu_sid_in_range(smmu,sid);
+          printf("%d\n", benchRet); 
+          free(smmu);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long sid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_smmu0 = 1;
+          struct arm_smmu_device * smmu = (struct arm_smmu_device *) malloc(_len_smmu0*sizeof(struct arm_smmu_device));
+          for(int _i0 = 0; _i0 < _len_smmu0; _i0++) {
+              smmu[_i0].features = ((-2 * (next_i()%2)) + 1) * next_i();
+          smmu[_i0].strtab_cfg.num_l1_ents = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = arm_smmu_sid_in_range(smmu,sid);
+          printf("%d\n", benchRet); 
+          free(smmu);
+        
+        break;
+    }
     default:
         usage();
         break;

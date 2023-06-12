@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ __attribute__((used)) static int text_eol_is_crlf(struct crlf_attrs *ca)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,15 +89,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          int _len_ca0 = 65025;
+          struct crlf_attrs * ca = (struct crlf_attrs *) malloc(_len_ca0*sizeof(struct crlf_attrs));
+          for(int _i0 = 0; _i0 < _len_ca0; _i0++) {
+              ca[_i0].auto_crlf = ((-2 * (next_i()%2)) + 1) * next_i();
+          ca[_i0].core_eol = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = text_eol_is_crlf(ca);
+          printf("%d\n", benchRet); 
+          free(ca);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          int _len_ca0 = 100;
+          struct crlf_attrs * ca = (struct crlf_attrs *) malloc(_len_ca0*sizeof(struct crlf_attrs));
+          for(int _i0 = 0; _i0 < _len_ca0; _i0++) {
+              ca[_i0].auto_crlf = ((-2 * (next_i()%2)) + 1) * next_i();
+          ca[_i0].core_eol = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = text_eol_is_crlf(ca);
+          printf("%d\n", benchRet); 
+          free(ca);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
           int _len_ca0 = 1;
           struct crlf_attrs * ca = (struct crlf_attrs *) malloc(_len_ca0*sizeof(struct crlf_attrs));
           for(int _i0 = 0; _i0 < _len_ca0; _i0++) {
-            ca[_i0].auto_crlf = ((-2 * (next_i()%2)) + 1) * next_i();
-        ca[_i0].core_eol = ((-2 * (next_i()%2)) + 1) * next_i();
+              ca[_i0].auto_crlf = ((-2 * (next_i()%2)) + 1) * next_i();
+          ca[_i0].core_eol = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = text_eol_is_crlf(ca);
           printf("%d\n", benchRet); 
           free(ca);

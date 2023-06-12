@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -76,12 +77,6 @@ __attribute__((used)) static void dpp1_setup_format_flags(enum surface_pixel_for
 		*fmt = PIXEL_FORMAT_FIXED;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,15 +89,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           enum surface_pixel_format input_format = 0;
-          int _len_fmt0 = 1;
+        
+          int _len_fmt0 = 65025;
           enum pixel_format_description * fmt = (enum pixel_format_description *) malloc(_len_fmt0*sizeof(enum pixel_format_description));
           for(int _i0 = 0; _i0 < _len_fmt0; _i0++) {
             fmt[_i0] = 0;
           }
+        
           dpp1_setup_format_flags(input_format,fmt);
           free(fmt);
         
@@ -112,17 +109,34 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           enum surface_pixel_format input_format = 0;
+        
           int _len_fmt0 = 100;
           enum pixel_format_description * fmt = (enum pixel_format_description *) malloc(_len_fmt0*sizeof(enum pixel_format_description));
           for(int _i0 = 0; _i0 < _len_fmt0; _i0++) {
             fmt[_i0] = 0;
           }
+        
           dpp1_setup_format_flags(input_format,fmt);
           free(fmt);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          enum surface_pixel_format input_format = 0;
+        
+          int _len_fmt0 = 1;
+          enum pixel_format_description * fmt = (enum pixel_format_description *) malloc(_len_fmt0*sizeof(enum pixel_format_description));
+          for(int _i0 = 0; _i0 < _len_fmt0; _i0++) {
+            fmt[_i0] = 0;
+          }
+        
+          dpp1_setup_format_flags(input_format,fmt);
+          free(fmt);
+        
+        break;
+    }
     default:
         usage();
         break;

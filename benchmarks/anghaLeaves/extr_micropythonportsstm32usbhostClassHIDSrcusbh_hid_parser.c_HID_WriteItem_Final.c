@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -106,12 +108,6 @@ uint32_t HID_WriteItem(HID_Report_ItemTypedef *ri, uint32_t value, uint8_t ndx)
   return(0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -124,11 +120,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int value = 100;
+        
           int ndx = 100;
+        
           int _len_ri0 = 1;
           struct TYPE_3__ * ri = (struct TYPE_3__ *) malloc(_len_ri0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_ri0; _i0++) {
@@ -137,13 +158,129 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_ri__i0__data0; _j0++) {
             ri[_i0].data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        ri[_i0].shift = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri[_i0].physical_min = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri[_i0].physical_max = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
-        ri[_i0].resolution = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri[_i0].shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri[_i0].physical_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri[_i0].physical_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri[_i0].resolution = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = HID_WriteItem(ri,value,ndx);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ri0; _aux++) {
+          free(ri[_aux].data);
+          }
+          free(ri);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int value = 255;
+        
+          int ndx = 255;
+        
+          int _len_ri0 = 65025;
+          struct TYPE_3__ * ri = (struct TYPE_3__ *) malloc(_len_ri0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ri0; _i0++) {
+              int _len_ri__i0__data0 = 1;
+          ri[_i0].data = (int *) malloc(_len_ri__i0__data0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ri__i0__data0; _j0++) {
+            ri[_i0].data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          ri[_i0].shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri[_i0].physical_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri[_i0].physical_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri[_i0].resolution = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = HID_WriteItem(ri,value,ndx);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ri0; _aux++) {
+          free(ri[_aux].data);
+          }
+          free(ri);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int value = 10;
+        
+          int ndx = 10;
+        
+          int _len_ri0 = 100;
+          struct TYPE_3__ * ri = (struct TYPE_3__ *) malloc(_len_ri0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ri0; _i0++) {
+              int _len_ri__i0__data0 = 1;
+          ri[_i0].data = (int *) malloc(_len_ri__i0__data0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ri__i0__data0; _j0++) {
+            ri[_i0].data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          ri[_i0].shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri[_i0].physical_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri[_i0].physical_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          ri[_i0].resolution = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = HID_WriteItem(ri,value,ndx);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_ri0; _aux++) {

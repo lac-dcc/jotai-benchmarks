@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ kcdata_flags_get_padding(uint64_t flags)
 	return flags & KCDATA_FLAGS_STRUCT_PADDING_MASK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,6 +82,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int flags = 100;
+        
           int benchRet = kcdata_flags_get_padding(flags);
           printf("%d\n", benchRet); 
         
@@ -96,6 +92,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int flags = 255;
+        
           int benchRet = kcdata_flags_get_padding(flags);
           printf("%d\n", benchRet); 
         
@@ -105,12 +102,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int flags = 10;
+        
           int benchRet = kcdata_flags_get_padding(flags);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = kcdata_flags_get_padding(flags);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

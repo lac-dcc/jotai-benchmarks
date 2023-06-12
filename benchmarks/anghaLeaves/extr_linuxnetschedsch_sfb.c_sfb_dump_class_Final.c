@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ __attribute__((used)) static int sfb_dump_class(struct Qdisc *sch, unsigned long
 	return -ENOSYS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,21 +83,28 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long cl = 100;
+        
           int _len_sch0 = 1;
           struct Qdisc * sch = (struct Qdisc *) malloc(_len_sch0*sizeof(struct Qdisc));
           for(int _i0 = 0; _i0 < _len_sch0; _i0++) {
-            sch[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              sch[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_skb0 = 1;
           struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
           for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
-            skb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              skb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_tcm0 = 1;
           struct tcmsg * tcm = (struct tcmsg *) malloc(_len_tcm0*sizeof(struct tcmsg));
           for(int _i0 = 0; _i0 < _len_tcm0; _i0++) {
-            tcm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              tcm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = sfb_dump_class(sch,cl,skb,tcm);
           printf("%d\n", benchRet); 
           free(sch);
@@ -109,7 +113,108 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long cl = 255;
+        
+          int _len_sch0 = 65025;
+          struct Qdisc * sch = (struct Qdisc *) malloc(_len_sch0*sizeof(struct Qdisc));
+          for(int _i0 = 0; _i0 < _len_sch0; _i0++) {
+              sch[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_skb0 = 65025;
+          struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
+          for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
+              skb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_tcm0 = 65025;
+          struct tcmsg * tcm = (struct tcmsg *) malloc(_len_tcm0*sizeof(struct tcmsg));
+          for(int _i0 = 0; _i0 < _len_tcm0; _i0++) {
+              tcm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sfb_dump_class(sch,cl,skb,tcm);
+          printf("%d\n", benchRet); 
+          free(sch);
+          free(skb);
+          free(tcm);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long cl = 10;
+        
+          int _len_sch0 = 100;
+          struct Qdisc * sch = (struct Qdisc *) malloc(_len_sch0*sizeof(struct Qdisc));
+          for(int _i0 = 0; _i0 < _len_sch0; _i0++) {
+              sch[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_skb0 = 100;
+          struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
+          for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
+              skb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_tcm0 = 100;
+          struct tcmsg * tcm = (struct tcmsg *) malloc(_len_tcm0*sizeof(struct tcmsg));
+          for(int _i0 = 0; _i0 < _len_tcm0; _i0++) {
+              tcm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sfb_dump_class(sch,cl,skb,tcm);
+          printf("%d\n", benchRet); 
+          free(sch);
+          free(skb);
+          free(tcm);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long cl = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sch0 = 1;
+          struct Qdisc * sch = (struct Qdisc *) malloc(_len_sch0*sizeof(struct Qdisc));
+          for(int _i0 = 0; _i0 < _len_sch0; _i0++) {
+              sch[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_skb0 = 1;
+          struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
+          for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
+              skb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_tcm0 = 1;
+          struct tcmsg * tcm = (struct tcmsg *) malloc(_len_tcm0*sizeof(struct tcmsg));
+          for(int _i0 = 0; _i0 < _len_tcm0; _i0++) {
+              tcm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sfb_dump_class(sch,cl,skb,tcm);
+          printf("%d\n", benchRet); 
+          free(sch);
+          free(skb);
+          free(tcm);
+        
+        break;
+    }
     default:
         usage();
         break;

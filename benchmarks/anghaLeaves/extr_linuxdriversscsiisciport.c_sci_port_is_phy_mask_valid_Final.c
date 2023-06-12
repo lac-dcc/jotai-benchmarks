@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -85,12 +87,6 @@ __attribute__((used)) static bool sci_port_is_phy_mask_valid(
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,11 +103,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int phy_mask = 100;
+        
           int _len_iport0 = 1;
           struct isci_port * iport = (struct isci_port *) malloc(_len_iport0*sizeof(struct isci_port));
           for(int _i0 = 0; _i0 < _len_iport0; _i0++) {
-            iport[_i0].physical_port_index = ((-2 * (next_i()%2)) + 1) * next_i();
+              iport[_i0].physical_port_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = sci_port_is_phy_mask_valid(iport,phy_mask);
+          printf("%d\n", benchRet); 
+          free(iport);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int phy_mask = 255;
+        
+          int _len_iport0 = 65025;
+          struct isci_port * iport = (struct isci_port *) malloc(_len_iport0*sizeof(struct isci_port));
+          for(int _i0 = 0; _i0 < _len_iport0; _i0++) {
+              iport[_i0].physical_port_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = sci_port_is_phy_mask_valid(iport,phy_mask);
           printf("%d\n", benchRet); 
           free(iport);
@@ -119,21 +136,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int phy_mask = 10;
+        
           int _len_iport0 = 100;
           struct isci_port * iport = (struct isci_port *) malloc(_len_iport0*sizeof(struct isci_port));
           for(int _i0 = 0; _i0 < _len_iport0; _i0++) {
-            iport[_i0].physical_port_index = ((-2 * (next_i()%2)) + 1) * next_i();
+              iport[_i0].physical_port_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = sci_port_is_phy_mask_valid(iport,phy_mask);
           printf("%d\n", benchRet); 
           free(iport);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int phy_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_iport0 = 1;
+          struct isci_port * iport = (struct isci_port *) malloc(_len_iport0*sizeof(struct isci_port));
+          for(int _i0 = 0; _i0 < _len_iport0; _i0++) {
+              iport[_i0].physical_port_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sci_port_is_phy_mask_valid(iport,phy_mask);
+          printf("%d\n", benchRet); 
+          free(iport);
+        
+        break;
+    }
     default:
         usage();
         break;

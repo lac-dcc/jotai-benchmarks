@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ __attribute__((used)) static inline size_t calc_offset_size(struct obs_encoder *
 	return (size_t)offset * encoder->blocksize;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,20 +84,86 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long long v_start_ts = 100;
+        
           unsigned long long a_start_ts = 100;
+        
           int _len_encoder0 = 1;
           struct obs_encoder * encoder = (struct obs_encoder *) malloc(_len_encoder0*sizeof(struct obs_encoder));
           for(int _i0 = 0; _i0 < _len_encoder0; _i0++) {
-            encoder[_i0].blocksize = ((-2 * (next_i()%2)) + 1) * next_i();
-        encoder[_i0].samplerate = ((-2 * (next_i()%2)) + 1) * next_i();
+              encoder[_i0].blocksize = ((-2 * (next_i()%2)) + 1) * next_i();
+          encoder[_i0].samplerate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = calc_offset_size(encoder,v_start_ts,a_start_ts);
           printf("%lu\n", benchRet); 
           free(encoder);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long long v_start_ts = 255;
+        
+          unsigned long long a_start_ts = 255;
+        
+          int _len_encoder0 = 65025;
+          struct obs_encoder * encoder = (struct obs_encoder *) malloc(_len_encoder0*sizeof(struct obs_encoder));
+          for(int _i0 = 0; _i0 < _len_encoder0; _i0++) {
+              encoder[_i0].blocksize = ((-2 * (next_i()%2)) + 1) * next_i();
+          encoder[_i0].samplerate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = calc_offset_size(encoder,v_start_ts,a_start_ts);
+          printf("%lu\n", benchRet); 
+          free(encoder);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long long v_start_ts = 10;
+        
+          unsigned long long a_start_ts = 10;
+        
+          int _len_encoder0 = 100;
+          struct obs_encoder * encoder = (struct obs_encoder *) malloc(_len_encoder0*sizeof(struct obs_encoder));
+          for(int _i0 = 0; _i0 < _len_encoder0; _i0++) {
+              encoder[_i0].blocksize = ((-2 * (next_i()%2)) + 1) * next_i();
+          encoder[_i0].samplerate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = calc_offset_size(encoder,v_start_ts,a_start_ts);
+          printf("%lu\n", benchRet); 
+          free(encoder);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long long v_start_ts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long long a_start_ts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_encoder0 = 1;
+          struct obs_encoder * encoder = (struct obs_encoder *) malloc(_len_encoder0*sizeof(struct obs_encoder));
+          for(int _i0 = 0; _i0 < _len_encoder0; _i0++) {
+              encoder[_i0].blocksize = ((-2 * (next_i()%2)) + 1) * next_i();
+          encoder[_i0].samplerate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = calc_offset_size(encoder,v_start_ts,a_start_ts);
+          printf("%lu\n", benchRet); 
+          free(encoder);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ void avc_set_cache_threshold(struct selinux_avc *avc,
 	avc->avc_cache_threshold = cache_threshold;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,29 +76,164 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           unsigned int cache_threshold = 100;
+        
           int _len_avc0 = 1;
           struct selinux_avc * avc = (struct selinux_avc *) malloc(_len_avc0*sizeof(struct selinux_avc));
           for(int _i0 = 0; _i0 < _len_avc0; _i0++) {
-            avc[_i0].avc_cache_threshold = ((-2 * (next_i()%2)) + 1) * next_i();
+              avc[_i0].avc_cache_threshold = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           avc_set_cache_threshold(avc,cache_threshold);
           free(avc);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          unsigned int cache_threshold = 255;
+        
+          int _len_avc0 = 65025;
+          struct selinux_avc * avc = (struct selinux_avc *) malloc(_len_avc0*sizeof(struct selinux_avc));
+          for(int _i0 = 0; _i0 < _len_avc0; _i0++) {
+              avc[_i0].avc_cache_threshold = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          avc_set_cache_threshold(avc,cache_threshold);
+          free(avc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           unsigned int cache_threshold = 10;
+        
           int _len_avc0 = 100;
           struct selinux_avc * avc = (struct selinux_avc *) malloc(_len_avc0*sizeof(struct selinux_avc));
           for(int _i0 = 0; _i0 < _len_avc0; _i0++) {
-            avc[_i0].avc_cache_threshold = ((-2 * (next_i()%2)) + 1) * next_i();
+              avc[_i0].avc_cache_threshold = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          avc_set_cache_threshold(avc,cache_threshold);
+          free(avc);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          unsigned int cache_threshold = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_avc0 = 1;
+          struct selinux_avc * avc = (struct selinux_avc *) malloc(_len_avc0*sizeof(struct selinux_avc));
+          for(int _i0 = 0; _i0 < _len_avc0; _i0++) {
+              avc[_i0].avc_cache_threshold = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           avc_set_cache_threshold(avc,cache_threshold);
           free(avc);
         

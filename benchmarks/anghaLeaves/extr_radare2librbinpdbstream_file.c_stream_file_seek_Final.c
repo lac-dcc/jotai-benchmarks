@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -79,12 +82,6 @@ void stream_file_seek(R_STREAM_FILE *stream_file, int offset, int whence) {
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,17 +94,176 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           int offset = 100;
+        
           int whence = 100;
+        
           int _len_stream_file0 = 1;
           struct TYPE_3__ * stream_file = (struct TYPE_3__ *) malloc(_len_stream_file0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_stream_file0; _i0++) {
-            stream_file[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
-        stream_file[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+              stream_file[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream_file[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          stream_file_seek(stream_file,offset,whence);
+          free(stream_file);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int offset = 255;
+        
+          int whence = 255;
+        
+          int _len_stream_file0 = 65025;
+          struct TYPE_3__ * stream_file = (struct TYPE_3__ *) malloc(_len_stream_file0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_stream_file0; _i0++) {
+              stream_file[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream_file[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          stream_file_seek(stream_file,offset,whence);
+          free(stream_file);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int offset = 10;
+        
+          int whence = 10;
+        
+          int _len_stream_file0 = 100;
+          struct TYPE_3__ * stream_file = (struct TYPE_3__ *) malloc(_len_stream_file0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_stream_file0; _i0++) {
+              stream_file[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream_file[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          stream_file_seek(stream_file,offset,whence);
+          free(stream_file);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int whence = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_stream_file0 = 1;
+          struct TYPE_3__ * stream_file = (struct TYPE_3__ *) malloc(_len_stream_file0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_stream_file0; _i0++) {
+              stream_file[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream_file[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           stream_file_seek(stream_file,offset,whence);
           free(stream_file);
         

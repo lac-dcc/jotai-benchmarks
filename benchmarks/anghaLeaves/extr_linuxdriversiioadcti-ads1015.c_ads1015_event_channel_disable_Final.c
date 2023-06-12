@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static void ads1015_event_channel_disable(struct ads1015_d
 	data->event_channel = ADS1015_CHANNELS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,31 +80,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int chan = 100;
+        
           int _len_data0 = 1;
           struct ads1015_data * data = (struct ads1015_data *) malloc(_len_data0*sizeof(struct ads1015_data));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
-            data[_i0].event_channel = ((-2 * (next_i()%2)) + 1) * next_i();
+              data[_i0].event_channel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          ads1015_event_channel_disable(data,chan);
+          free(data);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int chan = 255;
+        
+          int _len_data0 = 65025;
+          struct ads1015_data * data = (struct ads1015_data *) malloc(_len_data0*sizeof(struct ads1015_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].event_channel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           ads1015_event_channel_disable(data,chan);
           free(data);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int chan = 10;
+        
           int _len_data0 = 100;
           struct ads1015_data * data = (struct ads1015_data *) malloc(_len_data0*sizeof(struct ads1015_data));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
-            data[_i0].event_channel = ((-2 * (next_i()%2)) + 1) * next_i();
+              data[_i0].event_channel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ads1015_event_channel_disable(data,chan);
           free(data);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int chan = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_data0 = 1;
+          struct ads1015_data * data = (struct ads1015_data *) malloc(_len_data0*sizeof(struct ads1015_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].event_channel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ads1015_event_channel_disable(data,chan);
+          free(data);
+        
+        break;
+    }
     default:
         usage();
         break;

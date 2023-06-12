@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static int dummy_flush_iso_completions(struct fw_iso_conte
 	return -ENODEV;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ctx0 = 1;
+          int _len_ctx0 = 65025;
           struct fw_iso_context * ctx = (struct fw_iso_context *) malloc(_len_ctx0*sizeof(struct fw_iso_context));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
-            ctx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dummy_flush_iso_completions(ctx);
           printf("%d\n", benchRet); 
           free(ctx);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_ctx0 = 100;
           struct fw_iso_context * ctx = (struct fw_iso_context *) malloc(_len_ctx0*sizeof(struct fw_iso_context));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
-            ctx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dummy_flush_iso_completions(ctx);
           printf("%d\n", benchRet); 
           free(ctx);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ctx0 = 1;
+          struct fw_iso_context * ctx = (struct fw_iso_context *) malloc(_len_ctx0*sizeof(struct fw_iso_context));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dummy_flush_iso_completions(ctx);
+          printf("%d\n", benchRet); 
+          free(ctx);
+        
+        break;
+    }
     default:
         usage();
         break;

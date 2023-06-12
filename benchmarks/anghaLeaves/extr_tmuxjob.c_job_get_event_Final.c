@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ job_get_event(struct job *job)
 	return (job->event);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,18 +76,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_job0 = 1;
+          int _len_job0 = 65025;
           struct job * job = (struct job *) malloc(_len_job0*sizeof(struct job));
           for(int _i0 = 0; _i0 < _len_job0; _i0++) {
               int _len_job__i0__event0 = 1;
           job[_i0].event = (struct bufferevent *) malloc(_len_job__i0__event0*sizeof(struct bufferevent));
           for(int _j0 = 0; _j0 < _len_job__i0__event0; _j0++) {
-            job[_i0].event->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              job[_i0].event->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct bufferevent * benchRet = job_get_event(job);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_job0; _aux++) {
@@ -101,7 +100,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_job0 = 100;
+          struct job * job = (struct job *) malloc(_len_job0*sizeof(struct job));
+          for(int _i0 = 0; _i0 < _len_job0; _i0++) {
+              int _len_job__i0__event0 = 1;
+          job[_i0].event = (struct bufferevent *) malloc(_len_job__i0__event0*sizeof(struct bufferevent));
+          for(int _j0 = 0; _j0 < _len_job__i0__event0; _j0++) {
+              job[_i0].event->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct bufferevent * benchRet = job_get_event(job);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_job0; _aux++) {
+          free(job[_aux].event);
+          }
+          free(job);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_job0 = 1;
+          struct job * job = (struct job *) malloc(_len_job0*sizeof(struct job));
+          for(int _i0 = 0; _i0 < _len_job0; _i0++) {
+              int _len_job__i0__event0 = 1;
+          job[_i0].event = (struct bufferevent *) malloc(_len_job__i0__event0*sizeof(struct bufferevent));
+          for(int _j0 = 0; _j0 < _len_job__i0__event0; _j0++) {
+              job[_i0].event->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct bufferevent * benchRet = job_get_event(job);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_job0; _aux++) {
+          free(job[_aux].event);
+          }
+          free(job);
+        
+        break;
+    }
     default:
         usage();
         break;

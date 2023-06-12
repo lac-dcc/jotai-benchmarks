@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +73,6 @@ __attribute__((used)) static inline u8 vfe_calc_interp_reso(u16 input, u16 outpu
 	return 3;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,7 +89,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int input = 100;
+        
           int output = 100;
+        
           int benchRet = vfe_calc_interp_reso(input,output);
           printf("%d\n", benchRet); 
         
@@ -104,7 +101,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int input = 255;
+        
           int output = 255;
+        
           int benchRet = vfe_calc_interp_reso(input,output);
           printf("%d\n", benchRet); 
         
@@ -114,13 +113,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int input = 10;
+        
           int output = 10;
+        
           int benchRet = vfe_calc_interp_reso(input,output);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int input = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int output = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = vfe_calc_interp_reso(input,output);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -118,12 +120,6 @@ void MatchFinderMt_CreateVTable(CMatchFinderMt *p, IMatchFinder *vTable)
   }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -136,27 +132,32 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_p0 = 1;
+          int _len_p0 = 65025;
           struct TYPE_8__ * p = (struct TYPE_8__ *) malloc(_len_p0*sizeof(struct TYPE_8__));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
               int _len_p__i0__MatchFinder0 = 1;
           p[_i0].MatchFinder = (struct TYPE_6__ *) malloc(_len_p__i0__MatchFinder0*sizeof(struct TYPE_6__));
           for(int _j0 = 0; _j0 < _len_p__i0__MatchFinder0; _j0++) {
-            p[_i0].MatchFinder->numHashBytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].MatchFinder->bigHash = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].MatchFinder->numHashBytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].MatchFinder->bigHash = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        p[_i0].GetHeadsFunc = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].GetHeadsFunc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_vTable0 = 1;
+        
+          int _len_vTable0 = 65025;
           struct TYPE_7__ * vTable = (struct TYPE_7__ *) malloc(_len_vTable0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_vTable0; _i0++) {
-            vTable[_i0].GetPointerToCurrentPos = ((-2 * (next_i()%2)) + 1) * next_i();
-        vTable[_i0].GetNumAvailableBytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        vTable[_i0].Init = ((-2 * (next_i()%2)) + 1) * next_i();
+              vTable[_i0].GetPointerToCurrentPos = ((-2 * (next_i()%2)) + 1) * next_i();
+          vTable[_i0].GetNumAvailableBytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          vTable[_i0].Init = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           MatchFinderMt_CreateVTable(p,vTable);
           for(int _aux = 0; _aux < _len_p0; _aux++) {
           free(p[_aux].MatchFinder);
@@ -166,7 +167,76 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_p0 = 100;
+          struct TYPE_8__ * p = (struct TYPE_8__ *) malloc(_len_p0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              int _len_p__i0__MatchFinder0 = 1;
+          p[_i0].MatchFinder = (struct TYPE_6__ *) malloc(_len_p__i0__MatchFinder0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_p__i0__MatchFinder0; _j0++) {
+              p[_i0].MatchFinder->numHashBytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].MatchFinder->bigHash = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          p[_i0].GetHeadsFunc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_vTable0 = 100;
+          struct TYPE_7__ * vTable = (struct TYPE_7__ *) malloc(_len_vTable0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_vTable0; _i0++) {
+              vTable[_i0].GetPointerToCurrentPos = ((-2 * (next_i()%2)) + 1) * next_i();
+          vTable[_i0].GetNumAvailableBytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          vTable[_i0].Init = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          MatchFinderMt_CreateVTable(p,vTable);
+          for(int _aux = 0; _aux < _len_p0; _aux++) {
+          free(p[_aux].MatchFinder);
+          }
+          free(p);
+          free(vTable);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_p0 = 1;
+          struct TYPE_8__ * p = (struct TYPE_8__ *) malloc(_len_p0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              int _len_p__i0__MatchFinder0 = 1;
+          p[_i0].MatchFinder = (struct TYPE_6__ *) malloc(_len_p__i0__MatchFinder0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_p__i0__MatchFinder0; _j0++) {
+              p[_i0].MatchFinder->numHashBytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].MatchFinder->bigHash = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          p[_i0].GetHeadsFunc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_vTable0 = 1;
+          struct TYPE_7__ * vTable = (struct TYPE_7__ *) malloc(_len_vTable0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_vTable0; _i0++) {
+              vTable[_i0].GetPointerToCurrentPos = ((-2 * (next_i()%2)) + 1) * next_i();
+          vTable[_i0].GetNumAvailableBytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          vTable[_i0].Init = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          MatchFinderMt_CreateVTable(p,vTable);
+          for(int _aux = 0; _aux < _len_p0; _aux++) {
+          free(p[_aux].MatchFinder);
+          }
+          free(p);
+          free(vTable);
+        
+        break;
+    }
     default:
         usage();
         break;

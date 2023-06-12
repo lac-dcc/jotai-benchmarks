@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +79,6 @@ __attribute__((used)) static void MoveWindow(miccntx *context, u32 micSeq)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,18 +95,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long micSeq = 100;
+        
           int _len_context0 = 1;
           struct TYPE_3__ * context = (struct TYPE_3__ *) malloc(_len_context0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_context0; _i0++) {
-            context[_i0].window = ((-2 * (next_i()%2)) + 1) * next_i();
-        context[_i0].rx = ((-2 * (next_i()%2)) + 1) * next_i();
+              context[_i0].window = ((-2 * (next_i()%2)) + 1) * next_i();
+          context[_i0].rx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           MoveWindow(context,micSeq);
           free(context);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long micSeq = 255;
+        
+          int _len_context0 = 65025;
+          struct TYPE_3__ * context = (struct TYPE_3__ *) malloc(_len_context0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_context0; _i0++) {
+              context[_i0].window = ((-2 * (next_i()%2)) + 1) * next_i();
+          context[_i0].rx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          MoveWindow(context,micSeq);
+          free(context);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long micSeq = 10;
+        
+          int _len_context0 = 100;
+          struct TYPE_3__ * context = (struct TYPE_3__ *) malloc(_len_context0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_context0; _i0++) {
+              context[_i0].window = ((-2 * (next_i()%2)) + 1) * next_i();
+          context[_i0].rx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          MoveWindow(context,micSeq);
+          free(context);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long micSeq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_context0 = 1;
+          struct TYPE_3__ * context = (struct TYPE_3__ *) malloc(_len_context0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_context0; _i0++) {
+              context[_i0].window = ((-2 * (next_i()%2)) + 1) * next_i();
+          context[_i0].rx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          MoveWindow(context,micSeq);
+          free(context);
+        
+        break;
+    }
     default:
         usage();
         break;

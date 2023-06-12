@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ UINT GetQueueNum(QUEUE *q)
 	return q->num_item;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,28 +83,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_q0 = 1;
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_q0 = 65025;
           struct TYPE_3__ * q = (struct TYPE_3__ *) malloc(_len_q0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_q0; _i0++) {
-            q[_i0].num_item = ((-2 * (next_i()%2)) + 1) * next_i();
+              q[_i0].num_item = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = GetQueueNum(q);
           printf("%d\n", benchRet); 
           free(q);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_q0 = 100;
           struct TYPE_3__ * q = (struct TYPE_3__ *) malloc(_len_q0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_q0; _i0++) {
-            q[_i0].num_item = ((-2 * (next_i()%2)) + 1) * next_i();
+              q[_i0].num_item = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = GetQueueNum(q);
+          printf("%d\n", benchRet); 
+          free(q);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_q0 = 1;
+          struct TYPE_3__ * q = (struct TYPE_3__ *) malloc(_len_q0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].num_item = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = GetQueueNum(q);
           printf("%d\n", benchRet); 
           free(q);

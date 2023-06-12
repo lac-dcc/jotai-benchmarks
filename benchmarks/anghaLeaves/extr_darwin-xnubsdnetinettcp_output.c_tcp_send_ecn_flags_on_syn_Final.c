@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ tcp_send_ecn_flags_on_syn(struct tcpcb *tp, struct socket *so)
 	    (tp->t_flagsext & TF_FASTOPEN)));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,20 +81,145 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_tp0 = 65025;
+          struct tcpcb * tp = (struct tcpcb *) malloc(_len_tp0*sizeof(struct tcpcb));
+          for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
+              tp[_i0].ecn_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          tp[_i0].t_flagsext = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_so0 = 65025;
+          struct socket * so = (struct socket *) malloc(_len_so0*sizeof(struct socket));
+          for(int _i0 = 0; _i0 < _len_so0; _i0++) {
+              so[_i0].so_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = tcp_send_ecn_flags_on_syn(tp,so);
+          printf("%d\n", benchRet); 
+          free(tp);
+          free(so);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_tp0 = 100;
+          struct tcpcb * tp = (struct tcpcb *) malloc(_len_tp0*sizeof(struct tcpcb));
+          for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
+              tp[_i0].ecn_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          tp[_i0].t_flagsext = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_so0 = 100;
+          struct socket * so = (struct socket *) malloc(_len_so0*sizeof(struct socket));
+          for(int _i0 = 0; _i0 < _len_so0; _i0++) {
+              so[_i0].so_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = tcp_send_ecn_flags_on_syn(tp,so);
+          printf("%d\n", benchRet); 
+          free(tp);
+          free(so);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int _len_tp0 = 1;
           struct tcpcb * tp = (struct tcpcb *) malloc(_len_tp0*sizeof(struct tcpcb));
           for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
-            tp[_i0].ecn_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        tp[_i0].t_flagsext = ((-2 * (next_i()%2)) + 1) * next_i();
+              tp[_i0].ecn_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          tp[_i0].t_flagsext = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_so0 = 1;
           struct socket * so = (struct socket *) malloc(_len_so0*sizeof(struct socket));
           for(int _i0 = 0; _i0 < _len_so0; _i0++) {
-            so[_i0].so_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              so[_i0].so_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = tcp_send_ecn_flags_on_syn(tp,so);
           printf("%d\n", benchRet); 
           free(tp);

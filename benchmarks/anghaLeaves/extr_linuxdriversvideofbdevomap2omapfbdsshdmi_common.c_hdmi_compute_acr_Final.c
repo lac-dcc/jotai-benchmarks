@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -155,12 +158,6 @@ int hdmi_compute_acr(u32 pclk, u32 sample_freq, u32 *n, u32 *cts)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -177,17 +174,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int pclk = 100;
+        
           int sample_freq = 100;
+        
           int _len_n0 = 1;
           int * n = (int *) malloc(_len_n0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_n0; _i0++) {
             n[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_cts0 = 1;
           int * cts = (int *) malloc(_len_cts0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_cts0; _i0++) {
             cts[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = hdmi_compute_acr(pclk,sample_freq,n,cts);
           printf("%d\n", benchRet); 
           free(n);
@@ -195,7 +196,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int pclk = 255;
+        
+          int sample_freq = 255;
+        
+          int _len_n0 = 65025;
+          int * n = (int *) malloc(_len_n0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_n0; _i0++) {
+            n[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_cts0 = 65025;
+          int * cts = (int *) malloc(_len_cts0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_cts0; _i0++) {
+            cts[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = hdmi_compute_acr(pclk,sample_freq,n,cts);
+          printf("%d\n", benchRet); 
+          free(n);
+          free(cts);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int pclk = 10;
+        
+          int sample_freq = 10;
+        
+          int _len_n0 = 100;
+          int * n = (int *) malloc(_len_n0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_n0; _i0++) {
+            n[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_cts0 = 100;
+          int * cts = (int *) malloc(_len_cts0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_cts0; _i0++) {
+            cts[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = hdmi_compute_acr(pclk,sample_freq,n,cts);
+          printf("%d\n", benchRet); 
+          free(n);
+          free(cts);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int pclk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int sample_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_n0 = 1;
+          int * n = (int *) malloc(_len_n0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_n0; _i0++) {
+            n[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_cts0 = 1;
+          int * cts = (int *) malloc(_len_cts0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_cts0; _i0++) {
+            cts[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = hdmi_compute_acr(pclk,sample_freq,n,cts);
+          printf("%d\n", benchRet); 
+          free(n);
+          free(cts);
+        
+        break;
+    }
     default:
         usage();
         break;

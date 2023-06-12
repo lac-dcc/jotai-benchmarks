@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ __attribute__((used)) static int timeval_subtract(tv *result, tv *end, tv *begin
 	return end->tv_sec < begin->tv_sec;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,27 +92,33 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_result0 = 1;
+          int _len_result0 = 65025;
           struct TYPE_5__ * result = (struct TYPE_5__ *) malloc(_len_result0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_result0; _i0++) {
-            result[_i0].tv_usec = ((-2 * (next_i()%2)) + 1) * next_i();
-        result[_i0].tv_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+              result[_i0].tv_usec = ((-2 * (next_i()%2)) + 1) * next_i();
+          result[_i0].tv_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_end0 = 1;
+        
+          int _len_end0 = 65025;
           struct TYPE_5__ * end = (struct TYPE_5__ *) malloc(_len_end0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_end0; _i0++) {
-            end[_i0].tv_usec = ((-2 * (next_i()%2)) + 1) * next_i();
-        end[_i0].tv_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+              end[_i0].tv_usec = ((-2 * (next_i()%2)) + 1) * next_i();
+          end[_i0].tv_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_begin0 = 1;
+        
+          int _len_begin0 = 65025;
           struct TYPE_5__ * begin = (struct TYPE_5__ *) malloc(_len_begin0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_begin0; _i0++) {
-            begin[_i0].tv_usec = ((-2 * (next_i()%2)) + 1) * next_i();
-        begin[_i0].tv_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+              begin[_i0].tv_usec = ((-2 * (next_i()%2)) + 1) * next_i();
+          begin[_i0].tv_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = timeval_subtract(result,end,begin);
           printf("%d\n", benchRet); 
           free(result);
@@ -125,7 +127,76 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_result0 = 100;
+          struct TYPE_5__ * result = (struct TYPE_5__ *) malloc(_len_result0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_result0; _i0++) {
+              result[_i0].tv_usec = ((-2 * (next_i()%2)) + 1) * next_i();
+          result[_i0].tv_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_end0 = 100;
+          struct TYPE_5__ * end = (struct TYPE_5__ *) malloc(_len_end0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_end0; _i0++) {
+              end[_i0].tv_usec = ((-2 * (next_i()%2)) + 1) * next_i();
+          end[_i0].tv_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_begin0 = 100;
+          struct TYPE_5__ * begin = (struct TYPE_5__ *) malloc(_len_begin0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_begin0; _i0++) {
+              begin[_i0].tv_usec = ((-2 * (next_i()%2)) + 1) * next_i();
+          begin[_i0].tv_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = timeval_subtract(result,end,begin);
+          printf("%d\n", benchRet); 
+          free(result);
+          free(end);
+          free(begin);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_result0 = 1;
+          struct TYPE_5__ * result = (struct TYPE_5__ *) malloc(_len_result0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_result0; _i0++) {
+              result[_i0].tv_usec = ((-2 * (next_i()%2)) + 1) * next_i();
+          result[_i0].tv_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_end0 = 1;
+          struct TYPE_5__ * end = (struct TYPE_5__ *) malloc(_len_end0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_end0; _i0++) {
+              end[_i0].tv_usec = ((-2 * (next_i()%2)) + 1) * next_i();
+          end[_i0].tv_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_begin0 = 1;
+          struct TYPE_5__ * begin = (struct TYPE_5__ *) malloc(_len_begin0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_begin0; _i0++) {
+              begin[_i0].tv_usec = ((-2 * (next_i()%2)) + 1) * next_i();
+          begin[_i0].tv_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = timeval_subtract(result,end,begin);
+          printf("%d\n", benchRet); 
+          free(result);
+          free(end);
+          free(begin);
+        
+        break;
+    }
     default:
         usage();
         break;

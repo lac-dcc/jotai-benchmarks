@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline struct child_process *subprocess_get_child_p
 	return &entry->process;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_entry0 = 1;
+          int _len_entry0 = 65025;
           struct subprocess_entry * entry = (struct subprocess_entry *) malloc(_len_entry0*sizeof(struct subprocess_entry));
           for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
-            entry[_i0].process.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              entry[_i0].process.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           struct child_process * benchRet = subprocess_get_child_process(entry);
           printf("%d\n", (*benchRet).dummy);
           free(entry);
@@ -101,15 +99,34 @@ int main(int argc, char *argv[]) {
           int _len_entry0 = 100;
           struct subprocess_entry * entry = (struct subprocess_entry *) malloc(_len_entry0*sizeof(struct subprocess_entry));
           for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
-            entry[_i0].process.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              entry[_i0].process.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           struct child_process * benchRet = subprocess_get_child_process(entry);
           printf("%d\n", (*benchRet).dummy);
           free(entry);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_entry0 = 1;
+          struct subprocess_entry * entry = (struct subprocess_entry *) malloc(_len_entry0*sizeof(struct subprocess_entry));
+          for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
+              entry[_i0].process.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          struct child_process * benchRet = subprocess_get_child_process(entry);
+          printf("%d\n", (*benchRet).dummy);
+          free(entry);
+        
+        break;
+    }
     default:
         usage();
         break;

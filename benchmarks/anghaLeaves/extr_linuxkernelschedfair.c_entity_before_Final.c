@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static inline int entity_before(struct sched_entity *a,
 	return (s64)(a->vruntime - b->vruntime) < 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,19 +76,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_a0 = 1;
+          int _len_a0 = 65025;
           struct sched_entity * a = (struct sched_entity *) malloc(_len_a0*sizeof(struct sched_entity));
           for(int _i0 = 0; _i0 < _len_a0; _i0++) {
-            a[_i0].vruntime = ((-2 * (next_i()%2)) + 1) * next_i();
+              a[_i0].vruntime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_b0 = 1;
+        
+          int _len_b0 = 65025;
           struct sched_entity * b = (struct sched_entity *) malloc(_len_b0*sizeof(struct sched_entity));
           for(int _i0 = 0; _i0 < _len_b0; _i0++) {
-            b[_i0].vruntime = ((-2 * (next_i()%2)) + 1) * next_i();
+              b[_i0].vruntime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = entity_before(a,b);
           printf("%d\n", benchRet); 
           free(a);
@@ -100,7 +100,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_a0 = 100;
+          struct sched_entity * a = (struct sched_entity *) malloc(_len_a0*sizeof(struct sched_entity));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              a[_i0].vruntime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_b0 = 100;
+          struct sched_entity * b = (struct sched_entity *) malloc(_len_b0*sizeof(struct sched_entity));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].vruntime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = entity_before(a,b);
+          printf("%d\n", benchRet); 
+          free(a);
+          free(b);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_a0 = 1;
+          struct sched_entity * a = (struct sched_entity *) malloc(_len_a0*sizeof(struct sched_entity));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              a[_i0].vruntime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_b0 = 1;
+          struct sched_entity * b = (struct sched_entity *) malloc(_len_b0*sizeof(struct sched_entity));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].vruntime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = entity_before(a,b);
+          printf("%d\n", benchRet); 
+          free(a);
+          free(b);
+        
+        break;
+    }
     default:
         usage();
         break;

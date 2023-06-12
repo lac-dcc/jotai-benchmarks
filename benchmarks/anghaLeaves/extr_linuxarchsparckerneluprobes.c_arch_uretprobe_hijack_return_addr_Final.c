@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ arch_uretprobe_hijack_return_addr(unsigned long trampoline_vaddr,
 	return orig_ret_vaddr + 8;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,6 +86,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long trampoline_vaddr = 100;
+        
           int _len_regs0 = 1;
           struct pt_regs * regs = (struct pt_regs *) malloc(_len_regs0*sizeof(struct pt_regs));
           for(int _i0 = 0; _i0 < _len_regs0; _i0++) {
@@ -97,7 +95,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_regs__i0__u_regs0; _j0++) {
             regs[_i0].u_regs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           unsigned long benchRet = arch_uretprobe_hijack_return_addr(trampoline_vaddr,regs);
           printf("%lu\n", benchRet); 
           for(int _aux = 0; _aux < _len_regs0; _aux++) {
@@ -107,7 +107,81 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long trampoline_vaddr = 255;
+        
+          int _len_regs0 = 65025;
+          struct pt_regs * regs = (struct pt_regs *) malloc(_len_regs0*sizeof(struct pt_regs));
+          for(int _i0 = 0; _i0 < _len_regs0; _i0++) {
+              int _len_regs__i0__u_regs0 = 1;
+          regs[_i0].u_regs = (unsigned long *) malloc(_len_regs__i0__u_regs0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_regs__i0__u_regs0; _j0++) {
+            regs[_i0].u_regs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          unsigned long benchRet = arch_uretprobe_hijack_return_addr(trampoline_vaddr,regs);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_regs0; _aux++) {
+          free(regs[_aux].u_regs);
+          }
+          free(regs);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long trampoline_vaddr = 10;
+        
+          int _len_regs0 = 100;
+          struct pt_regs * regs = (struct pt_regs *) malloc(_len_regs0*sizeof(struct pt_regs));
+          for(int _i0 = 0; _i0 < _len_regs0; _i0++) {
+              int _len_regs__i0__u_regs0 = 1;
+          regs[_i0].u_regs = (unsigned long *) malloc(_len_regs__i0__u_regs0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_regs__i0__u_regs0; _j0++) {
+            regs[_i0].u_regs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          unsigned long benchRet = arch_uretprobe_hijack_return_addr(trampoline_vaddr,regs);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_regs0; _aux++) {
+          free(regs[_aux].u_regs);
+          }
+          free(regs);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long trampoline_vaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_regs0 = 1;
+          struct pt_regs * regs = (struct pt_regs *) malloc(_len_regs0*sizeof(struct pt_regs));
+          for(int _i0 = 0; _i0 < _len_regs0; _i0++) {
+              int _len_regs__i0__u_regs0 = 1;
+          regs[_i0].u_regs = (unsigned long *) malloc(_len_regs__i0__u_regs0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_regs__i0__u_regs0; _j0++) {
+            regs[_i0].u_regs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          unsigned long benchRet = arch_uretprobe_hijack_return_addr(trampoline_vaddr,regs);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_regs0; _aux++) {
+          free(regs[_aux].u_regs);
+          }
+          free(regs);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ qboolean WindingIsHuge (winding_t *w)
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,13 +86,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_w0 = 1;
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_w0 = 65025;
           struct TYPE_3__ * w = (struct TYPE_3__ *) malloc(_len_w0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_w0; _i0++) {
-            w[_i0].numpoints = ((-2 * (next_i()%2)) + 1) * next_i();
+              w[_i0].numpoints = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_w__i0__p0 = 1;
           w[_i0].p = (int **) malloc(_len_w__i0__p0*sizeof(int *));
           for(int _j0 = 0; _j0 < _len_w__i0__p0; _j0++) {
@@ -106,7 +125,115 @@ int main(int argc, char *argv[]) {
               w[_i0].p[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           }
+        
+          int benchRet = WindingIsHuge(w);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_w0; _aux++) {
+          free(*(w[_aux].p));
+        free(w[_aux].p);
+          }
+          free(w);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_w0 = 100;
+          struct TYPE_3__ * w = (struct TYPE_3__ *) malloc(_len_w0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_w0; _i0++) {
+              w[_i0].numpoints = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_w__i0__p0 = 1;
+          w[_i0].p = (int **) malloc(_len_w__i0__p0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_w__i0__p0; _j0++) {
+            int _len_w__i0__p1 = 1;
+            w[_i0].p[_j0] = (int *) malloc(_len_w__i0__p1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_w__i0__p1; _j1++) {
+              w[_i0].p[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          }
+        
+          int benchRet = WindingIsHuge(w);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_w0; _aux++) {
+          free(*(w[_aux].p));
+        free(w[_aux].p);
+          }
+          free(w);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_w0 = 1;
+          struct TYPE_3__ * w = (struct TYPE_3__ *) malloc(_len_w0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_w0; _i0++) {
+              w[_i0].numpoints = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_w__i0__p0 = 1;
+          w[_i0].p = (int **) malloc(_len_w__i0__p0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_w__i0__p0; _j0++) {
+            int _len_w__i0__p1 = 1;
+            w[_i0].p[_j0] = (int *) malloc(_len_w__i0__p1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_w__i0__p1; _j1++) {
+              w[_i0].p[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          }
+        
           int benchRet = WindingIsHuge(w);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_w0; _aux++) {

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -79,12 +81,6 @@ void ata_sff_std_ports(struct ata_ioports *ioaddr)
 	ioaddr->command_addr = ioaddr->cmd_addr + ATA_REG_CMD;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,30 +93,81 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ioaddr0 = 1;
+          int _len_ioaddr0 = 65025;
           struct ata_ioports * ioaddr = (struct ata_ioports *) malloc(_len_ioaddr0*sizeof(struct ata_ioports));
           for(int _i0 = 0; _i0 < _len_ioaddr0; _i0++) {
-            ioaddr[_i0].cmd_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        ioaddr[_i0].command_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        ioaddr[_i0].status_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        ioaddr[_i0].device_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        ioaddr[_i0].lbah_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        ioaddr[_i0].lbam_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        ioaddr[_i0].lbal_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        ioaddr[_i0].nsect_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        ioaddr[_i0].feature_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        ioaddr[_i0].error_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        ioaddr[_i0].data_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+              ioaddr[_i0].cmd_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ioaddr[_i0].command_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ioaddr[_i0].status_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ioaddr[_i0].device_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ioaddr[_i0].lbah_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ioaddr[_i0].lbam_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ioaddr[_i0].lbal_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ioaddr[_i0].nsect_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ioaddr[_i0].feature_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ioaddr[_i0].error_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ioaddr[_i0].data_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ata_sff_std_ports(ioaddr);
           free(ioaddr);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ioaddr0 = 100;
+          struct ata_ioports * ioaddr = (struct ata_ioports *) malloc(_len_ioaddr0*sizeof(struct ata_ioports));
+          for(int _i0 = 0; _i0 < _len_ioaddr0; _i0++) {
+              ioaddr[_i0].cmd_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ioaddr[_i0].command_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ioaddr[_i0].status_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ioaddr[_i0].device_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ioaddr[_i0].lbah_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ioaddr[_i0].lbam_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ioaddr[_i0].lbal_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ioaddr[_i0].nsect_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ioaddr[_i0].feature_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ioaddr[_i0].error_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ioaddr[_i0].data_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ata_sff_std_ports(ioaddr);
+          free(ioaddr);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ioaddr0 = 1;
+          struct ata_ioports * ioaddr = (struct ata_ioports *) malloc(_len_ioaddr0*sizeof(struct ata_ioports));
+          for(int _i0 = 0; _i0 < _len_ioaddr0; _i0++) {
+              ioaddr[_i0].cmd_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ioaddr[_i0].command_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ioaddr[_i0].status_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ioaddr[_i0].device_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ioaddr[_i0].lbah_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ioaddr[_i0].lbam_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ioaddr[_i0].lbal_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ioaddr[_i0].nsect_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ioaddr[_i0].feature_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ioaddr[_i0].error_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ioaddr[_i0].data_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ata_sff_std_ports(ioaddr);
+          free(ioaddr);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -83,12 +85,6 @@ NDIS_STATUS SlNdisNetPnPEventProc(NDIS_HANDLE protocol_binding_context, NET_PNP_
 	return NDIS_STATUS_SUCCESS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,11 +101,34 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long protocol_binding_context = 100;
+        
           int _len_net_pnp_event0 = 1;
           struct TYPE_6__ * net_pnp_event = (struct TYPE_6__ *) malloc(_len_net_pnp_event0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_net_pnp_event0; _i0++) {
-            net_pnp_event[_i0].NetPnPEvent.NetEvent = ((-2 * (next_i()%2)) + 1) * next_i();
+              net_pnp_event[_i0].NetPnPEvent.NetEvent = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = SlNdisNetPnPEventProc(protocol_binding_context,net_pnp_event);
+          printf("%d\n", benchRet); 
+          free(net_pnp_event);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long protocol_binding_context = 255;
+        
+          int _len_net_pnp_event0 = 65025;
+          struct TYPE_6__ * net_pnp_event = (struct TYPE_6__ *) malloc(_len_net_pnp_event0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_net_pnp_event0; _i0++) {
+              net_pnp_event[_i0].NetPnPEvent.NetEvent = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = SlNdisNetPnPEventProc(protocol_binding_context,net_pnp_event);
           printf("%d\n", benchRet); 
           free(net_pnp_event);
@@ -117,21 +136,43 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long protocol_binding_context = 10;
+        
           int _len_net_pnp_event0 = 100;
           struct TYPE_6__ * net_pnp_event = (struct TYPE_6__ *) malloc(_len_net_pnp_event0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_net_pnp_event0; _i0++) {
-            net_pnp_event[_i0].NetPnPEvent.NetEvent = ((-2 * (next_i()%2)) + 1) * next_i();
+              net_pnp_event[_i0].NetPnPEvent.NetEvent = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = SlNdisNetPnPEventProc(protocol_binding_context,net_pnp_event);
           printf("%d\n", benchRet); 
           free(net_pnp_event);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long protocol_binding_context = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_net_pnp_event0 = 1;
+          struct TYPE_6__ * net_pnp_event = (struct TYPE_6__ *) malloc(_len_net_pnp_event0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_net_pnp_event0; _i0++) {
+              net_pnp_event[_i0].NetPnPEvent.NetEvent = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = SlNdisNetPnPEventProc(protocol_binding_context,net_pnp_event);
+          printf("%d\n", benchRet); 
+          free(net_pnp_event);
+        
+        break;
+    }
     default:
         usage();
         break;

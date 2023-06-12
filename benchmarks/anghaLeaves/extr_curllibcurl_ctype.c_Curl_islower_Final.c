@@ -31,6 +31,7 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            big-arr\n\
+       1            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ int Curl_islower(int c)
   return (ascii[c] & (_L));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,12 +81,22 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int c = 255;
+        
           int benchRet = Curl_islower(c);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 1:
+    {
+          int c = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = Curl_islower(c);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

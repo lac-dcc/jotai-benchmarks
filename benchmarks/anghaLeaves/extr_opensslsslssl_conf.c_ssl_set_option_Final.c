@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -95,12 +98,6 @@ __attribute__((used)) static void ssl_set_option(SSL_CONF_CTX *cctx, unsigned in
         *pflags &= ~option_value;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -117,8 +114,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int name_flags = 100;
+        
           unsigned long option_value = 100;
+        
           int onoff = 100;
+        
           int _len_cctx0 = 1;
           struct TYPE_3__ * cctx = (struct TYPE_3__ *) malloc(_len_cctx0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_cctx0; _i0++) {
@@ -137,7 +137,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_cctx__i0__pvfy_flags0; _j0++) {
             cctx[_i0].pvfy_flags[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           ssl_set_option(cctx,name_flags,option_value,onoff);
           for(int _aux = 0; _aux < _len_cctx0; _aux++) {
           free(cctx[_aux].poptions);
@@ -152,7 +154,138 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int name_flags = 255;
+        
+          unsigned long option_value = 255;
+        
+          int onoff = 255;
+        
+          int _len_cctx0 = 65025;
+          struct TYPE_3__ * cctx = (struct TYPE_3__ *) malloc(_len_cctx0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_cctx0; _i0++) {
+              int _len_cctx__i0__poptions0 = 1;
+          cctx[_i0].poptions = (unsigned long *) malloc(_len_cctx__i0__poptions0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_cctx__i0__poptions0; _j0++) {
+            cctx[_i0].poptions[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_cctx__i0__pcert_flags0 = 1;
+          cctx[_i0].pcert_flags = (unsigned long *) malloc(_len_cctx__i0__pcert_flags0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_cctx__i0__pcert_flags0; _j0++) {
+            cctx[_i0].pcert_flags[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_cctx__i0__pvfy_flags0 = 1;
+          cctx[_i0].pvfy_flags = (unsigned long *) malloc(_len_cctx__i0__pvfy_flags0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_cctx__i0__pvfy_flags0; _j0++) {
+            cctx[_i0].pvfy_flags[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          ssl_set_option(cctx,name_flags,option_value,onoff);
+          for(int _aux = 0; _aux < _len_cctx0; _aux++) {
+          free(cctx[_aux].poptions);
+          }
+          for(int _aux = 0; _aux < _len_cctx0; _aux++) {
+          free(cctx[_aux].pcert_flags);
+          }
+          for(int _aux = 0; _aux < _len_cctx0; _aux++) {
+          free(cctx[_aux].pvfy_flags);
+          }
+          free(cctx);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int name_flags = 10;
+        
+          unsigned long option_value = 10;
+        
+          int onoff = 10;
+        
+          int _len_cctx0 = 100;
+          struct TYPE_3__ * cctx = (struct TYPE_3__ *) malloc(_len_cctx0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_cctx0; _i0++) {
+              int _len_cctx__i0__poptions0 = 1;
+          cctx[_i0].poptions = (unsigned long *) malloc(_len_cctx__i0__poptions0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_cctx__i0__poptions0; _j0++) {
+            cctx[_i0].poptions[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_cctx__i0__pcert_flags0 = 1;
+          cctx[_i0].pcert_flags = (unsigned long *) malloc(_len_cctx__i0__pcert_flags0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_cctx__i0__pcert_flags0; _j0++) {
+            cctx[_i0].pcert_flags[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_cctx__i0__pvfy_flags0 = 1;
+          cctx[_i0].pvfy_flags = (unsigned long *) malloc(_len_cctx__i0__pvfy_flags0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_cctx__i0__pvfy_flags0; _j0++) {
+            cctx[_i0].pvfy_flags[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          ssl_set_option(cctx,name_flags,option_value,onoff);
+          for(int _aux = 0; _aux < _len_cctx0; _aux++) {
+          free(cctx[_aux].poptions);
+          }
+          for(int _aux = 0; _aux < _len_cctx0; _aux++) {
+          free(cctx[_aux].pcert_flags);
+          }
+          for(int _aux = 0; _aux < _len_cctx0; _aux++) {
+          free(cctx[_aux].pvfy_flags);
+          }
+          free(cctx);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int name_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long option_value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int onoff = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cctx0 = 1;
+          struct TYPE_3__ * cctx = (struct TYPE_3__ *) malloc(_len_cctx0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_cctx0; _i0++) {
+              int _len_cctx__i0__poptions0 = 1;
+          cctx[_i0].poptions = (unsigned long *) malloc(_len_cctx__i0__poptions0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_cctx__i0__poptions0; _j0++) {
+            cctx[_i0].poptions[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_cctx__i0__pcert_flags0 = 1;
+          cctx[_i0].pcert_flags = (unsigned long *) malloc(_len_cctx__i0__pcert_flags0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_cctx__i0__pcert_flags0; _j0++) {
+            cctx[_i0].pcert_flags[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_cctx__i0__pvfy_flags0 = 1;
+          cctx[_i0].pvfy_flags = (unsigned long *) malloc(_len_cctx__i0__pvfy_flags0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_cctx__i0__pvfy_flags0; _j0++) {
+            cctx[_i0].pvfy_flags[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          ssl_set_option(cctx,name_flags,option_value,onoff);
+          for(int _aux = 0; _aux < _len_cctx0; _aux++) {
+          free(cctx[_aux].poptions);
+          }
+          for(int _aux = 0; _aux < _len_cctx0; _aux++) {
+          free(cctx[_aux].pcert_flags);
+          }
+          for(int _aux = 0; _aux < _len_cctx0; _aux++) {
+          free(cctx[_aux].pvfy_flags);
+          }
+          free(cctx);
+        
+        break;
+    }
     default:
         usage();
         break;

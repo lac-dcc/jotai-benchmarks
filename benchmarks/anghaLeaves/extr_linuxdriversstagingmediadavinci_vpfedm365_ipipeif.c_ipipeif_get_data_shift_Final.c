@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -82,12 +84,6 @@ ipipeif_get_data_shift(struct vpfe_ipipeif_device *ipipeif)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,18 +96,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_ipipeif0 = 65025;
+          struct vpfe_ipipeif_device * ipipeif = (struct vpfe_ipipeif_device *) malloc(_len_ipipeif0*sizeof(struct vpfe_ipipeif_device));
+          for(int _i0 = 0; _i0 < _len_ipipeif0; _i0++) {
+              int _len_ipipeif__i0__formats0 = 1;
+          ipipeif[_i0].formats = (struct v4l2_mbus_framefmt *) malloc(_len_ipipeif__i0__formats0*sizeof(struct v4l2_mbus_framefmt));
+          for(int _j0 = 0; _j0 < _len_ipipeif__i0__formats0; _j0++) {
+              ipipeif[_i0].formats->code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ipipeif_get_data_shift(ipipeif);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ipipeif0; _aux++) {
+          free(ipipeif[_aux].formats);
+          }
+          free(ipipeif);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_ipipeif0 = 100;
+          struct vpfe_ipipeif_device * ipipeif = (struct vpfe_ipipeif_device *) malloc(_len_ipipeif0*sizeof(struct vpfe_ipipeif_device));
+          for(int _i0 = 0; _i0 < _len_ipipeif0; _i0++) {
+              int _len_ipipeif__i0__formats0 = 1;
+          ipipeif[_i0].formats = (struct v4l2_mbus_framefmt *) malloc(_len_ipipeif__i0__formats0*sizeof(struct v4l2_mbus_framefmt));
+          for(int _j0 = 0; _j0 < _len_ipipeif__i0__formats0; _j0++) {
+              ipipeif[_i0].formats->code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ipipeif_get_data_shift(ipipeif);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ipipeif0; _aux++) {
+          free(ipipeif[_aux].formats);
+          }
+          free(ipipeif);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int _len_ipipeif0 = 1;
           struct vpfe_ipipeif_device * ipipeif = (struct vpfe_ipipeif_device *) malloc(_len_ipipeif0*sizeof(struct vpfe_ipipeif_device));
           for(int _i0 = 0; _i0 < _len_ipipeif0; _i0++) {
               int _len_ipipeif__i0__formats0 = 1;
           ipipeif[_i0].formats = (struct v4l2_mbus_framefmt *) malloc(_len_ipipeif__i0__formats0*sizeof(struct v4l2_mbus_framefmt));
           for(int _j0 = 0; _j0 < _len_ipipeif__i0__formats0; _j0++) {
-            ipipeif[_i0].formats->code = ((-2 * (next_i()%2)) + 1) * next_i();
+              ipipeif[_i0].formats->code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = ipipeif_get_data_shift(ipipeif);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_ipipeif0; _aux++) {

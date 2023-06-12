@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ bool wl12xx_is_dummy_packet(struct wl1271 *wl, struct sk_buff *skb)
 	return wl->dummy_packet == skb;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,23 +75,28 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_wl0 = 1;
+          int _len_wl0 = 65025;
           struct wl1271 * wl = (struct wl1271 *) malloc(_len_wl0*sizeof(struct wl1271));
           for(int _i0 = 0; _i0 < _len_wl0; _i0++) {
               int _len_wl__i0__dummy_packet0 = 1;
           wl[_i0].dummy_packet = (struct sk_buff *) malloc(_len_wl__i0__dummy_packet0*sizeof(struct sk_buff));
           for(int _j0 = 0; _j0 < _len_wl__i0__dummy_packet0; _j0++) {
-            wl[_i0].dummy_packet->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              wl[_i0].dummy_packet->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
-          int _len_skb0 = 1;
+        
+          int _len_skb0 = 65025;
           struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
           for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
-            skb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              skb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = wl12xx_is_dummy_packet(wl,skb);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_wl0; _aux++) {
@@ -106,7 +107,70 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_wl0 = 100;
+          struct wl1271 * wl = (struct wl1271 *) malloc(_len_wl0*sizeof(struct wl1271));
+          for(int _i0 = 0; _i0 < _len_wl0; _i0++) {
+              int _len_wl__i0__dummy_packet0 = 1;
+          wl[_i0].dummy_packet = (struct sk_buff *) malloc(_len_wl__i0__dummy_packet0*sizeof(struct sk_buff));
+          for(int _j0 = 0; _j0 < _len_wl__i0__dummy_packet0; _j0++) {
+              wl[_i0].dummy_packet->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_skb0 = 100;
+          struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
+          for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
+              skb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = wl12xx_is_dummy_packet(wl,skb);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_wl0; _aux++) {
+          free(wl[_aux].dummy_packet);
+          }
+          free(wl);
+          free(skb);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_wl0 = 1;
+          struct wl1271 * wl = (struct wl1271 *) malloc(_len_wl0*sizeof(struct wl1271));
+          for(int _i0 = 0; _i0 < _len_wl0; _i0++) {
+              int _len_wl__i0__dummy_packet0 = 1;
+          wl[_i0].dummy_packet = (struct sk_buff *) malloc(_len_wl__i0__dummy_packet0*sizeof(struct sk_buff));
+          for(int _j0 = 0; _j0 < _len_wl__i0__dummy_packet0; _j0++) {
+              wl[_i0].dummy_packet->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_skb0 = 1;
+          struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
+          for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
+              skb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = wl12xx_is_dummy_packet(wl,skb);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_wl0; _aux++) {
+          free(wl[_aux].dummy_packet);
+          }
+          free(wl);
+          free(skb);
+        
+        break;
+    }
     default:
         usage();
         break;

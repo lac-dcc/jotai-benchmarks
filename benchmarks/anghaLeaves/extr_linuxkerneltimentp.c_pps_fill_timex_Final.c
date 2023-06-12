@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static inline void pps_fill_timex(struct timex *txc)
 	txc->stbcnt	   = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,27 +82,72 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_txc0 = 1;
+          int _len_txc0 = 65025;
           struct timex * txc = (struct timex *) malloc(_len_txc0*sizeof(struct timex));
           for(int _i0 = 0; _i0 < _len_txc0; _i0++) {
-            txc[_i0].stbcnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        txc[_i0].errcnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        txc[_i0].calcnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        txc[_i0].jitcnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        txc[_i0].stabil = ((-2 * (next_i()%2)) + 1) * next_i();
-        txc[_i0].shift = ((-2 * (next_i()%2)) + 1) * next_i();
-        txc[_i0].jitter = ((-2 * (next_i()%2)) + 1) * next_i();
-        txc[_i0].ppsfreq = ((-2 * (next_i()%2)) + 1) * next_i();
+              txc[_i0].stbcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          txc[_i0].errcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          txc[_i0].calcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          txc[_i0].jitcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          txc[_i0].stabil = ((-2 * (next_i()%2)) + 1) * next_i();
+          txc[_i0].shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          txc[_i0].jitter = ((-2 * (next_i()%2)) + 1) * next_i();
+          txc[_i0].ppsfreq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           pps_fill_timex(txc);
           free(txc);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_txc0 = 100;
+          struct timex * txc = (struct timex *) malloc(_len_txc0*sizeof(struct timex));
+          for(int _i0 = 0; _i0 < _len_txc0; _i0++) {
+              txc[_i0].stbcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          txc[_i0].errcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          txc[_i0].calcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          txc[_i0].jitcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          txc[_i0].stabil = ((-2 * (next_i()%2)) + 1) * next_i();
+          txc[_i0].shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          txc[_i0].jitter = ((-2 * (next_i()%2)) + 1) * next_i();
+          txc[_i0].ppsfreq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          pps_fill_timex(txc);
+          free(txc);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_txc0 = 1;
+          struct timex * txc = (struct timex *) malloc(_len_txc0*sizeof(struct timex));
+          for(int _i0 = 0; _i0 < _len_txc0; _i0++) {
+              txc[_i0].stbcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          txc[_i0].errcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          txc[_i0].calcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          txc[_i0].jitcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          txc[_i0].stabil = ((-2 * (next_i()%2)) + 1) * next_i();
+          txc[_i0].shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          txc[_i0].jitter = ((-2 * (next_i()%2)) + 1) * next_i();
+          txc[_i0].ppsfreq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          pps_fill_timex(txc);
+          free(txc);
+        
+        break;
+    }
     default:
         usage();
         break;

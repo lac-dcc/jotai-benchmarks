@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline bool after(u32 seq1, u32 seq2)
         return (s32)(seq1 - seq2) > 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,7 +80,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long seq1 = 100;
+        
           long seq2 = 100;
+        
           int benchRet = after(seq1,seq2);
           printf("%d\n", benchRet); 
         
@@ -95,7 +92,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long seq1 = 255;
+        
           long seq2 = 255;
+        
           int benchRet = after(seq1,seq2);
           printf("%d\n", benchRet); 
         
@@ -105,13 +104,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long seq1 = 10;
+        
           long seq2 = 10;
+        
           int benchRet = after(seq1,seq2);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long seq1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long seq2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = after(seq1,seq2);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

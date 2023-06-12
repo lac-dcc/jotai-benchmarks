@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ void _glfwPlatformSetWindowSize(_GLFWwindow* window, int width, int height)
     window->null.height = height;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,17 +80,180 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int width = 100;
+        
           int height = 100;
+        
           int _len_window0 = 1;
           struct TYPE_5__ * window = (struct TYPE_5__ *) malloc(_len_window0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_window0; _i0++) {
-            window[_i0].null.width = ((-2 * (next_i()%2)) + 1) * next_i();
-        window[_i0].null.height = ((-2 * (next_i()%2)) + 1) * next_i();
+              window[_i0].null.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          window[_i0].null.height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          _glfwPlatformSetWindowSize(window,width,height);
+          free(window);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int width = 255;
+        
+          int height = 255;
+        
+          int _len_window0 = 65025;
+          struct TYPE_5__ * window = (struct TYPE_5__ *) malloc(_len_window0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_window0; _i0++) {
+              window[_i0].null.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          window[_i0].null.height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          _glfwPlatformSetWindowSize(window,width,height);
+          free(window);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int width = 10;
+        
+          int height = 10;
+        
+          int _len_window0 = 100;
+          struct TYPE_5__ * window = (struct TYPE_5__ *) malloc(_len_window0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_window0; _i0++) {
+              window[_i0].null.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          window[_i0].null.height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          _glfwPlatformSetWindowSize(window,width,height);
+          free(window);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_window0 = 1;
+          struct TYPE_5__ * window = (struct TYPE_5__ *) malloc(_len_window0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_window0; _i0++) {
+              window[_i0].null.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          window[_i0].null.height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           _glfwPlatformSetWindowSize(window,width,height);
           free(window);
         

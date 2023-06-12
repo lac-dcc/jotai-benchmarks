@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static HRESULT StorageInternalImpl_LockTransaction(Storage
   return E_NOTIMPL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,11 +82,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int write = 100;
+        
           int _len_base0 = 1;
           int * base = (int *) malloc(_len_base0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_base0; _i0++) {
             base[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = StorageInternalImpl_LockTransaction(base,write);
+          printf("%d\n", benchRet); 
+          free(base);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int write = 255;
+        
+          int _len_base0 = 65025;
+          int * base = (int *) malloc(_len_base0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_base0; _i0++) {
+            base[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = StorageInternalImpl_LockTransaction(base,write);
           printf("%d\n", benchRet); 
           free(base);
@@ -98,21 +113,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int write = 10;
+        
           int _len_base0 = 100;
           int * base = (int *) malloc(_len_base0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_base0; _i0++) {
             base[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = StorageInternalImpl_LockTransaction(base,write);
           printf("%d\n", benchRet); 
           free(base);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int write = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_base0 = 1;
+          int * base = (int *) malloc(_len_base0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_base0; _i0++) {
+            base[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = StorageInternalImpl_LockTransaction(base,write);
+          printf("%d\n", benchRet); 
+          free(base);
+        
+        break;
+    }
     default:
         usage();
         break;

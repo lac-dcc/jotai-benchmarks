@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -124,12 +126,6 @@ int rtllib_wx_set_auth(struct rtllib_device *ieee,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -142,36 +138,43 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ieee0 = 1;
+          int _len_ieee0 = 65025;
           struct rtllib_device * ieee = (struct rtllib_device *) malloc(_len_ieee0*sizeof(struct rtllib_device));
           for(int _i0 = 0; _i0 < _len_ieee0; _i0++) {
-            ieee[_i0].tkip_countermeasures = ((-2 * (next_i()%2)) + 1) * next_i();
-        ieee[_i0].drop_unencrypted = ((-2 * (next_i()%2)) + 1) * next_i();
-        ieee[_i0].open_wep = ((-2 * (next_i()%2)) + 1) * next_i();
-        ieee[_i0].auth_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        ieee[_i0].wpa_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        ieee[_i0].ieee802_1x = ((-2 * (next_i()%2)) + 1) * next_i();
-        ieee[_i0].privacy_invoked = ((-2 * (next_i()%2)) + 1) * next_i();
+              ieee[_i0].tkip_countermeasures = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].drop_unencrypted = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].open_wep = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].auth_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].wpa_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].ieee802_1x = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].privacy_invoked = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_info0 = 1;
+        
+          int _len_info0 = 65025;
           struct iw_request_info * info = (struct iw_request_info *) malloc(_len_info0*sizeof(struct iw_request_info));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_data0 = 1;
+        
+          int _len_data0 = 65025;
           struct iw_param * data = (struct iw_param *) malloc(_len_data0*sizeof(struct iw_param));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
-            data[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].value = ((-2 * (next_i()%2)) + 1) * next_i();
+              data[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_extra0 = 1;
+        
+          int _len_extra0 = 65025;
           char * extra = (char *) malloc(_len_extra0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_extra0; _i0++) {
             extra[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = rtllib_wx_set_auth(ieee,info,data,extra);
           printf("%d\n", benchRet); 
           free(ieee);
@@ -181,7 +184,98 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ieee0 = 100;
+          struct rtllib_device * ieee = (struct rtllib_device *) malloc(_len_ieee0*sizeof(struct rtllib_device));
+          for(int _i0 = 0; _i0 < _len_ieee0; _i0++) {
+              ieee[_i0].tkip_countermeasures = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].drop_unencrypted = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].open_wep = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].auth_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].wpa_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].ieee802_1x = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].privacy_invoked = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_info0 = 100;
+          struct iw_request_info * info = (struct iw_request_info *) malloc(_len_info0*sizeof(struct iw_request_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_data0 = 100;
+          struct iw_param * data = (struct iw_param *) malloc(_len_data0*sizeof(struct iw_param));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_extra0 = 100;
+          char * extra = (char *) malloc(_len_extra0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_extra0; _i0++) {
+            extra[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = rtllib_wx_set_auth(ieee,info,data,extra);
+          printf("%d\n", benchRet); 
+          free(ieee);
+          free(info);
+          free(data);
+          free(extra);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ieee0 = 1;
+          struct rtllib_device * ieee = (struct rtllib_device *) malloc(_len_ieee0*sizeof(struct rtllib_device));
+          for(int _i0 = 0; _i0 < _len_ieee0; _i0++) {
+              ieee[_i0].tkip_countermeasures = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].drop_unencrypted = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].open_wep = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].auth_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].wpa_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].ieee802_1x = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].privacy_invoked = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_info0 = 1;
+          struct iw_request_info * info = (struct iw_request_info *) malloc(_len_info0*sizeof(struct iw_request_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_data0 = 1;
+          struct iw_param * data = (struct iw_param *) malloc(_len_data0*sizeof(struct iw_param));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_extra0 = 1;
+          char * extra = (char *) malloc(_len_extra0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_extra0; _i0++) {
+            extra[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = rtllib_wx_set_auth(ieee,info,data,extra);
+          printf("%d\n", benchRet); 
+          free(ieee);
+          free(info);
+          free(data);
+          free(extra);
+        
+        break;
+    }
     default:
         usage();
         break;

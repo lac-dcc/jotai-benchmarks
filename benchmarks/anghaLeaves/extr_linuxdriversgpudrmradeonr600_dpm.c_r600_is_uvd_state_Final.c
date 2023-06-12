@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +78,6 @@ bool r600_is_uvd_state(u32 class, u32 class2)
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,7 +94,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int class = 100;
+        
           int class2 = 100;
+        
           int benchRet = r600_is_uvd_state(class,class2);
           printf("%d\n", benchRet); 
         
@@ -109,7 +106,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int class = 255;
+        
           int class2 = 255;
+        
           int benchRet = r600_is_uvd_state(class,class2);
           printf("%d\n", benchRet); 
         
@@ -119,13 +118,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int class = 10;
+        
           int class2 = 10;
+        
           int benchRet = r600_is_uvd_state(class,class2);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int class = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int class2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = r600_is_uvd_state(class,class2);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

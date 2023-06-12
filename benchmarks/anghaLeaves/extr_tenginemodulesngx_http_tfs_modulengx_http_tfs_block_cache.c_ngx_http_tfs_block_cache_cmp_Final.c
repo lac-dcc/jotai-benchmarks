@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -82,12 +84,6 @@ ngx_http_tfs_block_cache_cmp(ngx_http_tfs_block_cache_key_t *left,
     return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,21 +96,148 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_left0 = 65025;
+          struct TYPE_4__ * left = (struct TYPE_4__ *) malloc(_len_left0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_left0; _i0++) {
+              left[_i0].ns_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          left[_i0].block_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_right0 = 65025;
+          struct TYPE_4__ * right = (struct TYPE_4__ *) malloc(_len_right0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_right0; _i0++) {
+              right[_i0].ns_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          right[_i0].block_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ngx_http_tfs_block_cache_cmp(left,right);
+          printf("%d\n", benchRet); 
+          free(left);
+          free(right);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_left0 = 100;
+          struct TYPE_4__ * left = (struct TYPE_4__ *) malloc(_len_left0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_left0; _i0++) {
+              left[_i0].ns_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          left[_i0].block_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_right0 = 100;
+          struct TYPE_4__ * right = (struct TYPE_4__ *) malloc(_len_right0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_right0; _i0++) {
+              right[_i0].ns_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          right[_i0].block_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ngx_http_tfs_block_cache_cmp(left,right);
+          printf("%d\n", benchRet); 
+          free(left);
+          free(right);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_left0 = 1;
           struct TYPE_4__ * left = (struct TYPE_4__ *) malloc(_len_left0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_left0; _i0++) {
-            left[_i0].ns_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        left[_i0].block_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              left[_i0].ns_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          left[_i0].block_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_right0 = 1;
           struct TYPE_4__ * right = (struct TYPE_4__ *) malloc(_len_right0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_right0; _i0++) {
-            right[_i0].ns_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        right[_i0].block_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              right[_i0].ns_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          right[_i0].block_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ngx_http_tfs_block_cache_cmp(left,right);
           printf("%d\n", benchRet); 
           free(left);

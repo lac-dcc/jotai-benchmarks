@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ int smscore_led_state(struct smscore_device_t *core, int led)
 	return core->led_state;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,11 +81,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int led = 100;
+        
           int _len_core0 = 1;
           struct smscore_device_t * core = (struct smscore_device_t *) malloc(_len_core0*sizeof(struct smscore_device_t));
           for(int _i0 = 0; _i0 < _len_core0; _i0++) {
-            core[_i0].led_state = ((-2 * (next_i()%2)) + 1) * next_i();
+              core[_i0].led_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = smscore_led_state(core,led);
+          printf("%d\n", benchRet); 
+          free(core);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int led = 255;
+        
+          int _len_core0 = 65025;
+          struct smscore_device_t * core = (struct smscore_device_t *) malloc(_len_core0*sizeof(struct smscore_device_t));
+          for(int _i0 = 0; _i0 < _len_core0; _i0++) {
+              core[_i0].led_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = smscore_led_state(core,led);
           printf("%d\n", benchRet); 
           free(core);
@@ -97,21 +114,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int led = 10;
+        
           int _len_core0 = 100;
           struct smscore_device_t * core = (struct smscore_device_t *) malloc(_len_core0*sizeof(struct smscore_device_t));
           for(int _i0 = 0; _i0 < _len_core0; _i0++) {
-            core[_i0].led_state = ((-2 * (next_i()%2)) + 1) * next_i();
+              core[_i0].led_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = smscore_led_state(core,led);
           printf("%d\n", benchRet); 
           free(core);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int led = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_core0 = 1;
+          struct smscore_device_t * core = (struct smscore_device_t *) malloc(_len_core0*sizeof(struct smscore_device_t));
+          for(int _i0 = 0; _i0 < _len_core0; _i0++) {
+              core[_i0].led_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = smscore_led_state(core,led);
+          printf("%d\n", benchRet); 
+          free(core);
+        
+        break;
+    }
     default:
         usage();
         break;

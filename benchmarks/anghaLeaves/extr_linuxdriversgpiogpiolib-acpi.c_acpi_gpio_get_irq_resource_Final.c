@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ bool acpi_gpio_get_irq_resource(struct acpi_resource *ares,
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,29 +90,173 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_ares0 = 65025;
+          struct acpi_resource * ares = (struct acpi_resource *) malloc(_len_ares0*sizeof(struct acpi_resource));
+          for(int _i0 = 0; _i0 < _len_ares0; _i0++) {
+              ares[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          ares[_i0].data.gpio.connection_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_agpio0 = 65025;
+          struct acpi_resource_gpio ** agpio = (struct acpi_resource_gpio **) malloc(_len_agpio0*sizeof(struct acpi_resource_gpio *));
+          for(int _i0 = 0; _i0 < _len_agpio0; _i0++) {
+            int _len_agpio1 = 1;
+            agpio[_i0] = (struct acpi_resource_gpio *) malloc(_len_agpio1*sizeof(struct acpi_resource_gpio));
+            for(int _i1 = 0; _i1 < _len_agpio1; _i1++) {
+                agpio[_i0][_i1].connection_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int benchRet = acpi_gpio_get_irq_resource(ares,agpio);
+          printf("%d\n", benchRet); 
+          free(ares);
+          for(int i1 = 0; i1 < _len_agpio0; i1++) {
+              free(agpio[i1]);
+          }
+          free(agpio);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_ares0 = 100;
+          struct acpi_resource * ares = (struct acpi_resource *) malloc(_len_ares0*sizeof(struct acpi_resource));
+          for(int _i0 = 0; _i0 < _len_ares0; _i0++) {
+              ares[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          ares[_i0].data.gpio.connection_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_agpio0 = 100;
+          struct acpi_resource_gpio ** agpio = (struct acpi_resource_gpio **) malloc(_len_agpio0*sizeof(struct acpi_resource_gpio *));
+          for(int _i0 = 0; _i0 < _len_agpio0; _i0++) {
+            int _len_agpio1 = 1;
+            agpio[_i0] = (struct acpi_resource_gpio *) malloc(_len_agpio1*sizeof(struct acpi_resource_gpio));
+            for(int _i1 = 0; _i1 < _len_agpio1; _i1++) {
+                agpio[_i0][_i1].connection_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int benchRet = acpi_gpio_get_irq_resource(ares,agpio);
+          printf("%d\n", benchRet); 
+          free(ares);
+          for(int i1 = 0; i1 < _len_agpio0; i1++) {
+              free(agpio[i1]);
+          }
+          free(agpio);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_ares0 = 1;
           struct acpi_resource * ares = (struct acpi_resource *) malloc(_len_ares0*sizeof(struct acpi_resource));
           for(int _i0 = 0; _i0 < _len_ares0; _i0++) {
-            ares[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        ares[_i0].data.gpio.connection_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              ares[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          ares[_i0].data.gpio.connection_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int _len_agpio0 = 1;
           struct acpi_resource_gpio ** agpio = (struct acpi_resource_gpio **) malloc(_len_agpio0*sizeof(struct acpi_resource_gpio *));
           for(int _i0 = 0; _i0 < _len_agpio0; _i0++) {
             int _len_agpio1 = 1;
             agpio[_i0] = (struct acpi_resource_gpio *) malloc(_len_agpio1*sizeof(struct acpi_resource_gpio));
             for(int _i1 = 0; _i1 < _len_agpio1; _i1++) {
-              agpio[_i0][_i1].connection_type = ((-2 * (next_i()%2)) + 1) * next_i();
+                agpio[_i0][_i1].connection_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           int benchRet = acpi_gpio_get_irq_resource(ares,agpio);
           printf("%d\n", benchRet); 
           free(ares);
           for(int i1 = 0; i1 < _len_agpio0; i1++) {
-            int _len_agpio1 = 1;
               free(agpio[i1]);
           }
           free(agpio);

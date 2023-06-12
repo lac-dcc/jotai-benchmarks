@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ __attribute__((used)) static int qedr_to_ib_qp_acc_flags(struct qed_rdma_query_q
 	return ib_qp_acc_flags;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,16 +87,125 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int _len_params0 = 65025;
+          struct qed_rdma_query_qp_out_params * params = (struct qed_rdma_query_qp_out_params *) malloc(_len_params0*sizeof(struct qed_rdma_query_qp_out_params));
+          for(int _i0 = 0; _i0 < _len_params0; _i0++) {
+              params[_i0].incoming_atomic_en = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].incoming_rdma_read_en = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].incoming_rdma_write_en = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = qedr_to_ib_qp_acc_flags(params);
+          printf("%d\n", benchRet); 
+          free(params);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int _len_params0 = 100;
+          struct qed_rdma_query_qp_out_params * params = (struct qed_rdma_query_qp_out_params *) malloc(_len_params0*sizeof(struct qed_rdma_query_qp_out_params));
+          for(int _i0 = 0; _i0 < _len_params0; _i0++) {
+              params[_i0].incoming_atomic_en = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].incoming_rdma_read_en = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].incoming_rdma_write_en = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = qedr_to_ib_qp_acc_flags(params);
+          printf("%d\n", benchRet); 
+          free(params);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
           int _len_params0 = 1;
           struct qed_rdma_query_qp_out_params * params = (struct qed_rdma_query_qp_out_params *) malloc(_len_params0*sizeof(struct qed_rdma_query_qp_out_params));
           for(int _i0 = 0; _i0 < _len_params0; _i0++) {
-            params[_i0].incoming_atomic_en = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].incoming_rdma_read_en = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].incoming_rdma_write_en = ((-2 * (next_i()%2)) + 1) * next_i();
+              params[_i0].incoming_atomic_en = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].incoming_rdma_read_en = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].incoming_rdma_write_en = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = qedr_to_ib_qp_acc_flags(params);
           printf("%d\n", benchRet); 
           free(params);

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ __attribute__((used)) static int apply_r_mips_32(struct module *me, u32 *locatio
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,22 +80,210 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           long base = 100;
+        
           long v = 100;
+        
           int rela = 100;
+        
           int _len_me0 = 1;
           struct module * me = (struct module *) malloc(_len_me0*sizeof(struct module));
           for(int _i0 = 0; _i0 < _len_me0; _i0++) {
-            me[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              me[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_location0 = 1;
           long * location = (long *) malloc(_len_location0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_location0; _i0++) {
             location[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = apply_r_mips_32(me,location,base,v,rela);
+          printf("%d\n", benchRet); 
+          free(me);
+          free(location);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          long base = 255;
+        
+          long v = 255;
+        
+          int rela = 255;
+        
+          int _len_me0 = 65025;
+          struct module * me = (struct module *) malloc(_len_me0*sizeof(struct module));
+          for(int _i0 = 0; _i0 < _len_me0; _i0++) {
+              me[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_location0 = 65025;
+          long * location = (long *) malloc(_len_location0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_location0; _i0++) {
+            location[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = apply_r_mips_32(me,location,base,v,rela);
+          printf("%d\n", benchRet); 
+          free(me);
+          free(location);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          long base = 10;
+        
+          long v = 10;
+        
+          int rela = 10;
+        
+          int _len_me0 = 100;
+          struct module * me = (struct module *) malloc(_len_me0*sizeof(struct module));
+          for(int _i0 = 0; _i0 < _len_me0; _i0++) {
+              me[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_location0 = 100;
+          long * location = (long *) malloc(_len_location0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_location0; _i0++) {
+            location[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = apply_r_mips_32(me,location,base,v,rela);
+          printf("%d\n", benchRet); 
+          free(me);
+          free(location);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          long base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long v = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int rela = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_me0 = 1;
+          struct module * me = (struct module *) malloc(_len_me0*sizeof(struct module));
+          for(int _i0 = 0; _i0 < _len_me0; _i0++) {
+              me[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_location0 = 1;
+          long * location = (long *) malloc(_len_location0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_location0; _i0++) {
+            location[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = apply_r_mips_32(me,location,base,v,rela);
           printf("%d\n", benchRet); 
           free(me);

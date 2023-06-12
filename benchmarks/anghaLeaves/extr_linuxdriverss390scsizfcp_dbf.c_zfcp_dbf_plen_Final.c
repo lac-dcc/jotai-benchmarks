@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline unsigned int zfcp_dbf_plen(unsigned int offs
 	return sizeof(struct zfcp_dbf_pay) + offset - ZFCP_DBF_PAY_MAX_REC;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int offset = 100;
+        
           unsigned int benchRet = zfcp_dbf_plen(offset);
           printf("%u\n", benchRet); 
         
@@ -94,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int offset = 255;
+        
           unsigned int benchRet = zfcp_dbf_plen(offset);
           printf("%u\n", benchRet); 
         
@@ -103,12 +100,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int offset = 10;
+        
           unsigned int benchRet = zfcp_dbf_plen(offset);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = zfcp_dbf_plen(offset);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

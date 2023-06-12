@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -92,12 +93,6 @@ vc_reverse_cursor(unsigned int xx, unsigned int yy)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -114,7 +109,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int xx = 100;
+        
           unsigned int yy = 100;
+        
           vc_reverse_cursor(xx,yy);
         
         break;
@@ -123,7 +120,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int xx = 255;
+        
           unsigned int yy = 255;
+        
           vc_reverse_cursor(xx,yy);
         
         break;
@@ -132,12 +131,24 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int xx = 10;
+        
           unsigned int yy = 10;
+        
           vc_reverse_cursor(xx,yy);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int xx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int yy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          vc_reverse_cursor(xx,yy);
+        
+        break;
+    }
     default:
         usage();
         break;

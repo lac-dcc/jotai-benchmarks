@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ mmio_rb_range_compare(struct mmio_rb_range *a, struct mmio_rb_range *b)
 	return (0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,21 +79,148 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_a0 = 65025;
+          struct mmio_rb_range * a = (struct mmio_rb_range *) malloc(_len_a0*sizeof(struct mmio_rb_range));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              a[_i0].mr_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].mr_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_b0 = 65025;
+          struct mmio_rb_range * b = (struct mmio_rb_range *) malloc(_len_b0*sizeof(struct mmio_rb_range));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].mr_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].mr_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mmio_rb_range_compare(a,b);
+          printf("%d\n", benchRet); 
+          free(a);
+          free(b);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_a0 = 100;
+          struct mmio_rb_range * a = (struct mmio_rb_range *) malloc(_len_a0*sizeof(struct mmio_rb_range));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              a[_i0].mr_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].mr_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_b0 = 100;
+          struct mmio_rb_range * b = (struct mmio_rb_range *) malloc(_len_b0*sizeof(struct mmio_rb_range));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].mr_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].mr_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mmio_rb_range_compare(a,b);
+          printf("%d\n", benchRet); 
+          free(a);
+          free(b);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_a0 = 1;
           struct mmio_rb_range * a = (struct mmio_rb_range *) malloc(_len_a0*sizeof(struct mmio_rb_range));
           for(int _i0 = 0; _i0 < _len_a0; _i0++) {
-            a[_i0].mr_end = ((-2 * (next_i()%2)) + 1) * next_i();
-        a[_i0].mr_base = ((-2 * (next_i()%2)) + 1) * next_i();
+              a[_i0].mr_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].mr_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_b0 = 1;
           struct mmio_rb_range * b = (struct mmio_rb_range *) malloc(_len_b0*sizeof(struct mmio_rb_range));
           for(int _i0 = 0; _i0 < _len_b0; _i0++) {
-            b[_i0].mr_end = ((-2 * (next_i()%2)) + 1) * next_i();
-        b[_i0].mr_base = ((-2 * (next_i()%2)) + 1) * next_i();
+              b[_i0].mr_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].mr_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mmio_rb_range_compare(a,b);
           printf("%d\n", benchRet); 
           free(a);

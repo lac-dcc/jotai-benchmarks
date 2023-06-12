@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +77,6 @@ __attribute__((used)) static unsigned short int ftdi_232am_baud_base_to_divisor(
 	return divisor;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,7 +93,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int baud = 100;
+        
           int base = 100;
+        
           unsigned short benchRet = ftdi_232am_baud_base_to_divisor(baud,base);
           printf("%hu\n", benchRet); 
         
@@ -108,7 +105,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int baud = 255;
+        
           int base = 255;
+        
           unsigned short benchRet = ftdi_232am_baud_base_to_divisor(baud,base);
           printf("%hu\n", benchRet); 
         
@@ -118,13 +117,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int baud = 10;
+        
           int base = 10;
+        
           unsigned short benchRet = ftdi_232am_baud_base_to_divisor(baud,base);
           printf("%hu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int baud = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned short benchRet = ftdi_232am_baud_base_to_divisor(baud,base);
+          printf("%hu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

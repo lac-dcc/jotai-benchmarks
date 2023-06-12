@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static int rio_mport_match_pw_filter(struct rio_pw_filter 
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,23 +77,154 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_a0 = 65025;
+          struct rio_pw_filter * a = (struct rio_pw_filter *) malloc(_len_a0*sizeof(struct rio_pw_filter));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              a[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].low = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].high = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_b0 = 65025;
+          struct rio_pw_filter * b = (struct rio_pw_filter *) malloc(_len_b0*sizeof(struct rio_pw_filter));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].low = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].high = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rio_mport_match_pw_filter(a,b);
+          printf("%d\n", benchRet); 
+          free(a);
+          free(b);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_a0 = 100;
+          struct rio_pw_filter * a = (struct rio_pw_filter *) malloc(_len_a0*sizeof(struct rio_pw_filter));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              a[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].low = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].high = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_b0 = 100;
+          struct rio_pw_filter * b = (struct rio_pw_filter *) malloc(_len_b0*sizeof(struct rio_pw_filter));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].low = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].high = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rio_mport_match_pw_filter(a,b);
+          printf("%d\n", benchRet); 
+          free(a);
+          free(b);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int _len_a0 = 1;
           struct rio_pw_filter * a = (struct rio_pw_filter *) malloc(_len_a0*sizeof(struct rio_pw_filter));
           for(int _i0 = 0; _i0 < _len_a0; _i0++) {
-            a[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        a[_i0].low = ((-2 * (next_i()%2)) + 1) * next_i();
-        a[_i0].high = ((-2 * (next_i()%2)) + 1) * next_i();
+              a[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].low = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].high = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_b0 = 1;
           struct rio_pw_filter * b = (struct rio_pw_filter *) malloc(_len_b0*sizeof(struct rio_pw_filter));
           for(int _i0 = 0; _i0 < _len_b0; _i0++) {
-            b[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        b[_i0].low = ((-2 * (next_i()%2)) + 1) * next_i();
-        b[_i0].high = ((-2 * (next_i()%2)) + 1) * next_i();
+              b[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].low = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].high = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = rio_mport_match_pw_filter(a,b);
           printf("%d\n", benchRet); 
           free(a);

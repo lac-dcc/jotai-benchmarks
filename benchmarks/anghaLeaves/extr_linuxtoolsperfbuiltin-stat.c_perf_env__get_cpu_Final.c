@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static inline int perf_env__get_cpu(struct perf_env *env, 
 	return cpu;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,21 +89,26 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int idx = 100;
+        
           int _len_env0 = 1;
           struct perf_env * env = (struct perf_env *) malloc(_len_env0*sizeof(struct perf_env));
           for(int _i0 = 0; _i0 < _len_env0; _i0++) {
-            env[_i0].nr_cpus_avail = ((-2 * (next_i()%2)) + 1) * next_i();
+              env[_i0].nr_cpus_avail = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_map0 = 1;
           struct cpu_map * map = (struct cpu_map *) malloc(_len_map0*sizeof(struct cpu_map));
           for(int _i0 = 0; _i0 < _len_map0; _i0++) {
-            map[_i0].nr = ((-2 * (next_i()%2)) + 1) * next_i();
+              map[_i0].nr = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_map__i0__map0 = 1;
           map[_i0].map = (int *) malloc(_len_map__i0__map0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_map__i0__map0; _j0++) {
             map[_i0].map[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = perf_env__get_cpu(env,map,idx);
           printf("%d\n", benchRet); 
           free(env);
@@ -118,7 +119,74 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int idx = 255;
+        
+          int _len_env0 = 65025;
+          struct perf_env * env = (struct perf_env *) malloc(_len_env0*sizeof(struct perf_env));
+          for(int _i0 = 0; _i0 < _len_env0; _i0++) {
+              env[_i0].nr_cpus_avail = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_map0 = 65025;
+          struct cpu_map * map = (struct cpu_map *) malloc(_len_map0*sizeof(struct cpu_map));
+          for(int _i0 = 0; _i0 < _len_map0; _i0++) {
+              map[_i0].nr = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_map__i0__map0 = 1;
+          map[_i0].map = (int *) malloc(_len_map__i0__map0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_map__i0__map0; _j0++) {
+            map[_i0].map[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = perf_env__get_cpu(env,map,idx);
+          printf("%d\n", benchRet); 
+          free(env);
+          for(int _aux = 0; _aux < _len_map0; _aux++) {
+          free(map[_aux].map);
+          }
+          free(map);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int idx = 10;
+        
+          int _len_env0 = 100;
+          struct perf_env * env = (struct perf_env *) malloc(_len_env0*sizeof(struct perf_env));
+          for(int _i0 = 0; _i0 < _len_env0; _i0++) {
+              env[_i0].nr_cpus_avail = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_map0 = 100;
+          struct cpu_map * map = (struct cpu_map *) malloc(_len_map0*sizeof(struct cpu_map));
+          for(int _i0 = 0; _i0 < _len_map0; _i0++) {
+              map[_i0].nr = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_map__i0__map0 = 1;
+          map[_i0].map = (int *) malloc(_len_map__i0__map0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_map__i0__map0; _j0++) {
+            map[_i0].map[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = perf_env__get_cpu(env,map,idx);
+          printf("%d\n", benchRet); 
+          free(env);
+          for(int _aux = 0; _aux < _len_map0; _aux++) {
+          free(map[_aux].map);
+          }
+          free(map);
+        
+        break;
+    }
     default:
         usage();
         break;

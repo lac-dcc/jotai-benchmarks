@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -82,12 +83,6 @@ __attribute__((used)) static unsigned int format_ccm_a0(u8 *pa0_buff, u32 header
 	return len;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,22 +95,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          unsigned long header_size = 10;
-          int _len_pa0_buff0 = 100;
+          unsigned long header_size = 255;
+        
+          int _len_pa0_buff0 = 65025;
           int * pa0_buff = (int *) malloc(_len_pa0_buff0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pa0_buff0; _i0++) {
             pa0_buff[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned int benchRet = format_ccm_a0(pa0_buff,header_size);
           printf("%u\n", benchRet); 
           free(pa0_buff);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          unsigned long header_size = 10;
+        
+          int _len_pa0_buff0 = 100;
+          int * pa0_buff = (int *) malloc(_len_pa0_buff0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pa0_buff0; _i0++) {
+            pa0_buff[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned int benchRet = format_ccm_a0(pa0_buff,header_size);
+          printf("%u\n", benchRet); 
+          free(pa0_buff);
+        
+        break;
+    }
     default:
         usage();
         break;

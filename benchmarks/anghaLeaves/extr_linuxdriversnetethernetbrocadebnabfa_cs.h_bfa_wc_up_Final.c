@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ bfa_wc_up(struct bfa_wc *wc)
 	wc->wc_count++;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_wc0 = 1;
+          int _len_wc0 = 65025;
           struct bfa_wc * wc = (struct bfa_wc *) malloc(_len_wc0*sizeof(struct bfa_wc));
           for(int _i0 = 0; _i0 < _len_wc0; _i0++) {
-            wc[_i0].wc_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              wc[_i0].wc_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           bfa_wc_up(wc);
           free(wc);
         
@@ -99,14 +96,30 @@ int main(int argc, char *argv[]) {
           int _len_wc0 = 100;
           struct bfa_wc * wc = (struct bfa_wc *) malloc(_len_wc0*sizeof(struct bfa_wc));
           for(int _i0 = 0; _i0 < _len_wc0; _i0++) {
-            wc[_i0].wc_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              wc[_i0].wc_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           bfa_wc_up(wc);
           free(wc);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_wc0 = 1;
+          struct bfa_wc * wc = (struct bfa_wc *) malloc(_len_wc0*sizeof(struct bfa_wc));
+          for(int _i0 = 0; _i0 < _len_wc0; _i0++) {
+              wc[_i0].wc_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          bfa_wc_up(wc);
+          free(wc);
+        
+        break;
+    }
     default:
         usage();
         break;

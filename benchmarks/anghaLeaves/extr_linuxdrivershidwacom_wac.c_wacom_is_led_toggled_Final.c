@@ -31,6 +31,7 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -80,12 +81,6 @@ __attribute__((used)) static bool wacom_is_led_toggled(struct wacom *wacom, int 
 	return mask & (1 << (group * button_per_group));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,18 +93,99 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int button_count = 100;
+        
           int mask = 100;
+        
           int group = 100;
+        
           int _len_wacom0 = 1;
           struct wacom * wacom = (struct wacom *) malloc(_len_wacom0*sizeof(struct wacom));
           for(int _i0 = 0; _i0 < _len_wacom0; _i0++) {
-            wacom[_i0].led.count = ((-2 * (next_i()%2)) + 1) * next_i();
-        wacom[_i0].wacom_wac.features.type = ((-2 * (next_i()%2)) + 1) * next_i();
+              wacom[_i0].led.count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          wacom[_i0].wacom_wac.features.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
+          int benchRet = wacom_is_led_toggled(wacom,button_count,mask,group);
+          printf("%d\n", benchRet); 
+          free(wacom);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int button_count = 10;
+        
+          int mask = 10;
+        
+          int group = 10;
+        
+          int _len_wacom0 = 100;
+          struct wacom * wacom = (struct wacom *) malloc(_len_wacom0*sizeof(struct wacom));
+          for(int _i0 = 0; _i0 < _len_wacom0; _i0++) {
+              wacom[_i0].led.count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          wacom[_i0].wacom_wac.features.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
           int benchRet = wacom_is_led_toggled(wacom,button_count,mask,group);
           printf("%d\n", benchRet); 
           free(wacom);

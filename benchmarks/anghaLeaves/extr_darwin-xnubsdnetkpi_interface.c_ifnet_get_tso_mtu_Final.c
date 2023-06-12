@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -97,12 +100,6 @@ ifnet_get_tso_mtu(ifnet_t interface, sa_family_t family, u_int32_t *mtuLen)
 	return (error);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -119,18 +116,22 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int family = 100;
+        
           int _len_interface0 = 1;
           struct TYPE_3__ * interface = (struct TYPE_3__ *) malloc(_len_interface0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_interface0; _i0++) {
-            interface[_i0].if_hwassist = ((-2 * (next_i()%2)) + 1) * next_i();
-        interface[_i0].if_tso_v6_mtu = ((-2 * (next_i()%2)) + 1) * next_i();
-        interface[_i0].if_tso_v4_mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+              interface[_i0].if_hwassist = ((-2 * (next_i()%2)) + 1) * next_i();
+          interface[_i0].if_tso_v6_mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+          interface[_i0].if_tso_v4_mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_mtuLen0 = 1;
           int * mtuLen = (int *) malloc(_len_mtuLen0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_mtuLen0; _i0++) {
             mtuLen[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = ifnet_get_tso_mtu(interface,family,mtuLen);
           printf("%d\n", benchRet); 
           free(interface);
@@ -138,7 +139,87 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int family = 255;
+        
+          int _len_interface0 = 65025;
+          struct TYPE_3__ * interface = (struct TYPE_3__ *) malloc(_len_interface0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_interface0; _i0++) {
+              interface[_i0].if_hwassist = ((-2 * (next_i()%2)) + 1) * next_i();
+          interface[_i0].if_tso_v6_mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+          interface[_i0].if_tso_v4_mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_mtuLen0 = 65025;
+          int * mtuLen = (int *) malloc(_len_mtuLen0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mtuLen0; _i0++) {
+            mtuLen[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ifnet_get_tso_mtu(interface,family,mtuLen);
+          printf("%d\n", benchRet); 
+          free(interface);
+          free(mtuLen);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int family = 10;
+        
+          int _len_interface0 = 100;
+          struct TYPE_3__ * interface = (struct TYPE_3__ *) malloc(_len_interface0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_interface0; _i0++) {
+              interface[_i0].if_hwassist = ((-2 * (next_i()%2)) + 1) * next_i();
+          interface[_i0].if_tso_v6_mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+          interface[_i0].if_tso_v4_mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_mtuLen0 = 100;
+          int * mtuLen = (int *) malloc(_len_mtuLen0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mtuLen0; _i0++) {
+            mtuLen[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ifnet_get_tso_mtu(interface,family,mtuLen);
+          printf("%d\n", benchRet); 
+          free(interface);
+          free(mtuLen);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int family = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_interface0 = 1;
+          struct TYPE_3__ * interface = (struct TYPE_3__ *) malloc(_len_interface0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_interface0; _i0++) {
+              interface[_i0].if_hwassist = ((-2 * (next_i()%2)) + 1) * next_i();
+          interface[_i0].if_tso_v6_mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+          interface[_i0].if_tso_v4_mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_mtuLen0 = 1;
+          int * mtuLen = (int *) malloc(_len_mtuLen0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mtuLen0; _i0++) {
+            mtuLen[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ifnet_get_tso_mtu(interface,family,mtuLen);
+          printf("%d\n", benchRet); 
+          free(interface);
+          free(mtuLen);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -87,12 +89,6 @@ bfa_ioc_set_ctx_hwif(struct bfa_ioc_s *ioc, struct bfa_ioc_hwif_s *hwif)
 	hwif->ioc_get_alt_fwstate = bfa_ioc_ct_get_alt_ioc_fwstate;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,31 +101,176 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 45
+          // dynamic_instructions_O0 : 45
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 30
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 30
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 30
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 30
+          // dynamic_instructions_Oz : 30
+          // ------------------------------- 
+
+          int _len_ioc0 = 65025;
+          struct bfa_ioc_s * ioc = (struct bfa_ioc_s *) malloc(_len_ioc0*sizeof(struct bfa_ioc_s));
+          for(int _i0 = 0; _i0 < _len_ioc0; _i0++) {
+              ioc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_hwif0 = 65025;
+          struct bfa_ioc_hwif_s * hwif = (struct bfa_ioc_hwif_s *) malloc(_len_hwif0*sizeof(struct bfa_ioc_hwif_s));
+          for(int _i0 = 0; _i0 < _len_hwif0; _i0++) {
+              hwif[_i0].ioc_get_alt_fwstate = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwif[_i0].ioc_set_alt_fwstate = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwif[_i0].ioc_get_fwstate = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwif[_i0].ioc_set_fwstate = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwif[_i0].ioc_sync_complete = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwif[_i0].ioc_sync_ack = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwif[_i0].ioc_sync_leave = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwif[_i0].ioc_sync_join = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwif[_i0].ioc_sync_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwif[_i0].ioc_ownership_reset = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwif[_i0].ioc_notify_fail = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwif[_i0].ioc_firmware_unlock = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwif[_i0].ioc_firmware_lock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          bfa_ioc_set_ctx_hwif(ioc,hwif);
+          free(ioc);
+          free(hwif);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 45
+          // dynamic_instructions_O0 : 45
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 30
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 30
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 30
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 30
+          // dynamic_instructions_Oz : 30
+          // ------------------------------- 
+
+          int _len_ioc0 = 100;
+          struct bfa_ioc_s * ioc = (struct bfa_ioc_s *) malloc(_len_ioc0*sizeof(struct bfa_ioc_s));
+          for(int _i0 = 0; _i0 < _len_ioc0; _i0++) {
+              ioc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_hwif0 = 100;
+          struct bfa_ioc_hwif_s * hwif = (struct bfa_ioc_hwif_s *) malloc(_len_hwif0*sizeof(struct bfa_ioc_hwif_s));
+          for(int _i0 = 0; _i0 < _len_hwif0; _i0++) {
+              hwif[_i0].ioc_get_alt_fwstate = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwif[_i0].ioc_set_alt_fwstate = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwif[_i0].ioc_get_fwstate = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwif[_i0].ioc_set_fwstate = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwif[_i0].ioc_sync_complete = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwif[_i0].ioc_sync_ack = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwif[_i0].ioc_sync_leave = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwif[_i0].ioc_sync_join = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwif[_i0].ioc_sync_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwif[_i0].ioc_ownership_reset = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwif[_i0].ioc_notify_fail = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwif[_i0].ioc_firmware_unlock = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwif[_i0].ioc_firmware_lock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          bfa_ioc_set_ctx_hwif(ioc,hwif);
+          free(ioc);
+          free(hwif);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 45
+          // dynamic_instructions_O0 : 45
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 30
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 30
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 30
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 30
+          // dynamic_instructions_Oz : 30
+          // ------------------------------- 
+
           int _len_ioc0 = 1;
           struct bfa_ioc_s * ioc = (struct bfa_ioc_s *) malloc(_len_ioc0*sizeof(struct bfa_ioc_s));
           for(int _i0 = 0; _i0 < _len_ioc0; _i0++) {
-            ioc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ioc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_hwif0 = 1;
           struct bfa_ioc_hwif_s * hwif = (struct bfa_ioc_hwif_s *) malloc(_len_hwif0*sizeof(struct bfa_ioc_hwif_s));
           for(int _i0 = 0; _i0 < _len_hwif0; _i0++) {
-            hwif[_i0].ioc_get_alt_fwstate = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwif[_i0].ioc_set_alt_fwstate = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwif[_i0].ioc_get_fwstate = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwif[_i0].ioc_set_fwstate = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwif[_i0].ioc_sync_complete = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwif[_i0].ioc_sync_ack = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwif[_i0].ioc_sync_leave = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwif[_i0].ioc_sync_join = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwif[_i0].ioc_sync_start = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwif[_i0].ioc_ownership_reset = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwif[_i0].ioc_notify_fail = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwif[_i0].ioc_firmware_unlock = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwif[_i0].ioc_firmware_lock = ((-2 * (next_i()%2)) + 1) * next_i();
+              hwif[_i0].ioc_get_alt_fwstate = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwif[_i0].ioc_set_alt_fwstate = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwif[_i0].ioc_get_fwstate = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwif[_i0].ioc_set_fwstate = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwif[_i0].ioc_sync_complete = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwif[_i0].ioc_sync_ack = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwif[_i0].ioc_sync_leave = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwif[_i0].ioc_sync_join = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwif[_i0].ioc_sync_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwif[_i0].ioc_ownership_reset = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwif[_i0].ioc_notify_fail = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwif[_i0].ioc_firmware_unlock = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwif[_i0].ioc_firmware_lock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           bfa_ioc_set_ctx_hwif(ioc,hwif);
           free(ioc);
           free(hwif);

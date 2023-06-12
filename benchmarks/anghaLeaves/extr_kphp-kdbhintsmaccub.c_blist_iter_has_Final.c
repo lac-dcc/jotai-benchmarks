@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -86,12 +89,6 @@ int blist_iter_has (blist_iterator *it, int val) {
   }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,10 +101,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int val = 100;
+        
           int _len_it0 = 1;
           struct TYPE_3__ * it = (struct TYPE_3__ *) malloc(_len_it0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_it0; _i0++) {
@@ -116,7 +137,156 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_it__i0__x0; _j0++) {
             it[_i0].x[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int benchRet = blist_iter_has(it,val);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_it0; _aux++) {
+          free(it[_aux].x);
+          }
+          free(it);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int val = 255;
+        
+          int _len_it0 = 65025;
+          struct TYPE_3__ * it = (struct TYPE_3__ *) malloc(_len_it0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_it0; _i0++) {
+              int _len_it__i0__x0 = 1;
+          it[_i0].x = (int *) malloc(_len_it__i0__x0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_it__i0__x0; _j0++) {
+            it[_i0].x[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = blist_iter_has(it,val);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_it0; _aux++) {
+          free(it[_aux].x);
+          }
+          free(it);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int val = 10;
+        
+          int _len_it0 = 100;
+          struct TYPE_3__ * it = (struct TYPE_3__ *) malloc(_len_it0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_it0; _i0++) {
+              int _len_it__i0__x0 = 1;
+          it[_i0].x = (int *) malloc(_len_it__i0__x0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_it__i0__x0; _j0++) {
+            it[_i0].x[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = blist_iter_has(it,val);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_it0; _aux++) {
+          free(it[_aux].x);
+          }
+          free(it);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_it0 = 1;
+          struct TYPE_3__ * it = (struct TYPE_3__ *) malloc(_len_it0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_it0; _i0++) {
+              int _len_it__i0__x0 = 1;
+          it[_i0].x = (int *) malloc(_len_it__i0__x0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_it__i0__x0; _j0++) {
+            it[_i0].x[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int benchRet = blist_iter_has(it,val);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_it0; _aux++) {

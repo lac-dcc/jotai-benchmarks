@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -83,12 +85,6 @@ check_file(fdOpenInfoRef info, struct vinfo_stat *sb)
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,22 +97,154 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_info0 = 65025;
+          struct TYPE_5__ * info = (struct TYPE_5__ *) malloc(_len_info0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].match_stat.st_dev = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].match_stat.st_ino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_sb0 = 65025;
+          struct vinfo_stat * sb = (struct vinfo_stat *) malloc(_len_sb0*sizeof(struct vinfo_stat));
+          for(int _i0 = 0; _i0 < _len_sb0; _i0++) {
+              sb[_i0].vst_dev = ((-2 * (next_i()%2)) + 1) * next_i();
+          sb[_i0].vst_ino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = check_file(info,sb);
+          printf("%d\n", benchRet); 
+          free(info);
+          free(sb);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_info0 = 100;
+          struct TYPE_5__ * info = (struct TYPE_5__ *) malloc(_len_info0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].match_stat.st_dev = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].match_stat.st_ino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_sb0 = 100;
+          struct vinfo_stat * sb = (struct vinfo_stat *) malloc(_len_sb0*sizeof(struct vinfo_stat));
+          for(int _i0 = 0; _i0 < _len_sb0; _i0++) {
+              sb[_i0].vst_dev = ((-2 * (next_i()%2)) + 1) * next_i();
+          sb[_i0].vst_ino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = check_file(info,sb);
+          printf("%d\n", benchRet); 
+          free(info);
+          free(sb);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int _len_info0 = 1;
           struct TYPE_5__ * info = (struct TYPE_5__ *) malloc(_len_info0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].match_stat.st_dev = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].match_stat.st_ino = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].match_stat.st_dev = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].match_stat.st_ino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_sb0 = 1;
           struct vinfo_stat * sb = (struct vinfo_stat *) malloc(_len_sb0*sizeof(struct vinfo_stat));
           for(int _i0 = 0; _i0 < _len_sb0; _i0++) {
-            sb[_i0].vst_dev = ((-2 * (next_i()%2)) + 1) * next_i();
-        sb[_i0].vst_ino = ((-2 * (next_i()%2)) + 1) * next_i();
+              sb[_i0].vst_dev = ((-2 * (next_i()%2)) + 1) * next_i();
+          sb[_i0].vst_ino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = check_file(info,sb);
           printf("%d\n", benchRet); 
           free(info);

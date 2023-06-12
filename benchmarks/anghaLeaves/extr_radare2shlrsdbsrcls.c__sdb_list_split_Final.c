@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -75,7 +76,6 @@ __attribute__((used)) static SdbListIter * _sdb_list_split(SdbListIter *head) {
 	return tmp;
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct TYPE_4__ *_allocate_head(int length, struct TYPE_4__ *aux_head[]) {
@@ -103,7 +103,6 @@ void _delete_head(struct TYPE_4__ *aux_head[], int aux_head_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -116,17 +115,28 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // linked
     case 0:
+    {
+          struct TYPE_4__ * aux_head[10000];
+          struct TYPE_4__ * head = _allocate_head(10000, aux_head);
+        
+          struct TYPE_4__ * benchRet = _sdb_list_split(head);
+          _delete_head(aux_head, 10000);
+        
+        break;
+    }
+    // empty
+    case 1:
     {
           struct TYPE_4__ * aux_head[1];
           struct TYPE_4__ * head = _allocate_head(1, aux_head);
+        
           struct TYPE_4__ * benchRet = _sdb_list_split(head);
           _delete_head(aux_head, 1);
         
         break;
     }
-
     default:
         usage();
         break;

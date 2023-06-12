@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline void iwl_fw_set_current_image(struct iwl_fw_
 	fwrt->cur_fw_img = cur_fw_img;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,15 +76,18 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           enum iwl_ucode_type cur_fw_img = 0;
-          int _len_fwrt0 = 1;
+        
+          int _len_fwrt0 = 65025;
           struct iwl_fw_runtime * fwrt = (struct iwl_fw_runtime *) malloc(_len_fwrt0*sizeof(struct iwl_fw_runtime));
           for(int _i0 = 0; _i0 < _len_fwrt0; _i0++) {
-            fwrt[_i0].cur_fw_img = ((-2 * (next_i()%2)) + 1) * next_i();
+              fwrt[_i0].cur_fw_img = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           iwl_fw_set_current_image(fwrt,cur_fw_img);
           free(fwrt);
         
@@ -99,17 +97,36 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           enum iwl_ucode_type cur_fw_img = 0;
+        
           int _len_fwrt0 = 100;
           struct iwl_fw_runtime * fwrt = (struct iwl_fw_runtime *) malloc(_len_fwrt0*sizeof(struct iwl_fw_runtime));
           for(int _i0 = 0; _i0 < _len_fwrt0; _i0++) {
-            fwrt[_i0].cur_fw_img = ((-2 * (next_i()%2)) + 1) * next_i();
+              fwrt[_i0].cur_fw_img = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           iwl_fw_set_current_image(fwrt,cur_fw_img);
           free(fwrt);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          enum iwl_ucode_type cur_fw_img = 0;
+        
+          int _len_fwrt0 = 1;
+          struct iwl_fw_runtime * fwrt = (struct iwl_fw_runtime *) malloc(_len_fwrt0*sizeof(struct iwl_fw_runtime));
+          for(int _i0 = 0; _i0 < _len_fwrt0; _i0++) {
+              fwrt[_i0].cur_fw_img = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          iwl_fw_set_current_image(fwrt,cur_fw_img);
+          free(fwrt);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ isert_prot_cmd(struct isert_conn *conn, struct se_cmd *cmd)
 		cmd->prot_op != TARGET_PROT_NORMAL);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,19 +78,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_conn0 = 1;
+          int _len_conn0 = 65025;
           struct isert_conn * conn = (struct isert_conn *) malloc(_len_conn0*sizeof(struct isert_conn));
           for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
-            conn[_i0].pi_support = ((-2 * (next_i()%2)) + 1) * next_i();
+              conn[_i0].pi_support = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_cmd0 = 1;
+        
+          int _len_cmd0 = 65025;
           struct se_cmd * cmd = (struct se_cmd *) malloc(_len_cmd0*sizeof(struct se_cmd));
           for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
-            cmd[_i0].prot_op = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmd[_i0].prot_op = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = isert_prot_cmd(conn,cmd);
           printf("%d\n", benchRet); 
           free(conn);
@@ -102,7 +102,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_conn0 = 100;
+          struct isert_conn * conn = (struct isert_conn *) malloc(_len_conn0*sizeof(struct isert_conn));
+          for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
+              conn[_i0].pi_support = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cmd0 = 100;
+          struct se_cmd * cmd = (struct se_cmd *) malloc(_len_cmd0*sizeof(struct se_cmd));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].prot_op = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = isert_prot_cmd(conn,cmd);
+          printf("%d\n", benchRet); 
+          free(conn);
+          free(cmd);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_conn0 = 1;
+          struct isert_conn * conn = (struct isert_conn *) malloc(_len_conn0*sizeof(struct isert_conn));
+          for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
+              conn[_i0].pi_support = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cmd0 = 1;
+          struct se_cmd * cmd = (struct se_cmd *) malloc(_len_cmd0*sizeof(struct se_cmd));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].prot_op = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = isert_prot_cmd(conn,cmd);
+          printf("%d\n", benchRet); 
+          free(conn);
+          free(cmd);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ __attribute__((used)) static int __find_msr_index(struct vcpu_vmx *vmx, u32 msr)
 	return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,16 +88,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long msr = 100;
+        
           int _len_vmx0 = 1;
           struct vcpu_vmx * vmx = (struct vcpu_vmx *) malloc(_len_vmx0*sizeof(struct vcpu_vmx));
           for(int _i0 = 0; _i0 < _len_vmx0; _i0++) {
-            vmx[_i0].nmsrs = ((-2 * (next_i()%2)) + 1) * next_i();
+              vmx[_i0].nmsrs = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_vmx__i0__guest_msrs0 = 1;
           vmx[_i0].guest_msrs = (struct TYPE_2__ *) malloc(_len_vmx__i0__guest_msrs0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_vmx__i0__guest_msrs0; _j0++) {
-            vmx[_i0].guest_msrs->index = ((-2 * (next_i()%2)) + 1) * next_i();
+              vmx[_i0].guest_msrs->index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = __find_msr_index(vmx,msr);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_vmx0; _aux++) {
@@ -110,7 +111,87 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long msr = 255;
+        
+          int _len_vmx0 = 65025;
+          struct vcpu_vmx * vmx = (struct vcpu_vmx *) malloc(_len_vmx0*sizeof(struct vcpu_vmx));
+          for(int _i0 = 0; _i0 < _len_vmx0; _i0++) {
+              vmx[_i0].nmsrs = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_vmx__i0__guest_msrs0 = 1;
+          vmx[_i0].guest_msrs = (struct TYPE_2__ *) malloc(_len_vmx__i0__guest_msrs0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_vmx__i0__guest_msrs0; _j0++) {
+              vmx[_i0].guest_msrs->index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = __find_msr_index(vmx,msr);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vmx0; _aux++) {
+          free(vmx[_aux].guest_msrs);
+          }
+          free(vmx);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long msr = 10;
+        
+          int _len_vmx0 = 100;
+          struct vcpu_vmx * vmx = (struct vcpu_vmx *) malloc(_len_vmx0*sizeof(struct vcpu_vmx));
+          for(int _i0 = 0; _i0 < _len_vmx0; _i0++) {
+              vmx[_i0].nmsrs = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_vmx__i0__guest_msrs0 = 1;
+          vmx[_i0].guest_msrs = (struct TYPE_2__ *) malloc(_len_vmx__i0__guest_msrs0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_vmx__i0__guest_msrs0; _j0++) {
+              vmx[_i0].guest_msrs->index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = __find_msr_index(vmx,msr);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vmx0; _aux++) {
+          free(vmx[_aux].guest_msrs);
+          }
+          free(vmx);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long msr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_vmx0 = 1;
+          struct vcpu_vmx * vmx = (struct vcpu_vmx *) malloc(_len_vmx0*sizeof(struct vcpu_vmx));
+          for(int _i0 = 0; _i0 < _len_vmx0; _i0++) {
+              vmx[_i0].nmsrs = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_vmx__i0__guest_msrs0 = 1;
+          vmx[_i0].guest_msrs = (struct TYPE_2__ *) malloc(_len_vmx__i0__guest_msrs0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_vmx__i0__guest_msrs0; _j0++) {
+              vmx[_i0].guest_msrs->index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = __find_msr_index(vmx,msr);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vmx0; _aux++) {
+          free(vmx[_aux].guest_msrs);
+          }
+          free(vmx);
+        
+        break;
+    }
     default:
         usage();
         break;

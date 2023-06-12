@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +64,6 @@ int register_kretprobes(struct kretprobe **rps, int num)
 	return -ENOSYS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,23 +76,195 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int num = 100;
+        
           int _len_rps0 = 1;
           struct kretprobe ** rps = (struct kretprobe **) malloc(_len_rps0*sizeof(struct kretprobe *));
           for(int _i0 = 0; _i0 < _len_rps0; _i0++) {
             int _len_rps1 = 1;
             rps[_i0] = (struct kretprobe *) malloc(_len_rps1*sizeof(struct kretprobe));
             for(int _i1 = 0; _i1 < _len_rps1; _i1++) {
-              rps[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+                rps[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           int benchRet = register_kretprobes(rps,num);
           printf("%d\n", benchRet); 
           for(int i1 = 0; i1 < _len_rps0; i1++) {
+              free(rps[i1]);
+          }
+          free(rps);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int num = 255;
+        
+          int _len_rps0 = 65025;
+          struct kretprobe ** rps = (struct kretprobe **) malloc(_len_rps0*sizeof(struct kretprobe *));
+          for(int _i0 = 0; _i0 < _len_rps0; _i0++) {
             int _len_rps1 = 1;
+            rps[_i0] = (struct kretprobe *) malloc(_len_rps1*sizeof(struct kretprobe));
+            for(int _i1 = 0; _i1 < _len_rps1; _i1++) {
+                rps[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int benchRet = register_kretprobes(rps,num);
+          printf("%d\n", benchRet); 
+          for(int i1 = 0; i1 < _len_rps0; i1++) {
+              free(rps[i1]);
+          }
+          free(rps);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int num = 10;
+        
+          int _len_rps0 = 100;
+          struct kretprobe ** rps = (struct kretprobe **) malloc(_len_rps0*sizeof(struct kretprobe *));
+          for(int _i0 = 0; _i0 < _len_rps0; _i0++) {
+            int _len_rps1 = 1;
+            rps[_i0] = (struct kretprobe *) malloc(_len_rps1*sizeof(struct kretprobe));
+            for(int _i1 = 0; _i1 < _len_rps1; _i1++) {
+                rps[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int benchRet = register_kretprobes(rps,num);
+          printf("%d\n", benchRet); 
+          for(int i1 = 0; i1 < _len_rps0; i1++) {
+              free(rps[i1]);
+          }
+          free(rps);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rps0 = 1;
+          struct kretprobe ** rps = (struct kretprobe **) malloc(_len_rps0*sizeof(struct kretprobe *));
+          for(int _i0 = 0; _i0 < _len_rps0; _i0++) {
+            int _len_rps1 = 1;
+            rps[_i0] = (struct kretprobe *) malloc(_len_rps1*sizeof(struct kretprobe));
+            for(int _i1 = 0; _i1 < _len_rps1; _i1++) {
+                rps[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int benchRet = register_kretprobes(rps,num);
+          printf("%d\n", benchRet); 
+          for(int i1 = 0; i1 < _len_rps0; i1++) {
               free(rps[i1]);
           }
           free(rps);

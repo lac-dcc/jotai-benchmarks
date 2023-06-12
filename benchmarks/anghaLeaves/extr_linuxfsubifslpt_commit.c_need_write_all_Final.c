@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ __attribute__((used)) static int need_write_all(struct ubifs_info *c)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,25 +90,161 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_c0 = 1;
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_c0 = 65025;
           struct ubifs_info * c = (struct ubifs_info *) malloc(_len_c0*sizeof(struct ubifs_info));
           for(int _i0 = 0; _i0 < _len_c0; _i0++) {
-            c[_i0].lpt_lebs = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].lpt_first = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].nhead_lnum = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].leb_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].nhead_offs = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].lpt_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+              c[_i0].lpt_lebs = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].lpt_first = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].nhead_lnum = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].leb_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].nhead_offs = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].lpt_sz = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_c__i0__ltab0 = 1;
           c[_i0].ltab = (struct TYPE_2__ *) malloc(_len_c__i0__ltab0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_c__i0__ltab0; _j0++) {
-            c[_i0].ltab->free = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].ltab->dirty = ((-2 * (next_i()%2)) + 1) * next_i();
+              c[_i0].ltab->free = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].ltab->dirty = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = need_write_all(c);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_c0; _aux++) {
+          free(c[_aux].ltab);
+          }
+          free(c);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_c0 = 100;
+          struct ubifs_info * c = (struct ubifs_info *) malloc(_len_c0*sizeof(struct ubifs_info));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].lpt_lebs = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].lpt_first = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].nhead_lnum = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].leb_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].nhead_offs = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].lpt_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_c__i0__ltab0 = 1;
+          c[_i0].ltab = (struct TYPE_2__ *) malloc(_len_c__i0__ltab0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_c__i0__ltab0; _j0++) {
+              c[_i0].ltab->free = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].ltab->dirty = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = need_write_all(c);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_c0; _aux++) {
+          free(c[_aux].ltab);
+          }
+          free(c);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_c0 = 1;
+          struct ubifs_info * c = (struct ubifs_info *) malloc(_len_c0*sizeof(struct ubifs_info));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].lpt_lebs = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].lpt_first = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].nhead_lnum = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].leb_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].nhead_offs = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].lpt_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_c__i0__ltab0 = 1;
+          c[_i0].ltab = (struct TYPE_2__ *) malloc(_len_c__i0__ltab0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_c__i0__ltab0; _j0++) {
+              c[_i0].ltab->free = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].ltab->dirty = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = need_write_all(c);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_c0; _aux++) {

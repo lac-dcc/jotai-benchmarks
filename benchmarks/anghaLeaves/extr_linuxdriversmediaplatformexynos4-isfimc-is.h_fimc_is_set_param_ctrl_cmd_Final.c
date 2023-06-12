@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ __attribute__((used)) static inline void fimc_is_set_param_ctrl_cmd(struct fimc_
 	is->is_p_region->parameter.isp.control.cmd = cmd;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,19 +83,205 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int cmd = 100;
+        
           int _len_is0 = 1;
           struct fimc_is * is = (struct fimc_is *) malloc(_len_is0*sizeof(struct fimc_is));
           for(int _i0 = 0; _i0 < _len_is0; _i0++) {
               int _len_is__i0__is_p_region0 = 1;
           is[_i0].is_p_region = (struct TYPE_8__ *) malloc(_len_is__i0__is_p_region0*sizeof(struct TYPE_8__));
           for(int _j0 = 0; _j0 < _len_is__i0__is_p_region0; _j0++) {
-            is[_i0].is_p_region->parameter.isp.control.cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+              is[_i0].is_p_region->parameter.isp.control.cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
           }
+        
           }
+        
+          fimc_is_set_param_ctrl_cmd(is,cmd);
+          for(int _aux = 0; _aux < _len_is0; _aux++) {
+          free(is[_aux].is_p_region);
+          }
+          free(is);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int cmd = 255;
+        
+          int _len_is0 = 65025;
+          struct fimc_is * is = (struct fimc_is *) malloc(_len_is0*sizeof(struct fimc_is));
+          for(int _i0 = 0; _i0 < _len_is0; _i0++) {
+              int _len_is__i0__is_p_region0 = 1;
+          is[_i0].is_p_region = (struct TYPE_8__ *) malloc(_len_is__i0__is_p_region0*sizeof(struct TYPE_8__));
+          for(int _j0 = 0; _j0 < _len_is__i0__is_p_region0; _j0++) {
+              is[_i0].is_p_region->parameter.isp.control.cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
+          }
+        
+          }
+        
+          fimc_is_set_param_ctrl_cmd(is,cmd);
+          for(int _aux = 0; _aux < _len_is0; _aux++) {
+          free(is[_aux].is_p_region);
+          }
+          free(is);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int cmd = 10;
+        
+          int _len_is0 = 100;
+          struct fimc_is * is = (struct fimc_is *) malloc(_len_is0*sizeof(struct fimc_is));
+          for(int _i0 = 0; _i0 < _len_is0; _i0++) {
+              int _len_is__i0__is_p_region0 = 1;
+          is[_i0].is_p_region = (struct TYPE_8__ *) malloc(_len_is__i0__is_p_region0*sizeof(struct TYPE_8__));
+          for(int _j0 = 0; _j0 < _len_is__i0__is_p_region0; _j0++) {
+              is[_i0].is_p_region->parameter.isp.control.cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
+          }
+        
+          }
+        
+          fimc_is_set_param_ctrl_cmd(is,cmd);
+          for(int _aux = 0; _aux < _len_is0; _aux++) {
+          free(is[_aux].is_p_region);
+          }
+          free(is);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_is0 = 1;
+          struct fimc_is * is = (struct fimc_is *) malloc(_len_is0*sizeof(struct fimc_is));
+          for(int _i0 = 0; _i0 < _len_is0; _i0++) {
+              int _len_is__i0__is_p_region0 = 1;
+          is[_i0].is_p_region = (struct TYPE_8__ *) malloc(_len_is__i0__is_p_region0*sizeof(struct TYPE_8__));
+          for(int _j0 = 0; _j0 < _len_is__i0__is_p_region0; _j0++) {
+              is[_i0].is_p_region->parameter.isp.control.cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
+          }
+        
+          }
+        
           fimc_is_set_param_ctrl_cmd(is,cmd);
           for(int _aux = 0; _aux < _len_is0; _aux++) {
           free(is[_aux].is_p_region);

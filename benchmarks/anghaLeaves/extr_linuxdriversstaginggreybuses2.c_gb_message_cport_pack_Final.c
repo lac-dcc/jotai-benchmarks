@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +65,6 @@ gb_message_cport_pack(struct gb_operation_msg_hdr *header, u16 cport_id)
 	header->pad[0] = cport_id;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,10 +77,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int cport_id = 100;
+        
           int _len_header0 = 1;
           struct gb_operation_msg_hdr * header = (struct gb_operation_msg_hdr *) malloc(_len_header0*sizeof(struct gb_operation_msg_hdr));
           for(int _i0 = 0; _i0 < _len_header0; _i0++) {
@@ -92,7 +113,153 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_header__i0__pad0; _j0++) {
             header[_i0].pad[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          gb_message_cport_pack(header,cport_id);
+          for(int _aux = 0; _aux < _len_header0; _aux++) {
+          free(header[_aux].pad);
+          }
+          free(header);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int cport_id = 255;
+        
+          int _len_header0 = 65025;
+          struct gb_operation_msg_hdr * header = (struct gb_operation_msg_hdr *) malloc(_len_header0*sizeof(struct gb_operation_msg_hdr));
+          for(int _i0 = 0; _i0 < _len_header0; _i0++) {
+              int _len_header__i0__pad0 = 1;
+          header[_i0].pad = (int *) malloc(_len_header__i0__pad0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_header__i0__pad0; _j0++) {
+            header[_i0].pad[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          gb_message_cport_pack(header,cport_id);
+          for(int _aux = 0; _aux < _len_header0; _aux++) {
+          free(header[_aux].pad);
+          }
+          free(header);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int cport_id = 10;
+        
+          int _len_header0 = 100;
+          struct gb_operation_msg_hdr * header = (struct gb_operation_msg_hdr *) malloc(_len_header0*sizeof(struct gb_operation_msg_hdr));
+          for(int _i0 = 0; _i0 < _len_header0; _i0++) {
+              int _len_header__i0__pad0 = 1;
+          header[_i0].pad = (int *) malloc(_len_header__i0__pad0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_header__i0__pad0; _j0++) {
+            header[_i0].pad[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          gb_message_cport_pack(header,cport_id);
+          for(int _aux = 0; _aux < _len_header0; _aux++) {
+          free(header[_aux].pad);
+          }
+          free(header);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int cport_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_header0 = 1;
+          struct gb_operation_msg_hdr * header = (struct gb_operation_msg_hdr *) malloc(_len_header0*sizeof(struct gb_operation_msg_hdr));
+          for(int _i0 = 0; _i0 < _len_header0; _i0++) {
+              int _len_header__i0__pad0 = 1;
+          header[_i0].pad = (int *) malloc(_len_header__i0__pad0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_header__i0__pad0; _j0++) {
+            header[_i0].pad[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           gb_message_cport_pack(header,cport_id);
           for(int _aux = 0; _aux < _len_header0; _aux++) {
           free(header[_aux].pad);

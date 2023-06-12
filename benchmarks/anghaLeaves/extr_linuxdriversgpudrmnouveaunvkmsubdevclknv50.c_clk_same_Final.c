@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ clk_same(u32 a, u32 b)
 	return ((a / 1000) == (b / 1000));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,7 +80,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int a = 100;
+        
           int b = 100;
+        
           int benchRet = clk_same(a,b);
           printf("%d\n", benchRet); 
         
@@ -95,7 +92,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int a = 255;
+        
           int b = 255;
+        
           int benchRet = clk_same(a,b);
           printf("%d\n", benchRet); 
         
@@ -105,13 +104,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int a = 10;
+        
           int b = 10;
+        
           int benchRet = clk_same(a,b);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int a = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = clk_same(a,b);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

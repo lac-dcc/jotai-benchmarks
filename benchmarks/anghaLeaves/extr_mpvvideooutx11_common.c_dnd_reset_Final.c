@@ -30,8 +30,10 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
-       1            linked\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            linked\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static void dnd_reset(struct vo *vo)
     x11->dnd_requested_format = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,19 +79,45 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_vo0 = 1;
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_vo0 = 65025;
           struct vo * vo = (struct vo *) malloc(_len_vo0*sizeof(struct vo));
           for(int _i0 = 0; _i0 < _len_vo0; _i0++) {
               int _len_vo__i0__x110 = 1;
           vo[_i0].x11 = (struct vo_x11_state *) malloc(_len_vo__i0__x110*sizeof(struct vo_x11_state));
           for(int _j0 = 0; _j0 < _len_vo__i0__x110; _j0++) {
-            vo[_i0].x11->dnd_requested_format = ((-2 * (next_i()%2)) + 1) * next_i();
-        vo[_i0].x11->dnd_src_window = ((-2 * (next_i()%2)) + 1) * next_i();
+              vo[_i0].x11->dnd_requested_format = ((-2 * (next_i()%2)) + 1) * next_i();
+          vo[_i0].x11->dnd_src_window = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           dnd_reset(vo);
           for(int _aux = 0; _aux < _len_vo0; _aux++) {
           free(vo[_aux].x11);
@@ -104,19 +126,142 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-    // linked
+
+
+    // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_vo0 = 100;
+          struct vo * vo = (struct vo *) malloc(_len_vo0*sizeof(struct vo));
+          for(int _i0 = 0; _i0 < _len_vo0; _i0++) {
+              int _len_vo__i0__x110 = 1;
+          vo[_i0].x11 = (struct vo_x11_state *) malloc(_len_vo__i0__x110*sizeof(struct vo_x11_state));
+          for(int _j0 = 0; _j0 < _len_vo__i0__x110; _j0++) {
+              vo[_i0].x11->dnd_requested_format = ((-2 * (next_i()%2)) + 1) * next_i();
+          vo[_i0].x11->dnd_src_window = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          dnd_reset(vo);
+          for(int _aux = 0; _aux < _len_vo0; _aux++) {
+          free(vo[_aux].x11);
+          }
+          free(vo);
+        
+        break;
+    }
+
+
+    // linked
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_vo0 = 1;
           struct vo * vo = (struct vo *) malloc(_len_vo0*sizeof(struct vo));
           for(int _i0 = 0; _i0 < _len_vo0; _i0++) {
               int _len_vo__i0__x110 = 1;
           vo[_i0].x11 = (struct vo_x11_state *) malloc(_len_vo__i0__x110*sizeof(struct vo_x11_state));
           for(int _j0 = 0; _j0 < _len_vo__i0__x110; _j0++) {
-            vo[_i0].x11->dnd_requested_format = ((-2 * (next_i()%2)) + 1) * next_i();
-        vo[_i0].x11->dnd_src_window = ((-2 * (next_i()%2)) + 1) * next_i();
+              vo[_i0].x11->dnd_requested_format = ((-2 * (next_i()%2)) + 1) * next_i();
+          vo[_i0].x11->dnd_src_window = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          dnd_reset(vo);
+          for(int _aux = 0; _aux < _len_vo0; _aux++) {
+          free(vo[_aux].x11);
+          }
+          free(vo);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_vo0 = 1;
+          struct vo * vo = (struct vo *) malloc(_len_vo0*sizeof(struct vo));
+          for(int _i0 = 0; _i0 < _len_vo0; _i0++) {
+              int _len_vo__i0__x110 = 1;
+          vo[_i0].x11 = (struct vo_x11_state *) malloc(_len_vo__i0__x110*sizeof(struct vo_x11_state));
+          for(int _j0 = 0; _j0 < _len_vo__i0__x110; _j0++) {
+              vo[_i0].x11->dnd_requested_format = ((-2 * (next_i()%2)) + 1) * next_i();
+          vo[_i0].x11->dnd_src_window = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           dnd_reset(vo);
           for(int _aux = 0; _aux < _len_vo0; _aux++) {
           free(vo[_aux].x11);

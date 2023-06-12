@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +76,6 @@ tune_ahash_max(u8 curr, u32 multi)
 	return n > curr && n <= AHASH_MAX_TUNED ? n : curr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,7 +92,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long curr = 100;
+        
           long multi = 100;
+        
           long benchRet = tune_ahash_max(curr,multi);
           printf("%ld\n", benchRet); 
         
@@ -107,7 +104,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long curr = 255;
+        
           long multi = 255;
+        
           long benchRet = tune_ahash_max(curr,multi);
           printf("%ld\n", benchRet); 
         
@@ -117,13 +116,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long curr = 10;
+        
           long multi = 10;
+        
           long benchRet = tune_ahash_max(curr,multi);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long curr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long multi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long benchRet = tune_ahash_max(curr,multi);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ BigInt_Set_uint32(BigInt *i, npy_uint32 val)
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,16 +89,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long val = 100;
+        
           int _len_i0 = 1;
           struct TYPE_3__ * i = (struct TYPE_3__ *) malloc(_len_i0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_i0; _i0++) {
-            i[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+              i[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_i__i0__blocks0 = 1;
           i[_i0].blocks = (long *) malloc(_len_i__i0__blocks0*sizeof(long));
           for(int _j0 = 0; _j0 < _len_i__i0__blocks0; _j0++) {
             i[_i0].blocks[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           BigInt_Set_uint32(i,val);
           for(int _aux = 0; _aux < _len_i0; _aux++) {
           free(i[_aux].blocks);
@@ -110,7 +110,81 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long val = 255;
+        
+          int _len_i0 = 65025;
+          struct TYPE_3__ * i = (struct TYPE_3__ *) malloc(_len_i0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_i0; _i0++) {
+              i[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_i__i0__blocks0 = 1;
+          i[_i0].blocks = (long *) malloc(_len_i__i0__blocks0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_i__i0__blocks0; _j0++) {
+            i[_i0].blocks[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          BigInt_Set_uint32(i,val);
+          for(int _aux = 0; _aux < _len_i0; _aux++) {
+          free(i[_aux].blocks);
+          }
+          free(i);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long val = 10;
+        
+          int _len_i0 = 100;
+          struct TYPE_3__ * i = (struct TYPE_3__ *) malloc(_len_i0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_i0; _i0++) {
+              i[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_i__i0__blocks0 = 1;
+          i[_i0].blocks = (long *) malloc(_len_i__i0__blocks0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_i__i0__blocks0; _j0++) {
+            i[_i0].blocks[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          BigInt_Set_uint32(i,val);
+          for(int _aux = 0; _aux < _len_i0; _aux++) {
+          free(i[_aux].blocks);
+          }
+          free(i);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_i0 = 1;
+          struct TYPE_3__ * i = (struct TYPE_3__ *) malloc(_len_i0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_i0; _i0++) {
+              i[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_i__i0__blocks0 = 1;
+          i[_i0].blocks = (long *) malloc(_len_i__i0__blocks0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_i__i0__blocks0; _j0++) {
+            i[_i0].blocks[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          BigInt_Set_uint32(i,val);
+          for(int _aux = 0; _aux < _len_i0; _aux++) {
+          free(i[_aux].blocks);
+          }
+          free(i);
+        
+        break;
+    }
     default:
         usage();
         break;

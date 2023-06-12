@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static inline void dwc2_gadget_incr_frame_num(struct dwc2_
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,22 +81,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_hs_ep0 = 1;
+          int _len_hs_ep0 = 65025;
           struct dwc2_hsotg_ep * hs_ep = (struct dwc2_hsotg_ep *) malloc(_len_hs_ep0*sizeof(struct dwc2_hsotg_ep));
           for(int _i0 = 0; _i0 < _len_hs_ep0; _i0++) {
-            hs_ep[_i0].frame_overrun = ((-2 * (next_i()%2)) + 1) * next_i();
-        hs_ep[_i0].target_frame = ((-2 * (next_i()%2)) + 1) * next_i();
-        hs_ep[_i0].interval = ((-2 * (next_i()%2)) + 1) * next_i();
+              hs_ep[_i0].frame_overrun = ((-2 * (next_i()%2)) + 1) * next_i();
+          hs_ep[_i0].target_frame = ((-2 * (next_i()%2)) + 1) * next_i();
+          hs_ep[_i0].interval = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           dwc2_gadget_incr_frame_num(hs_ep);
           free(hs_ep);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_hs_ep0 = 100;
+          struct dwc2_hsotg_ep * hs_ep = (struct dwc2_hsotg_ep *) malloc(_len_hs_ep0*sizeof(struct dwc2_hsotg_ep));
+          for(int _i0 = 0; _i0 < _len_hs_ep0; _i0++) {
+              hs_ep[_i0].frame_overrun = ((-2 * (next_i()%2)) + 1) * next_i();
+          hs_ep[_i0].target_frame = ((-2 * (next_i()%2)) + 1) * next_i();
+          hs_ep[_i0].interval = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          dwc2_gadget_incr_frame_num(hs_ep);
+          free(hs_ep);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_hs_ep0 = 1;
+          struct dwc2_hsotg_ep * hs_ep = (struct dwc2_hsotg_ep *) malloc(_len_hs_ep0*sizeof(struct dwc2_hsotg_ep));
+          for(int _i0 = 0; _i0 < _len_hs_ep0; _i0++) {
+              hs_ep[_i0].frame_overrun = ((-2 * (next_i()%2)) + 1) * next_i();
+          hs_ep[_i0].target_frame = ((-2 * (next_i()%2)) + 1) * next_i();
+          hs_ep[_i0].interval = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          dwc2_gadget_incr_frame_num(hs_ep);
+          free(hs_ep);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static bool same_st(struct stat *st1, struct stat *st2)
     return st1->st_dev == st2->st_dev && st1->st_ino == st2->st_ino;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,21 +74,148 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_st10 = 65025;
+          struct stat * st1 = (struct stat *) malloc(_len_st10*sizeof(struct stat));
+          for(int _i0 = 0; _i0 < _len_st10; _i0++) {
+              st1[_i0].st_dev = ((-2 * (next_i()%2)) + 1) * next_i();
+          st1[_i0].st_ino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_st20 = 65025;
+          struct stat * st2 = (struct stat *) malloc(_len_st20*sizeof(struct stat));
+          for(int _i0 = 0; _i0 < _len_st20; _i0++) {
+              st2[_i0].st_dev = ((-2 * (next_i()%2)) + 1) * next_i();
+          st2[_i0].st_ino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = same_st(st1,st2);
+          printf("%d\n", benchRet); 
+          free(st1);
+          free(st2);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_st10 = 100;
+          struct stat * st1 = (struct stat *) malloc(_len_st10*sizeof(struct stat));
+          for(int _i0 = 0; _i0 < _len_st10; _i0++) {
+              st1[_i0].st_dev = ((-2 * (next_i()%2)) + 1) * next_i();
+          st1[_i0].st_ino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_st20 = 100;
+          struct stat * st2 = (struct stat *) malloc(_len_st20*sizeof(struct stat));
+          for(int _i0 = 0; _i0 < _len_st20; _i0++) {
+              st2[_i0].st_dev = ((-2 * (next_i()%2)) + 1) * next_i();
+          st2[_i0].st_ino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = same_st(st1,st2);
+          printf("%d\n", benchRet); 
+          free(st1);
+          free(st2);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_st10 = 1;
           struct stat * st1 = (struct stat *) malloc(_len_st10*sizeof(struct stat));
           for(int _i0 = 0; _i0 < _len_st10; _i0++) {
-            st1[_i0].st_dev = ((-2 * (next_i()%2)) + 1) * next_i();
-        st1[_i0].st_ino = ((-2 * (next_i()%2)) + 1) * next_i();
+              st1[_i0].st_dev = ((-2 * (next_i()%2)) + 1) * next_i();
+          st1[_i0].st_ino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_st20 = 1;
           struct stat * st2 = (struct stat *) malloc(_len_st20*sizeof(struct stat));
           for(int _i0 = 0; _i0 < _len_st20; _i0++) {
-            st2[_i0].st_dev = ((-2 * (next_i()%2)) + 1) * next_i();
-        st2[_i0].st_ino = ((-2 * (next_i()%2)) + 1) * next_i();
+              st2[_i0].st_dev = ((-2 * (next_i()%2)) + 1) * next_i();
+          st2[_i0].st_ino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = same_st(st1,st2);
           printf("%d\n", benchRet); 
           free(st1);

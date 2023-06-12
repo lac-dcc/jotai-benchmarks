@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline u8 port_states_to_logical_state(struct opa_p
 	return ps->portphysstate_portstate & OPA_PI_MASK_PORT_STATE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,28 +76,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_ps0 = 1;
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_ps0 = 65025;
           struct opa_port_states * ps = (struct opa_port_states *) malloc(_len_ps0*sizeof(struct opa_port_states));
           for(int _i0 = 0; _i0 < _len_ps0; _i0++) {
-            ps[_i0].portphysstate_portstate = ((-2 * (next_i()%2)) + 1) * next_i();
+              ps[_i0].portphysstate_portstate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = port_states_to_logical_state(ps);
           printf("%d\n", benchRet); 
           free(ps);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_ps0 = 100;
           struct opa_port_states * ps = (struct opa_port_states *) malloc(_len_ps0*sizeof(struct opa_port_states));
           for(int _i0 = 0; _i0 < _len_ps0; _i0++) {
-            ps[_i0].portphysstate_portstate = ((-2 * (next_i()%2)) + 1) * next_i();
+              ps[_i0].portphysstate_portstate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = port_states_to_logical_state(ps);
+          printf("%d\n", benchRet); 
+          free(ps);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_ps0 = 1;
+          struct opa_port_states * ps = (struct opa_port_states *) malloc(_len_ps0*sizeof(struct opa_port_states));
+          for(int _i0 = 0; _i0 < _len_ps0; _i0++) {
+              ps[_i0].portphysstate_portstate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = port_states_to_logical_state(ps);
           printf("%d\n", benchRet); 
           free(ps);

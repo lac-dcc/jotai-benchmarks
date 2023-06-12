@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -86,7 +87,6 @@ __attribute__((used)) static void interleave_addrinfo(struct addrinfo *base)
     }
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct addrinfo *_allocate_base(int length, struct addrinfo *aux_base[]) {
@@ -116,7 +116,6 @@ void _delete_base(struct addrinfo *aux_base[], int aux_base_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -129,11 +128,70 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // linked
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 149996
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 80001
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 80001
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 80001
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 80001
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 89999
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 89999
+          // ------------------------------- 
+
+          struct addrinfo * aux_base[10000];
+          struct addrinfo * base = _allocate_base(10000, aux_base);
+        
+          interleave_addrinfo(base);
+          _delete_base(aux_base, 10000);
+        
+        break;
+    }
+
+
+    // empty
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           struct addrinfo * aux_base[1];
           struct addrinfo * base = _allocate_base(1, aux_base);
+        
           interleave_addrinfo(base);
           _delete_base(aux_base, 1);
         

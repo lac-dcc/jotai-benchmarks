@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static void elm327_init(int16_t param) {
   controls_allowed = 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int param = 100;
+        
           elm327_init(param);
         
         break;
@@ -92,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int param = 255;
+        
           elm327_init(param);
         
         break;
@@ -100,11 +97,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int param = 10;
+        
           elm327_init(param);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int param = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          elm327_init(param);
+        
+        break;
+    }
     default:
         usage();
         break;

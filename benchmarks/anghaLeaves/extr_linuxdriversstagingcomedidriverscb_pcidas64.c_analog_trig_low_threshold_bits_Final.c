@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline u16 analog_trig_low_threshold_bits(u16 thres
 	return threshold & 0xfff;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int threshold = 100;
+        
           int benchRet = analog_trig_low_threshold_bits(threshold);
           printf("%d\n", benchRet); 
         
@@ -93,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int threshold = 255;
+        
           int benchRet = analog_trig_low_threshold_bits(threshold);
           printf("%d\n", benchRet); 
         
@@ -102,12 +99,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int threshold = 10;
+        
           int benchRet = analog_trig_low_threshold_bits(threshold);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int threshold = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = analog_trig_low_threshold_bits(threshold);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

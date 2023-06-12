@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -87,12 +89,6 @@ __attribute__((used)) static void sbr_chirp(SpectralBandReplication *sbr, SBRDat
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,14 +101,173 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_sbr0 = 65025;
+          struct TYPE_5__ * sbr = (struct TYPE_5__ *) malloc(_len_sbr0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_sbr0; _i0++) {
+              sbr[_i0].n_q = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ch_data0 = 65025;
+          struct TYPE_6__ * ch_data = (struct TYPE_6__ *) malloc(_len_ch_data0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_ch_data0; _i0++) {
+              int _len_ch_data__i0__bs_invf_mode0 = 1;
+          ch_data[_i0].bs_invf_mode = (int **) malloc(_len_ch_data__i0__bs_invf_mode0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_ch_data__i0__bs_invf_mode0; _j0++) {
+            int _len_ch_data__i0__bs_invf_mode1 = 1;
+            ch_data[_i0].bs_invf_mode[_j0] = (int *) malloc(_len_ch_data__i0__bs_invf_mode1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_ch_data__i0__bs_invf_mode1; _j1++) {
+              ch_data[_i0].bs_invf_mode[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+          int _len_ch_data__i0__bw_array0 = 1;
+          ch_data[_i0].bw_array = (int *) malloc(_len_ch_data__i0__bw_array0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ch_data__i0__bw_array0; _j0++) {
+            ch_data[_i0].bw_array[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          sbr_chirp(sbr,ch_data);
+          free(sbr);
+          for(int _aux = 0; _aux < _len_ch_data0; _aux++) {
+          free(*(ch_data[_aux].bs_invf_mode));
+        free(ch_data[_aux].bs_invf_mode);
+          }
+          for(int _aux = 0; _aux < _len_ch_data0; _aux++) {
+          free(ch_data[_aux].bw_array);
+          }
+          free(ch_data);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_sbr0 = 100;
+          struct TYPE_5__ * sbr = (struct TYPE_5__ *) malloc(_len_sbr0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_sbr0; _i0++) {
+              sbr[_i0].n_q = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ch_data0 = 100;
+          struct TYPE_6__ * ch_data = (struct TYPE_6__ *) malloc(_len_ch_data0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_ch_data0; _i0++) {
+              int _len_ch_data__i0__bs_invf_mode0 = 1;
+          ch_data[_i0].bs_invf_mode = (int **) malloc(_len_ch_data__i0__bs_invf_mode0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_ch_data__i0__bs_invf_mode0; _j0++) {
+            int _len_ch_data__i0__bs_invf_mode1 = 1;
+            ch_data[_i0].bs_invf_mode[_j0] = (int *) malloc(_len_ch_data__i0__bs_invf_mode1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_ch_data__i0__bs_invf_mode1; _j1++) {
+              ch_data[_i0].bs_invf_mode[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+          int _len_ch_data__i0__bw_array0 = 1;
+          ch_data[_i0].bw_array = (int *) malloc(_len_ch_data__i0__bw_array0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ch_data__i0__bw_array0; _j0++) {
+            ch_data[_i0].bw_array[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          sbr_chirp(sbr,ch_data);
+          free(sbr);
+          for(int _aux = 0; _aux < _len_ch_data0; _aux++) {
+          free(*(ch_data[_aux].bs_invf_mode));
+        free(ch_data[_aux].bs_invf_mode);
+          }
+          for(int _aux = 0; _aux < _len_ch_data0; _aux++) {
+          free(ch_data[_aux].bw_array);
+          }
+          free(ch_data);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_sbr0 = 1;
           struct TYPE_5__ * sbr = (struct TYPE_5__ *) malloc(_len_sbr0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_sbr0; _i0++) {
-            sbr[_i0].n_q = ((-2 * (next_i()%2)) + 1) * next_i();
+              sbr[_i0].n_q = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_ch_data0 = 1;
           struct TYPE_6__ * ch_data = (struct TYPE_6__ *) malloc(_len_ch_data0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_ch_data0; _i0++) {
@@ -130,7 +285,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_ch_data__i0__bw_array0; _j0++) {
             ch_data[_i0].bw_array[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           sbr_chirp(sbr,ch_data);
           free(sbr);
           for(int _aux = 0; _aux < _len_ch_data0; _aux++) {

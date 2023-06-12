@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static unsigned long modulo(unsigned long a, unsigned long
 		return a;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,7 +81,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long a = 100;
+        
           unsigned long b = 100;
+        
           unsigned long benchRet = modulo(a,b);
           printf("%lu\n", benchRet); 
         
@@ -96,7 +93,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long a = 255;
+        
           unsigned long b = 255;
+        
           unsigned long benchRet = modulo(a,b);
           printf("%lu\n", benchRet); 
         
@@ -106,13 +105,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long a = 10;
+        
           unsigned long b = 10;
+        
           unsigned long benchRet = modulo(a,b);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long a = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = modulo(a,b);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

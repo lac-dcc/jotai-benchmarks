@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -81,12 +83,6 @@ __attribute__((used)) static int psm_get_ui_state(struct pp_hwmgr *hwmgr,
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,27 +95,178 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           enum PP_StateUILabel ui_label = 0;
-          int _len_hwmgr0 = 1;
+        
+          int _len_hwmgr0 = 65025;
           struct pp_hwmgr * hwmgr = (struct pp_hwmgr *) malloc(_len_hwmgr0*sizeof(struct pp_hwmgr));
           for(int _i0 = 0; _i0 < _len_hwmgr0; _i0++) {
-            hwmgr[_i0].num_ps = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].ps_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              hwmgr[_i0].num_ps = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].ps_size = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_hwmgr__i0__ps0 = 1;
           hwmgr[_i0].ps = (struct pp_power_state *) malloc(_len_hwmgr__i0__ps0*sizeof(struct pp_power_state));
           for(int _j0 = 0; _j0 < _len_hwmgr__i0__ps0; _j0++) {
-            hwmgr[_i0].ps->id = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].ps->classification.ui_label = ((-2 * (next_i()%2)) + 1) * next_i();
+              hwmgr[_i0].ps->id = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].ps->classification.ui_label = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
+          int _len_state_id0 = 65025;
+          unsigned long * state_id = (unsigned long *) malloc(_len_state_id0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_state_id0; _i0++) {
+            state_id[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = psm_get_ui_state(hwmgr,ui_label,state_id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hwmgr0; _aux++) {
+          free(hwmgr[_aux].ps);
+          }
+          free(hwmgr);
+          free(state_id);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          enum PP_StateUILabel ui_label = 0;
+        
+          int _len_hwmgr0 = 100;
+          struct pp_hwmgr * hwmgr = (struct pp_hwmgr *) malloc(_len_hwmgr0*sizeof(struct pp_hwmgr));
+          for(int _i0 = 0; _i0 < _len_hwmgr0; _i0++) {
+              hwmgr[_i0].num_ps = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].ps_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_hwmgr__i0__ps0 = 1;
+          hwmgr[_i0].ps = (struct pp_power_state *) malloc(_len_hwmgr__i0__ps0*sizeof(struct pp_power_state));
+          for(int _j0 = 0; _j0 < _len_hwmgr__i0__ps0; _j0++) {
+              hwmgr[_i0].ps->id = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].ps->classification.ui_label = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int _len_state_id0 = 100;
+          unsigned long * state_id = (unsigned long *) malloc(_len_state_id0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_state_id0; _i0++) {
+            state_id[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = psm_get_ui_state(hwmgr,ui_label,state_id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hwmgr0; _aux++) {
+          free(hwmgr[_aux].ps);
+          }
+          free(hwmgr);
+          free(state_id);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          enum PP_StateUILabel ui_label = 0;
+        
+          int _len_hwmgr0 = 1;
+          struct pp_hwmgr * hwmgr = (struct pp_hwmgr *) malloc(_len_hwmgr0*sizeof(struct pp_hwmgr));
+          for(int _i0 = 0; _i0 < _len_hwmgr0; _i0++) {
+              hwmgr[_i0].num_ps = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].ps_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_hwmgr__i0__ps0 = 1;
+          hwmgr[_i0].ps = (struct pp_power_state *) malloc(_len_hwmgr__i0__ps0*sizeof(struct pp_power_state));
+          for(int _j0 = 0; _j0 < _len_hwmgr__i0__ps0; _j0++) {
+              hwmgr[_i0].ps->id = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].ps->classification.ui_label = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
           int _len_state_id0 = 1;
           unsigned long * state_id = (unsigned long *) malloc(_len_state_id0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_state_id0; _i0++) {
             state_id[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = psm_get_ui_state(hwmgr,ui_label,state_id);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_hwmgr0; _aux++) {

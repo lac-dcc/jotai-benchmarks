@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +77,6 @@ __attribute__((used)) static void icom_port_active(struct icom_port *icom_port, 
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,23 +89,207 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int port_num = 100;
+        
           int _len_icom_port0 = 1;
           struct icom_port * icom_port = (struct icom_port *) malloc(_len_icom_port0*sizeof(struct icom_port));
           for(int _i0 = 0; _i0 < _len_icom_port0; _i0++) {
-            icom_port[_i0].port = ((-2 * (next_i()%2)) + 1) * next_i();
-        icom_port[_i0].int_reg = ((-2 * (next_i()%2)) + 1) * next_i();
-        icom_port[_i0].global_reg = ((-2 * (next_i()%2)) + 1) * next_i();
+              icom_port[_i0].port = ((-2 * (next_i()%2)) + 1) * next_i();
+          icom_port[_i0].int_reg = ((-2 * (next_i()%2)) + 1) * next_i();
+          icom_port[_i0].global_reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_icom_adapter0 = 1;
           struct icom_adapter * icom_adapter = (struct icom_adapter *) malloc(_len_icom_adapter0*sizeof(struct icom_adapter));
           for(int _i0 = 0; _i0 < _len_icom_adapter0; _i0++) {
-            icom_adapter[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
-        icom_adapter[_i0].base_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+              icom_adapter[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+          icom_adapter[_i0].base_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          icom_port_active(icom_port,icom_adapter,port_num);
+          free(icom_port);
+          free(icom_adapter);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int port_num = 255;
+        
+          int _len_icom_port0 = 65025;
+          struct icom_port * icom_port = (struct icom_port *) malloc(_len_icom_port0*sizeof(struct icom_port));
+          for(int _i0 = 0; _i0 < _len_icom_port0; _i0++) {
+              icom_port[_i0].port = ((-2 * (next_i()%2)) + 1) * next_i();
+          icom_port[_i0].int_reg = ((-2 * (next_i()%2)) + 1) * next_i();
+          icom_port[_i0].global_reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_icom_adapter0 = 65025;
+          struct icom_adapter * icom_adapter = (struct icom_adapter *) malloc(_len_icom_adapter0*sizeof(struct icom_adapter));
+          for(int _i0 = 0; _i0 < _len_icom_adapter0; _i0++) {
+              icom_adapter[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+          icom_adapter[_i0].base_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          icom_port_active(icom_port,icom_adapter,port_num);
+          free(icom_port);
+          free(icom_adapter);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int port_num = 10;
+        
+          int _len_icom_port0 = 100;
+          struct icom_port * icom_port = (struct icom_port *) malloc(_len_icom_port0*sizeof(struct icom_port));
+          for(int _i0 = 0; _i0 < _len_icom_port0; _i0++) {
+              icom_port[_i0].port = ((-2 * (next_i()%2)) + 1) * next_i();
+          icom_port[_i0].int_reg = ((-2 * (next_i()%2)) + 1) * next_i();
+          icom_port[_i0].global_reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_icom_adapter0 = 100;
+          struct icom_adapter * icom_adapter = (struct icom_adapter *) malloc(_len_icom_adapter0*sizeof(struct icom_adapter));
+          for(int _i0 = 0; _i0 < _len_icom_adapter0; _i0++) {
+              icom_adapter[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+          icom_adapter[_i0].base_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          icom_port_active(icom_port,icom_adapter,port_num);
+          free(icom_port);
+          free(icom_adapter);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int port_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_icom_port0 = 1;
+          struct icom_port * icom_port = (struct icom_port *) malloc(_len_icom_port0*sizeof(struct icom_port));
+          for(int _i0 = 0; _i0 < _len_icom_port0; _i0++) {
+              icom_port[_i0].port = ((-2 * (next_i()%2)) + 1) * next_i();
+          icom_port[_i0].int_reg = ((-2 * (next_i()%2)) + 1) * next_i();
+          icom_port[_i0].global_reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_icom_adapter0 = 1;
+          struct icom_adapter * icom_adapter = (struct icom_adapter *) malloc(_len_icom_adapter0*sizeof(struct icom_adapter));
+          for(int _i0 = 0; _i0 < _len_icom_adapter0; _i0++) {
+              icom_adapter[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+          icom_adapter[_i0].base_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           icom_port_active(icom_port,icom_adapter,port_num);
           free(icom_port);
           free(icom_adapter);

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -79,12 +82,6 @@ __attribute__((used)) static void init_link_config(struct link_config *lc, unsig
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,23 +94,196 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
           unsigned int caps = 100;
+        
           int _len_lc0 = 1;
           struct link_config * lc = (struct link_config *) malloc(_len_lc0*sizeof(struct link_config));
           for(int _i0 = 0; _i0 < _len_lc0; _i0++) {
-            lc[_i0].supported = ((-2 * (next_i()%2)) + 1) * next_i();
-        lc[_i0].requested_fc = ((-2 * (next_i()%2)) + 1) * next_i();
-        lc[_i0].fc = ((-2 * (next_i()%2)) + 1) * next_i();
-        lc[_i0].advertising = ((-2 * (next_i()%2)) + 1) * next_i();
-        lc[_i0].autoneg = ((-2 * (next_i()%2)) + 1) * next_i();
-        lc[_i0].duplex = ((-2 * (next_i()%2)) + 1) * next_i();
-        lc[_i0].requested_duplex = ((-2 * (next_i()%2)) + 1) * next_i();
-        lc[_i0].speed = ((-2 * (next_i()%2)) + 1) * next_i();
-        lc[_i0].requested_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+              lc[_i0].supported = ((-2 * (next_i()%2)) + 1) * next_i();
+          lc[_i0].requested_fc = ((-2 * (next_i()%2)) + 1) * next_i();
+          lc[_i0].fc = ((-2 * (next_i()%2)) + 1) * next_i();
+          lc[_i0].advertising = ((-2 * (next_i()%2)) + 1) * next_i();
+          lc[_i0].autoneg = ((-2 * (next_i()%2)) + 1) * next_i();
+          lc[_i0].duplex = ((-2 * (next_i()%2)) + 1) * next_i();
+          lc[_i0].requested_duplex = ((-2 * (next_i()%2)) + 1) * next_i();
+          lc[_i0].speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          lc[_i0].requested_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          init_link_config(lc,caps);
+          free(lc);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          unsigned int caps = 255;
+        
+          int _len_lc0 = 65025;
+          struct link_config * lc = (struct link_config *) malloc(_len_lc0*sizeof(struct link_config));
+          for(int _i0 = 0; _i0 < _len_lc0; _i0++) {
+              lc[_i0].supported = ((-2 * (next_i()%2)) + 1) * next_i();
+          lc[_i0].requested_fc = ((-2 * (next_i()%2)) + 1) * next_i();
+          lc[_i0].fc = ((-2 * (next_i()%2)) + 1) * next_i();
+          lc[_i0].advertising = ((-2 * (next_i()%2)) + 1) * next_i();
+          lc[_i0].autoneg = ((-2 * (next_i()%2)) + 1) * next_i();
+          lc[_i0].duplex = ((-2 * (next_i()%2)) + 1) * next_i();
+          lc[_i0].requested_duplex = ((-2 * (next_i()%2)) + 1) * next_i();
+          lc[_i0].speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          lc[_i0].requested_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          init_link_config(lc,caps);
+          free(lc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          unsigned int caps = 10;
+        
+          int _len_lc0 = 100;
+          struct link_config * lc = (struct link_config *) malloc(_len_lc0*sizeof(struct link_config));
+          for(int _i0 = 0; _i0 < _len_lc0; _i0++) {
+              lc[_i0].supported = ((-2 * (next_i()%2)) + 1) * next_i();
+          lc[_i0].requested_fc = ((-2 * (next_i()%2)) + 1) * next_i();
+          lc[_i0].fc = ((-2 * (next_i()%2)) + 1) * next_i();
+          lc[_i0].advertising = ((-2 * (next_i()%2)) + 1) * next_i();
+          lc[_i0].autoneg = ((-2 * (next_i()%2)) + 1) * next_i();
+          lc[_i0].duplex = ((-2 * (next_i()%2)) + 1) * next_i();
+          lc[_i0].requested_duplex = ((-2 * (next_i()%2)) + 1) * next_i();
+          lc[_i0].speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          lc[_i0].requested_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          init_link_config(lc,caps);
+          free(lc);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          unsigned int caps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_lc0 = 1;
+          struct link_config * lc = (struct link_config *) malloc(_len_lc0*sizeof(struct link_config));
+          for(int _i0 = 0; _i0 < _len_lc0; _i0++) {
+              lc[_i0].supported = ((-2 * (next_i()%2)) + 1) * next_i();
+          lc[_i0].requested_fc = ((-2 * (next_i()%2)) + 1) * next_i();
+          lc[_i0].fc = ((-2 * (next_i()%2)) + 1) * next_i();
+          lc[_i0].advertising = ((-2 * (next_i()%2)) + 1) * next_i();
+          lc[_i0].autoneg = ((-2 * (next_i()%2)) + 1) * next_i();
+          lc[_i0].duplex = ((-2 * (next_i()%2)) + 1) * next_i();
+          lc[_i0].requested_duplex = ((-2 * (next_i()%2)) + 1) * next_i();
+          lc[_i0].speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          lc[_i0].requested_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           init_link_config(lc,caps);
           free(lc);
         

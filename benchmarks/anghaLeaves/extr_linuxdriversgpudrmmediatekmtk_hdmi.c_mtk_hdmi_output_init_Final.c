@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ __attribute__((used)) static int mtk_hdmi_output_init(struct mtk_hdmi *hdmi)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,20 +92,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int _len_hdmi0 = 65025;
+          struct mtk_hdmi * hdmi = (struct mtk_hdmi *) malloc(_len_hdmi0*sizeof(struct mtk_hdmi));
+          for(int _i0 = 0; _i0 < _len_hdmi0; _i0++) {
+              hdmi[_i0].csp = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdmi[_i0].aud_param.aud_input_chan_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdmi[_i0].aud_param.aud_mclk = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdmi[_i0].aud_param.aud_i2s_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdmi[_i0].aud_param.aud_input_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdmi[_i0].aud_param.aud_sampe_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdmi[_i0].aud_param.aud_codec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = mtk_hdmi_output_init(hdmi);
+          printf("%d\n", benchRet); 
+          free(hdmi);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int _len_hdmi0 = 100;
+          struct mtk_hdmi * hdmi = (struct mtk_hdmi *) malloc(_len_hdmi0*sizeof(struct mtk_hdmi));
+          for(int _i0 = 0; _i0 < _len_hdmi0; _i0++) {
+              hdmi[_i0].csp = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdmi[_i0].aud_param.aud_input_chan_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdmi[_i0].aud_param.aud_mclk = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdmi[_i0].aud_param.aud_i2s_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdmi[_i0].aud_param.aud_input_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdmi[_i0].aud_param.aud_sampe_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdmi[_i0].aud_param.aud_codec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = mtk_hdmi_output_init(hdmi);
+          printf("%d\n", benchRet); 
+          free(hdmi);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
           int _len_hdmi0 = 1;
           struct mtk_hdmi * hdmi = (struct mtk_hdmi *) malloc(_len_hdmi0*sizeof(struct mtk_hdmi));
           for(int _i0 = 0; _i0 < _len_hdmi0; _i0++) {
-            hdmi[_i0].csp = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdmi[_i0].aud_param.aud_input_chan_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdmi[_i0].aud_param.aud_mclk = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdmi[_i0].aud_param.aud_i2s_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdmi[_i0].aud_param.aud_input_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdmi[_i0].aud_param.aud_sampe_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdmi[_i0].aud_param.aud_codec = ((-2 * (next_i()%2)) + 1) * next_i();
+              hdmi[_i0].csp = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdmi[_i0].aud_param.aud_input_chan_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdmi[_i0].aud_param.aud_mclk = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdmi[_i0].aud_param.aud_i2s_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdmi[_i0].aud_param.aud_input_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdmi[_i0].aud_param.aud_sampe_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdmi[_i0].aud_param.aud_codec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = mtk_hdmi_output_init(hdmi);
           printf("%d\n", benchRet); 
           free(hdmi);

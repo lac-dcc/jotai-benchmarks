@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static u32 xlp9xx_i2c_functionality(struct i2c_adapter *ad
 			I2C_FUNC_I2C | I2C_FUNC_10BIT_ADDR;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,14 +80,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_adapter0 = 1;
+          int _len_adapter0 = 65025;
           struct i2c_adapter * adapter = (struct i2c_adapter *) malloc(_len_adapter0*sizeof(struct i2c_adapter));
           for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
-            adapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              adapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = xlp9xx_i2c_functionality(adapter);
           printf("%d\n", benchRet); 
           free(adapter);
@@ -105,15 +102,32 @@ int main(int argc, char *argv[]) {
           int _len_adapter0 = 100;
           struct i2c_adapter * adapter = (struct i2c_adapter *) malloc(_len_adapter0*sizeof(struct i2c_adapter));
           for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
-            adapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              adapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = xlp9xx_i2c_functionality(adapter);
           printf("%d\n", benchRet); 
           free(adapter);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_adapter0 = 1;
+          struct i2c_adapter * adapter = (struct i2c_adapter *) malloc(_len_adapter0*sizeof(struct i2c_adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = xlp9xx_i2c_functionality(adapter);
+          printf("%d\n", benchRet); 
+          free(adapter);
+        
+        break;
+    }
     default:
         usage();
         break;

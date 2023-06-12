@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +78,6 @@ __attribute__((used)) static void apb_calc_first_last(u8 map, u32 *first_p, u32 
 	*last_p = last;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,20 +90,187 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 167
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 106
+          // ------------------------------- 
+          // static_instructions_O2 : 61
+          // dynamic_instructions_O2 : 61
+          // ------------------------------- 
+          // static_instructions_O3 : 61
+          // dynamic_instructions_O3 : 61
+          // ------------------------------- 
+          // static_instructions_Ofast : 61
+          // dynamic_instructions_Ofast : 61
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 105
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 115
+          // ------------------------------- 
+
           int map = 100;
+        
           int _len_first_p0 = 1;
           int * first_p = (int *) malloc(_len_first_p0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_first_p0; _i0++) {
             first_p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_last_p0 = 1;
           int * last_p = (int *) malloc(_len_last_p0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_last_p0; _i0++) {
             last_p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          apb_calc_first_last(map,first_p,last_p);
+          free(first_p);
+          free(last_p);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 210
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 106
+          // ------------------------------- 
+          // static_instructions_O2 : 61
+          // dynamic_instructions_O2 : 61
+          // ------------------------------- 
+          // static_instructions_O3 : 61
+          // dynamic_instructions_O3 : 61
+          // ------------------------------- 
+          // static_instructions_Ofast : 61
+          // dynamic_instructions_Ofast : 61
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 105
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 115
+          // ------------------------------- 
+
+          int map = 255;
+        
+          int _len_first_p0 = 65025;
+          int * first_p = (int *) malloc(_len_first_p0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_first_p0; _i0++) {
+            first_p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_last_p0 = 65025;
+          int * last_p = (int *) malloc(_len_last_p0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_last_p0; _i0++) {
+            last_p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          apb_calc_first_last(map,first_p,last_p);
+          free(first_p);
+          free(last_p);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 158
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 106
+          // ------------------------------- 
+          // static_instructions_O2 : 61
+          // dynamic_instructions_O2 : 61
+          // ------------------------------- 
+          // static_instructions_O3 : 61
+          // dynamic_instructions_O3 : 61
+          // ------------------------------- 
+          // static_instructions_Ofast : 61
+          // dynamic_instructions_Ofast : 61
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 105
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 115
+          // ------------------------------- 
+
+          int map = 10;
+        
+          int _len_first_p0 = 100;
+          int * first_p = (int *) malloc(_len_first_p0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_first_p0; _i0++) {
+            first_p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_last_p0 = 100;
+          int * last_p = (int *) malloc(_len_last_p0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_last_p0; _i0++) {
+            last_p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          apb_calc_first_last(map,first_p,last_p);
+          free(first_p);
+          free(last_p);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 174
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 106
+          // ------------------------------- 
+          // static_instructions_O2 : 61
+          // dynamic_instructions_O2 : 61
+          // ------------------------------- 
+          // static_instructions_O3 : 61
+          // dynamic_instructions_O3 : 61
+          // ------------------------------- 
+          // static_instructions_Ofast : 61
+          // dynamic_instructions_Ofast : 61
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 105
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 115
+          // ------------------------------- 
+
+          int map = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_first_p0 = 1;
+          int * first_p = (int *) malloc(_len_first_p0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_first_p0; _i0++) {
+            first_p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_last_p0 = 1;
+          int * last_p = (int *) malloc(_len_last_p0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_last_p0; _i0++) {
+            last_p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           apb_calc_first_last(map,first_p,last_p);
           free(first_p);
           free(last_p);

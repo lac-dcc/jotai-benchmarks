@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ int collect_test_extension(ptls_t *tls, struct st_ptls_handshake_properties_t *p
 	return type == PICOTLS_VS_TEST_EXTENSION;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,20 +78,194 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           long type = 100;
+        
           int _len_tls0 = 1;
           int * tls = (int *) malloc(_len_tls0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_tls0; _i0++) {
             tls[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_properties0 = 1;
           struct st_ptls_handshake_properties_t * properties = (struct st_ptls_handshake_properties_t *) malloc(_len_properties0*sizeof(struct st_ptls_handshake_properties_t));
           for(int _i0 = 0; _i0 < _len_properties0; _i0++) {
-            properties[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              properties[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = collect_test_extension(tls,properties,type);
+          printf("%d\n", benchRet); 
+          free(tls);
+          free(properties);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          long type = 255;
+        
+          int _len_tls0 = 65025;
+          int * tls = (int *) malloc(_len_tls0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_tls0; _i0++) {
+            tls[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_properties0 = 65025;
+          struct st_ptls_handshake_properties_t * properties = (struct st_ptls_handshake_properties_t *) malloc(_len_properties0*sizeof(struct st_ptls_handshake_properties_t));
+          for(int _i0 = 0; _i0 < _len_properties0; _i0++) {
+              properties[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = collect_test_extension(tls,properties,type);
+          printf("%d\n", benchRet); 
+          free(tls);
+          free(properties);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          long type = 10;
+        
+          int _len_tls0 = 100;
+          int * tls = (int *) malloc(_len_tls0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_tls0; _i0++) {
+            tls[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_properties0 = 100;
+          struct st_ptls_handshake_properties_t * properties = (struct st_ptls_handshake_properties_t *) malloc(_len_properties0*sizeof(struct st_ptls_handshake_properties_t));
+          for(int _i0 = 0; _i0 < _len_properties0; _i0++) {
+              properties[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = collect_test_extension(tls,properties,type);
+          printf("%d\n", benchRet); 
+          free(tls);
+          free(properties);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          long type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_tls0 = 1;
+          int * tls = (int *) malloc(_len_tls0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_tls0; _i0++) {
+            tls[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_properties0 = 1;
+          struct st_ptls_handshake_properties_t * properties = (struct st_ptls_handshake_properties_t *) malloc(_len_properties0*sizeof(struct st_ptls_handshake_properties_t));
+          for(int _i0 = 0; _i0 < _len_properties0; _i0++) {
+              properties[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = collect_test_extension(tls,properties,type);
           printf("%d\n", benchRet); 
           free(tls);

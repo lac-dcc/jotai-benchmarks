@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ __attribute__((used)) static uint64_t phi_at(struct ws_interval *in, int64_t ts)
     return in->phi0 + dt * in->dphi0 + dt2 * in->ddphi;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,18 +80,179 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int ts = 100;
+        
           int _len_in0 = 1;
           struct ws_interval * in = (struct ws_interval *) malloc(_len_in0*sizeof(struct ws_interval));
           for(int _i0 = 0; _i0 < _len_in0; _i0++) {
-            in[_i0].ts_start = ((-2 * (next_i()%2)) + 1) * next_i();
-        in[_i0].phi0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        in[_i0].dphi0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        in[_i0].ddphi = ((-2 * (next_i()%2)) + 1) * next_i();
+              in[_i0].ts_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].phi0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].dphi0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].ddphi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = phi_at(in,ts);
+          printf("%d\n", benchRet); 
+          free(in);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int ts = 255;
+        
+          int _len_in0 = 65025;
+          struct ws_interval * in = (struct ws_interval *) malloc(_len_in0*sizeof(struct ws_interval));
+          for(int _i0 = 0; _i0 < _len_in0; _i0++) {
+              in[_i0].ts_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].phi0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].dphi0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].ddphi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = phi_at(in,ts);
+          printf("%d\n", benchRet); 
+          free(in);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int ts = 10;
+        
+          int _len_in0 = 100;
+          struct ws_interval * in = (struct ws_interval *) malloc(_len_in0*sizeof(struct ws_interval));
+          for(int _i0 = 0; _i0 < _len_in0; _i0++) {
+              in[_i0].ts_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].phi0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].dphi0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].ddphi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = phi_at(in,ts);
+          printf("%d\n", benchRet); 
+          free(in);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int ts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_in0 = 1;
+          struct ws_interval * in = (struct ws_interval *) malloc(_len_in0*sizeof(struct ws_interval));
+          for(int _i0 = 0; _i0 < _len_in0; _i0++) {
+              in[_i0].ts_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].phi0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].dphi0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].ddphi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = phi_at(in,ts);
           printf("%d\n", benchRet); 
           free(in);

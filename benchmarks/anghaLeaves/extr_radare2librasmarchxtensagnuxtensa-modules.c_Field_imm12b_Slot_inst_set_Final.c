@@ -67,12 +67,6 @@ Field_imm12b_Slot_inst_set (xtensa_insnbuf insn, uint32 val)
   insn[0] = (insn[0] & ~0xf00) | (tie_t << 8);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,29 +79,80 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int val = 100;
+        
           int _len_insn0 = 1;
           int * insn = (int *) malloc(_len_insn0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_insn0; _i0++) {
             insn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           Field_imm12b_Slot_inst_set(insn,val);
           free(insn);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int val = 10;
+        
           int _len_insn0 = 100;
           int * insn = (int *) malloc(_len_insn0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_insn0; _i0++) {
             insn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           Field_imm12b_Slot_inst_set(insn,val);
           free(insn);
         

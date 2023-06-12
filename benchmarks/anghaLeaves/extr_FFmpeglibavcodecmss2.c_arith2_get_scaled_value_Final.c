@@ -66,12 +66,6 @@ __attribute__((used)) static int arith2_get_scaled_value(int value, int n, int r
         return value;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,8 +82,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int value = 100;
+        
           int n = 100;
+        
           int range = 100;
+        
           int benchRet = arith2_get_scaled_value(value,n,range);
           printf("%d\n", benchRet); 
         
@@ -99,8 +96,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int value = 255;
+        
           int n = 255;
+        
           int range = 255;
+        
           int benchRet = arith2_get_scaled_value(value,n,range);
           printf("%d\n", benchRet); 
         
@@ -110,14 +110,16 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int value = 10;
+        
           int n = 10;
+        
           int range = 10;
+        
           int benchRet = arith2_get_scaled_value(value,n,range);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

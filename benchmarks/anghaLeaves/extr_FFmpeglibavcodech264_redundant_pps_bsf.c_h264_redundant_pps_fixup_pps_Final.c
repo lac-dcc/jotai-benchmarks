@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ __attribute__((used)) static int h264_redundant_pps_fixup_pps(H264RedundantPPSCo
     return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,21 +90,148 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_ctx0 = 65025;
+          struct TYPE_5__ * ctx = (struct TYPE_5__ *) malloc(_len_ctx0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].global_pic_init_qp = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].current_pic_init_qp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pps0 = 65025;
+          struct TYPE_6__ * pps = (struct TYPE_6__ *) malloc(_len_pps0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_pps0; _i0++) {
+              pps[_i0].weighted_pred_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          pps[_i0].pic_init_qp_minus26 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = h264_redundant_pps_fixup_pps(ctx,pps);
+          printf("%d\n", benchRet); 
+          free(ctx);
+          free(pps);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_ctx0 = 100;
+          struct TYPE_5__ * ctx = (struct TYPE_5__ *) malloc(_len_ctx0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].global_pic_init_qp = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].current_pic_init_qp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pps0 = 100;
+          struct TYPE_6__ * pps = (struct TYPE_6__ *) malloc(_len_pps0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_pps0; _i0++) {
+              pps[_i0].weighted_pred_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          pps[_i0].pic_init_qp_minus26 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = h264_redundant_pps_fixup_pps(ctx,pps);
+          printf("%d\n", benchRet); 
+          free(ctx);
+          free(pps);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_ctx0 = 1;
           struct TYPE_5__ * ctx = (struct TYPE_5__ *) malloc(_len_ctx0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
-            ctx[_i0].global_pic_init_qp = ((-2 * (next_i()%2)) + 1) * next_i();
-        ctx[_i0].current_pic_init_qp = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctx[_i0].global_pic_init_qp = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].current_pic_init_qp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_pps0 = 1;
           struct TYPE_6__ * pps = (struct TYPE_6__ *) malloc(_len_pps0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_pps0; _i0++) {
-            pps[_i0].weighted_pred_flag = ((-2 * (next_i()%2)) + 1) * next_i();
-        pps[_i0].pic_init_qp_minus26 = ((-2 * (next_i()%2)) + 1) * next_i();
+              pps[_i0].weighted_pred_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          pps[_i0].pic_init_qp_minus26 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = h264_redundant_pps_fixup_pps(ctx,pps);
           printf("%d\n", benchRet); 
           free(ctx);

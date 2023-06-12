@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -79,12 +81,6 @@ u32 qed_vf_hw_bar_size(struct qed_hwfn *p_hwfn, enum BAR_ID bar_id)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,19 +93,152 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           enum BAR_ID bar_id = 0;
+        
+          int _len_p_hwfn0 = 65025;
+          struct qed_hwfn * p_hwfn = (struct qed_hwfn *) malloc(_len_p_hwfn0*sizeof(struct qed_hwfn));
+          for(int _i0 = 0; _i0 < _len_p_hwfn0; _i0++) {
+              int _len_p_hwfn__i0__vf_iov_info0 = 1;
+          p_hwfn[_i0].vf_iov_info = (struct TYPE_6__ *) malloc(_len_p_hwfn__i0__vf_iov_info0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_p_hwfn__i0__vf_iov_info0; _j0++) {
+              p_hwfn[_i0].vf_iov_info->acquire_resp.pfdev_info.bar_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          }
+        
+          int benchRet = qed_vf_hw_bar_size(p_hwfn,bar_id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_p_hwfn0; _aux++) {
+          free(p_hwfn[_aux].vf_iov_info);
+          }
+          free(p_hwfn);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          enum BAR_ID bar_id = 0;
+        
+          int _len_p_hwfn0 = 100;
+          struct qed_hwfn * p_hwfn = (struct qed_hwfn *) malloc(_len_p_hwfn0*sizeof(struct qed_hwfn));
+          for(int _i0 = 0; _i0 < _len_p_hwfn0; _i0++) {
+              int _len_p_hwfn__i0__vf_iov_info0 = 1;
+          p_hwfn[_i0].vf_iov_info = (struct TYPE_6__ *) malloc(_len_p_hwfn__i0__vf_iov_info0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_p_hwfn__i0__vf_iov_info0; _j0++) {
+              p_hwfn[_i0].vf_iov_info->acquire_resp.pfdev_info.bar_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          }
+        
+          int benchRet = qed_vf_hw_bar_size(p_hwfn,bar_id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_p_hwfn0; _aux++) {
+          free(p_hwfn[_aux].vf_iov_info);
+          }
+          free(p_hwfn);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          enum BAR_ID bar_id = 0;
+        
           int _len_p_hwfn0 = 1;
           struct qed_hwfn * p_hwfn = (struct qed_hwfn *) malloc(_len_p_hwfn0*sizeof(struct qed_hwfn));
           for(int _i0 = 0; _i0 < _len_p_hwfn0; _i0++) {
               int _len_p_hwfn__i0__vf_iov_info0 = 1;
           p_hwfn[_i0].vf_iov_info = (struct TYPE_6__ *) malloc(_len_p_hwfn__i0__vf_iov_info0*sizeof(struct TYPE_6__));
           for(int _j0 = 0; _j0 < _len_p_hwfn__i0__vf_iov_info0; _j0++) {
-            p_hwfn[_i0].vf_iov_info->acquire_resp.pfdev_info.bar_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              p_hwfn[_i0].vf_iov_info->acquire_resp.pfdev_info.bar_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           }
+        
           int benchRet = qed_vf_hw_bar_size(p_hwfn,bar_id);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_p_hwfn0; _aux++) {

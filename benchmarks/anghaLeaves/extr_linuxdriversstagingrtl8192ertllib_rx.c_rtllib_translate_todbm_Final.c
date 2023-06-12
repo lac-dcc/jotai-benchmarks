@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static long rtllib_translate_todbm(u8 signal_strength_inde
 	return signal_power;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,6 +84,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int signal_strength_index = 100;
+        
           long benchRet = rtllib_translate_todbm(signal_strength_index);
           printf("%ld\n", benchRet); 
         
@@ -98,6 +94,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int signal_strength_index = 255;
+        
           long benchRet = rtllib_translate_todbm(signal_strength_index);
           printf("%ld\n", benchRet); 
         
@@ -107,12 +104,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int signal_strength_index = 10;
+        
           long benchRet = rtllib_translate_todbm(signal_strength_index);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int signal_strength_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long benchRet = rtllib_translate_todbm(signal_strength_index);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

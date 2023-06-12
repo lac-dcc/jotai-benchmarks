@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static uint32_t lpt_size_alignment(struct dce112_compresso
 		cp110->base.dram_channels_num;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,23 +79,63 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cp1100 = 1;
+          int _len_cp1100 = 65025;
           struct dce112_compressor * cp110 = (struct dce112_compressor *) malloc(_len_cp1100*sizeof(struct dce112_compressor));
           for(int _i0 = 0; _i0 < _len_cp1100; _i0++) {
-            cp110[_i0].base.raw_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        cp110[_i0].base.banks_num = ((-2 * (next_i()%2)) + 1) * next_i();
-        cp110[_i0].base.dram_channels_num = ((-2 * (next_i()%2)) + 1) * next_i();
+              cp110[_i0].base.raw_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          cp110[_i0].base.banks_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          cp110[_i0].base.dram_channels_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = lpt_size_alignment(cp110);
           printf("%d\n", benchRet); 
           free(cp110);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_cp1100 = 100;
+          struct dce112_compressor * cp110 = (struct dce112_compressor *) malloc(_len_cp1100*sizeof(struct dce112_compressor));
+          for(int _i0 = 0; _i0 < _len_cp1100; _i0++) {
+              cp110[_i0].base.raw_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          cp110[_i0].base.banks_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          cp110[_i0].base.dram_channels_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = lpt_size_alignment(cp110);
+          printf("%d\n", benchRet); 
+          free(cp110);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_cp1100 = 1;
+          struct dce112_compressor * cp110 = (struct dce112_compressor *) malloc(_len_cp1100*sizeof(struct dce112_compressor));
+          for(int _i0 = 0; _i0 < _len_cp1100; _i0++) {
+              cp110[_i0].base.raw_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          cp110[_i0].base.banks_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          cp110[_i0].base.dram_channels_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = lpt_size_alignment(cp110);
+          printf("%d\n", benchRet); 
+          free(cp110);
+        
+        break;
+    }
     default:
         usage();
         break;

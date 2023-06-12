@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ __attribute__((used)) static void mt_fix_const_field(struct hid_field *field, un
 	field->flags |= HID_MAIN_ITEM_VARIABLE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,16 +88,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int usage = 100;
+        
           int _len_field0 = 1;
           struct hid_field * field = (struct hid_field *) malloc(_len_field0*sizeof(struct hid_field));
           for(int _i0 = 0; _i0 < _len_field0; _i0++) {
-            field[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              field[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_field__i0__usage0 = 1;
           field[_i0].usage = (struct TYPE_2__ *) malloc(_len_field__i0__usage0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_field__i0__usage0; _j0++) {
-            field[_i0].usage->hid = ((-2 * (next_i()%2)) + 1) * next_i();
+              field[_i0].usage->hid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           mt_fix_const_field(field,usage);
           for(int _aux = 0; _aux < _len_field0; _aux++) {
           free(field[_aux].usage);
@@ -109,7 +110,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int usage = 255;
+        
+          int _len_field0 = 65025;
+          struct hid_field * field = (struct hid_field *) malloc(_len_field0*sizeof(struct hid_field));
+          for(int _i0 = 0; _i0 < _len_field0; _i0++) {
+              field[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_field__i0__usage0 = 1;
+          field[_i0].usage = (struct TYPE_2__ *) malloc(_len_field__i0__usage0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_field__i0__usage0; _j0++) {
+              field[_i0].usage->hid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          mt_fix_const_field(field,usage);
+          for(int _aux = 0; _aux < _len_field0; _aux++) {
+          free(field[_aux].usage);
+          }
+          free(field);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int usage = 10;
+        
+          int _len_field0 = 100;
+          struct hid_field * field = (struct hid_field *) malloc(_len_field0*sizeof(struct hid_field));
+          for(int _i0 = 0; _i0 < _len_field0; _i0++) {
+              field[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_field__i0__usage0 = 1;
+          field[_i0].usage = (struct TYPE_2__ *) malloc(_len_field__i0__usage0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_field__i0__usage0; _j0++) {
+              field[_i0].usage->hid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          mt_fix_const_field(field,usage);
+          for(int _aux = 0; _aux < _len_field0; _aux++) {
+          free(field[_aux].usage);
+          }
+          free(field);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int usage = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_field0 = 1;
+          struct hid_field * field = (struct hid_field *) malloc(_len_field0*sizeof(struct hid_field));
+          for(int _i0 = 0; _i0 < _len_field0; _i0++) {
+              field[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_field__i0__usage0 = 1;
+          field[_i0].usage = (struct TYPE_2__ *) malloc(_len_field__i0__usage0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_field__i0__usage0; _j0++) {
+              field[_i0].usage->hid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          mt_fix_const_field(field,usage);
+          for(int _aux = 0; _aux < _len_field0; _aux++) {
+          free(field[_aux].usage);
+          }
+          free(field);
+        
+        break;
+    }
     default:
         usage();
         break;

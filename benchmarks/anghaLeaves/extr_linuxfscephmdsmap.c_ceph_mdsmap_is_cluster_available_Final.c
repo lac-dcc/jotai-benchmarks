@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ bool ceph_mdsmap_is_cluster_available(struct ceph_mdsmap *m)
 	return nr_active > 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,22 +88,25 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_m0 = 1;
+          int _len_m0 = 65025;
           struct ceph_mdsmap * m = (struct ceph_mdsmap *) malloc(_len_m0*sizeof(struct ceph_mdsmap));
           for(int _i0 = 0; _i0 < _len_m0; _i0++) {
-            m[_i0].m_num_laggy = ((-2 * (next_i()%2)) + 1) * next_i();
-        m[_i0].m_num_mds = ((-2 * (next_i()%2)) + 1) * next_i();
+              m[_i0].m_num_laggy = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].m_num_mds = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_m__i0__m_info0 = 1;
           m[_i0].m_info = (struct TYPE_2__ *) malloc(_len_m__i0__m_info0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_m__i0__m_info0; _j0++) {
-            m[_i0].m_info->state = ((-2 * (next_i()%2)) + 1) * next_i();
+              m[_i0].m_info->state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        m[_i0].m_damaged = ((-2 * (next_i()%2)) + 1) * next_i();
-        m[_i0].m_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].m_damaged = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].m_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ceph_mdsmap_is_cluster_available(m);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_m0; _aux++) {
@@ -117,7 +116,62 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_m0 = 100;
+          struct ceph_mdsmap * m = (struct ceph_mdsmap *) malloc(_len_m0*sizeof(struct ceph_mdsmap));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].m_num_laggy = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].m_num_mds = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_m__i0__m_info0 = 1;
+          m[_i0].m_info = (struct TYPE_2__ *) malloc(_len_m__i0__m_info0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_m__i0__m_info0; _j0++) {
+              m[_i0].m_info->state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          m[_i0].m_damaged = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].m_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ceph_mdsmap_is_cluster_available(m);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_m0; _aux++) {
+          free(m[_aux].m_info);
+          }
+          free(m);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_m0 = 1;
+          struct ceph_mdsmap * m = (struct ceph_mdsmap *) malloc(_len_m0*sizeof(struct ceph_mdsmap));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].m_num_laggy = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].m_num_mds = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_m__i0__m_info0 = 1;
+          m[_i0].m_info = (struct TYPE_2__ *) malloc(_len_m__i0__m_info0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_m__i0__m_info0; _j0++) {
+              m[_i0].m_info->state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          m[_i0].m_damaged = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].m_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ceph_mdsmap_is_cluster_available(m);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_m0; _aux++) {
+          free(m[_aux].m_info);
+          }
+          free(m);
+        
+        break;
+    }
     default:
         usage();
         break;

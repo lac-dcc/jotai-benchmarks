@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ fs->lasttarget=fs->pc;
 return fs->pc;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,22 +76,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_fs0 = 1;
+          int _len_fs0 = 65025;
           struct TYPE_3__ * fs = (struct TYPE_3__ *) malloc(_len_fs0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
-            fs[_i0].lasttarget = ((-2 * (next_i()%2)) + 1) * next_i();
-        fs[_i0].pc = ((-2 * (next_i()%2)) + 1) * next_i();
+              fs[_i0].lasttarget = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs[_i0].pc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = luaK_getlabel(fs);
           printf("%d\n", benchRet); 
           free(fs);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_fs0 = 100;
+          struct TYPE_3__ * fs = (struct TYPE_3__ *) malloc(_len_fs0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
+              fs[_i0].lasttarget = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs[_i0].pc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = luaK_getlabel(fs);
+          printf("%d\n", benchRet); 
+          free(fs);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_fs0 = 1;
+          struct TYPE_3__ * fs = (struct TYPE_3__ *) malloc(_len_fs0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
+              fs[_i0].lasttarget = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs[_i0].pc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = luaK_getlabel(fs);
+          printf("%d\n", benchRet); 
+          free(fs);
+        
+        break;
+    }
     default:
         usage();
         break;

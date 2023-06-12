@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +74,6 @@ __attribute__((used)) static unsigned int gpio_led_power_filter(struct hda_codec
 	return power_state;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,21 +86,212 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           long nid = 100;
+        
           unsigned int power_state = 100;
+        
           int _len_codec0 = 1;
           struct hda_codec * codec = (struct hda_codec *) malloc(_len_codec0*sizeof(struct hda_codec));
           for(int _i0 = 0; _i0 < _len_codec0; _i0++) {
-            codec[_i0].core.afg = ((-2 * (next_i()%2)) + 1) * next_i();
+              codec[_i0].core.afg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int _len_codec__i0__spec0 = 1;
           codec[_i0].spec = (struct alc_spec *) malloc(_len_codec__i0__spec0*sizeof(struct alc_spec));
           for(int _j0 = 0; _j0 < _len_codec__i0__spec0; _j0++) {
-            codec[_i0].spec->gpio_data = ((-2 * (next_i()%2)) + 1) * next_i();
+              codec[_i0].spec->gpio_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          unsigned int benchRet = gpio_led_power_filter(codec,nid,power_state);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_codec0; _aux++) {
+          free(codec[_aux].spec);
+          }
+          free(codec);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          long nid = 255;
+        
+          unsigned int power_state = 255;
+        
+          int _len_codec0 = 65025;
+          struct hda_codec * codec = (struct hda_codec *) malloc(_len_codec0*sizeof(struct hda_codec));
+          for(int _i0 = 0; _i0 < _len_codec0; _i0++) {
+              codec[_i0].core.afg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_codec__i0__spec0 = 1;
+          codec[_i0].spec = (struct alc_spec *) malloc(_len_codec__i0__spec0*sizeof(struct alc_spec));
+          for(int _j0 = 0; _j0 < _len_codec__i0__spec0; _j0++) {
+              codec[_i0].spec->gpio_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = gpio_led_power_filter(codec,nid,power_state);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_codec0; _aux++) {
+          free(codec[_aux].spec);
+          }
+          free(codec);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          long nid = 10;
+        
+          unsigned int power_state = 10;
+        
+          int _len_codec0 = 100;
+          struct hda_codec * codec = (struct hda_codec *) malloc(_len_codec0*sizeof(struct hda_codec));
+          for(int _i0 = 0; _i0 < _len_codec0; _i0++) {
+              codec[_i0].core.afg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_codec__i0__spec0 = 1;
+          codec[_i0].spec = (struct alc_spec *) malloc(_len_codec__i0__spec0*sizeof(struct alc_spec));
+          for(int _j0 = 0; _j0 < _len_codec__i0__spec0; _j0++) {
+              codec[_i0].spec->gpio_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = gpio_led_power_filter(codec,nid,power_state);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_codec0; _aux++) {
+          free(codec[_aux].spec);
+          }
+          free(codec);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          long nid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int power_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_codec0 = 1;
+          struct hda_codec * codec = (struct hda_codec *) malloc(_len_codec0*sizeof(struct hda_codec));
+          for(int _i0 = 0; _i0 < _len_codec0; _i0++) {
+              codec[_i0].core.afg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_codec__i0__spec0 = 1;
+          codec[_i0].spec = (struct alc_spec *) malloc(_len_codec__i0__spec0*sizeof(struct alc_spec));
+          for(int _j0 = 0; _j0 < _len_codec__i0__spec0; _j0++) {
+              codec[_i0].spec->gpio_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           unsigned int benchRet = gpio_led_power_filter(codec,nid,power_state);
           printf("%u\n", benchRet); 
           for(int _aux = 0; _aux < _len_codec0; _aux++) {

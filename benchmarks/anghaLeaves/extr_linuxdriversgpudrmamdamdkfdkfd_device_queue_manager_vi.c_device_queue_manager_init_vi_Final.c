@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ void device_queue_manager_init_vi(
 	asic_ops->init_sdma_vm = init_sdma_vm;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,16 +80,123 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_asic_ops0 = 65025;
+          struct device_queue_manager_asic_ops * asic_ops = (struct device_queue_manager_asic_ops *) malloc(_len_asic_ops0*sizeof(struct device_queue_manager_asic_ops));
+          for(int _i0 = 0; _i0 < _len_asic_ops0; _i0++) {
+              asic_ops[_i0].init_sdma_vm = ((-2 * (next_i()%2)) + 1) * next_i();
+          asic_ops[_i0].update_qpd = ((-2 * (next_i()%2)) + 1) * next_i();
+          asic_ops[_i0].set_cache_memory_policy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          device_queue_manager_init_vi(asic_ops);
+          free(asic_ops);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_asic_ops0 = 100;
+          struct device_queue_manager_asic_ops * asic_ops = (struct device_queue_manager_asic_ops *) malloc(_len_asic_ops0*sizeof(struct device_queue_manager_asic_ops));
+          for(int _i0 = 0; _i0 < _len_asic_ops0; _i0++) {
+              asic_ops[_i0].init_sdma_vm = ((-2 * (next_i()%2)) + 1) * next_i();
+          asic_ops[_i0].update_qpd = ((-2 * (next_i()%2)) + 1) * next_i();
+          asic_ops[_i0].set_cache_memory_policy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          device_queue_manager_init_vi(asic_ops);
+          free(asic_ops);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_asic_ops0 = 1;
           struct device_queue_manager_asic_ops * asic_ops = (struct device_queue_manager_asic_ops *) malloc(_len_asic_ops0*sizeof(struct device_queue_manager_asic_ops));
           for(int _i0 = 0; _i0 < _len_asic_ops0; _i0++) {
-            asic_ops[_i0].init_sdma_vm = ((-2 * (next_i()%2)) + 1) * next_i();
-        asic_ops[_i0].update_qpd = ((-2 * (next_i()%2)) + 1) * next_i();
-        asic_ops[_i0].set_cache_memory_policy = ((-2 * (next_i()%2)) + 1) * next_i();
+              asic_ops[_i0].init_sdma_vm = ((-2 * (next_i()%2)) + 1) * next_i();
+          asic_ops[_i0].update_qpd = ((-2 * (next_i()%2)) + 1) * next_i();
+          asic_ops[_i0].set_cache_memory_policy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           device_queue_manager_init_vi(asic_ops);
           free(asic_ops);
         

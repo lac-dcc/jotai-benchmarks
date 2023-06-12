@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -69,12 +69,6 @@ __attribute__((used)) static U32 ZSTD_equivalentLdmParams(ldmParams_t ldmParams1
             ldmParams1.hashEveryLog == ldmParams2.hashEveryLog);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,27 +81,28 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           struct TYPE_4__ ldmParams1;
-        ldmParams1.enableLdm = ((-2 * (next_i()%2)) + 1) * next_i();
-        ldmParams1.hashLog = ((-2 * (next_i()%2)) + 1) * next_i();
-        ldmParams1.bucketSizeLog = ((-2 * (next_i()%2)) + 1) * next_i();
-        ldmParams1.minMatchLength = ((-2 * (next_i()%2)) + 1) * next_i();
-        ldmParams1.hashEveryLog = ((-2 * (next_i()%2)) + 1) * next_i();
+          ldmParams1.enableLdm = ((-2 * (next_i()%2)) + 1) * next_i();
+          ldmParams1.hashLog = ((-2 * (next_i()%2)) + 1) * next_i();
+          ldmParams1.bucketSizeLog = ((-2 * (next_i()%2)) + 1) * next_i();
+          ldmParams1.minMatchLength = ((-2 * (next_i()%2)) + 1) * next_i();
+          ldmParams1.hashEveryLog = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           struct TYPE_4__ ldmParams2;
-        ldmParams2.enableLdm = ((-2 * (next_i()%2)) + 1) * next_i();
-        ldmParams2.hashLog = ((-2 * (next_i()%2)) + 1) * next_i();
-        ldmParams2.bucketSizeLog = ((-2 * (next_i()%2)) + 1) * next_i();
-        ldmParams2.minMatchLength = ((-2 * (next_i()%2)) + 1) * next_i();
-        ldmParams2.hashEveryLog = ((-2 * (next_i()%2)) + 1) * next_i();
+          ldmParams2.enableLdm = ((-2 * (next_i()%2)) + 1) * next_i();
+          ldmParams2.hashLog = ((-2 * (next_i()%2)) + 1) * next_i();
+          ldmParams2.bucketSizeLog = ((-2 * (next_i()%2)) + 1) * next_i();
+          ldmParams2.minMatchLength = ((-2 * (next_i()%2)) + 1) * next_i();
+          ldmParams2.hashEveryLog = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = ZSTD_equivalentLdmParams(ldmParams1,ldmParams2);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

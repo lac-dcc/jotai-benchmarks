@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ csio_is_new_iqwr(struct csio_q *q, struct csio_iqwr_footer *ftr)
 	return (q->un.iq.genbit == (ftr->u.type_gen >> IQWRF_GEN_SHIFT));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,19 +83,151 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_q0 = 65025;
+          struct csio_q * q = (struct csio_q *) malloc(_len_q0*sizeof(struct csio_q));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].un.iq.genbit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_ftr0 = 65025;
+          struct csio_iqwr_footer * ftr = (struct csio_iqwr_footer *) malloc(_len_ftr0*sizeof(struct csio_iqwr_footer));
+          for(int _i0 = 0; _i0 < _len_ftr0; _i0++) {
+              ftr[_i0].u.type_gen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = csio_is_new_iqwr(q,ftr);
+          printf("%d\n", benchRet); 
+          free(q);
+          free(ftr);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_q0 = 100;
+          struct csio_q * q = (struct csio_q *) malloc(_len_q0*sizeof(struct csio_q));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].un.iq.genbit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_ftr0 = 100;
+          struct csio_iqwr_footer * ftr = (struct csio_iqwr_footer *) malloc(_len_ftr0*sizeof(struct csio_iqwr_footer));
+          for(int _i0 = 0; _i0 < _len_ftr0; _i0++) {
+              ftr[_i0].u.type_gen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = csio_is_new_iqwr(q,ftr);
+          printf("%d\n", benchRet); 
+          free(q);
+          free(ftr);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_q0 = 1;
           struct csio_q * q = (struct csio_q *) malloc(_len_q0*sizeof(struct csio_q));
           for(int _i0 = 0; _i0 < _len_q0; _i0++) {
-            q[_i0].un.iq.genbit = ((-2 * (next_i()%2)) + 1) * next_i();
+              q[_i0].un.iq.genbit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int _len_ftr0 = 1;
           struct csio_iqwr_footer * ftr = (struct csio_iqwr_footer *) malloc(_len_ftr0*sizeof(struct csio_iqwr_footer));
           for(int _i0 = 0; _i0 < _len_ftr0; _i0++) {
-            ftr[_i0].u.type_gen = ((-2 * (next_i()%2)) + 1) * next_i();
+              ftr[_i0].u.type_gen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = csio_is_new_iqwr(q,ftr);
           printf("%d\n", benchRet); 
           free(q);

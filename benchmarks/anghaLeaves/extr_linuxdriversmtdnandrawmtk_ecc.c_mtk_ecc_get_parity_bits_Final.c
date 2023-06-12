@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ unsigned int mtk_ecc_get_parity_bits(struct mtk_ecc *ecc)
 	return ecc->caps->parity_bits;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,18 +76,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ecc0 = 1;
+          int _len_ecc0 = 65025;
           struct mtk_ecc * ecc = (struct mtk_ecc *) malloc(_len_ecc0*sizeof(struct mtk_ecc));
           for(int _i0 = 0; _i0 < _len_ecc0; _i0++) {
               int _len_ecc__i0__caps0 = 1;
           ecc[_i0].caps = (struct TYPE_2__ *) malloc(_len_ecc__i0__caps0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_ecc__i0__caps0; _j0++) {
-            ecc[_i0].caps->parity_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+              ecc[_i0].caps->parity_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           unsigned int benchRet = mtk_ecc_get_parity_bits(ecc);
           printf("%u\n", benchRet); 
           for(int _aux = 0; _aux < _len_ecc0; _aux++) {
@@ -101,7 +100,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ecc0 = 100;
+          struct mtk_ecc * ecc = (struct mtk_ecc *) malloc(_len_ecc0*sizeof(struct mtk_ecc));
+          for(int _i0 = 0; _i0 < _len_ecc0; _i0++) {
+              int _len_ecc__i0__caps0 = 1;
+          ecc[_i0].caps = (struct TYPE_2__ *) malloc(_len_ecc__i0__caps0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ecc__i0__caps0; _j0++) {
+              ecc[_i0].caps->parity_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = mtk_ecc_get_parity_bits(ecc);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ecc0; _aux++) {
+          free(ecc[_aux].caps);
+          }
+          free(ecc);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ecc0 = 1;
+          struct mtk_ecc * ecc = (struct mtk_ecc *) malloc(_len_ecc0*sizeof(struct mtk_ecc));
+          for(int _i0 = 0; _i0 < _len_ecc0; _i0++) {
+              int _len_ecc__i0__caps0 = 1;
+          ecc[_i0].caps = (struct TYPE_2__ *) malloc(_len_ecc__i0__caps0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ecc__i0__caps0; _j0++) {
+              ecc[_i0].caps->parity_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = mtk_ecc_get_parity_bits(ecc);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ecc0; _aux++) {
+          free(ecc[_aux].caps);
+          }
+          free(ecc);
+        
+        break;
+    }
     default:
         usage();
         break;

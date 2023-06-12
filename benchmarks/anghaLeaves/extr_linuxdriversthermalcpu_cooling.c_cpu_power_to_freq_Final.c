@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ __attribute__((used)) static u32 cpu_power_to_freq(struct cpufreq_cooling_device
 	return freq_table[i - 1].frequency;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,21 +85,204 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           long power = 100;
+        
           int _len_cpufreq_cdev0 = 1;
           struct cpufreq_cooling_device * cpufreq_cdev = (struct cpufreq_cooling_device *) malloc(_len_cpufreq_cdev0*sizeof(struct cpufreq_cooling_device));
           for(int _i0 = 0; _i0 < _len_cpufreq_cdev0; _i0++) {
-            cpufreq_cdev[_i0].max_level = ((-2 * (next_i()%2)) + 1) * next_i();
+              cpufreq_cdev[_i0].max_level = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_cpufreq_cdev__i0__freq_table0 = 1;
           cpufreq_cdev[_i0].freq_table = (struct freq_table *) malloc(_len_cpufreq_cdev__i0__freq_table0*sizeof(struct freq_table));
           for(int _j0 = 0; _j0 < _len_cpufreq_cdev__i0__freq_table0; _j0++) {
-            cpufreq_cdev[_i0].freq_table->power = ((-2 * (next_i()%2)) + 1) * next_i();
-        cpufreq_cdev[_i0].freq_table->frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+              cpufreq_cdev[_i0].freq_table->power = ((-2 * (next_i()%2)) + 1) * next_i();
+          cpufreq_cdev[_i0].freq_table->frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          long benchRet = cpu_power_to_freq(cpufreq_cdev,power);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cpufreq_cdev0; _aux++) {
+          free(cpufreq_cdev[_aux].freq_table);
+          }
+          free(cpufreq_cdev);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          long power = 255;
+        
+          int _len_cpufreq_cdev0 = 65025;
+          struct cpufreq_cooling_device * cpufreq_cdev = (struct cpufreq_cooling_device *) malloc(_len_cpufreq_cdev0*sizeof(struct cpufreq_cooling_device));
+          for(int _i0 = 0; _i0 < _len_cpufreq_cdev0; _i0++) {
+              cpufreq_cdev[_i0].max_level = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cpufreq_cdev__i0__freq_table0 = 1;
+          cpufreq_cdev[_i0].freq_table = (struct freq_table *) malloc(_len_cpufreq_cdev__i0__freq_table0*sizeof(struct freq_table));
+          for(int _j0 = 0; _j0 < _len_cpufreq_cdev__i0__freq_table0; _j0++) {
+              cpufreq_cdev[_i0].freq_table->power = ((-2 * (next_i()%2)) + 1) * next_i();
+          cpufreq_cdev[_i0].freq_table->frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          long benchRet = cpu_power_to_freq(cpufreq_cdev,power);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cpufreq_cdev0; _aux++) {
+          free(cpufreq_cdev[_aux].freq_table);
+          }
+          free(cpufreq_cdev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          long power = 10;
+        
+          int _len_cpufreq_cdev0 = 100;
+          struct cpufreq_cooling_device * cpufreq_cdev = (struct cpufreq_cooling_device *) malloc(_len_cpufreq_cdev0*sizeof(struct cpufreq_cooling_device));
+          for(int _i0 = 0; _i0 < _len_cpufreq_cdev0; _i0++) {
+              cpufreq_cdev[_i0].max_level = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cpufreq_cdev__i0__freq_table0 = 1;
+          cpufreq_cdev[_i0].freq_table = (struct freq_table *) malloc(_len_cpufreq_cdev__i0__freq_table0*sizeof(struct freq_table));
+          for(int _j0 = 0; _j0 < _len_cpufreq_cdev__i0__freq_table0; _j0++) {
+              cpufreq_cdev[_i0].freq_table->power = ((-2 * (next_i()%2)) + 1) * next_i();
+          cpufreq_cdev[_i0].freq_table->frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          long benchRet = cpu_power_to_freq(cpufreq_cdev,power);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cpufreq_cdev0; _aux++) {
+          free(cpufreq_cdev[_aux].freq_table);
+          }
+          free(cpufreq_cdev);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          long power = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cpufreq_cdev0 = 1;
+          struct cpufreq_cooling_device * cpufreq_cdev = (struct cpufreq_cooling_device *) malloc(_len_cpufreq_cdev0*sizeof(struct cpufreq_cooling_device));
+          for(int _i0 = 0; _i0 < _len_cpufreq_cdev0; _i0++) {
+              cpufreq_cdev[_i0].max_level = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cpufreq_cdev__i0__freq_table0 = 1;
+          cpufreq_cdev[_i0].freq_table = (struct freq_table *) malloc(_len_cpufreq_cdev__i0__freq_table0*sizeof(struct freq_table));
+          for(int _j0 = 0; _j0 < _len_cpufreq_cdev__i0__freq_table0; _j0++) {
+              cpufreq_cdev[_i0].freq_table->power = ((-2 * (next_i()%2)) + 1) * next_i();
+          cpufreq_cdev[_i0].freq_table->frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           long benchRet = cpu_power_to_freq(cpufreq_cdev,power);
           printf("%ld\n", benchRet); 
           for(int _aux = 0; _aux < _len_cpufreq_cdev0; _aux++) {

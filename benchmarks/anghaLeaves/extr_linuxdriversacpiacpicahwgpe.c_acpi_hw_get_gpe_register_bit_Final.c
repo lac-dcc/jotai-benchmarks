@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ u32 acpi_hw_get_gpe_register_bit(struct acpi_gpe_event_info *gpe_event_info)
 		 gpe_event_info->register_info->base_gpe_number));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,19 +80,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_gpe_event_info0 = 1;
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_gpe_event_info0 = 65025;
           struct acpi_gpe_event_info * gpe_event_info = (struct acpi_gpe_event_info *) malloc(_len_gpe_event_info0*sizeof(struct acpi_gpe_event_info));
           for(int _i0 = 0; _i0 < _len_gpe_event_info0; _i0++) {
-            gpe_event_info[_i0].gpe_number = ((-2 * (next_i()%2)) + 1) * next_i();
+              gpe_event_info[_i0].gpe_number = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_gpe_event_info__i0__register_info0 = 1;
           gpe_event_info[_i0].register_info = (struct TYPE_2__ *) malloc(_len_gpe_event_info__i0__register_info0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_gpe_event_info__i0__register_info0; _j0++) {
-            gpe_event_info[_i0].register_info->base_gpe_number = ((-2 * (next_i()%2)) + 1) * next_i();
+              gpe_event_info[_i0].register_info->base_gpe_number = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = acpi_hw_get_gpe_register_bit(gpe_event_info);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_gpe_event_info0; _aux++) {
+          free(gpe_event_info[_aux].register_info);
+          }
+          free(gpe_event_info);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_gpe_event_info0 = 100;
+          struct acpi_gpe_event_info * gpe_event_info = (struct acpi_gpe_event_info *) malloc(_len_gpe_event_info0*sizeof(struct acpi_gpe_event_info));
+          for(int _i0 = 0; _i0 < _len_gpe_event_info0; _i0++) {
+              gpe_event_info[_i0].gpe_number = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_gpe_event_info__i0__register_info0 = 1;
+          gpe_event_info[_i0].register_info = (struct TYPE_2__ *) malloc(_len_gpe_event_info__i0__register_info0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_gpe_event_info__i0__register_info0; _j0++) {
+              gpe_event_info[_i0].register_info->base_gpe_number = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = acpi_hw_get_gpe_register_bit(gpe_event_info);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_gpe_event_info0; _aux++) {
+          free(gpe_event_info[_aux].register_info);
+          }
+          free(gpe_event_info);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_gpe_event_info0 = 1;
+          struct acpi_gpe_event_info * gpe_event_info = (struct acpi_gpe_event_info *) malloc(_len_gpe_event_info0*sizeof(struct acpi_gpe_event_info));
+          for(int _i0 = 0; _i0 < _len_gpe_event_info0; _i0++) {
+              gpe_event_info[_i0].gpe_number = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_gpe_event_info__i0__register_info0 = 1;
+          gpe_event_info[_i0].register_info = (struct TYPE_2__ *) malloc(_len_gpe_event_info__i0__register_info0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_gpe_event_info__i0__register_info0; _j0++) {
+              gpe_event_info[_i0].register_info->base_gpe_number = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = acpi_hw_get_gpe_register_bit(gpe_event_info);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_gpe_event_info0; _aux++) {

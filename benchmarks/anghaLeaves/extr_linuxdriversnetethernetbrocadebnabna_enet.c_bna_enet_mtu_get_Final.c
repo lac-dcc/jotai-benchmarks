@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ bna_enet_mtu_get(struct bna_enet *enet)
 	return enet->mtu;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_enet0 = 1;
+          int _len_enet0 = 65025;
           struct bna_enet * enet = (struct bna_enet *) malloc(_len_enet0*sizeof(struct bna_enet));
           for(int _i0 = 0; _i0 < _len_enet0; _i0++) {
-            enet[_i0].mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+              enet[_i0].mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = bna_enet_mtu_get(enet);
           printf("%d\n", benchRet); 
           free(enet);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_enet0 = 100;
           struct bna_enet * enet = (struct bna_enet *) malloc(_len_enet0*sizeof(struct bna_enet));
           for(int _i0 = 0; _i0 < _len_enet0; _i0++) {
-            enet[_i0].mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+              enet[_i0].mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = bna_enet_mtu_get(enet);
           printf("%d\n", benchRet); 
           free(enet);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_enet0 = 1;
+          struct bna_enet * enet = (struct bna_enet *) malloc(_len_enet0*sizeof(struct bna_enet));
+          for(int _i0 = 0; _i0 < _len_enet0; _i0++) {
+              enet[_i0].mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = bna_enet_mtu_get(enet);
+          printf("%d\n", benchRet); 
+          free(enet);
+        
+        break;
+    }
     default:
         usage();
         break;

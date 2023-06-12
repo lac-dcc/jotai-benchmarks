@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ __attribute__((used)) static u32 atyfb_get_pixclock(struct fb_var_screeninfo *va
 	return pixclock;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,19 +89,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_var0 = 1;
+          int _len_var0 = 65025;
           struct fb_var_screeninfo * var = (struct fb_var_screeninfo *) malloc(_len_var0*sizeof(struct fb_var_screeninfo));
           for(int _i0 = 0; _i0 < _len_var0; _i0++) {
-            var[_i0].pixclock = ((-2 * (next_i()%2)) + 1) * next_i();
+              var[_i0].pixclock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_par0 = 1;
+        
+          int _len_par0 = 65025;
           struct atyfb_par * par = (struct atyfb_par *) malloc(_len_par0*sizeof(struct atyfb_par));
           for(int _i0 = 0; _i0 < _len_par0; _i0++) {
-            par[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              par[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = atyfb_get_pixclock(var,par);
           printf("%d\n", benchRet); 
           free(var);
@@ -113,7 +113,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_var0 = 100;
+          struct fb_var_screeninfo * var = (struct fb_var_screeninfo *) malloc(_len_var0*sizeof(struct fb_var_screeninfo));
+          for(int _i0 = 0; _i0 < _len_var0; _i0++) {
+              var[_i0].pixclock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_par0 = 100;
+          struct atyfb_par * par = (struct atyfb_par *) malloc(_len_par0*sizeof(struct atyfb_par));
+          for(int _i0 = 0; _i0 < _len_par0; _i0++) {
+              par[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = atyfb_get_pixclock(var,par);
+          printf("%d\n", benchRet); 
+          free(var);
+          free(par);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_var0 = 1;
+          struct fb_var_screeninfo * var = (struct fb_var_screeninfo *) malloc(_len_var0*sizeof(struct fb_var_screeninfo));
+          for(int _i0 = 0; _i0 < _len_var0; _i0++) {
+              var[_i0].pixclock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_par0 = 1;
+          struct atyfb_par * par = (struct atyfb_par *) malloc(_len_par0*sizeof(struct atyfb_par));
+          for(int _i0 = 0; _i0 < _len_par0; _i0++) {
+              par[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = atyfb_get_pixclock(var,par);
+          printf("%d\n", benchRet); 
+          free(var);
+          free(par);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -114,12 +116,6 @@ __attribute__((used)) static int niu_ethflow_to_class(int flow_type, u64 *class)
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -136,11 +132,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int flow_type = 100;
+        
           int _len_class0 = 1;
           int * class = (int *) malloc(_len_class0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_class0; _i0++) {
             class[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = niu_ethflow_to_class(flow_type,class);
+          printf("%d\n", benchRet); 
+          free(class);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int flow_type = 255;
+        
+          int _len_class0 = 65025;
+          int * class = (int *) malloc(_len_class0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_class0; _i0++) {
+            class[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = niu_ethflow_to_class(flow_type,class);
           printf("%d\n", benchRet); 
           free(class);
@@ -148,21 +163,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int flow_type = 10;
+        
           int _len_class0 = 100;
           int * class = (int *) malloc(_len_class0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_class0; _i0++) {
             class[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = niu_ethflow_to_class(flow_type,class);
           printf("%d\n", benchRet); 
           free(class);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int flow_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_class0 = 1;
+          int * class = (int *) malloc(_len_class0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_class0; _i0++) {
+            class[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = niu_ethflow_to_class(flow_type,class);
+          printf("%d\n", benchRet); 
+          free(class);
+        
+        break;
+    }
     default:
         usage();
         break;

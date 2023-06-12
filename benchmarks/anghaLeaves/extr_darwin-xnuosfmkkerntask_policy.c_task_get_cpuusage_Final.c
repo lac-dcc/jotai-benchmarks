@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -87,12 +89,6 @@ task_get_cpuusage(task_t task, uint8_t *percentagep, uint64_t *intervalp, uint64
 	return(0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,39 +101,214 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_task0 = 65025;
+          struct TYPE_3__ * task = (struct TYPE_3__ *) malloc(_len_task0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_task0; _i0++) {
+              task[_i0].rusage_cpu_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          task[_i0].rusage_cpu_deadline = ((-2 * (next_i()%2)) + 1) * next_i();
+          task[_i0].rusage_cpu_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+          task[_i0].rusage_cpu_percentage = ((-2 * (next_i()%2)) + 1) * next_i();
+          task[_i0].rusage_cpu_perthr_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+          task[_i0].rusage_cpu_perthr_percentage = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_percentagep0 = 65025;
+          long * percentagep = (long *) malloc(_len_percentagep0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_percentagep0; _i0++) {
+            percentagep[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_intervalp0 = 65025;
+          long * intervalp = (long *) malloc(_len_intervalp0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_intervalp0; _i0++) {
+            intervalp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_deadlinep0 = 65025;
+          long * deadlinep = (long *) malloc(_len_deadlinep0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_deadlinep0; _i0++) {
+            deadlinep[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_scope0 = 65025;
+          int * scope = (int *) malloc(_len_scope0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_scope0; _i0++) {
+            scope[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = task_get_cpuusage(task,percentagep,intervalp,deadlinep,scope);
+          printf("%d\n", benchRet); 
+          free(task);
+          free(percentagep);
+          free(intervalp);
+          free(deadlinep);
+          free(scope);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_task0 = 100;
+          struct TYPE_3__ * task = (struct TYPE_3__ *) malloc(_len_task0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_task0; _i0++) {
+              task[_i0].rusage_cpu_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          task[_i0].rusage_cpu_deadline = ((-2 * (next_i()%2)) + 1) * next_i();
+          task[_i0].rusage_cpu_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+          task[_i0].rusage_cpu_percentage = ((-2 * (next_i()%2)) + 1) * next_i();
+          task[_i0].rusage_cpu_perthr_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+          task[_i0].rusage_cpu_perthr_percentage = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_percentagep0 = 100;
+          long * percentagep = (long *) malloc(_len_percentagep0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_percentagep0; _i0++) {
+            percentagep[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_intervalp0 = 100;
+          long * intervalp = (long *) malloc(_len_intervalp0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_intervalp0; _i0++) {
+            intervalp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_deadlinep0 = 100;
+          long * deadlinep = (long *) malloc(_len_deadlinep0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_deadlinep0; _i0++) {
+            deadlinep[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_scope0 = 100;
+          int * scope = (int *) malloc(_len_scope0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_scope0; _i0++) {
+            scope[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = task_get_cpuusage(task,percentagep,intervalp,deadlinep,scope);
+          printf("%d\n", benchRet); 
+          free(task);
+          free(percentagep);
+          free(intervalp);
+          free(deadlinep);
+          free(scope);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           int _len_task0 = 1;
           struct TYPE_3__ * task = (struct TYPE_3__ *) malloc(_len_task0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_task0; _i0++) {
-            task[_i0].rusage_cpu_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        task[_i0].rusage_cpu_deadline = ((-2 * (next_i()%2)) + 1) * next_i();
-        task[_i0].rusage_cpu_interval = ((-2 * (next_i()%2)) + 1) * next_i();
-        task[_i0].rusage_cpu_percentage = ((-2 * (next_i()%2)) + 1) * next_i();
-        task[_i0].rusage_cpu_perthr_interval = ((-2 * (next_i()%2)) + 1) * next_i();
-        task[_i0].rusage_cpu_perthr_percentage = ((-2 * (next_i()%2)) + 1) * next_i();
+              task[_i0].rusage_cpu_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          task[_i0].rusage_cpu_deadline = ((-2 * (next_i()%2)) + 1) * next_i();
+          task[_i0].rusage_cpu_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+          task[_i0].rusage_cpu_percentage = ((-2 * (next_i()%2)) + 1) * next_i();
+          task[_i0].rusage_cpu_perthr_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+          task[_i0].rusage_cpu_perthr_percentage = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_percentagep0 = 1;
           long * percentagep = (long *) malloc(_len_percentagep0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_percentagep0; _i0++) {
             percentagep[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_intervalp0 = 1;
           long * intervalp = (long *) malloc(_len_intervalp0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_intervalp0; _i0++) {
             intervalp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_deadlinep0 = 1;
           long * deadlinep = (long *) malloc(_len_deadlinep0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_deadlinep0; _i0++) {
             deadlinep[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_scope0 = 1;
           int * scope = (int *) malloc(_len_scope0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_scope0; _i0++) {
             scope[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = task_get_cpuusage(task,percentagep,intervalp,deadlinep,scope);
           printf("%d\n", benchRet); 
           free(task);

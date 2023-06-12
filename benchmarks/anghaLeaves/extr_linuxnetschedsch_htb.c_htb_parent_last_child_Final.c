@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static inline int htb_parent_last_child(struct htb_class *
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,18 +82,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cl0 = 1;
+          int _len_cl0 = 65025;
           struct htb_class * cl = (struct htb_class *) malloc(_len_cl0*sizeof(struct htb_class));
           for(int _i0 = 0; _i0 < _len_cl0; _i0++) {
               int _len_cl__i0__parent0 = 1;
           cl[_i0].parent = (struct TYPE_2__ *) malloc(_len_cl__i0__parent0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_cl__i0__parent0; _j0++) {
-            cl[_i0].parent->children = ((-2 * (next_i()%2)) + 1) * next_i();
+              cl[_i0].parent->children = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = htb_parent_last_child(cl);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_cl0; _aux++) {
@@ -107,7 +106,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_cl0 = 100;
+          struct htb_class * cl = (struct htb_class *) malloc(_len_cl0*sizeof(struct htb_class));
+          for(int _i0 = 0; _i0 < _len_cl0; _i0++) {
+              int _len_cl__i0__parent0 = 1;
+          cl[_i0].parent = (struct TYPE_2__ *) malloc(_len_cl__i0__parent0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_cl__i0__parent0; _j0++) {
+              cl[_i0].parent->children = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = htb_parent_last_child(cl);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cl0; _aux++) {
+          free(cl[_aux].parent);
+          }
+          free(cl);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_cl0 = 1;
+          struct htb_class * cl = (struct htb_class *) malloc(_len_cl0*sizeof(struct htb_class));
+          for(int _i0 = 0; _i0 < _len_cl0; _i0++) {
+              int _len_cl__i0__parent0 = 1;
+          cl[_i0].parent = (struct TYPE_2__ *) malloc(_len_cl__i0__parent0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_cl__i0__parent0; _j0++) {
+              cl[_i0].parent->children = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = htb_parent_last_child(cl);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cl0; _aux++) {
+          free(cl[_aux].parent);
+          }
+          free(cl);
+        
+        break;
+    }
     default:
         usage();
         break;

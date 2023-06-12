@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ char acpi_ut_remove_leading_zeros(char **string)
 	return (**string);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,8 +79,52 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
+    {
+          int _len_string0 = 65025;
+          char ** string = (char **) malloc(_len_string0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_string0; _i0++) {
+            int _len_string1 = 1;
+            string[_i0] = (char *) malloc(_len_string1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_string1; _i1++) {
+              string[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          char benchRet = acpi_ut_remove_leading_zeros(string);
+          printf("%c\n", (benchRet %26) + 'a'); 
+          for(int i1 = 0; i1 < _len_string0; i1++) {
+              free(string[i1]);
+          }
+          free(string);
+        
+        break;
+    }
+    // big-arr-10x
+    case 1:
+    {
+          int _len_string0 = 100;
+          char ** string = (char **) malloc(_len_string0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_string0; _i0++) {
+            int _len_string1 = 1;
+            string[_i0] = (char *) malloc(_len_string1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_string1; _i1++) {
+              string[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          char benchRet = acpi_ut_remove_leading_zeros(string);
+          printf("%c\n", (benchRet %26) + 'a'); 
+          for(int i1 = 0; i1 < _len_string0; i1++) {
+              free(string[i1]);
+          }
+          free(string);
+        
+        break;
+    }
+    // empty
+    case 2:
     {
           int _len_string0 = 1;
           char ** string = (char **) malloc(_len_string0*sizeof(char *));
@@ -95,17 +135,16 @@ int main(int argc, char *argv[]) {
               string[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           char benchRet = acpi_ut_remove_leading_zeros(string);
           printf("%c\n", (benchRet %26) + 'a'); 
           for(int i1 = 0; i1 < _len_string0; i1++) {
-            int _len_string1 = 1;
               free(string[i1]);
           }
           free(string);
         
         break;
     }
-
     default:
         usage();
         break;

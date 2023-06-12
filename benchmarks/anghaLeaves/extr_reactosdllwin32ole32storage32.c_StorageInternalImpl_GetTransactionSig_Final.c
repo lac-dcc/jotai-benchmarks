@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ __attribute__((used)) static HRESULT StorageInternalImpl_GetTransactionSig(Stora
   return E_NOTIMPL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,20 +80,190 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int refresh = 100;
+        
           int _len_base0 = 1;
           int * base = (int *) malloc(_len_base0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_base0; _i0++) {
             base[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_result0 = 1;
           int * result = (int *) malloc(_len_result0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_result0; _i0++) {
             result[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = StorageInternalImpl_GetTransactionSig(base,result,refresh);
+          printf("%d\n", benchRet); 
+          free(base);
+          free(result);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int refresh = 255;
+        
+          int _len_base0 = 65025;
+          int * base = (int *) malloc(_len_base0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_base0; _i0++) {
+            base[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_result0 = 65025;
+          int * result = (int *) malloc(_len_result0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_result0; _i0++) {
+            result[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = StorageInternalImpl_GetTransactionSig(base,result,refresh);
+          printf("%d\n", benchRet); 
+          free(base);
+          free(result);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int refresh = 10;
+        
+          int _len_base0 = 100;
+          int * base = (int *) malloc(_len_base0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_base0; _i0++) {
+            base[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_result0 = 100;
+          int * result = (int *) malloc(_len_result0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_result0; _i0++) {
+            result[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = StorageInternalImpl_GetTransactionSig(base,result,refresh);
+          printf("%d\n", benchRet); 
+          free(base);
+          free(result);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int refresh = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_base0 = 1;
+          int * base = (int *) malloc(_len_base0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_base0; _i0++) {
+            base[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_result0 = 1;
+          int * result = (int *) malloc(_len_result0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_result0; _i0++) {
+            result[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = StorageInternalImpl_GetTransactionSig(base,result,refresh);
           printf("%d\n", benchRet); 
           free(base);

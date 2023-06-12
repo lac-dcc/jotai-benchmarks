@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ void ip_vs_zero_estimator(struct ip_vs_stats *stats)
 	est->outbps = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,28 +89,165 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_stats0 = 65025;
+          struct ip_vs_stats * stats = (struct ip_vs_stats *) malloc(_len_stats0*sizeof(struct ip_vs_stats));
+          for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
+              stats[_i0].kstats.outpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].kstats.inpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].kstats.conns = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].kstats.outbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].kstats.inbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          stats[_i0].est.outbps = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].est.inbps = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].est.outpps = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].est.inpps = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].est.cps = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].est.last_outpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].est.last_inpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].est.last_conns = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].est.last_outbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].est.last_inbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          ip_vs_zero_estimator(stats);
+          free(stats);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_stats0 = 100;
+          struct ip_vs_stats * stats = (struct ip_vs_stats *) malloc(_len_stats0*sizeof(struct ip_vs_stats));
+          for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
+              stats[_i0].kstats.outpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].kstats.inpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].kstats.conns = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].kstats.outbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].kstats.inbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          stats[_i0].est.outbps = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].est.inbps = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].est.outpps = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].est.inpps = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].est.cps = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].est.last_outpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].est.last_inpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].est.last_conns = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].est.last_outbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].est.last_inbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          ip_vs_zero_estimator(stats);
+          free(stats);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_stats0 = 1;
           struct ip_vs_stats * stats = (struct ip_vs_stats *) malloc(_len_stats0*sizeof(struct ip_vs_stats));
           for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
-            stats[_i0].kstats.outpkts = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].kstats.inpkts = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].kstats.conns = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].kstats.outbytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].kstats.inbytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].est.outbps = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].est.inbps = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].est.outpps = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].est.inpps = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].est.cps = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].est.last_outpkts = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].est.last_inpkts = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].est.last_conns = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].est.last_outbytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].est.last_inbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+              stats[_i0].kstats.outpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].kstats.inpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].kstats.conns = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].kstats.outbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].kstats.inbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          stats[_i0].est.outbps = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].est.inbps = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].est.outpps = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].est.inpps = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].est.cps = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].est.last_outpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].est.last_inpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].est.last_conns = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].est.last_outbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].est.last_inbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           ip_vs_zero_estimator(stats);
           free(stats);
         

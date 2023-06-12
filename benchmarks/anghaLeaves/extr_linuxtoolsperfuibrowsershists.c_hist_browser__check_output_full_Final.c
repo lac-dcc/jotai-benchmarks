@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static bool hist_browser__check_output_full(struct hist_br
 	return browser->b.rows == row;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,11 +82,34 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned short row = 100;
+        
           int _len_browser0 = 1;
           struct hist_browser * browser = (struct hist_browser *) malloc(_len_browser0*sizeof(struct hist_browser));
           for(int _i0 = 0; _i0 < _len_browser0; _i0++) {
-            browser[_i0].b.rows = ((-2 * (next_i()%2)) + 1) * next_i();
+              browser[_i0].b.rows = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = hist_browser__check_output_full(browser,row);
+          printf("%d\n", benchRet); 
+          free(browser);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned short row = 255;
+        
+          int _len_browser0 = 65025;
+          struct hist_browser * browser = (struct hist_browser *) malloc(_len_browser0*sizeof(struct hist_browser));
+          for(int _i0 = 0; _i0 < _len_browser0; _i0++) {
+              browser[_i0].b.rows = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = hist_browser__check_output_full(browser,row);
           printf("%d\n", benchRet); 
           free(browser);
@@ -98,21 +117,43 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned short row = 10;
+        
           int _len_browser0 = 100;
           struct hist_browser * browser = (struct hist_browser *) malloc(_len_browser0*sizeof(struct hist_browser));
           for(int _i0 = 0; _i0 < _len_browser0; _i0++) {
-            browser[_i0].b.rows = ((-2 * (next_i()%2)) + 1) * next_i();
+              browser[_i0].b.rows = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = hist_browser__check_output_full(browser,row);
           printf("%d\n", benchRet); 
           free(browser);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned short row = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_browser0 = 1;
+          struct hist_browser * browser = (struct hist_browser *) malloc(_len_browser0*sizeof(struct hist_browser));
+          for(int _i0 = 0; _i0 < _len_browser0; _i0++) {
+              browser[_i0].b.rows = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = hist_browser__check_output_full(browser,row);
+          printf("%d\n", benchRet); 
+          free(browser);
+        
+        break;
+    }
     default:
         usage();
         break;

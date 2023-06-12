@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +83,6 @@ ieee802154_match_sock(__le64 hw_addr, __le16 pan_id, __le16 short_addr,
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,24 +99,110 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long hw_addr = 100;
+        
           long pan_id = 100;
+        
           long short_addr = 100;
+        
           int _len_ro0 = 1;
           struct dgram_sock * ro = (struct dgram_sock *) malloc(_len_ro0*sizeof(struct dgram_sock));
           for(int _i0 = 0; _i0 < _len_ro0; _i0++) {
-            ro[_i0].src_addr.mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        ro[_i0].src_addr.extended_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        ro[_i0].src_addr.pan_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        ro[_i0].src_addr.short_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        ro[_i0].bound = ((-2 * (next_i()%2)) + 1) * next_i();
+              ro[_i0].src_addr.mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          ro[_i0].src_addr.extended_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ro[_i0].src_addr.pan_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          ro[_i0].src_addr.short_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ro[_i0].bound = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ieee802154_match_sock(hw_addr,pan_id,short_addr,ro);
           printf("%d\n", benchRet); 
           free(ro);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long hw_addr = 255;
+        
+          long pan_id = 255;
+        
+          long short_addr = 255;
+        
+          int _len_ro0 = 65025;
+          struct dgram_sock * ro = (struct dgram_sock *) malloc(_len_ro0*sizeof(struct dgram_sock));
+          for(int _i0 = 0; _i0 < _len_ro0; _i0++) {
+              ro[_i0].src_addr.mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          ro[_i0].src_addr.extended_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ro[_i0].src_addr.pan_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          ro[_i0].src_addr.short_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ro[_i0].bound = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ieee802154_match_sock(hw_addr,pan_id,short_addr,ro);
+          printf("%d\n", benchRet); 
+          free(ro);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long hw_addr = 10;
+        
+          long pan_id = 10;
+        
+          long short_addr = 10;
+        
+          int _len_ro0 = 100;
+          struct dgram_sock * ro = (struct dgram_sock *) malloc(_len_ro0*sizeof(struct dgram_sock));
+          for(int _i0 = 0; _i0 < _len_ro0; _i0++) {
+              ro[_i0].src_addr.mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          ro[_i0].src_addr.extended_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ro[_i0].src_addr.pan_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          ro[_i0].src_addr.short_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ro[_i0].bound = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ieee802154_match_sock(hw_addr,pan_id,short_addr,ro);
+          printf("%d\n", benchRet); 
+          free(ro);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long hw_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long pan_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long short_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ro0 = 1;
+          struct dgram_sock * ro = (struct dgram_sock *) malloc(_len_ro0*sizeof(struct dgram_sock));
+          for(int _i0 = 0; _i0 < _len_ro0; _i0++) {
+              ro[_i0].src_addr.mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          ro[_i0].src_addr.extended_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ro[_i0].src_addr.pan_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          ro[_i0].src_addr.short_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ro[_i0].bound = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ieee802154_match_sock(hw_addr,pan_id,short_addr,ro);
+          printf("%d\n", benchRet); 
+          free(ro);
+        
+        break;
+    }
     default:
         usage();
         break;

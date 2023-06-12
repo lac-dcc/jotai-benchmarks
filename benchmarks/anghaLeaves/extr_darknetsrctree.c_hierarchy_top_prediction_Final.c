@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -87,12 +90,6 @@ int hierarchy_top_prediction(float *predictions, tree *hier, float thresh, int s
     return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,16 +102,42 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 38
+          // dynamic_instructions_O1 : 38
+          // ------------------------------- 
+          // static_instructions_O2 : 36
+          // dynamic_instructions_O2 : 36
+          // ------------------------------- 
+          // static_instructions_O3 : 36
+          // dynamic_instructions_O3 : 36
+          // ------------------------------- 
+          // static_instructions_Ofast : 36
+          // dynamic_instructions_Ofast : 36
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 26
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
           float thresh = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           int stride = 100;
+        
           int _len_predictions0 = 1;
           float * predictions = (float *) malloc(_len_predictions0*sizeof(float));
           for(int _i0 = 0; _i0 < _len_predictions0; _i0++) {
             predictions[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
+        
           int _len_hier0 = 1;
           struct TYPE_3__ * hier = (struct TYPE_3__ *) malloc(_len_hier0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_hier0; _i0++) {
@@ -138,7 +161,255 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_hier__i0__parent0; _j0++) {
             hier[_i0].parent[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int benchRet = hierarchy_top_prediction(predictions,hier,thresh,stride);
+          printf("%d\n", benchRet); 
+          free(predictions);
+          for(int _aux = 0; _aux < _len_hier0; _aux++) {
+          free(hier[_aux].group_size);
+          }
+          for(int _aux = 0; _aux < _len_hier0; _aux++) {
+          free(hier[_aux].group_offset);
+          }
+          for(int _aux = 0; _aux < _len_hier0; _aux++) {
+          free(hier[_aux].child);
+          }
+          for(int _aux = 0; _aux < _len_hier0; _aux++) {
+          free(hier[_aux].parent);
+          }
+          free(hier);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 38
+          // dynamic_instructions_O1 : 38
+          // ------------------------------- 
+          // static_instructions_O2 : 36
+          // dynamic_instructions_O2 : 36
+          // ------------------------------- 
+          // static_instructions_O3 : 36
+          // dynamic_instructions_O3 : 36
+          // ------------------------------- 
+          // static_instructions_Ofast : 36
+          // dynamic_instructions_Ofast : 36
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 26
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
+          float thresh = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          int stride = 255;
+        
+          int _len_predictions0 = 65025;
+          float * predictions = (float *) malloc(_len_predictions0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_predictions0; _i0++) {
+            predictions[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          int _len_hier0 = 65025;
+          struct TYPE_3__ * hier = (struct TYPE_3__ *) malloc(_len_hier0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_hier0; _i0++) {
+              int _len_hier__i0__group_size0 = 1;
+          hier[_i0].group_size = (int *) malloc(_len_hier__i0__group_size0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_hier__i0__group_size0; _j0++) {
+            hier[_i0].group_size[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_hier__i0__group_offset0 = 1;
+          hier[_i0].group_offset = (int *) malloc(_len_hier__i0__group_offset0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_hier__i0__group_offset0; _j0++) {
+            hier[_i0].group_offset[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_hier__i0__child0 = 1;
+          hier[_i0].child = (int *) malloc(_len_hier__i0__child0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_hier__i0__child0; _j0++) {
+            hier[_i0].child[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_hier__i0__parent0 = 1;
+          hier[_i0].parent = (int *) malloc(_len_hier__i0__parent0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_hier__i0__parent0; _j0++) {
+            hier[_i0].parent[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = hierarchy_top_prediction(predictions,hier,thresh,stride);
+          printf("%d\n", benchRet); 
+          free(predictions);
+          for(int _aux = 0; _aux < _len_hier0; _aux++) {
+          free(hier[_aux].group_size);
+          }
+          for(int _aux = 0; _aux < _len_hier0; _aux++) {
+          free(hier[_aux].group_offset);
+          }
+          for(int _aux = 0; _aux < _len_hier0; _aux++) {
+          free(hier[_aux].child);
+          }
+          for(int _aux = 0; _aux < _len_hier0; _aux++) {
+          free(hier[_aux].parent);
+          }
+          free(hier);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 38
+          // dynamic_instructions_O1 : 38
+          // ------------------------------- 
+          // static_instructions_O2 : 36
+          // dynamic_instructions_O2 : 36
+          // ------------------------------- 
+          // static_instructions_O3 : 36
+          // dynamic_instructions_O3 : 36
+          // ------------------------------- 
+          // static_instructions_Ofast : 36
+          // dynamic_instructions_Ofast : 36
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 26
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
+          float thresh = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          int stride = 10;
+        
+          int _len_predictions0 = 100;
+          float * predictions = (float *) malloc(_len_predictions0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_predictions0; _i0++) {
+            predictions[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          int _len_hier0 = 100;
+          struct TYPE_3__ * hier = (struct TYPE_3__ *) malloc(_len_hier0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_hier0; _i0++) {
+              int _len_hier__i0__group_size0 = 1;
+          hier[_i0].group_size = (int *) malloc(_len_hier__i0__group_size0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_hier__i0__group_size0; _j0++) {
+            hier[_i0].group_size[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_hier__i0__group_offset0 = 1;
+          hier[_i0].group_offset = (int *) malloc(_len_hier__i0__group_offset0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_hier__i0__group_offset0; _j0++) {
+            hier[_i0].group_offset[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_hier__i0__child0 = 1;
+          hier[_i0].child = (int *) malloc(_len_hier__i0__child0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_hier__i0__child0; _j0++) {
+            hier[_i0].child[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_hier__i0__parent0 = 1;
+          hier[_i0].parent = (int *) malloc(_len_hier__i0__parent0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_hier__i0__parent0; _j0++) {
+            hier[_i0].parent[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = hierarchy_top_prediction(predictions,hier,thresh,stride);
+          printf("%d\n", benchRet); 
+          free(predictions);
+          for(int _aux = 0; _aux < _len_hier0; _aux++) {
+          free(hier[_aux].group_size);
+          }
+          for(int _aux = 0; _aux < _len_hier0; _aux++) {
+          free(hier[_aux].group_offset);
+          }
+          for(int _aux = 0; _aux < _len_hier0; _aux++) {
+          free(hier[_aux].child);
+          }
+          for(int _aux = 0; _aux < _len_hier0; _aux++) {
+          free(hier[_aux].parent);
+          }
+          free(hier);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 38
+          // dynamic_instructions_O1 : 38
+          // ------------------------------- 
+          // static_instructions_O2 : 36
+          // dynamic_instructions_O2 : 36
+          // ------------------------------- 
+          // static_instructions_O3 : 36
+          // dynamic_instructions_O3 : 36
+          // ------------------------------- 
+          // static_instructions_Ofast : 36
+          // dynamic_instructions_Ofast : 36
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 26
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
+          float thresh = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          int stride = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_predictions0 = 1;
+          float * predictions = (float *) malloc(_len_predictions0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_predictions0; _i0++) {
+            predictions[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          int _len_hier0 = 1;
+          struct TYPE_3__ * hier = (struct TYPE_3__ *) malloc(_len_hier0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_hier0; _i0++) {
+              int _len_hier__i0__group_size0 = 1;
+          hier[_i0].group_size = (int *) malloc(_len_hier__i0__group_size0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_hier__i0__group_size0; _j0++) {
+            hier[_i0].group_size[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_hier__i0__group_offset0 = 1;
+          hier[_i0].group_offset = (int *) malloc(_len_hier__i0__group_offset0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_hier__i0__group_offset0; _j0++) {
+            hier[_i0].group_offset[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_hier__i0__child0 = 1;
+          hier[_i0].child = (int *) malloc(_len_hier__i0__child0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_hier__i0__child0; _j0++) {
+            hier[_i0].child[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_hier__i0__parent0 = 1;
+          hier[_i0].parent = (int *) malloc(_len_hier__i0__parent0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_hier__i0__parent0; _j0++) {
+            hier[_i0].parent[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int benchRet = hierarchy_top_prediction(predictions,hier,thresh,stride);
           printf("%d\n", benchRet); 
           free(predictions);

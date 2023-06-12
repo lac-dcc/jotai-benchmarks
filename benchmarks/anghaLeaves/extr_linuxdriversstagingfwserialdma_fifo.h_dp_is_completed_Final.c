@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline bool dp_is_completed(struct dma_pending *dp)
 	return (unsigned long)dp->data & 1UL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dp0 = 1;
+          int _len_dp0 = 65025;
           struct dma_pending * dp = (struct dma_pending *) malloc(_len_dp0*sizeof(struct dma_pending));
           for(int _i0 = 0; _i0 < _len_dp0; _i0++) {
-            dp[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+              dp[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dp_is_completed(dp);
           printf("%d\n", benchRet); 
           free(dp);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_dp0 = 100;
           struct dma_pending * dp = (struct dma_pending *) malloc(_len_dp0*sizeof(struct dma_pending));
           for(int _i0 = 0; _i0 < _len_dp0; _i0++) {
-            dp[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+              dp[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dp_is_completed(dp);
           printf("%d\n", benchRet); 
           free(dp);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_dp0 = 1;
+          struct dma_pending * dp = (struct dma_pending *) malloc(_len_dp0*sizeof(struct dma_pending));
+          for(int _i0 = 0; _i0 < _len_dp0; _i0++) {
+              dp[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dp_is_completed(dp);
+          printf("%d\n", benchRet); 
+          free(dp);
+        
+        break;
+    }
     default:
         usage();
         break;

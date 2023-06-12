@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ struct dm_bufio_client *dm_bufio_get_client(struct dm_buffer *b)
 	return b->c;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,18 +75,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_b0 = 65025;
+          struct dm_buffer * b = (struct dm_buffer *) malloc(_len_b0*sizeof(struct dm_buffer));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              int _len_b__i0__c0 = 1;
+          b[_i0].c = (struct dm_bufio_client *) malloc(_len_b__i0__c0*sizeof(struct dm_bufio_client));
+          for(int _j0 = 0; _j0 < _len_b__i0__c0; _j0++) {
+              b[_i0].c->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct dm_bufio_client * benchRet = dm_bufio_get_client(b);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_b0; _aux++) {
+          free(b[_aux].c);
+          }
+          free(b);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_b0 = 100;
+          struct dm_buffer * b = (struct dm_buffer *) malloc(_len_b0*sizeof(struct dm_buffer));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              int _len_b__i0__c0 = 1;
+          b[_i0].c = (struct dm_bufio_client *) malloc(_len_b__i0__c0*sizeof(struct dm_bufio_client));
+          for(int _j0 = 0; _j0 < _len_b__i0__c0; _j0++) {
+              b[_i0].c->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct dm_bufio_client * benchRet = dm_bufio_get_client(b);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_b0; _aux++) {
+          free(b[_aux].c);
+          }
+          free(b);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_b0 = 1;
           struct dm_buffer * b = (struct dm_buffer *) malloc(_len_b0*sizeof(struct dm_buffer));
           for(int _i0 = 0; _i0 < _len_b0; _i0++) {
               int _len_b__i0__c0 = 1;
           b[_i0].c = (struct dm_bufio_client *) malloc(_len_b__i0__c0*sizeof(struct dm_bufio_client));
           for(int _j0 = 0; _j0 < _len_b__i0__c0; _j0++) {
-            b[_i0].c->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              b[_i0].c->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct dm_bufio_client * benchRet = dm_bufio_get_client(b);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_b0; _aux++) {

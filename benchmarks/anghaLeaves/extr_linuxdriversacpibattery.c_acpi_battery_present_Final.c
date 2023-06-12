@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static inline int acpi_battery_present(struct acpi_battery
 	return battery->device->status.battery_present;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,18 +78,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_battery0 = 1;
+          int _len_battery0 = 65025;
           struct acpi_battery * battery = (struct acpi_battery *) malloc(_len_battery0*sizeof(struct acpi_battery));
           for(int _i0 = 0; _i0 < _len_battery0; _i0++) {
               int _len_battery__i0__device0 = 1;
           battery[_i0].device = (struct TYPE_4__ *) malloc(_len_battery__i0__device0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_battery__i0__device0; _j0++) {
-            battery[_i0].device->status.battery_present = ((-2 * (next_i()%2)) + 1) * next_i();
+              battery[_i0].device->status.battery_present = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           int benchRet = acpi_battery_present(battery);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_battery0; _aux++) {
@@ -103,7 +103,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_battery0 = 100;
+          struct acpi_battery * battery = (struct acpi_battery *) malloc(_len_battery0*sizeof(struct acpi_battery));
+          for(int _i0 = 0; _i0 < _len_battery0; _i0++) {
+              int _len_battery__i0__device0 = 1;
+          battery[_i0].device = (struct TYPE_4__ *) malloc(_len_battery__i0__device0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_battery__i0__device0; _j0++) {
+              battery[_i0].device->status.battery_present = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = acpi_battery_present(battery);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_battery0; _aux++) {
+          free(battery[_aux].device);
+          }
+          free(battery);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_battery0 = 1;
+          struct acpi_battery * battery = (struct acpi_battery *) malloc(_len_battery0*sizeof(struct acpi_battery));
+          for(int _i0 = 0; _i0 < _len_battery0; _i0++) {
+              int _len_battery__i0__device0 = 1;
+          battery[_i0].device = (struct TYPE_4__ *) malloc(_len_battery__i0__device0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_battery__i0__device0; _j0++) {
+              battery[_i0].device->status.battery_present = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = acpi_battery_present(battery);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_battery0; _aux++) {
+          free(battery[_aux].device);
+          }
+          free(battery);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static bool single_bit_flip(unsigned char a, unsigned char
 	return error && !(error & (error - 1));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,7 +80,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned char a = 100;
+        
           unsigned char b = 100;
+        
           int benchRet = single_bit_flip(a,b);
           printf("%d\n", benchRet); 
         
@@ -95,7 +92,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned char a = 255;
+        
           unsigned char b = 255;
+        
           int benchRet = single_bit_flip(a,b);
           printf("%d\n", benchRet); 
         
@@ -105,13 +104,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned char a = 10;
+        
           unsigned char b = 10;
+        
           int benchRet = single_bit_flip(a,b);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned char a = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned char b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = single_bit_flip(a,b);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

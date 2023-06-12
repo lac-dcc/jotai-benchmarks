@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static void acpi_thermal_guess_offset(struct acpi_thermal 
 		tz->kelvin_offset = 2732;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,16 +84,132 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_tz0 = 65025;
+          struct acpi_thermal * tz = (struct acpi_thermal *) malloc(_len_tz0*sizeof(struct acpi_thermal));
+          for(int _i0 = 0; _i0 < _len_tz0; _i0++) {
+              tz[_i0].kelvin_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          tz[_i0].trips.critical.temperature = ((-2 * (next_i()%2)) + 1) * next_i();
+          tz[_i0].trips.critical.flags.valid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
+          }
+        
+          acpi_thermal_guess_offset(tz);
+          free(tz);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_tz0 = 100;
+          struct acpi_thermal * tz = (struct acpi_thermal *) malloc(_len_tz0*sizeof(struct acpi_thermal));
+          for(int _i0 = 0; _i0 < _len_tz0; _i0++) {
+              tz[_i0].kelvin_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          tz[_i0].trips.critical.temperature = ((-2 * (next_i()%2)) + 1) * next_i();
+          tz[_i0].trips.critical.flags.valid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
+          }
+        
+          acpi_thermal_guess_offset(tz);
+          free(tz);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int _len_tz0 = 1;
           struct acpi_thermal * tz = (struct acpi_thermal *) malloc(_len_tz0*sizeof(struct acpi_thermal));
           for(int _i0 = 0; _i0 < _len_tz0; _i0++) {
-            tz[_i0].kelvin_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        tz[_i0].trips.critical.temperature = ((-2 * (next_i()%2)) + 1) * next_i();
-        tz[_i0].trips.critical.flags.valid = ((-2 * (next_i()%2)) + 1) * next_i();
+              tz[_i0].kelvin_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          tz[_i0].trips.critical.temperature = ((-2 * (next_i()%2)) + 1) * next_i();
+          tz[_i0].trips.critical.flags.valid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
           }
+        
           acpi_thermal_guess_offset(tz);
           free(tz);
         

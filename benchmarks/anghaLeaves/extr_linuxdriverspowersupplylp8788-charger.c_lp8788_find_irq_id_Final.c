@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +76,6 @@ __attribute__((used)) static bool lp8788_find_irq_id(struct lp8788_charger *pchg
 	return found;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,26 +88,231 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int virq = 100;
+        
           int _len_pchg0 = 1;
           struct lp8788_charger * pchg = (struct lp8788_charger *) malloc(_len_pchg0*sizeof(struct lp8788_charger));
           for(int _i0 = 0; _i0 < _len_pchg0; _i0++) {
-            pchg[_i0].num_irqs = ((-2 * (next_i()%2)) + 1) * next_i();
+              pchg[_i0].num_irqs = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_pchg__i0__irqs0 = 1;
           pchg[_i0].irqs = (struct TYPE_2__ *) malloc(_len_pchg__i0__irqs0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_pchg__i0__irqs0; _j0++) {
-            pchg[_i0].irqs->virq = ((-2 * (next_i()%2)) + 1) * next_i();
-        pchg[_i0].irqs->which = ((-2 * (next_i()%2)) + 1) * next_i();
+              pchg[_i0].irqs->virq = ((-2 * (next_i()%2)) + 1) * next_i();
+          pchg[_i0].irqs->which = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_id0 = 1;
           int * id = (int *) malloc(_len_id0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_id0; _i0++) {
             id[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = lp8788_find_irq_id(pchg,virq,id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pchg0; _aux++) {
+          free(pchg[_aux].irqs);
+          }
+          free(pchg);
+          free(id);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int virq = 255;
+        
+          int _len_pchg0 = 65025;
+          struct lp8788_charger * pchg = (struct lp8788_charger *) malloc(_len_pchg0*sizeof(struct lp8788_charger));
+          for(int _i0 = 0; _i0 < _len_pchg0; _i0++) {
+              pchg[_i0].num_irqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pchg__i0__irqs0 = 1;
+          pchg[_i0].irqs = (struct TYPE_2__ *) malloc(_len_pchg__i0__irqs0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_pchg__i0__irqs0; _j0++) {
+              pchg[_i0].irqs->virq = ((-2 * (next_i()%2)) + 1) * next_i();
+          pchg[_i0].irqs->which = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_id0 = 65025;
+          int * id = (int *) malloc(_len_id0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_id0; _i0++) {
+            id[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = lp8788_find_irq_id(pchg,virq,id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pchg0; _aux++) {
+          free(pchg[_aux].irqs);
+          }
+          free(pchg);
+          free(id);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int virq = 10;
+        
+          int _len_pchg0 = 100;
+          struct lp8788_charger * pchg = (struct lp8788_charger *) malloc(_len_pchg0*sizeof(struct lp8788_charger));
+          for(int _i0 = 0; _i0 < _len_pchg0; _i0++) {
+              pchg[_i0].num_irqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pchg__i0__irqs0 = 1;
+          pchg[_i0].irqs = (struct TYPE_2__ *) malloc(_len_pchg__i0__irqs0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_pchg__i0__irqs0; _j0++) {
+              pchg[_i0].irqs->virq = ((-2 * (next_i()%2)) + 1) * next_i();
+          pchg[_i0].irqs->which = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_id0 = 100;
+          int * id = (int *) malloc(_len_id0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_id0; _i0++) {
+            id[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = lp8788_find_irq_id(pchg,virq,id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pchg0; _aux++) {
+          free(pchg[_aux].irqs);
+          }
+          free(pchg);
+          free(id);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int virq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pchg0 = 1;
+          struct lp8788_charger * pchg = (struct lp8788_charger *) malloc(_len_pchg0*sizeof(struct lp8788_charger));
+          for(int _i0 = 0; _i0 < _len_pchg0; _i0++) {
+              pchg[_i0].num_irqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pchg__i0__irqs0 = 1;
+          pchg[_i0].irqs = (struct TYPE_2__ *) malloc(_len_pchg__i0__irqs0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_pchg__i0__irqs0; _j0++) {
+              pchg[_i0].irqs->virq = ((-2 * (next_i()%2)) + 1) * next_i();
+          pchg[_i0].irqs->which = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_id0 = 1;
+          int * id = (int *) malloc(_len_id0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_id0; _i0++) {
+            id[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = lp8788_find_irq_id(pchg,virq,id);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_pchg0; _aux++) {

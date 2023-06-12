@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ __attribute__((used)) static DWORD clst2sect (	/* !=0:Sector number, 0:Failed (i
 	return fs->database + fs->csize * clst;		/* Start sector number of the cluster */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,17 +83,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int clst = 100;
+        
           int _len_fs0 = 1;
           struct TYPE_3__ * fs = (struct TYPE_3__ *) malloc(_len_fs0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
-            fs[_i0].n_fatent = ((-2 * (next_i()%2)) + 1) * next_i();
-        fs[_i0].database = ((-2 * (next_i()%2)) + 1) * next_i();
-        fs[_i0].csize = ((-2 * (next_i()%2)) + 1) * next_i();
+              fs[_i0].n_fatent = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs[_i0].database = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs[_i0].csize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = clst2sect(fs,clst);
+          printf("%d\n", benchRet); 
+          free(fs);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int clst = 255;
+        
+          int _len_fs0 = 65025;
+          struct TYPE_3__ * fs = (struct TYPE_3__ *) malloc(_len_fs0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
+              fs[_i0].n_fatent = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs[_i0].database = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs[_i0].csize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = clst2sect(fs,clst);
+          printf("%d\n", benchRet); 
+          free(fs);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int clst = 10;
+        
+          int _len_fs0 = 100;
+          struct TYPE_3__ * fs = (struct TYPE_3__ *) malloc(_len_fs0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
+              fs[_i0].n_fatent = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs[_i0].database = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs[_i0].csize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = clst2sect(fs,clst);
+          printf("%d\n", benchRet); 
+          free(fs);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int clst = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fs0 = 1;
+          struct TYPE_3__ * fs = (struct TYPE_3__ *) malloc(_len_fs0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
+              fs[_i0].n_fatent = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs[_i0].database = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs[_i0].csize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = clst2sect(fs,clst);
           printf("%d\n", benchRet); 
           free(fs);

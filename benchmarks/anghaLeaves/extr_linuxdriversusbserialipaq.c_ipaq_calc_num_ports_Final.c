@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -87,12 +89,6 @@ __attribute__((used)) static int ipaq_calc_num_ports(struct usb_serial *serial,
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,19 +101,44 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_serial0 = 1;
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_serial0 = 65025;
           struct usb_serial * serial = (struct usb_serial *) malloc(_len_serial0*sizeof(struct usb_serial));
           for(int _i0 = 0; _i0 < _len_serial0; _i0++) {
-            serial[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              serial[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_epds0 = 1;
+        
+          int _len_epds0 = 65025;
           struct usb_serial_endpoints * epds = (struct usb_serial_endpoints *) malloc(_len_epds0*sizeof(struct usb_serial_endpoints));
           for(int _i0 = 0; _i0 < _len_epds0; _i0++) {
-            epds[_i0].num_bulk_in = ((-2 * (next_i()%2)) + 1) * next_i();
-        epds[_i0].num_bulk_out = ((-2 * (next_i()%2)) + 1) * next_i();
+              epds[_i0].num_bulk_in = ((-2 * (next_i()%2)) + 1) * next_i();
+          epds[_i0].num_bulk_out = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_epds__i0__bulk_out0 = 1;
           epds[_i0].bulk_out = (int *) malloc(_len_epds__i0__bulk_out0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_epds__i0__bulk_out0; _j0++) {
@@ -128,7 +149,139 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_epds__i0__bulk_in0; _j0++) {
             epds[_i0].bulk_in[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int benchRet = ipaq_calc_num_ports(serial,epds);
+          printf("%d\n", benchRet); 
+          free(serial);
+          for(int _aux = 0; _aux < _len_epds0; _aux++) {
+          free(epds[_aux].bulk_out);
+          }
+          for(int _aux = 0; _aux < _len_epds0; _aux++) {
+          free(epds[_aux].bulk_in);
+          }
+          free(epds);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_serial0 = 100;
+          struct usb_serial * serial = (struct usb_serial *) malloc(_len_serial0*sizeof(struct usb_serial));
+          for(int _i0 = 0; _i0 < _len_serial0; _i0++) {
+              serial[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_epds0 = 100;
+          struct usb_serial_endpoints * epds = (struct usb_serial_endpoints *) malloc(_len_epds0*sizeof(struct usb_serial_endpoints));
+          for(int _i0 = 0; _i0 < _len_epds0; _i0++) {
+              epds[_i0].num_bulk_in = ((-2 * (next_i()%2)) + 1) * next_i();
+          epds[_i0].num_bulk_out = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_epds__i0__bulk_out0 = 1;
+          epds[_i0].bulk_out = (int *) malloc(_len_epds__i0__bulk_out0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_epds__i0__bulk_out0; _j0++) {
+            epds[_i0].bulk_out[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_epds__i0__bulk_in0 = 1;
+          epds[_i0].bulk_in = (int *) malloc(_len_epds__i0__bulk_in0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_epds__i0__bulk_in0; _j0++) {
+            epds[_i0].bulk_in[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = ipaq_calc_num_ports(serial,epds);
+          printf("%d\n", benchRet); 
+          free(serial);
+          for(int _aux = 0; _aux < _len_epds0; _aux++) {
+          free(epds[_aux].bulk_out);
+          }
+          for(int _aux = 0; _aux < _len_epds0; _aux++) {
+          free(epds[_aux].bulk_in);
+          }
+          free(epds);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_serial0 = 1;
+          struct usb_serial * serial = (struct usb_serial *) malloc(_len_serial0*sizeof(struct usb_serial));
+          for(int _i0 = 0; _i0 < _len_serial0; _i0++) {
+              serial[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_epds0 = 1;
+          struct usb_serial_endpoints * epds = (struct usb_serial_endpoints *) malloc(_len_epds0*sizeof(struct usb_serial_endpoints));
+          for(int _i0 = 0; _i0 < _len_epds0; _i0++) {
+              epds[_i0].num_bulk_in = ((-2 * (next_i()%2)) + 1) * next_i();
+          epds[_i0].num_bulk_out = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_epds__i0__bulk_out0 = 1;
+          epds[_i0].bulk_out = (int *) malloc(_len_epds__i0__bulk_out0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_epds__i0__bulk_out0; _j0++) {
+            epds[_i0].bulk_out[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_epds__i0__bulk_in0 = 1;
+          epds[_i0].bulk_in = (int *) malloc(_len_epds__i0__bulk_in0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_epds__i0__bulk_in0; _j0++) {
+            epds[_i0].bulk_in[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int benchRet = ipaq_calc_num_ports(serial,epds);
           printf("%d\n", benchRet); 
           free(serial);

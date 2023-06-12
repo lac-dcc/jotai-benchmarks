@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +76,6 @@ __attribute__((used)) static void reader_update_position(xmlreader *reader, WCHA
         reader->position.line_position++;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,18 +92,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           char ch = 100;
+        
           int _len_reader0 = 1;
           struct TYPE_5__ * reader = (struct TYPE_5__ *) malloc(_len_reader0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_reader0; _i0++) {
-            reader[_i0].position.line_position = ((-2 * (next_i()%2)) + 1) * next_i();
-        reader[_i0].position.line_number = ((-2 * (next_i()%2)) + 1) * next_i();
+              reader[_i0].position.line_position = ((-2 * (next_i()%2)) + 1) * next_i();
+          reader[_i0].position.line_number = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           reader_update_position(reader,ch);
           free(reader);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          char ch = 255;
+        
+          int _len_reader0 = 65025;
+          struct TYPE_5__ * reader = (struct TYPE_5__ *) malloc(_len_reader0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_reader0; _i0++) {
+              reader[_i0].position.line_position = ((-2 * (next_i()%2)) + 1) * next_i();
+          reader[_i0].position.line_number = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          reader_update_position(reader,ch);
+          free(reader);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          char ch = 10;
+        
+          int _len_reader0 = 100;
+          struct TYPE_5__ * reader = (struct TYPE_5__ *) malloc(_len_reader0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_reader0; _i0++) {
+              reader[_i0].position.line_position = ((-2 * (next_i()%2)) + 1) * next_i();
+          reader[_i0].position.line_number = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          reader_update_position(reader,ch);
+          free(reader);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          char ch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_reader0 = 1;
+          struct TYPE_5__ * reader = (struct TYPE_5__ *) malloc(_len_reader0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_reader0; _i0++) {
+              reader[_i0].position.line_position = ((-2 * (next_i()%2)) + 1) * next_i();
+          reader[_i0].position.line_number = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          reader_update_position(reader,ch);
+          free(reader);
+        
+        break;
+    }
     default:
         usage();
         break;

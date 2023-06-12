@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static void mg_null_if_connect_udp(struct mg_connection *c
   c->flags |= MG_F_CLOSE_IMMEDIATELY;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_c0 = 1;
+          int _len_c0 = 65025;
           struct mg_connection * c = (struct mg_connection *) malloc(_len_c0*sizeof(struct mg_connection));
           for(int _i0 = 0; _i0 < _len_c0; _i0++) {
-            c[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              c[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           mg_null_if_connect_udp(c);
           free(c);
         
@@ -98,14 +95,30 @@ int main(int argc, char *argv[]) {
           int _len_c0 = 100;
           struct mg_connection * c = (struct mg_connection *) malloc(_len_c0*sizeof(struct mg_connection));
           for(int _i0 = 0; _i0 < _len_c0; _i0++) {
-            c[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              c[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           mg_null_if_connect_udp(c);
           free(c);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_c0 = 1;
+          struct mg_connection * c = (struct mg_connection *) malloc(_len_c0*sizeof(struct mg_connection));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mg_null_if_connect_udp(c);
+          free(c);
+        
+        break;
+    }
     default:
         usage();
         break;

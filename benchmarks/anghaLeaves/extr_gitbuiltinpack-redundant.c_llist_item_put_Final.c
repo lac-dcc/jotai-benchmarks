@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -62,7 +63,6 @@ __attribute__((used)) static inline void llist_item_put(struct llist_item *item)
 	free_nodes = item;
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct llist_item *_allocate_item(int length, struct llist_item *aux_item[]) {
@@ -90,7 +90,6 @@ void _delete_item(struct llist_item *aux_item[], int aux_item_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,17 +102,28 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // linked
     case 0:
+    {
+          struct llist_item * aux_item[10000];
+          struct llist_item * item = _allocate_item(10000, aux_item);
+        
+          llist_item_put(item);
+          _delete_item(aux_item, 10000);
+        
+        break;
+    }
+    // empty
+    case 1:
     {
           struct llist_item * aux_item[1];
           struct llist_item * item = _allocate_item(1, aux_item);
+        
           llist_item_put(item);
           _delete_item(aux_item, 1);
         
         break;
     }
-
     default:
         usage();
         break;

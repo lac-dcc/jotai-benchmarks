@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ ifbond_flags_set_if_detaching(ifbond_ref ifb)
     return;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,14 +79,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ifb0 = 1;
+          int _len_ifb0 = 65025;
           struct TYPE_3__ * ifb = (struct TYPE_3__ *) malloc(_len_ifb0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_ifb0; _i0++) {
-            ifb[_i0].ifb_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              ifb[_i0].ifb_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ifbond_flags_set_if_detaching(ifb);
           free(ifb);
         
@@ -103,14 +100,30 @@ int main(int argc, char *argv[]) {
           int _len_ifb0 = 100;
           struct TYPE_3__ * ifb = (struct TYPE_3__ *) malloc(_len_ifb0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_ifb0; _i0++) {
-            ifb[_i0].ifb_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              ifb[_i0].ifb_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ifbond_flags_set_if_detaching(ifb);
           free(ifb);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ifb0 = 1;
+          struct TYPE_3__ * ifb = (struct TYPE_3__ *) malloc(_len_ifb0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ifb0; _i0++) {
+              ifb[_i0].ifb_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ifbond_flags_set_if_detaching(ifb);
+          free(ifb);
+        
+        break;
+    }
     default:
         usage();
         break;

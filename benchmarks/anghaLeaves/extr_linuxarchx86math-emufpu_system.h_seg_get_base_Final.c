@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static inline unsigned long seg_get_base(struct desc_struc
 	return base | ((unsigned long)d->base1 << 16) | d->base0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,16 +76,125 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_d0 = 65025;
+          struct desc_struct * d = (struct desc_struct *) malloc(_len_d0*sizeof(struct desc_struct));
+          for(int _i0 = 0; _i0 < _len_d0; _i0++) {
+              d[_i0].base0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          d[_i0].base1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          d[_i0].base2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = seg_get_base(d);
+          printf("%lu\n", benchRet); 
+          free(d);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_d0 = 100;
+          struct desc_struct * d = (struct desc_struct *) malloc(_len_d0*sizeof(struct desc_struct));
+          for(int _i0 = 0; _i0 < _len_d0; _i0++) {
+              d[_i0].base0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          d[_i0].base1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          d[_i0].base2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = seg_get_base(d);
+          printf("%lu\n", benchRet); 
+          free(d);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_d0 = 1;
           struct desc_struct * d = (struct desc_struct *) malloc(_len_d0*sizeof(struct desc_struct));
           for(int _i0 = 0; _i0 < _len_d0; _i0++) {
-            d[_i0].base0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        d[_i0].base1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        d[_i0].base2 = ((-2 * (next_i()%2)) + 1) * next_i();
+              d[_i0].base0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          d[_i0].base1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          d[_i0].base2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = seg_get_base(d);
           printf("%lu\n", benchRet); 
           free(d);

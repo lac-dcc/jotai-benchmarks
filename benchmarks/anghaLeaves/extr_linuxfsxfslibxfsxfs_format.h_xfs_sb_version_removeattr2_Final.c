@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static inline void xfs_sb_version_removeattr2(struct xfs_s
 		sbp->sb_versionnum &= ~XFS_SB_VERSION_MOREBITSBIT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,21 +78,54 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_sbp0 = 1;
+          int _len_sbp0 = 65025;
           struct xfs_sb * sbp = (struct xfs_sb *) malloc(_len_sbp0*sizeof(struct xfs_sb));
           for(int _i0 = 0; _i0 < _len_sbp0; _i0++) {
-            sbp[_i0].sb_versionnum = ((-2 * (next_i()%2)) + 1) * next_i();
-        sbp[_i0].sb_features2 = ((-2 * (next_i()%2)) + 1) * next_i();
+              sbp[_i0].sb_versionnum = ((-2 * (next_i()%2)) + 1) * next_i();
+          sbp[_i0].sb_features2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           xfs_sb_version_removeattr2(sbp);
           free(sbp);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_sbp0 = 100;
+          struct xfs_sb * sbp = (struct xfs_sb *) malloc(_len_sbp0*sizeof(struct xfs_sb));
+          for(int _i0 = 0; _i0 < _len_sbp0; _i0++) {
+              sbp[_i0].sb_versionnum = ((-2 * (next_i()%2)) + 1) * next_i();
+          sbp[_i0].sb_features2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          xfs_sb_version_removeattr2(sbp);
+          free(sbp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_sbp0 = 1;
+          struct xfs_sb * sbp = (struct xfs_sb *) malloc(_len_sbp0*sizeof(struct xfs_sb));
+          for(int _i0 = 0; _i0 < _len_sbp0; _i0++) {
+              sbp[_i0].sb_versionnum = ((-2 * (next_i()%2)) + 1) * next_i();
+          sbp[_i0].sb_features2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          xfs_sb_version_removeattr2(sbp);
+          free(sbp);
+        
+        break;
+    }
     default:
         usage();
         break;

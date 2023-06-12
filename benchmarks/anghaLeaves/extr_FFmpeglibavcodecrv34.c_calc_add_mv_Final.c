@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ __attribute__((used)) static int calc_add_mv(RV34DecContext *r, int dir, int val
     return (int)(val * (SUINT)mul + 0x2000) >> 14;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,20 +84,86 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int dir = 100;
+        
           int val = 100;
+        
           int _len_r0 = 1;
           struct TYPE_3__ * r = (struct TYPE_3__ *) malloc(_len_r0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_r0; _i0++) {
-            r[_i0].mv_weight2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        r[_i0].mv_weight1 = ((-2 * (next_i()%2)) + 1) * next_i();
+              r[_i0].mv_weight2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].mv_weight1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = calc_add_mv(r,dir,val);
           printf("%d\n", benchRet); 
           free(r);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int dir = 255;
+        
+          int val = 255;
+        
+          int _len_r0 = 65025;
+          struct TYPE_3__ * r = (struct TYPE_3__ *) malloc(_len_r0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+              r[_i0].mv_weight2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].mv_weight1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = calc_add_mv(r,dir,val);
+          printf("%d\n", benchRet); 
+          free(r);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int dir = 10;
+        
+          int val = 10;
+        
+          int _len_r0 = 100;
+          struct TYPE_3__ * r = (struct TYPE_3__ *) malloc(_len_r0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+              r[_i0].mv_weight2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].mv_weight1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = calc_add_mv(r,dir,val);
+          printf("%d\n", benchRet); 
+          free(r);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int dir = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_r0 = 1;
+          struct TYPE_3__ * r = (struct TYPE_3__ *) malloc(_len_r0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+              r[_i0].mv_weight2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].mv_weight1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = calc_add_mv(r,dir,val);
+          printf("%d\n", benchRet); 
+          free(r);
+        
+        break;
+    }
     default:
         usage();
         break;

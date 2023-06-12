@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -124,12 +127,6 @@ __attribute__((used)) static zend_bool opline_supports_assign_contraction(
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -142,30 +139,263 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 46
+          // dynamic_instructions_O0 : 46
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
           int src_var = 100;
+        
           long cv_var = 100;
+        
           int _len_ssa0 = 1;
           struct TYPE_11__ * ssa = (struct TYPE_11__ *) malloc(_len_ssa0*sizeof(struct TYPE_11__));
           for(int _i0 = 0; _i0 < _len_ssa0; _i0++) {
               int _len_ssa__i0__var_info0 = 1;
           ssa[_i0].var_info = (struct TYPE_8__ *) malloc(_len_ssa__i0__var_info0*sizeof(struct TYPE_8__));
           for(int _j0 = 0; _j0 < _len_ssa__i0__var_info0; _j0++) {
-            ssa[_i0].var_info->type = ((-2 * (next_i()%2)) + 1) * next_i();
+              ssa[_i0].var_info->type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_opline0 = 1;
           struct TYPE_12__ * opline = (struct TYPE_12__ *) malloc(_len_opline0*sizeof(struct TYPE_12__));
           for(int _i0 = 0; _i0 < _len_opline0; _i0++) {
-            opline[_i0].opcode = ((-2 * (next_i()%2)) + 1) * next_i();
-        opline[_i0].op1_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        opline[_i0].op2_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        opline[_i0].extended_value = ((-2 * (next_i()%2)) + 1) * next_i();
-        opline[_i0].op1.var = ((-2 * (next_i()%2)) + 1) * next_i();
-        opline[_i0].op2.var = ((-2 * (next_i()%2)) + 1) * next_i();
+              opline[_i0].opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+          opline[_i0].op1_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          opline[_i0].op2_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          opline[_i0].extended_value = ((-2 * (next_i()%2)) + 1) * next_i();
+          opline[_i0].op1.var = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          opline[_i0].op2.var = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = opline_supports_assign_contraction(ssa,opline,src_var,cv_var);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ssa0; _aux++) {
+          free(ssa[_aux].var_info);
+          }
+          free(ssa);
+          free(opline);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 46
+          // dynamic_instructions_O0 : 46
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          int src_var = 255;
+        
+          long cv_var = 255;
+        
+          int _len_ssa0 = 65025;
+          struct TYPE_11__ * ssa = (struct TYPE_11__ *) malloc(_len_ssa0*sizeof(struct TYPE_11__));
+          for(int _i0 = 0; _i0 < _len_ssa0; _i0++) {
+              int _len_ssa__i0__var_info0 = 1;
+          ssa[_i0].var_info = (struct TYPE_8__ *) malloc(_len_ssa__i0__var_info0*sizeof(struct TYPE_8__));
+          for(int _j0 = 0; _j0 < _len_ssa__i0__var_info0; _j0++) {
+              ssa[_i0].var_info->type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_opline0 = 65025;
+          struct TYPE_12__ * opline = (struct TYPE_12__ *) malloc(_len_opline0*sizeof(struct TYPE_12__));
+          for(int _i0 = 0; _i0 < _len_opline0; _i0++) {
+              opline[_i0].opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+          opline[_i0].op1_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          opline[_i0].op2_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          opline[_i0].extended_value = ((-2 * (next_i()%2)) + 1) * next_i();
+          opline[_i0].op1.var = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          opline[_i0].op2.var = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = opline_supports_assign_contraction(ssa,opline,src_var,cv_var);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ssa0; _aux++) {
+          free(ssa[_aux].var_info);
+          }
+          free(ssa);
+          free(opline);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 46
+          // dynamic_instructions_O0 : 46
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          int src_var = 10;
+        
+          long cv_var = 10;
+        
+          int _len_ssa0 = 100;
+          struct TYPE_11__ * ssa = (struct TYPE_11__ *) malloc(_len_ssa0*sizeof(struct TYPE_11__));
+          for(int _i0 = 0; _i0 < _len_ssa0; _i0++) {
+              int _len_ssa__i0__var_info0 = 1;
+          ssa[_i0].var_info = (struct TYPE_8__ *) malloc(_len_ssa__i0__var_info0*sizeof(struct TYPE_8__));
+          for(int _j0 = 0; _j0 < _len_ssa__i0__var_info0; _j0++) {
+              ssa[_i0].var_info->type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_opline0 = 100;
+          struct TYPE_12__ * opline = (struct TYPE_12__ *) malloc(_len_opline0*sizeof(struct TYPE_12__));
+          for(int _i0 = 0; _i0 < _len_opline0; _i0++) {
+              opline[_i0].opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+          opline[_i0].op1_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          opline[_i0].op2_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          opline[_i0].extended_value = ((-2 * (next_i()%2)) + 1) * next_i();
+          opline[_i0].op1.var = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          opline[_i0].op2.var = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = opline_supports_assign_contraction(ssa,opline,src_var,cv_var);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ssa0; _aux++) {
+          free(ssa[_aux].var_info);
+          }
+          free(ssa);
+          free(opline);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 46
+          // dynamic_instructions_O0 : 46
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          int src_var = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long cv_var = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ssa0 = 1;
+          struct TYPE_11__ * ssa = (struct TYPE_11__ *) malloc(_len_ssa0*sizeof(struct TYPE_11__));
+          for(int _i0 = 0; _i0 < _len_ssa0; _i0++) {
+              int _len_ssa__i0__var_info0 = 1;
+          ssa[_i0].var_info = (struct TYPE_8__ *) malloc(_len_ssa__i0__var_info0*sizeof(struct TYPE_8__));
+          for(int _j0 = 0; _j0 < _len_ssa__i0__var_info0; _j0++) {
+              ssa[_i0].var_info->type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_opline0 = 1;
+          struct TYPE_12__ * opline = (struct TYPE_12__ *) malloc(_len_opline0*sizeof(struct TYPE_12__));
+          for(int _i0 = 0; _i0 < _len_opline0; _i0++) {
+              opline[_i0].opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+          opline[_i0].op1_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          opline[_i0].op2_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          opline[_i0].extended_value = ((-2 * (next_i()%2)) + 1) * next_i();
+          opline[_i0].op1.var = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          opline[_i0].op2.var = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = opline_supports_assign_contraction(ssa,opline,src_var,cv_var);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_ssa0; _aux++) {

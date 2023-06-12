@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ ssize_t tmc_etb_get_sysfs_trace(struct tmc_drvdata *drvdata,
 	return actual;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,17 +89,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long pos = 100;
+        
           unsigned long len = 100;
+        
           int _len_drvdata0 = 1;
           struct tmc_drvdata * drvdata = (struct tmc_drvdata *) malloc(_len_drvdata0*sizeof(struct tmc_drvdata));
           for(int _i0 = 0; _i0 < _len_drvdata0; _i0++) {
-            drvdata[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+              drvdata[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_drvdata__i0__buf0 = 1;
           drvdata[_i0].buf = (char *) malloc(_len_drvdata__i0__buf0*sizeof(char));
           for(int _j0 = 0; _j0 < _len_drvdata__i0__buf0; _j0++) {
             drvdata[_i0].buf[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int _len_bufpp0 = 1;
           char ** bufpp = (char **) malloc(_len_bufpp0*sizeof(char *));
           for(int _i0 = 0; _i0 < _len_bufpp0; _i0++) {
@@ -112,6 +113,7 @@ int main(int argc, char *argv[]) {
               bufpp[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           long benchRet = tmc_etb_get_sysfs_trace(drvdata,pos,len,bufpp);
           printf("%ld\n", benchRet); 
           for(int _aux = 0; _aux < _len_drvdata0; _aux++) {
@@ -119,14 +121,138 @@ int main(int argc, char *argv[]) {
           }
           free(drvdata);
           for(int i1 = 0; i1 < _len_bufpp0; i1++) {
-            int _len_bufpp1 = 1;
               free(bufpp[i1]);
           }
           free(bufpp);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long pos = 255;
+        
+          unsigned long len = 255;
+        
+          int _len_drvdata0 = 65025;
+          struct tmc_drvdata * drvdata = (struct tmc_drvdata *) malloc(_len_drvdata0*sizeof(struct tmc_drvdata));
+          for(int _i0 = 0; _i0 < _len_drvdata0; _i0++) {
+              drvdata[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_drvdata__i0__buf0 = 1;
+          drvdata[_i0].buf = (char *) malloc(_len_drvdata__i0__buf0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_drvdata__i0__buf0; _j0++) {
+            drvdata[_i0].buf[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_bufpp0 = 65025;
+          char ** bufpp = (char **) malloc(_len_bufpp0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_bufpp0; _i0++) {
+            int _len_bufpp1 = 1;
+            bufpp[_i0] = (char *) malloc(_len_bufpp1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_bufpp1; _i1++) {
+              bufpp[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          long benchRet = tmc_etb_get_sysfs_trace(drvdata,pos,len,bufpp);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_drvdata0; _aux++) {
+          free(drvdata[_aux].buf);
+          }
+          free(drvdata);
+          for(int i1 = 0; i1 < _len_bufpp0; i1++) {
+              free(bufpp[i1]);
+          }
+          free(bufpp);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long pos = 10;
+        
+          unsigned long len = 10;
+        
+          int _len_drvdata0 = 100;
+          struct tmc_drvdata * drvdata = (struct tmc_drvdata *) malloc(_len_drvdata0*sizeof(struct tmc_drvdata));
+          for(int _i0 = 0; _i0 < _len_drvdata0; _i0++) {
+              drvdata[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_drvdata__i0__buf0 = 1;
+          drvdata[_i0].buf = (char *) malloc(_len_drvdata__i0__buf0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_drvdata__i0__buf0; _j0++) {
+            drvdata[_i0].buf[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_bufpp0 = 100;
+          char ** bufpp = (char **) malloc(_len_bufpp0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_bufpp0; _i0++) {
+            int _len_bufpp1 = 1;
+            bufpp[_i0] = (char *) malloc(_len_bufpp1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_bufpp1; _i1++) {
+              bufpp[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          long benchRet = tmc_etb_get_sysfs_trace(drvdata,pos,len,bufpp);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_drvdata0; _aux++) {
+          free(drvdata[_aux].buf);
+          }
+          free(drvdata);
+          for(int i1 = 0; i1 < _len_bufpp0; i1++) {
+              free(bufpp[i1]);
+          }
+          free(bufpp);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_drvdata0 = 1;
+          struct tmc_drvdata * drvdata = (struct tmc_drvdata *) malloc(_len_drvdata0*sizeof(struct tmc_drvdata));
+          for(int _i0 = 0; _i0 < _len_drvdata0; _i0++) {
+              drvdata[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_drvdata__i0__buf0 = 1;
+          drvdata[_i0].buf = (char *) malloc(_len_drvdata__i0__buf0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_drvdata__i0__buf0; _j0++) {
+            drvdata[_i0].buf[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_bufpp0 = 1;
+          char ** bufpp = (char **) malloc(_len_bufpp0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_bufpp0; _i0++) {
+            int _len_bufpp1 = 1;
+            bufpp[_i0] = (char *) malloc(_len_bufpp1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_bufpp1; _i1++) {
+              bufpp[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          long benchRet = tmc_etb_get_sysfs_trace(drvdata,pos,len,bufpp);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_drvdata0; _aux++) {
+          free(drvdata[_aux].buf);
+          }
+          free(drvdata);
+          for(int i1 = 0; i1 < _len_bufpp0; i1++) {
+              free(bufpp[i1]);
+          }
+          free(bufpp);
+        
+        break;
+    }
     default:
         usage();
         break;

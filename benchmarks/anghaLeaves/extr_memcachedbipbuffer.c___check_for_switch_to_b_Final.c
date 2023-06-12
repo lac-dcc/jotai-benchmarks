@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static void __check_for_switch_to_b(bipbuf_t* me)
         me->b_inuse = 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,24 +77,63 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_me0 = 1;
+          int _len_me0 = 65025;
           struct TYPE_3__ * me = (struct TYPE_3__ *) malloc(_len_me0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_me0; _i0++) {
-            me[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
-        me[_i0].a_end = ((-2 * (next_i()%2)) + 1) * next_i();
-        me[_i0].a_start = ((-2 * (next_i()%2)) + 1) * next_i();
-        me[_i0].b_end = ((-2 * (next_i()%2)) + 1) * next_i();
-        me[_i0].b_inuse = ((-2 * (next_i()%2)) + 1) * next_i();
+              me[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          me[_i0].a_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          me[_i0].a_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          me[_i0].b_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          me[_i0].b_inuse = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           __check_for_switch_to_b(me);
           free(me);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_me0 = 100;
+          struct TYPE_3__ * me = (struct TYPE_3__ *) malloc(_len_me0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_me0; _i0++) {
+              me[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          me[_i0].a_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          me[_i0].a_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          me[_i0].b_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          me[_i0].b_inuse = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          __check_for_switch_to_b(me);
+          free(me);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_me0 = 1;
+          struct TYPE_3__ * me = (struct TYPE_3__ *) malloc(_len_me0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_me0; _i0++) {
+              me[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          me[_i0].a_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          me[_i0].a_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          me[_i0].b_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          me[_i0].b_inuse = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          __check_for_switch_to_b(me);
+          free(me);
+        
+        break;
+    }
     default:
         usage();
         break;

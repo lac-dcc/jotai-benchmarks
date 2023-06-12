@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ int regmap_get_val_bytes(struct regmap *map)
 	return map->format.val_bytes;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,22 +80,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_map0 = 1;
+          int _len_map0 = 65025;
           struct regmap * map = (struct regmap *) malloc(_len_map0*sizeof(struct regmap));
           for(int _i0 = 0; _i0 < _len_map0; _i0++) {
-            map[_i0].format.val_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        map[_i0].format.format_write = ((-2 * (next_i()%2)) + 1) * next_i();
+              map[_i0].format.val_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          map[_i0].format.format_write = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = regmap_get_val_bytes(map);
           printf("%d\n", benchRet); 
           free(map);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_map0 = 100;
+          struct regmap * map = (struct regmap *) malloc(_len_map0*sizeof(struct regmap));
+          for(int _i0 = 0; _i0 < _len_map0; _i0++) {
+              map[_i0].format.val_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          map[_i0].format.format_write = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = regmap_get_val_bytes(map);
+          printf("%d\n", benchRet); 
+          free(map);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_map0 = 1;
+          struct regmap * map = (struct regmap *) malloc(_len_map0*sizeof(struct regmap));
+          for(int _i0 = 0; _i0 < _len_map0; _i0++) {
+              map[_i0].format.val_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          map[_i0].format.format_write = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = regmap_get_val_bytes(map);
+          printf("%d\n", benchRet); 
+          free(map);
+        
+        break;
+    }
     default:
         usage();
         break;

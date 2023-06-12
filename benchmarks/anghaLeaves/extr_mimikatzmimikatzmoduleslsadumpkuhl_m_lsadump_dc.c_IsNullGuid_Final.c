@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static BOOL IsNullGuid(GUID* Guid)
 	return FALSE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,24 +85,63 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_Guid0 = 1;
+          int _len_Guid0 = 65025;
           struct TYPE_3__ * Guid = (struct TYPE_3__ *) malloc(_len_Guid0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_Guid0; _i0++) {
-            Guid[_i0].Data1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        Guid[_i0].Data2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        Guid[_i0].Data3 = ((-2 * (next_i()%2)) + 1) * next_i();
-        Guid[_i0].Data4 = ((-2 * (next_i()%2)) + 1) * next_i();
+              Guid[_i0].Data1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          Guid[_i0].Data2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          Guid[_i0].Data3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          Guid[_i0].Data4 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = IsNullGuid(Guid);
           printf("%d\n", benchRet); 
           free(Guid);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_Guid0 = 100;
+          struct TYPE_3__ * Guid = (struct TYPE_3__ *) malloc(_len_Guid0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_Guid0; _i0++) {
+              Guid[_i0].Data1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          Guid[_i0].Data2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          Guid[_i0].Data3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          Guid[_i0].Data4 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = IsNullGuid(Guid);
+          printf("%d\n", benchRet); 
+          free(Guid);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_Guid0 = 1;
+          struct TYPE_3__ * Guid = (struct TYPE_3__ *) malloc(_len_Guid0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_Guid0; _i0++) {
+              Guid[_i0].Data1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          Guid[_i0].Data2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          Guid[_i0].Data3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          Guid[_i0].Data4 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = IsNullGuid(Guid);
+          printf("%d\n", benchRet); 
+          free(Guid);
+        
+        break;
+    }
     default:
         usage();
         break;

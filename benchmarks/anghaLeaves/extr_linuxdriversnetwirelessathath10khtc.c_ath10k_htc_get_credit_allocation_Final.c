@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ __attribute__((used)) static u8 ath10k_htc_get_credit_allocation(struct ath10k_h
 	return allocation;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,11 +91,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long service_id = 100;
+        
           int _len_htc0 = 1;
           struct ath10k_htc * htc = (struct ath10k_htc *) malloc(_len_htc0*sizeof(struct ath10k_htc));
           for(int _i0 = 0; _i0 < _len_htc0; _i0++) {
-            htc[_i0].total_transmit_credits = ((-2 * (next_i()%2)) + 1) * next_i();
+              htc[_i0].total_transmit_credits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = ath10k_htc_get_credit_allocation(htc,service_id);
+          printf("%d\n", benchRet); 
+          free(htc);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long service_id = 255;
+        
+          int _len_htc0 = 65025;
+          struct ath10k_htc * htc = (struct ath10k_htc *) malloc(_len_htc0*sizeof(struct ath10k_htc));
+          for(int _i0 = 0; _i0 < _len_htc0; _i0++) {
+              htc[_i0].total_transmit_credits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = ath10k_htc_get_credit_allocation(htc,service_id);
           printf("%d\n", benchRet); 
           free(htc);
@@ -107,21 +124,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long service_id = 10;
+        
           int _len_htc0 = 100;
           struct ath10k_htc * htc = (struct ath10k_htc *) malloc(_len_htc0*sizeof(struct ath10k_htc));
           for(int _i0 = 0; _i0 < _len_htc0; _i0++) {
-            htc[_i0].total_transmit_credits = ((-2 * (next_i()%2)) + 1) * next_i();
+              htc[_i0].total_transmit_credits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ath10k_htc_get_credit_allocation(htc,service_id);
           printf("%d\n", benchRet); 
           free(htc);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long service_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_htc0 = 1;
+          struct ath10k_htc * htc = (struct ath10k_htc *) malloc(_len_htc0*sizeof(struct ath10k_htc));
+          for(int _i0 = 0; _i0 < _len_htc0; _i0++) {
+              htc[_i0].total_transmit_credits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ath10k_htc_get_credit_allocation(htc,service_id);
+          printf("%d\n", benchRet); 
+          free(htc);
+        
+        break;
+    }
     default:
         usage();
         break;

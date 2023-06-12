@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static void brcmf_init_conf(struct brcmf_cfg80211_conf *co
 	conf->retry_long = (u32)-1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,13 +78,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_conf0 = 1;
+          int _len_conf0 = 65025;
           struct brcmf_cfg80211_conf * conf = (struct brcmf_cfg80211_conf *) malloc(_len_conf0*sizeof(struct brcmf_cfg80211_conf));
           for(int _i0 = 0; _i0 < _len_conf0; _i0++) {
-              }
+            
+          }
+        
           brcmf_init_conf(conf);
           free(conf);
         
@@ -101,13 +98,28 @@ int main(int argc, char *argv[]) {
           int _len_conf0 = 100;
           struct brcmf_cfg80211_conf * conf = (struct brcmf_cfg80211_conf *) malloc(_len_conf0*sizeof(struct brcmf_cfg80211_conf));
           for(int _i0 = 0; _i0 < _len_conf0; _i0++) {
-              }
+            
+          }
+        
           brcmf_init_conf(conf);
           free(conf);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_conf0 = 1;
+          struct brcmf_cfg80211_conf * conf = (struct brcmf_cfg80211_conf *) malloc(_len_conf0*sizeof(struct brcmf_cfg80211_conf));
+          for(int _i0 = 0; _i0 < _len_conf0; _i0++) {
+            
+          }
+        
+          brcmf_init_conf(conf);
+          free(conf);
+        
+        break;
+    }
     default:
         usage();
         break;

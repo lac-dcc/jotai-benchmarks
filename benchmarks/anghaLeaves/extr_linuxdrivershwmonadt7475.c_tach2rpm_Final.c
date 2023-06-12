@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static inline int tach2rpm(u16 tach)
 	return (90000 * 60) / tach;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,6 +82,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int tach = 100;
+        
           int benchRet = tach2rpm(tach);
           printf("%d\n", benchRet); 
         
@@ -96,6 +92,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int tach = 255;
+        
           int benchRet = tach2rpm(tach);
           printf("%d\n", benchRet); 
         
@@ -105,12 +102,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int tach = 10;
+        
           int benchRet = tach2rpm(tach);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int tach = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = tach2rpm(tach);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -87,12 +90,6 @@ void fallbackSimpleSort ( UInt32* fmap,
    }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -109,24 +106,102 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int lo = 100;
+        
           int hi = 100;
+        
           int _len_fmap0 = 1;
           unsigned long * fmap = (unsigned long *) malloc(_len_fmap0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_fmap0; _i0++) {
             fmap[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_eclass0 = 1;
           unsigned long * eclass = (unsigned long *) malloc(_len_eclass0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_eclass0; _i0++) {
             eclass[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           fallbackSimpleSort(fmap,eclass,lo,hi);
           free(fmap);
           free(eclass);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int lo = 255;
+        
+          int hi = 255;
+        
+          int _len_fmap0 = 65025;
+          unsigned long * fmap = (unsigned long *) malloc(_len_fmap0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_fmap0; _i0++) {
+            fmap[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_eclass0 = 65025;
+          unsigned long * eclass = (unsigned long *) malloc(_len_eclass0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_eclass0; _i0++) {
+            eclass[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          fallbackSimpleSort(fmap,eclass,lo,hi);
+          free(fmap);
+          free(eclass);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int lo = 10;
+        
+          int hi = 10;
+        
+          int _len_fmap0 = 100;
+          unsigned long * fmap = (unsigned long *) malloc(_len_fmap0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_fmap0; _i0++) {
+            fmap[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_eclass0 = 100;
+          unsigned long * eclass = (unsigned long *) malloc(_len_eclass0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_eclass0; _i0++) {
+            eclass[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          fallbackSimpleSort(fmap,eclass,lo,hi);
+          free(fmap);
+          free(eclass);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int lo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int hi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fmap0 = 1;
+          unsigned long * fmap = (unsigned long *) malloc(_len_fmap0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_fmap0; _i0++) {
+            fmap[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_eclass0 = 1;
+          unsigned long * eclass = (unsigned long *) malloc(_len_eclass0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_eclass0; _i0++) {
+            eclass[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          fallbackSimpleSort(fmap,eclass,lo,hi);
+          free(fmap);
+          free(eclass);
+        
+        break;
+    }
     default:
         usage();
         break;

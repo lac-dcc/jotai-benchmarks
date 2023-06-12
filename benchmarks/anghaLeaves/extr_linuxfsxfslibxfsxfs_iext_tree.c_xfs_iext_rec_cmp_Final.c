@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +78,6 @@ xfs_iext_rec_cmp(
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,16 +90,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           long offset = 100;
+        
           int _len_rec0 = 1;
           struct xfs_iext_rec * rec = (struct xfs_iext_rec *) malloc(_len_rec0*sizeof(struct xfs_iext_rec));
           for(int _i0 = 0; _i0 < _len_rec0; _i0++) {
-            rec[_i0].lo = ((-2 * (next_i()%2)) + 1) * next_i();
-        rec[_i0].hi = ((-2 * (next_i()%2)) + 1) * next_i();
+              rec[_i0].lo = ((-2 * (next_i()%2)) + 1) * next_i();
+          rec[_i0].hi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = xfs_iext_rec_cmp(rec,offset);
+          printf("%d\n", benchRet); 
+          free(rec);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          long offset = 255;
+        
+          int _len_rec0 = 65025;
+          struct xfs_iext_rec * rec = (struct xfs_iext_rec *) malloc(_len_rec0*sizeof(struct xfs_iext_rec));
+          for(int _i0 = 0; _i0 < _len_rec0; _i0++) {
+              rec[_i0].lo = ((-2 * (next_i()%2)) + 1) * next_i();
+          rec[_i0].hi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = xfs_iext_rec_cmp(rec,offset);
+          printf("%d\n", benchRet); 
+          free(rec);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          long offset = 10;
+        
+          int _len_rec0 = 100;
+          struct xfs_iext_rec * rec = (struct xfs_iext_rec *) malloc(_len_rec0*sizeof(struct xfs_iext_rec));
+          for(int _i0 = 0; _i0 < _len_rec0; _i0++) {
+              rec[_i0].lo = ((-2 * (next_i()%2)) + 1) * next_i();
+          rec[_i0].hi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = xfs_iext_rec_cmp(rec,offset);
+          printf("%d\n", benchRet); 
+          free(rec);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          long offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rec0 = 1;
+          struct xfs_iext_rec * rec = (struct xfs_iext_rec *) malloc(_len_rec0*sizeof(struct xfs_iext_rec));
+          for(int _i0 = 0; _i0 < _len_rec0; _i0++) {
+              rec[_i0].lo = ((-2 * (next_i()%2)) + 1) * next_i();
+          rec[_i0].hi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = xfs_iext_rec_cmp(rec,offset);
           printf("%d\n", benchRet); 
           free(rec);

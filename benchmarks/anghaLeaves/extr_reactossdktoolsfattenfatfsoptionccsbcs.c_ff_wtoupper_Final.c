@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -103,12 +104,6 @@ WCHAR ff_wtoupper (	/* Returns upper converted character */
 	return chr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -125,6 +120,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int chr = 100;
+        
           int benchRet = ff_wtoupper(chr);
           printf("%d\n", benchRet); 
         
@@ -134,6 +130,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int chr = 255;
+        
           int benchRet = ff_wtoupper(chr);
           printf("%d\n", benchRet); 
         
@@ -143,12 +140,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int chr = 10;
+        
           int benchRet = ff_wtoupper(chr);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int chr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = ff_wtoupper(chr);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

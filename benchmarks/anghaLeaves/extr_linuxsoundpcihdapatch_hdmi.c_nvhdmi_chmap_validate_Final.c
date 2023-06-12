@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ __attribute__((used)) static int nvhdmi_chmap_validate(struct hdac_chmap *chmap,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,17 +86,22 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int ca = 100;
+        
           int chs = 100;
+        
           int _len_chmap0 = 1;
           struct hdac_chmap * chmap = (struct hdac_chmap *) malloc(_len_chmap0*sizeof(struct hdac_chmap));
           for(int _i0 = 0; _i0 < _len_chmap0; _i0++) {
-            chmap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              chmap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_map0 = 1;
           unsigned char * map = (unsigned char *) malloc(_len_map0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_map0; _i0++) {
             map[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = nvhdmi_chmap_validate(chmap,ca,chs,map);
           printf("%d\n", benchRet); 
           free(chmap);
@@ -107,7 +109,87 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int ca = 255;
+        
+          int chs = 255;
+        
+          int _len_chmap0 = 65025;
+          struct hdac_chmap * chmap = (struct hdac_chmap *) malloc(_len_chmap0*sizeof(struct hdac_chmap));
+          for(int _i0 = 0; _i0 < _len_chmap0; _i0++) {
+              chmap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_map0 = 65025;
+          unsigned char * map = (unsigned char *) malloc(_len_map0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_map0; _i0++) {
+            map[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = nvhdmi_chmap_validate(chmap,ca,chs,map);
+          printf("%d\n", benchRet); 
+          free(chmap);
+          free(map);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int ca = 10;
+        
+          int chs = 10;
+        
+          int _len_chmap0 = 100;
+          struct hdac_chmap * chmap = (struct hdac_chmap *) malloc(_len_chmap0*sizeof(struct hdac_chmap));
+          for(int _i0 = 0; _i0 < _len_chmap0; _i0++) {
+              chmap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_map0 = 100;
+          unsigned char * map = (unsigned char *) malloc(_len_map0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_map0; _i0++) {
+            map[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = nvhdmi_chmap_validate(chmap,ca,chs,map);
+          printf("%d\n", benchRet); 
+          free(chmap);
+          free(map);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int ca = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int chs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_chmap0 = 1;
+          struct hdac_chmap * chmap = (struct hdac_chmap *) malloc(_len_chmap0*sizeof(struct hdac_chmap));
+          for(int _i0 = 0; _i0 < _len_chmap0; _i0++) {
+              chmap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_map0 = 1;
+          unsigned char * map = (unsigned char *) malloc(_len_map0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_map0; _i0++) {
+            map[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = nvhdmi_chmap_validate(chmap,ca,chs,map);
+          printf("%d\n", benchRet); 
+          free(chmap);
+          free(map);
+        
+        break;
+    }
     default:
         usage();
         break;

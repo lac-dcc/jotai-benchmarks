@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static u32 hisi_l3c_pmu_get_counter_offset(int cntr_idx)
 	return (L3C_CNTR0_LOWER + (cntr_idx * 8));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int cntr_idx = 100;
+        
           long benchRet = hisi_l3c_pmu_get_counter_offset(cntr_idx);
           printf("%ld\n", benchRet); 
         
@@ -94,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int cntr_idx = 255;
+        
           long benchRet = hisi_l3c_pmu_get_counter_offset(cntr_idx);
           printf("%ld\n", benchRet); 
         
@@ -103,12 +100,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int cntr_idx = 10;
+        
           long benchRet = hisi_l3c_pmu_get_counter_offset(cntr_idx);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int cntr_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long benchRet = hisi_l3c_pmu_get_counter_offset(cntr_idx);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

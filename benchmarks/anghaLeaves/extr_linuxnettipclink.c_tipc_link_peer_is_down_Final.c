@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ bool tipc_link_peer_is_down(struct tipc_link *l)
 	return l->state == LINK_PEER_RESET;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_l0 = 1;
+          int _len_l0 = 65025;
           struct tipc_link * l = (struct tipc_link *) malloc(_len_l0*sizeof(struct tipc_link));
           for(int _i0 = 0; _i0 < _len_l0; _i0++) {
-            l[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+              l[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = tipc_link_peer_is_down(l);
           printf("%d\n", benchRet); 
           free(l);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_l0 = 100;
           struct tipc_link * l = (struct tipc_link *) malloc(_len_l0*sizeof(struct tipc_link));
           for(int _i0 = 0; _i0 < _len_l0; _i0++) {
-            l[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+              l[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = tipc_link_peer_is_down(l);
           printf("%d\n", benchRet); 
           free(l);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_l0 = 1;
+          struct tipc_link * l = (struct tipc_link *) malloc(_len_l0*sizeof(struct tipc_link));
+          for(int _i0 = 0; _i0 < _len_l0; _i0++) {
+              l[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = tipc_link_peer_is_down(l);
+          printf("%d\n", benchRet); 
+          free(l);
+        
+        break;
+    }
     default:
         usage();
         break;

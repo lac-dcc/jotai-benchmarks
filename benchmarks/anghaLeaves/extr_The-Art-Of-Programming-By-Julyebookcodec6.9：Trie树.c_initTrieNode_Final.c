@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ void initTrieNode(TrieNode* p, char c)
         p->nextMap[i] = NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,10 +85,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           char c = 100;
+        
           int _len_p0 = 1;
           struct TYPE_3__ * p = (struct TYPE_3__ *) malloc(_len_p0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].c = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].c = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_p__i0__nextMap0 = 1;
           p[_i0].nextMap = (int **) malloc(_len_p__i0__nextMap0*sizeof(int *));
           for(int _j0 = 0; _j0 < _len_p__i0__nextMap0; _j0++) {
@@ -101,8 +99,10 @@ int main(int argc, char *argv[]) {
               p[_i0].nextMap[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
-        p[_i0].counter = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].counter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           initTrieNode(p,c);
           for(int _aux = 0; _aux < _len_p0; _aux++) {
           free(*(p[_aux].nextMap));
@@ -112,7 +112,99 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          char c = 255;
+        
+          int _len_p0 = 65025;
+          struct TYPE_3__ * p = (struct TYPE_3__ *) malloc(_len_p0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].c = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_p__i0__nextMap0 = 1;
+          p[_i0].nextMap = (int **) malloc(_len_p__i0__nextMap0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_p__i0__nextMap0; _j0++) {
+            int _len_p__i0__nextMap1 = 1;
+            p[_i0].nextMap[_j0] = (int *) malloc(_len_p__i0__nextMap1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_p__i0__nextMap1; _j1++) {
+              p[_i0].nextMap[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+          p[_i0].counter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          initTrieNode(p,c);
+          for(int _aux = 0; _aux < _len_p0; _aux++) {
+          free(*(p[_aux].nextMap));
+        free(p[_aux].nextMap);
+          }
+          free(p);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          char c = 10;
+        
+          int _len_p0 = 100;
+          struct TYPE_3__ * p = (struct TYPE_3__ *) malloc(_len_p0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].c = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_p__i0__nextMap0 = 1;
+          p[_i0].nextMap = (int **) malloc(_len_p__i0__nextMap0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_p__i0__nextMap0; _j0++) {
+            int _len_p__i0__nextMap1 = 1;
+            p[_i0].nextMap[_j0] = (int *) malloc(_len_p__i0__nextMap1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_p__i0__nextMap1; _j1++) {
+              p[_i0].nextMap[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+          p[_i0].counter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          initTrieNode(p,c);
+          for(int _aux = 0; _aux < _len_p0; _aux++) {
+          free(*(p[_aux].nextMap));
+        free(p[_aux].nextMap);
+          }
+          free(p);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          char c = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_p0 = 1;
+          struct TYPE_3__ * p = (struct TYPE_3__ *) malloc(_len_p0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].c = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_p__i0__nextMap0 = 1;
+          p[_i0].nextMap = (int **) malloc(_len_p__i0__nextMap0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_p__i0__nextMap0; _j0++) {
+            int _len_p__i0__nextMap1 = 1;
+            p[_i0].nextMap[_j0] = (int *) malloc(_len_p__i0__nextMap1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_p__i0__nextMap1; _j1++) {
+              p[_i0].nextMap[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+          p[_i0].counter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          initTrieNode(p,c);
+          for(int _aux = 0; _aux < _len_p0; _aux++) {
+          free(*(p[_aux].nextMap));
+        free(p[_aux].nextMap);
+          }
+          free(p);
+        
+        break;
+    }
     default:
         usage();
         break;

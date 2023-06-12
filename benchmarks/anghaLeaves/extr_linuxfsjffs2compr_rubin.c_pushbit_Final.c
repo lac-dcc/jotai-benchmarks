@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +74,6 @@ __attribute__((used)) static inline int pushbit(struct pushpull *pp, int bit, in
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,23 +86,212 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int bit = 100;
+        
           int use_reserved = 100;
+        
           int _len_pp0 = 1;
           struct pushpull * pp = (struct pushpull *) malloc(_len_pp0*sizeof(struct pushpull));
           for(int _i0 = 0; _i0 < _len_pp0; _i0++) {
-            pp[_i0].ofs = ((-2 * (next_i()%2)) + 1) * next_i();
-        pp[_i0].buflen = ((-2 * (next_i()%2)) + 1) * next_i();
-        pp[_i0].reserve = ((-2 * (next_i()%2)) + 1) * next_i();
+              pp[_i0].ofs = ((-2 * (next_i()%2)) + 1) * next_i();
+          pp[_i0].buflen = ((-2 * (next_i()%2)) + 1) * next_i();
+          pp[_i0].reserve = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_pp__i0__buf0 = 1;
           pp[_i0].buf = (int *) malloc(_len_pp__i0__buf0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_pp__i0__buf0; _j0++) {
             pp[_i0].buf[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int benchRet = pushbit(pp,bit,use_reserved);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pp0; _aux++) {
+          free(pp[_aux].buf);
+          }
+          free(pp);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int bit = 255;
+        
+          int use_reserved = 255;
+        
+          int _len_pp0 = 65025;
+          struct pushpull * pp = (struct pushpull *) malloc(_len_pp0*sizeof(struct pushpull));
+          for(int _i0 = 0; _i0 < _len_pp0; _i0++) {
+              pp[_i0].ofs = ((-2 * (next_i()%2)) + 1) * next_i();
+          pp[_i0].buflen = ((-2 * (next_i()%2)) + 1) * next_i();
+          pp[_i0].reserve = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pp__i0__buf0 = 1;
+          pp[_i0].buf = (int *) malloc(_len_pp__i0__buf0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_pp__i0__buf0; _j0++) {
+            pp[_i0].buf[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = pushbit(pp,bit,use_reserved);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pp0; _aux++) {
+          free(pp[_aux].buf);
+          }
+          free(pp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int bit = 10;
+        
+          int use_reserved = 10;
+        
+          int _len_pp0 = 100;
+          struct pushpull * pp = (struct pushpull *) malloc(_len_pp0*sizeof(struct pushpull));
+          for(int _i0 = 0; _i0 < _len_pp0; _i0++) {
+              pp[_i0].ofs = ((-2 * (next_i()%2)) + 1) * next_i();
+          pp[_i0].buflen = ((-2 * (next_i()%2)) + 1) * next_i();
+          pp[_i0].reserve = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pp__i0__buf0 = 1;
+          pp[_i0].buf = (int *) malloc(_len_pp__i0__buf0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_pp__i0__buf0; _j0++) {
+            pp[_i0].buf[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = pushbit(pp,bit,use_reserved);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pp0; _aux++) {
+          free(pp[_aux].buf);
+          }
+          free(pp);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int bit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int use_reserved = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pp0 = 1;
+          struct pushpull * pp = (struct pushpull *) malloc(_len_pp0*sizeof(struct pushpull));
+          for(int _i0 = 0; _i0 < _len_pp0; _i0++) {
+              pp[_i0].ofs = ((-2 * (next_i()%2)) + 1) * next_i();
+          pp[_i0].buflen = ((-2 * (next_i()%2)) + 1) * next_i();
+          pp[_i0].reserve = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pp__i0__buf0 = 1;
+          pp[_i0].buf = (int *) malloc(_len_pp__i0__buf0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_pp__i0__buf0; _j0++) {
+            pp[_i0].buf[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int benchRet = pushbit(pp,bit,use_reserved);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_pp0; _aux++) {

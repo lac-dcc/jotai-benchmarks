@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ void LSAPI_Set_Max_Children( int maxChildren )
         g_prefork_server->m_iMaxChildren = maxChildren;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,6 +82,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int maxChildren = 100;
+        
           LSAPI_Set_Max_Children(maxChildren);
         
         break;
@@ -95,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int maxChildren = 255;
+        
           LSAPI_Set_Max_Children(maxChildren);
         
         break;
@@ -103,11 +100,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int maxChildren = 10;
+        
           LSAPI_Set_Max_Children(maxChildren);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int maxChildren = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          LSAPI_Set_Max_Children(maxChildren);
+        
+        break;
+    }
     default:
         usage();
         break;

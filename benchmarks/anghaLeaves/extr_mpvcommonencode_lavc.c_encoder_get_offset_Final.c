@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ double encoder_get_offset(struct encoder_context *p)
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,24 +84,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_p0 = 65025;
+          struct encoder_context * p = (struct encoder_context *) malloc(_len_p0*sizeof(struct encoder_context));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              int _len_p__i0__options0 = 1;
+          p[_i0].options = (struct TYPE_4__ *) malloc(_len_p__i0__options0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_p__i0__options0; _j0++) {
+              p[_i0].options->voffset = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          p[_i0].options->aoffset = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          }
+          int _len_p__i0__encoder0 = 1;
+          p[_i0].encoder = (struct TYPE_3__ *) malloc(_len_p__i0__encoder0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_p__i0__encoder0; _j0++) {
+              p[_i0].encoder->codec_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          double benchRet = encoder_get_offset(p);
+          printf("%lf\n", benchRet); 
+          for(int _aux = 0; _aux < _len_p0; _aux++) {
+          free(p[_aux].options);
+          }
+          for(int _aux = 0; _aux < _len_p0; _aux++) {
+          free(p[_aux].encoder);
+          }
+          free(p);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_p0 = 100;
+          struct encoder_context * p = (struct encoder_context *) malloc(_len_p0*sizeof(struct encoder_context));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              int _len_p__i0__options0 = 1;
+          p[_i0].options = (struct TYPE_4__ *) malloc(_len_p__i0__options0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_p__i0__options0; _j0++) {
+              p[_i0].options->voffset = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          p[_i0].options->aoffset = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          }
+          int _len_p__i0__encoder0 = 1;
+          p[_i0].encoder = (struct TYPE_3__ *) malloc(_len_p__i0__encoder0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_p__i0__encoder0; _j0++) {
+              p[_i0].encoder->codec_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          double benchRet = encoder_get_offset(p);
+          printf("%lf\n", benchRet); 
+          for(int _aux = 0; _aux < _len_p0; _aux++) {
+          free(p[_aux].options);
+          }
+          for(int _aux = 0; _aux < _len_p0; _aux++) {
+          free(p[_aux].encoder);
+          }
+          free(p);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_p0 = 1;
           struct encoder_context * p = (struct encoder_context *) malloc(_len_p0*sizeof(struct encoder_context));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
               int _len_p__i0__options0 = 1;
           p[_i0].options = (struct TYPE_4__ *) malloc(_len_p__i0__options0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_p__i0__options0; _j0++) {
-            p[_i0].options->voffset = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        p[_i0].options->aoffset = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+              p[_i0].options->voffset = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          p[_i0].options->aoffset = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           }
           int _len_p__i0__encoder0 = 1;
           p[_i0].encoder = (struct TYPE_3__ *) malloc(_len_p__i0__encoder0*sizeof(struct TYPE_3__));
           for(int _j0 = 0; _j0 < _len_p__i0__encoder0; _j0++) {
-            p[_i0].encoder->codec_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].encoder->codec_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           double benchRet = encoder_get_offset(p);
           printf("%lf\n", benchRet); 
           for(int _aux = 0; _aux < _len_p0; _aux++) {

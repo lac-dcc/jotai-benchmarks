@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ qed_vf_bulletin_get_udp_ports(struct qed_hwfn *p_hwfn,
 	*p_geneve_port = p_bulletin->geneve_udp_port;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,29 +85,35 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_p_hwfn0 = 1;
+          int _len_p_hwfn0 = 65025;
           struct qed_hwfn * p_hwfn = (struct qed_hwfn *) malloc(_len_p_hwfn0*sizeof(struct qed_hwfn));
           for(int _i0 = 0; _i0 < _len_p_hwfn0; _i0++) {
               int _len_p_hwfn__i0__vf_iov_info0 = 1;
           p_hwfn[_i0].vf_iov_info = (struct TYPE_2__ *) malloc(_len_p_hwfn__i0__vf_iov_info0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_p_hwfn__i0__vf_iov_info0; _j0++) {
-            p_hwfn[_i0].vf_iov_info->bulletin_shadow.geneve_udp_port = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_hwfn[_i0].vf_iov_info->bulletin_shadow.vxlan_udp_port = ((-2 * (next_i()%2)) + 1) * next_i();
+              p_hwfn[_i0].vf_iov_info->bulletin_shadow.geneve_udp_port = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_hwfn[_i0].vf_iov_info->bulletin_shadow.vxlan_udp_port = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
-          int _len_p_vxlan_port0 = 1;
+        
+          int _len_p_vxlan_port0 = 65025;
           int * p_vxlan_port = (int *) malloc(_len_p_vxlan_port0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_p_vxlan_port0; _i0++) {
             p_vxlan_port[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_p_geneve_port0 = 1;
+        
+          int _len_p_geneve_port0 = 65025;
           int * p_geneve_port = (int *) malloc(_len_p_geneve_port0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_p_geneve_port0; _i0++) {
             p_geneve_port[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           qed_vf_bulletin_get_udp_ports(p_hwfn,p_vxlan_port,p_geneve_port);
           for(int _aux = 0; _aux < _len_p_hwfn0; _aux++) {
           free(p_hwfn[_aux].vf_iov_info);
@@ -122,7 +124,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_p_hwfn0 = 100;
+          struct qed_hwfn * p_hwfn = (struct qed_hwfn *) malloc(_len_p_hwfn0*sizeof(struct qed_hwfn));
+          for(int _i0 = 0; _i0 < _len_p_hwfn0; _i0++) {
+              int _len_p_hwfn__i0__vf_iov_info0 = 1;
+          p_hwfn[_i0].vf_iov_info = (struct TYPE_2__ *) malloc(_len_p_hwfn__i0__vf_iov_info0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_p_hwfn__i0__vf_iov_info0; _j0++) {
+              p_hwfn[_i0].vf_iov_info->bulletin_shadow.geneve_udp_port = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_hwfn[_i0].vf_iov_info->bulletin_shadow.vxlan_udp_port = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int _len_p_vxlan_port0 = 100;
+          int * p_vxlan_port = (int *) malloc(_len_p_vxlan_port0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p_vxlan_port0; _i0++) {
+            p_vxlan_port[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_p_geneve_port0 = 100;
+          int * p_geneve_port = (int *) malloc(_len_p_geneve_port0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p_geneve_port0; _i0++) {
+            p_geneve_port[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          qed_vf_bulletin_get_udp_ports(p_hwfn,p_vxlan_port,p_geneve_port);
+          for(int _aux = 0; _aux < _len_p_hwfn0; _aux++) {
+          free(p_hwfn[_aux].vf_iov_info);
+          }
+          free(p_hwfn);
+          free(p_vxlan_port);
+          free(p_geneve_port);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_p_hwfn0 = 1;
+          struct qed_hwfn * p_hwfn = (struct qed_hwfn *) malloc(_len_p_hwfn0*sizeof(struct qed_hwfn));
+          for(int _i0 = 0; _i0 < _len_p_hwfn0; _i0++) {
+              int _len_p_hwfn__i0__vf_iov_info0 = 1;
+          p_hwfn[_i0].vf_iov_info = (struct TYPE_2__ *) malloc(_len_p_hwfn__i0__vf_iov_info0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_p_hwfn__i0__vf_iov_info0; _j0++) {
+              p_hwfn[_i0].vf_iov_info->bulletin_shadow.geneve_udp_port = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_hwfn[_i0].vf_iov_info->bulletin_shadow.vxlan_udp_port = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int _len_p_vxlan_port0 = 1;
+          int * p_vxlan_port = (int *) malloc(_len_p_vxlan_port0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p_vxlan_port0; _i0++) {
+            p_vxlan_port[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_p_geneve_port0 = 1;
+          int * p_geneve_port = (int *) malloc(_len_p_geneve_port0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p_geneve_port0; _i0++) {
+            p_geneve_port[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          qed_vf_bulletin_get_udp_ports(p_hwfn,p_vxlan_port,p_geneve_port);
+          for(int _aux = 0; _aux < _len_p_hwfn0; _aux++) {
+          free(p_hwfn[_aux].vf_iov_info);
+          }
+          free(p_hwfn);
+          free(p_vxlan_port);
+          free(p_geneve_port);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ cdv_intel_dp_link_required(int pixel_clock, int bpp)
 	return (pixel_clock * bpp + 7) / 8;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,7 +79,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int pixel_clock = 100;
+        
           int bpp = 100;
+        
           int benchRet = cdv_intel_dp_link_required(pixel_clock,bpp);
           printf("%d\n", benchRet); 
         
@@ -94,7 +91,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int pixel_clock = 255;
+        
           int bpp = 255;
+        
           int benchRet = cdv_intel_dp_link_required(pixel_clock,bpp);
           printf("%d\n", benchRet); 
         
@@ -104,13 +103,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int pixel_clock = 10;
+        
           int bpp = 10;
+        
           int benchRet = cdv_intel_dp_link_required(pixel_clock,bpp);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int pixel_clock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int bpp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = cdv_intel_dp_link_required(pixel_clock,bpp);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline bool is_cmd_mode(struct intel_dsi *intel_dsi
 	return intel_dsi->operation_mode == INTEL_DSI_COMMAND_MODE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_intel_dsi0 = 1;
+          int _len_intel_dsi0 = 65025;
           struct intel_dsi * intel_dsi = (struct intel_dsi *) malloc(_len_intel_dsi0*sizeof(struct intel_dsi));
           for(int _i0 = 0; _i0 < _len_intel_dsi0; _i0++) {
-            intel_dsi[_i0].operation_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              intel_dsi[_i0].operation_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_cmd_mode(intel_dsi);
           printf("%d\n", benchRet); 
           free(intel_dsi);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_intel_dsi0 = 100;
           struct intel_dsi * intel_dsi = (struct intel_dsi *) malloc(_len_intel_dsi0*sizeof(struct intel_dsi));
           for(int _i0 = 0; _i0 < _len_intel_dsi0; _i0++) {
-            intel_dsi[_i0].operation_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              intel_dsi[_i0].operation_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_cmd_mode(intel_dsi);
           printf("%d\n", benchRet); 
           free(intel_dsi);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_intel_dsi0 = 1;
+          struct intel_dsi * intel_dsi = (struct intel_dsi *) malloc(_len_intel_dsi0*sizeof(struct intel_dsi));
+          for(int _i0 = 0; _i0 < _len_intel_dsi0; _i0++) {
+              intel_dsi[_i0].operation_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_cmd_mode(intel_dsi);
+          printf("%d\n", benchRet); 
+          free(intel_dsi);
+        
+        break;
+    }
     default:
         usage();
         break;

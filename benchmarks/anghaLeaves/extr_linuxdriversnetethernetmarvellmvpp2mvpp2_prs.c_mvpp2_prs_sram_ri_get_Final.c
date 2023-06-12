@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static int mvpp2_prs_sram_ri_get(struct mvpp2_prs_entry *p
 	return pe->sram[MVPP2_PRS_SRAM_RI_WORD];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,9 +75,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_pe0 = 65025;
+          struct mvpp2_prs_entry * pe = (struct mvpp2_prs_entry *) malloc(_len_pe0*sizeof(struct mvpp2_prs_entry));
+          for(int _i0 = 0; _i0 < _len_pe0; _i0++) {
+              int _len_pe__i0__sram0 = 1;
+          pe[_i0].sram = (int *) malloc(_len_pe__i0__sram0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_pe__i0__sram0; _j0++) {
+            pe[_i0].sram[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = mvpp2_prs_sram_ri_get(pe);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pe0; _aux++) {
+          free(pe[_aux].sram);
+          }
+          free(pe);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_pe0 = 100;
+          struct mvpp2_prs_entry * pe = (struct mvpp2_prs_entry *) malloc(_len_pe0*sizeof(struct mvpp2_prs_entry));
+          for(int _i0 = 0; _i0 < _len_pe0; _i0++) {
+              int _len_pe__i0__sram0 = 1;
+          pe[_i0].sram = (int *) malloc(_len_pe__i0__sram0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_pe__i0__sram0; _j0++) {
+            pe[_i0].sram[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = mvpp2_prs_sram_ri_get(pe);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pe0; _aux++) {
+          free(pe[_aux].sram);
+          }
+          free(pe);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_pe0 = 1;
           struct mvpp2_prs_entry * pe = (struct mvpp2_prs_entry *) malloc(_len_pe0*sizeof(struct mvpp2_prs_entry));
           for(int _i0 = 0; _i0 < _len_pe0; _i0++) {
@@ -90,7 +203,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_pe__i0__sram0; _j0++) {
             pe[_i0].sram[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = mvpp2_prs_sram_ri_get(pe);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_pe0; _aux++) {

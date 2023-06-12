@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -82,12 +83,6 @@ proto_hash_value(u_int32_t protocol_family)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,6 +99,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int protocol_family = 100;
+        
           int benchRet = proto_hash_value(protocol_family);
           printf("%d\n", benchRet); 
         
@@ -113,6 +109,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int protocol_family = 255;
+        
           int benchRet = proto_hash_value(protocol_family);
           printf("%d\n", benchRet); 
         
@@ -122,12 +119,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int protocol_family = 10;
+        
           int benchRet = proto_hash_value(protocol_family);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int protocol_family = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = proto_hash_value(protocol_family);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

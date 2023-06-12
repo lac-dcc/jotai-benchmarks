@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ buf_out_uint32(uint8 * buffer, uint32 value)
 	buffer[3] = (value >> 24) & 0xff;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,21 +79,38 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int value = 10;
-          int _len_buffer0 = 100;
+          int value = 255;
+        
+          int _len_buffer0 = 65025;
           int * buffer = (int *) malloc(_len_buffer0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_buffer0; _i0++) {
             buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           buf_out_uint32(buffer,value);
           free(buffer);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int value = 10;
+        
+          int _len_buffer0 = 100;
+          int * buffer = (int *) malloc(_len_buffer0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_buffer0; _i0++) {
+            buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          buf_out_uint32(buffer,value);
+          free(buffer);
+        
+        break;
+    }
     default:
         usage();
         break;

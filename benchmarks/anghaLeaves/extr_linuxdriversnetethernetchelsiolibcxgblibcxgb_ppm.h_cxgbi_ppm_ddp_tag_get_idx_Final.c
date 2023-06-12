@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ __attribute__((used)) static inline u32 cxgbi_ppm_ddp_tag_get_idx(struct cxgbi_p
 	return hw_idx - ppm->base_idx;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,16 +83,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int ddp_tag = 100;
+        
           int _len_ppm0 = 1;
           struct cxgbi_ppm * ppm = (struct cxgbi_ppm *) malloc(_len_ppm0*sizeof(struct cxgbi_ppm));
           for(int _i0 = 0; _i0 < _len_ppm0; _i0++) {
-            ppm[_i0].base_idx = ((-2 * (next_i()%2)) + 1) * next_i();
-        ppm[_i0].tformat.idx_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              ppm[_i0].base_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppm[_i0].tformat.idx_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = cxgbi_ppm_ddp_tag_get_idx(ppm,ddp_tag);
+          printf("%d\n", benchRet); 
+          free(ppm);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int ddp_tag = 255;
+        
+          int _len_ppm0 = 65025;
+          struct cxgbi_ppm * ppm = (struct cxgbi_ppm *) malloc(_len_ppm0*sizeof(struct cxgbi_ppm));
+          for(int _i0 = 0; _i0 < _len_ppm0; _i0++) {
+              ppm[_i0].base_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppm[_i0].tformat.idx_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = cxgbi_ppm_ddp_tag_get_idx(ppm,ddp_tag);
+          printf("%d\n", benchRet); 
+          free(ppm);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int ddp_tag = 10;
+        
+          int _len_ppm0 = 100;
+          struct cxgbi_ppm * ppm = (struct cxgbi_ppm *) malloc(_len_ppm0*sizeof(struct cxgbi_ppm));
+          for(int _i0 = 0; _i0 < _len_ppm0; _i0++) {
+              ppm[_i0].base_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppm[_i0].tformat.idx_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = cxgbi_ppm_ddp_tag_get_idx(ppm,ddp_tag);
+          printf("%d\n", benchRet); 
+          free(ppm);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int ddp_tag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ppm0 = 1;
+          struct cxgbi_ppm * ppm = (struct cxgbi_ppm *) malloc(_len_ppm0*sizeof(struct cxgbi_ppm));
+          for(int _i0 = 0; _i0 < _len_ppm0; _i0++) {
+              ppm[_i0].base_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppm[_i0].tformat.idx_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = cxgbi_ppm_ddp_tag_get_idx(ppm,ddp_tag);
           printf("%d\n", benchRet); 
           free(ppm);

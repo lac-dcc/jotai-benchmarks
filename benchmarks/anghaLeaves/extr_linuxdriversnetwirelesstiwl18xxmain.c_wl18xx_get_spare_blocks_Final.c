@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ __attribute__((used)) static int wl18xx_get_spare_blocks(struct wl1271 *wl, bool
 	return WL18XX_TX_HW_BLOCK_SPARE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,19 +84,196 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int is_gem = 100;
+        
           int _len_wl0 = 1;
           struct wl1271 * wl = (struct wl1271 *) malloc(_len_wl0*sizeof(struct wl1271));
           for(int _i0 = 0; _i0 < _len_wl0; _i0++) {
               int _len_wl__i0__priv0 = 1;
           wl[_i0].priv = (struct wl18xx_priv *) malloc(_len_wl__i0__priv0*sizeof(struct wl18xx_priv));
           for(int _j0 = 0; _j0 < _len_wl__i0__priv0; _j0++) {
-            wl[_i0].priv->extra_spare_key_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              wl[_i0].priv->extra_spare_key_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = wl18xx_get_spare_blocks(wl,is_gem);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_wl0; _aux++) {
+          free(wl[_aux].priv);
+          }
+          free(wl);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int is_gem = 255;
+        
+          int _len_wl0 = 65025;
+          struct wl1271 * wl = (struct wl1271 *) malloc(_len_wl0*sizeof(struct wl1271));
+          for(int _i0 = 0; _i0 < _len_wl0; _i0++) {
+              int _len_wl__i0__priv0 = 1;
+          wl[_i0].priv = (struct wl18xx_priv *) malloc(_len_wl__i0__priv0*sizeof(struct wl18xx_priv));
+          for(int _j0 = 0; _j0 < _len_wl__i0__priv0; _j0++) {
+              wl[_i0].priv->extra_spare_key_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = wl18xx_get_spare_blocks(wl,is_gem);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_wl0; _aux++) {
+          free(wl[_aux].priv);
+          }
+          free(wl);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int is_gem = 10;
+        
+          int _len_wl0 = 100;
+          struct wl1271 * wl = (struct wl1271 *) malloc(_len_wl0*sizeof(struct wl1271));
+          for(int _i0 = 0; _i0 < _len_wl0; _i0++) {
+              int _len_wl__i0__priv0 = 1;
+          wl[_i0].priv = (struct wl18xx_priv *) malloc(_len_wl__i0__priv0*sizeof(struct wl18xx_priv));
+          for(int _j0 = 0; _j0 < _len_wl__i0__priv0; _j0++) {
+              wl[_i0].priv->extra_spare_key_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = wl18xx_get_spare_blocks(wl,is_gem);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_wl0; _aux++) {
+          free(wl[_aux].priv);
+          }
+          free(wl);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int is_gem = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_wl0 = 1;
+          struct wl1271 * wl = (struct wl1271 *) malloc(_len_wl0*sizeof(struct wl1271));
+          for(int _i0 = 0; _i0 < _len_wl0; _i0++) {
+              int _len_wl__i0__priv0 = 1;
+          wl[_i0].priv = (struct wl18xx_priv *) malloc(_len_wl__i0__priv0*sizeof(struct wl18xx_priv));
+          for(int _j0 = 0; _j0 < _len_wl__i0__priv0; _j0++) {
+              wl[_i0].priv->extra_spare_key_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = wl18xx_get_spare_blocks(wl,is_gem);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_wl0; _aux++) {

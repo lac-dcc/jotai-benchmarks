@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -103,12 +105,6 @@ __attribute__((used)) static bool lp855x_is_valid_rom_area(struct lp855x *lp, u8
 	return addr >= start && addr <= end;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -121,30 +117,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           long addr = 100;
+        
           int _len_lp0 = 1;
           struct lp855x * lp = (struct lp855x *) malloc(_len_lp0*sizeof(struct lp855x));
           for(int _i0 = 0; _i0 < _len_lp0; _i0++) {
-            lp[_i0].chip_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              lp[_i0].chip_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = lp855x_is_valid_rom_area(lp,addr);
           printf("%d\n", benchRet); 
           free(lp);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          long addr = 255;
+        
+          int _len_lp0 = 65025;
+          struct lp855x * lp = (struct lp855x *) malloc(_len_lp0*sizeof(struct lp855x));
+          for(int _i0 = 0; _i0 < _len_lp0; _i0++) {
+              lp[_i0].chip_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = lp855x_is_valid_rom_area(lp,addr);
+          printf("%d\n", benchRet); 
+          free(lp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           long addr = 10;
+        
           int _len_lp0 = 100;
           struct lp855x * lp = (struct lp855x *) malloc(_len_lp0*sizeof(struct lp855x));
           for(int _i0 = 0; _i0 < _len_lp0; _i0++) {
-            lp[_i0].chip_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              lp[_i0].chip_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = lp855x_is_valid_rom_area(lp,addr);
+          printf("%d\n", benchRet); 
+          free(lp);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          long addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_lp0 = 1;
+          struct lp855x * lp = (struct lp855x *) malloc(_len_lp0*sizeof(struct lp855x));
+          for(int _i0 = 0; _i0 < _len_lp0; _i0++) {
+              lp[_i0].chip_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = lp855x_is_valid_rom_area(lp,addr);
           printf("%d\n", benchRet); 
           free(lp);

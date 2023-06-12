@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline int get_stride(int width, int depth)
     return ((depth * width + 31) >> 3) & ~3;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,7 +78,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int width = 100;
+        
           int depth = 100;
+        
           int benchRet = get_stride(width,depth);
           printf("%d\n", benchRet); 
         
@@ -93,7 +90,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int width = 255;
+        
           int depth = 255;
+        
           int benchRet = get_stride(width,depth);
           printf("%d\n", benchRet); 
         
@@ -103,13 +102,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int width = 10;
+        
           int depth = 10;
+        
           int benchRet = get_stride(width,depth);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int depth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = get_stride(width,depth);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

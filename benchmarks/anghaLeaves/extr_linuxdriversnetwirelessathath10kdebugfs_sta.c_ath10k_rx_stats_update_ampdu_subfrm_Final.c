@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -84,12 +87,6 @@ __attribute__((used)) static void ath10k_rx_stats_update_ampdu_subfrm(struct ath
 		stats->rx_pkt_ampdu[ATH10K_AMPDU_SUBFRM_NUM_MORE]++;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,15 +99,41 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 26
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 26
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 26
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
           int mpdu_count = 100;
+        
           int _len_ar0 = 1;
           struct ath10k * ar = (struct ath10k *) malloc(_len_ar0*sizeof(struct ath10k));
           for(int _i0 = 0; _i0 < _len_ar0; _i0++) {
-            ar[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ar[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_stats0 = 1;
           struct ath10k_sta_tid_stats * stats = (struct ath10k_sta_tid_stats *) malloc(_len_stats0*sizeof(struct ath10k_sta_tid_stats));
           for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
@@ -119,7 +142,177 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_stats__i0__rx_pkt_ampdu0; _j0++) {
             stats[_i0].rx_pkt_ampdu[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          ath10k_rx_stats_update_ampdu_subfrm(ar,stats,mpdu_count);
+          free(ar);
+          for(int _aux = 0; _aux < _len_stats0; _aux++) {
+          free(stats[_aux].rx_pkt_ampdu);
+          }
+          free(stats);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 26
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 26
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 26
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
+          int mpdu_count = 255;
+        
+          int _len_ar0 = 65025;
+          struct ath10k * ar = (struct ath10k *) malloc(_len_ar0*sizeof(struct ath10k));
+          for(int _i0 = 0; _i0 < _len_ar0; _i0++) {
+              ar[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_stats0 = 65025;
+          struct ath10k_sta_tid_stats * stats = (struct ath10k_sta_tid_stats *) malloc(_len_stats0*sizeof(struct ath10k_sta_tid_stats));
+          for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
+              int _len_stats__i0__rx_pkt_ampdu0 = 1;
+          stats[_i0].rx_pkt_ampdu = (int *) malloc(_len_stats__i0__rx_pkt_ampdu0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_stats__i0__rx_pkt_ampdu0; _j0++) {
+            stats[_i0].rx_pkt_ampdu[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          ath10k_rx_stats_update_ampdu_subfrm(ar,stats,mpdu_count);
+          free(ar);
+          for(int _aux = 0; _aux < _len_stats0; _aux++) {
+          free(stats[_aux].rx_pkt_ampdu);
+          }
+          free(stats);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int mpdu_count = 10;
+        
+          int _len_ar0 = 100;
+          struct ath10k * ar = (struct ath10k *) malloc(_len_ar0*sizeof(struct ath10k));
+          for(int _i0 = 0; _i0 < _len_ar0; _i0++) {
+              ar[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_stats0 = 100;
+          struct ath10k_sta_tid_stats * stats = (struct ath10k_sta_tid_stats *) malloc(_len_stats0*sizeof(struct ath10k_sta_tid_stats));
+          for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
+              int _len_stats__i0__rx_pkt_ampdu0 = 1;
+          stats[_i0].rx_pkt_ampdu = (int *) malloc(_len_stats__i0__rx_pkt_ampdu0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_stats__i0__rx_pkt_ampdu0; _j0++) {
+            stats[_i0].rx_pkt_ampdu[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          ath10k_rx_stats_update_ampdu_subfrm(ar,stats,mpdu_count);
+          free(ar);
+          for(int _aux = 0; _aux < _len_stats0; _aux++) {
+          free(stats[_aux].rx_pkt_ampdu);
+          }
+          free(stats);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int mpdu_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ar0 = 1;
+          struct ath10k * ar = (struct ath10k *) malloc(_len_ar0*sizeof(struct ath10k));
+          for(int _i0 = 0; _i0 < _len_ar0; _i0++) {
+              ar[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_stats0 = 1;
+          struct ath10k_sta_tid_stats * stats = (struct ath10k_sta_tid_stats *) malloc(_len_stats0*sizeof(struct ath10k_sta_tid_stats));
+          for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
+              int _len_stats__i0__rx_pkt_ampdu0 = 1;
+          stats[_i0].rx_pkt_ampdu = (int *) malloc(_len_stats__i0__rx_pkt_ampdu0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_stats__i0__rx_pkt_ampdu0; _j0++) {
+            stats[_i0].rx_pkt_ampdu[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           ath10k_rx_stats_update_ampdu_subfrm(ar,stats,mpdu_count);
           free(ar);
           for(int _aux = 0; _aux < _len_stats0; _aux++) {

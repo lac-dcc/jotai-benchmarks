@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ __attribute__((used)) static int get_flags(MotionEstContext *c, int direct, int 
            + (chroma ? FLAG_CHROMA : 0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,16 +88,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int direct = 100;
+        
           int chroma = 100;
+        
           int _len_c0 = 1;
           struct TYPE_5__ * c = (struct TYPE_5__ *) malloc(_len_c0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_c0; _i0++) {
               int _len_c__i0__avctx0 = 1;
           c[_i0].avctx = (struct TYPE_4__ *) malloc(_len_c__i0__avctx0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_c__i0__avctx0; _j0++) {
-            c[_i0].avctx->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              c[_i0].avctx->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = get_flags(c,direct,chroma);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_c0; _aux++) {
@@ -110,7 +112,90 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int direct = 255;
+        
+          int chroma = 255;
+        
+          int _len_c0 = 65025;
+          struct TYPE_5__ * c = (struct TYPE_5__ *) malloc(_len_c0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              int _len_c__i0__avctx0 = 1;
+          c[_i0].avctx = (struct TYPE_4__ *) malloc(_len_c__i0__avctx0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_c__i0__avctx0; _j0++) {
+              c[_i0].avctx->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = get_flags(c,direct,chroma);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_c0; _aux++) {
+          free(c[_aux].avctx);
+          }
+          free(c);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int direct = 10;
+        
+          int chroma = 10;
+        
+          int _len_c0 = 100;
+          struct TYPE_5__ * c = (struct TYPE_5__ *) malloc(_len_c0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              int _len_c__i0__avctx0 = 1;
+          c[_i0].avctx = (struct TYPE_4__ *) malloc(_len_c__i0__avctx0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_c__i0__avctx0; _j0++) {
+              c[_i0].avctx->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = get_flags(c,direct,chroma);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_c0; _aux++) {
+          free(c[_aux].avctx);
+          }
+          free(c);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int direct = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int chroma = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_c0 = 1;
+          struct TYPE_5__ * c = (struct TYPE_5__ *) malloc(_len_c0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              int _len_c__i0__avctx0 = 1;
+          c[_i0].avctx = (struct TYPE_4__ *) malloc(_len_c__i0__avctx0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_c__i0__avctx0; _j0++) {
+              c[_i0].avctx->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = get_flags(c,direct,chroma);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_c0; _aux++) {
+          free(c[_aux].avctx);
+          }
+          free(c);
+        
+        break;
+    }
     default:
         usage();
         break;

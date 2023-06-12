@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ bool timeutils_is_leap_year(mp_uint_t year) {
     return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,6 +78,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int year = 100;
+        
           int benchRet = timeutils_is_leap_year(year);
           printf("%d\n", benchRet); 
         
@@ -92,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int year = 255;
+        
           int benchRet = timeutils_is_leap_year(year);
           printf("%d\n", benchRet); 
         
@@ -101,12 +98,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int year = 10;
+        
           int benchRet = timeutils_is_leap_year(year);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int year = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = timeutils_is_leap_year(year);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +83,6 @@ __attribute__((used)) static void rc_send_low_basicrate(s8 *idx, u32 basic_rates
 	/* could not find a basic rate; use original selection */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,23 +99,98 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int basic_rates = 100;
+        
           int _len_idx0 = 1;
           int * idx = (int *) malloc(_len_idx0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_idx0; _i0++) {
             idx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_sband0 = 1;
           struct ieee80211_supported_band * sband = (struct ieee80211_supported_band *) malloc(_len_sband0*sizeof(struct ieee80211_supported_band));
           for(int _i0 = 0; _i0 < _len_sband0; _i0++) {
-            sband[_i0].n_bitrates = ((-2 * (next_i()%2)) + 1) * next_i();
+              sband[_i0].n_bitrates = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           rc_send_low_basicrate(idx,basic_rates,sband);
           free(idx);
           free(sband);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int basic_rates = 255;
+        
+          int _len_idx0 = 65025;
+          int * idx = (int *) malloc(_len_idx0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_idx0; _i0++) {
+            idx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_sband0 = 65025;
+          struct ieee80211_supported_band * sband = (struct ieee80211_supported_band *) malloc(_len_sband0*sizeof(struct ieee80211_supported_band));
+          for(int _i0 = 0; _i0 < _len_sband0; _i0++) {
+              sband[_i0].n_bitrates = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          rc_send_low_basicrate(idx,basic_rates,sband);
+          free(idx);
+          free(sband);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int basic_rates = 10;
+        
+          int _len_idx0 = 100;
+          int * idx = (int *) malloc(_len_idx0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_idx0; _i0++) {
+            idx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_sband0 = 100;
+          struct ieee80211_supported_band * sband = (struct ieee80211_supported_band *) malloc(_len_sband0*sizeof(struct ieee80211_supported_band));
+          for(int _i0 = 0; _i0 < _len_sband0; _i0++) {
+              sband[_i0].n_bitrates = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          rc_send_low_basicrate(idx,basic_rates,sband);
+          free(idx);
+          free(sband);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int basic_rates = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_idx0 = 1;
+          int * idx = (int *) malloc(_len_idx0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_idx0; _i0++) {
+            idx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_sband0 = 1;
+          struct ieee80211_supported_band * sband = (struct ieee80211_supported_band *) malloc(_len_sband0*sizeof(struct ieee80211_supported_band));
+          for(int _i0 = 0; _i0 < _len_sband0; _i0++) {
+              sband[_i0].n_bitrates = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          rc_send_low_basicrate(idx,basic_rates,sband);
+          free(idx);
+          free(sband);
+        
+        break;
+    }
     default:
         usage();
         break;

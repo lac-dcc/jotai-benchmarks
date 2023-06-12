@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static void zend_llist_swap(zend_llist_element **p, zend_l
 	*q = t;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,9 +77,150 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_p0 = 65025;
+          int ** p = (int **) malloc(_len_p0*sizeof(int *));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+            int _len_p1 = 1;
+            p[_i0] = (int *) malloc(_len_p1*sizeof(int));
+            for(int _i1 = 0; _i1 < _len_p1; _i1++) {
+              p[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int _len_q0 = 65025;
+          int ** q = (int **) malloc(_len_q0*sizeof(int *));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+            int _len_q1 = 1;
+            q[_i0] = (int *) malloc(_len_q1*sizeof(int));
+            for(int _i1 = 0; _i1 < _len_q1; _i1++) {
+              q[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          zend_llist_swap(p,q);
+          for(int i1 = 0; i1 < _len_p0; i1++) {
+              free(p[i1]);
+          }
+          free(p);
+          for(int i1 = 0; i1 < _len_q0; i1++) {
+              free(q[i1]);
+          }
+          free(q);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_p0 = 100;
+          int ** p = (int **) malloc(_len_p0*sizeof(int *));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+            int _len_p1 = 1;
+            p[_i0] = (int *) malloc(_len_p1*sizeof(int));
+            for(int _i1 = 0; _i1 < _len_p1; _i1++) {
+              p[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int _len_q0 = 100;
+          int ** q = (int **) malloc(_len_q0*sizeof(int *));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+            int _len_q1 = 1;
+            q[_i0] = (int *) malloc(_len_q1*sizeof(int));
+            for(int _i1 = 0; _i1 < _len_q1; _i1++) {
+              q[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          zend_llist_swap(p,q);
+          for(int i1 = 0; i1 < _len_p0; i1++) {
+              free(p[i1]);
+          }
+          free(p);
+          for(int i1 = 0; i1 < _len_q0; i1++) {
+              free(q[i1]);
+          }
+          free(q);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_p0 = 1;
           int ** p = (int **) malloc(_len_p0*sizeof(int *));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
@@ -93,6 +230,7 @@ int main(int argc, char *argv[]) {
               p[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           int _len_q0 = 1;
           int ** q = (int **) malloc(_len_q0*sizeof(int *));
           for(int _i0 = 0; _i0 < _len_q0; _i0++) {
@@ -102,14 +240,13 @@ int main(int argc, char *argv[]) {
               q[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           zend_llist_swap(p,q);
           for(int i1 = 0; i1 < _len_p0; i1++) {
-            int _len_p1 = 1;
               free(p[i1]);
           }
           free(p);
           for(int i1 = 0; i1 < _len_q0; i1++) {
-            int _len_q1 = 1;
               free(q[i1]);
           }
           free(q);

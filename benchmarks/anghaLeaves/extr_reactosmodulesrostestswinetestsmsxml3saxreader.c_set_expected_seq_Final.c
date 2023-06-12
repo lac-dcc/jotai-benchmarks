@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static void set_expected_seq(struct call_entry *expected)
     expectCall = expected;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_expected0 = 1;
+          int _len_expected0 = 65025;
           struct call_entry * expected = (struct call_entry *) malloc(_len_expected0*sizeof(struct call_entry));
           for(int _i0 = 0; _i0 < _len_expected0; _i0++) {
-            expected[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              expected[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           set_expected_seq(expected);
           free(expected);
         
@@ -99,14 +96,30 @@ int main(int argc, char *argv[]) {
           int _len_expected0 = 100;
           struct call_entry * expected = (struct call_entry *) malloc(_len_expected0*sizeof(struct call_entry));
           for(int _i0 = 0; _i0 < _len_expected0; _i0++) {
-            expected[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              expected[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           set_expected_seq(expected);
           free(expected);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_expected0 = 1;
+          struct call_entry * expected = (struct call_entry *) malloc(_len_expected0*sizeof(struct call_entry));
+          for(int _i0 = 0; _i0 < _len_expected0; _i0++) {
+              expected[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_expected_seq(expected);
+          free(expected);
+        
+        break;
+    }
     default:
         usage();
         break;

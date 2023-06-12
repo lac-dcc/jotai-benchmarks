@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -86,12 +88,6 @@ __attribute__((used)) static inline u32 aa_map_file_to_perms(struct file *file)
 	return perms;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,15 +100,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
+          int _len_file0 = 65025;
+          struct file * file = (struct file *) malloc(_len_file0*sizeof(struct file));
+          for(int _i0 = 0; _i0 < _len_file0; _i0++) {
+              file[_i0].f_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          file[_i0].f_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = aa_map_file_to_perms(file);
+          printf("%d\n", benchRet); 
+          free(file);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
+          int _len_file0 = 100;
+          struct file * file = (struct file *) malloc(_len_file0*sizeof(struct file));
+          for(int _i0 = 0; _i0 < _len_file0; _i0++) {
+              file[_i0].f_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          file[_i0].f_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = aa_map_file_to_perms(file);
+          printf("%d\n", benchRet); 
+          free(file);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
           int _len_file0 = 1;
           struct file * file = (struct file *) malloc(_len_file0*sizeof(struct file));
           for(int _i0 = 0; _i0 < _len_file0; _i0++) {
-            file[_i0].f_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        file[_i0].f_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              file[_i0].f_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          file[_i0].f_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = aa_map_file_to_perms(file);
           printf("%d\n", benchRet); 
           free(file);

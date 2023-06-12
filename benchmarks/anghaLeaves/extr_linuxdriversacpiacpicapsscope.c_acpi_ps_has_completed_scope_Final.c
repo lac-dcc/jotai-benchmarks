@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ u8 acpi_ps_has_completed_scope(struct acpi_parse_state * parser_state)
 		  || !parser_state->scope->parse_scope.arg_count)));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,20 +82,149 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_parser_state0 = 1;
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_parser_state0 = 65025;
           struct acpi_parse_state * parser_state = (struct acpi_parse_state *) malloc(_len_parser_state0*sizeof(struct acpi_parse_state));
           for(int _i0 = 0; _i0 < _len_parser_state0; _i0++) {
-            parser_state[_i0].aml = ((-2 * (next_i()%2)) + 1) * next_i();
+              parser_state[_i0].aml = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_parser_state__i0__scope0 = 1;
           parser_state[_i0].scope = (struct TYPE_4__ *) malloc(_len_parser_state__i0__scope0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_parser_state__i0__scope0; _j0++) {
-            parser_state[_i0].scope->parse_scope.arg_end = ((-2 * (next_i()%2)) + 1) * next_i();
-        parser_state[_i0].scope->parse_scope.arg_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              parser_state[_i0].scope->parse_scope.arg_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          parser_state[_i0].scope->parse_scope.arg_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
+          int benchRet = acpi_ps_has_completed_scope(parser_state);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_parser_state0; _aux++) {
+          free(parser_state[_aux].scope);
+          }
+          free(parser_state);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_parser_state0 = 100;
+          struct acpi_parse_state * parser_state = (struct acpi_parse_state *) malloc(_len_parser_state0*sizeof(struct acpi_parse_state));
+          for(int _i0 = 0; _i0 < _len_parser_state0; _i0++) {
+              parser_state[_i0].aml = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_parser_state__i0__scope0 = 1;
+          parser_state[_i0].scope = (struct TYPE_4__ *) malloc(_len_parser_state__i0__scope0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_parser_state__i0__scope0; _j0++) {
+              parser_state[_i0].scope->parse_scope.arg_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          parser_state[_i0].scope->parse_scope.arg_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = acpi_ps_has_completed_scope(parser_state);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_parser_state0; _aux++) {
+          free(parser_state[_aux].scope);
+          }
+          free(parser_state);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_parser_state0 = 1;
+          struct acpi_parse_state * parser_state = (struct acpi_parse_state *) malloc(_len_parser_state0*sizeof(struct acpi_parse_state));
+          for(int _i0 = 0; _i0 < _len_parser_state0; _i0++) {
+              parser_state[_i0].aml = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_parser_state__i0__scope0 = 1;
+          parser_state[_i0].scope = (struct TYPE_4__ *) malloc(_len_parser_state__i0__scope0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_parser_state__i0__scope0; _j0++) {
+              parser_state[_i0].scope->parse_scope.arg_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          parser_state[_i0].scope->parse_scope.arg_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
           int benchRet = acpi_ps_has_completed_scope(parser_state);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_parser_state0; _aux++) {

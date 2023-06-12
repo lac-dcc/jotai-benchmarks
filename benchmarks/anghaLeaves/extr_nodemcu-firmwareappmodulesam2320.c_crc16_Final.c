@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -75,12 +76,6 @@ __attribute__((used)) static uint16_t crc16(uint8_t *ptr, unsigned int len)
     return crc;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,22 +88,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          unsigned int len = 10;
-          int _len_ptr0 = 100;
+          unsigned int len = 255;
+        
+          int _len_ptr0 = 65025;
           int * ptr = (int *) malloc(_len_ptr0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_ptr0; _i0++) {
             ptr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = crc16(ptr,len);
           printf("%d\n", benchRet); 
           free(ptr);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          unsigned int len = 10;
+        
+          int _len_ptr0 = 100;
+          int * ptr = (int *) malloc(_len_ptr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ptr0; _i0++) {
+            ptr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = crc16(ptr,len);
+          printf("%d\n", benchRet); 
+          free(ptr);
+        
+        break;
+    }
     default:
         usage();
         break;

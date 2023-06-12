@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -79,12 +81,6 @@ snd_es1968_calc_bob_rate(struct es1968 *chip, struct esschan *es,
 	return freq;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,25 +93,31 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_chip0 = 1;
+          int _len_chip0 = 65025;
           struct es1968 * chip = (struct es1968 *) malloc(_len_chip0*sizeof(struct es1968));
           for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
-            chip[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              chip[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_es0 = 1;
+        
+          int _len_es0 = 65025;
           struct esschan * es = (struct esschan *) malloc(_len_es0*sizeof(struct esschan));
           for(int _i0 = 0; _i0 < _len_es0; _i0++) {
-            es[_i0].fmt = ((-2 * (next_i()%2)) + 1) * next_i();
-        es[_i0].frag_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              es[_i0].fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          es[_i0].frag_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_runtime0 = 1;
+        
+          int _len_runtime0 = 65025;
           struct snd_pcm_runtime * runtime = (struct snd_pcm_runtime *) malloc(_len_runtime0*sizeof(struct snd_pcm_runtime));
           for(int _i0 = 0; _i0 < _len_runtime0; _i0++) {
-            runtime[_i0].rate = ((-2 * (next_i()%2)) + 1) * next_i();
+              runtime[_i0].rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = snd_es1968_calc_bob_rate(chip,es,runtime);
           printf("%d\n", benchRet); 
           free(chip);
@@ -124,7 +126,72 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_chip0 = 100;
+          struct es1968 * chip = (struct es1968 *) malloc(_len_chip0*sizeof(struct es1968));
+          for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
+              chip[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_es0 = 100;
+          struct esschan * es = (struct esschan *) malloc(_len_es0*sizeof(struct esschan));
+          for(int _i0 = 0; _i0 < _len_es0; _i0++) {
+              es[_i0].fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          es[_i0].frag_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_runtime0 = 100;
+          struct snd_pcm_runtime * runtime = (struct snd_pcm_runtime *) malloc(_len_runtime0*sizeof(struct snd_pcm_runtime));
+          for(int _i0 = 0; _i0 < _len_runtime0; _i0++) {
+              runtime[_i0].rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = snd_es1968_calc_bob_rate(chip,es,runtime);
+          printf("%d\n", benchRet); 
+          free(chip);
+          free(es);
+          free(runtime);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_chip0 = 1;
+          struct es1968 * chip = (struct es1968 *) malloc(_len_chip0*sizeof(struct es1968));
+          for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
+              chip[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_es0 = 1;
+          struct esschan * es = (struct esschan *) malloc(_len_es0*sizeof(struct esschan));
+          for(int _i0 = 0; _i0 < _len_es0; _i0++) {
+              es[_i0].fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          es[_i0].frag_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_runtime0 = 1;
+          struct snd_pcm_runtime * runtime = (struct snd_pcm_runtime *) malloc(_len_runtime0*sizeof(struct snd_pcm_runtime));
+          for(int _i0 = 0; _i0 < _len_runtime0; _i0++) {
+              runtime[_i0].rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = snd_es1968_calc_bob_rate(chip,es,runtime);
+          printf("%d\n", benchRet); 
+          free(chip);
+          free(es);
+          free(runtime);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -83,12 +85,6 @@ __attribute__((used)) static void i965_scale_aspect(struct intel_crtc_state *pip
 		*pfit_control |= PFIT_ENABLE | PFIT_SCALING_AUTO;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,29 +97,87 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pipe_config0 = 1;
+          int _len_pipe_config0 = 65025;
           struct intel_crtc_state * pipe_config = (struct intel_crtc_state *) malloc(_len_pipe_config0*sizeof(struct intel_crtc_state));
           for(int _i0 = 0; _i0 < _len_pipe_config0; _i0++) {
-            pipe_config[_i0].pipe_src_h = ((-2 * (next_i()%2)) + 1) * next_i();
-        pipe_config[_i0].pipe_src_w = ((-2 * (next_i()%2)) + 1) * next_i();
-        pipe_config[_i0].base.adjusted_mode.crtc_hdisplay = ((-2 * (next_i()%2)) + 1) * next_i();
-        pipe_config[_i0].base.adjusted_mode.crtc_vdisplay = ((-2 * (next_i()%2)) + 1) * next_i();
+              pipe_config[_i0].pipe_src_h = ((-2 * (next_i()%2)) + 1) * next_i();
+          pipe_config[_i0].pipe_src_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          pipe_config[_i0].base.adjusted_mode.crtc_hdisplay = ((-2 * (next_i()%2)) + 1) * next_i();
+          pipe_config[_i0].base.adjusted_mode.crtc_vdisplay = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
-          int _len_pfit_control0 = 1;
+        
+          int _len_pfit_control0 = 65025;
           long * pfit_control = (long *) malloc(_len_pfit_control0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_pfit_control0; _i0++) {
             pfit_control[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           i965_scale_aspect(pipe_config,pfit_control);
           free(pipe_config);
           free(pfit_control);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_pipe_config0 = 100;
+          struct intel_crtc_state * pipe_config = (struct intel_crtc_state *) malloc(_len_pipe_config0*sizeof(struct intel_crtc_state));
+          for(int _i0 = 0; _i0 < _len_pipe_config0; _i0++) {
+              pipe_config[_i0].pipe_src_h = ((-2 * (next_i()%2)) + 1) * next_i();
+          pipe_config[_i0].pipe_src_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          pipe_config[_i0].base.adjusted_mode.crtc_hdisplay = ((-2 * (next_i()%2)) + 1) * next_i();
+          pipe_config[_i0].base.adjusted_mode.crtc_vdisplay = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_pfit_control0 = 100;
+          long * pfit_control = (long *) malloc(_len_pfit_control0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_pfit_control0; _i0++) {
+            pfit_control[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          i965_scale_aspect(pipe_config,pfit_control);
+          free(pipe_config);
+          free(pfit_control);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_pipe_config0 = 1;
+          struct intel_crtc_state * pipe_config = (struct intel_crtc_state *) malloc(_len_pipe_config0*sizeof(struct intel_crtc_state));
+          for(int _i0 = 0; _i0 < _len_pipe_config0; _i0++) {
+              pipe_config[_i0].pipe_src_h = ((-2 * (next_i()%2)) + 1) * next_i();
+          pipe_config[_i0].pipe_src_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          pipe_config[_i0].base.adjusted_mode.crtc_hdisplay = ((-2 * (next_i()%2)) + 1) * next_i();
+          pipe_config[_i0].base.adjusted_mode.crtc_vdisplay = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_pfit_control0 = 1;
+          long * pfit_control = (long *) malloc(_len_pfit_control0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_pfit_control0; _i0++) {
+            pfit_control[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          i965_scale_aspect(pipe_config,pfit_control);
+          free(pipe_config);
+          free(pfit_control);
+        
+        break;
+    }
     default:
         usage();
         break;

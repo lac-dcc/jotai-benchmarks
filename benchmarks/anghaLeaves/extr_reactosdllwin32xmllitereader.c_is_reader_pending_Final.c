@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static inline int is_reader_pending(xmlreader *reader)
     return reader->input->pending;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,18 +78,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_reader0 = 65025;
+          struct TYPE_5__ * reader = (struct TYPE_5__ *) malloc(_len_reader0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_reader0; _i0++) {
+              int _len_reader__i0__input0 = 1;
+          reader[_i0].input = (struct TYPE_4__ *) malloc(_len_reader__i0__input0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_reader__i0__input0; _j0++) {
+              reader[_i0].input->pending = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = is_reader_pending(reader);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_reader0; _aux++) {
+          free(reader[_aux].input);
+          }
+          free(reader);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_reader0 = 100;
+          struct TYPE_5__ * reader = (struct TYPE_5__ *) malloc(_len_reader0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_reader0; _i0++) {
+              int _len_reader__i0__input0 = 1;
+          reader[_i0].input = (struct TYPE_4__ *) malloc(_len_reader__i0__input0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_reader__i0__input0; _j0++) {
+              reader[_i0].input->pending = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = is_reader_pending(reader);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_reader0; _aux++) {
+          free(reader[_aux].input);
+          }
+          free(reader);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_reader0 = 1;
           struct TYPE_5__ * reader = (struct TYPE_5__ *) malloc(_len_reader0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_reader0; _i0++) {
               int _len_reader__i0__input0 = 1;
           reader[_i0].input = (struct TYPE_4__ *) malloc(_len_reader__i0__input0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_reader__i0__input0; _j0++) {
-            reader[_i0].input->pending = ((-2 * (next_i()%2)) + 1) * next_i();
+              reader[_i0].input->pending = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = is_reader_pending(reader);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_reader0; _aux++) {

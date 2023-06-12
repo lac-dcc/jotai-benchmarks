@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ thread_should_abort(
 	return ((th->sched_flags & TH_SFLAG_ABORTED_MASK) == TH_SFLAG_ABORT);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,14 +81,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_th0 = 1;
+          int _len_th0 = 65025;
           struct TYPE_3__ * th = (struct TYPE_3__ *) malloc(_len_th0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_th0; _i0++) {
-            th[_i0].sched_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              th[_i0].sched_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = thread_should_abort(th);
           printf("%d\n", benchRet); 
           free(th);
@@ -106,15 +103,32 @@ int main(int argc, char *argv[]) {
           int _len_th0 = 100;
           struct TYPE_3__ * th = (struct TYPE_3__ *) malloc(_len_th0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_th0; _i0++) {
-            th[_i0].sched_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              th[_i0].sched_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = thread_should_abort(th);
           printf("%d\n", benchRet); 
           free(th);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_th0 = 1;
+          struct TYPE_3__ * th = (struct TYPE_3__ *) malloc(_len_th0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_th0; _i0++) {
+              th[_i0].sched_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = thread_should_abort(th);
+          printf("%d\n", benchRet); 
+          free(th);
+        
+        break;
+    }
     default:
         usage();
         break;

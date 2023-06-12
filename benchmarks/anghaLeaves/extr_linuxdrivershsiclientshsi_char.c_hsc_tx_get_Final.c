@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static inline void hsc_tx_get(struct hsi_client *cl, struc
 	txc->arb_mode = cl->tx_cfg.arb_mode;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,32 +80,96 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cl0 = 1;
+          int _len_cl0 = 65025;
           struct hsi_client * cl = (struct hsi_client *) malloc(_len_cl0*sizeof(struct hsi_client));
           for(int _i0 = 0; _i0 < _len_cl0; _i0++) {
-            cl[_i0].tx_cfg.arb_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        cl[_i0].tx_cfg.speed = ((-2 * (next_i()%2)) + 1) * next_i();
-        cl[_i0].tx_cfg.num_hw_channels = ((-2 * (next_i()%2)) + 1) * next_i();
-        cl[_i0].tx_cfg.mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              cl[_i0].tx_cfg.arb_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          cl[_i0].tx_cfg.speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          cl[_i0].tx_cfg.num_hw_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          cl[_i0].tx_cfg.mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-          int _len_txc0 = 1;
+        
+          int _len_txc0 = 65025;
           struct hsc_tx_config * txc = (struct hsc_tx_config *) malloc(_len_txc0*sizeof(struct hsc_tx_config));
           for(int _i0 = 0; _i0 < _len_txc0; _i0++) {
-            txc[_i0].arb_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        txc[_i0].speed = ((-2 * (next_i()%2)) + 1) * next_i();
-        txc[_i0].channels = ((-2 * (next_i()%2)) + 1) * next_i();
-        txc[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              txc[_i0].arb_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          txc[_i0].speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          txc[_i0].channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          txc[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           hsc_tx_get(cl,txc);
           free(cl);
           free(txc);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_cl0 = 100;
+          struct hsi_client * cl = (struct hsi_client *) malloc(_len_cl0*sizeof(struct hsi_client));
+          for(int _i0 = 0; _i0 < _len_cl0; _i0++) {
+              cl[_i0].tx_cfg.arb_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          cl[_i0].tx_cfg.speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          cl[_i0].tx_cfg.num_hw_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          cl[_i0].tx_cfg.mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_txc0 = 100;
+          struct hsc_tx_config * txc = (struct hsc_tx_config *) malloc(_len_txc0*sizeof(struct hsc_tx_config));
+          for(int _i0 = 0; _i0 < _len_txc0; _i0++) {
+              txc[_i0].arb_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          txc[_i0].speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          txc[_i0].channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          txc[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          hsc_tx_get(cl,txc);
+          free(cl);
+          free(txc);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_cl0 = 1;
+          struct hsi_client * cl = (struct hsi_client *) malloc(_len_cl0*sizeof(struct hsi_client));
+          for(int _i0 = 0; _i0 < _len_cl0; _i0++) {
+              cl[_i0].tx_cfg.arb_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          cl[_i0].tx_cfg.speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          cl[_i0].tx_cfg.num_hw_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          cl[_i0].tx_cfg.mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_txc0 = 1;
+          struct hsc_tx_config * txc = (struct hsc_tx_config *) malloc(_len_txc0*sizeof(struct hsc_tx_config));
+          for(int _i0 = 0; _i0 < _len_txc0; _i0++) {
+              txc[_i0].arb_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          txc[_i0].speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          txc[_i0].channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          txc[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          hsc_tx_get(cl,txc);
+          free(cl);
+          free(txc);
+        
+        break;
+    }
     default:
         usage();
         break;

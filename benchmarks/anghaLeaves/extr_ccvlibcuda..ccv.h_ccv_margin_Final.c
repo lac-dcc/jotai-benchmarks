@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ __attribute__((used)) inline static ccv_margin_t ccv_margin(int left, int top, i
 	return margin;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,9 +86,13 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int left = 100;
+        
           int top = 100;
+        
           int right = 100;
+        
           int bottom = 100;
+        
           struct TYPE_3__ benchRet = ccv_margin(left,top,right,bottom);
           printf("%d\n", benchRet.left);
           printf("%d\n", benchRet.top);
@@ -106,9 +105,13 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int left = 255;
+        
           int top = 255;
+        
           int right = 255;
+        
           int bottom = 255;
+        
           struct TYPE_3__ benchRet = ccv_margin(left,top,right,bottom);
           printf("%d\n", benchRet.left);
           printf("%d\n", benchRet.top);
@@ -121,9 +124,13 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int left = 10;
+        
           int top = 10;
+        
           int right = 10;
+        
           int bottom = 10;
+        
           struct TYPE_3__ benchRet = ccv_margin(left,top,right,bottom);
           printf("%d\n", benchRet.left);
           printf("%d\n", benchRet.top);
@@ -132,7 +139,25 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int left = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int right = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int bottom = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          struct TYPE_3__ benchRet = ccv_margin(left,top,right,bottom);
+          printf("%d\n", benchRet.left);
+          printf("%d\n", benchRet.top);
+          printf("%d\n", benchRet.right);
+          printf("%d\n", benchRet.bottom);
+        
+        break;
+    }
     default:
         usage();
         break;

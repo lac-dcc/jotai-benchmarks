@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ int smscore_get_board_id(struct smscore_device_t *core)
 	return core->board_id;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_core0 = 1;
+          int _len_core0 = 65025;
           struct smscore_device_t * core = (struct smscore_device_t *) malloc(_len_core0*sizeof(struct smscore_device_t));
           for(int _i0 = 0; _i0 < _len_core0; _i0++) {
-            core[_i0].board_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              core[_i0].board_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = smscore_get_board_id(core);
           printf("%d\n", benchRet); 
           free(core);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_core0 = 100;
           struct smscore_device_t * core = (struct smscore_device_t *) malloc(_len_core0*sizeof(struct smscore_device_t));
           for(int _i0 = 0; _i0 < _len_core0; _i0++) {
-            core[_i0].board_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              core[_i0].board_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = smscore_get_board_id(core);
           printf("%d\n", benchRet); 
           free(core);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_core0 = 1;
+          struct smscore_device_t * core = (struct smscore_device_t *) malloc(_len_core0*sizeof(struct smscore_device_t));
+          for(int _i0 = 0; _i0 < _len_core0; _i0++) {
+              core[_i0].board_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = smscore_get_board_id(core);
+          printf("%d\n", benchRet); 
+          free(core);
+        
+        break;
+    }
     default:
         usage();
         break;

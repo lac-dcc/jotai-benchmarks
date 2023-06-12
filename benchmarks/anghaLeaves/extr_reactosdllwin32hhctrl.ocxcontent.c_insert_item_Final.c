@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            dlinked\n\
+       2            bintree\n\
+       3            empty\n\
 \n\
 ");
 
@@ -86,7 +89,6 @@ __attribute__((used)) static ContentItem *insert_item(ContentItem *item, Content
 
     return NULL;
 }
-
 
 // ------------------------------------------------------------------------- //
 
@@ -146,6 +148,91 @@ void _delete_new_item(struct TYPE_5__ *aux_new_item[], int aux_new_item_size) {
       free(aux_new_item[i]);
 }
 
+struct TYPE_5__ *_allocate_Dlinked_item(int length, struct TYPE_5__ *aux_dlinked_item[] ) {
+  struct TYPE_5__ *walker = (struct TYPE_5__ *)malloc(sizeof(struct TYPE_5__));
+
+  aux_dlinked_item[0] = walker;
+  walker->child = NULL;
+  walker->next = NULL;
+
+  struct TYPE_5__ *head = walker;
+  for(int i = 1; i < length; i++) {
+    walker->next = (struct TYPE_5__ *)malloc(sizeof(struct TYPE_5__));
+    walker->next->child = walker;
+    walker = walker->next;
+    aux_dlinked_item[i] = walker;
+    if (i == (length - 1)) 
+      walker->next = NULL;  }
+
+  return head;
+}
+
+void _delete_Dlinked_item(struct TYPE_5__ *aux_dlinked_item[], int aux_dlinked_item_size) {
+  for(int i = 0; i < aux_dlinked_item_size; i++) 
+    if(aux_dlinked_item[i])
+      free(aux_dlinked_item[i]);
+}
+
+struct TYPE_5__ *_allocate_Dlinked_new_item(int length, struct TYPE_5__ *aux_dlinked_new_item[] ) {
+  struct TYPE_5__ *walker = (struct TYPE_5__ *)malloc(sizeof(struct TYPE_5__));
+
+  aux_dlinked_new_item[0] = walker;
+  walker->child = NULL;
+  walker->next = NULL;
+
+  struct TYPE_5__ *head = walker;
+  for(int i = 1; i < length; i++) {
+    walker->next = (struct TYPE_5__ *)malloc(sizeof(struct TYPE_5__));
+    walker->next->child = walker;
+    walker = walker->next;
+    aux_dlinked_new_item[i] = walker;
+    if (i == (length - 1)) 
+      walker->next = NULL;  }
+
+  return head;
+}
+
+void _delete_Dlinked_new_item(struct TYPE_5__ *aux_dlinked_new_item[], int aux_dlinked_new_item_size) {
+  for(int i = 0; i < aux_dlinked_new_item_size; i++) 
+    if(aux_dlinked_new_item[i])
+      free(aux_dlinked_new_item[i]);
+}
+
+struct TYPE_5__ *_allocateBinTree_item(int length, struct TYPE_5__ *aux_tree_item[], int *counter_item) {
+  if(length == 0)
+    return NULL;
+  struct TYPE_5__ *walker = (struct TYPE_5__ *)malloc(sizeof(struct TYPE_5__));
+
+  aux_tree_item[*counter_item] = walker;
+  (*counter_item)++;
+  walker->child = _allocateBinTree_item(length - 1, aux_tree_item, counter_item);
+  walker->next = _allocateBinTree_item(length - 1, aux_tree_item, counter_item);
+  return walker;
+}
+
+void _deleteBinTree_item(struct TYPE_5__ *aux_tree_item[]) {
+  for(int i = 0; i < 1023; i++) 
+    if(aux_tree_item[i])
+      free(aux_tree_item[i]);
+}
+
+struct TYPE_5__ *_allocateBinTree_new_item(int length, struct TYPE_5__ *aux_tree_new_item[], int *counter_new_item) {
+  if(length == 0)
+    return NULL;
+  struct TYPE_5__ *walker = (struct TYPE_5__ *)malloc(sizeof(struct TYPE_5__));
+
+  aux_tree_new_item[*counter_new_item] = walker;
+  (*counter_new_item)++;
+  walker->child = _allocateBinTree_new_item(length - 1, aux_tree_new_item, counter_new_item);
+  walker->next = _allocateBinTree_new_item(length - 1, aux_tree_new_item, counter_new_item);
+  return walker;
+}
+
+void _deleteBinTree_new_item(struct TYPE_5__ *aux_tree_new_item[]) {
+  for(int i = 0; i < 1023; i++) 
+    if(aux_tree_new_item[i])
+      free(aux_tree_new_item[i]);
+}
 
 
 
@@ -165,17 +252,72 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int insert_type = 100;
+        
           struct TYPE_5__ * aux_item[1];
           struct TYPE_5__ * item = _allocate_item(1, aux_item);
+        
           struct TYPE_5__ * aux_new_item[1];
           struct TYPE_5__ * new_item = _allocate_new_item(1, aux_new_item);
+        
           struct TYPE_5__ * benchRet = insert_item(item,new_item,insert_type);
           _delete_item(aux_item, 1);
           _delete_new_item(aux_new_item, 1);
         
         break;
     }
-
+    // dlinked
+    case 1:
+    {
+          int insert_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          struct TYPE_5__ * aux_dlinked_item[10000];
+          struct TYPE_5__ * item = _allocate_Dlinked_item(10000, aux_dlinked_item);
+        
+          struct TYPE_5__ * aux_dlinked_new_item[10000];
+          struct TYPE_5__ * new_item = _allocate_Dlinked_new_item(10000, aux_dlinked_new_item);
+        
+          struct TYPE_5__ * benchRet = insert_item(item,new_item,insert_type);
+          _delete_Dlinked_item(aux_dlinked_item, 10000);
+          _delete_Dlinked_new_item(aux_dlinked_new_item, 10000);
+        
+        break;
+    }
+    // bintree
+    case 2:
+    {
+          int insert_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int counter_item= 0;
+          struct TYPE_5__ *  aux_tree_item[1023];
+          struct TYPE_5__ * item = _allocateBinTree_item(10, aux_tree_item, &counter_item);
+        
+          int counter_new_item= 0;
+          struct TYPE_5__ *  aux_tree_new_item[1023];
+          struct TYPE_5__ * new_item = _allocateBinTree_new_item(10, aux_tree_new_item, &counter_new_item);
+        
+          struct TYPE_5__ * benchRet = insert_item(item,new_item,insert_type);
+          _deleteBinTree_item(aux_tree_item);
+          _deleteBinTree_new_item(aux_tree_new_item);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int insert_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          struct TYPE_5__ * aux_item[1];
+          struct TYPE_5__ * item = _allocate_item(1, aux_item);
+        
+          struct TYPE_5__ * aux_new_item[1];
+          struct TYPE_5__ * new_item = _allocate_new_item(1, aux_new_item);
+        
+          struct TYPE_5__ * benchRet = insert_item(item,new_item,insert_type);
+          _delete_item(aux_item, 1);
+          _delete_new_item(aux_new_item, 1);
+        
+        break;
+    }
     default:
         usage();
         break;

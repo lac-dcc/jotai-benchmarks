@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static int ipipe_validate_cgs_params(struct vpfe_ipipe_cgs
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,15 +79,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_cgs0 = 65025;
+          struct vpfe_ipipe_cgs * cgs = (struct vpfe_ipipe_cgs *) malloc(_len_cgs0*sizeof(struct vpfe_ipipe_cgs));
+          for(int _i0 = 0; _i0 < _len_cgs0; _i0++) {
+              cgs[_i0].en = ((-2 * (next_i()%2)) + 1) * next_i();
+          cgs[_i0].h_shft = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ipipe_validate_cgs_params(cgs);
+          printf("%d\n", benchRet); 
+          free(cgs);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_cgs0 = 100;
+          struct vpfe_ipipe_cgs * cgs = (struct vpfe_ipipe_cgs *) malloc(_len_cgs0*sizeof(struct vpfe_ipipe_cgs));
+          for(int _i0 = 0; _i0 < _len_cgs0; _i0++) {
+              cgs[_i0].en = ((-2 * (next_i()%2)) + 1) * next_i();
+          cgs[_i0].h_shft = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ipipe_validate_cgs_params(cgs);
+          printf("%d\n", benchRet); 
+          free(cgs);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_cgs0 = 1;
           struct vpfe_ipipe_cgs * cgs = (struct vpfe_ipipe_cgs *) malloc(_len_cgs0*sizeof(struct vpfe_ipipe_cgs));
           for(int _i0 = 0; _i0 < _len_cgs0; _i0++) {
-            cgs[_i0].en = ((-2 * (next_i()%2)) + 1) * next_i();
-        cgs[_i0].h_shft = ((-2 * (next_i()%2)) + 1) * next_i();
+              cgs[_i0].en = ((-2 * (next_i()%2)) + 1) * next_i();
+          cgs[_i0].h_shft = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ipipe_validate_cgs_params(cgs);
           printf("%d\n", benchRet); 
           free(cgs);

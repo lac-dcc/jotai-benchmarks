@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ void brcmf_fweh_p2pdev_setup(struct brcmf_if *ifp, bool ongoing)
 	ifp->drvr->fweh.p2pdev_setup_ongoing = ongoing;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,19 +79,197 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int ongoing = 100;
+        
           int _len_ifp0 = 1;
           struct brcmf_if * ifp = (struct brcmf_if *) malloc(_len_ifp0*sizeof(struct brcmf_if));
           for(int _i0 = 0; _i0 < _len_ifp0; _i0++) {
               int _len_ifp__i0__drvr0 = 1;
           ifp[_i0].drvr = (struct TYPE_4__ *) malloc(_len_ifp__i0__drvr0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_ifp__i0__drvr0; _j0++) {
-            ifp[_i0].drvr->fweh.p2pdev_setup_ongoing = ((-2 * (next_i()%2)) + 1) * next_i();
+              ifp[_i0].drvr->fweh.p2pdev_setup_ongoing = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
+          brcmf_fweh_p2pdev_setup(ifp,ongoing);
+          for(int _aux = 0; _aux < _len_ifp0; _aux++) {
+          free(ifp[_aux].drvr);
+          }
+          free(ifp);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int ongoing = 255;
+        
+          int _len_ifp0 = 65025;
+          struct brcmf_if * ifp = (struct brcmf_if *) malloc(_len_ifp0*sizeof(struct brcmf_if));
+          for(int _i0 = 0; _i0 < _len_ifp0; _i0++) {
+              int _len_ifp__i0__drvr0 = 1;
+          ifp[_i0].drvr = (struct TYPE_4__ *) malloc(_len_ifp__i0__drvr0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_ifp__i0__drvr0; _j0++) {
+              ifp[_i0].drvr->fweh.p2pdev_setup_ongoing = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          brcmf_fweh_p2pdev_setup(ifp,ongoing);
+          for(int _aux = 0; _aux < _len_ifp0; _aux++) {
+          free(ifp[_aux].drvr);
+          }
+          free(ifp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int ongoing = 10;
+        
+          int _len_ifp0 = 100;
+          struct brcmf_if * ifp = (struct brcmf_if *) malloc(_len_ifp0*sizeof(struct brcmf_if));
+          for(int _i0 = 0; _i0 < _len_ifp0; _i0++) {
+              int _len_ifp__i0__drvr0 = 1;
+          ifp[_i0].drvr = (struct TYPE_4__ *) malloc(_len_ifp__i0__drvr0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_ifp__i0__drvr0; _j0++) {
+              ifp[_i0].drvr->fweh.p2pdev_setup_ongoing = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          brcmf_fweh_p2pdev_setup(ifp,ongoing);
+          for(int _aux = 0; _aux < _len_ifp0; _aux++) {
+          free(ifp[_aux].drvr);
+          }
+          free(ifp);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int ongoing = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ifp0 = 1;
+          struct brcmf_if * ifp = (struct brcmf_if *) malloc(_len_ifp0*sizeof(struct brcmf_if));
+          for(int _i0 = 0; _i0 < _len_ifp0; _i0++) {
+              int _len_ifp__i0__drvr0 = 1;
+          ifp[_i0].drvr = (struct TYPE_4__ *) malloc(_len_ifp__i0__drvr0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_ifp__i0__drvr0; _j0++) {
+              ifp[_i0].drvr->fweh.p2pdev_setup_ongoing = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
           brcmf_fweh_p2pdev_setup(ifp,ongoing);
           for(int _aux = 0; _aux < _len_ifp0; _aux++) {
           free(ifp[_aux].drvr);

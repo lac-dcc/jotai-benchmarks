@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static inline u8 mcsidx_to_tgtpwridx(unsigned int mcs_idx,
 		return base_pwridx + 4 * (mcs_idx / 8) + mod_idx - 2;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,7 +84,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int mcs_idx = 100;
+        
           int base_pwridx = 100;
+        
           int benchRet = mcsidx_to_tgtpwridx(mcs_idx,base_pwridx);
           printf("%d\n", benchRet); 
         
@@ -99,7 +96,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int mcs_idx = 255;
+        
           int base_pwridx = 255;
+        
           int benchRet = mcsidx_to_tgtpwridx(mcs_idx,base_pwridx);
           printf("%d\n", benchRet); 
         
@@ -109,13 +108,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int mcs_idx = 10;
+        
           int base_pwridx = 10;
+        
           int benchRet = mcsidx_to_tgtpwridx(mcs_idx,base_pwridx);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int mcs_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int base_pwridx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = mcsidx_to_tgtpwridx(mcs_idx,base_pwridx);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

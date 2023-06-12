@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ DWORD kuhl_m_crypto_extractor_GetKeySize(DWORD bits)
   return 10 * ((v6 >> 1) + v5 + 2);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,6 +85,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int bits = 100;
+        
           int benchRet = kuhl_m_crypto_extractor_GetKeySize(bits);
           printf("%d\n", benchRet); 
         
@@ -99,6 +95,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int bits = 255;
+        
           int benchRet = kuhl_m_crypto_extractor_GetKeySize(bits);
           printf("%d\n", benchRet); 
         
@@ -108,12 +105,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int bits = 10;
+        
           int benchRet = kuhl_m_crypto_extractor_GetKeySize(bits);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int bits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = kuhl_m_crypto_extractor_GetKeySize(bits);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

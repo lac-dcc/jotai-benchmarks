@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ int ff_acelp_decode_4bit_to_2nd_delay3(
         return 3 * (ac_index + pitch_delay_min) - 18;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,7 +85,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int ac_index = 100;
+        
           int pitch_delay_min = 100;
+        
           int benchRet = ff_acelp_decode_4bit_to_2nd_delay3(ac_index,pitch_delay_min);
           printf("%d\n", benchRet); 
         
@@ -100,7 +97,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int ac_index = 255;
+        
           int pitch_delay_min = 255;
+        
           int benchRet = ff_acelp_decode_4bit_to_2nd_delay3(ac_index,pitch_delay_min);
           printf("%d\n", benchRet); 
         
@@ -110,13 +109,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int ac_index = 10;
+        
           int pitch_delay_min = 10;
+        
           int benchRet = ff_acelp_decode_4bit_to_2nd_delay3(ac_index,pitch_delay_min);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int ac_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int pitch_delay_min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = ff_acelp_decode_4bit_to_2nd_delay3(ac_index,pitch_delay_min);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ _is_alpha_underscore(char ch)
     return (ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z') || ch == '_';
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           char ch = 100;
+        
           int benchRet = _is_alpha_underscore(ch);
           printf("%d\n", benchRet); 
         
@@ -93,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           char ch = 255;
+        
           int benchRet = _is_alpha_underscore(ch);
           printf("%d\n", benchRet); 
         
@@ -102,12 +99,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           char ch = 10;
+        
           int benchRet = _is_alpha_underscore(ch);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          char ch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = _is_alpha_underscore(ch);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

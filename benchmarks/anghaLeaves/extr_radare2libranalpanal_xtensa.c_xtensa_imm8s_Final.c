@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static inline ut64 xtensa_imm8s (ut64 addr, ut8 imm8) {
 	return (addr + 4 + imm8);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,7 +82,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long addr = 100;
+        
           int imm8 = 100;
+        
           long benchRet = xtensa_imm8s(addr,imm8);
           printf("%ld\n", benchRet); 
         
@@ -97,7 +94,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long addr = 255;
+        
           int imm8 = 255;
+        
           long benchRet = xtensa_imm8s(addr,imm8);
           printf("%ld\n", benchRet); 
         
@@ -107,13 +106,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long addr = 10;
+        
           int imm8 = 10;
+        
           long benchRet = xtensa_imm8s(addr,imm8);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int imm8 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long benchRet = xtensa_imm8s(addr,imm8);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -66,7 +67,6 @@ __attribute__((used)) static statement_t *link_statements(statement_t *head, sta
 
     return head;
 }
-
 
 // ------------------------------------------------------------------------- //
 
@@ -118,7 +118,6 @@ void _delete_tail(struct TYPE_5__ *aux_tail[], int aux_tail_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -131,13 +130,77 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // linked
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 80007
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 40008
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 40008
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 40008
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 40008
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 40007
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 40007
+          // ------------------------------- 
+
+          struct TYPE_5__ * aux_head[10000];
+          struct TYPE_5__ * head = _allocate_head(10000, aux_head);
+        
+          struct TYPE_5__ * aux_tail[10000];
+          struct TYPE_5__ * tail = _allocate_tail(10000, aux_tail);
+        
+          struct TYPE_5__ * benchRet = link_statements(head,tail);
+          _delete_head(aux_head, 10000);
+          _delete_tail(aux_tail, 10000);
+        
+        break;
+    }
+
+
+    // empty
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           struct TYPE_5__ * aux_head[1];
           struct TYPE_5__ * head = _allocate_head(1, aux_head);
+        
           struct TYPE_5__ * aux_tail[1];
           struct TYPE_5__ * tail = _allocate_tail(1, aux_tail);
+        
           struct TYPE_5__ * benchRet = link_statements(head,tail);
           _delete_head(aux_head, 1);
           _delete_tail(aux_tail, 1);

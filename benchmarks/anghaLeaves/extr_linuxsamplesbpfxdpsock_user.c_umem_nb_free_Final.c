@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ __attribute__((used)) static inline u32 umem_nb_free(struct xdp_umem_uqueue *q, 
 	return q->cached_cons - q->cached_prod;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,18 +88,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long nb = 100;
+        
           int _len_q0 = 1;
           struct xdp_umem_uqueue * q = (struct xdp_umem_uqueue *) malloc(_len_q0*sizeof(struct xdp_umem_uqueue));
           for(int _i0 = 0; _i0 < _len_q0; _i0++) {
-            q[_i0].cached_cons = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].cached_prod = ((-2 * (next_i()%2)) + 1) * next_i();
+              q[_i0].cached_cons = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].cached_prod = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_q__i0__consumer0 = 1;
           q[_i0].consumer = (long *) malloc(_len_q__i0__consumer0*sizeof(long));
           for(int _j0 = 0; _j0 < _len_q__i0__consumer0; _j0++) {
             q[_i0].consumer[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        q[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = umem_nb_free(q,nb);
           printf("%ld\n", benchRet); 
           for(int _aux = 0; _aux < _len_q0; _aux++) {
@@ -112,7 +112,90 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long nb = 255;
+        
+          int _len_q0 = 65025;
+          struct xdp_umem_uqueue * q = (struct xdp_umem_uqueue *) malloc(_len_q0*sizeof(struct xdp_umem_uqueue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].cached_cons = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].cached_prod = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_q__i0__consumer0 = 1;
+          q[_i0].consumer = (long *) malloc(_len_q__i0__consumer0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_q__i0__consumer0; _j0++) {
+            q[_i0].consumer[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          q[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = umem_nb_free(q,nb);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_q0; _aux++) {
+          free(q[_aux].consumer);
+          }
+          free(q);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long nb = 10;
+        
+          int _len_q0 = 100;
+          struct xdp_umem_uqueue * q = (struct xdp_umem_uqueue *) malloc(_len_q0*sizeof(struct xdp_umem_uqueue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].cached_cons = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].cached_prod = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_q__i0__consumer0 = 1;
+          q[_i0].consumer = (long *) malloc(_len_q__i0__consumer0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_q__i0__consumer0; _j0++) {
+            q[_i0].consumer[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          q[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = umem_nb_free(q,nb);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_q0; _aux++) {
+          free(q[_aux].consumer);
+          }
+          free(q);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long nb = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_q0 = 1;
+          struct xdp_umem_uqueue * q = (struct xdp_umem_uqueue *) malloc(_len_q0*sizeof(struct xdp_umem_uqueue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].cached_cons = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].cached_prod = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_q__i0__consumer0 = 1;
+          q[_i0].consumer = (long *) malloc(_len_q__i0__consumer0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_q__i0__consumer0; _j0++) {
+            q[_i0].consumer[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          q[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = umem_nb_free(q,nb);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_q0; _aux++) {
+          free(q[_aux].consumer);
+          }
+          free(q);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ void blk_limits_io_min(struct queue_limits *limits, unsigned int min)
 		limits->io_min = limits->physical_block_size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,17 +81,172 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           unsigned int min = 100;
+        
           int _len_limits0 = 1;
           struct queue_limits * limits = (struct queue_limits *) malloc(_len_limits0*sizeof(struct queue_limits));
           for(int _i0 = 0; _i0 < _len_limits0; _i0++) {
-            limits[_i0].io_min = ((-2 * (next_i()%2)) + 1) * next_i();
-        limits[_i0].logical_block_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        limits[_i0].physical_block_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              limits[_i0].io_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          limits[_i0].logical_block_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          limits[_i0].physical_block_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          blk_limits_io_min(limits,min);
+          free(limits);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          unsigned int min = 255;
+        
+          int _len_limits0 = 65025;
+          struct queue_limits * limits = (struct queue_limits *) malloc(_len_limits0*sizeof(struct queue_limits));
+          for(int _i0 = 0; _i0 < _len_limits0; _i0++) {
+              limits[_i0].io_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          limits[_i0].logical_block_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          limits[_i0].physical_block_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          blk_limits_io_min(limits,min);
+          free(limits);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          unsigned int min = 10;
+        
+          int _len_limits0 = 100;
+          struct queue_limits * limits = (struct queue_limits *) malloc(_len_limits0*sizeof(struct queue_limits));
+          for(int _i0 = 0; _i0 < _len_limits0; _i0++) {
+              limits[_i0].io_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          limits[_i0].logical_block_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          limits[_i0].physical_block_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          blk_limits_io_min(limits,min);
+          free(limits);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          unsigned int min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_limits0 = 1;
+          struct queue_limits * limits = (struct queue_limits *) malloc(_len_limits0*sizeof(struct queue_limits));
+          for(int _i0 = 0; _i0 < _len_limits0; _i0++) {
+              limits[_i0].io_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          limits[_i0].logical_block_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          limits[_i0].physical_block_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           blk_limits_io_min(limits,min);
           free(limits);
         

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ int DH_set_length(DH *dh, long length)
     return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,11 +82,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long length = 100;
+        
           int _len_dh0 = 1;
           struct TYPE_3__ * dh = (struct TYPE_3__ *) malloc(_len_dh0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_dh0; _i0++) {
-            dh[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+              dh[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = DH_set_length(dh,length);
+          printf("%d\n", benchRet); 
+          free(dh);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long length = 255;
+        
+          int _len_dh0 = 65025;
+          struct TYPE_3__ * dh = (struct TYPE_3__ *) malloc(_len_dh0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_dh0; _i0++) {
+              dh[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = DH_set_length(dh,length);
           printf("%d\n", benchRet); 
           free(dh);
@@ -98,21 +115,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long length = 10;
+        
           int _len_dh0 = 100;
           struct TYPE_3__ * dh = (struct TYPE_3__ *) malloc(_len_dh0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_dh0; _i0++) {
-            dh[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+              dh[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = DH_set_length(dh,length);
           printf("%d\n", benchRet); 
           free(dh);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dh0 = 1;
+          struct TYPE_3__ * dh = (struct TYPE_3__ *) malloc(_len_dh0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_dh0; _i0++) {
+              dh[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = DH_set_length(dh,length);
+          printf("%d\n", benchRet); 
+          free(dh);
+        
+        break;
+    }
     default:
         usage();
         break;

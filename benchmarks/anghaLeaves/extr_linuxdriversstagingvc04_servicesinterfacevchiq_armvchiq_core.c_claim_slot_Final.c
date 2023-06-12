@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ claim_slot(VCHIQ_SLOT_INFO_T *slot)
 	slot->use_count++;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_slot0 = 1;
+          int _len_slot0 = 65025;
           struct TYPE_3__ * slot = (struct TYPE_3__ *) malloc(_len_slot0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_slot0; _i0++) {
-            slot[_i0].use_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              slot[_i0].use_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           claim_slot(slot);
           free(slot);
         
@@ -101,14 +98,30 @@ int main(int argc, char *argv[]) {
           int _len_slot0 = 100;
           struct TYPE_3__ * slot = (struct TYPE_3__ *) malloc(_len_slot0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_slot0; _i0++) {
-            slot[_i0].use_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              slot[_i0].use_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           claim_slot(slot);
           free(slot);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_slot0 = 1;
+          struct TYPE_3__ * slot = (struct TYPE_3__ *) malloc(_len_slot0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_slot0; _i0++) {
+              slot[_i0].use_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          claim_slot(slot);
+          free(slot);
+        
+        break;
+    }
     default:
         usage();
         break;

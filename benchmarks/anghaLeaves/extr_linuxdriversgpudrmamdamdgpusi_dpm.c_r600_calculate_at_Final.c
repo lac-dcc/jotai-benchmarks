@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +80,6 @@ __attribute__((used)) static int r600_calculate_at(u32 t, u32 h, u32 fh, u32 fl,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,23 +92,214 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 66
+          // dynamic_instructions_O0 : 66
+          // ------------------------------- 
+          // static_instructions_O1 : 50
+          // dynamic_instructions_O1 : 50
+          // ------------------------------- 
+          // static_instructions_O2 : 50
+          // dynamic_instructions_O2 : 50
+          // ------------------------------- 
+          // static_instructions_O3 : 50
+          // dynamic_instructions_O3 : 50
+          // ------------------------------- 
+          // static_instructions_Ofast : 50
+          // dynamic_instructions_Ofast : 50
+          // ------------------------------- 
+          // static_instructions_Os : 51
+          // dynamic_instructions_Os : 51
+          // ------------------------------- 
+          // static_instructions_Oz : 43
+          // dynamic_instructions_Oz : 43
+          // ------------------------------- 
+
           int t = 100;
+        
           int h = 100;
+        
           int fh = 100;
+        
           int fl = 100;
+        
           int _len_tl0 = 1;
           int * tl = (int *) malloc(_len_tl0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_tl0; _i0++) {
             tl[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_th0 = 1;
           int * th = (int *) malloc(_len_th0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_th0; _i0++) {
             th[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = r600_calculate_at(t,h,fh,fl,tl,th);
+          printf("%d\n", benchRet); 
+          free(tl);
+          free(th);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 66
+          // dynamic_instructions_O0 : 66
+          // ------------------------------- 
+          // static_instructions_O1 : 50
+          // dynamic_instructions_O1 : 50
+          // ------------------------------- 
+          // static_instructions_O2 : 50
+          // dynamic_instructions_O2 : 50
+          // ------------------------------- 
+          // static_instructions_O3 : 50
+          // dynamic_instructions_O3 : 50
+          // ------------------------------- 
+          // static_instructions_Ofast : 50
+          // dynamic_instructions_Ofast : 50
+          // ------------------------------- 
+          // static_instructions_Os : 51
+          // dynamic_instructions_Os : 51
+          // ------------------------------- 
+          // static_instructions_Oz : 43
+          // dynamic_instructions_Oz : 43
+          // ------------------------------- 
+
+          int t = 255;
+        
+          int h = 255;
+        
+          int fh = 255;
+        
+          int fl = 255;
+        
+          int _len_tl0 = 65025;
+          int * tl = (int *) malloc(_len_tl0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_tl0; _i0++) {
+            tl[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_th0 = 65025;
+          int * th = (int *) malloc(_len_th0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_th0; _i0++) {
+            th[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = r600_calculate_at(t,h,fh,fl,tl,th);
+          printf("%d\n", benchRet); 
+          free(tl);
+          free(th);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 66
+          // dynamic_instructions_O0 : 66
+          // ------------------------------- 
+          // static_instructions_O1 : 50
+          // dynamic_instructions_O1 : 50
+          // ------------------------------- 
+          // static_instructions_O2 : 50
+          // dynamic_instructions_O2 : 50
+          // ------------------------------- 
+          // static_instructions_O3 : 50
+          // dynamic_instructions_O3 : 50
+          // ------------------------------- 
+          // static_instructions_Ofast : 50
+          // dynamic_instructions_Ofast : 50
+          // ------------------------------- 
+          // static_instructions_Os : 51
+          // dynamic_instructions_Os : 51
+          // ------------------------------- 
+          // static_instructions_Oz : 43
+          // dynamic_instructions_Oz : 43
+          // ------------------------------- 
+
+          int t = 10;
+        
+          int h = 10;
+        
+          int fh = 10;
+        
+          int fl = 10;
+        
+          int _len_tl0 = 100;
+          int * tl = (int *) malloc(_len_tl0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_tl0; _i0++) {
+            tl[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_th0 = 100;
+          int * th = (int *) malloc(_len_th0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_th0; _i0++) {
+            th[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = r600_calculate_at(t,h,fh,fl,tl,th);
+          printf("%d\n", benchRet); 
+          free(tl);
+          free(th);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 66
+          // dynamic_instructions_O0 : 66
+          // ------------------------------- 
+          // static_instructions_O1 : 50
+          // dynamic_instructions_O1 : 50
+          // ------------------------------- 
+          // static_instructions_O2 : 50
+          // dynamic_instructions_O2 : 50
+          // ------------------------------- 
+          // static_instructions_O3 : 50
+          // dynamic_instructions_O3 : 50
+          // ------------------------------- 
+          // static_instructions_Ofast : 50
+          // dynamic_instructions_Ofast : 50
+          // ------------------------------- 
+          // static_instructions_Os : 51
+          // dynamic_instructions_Os : 51
+          // ------------------------------- 
+          // static_instructions_Oz : 43
+          // dynamic_instructions_Oz : 43
+          // ------------------------------- 
+
+          int t = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int fh = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int fl = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_tl0 = 1;
+          int * tl = (int *) malloc(_len_tl0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_tl0; _i0++) {
+            tl[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_th0 = 1;
+          int * th = (int *) malloc(_len_th0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_th0; _i0++) {
+            th[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = r600_calculate_at(t,h,fh,fl,tl,th);
           printf("%d\n", benchRet); 
           free(tl);

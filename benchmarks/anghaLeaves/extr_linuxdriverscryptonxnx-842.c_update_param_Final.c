@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +77,6 @@ __attribute__((used)) static int update_param(struct nx842_crypto_param *p,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,20 +89,191 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 39
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           unsigned int slen = 100;
+        
           unsigned int dlen = 100;
+        
           int _len_p0 = 1;
           struct nx842_crypto_param * p = (struct nx842_crypto_param *) malloc(_len_p0*sizeof(struct nx842_crypto_param));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].iremain = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].oremain = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].in = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].out = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].ototal = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].iremain = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].oremain = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].in = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].out = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].ototal = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = update_param(p,slen,dlen);
+          printf("%d\n", benchRet); 
+          free(p);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 39
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          unsigned int slen = 255;
+        
+          unsigned int dlen = 255;
+        
+          int _len_p0 = 65025;
+          struct nx842_crypto_param * p = (struct nx842_crypto_param *) malloc(_len_p0*sizeof(struct nx842_crypto_param));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].iremain = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].oremain = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].in = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].out = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].ototal = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = update_param(p,slen,dlen);
+          printf("%d\n", benchRet); 
+          free(p);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 39
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          unsigned int slen = 10;
+        
+          unsigned int dlen = 10;
+        
+          int _len_p0 = 100;
+          struct nx842_crypto_param * p = (struct nx842_crypto_param *) malloc(_len_p0*sizeof(struct nx842_crypto_param));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].iremain = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].oremain = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].in = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].out = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].ototal = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = update_param(p,slen,dlen);
+          printf("%d\n", benchRet); 
+          free(p);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 39
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          unsigned int slen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int dlen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_p0 = 1;
+          struct nx842_crypto_param * p = (struct nx842_crypto_param *) malloc(_len_p0*sizeof(struct nx842_crypto_param));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].iremain = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].oremain = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].in = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].out = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].ototal = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = update_param(p,slen,dlen);
           printf("%d\n", benchRet); 
           free(p);

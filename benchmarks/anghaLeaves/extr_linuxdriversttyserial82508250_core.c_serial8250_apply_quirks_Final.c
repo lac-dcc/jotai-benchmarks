@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static inline void serial8250_apply_quirks(struct uart_825
 	up->port.quirks |= skip_txen_test ? UPQ_NO_TXEN_TEST : 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,14 +78,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_up0 = 1;
+          int _len_up0 = 65025;
           struct uart_8250_port * up = (struct uart_8250_port *) malloc(_len_up0*sizeof(struct uart_8250_port));
           for(int _i0 = 0; _i0 < _len_up0; _i0++) {
-            up[_i0].port.quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+              up[_i0].port.quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           serial8250_apply_quirks(up);
           free(up);
         
@@ -102,14 +100,32 @@ int main(int argc, char *argv[]) {
           int _len_up0 = 100;
           struct uart_8250_port * up = (struct uart_8250_port *) malloc(_len_up0*sizeof(struct uart_8250_port));
           for(int _i0 = 0; _i0 < _len_up0; _i0++) {
-            up[_i0].port.quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+              up[_i0].port.quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           serial8250_apply_quirks(up);
           free(up);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_up0 = 1;
+          struct uart_8250_port * up = (struct uart_8250_port *) malloc(_len_up0*sizeof(struct uart_8250_port));
+          for(int _i0 = 0; _i0 < _len_up0; _i0++) {
+              up[_i0].port.quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          serial8250_apply_quirks(up);
+          free(up);
+        
+        break;
+    }
     default:
         usage();
         break;

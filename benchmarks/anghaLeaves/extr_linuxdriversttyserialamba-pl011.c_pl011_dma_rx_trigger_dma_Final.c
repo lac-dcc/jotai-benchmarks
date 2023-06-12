@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline int pl011_dma_rx_trigger_dma(struct uart_amb
 	return -EIO;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_uap0 = 1;
+          int _len_uap0 = 65025;
           struct uart_amba_port * uap = (struct uart_amba_port *) malloc(_len_uap0*sizeof(struct uart_amba_port));
           for(int _i0 = 0; _i0 < _len_uap0; _i0++) {
-            uap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              uap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = pl011_dma_rx_trigger_dma(uap);
           printf("%d\n", benchRet); 
           free(uap);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_uap0 = 100;
           struct uart_amba_port * uap = (struct uart_amba_port *) malloc(_len_uap0*sizeof(struct uart_amba_port));
           for(int _i0 = 0; _i0 < _len_uap0; _i0++) {
-            uap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              uap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = pl011_dma_rx_trigger_dma(uap);
           printf("%d\n", benchRet); 
           free(uap);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_uap0 = 1;
+          struct uart_amba_port * uap = (struct uart_amba_port *) malloc(_len_uap0*sizeof(struct uart_amba_port));
+          for(int _i0 = 0; _i0 < _len_uap0; _i0++) {
+              uap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pl011_dma_rx_trigger_dma(uap);
+          printf("%d\n", benchRet); 
+          free(uap);
+        
+        break;
+    }
     default:
         usage();
         break;

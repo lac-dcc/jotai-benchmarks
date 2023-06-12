@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -92,12 +93,6 @@ int nfsd_vers(int vers, enum vers_op change)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -114,7 +109,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int vers = 100;
+        
           enum vers_op change = 0;
+        
           int benchRet = nfsd_vers(vers,change);
           printf("%d\n", benchRet); 
         
@@ -124,7 +121,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int vers = 255;
+        
           enum vers_op change = 0;
+        
           int benchRet = nfsd_vers(vers,change);
           printf("%d\n", benchRet); 
         
@@ -134,13 +133,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int vers = 10;
+        
           enum vers_op change = 0;
+        
           int benchRet = nfsd_vers(vers,change);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int vers = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          enum vers_op change = 0;
+        
+          int benchRet = nfsd_vers(vers,change);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

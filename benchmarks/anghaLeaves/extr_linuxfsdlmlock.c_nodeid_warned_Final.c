@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static int nodeid_warned(int nodeid, int num_nodes, int *w
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,16 +83,128 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 4348
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 2051
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 2051
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 2050
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 2050
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 2051
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 2051
+          // ------------------------------- 
+
+          int nodeid = 255;
+        
+          int num_nodes = 255;
+        
+          int _len_warned0 = 65025;
+          int * warned = (int *) malloc(_len_warned0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_warned0; _i0++) {
+            warned[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = nodeid_warned(nodeid,num_nodes,warned);
+          printf("%d\n", benchRet); 
+          free(warned);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 183
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 91
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 91
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 90
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 90
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 91
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 91
+          // ------------------------------- 
+
           int nodeid = 10;
+        
           int num_nodes = 10;
+        
           int _len_warned0 = 100;
           int * warned = (int *) malloc(_len_warned0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_warned0; _i0++) {
             warned[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = nodeid_warned(nodeid,num_nodes,warned);
+          printf("%d\n", benchRet); 
+          free(warned);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int nodeid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int num_nodes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_warned0 = 1;
+          int * warned = (int *) malloc(_len_warned0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_warned0; _i0++) {
+            warned[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = nodeid_warned(nodeid,num_nodes,warned);
           printf("%d\n", benchRet); 
           free(warned);

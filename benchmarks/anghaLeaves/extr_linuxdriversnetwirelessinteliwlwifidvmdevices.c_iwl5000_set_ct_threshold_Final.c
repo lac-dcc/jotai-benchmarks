@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static void iwl5000_set_ct_threshold(struct iwl_priv *priv
 	priv->hw_params.ct_kill_threshold = CT_KILL_THRESHOLD_LEGACY;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,14 +78,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_priv0 = 1;
+          int _len_priv0 = 65025;
           struct iwl_priv * priv = (struct iwl_priv *) malloc(_len_priv0*sizeof(struct iwl_priv));
           for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
-            priv[_i0].hw_params.ct_kill_threshold = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].hw_params.ct_kill_threshold = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           iwl5000_set_ct_threshold(priv);
           free(priv);
         
@@ -102,14 +100,32 @@ int main(int argc, char *argv[]) {
           int _len_priv0 = 100;
           struct iwl_priv * priv = (struct iwl_priv *) malloc(_len_priv0*sizeof(struct iwl_priv));
           for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
-            priv[_i0].hw_params.ct_kill_threshold = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].hw_params.ct_kill_threshold = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           iwl5000_set_ct_threshold(priv);
           free(priv);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_priv0 = 1;
+          struct iwl_priv * priv = (struct iwl_priv *) malloc(_len_priv0*sizeof(struct iwl_priv));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].hw_params.ct_kill_threshold = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          iwl5000_set_ct_threshold(priv);
+          free(priv);
+        
+        break;
+    }
     default:
         usage();
         break;

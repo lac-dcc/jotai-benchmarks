@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static int mbochs_get_irq_info(struct mdev_device *mdev,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,19 +77,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_mdev0 = 1;
+          int _len_mdev0 = 65025;
           struct mdev_device * mdev = (struct mdev_device *) malloc(_len_mdev0*sizeof(struct mdev_device));
           for(int _i0 = 0; _i0 < _len_mdev0; _i0++) {
-            mdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              mdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_irq_info0 = 1;
+        
+          int _len_irq_info0 = 65025;
           struct vfio_irq_info * irq_info = (struct vfio_irq_info *) malloc(_len_irq_info0*sizeof(struct vfio_irq_info));
           for(int _i0 = 0; _i0 < _len_irq_info0; _i0++) {
-            irq_info[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+              irq_info[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mbochs_get_irq_info(mdev,irq_info);
           printf("%d\n", benchRet); 
           free(mdev);
@@ -101,7 +101,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_mdev0 = 100;
+          struct mdev_device * mdev = (struct mdev_device *) malloc(_len_mdev0*sizeof(struct mdev_device));
+          for(int _i0 = 0; _i0 < _len_mdev0; _i0++) {
+              mdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_irq_info0 = 100;
+          struct vfio_irq_info * irq_info = (struct vfio_irq_info *) malloc(_len_irq_info0*sizeof(struct vfio_irq_info));
+          for(int _i0 = 0; _i0 < _len_irq_info0; _i0++) {
+              irq_info[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mbochs_get_irq_info(mdev,irq_info);
+          printf("%d\n", benchRet); 
+          free(mdev);
+          free(irq_info);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_mdev0 = 1;
+          struct mdev_device * mdev = (struct mdev_device *) malloc(_len_mdev0*sizeof(struct mdev_device));
+          for(int _i0 = 0; _i0 < _len_mdev0; _i0++) {
+              mdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_irq_info0 = 1;
+          struct vfio_irq_info * irq_info = (struct vfio_irq_info *) malloc(_len_irq_info0*sizeof(struct vfio_irq_info));
+          for(int _i0 = 0; _i0 < _len_irq_info0; _i0++) {
+              irq_info[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mbochs_get_irq_info(mdev,irq_info);
+          printf("%d\n", benchRet); 
+          free(mdev);
+          free(irq_info);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ __attribute__((used)) static inline void vx_set_stream_cmd_params(struct vx_rmh 
 	rmh->Cmd[0] |= (((u32)pipe & MASK_FIRST_FIELD) << FIELD_SIZE) & MASK_DSP_WORD;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,11 +82,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int is_capture = 100;
+        
           int pipe = 100;
+        
           int _len_rmh0 = 1;
           struct vx_rmh * rmh = (struct vx_rmh *) malloc(_len_rmh0*sizeof(struct vx_rmh));
           for(int _i0 = 0; _i0 < _len_rmh0; _i0++) {
@@ -98,7 +120,159 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_rmh__i0__Cmd0; _j0++) {
             rmh[_i0].Cmd[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          vx_set_stream_cmd_params(rmh,is_capture,pipe);
+          for(int _aux = 0; _aux < _len_rmh0; _aux++) {
+          free(rmh[_aux].Cmd);
+          }
+          free(rmh);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int is_capture = 255;
+        
+          int pipe = 255;
+        
+          int _len_rmh0 = 65025;
+          struct vx_rmh * rmh = (struct vx_rmh *) malloc(_len_rmh0*sizeof(struct vx_rmh));
+          for(int _i0 = 0; _i0 < _len_rmh0; _i0++) {
+              int _len_rmh__i0__Cmd0 = 1;
+          rmh[_i0].Cmd = (int *) malloc(_len_rmh__i0__Cmd0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_rmh__i0__Cmd0; _j0++) {
+            rmh[_i0].Cmd[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          vx_set_stream_cmd_params(rmh,is_capture,pipe);
+          for(int _aux = 0; _aux < _len_rmh0; _aux++) {
+          free(rmh[_aux].Cmd);
+          }
+          free(rmh);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int is_capture = 10;
+        
+          int pipe = 10;
+        
+          int _len_rmh0 = 100;
+          struct vx_rmh * rmh = (struct vx_rmh *) malloc(_len_rmh0*sizeof(struct vx_rmh));
+          for(int _i0 = 0; _i0 < _len_rmh0; _i0++) {
+              int _len_rmh__i0__Cmd0 = 1;
+          rmh[_i0].Cmd = (int *) malloc(_len_rmh__i0__Cmd0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_rmh__i0__Cmd0; _j0++) {
+            rmh[_i0].Cmd[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          vx_set_stream_cmd_params(rmh,is_capture,pipe);
+          for(int _aux = 0; _aux < _len_rmh0; _aux++) {
+          free(rmh[_aux].Cmd);
+          }
+          free(rmh);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int is_capture = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int pipe = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rmh0 = 1;
+          struct vx_rmh * rmh = (struct vx_rmh *) malloc(_len_rmh0*sizeof(struct vx_rmh));
+          for(int _i0 = 0; _i0 < _len_rmh0; _i0++) {
+              int _len_rmh__i0__Cmd0 = 1;
+          rmh[_i0].Cmd = (int *) malloc(_len_rmh__i0__Cmd0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_rmh__i0__Cmd0; _j0++) {
+            rmh[_i0].Cmd[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           vx_set_stream_cmd_params(rmh,is_capture,pipe);
           for(int _aux = 0; _aux < _len_rmh0; _aux++) {
           free(rmh[_aux].Cmd);

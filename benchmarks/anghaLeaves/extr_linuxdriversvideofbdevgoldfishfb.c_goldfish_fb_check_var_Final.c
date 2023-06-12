@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -87,12 +89,6 @@ __attribute__((used)) static int goldfish_fb_check_var(struct fb_var_screeninfo 
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,31 +101,181 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 41
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int _len_var0 = 65025;
+          struct fb_var_screeninfo * var = (struct fb_var_screeninfo *) malloc(_len_var0*sizeof(struct fb_var_screeninfo));
+          for(int _i0 = 0; _i0 < _len_var0; _i0++) {
+              var[_i0].rotate = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].xres = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].yres = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].xres_virtual = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].yres_virtual = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].xoffset = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].grayscale = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_info0 = 65025;
+          struct fb_info * info = (struct fb_info *) malloc(_len_info0*sizeof(struct fb_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].var.rotate = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.yres = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.xres = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.xoffset = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.grayscale = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = goldfish_fb_check_var(var,info);
+          printf("%d\n", benchRet); 
+          free(var);
+          free(info);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 41
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int _len_var0 = 100;
+          struct fb_var_screeninfo * var = (struct fb_var_screeninfo *) malloc(_len_var0*sizeof(struct fb_var_screeninfo));
+          for(int _i0 = 0; _i0 < _len_var0; _i0++) {
+              var[_i0].rotate = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].xres = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].yres = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].xres_virtual = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].yres_virtual = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].xoffset = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].grayscale = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_info0 = 100;
+          struct fb_info * info = (struct fb_info *) malloc(_len_info0*sizeof(struct fb_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].var.rotate = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.yres = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.xres = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.xoffset = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.grayscale = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = goldfish_fb_check_var(var,info);
+          printf("%d\n", benchRet); 
+          free(var);
+          free(info);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 41
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
           int _len_var0 = 1;
           struct fb_var_screeninfo * var = (struct fb_var_screeninfo *) malloc(_len_var0*sizeof(struct fb_var_screeninfo));
           for(int _i0 = 0; _i0 < _len_var0; _i0++) {
-            var[_i0].rotate = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].xres = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].yres = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].xres_virtual = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].yres_virtual = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].xoffset = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].grayscale = ((-2 * (next_i()%2)) + 1) * next_i();
+              var[_i0].rotate = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].xres = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].yres = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].xres_virtual = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].yres_virtual = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].xoffset = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].grayscale = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_info0 = 1;
           struct fb_info * info = (struct fb_info *) malloc(_len_info0*sizeof(struct fb_info));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].var.rotate = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].var.yres = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].var.xres = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].var.xoffset = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].var.bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].var.grayscale = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].var.rotate = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.yres = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.xres = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.xoffset = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.grayscale = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = goldfish_fb_check_var(var,info);
           printf("%d\n", benchRet); 
           free(var);

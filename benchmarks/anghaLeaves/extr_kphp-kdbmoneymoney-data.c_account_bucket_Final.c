@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static int account_bucket (int acc_type_id, long long acc_
   return ((acc_id >> 24) * 239 + acc_id + acc_type_id * 997) & (ACC_HASH_SIZE - 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,7 +78,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int acc_type_id = 100;
+        
           long long acc_id = 100;
+        
           int benchRet = account_bucket(acc_type_id,acc_id);
           printf("%d\n", benchRet); 
         
@@ -93,7 +90,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int acc_type_id = 255;
+        
           long long acc_id = 255;
+        
           int benchRet = account_bucket(acc_type_id,acc_id);
           printf("%d\n", benchRet); 
         
@@ -103,13 +102,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int acc_type_id = 10;
+        
           long long acc_id = 10;
+        
           int benchRet = account_bucket(acc_type_id,acc_id);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int acc_type_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long long acc_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = account_bucket(acc_type_id,acc_id);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

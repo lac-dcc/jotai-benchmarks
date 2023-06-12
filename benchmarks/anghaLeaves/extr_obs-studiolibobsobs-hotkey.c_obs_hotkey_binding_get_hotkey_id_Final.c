@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ obs_hotkey_id obs_hotkey_binding_get_hotkey_id(obs_hotkey_binding_t *binding)
 	return binding->hotkey_id;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_binding0 = 1;
+          int _len_binding0 = 65025;
           struct TYPE_3__ * binding = (struct TYPE_3__ *) malloc(_len_binding0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_binding0; _i0++) {
-            binding[_i0].hotkey_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              binding[_i0].hotkey_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = obs_hotkey_binding_get_hotkey_id(binding);
           printf("%d\n", benchRet); 
           free(binding);
@@ -102,15 +99,32 @@ int main(int argc, char *argv[]) {
           int _len_binding0 = 100;
           struct TYPE_3__ * binding = (struct TYPE_3__ *) malloc(_len_binding0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_binding0; _i0++) {
-            binding[_i0].hotkey_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              binding[_i0].hotkey_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = obs_hotkey_binding_get_hotkey_id(binding);
           printf("%d\n", benchRet); 
           free(binding);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_binding0 = 1;
+          struct TYPE_3__ * binding = (struct TYPE_3__ *) malloc(_len_binding0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_binding0; _i0++) {
+              binding[_i0].hotkey_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = obs_hotkey_binding_get_hotkey_id(binding);
+          printf("%d\n", benchRet); 
+          free(binding);
+        
+        break;
+    }
     default:
         usage();
         break;

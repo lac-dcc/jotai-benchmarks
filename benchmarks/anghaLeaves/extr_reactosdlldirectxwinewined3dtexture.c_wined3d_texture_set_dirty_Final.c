@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static void wined3d_texture_set_dirty(struct wined3d_textu
     texture->flags &= ~(WINED3D_TEXTURE_RGB_VALID | WINED3D_TEXTURE_SRGB_VALID);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_texture0 = 1;
+          int _len_texture0 = 65025;
           struct wined3d_texture * texture = (struct wined3d_texture *) malloc(_len_texture0*sizeof(struct wined3d_texture));
           for(int _i0 = 0; _i0 < _len_texture0; _i0++) {
-            texture[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              texture[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           wined3d_texture_set_dirty(texture);
           free(texture);
         
@@ -100,14 +97,30 @@ int main(int argc, char *argv[]) {
           int _len_texture0 = 100;
           struct wined3d_texture * texture = (struct wined3d_texture *) malloc(_len_texture0*sizeof(struct wined3d_texture));
           for(int _i0 = 0; _i0 < _len_texture0; _i0++) {
-            texture[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              texture[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           wined3d_texture_set_dirty(texture);
           free(texture);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_texture0 = 1;
+          struct wined3d_texture * texture = (struct wined3d_texture *) malloc(_len_texture0*sizeof(struct wined3d_texture));
+          for(int _i0 = 0; _i0 < _len_texture0; _i0++) {
+              texture[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          wined3d_texture_set_dirty(texture);
+          free(texture);
+        
+        break;
+    }
     default:
         usage();
         break;

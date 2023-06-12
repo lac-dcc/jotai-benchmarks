@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline uint ai_get_chiprev(struct si_pub *sih)
 	return sih->chiprev;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_sih0 = 1;
+          int _len_sih0 = 65025;
           struct si_pub * sih = (struct si_pub *) malloc(_len_sih0*sizeof(struct si_pub));
           for(int _i0 = 0; _i0 < _len_sih0; _i0++) {
-            sih[_i0].chiprev = ((-2 * (next_i()%2)) + 1) * next_i();
+              sih[_i0].chiprev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ai_get_chiprev(sih);
           printf("%d\n", benchRet); 
           free(sih);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_sih0 = 100;
           struct si_pub * sih = (struct si_pub *) malloc(_len_sih0*sizeof(struct si_pub));
           for(int _i0 = 0; _i0 < _len_sih0; _i0++) {
-            sih[_i0].chiprev = ((-2 * (next_i()%2)) + 1) * next_i();
+              sih[_i0].chiprev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ai_get_chiprev(sih);
           printf("%d\n", benchRet); 
           free(sih);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_sih0 = 1;
+          struct si_pub * sih = (struct si_pub *) malloc(_len_sih0*sizeof(struct si_pub));
+          for(int _i0 = 0; _i0 < _len_sih0; _i0++) {
+              sih[_i0].chiprev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ai_get_chiprev(sih);
+          printf("%d\n", benchRet); 
+          free(sih);
+        
+        break;
+    }
     default:
         usage();
         break;

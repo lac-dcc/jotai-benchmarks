@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ lpfc_build_hbq_profile2(struct config_hbq_var *hbqmb,
 	hbqmb->profiles.profile2.seqlenoff  = hbq_desc->seqlenoff;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,30 +83,93 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_hbqmb0 = 1;
+          int _len_hbqmb0 = 65025;
           struct config_hbq_var * hbqmb = (struct config_hbq_var *) malloc(_len_hbqmb0*sizeof(struct config_hbq_var));
           for(int _i0 = 0; _i0 < _len_hbqmb0; _i0++) {
-            hbqmb[_i0].profiles.profile2.seqlenoff = ((-2 * (next_i()%2)) + 1) * next_i();
-        hbqmb[_i0].profiles.profile2.maxlen = ((-2 * (next_i()%2)) + 1) * next_i();
-        hbqmb[_i0].profiles.profile2.seqlenbcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+              hbqmb[_i0].profiles.profile2.seqlenoff = ((-2 * (next_i()%2)) + 1) * next_i();
+          hbqmb[_i0].profiles.profile2.maxlen = ((-2 * (next_i()%2)) + 1) * next_i();
+          hbqmb[_i0].profiles.profile2.seqlenbcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
-          int _len_hbq_desc0 = 1;
+        
+          int _len_hbq_desc0 = 65025;
           struct lpfc_hbq_init * hbq_desc = (struct lpfc_hbq_init *) malloc(_len_hbq_desc0*sizeof(struct lpfc_hbq_init));
           for(int _i0 = 0; _i0 < _len_hbq_desc0; _i0++) {
-            hbq_desc[_i0].seqlenoff = ((-2 * (next_i()%2)) + 1) * next_i();
-        hbq_desc[_i0].maxlen = ((-2 * (next_i()%2)) + 1) * next_i();
-        hbq_desc[_i0].seqlenbcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+              hbq_desc[_i0].seqlenoff = ((-2 * (next_i()%2)) + 1) * next_i();
+          hbq_desc[_i0].maxlen = ((-2 * (next_i()%2)) + 1) * next_i();
+          hbq_desc[_i0].seqlenbcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           lpfc_build_hbq_profile2(hbqmb,hbq_desc);
           free(hbqmb);
           free(hbq_desc);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_hbqmb0 = 100;
+          struct config_hbq_var * hbqmb = (struct config_hbq_var *) malloc(_len_hbqmb0*sizeof(struct config_hbq_var));
+          for(int _i0 = 0; _i0 < _len_hbqmb0; _i0++) {
+              hbqmb[_i0].profiles.profile2.seqlenoff = ((-2 * (next_i()%2)) + 1) * next_i();
+          hbqmb[_i0].profiles.profile2.maxlen = ((-2 * (next_i()%2)) + 1) * next_i();
+          hbqmb[_i0].profiles.profile2.seqlenbcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_hbq_desc0 = 100;
+          struct lpfc_hbq_init * hbq_desc = (struct lpfc_hbq_init *) malloc(_len_hbq_desc0*sizeof(struct lpfc_hbq_init));
+          for(int _i0 = 0; _i0 < _len_hbq_desc0; _i0++) {
+              hbq_desc[_i0].seqlenoff = ((-2 * (next_i()%2)) + 1) * next_i();
+          hbq_desc[_i0].maxlen = ((-2 * (next_i()%2)) + 1) * next_i();
+          hbq_desc[_i0].seqlenbcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          lpfc_build_hbq_profile2(hbqmb,hbq_desc);
+          free(hbqmb);
+          free(hbq_desc);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_hbqmb0 = 1;
+          struct config_hbq_var * hbqmb = (struct config_hbq_var *) malloc(_len_hbqmb0*sizeof(struct config_hbq_var));
+          for(int _i0 = 0; _i0 < _len_hbqmb0; _i0++) {
+              hbqmb[_i0].profiles.profile2.seqlenoff = ((-2 * (next_i()%2)) + 1) * next_i();
+          hbqmb[_i0].profiles.profile2.maxlen = ((-2 * (next_i()%2)) + 1) * next_i();
+          hbqmb[_i0].profiles.profile2.seqlenbcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_hbq_desc0 = 1;
+          struct lpfc_hbq_init * hbq_desc = (struct lpfc_hbq_init *) malloc(_len_hbq_desc0*sizeof(struct lpfc_hbq_init));
+          for(int _i0 = 0; _i0 < _len_hbq_desc0; _i0++) {
+              hbq_desc[_i0].seqlenoff = ((-2 * (next_i()%2)) + 1) * next_i();
+          hbq_desc[_i0].maxlen = ((-2 * (next_i()%2)) + 1) * next_i();
+          hbq_desc[_i0].seqlenbcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          lpfc_build_hbq_profile2(hbqmb,hbq_desc);
+          free(hbqmb);
+          free(hbq_desc);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ decode10 (unsigned char *buf,
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,16 +81,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 6392
+          // ------------------------------- 
+          // static_instructions_O1 : 27
+          // dynamic_instructions_O1 : 3329
+          // ------------------------------- 
+          // static_instructions_O2 : 56
+          // dynamic_instructions_O2 : 3458
+          // ------------------------------- 
+          // static_instructions_O3 : 56
+          // dynamic_instructions_O3 : 3458
+          // ------------------------------- 
+          // static_instructions_Ofast : 56
+          // dynamic_instructions_Ofast : 3458
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 3323
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 2307
+          // ------------------------------- 
+
+          unsigned long n = 255;
+        
+          int i = 255;
+        
+          int _len_buf0 = 65025;
+          unsigned char * buf = (unsigned char *) malloc(_len_buf0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          decode10(buf,n,i);
+          free(buf);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 267
+          // ------------------------------- 
+          // static_instructions_O1 : 27
+          // dynamic_instructions_O1 : 144
+          // ------------------------------- 
+          // static_instructions_O2 : 46
+          // dynamic_instructions_O2 : 154
+          // ------------------------------- 
+          // static_instructions_O3 : 46
+          // dynamic_instructions_O3 : 154
+          // ------------------------------- 
+          // static_instructions_Ofast : 46
+          // dynamic_instructions_Ofast : 154
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 138
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 102
+          // ------------------------------- 
+
           unsigned long n = 10;
+        
           int i = 10;
+        
           int _len_buf0 = 100;
           unsigned char * buf = (unsigned char *) malloc(_len_buf0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
             buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          decode10(buf,n,i);
+          free(buf);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          unsigned long n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int i = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_buf0 = 1;
+          unsigned char * buf = (unsigned char *) malloc(_len_buf0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           decode10(buf,n,i);
           free(buf);
         

@@ -31,6 +31,7 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            big-arr\n\
+       1            empty\n\
 \n\
 ");
 
@@ -90,12 +91,6 @@ int ceph_flags_to_mode(int flags)
 	return mode;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -112,12 +107,22 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int flags = 255;
+        
           int benchRet = ceph_flags_to_mode(flags);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 1:
+    {
+          int flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = ceph_flags_to_mode(flags);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

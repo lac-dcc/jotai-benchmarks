@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +79,6 @@ __attribute__((used)) static void set_dai_flags(struct snd_soc_dai_driver *dai_d
 			1 : 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,18 +91,180 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           unsigned int flag_mask = 100;
+        
           unsigned int flags = 100;
+        
           int _len_dai_drv0 = 1;
           struct snd_soc_dai_driver * dai_drv = (struct snd_soc_dai_driver *) malloc(_len_dai_drv0*sizeof(struct snd_soc_dai_driver));
           for(int _i0 = 0; _i0 < _len_dai_drv0; _i0++) {
-            dai_drv[_i0].symmetric_rates = ((-2 * (next_i()%2)) + 1) * next_i();
-        dai_drv[_i0].symmetric_channels = ((-2 * (next_i()%2)) + 1) * next_i();
-        dai_drv[_i0].symmetric_samplebits = ((-2 * (next_i()%2)) + 1) * next_i();
+              dai_drv[_i0].symmetric_rates = ((-2 * (next_i()%2)) + 1) * next_i();
+          dai_drv[_i0].symmetric_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          dai_drv[_i0].symmetric_samplebits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          set_dai_flags(dai_drv,flag_mask,flags);
+          free(dai_drv);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          unsigned int flag_mask = 255;
+        
+          unsigned int flags = 255;
+        
+          int _len_dai_drv0 = 65025;
+          struct snd_soc_dai_driver * dai_drv = (struct snd_soc_dai_driver *) malloc(_len_dai_drv0*sizeof(struct snd_soc_dai_driver));
+          for(int _i0 = 0; _i0 < _len_dai_drv0; _i0++) {
+              dai_drv[_i0].symmetric_rates = ((-2 * (next_i()%2)) + 1) * next_i();
+          dai_drv[_i0].symmetric_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          dai_drv[_i0].symmetric_samplebits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_dai_flags(dai_drv,flag_mask,flags);
+          free(dai_drv);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          unsigned int flag_mask = 10;
+        
+          unsigned int flags = 10;
+        
+          int _len_dai_drv0 = 100;
+          struct snd_soc_dai_driver * dai_drv = (struct snd_soc_dai_driver *) malloc(_len_dai_drv0*sizeof(struct snd_soc_dai_driver));
+          for(int _i0 = 0; _i0 < _len_dai_drv0; _i0++) {
+              dai_drv[_i0].symmetric_rates = ((-2 * (next_i()%2)) + 1) * next_i();
+          dai_drv[_i0].symmetric_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          dai_drv[_i0].symmetric_samplebits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_dai_flags(dai_drv,flag_mask,flags);
+          free(dai_drv);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          unsigned int flag_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dai_drv0 = 1;
+          struct snd_soc_dai_driver * dai_drv = (struct snd_soc_dai_driver *) malloc(_len_dai_drv0*sizeof(struct snd_soc_dai_driver));
+          for(int _i0 = 0; _i0 < _len_dai_drv0; _i0++) {
+              dai_drv[_i0].symmetric_rates = ((-2 * (next_i()%2)) + 1) * next_i();
+          dai_drv[_i0].symmetric_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          dai_drv[_i0].symmetric_samplebits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           set_dai_flags(dai_drv,flag_mask,flags);
           free(dai_drv);
         

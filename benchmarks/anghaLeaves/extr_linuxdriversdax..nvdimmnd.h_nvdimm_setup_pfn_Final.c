@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline int nvdimm_setup_pfn(struct nd_pfn *nd_pfn,
 	return -ENXIO;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,19 +77,142 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_nd_pfn0 = 65025;
+          struct nd_pfn * nd_pfn = (struct nd_pfn *) malloc(_len_nd_pfn0*sizeof(struct nd_pfn));
+          for(int _i0 = 0; _i0 < _len_nd_pfn0; _i0++) {
+              nd_pfn[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pgmap0 = 65025;
+          struct dev_pagemap * pgmap = (struct dev_pagemap *) malloc(_len_pgmap0*sizeof(struct dev_pagemap));
+          for(int _i0 = 0; _i0 < _len_pgmap0; _i0++) {
+              pgmap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nvdimm_setup_pfn(nd_pfn,pgmap);
+          printf("%d\n", benchRet); 
+          free(nd_pfn);
+          free(pgmap);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_nd_pfn0 = 100;
+          struct nd_pfn * nd_pfn = (struct nd_pfn *) malloc(_len_nd_pfn0*sizeof(struct nd_pfn));
+          for(int _i0 = 0; _i0 < _len_nd_pfn0; _i0++) {
+              nd_pfn[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pgmap0 = 100;
+          struct dev_pagemap * pgmap = (struct dev_pagemap *) malloc(_len_pgmap0*sizeof(struct dev_pagemap));
+          for(int _i0 = 0; _i0 < _len_pgmap0; _i0++) {
+              pgmap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nvdimm_setup_pfn(nd_pfn,pgmap);
+          printf("%d\n", benchRet); 
+          free(nd_pfn);
+          free(pgmap);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_nd_pfn0 = 1;
           struct nd_pfn * nd_pfn = (struct nd_pfn *) malloc(_len_nd_pfn0*sizeof(struct nd_pfn));
           for(int _i0 = 0; _i0 < _len_nd_pfn0; _i0++) {
-            nd_pfn[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              nd_pfn[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_pgmap0 = 1;
           struct dev_pagemap * pgmap = (struct dev_pagemap *) malloc(_len_pgmap0*sizeof(struct dev_pagemap));
           for(int _i0 = 0; _i0 < _len_pgmap0; _i0++) {
-            pgmap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              pgmap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = nvdimm_setup_pfn(nd_pfn,pgmap);
           printf("%d\n", benchRet); 
           free(nd_pfn);

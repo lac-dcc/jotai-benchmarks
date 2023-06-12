@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ void bitmap_writer_show_progress(int show)
 	writer.show_progress = show;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +81,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int show = 100;
+        
           bitmap_writer_show_progress(show);
         
         break;
@@ -94,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int show = 255;
+        
           bitmap_writer_show_progress(show);
         
         break;
@@ -102,11 +99,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int show = 10;
+        
           bitmap_writer_show_progress(show);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int show = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          bitmap_writer_show_progress(show);
+        
+        break;
+    }
     default:
         usage();
         break;

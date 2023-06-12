@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +81,6 @@ __attribute__((used)) static inline bool source_muted(obs_source_t *source, uint
 			(source->push_to_talk_enabled && !push_to_talk_active);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,24 +93,203 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 63
+          // dynamic_instructions_O0 : 63
+          // ------------------------------- 
+          // static_instructions_O1 : 36
+          // dynamic_instructions_O1 : 36
+          // ------------------------------- 
+          // static_instructions_O2 : 36
+          // dynamic_instructions_O2 : 36
+          // ------------------------------- 
+          // static_instructions_O3 : 35
+          // dynamic_instructions_O3 : 35
+          // ------------------------------- 
+          // static_instructions_Ofast : 35
+          // dynamic_instructions_Ofast : 35
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 36
+          // ------------------------------- 
+          // static_instructions_Oz : 36
+          // dynamic_instructions_Oz : 36
+          // ------------------------------- 
+
           long os_time = 100;
+        
           int _len_source0 = 1;
           struct TYPE_3__ * source = (struct TYPE_3__ *) malloc(_len_source0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_source0; _i0++) {
-            source[_i0].push_to_mute_stop_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        source[_i0].push_to_mute_delay = ((-2 * (next_i()%2)) + 1) * next_i();
-        source[_i0].push_to_talk_stop_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        source[_i0].push_to_talk_delay = ((-2 * (next_i()%2)) + 1) * next_i();
-        source[_i0].push_to_talk_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        source[_i0].push_to_mute_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        source[_i0].user_muted = ((-2 * (next_i()%2)) + 1) * next_i();
-        source[_i0].enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        source[_i0].user_push_to_talk_pressed = ((-2 * (next_i()%2)) + 1) * next_i();
-        source[_i0].user_push_to_mute_pressed = ((-2 * (next_i()%2)) + 1) * next_i();
+              source[_i0].push_to_mute_stop_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].push_to_mute_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].push_to_talk_stop_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].push_to_talk_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].push_to_talk_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].push_to_mute_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].user_muted = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].user_push_to_talk_pressed = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].user_push_to_mute_pressed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = source_muted(source,os_time);
+          printf("%d\n", benchRet); 
+          free(source);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 63
+          // dynamic_instructions_O0 : 63
+          // ------------------------------- 
+          // static_instructions_O1 : 36
+          // dynamic_instructions_O1 : 36
+          // ------------------------------- 
+          // static_instructions_O2 : 36
+          // dynamic_instructions_O2 : 36
+          // ------------------------------- 
+          // static_instructions_O3 : 35
+          // dynamic_instructions_O3 : 35
+          // ------------------------------- 
+          // static_instructions_Ofast : 35
+          // dynamic_instructions_Ofast : 35
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 36
+          // ------------------------------- 
+          // static_instructions_Oz : 36
+          // dynamic_instructions_Oz : 36
+          // ------------------------------- 
+
+          long os_time = 255;
+        
+          int _len_source0 = 65025;
+          struct TYPE_3__ * source = (struct TYPE_3__ *) malloc(_len_source0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_source0; _i0++) {
+              source[_i0].push_to_mute_stop_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].push_to_mute_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].push_to_talk_stop_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].push_to_talk_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].push_to_talk_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].push_to_mute_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].user_muted = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].user_push_to_talk_pressed = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].user_push_to_mute_pressed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = source_muted(source,os_time);
+          printf("%d\n", benchRet); 
+          free(source);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 63
+          // dynamic_instructions_O0 : 63
+          // ------------------------------- 
+          // static_instructions_O1 : 36
+          // dynamic_instructions_O1 : 36
+          // ------------------------------- 
+          // static_instructions_O2 : 36
+          // dynamic_instructions_O2 : 36
+          // ------------------------------- 
+          // static_instructions_O3 : 35
+          // dynamic_instructions_O3 : 35
+          // ------------------------------- 
+          // static_instructions_Ofast : 35
+          // dynamic_instructions_Ofast : 35
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 36
+          // ------------------------------- 
+          // static_instructions_Oz : 36
+          // dynamic_instructions_Oz : 36
+          // ------------------------------- 
+
+          long os_time = 10;
+        
+          int _len_source0 = 100;
+          struct TYPE_3__ * source = (struct TYPE_3__ *) malloc(_len_source0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_source0; _i0++) {
+              source[_i0].push_to_mute_stop_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].push_to_mute_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].push_to_talk_stop_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].push_to_talk_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].push_to_talk_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].push_to_mute_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].user_muted = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].user_push_to_talk_pressed = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].user_push_to_mute_pressed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = source_muted(source,os_time);
+          printf("%d\n", benchRet); 
+          free(source);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 63
+          // dynamic_instructions_O0 : 63
+          // ------------------------------- 
+          // static_instructions_O1 : 36
+          // dynamic_instructions_O1 : 36
+          // ------------------------------- 
+          // static_instructions_O2 : 36
+          // dynamic_instructions_O2 : 36
+          // ------------------------------- 
+          // static_instructions_O3 : 35
+          // dynamic_instructions_O3 : 35
+          // ------------------------------- 
+          // static_instructions_Ofast : 35
+          // dynamic_instructions_Ofast : 35
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 36
+          // ------------------------------- 
+          // static_instructions_Oz : 36
+          // dynamic_instructions_Oz : 36
+          // ------------------------------- 
+
+          long os_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_source0 = 1;
+          struct TYPE_3__ * source = (struct TYPE_3__ *) malloc(_len_source0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_source0; _i0++) {
+              source[_i0].push_to_mute_stop_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].push_to_mute_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].push_to_talk_stop_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].push_to_talk_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].push_to_talk_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].push_to_mute_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].user_muted = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].user_push_to_talk_pressed = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].user_push_to_mute_pressed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = source_muted(source,os_time);
           printf("%d\n", benchRet); 
           free(source);

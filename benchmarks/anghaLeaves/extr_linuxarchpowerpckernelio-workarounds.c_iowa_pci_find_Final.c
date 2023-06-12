@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -89,12 +90,6 @@ __attribute__((used)) static struct iowa_bus *iowa_pci_find(unsigned long vaddr,
 	return NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -111,7 +106,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long vaddr = 100;
+        
           unsigned long paddr = 100;
+        
           struct iowa_bus * benchRet = iowa_pci_find(vaddr,paddr);
         
         break;
@@ -120,7 +117,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long vaddr = 255;
+        
           unsigned long paddr = 255;
+        
           struct iowa_bus * benchRet = iowa_pci_find(vaddr,paddr);
         
         break;
@@ -129,12 +128,24 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long vaddr = 10;
+        
           unsigned long paddr = 10;
+        
           struct iowa_bus * benchRet = iowa_pci_find(vaddr,paddr);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long vaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long paddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          struct iowa_bus * benchRet = iowa_pci_find(vaddr,paddr);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +78,6 @@ necp_allocate_new_session_order(u_int32_t priority, u_int32_t control_unit)
 	return (new_order);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,7 +94,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int priority = 100;
+        
           int control_unit = 100;
+        
           int benchRet = necp_allocate_new_session_order(priority,control_unit);
           printf("%d\n", benchRet); 
         
@@ -109,7 +106,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int priority = 255;
+        
           int control_unit = 255;
+        
           int benchRet = necp_allocate_new_session_order(priority,control_unit);
           printf("%d\n", benchRet); 
         
@@ -119,13 +118,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int priority = 10;
+        
           int control_unit = 10;
+        
           int benchRet = necp_allocate_new_session_order(priority,control_unit);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int priority = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int control_unit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = necp_allocate_new_session_order(priority,control_unit);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

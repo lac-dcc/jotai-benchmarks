@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static void virtio_transport_dec_rx_pkt(struct virtio_vsoc
 	vvs->fwd_cnt += pkt->len;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,20 +77,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_vvs0 = 65025;
+          struct virtio_vsock_sock * vvs = (struct virtio_vsock_sock *) malloc(_len_vvs0*sizeof(struct virtio_vsock_sock));
+          for(int _i0 = 0; _i0 < _len_vvs0; _i0++) {
+              vvs[_i0].fwd_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          vvs[_i0].rx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pkt0 = 65025;
+          struct virtio_vsock_pkt * pkt = (struct virtio_vsock_pkt *) malloc(_len_pkt0*sizeof(struct virtio_vsock_pkt));
+          for(int _i0 = 0; _i0 < _len_pkt0; _i0++) {
+              pkt[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          virtio_transport_dec_rx_pkt(vvs,pkt);
+          free(vvs);
+          free(pkt);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_vvs0 = 100;
+          struct virtio_vsock_sock * vvs = (struct virtio_vsock_sock *) malloc(_len_vvs0*sizeof(struct virtio_vsock_sock));
+          for(int _i0 = 0; _i0 < _len_vvs0; _i0++) {
+              vvs[_i0].fwd_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          vvs[_i0].rx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pkt0 = 100;
+          struct virtio_vsock_pkt * pkt = (struct virtio_vsock_pkt *) malloc(_len_pkt0*sizeof(struct virtio_vsock_pkt));
+          for(int _i0 = 0; _i0 < _len_pkt0; _i0++) {
+              pkt[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          virtio_transport_dec_rx_pkt(vvs,pkt);
+          free(vvs);
+          free(pkt);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_vvs0 = 1;
           struct virtio_vsock_sock * vvs = (struct virtio_vsock_sock *) malloc(_len_vvs0*sizeof(struct virtio_vsock_sock));
           for(int _i0 = 0; _i0 < _len_vvs0; _i0++) {
-            vvs[_i0].fwd_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        vvs[_i0].rx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+              vvs[_i0].fwd_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          vvs[_i0].rx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_pkt0 = 1;
           struct virtio_vsock_pkt * pkt = (struct virtio_vsock_pkt *) malloc(_len_pkt0*sizeof(struct virtio_vsock_pkt));
           for(int _i0 = 0; _i0 < _len_pkt0; _i0++) {
-            pkt[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+              pkt[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           virtio_transport_dec_rx_pkt(vvs,pkt);
           free(vvs);
           free(pkt);

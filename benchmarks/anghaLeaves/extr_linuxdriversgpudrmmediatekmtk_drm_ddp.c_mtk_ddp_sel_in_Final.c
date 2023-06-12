@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -148,12 +149,6 @@ __attribute__((used)) static unsigned int mtk_ddp_sel_in(enum mtk_ddp_comp_id cu
 	return value;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -166,16 +161,19 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           enum mtk_ddp_comp_id cur = 0;
+        
           enum mtk_ddp_comp_id next = 0;
-          int _len_addr0 = 1;
+        
+          int _len_addr0 = 65025;
           unsigned int * addr = (unsigned int *) malloc(_len_addr0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_addr0; _i0++) {
             addr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned int benchRet = mtk_ddp_sel_in(cur,next,addr);
           printf("%u\n", benchRet); 
           free(addr);
@@ -186,19 +184,40 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           enum mtk_ddp_comp_id cur = 0;
+        
           enum mtk_ddp_comp_id next = 0;
+        
           int _len_addr0 = 100;
           unsigned int * addr = (unsigned int *) malloc(_len_addr0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_addr0; _i0++) {
             addr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned int benchRet = mtk_ddp_sel_in(cur,next,addr);
           printf("%u\n", benchRet); 
           free(addr);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          enum mtk_ddp_comp_id cur = 0;
+        
+          enum mtk_ddp_comp_id next = 0;
+        
+          int _len_addr0 = 1;
+          unsigned int * addr = (unsigned int *) malloc(_len_addr0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_addr0; _i0++) {
+            addr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned int benchRet = mtk_ddp_sel_in(cur,next,addr);
+          printf("%u\n", benchRet); 
+          free(addr);
+        
+        break;
+    }
     default:
         usage();
         break;

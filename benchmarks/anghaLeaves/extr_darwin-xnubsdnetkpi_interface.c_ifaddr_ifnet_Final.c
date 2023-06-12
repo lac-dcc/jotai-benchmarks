@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ ifaddr_ifnet(ifaddr_t ifa)
 	return (ifp);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,18 +87,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_ifa0 = 65025;
+          struct TYPE_3__ * ifa = (struct TYPE_3__ *) malloc(_len_ifa0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ifa0; _i0++) {
+              int _len_ifa__i0__ifa_ifp0 = 1;
+          ifa[_i0].ifa_ifp = (struct ifnet *) malloc(_len_ifa__i0__ifa_ifp0*sizeof(struct ifnet));
+          for(int _j0 = 0; _j0 < _len_ifa__i0__ifa_ifp0; _j0++) {
+              ifa[_i0].ifa_ifp->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct ifnet * benchRet = ifaddr_ifnet(ifa);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_ifa0; _aux++) {
+          free(ifa[_aux].ifa_ifp);
+          }
+          free(ifa);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_ifa0 = 100;
+          struct TYPE_3__ * ifa = (struct TYPE_3__ *) malloc(_len_ifa0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ifa0; _i0++) {
+              int _len_ifa__i0__ifa_ifp0 = 1;
+          ifa[_i0].ifa_ifp = (struct ifnet *) malloc(_len_ifa__i0__ifa_ifp0*sizeof(struct ifnet));
+          for(int _j0 = 0; _j0 < _len_ifa__i0__ifa_ifp0; _j0++) {
+              ifa[_i0].ifa_ifp->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct ifnet * benchRet = ifaddr_ifnet(ifa);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_ifa0; _aux++) {
+          free(ifa[_aux].ifa_ifp);
+          }
+          free(ifa);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_ifa0 = 1;
           struct TYPE_3__ * ifa = (struct TYPE_3__ *) malloc(_len_ifa0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_ifa0; _i0++) {
               int _len_ifa__i0__ifa_ifp0 = 1;
           ifa[_i0].ifa_ifp = (struct ifnet *) malloc(_len_ifa__i0__ifa_ifp0*sizeof(struct ifnet));
           for(int _j0 = 0; _j0 < _len_ifa__i0__ifa_ifp0; _j0++) {
-            ifa[_i0].ifa_ifp->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ifa[_i0].ifa_ifp->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct ifnet * benchRet = ifaddr_ifnet(ifa);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_ifa0; _aux++) {

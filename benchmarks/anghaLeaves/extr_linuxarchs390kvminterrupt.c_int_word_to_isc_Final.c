@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline u8 int_word_to_isc(u32 int_word)
 	return (int_word & 0x38000000) >> 27;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int int_word = 100;
+        
           int benchRet = int_word_to_isc(int_word);
           printf("%d\n", benchRet); 
         
@@ -94,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int int_word = 255;
+        
           int benchRet = int_word_to_isc(int_word);
           printf("%d\n", benchRet); 
         
@@ -103,12 +100,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int int_word = 10;
+        
           int benchRet = int_word_to_isc(int_word);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int int_word = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = int_word_to_isc(int_word);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

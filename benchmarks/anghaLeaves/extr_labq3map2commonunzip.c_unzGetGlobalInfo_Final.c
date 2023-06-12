@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ extern int unzGetGlobalInfo (unzFile file,unz_global_info *pglobal_info)
 	return UNZ_OK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,19 +85,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_file0 = 1;
+          int _len_file0 = 65025;
           int * file = (int *) malloc(_len_file0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_file0; _i0++) {
             file[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_pglobal_info0 = 1;
+        
+          int _len_pglobal_info0 = 65025;
           int * pglobal_info = (int *) malloc(_len_pglobal_info0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pglobal_info0; _i0++) {
             pglobal_info[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = unzGetGlobalInfo(file,pglobal_info);
           printf("%d\n", benchRet); 
           free(file);
@@ -109,7 +107,50 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_file0 = 100;
+          int * file = (int *) malloc(_len_file0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_file0; _i0++) {
+            file[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pglobal_info0 = 100;
+          int * pglobal_info = (int *) malloc(_len_pglobal_info0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pglobal_info0; _i0++) {
+            pglobal_info[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = unzGetGlobalInfo(file,pglobal_info);
+          printf("%d\n", benchRet); 
+          free(file);
+          free(pglobal_info);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_file0 = 1;
+          int * file = (int *) malloc(_len_file0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_file0; _i0++) {
+            file[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pglobal_info0 = 1;
+          int * pglobal_info = (int *) malloc(_len_pglobal_info0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pglobal_info0; _i0++) {
+            pglobal_info[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = unzGetGlobalInfo(file,pglobal_info);
+          printf("%d\n", benchRet); 
+          free(file);
+          free(pglobal_info);
+        
+        break;
+    }
     default:
         usage();
         break;

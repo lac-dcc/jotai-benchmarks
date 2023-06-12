@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -152,12 +155,6 @@ processor_set_stack_usage(
 #endif	/* MACH_DEBUG */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -174,31 +171,37 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int pset = 100;
+        
           int _len_totalp0 = 1;
           unsigned int * totalp = (unsigned int *) malloc(_len_totalp0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_totalp0; _i0++) {
             totalp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_spacep0 = 1;
           int * spacep = (int *) malloc(_len_spacep0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_spacep0; _i0++) {
             spacep[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_residentp0 = 1;
           int * residentp = (int *) malloc(_len_residentp0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_residentp0; _i0++) {
             residentp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_maxusagep0 = 1;
           int * maxusagep = (int *) malloc(_len_maxusagep0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_maxusagep0; _i0++) {
             maxusagep[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_maxstackp0 = 1;
           int * maxstackp = (int *) malloc(_len_maxstackp0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_maxstackp0; _i0++) {
             maxstackp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = processor_set_stack_usage(pset,totalp,spacep,residentp,maxusagep,maxstackp);
           printf("%d\n", benchRet); 
           free(totalp);
@@ -209,7 +212,141 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int pset = 255;
+        
+          int _len_totalp0 = 65025;
+          unsigned int * totalp = (unsigned int *) malloc(_len_totalp0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_totalp0; _i0++) {
+            totalp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_spacep0 = 65025;
+          int * spacep = (int *) malloc(_len_spacep0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_spacep0; _i0++) {
+            spacep[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_residentp0 = 65025;
+          int * residentp = (int *) malloc(_len_residentp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_residentp0; _i0++) {
+            residentp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_maxusagep0 = 65025;
+          int * maxusagep = (int *) malloc(_len_maxusagep0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_maxusagep0; _i0++) {
+            maxusagep[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_maxstackp0 = 65025;
+          int * maxstackp = (int *) malloc(_len_maxstackp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_maxstackp0; _i0++) {
+            maxstackp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = processor_set_stack_usage(pset,totalp,spacep,residentp,maxusagep,maxstackp);
+          printf("%d\n", benchRet); 
+          free(totalp);
+          free(spacep);
+          free(residentp);
+          free(maxusagep);
+          free(maxstackp);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int pset = 10;
+        
+          int _len_totalp0 = 100;
+          unsigned int * totalp = (unsigned int *) malloc(_len_totalp0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_totalp0; _i0++) {
+            totalp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_spacep0 = 100;
+          int * spacep = (int *) malloc(_len_spacep0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_spacep0; _i0++) {
+            spacep[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_residentp0 = 100;
+          int * residentp = (int *) malloc(_len_residentp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_residentp0; _i0++) {
+            residentp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_maxusagep0 = 100;
+          int * maxusagep = (int *) malloc(_len_maxusagep0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_maxusagep0; _i0++) {
+            maxusagep[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_maxstackp0 = 100;
+          int * maxstackp = (int *) malloc(_len_maxstackp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_maxstackp0; _i0++) {
+            maxstackp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = processor_set_stack_usage(pset,totalp,spacep,residentp,maxusagep,maxstackp);
+          printf("%d\n", benchRet); 
+          free(totalp);
+          free(spacep);
+          free(residentp);
+          free(maxusagep);
+          free(maxstackp);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int pset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_totalp0 = 1;
+          unsigned int * totalp = (unsigned int *) malloc(_len_totalp0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_totalp0; _i0++) {
+            totalp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_spacep0 = 1;
+          int * spacep = (int *) malloc(_len_spacep0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_spacep0; _i0++) {
+            spacep[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_residentp0 = 1;
+          int * residentp = (int *) malloc(_len_residentp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_residentp0; _i0++) {
+            residentp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_maxusagep0 = 1;
+          int * maxusagep = (int *) malloc(_len_maxusagep0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_maxusagep0; _i0++) {
+            maxusagep[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_maxstackp0 = 1;
+          int * maxstackp = (int *) malloc(_len_maxstackp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_maxstackp0; _i0++) {
+            maxstackp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = processor_set_stack_usage(pset,totalp,spacep,residentp,maxusagep,maxstackp);
+          printf("%d\n", benchRet); 
+          free(totalp);
+          free(spacep);
+          free(residentp);
+          free(maxusagep);
+          free(maxstackp);
+        
+        break;
+    }
     default:
         usage();
         break;

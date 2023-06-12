@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ vgic_v3_redist_region_full(struct vgic_redist_region *region)
 	return (region->free_index >= region->count);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,15 +78,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_region0 = 65025;
+          struct vgic_redist_region * region = (struct vgic_redist_region *) malloc(_len_region0*sizeof(struct vgic_redist_region));
+          for(int _i0 = 0; _i0 < _len_region0; _i0++) {
+              region[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          region[_i0].free_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vgic_v3_redist_region_full(region);
+          printf("%d\n", benchRet); 
+          free(region);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_region0 = 100;
+          struct vgic_redist_region * region = (struct vgic_redist_region *) malloc(_len_region0*sizeof(struct vgic_redist_region));
+          for(int _i0 = 0; _i0 < _len_region0; _i0++) {
+              region[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          region[_i0].free_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vgic_v3_redist_region_full(region);
+          printf("%d\n", benchRet); 
+          free(region);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_region0 = 1;
           struct vgic_redist_region * region = (struct vgic_redist_region *) malloc(_len_region0*sizeof(struct vgic_redist_region));
           for(int _i0 = 0; _i0 < _len_region0; _i0++) {
-            region[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
-        region[_i0].free_index = ((-2 * (next_i()%2)) + 1) * next_i();
+              region[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          region[_i0].free_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = vgic_v3_redist_region_full(region);
           printf("%d\n", benchRet); 
           free(region);

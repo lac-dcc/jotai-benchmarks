@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +81,6 @@ __attribute__((used)) static void mousedev_rel_event(struct mousedev *mousedev,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,18 +93,184 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           unsigned int code = 100;
+        
           int value = 100;
+        
           int _len_mousedev0 = 1;
           struct mousedev * mousedev = (struct mousedev *) malloc(_len_mousedev0*sizeof(struct mousedev));
           for(int _i0 = 0; _i0 < _len_mousedev0; _i0++) {
-            mousedev[_i0].packet.dx = ((-2 * (next_i()%2)) + 1) * next_i();
-        mousedev[_i0].packet.dy = ((-2 * (next_i()%2)) + 1) * next_i();
-        mousedev[_i0].packet.dz = ((-2 * (next_i()%2)) + 1) * next_i();
+              mousedev[_i0].packet.dx = ((-2 * (next_i()%2)) + 1) * next_i();
+          mousedev[_i0].packet.dy = ((-2 * (next_i()%2)) + 1) * next_i();
+          mousedev[_i0].packet.dz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          mousedev_rel_event(mousedev,code,value);
+          free(mousedev);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          unsigned int code = 255;
+        
+          int value = 255;
+        
+          int _len_mousedev0 = 65025;
+          struct mousedev * mousedev = (struct mousedev *) malloc(_len_mousedev0*sizeof(struct mousedev));
+          for(int _i0 = 0; _i0 < _len_mousedev0; _i0++) {
+              mousedev[_i0].packet.dx = ((-2 * (next_i()%2)) + 1) * next_i();
+          mousedev[_i0].packet.dy = ((-2 * (next_i()%2)) + 1) * next_i();
+          mousedev[_i0].packet.dz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          mousedev_rel_event(mousedev,code,value);
+          free(mousedev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          unsigned int code = 10;
+        
+          int value = 10;
+        
+          int _len_mousedev0 = 100;
+          struct mousedev * mousedev = (struct mousedev *) malloc(_len_mousedev0*sizeof(struct mousedev));
+          for(int _i0 = 0; _i0 < _len_mousedev0; _i0++) {
+              mousedev[_i0].packet.dx = ((-2 * (next_i()%2)) + 1) * next_i();
+          mousedev[_i0].packet.dy = ((-2 * (next_i()%2)) + 1) * next_i();
+          mousedev[_i0].packet.dz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          mousedev_rel_event(mousedev,code,value);
+          free(mousedev);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          unsigned int code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_mousedev0 = 1;
+          struct mousedev * mousedev = (struct mousedev *) malloc(_len_mousedev0*sizeof(struct mousedev));
+          for(int _i0 = 0; _i0 < _len_mousedev0; _i0++) {
+              mousedev[_i0].packet.dx = ((-2 * (next_i()%2)) + 1) * next_i();
+          mousedev[_i0].packet.dy = ((-2 * (next_i()%2)) + 1) * next_i();
+          mousedev[_i0].packet.dz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           mousedev_rel_event(mousedev,code,value);
           free(mousedev);
         

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static blk_status_t blk_integrity_nop_fn(struct blk_integr
 	return BLK_STS_OK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_iter0 = 1;
+          int _len_iter0 = 65025;
           struct blk_integrity_iter * iter = (struct blk_integrity_iter *) malloc(_len_iter0*sizeof(struct blk_integrity_iter));
           for(int _i0 = 0; _i0 < _len_iter0; _i0++) {
-            iter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              iter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = blk_integrity_nop_fn(iter);
           printf("%d\n", benchRet); 
           free(iter);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_iter0 = 100;
           struct blk_integrity_iter * iter = (struct blk_integrity_iter *) malloc(_len_iter0*sizeof(struct blk_integrity_iter));
           for(int _i0 = 0; _i0 < _len_iter0; _i0++) {
-            iter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              iter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = blk_integrity_nop_fn(iter);
           printf("%d\n", benchRet); 
           free(iter);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_iter0 = 1;
+          struct blk_integrity_iter * iter = (struct blk_integrity_iter *) malloc(_len_iter0*sizeof(struct blk_integrity_iter));
+          for(int _i0 = 0; _i0 < _len_iter0; _i0++) {
+              iter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = blk_integrity_nop_fn(iter);
+          printf("%d\n", benchRet); 
+          free(iter);
+        
+        break;
+    }
     default:
         usage();
         break;

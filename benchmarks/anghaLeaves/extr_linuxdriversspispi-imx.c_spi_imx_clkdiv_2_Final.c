@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ out:
 	return i;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,32 +85,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           unsigned int fin = 100;
+        
           unsigned int fspi = 100;
+        
           int _len_fres0 = 1;
           unsigned int * fres = (unsigned int *) malloc(_len_fres0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_fres0; _i0++) {
             fres[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned int benchRet = spi_imx_clkdiv_2(fin,fspi,fres);
           printf("%u\n", benchRet); 
           free(fres);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          unsigned int fin = 255;
+        
+          unsigned int fspi = 255;
+        
+          int _len_fres0 = 65025;
+          unsigned int * fres = (unsigned int *) malloc(_len_fres0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_fres0; _i0++) {
+            fres[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned int benchRet = spi_imx_clkdiv_2(fin,fspi,fres);
+          printf("%u\n", benchRet); 
+          free(fres);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           unsigned int fin = 10;
+        
           unsigned int fspi = 10;
+        
           int _len_fres0 = 100;
           unsigned int * fres = (unsigned int *) malloc(_len_fres0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_fres0; _i0++) {
             fres[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          unsigned int benchRet = spi_imx_clkdiv_2(fin,fspi,fres);
+          printf("%u\n", benchRet); 
+          free(fres);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 110
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 75
+          // ------------------------------- 
+          // static_instructions_O2 : 40
+          // dynamic_instructions_O2 : 40
+          // ------------------------------- 
+          // static_instructions_O3 : 40
+          // dynamic_instructions_O3 : 40
+          // ------------------------------- 
+          // static_instructions_Ofast : 40
+          // dynamic_instructions_Ofast : 40
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 74
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 77
+          // ------------------------------- 
+
+          unsigned int fin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int fspi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fres0 = 1;
+          unsigned int * fres = (unsigned int *) malloc(_len_fres0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_fres0; _i0++) {
+            fres[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           unsigned int benchRet = spi_imx_clkdiv_2(fin,fspi,fres);
           printf("%u\n", benchRet); 
           free(fres);

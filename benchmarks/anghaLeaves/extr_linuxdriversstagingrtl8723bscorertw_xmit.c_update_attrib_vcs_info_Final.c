@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -155,12 +157,6 @@ __attribute__((used)) static void update_attrib_vcs_info(struct adapter *padapte
 		pattrib->vcs_mode = padapter->driver_vcs_type;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -173,39 +169,132 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_padapter0 = 1;
+          int _len_padapter0 = 65025;
           struct adapter * padapter = (struct adapter *) malloc(_len_padapter0*sizeof(struct adapter));
           for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
-            padapter[_i0].driver_vcs_en = ((-2 * (next_i()%2)) + 1) * next_i();
-        padapter[_i0].registrypriv.rts_thresh = ((-2 * (next_i()%2)) + 1) * next_i();
-        padapter[_i0].registrypriv.wifi_spec = ((-2 * (next_i()%2)) + 1) * next_i();
-        padapter[_i0].securitypriv.dot11PrivacyAlgrthm = ((-2 * (next_i()%2)) + 1) * next_i();
-        padapter[_i0].xmitpriv.frag_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        padapter[_i0].mlmeextpriv.cur_wireless_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        padapter[_i0].mlmeextpriv.cur_bwmode = ((-2 * (next_i()%2)) + 1) * next_i();
-        padapter[_i0].mlmeextpriv.mlmext_info.assoc_AP_vendor = ((-2 * (next_i()%2)) + 1) * next_i();
-        padapter[_i0].mlmeextpriv.mlmext_info.HT_protection = ((-2 * (next_i()%2)) + 1) * next_i();
+              padapter[_i0].driver_vcs_en = ((-2 * (next_i()%2)) + 1) * next_i();
+          padapter[_i0].registrypriv.rts_thresh = ((-2 * (next_i()%2)) + 1) * next_i();
+          padapter[_i0].registrypriv.wifi_spec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          padapter[_i0].securitypriv.dot11PrivacyAlgrthm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          padapter[_i0].xmitpriv.frag_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          padapter[_i0].mlmeextpriv.cur_wireless_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          padapter[_i0].mlmeextpriv.cur_bwmode = ((-2 * (next_i()%2)) + 1) * next_i();
+          padapter[_i0].mlmeextpriv.mlmext_info.assoc_AP_vendor = ((-2 * (next_i()%2)) + 1) * next_i();
+          padapter[_i0].mlmeextpriv.mlmext_info.HT_protection = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
-          int _len_pxmitframe0 = 1;
+        
+          int _len_pxmitframe0 = 65025;
           struct xmit_frame * pxmitframe = (struct xmit_frame *) malloc(_len_pxmitframe0*sizeof(struct xmit_frame));
           for(int _i0 = 0; _i0 < _len_pxmitframe0; _i0++) {
-            pxmitframe[_i0].attrib.nr_frags = ((-2 * (next_i()%2)) + 1) * next_i();
-        pxmitframe[_i0].attrib.last_txcmdsz = ((-2 * (next_i()%2)) + 1) * next_i();
-        pxmitframe[_i0].attrib.ampdu_en = ((-2 * (next_i()%2)) + 1) * next_i();
-        pxmitframe[_i0].attrib.ht_en = ((-2 * (next_i()%2)) + 1) * next_i();
-        pxmitframe[_i0].attrib.cts2self = ((-2 * (next_i()%2)) + 1) * next_i();
-        pxmitframe[_i0].attrib.rtsen = ((-2 * (next_i()%2)) + 1) * next_i();
+              pxmitframe[_i0].attrib.nr_frags = ((-2 * (next_i()%2)) + 1) * next_i();
+          pxmitframe[_i0].attrib.last_txcmdsz = ((-2 * (next_i()%2)) + 1) * next_i();
+          pxmitframe[_i0].attrib.ampdu_en = ((-2 * (next_i()%2)) + 1) * next_i();
+          pxmitframe[_i0].attrib.ht_en = ((-2 * (next_i()%2)) + 1) * next_i();
+          pxmitframe[_i0].attrib.cts2self = ((-2 * (next_i()%2)) + 1) * next_i();
+          pxmitframe[_i0].attrib.rtsen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           update_attrib_vcs_info(padapter,pxmitframe);
           free(padapter);
           free(pxmitframe);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_padapter0 = 100;
+          struct adapter * padapter = (struct adapter *) malloc(_len_padapter0*sizeof(struct adapter));
+          for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
+              padapter[_i0].driver_vcs_en = ((-2 * (next_i()%2)) + 1) * next_i();
+          padapter[_i0].registrypriv.rts_thresh = ((-2 * (next_i()%2)) + 1) * next_i();
+          padapter[_i0].registrypriv.wifi_spec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          padapter[_i0].securitypriv.dot11PrivacyAlgrthm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          padapter[_i0].xmitpriv.frag_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          padapter[_i0].mlmeextpriv.cur_wireless_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          padapter[_i0].mlmeextpriv.cur_bwmode = ((-2 * (next_i()%2)) + 1) * next_i();
+          padapter[_i0].mlmeextpriv.mlmext_info.assoc_AP_vendor = ((-2 * (next_i()%2)) + 1) * next_i();
+          padapter[_i0].mlmeextpriv.mlmext_info.HT_protection = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_pxmitframe0 = 100;
+          struct xmit_frame * pxmitframe = (struct xmit_frame *) malloc(_len_pxmitframe0*sizeof(struct xmit_frame));
+          for(int _i0 = 0; _i0 < _len_pxmitframe0; _i0++) {
+              pxmitframe[_i0].attrib.nr_frags = ((-2 * (next_i()%2)) + 1) * next_i();
+          pxmitframe[_i0].attrib.last_txcmdsz = ((-2 * (next_i()%2)) + 1) * next_i();
+          pxmitframe[_i0].attrib.ampdu_en = ((-2 * (next_i()%2)) + 1) * next_i();
+          pxmitframe[_i0].attrib.ht_en = ((-2 * (next_i()%2)) + 1) * next_i();
+          pxmitframe[_i0].attrib.cts2self = ((-2 * (next_i()%2)) + 1) * next_i();
+          pxmitframe[_i0].attrib.rtsen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          update_attrib_vcs_info(padapter,pxmitframe);
+          free(padapter);
+          free(pxmitframe);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_padapter0 = 1;
+          struct adapter * padapter = (struct adapter *) malloc(_len_padapter0*sizeof(struct adapter));
+          for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
+              padapter[_i0].driver_vcs_en = ((-2 * (next_i()%2)) + 1) * next_i();
+          padapter[_i0].registrypriv.rts_thresh = ((-2 * (next_i()%2)) + 1) * next_i();
+          padapter[_i0].registrypriv.wifi_spec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          padapter[_i0].securitypriv.dot11PrivacyAlgrthm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          padapter[_i0].xmitpriv.frag_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          padapter[_i0].mlmeextpriv.cur_wireless_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          padapter[_i0].mlmeextpriv.cur_bwmode = ((-2 * (next_i()%2)) + 1) * next_i();
+          padapter[_i0].mlmeextpriv.mlmext_info.assoc_AP_vendor = ((-2 * (next_i()%2)) + 1) * next_i();
+          padapter[_i0].mlmeextpriv.mlmext_info.HT_protection = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_pxmitframe0 = 1;
+          struct xmit_frame * pxmitframe = (struct xmit_frame *) malloc(_len_pxmitframe0*sizeof(struct xmit_frame));
+          for(int _i0 = 0; _i0 < _len_pxmitframe0; _i0++) {
+              pxmitframe[_i0].attrib.nr_frags = ((-2 * (next_i()%2)) + 1) * next_i();
+          pxmitframe[_i0].attrib.last_txcmdsz = ((-2 * (next_i()%2)) + 1) * next_i();
+          pxmitframe[_i0].attrib.ampdu_en = ((-2 * (next_i()%2)) + 1) * next_i();
+          pxmitframe[_i0].attrib.ht_en = ((-2 * (next_i()%2)) + 1) * next_i();
+          pxmitframe[_i0].attrib.cts2self = ((-2 * (next_i()%2)) + 1) * next_i();
+          pxmitframe[_i0].attrib.rtsen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          update_attrib_vcs_info(padapter,pxmitframe);
+          free(padapter);
+          free(pxmitframe);
+        
+        break;
+    }
     default:
         usage();
         break;

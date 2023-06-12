@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ USBH_StatusTypeDef   USBH_LL_OpenPipe (USBH_HandleTypeDef *phost,
   return USBH_OK; 
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,40 +86,203 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int pipe_num = 100;
+        
           int epnum = 100;
+        
           int dev_address = 100;
+        
           int speed = 100;
+        
           int ep_type = 100;
+        
           int mps = 100;
+        
           int _len_phost0 = 1;
           int * phost = (int *) malloc(_len_phost0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_phost0; _i0++) {
             phost[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = USBH_LL_OpenPipe(phost,pipe_num,epnum,dev_address,speed,ep_type,mps);
           printf("%d\n", benchRet); 
           free(phost);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int pipe_num = 255;
+        
+          int epnum = 255;
+        
+          int dev_address = 255;
+        
+          int speed = 255;
+        
+          int ep_type = 255;
+        
+          int mps = 255;
+        
+          int _len_phost0 = 65025;
+          int * phost = (int *) malloc(_len_phost0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_phost0; _i0++) {
+            phost[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = USBH_LL_OpenPipe(phost,pipe_num,epnum,dev_address,speed,ep_type,mps);
+          printf("%d\n", benchRet); 
+          free(phost);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int pipe_num = 10;
+        
           int epnum = 10;
+        
           int dev_address = 10;
+        
           int speed = 10;
+        
           int ep_type = 10;
+        
           int mps = 10;
+        
           int _len_phost0 = 100;
           int * phost = (int *) malloc(_len_phost0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_phost0; _i0++) {
             phost[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = USBH_LL_OpenPipe(phost,pipe_num,epnum,dev_address,speed,ep_type,mps);
+          printf("%d\n", benchRet); 
+          free(phost);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int pipe_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int epnum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int dev_address = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int ep_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int mps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_phost0 = 1;
+          int * phost = (int *) malloc(_len_phost0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_phost0; _i0++) {
+            phost[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = USBH_LL_OpenPipe(phost,pipe_num,epnum,dev_address,speed,ep_type,mps);
           printf("%d\n", benchRet); 
           free(phost);

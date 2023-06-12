@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ __attribute__((used)) static void fsl_spi_grlib_set_shifts(u32 *rx_shift, u32 *t
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,24 +89,102 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int bits_per_word = 100;
+        
           int msb_first = 100;
+        
           int _len_rx_shift0 = 1;
           int * rx_shift = (int *) malloc(_len_rx_shift0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_rx_shift0; _i0++) {
             rx_shift[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_tx_shift0 = 1;
           int * tx_shift = (int *) malloc(_len_tx_shift0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_tx_shift0; _i0++) {
             tx_shift[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           fsl_spi_grlib_set_shifts(rx_shift,tx_shift,bits_per_word,msb_first);
           free(rx_shift);
           free(tx_shift);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int bits_per_word = 255;
+        
+          int msb_first = 255;
+        
+          int _len_rx_shift0 = 65025;
+          int * rx_shift = (int *) malloc(_len_rx_shift0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_rx_shift0; _i0++) {
+            rx_shift[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_tx_shift0 = 65025;
+          int * tx_shift = (int *) malloc(_len_tx_shift0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_tx_shift0; _i0++) {
+            tx_shift[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          fsl_spi_grlib_set_shifts(rx_shift,tx_shift,bits_per_word,msb_first);
+          free(rx_shift);
+          free(tx_shift);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int bits_per_word = 10;
+        
+          int msb_first = 10;
+        
+          int _len_rx_shift0 = 100;
+          int * rx_shift = (int *) malloc(_len_rx_shift0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_rx_shift0; _i0++) {
+            rx_shift[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_tx_shift0 = 100;
+          int * tx_shift = (int *) malloc(_len_tx_shift0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_tx_shift0; _i0++) {
+            tx_shift[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          fsl_spi_grlib_set_shifts(rx_shift,tx_shift,bits_per_word,msb_first);
+          free(rx_shift);
+          free(tx_shift);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int bits_per_word = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int msb_first = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rx_shift0 = 1;
+          int * rx_shift = (int *) malloc(_len_rx_shift0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_rx_shift0; _i0++) {
+            rx_shift[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_tx_shift0 = 1;
+          int * tx_shift = (int *) malloc(_len_tx_shift0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_tx_shift0; _i0++) {
+            tx_shift[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          fsl_spi_grlib_set_shifts(rx_shift,tx_shift,bits_per_word,msb_first);
+          free(rx_shift);
+          free(tx_shift);
+        
+        break;
+    }
     default:
         usage();
         break;

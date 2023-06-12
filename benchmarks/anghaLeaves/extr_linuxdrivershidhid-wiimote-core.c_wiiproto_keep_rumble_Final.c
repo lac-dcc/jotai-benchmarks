@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static inline void wiiproto_keep_rumble(struct wiimote_dat
 		*cmd1 |= 0x01;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,19 +79,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_wdata0 = 65025;
+          struct wiimote_data * wdata = (struct wiimote_data *) malloc(_len_wdata0*sizeof(struct wiimote_data));
+          for(int _i0 = 0; _i0 < _len_wdata0; _i0++) {
+              wdata[_i0].state.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_cmd10 = 65025;
+          int * cmd1 = (int *) malloc(_len_cmd10*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_cmd10; _i0++) {
+            cmd1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          wiiproto_keep_rumble(wdata,cmd1);
+          free(wdata);
+          free(cmd1);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_wdata0 = 100;
+          struct wiimote_data * wdata = (struct wiimote_data *) malloc(_len_wdata0*sizeof(struct wiimote_data));
+          for(int _i0 = 0; _i0 < _len_wdata0; _i0++) {
+              wdata[_i0].state.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_cmd10 = 100;
+          int * cmd1 = (int *) malloc(_len_cmd10*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_cmd10; _i0++) {
+            cmd1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          wiiproto_keep_rumble(wdata,cmd1);
+          free(wdata);
+          free(cmd1);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_wdata0 = 1;
           struct wiimote_data * wdata = (struct wiimote_data *) malloc(_len_wdata0*sizeof(struct wiimote_data));
           for(int _i0 = 0; _i0 < _len_wdata0; _i0++) {
-            wdata[_i0].state.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              wdata[_i0].state.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_cmd10 = 1;
           int * cmd1 = (int *) malloc(_len_cmd10*sizeof(int));
           for(int _i0 = 0; _i0 < _len_cmd10; _i0++) {
             cmd1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           wiiproto_keep_rumble(wdata,cmd1);
           free(wdata);
           free(cmd1);

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -82,12 +83,6 @@ __attribute__((used)) static int __cvmx_pko_int(int interface, int index)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,7 +99,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int interface = 100;
+        
           int index = 100;
+        
           int benchRet = __cvmx_pko_int(interface,index);
           printf("%d\n", benchRet); 
         
@@ -114,7 +111,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int interface = 255;
+        
           int index = 255;
+        
           int benchRet = __cvmx_pko_int(interface,index);
           printf("%d\n", benchRet); 
         
@@ -124,13 +123,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int interface = 10;
+        
           int index = 10;
+        
           int benchRet = __cvmx_pko_int(interface,index);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int interface = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = __cvmx_pko_int(interface,index);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ disk_conditioner_mount_is_ssd(mount_t mp)
 	return internal_info->dcinfo.is_ssd;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,20 +88,24 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_mp0 = 1;
+          int _len_mp0 = 65025;
           struct TYPE_5__ * mp = (struct TYPE_5__ *) malloc(_len_mp0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_mp0; _i0++) {
-            mp[_i0].mnt_kern_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+              mp[_i0].mnt_kern_flag = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_mp__i0__mnt_disk_conditioner_info0 = 1;
           mp[_i0].mnt_disk_conditioner_info = (struct _disk_conditioner_info_t *) malloc(_len_mp__i0__mnt_disk_conditioner_info0*sizeof(struct _disk_conditioner_info_t));
           for(int _j0 = 0; _j0 < _len_mp__i0__mnt_disk_conditioner_info0; _j0++) {
-            mp[_i0].mnt_disk_conditioner_info->dcinfo.is_ssd = ((-2 * (next_i()%2)) + 1) * next_i();
-        mp[_i0].mnt_disk_conditioner_info->dcinfo.enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+              mp[_i0].mnt_disk_conditioner_info->dcinfo.is_ssd = ((-2 * (next_i()%2)) + 1) * next_i();
+          mp[_i0].mnt_disk_conditioner_info->dcinfo.enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           int benchRet = disk_conditioner_mount_is_ssd(mp);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_mp0; _aux++) {
@@ -115,7 +115,60 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_mp0 = 100;
+          struct TYPE_5__ * mp = (struct TYPE_5__ *) malloc(_len_mp0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_mp0; _i0++) {
+              mp[_i0].mnt_kern_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_mp__i0__mnt_disk_conditioner_info0 = 1;
+          mp[_i0].mnt_disk_conditioner_info = (struct _disk_conditioner_info_t *) malloc(_len_mp__i0__mnt_disk_conditioner_info0*sizeof(struct _disk_conditioner_info_t));
+          for(int _j0 = 0; _j0 < _len_mp__i0__mnt_disk_conditioner_info0; _j0++) {
+              mp[_i0].mnt_disk_conditioner_info->dcinfo.is_ssd = ((-2 * (next_i()%2)) + 1) * next_i();
+          mp[_i0].mnt_disk_conditioner_info->dcinfo.enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = disk_conditioner_mount_is_ssd(mp);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mp0; _aux++) {
+          free(mp[_aux].mnt_disk_conditioner_info);
+          }
+          free(mp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_mp0 = 1;
+          struct TYPE_5__ * mp = (struct TYPE_5__ *) malloc(_len_mp0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_mp0; _i0++) {
+              mp[_i0].mnt_kern_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_mp__i0__mnt_disk_conditioner_info0 = 1;
+          mp[_i0].mnt_disk_conditioner_info = (struct _disk_conditioner_info_t *) malloc(_len_mp__i0__mnt_disk_conditioner_info0*sizeof(struct _disk_conditioner_info_t));
+          for(int _j0 = 0; _j0 < _len_mp__i0__mnt_disk_conditioner_info0; _j0++) {
+              mp[_i0].mnt_disk_conditioner_info->dcinfo.is_ssd = ((-2 * (next_i()%2)) + 1) * next_i();
+          mp[_i0].mnt_disk_conditioner_info->dcinfo.enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = disk_conditioner_mount_is_ssd(mp);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mp0; _aux++) {
+          free(mp[_aux].mnt_disk_conditioner_info);
+          }
+          free(mp);
+        
+        break;
+    }
     default:
         usage();
         break;

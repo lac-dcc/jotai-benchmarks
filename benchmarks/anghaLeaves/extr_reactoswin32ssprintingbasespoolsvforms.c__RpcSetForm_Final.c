@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ _RpcSetForm(WINSPOOL_PRINTER_HANDLE hPrinter, WCHAR* pFormName, WINSPOOL_FORM_CO
     return ERROR_INVALID_FUNCTION;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,20 +82,190 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int hPrinter = 100;
+        
           int _len_pFormName0 = 1;
           int * pFormName = (int *) malloc(_len_pFormName0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pFormName0; _i0++) {
             pFormName[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_pFormInfoContainer0 = 1;
           int * pFormInfoContainer = (int *) malloc(_len_pFormInfoContainer0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pFormInfoContainer0; _i0++) {
             pFormInfoContainer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = _RpcSetForm(hPrinter,pFormName,pFormInfoContainer);
+          printf("%d\n", benchRet); 
+          free(pFormName);
+          free(pFormInfoContainer);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int hPrinter = 255;
+        
+          int _len_pFormName0 = 65025;
+          int * pFormName = (int *) malloc(_len_pFormName0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pFormName0; _i0++) {
+            pFormName[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pFormInfoContainer0 = 65025;
+          int * pFormInfoContainer = (int *) malloc(_len_pFormInfoContainer0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pFormInfoContainer0; _i0++) {
+            pFormInfoContainer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _RpcSetForm(hPrinter,pFormName,pFormInfoContainer);
+          printf("%d\n", benchRet); 
+          free(pFormName);
+          free(pFormInfoContainer);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int hPrinter = 10;
+        
+          int _len_pFormName0 = 100;
+          int * pFormName = (int *) malloc(_len_pFormName0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pFormName0; _i0++) {
+            pFormName[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pFormInfoContainer0 = 100;
+          int * pFormInfoContainer = (int *) malloc(_len_pFormInfoContainer0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pFormInfoContainer0; _i0++) {
+            pFormInfoContainer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _RpcSetForm(hPrinter,pFormName,pFormInfoContainer);
+          printf("%d\n", benchRet); 
+          free(pFormName);
+          free(pFormInfoContainer);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int hPrinter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pFormName0 = 1;
+          int * pFormName = (int *) malloc(_len_pFormName0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pFormName0; _i0++) {
+            pFormName[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pFormInfoContainer0 = 1;
+          int * pFormInfoContainer = (int *) malloc(_len_pFormInfoContainer0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pFormInfoContainer0; _i0++) {
+            pFormInfoContainer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = _RpcSetForm(hPrinter,pFormName,pFormInfoContainer);
           printf("%d\n", benchRet); 
           free(pFormName);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -85,12 +87,6 @@ __attribute__((used)) static int formats_declared(AVFilterContext *f)
     return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,24 +99,25 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_f0 = 1;
+          int _len_f0 = 65025;
           struct TYPE_7__ * f = (struct TYPE_7__ *) malloc(_len_f0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_f0; _i0++) {
-            f[_i0].nb_inputs = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].nb_outputs = ((-2 * (next_i()%2)) + 1) * next_i();
+              f[_i0].nb_inputs = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].nb_outputs = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_f__i0__outputs0 = 1;
           f[_i0].outputs = (struct TYPE_6__ **) malloc(_len_f__i0__outputs0*sizeof(struct TYPE_6__ *));
           for(int _j0 = 0; _j0 < _len_f__i0__outputs0; _j0++) {
             int _len_f__i0__outputs1 = 1;
             f[_i0].outputs[_j0] = (struct TYPE_6__ *) malloc(_len_f__i0__outputs1*sizeof(struct TYPE_6__));
             for(int _j1 = 0; _j1 < _len_f__i0__outputs1; _j1++) {
-              f[_i0].outputs[_j0]->type = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].outputs[_j0]->in_channel_layouts = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].outputs[_j0]->in_samplerates = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].outputs[_j0]->in_formats = ((-2 * (next_i()%2)) + 1) * next_i();
+                f[_i0].outputs[_j0]->type = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].outputs[_j0]->in_channel_layouts = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].outputs[_j0]->in_samplerates = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].outputs[_j0]->in_formats = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
           int _len_f__i0__inputs0 = 1;
@@ -129,13 +126,16 @@ int main(int argc, char *argv[]) {
             int _len_f__i0__inputs1 = 1;
             f[_i0].inputs[_j0] = (struct TYPE_5__ *) malloc(_len_f__i0__inputs1*sizeof(struct TYPE_5__));
             for(int _j1 = 0; _j1 < _len_f__i0__inputs1; _j1++) {
-              f[_i0].inputs[_j0]->type = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].inputs[_j0]->out_channel_layouts = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].inputs[_j0]->out_samplerates = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].inputs[_j0]->out_formats = ((-2 * (next_i()%2)) + 1) * next_i();
+                f[_i0].inputs[_j0]->type = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].inputs[_j0]->out_channel_layouts = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].inputs[_j0]->out_samplerates = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].inputs[_j0]->out_formats = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           }
+        
           int benchRet = formats_declared(f);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_f0; _aux++) {
@@ -150,7 +150,108 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_f0 = 100;
+          struct TYPE_7__ * f = (struct TYPE_7__ *) malloc(_len_f0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_f0; _i0++) {
+              f[_i0].nb_inputs = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].nb_outputs = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_f__i0__outputs0 = 1;
+          f[_i0].outputs = (struct TYPE_6__ **) malloc(_len_f__i0__outputs0*sizeof(struct TYPE_6__ *));
+          for(int _j0 = 0; _j0 < _len_f__i0__outputs0; _j0++) {
+            int _len_f__i0__outputs1 = 1;
+            f[_i0].outputs[_j0] = (struct TYPE_6__ *) malloc(_len_f__i0__outputs1*sizeof(struct TYPE_6__));
+            for(int _j1 = 0; _j1 < _len_f__i0__outputs1; _j1++) {
+                f[_i0].outputs[_j0]->type = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].outputs[_j0]->in_channel_layouts = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].outputs[_j0]->in_samplerates = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].outputs[_j0]->in_formats = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+          int _len_f__i0__inputs0 = 1;
+          f[_i0].inputs = (struct TYPE_5__ **) malloc(_len_f__i0__inputs0*sizeof(struct TYPE_5__ *));
+          for(int _j0 = 0; _j0 < _len_f__i0__inputs0; _j0++) {
+            int _len_f__i0__inputs1 = 1;
+            f[_i0].inputs[_j0] = (struct TYPE_5__ *) malloc(_len_f__i0__inputs1*sizeof(struct TYPE_5__));
+            for(int _j1 = 0; _j1 < _len_f__i0__inputs1; _j1++) {
+                f[_i0].inputs[_j0]->type = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].inputs[_j0]->out_channel_layouts = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].inputs[_j0]->out_samplerates = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].inputs[_j0]->out_formats = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int benchRet = formats_declared(f);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_f0; _aux++) {
+          free(*(f[_aux].outputs));
+        free(f[_aux].outputs);
+          }
+          for(int _aux = 0; _aux < _len_f0; _aux++) {
+          free(*(f[_aux].inputs));
+        free(f[_aux].inputs);
+          }
+          free(f);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_f0 = 1;
+          struct TYPE_7__ * f = (struct TYPE_7__ *) malloc(_len_f0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_f0; _i0++) {
+              f[_i0].nb_inputs = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].nb_outputs = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_f__i0__outputs0 = 1;
+          f[_i0].outputs = (struct TYPE_6__ **) malloc(_len_f__i0__outputs0*sizeof(struct TYPE_6__ *));
+          for(int _j0 = 0; _j0 < _len_f__i0__outputs0; _j0++) {
+            int _len_f__i0__outputs1 = 1;
+            f[_i0].outputs[_j0] = (struct TYPE_6__ *) malloc(_len_f__i0__outputs1*sizeof(struct TYPE_6__));
+            for(int _j1 = 0; _j1 < _len_f__i0__outputs1; _j1++) {
+                f[_i0].outputs[_j0]->type = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].outputs[_j0]->in_channel_layouts = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].outputs[_j0]->in_samplerates = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].outputs[_j0]->in_formats = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+          int _len_f__i0__inputs0 = 1;
+          f[_i0].inputs = (struct TYPE_5__ **) malloc(_len_f__i0__inputs0*sizeof(struct TYPE_5__ *));
+          for(int _j0 = 0; _j0 < _len_f__i0__inputs0; _j0++) {
+            int _len_f__i0__inputs1 = 1;
+            f[_i0].inputs[_j0] = (struct TYPE_5__ *) malloc(_len_f__i0__inputs1*sizeof(struct TYPE_5__));
+            for(int _j1 = 0; _j1 < _len_f__i0__inputs1; _j1++) {
+                f[_i0].inputs[_j0]->type = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].inputs[_j0]->out_channel_layouts = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].inputs[_j0]->out_samplerates = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].inputs[_j0]->out_formats = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int benchRet = formats_declared(f);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_f0; _aux++) {
+          free(*(f[_aux].outputs));
+        free(f[_aux].outputs);
+          }
+          for(int _aux = 0; _aux < _len_f0; _aux++) {
+          free(*(f[_aux].inputs));
+        free(f[_aux].inputs);
+          }
+          free(f);
+        
+        break;
+    }
     default:
         usage();
         break;

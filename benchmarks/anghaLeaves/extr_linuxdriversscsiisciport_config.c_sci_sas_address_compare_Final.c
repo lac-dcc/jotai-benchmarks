@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -74,12 +74,6 @@ __attribute__((used)) static s32 sci_sas_address_compare(
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,15 +86,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // empty
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           struct sci_sas_address address_one;
-        address_one.high = ((-2 * (next_i()%2)) + 1) * next_i();
-        address_one.low = ((-2 * (next_i()%2)) + 1) * next_i();
+          address_one.high = ((-2 * (next_i()%2)) + 1) * next_i();
+          address_one.low = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           struct sci_sas_address address_two;
-        address_two.high = ((-2 * (next_i()%2)) + 1) * next_i();
-        address_two.low = ((-2 * (next_i()%2)) + 1) * next_i();
+          address_two.high = ((-2 * (next_i()%2)) + 1) * next_i();
+          address_two.low = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = sci_sas_address_compare(address_one,address_two);
           printf("%d\n", benchRet); 
         

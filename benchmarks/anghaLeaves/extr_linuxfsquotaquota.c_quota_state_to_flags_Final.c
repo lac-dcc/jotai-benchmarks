@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -87,12 +89,6 @@ __attribute__((used)) static int quota_state_to_flags(struct qc_state *state)
 	return flags;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,18 +101,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 49
+          // dynamic_instructions_O0 : 49
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
+          int _len_state0 = 65025;
+          struct qc_state * state = (struct qc_state *) malloc(_len_state0*sizeof(struct qc_state));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              int _len_state__i0__s_state0 = 1;
+          state[_i0].s_state = (struct TYPE_2__ *) malloc(_len_state__i0__s_state0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_state__i0__s_state0; _j0++) {
+              state[_i0].s_state->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = quota_state_to_flags(state);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_state0; _aux++) {
+          free(state[_aux].s_state);
+          }
+          free(state);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 49
+          // dynamic_instructions_O0 : 49
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
+          int _len_state0 = 100;
+          struct qc_state * state = (struct qc_state *) malloc(_len_state0*sizeof(struct qc_state));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              int _len_state__i0__s_state0 = 1;
+          state[_i0].s_state = (struct TYPE_2__ *) malloc(_len_state__i0__s_state0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_state__i0__s_state0; _j0++) {
+              state[_i0].s_state->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = quota_state_to_flags(state);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_state0; _aux++) {
+          free(state[_aux].s_state);
+          }
+          free(state);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 49
+          // dynamic_instructions_O0 : 49
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
           int _len_state0 = 1;
           struct qc_state * state = (struct qc_state *) malloc(_len_state0*sizeof(struct qc_state));
           for(int _i0 = 0; _i0 < _len_state0; _i0++) {
               int _len_state__i0__s_state0 = 1;
           state[_i0].s_state = (struct TYPE_2__ *) malloc(_len_state__i0__s_state0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_state__i0__s_state0; _j0++) {
-            state[_i0].s_state->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              state[_i0].s_state->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = quota_state_to_flags(state);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_state0; _aux++) {

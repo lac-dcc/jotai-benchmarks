@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ void dasd_device_set_stop_bits(struct dasd_device *device, int bits)
 	device->stopped |= bits;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,31 +79,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int bits = 100;
+        
           int _len_device0 = 1;
           struct dasd_device * device = (struct dasd_device *) malloc(_len_device0*sizeof(struct dasd_device));
           for(int _i0 = 0; _i0 < _len_device0; _i0++) {
-            device[_i0].stopped = ((-2 * (next_i()%2)) + 1) * next_i();
+              device[_i0].stopped = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          dasd_device_set_stop_bits(device,bits);
+          free(device);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int bits = 255;
+        
+          int _len_device0 = 65025;
+          struct dasd_device * device = (struct dasd_device *) malloc(_len_device0*sizeof(struct dasd_device));
+          for(int _i0 = 0; _i0 < _len_device0; _i0++) {
+              device[_i0].stopped = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           dasd_device_set_stop_bits(device,bits);
           free(device);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int bits = 10;
+        
           int _len_device0 = 100;
           struct dasd_device * device = (struct dasd_device *) malloc(_len_device0*sizeof(struct dasd_device));
           for(int _i0 = 0; _i0 < _len_device0; _i0++) {
-            device[_i0].stopped = ((-2 * (next_i()%2)) + 1) * next_i();
+              device[_i0].stopped = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           dasd_device_set_stop_bits(device,bits);
           free(device);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int bits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_device0 = 1;
+          struct dasd_device * device = (struct dasd_device *) malloc(_len_device0*sizeof(struct dasd_device));
+          for(int _i0 = 0; _i0 < _len_device0; _i0++) {
+              device[_i0].stopped = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          dasd_device_set_stop_bits(device,bits);
+          free(device);
+        
+        break;
+    }
     default:
         usage();
         break;

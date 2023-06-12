@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static inline void cm_rep_set_flow_ctrl(struct cm_rep_msg 
 				  (flow_ctrl & 0x1));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,29 +78,164 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int flow_ctrl = 100;
+        
           int _len_rep_msg0 = 1;
           struct cm_rep_msg * rep_msg = (struct cm_rep_msg *) malloc(_len_rep_msg0*sizeof(struct cm_rep_msg));
           for(int _i0 = 0; _i0 < _len_rep_msg0; _i0++) {
-            rep_msg[_i0].offset26 = ((-2 * (next_i()%2)) + 1) * next_i();
+              rep_msg[_i0].offset26 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           cm_rep_set_flow_ctrl(rep_msg,flow_ctrl);
           free(rep_msg);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int flow_ctrl = 255;
+        
+          int _len_rep_msg0 = 65025;
+          struct cm_rep_msg * rep_msg = (struct cm_rep_msg *) malloc(_len_rep_msg0*sizeof(struct cm_rep_msg));
+          for(int _i0 = 0; _i0 < _len_rep_msg0; _i0++) {
+              rep_msg[_i0].offset26 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cm_rep_set_flow_ctrl(rep_msg,flow_ctrl);
+          free(rep_msg);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int flow_ctrl = 10;
+        
           int _len_rep_msg0 = 100;
           struct cm_rep_msg * rep_msg = (struct cm_rep_msg *) malloc(_len_rep_msg0*sizeof(struct cm_rep_msg));
           for(int _i0 = 0; _i0 < _len_rep_msg0; _i0++) {
-            rep_msg[_i0].offset26 = ((-2 * (next_i()%2)) + 1) * next_i();
+              rep_msg[_i0].offset26 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          cm_rep_set_flow_ctrl(rep_msg,flow_ctrl);
+          free(rep_msg);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int flow_ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rep_msg0 = 1;
+          struct cm_rep_msg * rep_msg = (struct cm_rep_msg *) malloc(_len_rep_msg0*sizeof(struct cm_rep_msg));
+          for(int _i0 = 0; _i0 < _len_rep_msg0; _i0++) {
+              rep_msg[_i0].offset26 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           cm_rep_set_flow_ctrl(rep_msg,flow_ctrl);
           free(rep_msg);
         

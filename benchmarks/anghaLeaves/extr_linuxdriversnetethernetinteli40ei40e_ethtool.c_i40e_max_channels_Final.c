@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static unsigned int i40e_max_channels(struct i40e_vsi *vsi
 	return vsi->alloc_queue_pairs;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_vsi0 = 1;
+          int _len_vsi0 = 65025;
           struct i40e_vsi * vsi = (struct i40e_vsi *) malloc(_len_vsi0*sizeof(struct i40e_vsi));
           for(int _i0 = 0; _i0 < _len_vsi0; _i0++) {
-            vsi[_i0].alloc_queue_pairs = ((-2 * (next_i()%2)) + 1) * next_i();
+              vsi[_i0].alloc_queue_pairs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = i40e_max_channels(vsi);
           printf("%u\n", benchRet); 
           free(vsi);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_vsi0 = 100;
           struct i40e_vsi * vsi = (struct i40e_vsi *) malloc(_len_vsi0*sizeof(struct i40e_vsi));
           for(int _i0 = 0; _i0 < _len_vsi0; _i0++) {
-            vsi[_i0].alloc_queue_pairs = ((-2 * (next_i()%2)) + 1) * next_i();
+              vsi[_i0].alloc_queue_pairs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = i40e_max_channels(vsi);
           printf("%u\n", benchRet); 
           free(vsi);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_vsi0 = 1;
+          struct i40e_vsi * vsi = (struct i40e_vsi *) malloc(_len_vsi0*sizeof(struct i40e_vsi));
+          for(int _i0 = 0; _i0 < _len_vsi0; _i0++) {
+              vsi[_i0].alloc_queue_pairs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = i40e_max_channels(vsi);
+          printf("%u\n", benchRet); 
+          free(vsi);
+        
+        break;
+    }
     default:
         usage();
         break;

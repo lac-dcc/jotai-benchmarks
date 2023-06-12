@@ -63,12 +63,6 @@ __attribute__((used)) static inline u32 iwl_cmd_id(u8 opcode, u8 groupid, u8 ver
 	return opcode + (groupid << 8) + (version << 16);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,8 +79,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int opcode = 100;
+        
           int groupid = 100;
+        
           int version = 100;
+        
           int benchRet = iwl_cmd_id(opcode,groupid,version);
           printf("%d\n", benchRet); 
         
@@ -96,8 +93,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int opcode = 255;
+        
           int groupid = 255;
+        
           int version = 255;
+        
           int benchRet = iwl_cmd_id(opcode,groupid,version);
           printf("%d\n", benchRet); 
         
@@ -107,14 +107,16 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int opcode = 10;
+        
           int groupid = 10;
+        
           int version = 10;
+        
           int benchRet = iwl_cmd_id(opcode,groupid,version);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

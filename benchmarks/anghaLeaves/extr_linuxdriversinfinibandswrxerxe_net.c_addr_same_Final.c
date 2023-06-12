@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static inline int addr_same(struct rxe_dev *rxe, struct rx
 	return rxe->port.port_guid == av->grh.dgid.global.interface_id;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,19 +83,154 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_rxe0 = 65025;
+          struct rxe_dev * rxe = (struct rxe_dev *) malloc(_len_rxe0*sizeof(struct rxe_dev));
+          for(int _i0 = 0; _i0 < _len_rxe0; _i0++) {
+              rxe[_i0].port.port_guid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_av0 = 65025;
+          struct rxe_av * av = (struct rxe_av *) malloc(_len_av0*sizeof(struct rxe_av));
+          for(int _i0 = 0; _i0 < _len_av0; _i0++) {
+              av[_i0].grh.dgid.global.interface_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
+          }
+        
+          int benchRet = addr_same(rxe,av);
+          printf("%d\n", benchRet); 
+          free(rxe);
+          free(av);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_rxe0 = 100;
+          struct rxe_dev * rxe = (struct rxe_dev *) malloc(_len_rxe0*sizeof(struct rxe_dev));
+          for(int _i0 = 0; _i0 < _len_rxe0; _i0++) {
+              rxe[_i0].port.port_guid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_av0 = 100;
+          struct rxe_av * av = (struct rxe_av *) malloc(_len_av0*sizeof(struct rxe_av));
+          for(int _i0 = 0; _i0 < _len_av0; _i0++) {
+              av[_i0].grh.dgid.global.interface_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
+          }
+        
+          int benchRet = addr_same(rxe,av);
+          printf("%d\n", benchRet); 
+          free(rxe);
+          free(av);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_rxe0 = 1;
           struct rxe_dev * rxe = (struct rxe_dev *) malloc(_len_rxe0*sizeof(struct rxe_dev));
           for(int _i0 = 0; _i0 < _len_rxe0; _i0++) {
-            rxe[_i0].port.port_guid = ((-2 * (next_i()%2)) + 1) * next_i();
+              rxe[_i0].port.port_guid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_av0 = 1;
           struct rxe_av * av = (struct rxe_av *) malloc(_len_av0*sizeof(struct rxe_av));
           for(int _i0 = 0; _i0 < _len_av0; _i0++) {
-            av[_i0].grh.dgid.global.interface_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              av[_i0].grh.dgid.global.interface_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
           }
+        
           int benchRet = addr_same(rxe,av);
           printf("%d\n", benchRet); 
           free(rxe);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -109,12 +111,6 @@ __attribute__((used)) static void emac_init_adapter(struct emac_adapter *adpt)
 	adpt->single_pause_mode = false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -127,29 +123,162 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 62
+          // dynamic_instructions_O0 : 62
+          // ------------------------------- 
+          // static_instructions_O1 : 41
+          // dynamic_instructions_O1 : 41
+          // ------------------------------- 
+          // static_instructions_O2 : 41
+          // dynamic_instructions_O2 : 41
+          // ------------------------------- 
+          // static_instructions_O3 : 41
+          // dynamic_instructions_O3 : 41
+          // ------------------------------- 
+          // static_instructions_Ofast : 41
+          // dynamic_instructions_Ofast : 41
+          // ------------------------------- 
+          // static_instructions_Os : 41
+          // dynamic_instructions_Os : 41
+          // ------------------------------- 
+          // static_instructions_Oz : 41
+          // dynamic_instructions_Oz : 41
+          // ------------------------------- 
+
+          int _len_adpt0 = 65025;
+          struct emac_adapter * adpt = (struct emac_adapter *) malloc(_len_adpt0*sizeof(struct emac_adapter));
+          for(int _i0 = 0; _i0 < _len_adpt0; _i0++) {
+              adpt[_i0].irq_mod = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].automatic = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].single_pause_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].preamble = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].rfd_burst = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].tpd_burst = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].dmaw_dly_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].dmar_dly_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].dmaw_block = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].dmar_block = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].dma_order = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].rx_desc_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].tx_desc_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].rfd_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].tpd_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].rrd_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          emac_init_adapter(adpt);
+          free(adpt);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 62
+          // dynamic_instructions_O0 : 62
+          // ------------------------------- 
+          // static_instructions_O1 : 41
+          // dynamic_instructions_O1 : 41
+          // ------------------------------- 
+          // static_instructions_O2 : 41
+          // dynamic_instructions_O2 : 41
+          // ------------------------------- 
+          // static_instructions_O3 : 41
+          // dynamic_instructions_O3 : 41
+          // ------------------------------- 
+          // static_instructions_Ofast : 41
+          // dynamic_instructions_Ofast : 41
+          // ------------------------------- 
+          // static_instructions_Os : 41
+          // dynamic_instructions_Os : 41
+          // ------------------------------- 
+          // static_instructions_Oz : 41
+          // dynamic_instructions_Oz : 41
+          // ------------------------------- 
+
+          int _len_adpt0 = 100;
+          struct emac_adapter * adpt = (struct emac_adapter *) malloc(_len_adpt0*sizeof(struct emac_adapter));
+          for(int _i0 = 0; _i0 < _len_adpt0; _i0++) {
+              adpt[_i0].irq_mod = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].automatic = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].single_pause_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].preamble = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].rfd_burst = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].tpd_burst = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].dmaw_dly_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].dmar_dly_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].dmaw_block = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].dmar_block = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].dma_order = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].rx_desc_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].tx_desc_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].rfd_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].tpd_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].rrd_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          emac_init_adapter(adpt);
+          free(adpt);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 62
+          // dynamic_instructions_O0 : 62
+          // ------------------------------- 
+          // static_instructions_O1 : 41
+          // dynamic_instructions_O1 : 41
+          // ------------------------------- 
+          // static_instructions_O2 : 41
+          // dynamic_instructions_O2 : 41
+          // ------------------------------- 
+          // static_instructions_O3 : 41
+          // dynamic_instructions_O3 : 41
+          // ------------------------------- 
+          // static_instructions_Ofast : 41
+          // dynamic_instructions_Ofast : 41
+          // ------------------------------- 
+          // static_instructions_Os : 41
+          // dynamic_instructions_Os : 41
+          // ------------------------------- 
+          // static_instructions_Oz : 41
+          // dynamic_instructions_Oz : 41
+          // ------------------------------- 
+
           int _len_adpt0 = 1;
           struct emac_adapter * adpt = (struct emac_adapter *) malloc(_len_adpt0*sizeof(struct emac_adapter));
           for(int _i0 = 0; _i0 < _len_adpt0; _i0++) {
-            adpt[_i0].irq_mod = ((-2 * (next_i()%2)) + 1) * next_i();
-        adpt[_i0].automatic = ((-2 * (next_i()%2)) + 1) * next_i();
-        adpt[_i0].single_pause_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        adpt[_i0].preamble = ((-2 * (next_i()%2)) + 1) * next_i();
-        adpt[_i0].rfd_burst = ((-2 * (next_i()%2)) + 1) * next_i();
-        adpt[_i0].tpd_burst = ((-2 * (next_i()%2)) + 1) * next_i();
-        adpt[_i0].dmaw_dly_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        adpt[_i0].dmar_dly_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        adpt[_i0].dmaw_block = ((-2 * (next_i()%2)) + 1) * next_i();
-        adpt[_i0].dmar_block = ((-2 * (next_i()%2)) + 1) * next_i();
-        adpt[_i0].dma_order = ((-2 * (next_i()%2)) + 1) * next_i();
-        adpt[_i0].rx_desc_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        adpt[_i0].tx_desc_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        adpt[_i0].rfd_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        adpt[_i0].tpd_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        adpt[_i0].rrd_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              adpt[_i0].irq_mod = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].automatic = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].single_pause_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].preamble = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].rfd_burst = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].tpd_burst = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].dmaw_dly_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].dmar_dly_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].dmaw_block = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].dmar_block = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].dma_order = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].rx_desc_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].tx_desc_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].rfd_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].tpd_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          adpt[_i0].rrd_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           emac_init_adapter(adpt);
           free(adpt);
         

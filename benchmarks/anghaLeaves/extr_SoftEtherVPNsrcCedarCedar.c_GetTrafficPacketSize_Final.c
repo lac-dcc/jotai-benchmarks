@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ UINT64 GetTrafficPacketSize(TRAFFIC *t)
 		t->Send.BroadcastBytes + t->Send.UnicastBytes;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,24 +88,69 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_t0 = 1;
+          int _len_t0 = 65025;
           struct TYPE_7__ * t = (struct TYPE_7__ *) malloc(_len_t0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_t0; _i0++) {
-            t[_i0].Send.UnicastBytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        t[_i0].Send.BroadcastBytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        t[_i0].Recv.UnicastBytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        t[_i0].Recv.BroadcastBytes = ((-2 * (next_i()%2)) + 1) * next_i();
+              t[_i0].Send.UnicastBytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].Send.BroadcastBytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          t[_i0].Recv.UnicastBytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].Recv.BroadcastBytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           long benchRet = GetTrafficPacketSize(t);
           printf("%ld\n", benchRet); 
           free(t);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_t0 = 100;
+          struct TYPE_7__ * t = (struct TYPE_7__ *) malloc(_len_t0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_t0; _i0++) {
+              t[_i0].Send.UnicastBytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].Send.BroadcastBytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          t[_i0].Recv.UnicastBytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].Recv.BroadcastBytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          long benchRet = GetTrafficPacketSize(t);
+          printf("%ld\n", benchRet); 
+          free(t);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_t0 = 1;
+          struct TYPE_7__ * t = (struct TYPE_7__ *) malloc(_len_t0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_t0; _i0++) {
+              t[_i0].Send.UnicastBytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].Send.BroadcastBytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          t[_i0].Recv.UnicastBytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].Recv.BroadcastBytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          long benchRet = GetTrafficPacketSize(t);
+          printf("%ld\n", benchRet); 
+          free(t);
+        
+        break;
+    }
     default:
         usage();
         break;

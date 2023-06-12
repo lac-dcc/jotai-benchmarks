@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ status_prompt_down_history(u_int *idx)
 	return (status_prompt_hlist[status_prompt_hsize - *idx]);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,14 +82,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_idx0 = 1;
+          int _len_idx0 = 65025;
           long * idx = (long *) malloc(_len_idx0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_idx0; _i0++) {
             idx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           const char * benchRet = status_prompt_down_history(idx);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(idx);
@@ -109,13 +105,28 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_idx0; _i0++) {
             idx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           const char * benchRet = status_prompt_down_history(idx);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(idx);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_idx0 = 1;
+          long * idx = (long *) malloc(_len_idx0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_idx0; _i0++) {
+            idx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          const char * benchRet = status_prompt_down_history(idx);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          free(idx);
+        
+        break;
+    }
     default:
         usage();
         break;

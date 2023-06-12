@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline int get_zspage_inuse(struct zspage *zspage)
 	return zspage->inuse;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,28 +74,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_zspage0 = 1;
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_zspage0 = 65025;
           struct zspage * zspage = (struct zspage *) malloc(_len_zspage0*sizeof(struct zspage));
           for(int _i0 = 0; _i0 < _len_zspage0; _i0++) {
-            zspage[_i0].inuse = ((-2 * (next_i()%2)) + 1) * next_i();
+              zspage[_i0].inuse = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = get_zspage_inuse(zspage);
           printf("%d\n", benchRet); 
           free(zspage);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_zspage0 = 100;
           struct zspage * zspage = (struct zspage *) malloc(_len_zspage0*sizeof(struct zspage));
           for(int _i0 = 0; _i0 < _len_zspage0; _i0++) {
-            zspage[_i0].inuse = ((-2 * (next_i()%2)) + 1) * next_i();
+              zspage[_i0].inuse = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = get_zspage_inuse(zspage);
+          printf("%d\n", benchRet); 
+          free(zspage);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_zspage0 = 1;
+          struct zspage * zspage = (struct zspage *) malloc(_len_zspage0*sizeof(struct zspage));
+          for(int _i0 = 0; _i0 < _len_zspage0; _i0++) {
+              zspage[_i0].inuse = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = get_zspage_inuse(zspage);
           printf("%d\n", benchRet); 
           free(zspage);

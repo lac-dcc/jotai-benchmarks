@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static int field_cmp(u64 field_a, u64 field_b)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,7 +83,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long field_a = 100;
+        
           long field_b = 100;
+        
           int benchRet = field_cmp(field_a,field_b);
           printf("%d\n", benchRet); 
         
@@ -98,7 +95,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long field_a = 255;
+        
           long field_b = 255;
+        
           int benchRet = field_cmp(field_a,field_b);
           printf("%d\n", benchRet); 
         
@@ -108,13 +107,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long field_a = 10;
+        
           long field_b = 10;
+        
           int benchRet = field_cmp(field_a,field_b);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long field_a = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long field_b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = field_cmp(field_a,field_b);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

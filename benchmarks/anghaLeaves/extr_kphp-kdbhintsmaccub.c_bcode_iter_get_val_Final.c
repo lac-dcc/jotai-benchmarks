@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -81,12 +84,6 @@ int bcode_iter_get_val (bcode_iterator *it, int i) {
   return res;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,17 +100,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int i = 100;
+        
           int _len_it0 = 1;
           struct TYPE_3__ * it = (struct TYPE_3__ *) malloc(_len_it0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_it0; _i0++) {
-            it[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
-        it[_i0].k = ((-2 * (next_i()%2)) + 1) * next_i();
+              it[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          it[_i0].k = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_it__i0__ptr0 = 1;
           it[_i0].ptr = (unsigned char *) malloc(_len_it__i0__ptr0*sizeof(unsigned char));
           for(int _j0 = 0; _j0 < _len_it__i0__ptr0; _j0++) {
             it[_i0].ptr[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = bcode_iter_get_val(it,i);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_it0; _aux++) {
@@ -123,7 +123,87 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int i = 255;
+        
+          int _len_it0 = 65025;
+          struct TYPE_3__ * it = (struct TYPE_3__ *) malloc(_len_it0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_it0; _i0++) {
+              it[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          it[_i0].k = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_it__i0__ptr0 = 1;
+          it[_i0].ptr = (unsigned char *) malloc(_len_it__i0__ptr0*sizeof(unsigned char));
+          for(int _j0 = 0; _j0 < _len_it__i0__ptr0; _j0++) {
+            it[_i0].ptr[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = bcode_iter_get_val(it,i);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_it0; _aux++) {
+          free(it[_aux].ptr);
+          }
+          free(it);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int i = 10;
+        
+          int _len_it0 = 100;
+          struct TYPE_3__ * it = (struct TYPE_3__ *) malloc(_len_it0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_it0; _i0++) {
+              it[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          it[_i0].k = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_it__i0__ptr0 = 1;
+          it[_i0].ptr = (unsigned char *) malloc(_len_it__i0__ptr0*sizeof(unsigned char));
+          for(int _j0 = 0; _j0 < _len_it__i0__ptr0; _j0++) {
+            it[_i0].ptr[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = bcode_iter_get_val(it,i);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_it0; _aux++) {
+          free(it[_aux].ptr);
+          }
+          free(it);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int i = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_it0 = 1;
+          struct TYPE_3__ * it = (struct TYPE_3__ *) malloc(_len_it0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_it0; _i0++) {
+              it[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          it[_i0].k = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_it__i0__ptr0 = 1;
+          it[_i0].ptr = (unsigned char *) malloc(_len_it__i0__ptr0*sizeof(unsigned char));
+          for(int _j0 = 0; _j0 < _len_it__i0__ptr0; _j0++) {
+            it[_i0].ptr[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = bcode_iter_get_val(it,i);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_it0; _aux++) {
+          free(it[_aux].ptr);
+          }
+          free(it);
+        
+        break;
+    }
     default:
         usage();
         break;

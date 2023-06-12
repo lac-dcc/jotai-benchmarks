@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -90,12 +92,6 @@ __attribute__((used)) static int cyapa_pip_fw_head_check(struct cyapa *cyapa,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -108,22 +104,151 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_cyapa0 = 65025;
+          struct cyapa * cyapa = (struct cyapa *) malloc(_len_cyapa0*sizeof(struct cyapa));
+          for(int _i0 = 0; _i0 < _len_cyapa0; _i0++) {
+              cyapa[_i0].gen = ((-2 * (next_i()%2)) + 1) * next_i();
+          cyapa[_i0].platform_ver = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_image_head0 = 65025;
+          struct cyapa_tsg_bin_image_head * image_head = (struct cyapa_tsg_bin_image_head *) malloc(_len_image_head0*sizeof(struct cyapa_tsg_bin_image_head));
+          for(int _i0 = 0; _i0 < _len_image_head0; _i0++) {
+              image_head[_i0].head_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          image_head[_i0].family_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          image_head[_i0].silicon_id_hi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cyapa_pip_fw_head_check(cyapa,image_head);
+          printf("%d\n", benchRet); 
+          free(cyapa);
+          free(image_head);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_cyapa0 = 100;
+          struct cyapa * cyapa = (struct cyapa *) malloc(_len_cyapa0*sizeof(struct cyapa));
+          for(int _i0 = 0; _i0 < _len_cyapa0; _i0++) {
+              cyapa[_i0].gen = ((-2 * (next_i()%2)) + 1) * next_i();
+          cyapa[_i0].platform_ver = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_image_head0 = 100;
+          struct cyapa_tsg_bin_image_head * image_head = (struct cyapa_tsg_bin_image_head *) malloc(_len_image_head0*sizeof(struct cyapa_tsg_bin_image_head));
+          for(int _i0 = 0; _i0 < _len_image_head0; _i0++) {
+              image_head[_i0].head_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          image_head[_i0].family_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          image_head[_i0].silicon_id_hi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cyapa_pip_fw_head_check(cyapa,image_head);
+          printf("%d\n", benchRet); 
+          free(cyapa);
+          free(image_head);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_cyapa0 = 1;
           struct cyapa * cyapa = (struct cyapa *) malloc(_len_cyapa0*sizeof(struct cyapa));
           for(int _i0 = 0; _i0 < _len_cyapa0; _i0++) {
-            cyapa[_i0].gen = ((-2 * (next_i()%2)) + 1) * next_i();
-        cyapa[_i0].platform_ver = ((-2 * (next_i()%2)) + 1) * next_i();
+              cyapa[_i0].gen = ((-2 * (next_i()%2)) + 1) * next_i();
+          cyapa[_i0].platform_ver = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_image_head0 = 1;
           struct cyapa_tsg_bin_image_head * image_head = (struct cyapa_tsg_bin_image_head *) malloc(_len_image_head0*sizeof(struct cyapa_tsg_bin_image_head));
           for(int _i0 = 0; _i0 < _len_image_head0; _i0++) {
-            image_head[_i0].head_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        image_head[_i0].family_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        image_head[_i0].silicon_id_hi = ((-2 * (next_i()%2)) + 1) * next_i();
+              image_head[_i0].head_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          image_head[_i0].family_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          image_head[_i0].silicon_id_hi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cyapa_pip_fw_head_check(cyapa,image_head);
           printf("%d\n", benchRet); 
           free(cyapa);

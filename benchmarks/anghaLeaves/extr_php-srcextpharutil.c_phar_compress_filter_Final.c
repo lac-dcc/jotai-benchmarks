@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ char * phar_compress_filter(phar_entry_info * entry, int return_unknown) /* {{{ 
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,30 +87,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int return_unknown = 100;
+        
           int _len_entry0 = 1;
           struct TYPE_3__ * entry = (struct TYPE_3__ *) malloc(_len_entry0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
-            entry[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              entry[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           char * benchRet = phar_compress_filter(entry,return_unknown);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(entry);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int return_unknown = 255;
+        
+          int _len_entry0 = 65025;
+          struct TYPE_3__ * entry = (struct TYPE_3__ *) malloc(_len_entry0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
+              entry[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          char * benchRet = phar_compress_filter(entry,return_unknown);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          free(entry);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int return_unknown = 10;
+        
           int _len_entry0 = 100;
           struct TYPE_3__ * entry = (struct TYPE_3__ *) malloc(_len_entry0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
-            entry[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              entry[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          char * benchRet = phar_compress_filter(entry,return_unknown);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          free(entry);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int return_unknown = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_entry0 = 1;
+          struct TYPE_3__ * entry = (struct TYPE_3__ *) malloc(_len_entry0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
+              entry[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           char * benchRet = phar_compress_filter(entry,return_unknown);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(entry);

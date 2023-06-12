@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -60,12 +63,6 @@ __attribute__((used)) static int wl1251_translate_mem_addr(struct wl1251 *wl, in
 	return addr - wl->physical_mem_addr + wl->virtual_mem_addr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,16 +75,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int addr = 100;
+        
           int _len_wl0 = 1;
           struct wl1251 * wl = (struct wl1251 *) malloc(_len_wl0*sizeof(struct wl1251));
           for(int _i0 = 0; _i0 < _len_wl0; _i0++) {
-            wl[_i0].physical_mem_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        wl[_i0].virtual_mem_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+              wl[_i0].physical_mem_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          wl[_i0].virtual_mem_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = wl1251_translate_mem_addr(wl,addr);
+          printf("%d\n", benchRet); 
+          free(wl);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int addr = 255;
+        
+          int _len_wl0 = 65025;
+          struct wl1251 * wl = (struct wl1251 *) malloc(_len_wl0*sizeof(struct wl1251));
+          for(int _i0 = 0; _i0 < _len_wl0; _i0++) {
+              wl[_i0].physical_mem_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          wl[_i0].virtual_mem_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = wl1251_translate_mem_addr(wl,addr);
+          printf("%d\n", benchRet); 
+          free(wl);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int addr = 10;
+        
+          int _len_wl0 = 100;
+          struct wl1251 * wl = (struct wl1251 *) malloc(_len_wl0*sizeof(struct wl1251));
+          for(int _i0 = 0; _i0 < _len_wl0; _i0++) {
+              wl[_i0].physical_mem_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          wl[_i0].virtual_mem_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = wl1251_translate_mem_addr(wl,addr);
+          printf("%d\n", benchRet); 
+          free(wl);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_wl0 = 1;
+          struct wl1251 * wl = (struct wl1251 *) malloc(_len_wl0*sizeof(struct wl1251));
+          for(int _i0 = 0; _i0 < _len_wl0; _i0++) {
+              wl[_i0].physical_mem_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          wl[_i0].virtual_mem_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = wl1251_translate_mem_addr(wl,addr);
           printf("%d\n", benchRet); 
           free(wl);

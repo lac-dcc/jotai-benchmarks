@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ __attribute__((used)) static inline void cw1200_debug_txed_multi(struct cw1200_c
 	priv->debug->tx_multi_frames += count;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,20 +79,197 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int count = 100;
+        
           int _len_priv0 = 1;
           struct cw1200_common * priv = (struct cw1200_common *) malloc(_len_priv0*sizeof(struct cw1200_common));
           for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
               int _len_priv__i0__debug0 = 1;
           priv[_i0].debug = (struct TYPE_2__ *) malloc(_len_priv__i0__debug0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_priv__i0__debug0; _j0++) {
-            priv[_i0].debug->tx_multi_frames = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].debug->tx_multi = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].debug->tx_multi_frames = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].debug->tx_multi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          cw1200_debug_txed_multi(priv,count);
+          for(int _aux = 0; _aux < _len_priv0; _aux++) {
+          free(priv[_aux].debug);
+          }
+          free(priv);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int count = 255;
+        
+          int _len_priv0 = 65025;
+          struct cw1200_common * priv = (struct cw1200_common *) malloc(_len_priv0*sizeof(struct cw1200_common));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              int _len_priv__i0__debug0 = 1;
+          priv[_i0].debug = (struct TYPE_2__ *) malloc(_len_priv__i0__debug0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_priv__i0__debug0; _j0++) {
+              priv[_i0].debug->tx_multi_frames = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].debug->tx_multi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          cw1200_debug_txed_multi(priv,count);
+          for(int _aux = 0; _aux < _len_priv0; _aux++) {
+          free(priv[_aux].debug);
+          }
+          free(priv);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int count = 10;
+        
+          int _len_priv0 = 100;
+          struct cw1200_common * priv = (struct cw1200_common *) malloc(_len_priv0*sizeof(struct cw1200_common));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              int _len_priv__i0__debug0 = 1;
+          priv[_i0].debug = (struct TYPE_2__ *) malloc(_len_priv__i0__debug0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_priv__i0__debug0; _j0++) {
+              priv[_i0].debug->tx_multi_frames = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].debug->tx_multi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          cw1200_debug_txed_multi(priv,count);
+          for(int _aux = 0; _aux < _len_priv0; _aux++) {
+          free(priv[_aux].debug);
+          }
+          free(priv);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_priv0 = 1;
+          struct cw1200_common * priv = (struct cw1200_common *) malloc(_len_priv0*sizeof(struct cw1200_common));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              int _len_priv__i0__debug0 = 1;
+          priv[_i0].debug = (struct TYPE_2__ *) malloc(_len_priv__i0__debug0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_priv__i0__debug0; _j0++) {
+              priv[_i0].debug->tx_multi_frames = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].debug->tx_multi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           cw1200_debug_txed_multi(priv,count);
           for(int _aux = 0; _aux < _len_priv0; _aux++) {
           free(priv[_aux].debug);

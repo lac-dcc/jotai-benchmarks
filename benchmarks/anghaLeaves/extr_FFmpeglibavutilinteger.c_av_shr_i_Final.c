@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +75,6 @@ AVInteger av_shr_i(AVInteger a, int s){
     return out;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,46 +87,164 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int s = 100;
+        
           struct TYPE_4__ a;
           int _len_a_v0 = 1;
           a.v = (int *) malloc(_len_a_v0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_a_v0; _j0++) {
             a.v[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           struct TYPE_4__ benchRet = av_shr_i(a,s);
           free(a.v);
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int s = 255;
+        
           struct TYPE_4__ a;
           int _len_a_v0 = 1;
           a.v = (int *) malloc(_len_a_v0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_a_v0; _j0++) {
             a.v[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           struct TYPE_4__ benchRet = av_shr_i(a,s);
           free(a.v);
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int s = 10;
+        
           struct TYPE_4__ a;
           int _len_a_v0 = 1;
           a.v = (int *) malloc(_len_a_v0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_a_v0; _j0++) {
             a.v[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          struct TYPE_4__ benchRet = av_shr_i(a,s);
+          free(a.v);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int s = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          struct TYPE_4__ a;
+          int _len_a_v0 = 1;
+          a.v = (int *) malloc(_len_a_v0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_a_v0; _j0++) {
+            a.v[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           struct TYPE_4__ benchRet = av_shr_i(a,s);
           free(a.v);
         

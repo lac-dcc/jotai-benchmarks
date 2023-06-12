@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline bool vblank_passed(u64 seq, u64 ref)
 	return (seq - ref) <= (1 << 23);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,7 +79,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int seq = 100;
+        
           int ref = 100;
+        
           int benchRet = vblank_passed(seq,ref);
           printf("%d\n", benchRet); 
         
@@ -94,7 +91,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int seq = 255;
+        
           int ref = 255;
+        
           int benchRet = vblank_passed(seq,ref);
           printf("%d\n", benchRet); 
         
@@ -104,13 +103,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int seq = 10;
+        
           int ref = 10;
+        
           int benchRet = vblank_passed(seq,ref);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int seq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int ref = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = vblank_passed(seq,ref);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

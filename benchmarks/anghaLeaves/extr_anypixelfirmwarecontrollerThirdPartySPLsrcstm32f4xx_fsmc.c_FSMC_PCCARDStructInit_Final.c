@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -84,12 +86,6 @@ void FSMC_PCCARDStructInit(FSMC_PCCARDInitTypeDef* FSMC_PCCARDInitStruct)
   FSMC_PCCARDInitStruct->FSMC_IOSpaceTimingStruct->FSMC_HiZSetupTime = 0xFC;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,40 +98,222 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_FSMC_PCCARDInitStruct0 = 1;
+          // static_instructions_O0 : 48
+          // dynamic_instructions_O0 : 48
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_FSMC_PCCARDInitStruct0 = 65025;
           struct TYPE_9__ * FSMC_PCCARDInitStruct = (struct TYPE_9__ *) malloc(_len_FSMC_PCCARDInitStruct0*sizeof(struct TYPE_9__));
           for(int _i0 = 0; _i0 < _len_FSMC_PCCARDInitStruct0; _i0++) {
-            FSMC_PCCARDInitStruct[_i0].FSMC_TCLRSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_PCCARDInitStruct[_i0].FSMC_TARSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+              FSMC_PCCARDInitStruct[_i0].FSMC_TCLRSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_PCCARDInitStruct[_i0].FSMC_TARSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_FSMC_PCCARDInitStruct__i0__FSMC_IOSpaceTimingStruct0 = 1;
           FSMC_PCCARDInitStruct[_i0].FSMC_IOSpaceTimingStruct = (struct TYPE_8__ *) malloc(_len_FSMC_PCCARDInitStruct__i0__FSMC_IOSpaceTimingStruct0*sizeof(struct TYPE_8__));
           for(int _j0 = 0; _j0 < _len_FSMC_PCCARDInitStruct__i0__FSMC_IOSpaceTimingStruct0; _j0++) {
-            FSMC_PCCARDInitStruct[_i0].FSMC_IOSpaceTimingStruct->FSMC_SetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_PCCARDInitStruct[_i0].FSMC_IOSpaceTimingStruct->FSMC_WaitSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_PCCARDInitStruct[_i0].FSMC_IOSpaceTimingStruct->FSMC_HoldSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_PCCARDInitStruct[_i0].FSMC_IOSpaceTimingStruct->FSMC_HiZSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+              FSMC_PCCARDInitStruct[_i0].FSMC_IOSpaceTimingStruct->FSMC_SetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_PCCARDInitStruct[_i0].FSMC_IOSpaceTimingStruct->FSMC_WaitSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_PCCARDInitStruct[_i0].FSMC_IOSpaceTimingStruct->FSMC_HoldSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_PCCARDInitStruct[_i0].FSMC_IOSpaceTimingStruct->FSMC_HiZSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_FSMC_PCCARDInitStruct__i0__FSMC_AttributeSpaceTimingStruct0 = 1;
           FSMC_PCCARDInitStruct[_i0].FSMC_AttributeSpaceTimingStruct = (struct TYPE_7__ *) malloc(_len_FSMC_PCCARDInitStruct__i0__FSMC_AttributeSpaceTimingStruct0*sizeof(struct TYPE_7__));
           for(int _j0 = 0; _j0 < _len_FSMC_PCCARDInitStruct__i0__FSMC_AttributeSpaceTimingStruct0; _j0++) {
-            FSMC_PCCARDInitStruct[_i0].FSMC_AttributeSpaceTimingStruct->FSMC_SetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_PCCARDInitStruct[_i0].FSMC_AttributeSpaceTimingStruct->FSMC_WaitSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_PCCARDInitStruct[_i0].FSMC_AttributeSpaceTimingStruct->FSMC_HoldSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_PCCARDInitStruct[_i0].FSMC_AttributeSpaceTimingStruct->FSMC_HiZSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+              FSMC_PCCARDInitStruct[_i0].FSMC_AttributeSpaceTimingStruct->FSMC_SetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_PCCARDInitStruct[_i0].FSMC_AttributeSpaceTimingStruct->FSMC_WaitSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_PCCARDInitStruct[_i0].FSMC_AttributeSpaceTimingStruct->FSMC_HoldSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_PCCARDInitStruct[_i0].FSMC_AttributeSpaceTimingStruct->FSMC_HiZSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_FSMC_PCCARDInitStruct__i0__FSMC_CommonSpaceTimingStruct0 = 1;
           FSMC_PCCARDInitStruct[_i0].FSMC_CommonSpaceTimingStruct = (struct TYPE_6__ *) malloc(_len_FSMC_PCCARDInitStruct__i0__FSMC_CommonSpaceTimingStruct0*sizeof(struct TYPE_6__));
           for(int _j0 = 0; _j0 < _len_FSMC_PCCARDInitStruct__i0__FSMC_CommonSpaceTimingStruct0; _j0++) {
-            FSMC_PCCARDInitStruct[_i0].FSMC_CommonSpaceTimingStruct->FSMC_SetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_PCCARDInitStruct[_i0].FSMC_CommonSpaceTimingStruct->FSMC_WaitSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_PCCARDInitStruct[_i0].FSMC_CommonSpaceTimingStruct->FSMC_HoldSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_PCCARDInitStruct[_i0].FSMC_CommonSpaceTimingStruct->FSMC_HiZSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+              FSMC_PCCARDInitStruct[_i0].FSMC_CommonSpaceTimingStruct->FSMC_SetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_PCCARDInitStruct[_i0].FSMC_CommonSpaceTimingStruct->FSMC_WaitSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_PCCARDInitStruct[_i0].FSMC_CommonSpaceTimingStruct->FSMC_HoldSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_PCCARDInitStruct[_i0].FSMC_CommonSpaceTimingStruct->FSMC_HiZSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        FSMC_PCCARDInitStruct[_i0].FSMC_Waitfeature = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_PCCARDInitStruct[_i0].FSMC_Waitfeature = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          FSMC_PCCARDStructInit(FSMC_PCCARDInitStruct);
+          for(int _aux = 0; _aux < _len_FSMC_PCCARDInitStruct0; _aux++) {
+          free(FSMC_PCCARDInitStruct[_aux].FSMC_IOSpaceTimingStruct);
+          }
+          for(int _aux = 0; _aux < _len_FSMC_PCCARDInitStruct0; _aux++) {
+          free(FSMC_PCCARDInitStruct[_aux].FSMC_AttributeSpaceTimingStruct);
+          }
+          for(int _aux = 0; _aux < _len_FSMC_PCCARDInitStruct0; _aux++) {
+          free(FSMC_PCCARDInitStruct[_aux].FSMC_CommonSpaceTimingStruct);
+          }
+          free(FSMC_PCCARDInitStruct);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 48
+          // dynamic_instructions_O0 : 48
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_FSMC_PCCARDInitStruct0 = 100;
+          struct TYPE_9__ * FSMC_PCCARDInitStruct = (struct TYPE_9__ *) malloc(_len_FSMC_PCCARDInitStruct0*sizeof(struct TYPE_9__));
+          for(int _i0 = 0; _i0 < _len_FSMC_PCCARDInitStruct0; _i0++) {
+              FSMC_PCCARDInitStruct[_i0].FSMC_TCLRSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_PCCARDInitStruct[_i0].FSMC_TARSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_FSMC_PCCARDInitStruct__i0__FSMC_IOSpaceTimingStruct0 = 1;
+          FSMC_PCCARDInitStruct[_i0].FSMC_IOSpaceTimingStruct = (struct TYPE_8__ *) malloc(_len_FSMC_PCCARDInitStruct__i0__FSMC_IOSpaceTimingStruct0*sizeof(struct TYPE_8__));
+          for(int _j0 = 0; _j0 < _len_FSMC_PCCARDInitStruct__i0__FSMC_IOSpaceTimingStruct0; _j0++) {
+              FSMC_PCCARDInitStruct[_i0].FSMC_IOSpaceTimingStruct->FSMC_SetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_PCCARDInitStruct[_i0].FSMC_IOSpaceTimingStruct->FSMC_WaitSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_PCCARDInitStruct[_i0].FSMC_IOSpaceTimingStruct->FSMC_HoldSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_PCCARDInitStruct[_i0].FSMC_IOSpaceTimingStruct->FSMC_HiZSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_FSMC_PCCARDInitStruct__i0__FSMC_AttributeSpaceTimingStruct0 = 1;
+          FSMC_PCCARDInitStruct[_i0].FSMC_AttributeSpaceTimingStruct = (struct TYPE_7__ *) malloc(_len_FSMC_PCCARDInitStruct__i0__FSMC_AttributeSpaceTimingStruct0*sizeof(struct TYPE_7__));
+          for(int _j0 = 0; _j0 < _len_FSMC_PCCARDInitStruct__i0__FSMC_AttributeSpaceTimingStruct0; _j0++) {
+              FSMC_PCCARDInitStruct[_i0].FSMC_AttributeSpaceTimingStruct->FSMC_SetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_PCCARDInitStruct[_i0].FSMC_AttributeSpaceTimingStruct->FSMC_WaitSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_PCCARDInitStruct[_i0].FSMC_AttributeSpaceTimingStruct->FSMC_HoldSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_PCCARDInitStruct[_i0].FSMC_AttributeSpaceTimingStruct->FSMC_HiZSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_FSMC_PCCARDInitStruct__i0__FSMC_CommonSpaceTimingStruct0 = 1;
+          FSMC_PCCARDInitStruct[_i0].FSMC_CommonSpaceTimingStruct = (struct TYPE_6__ *) malloc(_len_FSMC_PCCARDInitStruct__i0__FSMC_CommonSpaceTimingStruct0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_FSMC_PCCARDInitStruct__i0__FSMC_CommonSpaceTimingStruct0; _j0++) {
+              FSMC_PCCARDInitStruct[_i0].FSMC_CommonSpaceTimingStruct->FSMC_SetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_PCCARDInitStruct[_i0].FSMC_CommonSpaceTimingStruct->FSMC_WaitSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_PCCARDInitStruct[_i0].FSMC_CommonSpaceTimingStruct->FSMC_HoldSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_PCCARDInitStruct[_i0].FSMC_CommonSpaceTimingStruct->FSMC_HiZSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          FSMC_PCCARDInitStruct[_i0].FSMC_Waitfeature = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          FSMC_PCCARDStructInit(FSMC_PCCARDInitStruct);
+          for(int _aux = 0; _aux < _len_FSMC_PCCARDInitStruct0; _aux++) {
+          free(FSMC_PCCARDInitStruct[_aux].FSMC_IOSpaceTimingStruct);
+          }
+          for(int _aux = 0; _aux < _len_FSMC_PCCARDInitStruct0; _aux++) {
+          free(FSMC_PCCARDInitStruct[_aux].FSMC_AttributeSpaceTimingStruct);
+          }
+          for(int _aux = 0; _aux < _len_FSMC_PCCARDInitStruct0; _aux++) {
+          free(FSMC_PCCARDInitStruct[_aux].FSMC_CommonSpaceTimingStruct);
+          }
+          free(FSMC_PCCARDInitStruct);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 48
+          // dynamic_instructions_O0 : 48
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_FSMC_PCCARDInitStruct0 = 1;
+          struct TYPE_9__ * FSMC_PCCARDInitStruct = (struct TYPE_9__ *) malloc(_len_FSMC_PCCARDInitStruct0*sizeof(struct TYPE_9__));
+          for(int _i0 = 0; _i0 < _len_FSMC_PCCARDInitStruct0; _i0++) {
+              FSMC_PCCARDInitStruct[_i0].FSMC_TCLRSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_PCCARDInitStruct[_i0].FSMC_TARSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_FSMC_PCCARDInitStruct__i0__FSMC_IOSpaceTimingStruct0 = 1;
+          FSMC_PCCARDInitStruct[_i0].FSMC_IOSpaceTimingStruct = (struct TYPE_8__ *) malloc(_len_FSMC_PCCARDInitStruct__i0__FSMC_IOSpaceTimingStruct0*sizeof(struct TYPE_8__));
+          for(int _j0 = 0; _j0 < _len_FSMC_PCCARDInitStruct__i0__FSMC_IOSpaceTimingStruct0; _j0++) {
+              FSMC_PCCARDInitStruct[_i0].FSMC_IOSpaceTimingStruct->FSMC_SetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_PCCARDInitStruct[_i0].FSMC_IOSpaceTimingStruct->FSMC_WaitSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_PCCARDInitStruct[_i0].FSMC_IOSpaceTimingStruct->FSMC_HoldSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_PCCARDInitStruct[_i0].FSMC_IOSpaceTimingStruct->FSMC_HiZSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_FSMC_PCCARDInitStruct__i0__FSMC_AttributeSpaceTimingStruct0 = 1;
+          FSMC_PCCARDInitStruct[_i0].FSMC_AttributeSpaceTimingStruct = (struct TYPE_7__ *) malloc(_len_FSMC_PCCARDInitStruct__i0__FSMC_AttributeSpaceTimingStruct0*sizeof(struct TYPE_7__));
+          for(int _j0 = 0; _j0 < _len_FSMC_PCCARDInitStruct__i0__FSMC_AttributeSpaceTimingStruct0; _j0++) {
+              FSMC_PCCARDInitStruct[_i0].FSMC_AttributeSpaceTimingStruct->FSMC_SetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_PCCARDInitStruct[_i0].FSMC_AttributeSpaceTimingStruct->FSMC_WaitSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_PCCARDInitStruct[_i0].FSMC_AttributeSpaceTimingStruct->FSMC_HoldSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_PCCARDInitStruct[_i0].FSMC_AttributeSpaceTimingStruct->FSMC_HiZSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_FSMC_PCCARDInitStruct__i0__FSMC_CommonSpaceTimingStruct0 = 1;
+          FSMC_PCCARDInitStruct[_i0].FSMC_CommonSpaceTimingStruct = (struct TYPE_6__ *) malloc(_len_FSMC_PCCARDInitStruct__i0__FSMC_CommonSpaceTimingStruct0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_FSMC_PCCARDInitStruct__i0__FSMC_CommonSpaceTimingStruct0; _j0++) {
+              FSMC_PCCARDInitStruct[_i0].FSMC_CommonSpaceTimingStruct->FSMC_SetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_PCCARDInitStruct[_i0].FSMC_CommonSpaceTimingStruct->FSMC_WaitSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_PCCARDInitStruct[_i0].FSMC_CommonSpaceTimingStruct->FSMC_HoldSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_PCCARDInitStruct[_i0].FSMC_CommonSpaceTimingStruct->FSMC_HiZSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          FSMC_PCCARDInitStruct[_i0].FSMC_Waitfeature = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           FSMC_PCCARDStructInit(FSMC_PCCARDInitStruct);
           for(int _aux = 0; _aux < _len_FSMC_PCCARDInitStruct0; _aux++) {
           free(FSMC_PCCARDInitStruct[_aux].FSMC_IOSpaceTimingStruct);

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ __attribute__((used)) static inline u8 nicvf_netdev_qidx(struct nicvf *nic, u8 q
 		return qidx;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,16 +80,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           long qidx = 100;
+        
           int _len_nic0 = 1;
           struct nicvf * nic = (struct nicvf *) malloc(_len_nic0*sizeof(struct nicvf));
           for(int _i0 = 0; _i0 < _len_nic0; _i0++) {
-            nic[_i0].sqs_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        nic[_i0].sqs_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              nic[_i0].sqs_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          nic[_i0].sqs_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          long benchRet = nicvf_netdev_qidx(nic,qidx);
+          printf("%ld\n", benchRet); 
+          free(nic);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long qidx = 255;
+        
+          int _len_nic0 = 65025;
+          struct nicvf * nic = (struct nicvf *) malloc(_len_nic0*sizeof(struct nicvf));
+          for(int _i0 = 0; _i0 < _len_nic0; _i0++) {
+              nic[_i0].sqs_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          nic[_i0].sqs_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = nicvf_netdev_qidx(nic,qidx);
+          printf("%ld\n", benchRet); 
+          free(nic);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long qidx = 10;
+        
+          int _len_nic0 = 100;
+          struct nicvf * nic = (struct nicvf *) malloc(_len_nic0*sizeof(struct nicvf));
+          for(int _i0 = 0; _i0 < _len_nic0; _i0++) {
+              nic[_i0].sqs_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          nic[_i0].sqs_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = nicvf_netdev_qidx(nic,qidx);
+          printf("%ld\n", benchRet); 
+          free(nic);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long qidx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_nic0 = 1;
+          struct nicvf * nic = (struct nicvf *) malloc(_len_nic0*sizeof(struct nicvf));
+          for(int _i0 = 0; _i0 < _len_nic0; _i0++) {
+              nic[_i0].sqs_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          nic[_i0].sqs_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           long benchRet = nicvf_netdev_qidx(nic,qidx);
           printf("%ld\n", benchRet); 
           free(nic);

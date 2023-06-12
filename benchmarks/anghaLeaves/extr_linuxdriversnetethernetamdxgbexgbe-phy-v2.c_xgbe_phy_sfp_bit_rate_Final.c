@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -88,12 +90,6 @@ __attribute__((used)) static bool xgbe_phy_sfp_bit_rate(struct xgbe_sfp_eeprom *
 		(sfp_base[XGBE_SFP_BASE_BR] <= max));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,11 +102,12 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           enum xgbe_sfp_speed sfp_speed = 0;
-          int _len_sfp_eeprom0 = 1;
+        
+          int _len_sfp_eeprom0 = 65025;
           struct xgbe_sfp_eeprom * sfp_eeprom = (struct xgbe_sfp_eeprom *) malloc(_len_sfp_eeprom0*sizeof(struct xgbe_sfp_eeprom));
           for(int _i0 = 0; _i0 < _len_sfp_eeprom0; _i0++) {
               int _len_sfp_eeprom__i0__base0 = 1;
@@ -118,7 +115,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_sfp_eeprom__i0__base0; _j0++) {
             sfp_eeprom[_i0].base[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = xgbe_phy_sfp_bit_rate(sfp_eeprom,sfp_speed);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_sfp_eeprom0; _aux++) {
@@ -128,7 +127,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          enum xgbe_sfp_speed sfp_speed = 0;
+        
+          int _len_sfp_eeprom0 = 100;
+          struct xgbe_sfp_eeprom * sfp_eeprom = (struct xgbe_sfp_eeprom *) malloc(_len_sfp_eeprom0*sizeof(struct xgbe_sfp_eeprom));
+          for(int _i0 = 0; _i0 < _len_sfp_eeprom0; _i0++) {
+              int _len_sfp_eeprom__i0__base0 = 1;
+          sfp_eeprom[_i0].base = (long *) malloc(_len_sfp_eeprom__i0__base0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_sfp_eeprom__i0__base0; _j0++) {
+            sfp_eeprom[_i0].base[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = xgbe_phy_sfp_bit_rate(sfp_eeprom,sfp_speed);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_sfp_eeprom0; _aux++) {
+          free(sfp_eeprom[_aux].base);
+          }
+          free(sfp_eeprom);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          enum xgbe_sfp_speed sfp_speed = 0;
+        
+          int _len_sfp_eeprom0 = 1;
+          struct xgbe_sfp_eeprom * sfp_eeprom = (struct xgbe_sfp_eeprom *) malloc(_len_sfp_eeprom0*sizeof(struct xgbe_sfp_eeprom));
+          for(int _i0 = 0; _i0 < _len_sfp_eeprom0; _i0++) {
+              int _len_sfp_eeprom__i0__base0 = 1;
+          sfp_eeprom[_i0].base = (long *) malloc(_len_sfp_eeprom__i0__base0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_sfp_eeprom__i0__base0; _j0++) {
+            sfp_eeprom[_i0].base[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = xgbe_phy_sfp_bit_rate(sfp_eeprom,sfp_speed);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_sfp_eeprom0; _aux++) {
+          free(sfp_eeprom[_aux].base);
+          }
+          free(sfp_eeprom);
+        
+        break;
+    }
     default:
         usage();
         break;

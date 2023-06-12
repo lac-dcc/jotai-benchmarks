@@ -77,12 +77,6 @@ __attribute__((used)) static inline unsigned long em28xx_hash_mem(char *buf, int
 	return (hash >> (32 - bits)) & 0xffffffffUL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,16 +89,42 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // big-arr-10x
     case 0:
     {
+          // static_instructions_O0 : 50
+          // dynamic_instructions_O0 : 294
+          // ------------------------------- 
+          // static_instructions_O1 : 33
+          // dynamic_instructions_O1 : 181
+          // ------------------------------- 
+          // static_instructions_O2 : 33
+          // dynamic_instructions_O2 : 181
+          // ------------------------------- 
+          // static_instructions_O3 : 33
+          // dynamic_instructions_O3 : 181
+          // ------------------------------- 
+          // static_instructions_Ofast : 33
+          // dynamic_instructions_Ofast : 181
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 180
+          // ------------------------------- 
+          // static_instructions_Oz : 35
+          // dynamic_instructions_Oz : 183
+          // ------------------------------- 
+
           int length = 10;
+        
           int bits = 10;
+        
           int _len_buf0 = 100;
           char * buf = (char *) malloc(_len_buf0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
             buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned long benchRet = em28xx_hash_mem(buf,length,bits);
           printf("%lu\n", benchRet); 
           free(buf);

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ int64_t hid_sensor_convert_timestamp(struct hid_sensor_common *st,
 	return st->timestamp_ns_scale * raw_value;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,11 +81,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int raw_value = 100;
+        
           int _len_st0 = 1;
           struct hid_sensor_common * st = (struct hid_sensor_common *) malloc(_len_st0*sizeof(struct hid_sensor_common));
           for(int _i0 = 0; _i0 < _len_st0; _i0++) {
-            st[_i0].timestamp_ns_scale = ((-2 * (next_i()%2)) + 1) * next_i();
+              st[_i0].timestamp_ns_scale = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = hid_sensor_convert_timestamp(st,raw_value);
+          printf("%d\n", benchRet); 
+          free(st);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int raw_value = 255;
+        
+          int _len_st0 = 65025;
+          struct hid_sensor_common * st = (struct hid_sensor_common *) malloc(_len_st0*sizeof(struct hid_sensor_common));
+          for(int _i0 = 0; _i0 < _len_st0; _i0++) {
+              st[_i0].timestamp_ns_scale = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = hid_sensor_convert_timestamp(st,raw_value);
           printf("%d\n", benchRet); 
           free(st);
@@ -97,21 +114,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int raw_value = 10;
+        
           int _len_st0 = 100;
           struct hid_sensor_common * st = (struct hid_sensor_common *) malloc(_len_st0*sizeof(struct hid_sensor_common));
           for(int _i0 = 0; _i0 < _len_st0; _i0++) {
-            st[_i0].timestamp_ns_scale = ((-2 * (next_i()%2)) + 1) * next_i();
+              st[_i0].timestamp_ns_scale = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = hid_sensor_convert_timestamp(st,raw_value);
           printf("%d\n", benchRet); 
           free(st);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int raw_value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_st0 = 1;
+          struct hid_sensor_common * st = (struct hid_sensor_common *) malloc(_len_st0*sizeof(struct hid_sensor_common));
+          for(int _i0 = 0; _i0 < _len_st0; _i0++) {
+              st[_i0].timestamp_ns_scale = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hid_sensor_convert_timestamp(st,raw_value);
+          printf("%d\n", benchRet); 
+          free(st);
+        
+        break;
+    }
     default:
         usage();
         break;

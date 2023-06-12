@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ pmap_virtual_space(
 	*endp = virtual_end;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,26 +80,69 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_startp0 = 1;
+          int _len_startp0 = 65025;
           int * startp = (int *) malloc(_len_startp0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_startp0; _i0++) {
             startp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_endp0 = 1;
+        
+          int _len_endp0 = 65025;
           int * endp = (int *) malloc(_len_endp0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_endp0; _i0++) {
             endp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           pmap_virtual_space(startp,endp);
           free(startp);
           free(endp);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_startp0 = 100;
+          int * startp = (int *) malloc(_len_startp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_startp0; _i0++) {
+            startp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_endp0 = 100;
+          int * endp = (int *) malloc(_len_endp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_endp0; _i0++) {
+            endp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          pmap_virtual_space(startp,endp);
+          free(startp);
+          free(endp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_startp0 = 1;
+          int * startp = (int *) malloc(_len_startp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_startp0; _i0++) {
+            startp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_endp0 = 1;
+          int * endp = (int *) malloc(_len_endp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_endp0; _i0++) {
+            endp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          pmap_virtual_space(startp,endp);
+          free(startp);
+          free(endp);
+        
+        break;
+    }
     default:
         usage();
         break;

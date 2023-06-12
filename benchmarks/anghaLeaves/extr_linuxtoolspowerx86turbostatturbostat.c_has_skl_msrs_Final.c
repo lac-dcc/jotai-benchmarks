@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +79,6 @@ int has_skl_msrs(unsigned int family, unsigned int model)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,7 +95,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int family = 100;
+        
           unsigned int model = 100;
+        
           int benchRet = has_skl_msrs(family,model);
           printf("%d\n", benchRet); 
         
@@ -110,7 +107,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int family = 255;
+        
           unsigned int model = 255;
+        
           int benchRet = has_skl_msrs(family,model);
           printf("%d\n", benchRet); 
         
@@ -120,13 +119,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int family = 10;
+        
           unsigned int model = 10;
+        
           int benchRet = has_skl_msrs(family,model);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int family = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int model = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = has_skl_msrs(family,model);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

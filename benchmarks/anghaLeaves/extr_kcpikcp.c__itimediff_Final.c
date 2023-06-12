@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline long _itimediff(IUINT32 later, IUINT32 earli
 	return ((IINT32)(later - earlier));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,7 +80,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long later = 100;
+        
           long earlier = 100;
+        
           long benchRet = _itimediff(later,earlier);
           printf("%ld\n", benchRet); 
         
@@ -95,7 +92,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long later = 255;
+        
           long earlier = 255;
+        
           long benchRet = _itimediff(later,earlier);
           printf("%ld\n", benchRet); 
         
@@ -105,13 +104,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long later = 10;
+        
           long earlier = 10;
+        
           long benchRet = _itimediff(later,earlier);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long later = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long earlier = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long benchRet = _itimediff(later,earlier);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ ENGINE *DH_get0_engine(DH *dh)
     return dh->engine;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,9 +77,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_dh0 = 65025;
+          struct TYPE_3__ * dh = (struct TYPE_3__ *) malloc(_len_dh0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_dh0; _i0++) {
+              int _len_dh__i0__engine0 = 1;
+          dh[_i0].engine = (int *) malloc(_len_dh__i0__engine0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_dh__i0__engine0; _j0++) {
+            dh[_i0].engine[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int * benchRet = DH_get0_engine(dh);
+          printf("%d\n", (*benchRet)); 
+          for(int _aux = 0; _aux < _len_dh0; _aux++) {
+          free(dh[_aux].engine);
+          }
+          free(dh);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_dh0 = 100;
+          struct TYPE_3__ * dh = (struct TYPE_3__ *) malloc(_len_dh0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_dh0; _i0++) {
+              int _len_dh__i0__engine0 = 1;
+          dh[_i0].engine = (int *) malloc(_len_dh__i0__engine0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_dh__i0__engine0; _j0++) {
+            dh[_i0].engine[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int * benchRet = DH_get0_engine(dh);
+          printf("%d\n", (*benchRet)); 
+          for(int _aux = 0; _aux < _len_dh0; _aux++) {
+          free(dh[_aux].engine);
+          }
+          free(dh);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_dh0 = 1;
           struct TYPE_3__ * dh = (struct TYPE_3__ *) malloc(_len_dh0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_dh0; _i0++) {
@@ -92,7 +205,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_dh__i0__engine0; _j0++) {
             dh[_i0].engine[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int * benchRet = DH_get0_engine(dh);
           printf("%d\n", (*benchRet)); 
           for(int _aux = 0; _aux < _len_dh0; _aux++) {

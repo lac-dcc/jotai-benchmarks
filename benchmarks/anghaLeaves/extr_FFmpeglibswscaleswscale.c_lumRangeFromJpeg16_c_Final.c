@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static void lumRangeFromJpeg16_c(int16_t *_dst, int width)
         dst[i] = (dst[i]*(14071/4) + (33561947<<4)/4)>>12;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,15 +78,120 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 3837
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 1794
+          // ------------------------------- 
+          // static_instructions_O2 : 103
+          // dynamic_instructions_O2 : 747
+          // ------------------------------- 
+          // static_instructions_O3 : 103
+          // dynamic_instructions_O3 : 747
+          // ------------------------------- 
+          // static_instructions_Ofast : 103
+          // dynamic_instructions_Ofast : 747
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 1793
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 2049
+          // ------------------------------- 
+
+          int width = 255;
+        
+          int _len__dst0 = 65025;
+          int * _dst = (int *) malloc(_len__dst0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len__dst0; _i0++) {
+            _dst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          lumRangeFromJpeg16_c(_dst,width);
+          free(_dst);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 162
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 79
+          // ------------------------------- 
+          // static_instructions_O2 : 53
+          // dynamic_instructions_O2 : 60
+          // ------------------------------- 
+          // static_instructions_O3 : 53
+          // dynamic_instructions_O3 : 60
+          // ------------------------------- 
+          // static_instructions_Ofast : 53
+          // dynamic_instructions_Ofast : 60
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 78
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 89
+          // ------------------------------- 
+
           int width = 10;
+        
           int _len__dst0 = 100;
           int * _dst = (int *) malloc(_len__dst0*sizeof(int));
           for(int _i0 = 0; _i0 < _len__dst0; _i0++) {
             _dst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          lumRangeFromJpeg16_c(_dst,width);
+          free(_dst);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len__dst0 = 1;
+          int * _dst = (int *) malloc(_len__dst0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len__dst0; _i0++) {
+            _dst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           lumRangeFromJpeg16_c(_dst,width);
           free(_dst);
         

@@ -70,12 +70,6 @@ __attribute__((used)) static unsigned long create_simple_focus_bits(unsigned lon
 	return hi | lo;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,15 +86,18 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long high_bits = 10;
+        
           unsigned long low_bits = 10;
+        
           int lowest_bit_set = 10;
+        
           int shift = 10;
+        
           unsigned long benchRet = create_simple_focus_bits(high_bits,low_bits,lowest_bit_set,shift);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

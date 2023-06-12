@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -90,12 +93,6 @@ ULONG IniGetNextLine(PCHAR IniFileData, ULONG IniFileSize, PCHAR Buffer, ULONG B
     return CurrentOffset;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -108,22 +105,206 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           long IniFileSize = 100;
+        
           long BufferSize = 100;
+        
           long CurrentOffset = 100;
+        
           int _len_IniFileData0 = 1;
           char * IniFileData = (char *) malloc(_len_IniFileData0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_IniFileData0; _i0++) {
             IniFileData[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_Buffer0 = 1;
           char * Buffer = (char *) malloc(_len_Buffer0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_Buffer0; _i0++) {
             Buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          long benchRet = IniGetNextLine(IniFileData,IniFileSize,Buffer,BufferSize,CurrentOffset);
+          printf("%ld\n", benchRet); 
+          free(IniFileData);
+          free(Buffer);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long IniFileSize = 255;
+        
+          long BufferSize = 255;
+        
+          long CurrentOffset = 255;
+        
+          int _len_IniFileData0 = 65025;
+          char * IniFileData = (char *) malloc(_len_IniFileData0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_IniFileData0; _i0++) {
+            IniFileData[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_Buffer0 = 65025;
+          char * Buffer = (char *) malloc(_len_Buffer0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_Buffer0; _i0++) {
+            Buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          long benchRet = IniGetNextLine(IniFileData,IniFileSize,Buffer,BufferSize,CurrentOffset);
+          printf("%ld\n", benchRet); 
+          free(IniFileData);
+          free(Buffer);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long IniFileSize = 10;
+        
+          long BufferSize = 10;
+        
+          long CurrentOffset = 10;
+        
+          int _len_IniFileData0 = 100;
+          char * IniFileData = (char *) malloc(_len_IniFileData0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_IniFileData0; _i0++) {
+            IniFileData[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_Buffer0 = 100;
+          char * Buffer = (char *) malloc(_len_Buffer0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_Buffer0; _i0++) {
+            Buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          long benchRet = IniGetNextLine(IniFileData,IniFileSize,Buffer,BufferSize,CurrentOffset);
+          printf("%ld\n", benchRet); 
+          free(IniFileData);
+          free(Buffer);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long IniFileSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long BufferSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long CurrentOffset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_IniFileData0 = 1;
+          char * IniFileData = (char *) malloc(_len_IniFileData0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_IniFileData0; _i0++) {
+            IniFileData[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_Buffer0 = 1;
+          char * Buffer = (char *) malloc(_len_Buffer0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_Buffer0; _i0++) {
+            Buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           long benchRet = IniGetNextLine(IniFileData,IniFileSize,Buffer,BufferSize,CurrentOffset);
           printf("%ld\n", benchRet); 
           free(IniFileData);

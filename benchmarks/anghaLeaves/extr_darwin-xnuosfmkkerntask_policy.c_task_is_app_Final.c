@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -77,12 +78,6 @@ task_is_app(task_t task)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,14 +90,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_task0 = 1;
+          int _len_task0 = 65025;
           struct TYPE_5__ * task = (struct TYPE_5__ *) malloc(_len_task0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_task0; _i0++) {
-            task[_i0].requested_policy.trp_apptype = ((-2 * (next_i()%2)) + 1) * next_i();
+              task[_i0].requested_policy.trp_apptype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = task_is_app(task);
           printf("%d\n", benchRet); 
           free(task);
@@ -115,15 +113,34 @@ int main(int argc, char *argv[]) {
           int _len_task0 = 100;
           struct TYPE_5__ * task = (struct TYPE_5__ *) malloc(_len_task0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_task0; _i0++) {
-            task[_i0].requested_policy.trp_apptype = ((-2 * (next_i()%2)) + 1) * next_i();
+              task[_i0].requested_policy.trp_apptype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = task_is_app(task);
           printf("%d\n", benchRet); 
           free(task);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_task0 = 1;
+          struct TYPE_5__ * task = (struct TYPE_5__ *) malloc(_len_task0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_task0; _i0++) {
+              task[_i0].requested_policy.trp_apptype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = task_is_app(task);
+          printf("%d\n", benchRet); 
+          free(task);
+        
+        break;
+    }
     default:
         usage();
         break;

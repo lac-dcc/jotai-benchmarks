@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +73,6 @@ bool pfn_range_is_mapped(unsigned long start_pfn, unsigned long end_pfn)
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,7 +89,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long start_pfn = 100;
+        
           unsigned long end_pfn = 100;
+        
           int benchRet = pfn_range_is_mapped(start_pfn,end_pfn);
           printf("%d\n", benchRet); 
         
@@ -104,7 +101,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long start_pfn = 255;
+        
           unsigned long end_pfn = 255;
+        
           int benchRet = pfn_range_is_mapped(start_pfn,end_pfn);
           printf("%d\n", benchRet); 
         
@@ -114,13 +113,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long start_pfn = 10;
+        
           unsigned long end_pfn = 10;
+        
           int benchRet = pfn_range_is_mapped(start_pfn,end_pfn);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long start_pfn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long end_pfn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = pfn_range_is_mapped(start_pfn,end_pfn);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

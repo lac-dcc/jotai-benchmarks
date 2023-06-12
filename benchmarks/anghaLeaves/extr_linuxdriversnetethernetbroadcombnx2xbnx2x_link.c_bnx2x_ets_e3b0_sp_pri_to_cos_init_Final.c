@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static void bnx2x_ets_e3b0_sp_pri_to_cos_init(u8 *sp_pri_t
 		sp_pri_to_cos[pri] = DCBX_INVALID_COS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,14 +78,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_sp_pri_to_cos0 = 1;
+          int _len_sp_pri_to_cos0 = 65025;
           unsigned long * sp_pri_to_cos = (unsigned long *) malloc(_len_sp_pri_to_cos0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_sp_pri_to_cos0; _i0++) {
             sp_pri_to_cos[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           bnx2x_ets_e3b0_sp_pri_to_cos_init(sp_pri_to_cos);
           free(sp_pri_to_cos);
         
@@ -104,12 +100,26 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_sp_pri_to_cos0; _i0++) {
             sp_pri_to_cos[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           bnx2x_ets_e3b0_sp_pri_to_cos_init(sp_pri_to_cos);
           free(sp_pri_to_cos);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_sp_pri_to_cos0 = 1;
+          unsigned long * sp_pri_to_cos = (unsigned long *) malloc(_len_sp_pri_to_cos0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_sp_pri_to_cos0; _i0++) {
+            sp_pri_to_cos[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          bnx2x_ets_e3b0_sp_pri_to_cos_init(sp_pri_to_cos);
+          free(sp_pri_to_cos);
+        
+        break;
+    }
     default:
         usage();
         break;

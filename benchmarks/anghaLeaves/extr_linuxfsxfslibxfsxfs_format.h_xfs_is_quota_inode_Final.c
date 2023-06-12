@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ xfs_is_quota_inode(struct xfs_sb *sbp, xfs_ino_t ino)
 		ino == sbp->sb_pquotino);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,20 +83,82 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long ino = 100;
+        
           int _len_sbp0 = 1;
           struct xfs_sb * sbp = (struct xfs_sb *) malloc(_len_sbp0*sizeof(struct xfs_sb));
           for(int _i0 = 0; _i0 < _len_sbp0; _i0++) {
-            sbp[_i0].sb_uquotino = ((-2 * (next_i()%2)) + 1) * next_i();
-        sbp[_i0].sb_gquotino = ((-2 * (next_i()%2)) + 1) * next_i();
-        sbp[_i0].sb_pquotino = ((-2 * (next_i()%2)) + 1) * next_i();
+              sbp[_i0].sb_uquotino = ((-2 * (next_i()%2)) + 1) * next_i();
+          sbp[_i0].sb_gquotino = ((-2 * (next_i()%2)) + 1) * next_i();
+          sbp[_i0].sb_pquotino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = xfs_is_quota_inode(sbp,ino);
           printf("%d\n", benchRet); 
           free(sbp);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long ino = 255;
+        
+          int _len_sbp0 = 65025;
+          struct xfs_sb * sbp = (struct xfs_sb *) malloc(_len_sbp0*sizeof(struct xfs_sb));
+          for(int _i0 = 0; _i0 < _len_sbp0; _i0++) {
+              sbp[_i0].sb_uquotino = ((-2 * (next_i()%2)) + 1) * next_i();
+          sbp[_i0].sb_gquotino = ((-2 * (next_i()%2)) + 1) * next_i();
+          sbp[_i0].sb_pquotino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = xfs_is_quota_inode(sbp,ino);
+          printf("%d\n", benchRet); 
+          free(sbp);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long ino = 10;
+        
+          int _len_sbp0 = 100;
+          struct xfs_sb * sbp = (struct xfs_sb *) malloc(_len_sbp0*sizeof(struct xfs_sb));
+          for(int _i0 = 0; _i0 < _len_sbp0; _i0++) {
+              sbp[_i0].sb_uquotino = ((-2 * (next_i()%2)) + 1) * next_i();
+          sbp[_i0].sb_gquotino = ((-2 * (next_i()%2)) + 1) * next_i();
+          sbp[_i0].sb_pquotino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = xfs_is_quota_inode(sbp,ino);
+          printf("%d\n", benchRet); 
+          free(sbp);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long ino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sbp0 = 1;
+          struct xfs_sb * sbp = (struct xfs_sb *) malloc(_len_sbp0*sizeof(struct xfs_sb));
+          for(int _i0 = 0; _i0 < _len_sbp0; _i0++) {
+              sbp[_i0].sb_uquotino = ((-2 * (next_i()%2)) + 1) * next_i();
+          sbp[_i0].sb_gquotino = ((-2 * (next_i()%2)) + 1) * next_i();
+          sbp[_i0].sb_pquotino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = xfs_is_quota_inode(sbp,ino);
+          printf("%d\n", benchRet); 
+          free(sbp);
+        
+        break;
+    }
     default:
         usage();
         break;

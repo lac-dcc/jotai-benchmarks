@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static inline void reverse_bytes(BYTE *pbData, DWORD dwLen
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,15 +81,120 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 4335
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 1156
+          // ------------------------------- 
+          // static_instructions_O2 : 41
+          // dynamic_instructions_O2 : 971
+          // ------------------------------- 
+          // static_instructions_O3 : 41
+          // dynamic_instructions_O3 : 971
+          // ------------------------------- 
+          // static_instructions_Ofast : 41
+          // dynamic_instructions_Ofast : 971
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 1153
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 1284
+          // ------------------------------- 
+
+          int dwLen = 255;
+        
+          int _len_pbData0 = 65025;
+          int * pbData = (int *) malloc(_len_pbData0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pbData0; _i0++) {
+            pbData[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          reverse_bytes(pbData,dwLen);
+          free(pbData);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 187
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 58
+          // ------------------------------- 
+          // static_instructions_O2 : 41
+          // dynamic_instructions_O2 : 56
+          // ------------------------------- 
+          // static_instructions_O3 : 41
+          // dynamic_instructions_O3 : 56
+          // ------------------------------- 
+          // static_instructions_Ofast : 41
+          // dynamic_instructions_Ofast : 56
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 55
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 64
+          // ------------------------------- 
+
           int dwLen = 10;
+        
           int _len_pbData0 = 100;
           int * pbData = (int *) malloc(_len_pbData0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pbData0; _i0++) {
             pbData[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          reverse_bytes(pbData,dwLen);
+          free(pbData);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int dwLen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pbData0 = 1;
+          int * pbData = (int *) malloc(_len_pbData0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pbData0; _i0++) {
+            pbData[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           reverse_bytes(pbData,dwLen);
           free(pbData);
         

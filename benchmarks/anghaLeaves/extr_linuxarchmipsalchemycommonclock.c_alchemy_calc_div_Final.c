@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +82,6 @@ __attribute__((used)) static long alchemy_calc_div(unsigned long rate, unsigned 
 	return div1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,36 +94,187 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 43
+          // dynamic_instructions_O0 : 43
+          // ------------------------------- 
+          // static_instructions_O1 : 33
+          // dynamic_instructions_O1 : 33
+          // ------------------------------- 
+          // static_instructions_O2 : 44
+          // dynamic_instructions_O2 : 44
+          // ------------------------------- 
+          // static_instructions_O3 : 44
+          // dynamic_instructions_O3 : 44
+          // ------------------------------- 
+          // static_instructions_Ofast : 44
+          // dynamic_instructions_Ofast : 44
+          // ------------------------------- 
+          // static_instructions_Os : 33
+          // dynamic_instructions_Os : 33
+          // ------------------------------- 
+          // static_instructions_Oz : 33
+          // dynamic_instructions_Oz : 33
+          // ------------------------------- 
+
           unsigned long rate = 100;
+        
           unsigned long prate = 100;
+        
           int scale = 100;
+        
           int maxdiv = 100;
+        
           int _len_rv0 = 1;
           unsigned long * rv = (unsigned long *) malloc(_len_rv0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_rv0; _i0++) {
             rv[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           long benchRet = alchemy_calc_div(rate,prate,scale,maxdiv,rv);
           printf("%ld\n", benchRet); 
           free(rv);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 43
+          // dynamic_instructions_O0 : 43
+          // ------------------------------- 
+          // static_instructions_O1 : 33
+          // dynamic_instructions_O1 : 33
+          // ------------------------------- 
+          // static_instructions_O2 : 44
+          // dynamic_instructions_O2 : 44
+          // ------------------------------- 
+          // static_instructions_O3 : 44
+          // dynamic_instructions_O3 : 44
+          // ------------------------------- 
+          // static_instructions_Ofast : 44
+          // dynamic_instructions_Ofast : 44
+          // ------------------------------- 
+          // static_instructions_Os : 33
+          // dynamic_instructions_Os : 33
+          // ------------------------------- 
+          // static_instructions_Oz : 33
+          // dynamic_instructions_Oz : 33
+          // ------------------------------- 
+
+          unsigned long rate = 255;
+        
+          unsigned long prate = 255;
+        
+          int scale = 255;
+        
+          int maxdiv = 255;
+        
+          int _len_rv0 = 65025;
+          unsigned long * rv = (unsigned long *) malloc(_len_rv0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_rv0; _i0++) {
+            rv[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          long benchRet = alchemy_calc_div(rate,prate,scale,maxdiv,rv);
+          printf("%ld\n", benchRet); 
+          free(rv);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 43
+          // dynamic_instructions_O0 : 43
+          // ------------------------------- 
+          // static_instructions_O1 : 33
+          // dynamic_instructions_O1 : 33
+          // ------------------------------- 
+          // static_instructions_O2 : 44
+          // dynamic_instructions_O2 : 44
+          // ------------------------------- 
+          // static_instructions_O3 : 44
+          // dynamic_instructions_O3 : 44
+          // ------------------------------- 
+          // static_instructions_Ofast : 44
+          // dynamic_instructions_Ofast : 44
+          // ------------------------------- 
+          // static_instructions_Os : 33
+          // dynamic_instructions_Os : 33
+          // ------------------------------- 
+          // static_instructions_Oz : 33
+          // dynamic_instructions_Oz : 33
+          // ------------------------------- 
+
           unsigned long rate = 10;
+        
           unsigned long prate = 10;
+        
           int scale = 10;
+        
           int maxdiv = 10;
+        
           int _len_rv0 = 100;
           unsigned long * rv = (unsigned long *) malloc(_len_rv0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_rv0; _i0++) {
             rv[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          long benchRet = alchemy_calc_div(rate,prate,scale,maxdiv,rv);
+          printf("%ld\n", benchRet); 
+          free(rv);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 45
+          // dynamic_instructions_O0 : 45
+          // ------------------------------- 
+          // static_instructions_O1 : 33
+          // dynamic_instructions_O1 : 33
+          // ------------------------------- 
+          // static_instructions_O2 : 47
+          // dynamic_instructions_O2 : 47
+          // ------------------------------- 
+          // static_instructions_O3 : 46
+          // dynamic_instructions_O3 : 46
+          // ------------------------------- 
+          // static_instructions_Ofast : 46
+          // dynamic_instructions_Ofast : 46
+          // ------------------------------- 
+          // static_instructions_Os : 33
+          // dynamic_instructions_Os : 33
+          // ------------------------------- 
+          // static_instructions_Oz : 33
+          // dynamic_instructions_Oz : 33
+          // ------------------------------- 
+
+          unsigned long rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long prate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int scale = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int maxdiv = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rv0 = 1;
+          unsigned long * rv = (unsigned long *) malloc(_len_rv0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_rv0; _i0++) {
+            rv[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           long benchRet = alchemy_calc_div(rate,prate,scale,maxdiv,rv);
           printf("%ld\n", benchRet); 
           free(rv);

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ int check_btres(struct bttv_fh *fh, int bit)
 	return (fh->resources & bit);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,11 +80,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int bit = 100;
+        
           int _len_fh0 = 1;
           struct bttv_fh * fh = (struct bttv_fh *) malloc(_len_fh0*sizeof(struct bttv_fh));
           for(int _i0 = 0; _i0 < _len_fh0; _i0++) {
-            fh[_i0].resources = ((-2 * (next_i()%2)) + 1) * next_i();
+              fh[_i0].resources = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = check_btres(fh,bit);
+          printf("%d\n", benchRet); 
+          free(fh);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int bit = 255;
+        
+          int _len_fh0 = 65025;
+          struct bttv_fh * fh = (struct bttv_fh *) malloc(_len_fh0*sizeof(struct bttv_fh));
+          for(int _i0 = 0; _i0 < _len_fh0; _i0++) {
+              fh[_i0].resources = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = check_btres(fh,bit);
           printf("%d\n", benchRet); 
           free(fh);
@@ -96,21 +113,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int bit = 10;
+        
           int _len_fh0 = 100;
           struct bttv_fh * fh = (struct bttv_fh *) malloc(_len_fh0*sizeof(struct bttv_fh));
           for(int _i0 = 0; _i0 < _len_fh0; _i0++) {
-            fh[_i0].resources = ((-2 * (next_i()%2)) + 1) * next_i();
+              fh[_i0].resources = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = check_btres(fh,bit);
           printf("%d\n", benchRet); 
           free(fh);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int bit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fh0 = 1;
+          struct bttv_fh * fh = (struct bttv_fh *) malloc(_len_fh0*sizeof(struct bttv_fh));
+          for(int _i0 = 0; _i0 < _len_fh0; _i0++) {
+              fh[_i0].resources = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = check_btres(fh,bit);
+          printf("%d\n", benchRet); 
+          free(fh);
+        
+        break;
+    }
     default:
         usage();
         break;

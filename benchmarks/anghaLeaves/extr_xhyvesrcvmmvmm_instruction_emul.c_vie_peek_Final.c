@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ vie_peek(struct vie *vie, uint8_t *x)
 		return (-1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,25 +81,163 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_vie0 = 1;
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_vie0 = 65025;
           struct vie * vie = (struct vie *) malloc(_len_vie0*sizeof(struct vie));
           for(int _i0 = 0; _i0 < _len_vie0; _i0++) {
-            vie[_i0].num_processed = ((-2 * (next_i()%2)) + 1) * next_i();
-        vie[_i0].num_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+              vie[_i0].num_processed = ((-2 * (next_i()%2)) + 1) * next_i();
+          vie[_i0].num_valid = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_vie__i0__inst0 = 1;
           vie[_i0].inst = (int *) malloc(_len_vie__i0__inst0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_vie__i0__inst0; _j0++) {
             vie[_i0].inst[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int _len_x0 = 65025;
+          int * x = (int *) malloc(_len_x0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_x0; _i0++) {
+            x[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = vie_peek(vie,x);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vie0; _aux++) {
+          free(vie[_aux].inst);
+          }
+          free(vie);
+          free(x);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_vie0 = 100;
+          struct vie * vie = (struct vie *) malloc(_len_vie0*sizeof(struct vie));
+          for(int _i0 = 0; _i0 < _len_vie0; _i0++) {
+              vie[_i0].num_processed = ((-2 * (next_i()%2)) + 1) * next_i();
+          vie[_i0].num_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_vie__i0__inst0 = 1;
+          vie[_i0].inst = (int *) malloc(_len_vie__i0__inst0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_vie__i0__inst0; _j0++) {
+            vie[_i0].inst[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_x0 = 100;
+          int * x = (int *) malloc(_len_x0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_x0; _i0++) {
+            x[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = vie_peek(vie,x);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vie0; _aux++) {
+          free(vie[_aux].inst);
+          }
+          free(vie);
+          free(x);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_vie0 = 1;
+          struct vie * vie = (struct vie *) malloc(_len_vie0*sizeof(struct vie));
+          for(int _i0 = 0; _i0 < _len_vie0; _i0++) {
+              vie[_i0].num_processed = ((-2 * (next_i()%2)) + 1) * next_i();
+          vie[_i0].num_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_vie__i0__inst0 = 1;
+          vie[_i0].inst = (int *) malloc(_len_vie__i0__inst0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_vie__i0__inst0; _j0++) {
+            vie[_i0].inst[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int _len_x0 = 1;
           int * x = (int *) malloc(_len_x0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_x0; _i0++) {
             x[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = vie_peek(vie,x);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_vie0; _aux++) {

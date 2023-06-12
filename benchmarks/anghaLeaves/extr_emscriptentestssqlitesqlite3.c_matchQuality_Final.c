@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +83,6 @@ __attribute__((used)) static int matchQuality(FuncDef *p, int nArg, u8 enc){
   return match;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,22 +99,94 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int nArg = 100;
+        
           long enc = 100;
+        
           int _len_p0 = 1;
           struct TYPE_3__ * p = (struct TYPE_3__ *) malloc(_len_p0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].nArg = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].xFunc = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].xStep = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].iPrefEnc = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].nArg = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].xFunc = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].xStep = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].iPrefEnc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = matchQuality(p,nArg,enc);
           printf("%d\n", benchRet); 
           free(p);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int nArg = 255;
+        
+          long enc = 255;
+        
+          int _len_p0 = 65025;
+          struct TYPE_3__ * p = (struct TYPE_3__ *) malloc(_len_p0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].nArg = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].xFunc = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].xStep = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].iPrefEnc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = matchQuality(p,nArg,enc);
+          printf("%d\n", benchRet); 
+          free(p);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int nArg = 10;
+        
+          long enc = 10;
+        
+          int _len_p0 = 100;
+          struct TYPE_3__ * p = (struct TYPE_3__ *) malloc(_len_p0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].nArg = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].xFunc = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].xStep = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].iPrefEnc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = matchQuality(p,nArg,enc);
+          printf("%d\n", benchRet); 
+          free(p);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int nArg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long enc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_p0 = 1;
+          struct TYPE_3__ * p = (struct TYPE_3__ *) malloc(_len_p0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].nArg = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].xFunc = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].xStep = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].iPrefEnc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = matchQuality(p,nArg,enc);
+          printf("%d\n", benchRet); 
+          free(p);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -84,12 +86,6 @@ user_friendly_fixup (aarch64_inst *inst)
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,24 +98,168 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_inst0 = 65025;
+          struct TYPE_9__ * inst = (struct TYPE_9__ *) malloc(_len_inst0*sizeof(struct TYPE_9__));
+          for(int _i0 = 0; _i0 < _len_inst0; _i0++) {
+              int _len_inst__i0__operands0 = 1;
+          inst[_i0].operands = (struct TYPE_8__ *) malloc(_len_inst__i0__operands0*sizeof(struct TYPE_8__));
+          for(int _j0 = 0; _j0 < _len_inst__i0__operands0; _j0++) {
+              inst[_i0].operands->qualifier = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].operands->imm.value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+          int _len_inst__i0__opcode0 = 1;
+          inst[_i0].opcode = (struct TYPE_6__ *) malloc(_len_inst__i0__opcode0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_inst__i0__opcode0; _j0++) {
+              inst[_i0].opcode->iclass = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          user_friendly_fixup(inst);
+          for(int _aux = 0; _aux < _len_inst0; _aux++) {
+          free(inst[_aux].operands);
+          }
+          for(int _aux = 0; _aux < _len_inst0; _aux++) {
+          free(inst[_aux].opcode);
+          }
+          free(inst);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_inst0 = 100;
+          struct TYPE_9__ * inst = (struct TYPE_9__ *) malloc(_len_inst0*sizeof(struct TYPE_9__));
+          for(int _i0 = 0; _i0 < _len_inst0; _i0++) {
+              int _len_inst__i0__operands0 = 1;
+          inst[_i0].operands = (struct TYPE_8__ *) malloc(_len_inst__i0__operands0*sizeof(struct TYPE_8__));
+          for(int _j0 = 0; _j0 < _len_inst__i0__operands0; _j0++) {
+              inst[_i0].operands->qualifier = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].operands->imm.value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+          int _len_inst__i0__opcode0 = 1;
+          inst[_i0].opcode = (struct TYPE_6__ *) malloc(_len_inst__i0__opcode0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_inst__i0__opcode0; _j0++) {
+              inst[_i0].opcode->iclass = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          user_friendly_fixup(inst);
+          for(int _aux = 0; _aux < _len_inst0; _aux++) {
+          free(inst[_aux].operands);
+          }
+          for(int _aux = 0; _aux < _len_inst0; _aux++) {
+          free(inst[_aux].opcode);
+          }
+          free(inst);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_inst0 = 1;
           struct TYPE_9__ * inst = (struct TYPE_9__ *) malloc(_len_inst0*sizeof(struct TYPE_9__));
           for(int _i0 = 0; _i0 < _len_inst0; _i0++) {
               int _len_inst__i0__operands0 = 1;
           inst[_i0].operands = (struct TYPE_8__ *) malloc(_len_inst__i0__operands0*sizeof(struct TYPE_8__));
           for(int _j0 = 0; _j0 < _len_inst__i0__operands0; _j0++) {
-            inst[_i0].operands->qualifier = ((-2 * (next_i()%2)) + 1) * next_i();
-        inst[_i0].operands->imm.value = ((-2 * (next_i()%2)) + 1) * next_i();
+              inst[_i0].operands->qualifier = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].operands->imm.value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
           int _len_inst__i0__opcode0 = 1;
           inst[_i0].opcode = (struct TYPE_6__ *) malloc(_len_inst__i0__opcode0*sizeof(struct TYPE_6__));
           for(int _j0 = 0; _j0 < _len_inst__i0__opcode0; _j0++) {
-            inst[_i0].opcode->iclass = ((-2 * (next_i()%2)) + 1) * next_i();
+              inst[_i0].opcode->iclass = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           user_friendly_fixup(inst);
           for(int _aux = 0; _aux < _len_inst0; _aux++) {
           free(inst[_aux].operands);

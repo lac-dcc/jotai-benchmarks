@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ __attribute__((used)) static unsigned char dht11_decode_byte(char *bits)
 	return ret;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,14 +81,77 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 146
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 71
+          // ------------------------------- 
+          // static_instructions_O2 : 34
+          // dynamic_instructions_O2 : 34
+          // ------------------------------- 
+          // static_instructions_O3 : 34
+          // dynamic_instructions_O3 : 34
+          // ------------------------------- 
+          // static_instructions_Ofast : 34
+          // dynamic_instructions_Ofast : 34
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 70
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 72
+          // ------------------------------- 
+
+          int _len_bits0 = 65025;
+          char * bits = (char *) malloc(_len_bits0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_bits0; _i0++) {
+            bits[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned char benchRet = dht11_decode_byte(bits);
+          printf("%c\n", (benchRet %26) + 'a'); 
+          free(bits);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 146
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 71
+          // ------------------------------- 
+          // static_instructions_O2 : 34
+          // dynamic_instructions_O2 : 34
+          // ------------------------------- 
+          // static_instructions_O3 : 34
+          // dynamic_instructions_O3 : 34
+          // ------------------------------- 
+          // static_instructions_Ofast : 34
+          // dynamic_instructions_Ofast : 34
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 70
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 72
+          // ------------------------------- 
+
           int _len_bits0 = 100;
           char * bits = (char *) malloc(_len_bits0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_bits0; _i0++) {
             bits[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned char benchRet = dht11_decode_byte(bits);
           printf("%c\n", (benchRet %26) + 'a'); 
           free(bits);

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -96,12 +97,6 @@ __attribute__((used)) static void UI_TeamOrdersMenu_SetList( int id ) {
 	teamOrdersMenuInfo.list.generic.bottom = teamOrdersMenuInfo.list.generic.top + teamOrdersMenuInfo.list.numitems * PROP_HEIGHT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -118,6 +113,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int id = 100;
+        
           UI_TeamOrdersMenu_SetList(id);
         
         break;
@@ -126,6 +122,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int id = 255;
+        
           UI_TeamOrdersMenu_SetList(id);
         
         break;
@@ -134,11 +131,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int id = 10;
+        
           UI_TeamOrdersMenu_SetList(id);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          UI_TeamOrdersMenu_SetList(id);
+        
+        break;
+    }
     default:
         usage();
         break;

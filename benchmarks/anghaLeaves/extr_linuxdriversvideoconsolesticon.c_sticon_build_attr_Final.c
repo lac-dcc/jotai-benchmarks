@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static u8 sticon_build_attr(struct vc_data *conp, u8 color
     return attr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,40 +83,207 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int color = 100;
+        
           int intens = 100;
+        
           int blink = 100;
+        
           int underline = 100;
+        
           int reverse = 100;
+        
           int italic = 100;
+        
           int _len_conp0 = 1;
           struct vc_data * conp = (struct vc_data *) malloc(_len_conp0*sizeof(struct vc_data));
           for(int _i0 = 0; _i0 < _len_conp0; _i0++) {
-            conp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              conp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = sticon_build_attr(conp,color,intens,blink,underline,reverse,italic);
           printf("%d\n", benchRet); 
           free(conp);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int color = 255;
+        
+          int intens = 255;
+        
+          int blink = 255;
+        
+          int underline = 255;
+        
+          int reverse = 255;
+        
+          int italic = 255;
+        
+          int _len_conp0 = 65025;
+          struct vc_data * conp = (struct vc_data *) malloc(_len_conp0*sizeof(struct vc_data));
+          for(int _i0 = 0; _i0 < _len_conp0; _i0++) {
+              conp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sticon_build_attr(conp,color,intens,blink,underline,reverse,italic);
+          printf("%d\n", benchRet); 
+          free(conp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int color = 10;
+        
           int intens = 10;
+        
           int blink = 10;
+        
           int underline = 10;
+        
           int reverse = 10;
+        
           int italic = 10;
+        
           int _len_conp0 = 100;
           struct vc_data * conp = (struct vc_data *) malloc(_len_conp0*sizeof(struct vc_data));
           for(int _i0 = 0; _i0 < _len_conp0; _i0++) {
-            conp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              conp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = sticon_build_attr(conp,color,intens,blink,underline,reverse,italic);
+          printf("%d\n", benchRet); 
+          free(conp);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int color = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int intens = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int blink = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int underline = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int reverse = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int italic = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_conp0 = 1;
+          struct vc_data * conp = (struct vc_data *) malloc(_len_conp0*sizeof(struct vc_data));
+          for(int _i0 = 0; _i0 < _len_conp0; _i0++) {
+              conp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = sticon_build_attr(conp,color,intens,blink,underline,reverse,italic);
           printf("%d\n", benchRet); 
           free(conp);

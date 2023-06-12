@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static void build_clamping_params(struct dc_stream_state *
 	stream->clamping.pixel_encoding = stream->timing.pixel_encoding;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,24 +81,69 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_stream0 = 1;
+          int _len_stream0 = 65025;
           struct dc_stream_state * stream = (struct dc_stream_state *) malloc(_len_stream0*sizeof(struct dc_stream_state));
           for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
-            stream[_i0].timing.pixel_encoding = ((-2 * (next_i()%2)) + 1) * next_i();
-        stream[_i0].timing.display_color_depth = ((-2 * (next_i()%2)) + 1) * next_i();
-        stream[_i0].clamping.pixel_encoding = ((-2 * (next_i()%2)) + 1) * next_i();
-        stream[_i0].clamping.c_depth = ((-2 * (next_i()%2)) + 1) * next_i();
-        stream[_i0].clamping.clamping_level = ((-2 * (next_i()%2)) + 1) * next_i();
+              stream[_i0].timing.pixel_encoding = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].timing.display_color_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          stream[_i0].clamping.pixel_encoding = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].clamping.c_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].clamping.clamping_level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           build_clamping_params(stream);
           free(stream);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_stream0 = 100;
+          struct dc_stream_state * stream = (struct dc_stream_state *) malloc(_len_stream0*sizeof(struct dc_stream_state));
+          for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
+              stream[_i0].timing.pixel_encoding = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].timing.display_color_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          stream[_i0].clamping.pixel_encoding = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].clamping.c_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].clamping.clamping_level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          build_clamping_params(stream);
+          free(stream);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_stream0 = 1;
+          struct dc_stream_state * stream = (struct dc_stream_state *) malloc(_len_stream0*sizeof(struct dc_stream_state));
+          for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
+              stream[_i0].timing.pixel_encoding = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].timing.display_color_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          stream[_i0].clamping.pixel_encoding = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].clamping.c_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].clamping.clamping_level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          build_clamping_params(stream);
+          free(stream);
+        
+        break;
+    }
     default:
         usage();
         break;

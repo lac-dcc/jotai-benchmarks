@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ u64 visorchannel_get_clientpartition(struct visorchannel *channel)
 	return channel->chan_hdr.partition_handle;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_channel0 = 1;
+          int _len_channel0 = 65025;
           struct visorchannel * channel = (struct visorchannel *) malloc(_len_channel0*sizeof(struct visorchannel));
           for(int _i0 = 0; _i0 < _len_channel0; _i0++) {
-            channel[_i0].chan_hdr.partition_handle = ((-2 * (next_i()%2)) + 1) * next_i();
+              channel[_i0].chan_hdr.partition_handle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = visorchannel_get_clientpartition(channel);
           printf("%d\n", benchRet); 
           free(channel);
@@ -102,15 +100,34 @@ int main(int argc, char *argv[]) {
           int _len_channel0 = 100;
           struct visorchannel * channel = (struct visorchannel *) malloc(_len_channel0*sizeof(struct visorchannel));
           for(int _i0 = 0; _i0 < _len_channel0; _i0++) {
-            channel[_i0].chan_hdr.partition_handle = ((-2 * (next_i()%2)) + 1) * next_i();
+              channel[_i0].chan_hdr.partition_handle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = visorchannel_get_clientpartition(channel);
           printf("%d\n", benchRet); 
           free(channel);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_channel0 = 1;
+          struct visorchannel * channel = (struct visorchannel *) malloc(_len_channel0*sizeof(struct visorchannel));
+          for(int _i0 = 0; _i0 < _len_channel0; _i0++) {
+              channel[_i0].chan_hdr.partition_handle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = visorchannel_get_clientpartition(channel);
+          printf("%d\n", benchRet); 
+          free(channel);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ cpu_buffer_size(console_buf_t * cbp)
 	return (int)(cbp->buf_ptr - cbp->buf_base);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,22 +77,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cbp0 = 1;
+          int _len_cbp0 = 65025;
           struct TYPE_3__ * cbp = (struct TYPE_3__ *) malloc(_len_cbp0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_cbp0; _i0++) {
-            cbp[_i0].buf_base = ((-2 * (next_i()%2)) + 1) * next_i();
-        cbp[_i0].buf_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+              cbp[_i0].buf_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          cbp[_i0].buf_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cpu_buffer_size(cbp);
           printf("%d\n", benchRet); 
           free(cbp);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_cbp0 = 100;
+          struct TYPE_3__ * cbp = (struct TYPE_3__ *) malloc(_len_cbp0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_cbp0; _i0++) {
+              cbp[_i0].buf_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          cbp[_i0].buf_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cpu_buffer_size(cbp);
+          printf("%d\n", benchRet); 
+          free(cbp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_cbp0 = 1;
+          struct TYPE_3__ * cbp = (struct TYPE_3__ *) malloc(_len_cbp0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_cbp0; _i0++) {
+              cbp[_i0].buf_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          cbp[_i0].buf_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cpu_buffer_size(cbp);
+          printf("%d\n", benchRet); 
+          free(cbp);
+        
+        break;
+    }
     default:
         usage();
         break;

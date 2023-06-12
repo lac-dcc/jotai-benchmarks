@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ edd_dev_get_info(struct edd_device *edev)
 	return edev->info;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,18 +76,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_edev0 = 65025;
+          struct edd_device * edev = (struct edd_device *) malloc(_len_edev0*sizeof(struct edd_device));
+          for(int _i0 = 0; _i0 < _len_edev0; _i0++) {
+              int _len_edev__i0__info0 = 1;
+          edev[_i0].info = (struct edd_info *) malloc(_len_edev__i0__info0*sizeof(struct edd_info));
+          for(int _j0 = 0; _j0 < _len_edev__i0__info0; _j0++) {
+              edev[_i0].info->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct edd_info * benchRet = edd_dev_get_info(edev);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_edev0; _aux++) {
+          free(edev[_aux].info);
+          }
+          free(edev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_edev0 = 100;
+          struct edd_device * edev = (struct edd_device *) malloc(_len_edev0*sizeof(struct edd_device));
+          for(int _i0 = 0; _i0 < _len_edev0; _i0++) {
+              int _len_edev__i0__info0 = 1;
+          edev[_i0].info = (struct edd_info *) malloc(_len_edev__i0__info0*sizeof(struct edd_info));
+          for(int _j0 = 0; _j0 < _len_edev__i0__info0; _j0++) {
+              edev[_i0].info->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct edd_info * benchRet = edd_dev_get_info(edev);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_edev0; _aux++) {
+          free(edev[_aux].info);
+          }
+          free(edev);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_edev0 = 1;
           struct edd_device * edev = (struct edd_device *) malloc(_len_edev0*sizeof(struct edd_device));
           for(int _i0 = 0; _i0 < _len_edev0; _i0++) {
               int _len_edev__i0__info0 = 1;
           edev[_i0].info = (struct edd_info *) malloc(_len_edev__i0__info0*sizeof(struct edd_info));
           for(int _j0 = 0; _j0 < _len_edev__i0__info0; _j0++) {
-            edev[_i0].info->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              edev[_i0].info->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct edd_info * benchRet = edd_dev_get_info(edev);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_edev0; _aux++) {

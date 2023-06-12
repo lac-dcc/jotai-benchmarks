@@ -75,12 +75,6 @@ uint32_t phm_set_field_to_u32(u32 offset, u32 original_data, u32 field, u32 size
 	return original_data;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,9 +91,13 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int offset = 100;
+        
           int original_data = 100;
+        
           int field = 100;
+        
           int size = 100;
+        
           int benchRet = phm_set_field_to_u32(offset,original_data,field,size);
           printf("%d\n", benchRet); 
         
@@ -109,15 +107,18 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int offset = 10;
+        
           int original_data = 10;
+        
           int field = 10;
+        
           int size = 10;
+        
           int benchRet = phm_set_field_to_u32(offset,original_data,field,size);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ __attribute__((used)) static inline int ndev_ignore_unsafe(struct intel_ntb_dev 
 	return !!flag;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,19 +83,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long flag = 100;
+        
           int _len_ndev0 = 1;
           struct intel_ntb_dev * ndev = (struct intel_ntb_dev *) malloc(_len_ndev0*sizeof(struct intel_ntb_dev));
           for(int _i0 = 0; _i0 < _len_ndev0; _i0++) {
-            ndev[_i0].unsafe_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        ndev[_i0].unsafe_flags_ignore = ((-2 * (next_i()%2)) + 1) * next_i();
+              ndev[_i0].unsafe_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          ndev[_i0].unsafe_flags_ignore = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ndev_ignore_unsafe(ndev,flag);
           printf("%d\n", benchRet); 
           free(ndev);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long flag = 255;
+        
+          int _len_ndev0 = 65025;
+          struct intel_ntb_dev * ndev = (struct intel_ntb_dev *) malloc(_len_ndev0*sizeof(struct intel_ntb_dev));
+          for(int _i0 = 0; _i0 < _len_ndev0; _i0++) {
+              ndev[_i0].unsafe_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          ndev[_i0].unsafe_flags_ignore = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ndev_ignore_unsafe(ndev,flag);
+          printf("%d\n", benchRet); 
+          free(ndev);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long flag = 10;
+        
+          int _len_ndev0 = 100;
+          struct intel_ntb_dev * ndev = (struct intel_ntb_dev *) malloc(_len_ndev0*sizeof(struct intel_ntb_dev));
+          for(int _i0 = 0; _i0 < _len_ndev0; _i0++) {
+              ndev[_i0].unsafe_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          ndev[_i0].unsafe_flags_ignore = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ndev_ignore_unsafe(ndev,flag);
+          printf("%d\n", benchRet); 
+          free(ndev);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ndev0 = 1;
+          struct intel_ntb_dev * ndev = (struct intel_ntb_dev *) malloc(_len_ndev0*sizeof(struct intel_ntb_dev));
+          for(int _i0 = 0; _i0 < _len_ndev0; _i0++) {
+              ndev[_i0].unsafe_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          ndev[_i0].unsafe_flags_ignore = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ndev_ignore_unsafe(ndev,flag);
+          printf("%d\n", benchRet); 
+          free(ndev);
+        
+        break;
+    }
     default:
         usage();
         break;

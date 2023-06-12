@@ -94,12 +94,6 @@ __attribute__((used)) static u8 si1145_compress(u16 x)
 	return (exponent << 4) | ((significand >> 1) & 0xF);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -112,28 +106,102 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 43
+          // dynamic_instructions_O0 : 87
+          // ------------------------------- 
+          // static_instructions_O1 : 33
+          // dynamic_instructions_O1 : 58
+          // ------------------------------- 
+          // static_instructions_O2 : 33
+          // dynamic_instructions_O2 : 58
+          // ------------------------------- 
+          // static_instructions_O3 : 33
+          // dynamic_instructions_O3 : 58
+          // ------------------------------- 
+          // static_instructions_Ofast : 33
+          // dynamic_instructions_Ofast : 58
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 57
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 57
+          // ------------------------------- 
+
           int x = 100;
+        
           int benchRet = si1145_compress(x);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 57
+          // dynamic_instructions_O0 : 110
+          // ------------------------------- 
+          // static_instructions_O1 : 39
+          // dynamic_instructions_O1 : 69
+          // ------------------------------- 
+          // static_instructions_O2 : 39
+          // dynamic_instructions_O2 : 69
+          // ------------------------------- 
+          // static_instructions_O3 : 39
+          // dynamic_instructions_O3 : 69
+          // ------------------------------- 
+          // static_instructions_Ofast : 39
+          // dynamic_instructions_Ofast : 69
+          // ------------------------------- 
+          // static_instructions_Os : 38
+          // dynamic_instructions_Os : 68
+          // ------------------------------- 
+          // static_instructions_Oz : 38
+          // dynamic_instructions_Oz : 68
+          // ------------------------------- 
+
           int x = 255;
+        
           int benchRet = si1145_compress(x);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 56
+          // ------------------------------- 
+          // static_instructions_O1 : 27
+          // dynamic_instructions_O1 : 37
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 37
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 37
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 37
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 37
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 37
+          // ------------------------------- 
+
           int x = 10;
+        
           int benchRet = si1145_compress(x);
           printf("%d\n", benchRet); 
         

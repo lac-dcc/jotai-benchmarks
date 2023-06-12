@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -96,12 +98,6 @@ __attribute__((used)) static unsigned char snd_cs4231_get_format(struct snd_cs42
 	return rformat;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -114,32 +110,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int format = 100;
+        
           int channels = 100;
+        
           int _len_chip0 = 1;
           struct snd_cs4231 * chip = (struct snd_cs4231 *) malloc(_len_chip0*sizeof(struct snd_cs4231));
           for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
-            chip[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              chip[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned char benchRet = snd_cs4231_get_format(chip,format,channels);
           printf("%c\n", (benchRet %26) + 'a'); 
           free(chip);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int format = 255;
+        
+          int channels = 255;
+        
+          int _len_chip0 = 65025;
+          struct snd_cs4231 * chip = (struct snd_cs4231 *) malloc(_len_chip0*sizeof(struct snd_cs4231));
+          for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
+              chip[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned char benchRet = snd_cs4231_get_format(chip,format,channels);
+          printf("%c\n", (benchRet %26) + 'a'); 
+          free(chip);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int format = 10;
+        
           int channels = 10;
+        
           int _len_chip0 = 100;
           struct snd_cs4231 * chip = (struct snd_cs4231 *) malloc(_len_chip0*sizeof(struct snd_cs4231));
           for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
-            chip[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              chip[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          unsigned char benchRet = snd_cs4231_get_format(chip,format,channels);
+          printf("%c\n", (benchRet %26) + 'a'); 
+          free(chip);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int channels = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_chip0 = 1;
+          struct snd_cs4231 * chip = (struct snd_cs4231 *) malloc(_len_chip0*sizeof(struct snd_cs4231));
+          for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
+              chip[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           unsigned char benchRet = snd_cs4231_get_format(chip,format,channels);
           printf("%c\n", (benchRet %26) + 'a'); 
           free(chip);

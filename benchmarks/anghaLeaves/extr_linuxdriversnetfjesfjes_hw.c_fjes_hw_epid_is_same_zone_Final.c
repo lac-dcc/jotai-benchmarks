@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +77,6 @@ bool fjes_hw_epid_is_same_zone(struct fjes_hw *hw, int epid)
 				hw->ep_shm_info[hw->my_epid].zone);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,22 +89,208 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int epid = 100;
+        
           int _len_hw0 = 1;
           struct fjes_hw * hw = (struct fjes_hw *) malloc(_len_hw0*sizeof(struct fjes_hw));
           for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
-            hw[_i0].max_epid = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].my_epid = ((-2 * (next_i()%2)) + 1) * next_i();
+              hw[_i0].max_epid = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].my_epid = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_hw__i0__ep_shm_info0 = 1;
           hw[_i0].ep_shm_info = (struct TYPE_2__ *) malloc(_len_hw__i0__ep_shm_info0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_hw__i0__ep_shm_info0; _j0++) {
-            hw[_i0].ep_shm_info->es_status = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].ep_shm_info->zone = ((-2 * (next_i()%2)) + 1) * next_i();
+              hw[_i0].ep_shm_info->es_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].ep_shm_info->zone = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = fjes_hw_epid_is_same_zone(hw,epid);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hw0; _aux++) {
+          free(hw[_aux].ep_shm_info);
+          }
+          free(hw);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int epid = 255;
+        
+          int _len_hw0 = 65025;
+          struct fjes_hw * hw = (struct fjes_hw *) malloc(_len_hw0*sizeof(struct fjes_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].max_epid = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].my_epid = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_hw__i0__ep_shm_info0 = 1;
+          hw[_i0].ep_shm_info = (struct TYPE_2__ *) malloc(_len_hw__i0__ep_shm_info0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_hw__i0__ep_shm_info0; _j0++) {
+              hw[_i0].ep_shm_info->es_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].ep_shm_info->zone = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = fjes_hw_epid_is_same_zone(hw,epid);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hw0; _aux++) {
+          free(hw[_aux].ep_shm_info);
+          }
+          free(hw);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int epid = 10;
+        
+          int _len_hw0 = 100;
+          struct fjes_hw * hw = (struct fjes_hw *) malloc(_len_hw0*sizeof(struct fjes_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].max_epid = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].my_epid = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_hw__i0__ep_shm_info0 = 1;
+          hw[_i0].ep_shm_info = (struct TYPE_2__ *) malloc(_len_hw__i0__ep_shm_info0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_hw__i0__ep_shm_info0; _j0++) {
+              hw[_i0].ep_shm_info->es_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].ep_shm_info->zone = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = fjes_hw_epid_is_same_zone(hw,epid);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hw0; _aux++) {
+          free(hw[_aux].ep_shm_info);
+          }
+          free(hw);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int epid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hw0 = 1;
+          struct fjes_hw * hw = (struct fjes_hw *) malloc(_len_hw0*sizeof(struct fjes_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].max_epid = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].my_epid = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_hw__i0__ep_shm_info0 = 1;
+          hw[_i0].ep_shm_info = (struct TYPE_2__ *) malloc(_len_hw__i0__ep_shm_info0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_hw__i0__ep_shm_info0; _j0++) {
+              hw[_i0].ep_shm_info->es_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].ep_shm_info->zone = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = fjes_hw_epid_is_same_zone(hw,epid);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_hw0; _aux++) {

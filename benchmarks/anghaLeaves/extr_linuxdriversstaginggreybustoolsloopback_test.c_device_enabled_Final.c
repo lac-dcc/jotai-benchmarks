@@ -63,12 +63,6 @@ __attribute__((used)) static inline int device_enabled(struct loopback_test *t, 
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,15 +75,41 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // big-arr-10x
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int dev_idx = 10;
+        
           int _len_t0 = 100;
           struct loopback_test * t = (struct loopback_test *) malloc(_len_t0*sizeof(struct loopback_test));
           for(int _i0 = 0; _i0 < _len_t0; _i0++) {
-            t[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              t[_i0].mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = device_enabled(t,dev_idx);
           printf("%d\n", benchRet); 
           free(t);

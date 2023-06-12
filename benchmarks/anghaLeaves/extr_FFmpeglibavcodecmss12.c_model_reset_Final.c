@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static void model_reset(Model *m)
         m->idx2sym[i + 1] = i;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,13 +84,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_m0 = 1;
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_m0 = 65025;
           struct TYPE_3__ * m = (struct TYPE_3__ *) malloc(_len_m0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_m0; _i0++) {
-            m[_i0].num_syms = ((-2 * (next_i()%2)) + 1) * next_i();
+              m[_i0].num_syms = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_m__i0__weights0 = 1;
           m[_i0].weights = (int *) malloc(_len_m__i0__weights0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_m__i0__weights0; _j0++) {
@@ -110,7 +129,135 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_m__i0__idx2sym0; _j0++) {
             m[_i0].idx2sym[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          model_reset(m);
+          for(int _aux = 0; _aux < _len_m0; _aux++) {
+          free(m[_aux].weights);
+          }
+          for(int _aux = 0; _aux < _len_m0; _aux++) {
+          free(m[_aux].cum_prob);
+          }
+          for(int _aux = 0; _aux < _len_m0; _aux++) {
+          free(m[_aux].idx2sym);
+          }
+          free(m);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_m0 = 100;
+          struct TYPE_3__ * m = (struct TYPE_3__ *) malloc(_len_m0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].num_syms = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_m__i0__weights0 = 1;
+          m[_i0].weights = (int *) malloc(_len_m__i0__weights0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_m__i0__weights0; _j0++) {
+            m[_i0].weights[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_m__i0__cum_prob0 = 1;
+          m[_i0].cum_prob = (int *) malloc(_len_m__i0__cum_prob0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_m__i0__cum_prob0; _j0++) {
+            m[_i0].cum_prob[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_m__i0__idx2sym0 = 1;
+          m[_i0].idx2sym = (int *) malloc(_len_m__i0__idx2sym0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_m__i0__idx2sym0; _j0++) {
+            m[_i0].idx2sym[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          model_reset(m);
+          for(int _aux = 0; _aux < _len_m0; _aux++) {
+          free(m[_aux].weights);
+          }
+          for(int _aux = 0; _aux < _len_m0; _aux++) {
+          free(m[_aux].cum_prob);
+          }
+          for(int _aux = 0; _aux < _len_m0; _aux++) {
+          free(m[_aux].idx2sym);
+          }
+          free(m);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_m0 = 1;
+          struct TYPE_3__ * m = (struct TYPE_3__ *) malloc(_len_m0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].num_syms = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_m__i0__weights0 = 1;
+          m[_i0].weights = (int *) malloc(_len_m__i0__weights0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_m__i0__weights0; _j0++) {
+            m[_i0].weights[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_m__i0__cum_prob0 = 1;
+          m[_i0].cum_prob = (int *) malloc(_len_m__i0__cum_prob0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_m__i0__cum_prob0; _j0++) {
+            m[_i0].cum_prob[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_m__i0__idx2sym0 = 1;
+          m[_i0].idx2sym = (int *) malloc(_len_m__i0__idx2sym0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_m__i0__idx2sym0; _j0++) {
+            m[_i0].idx2sym[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           model_reset(m);
           for(int _aux = 0; _aux < _len_m0; _aux++) {
           free(m[_aux].weights);

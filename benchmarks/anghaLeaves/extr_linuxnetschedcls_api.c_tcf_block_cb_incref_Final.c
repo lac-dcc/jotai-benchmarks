@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ void tcf_block_cb_incref(struct tcf_block_cb *block_cb)
 	block_cb->refcnt++;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,27 +74,117 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_block_cb0 = 1;
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_block_cb0 = 65025;
           struct tcf_block_cb * block_cb = (struct tcf_block_cb *) malloc(_len_block_cb0*sizeof(struct tcf_block_cb));
           for(int _i0 = 0; _i0 < _len_block_cb0; _i0++) {
-            block_cb[_i0].refcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+              block_cb[_i0].refcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           tcf_block_cb_incref(block_cb);
           free(block_cb);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_block_cb0 = 100;
           struct tcf_block_cb * block_cb = (struct tcf_block_cb *) malloc(_len_block_cb0*sizeof(struct tcf_block_cb));
           for(int _i0 = 0; _i0 < _len_block_cb0; _i0++) {
-            block_cb[_i0].refcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+              block_cb[_i0].refcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          tcf_block_cb_incref(block_cb);
+          free(block_cb);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_block_cb0 = 1;
+          struct tcf_block_cb * block_cb = (struct tcf_block_cb *) malloc(_len_block_cb0*sizeof(struct tcf_block_cb));
+          for(int _i0 = 0; _i0 < _len_block_cb0; _i0++) {
+              block_cb[_i0].refcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           tcf_block_cb_incref(block_cb);
           free(block_cb);
         

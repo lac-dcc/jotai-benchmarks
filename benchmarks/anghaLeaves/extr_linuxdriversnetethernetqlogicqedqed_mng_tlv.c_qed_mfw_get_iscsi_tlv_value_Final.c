@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -175,12 +177,6 @@ qed_mfw_get_iscsi_tlv_value(struct qed_drv_tlv_hdr *p_tlv,
 	return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -193,48 +189,259 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_p_tlv0 = 65025;
+          struct qed_drv_tlv_hdr * p_tlv = (struct qed_drv_tlv_hdr *) malloc(_len_p_tlv0*sizeof(struct qed_drv_tlv_hdr));
+          for(int _i0 = 0; _i0 < _len_p_tlv0; _i0++) {
+              p_tlv[_i0].tlv_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_p_drv_buf0 = 65025;
+          struct qed_mfw_tlv_iscsi * p_drv_buf = (struct qed_mfw_tlv_iscsi *) malloc(_len_p_drv_buf0*sizeof(struct qed_mfw_tlv_iscsi));
+          for(int _i0 = 0; _i0 < _len_p_drv_buf0; _i0++) {
+              p_drv_buf[_i0].tx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].tx_bytes_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].tx_frames = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].tx_frames_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].rx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].rx_bytes_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].rx_frames = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].rx_frames_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].rx_desc_qdepth = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].rx_desc_qdepth_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].tx_desc_qdepth = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].tx_desc_qdepth_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].boot_progress = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].boot_progress_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].rx_desc_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].rx_desc_size_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].tx_desc_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].tx_desc_size_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].frame_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].frame_size_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].boot_taget_portal = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].boot_taget_portal_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].auth_method = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].auth_method_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].data_digest = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].data_digest_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].header_digest = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].header_digest_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].target_llmnr = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].target_llmnr_set = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_p_buf0 = 65025;
+          struct qed_tlv_parsed_buf * p_buf = (struct qed_tlv_parsed_buf *) malloc(_len_p_buf0*sizeof(struct qed_tlv_parsed_buf));
+          for(int _i0 = 0; _i0 < _len_p_buf0; _i0++) {
+              int _len_p_buf__i0__p_val0 = 1;
+          p_buf[_i0].p_val = (int *) malloc(_len_p_buf__i0__p_val0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_p_buf__i0__p_val0; _j0++) {
+            p_buf[_i0].p_val[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = qed_mfw_get_iscsi_tlv_value(p_tlv,p_drv_buf,p_buf);
+          printf("%d\n", benchRet); 
+          free(p_tlv);
+          free(p_drv_buf);
+          for(int _aux = 0; _aux < _len_p_buf0; _aux++) {
+          free(p_buf[_aux].p_val);
+          }
+          free(p_buf);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_p_tlv0 = 100;
+          struct qed_drv_tlv_hdr * p_tlv = (struct qed_drv_tlv_hdr *) malloc(_len_p_tlv0*sizeof(struct qed_drv_tlv_hdr));
+          for(int _i0 = 0; _i0 < _len_p_tlv0; _i0++) {
+              p_tlv[_i0].tlv_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_p_drv_buf0 = 100;
+          struct qed_mfw_tlv_iscsi * p_drv_buf = (struct qed_mfw_tlv_iscsi *) malloc(_len_p_drv_buf0*sizeof(struct qed_mfw_tlv_iscsi));
+          for(int _i0 = 0; _i0 < _len_p_drv_buf0; _i0++) {
+              p_drv_buf[_i0].tx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].tx_bytes_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].tx_frames = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].tx_frames_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].rx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].rx_bytes_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].rx_frames = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].rx_frames_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].rx_desc_qdepth = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].rx_desc_qdepth_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].tx_desc_qdepth = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].tx_desc_qdepth_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].boot_progress = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].boot_progress_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].rx_desc_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].rx_desc_size_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].tx_desc_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].tx_desc_size_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].frame_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].frame_size_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].boot_taget_portal = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].boot_taget_portal_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].auth_method = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].auth_method_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].data_digest = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].data_digest_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].header_digest = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].header_digest_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].target_llmnr = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].target_llmnr_set = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_p_buf0 = 100;
+          struct qed_tlv_parsed_buf * p_buf = (struct qed_tlv_parsed_buf *) malloc(_len_p_buf0*sizeof(struct qed_tlv_parsed_buf));
+          for(int _i0 = 0; _i0 < _len_p_buf0; _i0++) {
+              int _len_p_buf__i0__p_val0 = 1;
+          p_buf[_i0].p_val = (int *) malloc(_len_p_buf__i0__p_val0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_p_buf__i0__p_val0; _j0++) {
+            p_buf[_i0].p_val[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = qed_mfw_get_iscsi_tlv_value(p_tlv,p_drv_buf,p_buf);
+          printf("%d\n", benchRet); 
+          free(p_tlv);
+          free(p_drv_buf);
+          for(int _aux = 0; _aux < _len_p_buf0; _aux++) {
+          free(p_buf[_aux].p_val);
+          }
+          free(p_buf);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_p_tlv0 = 1;
           struct qed_drv_tlv_hdr * p_tlv = (struct qed_drv_tlv_hdr *) malloc(_len_p_tlv0*sizeof(struct qed_drv_tlv_hdr));
           for(int _i0 = 0; _i0 < _len_p_tlv0; _i0++) {
-            p_tlv[_i0].tlv_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              p_tlv[_i0].tlv_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_p_drv_buf0 = 1;
           struct qed_mfw_tlv_iscsi * p_drv_buf = (struct qed_mfw_tlv_iscsi *) malloc(_len_p_drv_buf0*sizeof(struct qed_mfw_tlv_iscsi));
           for(int _i0 = 0; _i0 < _len_p_drv_buf0; _i0++) {
-            p_drv_buf[_i0].tx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_drv_buf[_i0].tx_bytes_set = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_drv_buf[_i0].tx_frames = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_drv_buf[_i0].tx_frames_set = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_drv_buf[_i0].rx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_drv_buf[_i0].rx_bytes_set = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_drv_buf[_i0].rx_frames = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_drv_buf[_i0].rx_frames_set = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_drv_buf[_i0].rx_desc_qdepth = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_drv_buf[_i0].rx_desc_qdepth_set = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_drv_buf[_i0].tx_desc_qdepth = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_drv_buf[_i0].tx_desc_qdepth_set = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_drv_buf[_i0].boot_progress = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_drv_buf[_i0].boot_progress_set = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_drv_buf[_i0].rx_desc_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_drv_buf[_i0].rx_desc_size_set = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_drv_buf[_i0].tx_desc_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_drv_buf[_i0].tx_desc_size_set = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_drv_buf[_i0].frame_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_drv_buf[_i0].frame_size_set = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_drv_buf[_i0].boot_taget_portal = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_drv_buf[_i0].boot_taget_portal_set = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_drv_buf[_i0].auth_method = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_drv_buf[_i0].auth_method_set = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_drv_buf[_i0].data_digest = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_drv_buf[_i0].data_digest_set = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_drv_buf[_i0].header_digest = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_drv_buf[_i0].header_digest_set = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_drv_buf[_i0].target_llmnr = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_drv_buf[_i0].target_llmnr_set = ((-2 * (next_i()%2)) + 1) * next_i();
+              p_drv_buf[_i0].tx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].tx_bytes_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].tx_frames = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].tx_frames_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].rx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].rx_bytes_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].rx_frames = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].rx_frames_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].rx_desc_qdepth = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].rx_desc_qdepth_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].tx_desc_qdepth = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].tx_desc_qdepth_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].boot_progress = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].boot_progress_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].rx_desc_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].rx_desc_size_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].tx_desc_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].tx_desc_size_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].frame_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].frame_size_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].boot_taget_portal = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].boot_taget_portal_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].auth_method = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].auth_method_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].data_digest = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].data_digest_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].header_digest = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].header_digest_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].target_llmnr = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_drv_buf[_i0].target_llmnr_set = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_p_buf0 = 1;
           struct qed_tlv_parsed_buf * p_buf = (struct qed_tlv_parsed_buf *) malloc(_len_p_buf0*sizeof(struct qed_tlv_parsed_buf));
           for(int _i0 = 0; _i0 < _len_p_buf0; _i0++) {
@@ -243,7 +450,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_p_buf__i0__p_val0; _j0++) {
             p_buf[_i0].p_val[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = qed_mfw_get_iscsi_tlv_value(p_tlv,p_drv_buf,p_buf);
           printf("%d\n", benchRet); 
           free(p_tlv);

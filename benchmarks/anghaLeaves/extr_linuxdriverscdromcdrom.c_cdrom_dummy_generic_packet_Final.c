@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ int cdrom_dummy_generic_packet(struct cdrom_device_info *cdi,
 	return -EIO;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,26 +86,31 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cdi0 = 1;
+          int _len_cdi0 = 65025;
           struct cdrom_device_info * cdi = (struct cdrom_device_info *) malloc(_len_cdi0*sizeof(struct cdrom_device_info));
           for(int _i0 = 0; _i0 < _len_cdi0; _i0++) {
-            cdi[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              cdi[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_cgc0 = 1;
+        
+          int _len_cgc0 = 65025;
           struct packet_command * cgc = (struct packet_command *) malloc(_len_cgc0*sizeof(struct packet_command));
           for(int _i0 = 0; _i0 < _len_cgc0; _i0++) {
-            cgc[_i0].stat = ((-2 * (next_i()%2)) + 1) * next_i();
+              cgc[_i0].stat = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_cgc__i0__sshdr0 = 1;
           cgc[_i0].sshdr = (struct TYPE_2__ *) malloc(_len_cgc__i0__sshdr0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_cgc__i0__sshdr0; _j0++) {
-            cgc[_i0].sshdr->sense_key = ((-2 * (next_i()%2)) + 1) * next_i();
-        cgc[_i0].sshdr->asc = ((-2 * (next_i()%2)) + 1) * next_i();
-        cgc[_i0].sshdr->ascq = ((-2 * (next_i()%2)) + 1) * next_i();
+              cgc[_i0].sshdr->sense_key = ((-2 * (next_i()%2)) + 1) * next_i();
+          cgc[_i0].sshdr->asc = ((-2 * (next_i()%2)) + 1) * next_i();
+          cgc[_i0].sshdr->ascq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = cdrom_dummy_generic_packet(cdi,cgc);
           printf("%d\n", benchRet); 
           free(cdi);
@@ -120,7 +121,76 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_cdi0 = 100;
+          struct cdrom_device_info * cdi = (struct cdrom_device_info *) malloc(_len_cdi0*sizeof(struct cdrom_device_info));
+          for(int _i0 = 0; _i0 < _len_cdi0; _i0++) {
+              cdi[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cgc0 = 100;
+          struct packet_command * cgc = (struct packet_command *) malloc(_len_cgc0*sizeof(struct packet_command));
+          for(int _i0 = 0; _i0 < _len_cgc0; _i0++) {
+              cgc[_i0].stat = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cgc__i0__sshdr0 = 1;
+          cgc[_i0].sshdr = (struct TYPE_2__ *) malloc(_len_cgc__i0__sshdr0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_cgc__i0__sshdr0; _j0++) {
+              cgc[_i0].sshdr->sense_key = ((-2 * (next_i()%2)) + 1) * next_i();
+          cgc[_i0].sshdr->asc = ((-2 * (next_i()%2)) + 1) * next_i();
+          cgc[_i0].sshdr->ascq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = cdrom_dummy_generic_packet(cdi,cgc);
+          printf("%d\n", benchRet); 
+          free(cdi);
+          for(int _aux = 0; _aux < _len_cgc0; _aux++) {
+          free(cgc[_aux].sshdr);
+          }
+          free(cgc);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_cdi0 = 1;
+          struct cdrom_device_info * cdi = (struct cdrom_device_info *) malloc(_len_cdi0*sizeof(struct cdrom_device_info));
+          for(int _i0 = 0; _i0 < _len_cdi0; _i0++) {
+              cdi[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cgc0 = 1;
+          struct packet_command * cgc = (struct packet_command *) malloc(_len_cgc0*sizeof(struct packet_command));
+          for(int _i0 = 0; _i0 < _len_cgc0; _i0++) {
+              cgc[_i0].stat = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cgc__i0__sshdr0 = 1;
+          cgc[_i0].sshdr = (struct TYPE_2__ *) malloc(_len_cgc__i0__sshdr0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_cgc__i0__sshdr0; _j0++) {
+              cgc[_i0].sshdr->sense_key = ((-2 * (next_i()%2)) + 1) * next_i();
+          cgc[_i0].sshdr->asc = ((-2 * (next_i()%2)) + 1) * next_i();
+          cgc[_i0].sshdr->ascq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = cdrom_dummy_generic_packet(cdi,cgc);
+          printf("%d\n", benchRet); 
+          free(cdi);
+          for(int _aux = 0; _aux < _len_cgc0; _aux++) {
+          free(cgc[_aux].sshdr);
+          }
+          free(cgc);
+        
+        break;
+    }
     default:
         usage();
         break;

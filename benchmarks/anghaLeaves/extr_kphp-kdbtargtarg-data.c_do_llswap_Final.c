@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ __attribute__((used)) static void do_llswap (int *R, long l) {
   }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,15 +92,120 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 43
+          // dynamic_instructions_O0 : 6904
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 2311
+          // ------------------------------- 
+          // static_instructions_O2 : 47
+          // dynamic_instructions_O2 : 1937
+          // ------------------------------- 
+          // static_instructions_O3 : 45
+          // dynamic_instructions_O3 : 1935
+          // ------------------------------- 
+          // static_instructions_Ofast : 45
+          // dynamic_instructions_Ofast : 1935
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 2310
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 2566
+          // ------------------------------- 
+
+          long l = 255;
+        
+          int _len_R0 = 65025;
+          int * R = (int *) malloc(_len_R0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_R0; _i0++) {
+            R[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          do_llswap(R,l);
+          free(R);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 43
+          // dynamic_instructions_O0 : 289
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 106
+          // ------------------------------- 
+          // static_instructions_O2 : 38
+          // dynamic_instructions_O2 : 98
+          // ------------------------------- 
+          // static_instructions_O3 : 37
+          // dynamic_instructions_O3 : 97
+          // ------------------------------- 
+          // static_instructions_Ofast : 37
+          // dynamic_instructions_Ofast : 97
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 105
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 116
+          // ------------------------------- 
+
           long l = 10;
+        
           int _len_R0 = 100;
           int * R = (int *) malloc(_len_R0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_R0; _i0++) {
             R[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          do_llswap(R,l);
+          free(R);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          long l = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_R0 = 1;
+          int * R = (int *) malloc(_len_R0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_R0; _i0++) {
+            R[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           do_llswap(R,l);
           free(R);
         

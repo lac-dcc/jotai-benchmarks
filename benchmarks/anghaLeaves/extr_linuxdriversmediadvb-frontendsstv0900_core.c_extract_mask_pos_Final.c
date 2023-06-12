@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ __attribute__((used)) static void extract_mask_pos(u32 label, u8 *mask, u8 *pos)
 	(*pos) = (i - 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,23 +89,94 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int label = 100;
+        
           int _len_mask0 = 1;
           int * mask = (int *) malloc(_len_mask0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_mask0; _i0++) {
             mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_pos0 = 1;
           int * pos = (int *) malloc(_len_pos0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pos0; _i0++) {
             pos[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           extract_mask_pos(label,mask,pos);
           free(mask);
           free(pos);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int label = 255;
+        
+          int _len_mask0 = 65025;
+          int * mask = (int *) malloc(_len_mask0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mask0; _i0++) {
+            mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pos0 = 65025;
+          int * pos = (int *) malloc(_len_pos0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pos0; _i0++) {
+            pos[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          extract_mask_pos(label,mask,pos);
+          free(mask);
+          free(pos);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int label = 10;
+        
+          int _len_mask0 = 100;
+          int * mask = (int *) malloc(_len_mask0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mask0; _i0++) {
+            mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pos0 = 100;
+          int * pos = (int *) malloc(_len_pos0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pos0; _i0++) {
+            pos[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          extract_mask_pos(label,mask,pos);
+          free(mask);
+          free(pos);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int label = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_mask0 = 1;
+          int * mask = (int *) malloc(_len_mask0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mask0; _i0++) {
+            mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pos0 = 1;
+          int * pos = (int *) malloc(_len_pos0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pos0; _i0++) {
+            pos[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          extract_mask_pos(label,mask,pos);
+          free(mask);
+          free(pos);
+        
+        break;
+    }
     default:
         usage();
         break;

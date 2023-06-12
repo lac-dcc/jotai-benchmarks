@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ struct dm_dirty_log *dm_rh_dirty_log(struct dm_region_hash *rh)
 	return rh->log;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,18 +75,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_rh0 = 65025;
+          struct dm_region_hash * rh = (struct dm_region_hash *) malloc(_len_rh0*sizeof(struct dm_region_hash));
+          for(int _i0 = 0; _i0 < _len_rh0; _i0++) {
+              int _len_rh__i0__log0 = 1;
+          rh[_i0].log = (struct dm_dirty_log *) malloc(_len_rh__i0__log0*sizeof(struct dm_dirty_log));
+          for(int _j0 = 0; _j0 < _len_rh__i0__log0; _j0++) {
+              rh[_i0].log->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct dm_dirty_log * benchRet = dm_rh_dirty_log(rh);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_rh0; _aux++) {
+          free(rh[_aux].log);
+          }
+          free(rh);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_rh0 = 100;
+          struct dm_region_hash * rh = (struct dm_region_hash *) malloc(_len_rh0*sizeof(struct dm_region_hash));
+          for(int _i0 = 0; _i0 < _len_rh0; _i0++) {
+              int _len_rh__i0__log0 = 1;
+          rh[_i0].log = (struct dm_dirty_log *) malloc(_len_rh__i0__log0*sizeof(struct dm_dirty_log));
+          for(int _j0 = 0; _j0 < _len_rh__i0__log0; _j0++) {
+              rh[_i0].log->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct dm_dirty_log * benchRet = dm_rh_dirty_log(rh);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_rh0; _aux++) {
+          free(rh[_aux].log);
+          }
+          free(rh);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_rh0 = 1;
           struct dm_region_hash * rh = (struct dm_region_hash *) malloc(_len_rh0*sizeof(struct dm_region_hash));
           for(int _i0 = 0; _i0 < _len_rh0; _i0++) {
               int _len_rh__i0__log0 = 1;
           rh[_i0].log = (struct dm_dirty_log *) malloc(_len_rh__i0__log0*sizeof(struct dm_dirty_log));
           for(int _j0 = 0; _j0 < _len_rh__i0__log0; _j0++) {
-            rh[_i0].log->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rh[_i0].log->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct dm_dirty_log * benchRet = dm_rh_dirty_log(rh);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_rh0; _aux++) {

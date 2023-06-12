@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -160,12 +161,6 @@ __attribute__((used)) static int had_calculate_maud_value(u32 aud_samp_freq, u32
 	return maud_val;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -182,7 +177,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long aud_samp_freq = 100;
+        
           long link_rate = 100;
+        
           int benchRet = had_calculate_maud_value(aud_samp_freq,link_rate);
           printf("%d\n", benchRet); 
         
@@ -192,7 +189,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long aud_samp_freq = 255;
+        
           long link_rate = 255;
+        
           int benchRet = had_calculate_maud_value(aud_samp_freq,link_rate);
           printf("%d\n", benchRet); 
         
@@ -202,13 +201,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long aud_samp_freq = 10;
+        
           long link_rate = 10;
+        
           int benchRet = had_calculate_maud_value(aud_samp_freq,link_rate);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long aud_samp_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long link_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = had_calculate_maud_value(aud_samp_freq,link_rate);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

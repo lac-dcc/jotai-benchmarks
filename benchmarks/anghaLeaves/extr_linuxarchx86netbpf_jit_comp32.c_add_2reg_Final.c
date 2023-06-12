@@ -63,12 +63,6 @@ __attribute__((used)) static u8 add_2reg(u8 byte, u32 dst_reg, u32 src_reg)
 	return byte + dst_reg + (src_reg << 3);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,8 +79,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int byte = 100;
+        
           int dst_reg = 100;
+        
           int src_reg = 100;
+        
           int benchRet = add_2reg(byte,dst_reg,src_reg);
           printf("%d\n", benchRet); 
         
@@ -96,8 +93,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int byte = 255;
+        
           int dst_reg = 255;
+        
           int src_reg = 255;
+        
           int benchRet = add_2reg(byte,dst_reg,src_reg);
           printf("%d\n", benchRet); 
         
@@ -107,14 +107,16 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int byte = 10;
+        
           int dst_reg = 10;
+        
           int src_reg = 10;
+        
           int benchRet = add_2reg(byte,dst_reg,src_reg);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

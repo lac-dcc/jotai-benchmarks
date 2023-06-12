@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ buf_setblkno(buf_t bp, daddr64_t blkno) {
         bp->b_blkno = blkno;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,31 +83,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int blkno = 100;
+        
           int _len_bp0 = 1;
           struct TYPE_3__ * bp = (struct TYPE_3__ *) malloc(_len_bp0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
-            bp[_i0].b_blkno = ((-2 * (next_i()%2)) + 1) * next_i();
+              bp[_i0].b_blkno = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          buf_setblkno(bp,blkno);
+          free(bp);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int blkno = 255;
+        
+          int _len_bp0 = 65025;
+          struct TYPE_3__ * bp = (struct TYPE_3__ *) malloc(_len_bp0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
+              bp[_i0].b_blkno = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           buf_setblkno(bp,blkno);
           free(bp);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int blkno = 10;
+        
           int _len_bp0 = 100;
           struct TYPE_3__ * bp = (struct TYPE_3__ *) malloc(_len_bp0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
-            bp[_i0].b_blkno = ((-2 * (next_i()%2)) + 1) * next_i();
+              bp[_i0].b_blkno = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           buf_setblkno(bp,blkno);
           free(bp);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int blkno = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_bp0 = 1;
+          struct TYPE_3__ * bp = (struct TYPE_3__ *) malloc(_len_bp0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
+              bp[_i0].b_blkno = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          buf_setblkno(bp,blkno);
+          free(bp);
+        
+        break;
+    }
     default:
         usage();
         break;

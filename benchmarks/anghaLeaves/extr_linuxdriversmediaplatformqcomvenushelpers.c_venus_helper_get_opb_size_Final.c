@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ unsigned int venus_helper_get_opb_size(struct venus_inst *inst)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,17 +86,128 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_inst0 = 65025;
+          struct venus_inst * inst = (struct venus_inst *) malloc(_len_inst0*sizeof(struct venus_inst));
+          for(int _i0 = 0; _i0 < _len_inst0; _i0++) {
+              inst[_i0].session_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].output_buf_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].opb_buftype = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].output2_buf_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = venus_helper_get_opb_size(inst);
+          printf("%u\n", benchRet); 
+          free(inst);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_inst0 = 100;
+          struct venus_inst * inst = (struct venus_inst *) malloc(_len_inst0*sizeof(struct venus_inst));
+          for(int _i0 = 0; _i0 < _len_inst0; _i0++) {
+              inst[_i0].session_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].output_buf_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].opb_buftype = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].output2_buf_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = venus_helper_get_opb_size(inst);
+          printf("%u\n", benchRet); 
+          free(inst);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int _len_inst0 = 1;
           struct venus_inst * inst = (struct venus_inst *) malloc(_len_inst0*sizeof(struct venus_inst));
           for(int _i0 = 0; _i0 < _len_inst0; _i0++) {
-            inst[_i0].session_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        inst[_i0].output_buf_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        inst[_i0].opb_buftype = ((-2 * (next_i()%2)) + 1) * next_i();
-        inst[_i0].output2_buf_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              inst[_i0].session_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].output_buf_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].opb_buftype = ((-2 * (next_i()%2)) + 1) * next_i();
+          inst[_i0].output2_buf_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = venus_helper_get_opb_size(inst);
           printf("%u\n", benchRet); 
           free(inst);

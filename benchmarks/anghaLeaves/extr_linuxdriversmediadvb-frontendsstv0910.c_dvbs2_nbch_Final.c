@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -100,12 +100,6 @@ __attribute__((used)) static u32 dvbs2_nbch(enum dvbs2_mod_cod mod_cod, enum dvb
 	return 64800;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -118,17 +112,18 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum dvbs2_mod_cod mod_cod = 0;
+        
           enum dvbs2_fectype fectype = 0;
+        
           const int benchRet = dvbs2_nbch(mod_cod,fectype);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

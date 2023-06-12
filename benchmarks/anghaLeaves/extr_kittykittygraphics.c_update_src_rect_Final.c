@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ update_src_rect(ImageRef *ref, Image *img) {
     ref->src_rect.bottom = (float)(ref->src_y + ref->src_height) / (float)img->height;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,27 +85,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 34
+          // dynamic_instructions_Ofast : 34
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          int _len_ref0 = 65025;
+          struct TYPE_7__ * ref = (struct TYPE_7__ *) malloc(_len_ref0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_ref0; _i0++) {
+              ref[_i0].src_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          ref[_i0].src_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          ref[_i0].src_rect.left = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          ref[_i0].src_rect.right = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          ref[_i0].src_rect.top = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          ref[_i0].src_rect.bottom = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          ref[_i0].src_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          ref[_i0].src_x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_img0 = 65025;
+          struct TYPE_8__ * img = (struct TYPE_8__ *) malloc(_len_img0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_img0; _i0++) {
+              img[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          img[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          update_src_rect(ref,img);
+          free(ref);
+          free(img);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 34
+          // dynamic_instructions_Ofast : 34
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          int _len_ref0 = 100;
+          struct TYPE_7__ * ref = (struct TYPE_7__ *) malloc(_len_ref0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_ref0; _i0++) {
+              ref[_i0].src_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          ref[_i0].src_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          ref[_i0].src_rect.left = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          ref[_i0].src_rect.right = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          ref[_i0].src_rect.top = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          ref[_i0].src_rect.bottom = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          ref[_i0].src_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          ref[_i0].src_x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_img0 = 100;
+          struct TYPE_8__ * img = (struct TYPE_8__ *) malloc(_len_img0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_img0; _i0++) {
+              img[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          img[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          update_src_rect(ref,img);
+          free(ref);
+          free(img);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 34
+          // dynamic_instructions_Ofast : 34
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
           int _len_ref0 = 1;
           struct TYPE_7__ * ref = (struct TYPE_7__ *) malloc(_len_ref0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_ref0; _i0++) {
-            ref[_i0].src_height = ((-2 * (next_i()%2)) + 1) * next_i();
-        ref[_i0].src_y = ((-2 * (next_i()%2)) + 1) * next_i();
-        ref[_i0].src_rect.left = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        ref[_i0].src_rect.right = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        ref[_i0].src_rect.top = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        ref[_i0].src_rect.bottom = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        ref[_i0].src_width = ((-2 * (next_i()%2)) + 1) * next_i();
-        ref[_i0].src_x = ((-2 * (next_i()%2)) + 1) * next_i();
+              ref[_i0].src_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          ref[_i0].src_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          ref[_i0].src_rect.left = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          ref[_i0].src_rect.right = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          ref[_i0].src_rect.top = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          ref[_i0].src_rect.bottom = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          ref[_i0].src_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          ref[_i0].src_x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_img0 = 1;
           struct TYPE_8__ * img = (struct TYPE_8__ *) malloc(_len_img0*sizeof(struct TYPE_8__));
           for(int _i0 = 0; _i0 < _len_img0; _i0++) {
-            img[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
-        img[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+              img[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          img[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           update_src_rect(ref,img);
           free(ref);
           free(img);

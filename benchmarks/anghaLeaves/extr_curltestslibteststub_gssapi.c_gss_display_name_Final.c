@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +74,6 @@ OM_uint32 gss_display_name(OM_uint32 *min,
   return GSS_S_FAILURE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,17 +90,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int input_name = 100;
+        
           int output_name_buffer = 100;
+        
           int _len_min0 = 1;
           int * min = (int *) malloc(_len_min0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_min0; _i0++) {
             min[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_output_name_type0 = 1;
           int * output_name_type = (int *) malloc(_len_output_name_type0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_output_name_type0; _i0++) {
             output_name_type[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = gss_display_name(min,input_name,output_name_buffer,output_name_type);
           printf("%d\n", benchRet); 
           free(min);
@@ -111,7 +112,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int input_name = 255;
+        
+          int output_name_buffer = 255;
+        
+          int _len_min0 = 65025;
+          int * min = (int *) malloc(_len_min0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_min0; _i0++) {
+            min[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_output_name_type0 = 65025;
+          int * output_name_type = (int *) malloc(_len_output_name_type0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_output_name_type0; _i0++) {
+            output_name_type[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = gss_display_name(min,input_name,output_name_buffer,output_name_type);
+          printf("%d\n", benchRet); 
+          free(min);
+          free(output_name_type);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int input_name = 10;
+        
+          int output_name_buffer = 10;
+        
+          int _len_min0 = 100;
+          int * min = (int *) malloc(_len_min0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_min0; _i0++) {
+            min[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_output_name_type0 = 100;
+          int * output_name_type = (int *) malloc(_len_output_name_type0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_output_name_type0; _i0++) {
+            output_name_type[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = gss_display_name(min,input_name,output_name_buffer,output_name_type);
+          printf("%d\n", benchRet); 
+          free(min);
+          free(output_name_type);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int input_name = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int output_name_buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_min0 = 1;
+          int * min = (int *) malloc(_len_min0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_min0; _i0++) {
+            min[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_output_name_type0 = 1;
+          int * output_name_type = (int *) malloc(_len_output_name_type0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_output_name_type0; _i0++) {
+            output_name_type[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = gss_display_name(min,input_name,output_name_buffer,output_name_type);
+          printf("%d\n", benchRet); 
+          free(min);
+          free(output_name_type);
+        
+        break;
+    }
     default:
         usage();
         break;

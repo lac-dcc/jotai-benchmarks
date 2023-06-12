@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ vertical_split_is_enabled(enum vertical_split vsplit, int height, int width)
 	return vsplit == VERTICAL_SPLIT_VERTICAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,8 +85,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           enum vertical_split vsplit = 0;
+        
           int height = 100;
+        
           int width = 100;
+        
           int benchRet = vertical_split_is_enabled(vsplit,height,width);
           printf("%d\n", benchRet); 
         
@@ -101,8 +99,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           enum vertical_split vsplit = 0;
+        
           int height = 255;
+        
           int width = 255;
+        
           int benchRet = vertical_split_is_enabled(vsplit,height,width);
           printf("%d\n", benchRet); 
         
@@ -112,14 +113,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           enum vertical_split vsplit = 0;
+        
           int height = 10;
+        
           int width = 10;
+        
           int benchRet = vertical_split_is_enabled(vsplit,height,width);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          enum vertical_split vsplit = 0;
+        
+          int height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = vertical_split_is_enabled(vsplit,height,width);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

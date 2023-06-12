@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ args_cmp(struct args_entry *a1, struct args_entry *a2)
 	return (a1->flag - a2->flag);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,19 +75,142 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_a10 = 65025;
+          struct args_entry * a1 = (struct args_entry *) malloc(_len_a10*sizeof(struct args_entry));
+          for(int _i0 = 0; _i0 < _len_a10; _i0++) {
+              a1[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_a20 = 65025;
+          struct args_entry * a2 = (struct args_entry *) malloc(_len_a20*sizeof(struct args_entry));
+          for(int _i0 = 0; _i0 < _len_a20; _i0++) {
+              a2[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = args_cmp(a1,a2);
+          printf("%d\n", benchRet); 
+          free(a1);
+          free(a2);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_a10 = 100;
+          struct args_entry * a1 = (struct args_entry *) malloc(_len_a10*sizeof(struct args_entry));
+          for(int _i0 = 0; _i0 < _len_a10; _i0++) {
+              a1[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_a20 = 100;
+          struct args_entry * a2 = (struct args_entry *) malloc(_len_a20*sizeof(struct args_entry));
+          for(int _i0 = 0; _i0 < _len_a20; _i0++) {
+              a2[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = args_cmp(a1,a2);
+          printf("%d\n", benchRet); 
+          free(a1);
+          free(a2);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_a10 = 1;
           struct args_entry * a1 = (struct args_entry *) malloc(_len_a10*sizeof(struct args_entry));
           for(int _i0 = 0; _i0 < _len_a10; _i0++) {
-            a1[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+              a1[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_a20 = 1;
           struct args_entry * a2 = (struct args_entry *) malloc(_len_a20*sizeof(struct args_entry));
           for(int _i0 = 0; _i0 < _len_a20; _i0++) {
-            a2[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+              a2[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = args_cmp(a1,a2);
           printf("%d\n", benchRet); 
           free(a1);

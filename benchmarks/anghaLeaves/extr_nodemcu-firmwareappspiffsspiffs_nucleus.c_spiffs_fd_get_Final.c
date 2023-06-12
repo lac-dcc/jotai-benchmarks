@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +81,6 @@ s32_t spiffs_fd_get(spiffs *fs, spiffs_file f, spiffs_fd **fd) {
   return SPIFFS_OK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,33 +97,138 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int f = 100;
+        
           int _len_fs0 = 1;
           struct TYPE_6__ * fs = (struct TYPE_6__ *) malloc(_len_fs0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
-            fs[_i0].fd_space = ((-2 * (next_i()%2)) + 1) * next_i();
-        fs[_i0].fd_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              fs[_i0].fd_space = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs[_i0].fd_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_fd0 = 1;
           struct TYPE_5__ ** fd = (struct TYPE_5__ **) malloc(_len_fd0*sizeof(struct TYPE_5__ *));
           for(int _i0 = 0; _i0 < _len_fd0; _i0++) {
             int _len_fd1 = 1;
             fd[_i0] = (struct TYPE_5__ *) malloc(_len_fd1*sizeof(struct TYPE_5__));
             for(int _i1 = 0; _i1 < _len_fd1; _i1++) {
-              fd[_i0][_i1].file_nbr = ((-2 * (next_i()%2)) + 1) * next_i();
+                fd[_i0][_i1].file_nbr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           int benchRet = spiffs_fd_get(fs,f,fd);
           printf("%d\n", benchRet); 
           free(fs);
           for(int i1 = 0; i1 < _len_fd0; i1++) {
-            int _len_fd1 = 1;
               free(fd[i1]);
           }
           free(fd);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int f = 255;
+        
+          int _len_fs0 = 65025;
+          struct TYPE_6__ * fs = (struct TYPE_6__ *) malloc(_len_fs0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
+              fs[_i0].fd_space = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs[_i0].fd_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fd0 = 65025;
+          struct TYPE_5__ ** fd = (struct TYPE_5__ **) malloc(_len_fd0*sizeof(struct TYPE_5__ *));
+          for(int _i0 = 0; _i0 < _len_fd0; _i0++) {
+            int _len_fd1 = 1;
+            fd[_i0] = (struct TYPE_5__ *) malloc(_len_fd1*sizeof(struct TYPE_5__));
+            for(int _i1 = 0; _i1 < _len_fd1; _i1++) {
+                fd[_i0][_i1].file_nbr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int benchRet = spiffs_fd_get(fs,f,fd);
+          printf("%d\n", benchRet); 
+          free(fs);
+          for(int i1 = 0; i1 < _len_fd0; i1++) {
+              free(fd[i1]);
+          }
+          free(fd);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int f = 10;
+        
+          int _len_fs0 = 100;
+          struct TYPE_6__ * fs = (struct TYPE_6__ *) malloc(_len_fs0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
+              fs[_i0].fd_space = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs[_i0].fd_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fd0 = 100;
+          struct TYPE_5__ ** fd = (struct TYPE_5__ **) malloc(_len_fd0*sizeof(struct TYPE_5__ *));
+          for(int _i0 = 0; _i0 < _len_fd0; _i0++) {
+            int _len_fd1 = 1;
+            fd[_i0] = (struct TYPE_5__ *) malloc(_len_fd1*sizeof(struct TYPE_5__));
+            for(int _i1 = 0; _i1 < _len_fd1; _i1++) {
+                fd[_i0][_i1].file_nbr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int benchRet = spiffs_fd_get(fs,f,fd);
+          printf("%d\n", benchRet); 
+          free(fs);
+          for(int i1 = 0; i1 < _len_fd0; i1++) {
+              free(fd[i1]);
+          }
+          free(fd);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int f = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fs0 = 1;
+          struct TYPE_6__ * fs = (struct TYPE_6__ *) malloc(_len_fs0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
+              fs[_i0].fd_space = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs[_i0].fd_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fd0 = 1;
+          struct TYPE_5__ ** fd = (struct TYPE_5__ **) malloc(_len_fd0*sizeof(struct TYPE_5__ *));
+          for(int _i0 = 0; _i0 < _len_fd0; _i0++) {
+            int _len_fd1 = 1;
+            fd[_i0] = (struct TYPE_5__ *) malloc(_len_fd1*sizeof(struct TYPE_5__));
+            for(int _i1 = 0; _i1 < _len_fd1; _i1++) {
+                fd[_i0][_i1].file_nbr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int benchRet = spiffs_fd_get(fs,f,fd);
+          printf("%d\n", benchRet); 
+          free(fs);
+          for(int i1 = 0; i1 < _len_fd0; i1++) {
+              free(fd[i1]);
+          }
+          free(fd);
+        
+        break;
+    }
     default:
         usage();
         break;

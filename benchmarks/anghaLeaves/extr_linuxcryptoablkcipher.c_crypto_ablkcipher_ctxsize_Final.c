@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static unsigned int crypto_ablkcipher_ctxsize(struct crypt
 	return alg->cra_ctxsize;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,12 +81,36 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int type = 100;
+        
           int mask = 100;
+        
           int _len_alg0 = 1;
           struct crypto_alg * alg = (struct crypto_alg *) malloc(_len_alg0*sizeof(struct crypto_alg));
           for(int _i0 = 0; _i0 < _len_alg0; _i0++) {
-            alg[_i0].cra_ctxsize = ((-2 * (next_i()%2)) + 1) * next_i();
+              alg[_i0].cra_ctxsize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          unsigned int benchRet = crypto_ablkcipher_ctxsize(alg,type,mask);
+          printf("%u\n", benchRet); 
+          free(alg);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int type = 255;
+        
+          int mask = 255;
+        
+          int _len_alg0 = 65025;
+          struct crypto_alg * alg = (struct crypto_alg *) malloc(_len_alg0*sizeof(struct crypto_alg));
+          for(int _i0 = 0; _i0 < _len_alg0; _i0++) {
+              alg[_i0].cra_ctxsize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           unsigned int benchRet = crypto_ablkcipher_ctxsize(alg,type,mask);
           printf("%u\n", benchRet); 
           free(alg);
@@ -98,22 +118,45 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int type = 10;
+        
           int mask = 10;
+        
           int _len_alg0 = 100;
           struct crypto_alg * alg = (struct crypto_alg *) malloc(_len_alg0*sizeof(struct crypto_alg));
           for(int _i0 = 0; _i0 < _len_alg0; _i0++) {
-            alg[_i0].cra_ctxsize = ((-2 * (next_i()%2)) + 1) * next_i();
+              alg[_i0].cra_ctxsize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = crypto_ablkcipher_ctxsize(alg,type,mask);
           printf("%u\n", benchRet); 
           free(alg);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_alg0 = 1;
+          struct crypto_alg * alg = (struct crypto_alg *) malloc(_len_alg0*sizeof(struct crypto_alg));
+          for(int _i0 = 0; _i0 < _len_alg0; _i0++) {
+              alg[_i0].cra_ctxsize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = crypto_ablkcipher_ctxsize(alg,type,mask);
+          printf("%u\n", benchRet); 
+          free(alg);
+        
+        break;
+    }
     default:
         usage();
         break;

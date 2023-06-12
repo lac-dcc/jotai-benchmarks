@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -90,12 +91,6 @@ __attribute__((used)) static int count_ccws(sector_t first_rec, sector_t last_re
 	return count;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -112,8 +107,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int first_rec = 100;
+        
           unsigned int last_rec = 100;
+        
           unsigned int blocks_per_page = 100;
+        
           int benchRet = count_ccws(first_rec,last_rec,blocks_per_page);
           printf("%d\n", benchRet); 
         
@@ -123,8 +121,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int first_rec = 255;
+        
           unsigned int last_rec = 255;
+        
           unsigned int blocks_per_page = 255;
+        
           int benchRet = count_ccws(first_rec,last_rec,blocks_per_page);
           printf("%d\n", benchRet); 
         
@@ -134,14 +135,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int first_rec = 10;
+        
           unsigned int last_rec = 10;
+        
           unsigned int blocks_per_page = 10;
+        
           int benchRet = count_ccws(first_rec,last_rec,blocks_per_page);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int first_rec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int last_rec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int blocks_per_page = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = count_ccws(first_rec,last_rec,blocks_per_page);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

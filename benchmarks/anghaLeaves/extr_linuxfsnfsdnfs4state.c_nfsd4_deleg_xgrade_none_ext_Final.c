@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -80,12 +82,6 @@ __attribute__((used)) static void nfsd4_deleg_xgrade_none_ext(struct nfsd4_open 
 	 */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,27 +94,78 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_open0 = 1;
+          int _len_open0 = 65025;
           struct nfsd4_open * open = (struct nfsd4_open *) malloc(_len_open0*sizeof(struct nfsd4_open));
           for(int _i0 = 0; _i0 < _len_open0; _i0++) {
-            open[_i0].op_deleg_want = ((-2 * (next_i()%2)) + 1) * next_i();
-        open[_i0].op_why_no_deleg = ((-2 * (next_i()%2)) + 1) * next_i();
+              open[_i0].op_deleg_want = ((-2 * (next_i()%2)) + 1) * next_i();
+          open[_i0].op_why_no_deleg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_dp0 = 1;
+        
+          int _len_dp0 = 65025;
           struct nfs4_delegation * dp = (struct nfs4_delegation *) malloc(_len_dp0*sizeof(struct nfs4_delegation));
           for(int _i0 = 0; _i0 < _len_dp0; _i0++) {
-            dp[_i0].dl_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              dp[_i0].dl_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           nfsd4_deleg_xgrade_none_ext(open,dp);
           free(open);
           free(dp);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_open0 = 100;
+          struct nfsd4_open * open = (struct nfsd4_open *) malloc(_len_open0*sizeof(struct nfsd4_open));
+          for(int _i0 = 0; _i0 < _len_open0; _i0++) {
+              open[_i0].op_deleg_want = ((-2 * (next_i()%2)) + 1) * next_i();
+          open[_i0].op_why_no_deleg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dp0 = 100;
+          struct nfs4_delegation * dp = (struct nfs4_delegation *) malloc(_len_dp0*sizeof(struct nfs4_delegation));
+          for(int _i0 = 0; _i0 < _len_dp0; _i0++) {
+              dp[_i0].dl_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          nfsd4_deleg_xgrade_none_ext(open,dp);
+          free(open);
+          free(dp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_open0 = 1;
+          struct nfsd4_open * open = (struct nfsd4_open *) malloc(_len_open0*sizeof(struct nfsd4_open));
+          for(int _i0 = 0; _i0 < _len_open0; _i0++) {
+              open[_i0].op_deleg_want = ((-2 * (next_i()%2)) + 1) * next_i();
+          open[_i0].op_why_no_deleg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dp0 = 1;
+          struct nfs4_delegation * dp = (struct nfs4_delegation *) malloc(_len_dp0*sizeof(struct nfs4_delegation));
+          for(int _i0 = 0; _i0 < _len_dp0; _i0++) {
+              dp[_i0].dl_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          nfsd4_deleg_xgrade_none_ext(open,dp);
+          free(open);
+          free(dp);
+        
+        break;
+    }
     default:
         usage();
         break;

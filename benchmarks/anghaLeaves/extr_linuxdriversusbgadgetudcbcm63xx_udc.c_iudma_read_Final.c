@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -92,12 +94,6 @@ __attribute__((used)) static int iudma_read(struct bcm63xx_udc *udc, struct iudm
 	return actual_len;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -110,34 +106,214 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_udc0 = 1;
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int _len_udc0 = 65025;
           struct bcm63xx_udc * udc = (struct bcm63xx_udc *) malloc(_len_udc0*sizeof(struct bcm63xx_udc));
           for(int _i0 = 0; _i0 < _len_udc0; _i0++) {
-            udc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              udc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_iudma0 = 1;
+        
+          int _len_iudma0 = 65025;
           struct iudma_ch * iudma = (struct iudma_ch *) malloc(_len_iudma0*sizeof(struct iudma_ch));
           for(int _i0 = 0; _i0 < _len_iudma0; _i0++) {
-            iudma[_i0].n_bds_used = ((-2 * (next_i()%2)) + 1) * next_i();
+              iudma[_i0].n_bds_used = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_iudma__i0__read_bd0 = 1;
           iudma[_i0].read_bd = (struct bcm_enet_desc *) malloc(_len_iudma__i0__read_bd0*sizeof(struct bcm_enet_desc));
           for(int _j0 = 0; _j0 < _len_iudma__i0__read_bd0; _j0++) {
-            iudma[_i0].read_bd->len_stat = ((-2 * (next_i()%2)) + 1) * next_i();
+              iudma[_i0].read_bd->len_stat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_iudma__i0__bd_ring0 = 1;
           iudma[_i0].bd_ring = (struct bcm_enet_desc *) malloc(_len_iudma__i0__bd_ring0*sizeof(struct bcm_enet_desc));
           for(int _j0 = 0; _j0 < _len_iudma__i0__bd_ring0; _j0++) {
-            iudma[_i0].bd_ring->len_stat = ((-2 * (next_i()%2)) + 1) * next_i();
+              iudma[_i0].bd_ring->len_stat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_iudma__i0__end_bd0 = 1;
           iudma[_i0].end_bd = (struct bcm_enet_desc *) malloc(_len_iudma__i0__end_bd0*sizeof(struct bcm_enet_desc));
           for(int _j0 = 0; _j0 < _len_iudma__i0__end_bd0; _j0++) {
-            iudma[_i0].end_bd->len_stat = ((-2 * (next_i()%2)) + 1) * next_i();
+              iudma[_i0].end_bd->len_stat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = iudma_read(udc,iudma);
+          printf("%d\n", benchRet); 
+          free(udc);
+          for(int _aux = 0; _aux < _len_iudma0; _aux++) {
+          free(iudma[_aux].read_bd);
+          }
+          for(int _aux = 0; _aux < _len_iudma0; _aux++) {
+          free(iudma[_aux].bd_ring);
+          }
+          for(int _aux = 0; _aux < _len_iudma0; _aux++) {
+          free(iudma[_aux].end_bd);
+          }
+          free(iudma);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int _len_udc0 = 100;
+          struct bcm63xx_udc * udc = (struct bcm63xx_udc *) malloc(_len_udc0*sizeof(struct bcm63xx_udc));
+          for(int _i0 = 0; _i0 < _len_udc0; _i0++) {
+              udc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_iudma0 = 100;
+          struct iudma_ch * iudma = (struct iudma_ch *) malloc(_len_iudma0*sizeof(struct iudma_ch));
+          for(int _i0 = 0; _i0 < _len_iudma0; _i0++) {
+              iudma[_i0].n_bds_used = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_iudma__i0__read_bd0 = 1;
+          iudma[_i0].read_bd = (struct bcm_enet_desc *) malloc(_len_iudma__i0__read_bd0*sizeof(struct bcm_enet_desc));
+          for(int _j0 = 0; _j0 < _len_iudma__i0__read_bd0; _j0++) {
+              iudma[_i0].read_bd->len_stat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_iudma__i0__bd_ring0 = 1;
+          iudma[_i0].bd_ring = (struct bcm_enet_desc *) malloc(_len_iudma__i0__bd_ring0*sizeof(struct bcm_enet_desc));
+          for(int _j0 = 0; _j0 < _len_iudma__i0__bd_ring0; _j0++) {
+              iudma[_i0].bd_ring->len_stat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_iudma__i0__end_bd0 = 1;
+          iudma[_i0].end_bd = (struct bcm_enet_desc *) malloc(_len_iudma__i0__end_bd0*sizeof(struct bcm_enet_desc));
+          for(int _j0 = 0; _j0 < _len_iudma__i0__end_bd0; _j0++) {
+              iudma[_i0].end_bd->len_stat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = iudma_read(udc,iudma);
+          printf("%d\n", benchRet); 
+          free(udc);
+          for(int _aux = 0; _aux < _len_iudma0; _aux++) {
+          free(iudma[_aux].read_bd);
+          }
+          for(int _aux = 0; _aux < _len_iudma0; _aux++) {
+          free(iudma[_aux].bd_ring);
+          }
+          for(int _aux = 0; _aux < _len_iudma0; _aux++) {
+          free(iudma[_aux].end_bd);
+          }
+          free(iudma);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int _len_udc0 = 1;
+          struct bcm63xx_udc * udc = (struct bcm63xx_udc *) malloc(_len_udc0*sizeof(struct bcm63xx_udc));
+          for(int _i0 = 0; _i0 < _len_udc0; _i0++) {
+              udc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_iudma0 = 1;
+          struct iudma_ch * iudma = (struct iudma_ch *) malloc(_len_iudma0*sizeof(struct iudma_ch));
+          for(int _i0 = 0; _i0 < _len_iudma0; _i0++) {
+              iudma[_i0].n_bds_used = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_iudma__i0__read_bd0 = 1;
+          iudma[_i0].read_bd = (struct bcm_enet_desc *) malloc(_len_iudma__i0__read_bd0*sizeof(struct bcm_enet_desc));
+          for(int _j0 = 0; _j0 < _len_iudma__i0__read_bd0; _j0++) {
+              iudma[_i0].read_bd->len_stat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_iudma__i0__bd_ring0 = 1;
+          iudma[_i0].bd_ring = (struct bcm_enet_desc *) malloc(_len_iudma__i0__bd_ring0*sizeof(struct bcm_enet_desc));
+          for(int _j0 = 0; _j0 < _len_iudma__i0__bd_ring0; _j0++) {
+              iudma[_i0].bd_ring->len_stat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_iudma__i0__end_bd0 = 1;
+          iudma[_i0].end_bd = (struct bcm_enet_desc *) malloc(_len_iudma__i0__end_bd0*sizeof(struct bcm_enet_desc));
+          for(int _j0 = 0; _j0 < _len_iudma__i0__end_bd0; _j0++) {
+              iudma[_i0].end_bd->len_stat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = iudma_read(udc,iudma);
           printf("%d\n", benchRet); 
           free(udc);

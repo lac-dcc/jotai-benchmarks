@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +81,6 @@ __attribute__((used)) static int unixFetch(sqlite3_file *fd, i64 iOff, int nAmt,
   return SQLITE_OK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,25 +93,204 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int iOff = 100;
+        
           int nAmt = 100;
+        
           int _len_fd0 = 1;
           int * fd = (int *) malloc(_len_fd0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_fd0; _i0++) {
             fd[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_pp0 = 1;
           void ** pp = (void **) malloc(_len_pp0*sizeof(void *));
           for(int _i0 = 0; _i0 < _len_pp0; _i0++) {
           }
+        
           int benchRet = unixFetch(fd,iOff,nAmt,pp);
           printf("%d\n", benchRet); 
           free(fd);
           for(int i1 = 0; i1 < _len_pp0; i1++) {
-            int _len_pp1 = 1;
+              }
+          free(pp);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int iOff = 255;
+        
+          int nAmt = 255;
+        
+          int _len_fd0 = 65025;
+          int * fd = (int *) malloc(_len_fd0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_fd0; _i0++) {
+            fd[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pp0 = 65025;
+          void ** pp = (void **) malloc(_len_pp0*sizeof(void *));
+          for(int _i0 = 0; _i0 < _len_pp0; _i0++) {
+          }
+        
+          int benchRet = unixFetch(fd,iOff,nAmt,pp);
+          printf("%d\n", benchRet); 
+          free(fd);
+          for(int i1 = 0; i1 < _len_pp0; i1++) {
+              }
+          free(pp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int iOff = 10;
+        
+          int nAmt = 10;
+        
+          int _len_fd0 = 100;
+          int * fd = (int *) malloc(_len_fd0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_fd0; _i0++) {
+            fd[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pp0 = 100;
+          void ** pp = (void **) malloc(_len_pp0*sizeof(void *));
+          for(int _i0 = 0; _i0 < _len_pp0; _i0++) {
+          }
+        
+          int benchRet = unixFetch(fd,iOff,nAmt,pp);
+          printf("%d\n", benchRet); 
+          free(fd);
+          for(int i1 = 0; i1 < _len_pp0; i1++) {
+              }
+          free(pp);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int iOff = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int nAmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fd0 = 1;
+          int * fd = (int *) malloc(_len_fd0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_fd0; _i0++) {
+            fd[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pp0 = 1;
+          void ** pp = (void **) malloc(_len_pp0*sizeof(void *));
+          for(int _i0 = 0; _i0 < _len_pp0; _i0++) {
+          }
+        
+          int benchRet = unixFetch(fd,iOff,nAmt,pp);
+          printf("%d\n", benchRet); 
+          free(fd);
+          for(int i1 = 0; i1 < _len_pp0; i1++) {
               }
           free(pp);
         

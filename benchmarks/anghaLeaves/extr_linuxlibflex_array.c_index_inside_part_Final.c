@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ __attribute__((used)) static unsigned int index_inside_part(struct flex_array *f
 	return part_offset * fa->element_size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,20 +84,86 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int element_nr = 100;
+        
           unsigned int part_nr = 100;
+        
           int _len_fa0 = 1;
           struct flex_array * fa = (struct flex_array *) malloc(_len_fa0*sizeof(struct flex_array));
           for(int _i0 = 0; _i0 < _len_fa0; _i0++) {
-            fa[_i0].elems_per_part = ((-2 * (next_i()%2)) + 1) * next_i();
-        fa[_i0].element_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              fa[_i0].elems_per_part = ((-2 * (next_i()%2)) + 1) * next_i();
+          fa[_i0].element_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = index_inside_part(fa,element_nr,part_nr);
           printf("%u\n", benchRet); 
           free(fa);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int element_nr = 255;
+        
+          unsigned int part_nr = 255;
+        
+          int _len_fa0 = 65025;
+          struct flex_array * fa = (struct flex_array *) malloc(_len_fa0*sizeof(struct flex_array));
+          for(int _i0 = 0; _i0 < _len_fa0; _i0++) {
+              fa[_i0].elems_per_part = ((-2 * (next_i()%2)) + 1) * next_i();
+          fa[_i0].element_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = index_inside_part(fa,element_nr,part_nr);
+          printf("%u\n", benchRet); 
+          free(fa);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int element_nr = 10;
+        
+          unsigned int part_nr = 10;
+        
+          int _len_fa0 = 100;
+          struct flex_array * fa = (struct flex_array *) malloc(_len_fa0*sizeof(struct flex_array));
+          for(int _i0 = 0; _i0 < _len_fa0; _i0++) {
+              fa[_i0].elems_per_part = ((-2 * (next_i()%2)) + 1) * next_i();
+          fa[_i0].element_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = index_inside_part(fa,element_nr,part_nr);
+          printf("%u\n", benchRet); 
+          free(fa);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int element_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int part_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fa0 = 1;
+          struct flex_array * fa = (struct flex_array *) malloc(_len_fa0*sizeof(struct flex_array));
+          for(int _i0 = 0; _i0 < _len_fa0; _i0++) {
+              fa[_i0].elems_per_part = ((-2 * (next_i()%2)) + 1) * next_i();
+          fa[_i0].element_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = index_inside_part(fa,element_nr,part_nr);
+          printf("%u\n", benchRet); 
+          free(fa);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ bool rsi_is_cipher_wep(struct rsi_common *common)
 		return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,22 +83,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_common0 = 1;
+          int _len_common0 = 65025;
           struct rsi_common * common = (struct rsi_common *) malloc(_len_common0*sizeof(struct rsi_common));
           for(int _i0 = 0; _i0 < _len_common0; _i0++) {
-            common[_i0].secinfo.gtk_cipher = ((-2 * (next_i()%2)) + 1) * next_i();
-        common[_i0].secinfo.ptk_cipher = ((-2 * (next_i()%2)) + 1) * next_i();
+              common[_i0].secinfo.gtk_cipher = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].secinfo.ptk_cipher = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = rsi_is_cipher_wep(common);
           printf("%d\n", benchRet); 
           free(common);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_common0 = 100;
+          struct rsi_common * common = (struct rsi_common *) malloc(_len_common0*sizeof(struct rsi_common));
+          for(int _i0 = 0; _i0 < _len_common0; _i0++) {
+              common[_i0].secinfo.gtk_cipher = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].secinfo.ptk_cipher = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = rsi_is_cipher_wep(common);
+          printf("%d\n", benchRet); 
+          free(common);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_common0 = 1;
+          struct rsi_common * common = (struct rsi_common *) malloc(_len_common0*sizeof(struct rsi_common));
+          for(int _i0 = 0; _i0 < _len_common0; _i0++) {
+              common[_i0].secinfo.gtk_cipher = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].secinfo.ptk_cipher = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = rsi_is_cipher_wep(common);
+          printf("%d\n", benchRet); 
+          free(common);
+        
+        break;
+    }
     default:
         usage();
         break;

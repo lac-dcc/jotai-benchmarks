@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ proc_set_return_to_kernel_offset(struct proc *p, uint64_t offset)
 	p->p_return_to_kernel_offset = offset;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,31 +81,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int offset = 100;
+        
           int _len_p0 = 1;
           struct proc * p = (struct proc *) malloc(_len_p0*sizeof(struct proc));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].p_return_to_kernel_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].p_return_to_kernel_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          proc_set_return_to_kernel_offset(p,offset);
+          free(p);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int offset = 255;
+        
+          int _len_p0 = 65025;
+          struct proc * p = (struct proc *) malloc(_len_p0*sizeof(struct proc));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].p_return_to_kernel_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           proc_set_return_to_kernel_offset(p,offset);
           free(p);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int offset = 10;
+        
           int _len_p0 = 100;
           struct proc * p = (struct proc *) malloc(_len_p0*sizeof(struct proc));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].p_return_to_kernel_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].p_return_to_kernel_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           proc_set_return_to_kernel_offset(p,offset);
           free(p);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_p0 = 1;
+          struct proc * p = (struct proc *) malloc(_len_p0*sizeof(struct proc));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].p_return_to_kernel_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          proc_set_return_to_kernel_offset(p,offset);
+          free(p);
+        
+        break;
+    }
     default:
         usage();
         break;

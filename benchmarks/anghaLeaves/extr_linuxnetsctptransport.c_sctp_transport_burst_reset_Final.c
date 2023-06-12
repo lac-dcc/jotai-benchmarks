@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ void sctp_transport_burst_reset(struct sctp_transport *t)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,21 +77,54 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_t0 = 1;
+          int _len_t0 = 65025;
           struct sctp_transport * t = (struct sctp_transport *) malloc(_len_t0*sizeof(struct sctp_transport));
           for(int _i0 = 0; _i0 < _len_t0; _i0++) {
-            t[_i0].burst_limited = ((-2 * (next_i()%2)) + 1) * next_i();
-        t[_i0].cwnd = ((-2 * (next_i()%2)) + 1) * next_i();
+              t[_i0].burst_limited = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].cwnd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           sctp_transport_burst_reset(t);
           free(t);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_t0 = 100;
+          struct sctp_transport * t = (struct sctp_transport *) malloc(_len_t0*sizeof(struct sctp_transport));
+          for(int _i0 = 0; _i0 < _len_t0; _i0++) {
+              t[_i0].burst_limited = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].cwnd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          sctp_transport_burst_reset(t);
+          free(t);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_t0 = 1;
+          struct sctp_transport * t = (struct sctp_transport *) malloc(_len_t0*sizeof(struct sctp_transport));
+          for(int _i0 = 0; _i0 < _len_t0; _i0++) {
+              t[_i0].burst_limited = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].cwnd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          sctp_transport_burst_reset(t);
+          free(t);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -59,12 +60,6 @@ void diva_free_dma_map_entry(struct _diva_dma_map_entry *pmap, int nr) {
 	pmap[nr].busy = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -77,21 +72,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int nr = 10;
-          int _len_pmap0 = 100;
+          int nr = 255;
+        
+          int _len_pmap0 = 65025;
           struct _diva_dma_map_entry * pmap = (struct _diva_dma_map_entry *) malloc(_len_pmap0*sizeof(struct _diva_dma_map_entry));
           for(int _i0 = 0; _i0 < _len_pmap0; _i0++) {
-            pmap[_i0].busy = ((-2 * (next_i()%2)) + 1) * next_i();
+              pmap[_i0].busy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           diva_free_dma_map_entry(pmap,nr);
           free(pmap);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int nr = 10;
+        
+          int _len_pmap0 = 100;
+          struct _diva_dma_map_entry * pmap = (struct _diva_dma_map_entry *) malloc(_len_pmap0*sizeof(struct _diva_dma_map_entry));
+          for(int _i0 = 0; _i0 < _len_pmap0; _i0++) {
+              pmap[_i0].busy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          diva_free_dma_map_entry(pmap,nr);
+          free(pmap);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -91,12 +92,6 @@ __attribute__((used)) static int dentist_get_divider_from_did(int did)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -113,6 +108,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int did = 100;
+        
           int benchRet = dentist_get_divider_from_did(did);
           printf("%d\n", benchRet); 
         
@@ -122,6 +118,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int did = 255;
+        
           int benchRet = dentist_get_divider_from_did(did);
           printf("%d\n", benchRet); 
         
@@ -131,12 +128,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int did = 10;
+        
           int benchRet = dentist_get_divider_from_did(did);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int did = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = dentist_get_divider_from_did(did);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

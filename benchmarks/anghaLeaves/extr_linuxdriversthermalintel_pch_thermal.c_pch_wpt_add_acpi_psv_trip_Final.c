@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static void pch_wpt_add_acpi_psv_trip(struct pch_thermal_d
 
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,19 +76,137 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_ptd0 = 65025;
+          struct pch_thermal_device * ptd = (struct pch_thermal_device *) malloc(_len_ptd0*sizeof(struct pch_thermal_device));
+          for(int _i0 = 0; _i0 < _len_ptd0; _i0++) {
+              ptd[_i0].psv_trip_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_nr_trips0 = 65025;
+          int * nr_trips = (int *) malloc(_len_nr_trips0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_nr_trips0; _i0++) {
+            nr_trips[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          pch_wpt_add_acpi_psv_trip(ptd,nr_trips);
+          free(ptd);
+          free(nr_trips);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_ptd0 = 100;
+          struct pch_thermal_device * ptd = (struct pch_thermal_device *) malloc(_len_ptd0*sizeof(struct pch_thermal_device));
+          for(int _i0 = 0; _i0 < _len_ptd0; _i0++) {
+              ptd[_i0].psv_trip_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_nr_trips0 = 100;
+          int * nr_trips = (int *) malloc(_len_nr_trips0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_nr_trips0; _i0++) {
+            nr_trips[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          pch_wpt_add_acpi_psv_trip(ptd,nr_trips);
+          free(ptd);
+          free(nr_trips);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_ptd0 = 1;
           struct pch_thermal_device * ptd = (struct pch_thermal_device *) malloc(_len_ptd0*sizeof(struct pch_thermal_device));
           for(int _i0 = 0; _i0 < _len_ptd0; _i0++) {
-            ptd[_i0].psv_trip_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              ptd[_i0].psv_trip_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_nr_trips0 = 1;
           int * nr_trips = (int *) malloc(_len_nr_trips0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_nr_trips0; _i0++) {
             nr_trips[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           pch_wpt_add_acpi_psv_trip(ptd,nr_trips);
           free(ptd);
           free(nr_trips);

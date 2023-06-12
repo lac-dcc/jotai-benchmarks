@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ __attribute__((used)) static inline int dn_check_idf(unsigned char **pptr, int *
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,7 +89,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned char max = 100;
+        
           unsigned char follow_on = 100;
+        
           int _len_pptr0 = 1;
           unsigned char ** pptr = (unsigned char **) malloc(_len_pptr0*sizeof(unsigned char *));
           for(int _i0 = 0; _i0 < _len_pptr0; _i0++) {
@@ -102,15 +101,16 @@ int main(int argc, char *argv[]) {
               pptr[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           int _len_len0 = 1;
           int * len = (int *) malloc(_len_len0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_len0; _i0++) {
             len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = dn_check_idf(pptr,len,max,follow_on);
           printf("%d\n", benchRet); 
           for(int i1 = 0; i1 < _len_pptr0; i1++) {
-            int _len_pptr1 = 1;
               free(pptr[i1]);
           }
           free(pptr);
@@ -118,7 +118,105 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned char max = 255;
+        
+          unsigned char follow_on = 255;
+        
+          int _len_pptr0 = 65025;
+          unsigned char ** pptr = (unsigned char **) malloc(_len_pptr0*sizeof(unsigned char *));
+          for(int _i0 = 0; _i0 < _len_pptr0; _i0++) {
+            int _len_pptr1 = 1;
+            pptr[_i0] = (unsigned char *) malloc(_len_pptr1*sizeof(unsigned char));
+            for(int _i1 = 0; _i1 < _len_pptr1; _i1++) {
+              pptr[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int _len_len0 = 65025;
+          int * len = (int *) malloc(_len_len0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_len0; _i0++) {
+            len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = dn_check_idf(pptr,len,max,follow_on);
+          printf("%d\n", benchRet); 
+          for(int i1 = 0; i1 < _len_pptr0; i1++) {
+              free(pptr[i1]);
+          }
+          free(pptr);
+          free(len);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned char max = 10;
+        
+          unsigned char follow_on = 10;
+        
+          int _len_pptr0 = 100;
+          unsigned char ** pptr = (unsigned char **) malloc(_len_pptr0*sizeof(unsigned char *));
+          for(int _i0 = 0; _i0 < _len_pptr0; _i0++) {
+            int _len_pptr1 = 1;
+            pptr[_i0] = (unsigned char *) malloc(_len_pptr1*sizeof(unsigned char));
+            for(int _i1 = 0; _i1 < _len_pptr1; _i1++) {
+              pptr[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int _len_len0 = 100;
+          int * len = (int *) malloc(_len_len0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_len0; _i0++) {
+            len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = dn_check_idf(pptr,len,max,follow_on);
+          printf("%d\n", benchRet); 
+          for(int i1 = 0; i1 < _len_pptr0; i1++) {
+              free(pptr[i1]);
+          }
+          free(pptr);
+          free(len);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned char max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned char follow_on = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pptr0 = 1;
+          unsigned char ** pptr = (unsigned char **) malloc(_len_pptr0*sizeof(unsigned char *));
+          for(int _i0 = 0; _i0 < _len_pptr0; _i0++) {
+            int _len_pptr1 = 1;
+            pptr[_i0] = (unsigned char *) malloc(_len_pptr1*sizeof(unsigned char));
+            for(int _i1 = 0; _i1 < _len_pptr1; _i1++) {
+              pptr[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int _len_len0 = 1;
+          int * len = (int *) malloc(_len_len0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_len0; _i0++) {
+            len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = dn_check_idf(pptr,len,max,follow_on);
+          printf("%d\n", benchRet); 
+          for(int i1 = 0; i1 < _len_pptr0; i1++) {
+              free(pptr[i1]);
+          }
+          free(pptr);
+          free(len);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -79,12 +81,6 @@ bool iwl_is_ht40_tx_allowed(struct iwl_priv *priv,
 	return sta->bandwidth >= IEEE80211_STA_RX_BW_40;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,25 +93,32 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_priv0 = 1;
+          int _len_priv0 = 65025;
           struct iwl_priv * priv = (struct iwl_priv *) malloc(_len_priv0*sizeof(struct iwl_priv));
           for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
-            priv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_ctx0 = 1;
+        
+          int _len_ctx0 = 65025;
           struct iwl_rxon_context * ctx = (struct iwl_rxon_context *) malloc(_len_ctx0*sizeof(struct iwl_rxon_context));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
-            ctx[_i0].ht.is_40mhz = ((-2 * (next_i()%2)) + 1) * next_i();
-        ctx[_i0].ht.enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctx[_i0].ht.is_40mhz = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].ht.enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-          int _len_sta0 = 1;
+        
+          int _len_sta0 = 65025;
           struct ieee80211_sta * sta = (struct ieee80211_sta *) malloc(_len_sta0*sizeof(struct ieee80211_sta));
           for(int _i0 = 0; _i0 < _len_sta0; _i0++) {
-            sta[_i0].bandwidth = ((-2 * (next_i()%2)) + 1) * next_i();
+              sta[_i0].bandwidth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = iwl_is_ht40_tx_allowed(priv,ctx,sta);
           printf("%d\n", benchRet); 
           free(priv);
@@ -124,7 +127,74 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_priv0 = 100;
+          struct iwl_priv * priv = (struct iwl_priv *) malloc(_len_priv0*sizeof(struct iwl_priv));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ctx0 = 100;
+          struct iwl_rxon_context * ctx = (struct iwl_rxon_context *) malloc(_len_ctx0*sizeof(struct iwl_rxon_context));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].ht.is_40mhz = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].ht.enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_sta0 = 100;
+          struct ieee80211_sta * sta = (struct ieee80211_sta *) malloc(_len_sta0*sizeof(struct ieee80211_sta));
+          for(int _i0 = 0; _i0 < _len_sta0; _i0++) {
+              sta[_i0].bandwidth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = iwl_is_ht40_tx_allowed(priv,ctx,sta);
+          printf("%d\n", benchRet); 
+          free(priv);
+          free(ctx);
+          free(sta);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_priv0 = 1;
+          struct iwl_priv * priv = (struct iwl_priv *) malloc(_len_priv0*sizeof(struct iwl_priv));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ctx0 = 1;
+          struct iwl_rxon_context * ctx = (struct iwl_rxon_context *) malloc(_len_ctx0*sizeof(struct iwl_rxon_context));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].ht.is_40mhz = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].ht.enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_sta0 = 1;
+          struct ieee80211_sta * sta = (struct ieee80211_sta *) malloc(_len_sta0*sizeof(struct ieee80211_sta));
+          for(int _i0 = 0; _i0 < _len_sta0; _i0++) {
+              sta[_i0].bandwidth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = iwl_is_ht40_tx_allowed(priv,ctx,sta);
+          printf("%d\n", benchRet); 
+          free(priv);
+          free(ctx);
+          free(sta);
+        
+        break;
+    }
     default:
         usage();
         break;

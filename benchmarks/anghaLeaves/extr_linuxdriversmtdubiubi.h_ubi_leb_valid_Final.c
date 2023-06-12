@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static inline bool ubi_leb_valid(struct ubi_volume *vol, i
 	return lnum >= 0 && lnum < vol->reserved_pebs;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,11 +79,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int lnum = 100;
+        
           int _len_vol0 = 1;
           struct ubi_volume * vol = (struct ubi_volume *) malloc(_len_vol0*sizeof(struct ubi_volume));
           for(int _i0 = 0; _i0 < _len_vol0; _i0++) {
-            vol[_i0].reserved_pebs = ((-2 * (next_i()%2)) + 1) * next_i();
+              vol[_i0].reserved_pebs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = ubi_leb_valid(vol,lnum);
+          printf("%d\n", benchRet); 
+          free(vol);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int lnum = 255;
+        
+          int _len_vol0 = 65025;
+          struct ubi_volume * vol = (struct ubi_volume *) malloc(_len_vol0*sizeof(struct ubi_volume));
+          for(int _i0 = 0; _i0 < _len_vol0; _i0++) {
+              vol[_i0].reserved_pebs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = ubi_leb_valid(vol,lnum);
           printf("%d\n", benchRet); 
           free(vol);
@@ -95,21 +112,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int lnum = 10;
+        
           int _len_vol0 = 100;
           struct ubi_volume * vol = (struct ubi_volume *) malloc(_len_vol0*sizeof(struct ubi_volume));
           for(int _i0 = 0; _i0 < _len_vol0; _i0++) {
-            vol[_i0].reserved_pebs = ((-2 * (next_i()%2)) + 1) * next_i();
+              vol[_i0].reserved_pebs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ubi_leb_valid(vol,lnum);
           printf("%d\n", benchRet); 
           free(vol);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int lnum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_vol0 = 1;
+          struct ubi_volume * vol = (struct ubi_volume *) malloc(_len_vol0*sizeof(struct ubi_volume));
+          for(int _i0 = 0; _i0 < _len_vol0; _i0++) {
+              vol[_i0].reserved_pebs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ubi_leb_valid(vol,lnum);
+          printf("%d\n", benchRet); 
+          free(vol);
+        
+        break;
+    }
     default:
         usage();
         break;

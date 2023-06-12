@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ ahc_hscb_busaddr(struct ahc_softc *ahc, u_int index)
 		+ (sizeof(struct hardware_scb) * index));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,15 +86,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int index = 100;
+        
           int _len_ahc0 = 1;
           struct ahc_softc * ahc = (struct ahc_softc *) malloc(_len_ahc0*sizeof(struct ahc_softc));
           for(int _i0 = 0; _i0 < _len_ahc0; _i0++) {
               int _len_ahc__i0__scb_data0 = 1;
           ahc[_i0].scb_data = (struct TYPE_2__ *) malloc(_len_ahc__i0__scb_data0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_ahc__i0__scb_data0; _j0++) {
-            ahc[_i0].scb_data->hscb_busaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+              ahc[_i0].scb_data->hscb_busaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           long benchRet = ahc_hscb_busaddr(ahc,index);
           printf("%ld\n", benchRet); 
           for(int _aux = 0; _aux < _len_ahc0; _aux++) {
@@ -107,7 +108,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int index = 255;
+        
+          int _len_ahc0 = 65025;
+          struct ahc_softc * ahc = (struct ahc_softc *) malloc(_len_ahc0*sizeof(struct ahc_softc));
+          for(int _i0 = 0; _i0 < _len_ahc0; _i0++) {
+              int _len_ahc__i0__scb_data0 = 1;
+          ahc[_i0].scb_data = (struct TYPE_2__ *) malloc(_len_ahc__i0__scb_data0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ahc__i0__scb_data0; _j0++) {
+              ahc[_i0].scb_data->hscb_busaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          long benchRet = ahc_hscb_busaddr(ahc,index);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ahc0; _aux++) {
+          free(ahc[_aux].scb_data);
+          }
+          free(ahc);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int index = 10;
+        
+          int _len_ahc0 = 100;
+          struct ahc_softc * ahc = (struct ahc_softc *) malloc(_len_ahc0*sizeof(struct ahc_softc));
+          for(int _i0 = 0; _i0 < _len_ahc0; _i0++) {
+              int _len_ahc__i0__scb_data0 = 1;
+          ahc[_i0].scb_data = (struct TYPE_2__ *) malloc(_len_ahc__i0__scb_data0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ahc__i0__scb_data0; _j0++) {
+              ahc[_i0].scb_data->hscb_busaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          long benchRet = ahc_hscb_busaddr(ahc,index);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ahc0; _aux++) {
+          free(ahc[_aux].scb_data);
+          }
+          free(ahc);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ahc0 = 1;
+          struct ahc_softc * ahc = (struct ahc_softc *) malloc(_len_ahc0*sizeof(struct ahc_softc));
+          for(int _i0 = 0; _i0 < _len_ahc0; _i0++) {
+              int _len_ahc__i0__scb_data0 = 1;
+          ahc[_i0].scb_data = (struct TYPE_2__ *) malloc(_len_ahc__i0__scb_data0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ahc__i0__scb_data0; _j0++) {
+              ahc[_i0].scb_data->hscb_busaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          long benchRet = ahc_hscb_busaddr(ahc,index);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ahc0; _aux++) {
+          free(ahc[_aux].scb_data);
+          }
+          free(ahc);
+        
+        break;
+    }
     default:
         usage();
         break;

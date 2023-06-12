@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +61,6 @@ int do_rpc_queue_empty (struct rpc_queue *Q) { /* {{{ */
   return !Q->remaining;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,14 +73,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_Q0 = 1;
+          int _len_Q0 = 65025;
           struct rpc_queue * Q = (struct rpc_queue *) malloc(_len_Q0*sizeof(struct rpc_queue));
           for(int _i0 = 0; _i0 < _len_Q0; _i0++) {
-            Q[_i0].remaining = ((-2 * (next_i()%2)) + 1) * next_i();
+              Q[_i0].remaining = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = do_rpc_queue_empty(Q);
           printf("%d\n", benchRet); 
           free(Q);
@@ -98,15 +95,32 @@ int main(int argc, char *argv[]) {
           int _len_Q0 = 100;
           struct rpc_queue * Q = (struct rpc_queue *) malloc(_len_Q0*sizeof(struct rpc_queue));
           for(int _i0 = 0; _i0 < _len_Q0; _i0++) {
-            Q[_i0].remaining = ((-2 * (next_i()%2)) + 1) * next_i();
+              Q[_i0].remaining = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = do_rpc_queue_empty(Q);
           printf("%d\n", benchRet); 
           free(Q);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_Q0 = 1;
+          struct rpc_queue * Q = (struct rpc_queue *) malloc(_len_Q0*sizeof(struct rpc_queue));
+          for(int _i0 = 0; _i0 < _len_Q0; _i0++) {
+              Q[_i0].remaining = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = do_rpc_queue_empty(Q);
+          printf("%d\n", benchRet); 
+          free(Q);
+        
+        break;
+    }
     default:
         usage();
         break;

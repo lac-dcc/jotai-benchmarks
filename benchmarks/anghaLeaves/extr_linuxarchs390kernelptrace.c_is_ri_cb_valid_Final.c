@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -83,12 +85,6 @@ __attribute__((used)) static bool is_ri_cb_valid(struct runtime_instr_cb *cb)
 		cb->m < 3;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,33 +97,176 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_cb0 = 65025;
+          struct runtime_instr_cb * cb = (struct runtime_instr_cb *) malloc(_len_cb0*sizeof(struct runtime_instr_cb));
+          for(int _i0 = 0; _i0 < _len_cb0; _i0++) {
+              cb[_i0].rca = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].roa = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].rla = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].s = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].k = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].reserved1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].ps = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].qs = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].pc = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].qc = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].reserved2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].key = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].reserved3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].reserved4 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].reserved5 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].reserved6 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].reserved7 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].reserved8 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].m = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_ri_cb_valid(cb);
+          printf("%d\n", benchRet); 
+          free(cb);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_cb0 = 100;
+          struct runtime_instr_cb * cb = (struct runtime_instr_cb *) malloc(_len_cb0*sizeof(struct runtime_instr_cb));
+          for(int _i0 = 0; _i0 < _len_cb0; _i0++) {
+              cb[_i0].rca = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].roa = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].rla = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].s = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].k = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].reserved1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].ps = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].qs = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].pc = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].qc = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].reserved2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].key = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].reserved3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].reserved4 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].reserved5 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].reserved6 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].reserved7 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].reserved8 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].m = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_ri_cb_valid(cb);
+          printf("%d\n", benchRet); 
+          free(cb);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_cb0 = 1;
           struct runtime_instr_cb * cb = (struct runtime_instr_cb *) malloc(_len_cb0*sizeof(struct runtime_instr_cb));
           for(int _i0 = 0; _i0 < _len_cb0; _i0++) {
-            cb[_i0].rca = ((-2 * (next_i()%2)) + 1) * next_i();
-        cb[_i0].roa = ((-2 * (next_i()%2)) + 1) * next_i();
-        cb[_i0].rla = ((-2 * (next_i()%2)) + 1) * next_i();
-        cb[_i0].s = ((-2 * (next_i()%2)) + 1) * next_i();
-        cb[_i0].k = ((-2 * (next_i()%2)) + 1) * next_i();
-        cb[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
-        cb[_i0].reserved1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        cb[_i0].ps = ((-2 * (next_i()%2)) + 1) * next_i();
-        cb[_i0].qs = ((-2 * (next_i()%2)) + 1) * next_i();
-        cb[_i0].pc = ((-2 * (next_i()%2)) + 1) * next_i();
-        cb[_i0].qc = ((-2 * (next_i()%2)) + 1) * next_i();
-        cb[_i0].reserved2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        cb[_i0].key = ((-2 * (next_i()%2)) + 1) * next_i();
-        cb[_i0].reserved3 = ((-2 * (next_i()%2)) + 1) * next_i();
-        cb[_i0].reserved4 = ((-2 * (next_i()%2)) + 1) * next_i();
-        cb[_i0].reserved5 = ((-2 * (next_i()%2)) + 1) * next_i();
-        cb[_i0].reserved6 = ((-2 * (next_i()%2)) + 1) * next_i();
-        cb[_i0].reserved7 = ((-2 * (next_i()%2)) + 1) * next_i();
-        cb[_i0].reserved8 = ((-2 * (next_i()%2)) + 1) * next_i();
-        cb[_i0].m = ((-2 * (next_i()%2)) + 1) * next_i();
+              cb[_i0].rca = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].roa = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].rla = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].s = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].k = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].reserved1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].ps = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].qs = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].pc = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].qc = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].reserved2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].key = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].reserved3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].reserved4 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].reserved5 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].reserved6 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].reserved7 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].reserved8 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cb[_i0].m = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_ri_cb_valid(cb);
           printf("%d\n", benchRet); 
           free(cb);

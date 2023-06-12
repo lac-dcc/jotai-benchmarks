@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -117,12 +119,6 @@ void DMA_StructInit(DMA_InitTypeDef* DMA_InitStruct)
   DMA_InitStruct->DMA_PeripheralBurst = DMA_PeripheralBurst_Single;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -135,28 +131,159 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 46
+          // dynamic_instructions_O0 : 46
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 30
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 30
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 30
+          // ------------------------------- 
+          // static_instructions_Os : 31
+          // dynamic_instructions_Os : 31
+          // ------------------------------- 
+          // static_instructions_Oz : 30
+          // dynamic_instructions_Oz : 30
+          // ------------------------------- 
+
+          int _len_DMA_InitStruct0 = 65025;
+          struct TYPE_3__ * DMA_InitStruct = (struct TYPE_3__ *) malloc(_len_DMA_InitStruct0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_DMA_InitStruct0; _i0++) {
+              DMA_InitStruct[_i0].DMA_PeripheralBurst = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_MemoryBurst = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_FIFOThreshold = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_FIFOMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_Priority = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_Mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_MemoryDataSize = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_PeripheralDataSize = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_MemoryInc = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_PeripheralInc = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_BufferSize = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_DIR = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_Memory0BaseAddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_PeripheralBaseAddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_Channel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          DMA_StructInit(DMA_InitStruct);
+          free(DMA_InitStruct);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 46
+          // dynamic_instructions_O0 : 46
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 30
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 30
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 30
+          // ------------------------------- 
+          // static_instructions_Os : 31
+          // dynamic_instructions_Os : 31
+          // ------------------------------- 
+          // static_instructions_Oz : 30
+          // dynamic_instructions_Oz : 30
+          // ------------------------------- 
+
+          int _len_DMA_InitStruct0 = 100;
+          struct TYPE_3__ * DMA_InitStruct = (struct TYPE_3__ *) malloc(_len_DMA_InitStruct0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_DMA_InitStruct0; _i0++) {
+              DMA_InitStruct[_i0].DMA_PeripheralBurst = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_MemoryBurst = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_FIFOThreshold = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_FIFOMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_Priority = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_Mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_MemoryDataSize = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_PeripheralDataSize = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_MemoryInc = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_PeripheralInc = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_BufferSize = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_DIR = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_Memory0BaseAddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_PeripheralBaseAddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_Channel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          DMA_StructInit(DMA_InitStruct);
+          free(DMA_InitStruct);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 46
+          // dynamic_instructions_O0 : 46
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 30
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 30
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 30
+          // ------------------------------- 
+          // static_instructions_Os : 31
+          // dynamic_instructions_Os : 31
+          // ------------------------------- 
+          // static_instructions_Oz : 30
+          // dynamic_instructions_Oz : 30
+          // ------------------------------- 
+
           int _len_DMA_InitStruct0 = 1;
           struct TYPE_3__ * DMA_InitStruct = (struct TYPE_3__ *) malloc(_len_DMA_InitStruct0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_DMA_InitStruct0; _i0++) {
-            DMA_InitStruct[_i0].DMA_PeripheralBurst = ((-2 * (next_i()%2)) + 1) * next_i();
-        DMA_InitStruct[_i0].DMA_MemoryBurst = ((-2 * (next_i()%2)) + 1) * next_i();
-        DMA_InitStruct[_i0].DMA_FIFOThreshold = ((-2 * (next_i()%2)) + 1) * next_i();
-        DMA_InitStruct[_i0].DMA_FIFOMode = ((-2 * (next_i()%2)) + 1) * next_i();
-        DMA_InitStruct[_i0].DMA_Priority = ((-2 * (next_i()%2)) + 1) * next_i();
-        DMA_InitStruct[_i0].DMA_Mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        DMA_InitStruct[_i0].DMA_MemoryDataSize = ((-2 * (next_i()%2)) + 1) * next_i();
-        DMA_InitStruct[_i0].DMA_PeripheralDataSize = ((-2 * (next_i()%2)) + 1) * next_i();
-        DMA_InitStruct[_i0].DMA_MemoryInc = ((-2 * (next_i()%2)) + 1) * next_i();
-        DMA_InitStruct[_i0].DMA_PeripheralInc = ((-2 * (next_i()%2)) + 1) * next_i();
-        DMA_InitStruct[_i0].DMA_BufferSize = ((-2 * (next_i()%2)) + 1) * next_i();
-        DMA_InitStruct[_i0].DMA_DIR = ((-2 * (next_i()%2)) + 1) * next_i();
-        DMA_InitStruct[_i0].DMA_Memory0BaseAddr = ((-2 * (next_i()%2)) + 1) * next_i();
-        DMA_InitStruct[_i0].DMA_PeripheralBaseAddr = ((-2 * (next_i()%2)) + 1) * next_i();
-        DMA_InitStruct[_i0].DMA_Channel = ((-2 * (next_i()%2)) + 1) * next_i();
+              DMA_InitStruct[_i0].DMA_PeripheralBurst = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_MemoryBurst = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_FIFOThreshold = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_FIFOMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_Priority = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_Mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_MemoryDataSize = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_PeripheralDataSize = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_MemoryInc = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_PeripheralInc = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_BufferSize = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_DIR = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_Memory0BaseAddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_PeripheralBaseAddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          DMA_InitStruct[_i0].DMA_Channel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           DMA_StructInit(DMA_InitStruct);
           free(DMA_InitStruct);
         

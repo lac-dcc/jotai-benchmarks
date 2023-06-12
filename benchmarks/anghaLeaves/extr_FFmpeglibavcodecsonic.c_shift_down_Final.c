@@ -59,12 +59,6 @@ __attribute__((used)) static inline int shift_down(int a,int b)
     return (a>>b)+(a<0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,13 +75,14 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int a = 10;
+        
           int b = 10;
+        
           int benchRet = shift_down(a,b);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

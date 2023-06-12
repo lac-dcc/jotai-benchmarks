@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ void update_read_stat (stat_read_t *S, int success) {
   }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,20 +88,82 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int success = 100;
+        
           int _len_S0 = 1;
           struct TYPE_3__ * S = (struct TYPE_3__ *) malloc(_len_S0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_S0; _i0++) {
-            S[_i0].last_fail_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        S[_i0].sequential_fails = ((-2 * (next_i()%2)) + 1) * next_i();
-        S[_i0].fails = ((-2 * (next_i()%2)) + 1) * next_i();
-        S[_i0].success = ((-2 * (next_i()%2)) + 1) * next_i();
+              S[_i0].last_fail_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          S[_i0].sequential_fails = ((-2 * (next_i()%2)) + 1) * next_i();
+          S[_i0].fails = ((-2 * (next_i()%2)) + 1) * next_i();
+          S[_i0].success = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           update_read_stat(S,success);
           free(S);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int success = 255;
+        
+          int _len_S0 = 65025;
+          struct TYPE_3__ * S = (struct TYPE_3__ *) malloc(_len_S0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_S0; _i0++) {
+              S[_i0].last_fail_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          S[_i0].sequential_fails = ((-2 * (next_i()%2)) + 1) * next_i();
+          S[_i0].fails = ((-2 * (next_i()%2)) + 1) * next_i();
+          S[_i0].success = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          update_read_stat(S,success);
+          free(S);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int success = 10;
+        
+          int _len_S0 = 100;
+          struct TYPE_3__ * S = (struct TYPE_3__ *) malloc(_len_S0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_S0; _i0++) {
+              S[_i0].last_fail_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          S[_i0].sequential_fails = ((-2 * (next_i()%2)) + 1) * next_i();
+          S[_i0].fails = ((-2 * (next_i()%2)) + 1) * next_i();
+          S[_i0].success = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          update_read_stat(S,success);
+          free(S);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int success = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_S0 = 1;
+          struct TYPE_3__ * S = (struct TYPE_3__ *) malloc(_len_S0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_S0; _i0++) {
+              S[_i0].last_fail_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          S[_i0].sequential_fails = ((-2 * (next_i()%2)) + 1) * next_i();
+          S[_i0].fails = ((-2 * (next_i()%2)) + 1) * next_i();
+          S[_i0].success = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          update_read_stat(S,success);
+          free(S);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ bfa_fcs_vport_cleanup(struct bfa_fcs_vport_s *vport)
 	vport->vport_stats.fab_cleanup++;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,27 +77,120 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_vport0 = 1;
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_vport0 = 65025;
           struct bfa_fcs_vport_s * vport = (struct bfa_fcs_vport_s *) malloc(_len_vport0*sizeof(struct bfa_fcs_vport_s));
           for(int _i0 = 0; _i0 < _len_vport0; _i0++) {
-            vport[_i0].vport_stats.fab_cleanup = ((-2 * (next_i()%2)) + 1) * next_i();
+              vport[_i0].vport_stats.fab_cleanup = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           bfa_fcs_vport_cleanup(vport);
           free(vport);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_vport0 = 100;
           struct bfa_fcs_vport_s * vport = (struct bfa_fcs_vport_s *) malloc(_len_vport0*sizeof(struct bfa_fcs_vport_s));
           for(int _i0 = 0; _i0 < _len_vport0; _i0++) {
-            vport[_i0].vport_stats.fab_cleanup = ((-2 * (next_i()%2)) + 1) * next_i();
+              vport[_i0].vport_stats.fab_cleanup = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          bfa_fcs_vport_cleanup(vport);
+          free(vport);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_vport0 = 1;
+          struct bfa_fcs_vport_s * vport = (struct bfa_fcs_vport_s *) malloc(_len_vport0*sizeof(struct bfa_fcs_vport_s));
+          for(int _i0 = 0; _i0 < _len_vport0; _i0++) {
+              vport[_i0].vport_stats.fab_cleanup = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           bfa_fcs_vport_cleanup(vport);
           free(vport);
         

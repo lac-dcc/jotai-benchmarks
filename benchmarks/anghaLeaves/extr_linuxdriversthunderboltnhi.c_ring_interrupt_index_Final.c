@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static int ring_interrupt_index(struct tb_ring *ring)
 	return bit;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,20 +79,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ring0 = 1;
+          int _len_ring0 = 65025;
           struct tb_ring * ring = (struct tb_ring *) malloc(_len_ring0*sizeof(struct tb_ring));
           for(int _i0 = 0; _i0 < _len_ring0; _i0++) {
-            ring[_i0].hop = ((-2 * (next_i()%2)) + 1) * next_i();
+              ring[_i0].hop = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_ring__i0__nhi0 = 1;
           ring[_i0].nhi = (struct TYPE_2__ *) malloc(_len_ring__i0__nhi0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_ring__i0__nhi0; _j0++) {
-            ring[_i0].nhi->hop_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              ring[_i0].nhi->hop_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        ring[_i0].is_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+          ring[_i0].is_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ring_interrupt_index(ring);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_ring0; _aux++) {
@@ -106,7 +105,58 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ring0 = 100;
+          struct tb_ring * ring = (struct tb_ring *) malloc(_len_ring0*sizeof(struct tb_ring));
+          for(int _i0 = 0; _i0 < _len_ring0; _i0++) {
+              ring[_i0].hop = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ring__i0__nhi0 = 1;
+          ring[_i0].nhi = (struct TYPE_2__ *) malloc(_len_ring__i0__nhi0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ring__i0__nhi0; _j0++) {
+              ring[_i0].nhi->hop_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          ring[_i0].is_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ring_interrupt_index(ring);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ring0; _aux++) {
+          free(ring[_aux].nhi);
+          }
+          free(ring);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ring0 = 1;
+          struct tb_ring * ring = (struct tb_ring *) malloc(_len_ring0*sizeof(struct tb_ring));
+          for(int _i0 = 0; _i0 < _len_ring0; _i0++) {
+              ring[_i0].hop = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ring__i0__nhi0 = 1;
+          ring[_i0].nhi = (struct TYPE_2__ *) malloc(_len_ring__i0__nhi0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ring__i0__nhi0; _j0++) {
+              ring[_i0].nhi->hop_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          ring[_i0].is_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ring_interrupt_index(ring);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ring0; _aux++) {
+          free(ring[_aux].nhi);
+          }
+          free(ring);
+        
+        break;
+    }
     default:
         usage();
         break;

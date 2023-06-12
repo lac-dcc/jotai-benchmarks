@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static inline int *alt_buflen(struct caam_hash_state *stat
 	return state->current_buf ? &state->buflen_0 : &state->buflen_1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,23 +74,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_state0 = 1;
+          int _len_state0 = 65025;
           struct caam_hash_state * state = (struct caam_hash_state *) malloc(_len_state0*sizeof(struct caam_hash_state));
           for(int _i0 = 0; _i0 < _len_state0; _i0++) {
-            state[_i0].buflen_0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        state[_i0].buflen_1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        state[_i0].current_buf = ((-2 * (next_i()%2)) + 1) * next_i();
+              state[_i0].buflen_0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].buflen_1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].current_buf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int * benchRet = alt_buflen(state);
           printf("%d\n", (*benchRet)); 
           free(state);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_state0 = 100;
+          struct caam_hash_state * state = (struct caam_hash_state *) malloc(_len_state0*sizeof(struct caam_hash_state));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].buflen_0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].buflen_1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].current_buf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int * benchRet = alt_buflen(state);
+          printf("%d\n", (*benchRet)); 
+          free(state);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_state0 = 1;
+          struct caam_hash_state * state = (struct caam_hash_state *) malloc(_len_state0*sizeof(struct caam_hash_state));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].buflen_0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].buflen_1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].current_buf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int * benchRet = alt_buflen(state);
+          printf("%d\n", (*benchRet)); 
+          free(state);
+        
+        break;
+    }
     default:
         usage();
         break;

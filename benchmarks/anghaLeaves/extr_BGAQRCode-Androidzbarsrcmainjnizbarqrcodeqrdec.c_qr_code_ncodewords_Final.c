@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static int qr_code_ncodewords(unsigned _version){
    -(5*nalign)*(5*nalign-2)+36*(_version<7)+83>>3;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,6 +84,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int _version = 100;
+        
           int benchRet = qr_code_ncodewords(_version);
           printf("%d\n", benchRet); 
         
@@ -98,6 +94,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int _version = 255;
+        
           int benchRet = qr_code_ncodewords(_version);
           printf("%d\n", benchRet); 
         
@@ -107,12 +104,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int _version = 10;
+        
           int benchRet = qr_code_ncodewords(_version);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int _version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = qr_code_ncodewords(_version);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ vlapic_esr_write_handler(struct vlapic *vlapic)
 	vlapic->esr_pending = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,19 +80,141 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_vlapic0 = 1;
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_vlapic0 = 65025;
           struct vlapic * vlapic = (struct vlapic *) malloc(_len_vlapic0*sizeof(struct vlapic));
           for(int _i0 = 0; _i0 < _len_vlapic0; _i0++) {
-            vlapic[_i0].esr_pending = ((-2 * (next_i()%2)) + 1) * next_i();
+              vlapic[_i0].esr_pending = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_vlapic__i0__apic_page0 = 1;
           vlapic[_i0].apic_page = (struct LAPIC *) malloc(_len_vlapic__i0__apic_page0*sizeof(struct LAPIC));
           for(int _j0 = 0; _j0 < _len_vlapic__i0__apic_page0; _j0++) {
-            vlapic[_i0].apic_page->esr = ((-2 * (next_i()%2)) + 1) * next_i();
+              vlapic[_i0].apic_page->esr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          vlapic_esr_write_handler(vlapic);
+          for(int _aux = 0; _aux < _len_vlapic0; _aux++) {
+          free(vlapic[_aux].apic_page);
+          }
+          free(vlapic);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_vlapic0 = 100;
+          struct vlapic * vlapic = (struct vlapic *) malloc(_len_vlapic0*sizeof(struct vlapic));
+          for(int _i0 = 0; _i0 < _len_vlapic0; _i0++) {
+              vlapic[_i0].esr_pending = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_vlapic__i0__apic_page0 = 1;
+          vlapic[_i0].apic_page = (struct LAPIC *) malloc(_len_vlapic__i0__apic_page0*sizeof(struct LAPIC));
+          for(int _j0 = 0; _j0 < _len_vlapic__i0__apic_page0; _j0++) {
+              vlapic[_i0].apic_page->esr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          vlapic_esr_write_handler(vlapic);
+          for(int _aux = 0; _aux < _len_vlapic0; _aux++) {
+          free(vlapic[_aux].apic_page);
+          }
+          free(vlapic);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_vlapic0 = 1;
+          struct vlapic * vlapic = (struct vlapic *) malloc(_len_vlapic0*sizeof(struct vlapic));
+          for(int _i0 = 0; _i0 < _len_vlapic0; _i0++) {
+              vlapic[_i0].esr_pending = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_vlapic__i0__apic_page0 = 1;
+          vlapic[_i0].apic_page = (struct LAPIC *) malloc(_len_vlapic__i0__apic_page0*sizeof(struct LAPIC));
+          for(int _j0 = 0; _j0 < _len_vlapic__i0__apic_page0; _j0++) {
+              vlapic[_i0].apic_page->esr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           vlapic_esr_write_handler(vlapic);
           for(int _aux = 0; _aux < _len_vlapic0; _aux++) {
           free(vlapic[_aux].apic_page);

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ __attribute__((used)) static void rollback_state(struct rxe_send_wqe *wqe,
 	qp->req.psn    = rollback_psn;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,29 +85,246 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int rollback_psn = 100;
+        
           int _len_wqe0 = 1;
           struct rxe_send_wqe * wqe = (struct rxe_send_wqe *) malloc(_len_wqe0*sizeof(struct rxe_send_wqe));
           for(int _i0 = 0; _i0 < _len_wqe0; _i0++) {
-            wqe[_i0].last_psn = ((-2 * (next_i()%2)) + 1) * next_i();
-        wqe[_i0].first_psn = ((-2 * (next_i()%2)) + 1) * next_i();
-        wqe[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+              wqe[_i0].last_psn = ((-2 * (next_i()%2)) + 1) * next_i();
+          wqe[_i0].first_psn = ((-2 * (next_i()%2)) + 1) * next_i();
+          wqe[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_qp0 = 1;
           struct rxe_qp * qp = (struct rxe_qp *) malloc(_len_qp0*sizeof(struct rxe_qp));
           for(int _i0 = 0; _i0 < _len_qp0; _i0++) {
-            qp[_i0].req.psn = ((-2 * (next_i()%2)) + 1) * next_i();
+              qp[_i0].req.psn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_rollback_wqe0 = 1;
           struct rxe_send_wqe * rollback_wqe = (struct rxe_send_wqe *) malloc(_len_rollback_wqe0*sizeof(struct rxe_send_wqe));
           for(int _i0 = 0; _i0 < _len_rollback_wqe0; _i0++) {
-            rollback_wqe[_i0].last_psn = ((-2 * (next_i()%2)) + 1) * next_i();
-        rollback_wqe[_i0].first_psn = ((-2 * (next_i()%2)) + 1) * next_i();
-        rollback_wqe[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+              rollback_wqe[_i0].last_psn = ((-2 * (next_i()%2)) + 1) * next_i();
+          rollback_wqe[_i0].first_psn = ((-2 * (next_i()%2)) + 1) * next_i();
+          rollback_wqe[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          rollback_state(wqe,qp,rollback_wqe,rollback_psn);
+          free(wqe);
+          free(qp);
+          free(rollback_wqe);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int rollback_psn = 255;
+        
+          int _len_wqe0 = 65025;
+          struct rxe_send_wqe * wqe = (struct rxe_send_wqe *) malloc(_len_wqe0*sizeof(struct rxe_send_wqe));
+          for(int _i0 = 0; _i0 < _len_wqe0; _i0++) {
+              wqe[_i0].last_psn = ((-2 * (next_i()%2)) + 1) * next_i();
+          wqe[_i0].first_psn = ((-2 * (next_i()%2)) + 1) * next_i();
+          wqe[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_qp0 = 65025;
+          struct rxe_qp * qp = (struct rxe_qp *) malloc(_len_qp0*sizeof(struct rxe_qp));
+          for(int _i0 = 0; _i0 < _len_qp0; _i0++) {
+              qp[_i0].req.psn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_rollback_wqe0 = 65025;
+          struct rxe_send_wqe * rollback_wqe = (struct rxe_send_wqe *) malloc(_len_rollback_wqe0*sizeof(struct rxe_send_wqe));
+          for(int _i0 = 0; _i0 < _len_rollback_wqe0; _i0++) {
+              rollback_wqe[_i0].last_psn = ((-2 * (next_i()%2)) + 1) * next_i();
+          rollback_wqe[_i0].first_psn = ((-2 * (next_i()%2)) + 1) * next_i();
+          rollback_wqe[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          rollback_state(wqe,qp,rollback_wqe,rollback_psn);
+          free(wqe);
+          free(qp);
+          free(rollback_wqe);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int rollback_psn = 10;
+        
+          int _len_wqe0 = 100;
+          struct rxe_send_wqe * wqe = (struct rxe_send_wqe *) malloc(_len_wqe0*sizeof(struct rxe_send_wqe));
+          for(int _i0 = 0; _i0 < _len_wqe0; _i0++) {
+              wqe[_i0].last_psn = ((-2 * (next_i()%2)) + 1) * next_i();
+          wqe[_i0].first_psn = ((-2 * (next_i()%2)) + 1) * next_i();
+          wqe[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_qp0 = 100;
+          struct rxe_qp * qp = (struct rxe_qp *) malloc(_len_qp0*sizeof(struct rxe_qp));
+          for(int _i0 = 0; _i0 < _len_qp0; _i0++) {
+              qp[_i0].req.psn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_rollback_wqe0 = 100;
+          struct rxe_send_wqe * rollback_wqe = (struct rxe_send_wqe *) malloc(_len_rollback_wqe0*sizeof(struct rxe_send_wqe));
+          for(int _i0 = 0; _i0 < _len_rollback_wqe0; _i0++) {
+              rollback_wqe[_i0].last_psn = ((-2 * (next_i()%2)) + 1) * next_i();
+          rollback_wqe[_i0].first_psn = ((-2 * (next_i()%2)) + 1) * next_i();
+          rollback_wqe[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          rollback_state(wqe,qp,rollback_wqe,rollback_psn);
+          free(wqe);
+          free(qp);
+          free(rollback_wqe);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int rollback_psn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_wqe0 = 1;
+          struct rxe_send_wqe * wqe = (struct rxe_send_wqe *) malloc(_len_wqe0*sizeof(struct rxe_send_wqe));
+          for(int _i0 = 0; _i0 < _len_wqe0; _i0++) {
+              wqe[_i0].last_psn = ((-2 * (next_i()%2)) + 1) * next_i();
+          wqe[_i0].first_psn = ((-2 * (next_i()%2)) + 1) * next_i();
+          wqe[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_qp0 = 1;
+          struct rxe_qp * qp = (struct rxe_qp *) malloc(_len_qp0*sizeof(struct rxe_qp));
+          for(int _i0 = 0; _i0 < _len_qp0; _i0++) {
+              qp[_i0].req.psn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_rollback_wqe0 = 1;
+          struct rxe_send_wqe * rollback_wqe = (struct rxe_send_wqe *) malloc(_len_rollback_wqe0*sizeof(struct rxe_send_wqe));
+          for(int _i0 = 0; _i0 < _len_rollback_wqe0; _i0++) {
+              rollback_wqe[_i0].last_psn = ((-2 * (next_i()%2)) + 1) * next_i();
+          rollback_wqe[_i0].first_psn = ((-2 * (next_i()%2)) + 1) * next_i();
+          rollback_wqe[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           rollback_state(wqe,qp,rollback_wqe,rollback_psn);
           free(wqe);
           free(qp);

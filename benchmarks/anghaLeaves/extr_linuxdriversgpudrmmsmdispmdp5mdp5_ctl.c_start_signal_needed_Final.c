@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ __attribute__((used)) static bool start_signal_needed(struct mdp5_ctl *ctl,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,24 +92,166 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_ctl0 = 65025;
+          struct mdp5_ctl * ctl = (struct mdp5_ctl *) malloc(_len_ctl0*sizeof(struct mdp5_ctl));
+          for(int _i0 = 0; _i0 < _len_ctl0; _i0++) {
+              ctl[_i0].encoder_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pipeline0 = 65025;
+          struct mdp5_pipeline * pipeline = (struct mdp5_pipeline *) malloc(_len_pipeline0*sizeof(struct mdp5_pipeline));
+          for(int _i0 = 0; _i0 < _len_pipeline0; _i0++) {
+              int _len_pipeline__i0__intf0 = 1;
+          pipeline[_i0].intf = (struct mdp5_interface *) malloc(_len_pipeline__i0__intf0*sizeof(struct mdp5_interface));
+          for(int _j0 = 0; _j0 < _len_pipeline__i0__intf0; _j0++) {
+              pipeline[_i0].intf->type = ((-2 * (next_i()%2)) + 1) * next_i();
+          pipeline[_i0].intf->mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = start_signal_needed(ctl,pipeline);
+          printf("%d\n", benchRet); 
+          free(ctl);
+          for(int _aux = 0; _aux < _len_pipeline0; _aux++) {
+          free(pipeline[_aux].intf);
+          }
+          free(pipeline);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_ctl0 = 100;
+          struct mdp5_ctl * ctl = (struct mdp5_ctl *) malloc(_len_ctl0*sizeof(struct mdp5_ctl));
+          for(int _i0 = 0; _i0 < _len_ctl0; _i0++) {
+              ctl[_i0].encoder_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pipeline0 = 100;
+          struct mdp5_pipeline * pipeline = (struct mdp5_pipeline *) malloc(_len_pipeline0*sizeof(struct mdp5_pipeline));
+          for(int _i0 = 0; _i0 < _len_pipeline0; _i0++) {
+              int _len_pipeline__i0__intf0 = 1;
+          pipeline[_i0].intf = (struct mdp5_interface *) malloc(_len_pipeline__i0__intf0*sizeof(struct mdp5_interface));
+          for(int _j0 = 0; _j0 < _len_pipeline__i0__intf0; _j0++) {
+              pipeline[_i0].intf->type = ((-2 * (next_i()%2)) + 1) * next_i();
+          pipeline[_i0].intf->mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = start_signal_needed(ctl,pipeline);
+          printf("%d\n", benchRet); 
+          free(ctl);
+          for(int _aux = 0; _aux < _len_pipeline0; _aux++) {
+          free(pipeline[_aux].intf);
+          }
+          free(pipeline);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int _len_ctl0 = 1;
           struct mdp5_ctl * ctl = (struct mdp5_ctl *) malloc(_len_ctl0*sizeof(struct mdp5_ctl));
           for(int _i0 = 0; _i0 < _len_ctl0; _i0++) {
-            ctl[_i0].encoder_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctl[_i0].encoder_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_pipeline0 = 1;
           struct mdp5_pipeline * pipeline = (struct mdp5_pipeline *) malloc(_len_pipeline0*sizeof(struct mdp5_pipeline));
           for(int _i0 = 0; _i0 < _len_pipeline0; _i0++) {
               int _len_pipeline__i0__intf0 = 1;
           pipeline[_i0].intf = (struct mdp5_interface *) malloc(_len_pipeline__i0__intf0*sizeof(struct mdp5_interface));
           for(int _j0 = 0; _j0 < _len_pipeline__i0__intf0; _j0++) {
-            pipeline[_i0].intf->type = ((-2 * (next_i()%2)) + 1) * next_i();
-        pipeline[_i0].intf->mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              pipeline[_i0].intf->type = ((-2 * (next_i()%2)) + 1) * next_i();
+          pipeline[_i0].intf->mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = start_signal_needed(ctl,pipeline);
           printf("%d\n", benchRet); 
           free(ctl);

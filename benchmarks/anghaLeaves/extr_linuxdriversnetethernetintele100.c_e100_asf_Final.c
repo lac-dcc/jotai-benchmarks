@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static int e100_asf(struct nic *nic)
 	   ((nic->eeprom[eeprom_smbus_addr] & 0xFF) != 0xFE);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,10 +84,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_nic0 = 1;
+          int _len_nic0 = 65025;
           struct nic * nic = (struct nic *) malloc(_len_nic0*sizeof(struct nic));
           for(int _i0 = 0; _i0 < _len_nic0; _i0++) {
               int _len_nic__i0__eeprom0 = 1;
@@ -102,9 +98,12 @@ int main(int argc, char *argv[]) {
           int _len_nic__i0__pdev0 = 1;
           nic[_i0].pdev = (struct TYPE_2__ *) malloc(_len_nic__i0__pdev0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_nic__i0__pdev0; _j0++) {
-            nic[_i0].pdev->device = ((-2 * (next_i()%2)) + 1) * next_i();
+              nic[_i0].pdev->device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = e100_asf(nic);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_nic0; _aux++) {
@@ -117,7 +116,70 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_nic0 = 100;
+          struct nic * nic = (struct nic *) malloc(_len_nic0*sizeof(struct nic));
+          for(int _i0 = 0; _i0 < _len_nic0; _i0++) {
+              int _len_nic__i0__eeprom0 = 1;
+          nic[_i0].eeprom = (int *) malloc(_len_nic__i0__eeprom0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_nic__i0__eeprom0; _j0++) {
+            nic[_i0].eeprom[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_nic__i0__pdev0 = 1;
+          nic[_i0].pdev = (struct TYPE_2__ *) malloc(_len_nic__i0__pdev0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_nic__i0__pdev0; _j0++) {
+              nic[_i0].pdev->device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = e100_asf(nic);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_nic0; _aux++) {
+          free(nic[_aux].eeprom);
+          }
+          for(int _aux = 0; _aux < _len_nic0; _aux++) {
+          free(nic[_aux].pdev);
+          }
+          free(nic);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_nic0 = 1;
+          struct nic * nic = (struct nic *) malloc(_len_nic0*sizeof(struct nic));
+          for(int _i0 = 0; _i0 < _len_nic0; _i0++) {
+              int _len_nic__i0__eeprom0 = 1;
+          nic[_i0].eeprom = (int *) malloc(_len_nic__i0__eeprom0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_nic__i0__eeprom0; _j0++) {
+            nic[_i0].eeprom[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_nic__i0__pdev0 = 1;
+          nic[_i0].pdev = (struct TYPE_2__ *) malloc(_len_nic__i0__pdev0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_nic__i0__pdev0; _j0++) {
+              nic[_i0].pdev->device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = e100_asf(nic);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_nic0; _aux++) {
+          free(nic[_aux].eeprom);
+          }
+          for(int _aux = 0; _aux < _len_nic0; _aux++) {
+          free(nic[_aux].pdev);
+          }
+          free(nic);
+        
+        break;
+    }
     default:
         usage();
         break;

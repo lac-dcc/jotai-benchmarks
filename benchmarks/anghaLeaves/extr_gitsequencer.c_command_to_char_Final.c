@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -67,12 +67,6 @@ __attribute__((used)) static char command_to_char(const enum todo_command comman
 	return comment_line_char;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,16 +79,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           const enum todo_command command = 0;
+        
           char benchRet = command_to_char(command);
           printf("%c\n", (benchRet %26) + 'a'); 
         
         break;
     }
-
     default:
         usage();
         break;

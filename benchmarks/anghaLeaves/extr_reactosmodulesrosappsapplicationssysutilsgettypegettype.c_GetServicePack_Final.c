@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +79,6 @@ GetServicePack(BOOL bLocal, LPOSVERSIONINFOEX osvi, LPSERVER_INFO_102 pBuf102, T
 	return SPNumber;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,17 +95,22 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int bLocal = 100;
+        
           int pBuf102 = 100;
+        
           int _len_osvi0 = 1;
           struct TYPE_3__ * osvi = (struct TYPE_3__ *) malloc(_len_osvi0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_osvi0; _i0++) {
-            osvi[_i0].wServicePackMajor = ((-2 * (next_i()%2)) + 1) * next_i();
+              osvi[_i0].wServicePackMajor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_Server0 = 1;
           int * Server = (int *) malloc(_len_Server0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_Server0; _i0++) {
             Server[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = GetServicePack(bLocal,osvi,pBuf102,Server);
           printf("%d\n", benchRet); 
           free(osvi);
@@ -116,7 +118,87 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int bLocal = 255;
+        
+          int pBuf102 = 255;
+        
+          int _len_osvi0 = 65025;
+          struct TYPE_3__ * osvi = (struct TYPE_3__ *) malloc(_len_osvi0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_osvi0; _i0++) {
+              osvi[_i0].wServicePackMajor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_Server0 = 65025;
+          int * Server = (int *) malloc(_len_Server0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_Server0; _i0++) {
+            Server[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = GetServicePack(bLocal,osvi,pBuf102,Server);
+          printf("%d\n", benchRet); 
+          free(osvi);
+          free(Server);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int bLocal = 10;
+        
+          int pBuf102 = 10;
+        
+          int _len_osvi0 = 100;
+          struct TYPE_3__ * osvi = (struct TYPE_3__ *) malloc(_len_osvi0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_osvi0; _i0++) {
+              osvi[_i0].wServicePackMajor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_Server0 = 100;
+          int * Server = (int *) malloc(_len_Server0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_Server0; _i0++) {
+            Server[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = GetServicePack(bLocal,osvi,pBuf102,Server);
+          printf("%d\n", benchRet); 
+          free(osvi);
+          free(Server);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int bLocal = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int pBuf102 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_osvi0 = 1;
+          struct TYPE_3__ * osvi = (struct TYPE_3__ *) malloc(_len_osvi0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_osvi0; _i0++) {
+              osvi[_i0].wServicePackMajor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_Server0 = 1;
+          int * Server = (int *) malloc(_len_Server0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_Server0; _i0++) {
+            Server[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = GetServicePack(bLocal,osvi,pBuf102,Server);
+          printf("%d\n", benchRet); 
+          free(osvi);
+          free(Server);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -79,12 +81,6 @@ __attribute__((used)) static void dsi_pll_setup_config(struct dsi_pll_10nm *pll)
 	config->ssc_center = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,29 +93,165 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_pll0 = 65025;
+          struct dsi_pll_10nm * pll = (struct dsi_pll_10nm *) malloc(_len_pll0*sizeof(struct dsi_pll_10nm));
+          for(int _i0 = 0; _i0 < _len_pll0; _i0++) {
+              pll[_i0].vco_ref_clk_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.output_div = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.dec_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.frac_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.lock_timer = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.ssc_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.ssc_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.ssc_adj_per = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.thresh_cycles = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.refclk_cycles = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.div_override = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.ignore_frac = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.disable_prescaler = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.enable_ssc = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.ssc_center = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.ref_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          dsi_pll_setup_config(pll);
+          free(pll);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_pll0 = 100;
+          struct dsi_pll_10nm * pll = (struct dsi_pll_10nm *) malloc(_len_pll0*sizeof(struct dsi_pll_10nm));
+          for(int _i0 = 0; _i0 < _len_pll0; _i0++) {
+              pll[_i0].vco_ref_clk_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.output_div = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.dec_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.frac_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.lock_timer = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.ssc_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.ssc_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.ssc_adj_per = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.thresh_cycles = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.refclk_cycles = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.div_override = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.ignore_frac = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.disable_prescaler = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.enable_ssc = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.ssc_center = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.ref_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          dsi_pll_setup_config(pll);
+          free(pll);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int _len_pll0 = 1;
           struct dsi_pll_10nm * pll = (struct dsi_pll_10nm *) malloc(_len_pll0*sizeof(struct dsi_pll_10nm));
           for(int _i0 = 0; _i0 < _len_pll0; _i0++) {
-            pll[_i0].vco_ref_clk_rate = ((-2 * (next_i()%2)) + 1) * next_i();
-        pll[_i0].pll_configuration.output_div = ((-2 * (next_i()%2)) + 1) * next_i();
-        pll[_i0].pll_configuration.dec_bits = ((-2 * (next_i()%2)) + 1) * next_i();
-        pll[_i0].pll_configuration.frac_bits = ((-2 * (next_i()%2)) + 1) * next_i();
-        pll[_i0].pll_configuration.lock_timer = ((-2 * (next_i()%2)) + 1) * next_i();
-        pll[_i0].pll_configuration.ssc_freq = ((-2 * (next_i()%2)) + 1) * next_i();
-        pll[_i0].pll_configuration.ssc_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        pll[_i0].pll_configuration.ssc_adj_per = ((-2 * (next_i()%2)) + 1) * next_i();
-        pll[_i0].pll_configuration.thresh_cycles = ((-2 * (next_i()%2)) + 1) * next_i();
-        pll[_i0].pll_configuration.refclk_cycles = ((-2 * (next_i()%2)) + 1) * next_i();
-        pll[_i0].pll_configuration.div_override = ((-2 * (next_i()%2)) + 1) * next_i();
-        pll[_i0].pll_configuration.ignore_frac = ((-2 * (next_i()%2)) + 1) * next_i();
-        pll[_i0].pll_configuration.disable_prescaler = ((-2 * (next_i()%2)) + 1) * next_i();
-        pll[_i0].pll_configuration.enable_ssc = ((-2 * (next_i()%2)) + 1) * next_i();
-        pll[_i0].pll_configuration.ssc_center = ((-2 * (next_i()%2)) + 1) * next_i();
-        pll[_i0].pll_configuration.ref_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+              pll[_i0].vco_ref_clk_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.output_div = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.dec_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.frac_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.lock_timer = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.ssc_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.ssc_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.ssc_adj_per = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.thresh_cycles = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.refclk_cycles = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.div_override = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.ignore_frac = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.disable_prescaler = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.enable_ssc = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.ssc_center = ((-2 * (next_i()%2)) + 1) * next_i();
+          pll[_i0].pll_configuration.ref_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           dsi_pll_setup_config(pll);
           free(pll);
         

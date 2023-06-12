@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ __attribute__((used)) static inline int add_tcp_pending_ack(u32 ack, u32 session
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,12 +96,36 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long ack = 100;
+        
           unsigned long session_index = 100;
+        
           int _len_txqe0 = 1;
           struct txq_entry_t * txqe = (struct txq_entry_t *) malloc(_len_txqe0*sizeof(struct txq_entry_t));
           for(int _i0 = 0; _i0 < _len_txqe0; _i0++) {
-            txqe[_i0].tcp_pending_ack_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+              txqe[_i0].tcp_pending_ack_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = add_tcp_pending_ack(ack,session_index,txqe);
+          printf("%d\n", benchRet); 
+          free(txqe);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned long ack = 255;
+        
+          unsigned long session_index = 255;
+        
+          int _len_txqe0 = 65025;
+          struct txq_entry_t * txqe = (struct txq_entry_t *) malloc(_len_txqe0*sizeof(struct txq_entry_t));
+          for(int _i0 = 0; _i0 < _len_txqe0; _i0++) {
+              txqe[_i0].tcp_pending_ack_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = add_tcp_pending_ack(ack,session_index,txqe);
           printf("%d\n", benchRet); 
           free(txqe);
@@ -113,22 +133,45 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned long ack = 10;
+        
           unsigned long session_index = 10;
+        
           int _len_txqe0 = 100;
           struct txq_entry_t * txqe = (struct txq_entry_t *) malloc(_len_txqe0*sizeof(struct txq_entry_t));
           for(int _i0 = 0; _i0 < _len_txqe0; _i0++) {
-            txqe[_i0].tcp_pending_ack_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+              txqe[_i0].tcp_pending_ack_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = add_tcp_pending_ack(ack,session_index,txqe);
           printf("%d\n", benchRet); 
           free(txqe);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long ack = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long session_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_txqe0 = 1;
+          struct txq_entry_t * txqe = (struct txq_entry_t *) malloc(_len_txqe0*sizeof(struct txq_entry_t));
+          for(int _i0 = 0; _i0 < _len_txqe0; _i0++) {
+              txqe[_i0].tcp_pending_ack_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = add_tcp_pending_ack(ack,session_index,txqe);
+          printf("%d\n", benchRet); 
+          free(txqe);
+        
+        break;
+    }
     default:
         usage();
         break;

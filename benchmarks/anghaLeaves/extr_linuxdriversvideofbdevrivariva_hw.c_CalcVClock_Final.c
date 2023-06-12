@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -120,12 +123,6 @@ __attribute__((used)) static int CalcVClock
     return (DeltaOld != 0xFFFFFFFF);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -138,37 +135,283 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 54
+          // dynamic_instructions_O0 : 113
+          // ------------------------------- 
+          // static_instructions_O1 : 49
+          // dynamic_instructions_O1 : 77
+          // ------------------------------- 
+          // static_instructions_O2 : 49
+          // dynamic_instructions_O2 : 77
+          // ------------------------------- 
+          // static_instructions_O3 : 55
+          // dynamic_instructions_O3 : 55
+          // ------------------------------- 
+          // static_instructions_Ofast : 55
+          // dynamic_instructions_Ofast : 55
+          // ------------------------------- 
+          // static_instructions_Os : 48
+          // dynamic_instructions_Os : 76
+          // ------------------------------- 
+          // static_instructions_Oz : 48
+          // dynamic_instructions_Oz : 82
+          // ------------------------------- 
+
           int clockIn = 100;
+        
           int _len_clockOut0 = 1;
           int * clockOut = (int *) malloc(_len_clockOut0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_clockOut0; _i0++) {
             clockOut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_mOut0 = 1;
           int * mOut = (int *) malloc(_len_mOut0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_mOut0; _i0++) {
             mOut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_nOut0 = 1;
           int * nOut = (int *) malloc(_len_nOut0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_nOut0; _i0++) {
             nOut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_pOut0 = 1;
           int * pOut = (int *) malloc(_len_pOut0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pOut0; _i0++) {
             pOut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_chip0 = 1;
           struct TYPE_3__ * chip = (struct TYPE_3__ *) malloc(_len_chip0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
-            chip[_i0].CrystalFreqKHz = ((-2 * (next_i()%2)) + 1) * next_i();
-        chip[_i0].Architecture = ((-2 * (next_i()%2)) + 1) * next_i();
-        chip[_i0].MaxVClockFreqKHz = ((-2 * (next_i()%2)) + 1) * next_i();
+              chip[_i0].CrystalFreqKHz = ((-2 * (next_i()%2)) + 1) * next_i();
+          chip[_i0].Architecture = ((-2 * (next_i()%2)) + 1) * next_i();
+          chip[_i0].MaxVClockFreqKHz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = CalcVClock(clockIn,clockOut,mOut,nOut,pOut,chip);
+          printf("%d\n", benchRet); 
+          free(clockOut);
+          free(mOut);
+          free(nOut);
+          free(pOut);
+          free(chip);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 54
+          // dynamic_instructions_O0 : 113
+          // ------------------------------- 
+          // static_instructions_O1 : 49
+          // dynamic_instructions_O1 : 77
+          // ------------------------------- 
+          // static_instructions_O2 : 49
+          // dynamic_instructions_O2 : 77
+          // ------------------------------- 
+          // static_instructions_O3 : 55
+          // dynamic_instructions_O3 : 55
+          // ------------------------------- 
+          // static_instructions_Ofast : 55
+          // dynamic_instructions_Ofast : 55
+          // ------------------------------- 
+          // static_instructions_Os : 48
+          // dynamic_instructions_Os : 76
+          // ------------------------------- 
+          // static_instructions_Oz : 48
+          // dynamic_instructions_Oz : 82
+          // ------------------------------- 
+
+          int clockIn = 255;
+        
+          int _len_clockOut0 = 65025;
+          int * clockOut = (int *) malloc(_len_clockOut0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_clockOut0; _i0++) {
+            clockOut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_mOut0 = 65025;
+          int * mOut = (int *) malloc(_len_mOut0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mOut0; _i0++) {
+            mOut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_nOut0 = 65025;
+          int * nOut = (int *) malloc(_len_nOut0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_nOut0; _i0++) {
+            nOut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pOut0 = 65025;
+          int * pOut = (int *) malloc(_len_pOut0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pOut0; _i0++) {
+            pOut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_chip0 = 65025;
+          struct TYPE_3__ * chip = (struct TYPE_3__ *) malloc(_len_chip0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
+              chip[_i0].CrystalFreqKHz = ((-2 * (next_i()%2)) + 1) * next_i();
+          chip[_i0].Architecture = ((-2 * (next_i()%2)) + 1) * next_i();
+          chip[_i0].MaxVClockFreqKHz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = CalcVClock(clockIn,clockOut,mOut,nOut,pOut,chip);
+          printf("%d\n", benchRet); 
+          free(clockOut);
+          free(mOut);
+          free(nOut);
+          free(pOut);
+          free(chip);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 54
+          // dynamic_instructions_O0 : 113
+          // ------------------------------- 
+          // static_instructions_O1 : 49
+          // dynamic_instructions_O1 : 77
+          // ------------------------------- 
+          // static_instructions_O2 : 49
+          // dynamic_instructions_O2 : 77
+          // ------------------------------- 
+          // static_instructions_O3 : 55
+          // dynamic_instructions_O3 : 55
+          // ------------------------------- 
+          // static_instructions_Ofast : 55
+          // dynamic_instructions_Ofast : 55
+          // ------------------------------- 
+          // static_instructions_Os : 48
+          // dynamic_instructions_Os : 76
+          // ------------------------------- 
+          // static_instructions_Oz : 48
+          // dynamic_instructions_Oz : 82
+          // ------------------------------- 
+
+          int clockIn = 10;
+        
+          int _len_clockOut0 = 100;
+          int * clockOut = (int *) malloc(_len_clockOut0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_clockOut0; _i0++) {
+            clockOut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_mOut0 = 100;
+          int * mOut = (int *) malloc(_len_mOut0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mOut0; _i0++) {
+            mOut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_nOut0 = 100;
+          int * nOut = (int *) malloc(_len_nOut0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_nOut0; _i0++) {
+            nOut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pOut0 = 100;
+          int * pOut = (int *) malloc(_len_pOut0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pOut0; _i0++) {
+            pOut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_chip0 = 100;
+          struct TYPE_3__ * chip = (struct TYPE_3__ *) malloc(_len_chip0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
+              chip[_i0].CrystalFreqKHz = ((-2 * (next_i()%2)) + 1) * next_i();
+          chip[_i0].Architecture = ((-2 * (next_i()%2)) + 1) * next_i();
+          chip[_i0].MaxVClockFreqKHz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = CalcVClock(clockIn,clockOut,mOut,nOut,pOut,chip);
+          printf("%d\n", benchRet); 
+          free(clockOut);
+          free(mOut);
+          free(nOut);
+          free(pOut);
+          free(chip);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 111
+          // dynamic_instructions_O0 : 1437
+          // ------------------------------- 
+          // static_instructions_O1 : 87
+          // dynamic_instructions_O1 : 955
+          // ------------------------------- 
+          // static_instructions_O2 : 87
+          // dynamic_instructions_O2 : 955
+          // ------------------------------- 
+          // static_instructions_O3 : 222
+          // dynamic_instructions_O3 : 936
+          // ------------------------------- 
+          // static_instructions_Ofast : 222
+          // dynamic_instructions_Ofast : 936
+          // ------------------------------- 
+          // static_instructions_Os : 84
+          // dynamic_instructions_Os : 948
+          // ------------------------------- 
+          // static_instructions_Oz : 86
+          // dynamic_instructions_Oz : 1004
+          // ------------------------------- 
+
+          int clockIn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_clockOut0 = 1;
+          int * clockOut = (int *) malloc(_len_clockOut0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_clockOut0; _i0++) {
+            clockOut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_mOut0 = 1;
+          int * mOut = (int *) malloc(_len_mOut0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mOut0; _i0++) {
+            mOut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_nOut0 = 1;
+          int * nOut = (int *) malloc(_len_nOut0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_nOut0; _i0++) {
+            nOut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pOut0 = 1;
+          int * pOut = (int *) malloc(_len_pOut0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pOut0; _i0++) {
+            pOut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_chip0 = 1;
+          struct TYPE_3__ * chip = (struct TYPE_3__ *) malloc(_len_chip0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
+              chip[_i0].CrystalFreqKHz = ((-2 * (next_i()%2)) + 1) * next_i();
+          chip[_i0].Architecture = ((-2 * (next_i()%2)) + 1) * next_i();
+          chip[_i0].MaxVClockFreqKHz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = CalcVClock(clockIn,clockOut,mOut,nOut,pOut,chip);
           printf("%d\n", benchRet); 
           free(clockOut);

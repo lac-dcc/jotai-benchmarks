@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +65,6 @@ void set_device_ro(struct block_device *bdev, int flag)
 	bdev->bd_part->policy = flag;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,15 +81,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int flag = 100;
+        
           int _len_bdev0 = 1;
           struct block_device * bdev = (struct block_device *) malloc(_len_bdev0*sizeof(struct block_device));
           for(int _i0 = 0; _i0 < _len_bdev0; _i0++) {
               int _len_bdev__i0__bd_part0 = 1;
           bdev[_i0].bd_part = (struct TYPE_2__ *) malloc(_len_bdev__i0__bd_part0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_bdev__i0__bd_part0; _j0++) {
-            bdev[_i0].bd_part->policy = ((-2 * (next_i()%2)) + 1) * next_i();
+              bdev[_i0].bd_part->policy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           set_device_ro(bdev,flag);
           for(int _aux = 0; _aux < _len_bdev0; _aux++) {
           free(bdev[_aux].bd_part);
@@ -101,7 +102,81 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int flag = 255;
+        
+          int _len_bdev0 = 65025;
+          struct block_device * bdev = (struct block_device *) malloc(_len_bdev0*sizeof(struct block_device));
+          for(int _i0 = 0; _i0 < _len_bdev0; _i0++) {
+              int _len_bdev__i0__bd_part0 = 1;
+          bdev[_i0].bd_part = (struct TYPE_2__ *) malloc(_len_bdev__i0__bd_part0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_bdev__i0__bd_part0; _j0++) {
+              bdev[_i0].bd_part->policy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          set_device_ro(bdev,flag);
+          for(int _aux = 0; _aux < _len_bdev0; _aux++) {
+          free(bdev[_aux].bd_part);
+          }
+          free(bdev);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int flag = 10;
+        
+          int _len_bdev0 = 100;
+          struct block_device * bdev = (struct block_device *) malloc(_len_bdev0*sizeof(struct block_device));
+          for(int _i0 = 0; _i0 < _len_bdev0; _i0++) {
+              int _len_bdev__i0__bd_part0 = 1;
+          bdev[_i0].bd_part = (struct TYPE_2__ *) malloc(_len_bdev__i0__bd_part0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_bdev__i0__bd_part0; _j0++) {
+              bdev[_i0].bd_part->policy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          set_device_ro(bdev,flag);
+          for(int _aux = 0; _aux < _len_bdev0; _aux++) {
+          free(bdev[_aux].bd_part);
+          }
+          free(bdev);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_bdev0 = 1;
+          struct block_device * bdev = (struct block_device *) malloc(_len_bdev0*sizeof(struct block_device));
+          for(int _i0 = 0; _i0 < _len_bdev0; _i0++) {
+              int _len_bdev__i0__bd_part0 = 1;
+          bdev[_i0].bd_part = (struct TYPE_2__ *) malloc(_len_bdev__i0__bd_part0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_bdev__i0__bd_part0; _j0++) {
+              bdev[_i0].bd_part->policy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          set_device_ro(bdev,flag);
+          for(int _aux = 0; _aux < _len_bdev0; _aux++) {
+          free(bdev[_aux].bd_part);
+          }
+          free(bdev);
+        
+        break;
+    }
     default:
         usage();
         break;

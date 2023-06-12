@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ lpfc_jedec_to_ascii(int incr, char hdw[])
 	return;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,15 +83,80 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 195
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 103
+          // ------------------------------- 
+          // static_instructions_O2 : 83
+          // dynamic_instructions_O2 : 83
+          // ------------------------------- 
+          // static_instructions_O3 : 83
+          // dynamic_instructions_O3 : 83
+          // ------------------------------- 
+          // static_instructions_Ofast : 83
+          // dynamic_instructions_Ofast : 83
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 102
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 120
+          // ------------------------------- 
+
+          int incr = 255;
+        
+          int _len_hdw0 = 65025;
+          char * hdw = (char *) malloc(_len_hdw0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_hdw0; _i0++) {
+            hdw[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          lpfc_jedec_to_ascii(incr,hdw);
+          free(hdw);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 195
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 103
+          // ------------------------------- 
+          // static_instructions_O2 : 83
+          // dynamic_instructions_O2 : 83
+          // ------------------------------- 
+          // static_instructions_O3 : 83
+          // dynamic_instructions_O3 : 83
+          // ------------------------------- 
+          // static_instructions_Ofast : 83
+          // dynamic_instructions_Ofast : 83
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 102
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 120
+          // ------------------------------- 
+
           int incr = 10;
+        
           int _len_hdw0 = 100;
           char * hdw = (char *) malloc(_len_hdw0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_hdw0; _i0++) {
             hdw[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           lpfc_jedec_to_ascii(incr,hdw);
           free(hdw);
         

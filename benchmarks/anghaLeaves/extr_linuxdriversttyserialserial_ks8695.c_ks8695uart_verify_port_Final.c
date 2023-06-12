@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ __attribute__((used)) static int ks8695uart_verify_port(struct uart_port *port, 
 	return ret;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,21 +86,148 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_port0 = 65025;
+          struct uart_port * port = (struct uart_port *) malloc(_len_port0*sizeof(struct uart_port));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              port[_i0].irq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ser0 = 65025;
+          struct serial_struct * ser = (struct serial_struct *) malloc(_len_ser0*sizeof(struct serial_struct));
+          for(int _i0 = 0; _i0 < _len_ser0; _i0++) {
+              ser[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          ser[_i0].irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          ser[_i0].baud_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ks8695uart_verify_port(port,ser);
+          printf("%d\n", benchRet); 
+          free(port);
+          free(ser);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_port0 = 100;
+          struct uart_port * port = (struct uart_port *) malloc(_len_port0*sizeof(struct uart_port));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              port[_i0].irq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ser0 = 100;
+          struct serial_struct * ser = (struct serial_struct *) malloc(_len_ser0*sizeof(struct serial_struct));
+          for(int _i0 = 0; _i0 < _len_ser0; _i0++) {
+              ser[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          ser[_i0].irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          ser[_i0].baud_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ks8695uart_verify_port(port,ser);
+          printf("%d\n", benchRet); 
+          free(port);
+          free(ser);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int _len_port0 = 1;
           struct uart_port * port = (struct uart_port *) malloc(_len_port0*sizeof(struct uart_port));
           for(int _i0 = 0; _i0 < _len_port0; _i0++) {
-            port[_i0].irq = ((-2 * (next_i()%2)) + 1) * next_i();
+              port[_i0].irq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_ser0 = 1;
           struct serial_struct * ser = (struct serial_struct *) malloc(_len_ser0*sizeof(struct serial_struct));
           for(int _i0 = 0; _i0 < _len_ser0; _i0++) {
-            ser[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        ser[_i0].irq = ((-2 * (next_i()%2)) + 1) * next_i();
-        ser[_i0].baud_base = ((-2 * (next_i()%2)) + 1) * next_i();
+              ser[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          ser[_i0].irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          ser[_i0].baud_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ks8695uart_verify_port(port,ser);
           printf("%d\n", benchRet); 
           free(port);

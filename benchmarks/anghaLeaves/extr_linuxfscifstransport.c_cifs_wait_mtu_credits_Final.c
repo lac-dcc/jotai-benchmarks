@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ cifs_wait_mtu_credits(struct TCP_Server_Info *server, unsigned int size,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,25 +79,221 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           unsigned int size = 100;
+        
           int _len_server0 = 1;
           struct TCP_Server_Info * server = (struct TCP_Server_Info *) malloc(_len_server0*sizeof(struct TCP_Server_Info));
           for(int _i0 = 0; _i0 < _len_server0; _i0++) {
-            server[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              server[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_num0 = 1;
           unsigned int * num = (unsigned int *) malloc(_len_num0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_num0; _i0++) {
             num[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_credits0 = 1;
           unsigned int * credits = (unsigned int *) malloc(_len_credits0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_credits0; _i0++) {
             credits[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = cifs_wait_mtu_credits(server,size,num,credits);
+          printf("%d\n", benchRet); 
+          free(server);
+          free(num);
+          free(credits);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          unsigned int size = 255;
+        
+          int _len_server0 = 65025;
+          struct TCP_Server_Info * server = (struct TCP_Server_Info *) malloc(_len_server0*sizeof(struct TCP_Server_Info));
+          for(int _i0 = 0; _i0 < _len_server0; _i0++) {
+              server[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_num0 = 65025;
+          unsigned int * num = (unsigned int *) malloc(_len_num0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_num0; _i0++) {
+            num[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_credits0 = 65025;
+          unsigned int * credits = (unsigned int *) malloc(_len_credits0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_credits0; _i0++) {
+            credits[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = cifs_wait_mtu_credits(server,size,num,credits);
+          printf("%d\n", benchRet); 
+          free(server);
+          free(num);
+          free(credits);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          unsigned int size = 10;
+        
+          int _len_server0 = 100;
+          struct TCP_Server_Info * server = (struct TCP_Server_Info *) malloc(_len_server0*sizeof(struct TCP_Server_Info));
+          for(int _i0 = 0; _i0 < _len_server0; _i0++) {
+              server[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_num0 = 100;
+          unsigned int * num = (unsigned int *) malloc(_len_num0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_num0; _i0++) {
+            num[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_credits0 = 100;
+          unsigned int * credits = (unsigned int *) malloc(_len_credits0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_credits0; _i0++) {
+            credits[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = cifs_wait_mtu_credits(server,size,num,credits);
+          printf("%d\n", benchRet); 
+          free(server);
+          free(num);
+          free(credits);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          unsigned int size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_server0 = 1;
+          struct TCP_Server_Info * server = (struct TCP_Server_Info *) malloc(_len_server0*sizeof(struct TCP_Server_Info));
+          for(int _i0 = 0; _i0 < _len_server0; _i0++) {
+              server[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_num0 = 1;
+          unsigned int * num = (unsigned int *) malloc(_len_num0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_num0; _i0++) {
+            num[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_credits0 = 1;
+          unsigned int * credits = (unsigned int *) malloc(_len_credits0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_credits0; _i0++) {
+            credits[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = cifs_wait_mtu_credits(server,size,num,credits);
           printf("%d\n", benchRet); 
           free(server);

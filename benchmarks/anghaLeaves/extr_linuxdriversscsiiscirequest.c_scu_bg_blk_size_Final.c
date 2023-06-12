@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +72,6 @@ __attribute__((used)) static u8 scu_bg_blk_size(struct scsi_device *sdp)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,14 +84,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_sdp0 = 1;
+          int _len_sdp0 = 65025;
           struct scsi_device * sdp = (struct scsi_device *) malloc(_len_sdp0*sizeof(struct scsi_device));
           for(int _i0 = 0; _i0 < _len_sdp0; _i0++) {
-            sdp[_i0].sector_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              sdp[_i0].sector_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = scu_bg_blk_size(sdp);
           printf("%d\n", benchRet); 
           free(sdp);
@@ -109,15 +106,32 @@ int main(int argc, char *argv[]) {
           int _len_sdp0 = 100;
           struct scsi_device * sdp = (struct scsi_device *) malloc(_len_sdp0*sizeof(struct scsi_device));
           for(int _i0 = 0; _i0 < _len_sdp0; _i0++) {
-            sdp[_i0].sector_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              sdp[_i0].sector_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = scu_bg_blk_size(sdp);
           printf("%d\n", benchRet); 
           free(sdp);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_sdp0 = 1;
+          struct scsi_device * sdp = (struct scsi_device *) malloc(_len_sdp0*sizeof(struct scsi_device));
+          for(int _i0 = 0; _i0 < _len_sdp0; _i0++) {
+              sdp[_i0].sector_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = scu_bg_blk_size(sdp);
+          printf("%d\n", benchRet); 
+          free(sdp);
+        
+        break;
+    }
     default:
         usage();
         break;

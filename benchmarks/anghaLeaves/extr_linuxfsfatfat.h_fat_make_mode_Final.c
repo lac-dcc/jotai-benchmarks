@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +79,6 @@ __attribute__((used)) static inline umode_t fat_make_mode(struct msdos_sb_info *
 		return (mode & ~sbi->options.fs_fmask) | S_IFREG;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,18 +91,187 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int attrs = 100;
+        
           int mode = 100;
+        
           int _len_sbi0 = 1;
           struct msdos_sb_info * sbi = (struct msdos_sb_info *) malloc(_len_sbi0*sizeof(struct msdos_sb_info));
           for(int _i0 = 0; _i0 < _len_sbi0; _i0++) {
-            sbi[_i0].options.fs_dmask = ((-2 * (next_i()%2)) + 1) * next_i();
-        sbi[_i0].options.fs_fmask = ((-2 * (next_i()%2)) + 1) * next_i();
-        sbi[_i0].options.rodir = ((-2 * (next_i()%2)) + 1) * next_i();
+              sbi[_i0].options.fs_dmask = ((-2 * (next_i()%2)) + 1) * next_i();
+          sbi[_i0].options.fs_fmask = ((-2 * (next_i()%2)) + 1) * next_i();
+          sbi[_i0].options.rodir = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = fat_make_mode(sbi,attrs,mode);
+          printf("%d\n", benchRet); 
+          free(sbi);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int attrs = 255;
+        
+          int mode = 255;
+        
+          int _len_sbi0 = 65025;
+          struct msdos_sb_info * sbi = (struct msdos_sb_info *) malloc(_len_sbi0*sizeof(struct msdos_sb_info));
+          for(int _i0 = 0; _i0 < _len_sbi0; _i0++) {
+              sbi[_i0].options.fs_dmask = ((-2 * (next_i()%2)) + 1) * next_i();
+          sbi[_i0].options.fs_fmask = ((-2 * (next_i()%2)) + 1) * next_i();
+          sbi[_i0].options.rodir = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = fat_make_mode(sbi,attrs,mode);
+          printf("%d\n", benchRet); 
+          free(sbi);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int attrs = 10;
+        
+          int mode = 10;
+        
+          int _len_sbi0 = 100;
+          struct msdos_sb_info * sbi = (struct msdos_sb_info *) malloc(_len_sbi0*sizeof(struct msdos_sb_info));
+          for(int _i0 = 0; _i0 < _len_sbi0; _i0++) {
+              sbi[_i0].options.fs_dmask = ((-2 * (next_i()%2)) + 1) * next_i();
+          sbi[_i0].options.fs_fmask = ((-2 * (next_i()%2)) + 1) * next_i();
+          sbi[_i0].options.rodir = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = fat_make_mode(sbi,attrs,mode);
+          printf("%d\n", benchRet); 
+          free(sbi);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int attrs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sbi0 = 1;
+          struct msdos_sb_info * sbi = (struct msdos_sb_info *) malloc(_len_sbi0*sizeof(struct msdos_sb_info));
+          for(int _i0 = 0; _i0 < _len_sbi0; _i0++) {
+              sbi[_i0].options.fs_dmask = ((-2 * (next_i()%2)) + 1) * next_i();
+          sbi[_i0].options.fs_fmask = ((-2 * (next_i()%2)) + 1) * next_i();
+          sbi[_i0].options.rodir = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = fat_make_mode(sbi,attrs,mode);
           printf("%d\n", benchRet); 
           free(sbi);
